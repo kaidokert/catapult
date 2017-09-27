@@ -52,7 +52,7 @@ from devil.utils import zip_utils
 
 logger = logging.getLogger(__name__)
 
-_DEFAULT_TIMEOUT = 30
+_DEFAULT_TIMEOUT = 300
 _DEFAULT_RETRIES = 3
 
 # A sentinel object for default values
