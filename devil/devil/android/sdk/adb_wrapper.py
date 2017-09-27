@@ -32,7 +32,7 @@ logger = logging.getLogger(__name__)
 
 ADB_KEYS_FILE = '/data/misc/adb/adb_keys'
 
-DEFAULT_TIMEOUT = 30
+DEFAULT_TIMEOUT = 300
 DEFAULT_RETRIES = 2
 
 _ADB_VERSION_RE = re.compile(r'Android Debug Bridge version (\d+\.\d+\.\d+)')
@@ -255,6 +255,7 @@ class AdbWrapper(object):
   def _RunAdbCmd(cls, args, timeout=None, retries=None, device_serial=None,
                  check_error=True, cpu_affinity=None):
     # pylint: disable=no-member
+    print 'running adb cmd {} with timeout {}'.format(args, timeout)
     try:
       status, output = cmd_helper.GetCmdStatusAndOutputWithTimeout(
           cls._BuildAdbCmd(args, device_serial, cpu_affinity=cpu_affinity),
