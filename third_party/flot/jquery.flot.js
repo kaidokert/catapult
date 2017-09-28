@@ -645,7 +645,7 @@ Licensed under the MIT license.
         plot.width = function () { return plotWidth; };
         plot.height = function () { return plotHeight; };
         plot.offset = function () {
-            var o = eventHolder.offset();
+            var o = eventHolder[0].getBoundingClientRect();
             o.left += plotOffset.left;
             o.top += plotOffset.top;
             return o;
@@ -2946,9 +2946,14 @@ Licensed under the MIT license.
         // trigger click or hover event (they send the same parameters
         // so we share their code)
         function triggerClickHoverEvent(eventname, event, seriesFilter) {
-            var offset = eventHolder.offset(),
-                canvasX = event.pageX - offset.left - plotOffset.left,
-                canvasY = event.pageY - offset.top - plotOffset.top,
+            // When Polymer.useNativeShadow is false, eventHolder.offset() works
+            // because $.contains(document.documentElement, eventHolder[0]) is
+            // true. When Polymer.useNativeShadow is true, $.contains() is false
+            // when there is a shadow root between document.documentElement and
+            // eventHolder[0].
+            var offset = eventHolder[0].getBoundingClientRect();
+            var canvasX = event.pageX - offset.left - plotOffset.left;
+            var canvasY = event.pageY - offset.top - plotOffset.top;
             pos = canvasToAxisCoords({ left: canvasX, top: canvasY });
 
             pos.pageX = event.pageX;

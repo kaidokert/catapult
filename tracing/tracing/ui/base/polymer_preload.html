@@ -7,10 +7,11 @@ found in the LICENSE file.
 <script>
 'use strict';
 
-// Force Polymer into native shadowDom mode
-if (window.Polymer) {
-  throw new Error('Cannot proceed. Polymer already present.');
+// Configure Polymer to use native shadow DOM instead of shady DOM.
+if (!window.Polymer) {
+  window.Polymer = {};
+  window.Polymer.dom = 'shadow';
+} else if (!window.Polymer.Settings.useNativeShadow) {
+  throw new Error('Polymer already initialized without useNativeShadow.');
 }
-window.Polymer = {};
-window.Polymer.dom = 'shadow';
 </script>

@@ -144,6 +144,7 @@ property 'group' sets to the header item name.
                      on-focus="onFocusInput"
                      on-blur="onBlurInput"
                      on-keydown="onInputKeydown"
+                     on-keyup="onInputKeyup"
                      disabled$="{{disabled}}"
                      id="textbox"
                      value="{{query::input}}">
@@ -358,7 +359,7 @@ property 'group' sets to the header item name.
       },
 
       focus() {
-        this.querySelector('input').focus();
+        this.$.textbox.focus();
       },
 
       onClickInput() {
@@ -392,6 +393,10 @@ property 'group' sets to the header item name.
         } else if (key === 13) { // Enter.
           this.maybeSelectLocus();
         }
+      },
+
+      onInputKeyup(event) {
+        this.set('query', this.$.textbox.value);
       },
 
       scrollLocusIntoView() {

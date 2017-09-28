@@ -52,6 +52,7 @@ was just clicked.
     <dialog-container id="container">
       <triage-dialog id="triage"
                      xsrf-token="{{xsrfToken}}"
+                     hidden$="{{!alerts}}"
                      alerts="{{alerts}}"></triage-dialog>
       <paper-card id="tooltip" alwaysOnTop elevation=4>
         <style>
