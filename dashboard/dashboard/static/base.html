@@ -1,9 +1,23 @@
-/**
- * Copyright 2015 The Chromium Authors. All rights reserved.
- * Use of this source code is governed by a BSD-style license that can be
- * found in the LICENSE file.
- */
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
 
+<!--
+  CSS variables must be defined in a <custom-style> in order to be accessible
+  inside dom-modules.
+-->
+<style is="custom-style">
+:root {
+  --layer-highlights: 100;
+  --layer-dialogs: 200;
+  --layer-menus: 300;
+}
+</style>
+
+<style>
 html {
   height: 100%;
 }
@@ -132,3 +146,4 @@ input[type=checkbox]:checked::after {
   top: -5px;
   left: -1px;
 }
+</style>
