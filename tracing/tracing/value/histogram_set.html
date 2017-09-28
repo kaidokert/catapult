@@ -6,7 +6,6 @@ found in the LICENSE file.
 -->
 
 <link rel="import" href="/tracing/base/utils.html">
-<link rel="import" href="/tracing/value/diagnostics/add_related_names.html">
 <link rel="import" href="/tracing/value/histogram.html">
 <link rel="import" href="/tracing/value/histogram_grouping.html">
 
@@ -150,35 +149,14 @@ tr.exportTo('tr.v', function() {
     }
 
     resolveRelatedHistograms() {
-      const handleDiagnosticMap = dm => {
-        for (const [name, diagnostic] of dm) {
-          if (diagnostic instanceof tr.v.d.RelatedHistogramMap) {
-            diagnostic.resolve(this);
-          }
-        }
-      };
-
       for (const hist of this) {
         hist.diagnostics.resolveSharedDiagnostics(this);
-
-        handleDiagnosticMap(hist.diagnostics);
-
-        for (const dm of hist.nanDiagnosticMaps) {
-          handleDiagnosticMap(dm);
-        }
-
-        for (const bin of hist.allBins) {
-          for (const dm of bin.diagnosticMaps) {
-            handleDiagnosticMap(dm);
-          }
-        }
       }
     }
 
     /**
      * Convert dicts to either Histograms or shared Diagnostics.
-     * Does not resolve RelatedHistogramMap diagnostics. See
-     * resolveRelatedHistograms().
+     *  See resolveRelatedHistograms().
      *
      * @param {!Object} dicts
      */
@@ -212,37 +190,27 @@ tr.exportTo('tr.v', function() {
 
     /**
      * Find the Histograms that are not contained in any other Histograms'
-     * RelatedHistogramMap diagnostics.
+     * RelatedNameMap diagnostics.
      *
-     * @return {!Array.<!tr.v.Histogram>}
+     * @return {!tr.v.HistogramSet}
      */
     get sourceHistograms() {
-      const sourceHistograms = new Map(this.histogramsByGuid_);
-      // If a Histogram is in a RelatedHistogramMap,
-      // which can be owned either by Histograms or by numeric samples, then it
-      // is not a source Histogram.
-      function deleteSourceHistograms(diagnosticMap) {
-        for (const [name, diagnostic] of diagnosticMap) {
-          if (diagnostic instanceof tr.v.d.RelatedHistogramMap) {
-            for (const [name, relatedHist] of diagnostic) {
-              sourceHistograms.delete(relatedHist.guid);
-            }
-          }
-        }
-      }
-
+      const diagnosticNames = new Set();
       for (const hist of this) {
-        deleteSourceHistograms(hist.diagnostics);
-        for (const dm of hist.nanDiagnosticMaps) {
-          deleteSourceHistograms(dm);
-        }
-        for (const b of hist.allBins) {
-          for (const dm of b.diagnosticMaps) {
-            deleteSourceHistograms(dm);
+        for (const diagnostic of hist.diagnostics.values()) {
+          if (!(diagnostic instanceof tr.v.d.RelatedNameMap)) continue;
+          for (const name of diagnostic.values()) {
+            diagnosticNames.add(name);
           }
         }
       }
-      return new HistogramSet([...sourceHistograms.values()]);
+      const sourceHistograms = new HistogramSet();
+      for (const hist of this) {
+        if (!diagnosticNames.has(hist.name)) {
+          sourceHistograms.addHistogram(hist);
+        }
+      }
+      return sourceHistograms;
     }
 
     /**

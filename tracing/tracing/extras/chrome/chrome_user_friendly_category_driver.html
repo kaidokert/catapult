@@ -53,6 +53,11 @@ tr.exportTo('tr.e.chrome', function() {
     ],
 
     layout: [
+      'LocalFrameView::invalidateTree',
+      'LocalFrameView::layout',
+      'LocalFrameView::performLayout',
+      'LocalFrameView::performPostLayoutTasks',
+      'LocalFrameView::performPreLayoutTasks',
       'FrameView::invalidateTree',
       'FrameView::layout',
       'FrameView::performLayout',
@@ -66,10 +71,12 @@ tr.exportTo('tr.e.chrome', function() {
     ],
 
     parseHTML: [
-      'ParseHTML',
+      'BackgroundHTMLParser::pumpTokenizer',
+      'BackgroundHTMLParser::sendTokensToMainThread',
       'HTMLDocumentParser::didReceiveParsedChunkFromBackgroundParser',
       'HTMLDocumentParser::processParsedChunkFromBackgroundParser',
       'HTMLDocumentParser::processTokenizedChunkFromBackgroundParser',
+      'ParseHTML',
     ],
 
     raster: [
@@ -108,8 +115,12 @@ tr.exportTo('tr.e.chrome', function() {
     ],
 
     script_parse_and_compile: [
+      'V8.CompileFullCode',
+      'V8.Parse',
+      'V8.ParseLazy',
+      'V8.RecompileSynchronous',
+      'V8.ScriptCompiler',
       'v8.parseOnBackground',
-      'V8.ScriptCompiler'
     ],
 
     script_execute: [
@@ -118,11 +129,17 @@ tr.exportTo('tr.e.chrome', function() {
     ],
 
     resource_loading: [
-      'ResourceFetcher::requestResource',
+      'Resource::appendData',
       'ResourceDispatcher::OnReceivedData',
-      'ResourceDispatcher::OnRequestComplete',
       'ResourceDispatcher::OnReceivedResponse',
-      'Resource::appendData'
+      'ResourceDispatcher::OnRequestComplete',
+      'ResourceFetcher::requestResource',
+      'WebURLLoaderImpl::Context::OnCompletedRequest',
+      'WebURLLoaderImpl::Context::OnReceivedData',
+      'WebURLLoaderImpl::Context::OnReceivedResponse',
+      'WebURLLoaderImpl::Context::Start',
+      'WebURLLoaderImpl::Context::Cancel',
+      'WebURLLoaderImpl::loadAsynchronously',
     ],
 
     // Where do these go?
