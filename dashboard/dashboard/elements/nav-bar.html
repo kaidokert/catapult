@@ -9,6 +9,14 @@ found in the LICENSE file.
 
 <link rel="import" href="/dashboard/static/simple_xhr.html">
 
+<style is="custom-style">
+:root {
+  --layer-highlights: 100;
+  --layer-dialogs: 200;
+  --layer-menus: 300;
+}
+</style>
+
 <dom-module id="nav-bar">
   <template>
     <style>
@@ -24,7 +32,7 @@ found in the LICENSE file.
         font-size: 100%;
         font: inherit;
         vertical-align: baseline;
-        z-index: 1000;
+        z-index: var(--layer-highlights);
         margin-left: -10px; /* Ignore body's padding left. */
         padding-right: 20px; /* Ignore body's padding right. */
       }
