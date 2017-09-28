@@ -1340,6 +1340,15 @@ def RemapAndroidFiles(symfiles, output_path):
       # which is not accurate.
       symfile.symbolizable_path = 'android://{}'.format(symfile.path)
 
+def RemapFiles(symfiles, output_path):
+  for symfile in symfiles:
+    file_path = symfile.path.lstrip(os.path.sep)
+    symbolizable_path = os.path.join(output_path, file_path)
+    if os.path.exists(symbolizable_path):
+      symfile.symbolizable_path = symbolizable_path
+    else:
+      print "Symbol file does not exist: %s" % symbolizable_path
+
 
 def RemapMacFiles(symfiles, symbol_base_directory, version,
                   only_symbolize_chrome_symbols):
@@ -1403,6 +1412,9 @@ def SymbolizeTrace(options, trace, symbolizer):
       if symbolizer.is_win:
         RemapWinFiles(symfiles, options.symbol_base_directory, trace.version,
                       trace.is_64bit, options.only_symbolize_chrome_symbols)
+
+    if options.output_directory:
+      RemapFiles(symfiles, os.path.abspath(options.output_directory))
 
   SymbolizeFiles(symfiles, symbolizer)
 
