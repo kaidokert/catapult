@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1ea8eb2e_6eab9fc9",
+        "filename": "dashboard/dashboard/elements/chart-container.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-09-28T17:21:26Z",
+      "side": 1,
+      "message": "Is it possible to put these in vars somewhere, like dashboard\u0027s base.css",
+      "range": {
+        "startLine": 67,
+        "startChar": 15,
+        "endLine": 67,
+        "endChar": 18
+      },
+      "revId": "c5ea516d95fa8eda4a6c72fac72820e555b02a59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
