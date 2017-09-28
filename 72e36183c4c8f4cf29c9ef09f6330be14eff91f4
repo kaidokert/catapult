@@ -34,6 +34,24 @@
       "revId": "72e36183c4c8f4cf29c9ef09f6330be14eff91f4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "028403e8_f02d5caf",
+        "filename": "systrace/systrace/tracing_agents/atrace_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1212364
+      },
+      "writtenOn": "2017-09-28T18:15:13Z",
+      "side": 1,
+      "message": "Yep, thanks",
+      "parentUuid": "2a17223f_5f100fa5",
+      "revId": "72e36183c4c8f4cf29c9ef09f6330be14eff91f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
