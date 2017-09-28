@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6251f70f_f2965c17",
+        "filename": "systrace/systrace/tracing_agents/atrace_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1212364
+      },
+      "writtenOn": "2017-09-28T00:46:10Z",
+      "side": 1,
+      "message": "why is tracing still running after --async-stop has been called?\n\nor are you seeing async-stop is slow?\n\n\nIt\u0027s expected that we call async_stop first, that it\u0027s fast, and that tracing should off afterwards.",
+      "revId": "72e36183c4c8f4cf29c9ef09f6330be14eff91f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
