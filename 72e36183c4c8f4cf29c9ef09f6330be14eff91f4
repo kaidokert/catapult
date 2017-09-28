@@ -16,6 +16,24 @@
       "revId": "72e36183c4c8f4cf29c9ef09f6330be14eff91f4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2a17223f_5f100fa5",
+        "filename": "systrace/systrace/tracing_agents/atrace_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1245231
+      },
+      "writtenOn": "2017-09-28T00:58:16Z",
+      "side": 1,
+      "message": "Tracing is not running after async-stop is called. If you see the previous code it does async_dump first, then async_stop. The tracer is still running while the dump is going on. This is wrong, the trace buffer could be overwritten while the trace is being collected. If you collect large traces, you could have missing events. The correct thing to do is, stop the trace and then collect traces. async_stop actually also collects trace after stopping it. This is what I run to both stop and collect traces. Makes sense?",
+      "parentUuid": "6251f70f_f2965c17",
+      "revId": "72e36183c4c8f4cf29c9ef09f6330be14eff91f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
