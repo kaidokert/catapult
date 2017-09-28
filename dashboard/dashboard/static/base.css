@@ -6,6 +6,11 @@
 
 html {
   height: 100%;
+
+  --layer-highlights: 100;
+  --layer-icons: 200;
+  --layer-dialogs: 300;
+  --layer-menus: 400;
 }
 
 body {
