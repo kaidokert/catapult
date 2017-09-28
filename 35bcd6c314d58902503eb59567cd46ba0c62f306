@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eed97c16_ad3e61ae",
+        "filename": "CONTRIBUTING.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2017-09-28T17:53:10Z",
+      "side": 1,
+      "message": "Did I get this right? If not, I think I\u0027m missing something in the \"Internal PSA: Catapult Switching to Gerrit Code Review\" thread.",
+      "revId": "35bcd6c314d58902503eb59567cd46ba0c62f306",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
