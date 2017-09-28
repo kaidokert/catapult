@@ -32,7 +32,7 @@ logger = logging.getLogger(__name__)
 
 ADB_KEYS_FILE = '/data/misc/adb/adb_keys'
 
-DEFAULT_TIMEOUT = 30
+DEFAULT_TIMEOUT = 300
 DEFAULT_RETRIES = 2
 
 _ADB_VERSION_RE = re.compile(r'Android Debug Bridge version (\d+\.\d+\.\d+)')
