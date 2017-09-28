@@ -12,13 +12,11 @@
 
   function PinchGestureOptions(opt_options) {
     if (opt_options) {
-      this.element_ = opt_options.element;
       this.left_anchor_ratio_ = opt_options.left_anchor_ratio;
       this.top_anchor_ratio_ = opt_options.top_anchor_ratio;
       this.scale_factor_ = opt_options.scale_factor;
       this.speed_ = opt_options.speed;
     } else {
-      this.element_ = document.body;
       this.left_anchor_ratio_ = 0.5;
       this.top_anchor_ratio_ = 0.5;
       this.scale_factor_ = 2.0;
@@ -54,13 +52,25 @@
   PinchAction.prototype.startPass_ = function() {
     this.beginMeasuringHook();
 
-    var rect = __GestureCommon_GetBoundingVisibleRect(this.options_.element_);
-    var anchor_left =
-        rect.left + rect.width * this.options_.left_anchor_ratio_;
-    var anchor_top =
-        rect.top + rect.height * this.options_.top_anchor_ratio_;
+    // TODO(bokan): Remove else-block once gpuBenchmarking is changed to take
+    // all coordinates in viewport space. crbug.com/610021.
+    let anchorLeft;
+    let anchorTop;
+    if ('gesturesExpectedInViewportCoordinates' in chrome.gpuBenchmarking) {
+      anchorLeft =
+          __GestureCommon_GetWindowWidth() *
+          this.options_.left_anchor_ratio_;
+      anchorTop =
+          __GestureCommon_GetWindowHeight() *
+          this.options_.top_anchor_ratio_;
+    } else {
+      var rect = __GestureCommon_GetBoundingVisibleRect(document.body);
+      anchorLeft = rect.left + rect.width * this.options_.left_anchor_ratio_;
+      anchorTop = rect.top + rect.height * this.options_.top_anchor_ratio_;
+    }
+
     chrome.gpuBenchmarking.pinchBy(this.options_.scale_factor_,
-                                   anchor_left, anchor_top,
+                                   anchorLeft, anchorTop,
                                    this.onGestureComplete_.bind(this),
                                    this.options_.speed_);
   };
