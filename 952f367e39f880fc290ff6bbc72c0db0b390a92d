@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9d46f8e7_49a02957",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2017-09-28T19:41:24Z",
+      "side": 1,
+      "message": "So you\u0027re only adding a single task and it can time out? That\u0027s really weird, but I guess there\u0027s not much to do here beyond retry. FWIW in app engine I\u0027ve gotten issues where I get a timeout error and the operation did succeed. What happens if the job gets added twice?",
+      "range": {
+        "startLine": 137,
+        "startChar": 53,
+        "endLine": 137,
+        "endChar": 0
+      },
+      "revId": "952f367e39f880fc290ff6bbc72c0db0b390a92d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
