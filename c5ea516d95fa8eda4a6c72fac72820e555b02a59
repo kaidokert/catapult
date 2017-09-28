@@ -22,6 +22,30 @@
       "revId": "c5ea516d95fa8eda4a6c72fac72820e555b02a59",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38ae1152_ecf1b5e7",
+        "filename": "dashboard/dashboard/elements/chart-container.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-09-28T19:55:39Z",
+      "side": 1,
+      "message": "Variables need to be defined in a \u003cstyle is\u003d\"custom-style\"\u003e in order to be accessible within dom-modules, so I put them in nav-bar.html instead.\nI refactored all of the other z-indexes in dashboard (except bug_result.html which doesn\u0027t import nav-bar) to use these new --layer-* variables.",
+      "parentUuid": "1ea8eb2e_6eab9fc9",
+      "range": {
+        "startLine": 67,
+        "startChar": 15,
+        "endLine": 67,
+        "endChar": 18
+      },
+      "revId": "c5ea516d95fa8eda4a6c72fac72820e555b02a59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
