@@ -15,7 +15,7 @@ found in the LICENSE file.
 <link rel="import" href="/tracing/model/event_set.html">
 <link rel="import" href="/tracing/model/x_marker_annotation.html">
 <link rel="import" href="/tracing/ui/base/hotkey_controller.html">
-<link rel="import" href="/tracing/ui/base/mouse_mode_selector.html">
+<link rel="import" href="/tracing/ui/base/mouse_tracker.html">
 <link rel="import" href="/tracing/ui/base/timing_tool.html">
 <link rel="import" href="/tracing/ui/base/ui.html">
 <link rel="import" href="/tracing/ui/timeline_display_transform_animations.html">
@@ -79,6 +79,10 @@ found in the LICENSE file.
 Polymer({
   is: 'tr-ui-timeline-track-view',
 
+  created() {
+    this.mouseMode_ = tr.ui.b.MOUSE_SELECTOR_MODE.SELECTION;
+  },
+
   ready() {
     this.displayTransform_ = new tr.ui.TimelineDisplayTransform();
     this.model_ = undefined;
@@ -118,8 +122,6 @@ Polymer({
 
     this.timingTool_ = new tr.ui.b.TimingTool(this.viewport_, this);
 
-    this.initMouseModeSelector();
-
     this.hideDragBox_();
 
     this.initHintText_();
@@ -135,8 +137,10 @@ Polymer({
     this.onMouseDown_ = this.onMouseDown_.bind(this);
     this.addEventListener('mousedown', this.onMouseDown_);
 
+    this.onMouseUp_ = this.onMouseUp_.bind(this);
+    this.addEventListener('mousedown', this.onMouseUp_);
+
     this.onMouseMove_ = this.onMouseMove_.bind(this);
-    this.addEventListener('mousemove', this.onMouseMove_);
 
     this.onTouchStart_ = this.onTouchStart_.bind(this);
     this.addEventListener('touchstart', this.onTouchStart_);
@@ -161,58 +165,19 @@ Polymer({
     this.isZooming_ = false;
   },
 
-  initMouseModeSelector() {
-    this.mouseModeSelector_ = document.createElement(
-        'tr-ui-b-mouse-mode-selector');
-    this.mouseModeSelector_.targetElement = this;
-    Polymer.dom(this).appendChild(this.mouseModeSelector_);
+  get mouseMode() {
+    return this.mouseMode_;
+  },
 
-    this.mouseModeSelector_.addEventListener('beginpan',
-        this.onBeginPanScan_.bind(this));
-    this.mouseModeSelector_.addEventListener('updatepan',
-        this.onUpdatePanScan_.bind(this));
-    this.mouseModeSelector_.addEventListener('endpan',
-        this.onEndPanScan_.bind(this));
-
-    this.mouseModeSelector_.addEventListener('beginselection',
-        this.onBeginSelection_.bind(this));
-    this.mouseModeSelector_.addEventListener('updateselection',
-        this.onUpdateSelection_.bind(this));
-    this.mouseModeSelector_.addEventListener('endselection',
-        this.onEndSelection_.bind(this));
-
-    this.mouseModeSelector_.addEventListener('beginzoom',
-        this.onBeginZoom_.bind(this));
-    this.mouseModeSelector_.addEventListener('updatezoom',
-        this.onUpdateZoom_.bind(this));
-    this.mouseModeSelector_.addEventListener('endzoom',
-        this.onEndZoom_.bind(this));
-
-    this.mouseModeSelector_.addEventListener('entertiming',
-        this.timingTool_.onEnterTiming.bind(this.timingTool_));
-    this.mouseModeSelector_.addEventListener('begintiming',
-        this.timingTool_.onBeginTiming.bind(this.timingTool_));
-    this.mouseModeSelector_.addEventListener('updatetiming',
-        this.timingTool_.onUpdateTiming.bind(this.timingTool_));
-    this.mouseModeSelector_.addEventListener('endtiming',
-        this.timingTool_.onEndTiming.bind(this.timingTool_));
-    this.mouseModeSelector_.addEventListener('exittiming',
-        this.timingTool_.onExitTiming.bind(this.timingTool_));
-
-    const m = tr.ui.b.MOUSE_SELECTOR_MODE;
-    this.mouseModeSelector_.supportedModeMask =
-        m.SELECTION | m.PANSCAN | m.ZOOM | m.TIMING;
-    this.mouseModeSelector_.settingsKey =
-        'timelineTrackView.mouseModeSelector';
-    this.mouseModeSelector_.setKeyCodeForMode(m.PANSCAN, '2'.charCodeAt(0));
-    this.mouseModeSelector_.setKeyCodeForMode(m.SELECTION, '1'.charCodeAt(0));
-    this.mouseModeSelector_.setKeyCodeForMode(m.ZOOM, '3'.charCodeAt(0));
-    this.mouseModeSelector_.setKeyCodeForMode(m.TIMING, '4'.charCodeAt(0));
-
-    this.mouseModeSelector_.setModifierForAlternateMode(
-        m.SELECTION, tr.ui.b.MODIFIER.SHIFT);
-    this.mouseModeSelector_.setModifierForAlternateMode(
-        m.PANSCAN, tr.ui.b.MODIFIER.SPACE);
+  set mouseMode(m) {
+    if (m === this.mouseMode_) return;
+    if (this.mouseMode_ === tr.ui.b.MOUSE_SELECTOR_MODE.TIMING) {
+      this.timingTool_.onExitTiming();
+    }
+    this.mouseMode_ = m;
+    if (this.mouseMode_ === tr.ui.b.MOUSE_SELECTOR_MODE.TIMING) {
+      this.timingTool_.onEnterTiming();
+    }
   },
 
   get brushingStateController() {
@@ -357,9 +322,22 @@ Polymer({
   onMouseMove_(e) {
     // Zooming requires the delta since the last mousemove so we need to avoid
     // tracking it when the zoom interaction is active.
-    if (this.isZooming_) return;
+    if (!this.isZooming_) this.storeLastMousePos_(e);
 
-    this.storeLastMousePos_(e);
+    switch (this.mouseMode) {
+      case tr.ui.b.MOUSE_SELECTOR_MODE.SELECTION:
+        this.onUpdateSelection_(e);
+        break;
+      case tr.ui.b.MOUSE_SELECTOR_MODE.PANSCAN:
+        this.onUpdatePanScan_(e);
+        break;
+      case tr.ui.b.MOUSE_SELECTOR_MODE.ZOOM:
+        this.onUpdateZoom_(e);
+        break;
+      case tr.ui.b.MOUSE_SELECTOR_MODE.TIMING:
+        this.timingTool_.onUpdateTiming(e);
+        break;
+    }
   },
 
   onTouchStart_(e) {
@@ -560,8 +538,7 @@ Polymer({
   },
 
   onDblClick_(e) {
-    if (this.mouseModeSelector_.mode !==
-        tr.ui.b.MOUSE_SELECTOR_MODE.SELECTION) {
+    if (this.mouseMode !== tr.ui.b.MOUSE_SELECTOR_MODE.SELECTION) {
       return;
     }
 
@@ -589,58 +566,39 @@ Polymer({
   },
 
   onMouseDown_(e) {
-    if (this.mouseModeSelector_.mode !==
-        tr.ui.b.MOUSE_SELECTOR_MODE.SELECTION) {
-      return;
+    switch (this.mouseMode) {
+      case tr.ui.b.MOUSE_SELECTOR_MODE.SELECTION:
+        this.onBeginSelection_(e);
+        break;
+      case tr.ui.b.MOUSE_SELECTOR_MODE.PANSCAN:
+        this.onBeginPanScan_(e);
+        break;
+      case tr.ui.b.MOUSE_SELECTOR_MODE.ZOOM:
+        this.onBeginZoom_(e);
+        break;
+      case tr.ui.b.MOUSE_SELECTOR_MODE.TIMING:
+        this.timingTool_.onBeginTiming(e);
+        break;
     }
+    tr.ui.b.trackMouseMovesUntilMouseUp(this.onMouseMove_, this.onMouseUp_);
+  },
 
-    // Mouse down must start on ruler track for crosshair guide lines to draw.
-    if (e.target !== this.rulerTrack_) return;
-
-    // Make sure we don't start a selection drag event here.
-    this.dragBeginEvent_ = undefined;
-
-    // Remove nav string marker if it exists, since we're clearing the
-    // find control box.
-    if (this.xNavStringMarker_) {
-      this.model.removeAnnotation(this.xNavStringMarker_);
-      this.xNavStringMarker_ = undefined;
+  onMouseUp_(e) {
+    if (e.type === 'mousedown') return;
+    switch (this.mouseMode) {
+      case tr.ui.b.MOUSE_SELECTOR_MODE.SELECTION:
+        this.onEndSelection_(e);
+        break;
+      case tr.ui.b.MOUSE_SELECTOR_MODE.PANSCAN:
+        this.onEndPanScan_(e);
+        break;
+      case tr.ui.b.MOUSE_SELECTOR_MODE.ZOOM:
+        this.onEndZoom_(e);
+        break;
+      case tr.ui.b.MOUSE_SELECTOR_MODE.TIMING:
+        this.timingTool_.onEndTiming(e);
+        break;
     }
-
-    const dt = this.viewport_.currentDisplayTransform;
-    tr.ui.b.trackMouseMovesUntilMouseUp(function(e) { // Mouse move handler.
-      // If mouse event is on ruler, don't do anything.
-      if (e.target === this.rulerTrack_) return;
-
-      const relativePosition = this.extractRelativeMousePosition_(e);
-      const loc = tr.model.Location.fromViewCoordinates(
-          this.viewport_, relativePosition.x, relativePosition.y);
-      // Not all points on the timeline represents a valid location.
-      // ex. process header tracks, letter dot tracks.
-      if (!loc) return;
-
-      if (this.guideLineAnnotation_ === undefined) {
-        this.guideLineAnnotation_ =
-            new tr.model.XMarkerAnnotation(loc.xWorld);
-        this.model.addAnnotation(this.guideLineAnnotation_);
-      } else {
-        this.guideLineAnnotation_.timestamp = loc.xWorld;
-        this.modelTrackContainer_.invalidate();
-      }
-
-      // Set the findcontrol's text to nav string of current state.
-      const state = new tr.ui.b.UIState(loc,
-          this.viewport_.currentDisplayTransform.scaleX);
-      this.timelineView_.setFindCtlText(
-          state.toUserFriendlyString(this.viewport_));
-    }.bind(this),
-        undefined, // Mouse up handler.
-        function onKeyUpDuringDrag() {
-          if (this.dragBeginEvent_) {
-            this.setDragBoxPosition_(this.dragBoxXStart_, this.dragBoxYStart_,
-                this.dragBoxXEnd_, this.dragBoxYEnd_);
-          }
-        }.bind(this));
   },
 
   queueSmoothPan_(viewDeltaX, deltaY) {

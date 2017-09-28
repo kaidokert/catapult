@@ -16,6 +16,7 @@ found in the LICENSE file.
 <link rel="import" href="/tracing/ui/base/favicons.html">
 <link rel="import" href="/tracing/ui/base/hotkey_controller.html">
 <link rel="import" href="/tracing/ui/base/info_bar_group.html">
+<link rel="import" href="/tracing/ui/base/mouse_mode_icon.html">
 <link rel="import" href="/tracing/ui/base/overlay.html">
 <link rel="import" href="/tracing/ui/base/toolbar_button.html">
 <link rel="import" href="/tracing/ui/base/utils.html">
@@ -96,6 +97,10 @@ found in the LICENSE file.
     middle-container > x-timeline-view-side-panel-container { flex: 0 0 auto; }
     tr-ui-b-drag-handle { flex: 0 0 auto; }
     tr-ui-a-analysis-view { flex: 0 0 auto; }
+
+    tr-ui-b-mouse-mode-icon {
+      padding-right: 5px;
+    }
     </style>
 
     <tv-ui-b-hotkey-controller id="hkc"></tv-ui-b-hotkey-controller>
@@ -104,6 +109,18 @@ found in the LICENSE file.
         <div id="left_controls"></div>
         <div id="title">^_^</div>
         <div id="right_controls">
+          <tr-ui-b-mouse-mode-icon mode-name="SELECTION" title="selection (1)"
+            on-click="onMouseModeButtonClick_">
+          </tr-ui-b-mouse-mode-icon>
+          <tr-ui-b-mouse-mode-icon mode-name="PANSCAN" title="pan (2)"
+            on-click="onMouseModeButtonClick_">
+          </tr-ui-b-mouse-mode-icon>
+          <tr-ui-b-mouse-mode-icon mode-name="ZOOM" title="zoom (3)"
+            on-click="onMouseModeButtonClick_">
+          </tr-ui-b-mouse-mode-icon>
+          <tr-ui-b-mouse-mode-icon mode-name="TIMING" title="timing (4)"
+            on-click="onMouseModeButtonClick_">
+          </tr-ui-b-mouse-mode-icon>
           <tr-ui-b-toolbar-button id="view_metadata_button">
             M
           </tr-ui-b-toolbar-button>
@@ -147,6 +164,7 @@ Polymer({
 
     this.builtPromise_ = undefined;
     this.doneBuilding_ = undefined;
+    this.onKeyUp_ = this.onKeyUp_.bind(this);
   },
 
   attached() {
@@ -159,6 +177,48 @@ Polymer({
 
       if (this.queuedModel_) this.updateContents_();
     });
+    document.addEventListener('keyup', this.onKeyUp_);
+  },
+
+  detached() {
+    document.removeEventListener('keyup', this.onKeyUp_);
+  },
+
+  onMouseModeButtonClick_(e) {
+    this.trackView_.mouseMode = tr.ui.b.MOUSE_SELECTOR_MODE[e.target.modeName];
+    this.updateMouseModeButtons_();
+  },
+
+  onKeyUp_(e) {
+    // Keys dispatched to INPUT elements still bubble, even when they're
+    // handled. So, skip any events that targeted the input element.
+    if (e.path[0].tagName === 'INPUT') return;
+
+    switch (String.fromCharCode(e.keyCode)) {
+      case '1':
+        this.trackView_.mouseMode =
+          tr.ui.b.MOUSE_SELECTOR_MODE.SELECTION;
+        break;
+      case '2':
+        this.trackView_.mouseMode =
+          tr.ui.b.MOUSE_SELECTOR_MODE.PANSCAN;
+        break;
+      case '3':
+        this.trackView_.mouseMode = tr.ui.b.MOUSE_SELECTOR_MODE.ZOOM;
+        break;
+      case '4':
+        this.trackView_.mouseMode = tr.ui.b.MOUSE_SELECTOR_MODE.TIMING;
+        break;
+    }
+    this.updateMouseModeButtons_();
+  },
+
+  updateMouseModeButtons_() {
+    for (const icon of
+        this.shadowRoot.querySelectorAll('tr-ui-b-mouse-mode-icon')) {
+      icon.active = (this.trackView_.mouseMode ===
+          tr.ui.b.MOUSE_SELECTOR_MODE[icon.modeName]);
+    }
   },
 
   ready() {
@@ -435,6 +495,7 @@ Polymer({
     // Create new trackView if needed.
     if (modelValid && !this.trackView_) {
       this.trackView_ = document.createElement('tr-ui-timeline-track-view');
+      this.updateMouseModeButtons_();
       this.trackView_.timelineView = this;
 
       this.trackView.brushingStateController = this.brushingStateController_;
