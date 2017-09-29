@@ -135,6 +135,10 @@ tr.exportTo('tr.v.ui', function() {
       buildMark.end();
     },
 
+    get displayLabels() {
+      return this.$.controls.displayLabels;
+    },
+
     onExport_(event) {
       const mark = tr.b.Timing.mark('histogram-set-view', 'export' +
           (event.merged ? 'Merged' : 'Raw') + event.format.toUpperCase());
