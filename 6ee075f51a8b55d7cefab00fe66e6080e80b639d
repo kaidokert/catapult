@@ -1,0 +1,242 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "96354089_71371e2c",
+        "filename": "tracing/tracing/importer/find_input_expectations.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-09-29T20:05:25Z",
+      "side": 1,
+      "message": "Please add a trailing comma",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69e4daf1_eba6409b",
+        "filename": "tracing/tracing/importer/find_input_expectations.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 786,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-09-29T20:05:25Z",
+      "side": 1,
+      "message": "Please add a test for this in user_model_builder_test.html",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef410ca3_2c27720c",
+        "filename": "tracing/tracing/importer/find_input_expectations.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 788,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-09-29T20:05:25Z",
+      "side": 1,
+      "message": "Can you move this outside this function to a const named something like VR_COUNTER_NAMES?",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0649c13b_0c3b563b",
+        "filename": "tracing/tracing/importer/find_input_expectations.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-09-29T20:05:25Z",
+      "side": 1,
+      "message": "for (const [counterName, allSeries] of Object.entries(proc.counters))",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47a1b467_7d476990",
+        "filename": "tracing/tracing/importer/find_input_expectations.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 830,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-09-29T20:05:25Z",
+      "side": 1,
+      "message": "events.sort((x, y) \u003d\u003e x.timestamp - y.timestamp);",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc1a3da9_7b4befb3",
+        "filename": "tracing/tracing/importer/find_input_expectations.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 833,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-09-29T20:05:25Z",
+      "side": 1,
+      "message": "const responsePE \u003d ...;\nconst animationPE \u003d ...;\n...\nreturn [responsePE, animationPE];",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a7b48a8_652d09e4",
+        "filename": "tracing/tracing/importer/find_input_expectations.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 841,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-09-29T20:05:25Z",
+      "side": 1,
+      "message": "Is there any way to compute the duration of the response more accurately from the data?\nIf not, can you add comments about why 500 and define a const like VR_RESPONSE_MS outside this function?",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a024116_529a8e4e",
+        "filename": "tracing/tracing/metrics/vr/webvr_metric.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-09-29T20:05:25Z",
+      "side": 1,
+      "message": "These inner maps have structure, so they should be dictionaries instead so that callers can say value.name, value.unit, etc.",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1ea6fb4_d6af9925",
+        "filename": "tracing/tracing/metrics/vr/webvr_metric.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-09-29T20:05:25Z",
+      "side": 1,
+      "message": "for (const ue of model.userModel.expectations)",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dfdfe785_7351d4d7",
+        "filename": "tracing/tracing/metrics/vr/webvr_metric.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-09-29T20:05:25Z",
+      "side": 1,
+      "message": "Why test rangeOfInterestEnabled here?\nAlso, don\u0027t you need to test initiatorType?\nAlso, don\u0027t you want to filter out Loads and Idles?\n\nif (ue.initiatorType !\u003d\u003d VR) return;\nif (!(ue instanceof tr.model.um.AnimationExpectation)) return;",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28f207b4_6685417b",
+        "filename": "tracing/tracing/metrics/vr/webvr_metric.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-09-29T20:05:25Z",
+      "side": 1,
+      "message": "for (const [key, value] of WEBVR_COUNTERS)",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1896423_6fc5dcf8",
+        "filename": "tracing/tracing/metrics/vr/webvr_metric.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-09-29T20:05:25Z",
+      "side": 1,
+      "message": "for (const [seriesName, samples] of Object.entries(value.get(\u0027samples\u0027)))",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "335bbfba_1dd25bfb",
+        "filename": "tracing/tracing/metrics/vr/webvr_metric.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-09-29T20:05:25Z",
+      "side": 1,
+      "message": "Use a template string here: `${histogramName}_${seriesName}`",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bba57fb9_d886ada0",
+        "filename": "tracing/tracing/model/user_model/user_expectation.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-09-29T20:05:25Z",
+      "side": 1,
+      "message": "trailing comma, please",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
