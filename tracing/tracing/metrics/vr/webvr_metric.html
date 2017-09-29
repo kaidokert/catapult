@@ -12,12 +12,13 @@ found in the LICENSE file.
 'use strict';
 
 tr.exportTo('tr.metrics.vr', function() {
-  function webvrMetric(histograms, model) {
+  function webvrMetric(histograms, model, opt_options) {
     // Maps VR trace counters to histogram.
     const WEBVR_COUNTERS = new Map([
       ['gpu.WebVR FPS', new Map([
         ['name', 'webvr_fps'],
         ['unit', tr.b.Unit.byName.count_biggerIsBetter],
+        ['samples', {}],
         ['options', new Map([
           ['description', 'WebVR frame per second'],
           ['binBoundaries',
@@ -27,6 +28,7 @@ tr.exportTo('tr.metrics.vr', function() {
       ['gpu.WebVR frame time (ms)', new Map([
         ['name', 'webvr_frame_time'],
         ['unit', tr.b.Unit.byName.timeDurationInMs_smallerIsBetter],
+        ['samples', {}],
         ['options', new Map([
           ['description', 'WebVR frame time in ms'],
           ['binBoundaries',
@@ -36,6 +38,7 @@ tr.exportTo('tr.metrics.vr', function() {
       ['gpu.WebVR pose prediction (ms)', new Map([
         ['name', 'webvr_pose_prediction'],
         ['unit', tr.b.Unit.byName.timeDurationInMs_smallerIsBetter],
+        ['samples', {}],
         ['options', new Map([
           ['description', 'WebVR pose prediction in ms'],
           ['binBoundaries',
@@ -44,32 +47,52 @@ tr.exportTo('tr.metrics.vr', function() {
       ])]
     ]);
 
-    for (const counter of model.getAllCounters()) {
-      if (!(WEBVR_COUNTERS.has(counter.id))) continue;
-
-      const nameToSamples = new Map();
-      for (const series of counter.series) {
-        nameToSamples[series.name] = nameToSamples[series.name] || [];
-        for (const sample of series.samples) {
-          nameToSamples[series.name].push(sample.value);
-        }
+    model.userModel.expectations.forEach(function(ue) {
+      const rangeOfInterestEnabled = opt_options && opt_options.rangeOfInterest;
+      if (rangeOfInterestEnabled &&
+          !opt_options.rangeOfInterest.intersectsExplicitRangeInclusive(
+              ue.start, ue.end)) {
+        return;
       }
 
-      for (const [seriesName, samples] of Object.entries(nameToSamples)) {
-        let name = WEBVR_COUNTERS.get(counter.id).get('name');
+      // By default, only do calculations in the VR animation expectation, i.e.
+      // some time after we've entered VR, in order to avoid skewed results
+      // caused by VR entry
+      if (!rangeOfInterestEnabled &&
+          ue instanceof tr.model.um.ResponseExpectation) {
+        return;
+      }
+
+      for (const counter of model.getAllCounters()) {
+        if (!(WEBVR_COUNTERS.has(counter.id))) continue;
+
+        for (const series of counter.series) {
+          if (!(series.name in WEBVR_COUNTERS.get(counter.id).get('samples'))) {
+            WEBVR_COUNTERS.get(counter.id).get('samples')[series.name] = [];
+          }
+          for (const sample of series.samples) {
+            WEBVR_COUNTERS.get(counter.id).get('samples')[series.name].push(
+                sample.value);
+          }
+        }
+      }
+    });
+
+    WEBVR_COUNTERS.forEach(function(value, key, map) {
+      for (const seriesName in value.get('samples')) {
+        let histogramName = value.get('name');
         if (seriesName !== 'value') {
-          name = name + '_' + seriesName;
+          histogramName = histogramName + '_' + seriesName;
         }
-
-        histograms.createHistogram(
-            name, WEBVR_COUNTERS.get(counter.id).get('unit'), samples,
-            WEBVR_COUNTERS.get(counter.id).get('options')
-        );
+        histograms.createHistogram(histogramName, value.get('unit'),
+            value.get('samples')[seriesName], value.get('options'));
       }
-    }
+    });
   }
 
-  tr.metrics.MetricRegistry.register(webvrMetric);
+  tr.metrics.MetricRegistry.register(webvrMetric, {
+    supportsRangeOfInterest: true,
+  });
 
   return {
     webvrMetric,
