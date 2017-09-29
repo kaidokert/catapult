@@ -174,7 +174,8 @@ tr.exportTo('tr.importer', function() {
       handleScrollEvents,
       handleCSSAnimations,
       handleWebGLAnimations,
-      handleVideoAnimations
+      handleVideoAnimations,
+      handleVrAnimations
     ];
     handlers.forEach(function(handler) {
       protoExpectations.push.apply(protoExpectations, handler(
@@ -780,6 +781,73 @@ tr.exportTo('tr.importer', function() {
   }
 
   /**
+   * Returns proto expectations for VR animation events.
+   */
+  function handleVrAnimations(modelHelper, sortedInputEvents, warn) {
+    let events = [];
+    const eventNames = [
+      'gpu.WebVR FPS',
+      'gpu.WebVR frame time (ms)',
+      'gpu.WebVR pose prediction (ms)',
+      'VrShellGl::AcquireFrame',
+      'VrShellGl::DrawFrame',
+      'VrShellGl::DrawSubmitFrameWhenReady',
+      'VrShellGl::DrawUiView',
+      'VrShellGl::DrawWorldElements',
+      'VrShellGl::UpdateController',
+    ];
+
+    // Find all the processes we should check
+    const processes = [];
+    processes.push(modelHelper.gpuHelper.process);
+    for (const pid in modelHelper.rendererHelpers) {
+      processes.push(modelHelper.rendererHelpers[pid].process);
+    }
+    for (const pid in modelHelper.browserHelpers) {
+      processes.push(modelHelper.browserHelpers[pid].process);
+    }
+
+    // Add all counter samples to the list of events we care about
+    for (const proc of processes) {
+      for (const counterName in proc.counters) {
+        if (eventNames.includes(counterName)) {
+          const allSeries = proc.counters[counterName].series;
+          for (const series of allSeries) {
+            events = events.concat(series.samples);
+          }
+        }
+      }
+    }
+
+    function compareCounters(x, y) {
+      return x.timestamp - y.timestamp;
+    }
+
+    events.sort(compareCounters);
+    if (events.length === 0) {
+      return [];
+    }
+
+    const firstTimestamp = events[0].timestamp;
+    const protoExpectations = [
+      new ProtoExpectation(
+          ProtoExpectation.RESPONSE_TYPE, INITIATOR_TYPE.VR),
+      new ProtoExpectation(
+          ProtoExpectation.ANIMATION_TYPE, INITIATOR_TYPE.VR),
+    ];
+
+    for (const event of events) {
+      // Categorize the first 500 ms of VR time as entry/response
+      if (event.timestamp - firstTimestamp < 500) {
+        protoExpectations[0].pushSample(event);
+      } else {
+        protoExpectations[1].pushSample(event);
+      }
+    }
+    return protoExpectations;
+  }
+
+  /**
    * CSS Animations are merged into AnimationExpectations when they intersect.
    */
   function handleCSSAnimations(modelHelper, sortedInputEvents, warn) {
@@ -1187,10 +1255,11 @@ tr.exportTo('tr.importer', function() {
       // running, then it wasn't really an animation, now, was it?
       // Philosophy aside, the system_health Animation metrics fail hard if
       // there are no frames in an AnimationExpectation.
-      // Since WebGL animations don't generate this type of frame event,
-      // don't remove them if it's a WebGL animation.
+      // Since WebGL and VR animations don't generate this type of frame
+      // event, don't remove them if it's a WebGL or VR animation.
       if (frameEvents.length === 0 &&
-              !(pe.initiatorType === INITIATOR_TYPE.WEBGL)) {
+              !(pe.initiatorType === INITIATOR_TYPE.WEBGL ||
+                pe.initiatorType === INITIATOR_TYPE.VR)) {
         pe.type = ProtoExpectation.IGNORED_TYPE;
         newPEs.push(pe);
         continue;
