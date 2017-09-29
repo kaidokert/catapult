@@ -61,6 +61,16 @@ ga('set', 'historyImportTask', null);
     await importer.importHistograms(jsonEls, view);
     await locus.build(view.viewState);
 
+    // After HistogramSetLocation would restore referenceDisplayLabel, if it's
+    // still unset, and if the displayLabels are 'Patch' and 'TOT',
+    // automatically set the referenceDisplayLabel to 'TOT'.
+    if (view.displayLabels.length === 2 &&
+        view.displayLabels.includes('Patch') &&
+        view.displayLabels.includes('TOT') &&
+        !view.viewState.referenceDisplayLabel) {
+      await view.viewState.update({referenceDisplayLabel: 'TOT'});
+    }
+
     // Free the objects and DOM referenced by the importer.
     document.body.removeChild(jsonEls[0].parentNode);
     importer = undefined;
