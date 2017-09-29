@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "53ec6fa1_1e41c419",
+        "filename": "dashboard/dashboard/pinpoint/handlers/quest_generator.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-09-29T08:35:54Z",
+      "side": 1,
+      "message": "nit: should we add a small check here to ensure extra_test_args is a list?",
+      "revId": "a60e4556977294919dc850f5b97bbf98b223d582",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
