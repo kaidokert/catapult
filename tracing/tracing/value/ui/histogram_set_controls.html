@@ -406,6 +406,11 @@ tr.exportTo('tr.v.ui', function() {
       }
     },
 
+    get displayLabels() {
+      return Array.from(this.$.reference_display_label.children).map(
+          o => o.value).slice(1);
+    },
+
     get baseStatisticNames() {
       return this.baseStatisticNames_;
     },
