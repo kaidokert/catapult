@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1274529d_ad514fa0",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-09-29T08:55:29Z",
+      "side": 1,
+      "message": "maybe these should say: \"Pinpoint found ...\" and \"Pinpoint couldn\u0027t ...\"",
+      "range": {
+        "startLine": 126,
+        "startChar": 18,
+        "endLine": 126,
+        "endChar": 23
+      },
+      "revId": "6b5ae8f2da7bdf65075d5de18f5cc9e0450a9a41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df4f675b_c7542694",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-09-29T08:55:29Z",
+      "side": 1,
+      "message": "Maybe the footer should be skipped if there are no differences found?",
+      "revId": "6b5ae8f2da7bdf65075d5de18f5cc9e0450a9a41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64783a20_ebd187be",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-09-29T08:55:29Z",
+      "side": 1,
+      "message": "Also thinking whether it might be useful to add some tests that just render some of these comments with example data, so it becomes easier to visualize both the changes and the final version during review?",
+      "revId": "6b5ae8f2da7bdf65075d5de18f5cc9e0450a9a41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22886d32_cb6b92f8",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-09-29T08:55:29Z",
+      "side": 1,
+      "message": "wondering whether we should move this check earlier into the callers? No need to compose the message if its not going to be sent.",
+      "range": {
+        "startLine": 194,
+        "startChar": 6,
+        "endLine": 194,
+        "endChar": 12
+      },
+      "revId": "6b5ae8f2da7bdf65075d5de18f5cc9e0450a9a41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
