@@ -112,14 +112,42 @@ class Job(ndb.Model):
 
   def Start(self):
     self.Schedule()
-    self._PostBugComment('started', send_email=False)
+
+    title = _ROUND_PUSHPIN + ' Pinpoint job started.'
+    comment = '\n'.join((title, self.url))
+    self._PostBugComment(comment, send_email=False)
 
   def Complete(self):
-    self._PostBugComment('completed', include_differences=True)
+    # Include list of Changes.
+    differences = tuple(self.state.Differences())
+    change_details = []
+    if differences:
+      if len(differences) == 1:
+        status = 'Found a significant difference after 1 commit.'
+      else:
+        status = ('Found significant differences after each of %d commits.' %
+                  len(differences))
+      for _, change in differences:
+        change_details.append(_FormatChangeForBug(change))
+    else:
+      status = "Couldn't reproduce a difference."
+
+    # Format bug comment.
+    title = '<b>%s %s</b>' % (_ROUND_PUSHPIN, status)
+    header = '\n'.join((title, self.url))
+    body = '\n\n'.join(change_details)
+    footer = ('Understanding performance regressions:\n'
+              '  http://g.co/ChromePerformanceRegressions')
+    comment = '\n\n'.join((header, body, footer))
+
+    self._PostBugComment(comment)
 
   def Fail(self):
     self.exception = traceback.format_exc()
-    self._PostBugComment('stopped with an error ' + _CRYING_CAT_FACE)
+
+    title = _CRYING_CAT_FACE + ' Pinpoint job stopped with an error.'
+    comment = '\n'.join((title, self.url))
+    self._PostBugComment(comment)
 
   def Schedule(self):
     task = taskqueue.add(queue_name='job-queue', url='/api/run/' + self.job_id,
@@ -161,31 +189,9 @@ class Job(ndb.Model):
       d.update(self.state.AsDict())
     return d
 
-  def _PostBugComment(self, status, include_differences=False, send_email=True):
+  def _PostBugComment(self, comment, send_email=True):
     if not self.bug_id:
       return
-
-    title = '%s Pinpoint job %s.' % (_ROUND_PUSHPIN, status)
-    header = '\n'.join((title, self.url))
-
-    change_details = []
-    if include_differences:
-      # Include list of Changes.
-      differences = tuple(self.state.Differences())
-      if differences:
-        if len(differences) == 1:
-          change_details.append(
-              '<b>Found significant differences after 1 commit:</b>')
-        else:
-          change_details.append(
-              '<b>Found significant differences after each of %d commits:</b>' %
-              len(differences))
-        for _, change in differences:
-          change_details.append(_FormatChangeForBug(change))
-      else:
-        change_details.append("<b>Couldn't reproduce a difference.</b>")
-
-    comment = '\n\n'.join([header] + change_details)
 
     issue_tracker = issue_tracker_service.IssueTrackerService(
         utils.ServiceAccountHttp())
@@ -366,7 +372,7 @@ def _FormatChangeForBug(change):
   time = commit_info['committer']['time']
 
   byline = 'By %s %s %s' % (author, _MIDDLE_DOT, time)
-  git_link = commit.repository + '@' + commit.git_hash
+  git_link = commit.repository + ' @ ' + commit.git_hash
   return '\n'.join((subject, byline, git_link))
 
 
