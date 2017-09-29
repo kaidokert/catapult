@@ -2580,6 +2580,26 @@ class DeviceUtilsGetMemoryUsageForPidTest(DeviceUtilsTest):
           },
           self.device.GetMemoryUsageForPid(4321))
 
+  def testGetMemoryUsageForPid_withSwapAndCount(self):
+    with self.assertCalls(
+        (self.call.device._RunPipedShellCommand(
+            'showmap 1234 | grep TOTAL', as_root=True),
+         ['100 101 102 103 104 105 106 107 108 2 TOTAL']),
+        (self.call.device.ReadFile('/proc/1234/status', as_root=True),
+         'VmHWM: 1024 kB\n')):
+      self.assertEqual(
+          {
+            'Size': 100,
+            'Rss': 101,
+            'Pss': 102,
+            'Shared_Clean': 103,
+            'Shared_Dirty': 104,
+            'Private_Clean': 105,
+            'Private_Dirty': 106,
+            'VmHWM': 1024
+          },
+          self.device.GetMemoryUsageForPid(1234))
+
 
 class DeviceUtilsDismissCrashDialogIfNeededTest(DeviceUtilsTest):
 

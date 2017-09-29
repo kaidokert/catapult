@@ -2463,14 +2463,15 @@ class DeviceUtils(object):
   def _GetMemoryUsageForPidFromSmaps(self, pid):
     SMAPS_COLUMNS = (
         'Size', 'Rss', 'Pss', 'Shared_Clean', 'Shared_Dirty', 'Private_Clean',
-        'Private_Dirty')
+        'Private_Dirty')  # Ignore "Swap", and "#".
 
     showmap_out = self._RunPipedShellCommand(
         'showmap %d | grep TOTAL' % int(pid), as_root=True)
 
     split_totals = showmap_out[-1].split()
+    print split_totals, len(split_totals)
     if (not split_totals
-        or len(split_totals) != 9
+        or len(split_totals) < 8
         or split_totals[-1] != 'TOTAL'):
       raise device_errors.CommandFailedError(
           'Invalid output from showmap: %s' % '\n'.join(showmap_out))
