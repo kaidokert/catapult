@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "73bb8e36_c02042ea",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1116050
+      },
+      "writtenOn": "2017-10-02T15:28:54Z",
+      "side": 1,
+      "message": "We should rename this at some point - it might be worth just doing it now.\nSomething like |LOADING_METRIC_BOUNDARIES|?",
+      "range": {
+        "startLine": 465,
+        "startChar": 31,
+        "endLine": 465,
+        "endChar": 53
+      },
+      "revId": "228c1f52dfef957b248d40a086cbb075064ecf5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
