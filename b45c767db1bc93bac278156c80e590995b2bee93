@@ -22,6 +22,30 @@
       "revId": "b45c767db1bc93bac278156c80e590995b2bee93",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "613e5e4a_940d4b64",
+        "filename": "dashboard/dashboard/elements/alerts-table.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-02T21:15:05Z",
+      "side": 1,
+      "message": "Sorry, I don\u0027t follow. Can you clarify?\ngit grep says the only selectFirstNAlerts caller is initRowsBasedOnQueryParameters, which is only called in updateAlertList, which is only called in alertListChanged. alertList is set() in showAlertsGrouped and sort(), and bound to alerts-page.anomalies, which is set() in ready() and onShowMoreAnomalies.",
+      "parentUuid": "5d8b2e09_f6220e4f",
+      "range": {
+        "startLine": 752,
+        "startChar": 13,
+        "endLine": 752,
+        "endChar": 25
+      },
+      "revId": "b45c767db1bc93bac278156c80e590995b2bee93",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
