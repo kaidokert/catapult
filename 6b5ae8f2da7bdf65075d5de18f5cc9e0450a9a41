@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "677ada38_cafadbfc",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2017-10-02T22:24:35Z",
+      "side": 1,
+      "message": "I\u0027ve intentionally omitted it. I think there\u0027s enough context here for the user to know that it\u0027s Pinpoint, since:\n* The logo is included here.\n* The URL is included as well.\n* There is a previous \"Pinpoint job started\" post, and the logos and post authors match.",
+      "parentUuid": "9a3a5789_917452ab",
+      "range": {
+        "startLine": 126,
+        "startChar": 18,
+        "endLine": 126,
+        "endChar": 23
+      },
+      "revId": "6b5ae8f2da7bdf65075d5de18f5cc9e0450a9a41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "df4f675b_c7542694",
         "filename": "dashboard/dashboard/pinpoint/models/job.py",
         "patchSetId": 1
@@ -63,6 +87,24 @@
       "revId": "6b5ae8f2da7bdf65075d5de18f5cc9e0450a9a41",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bc6ffeb_9f7e7e66",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2017-10-02T22:24:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df4f675b_c7542694",
+      "revId": "6b5ae8f2da7bdf65075d5de18f5cc9e0450a9a41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -101,6 +143,24 @@
     },
     {
       "key": {
+        "uuid": "1dfb2c64_25c6a76e",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2017-10-02T22:24:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35a4e1b7_3c80ce03",
+      "revId": "6b5ae8f2da7bdf65075d5de18f5cc9e0450a9a41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "22886d32_cb6b92f8",
         "filename": "dashboard/dashboard/pinpoint/models/job.py",
         "patchSetId": 1
@@ -112,6 +172,30 @@
       "writtenOn": "2017-09-29T08:55:29Z",
       "side": 1,
       "message": "wondering whether we should move this check earlier into the callers? No need to compose the message if its not going to be sent.",
+      "range": {
+        "startLine": 194,
+        "startChar": 6,
+        "endLine": 194,
+        "endChar": 12
+      },
+      "revId": "6b5ae8f2da7bdf65075d5de18f5cc9e0450a9a41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f038b89a_b4d81375",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2017-10-02T22:24:35Z",
+      "side": 1,
+      "message": "That\u0027s true, but then the check for bug_id would not be in the same place as where bug_id used. It\u0027s more prone to error.",
+      "parentUuid": "22886d32_cb6b92f8",
       "range": {
         "startLine": 194,
         "startChar": 6,
