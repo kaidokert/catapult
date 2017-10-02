@@ -72,37 +72,7 @@ tr.b.unittest.testSuite(function() {
     assert.instanceOf(events, tr.v.d.RelatedEventSet);
     assert.strictEqual(tr.b.getOnlyElement(events).title,
         'foo');
-    const breakdown = longTaskHist.diagnostics.get('category');
-    assert.instanceOf(breakdown, tr.v.d.RelatedHistogramBreakdown);
-    assert.lengthOf(breakdown, 4);
-
-    let hist = breakdown.get('layout');
-    assert.instanceOf(hist, tr.v.Histogram);
-    assert.strictEqual(histograms.getHistogramNamed(hist.name), hist);
-    assert.strictEqual(0, hist.name.indexOf(longTaskHist.name));
-    assert.strictEqual(1, hist.numValues);
-    assert.strictEqual(1, hist.allBins[1].count);
-
-    hist = breakdown.get('gc');
-    assert.instanceOf(hist, tr.v.Histogram);
-    assert.strictEqual(histograms.getHistogramNamed(hist.name), hist);
-    assert.strictEqual(0, hist.name.indexOf(longTaskHist.name));
-    assert.strictEqual(1, hist.numValues);
-    assert.strictEqual(1, hist.allBins[1].count);
-
-    hist = breakdown.get('composite');
-    assert.instanceOf(hist, tr.v.Histogram);
-    assert.strictEqual(histograms.getHistogramNamed(hist.name), hist);
-    assert.strictEqual(0, hist.name.indexOf(longTaskHist.name));
-    assert.strictEqual(1, hist.numValues);
-    assert.strictEqual(1, hist.allBins[1].count);
-
-    hist = breakdown.get('imageDecode');
-    assert.instanceOf(hist, tr.v.Histogram);
-    assert.strictEqual(histograms.getHistogramNamed(hist.name), hist);
-    assert.strictEqual(0, hist.name.indexOf(longTaskHist.name));
-    assert.strictEqual(1, hist.numValues);
-    assert.strictEqual(1, hist.allBins[1].count);
+    TODO;
   });
 });
 </script>

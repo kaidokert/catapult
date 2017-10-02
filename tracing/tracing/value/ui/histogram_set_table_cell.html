@@ -126,9 +126,10 @@ tr.exportTo('tr.v.ui', function() {
       // lifetimes are the same as |this|.
     },
 
-    build(row, displayLabel, viewState) {
+    build(row, displayLabel, histograms, viewState) {
       this.row_ = row;
       this.displayLabel_ = displayLabel;
+      this.histograms_ = histograms;
       this.viewState_ = viewState;
       this.histogram_ = this.row.columns.get(displayLabel);
 
@@ -218,8 +219,8 @@ tr.exportTo('tr.v.ui', function() {
         this.histogramSpan_ = document.createElement('tr-v-ui-histogram-span');
         this.histogramSpan_.rowState = this.row.viewState;
         this.histogramSpan_.viewState = this.viewState;
-        this.histogramSpan_.referenceHistogram = this.referenceHistogram;
-        this.histogramSpan_.histogram = this.histogram;
+        this.histogramSpan_.build(
+            this.histogram, this.referenceHistogram, this.histograms_);
         this.histogramSpan_.alpha = this.row.rootViewState.alpha;
         this.$.histogram.appendChild(this.histogramSpan_);
       }
@@ -318,9 +319,9 @@ tr.exportTo('tr.v.ui', function() {
       const referenceHistogram = this.referenceHistogram;
 
       if (this.histogramSpan_) {
-        // Reset in case HistogramSetViewState.referenceDisplayLabel changed.
-        this.histogramSpan_.referenceHistogram = referenceHistogram;
-
+        // Rebuild in case HistogramSetViewState.referenceDisplayLabel changed.
+        this.histogramSpan_.build(
+            this.histogram, this.referenceHistogram, this.histograms_);
         this.histogramSpan_.alpha = this.row.rootViewState.alpha;
       }
 
