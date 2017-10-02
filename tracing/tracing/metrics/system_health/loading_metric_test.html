@@ -501,7 +501,7 @@ tr.b.unittest.testSuite(function() {
     const binsWithSampleDiagnosticMaps = hist.allBins.filter(
         bin => bin.diagnosticMaps.length > 0);
     const diagnostic = tr.b.getOnlyElement(binsWithSampleDiagnosticMaps[0]
-        .diagnosticMaps[0].get('Navigation infos'));
+        .diagnosticMaps[0].get('infos'));
     assert.strictEqual(diagnostic.start, 200);
     assert.strictEqual(diagnostic.interactive, 15400);
     assert.strictEqual(diagnostic.pid, 1984);
