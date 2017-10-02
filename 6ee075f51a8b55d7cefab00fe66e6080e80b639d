@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "dcd412ba_3662376c",
+        "filename": "tracing/tracing/importer/find_input_expectations.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2017-10-02T23:46:08Z",
+      "side": 1,
+      "message": "Not really, but it looks like the two main types of expectations right now are ResponseExpectation and AnimationExpectation, so fitting it to that model results in VR entry being treated as a response and otherwise being in VR as an animation.",
+      "parentUuid": "f896b6ea_ac8a5016",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "69e4daf1_eba6409b",
         "filename": "tracing/tracing/importer/find_input_expectations.html",
         "patchSetId": 7
@@ -48,6 +66,24 @@
       "writtenOn": "2017-09-29T20:05:25Z",
       "side": 1,
       "message": "Please add a test for this in user_model_builder_test.html",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70a9ebf3_6c6ceb67",
+        "filename": "tracing/tracing/importer/find_input_expectations.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 786,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2017-10-02T23:46:08Z",
+      "side": 1,
+      "message": "I did a quick attempt to add a test, but it seems like the way I tried doesn\u0027t properly set up the fake processes (modelHelper.gpuHelper is undefined). The video expectations tests seem to work fine using helpers without doing anything special looking - any ideas?",
+      "parentUuid": "69e4daf1_eba6409b",
       "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -71,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "0734e2ba_518e4ace",
+        "filename": "tracing/tracing/importer/find_input_expectations.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 788,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2017-10-02T23:46:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef410ca3_2c27720c",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0649c13b_0c3b563b",
         "filename": "tracing/tracing/importer/find_input_expectations.html",
         "patchSetId": 7
@@ -85,6 +139,24 @@
       "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe7a6106_1b27a85d",
+        "filename": "tracing/tracing/importer/find_input_expectations.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2017-10-02T23:46:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0649c13b_0c3b563b",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -105,6 +177,24 @@
     },
     {
       "key": {
+        "uuid": "d71b88b9_4238b6bf",
+        "filename": "tracing/tracing/importer/find_input_expectations.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 830,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2017-10-02T23:46:08Z",
+      "side": 1,
+      "message": "Done. We\u0027ll probably need to have a slightly more complex function in the follow-up CL that adds support for user expectations with the other VR-related trace events since I believe that will end up mixing counters with events that have start/end instead of timestamps.",
+      "parentUuid": "47a1b467_7d476990",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dc1a3da9_7b4befb3",
         "filename": "tracing/tracing/importer/find_input_expectations.html",
         "patchSetId": 7
@@ -119,6 +209,24 @@
       "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5975d59_15308ecb",
+        "filename": "tracing/tracing/importer/find_input_expectations.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 833,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2017-10-02T23:46:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc1a3da9_7b4befb3",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -139,6 +247,24 @@
     },
     {
       "key": {
+        "uuid": "5624f73b_e0e9eedc",
+        "filename": "tracing/tracing/importer/find_input_expectations.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 841,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2017-10-02T23:46:08Z",
+      "side": 1,
+      "message": "Done. There might be better ways to compute the duration of the response, e.g. waiting until the framerate is relatively stable for 10 frames in a row or something. I\u0027ve added a TODO to improve this, but for now, I think waiting a fixed duration is fine for a first pass.",
+      "parentUuid": "2a7b48a8_652d09e4",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8a024116_529a8e4e",
         "filename": "tracing/tracing/metrics/vr/webvr_metric.html",
         "patchSetId": 7
@@ -153,6 +279,24 @@
       "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2d756be_82deb865",
+        "filename": "tracing/tracing/metrics/vr/webvr_metric.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2017-10-02T23:46:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a024116_529a8e4e",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -173,6 +317,24 @@
     },
     {
       "key": {
+        "uuid": "884e3634_73343cff",
+        "filename": "tracing/tracing/metrics/vr/webvr_metric.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2017-10-02T23:46:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1ea6fb4_d6af9925",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dfdfe785_7351d4d7",
         "filename": "tracing/tracing/metrics/vr/webvr_metric.html",
         "patchSetId": 7
@@ -184,6 +346,24 @@
       "writtenOn": "2017-09-29T20:05:25Z",
       "side": 1,
       "message": "Why test rangeOfInterestEnabled here?\nAlso, don\u0027t you need to test initiatorType?\nAlso, don\u0027t you want to filter out Loads and Idles?\n\nif (ue.initiatorType !\u003d\u003d VR) return;\nif (!(ue instanceof tr.model.um.AnimationExpectation)) return;",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38f97842_209276af",
+        "filename": "tracing/tracing/metrics/vr/webvr_metric.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2017-10-02T23:46:08Z",
+      "side": 1,
+      "message": "Testing for rangeOfInterestEnabled is so that only the animation expectation is considered when calculating the results that will be sent to the dashboard, but if desired, the response expectation can be considered when manually inspecting the trace.\n\nAdded filters for non-VR initiator types and loads/idles.",
+      "parentUuid": "dfdfe785_7351d4d7",
       "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -207,6 +387,24 @@
     },
     {
       "key": {
+        "uuid": "fccb5dad_3b089fcb",
+        "filename": "tracing/tracing/metrics/vr/webvr_metric.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2017-10-02T23:46:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28f207b4_6685417b",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d1896423_6fc5dcf8",
         "filename": "tracing/tracing/metrics/vr/webvr_metric.html",
         "patchSetId": 7
@@ -221,6 +419,24 @@
       "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64c1704e_600d06c9",
+        "filename": "tracing/tracing/metrics/vr/webvr_metric.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2017-10-02T23:46:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1896423_6fc5dcf8",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -241,6 +457,24 @@
     },
     {
       "key": {
+        "uuid": "040a52bf_cca70359",
+        "filename": "tracing/tracing/metrics/vr/webvr_metric.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2017-10-02T23:46:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "335bbfba_1dd25bfb",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bba57fb9_d886ada0",
         "filename": "tracing/tracing/model/user_model/user_expectation.html",
         "patchSetId": 7
@@ -255,6 +489,24 @@
       "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38d8730e_de0c350e",
+        "filename": "tracing/tracing/model/user_model/user_expectation.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2017-10-02T23:46:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bba57fb9_d886ada0",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
