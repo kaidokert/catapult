@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "15f9615a_5fd4741d",
+        "filename": "systrace/systrace/tracing_agents/atrace_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1212364
+      },
+      "writtenOn": "2017-10-02T16:35:24Z",
+      "side": 1,
+      "message": "how large of an output needs 5 minutes?\n\nIs this something we could compute dynamically from buffer size? Would prefer not to have to wait 5 minutes if the command fails when capturing a regular ~20mb trace.",
+      "revId": "ec767cd09e915af2ad69e397f772d7cba7cd30f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
