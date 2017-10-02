@@ -2284,12 +2284,12 @@ class DeviceUtils(object):
       else:
         raise
 
-    process_name = process_name or ''
     for line in ps_output:
       try:
         ps_data = line.split()
         pid, process = ps_data[1], ps_data[-1]
-        if process_name in process and pid != 'PID':
+        if pid != 'PID' and (not process_name or
+            process == process_name or process.startswith(process_name + ':')):
           procs_pids[process].append(pid)
       except IndexError:
         pass

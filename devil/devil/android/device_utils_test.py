@@ -2325,6 +2325,9 @@ class DeviceUtilsGetPidsTest(DeviceUtilsTest):
         'user  1234    100   1024  1024  ffffffff 00000000 my$process',
         'user  1000    100   1024  1024  ffffffff 00000000 foo',
         'user  1236    100   1024  1024  ffffffff 00000000 foo',
+        'user  1006    100   1024  1024  ffffffff 00000000 myproc',
+        'user  1007    100   1024  1024  ffffffff 00000000 myproc:subproc',
+        'user  1008    100   1024  1024  ffffffff 00000000 myproc.notreally',
     ]
 
   def _grepOutput(self, substring):
@@ -2362,13 +2365,12 @@ class DeviceUtilsGetPidsTest(DeviceUtilsTest):
     with self.patch_call(self.call.device.build_version_sdk,
                          return_value=version_codes.LOLLIPOP):
       with self.assertCall(
-          self.call.device._RunPipedShellCommand('ps | grep -F match'),
-          self._grepOutput('match')):
+          self.call.device._RunPipedShellCommand('ps | grep -F myproc'),
+          self._grepOutput('myproc')):
         self.assertEqual(
-            {'one.match': ['1001'],
-             'two.match': ['1002'],
-             'three.match': ['1003']},
-            self.device.GetPids('match'))
+            {'myproc': ['1006'],
+             'myproc:subproc': ['1007']},
+            self.device.GetPids('myproc'))
 
   def testGetPids_quotable(self):
     with self.patch_call(self.call.device.build_version_sdk,
@@ -2401,7 +2403,10 @@ class DeviceUtilsGetPidsTest(DeviceUtilsTest):
              'two.match': ['1002'],
              'three.match': ['1003'],
              'my$process': ['1234'],
-             'foo': ['1000', '1236']},
+             'foo': ['1000', '1236'],
+             'myproc': ['1006'],
+             'myproc:subproc': ['1007'],
+             'myproc.notreally': ['1008']},
             self.device.GetPids())
 
   def testGetApplicationPids_notFound(self):
