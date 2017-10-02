@@ -496,6 +496,20 @@ class HistogramRef(object):
     return self._guid
 
 
+class RelatedNameMap(diagnostic.Diagnostic):
+
+  def __init__(self):
+    super(RelatedNameMap, self).__init__()
+    self._map = {}
+
+  def Get(self, key):
+    return self._map.get(key)
+
+  def Set(self, key, name):
+    self._map[key] = name
+
+
+
 class RelatedHistogramMap(diagnostic.Diagnostic):
 
   def __init__(self):
@@ -1380,4 +1394,5 @@ all_diagnostics.DIAGNOSTICS_BY_NAME.update({
     'TagMap': TagMap,
     'RelatedHistogramBreakdown': RelatedHistogramBreakdown,
     'RelatedHistogramMap': RelatedHistogramMap,
+    'RelatedNameMap': RelatedNameMap,
 })
