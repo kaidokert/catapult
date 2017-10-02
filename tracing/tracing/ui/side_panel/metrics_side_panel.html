@@ -25,6 +25,7 @@ found in the LICENSE file.
     }
     div#error {
       color: red;
+      white-space: pre;
     }
     #results {
       font-size: 12px;
@@ -200,7 +201,7 @@ tr.exportTo('tr.ui', function() {
       try {
         histograms = tr.metrics.runMetrics(this.model_, options);
       } catch (err) {
-        Polymer.dom(this.$.error).textContent = err.message;
+        Polymer.dom(this.$.error).textContent = err.stack;
         return;
       }
 

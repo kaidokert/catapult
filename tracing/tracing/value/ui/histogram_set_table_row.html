@@ -17,9 +17,10 @@ tr.exportTo('tr.v.ui', function() {
      * @param {!Element} baseTable tr-ui-b-table
      * @param {!tr.v.ui.HistogramSetViewState} rootViewState
      */
-    constructor(hierarchy, baseTable, rootViewState) {
+    constructor(hierarchy, baseTable, histograms, rootViewState) {
       this.hierarchy_ = hierarchy;
       this.baseTable_ = baseTable;
+      this.histograms_ = histograms;
       this.rootViewState_ = rootViewState;
       this.viewState_ = new tr.v.ui.HistogramSetTableRowState();
       this.viewState_.addUpdateListener(this.onViewStateUpdate_.bind(this));
@@ -32,7 +33,7 @@ tr.exportTo('tr.v.ui', function() {
       // listening to viewState, so avoid the overhead of dispatching an event.
       for (const subHierarchy of hierarchy.subRows) {
         const subRow = new HistogramSetTableRow(
-            subHierarchy, baseTable, rootViewState);
+            subHierarchy, baseTable, histograms, rootViewState);
         this.subRows_.push(subRow);
         this.viewState.subRows.set(subRow.name, subRow.viewState);
       }
@@ -192,7 +193,8 @@ tr.exportTo('tr.v.ui', function() {
     getCell(columnName) {
       if (this.cells.has(columnName)) return this.cells.get(columnName);
       const cell = document.createElement('tr-v-ui-histogram-set-table-cell');
-      cell.build(this, columnName, this.viewState.cells.get(columnName));
+      cell.build(this, columnName, this.histograms_,
+          this.viewState.cells.get(columnName));
       this.cells.set(columnName, cell);
       return cell;
     }

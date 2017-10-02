@@ -496,86 +496,6 @@ class HistogramRef(object):
     return self._guid
 
 
-class RelatedHistogramMap(diagnostic.Diagnostic):
-
-  def __init__(self):
-    super(RelatedHistogramMap, self).__init__()
-    self._histograms_by_name = {}
-
-  def Get(self, name):
-    return self._histograms_by_name.get(name)
-
-  def Set(self, name, hist):
-    assert isinstance(hist, (Histogram, HistogramRef))
-    self._histograms_by_name[name] = hist
-
-  def Add(self, hist):
-    self.Set(hist.name, hist)
-
-  def __len__(self):
-    return len(self._histograms_by_name)
-
-  def __iter__(self):
-    for name, hist in self._histograms_by_name.iteritems():
-      yield name, hist
-
-  def Resolve(self, histograms, required=False):
-    for name, hist in self:
-      if not isinstance(hist, HistogramRef):
-        continue
-
-      guid = hist.guid
-      hist = histograms.LookupHistogram(guid)
-      if isinstance(hist, Histogram):
-        self._histograms_by_name[name] = hist
-      else:
-        assert not required, guid
-
-  def _AsDictInto(self, d):
-    d['values'] = {}
-    for name, hist in self:
-      d['values'][name] = hist.guid
-
-  @staticmethod
-  def FromDict(d):
-    result = RelatedHistogramMap()
-    for name, guid in d['values'].iteritems():
-      result.Set(name, HistogramRef(guid))
-    return result
-
-
-class RelatedHistogramBreakdown(RelatedHistogramMap):
-
-  def __init__(self):
-    super(RelatedHistogramBreakdown, self).__init__()
-    self._color_scheme = None
-
-  def Set(self, name, hist):
-    if not isinstance(hist, HistogramRef):
-      assert isinstance(hist, Histogram)
-      # All Histograms must have the same unit.
-      for _, other_hist in self:
-        expected_unit = other_hist.unit
-        assert expected_unit == hist.unit, (
-            'Units mismatch ' + expected_unit + ' != ' + hist.unit)
-        break  # Only the first Histogram needs to be checked.
-    super(RelatedHistogramBreakdown, self).Set(name, hist)
-
-  def _AsDictInto(self, d):
-    RelatedHistogramMap._AsDictInto(self, d)
-    if self._color_scheme:
-      d['colorScheme'] = self._color_scheme
-
-  @staticmethod
-  def FromDict(d):
-    result = RelatedHistogramBreakdown()
-    for name, guid in d['values'].iteritems():
-      result.Set(name, HistogramRef(guid))
-    if 'colorScheme' in d:
-      result._color_scheme = d['colorScheme']
-    return result
-
-
 class TagMap(diagnostic.Diagnostic):
 
   def __init__(self, info):
@@ -742,12 +662,6 @@ class DiagnosticMap(dict):
     return dct
 
   def Merge(self, other, parent_hist, other_parent_hist):
-    merged_from = self.get(reserved_infos.MERGED_FROM.name)
-    if merged_from is None:
-      merged_from = RelatedHistogramMap()
-      self[reserved_infos.MERGED_FROM.name] = merged_from
-    merged_from.Set(len(merged_from), other_parent_hist)
-
     for name, other_diagnostic in other.iteritems():
       if name not in self:
         self[name] = other_diagnostic
@@ -1378,6 +1292,4 @@ all_diagnostics.DIAGNOSTICS_BY_NAME.update({
     'RelatedEventSet': RelatedEventSet,
     'DateRange': DateRange,
     'TagMap': TagMap,
-    'RelatedHistogramBreakdown': RelatedHistogramBreakdown,
-    'RelatedHistogramMap': RelatedHistogramMap,
 })
