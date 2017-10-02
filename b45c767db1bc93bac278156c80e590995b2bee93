@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5d8b2e09_f6220e4f",
+        "filename": "dashboard/dashboard/elements/alerts-table.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-02T20:45:20Z",
+      "side": 1,
+      "message": "Kinda seems like we want one-off initialization when alertList is set (I think there\u0027s another selectFirstNAlerts() that wants to do that too?).",
+      "range": {
+        "startLine": 752,
+        "startChar": 13,
+        "endLine": 752,
+        "endChar": 25
+      },
+      "revId": "b45c767db1bc93bac278156c80e590995b2bee93",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
