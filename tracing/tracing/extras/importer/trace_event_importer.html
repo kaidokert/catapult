@@ -790,32 +790,34 @@ tr.exportTo('tr.e.importer', function() {
 
         const profileTree = this.getOrCreateProfileTree_(sampleType, event.id);
         const nodes = data[sampleType].nodes;
-        const samples = data[sampleType].samples;
-        if (nodes !== undefined) {
-          for (const node of nodes) {
-            // Get the sepcific ProfileNode type based on sampleType.
-            const ProfileNodeType =
-                tr.model.ProfileNode.subTypes.getConstructor(undefined,
-                    sampleType);
-            const profileNode = ProfileNodeType.constructFromObject(profileTree,
-                node);
-            if (profileNode === undefined) {
-              continue;
-            }
-            profileTree.add(profileNode);
-          }
-        }
         // The samples array contains id pointing to the profile node.
-        if (samples !== undefined) {
-          const thread = this.model_.getOrCreateProcess(profileTree.pid)
-              .getOrCreateThread(profileTree.tid);
-          for (let i = 0, len = samples.length; i < len; ++i) {
-            const node = profileTree.getNode(samples[i]);
-            profileTree.endTime += timeDeltas[i];
-            const start = this.toModelTimeFromUs_(profileTree.endTime);
-            this.model_.samples.push(
-                new tr.model.Sample(start, node.sampleTitle, node, thread));
+        const samples = data[sampleType].samples;
+        if (nodes === undefined) continue;
+
+        for (const node of nodes) {
+          // Get the sepcific ProfileNode type based on sampleType.
+          const ProfileNodeType =
+              tr.model.ProfileNode.subTypes.getConstructor(undefined,
+                  sampleType);
+          const profileNode = ProfileNodeType.constructFromObject(profileTree,
+              node);
+          if (profileNode === undefined) {
+            continue;
           }
+          profileTree.add(profileNode);
+        }
+
+        if (samples === undefined) continue;
+
+        const thread = this.model_.getOrCreateProcess(profileTree.pid)
+            .getOrCreateThread(profileTree.tid);
+        for (let i = 0, len = samples.length; i < len; ++i) {
+          const node = profileTree.getNode(samples[i]);
+          if (node === undefined) continue;
+          profileTree.endTime += timeDeltas[i];
+          const start = this.toModelTimeFromUs_(profileTree.endTime);
+          this.model_.samples.push(
+              new tr.model.Sample(start, node.sampleTitle, node, thread));
         }
       }
     },
