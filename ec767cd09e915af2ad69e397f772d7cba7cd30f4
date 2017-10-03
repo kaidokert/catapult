@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "512dec6a_7a087ad1",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 978,
+      "author": {
+        "id": 1245231
+      },
+      "writtenOn": "2017-10-03T18:50:31Z",
+      "side": 1,
+      "message": "RunShellCommand timeout doesn\u0027t work without my patch because handle_large_command doesn\u0027t accept a timeout parameter. I put prints with/without patch and timeout is not propagated to adb.Shell. \n\nI see default timeout of instead of the 300 I passed.\nargs [\u0027shell\u0027, \u0027( ( atrace -z -t 10 -b 30000 critical sched --async_stop )\u003e/data/local/tmp/temp_file-d196279a14f45 2\u003e\u00261 );echo %$?\u0027] , timeout 30",
+      "parentUuid": "9a996580_f6f25468",
+      "revId": "ec767cd09e915af2ad69e397f772d7cba7cd30f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "15f9615a_5fd4741d",
         "filename": "systrace/systrace/tracing_agents/atrace_agent.py",
         "patchSetId": 1
