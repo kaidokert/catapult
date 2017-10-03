@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1b743425_d7303c8c",
+        "filename": "telemetry/telemetry/page/cache_temperature.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1115941
+      },
+      "writtenOn": "2017-10-03T05:14:24Z",
+      "side": 1,
+      "message": "Is it possible to write a test to enforce this?",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 5
+      },
+      "revId": "5c022d0674a4dedca8dbf03fc2c5d098de342b5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
