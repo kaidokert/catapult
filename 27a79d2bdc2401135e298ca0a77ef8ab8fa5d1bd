@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "36a35d39_baddc9f2",
+        "filename": "telemetry/bin/run_snap_it_unittest",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-10-03T22:06:18Z",
+      "side": 1,
+      "message": "err, you\u0027re right. This should be tab.Evaluate..",
+      "parentUuid": "64c95dde_5ee85efc",
+      "range": {
+        "startLine": 30,
+        "startChar": 15,
+        "endLine": 30,
+        "endChar": 46
+      },
+      "revId": "27a79d2bdc2401135e298ca0a77ef8ab8fa5d1bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c55d4fa1_49e14871",
         "filename": "telemetry/bin/run_snap_it_unittest",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2017-10-03T21:53:53Z",
       "side": 1,
       "message": "Do we need to do this?",
+      "range": {
+        "startLine": 47,
+        "startChar": 2,
+        "endLine": 47,
+        "endChar": 54
+      },
+      "revId": "27a79d2bdc2401135e298ca0a77ef8ab8fa5d1bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "578948f1_77a84c24",
+        "filename": "telemetry/bin/run_snap_it_unittest",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-10-03T22:06:18Z",
+      "side": 1,
+      "message": "Look like we don\u0027t. :P",
+      "parentUuid": "c55d4fa1_49e14871",
       "range": {
         "startLine": 47,
         "startChar": 2,
