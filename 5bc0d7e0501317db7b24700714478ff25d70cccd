@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5b33cbc6_4f9ab2e5",
+        "filename": "tracing/tracing/extras/importer/trace_event_importer.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-03T19:34:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e281166_a440851f",
+      "range": {
+        "startLine": 795,
+        "startChar": 8,
+        "endLine": 795,
+        "endChar": 44
+      },
+      "revId": "5bc0d7e0501317db7b24700714478ff25d70cccd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2dfd25bf_3976b69b",
         "filename": "tracing/tracing/extras/importer/trace_event_importer.html",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2017-10-03T18:49:59Z",
       "side": 1,
       "message": "I think this line seems already enough to avoid the crash. But, when we designed the format, samples were supposed to only refer to nodes that have already appeared, if such assumption is no longer correct, we may need a sync with whoever made such the change.",
+      "range": {
+        "startLine": 814,
+        "startChar": 10,
+        "endLine": 814,
+        "endChar": 43
+      },
+      "revId": "5bc0d7e0501317db7b24700714478ff25d70cccd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "319310e5_9d2cb7d4",
+        "filename": "tracing/tracing/extras/importer/trace_event_importer.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 814,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-03T19:34:37Z",
+      "side": 1,
+      "message": "I believe that one of petermarshall\u0027s recent changes caused \"nodes\" to sometimes be undefined, possibly unintentionally:\nhttps://chromium.googlesource.com/v8/v8.git/+/ab43c76dde97188e79a6a1c5bb994407606521d2\nhttps://chromium.googlesource.com/v8/v8.git/+/abaece06d211bc0c4e5fbbda3999a1d1d7736055",
+      "parentUuid": "2dfd25bf_3976b69b",
       "range": {
         "startLine": 814,
         "startChar": 10,
