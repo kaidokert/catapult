@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fd327b58_55996043",
+        "filename": "telemetry/third_party/snap-it/HTMLSerializer.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1128438
+      },
+      "writtenOn": "2017-10-03T19:52:32Z",
+      "side": 1,
+      "message": "Maybe we\u0027ll need the frame index as well. I haven\u0027t explored a test case with an iframe containing an image yet. I figure this is at least a start and we can tweak subsequently.",
+      "range": {
+        "startLine": 95,
+        "startChar": 11,
+        "endLine": 95,
+        "endChar": 46
+      },
+      "revId": "6e244f38ea1b2bfc02c7625ab3d9c1d23523c0b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
