@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b238a29c_cf9dac4c",
+        "filename": "tracing/tracing/extras/importer/trace_event_importer.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 1211219
+      },
+      "writtenOn": "2017-10-03T20:12:52Z",
+      "side": 1,
+      "message": ":) we should also try to process samples even `nodes` is undefined because sample in `samples` may use nodes that are already processed.\n\nIn short, the only guarantee is that `samples` will only refer nodes that are processed, which seems broken.",
+      "range": {
+        "startLine": 795,
+        "startChar": 8,
+        "endLine": 795,
+        "endChar": 42
+      },
+      "revId": "e2a3b82f07abc04f10f4f757fcbd2127971ab4dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
