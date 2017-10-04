@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c50e9352_8b3c76fa",
+        "filename": "tracing/tracing/importer/find_input_expectations.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 808,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-04T16:34:08Z",
+      "side": 1,
+      "message": "for (const process of Object.values(modelHelper.rendererHelpers)) {\n  processes.push(process);\n}",
+      "revId": "e282e1b426734ee10575e7c2f388a332d284c24f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd19438b_617ba396",
+        "filename": "tracing/tracing/importer/find_input_expectations.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 1122,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-04T16:34:08Z",
+      "side": 1,
+      "message": "I suspect you don\u0027t want to merge VR animations with any other types of animations since they have different types of frame events.",
+      "revId": "e282e1b426734ee10575e7c2f388a332d284c24f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

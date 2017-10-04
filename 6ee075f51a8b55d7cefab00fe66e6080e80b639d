@@ -108,6 +108,24 @@
     },
     {
       "key": {
+        "uuid": "e4b67351_ba7cd798",
+        "filename": "tracing/tracing/importer/find_input_expectations.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 786,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-04T16:34:08Z",
+      "side": 1,
+      "message": "The ChromeModelHelper recognizes gpu processes by looking for a thread whose name is \u0027CrGpuMain\u0027.\nSee ChromeTestUtils.newChromeModel() for an example of how to create a thread with a specific name.\nhttps://github.com/catapult-project/catapult/blob/master/tracing/tracing/extras/chrome/chrome_test_utils.html#L21\nIf you want, you could add a helper to that file like addGpuSomethingEvent().",
+      "parentUuid": "70a9ebf3_6c6ceb67",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ef410ca3_2c27720c",
         "filename": "tracing/tracing/importer/find_input_expectations.html",
         "patchSetId": 7
@@ -385,6 +403,24 @@
       "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7fa4600_4f7db8b9",
+        "filename": "tracing/tracing/metrics/vr/webvr_metric.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-04T16:34:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "38f97842_209276af",
+      "revId": "6ee075f51a8b55d7cefab00fe66e6080e80b639d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
