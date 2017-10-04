@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeb0e2c3_4a637c7e",
+        "filename": "telemetry/telemetry/page/cache_temperature.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-10-04T11:22:00Z",
+      "side": 1,
+      "message": "nits: top level classes/methods/variables are separated by 2 blank lines",
+      "revId": "8a51ef56aef28435250e58c6631045d43a684404",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
