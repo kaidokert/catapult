@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "f5e270fe_8505f885",
+        "filename": "experimental/soundwave/dashboard_api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-10-04T17:08:22Z",
+      "side": 1,
+      "message": "I think both names could work, but the way the dashboard does it is inconsistent which is bad. We can decide to remain consistent with naming internally to this, or remain consistent with the dashboard api.\n\nI have no real strong opinion on which.",
+      "parentUuid": "e5a016f1_c12fbc0c",
+      "range": {
+        "startLine": 89,
+        "startChar": 6,
+        "endLine": 89,
+        "endChar": 20
+      },
+      "revId": "030110639ac98644abe657075fb5e64674ecec99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7438b5c6_ce57e263",
         "filename": "experimental/soundwave/dashboard_api.py",
         "patchSetId": 1
@@ -70,6 +94,24 @@
       "writtenOn": "2017-10-04T10:36:07Z",
       "side": 1,
       "message": "Is sheriff usually a string? or a True/False?",
+      "revId": "030110639ac98644abe657075fb5e64674ecec99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "608a88fd_7d452a6b",
+        "filename": "experimental/soundwave/dashboard_api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-10-04T17:08:22Z",
+      "side": 1,
+      "message": "For this its unsure. For alerts it says:\n\"Can specify a sheriff param in postdata, defaults to Chromium Perf Sheriff.\"\nWhich means string, but all it says for this is:\n/api/list_timeseries/benchmark: List all the monitored timeseries associated with benchmark. Takes an optional sheriff param in postdata. Returns an array of test_paths (master/bot/benchmark/metric/page).\n\nBut I am operating under the assumption that it works the same as the other call.",
+      "parentUuid": "352321e2_347ddb2d",
       "revId": "030110639ac98644abe657075fb5e64674ecec99",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -155,6 +197,30 @@
       "writtenOn": "2017-10-04T10:36:07Z",
       "side": 1,
       "message": "CheckFilters is small enough, maybe just inline it here?\n\nAlso, if you don\u0027t specify any filters this whole thing is skipped?",
+      "range": {
+        "startLine": 44,
+        "startChar": 26,
+        "endLine": 44,
+        "endChar": 38
+      },
+      "revId": "030110639ac98644abe657075fb5e64674ecec99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "529a896d_4cf126ef",
+        "filename": "experimental/soundwave/fetch_timeseries_data_for_benchmark",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-10-04T17:08:22Z",
+      "side": 1,
+      "message": "I did it for code readability reasons. But even without the named function its probably easy enough to understand what its doing.",
+      "parentUuid": "2cfe6ab6_50cd614d",
       "range": {
         "startLine": 44,
         "startChar": 26,
