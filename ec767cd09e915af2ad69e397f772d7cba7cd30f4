@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "f9f4c48b_a1f1f026",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 978,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2017-10-04T00:48:05Z",
+      "side": 1,
+      "message": "Sorry about the delay -- plane internet took a nosedive shortly after we spoke :(\n\nThis is a weird answer and I\u0027d be happy to explain it in more detail, but that doesn\u0027t actually matter. We don\u0027t spawn inner timeout threads, so only the outermost timeout value -- here, the one you\u0027re passing to RunShellCommand -- matters.",
+      "parentUuid": "512dec6a_7a087ad1",
+      "revId": "ec767cd09e915af2ad69e397f772d7cba7cd30f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "15f9615a_5fd4741d",
         "filename": "systrace/systrace/tracing_agents/atrace_agent.py",
         "patchSetId": 1
