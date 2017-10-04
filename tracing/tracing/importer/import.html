@@ -111,7 +111,14 @@ tr.exportTo('tr.importer', function() {
      * importTraces.
      */
     createImportTracesTask(progressMeter, traces) {
-      const importStartTimeMs = performance.now();
+      function getCurrentTimeMs() {
+        try {
+          return performance.now();
+        } catch (error) {}
+        return 0;
+      }
+      const importStartTimeMs = getCurrentTimeMs();
+
       if (this.importing_) {
         throw new Error('Already importing.');
       }
