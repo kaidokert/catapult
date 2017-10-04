@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3001bd0c_2d71af23",
+        "filename": "dashboard/dashboard/models/histogram.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-04T20:22:52Z",
+      "side": 1,
+      "message": "Put this in a common spot since Pinpoint will probably need this as well.",
+      "range": {
+        "startLine": 74,
+        "startChar": 4,
+        "endLine": 74,
+        "endChar": 28
+      },
+      "revId": "c3caf12224af671ef9785dfec45faea84c894e4e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01ea6290_b827cf22",
+        "filename": "dashboard/dashboard/models/histogram.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-04T20:22:52Z",
+      "side": 1,
+      "message": "Is this right? Or is it possible to have multiple \u0027:\u0027 in the tag? Any idea if the chartjson tir_label can come from anything else?",
+      "range": {
+        "startLine": 77,
+        "startChar": 19,
+        "endLine": 77,
+        "endChar": 25
+      },
+      "revId": "c3caf12224af671ef9785dfec45faea84c894e4e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
