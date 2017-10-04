@@ -4,7 +4,10 @@
 
 import os
 import json
+import requests
+import shutil
 import sys
+from io import BytesIO
 
 from telemetry.core import util
 from telemetry.internal.browser import browser_finder
@@ -32,7 +35,37 @@ def _TransmitLargeJSONToTab(tab, json_obj, js_holder_name):
       '{{ @js_holder_name }} = JSON.parse({{ @js_holder_name }});',
       js_holder_name=js_holder_name)
 
-def SnapPage(finder_options, url, interactive, snapshot_file):
+
+def _FetchImages(snapshot_path, external_images):
+  if (len(external_images) == 0):
+    return
+
+  image_dir_relpath = os.path.basename(snapshot_path)
+  image_dir = os.path.abspath(image_dir_relpath[:image_dir_relpath.rfind('.html')])
+
+  image_count = len(external_images)
+  sys.stdout.write('Fetching external images [local_dir=%s, image_count=%d].\n' % (image_dir, image_count))
+
+  for i in xrange(image_count):
+    sys.stdout.write('Fetching image #%i / %i\r' % (i, image_count))
+    sys.stdout.flush()
+    [ element_id, image_url ] = external_images[i]
+
+    # TODO(wkorman): Handle http or file i/o errors gracefully.
+    image_request = requests.get(image_url)
+    _, image_file_extension = os.path.splitext(image_url)
+    # TODO(wkorman): May need to include frame index to uniquify by element id safely.
+    image_file = os.path.join(image_dir, element_id + image_file_extension)
+    sys.stdout.write('Fetch image [local_file=%s, url=%s].\n' % (image_file, image_url))
+
+    if not os.path.exists(image_dir):
+      os.mkdir(image_dir)
+
+    with open(image_file, 'wb') as image_file_handle:
+      shutil.copyfileobj(BytesIO(image_request.content), image_file_handle)
+
+
+def SnapPage(finder_options, url, interactive, snapshot_path, snapshot_file):
   """ Save the HTML snapshot of the page whose address is |url| to
   |snapshot_file|.
   """
@@ -60,6 +93,7 @@ def SnapPage(finder_options, url, interactive, snapshot_file):
       dom_combining_script = f.read()
 
     serialized_doms = []
+    external_images = []
 
     # Serialize the dom in each frame.
     for context_id in tab.EnableAllContexts():
@@ -77,6 +111,8 @@ def SnapPage(finder_options, url, interactive, snapshot_file):
           'serializedDom !== undefined', context_id=context_id)
       serialized_doms.append(tab.EvaluateJavaScript(
           'serializedDom', context_id=context_id))
+      external_images.append(tab.EvaluateJavaScript(
+          'htmlSerializer.externalImages', context_id=context_id))
 
     # Execute doms combining code in blank page to minimize the chance of V8
     # OOM.
@@ -96,6 +132,11 @@ def SnapPage(finder_options, url, interactive, snapshot_file):
     tab.EvaluateJavaScript(dom_combining_script)
     page_snapshot = tab.EvaluateJavaScript('outputHTMLString(serializedDoms);')
 
+    sys.stdout.write('Writing page snapshot [path=%s].\n' % (snapshot_path))
     snapshot_file.write(page_snapshot)
+
+    for i in xrange(len(external_images)):
+      _FetchImages(snapshot_path, external_images[i])
+
   finally:
     browser.Close()

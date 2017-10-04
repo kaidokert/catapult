@@ -419,11 +419,25 @@ var HTMLSerializer = class {
         }
         break;
       case 'IMG':
+        // TODO(wkorman): What about images acting as css background-image: url(...)?
         if (sameOrigin) {
           this.processSrcHole(element);
         } else {
-          this.externalImages.push([id, url.href]);
-          this.processSimpleAttribute(win, 'src', url.href);
+          // TODO(wkorman): Logic here at ToT will incorrectly consider embedded data img src as an 'external image'. Sample src=
+          // data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=
+          if (url.href.startsWith('data:image/')) {
+            // Use data src values directly, as they'll render out of the box.
+            this.processSimpleAttribute(win, 'src', url.href);
+          } else {
+            this.externalImages.push([id, url.href]);
+            // TODO(wkorman): Consider rewriting url in Python, or making it
+            // optional based on input params to the serializer.
+            var localUrl = 'plus/' + id;
+            var suffix = this.fileSuffix(url.href);;
+            if (suffix.length > 0)
+                localUrl += '.' + suffix;
+            this.processSimpleAttribute(win, 'src', localUrl);
+          }
         }
         break;
       default:
@@ -794,5 +808,14 @@ var HTMLSerializer = class {
         serializer.fillSrcHoles(callback);
       });
     }
+  }
+
+  fileSuffix(name) {
+    var slashParts = name.split('/');
+    var baseName = slashParts.pop();
+    var parts = baseName.split('.');
+    if (parts.length == 1)
+        return '';
+    return parts.pop();
   }
 }

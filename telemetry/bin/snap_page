@@ -28,10 +28,12 @@ def main(args):
       default='snapshot.html')
   parser.parse_args(args)
 
+  # TODO(wkorman): Assert that snapshot_path ends with .html.
+
   binary_manager.InitDependencyManager([])
   snapshot_path = os.path.abspath(options.snapshot_path)
   with codecs.open(snapshot_path, 'w', 'utf-8') as f:
-    snap_page_util.SnapPage(options, options.url, options.interactive, f)
+    snap_page_util.SnapPage(options, options.url, options.interactive, snapshot_path, f)
     print 'Successfully saved snapshot to file://%s' % snapshot_path
 
 if __name__ == '__main__':
