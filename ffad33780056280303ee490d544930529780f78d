@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3df36f22_3585cc22",
+        "filename": "third_party/snap-it/tests/tests.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 720,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-10-04T17:31:52Z",
+      "side": 1,
+      "message": "These assertion are a bit brittle. What if snap-it output s.t like:\n\"\u003cstyle\u003e \u003c/style\u003e\" (space in the middle)?",
+      "revId": "ffad33780056280303ee490d544930529780f78d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
