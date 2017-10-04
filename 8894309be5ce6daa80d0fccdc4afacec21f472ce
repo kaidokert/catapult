@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "18937b54_13dbb406",
+        "filename": "third_party/snap-it/tests/tests.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1115878
+      },
+      "writtenOn": "2017-10-04T19:59:17Z",
+      "side": 1,
+      "message": "Curious: do these tests run in catapult automatically now, or via the Chromium CQ?",
+      "revId": "8894309be5ce6daa80d0fccdc4afacec21f472ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
