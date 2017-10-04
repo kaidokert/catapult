@@ -1,0 +1,186 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "25465bf6_d01cc72a",
+        "filename": "experimental/soundwave/dashboard_api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-04T10:36:07Z",
+      "side": 1,
+      "message": "I think we pretty much never want to do anything with \"resp\", I would just add a check here to make sure the response code is 2xx, raise an exception otherwise, and return just the content.\n\nAlso, reading json content is going to be pretty common (or even *always* the case?), so I would make this either (1) return json.loads(content) or (2) make another, e.g. MakeJsonApiRequest, that wraps around this and returns the decoded json.",
+      "revId": "030110639ac98644abe657075fb5e64674ecec99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5a016f1_c12fbc0c",
+        "filename": "experimental/soundwave/dashboard_api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-04T10:36:07Z",
+      "side": 1,
+      "message": "Should this be ListTestPaths?\n\n(I know the dashboard endpoint says \"list_timeseries/\", but that seems miss-named?)",
+      "range": {
+        "startLine": 89,
+        "startChar": 6,
+        "endLine": 89,
+        "endChar": 20
+      },
+      "revId": "030110639ac98644abe657075fb5e64674ecec99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7438b5c6_ce57e263",
+        "filename": "experimental/soundwave/dashboard_api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-04T10:36:07Z",
+      "side": 1,
+      "message": "Add a docstring with a small example of how the json response looks like.",
+      "revId": "030110639ac98644abe657075fb5e64674ecec99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "352321e2_347ddb2d",
+        "filename": "experimental/soundwave/dashboard_api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-04T10:36:07Z",
+      "side": 1,
+      "message": "Is sheriff usually a string? or a True/False?",
+      "revId": "030110639ac98644abe657075fb5e64674ecec99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5df588c3_34fa11d9",
+        "filename": "experimental/soundwave/dashboard_api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-04T10:36:07Z",
+      "side": 1,
+      "message": "ditto on docstring",
+      "revId": "030110639ac98644abe657075fb5e64674ecec99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49c81636_3c591058",
+        "filename": "experimental/soundwave/dashboard_api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-04T10:36:07Z",
+      "side": 1,
+      "message": "nit: \u0027?num_days\u003d%d\u0027",
+      "revId": "030110639ac98644abe657075fb5e64674ecec99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e254bac_c0bed0b7",
+        "filename": "experimental/soundwave/fetch_alert_noise_data",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-04T10:36:07Z",
+      "side": 1,
+      "message": "super nit: missing white space after %, e.g.: \u0027foo\u0027 % (a, b)",
+      "revId": "030110639ac98644abe657075fb5e64674ecec99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "273f174c_54361345",
+        "filename": "experimental/soundwave/fetch_timeseries_data_for_benchmark",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-04T10:36:07Z",
+      "side": 1,
+      "message": "Leave out the default delimiter, quotechar, etc. Using the standards makes the csv more portable/readable by other tools.",
+      "revId": "030110639ac98644abe657075fb5e64674ecec99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2cfe6ab6_50cd614d",
+        "filename": "experimental/soundwave/fetch_timeseries_data_for_benchmark",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-04T10:36:07Z",
+      "side": 1,
+      "message": "CheckFilters is small enough, maybe just inline it here?\n\nAlso, if you don\u0027t specify any filters this whole thing is skipped?",
+      "range": {
+        "startLine": 44,
+        "startChar": 26,
+        "endLine": 44,
+        "endChar": 38
+      },
+      "revId": "030110639ac98644abe657075fb5e64674ecec99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9edb7911_d303fb21",
+        "filename": "experimental/soundwave/fetch_timeseries_data_for_benchmark",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-04T10:36:07Z",
+      "side": 1,
+      "message": "does \"assert test_path \u003d\u003d tp\" hold here?",
+      "revId": "030110639ac98644abe657075fb5e64674ecec99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
