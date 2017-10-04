@@ -185,6 +185,7 @@ tr.exportTo('tr.e.importer', function() {
         data = new Uint8Array(data);
       }
 
+      // Based on JSZip.Utils.stringToArrayLike
       const result = [];
       let chunk = 65536;
       let k = 0;
