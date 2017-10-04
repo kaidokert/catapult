@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "f243b508_27b8c8af",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 978,
+      "author": {
+        "id": 1245231
+      },
+      "writtenOn": "2017-10-04T23:14:24Z",
+      "side": 1,
+      "message": "So I tested what you suggest and its working fine now, thanks! I uploaded a new version.",
+      "parentUuid": "f9f4c48b_a1f1f026",
+      "revId": "ec767cd09e915af2ad69e397f772d7cba7cd30f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "15f9615a_5fd4741d",
         "filename": "systrace/systrace/tracing_agents/atrace_agent.py",
         "patchSetId": 1
