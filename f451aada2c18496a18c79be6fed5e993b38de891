@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f11fadff_ce1f9ed6",
+        "filename": "tracing/tracing/extras/importer/gzip_importer.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-04T16:19:18Z",
+      "side": 1,
+      "message": "I think this would be easier to read with less code duplication.\n\nconst chunklen \u003d Math.min(k + chunk, len);\nlet dataslice;\nif (data instanceof Array) {\n  dataslice \u003d data.slice(k, chunklen);\n} else {\n  dataslice \u003d data.subarray(k, chunklen);\n}\nresult.push(String.fromCharCode.apply(null, dataslice));",
+      "revId": "f451aada2c18496a18c79be6fed5e993b38de891",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6944c94_b3fc7c73",
+        "filename": "tracing/tracing/extras/importer/gzip_importer.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-04T16:19:18Z",
+      "side": 1,
+      "message": "Did JSZip.utils.transformTo support unicode?",
+      "revId": "f451aada2c18496a18c79be6fed5e993b38de891",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
