@@ -16,6 +16,24 @@
       "revId": "8cb95dc657a15e70a9d2a2081b84cd88c73ebbd7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a78cfcb6_ae13cb12",
+        "filename": "telemetry/bin/run_snap_it_unittest",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-10-04T17:27:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd3cf4cf_68406993",
+      "revId": "8cb95dc657a15e70a9d2a2081b84cd88c73ebbd7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
