@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bd3cf4cf_68406993",
+        "filename": "telemetry/bin/run_snap_it_unittest",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1128438
+      },
+      "writtenOn": "2017-10-04T17:14:04Z",
+      "side": 1,
+      "message": "-1 blank line",
+      "revId": "8cb95dc657a15e70a9d2a2081b84cd88c73ebbd7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
