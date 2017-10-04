@@ -192,15 +192,14 @@ tr.exportTo('tr.e.importer', function() {
 
       while (k < len && chunk > 1) {
         try {
+          const chunklen = Math.min(k + chunk, len);
+          let dataslice;
           if (data instanceof Array) {
-            result.push(
-                String.fromCharCode.apply(
-                    null, data.slice(k, Math.min(k + chunk, len))));
+            dataslice = data.slice(k, chunklen);
           } else {
-            result.push(
-                String.fromCharCode.apply(
-                    null, data.subarray(k, Math.min(k + chunk, len))));
+            dataslice = data.subarray(k, chunklen);
           }
+          result.push(String.fromCharCode.apply(null, dataslice));
           k += chunk;
         } catch (e) {
           chunk = Math.floor(chunk / 2);
