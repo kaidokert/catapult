@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "64fd3301_df197a1a",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-05T08:53:52Z",
+      "side": 1,
+      "message": "Maybe add a comment here saying why you do this instead of auto_now? (i.e. the CL description)",
+      "revId": "30be3494c432dea58e8aa0648e0181a9f19a5701",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
