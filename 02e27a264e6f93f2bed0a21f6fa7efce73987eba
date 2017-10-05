@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d6b6e032_01134e94",
+        "filename": "dashboard/dashboard/models/histogram.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-05T18:29:09Z",
+      "side": 1,
+      "message": "Is it necessary to convert tags_to_use to a dictionary and then back to tuples via iteritems()? I think this line can instead say sorted(tags_to_use) directly.",
+      "revId": "02e27a264e6f93f2bed0a21f6fa7efce73987eba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
