@@ -16,6 +16,24 @@
       "revId": "02e27a264e6f93f2bed0a21f6fa7efce73987eba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c5b0cc5_be01d8af",
+        "filename": "dashboard/dashboard/models/histogram.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-05T20:22:04Z",
+      "side": 1,
+      "message": "Not necessary, I had just copied telemetry\u0027s implementation in and then converted the diagnostic tags to that format very directly.",
+      "parentUuid": "d6b6e032_01134e94",
+      "revId": "02e27a264e6f93f2bed0a21f6fa7efce73987eba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
