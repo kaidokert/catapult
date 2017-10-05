@@ -69,6 +69,10 @@ def AddCommandLineArgs(parser):
                     action='store_true', default=False,
                     help='Ignore @Disabled and @Enabled restrictions.')
 
+  parser.add_option(
+      '--assert-values-less-than',
+      default=-1,
+      help='Asserts that the number of values is small enough for testing.')
 
 def ProcessCommandLineArgs(parser, args):
   story_module.StoryFilter.ProcessCommandLineArgs(parser, args)
@@ -201,6 +205,13 @@ def Run(test, story_set, finder_options, results, max_failures=None,
           state.platform.WaitForBatteryTemperature(35)
           _WaitForThermalThrottlingIfNeeded(state.platform)
           _RunStoryAndProcessErrorIfNeeded(story, results, state, test)
+
+          if finder_options.assert_values_less_than >= 0:
+            num_values = len(results.all_page_specific_values)
+            max_values = finder_options.assert_values_less_than
+            assert (num_values < max_values), (
+                'Too many values: %r >= %r' % (num_values, max_values))
+
           device_info_diags = _MakeDeviceInfoDiagnostics(state)
         except exceptions.Error:
           # Catch all Telemetry errors to give the story a chance to retry.
