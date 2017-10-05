@@ -811,6 +811,7 @@ tr.exportTo('tr.e.importer', function() {
               .getOrCreateThread(profileTree.tid);
           for (let i = 0, len = samples.length; i < len; ++i) {
             const node = profileTree.getNode(samples[i]);
+            if (node === undefined) continue;
             profileTree.endTime += timeDeltas[i];
             const start = this.toModelTimeFromUs_(profileTree.endTime);
             this.model_.samples.push(
