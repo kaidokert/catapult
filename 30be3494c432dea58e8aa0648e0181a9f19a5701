@@ -16,6 +16,24 @@
       "revId": "30be3494c432dea58e8aa0648e0181a9f19a5701",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "274d6b81_0da889b8",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2017-10-05T17:53:22Z",
+      "side": 1,
+      "message": "Done. Added comments both here and where `updated` is defined.",
+      "parentUuid": "64fd3301_df197a1a",
+      "revId": "30be3494c432dea58e8aa0648e0181a9f19a5701",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
