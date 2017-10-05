@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "faf63d8b_ec984e56",
+        "filename": "dashboard/dashboard/add_histograms_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 770,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-05T17:08:28Z",
+      "side": 1,
+      "message": "Went and added more extensive tests in histogram_test.py instead, ptal",
+      "parentUuid": "016d4392_0da5e6ce",
+      "revId": "c3caf12224af671ef9785dfec45faea84c894e4e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3001bd0c_2d71af23",
         "filename": "dashboard/dashboard/models/histogram.py",
         "patchSetId": 3
@@ -77,6 +95,30 @@
       "side": 1,
       "message": "Telemetry sorts the items, not the values.\nhttps://github.com/catapult-project/catapult/blob/master/telemetry/telemetry/internal/results/page_test_results.py#L409\n\nI don\u0027t think there\u0027s anything that prevents multiple colons, but there are other places that assume at most one colon.\nhttps://github.com/catapult-project/catapult/blob/master/tracing/tracing/value/histogram_grouping.html#L94",
       "parentUuid": "01ea6290_b827cf22",
+      "range": {
+        "startLine": 77,
+        "startChar": 19,
+        "endLine": 77,
+        "endChar": 25
+      },
+      "revId": "c3caf12224af671ef9785dfec45faea84c894e4e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7f0ff61_16661741",
+        "filename": "dashboard/dashboard/models/histogram.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-05T17:08:28Z",
+      "side": 1,
+      "message": "Ah thanks, I\u0027ll pretty much just copy their\u0027s into here.",
+      "parentUuid": "74095105_3c474bba",
       "range": {
         "startLine": 77,
         "startChar": 19,
