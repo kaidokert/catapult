@@ -1,3 +1,17 @@
+window.allTestDone = false;
+window.failedTests = [];
+
+QUnit.testDone(function(details) {
+  if (details.failed !== 0) {
+    window.failedTests.push(details.module + details.name);
+  }
+});
+
+QUnit.done(function(details) {
+  window.total = details.total;
+  window.allTestDone = true;
+});
+
 QUnit.test('windowDepth: no parent window', function(assert) {
   var serializer = new HTMLSerializer();
   assert.equal(serializer.windowDepth(window), 0);
@@ -635,7 +649,7 @@ QUnit.test('serialize tree: end-to-end, style', function(assert) {
       'solid; border-bottom-width: 4px; border-left-color: rgb(0, 0, 255); ' +
       'border-left-style: solid; border-left-width: 4px; border-right-color: ' +
       'rgb(0, 0, 255); border-right-style: solid; border-right-width: 4px; ' +
-      'border-top-color: rgb(0, 0, 255); border-top-style: solid; ' + 
+      'border-top-color: rgb(0, 0, 255); border-top-style: solid; ' +
       'border-top-width: 4px; width: 276px; perspective-origin: 142px 24px; ' +
       'transform-origin: 142px 24px;" id="snap-it0" >hello world</div>');
 });
@@ -670,7 +684,7 @@ QUnit.test('minimizeStyles: root html tag', function(assert) {
     'frameIndex': '0'
   };
   minimizeStyles(message);
-  assert.equal(message.html[1], 'style="width: 5px;" ');
+  assert.equal(message.html[1], '');
 });
 
 QUnit.test('processAttributes: escaping characters', function(assert) {
@@ -707,6 +721,46 @@ QUnit.test('processDocument: no doctype tag', function(assert) {
   fixture.appendChild(iframe);
   serializer.processDocument(iframe.contentDocument);
   assert.notEqual(serializer.html[0], '<!DOCTYPE html>\n');
+});
+
+QUnit.test('processDocument: no empty styles', function(assert) {
+  var serializer = new HTMLSerializer();
+  var fixture = document.getElementById('qunit-fixture');
+  var iframe = document.createElement('iframe');
+  fixture.appendChild(iframe);
+  serializer.processDocument(iframe.contentDocument);
+  for (var i = 0; i < serializer.html.length; i++)
+    assert.ok(serializer.html[i].search(/<style>\s*<\/style>/) == -1);
+});
+
+QUnit.test('processDocument: no empty styles for css fonts', function(assert) {
+  var serializer = new HTMLSerializer();
+  var fixture = document.getElementById('qunit-fixture');
+  var iframe = document.createElement('iframe');
+  serializer.html = ['']
+  serializer.fontPlaceHolderIndex = 1;
+  serializer.fillFontHoles(iframe.contentDocument, () => {});
+  for (var i = 0; i < serializer.html.length; i++)
+    assert.ok(serializer.html[i].search(/<style>\s*<\/style>/) == -1);
+});
+
+QUnit.test('minimizeStyles: no empty styles', function(assert) {
+  var message = {
+    'html': [
+        '<div></div>'
+    ],
+    'pseudoElementTestingStyleIndex': 1,
+    'pseudoElementPlaceHolderIndex': 2,
+    'frameHoles': null,
+    'idToStyleIndex': {},
+    'idToStyleMap': {},
+    'windowHeight': 5,
+    'windowWidth': 5,
+    'frameIndex': '0'
+  };
+  minimizeStyles(message);
+  for (var i = 0; i < message.html.length; i++)
+    assert.ok(message.html[i].search(/<style>\s*<\/style>/) == -1);
 });
 
 QUnit.test('escapedQuote', function(assert) {
