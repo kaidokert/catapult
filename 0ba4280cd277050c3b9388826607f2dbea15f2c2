@@ -22,6 +22,30 @@
       "revId": "0ba4280cd277050c3b9388826607f2dbea15f2c2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1cd2623f_a6f74d32",
+        "filename": "dashboard/dashboard/pinpoint/handlers/gitiles.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2017-10-06T14:44:48Z",
+      "side": 1,
+      "message": "Yes, all of these handlers are just fetching information. No state is mutated / there are no side effects.",
+      "parentUuid": "5168885b_9b4ec42a",
+      "range": {
+        "startLine": 17,
+        "startChar": 16,
+        "endLine": 17,
+        "endChar": 0
+      },
+      "revId": "0ba4280cd277050c3b9388826607f2dbea15f2c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
