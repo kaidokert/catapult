@@ -324,9 +324,14 @@ def RunBenchmark(benchmark, finder_options):
           'PageTest must be used with StorySet containing only '
           'telemetry.page.Page stories.')
 
+  logger = logging.getLogger()
+  fh = logger.FileHandler()
+  ch = logger.StreamHandler()
+  logger.addHandler(fh)
+  logger.addHandler(ch)
   with results_options.CreateResults(
       benchmark_metadata, finder_options,
-      benchmark.ValueCanBeAddedPredicate, benchmark_enabled=True) as results:
+      benchmark.ValueCanBeAddedPredicate, benchmark_enabled=True, fh) as results:
     try:
       Run(pt, stories, finder_options, results, benchmark.max_failures,
           expectations=expectations, metadata=benchmark.GetMetadata())
