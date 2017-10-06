@@ -154,7 +154,7 @@ class AddPointHandler(post_data_handler.PostDataHandler):
       if data:
         # We only need to validate the row ID for one point, since all points
         # being handled by this upload should have the same row ID.
-        test_map = _ConstructTestPathMap(data)
+        test_map = _ConstructTestPathMap([data[0]])
         _ValidateRowId(data[0], test_map)
 
       for row_dict in data:
@@ -260,11 +260,12 @@ def _AddTasks(data):
     task_list.append(taskqueue.Task(
         url='/add_point_queue',
         params={'data': json.dumps(data_sublist)}))
+
   queue = taskqueue.Queue(_TASK_QUEUE_NAME)
-  for task_sublist in _Chunk(task_list, taskqueue.MAX_TASKS_PER_ADD):
-    # Calling get_result waits for all tasks to be added. It's possible that
-    # this is different, and maybe faster, than just calling queue.add.
-    queue.add_async(task_sublist).get_result()
+  futures = [queue.add_async(t)
+             for t in _Chunk(task_list, taskqueue.MAX_TASKS_PER_ADD)]
+  for f in futures:
+    f.get_result()
 
 
 def _Chunk(items, chunk_size):
