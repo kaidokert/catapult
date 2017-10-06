@@ -655,6 +655,16 @@ class RelatedEventSetUnittest(unittest.TestCase):
     self.assertEqual(event['duration'], 1)
 
 
+class RelatedNameMapUnittest(unittest.TestCase):
+  def testRoundtrip(self):
+    names = histogram.RelatedNameMap()
+    names.Set('a', 'A')
+    d = names.AsDict()
+    clone = diagnostic.Diagnostic.FromDict(d)
+    self.assertEqual(ToJSON(d), ToJSON(clone.AsDict()))
+    self.assertEqual(clone.Get('a'), 'A')
+
+
 class RelatedHistogramBreakdownUnittest(unittest.TestCase):
   def testRoundtrip(self):
     breakdown = histogram.RelatedHistogramBreakdown()
