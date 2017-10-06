@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b530031e_55b3ccb0",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-10-06T17:19:26Z",
+      "side": 1,
+      "message": "nits: s/max_values/max_num_values",
+      "revId": "16de8de47ee0e9481167379d012cc4818a9e3d6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88301f33_c1af392a",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-10-06T17:19:26Z",
+      "side": 1,
+      "message": "Let add a FailureValue instead of throwing assertion to make sure that we don\u0027t mess up the rest of the pipeline (e.g: uploading trace to cloud storage, uploading profiles..)",
+      "revId": "16de8de47ee0e9481167379d012cc4818a9e3d6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
