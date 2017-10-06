@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5168885b_9b4ec42a",
+        "filename": "dashboard/dashboard/pinpoint/handlers/gitiles.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2017-10-06T12:49:05Z",
+      "side": 1,
+      "message": "We prefer this to be GET because it\u0027s idempotent?",
+      "range": {
+        "startLine": 17,
+        "startChar": 16,
+        "endLine": 17,
+        "endChar": 0
+      },
+      "revId": "0ba4280cd277050c3b9388826607f2dbea15f2c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
