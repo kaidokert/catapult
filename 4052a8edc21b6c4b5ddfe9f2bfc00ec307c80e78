@@ -22,6 +22,30 @@
       "revId": "4052a8edc21b6c4b5ddfe9f2bfc00ec307c80e78",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2913fd82_a2b6b6f2",
+        "filename": "telemetry/telemetry/internal/snap_page_util.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-10-06T12:03:26Z",
+      "side": 1,
+      "message": "Actually added comment here",
+      "parentUuid": "6feb9482_cbefe61d",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 3
+      },
+      "revId": "4052a8edc21b6c4b5ddfe9f2bfc00ec307c80e78",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
