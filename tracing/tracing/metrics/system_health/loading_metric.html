@@ -453,6 +453,10 @@ tr.exportTo('tr.metrics.sh', function() {
     for (const sample of samples) {
       histogram.addSample(sample.value, sample.diagnostics);
 
+      // Only add breakdown histograms for FCP.
+      // http://crbug.com/771610
+      if (histogram.name !== 'timeToFirstContentfulPaint') continue;
+
       if (!sample.breakdownTree) continue;
       for (const [category, breakdown] of Object.entries(
           sample.breakdownTree)) {
@@ -462,7 +466,12 @@ tr.exportTo('tr.metrics.sh', function() {
           relatedHist = histograms.createHistogram(
               relatedName, histogram.unit, [], {
                 binBoundaries: LOADING_METRIC_BOUNDARIES,
-                summaryOptions: SUMMARY_OPTIONS,
+                summaryOptions: {
+                  count: false,
+                  min: false,
+                  max: false,
+                  sum: false,
+                },
               });
 
           let relatedNames = histogram.diagnostics.get('breakdown');

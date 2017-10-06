@@ -249,18 +249,8 @@ tr.b.unittest.testSuite(function() {
     const histBin = hist.getBinForValue(40);
     assert.strictEqual(histBin.diagnosticMaps[0]
         .get('breakdown').get('other'), 35);
-    assert.strictEqual(histograms.getHistogramNamed(
-        'cpuTimeToFirstMeaningfulPaint:other').sum, 35);
-    assert.strictEqual(hist.diagnostics.get('breakdown').get('other'),
-        histograms.getHistogramNamed(
-            'cpuTimeToFirstMeaningfulPaint:other'));
     assert.strictEqual(histBin.diagnosticMaps[0]
         .get('breakdown').get('resource_loading'), 15);
-    assert.strictEqual(hist.diagnostics.get('breakdown').get(
-        'resource_loading'), histograms.getHistogramNamed(
-            'cpuTimeToFirstMeaningfulPaint:resource_loading'));
-    assert.strictEqual(histograms.getHistogramNamed(
-        'cpuTimeToFirstMeaningfulPaint:resource_loading').sum, 15);
   });
 
   //             [-------------]        [------------------]
@@ -420,19 +410,9 @@ tr.b.unittest.testSuite(function() {
     const histBin1 = hist.getBinForValue(50);
     assert.strictEqual(histBin1.diagnosticMaps[0]
         .get('breakdown').get('resource_loading'), 50);
-    assert.strictEqual(hist.diagnostics.get('breakdown').get(
-        'resource_loading'), histograms.getHistogramNamed(
-            'cpuTimeToFirstMeaningfulPaint:resource_loading'));
-    assert.strictEqual(histograms.getHistogramNamed(
-        'cpuTimeToFirstMeaningfulPaint:resource_loading').sum, 50);
     const histBin2 = hist.getBinForValue(100);
     assert.strictEqual(histBin2.diagnosticMaps[0]
         .get('breakdown').get('other'), 100);
-    assert.strictEqual(hist.diagnostics.get('breakdown').get('other'),
-        histograms.getHistogramNamed(
-            'cpuTimeToFirstMeaningfulPaint:other'));
-    assert.strictEqual(histograms.getHistogramNamed(
-        'cpuTimeToFirstMeaningfulPaint:other').sum, 100);
   });
 
   test('timeToInteractive', function() {
