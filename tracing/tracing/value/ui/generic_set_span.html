@@ -26,6 +26,8 @@ found in the LICENSE file.
 <script>
 'use strict';
 tr.exportTo('tr.v.ui', function() {
+  const UMA_TIMELINE = 'https://uma.googleplex.com/p/chrome/timeline_v2/';
+
   Polymer({
     is: 'tr-v-ui-generic-set-span',
     behaviors: [tr.v.ui.DIAGNOSTIC_SPAN_BEHAVIOR],
@@ -65,6 +67,9 @@ tr.exportTo('tr.v.ui', function() {
         if (tr.b.isUrl(value)) link.href = value;
         if (this.name_ === tr.v.d.RESERVED_NAMES.TRACE_URLS) {
           link.textContent = value.substr(1 + value.lastIndexOf('/'));
+        }
+        if (this.name_ === tr.v.d.UMA.name) {
+          link.href = UMA_TIMELINE + '???';
         }
         const linkEl = tr.ui.b.createLink(link);
         if (link.href) {

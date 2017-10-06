@@ -68,11 +68,15 @@ tr.exportTo('tr.v.d', function() {
 
   const RESERVED_NAMES_SET = new Set(Object.values(RESERVED_NAMES));
 
+  // This is not reserved -- metrics are encouraged to use it.
+  const UMA = {name: 'uma', type: tr.v.d.GenericSet};
+
   return {
     RESERVED_INFOS,
     RESERVED_NAMES,
     RESERVED_NAMES_SET,
     RESERVED_NAMES_TO_TYPES,
+    UMA,
   };
 });
 </script>
