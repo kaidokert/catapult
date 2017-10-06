@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4935a915_5e367be2",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-10-06T10:15:03Z",
+      "side": 1,
+      "message": "Actually let make that this a benchmark property (benchmark.MAXIMUM_NUM_VALUES, default to float(\u0027inf\u0027)) to make it easier to remove in the future \u0026 not expanding \"--help\" command of Telemetry unnecessarily.",
+      "revId": "71a43b4dfd3219f4f7c0e4c43e7cb8ad561c5cf3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
