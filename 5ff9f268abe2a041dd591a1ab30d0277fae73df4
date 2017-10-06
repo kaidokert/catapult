@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "95e1cb8c_73880295",
+        "filename": "dashboard/dashboard/elements/alerts-page.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-06T21:27:07Z",
+      "side": 1,
+      "message": "How would this look truncating with ellipsis? Not a fan of the horizontal scrolling.",
+      "range": {
+        "startLine": 101,
+        "startChar": 5,
+        "endLine": 101,
+        "endChar": 12
+      },
+      "revId": "5ff9f268abe2a041dd591a1ab30d0277fae73df4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
