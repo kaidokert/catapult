@@ -69,7 +69,6 @@ def AddCommandLineArgs(parser):
                     action='store_true', default=False,
                     help='Ignore @Disabled and @Enabled restrictions.')
 
-
 def ProcessCommandLineArgs(parser, args):
   story_module.StoryFilter.ProcessCommandLineArgs(parser, args)
   results_options.ProcessCommandLineArgs(parser, args)
@@ -201,6 +200,7 @@ def Run(test, story_set, finder_options, results, max_failures=None,
           state.platform.WaitForBatteryTemperature(35)
           _WaitForThermalThrottlingIfNeeded(state.platform)
           _RunStoryAndProcessErrorIfNeeded(story, results, state, test)
+
           device_info_diags = _MakeDeviceInfoDiagnostics(state)
         except exceptions.Error:
           # Catch all Telemetry errors to give the story a chance to retry.
@@ -338,6 +338,11 @@ def RunBenchmark(benchmark, finder_options):
       results.telemetry_info.InterruptBenchmark()
       exception_formatter.PrintFormattedException()
       return_code = 255
+
+    num_values = len(results.all_page_specific_values)
+    max_num_values = benchmark.MAX_NUM_VALUES
+    assert (num_values <= max_num_values), (
+        'Too many values: %r > %r' % (num_values, max_num_values))
 
     benchmark_owners = benchmark.GetOwners()
     benchmark_component = benchmark.GetBugComponents()

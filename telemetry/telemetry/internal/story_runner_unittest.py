@@ -97,7 +97,7 @@ class TestSharedState(story_module.SharedState):
     return True
 
   def RunStory(self, results):
-    raise NotImplementedError
+    self._test.ValidateAndMeasurePage(self._current_story, None, results)
 
   def DidRunStory(self, results):
     pass
@@ -254,7 +254,10 @@ class _Measurement(legacy_page_test.LegacyPageTest):
         improvement_direction=improvement_direction.UP))
 
   def ValidateAndMeasurePage(self, page, tab, results):
-    pass
+    self.i += 1
+    results.AddValue(scalar.ScalarValue(
+        page, 'metric', 'unit', self.i,
+        improvement_direction=improvement_direction.UP))
 
 
 class StoryRunnerTest(unittest.TestCase):
@@ -1406,5 +1409,23 @@ class StoryRunnerTest(unittest.TestCase):
       rc = story_runner.RunBenchmark(fake_benchmark, options)
       # Test should return 0 since only error messages are logged.
       self.assertEqual(rc, 0)
+    finally:
+      shutil.rmtree(tmp_path)
+
+  def testRunBenchmark_TooManyValues(self):
+    fake_benchmark = FakeBenchmark()
+    story_set = story_module.StorySet()
+    fake_benchmark.page_set = lambda: story_set
+    story_set.AddStory(page_module.Page(
+        'http://google.com/', name='google',
+        shared_page_state_class=TestSharedState))
+    fake_benchmark.test = _Measurement
+    fake_benchmark.MAX_NUM_VALUES = 0
+    options = self._GenerateBaseBrowserFinderOptions()
+    tmp_path = tempfile.mkdtemp()
+    try:
+      options.output_dir = tmp_path
+      with self.assertRaises(AssertionError):
+        story_runner.RunBenchmark(fake_benchmark, options)
     finally:
       shutil.rmtree(tmp_path)
