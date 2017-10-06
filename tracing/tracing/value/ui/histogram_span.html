@@ -481,7 +481,8 @@ tr.exportTo('tr.v.ui', function() {
         if (diagnostic instanceof tr.v.d.GroupingPath) continue;
         if (diagnostic instanceof tr.v.d.RelatedNameMap) continue;
 
-        if (tr.v.d.RESERVED_NAMES_SET.has(key)) {
+        if (tr.v.d.RESERVED_NAMES_SET.has(key) ||
+            key === tr.v.d.UMA.name) {
           metadataDiagnosticMap.set(key, diagnostic);
         } else {
           metricDiagnosticMap.set(key, diagnostic);

@@ -1121,6 +1121,11 @@ tr.exportTo('tr.metrics.sh', function() {
     return numeric;
   }
 
+  const UMA_METRICS_BY_HISTOGRAM_NAME = new Map([
+    ['memory:chrome:browser_process:reported_by_os:private_footprint_size',
+      'Memory.Browser.PrivateMemoryFootprint'],
+  ]);
+
   /**
    * Create a memory tr.v.Histogram with |unit| and add all total values in
    * |node| to it.
@@ -1129,6 +1134,11 @@ tr.exportTo('tr.metrics.sh', function() {
     const histogram = new tr.v.Histogram(
         name, unit, BOUNDARIES_FOR_UNIT_MAP.get(unit));
     node.values.forEach(v => histogram.addSample(v.total));
+    const umaName = UMA_METRICS_BY_HISTOGRAM_NAME.get(name);
+    if (umaName) {
+      histogram.diagnostics.set(
+          tr.v.d.UMA.name, new tr.v.d.GenericSet([umaName]));
+    }
     return histogram;
   }
 
