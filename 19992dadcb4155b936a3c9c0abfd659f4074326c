@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3b0c95d4_8e7d1f69",
+        "filename": "tracing/tracing/metrics/system_health/memory_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 1127,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2017-10-06T18:36:01Z",
+      "side": 1,
+      "message": "I think the biggest question is where to put this mapping. If we eventually want to also include it on the perf dashboard, how would we locate this mapping from there?\n\nIt does seem like if we want to do the opposite (link to perf dashboard from UMA charts), we\u0027d need to have the mapping doubled for that case?",
+      "range": {
+        "startLine": 1127,
+        "startChar": 5,
+        "endLine": 1127,
+        "endChar": 0
+      },
+      "revId": "19992dadcb4155b936a3c9c0abfd659f4074326c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
