@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "de7a034e_8e48fa94",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1112850
+      },
+      "writtenOn": "2017-10-07T01:12:39Z",
+      "side": 1,
+      "message": "Why not just put it before _SetupTracing()? Does logcat depend on something inside _SetupTracing?",
+      "revId": "7367aee316c597130ba17aff946b518d3d21a665",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
