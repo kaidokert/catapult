@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5da1c136_b8ac5167",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-07T05:06:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b530031e_55b3ccb0",
+      "revId": "16de8de47ee0e9481167379d012cc4818a9e3d6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "88301f33_c1af392a",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 4
@@ -33,6 +51,24 @@
       "revId": "16de8de47ee0e9481167379d012cc4818a9e3d6f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eadb917e_6223b6ba",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-07T05:06:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88301f33_c1af392a",
+      "revId": "16de8de47ee0e9481167379d012cc4818a9e3d6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
