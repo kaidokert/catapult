@@ -196,95 +196,98 @@ def FindAllAvailableBrowsers(finder_options, device):
           '%s specified by --browser-executable does not exist or is not '
           'executable' %
           normalized_executable)
+  else:
+    def AddIfFound(browser_type, build_path, app_name, content_shell):
+      app = os.path.join(build_path, app_name)
+      if path_module.IsExecutable(app):
+        browsers.append(PossibleDesktopBrowser(
+            browser_type, finder_options, app, flash_path,
+            content_shell, build_path, is_local_build=True))
+        return True
+      return False
 
-  def AddIfFound(browser_type, build_path, app_name, content_shell):
-    app = os.path.join(build_path, app_name)
-    if path_module.IsExecutable(app):
-      browsers.append(PossibleDesktopBrowser(
-          browser_type, finder_options, app, flash_path,
-          content_shell, build_path, is_local_build=True))
-      return True
-    return False
-
-  # Add local builds
-  for build_path in path_module.GetBuildDirectories(finder_options.chrome_root):
-    # TODO(agrieve): Extract browser_type from args.gn's is_debug.
-    browser_type = os.path.basename(build_path).lower()
-    for chromium_app_name in chromium_app_names:
-      AddIfFound(browser_type, build_path, chromium_app_name, False)
-    AddIfFound('content-shell-' + browser_type, build_path,
-               content_shell_app_name, True)
-
-  reference_build = None
-  if finder_options.browser_type == 'reference':
-    # Reference builds are only available in a Chromium checkout. We should not
-    # raise an error just because they don't exist.
-    os_name = platform_module.GetHostPlatform().GetOSName()
-    arch_name = platform_module.GetHostPlatform().GetArchName()
-    reference_build = binary_manager.FetchPath(
-        'chrome_stable', arch_name, os_name)
-
-  # Mac-specific options.
-  if sys.platform == 'darwin':
-    mac_canary_root = '/Applications/Google Chrome Canary.app/'
-    mac_canary = mac_canary_root + 'Contents/MacOS/Google Chrome Canary'
-    mac_system_root = '/Applications/Google Chrome.app'
-    mac_system = mac_system_root + '/Contents/MacOS/Google Chrome'
-    if path_module.IsExecutable(mac_canary):
-      browsers.append(PossibleDesktopBrowser('canary', finder_options,
-                                             mac_canary, None, False,
-                                             mac_canary_root))
-
-    if path_module.IsExecutable(mac_system):
-      browsers.append(PossibleDesktopBrowser('system', finder_options,
-                                             mac_system, None, False,
-                                             mac_system_root))
-
-    if reference_build and path_module.IsExecutable(reference_build):
-      reference_root = os.path.dirname(os.path.dirname(os.path.dirname(
-          reference_build)))
-      browsers.append(PossibleDesktopBrowser('reference', finder_options,
-                                             reference_build, None, False,
-                                             reference_root))
-
-  # Linux specific options.
-  if sys.platform.startswith('linux'):
-    versions = {
-        'system': os.path.split(os.path.realpath('/usr/bin/google-chrome'))[0],
-        'stable': '/opt/google/chrome',
-        'beta': '/opt/google/chrome-beta',
-        'dev': '/opt/google/chrome-unstable'
-    }
-
-    for version, root in versions.iteritems():
-      browser_path = os.path.join(root, 'chrome')
-      if path_module.IsExecutable(browser_path):
-        browsers.append(PossibleDesktopBrowser(version, finder_options,
-                                               browser_path, None, False, root))
-    if reference_build and path_module.IsExecutable(reference_build):
-      reference_root = os.path.dirname(reference_build)
-      browsers.append(PossibleDesktopBrowser('reference', finder_options,
-                                             reference_build, None, False,
-                                             reference_root))
-
-  # Win32-specific options.
-  if sys.platform.startswith('win'):
-    app_paths = [
-        ('system', os.path.join('Google', 'Chrome', 'Application')),
-        ('canary', os.path.join('Google', 'Chrome SxS', 'Application')),
-    ]
-    if reference_build:
-      app_paths.append(
-          ('reference', os.path.dirname(reference_build)))
-
-    for browser_name, app_path in app_paths:
+    # Add local builds
+    for build_path in path_module.GetBuildDirectories(
+        finder_options.chrome_root):
+      # TODO(agrieve): Extract browser_type from args.gn's is_debug.
+      browser_type = os.path.basename(build_path).lower()
       for chromium_app_name in chromium_app_names:
-        full_path = path_module.FindInstalledWindowsApplication(
-            os.path.join(app_path, chromium_app_name))
-        if full_path:
-          browsers.append(PossibleDesktopBrowser(
-              browser_name, finder_options, full_path,
-              None, False, os.path.dirname(full_path)))
+        AddIfFound(browser_type, build_path, chromium_app_name, False)
+      AddIfFound('content-shell-' + browser_type, build_path,
+                 content_shell_app_name, True)
+
+    reference_build = None
+    if finder_options.browser_type == 'reference':
+      # Reference builds are only available in a Chromium checkout. We should
+      # not raise an error just because they don't exist.
+      os_name = platform_module.GetHostPlatform().GetOSName()
+      arch_name = platform_module.GetHostPlatform().GetArchName()
+      reference_build = binary_manager.FetchPath(
+          'chrome_stable', arch_name, os_name)
+
+    # Mac-specific options.
+    if sys.platform == 'darwin':
+      mac_canary_root = '/Applications/Google Chrome Canary.app/'
+      mac_canary = mac_canary_root + 'Contents/MacOS/Google Chrome Canary'
+      mac_system_root = '/Applications/Google Chrome.app'
+      mac_system = mac_system_root + '/Contents/MacOS/Google Chrome'
+      if path_module.IsExecutable(mac_canary):
+        browsers.append(PossibleDesktopBrowser('canary', finder_options,
+                                               mac_canary, None, False,
+                                               mac_canary_root))
+
+      if path_module.IsExecutable(mac_system):
+        browsers.append(PossibleDesktopBrowser('system', finder_options,
+                                               mac_system, None, False,
+                                               mac_system_root))
+
+      if reference_build and path_module.IsExecutable(reference_build):
+        reference_root = os.path.dirname(os.path.dirname(os.path.dirname(
+            reference_build)))
+        browsers.append(PossibleDesktopBrowser('reference', finder_options,
+                                               reference_build, None, False,
+                                               reference_root))
+
+    # Linux specific options.
+    if sys.platform.startswith('linux'):
+      versions = {
+          'system':
+              os.path.split(os.path.realpath('/usr/bin/google-chrome'))[0],
+          'stable': '/opt/google/chrome',
+          'beta': '/opt/google/chrome-beta',
+          'dev': '/opt/google/chrome-unstable'
+      }
+
+      for version, root in versions.iteritems():
+        browser_path = os.path.join(root, 'chrome')
+        if path_module.IsExecutable(browser_path):
+          browsers.append(PossibleDesktopBrowser(version, finder_options,
+                                                 browser_path, None, False,
+                                                 root))
+      if reference_build and path_module.IsExecutable(reference_build):
+        reference_root = os.path.dirname(reference_build)
+        browsers.append(PossibleDesktopBrowser('reference', finder_options,
+                                               reference_build, None, False,
+                                               reference_root))
+
+    # Win32-specific options.
+    if sys.platform.startswith('win'):
+      app_paths = [
+          ('system', os.path.join('Google', 'Chrome', 'Application')),
+          ('canary', os.path.join('Google', 'Chrome SxS', 'Application')),
+      ]
+      if reference_build:
+        app_paths.append(
+            ('reference', os.path.dirname(reference_build)))
+
+      for browser_name, app_path in app_paths:
+        for chromium_app_name in chromium_app_names:
+          full_path = path_module.FindInstalledWindowsApplication(
+              os.path.join(app_path, chromium_app_name))
+          if full_path:
+            browsers.append(PossibleDesktopBrowser(
+                browser_name, finder_options, full_path,
+                None, False, os.path.dirname(full_path)))
 
   has_ozone_platform = False
   for arg in finder_options.browser_options.extra_browser_args:
