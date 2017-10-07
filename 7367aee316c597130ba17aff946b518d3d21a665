@@ -16,6 +16,24 @@
       "revId": "7367aee316c597130ba17aff946b518d3d21a665",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9cac209a_cdcf4c58",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1129011
+      },
+      "writtenOn": "2017-10-07T01:31:24Z",
+      "side": 1,
+      "message": "_SetupTracing() does many other things, which are not related to running Chrome, but are polluting the log. If we start logcat right before we\u0027re starting Chrome we only get log output related to the actual run.",
+      "parentUuid": "de7a034e_8e48fa94",
+      "revId": "7367aee316c597130ba17aff946b518d3d21a665",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
