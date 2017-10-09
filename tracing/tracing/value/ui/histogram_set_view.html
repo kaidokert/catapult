@@ -8,7 +8,7 @@ found in the LICENSE file.
 <link rel="import" href="/tracing/base/timing.html">
 <link rel="import" href="/tracing/ui/null_brushing_state_controller.html">
 <link rel="import" href="/tracing/value/csv_builder.html">
-<link rel="import" href="/tracing/value/histogram_parameter_collector.html">
+<link rel="import" href="/tracing/value/histogram_set_synopsis.html">
 <link rel="import" href="/tracing/value/ui/histogram_set_controls.html">
 <link rel="import" href="/tracing/value/ui/histogram_set_table.html">
 
@@ -62,7 +62,6 @@ tr.exportTo('tr.v.ui', function() {
 
     ready() {
       this.$.table.viewState = this.viewState;
-      this.$.controls.viewState = this.viewState;
     },
 
     attached() {
@@ -118,20 +117,18 @@ tr.exportTo('tr.v.ui', function() {
       this.$.controls.showAllEnabled = (
           sourceHistograms.length !== histograms.length);
 
-      await progress('Collecting parameters...');
-      const collectParametersMark = tr.b.Timing.mark(
+      await progress('Surveying HistogramSet...');
+      const surveyMark = tr.b.Timing.mark(
           'histogram-set-view', 'collectParameters');
-      const parameterCollector = new tr.v.HistogramParameterCollector();
-      parameterCollector.process(histograms);
-      this.$.controls.baseStatisticNames = parameterCollector.statisticNames;
-      this.$.controls.possibleGroupings = parameterCollector.possibleGroupings;
-      const displayLabels = parameterCollector.labels;
-      this.$.controls.displayLabels = displayLabels;
-      collectParametersMark.end();
+      const synopsis = new tr.v.HistogramSetSynopsis(histograms);
+      surveyMark.end();
+
+      await progress('Building controls...');
+      this.$.controls.build(this.viewState, synopsis, options);
 
       // Table.build() displays its own progress.
       await this.$.table.build(
-          histograms, sourceHistograms, displayLabels, progress);
+          histograms, sourceHistograms, synopsis, progress);
 
       buildMark.end();
     },

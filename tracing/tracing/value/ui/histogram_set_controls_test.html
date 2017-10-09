@@ -13,9 +13,9 @@ found in the LICENSE file.
 <script>
 'use strict';
 tr.b.unittest.testSuite(function() {
-  function buildControls(test) {
+  function buildControls(test, parameters) {
     const controls = document.createElement('tr-v-ui-histogram-set-controls');
-    controls.viewState = new tr.v.ui.HistogramSetViewState();
+    controls.build(new tr.v.ui.HistogramSetViewState(), parameters);
     test.addHTMLOutput(controls);
     return controls;
   }

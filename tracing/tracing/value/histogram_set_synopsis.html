@@ -36,27 +36,29 @@ tr.exportTo('tr.v', function() {
 
   // This Processor collects various parameters from a set of Histograms such as
   // their statistics, displayLabels, and grouping keys in a single pass.
-  class HistogramParameterCollector {
-    constructor() {
+  class HistogramSetSynopsis {
+    constructor(histograms) {
+      // Map from string HistogramGrouping key to array of values, sorted by
+      // BENCHMARK_START in the case of displayLabel, alphabetically otherwise.
+      this.groupValues_ = new Map();
+      this.possibleGroupings_ = [];
       this.statisticNames_ = new Set(['avg']);
 
-      this.labelsToStartTimes_ = new Map();
+      const labelsToStartTimes = new Map();
 
-      // @typedef {!Map.<string,!tr.v.HistogramGrouping>}
-      this.keysToGroupings_ = new Map(DEFAULT_POSSIBLE_GROUPS.map(
+      // Map from string HistogramGrouping key to HistogramGrouping.
+      const keysToGroupings = new Map(DEFAULT_POSSIBLE_GROUPS.map(
           g => [g.key, g]));
 
-      // Map from HistogramGrouping keys to Sets of return values from the
-      // HistogramGroupings' callbacks.
-      this.keysToValues_ = new Map(DEFAULT_POSSIBLE_GROUPS.map(
+      // Map from string HistogramGrouping keys to Sets of return values from
+      // the HistogramGroupings' callbacks.
+      const keysToValueSets = new Map(DEFAULT_POSSIBLE_GROUPS.map(
           g => [g.key, new Set()]));
 
       // Never remove 'name' from keysToGroupings.
-      this.keysToValues_.delete(
+      keysToValueSets.delete(
           tr.v.HistogramGrouping.HISTOGRAM_NAME.key);
-    }
 
-    process(histograms) {
       const allStoryTags = new Set();
       let maxSampleCount = 0;
       for (const hist of histograms) {
@@ -72,25 +74,17 @@ tr.exportTo('tr.v', function() {
 
         const displayLabel = getDisplayLabel(hist);
 
-        if (this.labelsToStartTimes_.has(displayLabel)) {
+        if (labelsToStartTimes.has(displayLabel)) {
           startTime = Math.min(startTime,
-              this.labelsToStartTimes_.get(displayLabel));
+              labelsToStartTimes.get(displayLabel));
         }
-        this.labelsToStartTimes_.set(displayLabel, startTime);
+        labelsToStartTimes.set(displayLabel, startTime);
 
-        for (const [groupingKey, values] of this.keysToValues_) {
-          const grouping = this.keysToGroupings_.get(groupingKey);
+        for (const [groupingKey, values] of keysToValueSets) {
+          const grouping = keysToGroupings.get(groupingKey);
           const value = grouping.callback(hist);
           if (!value) continue;
           values.add(value);
-          if (values.size > 1) {
-            // This grouping will definitely stay in keysToGroupings_. We don't
-            // need to see any more values in the rest of histograms. Remove
-            // this groupingKey from this.keysToValues_ so that we don't compute
-            // it for any more histograms and so that we don't delete it from
-            // keysToGroupings_.
-            this.keysToValues_.delete(groupingKey);
-          }
         }
 
         const storyTags = hist.diagnostics.get(
@@ -109,37 +103,44 @@ tr.exportTo('tr.v', function() {
           values.add(tagGrouping.callback(hist));
         }
         if (values.size > 1) {
-          this.keysToGroupings_.set(tagGrouping.key, tagGrouping);
-          this.keysToValues_.set(tagGrouping.key, values);
+          keysToGroupings.set(tagGrouping.key, tagGrouping);
+          keysToValueSets.set(tagGrouping.key, values);
         }
       }
+
+      /*
+      const displayLabels = Array.from(labelsToStartTimes.keys());
+      displayLabels.sort((x, y) =>
+          labelsToStartTimes.get(x) - labelsToStartTimes.get(y));
+
+      for (const [key, values] of keysToValueSets) {
+        if (values.size >= 2) continue;
+        // Remove this grouping from keysToGroupings_ if there is fewer than
+        // 2 possible values.
+        keysToGroupings.delete(key);
+      }
+
+      return Array.from(keysToGroupings.values());
+      */
+
+      this.possibleGroupings_.sort();
+    }
+
+    get possibleGroupings() {
+      return this.possibleGroupings_;
+    }
+
+    getGroupValues(groupingKey) {
+      return this.groupValues_.get(groupingKey);
     }
 
     get statisticNames() {
       return Array.from(this.statisticNames_);
     }
-
-    get labels() {
-      const displayLabels = Array.from(this.labelsToStartTimes_.keys());
-      displayLabels.sort((x, y) =>
-          this.labelsToStartTimes_.get(x) - this.labelsToStartTimes_.get(y));
-      return displayLabels;
-    }
-
-    get possibleGroupings() {
-      for (const [key, values] of this.keysToValues_) {
-        if (values.size >= 2) continue;
-        // Remove this grouping from keysToGroupings_ if there is fewer than
-        // 2 possible values.
-        this.keysToGroupings_.delete(key);
-      }
-
-      return Array.from(this.keysToGroupings_.values());
-    }
   }
 
   return {
-    HistogramParameterCollector,
+    HistogramSetSynopsis,
   };
 });
 </script>
