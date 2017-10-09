@@ -62,7 +62,6 @@ tr.exportTo('tr.v.ui', function() {
 
     ready() {
       this.$.table.viewState = this.viewState;
-      this.$.controls.viewState = this.viewState;
     },
 
     attached() {
@@ -121,17 +120,15 @@ tr.exportTo('tr.v.ui', function() {
       await progress('Collecting parameters...');
       const collectParametersMark = tr.b.Timing.mark(
           'histogram-set-view', 'collectParameters');
-      const parameterCollector = new tr.v.HistogramParameterCollector();
-      parameterCollector.process(histograms);
-      this.$.controls.baseStatisticNames = parameterCollector.statisticNames;
-      this.$.controls.possibleGroupings = parameterCollector.possibleGroupings;
-      const displayLabels = parameterCollector.labels;
-      this.$.controls.displayLabels = displayLabels;
+      const parameters = new tr.v.HistogramSetParameters(histograms);
       collectParametersMark.end();
+
+      await progress('Building controls...');
+      this.$.controls.build(this.viewState, parameters, options);
 
       // Table.build() displays its own progress.
       await this.$.table.build(
-          histograms, sourceHistograms, displayLabels, progress);
+          histograms, sourceHistograms, parameters, progress);
 
       buildMark.end();
     },

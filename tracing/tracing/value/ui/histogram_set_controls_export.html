@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/base/base.html">
+<link rel="import" href="/tracing/ui/base/base.html">
+
+<dom-module id="tr-v-ui-histogram-set-controls-export">
+  <template>
+    <style>
+    :host {
+      display: grid;
+      grid-template-rows: [csv] 2em [json] 2em;
+      grid-template-columns: [raw] 45% [merged] 55%;
+      grid-gap: 1em;
+      padding-right: 1em;
+    }
+
+    span {
+      cursor: pointer;
+      background-color: #dddddd;
+      line-height: 2em;
+      padding-left: 8px;
+    }
+    </style>
+
+    <span on-tap="exportRawCsv_">Raw CSV</span>
+    <span on-tap="exportMergedCsv_">Merged CSV</span>
+    <span on-tap="exportRawJson_">Raw JSON</span>
+    <span on-tap="exportMergedJson_">Merged JSON</span>
+  </template>
+</dom-module>
+
+<script>
+'use strict';
+tr.exportTo('tr.v.ui', function() {
+  Polymer({
+    is: 'tr-v-ui-histogram-set-controls-export',
+
+    exportRawCsv_() {
+      this.export_(false, 'csv');
+    },
+
+    exportRawJson_() {
+      this.export_(false, 'json');
+    },
+
+    exportMergedCsv_() {
+      this.export_(true, 'csv');
+    },
+
+    exportMergedJson_() {
+      this.export_(true, 'json');
+    },
+
+    export_(merged, format) {
+      tr.b.dispatchSimpleEvent(this, 'export', true, true, {merged, format});
+    },
+  });
+
+  return {
+  };
+});
+</script>
