@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da168f48_1080bf93",
+        "filename": "tracing/tracing/importer/user_model_builder_test.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-09T16:28:25Z",
+      "side": 1,
+      "message": "Other types of Response/Animation gestures make the Response end at the same time that the Animation begins, so it\u0027s clear that they\u0027re part of the same gesture.\nYou can push one sample to both the R and the A to prevent this confusing Idle.",
+      "revId": "3477ccc948131d493a70af33f72c0583dae8cb14",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
