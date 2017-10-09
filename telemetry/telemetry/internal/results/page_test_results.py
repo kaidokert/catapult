@@ -175,7 +175,8 @@ class PageTestResults(object):
   def __init__(self, output_formatters=None,
                progress_reporter=None, trace_tag='', output_dir=None,
                value_can_be_added_predicate=lambda v, is_first: True,
-               benchmark_enabled=True, upload_bucket=None):
+               benchmark_enabled=True, upload_bucket=None,
+               artifact_results=None):
     """
     Args:
       output_formatters: A list of output formatters. The output
@@ -221,6 +222,8 @@ class PageTestResults(object):
 
     # State of the benchmark this set of results represents.
     self._benchmark_enabled = benchmark_enabled
+
+    self._artifact_results = artifact_results
 
   @property
   def telemetry_info(self):
@@ -422,6 +425,9 @@ class PageTestResults(object):
     # TODO(eakuefner/chrishenry): Add only one skip per pagerun assert here
     self._current_page_run.AddValue(value)
     self._progress_reporter.DidAddValue(value)
+
+  def AddArtifactFromPageRun(self, page, item):
+    self._artifact_results.AddArtifactFromPageRun(page, item)
 
   def AddProfilingFile(self, page, file_handle):
     self._pages_to_profiling_files[page].append(file_handle)

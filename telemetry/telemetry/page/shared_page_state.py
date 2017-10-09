@@ -8,6 +8,7 @@ import sys
 
 from telemetry.core import platform as platform_module
 from telemetry.core import util
+from telemetry.core import exceptions
 from telemetry import decorators
 from telemetry.internal.browser import browser_finder
 from telemetry.internal.browser import browser_finder_exceptions
@@ -123,7 +124,7 @@ class SharedPageState(story_module.SharedState):
       sys.exit(0)
     return possible_browser
 
-  def DumpStateUponFailure(self, page, results):
+  def DumpStateUponFailure(self, page, results, exc):
     # Dump browser standard output and log.
     if self._browser:
       self._browser.DumpStateUponFailure()
@@ -135,8 +136,21 @@ class SharedPageState(story_module.SharedState):
       fh = screenshot.TryCaptureScreenShot(self.platform, self._current_tab)
       if fh is not None:
         results.AddProfilingFile(page, fh)
+        results.AddArtifactFromPageRun(page, fh)
     else:
       logging.warning('Taking screenshots upon failures disabled.')
+
+    # Dump minidump, if present
+    if exc:
+      if isinstance(exc, exceptions.AppCrashException):
+        minidump_path = exc.minidump_path
+        if minidump_path:
+          with open(minidump_path) as f:
+            minidump = f.read()
+
+          results.AddArtifactFromPageRun(page, minidump)
+
+
 
   def DidRunStory(self, results):
     if self._finder_options.profiler:
