@@ -147,6 +147,8 @@ property 'group' sets to the header item name.
                      disabled$="{{disabled}}"
                      id="textbox"
                      value="{{query::input}}">
+          <paper-icon-button suffix on-tap="onClearInput_"
+            icon="clear" alt="clear" title="clear">
         </paper-input>
       </div>
       <paper-material
@@ -376,6 +378,11 @@ property 'group' sets to the header item name.
       onBlurInput() {
         this.set('dropdownOpen', false);
         this.$.textbox.readonly = true;
+      },
+
+      onClearInput_() {
+        this.set('query', '');
+        this.focus();
       },
 
       onInputKeydown(event) {
