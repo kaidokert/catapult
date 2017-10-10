@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6a5201a7_0d553d32",
+        "filename": "dashboard/dashboard/elements/d3-test.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2017-10-10T19:11:43Z",
+      "side": 1,
+      "message": "It looks like the \u003csvg\u003e element is not attached to the page. You should append it to an existing element.\nconst svg \u003d d3.select(\u0027#container\u0027).append(\u0027svg\u0027);",
+      "range": {
+        "startLine": 17,
+        "startChar": 19,
+        "endLine": 17,
+        "endChar": 25
+      },
+      "revId": "8b59dc91bf950e4dd4facdc8655a76512fee655a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
