@@ -86,8 +86,8 @@ def _GenerateTagMapFromStorySet(stories):
 
 
 def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
-  def ProcessError(description=None):
-    state.DumpStateUponFailure(story, results)
+  def ProcessError(exc=None, description=None):
+    state.DumpStateUponFailure(story, results, exc)
     # Note: adding the FailureValue to the results object also normally
     # cause the progress_reporter to log it in the output.
     results.AddValue(failure.FailureValue(story, sys.exc_info(), description))
@@ -106,10 +106,10 @@ def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
       test.Measure(state.platform, results)
   except (legacy_page_test.Failure, exceptions.TimeoutException,
           exceptions.LoginException, exceptions.ProfilingException,
-          py_utils.TimeoutException):
-    ProcessError()
-  except exceptions.Error:
-    ProcessError()
+          py_utils.TimeoutException) as e:
+    ProcessError(e)
+  except exceptions.Error as e:
+    ProcessError(e)
     raise
   except page_action.PageActionNotSupported as e:
     results.AddValue(
