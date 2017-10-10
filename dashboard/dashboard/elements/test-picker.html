@@ -580,15 +580,21 @@ found in the LICENSE file.
               return undefined;
             }
             break;
-          } else {
+          } else if (level >= 2) {
             // We want to collect all the subtest components so we can form
             // the full test path after this loop is done.
-            if (level >= 2) parts.push(menu.selectedItem.name);
+            if (menu.selectedItem) {
+              parts.push(menu.selectedItem.name);
+            } else {
+              break;
+            }
           }
           level += 1;
         }
 
-        const suite = this.getSelectionMenu(0).selectedItem.name;
+        const suiteItem = this.getSelectionMenu(0).selectedItem;
+        if (!suiteItem) return undefined;
+        const suite = suiteItem.name;
         const bot = this.getCheckedBot();
         parts.unshift(suite);
         parts.unshift(bot);
