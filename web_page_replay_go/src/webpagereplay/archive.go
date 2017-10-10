@@ -186,6 +186,9 @@ func (a *Archive) FindRequest(req *http.Request, scheme string) (*http.Request, 
 				bestRatio = ratio
 			}
 		}
+		if bestRequest == nil || bestResponse == nil {
+			return nil, nil, ErrNotFound
+		}
 		return bestRequest, bestResponse, nil
 	}
 
