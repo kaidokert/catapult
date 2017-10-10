@@ -35,13 +35,12 @@ tr.b.unittest.testSuite(function() {
       table.style.display = '';
     });
 
-    const collector = new tr.v.HistogramParameterCollector();
-    collector.process(histograms);
+    const synopsis = new tr.v.HistogramSetSynopsis(histograms);
 
     await table.build(
         histograms,
         histograms.sourceHistograms,
-        collector.labels,
+        synopsis.labels,
         async message => {
           await tr.b.animationFrame();
         });

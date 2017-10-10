@@ -5,14 +5,13 @@ Use of this source code is governed by a BSD-style license that can be
 found in the LICENSE file.
 -->
 
-<link rel="import" href="/tracing/value/histogram_parameter_collector.html">
+<link rel="import" href="/tracing/value/histogram_set_synopsis.html">
 
 <script>
 'use strict';
 tr.b.unittest.testSuite(function() {
   test('empty', function() {
-    const collector = new tr.v.HistogramParameterCollector();
-    collector.process([]);
+    const collector = new tr.v.HistogramSetSynopsis([]);
     assert.strictEqual('avg', tr.b.getOnlyElement(collector.statisticNames));
     assert.strictEqual('name',
         tr.b.getOnlyElement(collector.possibleGroupings).key);
@@ -20,8 +19,7 @@ tr.b.unittest.testSuite(function() {
   });
 
   test('sortLabels', function() {
-    const collector = new tr.v.HistogramParameterCollector();
-    collector.process([
+    const collector = new tr.v.HistogramSetSynopsis([
       tr.v.Histogram.create('', tr.b.Unit.byName.count, 0, {
         diagnostics: new Map([
           [
@@ -58,8 +56,7 @@ tr.b.unittest.testSuite(function() {
   });
 
   test('possibleGroupings', function() {
-    const collector = new tr.v.HistogramParameterCollector();
-    collector.process([
+    const collector = new tr.v.HistogramSetSynopsis([
       tr.v.Histogram.create('a', tr.b.Unit.byName.count, 0, {
         diagnostics: new Map([
           [tr.v.d.RESERVED_NAMES.STORY_TAGS, new tr.v.d.GenericSet(['F'])],
