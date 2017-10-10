@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/base/timing.html">
+<link rel="import" href="/tracing/ui/base/dom_helpers.html">
+<link rel="import" href="/tracing/value/ui/histogram_set_view_state.html">
+
+<dom-module id="tr-v-ui-histogram-set-controls-statistics">
+  <template>
+    <style>
+    </style>
+    <table>
+      <thead>
+        <tr><th>Rows</th><th>Columns</th><th>Pages</th></tr>
+      </thead>
+      <tbody id="controls">
+      </tbody>
+    </table>
+  </template>
+</dom-module>
+
+<script>
+'use strict';
+tr.exportTo('tr.v.ui', function() {
+  Polymer({
+    is: 'tr-v-ui-histogram-set-controls-statistics',
+
+    created() {
+      this.viewState_ = undefined;
+    },
+
+    ready() {
+    },
+
+    get viewState() {
+      return this.viewState_;
+    },
+
+    /**
+     * @param {!tr.v.ui.HistogramSetViewState} viewState
+     * @param {!tr.v.HistogramParameters} parameters
+     */
+    build(viewState, parameters) {
+      this.viewState_ = viewState;
+      this.viewState.addUpdateListener(this.onViewStateUpdate_.bind(this));
+      this.parameters_ = parameters;
+      this.updateTable_();
+    },
+
+    onViewStateUpdate_(event) {
+      if (event.delta.groupings) this.updateTable_();
+    },
+
+    updateTable_() {
+      this.$.tbody.textContent = '';
+    },
+  });
+
+  return {
+  };
+});
+</script>
