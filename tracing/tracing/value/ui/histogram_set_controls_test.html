@@ -13,20 +13,21 @@ found in the LICENSE file.
 <script>
 'use strict';
 tr.b.unittest.testSuite(function() {
-  function buildControls(test) {
+  function buildControls(test, synopsis, opt_options) {
     const controls = document.createElement('tr-v-ui-histogram-set-controls');
-    controls.viewState = new tr.v.ui.HistogramSetViewState();
+    controls.build(new tr.v.ui.HistogramSetViewState(), synopsis, opt_options);
     test.addHTMLOutput(controls);
     return controls;
   }
 
   test('helpHref', function() {
-    const controls = buildControls(this);
-    controls.helpHref = 'data:text/html,hello';
+    const controls = buildControls(this, undefined, {
+      helpHref: 'data:text/html,',
+    });
     const help = tr.ui.b.findDeepElementMatchingPredicate(
         controls, e => e.id === 'help');
     assert.strictEqual(help.style.display, 'inline');
-    assert.strictEqual(help.href, 'data:text/html,hello');
+    assert.strictEqual(help.href, 'data:text/html,');
   });
 
   test('feedbackHref', function() {
