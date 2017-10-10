@@ -22,6 +22,30 @@
       "revId": "d9c975f18f0b4800a45be3f3f6a2536bd4d8c1d9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc28c23a_c0f99d80",
+        "filename": "dashboard/dashboard/elements/alerts-page.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-10T20:25:18Z",
+      "side": 1,
+      "message": "Without white-space:nowrap, it still wraps \"WebRTC Chrome PeerConnection Perf Sherif\" no matter how large the min-width is.",
+      "parentUuid": "a235ef54_3725f25c",
+      "range": {
+        "startLine": 104,
+        "startChar": 13,
+        "endLine": 104,
+        "endChar": 17
+      },
+      "revId": "d9c975f18f0b4800a45be3f3f6a2536bd4d8c1d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
