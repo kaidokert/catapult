@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a235ef54_3725f25c",
+        "filename": "dashboard/dashboard/elements/alerts-page.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2017-10-10T17:42:20Z",
+      "side": 1,
+      "message": "Then you don\u0027t need this section anymore, right?",
+      "range": {
+        "startLine": 104,
+        "startChar": 13,
+        "endLine": 104,
+        "endChar": 17
+      },
+      "revId": "d9c975f18f0b4800a45be3f3f6a2536bd4d8c1d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
