@@ -46,6 +46,30 @@
       "revId": "613d41b1e2fde058cfa62433e5aebb6c74119e3d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3d5ed66_a6055b7e",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2017-10-11T21:31:34Z",
+      "side": 1,
+      "message": "Thanks for the help Dale!\n\nSince we\u0027re on a schedule here, perhaps just returning the empty map and logging a warning for any abnormal sequence of events would be best here. Also it would be good to add a test case for it as well. Someone will need to go back through these metrics and fix them up if they want multiple videos at the same time.",
+      "parentUuid": "7e0b907b_2abce6ac",
+      "range": {
+        "startLine": 177,
+        "startChar": 6,
+        "endLine": 177,
+        "endChar": 23
+      },
+      "revId": "613d41b1e2fde058cfa62433e5aebb6c74119e3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
