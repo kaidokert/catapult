@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/base/timing.html">
+<link rel="import" href="/tracing/ui/base/dom_helpers.html">
+<link rel="import" href="/tracing/value/ui/histogram_set_view_state.html">
+
+<dom-module id="tr-v-ui-histogram-set-controls-compare">
+  <template>
+    <style>
+    :host, #form {
+      display: flex;
+    }
+    .column {
+      display: flex;
+      flex-direction: column;
+      margin-left: 1em;
+    }
+    #cols_container {
+      margin-left: 0;
+    }
+    .header {
+      font-weight: bold;
+      border-bottom: 1px solid darkgrey;
+      padding-bottom: 3px;
+    }
+    .item {
+      font-size: smaller;
+      padding-top: 0.5em;
+    }
+    </style>
+
+    <div id="cols_container" class="column">
+      <div class="header">Columns</div>
+    </div>
+    <div id="pages_container" class="column">
+      <div class="header">Pages</div>
+    </div>
+    <div id="diagnostics_container" class="column">
+      <div class="header">Diagnostics</div>
+    </div>
+    <div id="alpha_container" class="column">
+      <div class="header">Statistical Significance</div>
+      <div>
+        <input type="range">
+        <tr-v-ui-histogram-span id="p_value_hist">
+      </div>
+    </div>
+  </template>
+</dom-module>
+
+<script>
+'use strict';
+tr.exportTo('tr.v.ui', function() {
+  Polymer({
+    is: 'tr-v-ui-histogram-set-controls-compare',
+
+    created() {
+      this.viewState_ = undefined;
+      this.onLabelClick_ = this.onLabelClick_.bind(this);
+    },
+
+    ready() {
+    },
+
+    get viewState() {
+      return this.viewState_;
+    },
+
+    /**
+     * @param {!tr.v.ui.HistogramSetViewState} viewState
+     * @param {!tr.v.HistogramSetSynopsis} synopsis
+     */
+    build(viewState, synopsis) {
+      this.viewState_ = viewState;
+      this.viewState.addUpdateListener(this.onViewStateUpdate_.bind(this));
+      this.synopsis_ = synopsis;
+      this.updateContents_();
+    },
+
+    onViewStateUpdate_(event) {
+      if (event.delta.groupings) this.updateContents_();
+    },
+
+    buildItems_(labels, container, type) {
+      for (const col of labels) {
+        const input = document.createElement('input');
+        input.type = type;
+        if (type === 'radio') input.name = 'reference';
+        input.value = col;
+        input.id = 'input_' + col;
+
+        const label = document.createElement('label');
+        label.htmlFor = input.id;
+        label.textContent = col;
+        label.addEventListener('click', this.onLabelClick_);
+
+        const span = document.createElement('span');
+        span.classList.add('item');
+        span.appendChild(input);
+        span.appendChild(label);
+        container.appendChild(span);
+      }
+    },
+
+    onLabelClick_(event) {
+      // If this input is checked, then uncheck it.
+      const input = this.shadowRoot.querySelector('#' + event.path[0].htmlFor);
+      input.checked = !input.checked;
+      event.preventDefault();
+    },
+
+    updateContents_() {
+      while (this.$.cols_container.children.length > 1) {
+        this.$.cols_container.removeChild(this.$.cols_container.children[1]);
+      }
+      while (this.$.pages_container.children.length > 1) {
+        this.$.pages_container.removeChild(this.$.pages_container.children[1]);
+      }
+      while (this.$.diagnostics_container.children.length > 1) {
+        this.$.diagnostics_container.removeChild(
+            this.$.diagnostics_container.children[1]);
+      }
+
+      const columnNames = ['TODO', 'T0D0'];
+      this.$.cols_container.style.display = (
+          columnNames.length <= 1 ? 'none' : '');
+      this.buildItems_(columnNames, this.$.cols_container, 'radio');
+
+      const pageNames = ['TODO'];
+      this.$.pages_container.style.display = (
+          pageNames.length <= 1 ? 'none' : '');
+      this.buildItems_(pageNames, this.$.pages_container, 'radio');
+
+      const diagnosticNames = ['stories', 'storyTags'];
+      this.buildItems_(diagnosticNames, this.$.diagnostics_container,
+          'checkbox');
+    },
+  });
+
+  return {
+  };
+});
+</script>
