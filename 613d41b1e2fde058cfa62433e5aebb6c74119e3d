@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "726b4b18_04675105",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2017-10-11T20:58:27Z",
+      "side": 1,
+      "message": "Currently, if we have two DoSeek events happen without a BufferingHaveEnough event between them, then we we end up ignoring the first DoSeek. Specifically, if we have\n\nDoSeek\nDoSeek\nOnPipelineSeeked\nBufferingHaveEnough\n...\n\nWill we know whether the OnPipelineSeeked event corresponded to the first or the second DoSeek? If it is possible that it corresponds to the first DoSeek, then this code will report incorrect information. It is much better to report no information than to report incorrect information.\n\nAn example of how this could go wrong is if we had multiple videos playing on a page at the same time. In a year or two, someone could write code that does that and not realize that this underlying measurement system does not work for their use case.\n\nTwo possibilities I can think of for fixing this:\n1. Return empty map if any events happen in a strange order. i.e. if we see a second DoSeek before we see the BufferingHaveEnough event for the previous DoSeek, then it is probably better to not provide any output (and maybe log a warning).\n2. I think Chrome makes a new WMPI instance for each video on a page. Could we get a unique identifier for the WMPI instance and add that to each trace event and then use that in this algorithm?",
+      "range": {
+        "startLine": 177,
+        "startChar": 6,
+        "endLine": 177,
+        "endChar": 23
+      },
+      "revId": "613d41b1e2fde058cfa62433e5aebb6c74119e3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
