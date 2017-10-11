@@ -70,6 +70,30 @@
       "revId": "613d41b1e2fde058cfa62433e5aebb6c74119e3d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64bb5b81_4968e148",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2017-10-11T21:35:22Z",
+      "side": 1,
+      "message": "Thanks for the suggestions. I\u0027ll update the code to do that.",
+      "parentUuid": "b3d5ed66_a6055b7e",
+      "range": {
+        "startLine": 177,
+        "startChar": 6,
+        "endLine": 177,
+        "endChar": 23
+      },
+      "revId": "613d41b1e2fde058cfa62433e5aebb6c74119e3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
