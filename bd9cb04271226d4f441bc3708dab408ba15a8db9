@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7cd99ed2_15d24cfe",
+        "filename": "telemetry/telemetry/internal/actions/scroll.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1123071
+      },
+      "writtenOn": "2017-10-11T13:27:49Z",
+      "side": 1,
+      "message": "Is this correct for an arbitrary element?",
+      "range": {
+        "startLine": 73,
+        "startChar": 9,
+        "endLine": 73,
+        "endChar": 23
+      },
+      "revId": "bd9cb04271226d4f441bc3708dab408ba15a8db9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b90ed1e_4cc3d00e",
+        "filename": "telemetry/telemetry/internal/actions/scroll.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1123071
+      },
+      "writtenOn": "2017-10-11T13:27:49Z",
+      "side": 1,
+      "message": "Is this correct for an arbitrary element?",
+      "revId": "bd9cb04271226d4f441bc3708dab408ba15a8db9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
