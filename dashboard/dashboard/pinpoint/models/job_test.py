@@ -99,7 +99,7 @@ class BugCommentTest(testing_common.TestCase):
     j.Run()
 
     self.add_bug_comment.assert_called_once_with(
-        123456, _COMMENT_COMPLETED_NO_DIFFERENCES, send_email=True)
+        123456, _COMMENT_COMPLETED_NO_DIFFERENCES)
 
   @mock.patch('dashboard.services.gitiles_service.CommitInfo')
   @mock.patch.object(job._JobState, 'Differences')
@@ -109,7 +109,9 @@ class BugCommentTest(testing_common.TestCase):
     commit_info.return_value = {
         'author': {'email': 'author@chromium.org'},
         'committer': {'time': 'Fri Jan 01 00:01:00 2016'},
-        'message': 'Subject.\n\nCommit message.',
+        'message': 'Subject.\n\n'
+                   'Commit message.\n'
+                   'Reviewed-by: Reviewer Name <reviewer@chromium.org>',
     }
 
     j = job.Job.New({}, [], False, bug_id=123456)
@@ -117,7 +119,9 @@ class BugCommentTest(testing_common.TestCase):
     j.Run()
 
     self.add_bug_comment.assert_called_once_with(
-        123456, _COMMENT_COMPLETED_ONE_DIFFERENCE, send_email=True)
+        123456, _COMMENT_COMPLETED_ONE_DIFFERENCE,
+        status='Assigned', owner='author@chromium.org',
+        cc_list=['author@chromium.org', 'reviewer@chromium.org'])
 
   @mock.patch('dashboard.services.gitiles_service.CommitInfo')
   @mock.patch.object(job._JobState, 'Differences')
@@ -127,7 +131,9 @@ class BugCommentTest(testing_common.TestCase):
     commit_info.return_value = {
         'author': {'email': 'author@chromium.org'},
         'committer': {'time': 'Fri Jan 01 00:01:00 2016'},
-        'message': 'Subject.\n\nCommit message.',
+        'message': 'Subject.\n\n'
+                   'Commit message.\n'
+                   'Reviewed-by: Reviewer Name <reviewer@chromium.org>',
     }
 
     j = job.Job.New({}, [], False, bug_id=123456)
@@ -135,7 +141,9 @@ class BugCommentTest(testing_common.TestCase):
     j.Run()
 
     self.add_bug_comment.assert_called_once_with(
-        123456, _COMMENT_COMPLETED_TWO_DIFFERENCES, send_email=True)
+        123456, _COMMENT_COMPLETED_TWO_DIFFERENCES,
+        status='Assigned', owner='author@chromium.org',
+        cc_list=['author@chromium.org', 'reviewer@chromium.org'])
 
   def testFailed(self):
     j = job.Job.New({}, [], False, bug_id=123456)
@@ -144,5 +152,4 @@ class BugCommentTest(testing_common.TestCase):
     with self.assertRaises(AttributeError):
       j.Run()
 
-    self.add_bug_comment.assert_called_once_with(
-        123456, _COMMENT_FAILED, send_email=True)
+    self.add_bug_comment.assert_called_once_with(123456, _COMMENT_FAILED)
