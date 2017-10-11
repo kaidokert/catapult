@@ -16,6 +16,24 @@
       "revId": "7a46f1d36e4280615ef782ee2155064fb9f68884",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a24ea8ba_ea604c2d",
+        "filename": "web_page_replay_go/src/webpagereplay/archive.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1127839
+      },
+      "writtenOn": "2017-10-11T15:39:46Z",
+      "side": 1,
+      "message": "Changed it to continue.\n\nIn the case I saw, unmarshal() returns an error. I\u0027m not sure the reason, and can\u0027t find the archive at the moment :/...",
+      "parentUuid": "cb886170_19544205",
+      "revId": "7a46f1d36e4280615ef782ee2155064fb9f68884",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
