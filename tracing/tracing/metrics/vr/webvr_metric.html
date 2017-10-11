@@ -56,7 +56,7 @@ tr.exportTo('tr.metrics.vr', function() {
       // some time after we've entered VR, in order to avoid skewed results
       // caused by VR entry, but allow calculation on the response expectation
       // if we've manually selected it as a range of interest
-      if (ue.initiatorType !== tr.model.um.INITIATOR_TYPE.VR) continue;
+      if (ue.initiatorType !== tr.model.um.INITIATOR_TYPE.WEBVR) continue;
       if (!rangeOfInterestEnabled) {
         if (!(ue instanceof tr.model.um.AnimationExpectation)) continue;
       } else {

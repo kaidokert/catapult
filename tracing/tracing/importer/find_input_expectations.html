@@ -77,10 +77,12 @@ tr.exportTo('tr.importer', function() {
 
   const CSS_ANIMATION_TITLE = 'Animation';
 
-  const VR_COUNTER_NAMES = [
+  const WEBVR_COUNTER_NAMES = [
     'gpu.WebVR FPS',
     'gpu.WebVR frame time (ms)',
     'gpu.WebVR pose prediction (ms)',
+  ];
+  const VRBROWSER_EVENT_NAMES = [
     'VrShellGl::AcquireFrame',
     'VrShellGl::DrawFrame',
     'VrShellGl::DrawSubmitFrameWhenReady',
@@ -191,7 +193,8 @@ tr.exportTo('tr.importer', function() {
       handleCSSAnimations,
       handleWebGLAnimations,
       handleVideoAnimations,
-      handleVrAnimations,
+      handleWebVRAnimations,
+      handleVRBrowserAnimations,
     ];
     handlers.forEach(function(handler) {
       protoExpectations.push.apply(protoExpectations, handler(
@@ -797,9 +800,9 @@ tr.exportTo('tr.importer', function() {
   }
 
   /**
-   * Returns proto expectations for VR animation events.
+   * Returns proto expectations for WebVR animation events.
    */
-  function handleVrAnimations(modelHelper, sortedInputEvents, warn) {
+  function handleWebVRAnimations(modelHelper, sortedInputEvents, warn) {
     let events = [];
 
     // Find all the processes we should check
@@ -818,7 +821,7 @@ tr.exportTo('tr.importer', function() {
     for (const proc of processes) {
       for (const [counterName, counterSeries] of
           Object.entries(proc.counters)) {
-        if (VR_COUNTER_NAMES.includes(counterName)) {
+        if (WEBVR_COUNTER_NAMES.includes(counterName)) {
           for (const series of counterSeries.series) {
             events = events.concat(series.samples);
           }
@@ -834,9 +837,9 @@ tr.exportTo('tr.importer', function() {
 
     const firstTimestamp = events[0].timestamp;
     const responsePE = new ProtoExpectation(ProtoExpectation.RESPONSE_TYPE,
-        INITIATOR_TYPE.VR);
+        INITIATOR_TYPE.WEBVR);
     const animationPE = new ProtoExpectation(ProtoExpectation.ANIMATION_TYPE,
-        INITIATOR_TYPE.VR);
+        INITIATOR_TYPE.WEBVR);
     let lastResponseEvent;
 
     for (const event of events) {
@@ -852,6 +855,62 @@ tr.exportTo('tr.importer', function() {
     }
     // Make sure that there isn't a gap between the two expectations
     animationPE.pushSample(lastResponseEvent);
+    return [responsePE, animationPE];
+  }
+
+  /**
+   * Returns proto expectations for VR browser animation events.
+   */
+  function handleVRBrowserAnimations(modelHelper, sortedInputEvents, warn) {
+    const events = [];
+
+    // Find all the processes we should check
+    const processes = [];
+    if (typeof modelHelper.gpuHelper !== 'undefined') {
+      processes.push(modelHelper.gpuHelper.process);
+    }
+    for (const helper of Object.values(modelHelper.rendererHelpers)) {
+      processes.push(helper.process);
+    }
+    for (const helper of Object.values(modelHelper.browserHelpers)) {
+      processes.push(helper.process);
+    }
+
+    // Add all VR browser event samples to the list of events
+    for (const proc of processes) {
+      for (const thread of Object.values(proc.threads)) {
+        for (const container of thread.childEventContainers()) {
+          for (const slice of container.slices) {
+            if (VRBROWSER_EVENT_NAMES.includes(slice.title)) {
+              events.push(slice);
+            }
+          }
+        }
+      }
+    }
+
+    if (events.length === 0) {
+      return [];
+    }
+
+    events.sort(tr.importer.compareEvents);
+
+    const firstTimestamp = events[0].start;
+    const responsePE = new ProtoExpectation(ProtoExpectation.RESPONSE_TYPE,
+        INITIATOR_TYPE.VRBROWSER);
+    const animationPE = new ProtoExpectation(ProtoExpectation.ANIMATION_TYPE,
+        INITIATOR_TYPE.VRBROWSER);
+
+    for (const event of events) {
+      // Categorize the first 500 ms of VR time as entry/resposne
+      // TODO(bsheedy): Make this smarter by basing response duration off trace
+      // data instead of a fixed duration
+      if (event.start - firstTimestamp < VR_RESPONSE_MS) {
+        responsePE.pushEvent(event);
+      } else {
+        animationPE.pushEvent(event);
+      }
+    }
     return [responsePE, animationPE];
   }
 
@@ -1129,7 +1188,8 @@ tr.exportTo('tr.importer', function() {
         if ((isCSS && otherPE.initiatorType !== INITIATOR_TYPE.CSS) ||
             isFling !== otherPE.containsTypeNames([INPUT_TYPE.FLING_START]) ||
             isVideo && otherPE.initiatorType !== INITIATOR_TYPE.VIDEO ||
-            otherPE.initiatorType === INITIATOR_TYPE.VR) {
+            otherPE.initiatorType === INITIATOR_TYPE.WEBVR ||
+            otherPE.initiatorType === INITIATOR_TYPE.VRBROWSER) {
           continue;
         }
 
@@ -1268,7 +1328,8 @@ tr.exportTo('tr.importer', function() {
       // event, don't remove them if it's a WebGL or VR animation.
       if (frameEvents.length === 0 &&
               !(pe.initiatorType === INITIATOR_TYPE.WEBGL ||
-                pe.initiatorType === INITIATOR_TYPE.VR)) {
+                pe.initiatorType === INITIATOR_TYPE.WEBVR ||
+                pe.initiatorType === INITIATOR_TYPE.VRBROWSER)) {
         pe.type = ProtoExpectation.IGNORED_TYPE;
         newPEs.push(pe);
         continue;
