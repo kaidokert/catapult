@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e31d4130_458e76f6",
+        "filename": "telemetry/telemetry/internal/actions/scroll.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1123071
+      },
+      "writtenOn": "2017-10-11T16:53:25Z",
+      "side": 1,
+      "message": "Should this comment be updated? As the semantics are actually changed now...\n\nspecifically in standards mode scrollingElement \u003d\u003d document.documentElement and before if this._element \u003d\u003d\u003d document.body it would go into these magical conditionals.\n\nIs that intended?",
+      "range": {
+        "startLine": 65,
+        "startChar": 13,
+        "endLine": 65,
+        "endChar": 33
+      },
+      "revId": "0e2c2c479ef0a3684c47df5e1765efaefc5231b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
