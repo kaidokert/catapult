@@ -7,6 +7,14 @@ from tracing.value.diagnostics import all_diagnostics
 from tracing.value.diagnostics import diagnostic
 from tracing.value.diagnostics import diagnostic_ref
 
+
+def Group(lst, callback):
+  results = {}
+  for el in lst:
+    results.setdefault(callback(el), []).append(el)
+  return results
+
+
 class HistogramSet(object):
   def __init__(self, histograms=()):
     self._histograms_by_guid = {}
@@ -97,3 +105,17 @@ class HistogramSet(object):
       for name, diag in hist.diagnostics.iteritems():
         if diag.has_guid and diag.guid == old_guid:
           hist.diagnostics[name] = new_diagnostic
+
+  def GroupHistogramsRecursively(self, groupings, skip_grouping=None):
+    def Recurse(histograms, level):
+      if level == len(groupings):
+        return histograms
+
+      grouping = groupings[level]
+      grouped_histograms = Group(histograms, grouping.callback)
+      if skip_grouping and skip_grouping(grouping, grouped_histograms):
+        return Recurse(histograms, level + 1)
+      for key, group in grouped_histograms.items():
+        grouped_histograms[key] = Recurse(group, level + 1)
+      return grouped_histograms
+    return Recurse(self._histograms_by_guid.values(), 0)
