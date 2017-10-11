@@ -22,6 +22,30 @@
       "revId": "0e2c2c479ef0a3684c47df5e1765efaefc5231b4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d994453_3f1a9332",
+        "filename": "telemetry/telemetry/internal/actions/scroll.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1002681
+      },
+      "writtenOn": "2017-10-11T17:43:54Z",
+      "side": 1,
+      "message": "Updated comments in latest patch.\n\nI think previously this was wrong since it didn\u0027t take into account the change to scrollingElement, as you mention. But it also used the wrong clientHeight for body (since GetWindowHeight is essentially the physical viewport height) and scrollTop doesn\u0027t account for zoom either as of M61. I think we almost always end up here via the default `this.element_` which is `scrollingElement || body` so it should fall into here since we use the same check in isScrollingViewport_. If it does break something because a test specified body explicitly, it should be fixed at the source by specifying that you really wanted to use documentElement/scrollingElement so...let\u0027s see what breaks? (jumping through python and JS is hard but the only instance I found of an Element being specified was in unit tests and it was an arbitrary Element)\n\nOTOH, if we\u0027re on a quirks page and the body is a scroller (i.e. scrollingElement \u003d\u003d null) the behavior is the same because we still have that `scrollingElement || body` fallback in isScrollingViewport so we also end up in here.",
+      "parentUuid": "e31d4130_458e76f6",
+      "range": {
+        "startLine": 65,
+        "startChar": 13,
+        "endLine": 65,
+        "endChar": 33
+      },
+      "revId": "0e2c2c479ef0a3684c47df5e1765efaefc5231b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
