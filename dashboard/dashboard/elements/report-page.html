@@ -198,6 +198,10 @@ found in the LICENSE file.
             this.addChart(state, false);
           }
         });
+
+        if (this.charts.length === 0) {
+          this.testPicker.getSelectionMenu(0).focus();
+        }
       },
 
       /**
