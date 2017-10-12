@@ -387,6 +387,16 @@ class TestConditionTest(unittest.TestCase):
         expectations.ANDROID_NEXUS6_WEBVIEW.ShouldDisable(
             self._platform, self._finder_options))
 
+  def testBattOrNoBattOrAttached(self):
+    self._platform.SetBattOrDetected(False)
+    self.assertTrue(
+        expectations.BATTOR.ShouldDisable(self._platform, self._finder_options))
+
+  def testBattOrBattOrAttached(self):
+    self._platform.SetBattOrDetected(True)
+    self.assertFalse(
+        expectations.BATTOR.ShouldDisable(self._platform, self._finder_options))
+
 
 class StoryExpectationsTest(unittest.TestCase):
   def setUp(self):
