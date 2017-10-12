@@ -659,6 +659,11 @@ triaging functionality in the chart.
 
           events.addEventListener(
               window, 'urichange', this.onUriChanged.bind(this));
+
+          this.ignoreChartStateChangedEvent_ = false;
+          this.relatedTabsReadyPromise = new Promise(resolve => {
+            this.resolveRelatedTabsReady_ = resolve;
+          });
         },
 
         /**
@@ -2769,7 +2774,13 @@ triaging functionality in the chart.
          * @return {Array} List of pair of test path and selected series.
          */
         getState() {
-          const state = [];
+          const state = {seriesGroups: []};
+
+          if (this.selectedRelatedTabIndex >= 0) {
+            state.selectedRelatedTab =
+              this.relatedTabs[this.selectedRelatedTabIndex].name;
+          }
+
           this.seriesGroupList.forEach(function(seriesGroup) {
             let selected = [];
             const unselected = [];
@@ -2788,7 +2799,7 @@ triaging functionality in the chart.
               selected = [seriesGroup.selection];
             }
             selected = arrayUnique(selected);
-            state.push([seriesGroup.path, selected]);
+            state.seriesGroups.push([seriesGroup.path, selected]);
           });
           return state;
         },
@@ -2801,6 +2812,7 @@ triaging functionality in the chart.
         },
 
         onChartStateChanged_(event) {
+          if (this.ignoreChartStateChangedEvent_) return;
           this.buildRelatedTabs_();
           this.onSelectedRelatedTabIndexChange_();
         },
@@ -2876,6 +2888,7 @@ triaging functionality in the chart.
           });
 
           this.set('relatedTabs', relatedTabs);
+          this.resolveRelatedTabsReady_();
         },
 
         getSparklineChartOptions() {
@@ -2904,6 +2917,10 @@ triaging functionality in the chart.
         },
 
         onSelectedRelatedTabIndexChange_() {
+          this.ignoreChartStateChangedEvent_ = true;
+          this.fireChartStateChangedEvent(this.seriesGroupList);
+          this.ignoreChartStateChangedEvent_ = false;
+
           // The last tab is actually a button to unset the tab to hide the
           // sparklines.
           if (this.selectedRelatedTabIndex === this.relatedTabs.length - 1) {
