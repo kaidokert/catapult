@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f028fc03_f8399d22",
+        "filename": "devil/docs/persistent_device_list.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-12T15:23:10Z",
+      "side": 0,
+      "message": "could not find any reference to that file any more?",
+      "revId": "f5cd07b220ab0a660b0277c86f867d418ad3249a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
