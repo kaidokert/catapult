@@ -13,16 +13,21 @@ tr.exportTo('tr.v.ui', function() {
   class HistogramSetViewState extends tr.b.ViewState {
     constructor() {
       super();
+      this.define('alpha', 0.01);
+      this.define('columnGrouping', 'displayLabel');
+      this.define('compareDiagnosticNames', []);
+      this.define('constrainNameColumn', true);
+      this.define('displayStatisticNamesOpen', []);
+      this.define('displayStatisticNamesClosed', []);
+      this.define('pageGrouping', '');
+      this.define('referenceColumn', '');
+      this.define('referencePage', '');
+      this.define('rowGroupings', []);
       this.define('searchQuery', '');
-      this.define('referenceDisplayLabel', '');
-      this.define('displayStatisticName', '');
       this.define('showAll', false);
-      this.define('groupings', []);
       this.define('sortColumnIndex', 0);
       this.define('sortDescending', false);
-      this.define('constrainNameColumn', true);
       this.define('tableRowStates', new Map());
-      this.define('alpha', 0.01);
     }
   }
 
@@ -31,11 +36,11 @@ tr.exportTo('tr.v.ui', function() {
   class HistogramSetTableRowState extends tr.b.ViewState {
     constructor() {
       super();
+      this.define('cells', new Map());
+      this.define('diagnosticsTab', '');
       this.define('isExpanded', false);
       this.define('isOverviewed', false);
-      this.define('cells', new Map());
       this.define('subRows', new Map());
-      this.define('diagnosticsTab', '');
     }
 
     asCompactDict() {
