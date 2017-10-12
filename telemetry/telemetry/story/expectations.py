@@ -240,6 +240,17 @@ class _TestConditionLogicalAndConditions(_TestCondition):
         c.ShouldDisable(platform, finder_options) for c in self._conditions)
 
 
+class _TestConditionBattOr(_TestCondition):
+  def __init__(self):
+    self._name = 'BattOr'
+
+  def __str__(self):
+    return self._name
+
+  def ShouldDisable(self, platform, finder_options):
+    return not platform.HasBattOrConnected()
+
+
 ALL = _AllTestCondition()
 ALL_MAC = _TestConditionByPlatformList(['mac'], 'Mac Platforms')
 ALL_WIN = _TestConditionByPlatformList(['win'], 'Win Platforms')
@@ -270,3 +281,4 @@ ANDROID_NEXUS6_WEBVIEW = _TestConditionLogicalAndConditions(
     [ANDROID_NEXUS6, ANDROID_WEBVIEW], 'Nexus6 Webview')
 ANDROID_NEXUS5X_WEBVIEW = _TestConditionLogicalAndConditions(
     [ANDROID_NEXUS5X, ANDROID_WEBVIEW], 'Nexus5X Webview')
+BATTOR = _TestConditionBattOr()
