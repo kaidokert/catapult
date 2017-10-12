@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "94cb6391_e5f9400b",
+        "filename": "dashboard/dashboard/elements/autocomplete-box.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-12T16:49:06Z",
+      "side": 1,
+      "message": "Not super familiar with inner workings of autocomplete-box or test-picker, will ping you offline for a quick walkthrough.",
+      "range": {
+        "startLine": 416,
+        "startChar": 30,
+        "endLine": 416,
+        "endChar": 42
+      },
+      "revId": "597777596cd98d1fd7c4b3ad903703f91699e671",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
