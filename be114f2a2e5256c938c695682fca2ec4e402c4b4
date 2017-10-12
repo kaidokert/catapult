@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "78544ccb_a248f060",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-12T11:13:25Z",
+      "side": 1,
+      "message": "nit: add owner \u003d None",
+      "revId": "be114f2a2e5256c938c695682fca2ec4e402c4b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "845f9b97_21198bb0",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-12T11:13:25Z",
+      "side": 1,
+      "message": "nit: could we both gather details to compose the body and collect emails to cc on the same loop?\n\nAlso, this ends up calling the Details() method twice; which I understand will be slow until caching is enabled. Putting both together could help reducing this to a single call?",
+      "revId": "be114f2a2e5256c938c695682fca2ec4e402c4b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fedfcbf4_772f3579",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-12T11:13:25Z",
+      "side": 1,
+      "message": "nit: \"any one\" -\u003e \"the last one\" (which is what this ends up doing?)",
+      "revId": "be114f2a2e5256c938c695682fca2ec4e402c4b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b152e76_f6e5c8a4",
+        "filename": "dashboard/dashboard/pinpoint/models/job_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-12T11:13:25Z",
+      "side": 1,
+      "message": "nit: can you make these two commits have two different authors?",
+      "revId": "be114f2a2e5256c938c695682fca2ec4e402c4b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
