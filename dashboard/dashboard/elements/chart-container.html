@@ -2769,7 +2769,13 @@ triaging functionality in the chart.
          * @return {Array} List of pair of test path and selected series.
          */
         getState() {
-          const state = [];
+          const state = {seriesGroups: []};
+
+          if (this.selectedRelatedTabIndex >= 0) {
+            state.selectedRelatedTab =
+              this.relatedTabs[this.selectedRelatedTabIndex].name;
+          }
+
           this.seriesGroupList.forEach(function(seriesGroup) {
             let selected = [];
             const unselected = [];
@@ -2788,7 +2794,7 @@ triaging functionality in the chart.
               selected = [seriesGroup.selection];
             }
             selected = arrayUnique(selected);
-            state.push([seriesGroup.path, selected]);
+            state.seriesGroups.push([seriesGroup.path, selected]);
           });
           return state;
         },
@@ -2927,6 +2933,7 @@ triaging functionality in the chart.
           this.async(() => {
             this.set('selectedRelatedTab',
                 this.relatedTabs[this.selectedRelatedTabIndex].sparklines);
+            this.fireChartStateChangedEvent(this.seriesGroupList);
           });
         },
       });
