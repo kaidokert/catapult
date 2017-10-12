@@ -16,6 +16,24 @@
       "revId": "f5cd07b220ab0a660b0277c86f867d418ad3249a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4ffb7b3_96e37b83",
+        "filename": "devil/docs/persistent_device_list.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2017-10-12T15:44:54Z",
+      "side": 0,
+      "message": "Yeah, I think Ben moved it in https://codereview.chromium.org/2122313002.",
+      "parentUuid": "f028fc03_f8399d22",
+      "revId": "f5cd07b220ab0a660b0277c86f867d418ad3249a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
