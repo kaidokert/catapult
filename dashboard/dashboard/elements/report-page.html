@@ -178,24 +178,37 @@ found in the LICENSE file.
         const legacyChartStates = pageState.charts;
         const chartStates = [];
 
-        for (const legacyChartState of legacyChartStates) {
-          const elements = [];
-          for (const legacyElement of legacyChartState) {
-            const element = d.SeriesGroup.fromLegacyChartStateElement(
+        for (const chartStateDict of legacyChartStates) {
+          const seriesGroupDicts = chartStateDict instanceof Array ?
+            chartStateDict : chartStateDict.seriesGroups;
+          const chartState = {seriesGroups: []};
+          for (const legacyElement of seriesGroupDicts) {
+            const seriesGroupPromise = d.SeriesGroup.fromLegacyChartStateElement(
                 legacyElement);
-            elements.push(element);
-            element.then(seriesGroup => {
+            chartState.seriesGroups.push(seriesGroupPromise);
+            seriesGroupPromise.then(seriesGroup => {
               if (seriesGroup.anyMissing) {
                 this.$.loading_error.style.display = 'block';
               }
             });
           }
-          chartStates.push(Promise.all(elements));
+          if (!(chartStateDict instanceof Array)) {
+            chartState.selectedRelatedTab = chartStateDict.selectedRelatedTab;
+          }
+          chartStates.push(chartState);
         }
 
         Promise.all(chartStates).then(states => {
           for (const state of states) {
-            this.addChart(state, false);
+            const chart = this.addChart(state.seriesGroups, false);
+            if (state.selectedRelatedTab) {
+              for (let i = 0; i < chart.relatedTabs.length; ++i) {
+                if (chart.relatedTabs[i].name === state.selectedRelatedTab) {
+                  chart.selectedRelatedTabIndex = i;
+                  break;
+                }
+              }
+            }
           }
         });
       },
@@ -217,6 +230,7 @@ found in the LICENSE file.
        * Adds a chart.
        * @param {Array.<d.SeriesGroup>} seriesGroups A list of SeriesGroups.
        * @param {boolean} isPrepend True for prepend, false for append.
+       * @return {chart-container}
        */
       addChart(seriesGroups, isPrepend) {
         // TODO(sullivan): This should be done with a polymer template, not
@@ -246,6 +260,7 @@ found in the LICENSE file.
           chart.addSeriesGroup2(seriesGroup, true);
         }
         this.testPicker.hasChart = true;
+        return chart;
       },
 
       /**
