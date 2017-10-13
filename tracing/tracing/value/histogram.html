@@ -68,57 +68,100 @@ tr.exportTo('tr.v', function() {
     return parseFloat(s[0] + '.' + s.substr(1).replace(/_/g, ''));
   }
 
+  class Sample {
+    constructor(value, diagnostics) {
+      if (diagnostics.get('value')) {
+        throw new Error('Sample diagnostics cannot be named "value"');
+      }
+      diagnostics.set('value', value);
+      this.data_ = diagnostics;
+    }
+
+    get data() {
+      return this.data_;
+    }
+
+    asDict() {
+      const dict = {};
+      for (const [key, value] of this.data) {
+        if (key === 'value') {
+          dict.value = value;
+        } else {
+          dict[key] = value.asDict();
+        }
+      }
+      return dict;
+    }
+
+    static fromDict(dict) {
+      const value = dict.value;
+      delete dict.value;
+      return new Sample(value, tr.v.d.DiagnosticMap.fromDict(dict));
+    }
+  }
+
   class HistogramBin {
     /**
      * @param {!tr.b.math.Range} range
      */
     constructor(range) {
-      this.range = range;
-      this.count = 0;
-      this.diagnosticMaps = [];
+      this.range_ = range;
+      this.count_ = 0;
+      this.samples_ = [];
+    }
+
+    get range() {
+      return this.range_;
+    }
+
+    get count() {
+      return this.count_;
+    }
+
+    get samples() {
+      return this.samples_;
     }
 
     /**
-     * @param {*} value
+     * @param {!Sample} sample
      */
-    addSample(value) {
-      this.count += 1;
-    }
-
-    /**
-     * @param {!tr.v.d.DiagnosticMap} diagnostics
-     */
-    addDiagnosticMap(diagnostics) {
-      tr.b.math.Statistics.uniformlySampleStream(
-          this.diagnosticMaps, this.count, diagnostics, MAX_DIAGNOSTIC_MAPS);
+    addSample(sample) {
+      this.count_ += 1;
+      this.samples_.push(sample);
     }
 
     addBin(other) {
       if (!this.range.equals(other.range)) {
         throw new Error('Merging incompatible Histogram bins.');
       }
-      tr.b.math.Statistics.mergeSampledStreams(this.diagnosticMaps, this.count,
-          other.diagnosticMaps, other.count, MAX_DIAGNOSTIC_MAPS);
-      this.count += other.count;
+      this.count_ += other.count;
+      this.samples_.push.apply(this.samples_, other.samples);
     }
 
     fromDict(dict) {
       this.count = dict[0];
       if (dict.length > 1) {
-        for (const map of dict[1]) {
-          this.diagnosticMaps.push(tr.v.d.DiagnosticMap.fromDict(map));
+        for (const sampleDict of dict[1]) {
+          this.samples_.push(Sample.fromDict(sampleDict));
         }
       }
     }
 
     asDict() {
-      if (!this.diagnosticMaps.length) {
+      if (!this.samples.length) {
         return [this.count];
       }
+
+      // It's usually probably ok to retain all Samples in memory while building
+      // the Histogram or merging Histograms, but the number of Samples must be
+      // limited when serializing Histograms.
+      const sampleSample = this.samples.map(s => s);
+      tr.b.Statistics.uniformlySampleArray(sampleSample, MAX_DIAGNOSTIC_MAPS);
+
       // It's more efficient to serialize these 2 fields in an array. If you
       // add any other fields, you should re-evaluate whether it would be more
       // efficient to serialize as a dict.
-      return [this.count, this.diagnosticMaps.map(d => d.asDict())];
+      return [this.count, sampleSample.map(s => s.asDict())];
     }
   }
 
@@ -175,7 +218,7 @@ tr.exportTo('tr.v', function() {
       this.diagnostics_ = new tr.v.d.DiagnosticMap(allowReservedNames);
       this.maxNumSampleValues_ = this.defaultMaxNumSampleValues_;
       this.name_ = name;
-      this.nanDiagnosticMaps = [];
+      this.nanDiagnosticMaps_ = [];
       this.numNans = 0;
       this.running_ = undefined;
       this.sampleValues_ = [];
@@ -456,17 +499,19 @@ tr.exportTo('tr.v', function() {
      * @param {(!Object|!tr.v.d.DiagnosticMap)=} opt_diagnostics
      */
     addSample(value, opt_diagnostics) {
-      if (opt_diagnostics &&
-          !(opt_diagnostics instanceof tr.v.d.DiagnosticMap)) {
+      if (opt_diagnostics === undefined) {
+        opt_diagnostics = new tr.v.d.DiagnosticMap();
+      }
+      if (!(opt_diagnostics instanceof tr.v.d.DiagnosticMap)) {
         opt_diagnostics = tr.v.d.DiagnosticMap.fromObject(opt_diagnostics);
       }
+      const sample = new Sample(value, opt_diagnostics);
 
       if (typeof(value) !== 'number' || isNaN(value)) {
-        this.numNans++;
-        if (opt_diagnostics) {
-          tr.b.math.Statistics.uniformlySampleStream(this.nanDiagnosticMaps,
-              this.numNans, opt_diagnostics, MAX_DIAGNOSTIC_MAPS);
+        if (this.nanBin.count === 0) {
+          this.nanBin = new HistogramBin(undefined);
         }
+        this.nanBin.addSample(sample);
       } else {
         if (this.running_ === undefined) {
           this.running_ = new tr.b.math.RunningStatistics();
@@ -548,8 +593,8 @@ tr.exportTo('tr.v', function() {
         throw new Error('Merging incompatible Histograms');
       }
 
-      tr.b.math.Statistics.mergeSampledStreams(this.nanDiagnosticMaps,
-          this.numNans, other.nanDiagnosticMaps, other.numNans,
+      tr.b.math.Statistics.mergeSampledStreams(this.nanDiagnosticMaps_,
+          this.numNans, other.nanDiagnosticMaps_, other.numNans,
           MAX_DIAGNOSTIC_MAPS);
       tr.b.math.Statistics.mergeSampledStreams(
           this.sampleValues, this.numValues + this.numNans,
@@ -910,8 +955,8 @@ tr.exportTo('tr.v', function() {
       if (this.numNans) {
         dict.numNans = this.numNans;
       }
-      if (this.nanDiagnosticMaps.length) {
-        dict.nanDiagnostics = this.nanDiagnosticMaps.map(
+      if (this.nanDiagnosticMaps_.length) {
+        dict.nanDiagnostics = this.nanDiagnosticMaps_.map(
             dm => dm.asDict());
       }
 
