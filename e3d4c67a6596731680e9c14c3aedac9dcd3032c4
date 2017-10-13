@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ba78349_82905963",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2017-10-13T18:10:47Z",
+      "side": 1,
+      "message": "This referential comment is likely to rot since the other comment may be changed. I also find it a bit confusing (in what way is it similar? I think someone reading this in a couple years might not understand it) I would prefer this to be explicit: \n\n// This is OK because BufferingHaveEnough could be triggered by non-seek related events\n// e.g. initial loading of media.\n\nOr something like that.",
+      "range": {
+        "startLine": 205,
+        "startChar": 13,
+        "endLine": 205,
+        "endChar": 65
+      },
+      "revId": "e3d4c67a6596731680e9c14c3aedac9dcd3032c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
