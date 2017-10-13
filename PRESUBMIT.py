@@ -41,6 +41,7 @@ _EXCLUDED_PATHS = (
     r'^tracing[\\/]third_party[\\/].*',
     r'^py_vulcanize[\\/]third_party[\\/].*',
     r'^common/py_vulcanize[\\/].*', # TODO(hjd): Remove after fixing long lines.
+    r'^tracing[\\/]tracing_build[\\/]vulcanized_histograms_viewer.html$',
 )
 
 

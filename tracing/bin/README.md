@@ -36,6 +36,8 @@ Quick descriptions of the scripts in tracing/bin/:
    `tracing/tracing/value/diagnostics/` are registered correctly.
  * `validate_all_metrics`: Checks that all metric functions in
    `tracing/tracing/metrics/` are registered correctly.
+ * `vulcanize_histograms_viewer`: Writes `vulcanized_histograms_viewer.html` to
+   be used by `histograms2html`.
  * `vulcanize_trace_viewer`: Vulcanizes trace viewer. (TODO(benjhayden): What is
    the difference between this and `generate_about_tracing_contents`?)
  * `why_imported`: Explain why given modules are imported in trace viewer.
