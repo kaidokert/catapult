@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "efd8157d_c77170b2",
+        "filename": "tracing/tracing/value/histogram_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-13T12:57:49Z",
+      "side": 1,
+      "message": "Testing coverage seems a little sparse, beef it up?",
+      "range": {
+        "startLine": 658,
+        "startChar": 6,
+        "endLine": 658,
+        "endChar": 28
+      },
+      "revId": "6c9a1026146c94ba6002234aa6b96e5de2f1058b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
