@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1bd5adbc_746c7f6b",
+        "filename": "dashboard/dashboard/elements/chart-container.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-13T19:08:51Z",
+      "side": 1,
+      "message": "Why is this needed, and only by onSelectedRelatedTabIndexChange_?",
+      "range": {
+        "startLine": 663,
+        "startChar": 15,
+        "endLine": 663,
+        "endChar": 44
+      },
+      "revId": "5281f94c6f93efef204b16b9439eec1f1fbf342f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80055ca9_bd37c6ba",
+        "filename": "dashboard/dashboard/elements/chart-container.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 2891,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-13T19:08:51Z",
+      "side": 1,
+      "message": "What is this for and why is it being called from populateTestPicker_",
+      "range": {
+        "startLine": 2891,
+        "startChar": 15,
+        "endLine": 2891,
+        "endChar": 39
+      },
+      "revId": "5281f94c6f93efef204b16b9439eec1f1fbf342f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88311ebd_49c64ae9",
+        "filename": "dashboard/dashboard/elements/report-page.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-13T19:08:51Z",
+      "side": 1,
+      "message": "So first impressions of this cl is that I\u0027m finding it incredibly difficult to follow what\u0027s happening here. Don\u0027t really feel comfortable with how relatedTabs are exposed and manipulated externally by report-page as part of loading. Bunch of questions around the internals of chart-container, why that ignoreChartStateChangedEvent_ is needed sometimes, why the relatedTabsPromise is resolved by populateTestPicker, etc.\n\nTo start I\u0027d suggest doing what we discussed offline, move a lot of this loading logic into chart-container as some sort of createChart/build function that just takes all the params (seriesGroups + related tab info).",
+      "range": {
+        "startLine": 185,
+        "startChar": 22,
+        "endLine": 185,
+        "endChar": 40
+      },
+      "revId": "5281f94c6f93efef204b16b9439eec1f1fbf342f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
