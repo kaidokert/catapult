@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "010ab77d_45c3924d",
+        "filename": "dashboard/dashboard/elements/chart-container.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-13T21:17:14Z",
+      "side": 1,
+      "message": "Added comment. Briefly, this flag prevents infinite recursion onSelectedRelatedTabIndexChange_ -\u003e onChartStateChanged_ -\u003e onSelectedRelatedTabIndexChange_.",
+      "parentUuid": "1bd5adbc_746c7f6b",
+      "range": {
+        "startLine": 663,
+        "startChar": 15,
+        "endLine": 663,
+        "endChar": 44
+      },
+      "revId": "5281f94c6f93efef204b16b9439eec1f1fbf342f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "80055ca9_bd37c6ba",
         "filename": "dashboard/dashboard/elements/chart-container.html",
         "patchSetId": 8
@@ -36,6 +60,30 @@
       "writtenOn": "2017-10-13T19:08:51Z",
       "side": 1,
       "message": "What is this for and why is it being called from populateTestPicker_",
+      "range": {
+        "startLine": 2891,
+        "startChar": 15,
+        "endLine": 2891,
+        "endChar": 39
+      },
+      "revId": "5281f94c6f93efef204b16b9439eec1f1fbf342f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab1500d9_5198d008",
+        "filename": "dashboard/dashboard/elements/chart-container.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 2891,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-13T21:17:14Z",
+      "side": 1,
+      "message": "This allows build() to restore selectedRelatedTab from state, which can only happen after the relatedTabs have been built.\nAlternatively, instead of using a Promise to notify build() when relatedTabs are ready, chart-container could store the selectedRelatedTab name, and use it here to set the selectedRelatedTabIndex, but that would spread out the logic that belongs in build().\n\nThis is not in populateTestPicker_, this is in buildRelatedTabs_().",
+      "parentUuid": "80055ca9_bd37c6ba",
       "range": {
         "startLine": 2891,
         "startChar": 15,
@@ -68,6 +116,30 @@
       "revId": "5281f94c6f93efef204b16b9439eec1f1fbf342f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47187719_70b0a4d7",
+        "filename": "dashboard/dashboard/elements/report-page.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-13T21:17:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88311ebd_49c64ae9",
+      "range": {
+        "startLine": 185,
+        "startChar": 22,
+        "endLine": 185,
+        "endChar": 40
+      },
+      "revId": "5281f94c6f93efef204b16b9439eec1f1fbf342f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
