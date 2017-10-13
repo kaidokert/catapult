@@ -59,7 +59,7 @@ found in the LICENSE file.
           <input type="checkbox" id="merge_sample_diagnostics" checked on-change="updateDiagnostics_">
           <label for="merge_sample_diagnostics">Merge Sample Diagnostics</label>
         </div>
-        <tr-v-ui-diagnostic-map-table id="sample_diagnostics"></tr-v-ui-diagnostic-map-table>
+        <tr-v-ui-sample-table id="samples"></tr-v-ui-sample-table>
       </div>
     </div>
   </template>
@@ -348,10 +348,10 @@ tr.exportTo('tr.v.ui', function() {
     },
 
     updateDiagnostics_() {
-      let maps = [];
+      let samples = [];
       for (const bin of this.brushedBins) {
-        for (const map of bin.diagnosticMaps) {
-          maps.push(map);
+        for (const sample of bin.samples) {
+          samples.push(sample);
         }
       }
 
@@ -362,17 +362,17 @@ tr.exportTo('tr.v.ui', function() {
       }
 
       if (this.viewState.mergeSampleDiagnostics) {
-        const merged = new tr.v.d.DiagnosticMap();
-        for (const map of maps) {
-          merged.addDiagnostics(map);
+        const merged = new tr.v.Sample(0, new tr.v.d.DiagnosticMap());
+        for (const sample of samples) {
+          merged.addSample(sample);
         }
-        maps = [merged];
+        samples = [merged];
       }
 
       const mark = tr.b.Timing.mark('histogram-span',
           (this.viewState.mergeSampleDiagnostics ? 'merge' : 'split') +
            'SampleDiagnostics');
-      this.$.sample_diagnostics.diagnosticMaps = maps;
+      this.$.samples.build(samples, this.histogram);
       mark.end();
 
       if (this.anySampleDiagnostics_) {
@@ -389,11 +389,11 @@ tr.exportTo('tr.v.ui', function() {
       if (histogram === this.histogram_) return;
       this.histogram_ = histogram;
       this.$.metric_diagnostics.histogram = histogram;
-      this.$.sample_diagnostics.histogram = histogram;
+      this.$.samples.histogram = histogram;
 
       this.anySampleDiagnostics_ = false;
       for (const bin of this.histogram.allBins) {
-        if (bin.diagnosticMaps.length > 0) {
+        if (bin.samples.length > 0) {
           this.anySampleDiagnostics_ = true;
           break;
         }
