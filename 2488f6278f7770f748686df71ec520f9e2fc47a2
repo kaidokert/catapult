@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7516480d_4f5cd362",
+        "filename": "tracing/tracing/value/ui/histogram_set_controls.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-13T13:18:00Z",
+      "side": 1,
+      "message": "nit: The X is larger and not really aligned with the text, I find it a bit distracting.",
+      "range": {
+        "startLine": 129,
+        "startChar": 9,
+        "endLine": 129,
+        "endChar": 12
+      },
+      "revId": "2488f6278f7770f748686df71ec520f9e2fc47a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48494940_bcf46946",
+        "filename": "tracing/tracing/value/ui/histogram_set_controls.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-13T13:18:00Z",
+      "side": 1,
+      "message": "Are these changes related?",
+      "range": {
+        "startLine": 141,
+        "startChar": 9,
+        "endLine": 141,
+        "endChar": 14
+      },
+      "revId": "2488f6278f7770f748686df71ec520f9e2fc47a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
