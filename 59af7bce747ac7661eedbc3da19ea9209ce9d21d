@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "146aa44e_9eb63d5a",
+        "filename": "third_party/snap-it/HTMLSerializer.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-10-14T09:45:32Z",
+      "side": 1,
+      "message": "Should we also handle the possible case of \"#\"?\n\nfoo/bar.png#top",
+      "revId": "59af7bce747ac7661eedbc3da19ea9209ce9d21d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
