@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fe310b71_e06928db",
+        "filename": "tracing/tracing/value/ui/histogram_set_controls.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-14T07:16:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7516480d_4f5cd362",
+      "range": {
+        "startLine": 129,
+        "startChar": 9,
+        "endLine": 129,
+        "endChar": 12
+      },
+      "revId": "2488f6278f7770f748686df71ec520f9e2fc47a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "48494940_bcf46946",
         "filename": "tracing/tracing/value/ui/histogram_set_controls.html",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2017-10-13T13:18:00Z",
       "side": 1,
       "message": "Are these changes related?",
+      "range": {
+        "startLine": 141,
+        "startChar": 9,
+        "endLine": 141,
+        "endChar": 14
+      },
+      "revId": "2488f6278f7770f748686df71ec520f9e2fc47a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d412e37_184a982d",
+        "filename": "tracing/tracing/value/ui/histogram_set_controls.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-14T07:16:43Z",
+      "side": 1,
+      "message": "While styling the clear_search svg, I tried to set the title attribute in the svg tag to display a tooltip on hover, and it didn\u0027t work. When I figured out how to use the title element, I thought I might as well add them to the other svgs in this file. I can split them to another CL if you want, but I kind of have a lot of CLs in flight already.",
+      "parentUuid": "48494940_bcf46946",
       "range": {
         "startLine": 141,
         "startChar": 9,
