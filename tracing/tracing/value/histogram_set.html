@@ -150,26 +150,11 @@ tr.exportTo('tr.v', function() {
     }
 
     resolveRelatedHistograms() {
-      const handleDiagnosticMap = dm => {
-        for (const [name, diagnostic] of dm) {
-          if (diagnostic instanceof tr.v.d.RelatedHistogramMap) {
-            diagnostic.resolve(this);
-          }
-        }
-      };
-
       for (const hist of this) {
         hist.diagnostics.resolveSharedDiagnostics(this);
-
-        handleDiagnosticMap(hist.diagnostics);
-
-        for (const dm of hist.nanDiagnosticMaps) {
-          handleDiagnosticMap(dm);
-        }
-
-        for (const bin of hist.allBins) {
-          for (const dm of bin.diagnosticMaps) {
-            handleDiagnosticMap(dm);
+        for (const [name, diagnostic] of hist.diagnostics) {
+          if (diagnostic instanceof tr.v.d.RelatedHistogramMap) {
+            diagnostic.resolve(this);
           }
         }
       }
@@ -236,27 +221,14 @@ tr.exportTo('tr.v', function() {
 
       // TODO(#3761) Remove the rest of this function with RelatedHistogramMap.
 
-      // If a Histogram is in a RelatedHistogramMap,
-      // which can be owned either by Histograms or by numeric samples, then it
-      // is not a source Histogram.
-      function deleteSourceHistograms(diagnosticMap) {
-        for (const [name, diagnostic] of diagnosticMap) {
+      // If a Histogram is in a RelatedHistogramMap, then it is not a source
+      // Histogram.
+      for (const hist of this) {
+        for (const [name, diagnostic] of hist.diagnostics) {
           if (diagnostic instanceof tr.v.d.RelatedHistogramMap) {
             for (const [name, relatedHist] of diagnostic) {
               sourceHistograms.delete(relatedHist.guid);
             }
-          }
-        }
-      }
-
-      for (const hist of this) {
-        deleteSourceHistograms(hist.diagnostics);
-        for (const dm of hist.nanDiagnosticMaps) {
-          deleteSourceHistograms(dm);
-        }
-        for (const b of hist.allBins) {
-          for (const dm of b.diagnosticMaps) {
-            deleteSourceHistograms(dm);
           }
         }
       }
