@@ -22,6 +22,40 @@
       "revId": "597777596cd98d1fd7c4b3ad903703f91699e671",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6d76ba1_3084fdb7",
+        "filename": "dashboard/dashboard/elements/test-picker.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-14T06:35:51Z",
+      "side": 1,
+      "message": "I removed this because natorion wants to be able to change early components without needing to re-select later components. https://github.com/catapult-project/catapult/issues/3965#issuecomment-336371433",
+      "revId": "597777596cd98d1fd7c4b3ad903703f91699e671",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77b06e0c_ae2bb3c8",
+        "filename": "dashboard/dashboard/elements/test-picker.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-14T06:35:51Z",
+      "side": 1,
+      "message": "I backed out the changes to test-picker and added a console.trace to debug.\n\nFirst, it should be noted that the test-picker works completely fine from the user\u0027s point of view without this added `if (menu.selectedItem)`, but prints a TypeError to the console. That suggests that test-picker is sometimes trying to do something that it doesn\u0027t strictly need to do.\n\nWhen autocomplete-box.onQueryChanged_ sets selectedItem, polymer calls the observer selectedItemChanged, which fires the \u0027dropdownselect\u0027 event (containing the index of the autocomplete-box in the test-picker as event.model.index) up to test-picker\u0027s onDropdownSelect listener, which calls updateSubtestMenus, which calls getCurrentSelectedPathUpTo (this method).\nBasically, test-picker assumes that the \u0027dropdownselect\u0027 event implies that the indicated autocomplete-box\u0027s selectedItem is defined, because the dropdown menu never contains undefined.\nThe confusion seems to be rooted in how the \"selectedItemChanged\" message (which happens whenever the selectedItem changes, even if it is programmatically changed to undefined) fires a \"dropdownselect\" event, which implies that the user selected a definite item from the menu.\n\nPerhaps test-picker should bail out of that call-chain (onDropdownSelect -\u003e updateSubtestMenus -\u003e getCurrentSelectedPathUpTo) at some point before getCurrentSelectedPathUpTo is called.\nI changed onDropdownSelect to not call updateSubtestMenus if the changed menu does not have a selectedItem, and that fixed the TypeErrors when clearing autocomplete-boxes after the zeroth, but I still saw a TypeError at `const suite \u003d this.getSelectionMenu(0).selectedItem.name;` when I cleared the zeroth autocomplete-box, so I added that guard back in.",
+      "revId": "597777596cd98d1fd7c4b3ad903703f91699e671",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
