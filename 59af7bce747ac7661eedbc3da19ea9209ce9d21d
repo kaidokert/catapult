@@ -16,6 +16,24 @@
       "revId": "59af7bce747ac7661eedbc3da19ea9209ce9d21d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54d5dbe0_ae44cab3",
+        "filename": "third_party/snap-it/HTMLSerializer.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1128438
+      },
+      "writtenOn": "2017-10-15T03:14:34Z",
+      "side": 1,
+      "message": "I thought about it but while \u0027?\u0027 is something we\u0027d expect to see (and I did, in testing, on Amazon for example) in some image urls, \u0027#\u0027 shouldn\u0027t really be there since it serves no real purpose since the server never sees it. So then it\u0027s basically a garbage char, and we\u0027re not doing comprehensive cleanup/validation of the name to ensure it\u0027s comprised only of valid url chars and not too long and such anyway. So, I thought it ok to punt on # but am open to being more comprehensive now if you think warranted.",
+      "parentUuid": "146aa44e_9eb63d5a",
+      "revId": "59af7bce747ac7661eedbc3da19ea9209ce9d21d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
