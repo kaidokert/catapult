@@ -160,20 +160,21 @@ class HistogramUnittest(unittest.TestCase):
 
     hist.AddSample(100)
     d = hist.AsDict()
-    self.assertEqual(198, len(ToJSON(d)))
+    print ToJSON(d)
+    self.assertEqual(185, len(ToJSON(d)))
     self.assertIsInstance(d['allBins'], dict)
     self.assertDeepEqual(d, histogram.Histogram.FromDict(d).AsDict())
 
     hist.AddSample(100)
     d = hist.AsDict()
-    # SAMPLE_VALUES grew by "100,"
-    self.assertEqual(202, len(ToJSON(d)))
+    # HistogramBin.samples grew by "[100],"
+    self.assertEqual(191, len(ToJSON(d)))
     self.assertIsInstance(d['allBins'], dict)
     self.assertDeepEqual(d, histogram.Histogram.FromDict(d).AsDict())
 
     hist.AddSample(271, {'foo': histogram.GenericSet(['bar'])})
     d = hist.AsDict()
-    self.assertEqual(268, len(ToJSON(d)))
+    self.assertEqual(259, len(ToJSON(d)))
     self.assertIsInstance(d['allBins'], dict)
     self.assertDeepEqual(d, histogram.Histogram.FromDict(d).AsDict())
 
@@ -182,17 +183,7 @@ class HistogramUnittest(unittest.TestCase):
     for i in xrange(10, 100):
       hist.AddSample(10 * i)
     d = hist.AsDict()
-    self.assertEqual(697, len(ToJSON(d)))
-    self.assertIsInstance(d['allBins'], list)
-    self.assertDeepEqual(d, histogram.Histogram.FromDict(d).AsDict())
-
-    # Lowering maxNumSampleValues takes a random sub-sample of the existing
-    # sampleValues. We have deliberately set all samples to 3-digit numbers so
-    # that the serialized size is constant regardless of which samples are
-    # retained.
-    hist.max_num_sample_values = 10
-    d = hist.AsDict()
-    self.assertEqual(389, len(ToJSON(d)))
+    self.assertEqual(882, len(ToJSON(d)))
     self.assertIsInstance(d['allBins'], list)
     self.assertDeepEqual(d, histogram.Histogram.FromDict(d).AsDict())
 
@@ -220,7 +211,7 @@ class HistogramUnittest(unittest.TestCase):
     hist = histogram.Histogram('', 'unitless', self.TEST_BOUNDARIES)
     hist.AddSample(None)
     hist.AddSample(float('nan'))
-    self.assertEqual(hist.num_nans, 2)
+    self.assertEqual(hist.nan_bin.count, 2)
 
   def testAddHistogramValid(self):
     hist0 = histogram.Histogram('', 'unitless', self.TEST_BOUNDARIES)
@@ -230,7 +221,7 @@ class HistogramUnittest(unittest.TestCase):
     hist1.AddSample(1)
     hist1.AddSample(float('nan'))
     hist0.AddHistogram(hist1)
-    self.assertEqual(hist0.num_nans, 2)
+    self.assertEqual(hist0.nan_bin.count, 2)
     self.assertEqual(hist0.GetBinForValue(0).count, 2)
 
   def testAddHistogramInvalid(self):
@@ -473,8 +464,6 @@ class HistogramUnittest(unittest.TestCase):
   def testSampleValues(self):
     hist0 = histogram.Histogram('', 'unitless', self.TEST_BOUNDARIES)
     hist1 = histogram.Histogram('', 'unitless', self.TEST_BOUNDARIES)
-    self.assertEqual(hist0.max_num_sample_values, 120)
-    self.assertEqual(hist1.max_num_sample_values, 120)
     values0 = []
     values1 = []
     for i in xrange(10):
@@ -488,16 +477,6 @@ class HistogramUnittest(unittest.TestCase):
     self.assertDeepEqual(hist0.sample_values, values0 + values1)
     hist2 = hist0.Clone()
     self.assertDeepEqual(hist2.sample_values, values0 + values1)
-
-    for i in xrange(200):
-      hist0.AddSample(i)
-    self.assertEqual(len(hist0.sample_values), hist0.max_num_sample_values)
-
-    hist3 = histogram.Histogram('', 'unitless', self.TEST_BOUNDARIES)
-    hist3.max_num_sample_values = 10
-    for i in xrange(100):
-      hist3.AddSample(i)
-    self.assertEqual(len(hist3.sample_values), 10)
 
   def testSingularBin(self):
     hist = histogram.Histogram(
@@ -596,21 +575,19 @@ class TagMapUnittest(unittest.TestCase):
             'android': ['story3', 'story4', 'story5']
         }})
 
-    self.assertFalse(t0.CanAddDiagnostic(
-        histogram.GenericSet([]), None, None, None))
-    self.assertTrue(t0.CanAddDiagnostic(t1, None, None, None))
+    self.assertFalse(t0.CanAddDiagnostic(histogram.GenericSet([])))
+    self.assertTrue(t0.CanAddDiagnostic(t1))
 
     m0 = diagnostic.Diagnostic.FromDict(t0.AsDict())
 
     self.assertTrue(isinstance(m0, histogram.TagMap))
-    self.assertFalse(
-        m0.CanAddDiagnostic(histogram.GenericSet([]), None, None, None))
-    self.assertTrue(m0.CanAddDiagnostic(t1, None, None, None))
+    self.assertFalse(m0.CanAddDiagnostic(histogram.GenericSet([])))
+    self.assertTrue(m0.CanAddDiagnostic(t1))
 
-    m0.AddDiagnostic(t1, None, None, None)
+    m0.AddDiagnostic(t1)
 
     m1 = diagnostic.Diagnostic.FromDict(t1.AsDict())
-    m1.AddDiagnostic(t0, None, None, None)
+    m1.AddDiagnostic(t0)
 
     self.assertDictEqual(m0.AsDict(), m1.AsDict())
 
@@ -865,13 +842,13 @@ class DiagnosticMapUnittest(unittest.TestCase):
     # DiagnosticMap.
     hist2 = histogram.Histogram('', 'count')
     hist2.diagnostics['a'] = generic
-    hist.diagnostics.Merge(hist2.diagnostics, hist, hist2)
+    hist.diagnostics.AddDiagnostics(hist2.diagnostics)
     self.assertIs(generic, hist.diagnostics['a'])
 
     # Separate keys are not merged.
     hist3 = histogram.Histogram('', 'count')
     hist3.diagnostics['b'] = generic2
-    hist.diagnostics.Merge(hist3.diagnostics, hist, hist3)
+    hist.diagnostics.AddDiagnostics(hist3.diagnostics)
     self.assertIs(generic, hist.diagnostics['a'])
     self.assertIs(generic2, hist.diagnostics['b'])
 
@@ -879,7 +856,7 @@ class DiagnosticMapUnittest(unittest.TestCase):
     # UnmergeableDiagnosticSet.
     hist4 = histogram.Histogram('', 'count')
     hist4.diagnostics['a'] = related_map
-    hist.diagnostics.Merge(hist4.diagnostics, hist, hist4)
+    hist.diagnostics.AddDiagnostics(hist4.diagnostics)
     self.assertIsInstance(
         hist.diagnostics['a'], histogram.UnmergeableDiagnosticSet)
     diagnostics = list(hist.diagnostics['a'])
@@ -890,7 +867,7 @@ class DiagnosticMapUnittest(unittest.TestCase):
     hist5 = histogram.Histogram('', 'count')
     hist5.diagnostics['a'] = histogram.UnmergeableDiagnosticSet(
         [events, generic2])
-    hist.diagnostics.Merge(hist5.diagnostics, hist, hist5)
+    hist.diagnostics.AddDiagnostics(hist5.diagnostics)
     self.assertIsInstance(
         hist.diagnostics['a'], histogram.UnmergeableDiagnosticSet)
     diagnostics = list(hist.diagnostics['a'])
