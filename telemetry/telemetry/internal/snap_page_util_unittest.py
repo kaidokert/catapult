@@ -25,7 +25,7 @@ class SnapPageTest(unittest.TestCase):
 
   def _SnapWithDummyValuesExceptPath(self, snapshot_path):
     snap_page_util.SnapPage(
-        self.finder_options, 'url', interactive=False,
+        self.finder_options, 'url', interactive=False, verbose=False,
         snapshot_path=snapshot_path, enable_browser_log=False)
 
   def testSnappingToInvalidSnapshotPath(self):
@@ -46,7 +46,8 @@ class SnapPageTest(unittest.TestCase):
     url = self.platform.http_server.UrlOf(html_file_path)
     outfile = StringIO.StringIO()
     snap_page_util._SnapPageToFile(
-        self.finder_options, url, interactive=False, snapshot_file=outfile,
+        self.finder_options, url, interactive=False, verbose=False,
+        snapshot_path='/tmp/foo', snapshot_file=outfile,
         enable_browser_log=False)
     self.assertIn('id="green"', outfile.getvalue())
 
