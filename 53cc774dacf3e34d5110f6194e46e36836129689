@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "223647ca_48a9783a",
+        "filename": "dashboard/dashboard/elements/chart-container.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-16T20:59:41Z",
+      "side": 1,
+      "message": "Is all that\u0027s involved to get rid of this for addSeriesGroup2 to return the promises from the json requests?",
+      "range": {
+        "startLine": 676,
+        "startChar": 15,
+        "endLine": 676,
+        "endChar": 39
+      },
+      "revId": "53cc774dacf3e34d5110f6194e46e36836129689",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3b1c696_bb1eec2e",
+        "filename": "dashboard/dashboard/elements/report-page.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-16T20:59:41Z",
+      "side": 1,
+      "message": "This is much better than the first version, but think it could be more straightforward. Why not something like:\n\nfor (const chartStateDict of pageState.charts) {\n  this.addChartFromState(chartStateDict);\n}\n\n\nasync addChartFromState(chartStateDict) {\n  const chartState \u003d await this.chartStateFromDict_(chartStateDict);\n\n  this.addChart(chartState, false);\n}\n\nasync chartStateFromDict_(chartStateDict) {\n  ... same internals mostly\n\n  const seriesGroups \u003d await Promise.all(seriesGroupPromises);\n\n  return {\n    selectedRelatedTab: selectedRelatedTab,\n    seriesGroups: seriesGroups\n  };\n}\n\nI find this easier to follow.",
+      "range": {
+        "startLine": 180,
+        "startChar": 37,
+        "endLine": 180,
+        "endChar": 46
+      },
+      "revId": "53cc774dacf3e34d5110f6194e46e36836129689",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
