@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "18836602_d32f39aa",
+        "filename": "telemetry/telemetry/internal/util/external_modules.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-16T14:53:08Z",
+      "side": 1,
+      "message": "This has bitten me a few times in the past. Can you add a logging statement here to signal that the package was not imported?\n\nMaybe:\n\n  logging.warning(\u0027Unable to import %s due to: %s\u0027, module, e)",
+      "revId": "2a90916a7edcdd9e55b40e7a91666f54ee197ed1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
