@@ -34,8 +34,8 @@ tr.b.unittest.testSuite(function() {
     histograms2.importDicts(histograms.asDicts());
     assert.isDefined(histograms2.getHistogramNamed('foo'));
     const v = histograms2.getHistogramNamed('foo');
-    assert.lengthOf(v.getBinForValue(10).diagnosticMaps, 1);
-    const dm = v.getBinForValue(10).diagnosticMaps[0];
+    assert.lengthOf(v.getBinForValue(10).samples, 1);
+    const dm = v.getBinForValue(10).samples[0].diagnostics;
     assert.strictEqual(dm.size, 1);
     assert.instanceOf(dm.get('bar'), tr.v.d.GenericSet);
     assert.strictEqual(tr.b.getOnlyElement(dm.get('bar')), 'baz');
@@ -99,20 +99,6 @@ tr.b.unittest.testSuite(function() {
 
     // Now a real c2 Histogram should be in a2's RelatedHistogramMap.
     assert.strictEqual(rvm2.get('z'), c2);
-  });
-
-  test('sourceHistogramsWithSampleDiagnostic', function() {
-    const unit = tr.b.Unit.byName.unitlessNumber;
-    const aHist = new tr.v.Histogram('a', unit);
-    aHist.addSample(1);
-
-    const bHist = new tr.v.Histogram('b', tr.b.Unit.byName.unitlessNumber);
-    const related = new tr.v.d.RelatedHistogramMap();
-    related.set('0', aHist);
-    bHist.addSample(1, {related});
-
-    const histograms = new tr.v.HistogramSet([aHist, bHist]);
-    assert.strictEqual(tr.b.getOnlyElement(histograms.sourceHistograms), bHist);
   });
 
   test('sourceHistogramsWithNameMap', function() {

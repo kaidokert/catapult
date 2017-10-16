@@ -100,20 +100,20 @@ tr.exportTo('tr.metrics.v8', function() {
           `${runtimeGroup.name}:duration`,
           tr.b.Unit.byName.timeDurationInMs_smallerIsBetter, {
             value: convertMicroToMilli_(runtimeGroup.time),
-            diagnostics: {samples: durationSamples},
           }, {
             binBoundaries: DURATION_CUSTOM_BOUNDARIES,
             summaryOptions: SUMMARY_OPTIONS,
+            diagnostics: {samples: durationSamples},
           });
 
       histograms.createHistogram(
           `${runtimeGroup.name}:count`,
           tr.b.Unit.byName.count_smallerIsBetter, {
             value: runtimeGroup.count,
-            diagnostics: {samples: countSamples},
           }, {
             binBoundaries: COUNT_CUSTOM_BOUNDARIES,
             summaryOptions: SUMMARY_OPTIONS,
+            diagnostics: {samples: countSamples},
           });
     }
 
