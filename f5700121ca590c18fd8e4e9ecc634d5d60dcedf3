@@ -52,6 +52,24 @@
       "revId": "f5700121ca590c18fd8e4e9ecc634d5d60dcedf3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93d5d09d_7cc02bbb",
+        "filename": "telemetry/telemetry/internal/util/external_modules.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1109829
+      },
+      "writtenOn": "2017-10-16T17:52:01Z",
+      "side": 1,
+      "message": "\u003e It\u0027s a known incompatibility. Both numpy 1.12 and cv2 3.x were available a few months ago when I did this work, but I had to specifically use earlier versions of both since they did not work with Catapult.\n\nShoot :(\n\n\u003e I have not looked into any changes to Catapult to make numpy 1.12 or cv2 3.x work. The only work I\u0027ve ever done in Catapult is to set up the binary dependencies, and I don\u0027t know anything about the actual testing code or what might need to be done to make it work.\n\nYeah, me either. I\u0027ve yet to find someone who does, too, so this could be pretty difficult to do.\n\n\u003e Can our already-prebuilt binaries be used (at least on the test bots) inside the VirtualEnv?\n\nNot really. What we\u0027re using now is Ubuntu packages, which only work so long as Ubuntu happens to offer the right version. \"pip\" can use eggs, but those are incompatible with our VirtualEnv deployment system, which requires prebuilt binaries (wheels). This is a hard requirement, since we don\u0027t want to require every target system to have a compatible set of build tools on it.\n\nIt looks like the path of least resistance is to build OpenCV2 wheels for every platform. 64-bit Linux is obviously impacted; any idea what other platforms may OpenCV? I\u0027m thinking:\n\n64-bit Linux, 32-bit Linux, 64-bit Windows, 32-bit Windows, and 64-bit MacOSX",
+      "parentUuid": "2853add3_71343888",
+      "revId": "f5700121ca590c18fd8e4e9ecc634d5d60dcedf3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
