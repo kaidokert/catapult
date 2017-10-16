@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "16a547bd_94ba9c30",
+        "filename": "telemetry/telemetry/internal/util/external_modules.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1172235
+      },
+      "writtenOn": "2017-10-16T16:59:38Z",
+      "side": 1,
+      "message": "When I wrote this patch, both cv2 3.x and numpy 1.12 were incompatible with Catapult. numpy 1.12 just removed a deprecated functionality (indexing arrays with float values) so it\u0027s possible that catapult no longer has this issue. But cv2 3.x is an API breaking release, and IIRC has some pretty huge changes that make it impossible to support both. So I don\u0027t think this is a valid upgrade.",
+      "revId": "f5700121ca590c18fd8e4e9ecc634d5d60dcedf3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
