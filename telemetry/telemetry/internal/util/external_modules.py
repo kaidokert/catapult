@@ -9,8 +9,8 @@ from distutils import version
 # LooseVersion allows versions like "1.8.0rc1" (default numpy on macOS Sierra)
 # and "2.4.13.2" (a version of OpenCV 2.x).
 MODULES = {
-    'cv2': (version.LooseVersion('2.4.8'), version.LooseVersion('3.0.0')),
-    'numpy': (version.LooseVersion('1.8.0'), version.LooseVersion('1.12.0')),
+    'cv2': (version.LooseVersion('2.4.8'), version.LooseVersion('3.2.0')),
+    'numpy': (version.LooseVersion('1.8.0'), version.LooseVersion('1.12.1')),
     'psutil': (version.LooseVersion('0.5.0'), None),
 }
 
