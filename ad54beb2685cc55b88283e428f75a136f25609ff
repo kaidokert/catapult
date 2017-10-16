@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b8732721_3502d21d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2017-10-16T18:17:49Z",
+      "side": 1,
+      "message": "Might be worth explicitly mentioning that this is the same format used to disable a bunch of tests at the same time in chromium using filter files (for example, when bringing up new configurations).",
+      "revId": "ad54beb2685cc55b88283e428f75a136f25609ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
