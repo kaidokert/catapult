@@ -55,25 +55,25 @@ tr.b.unittest.testSuite(function() {
     assert.lengthOf(diagnostic, 2);
     const scriptHist = histograms.getHistogramNamed('foo-script_execute');
     assert.instanceOf(scriptHist, tr.v.Histogram);
-    assert.lengthOf(scriptHist.allBins[2].diagnosticMaps, 1);
+    assert.lengthOf(scriptHist.allBins[2].samples, 1);
     assert.strictEqual(scriptHist, diagnostic.get('script_execute'));
     events = [...events];
-    let relatedEvents = scriptHist.allBins[2].diagnosticMaps[0]
+    let relatedEvents = scriptHist.allBins[2].samples[0].diagnostics
         .get('relatedEvents');
     assert.lengthOf(relatedEvents, 1);
     assert.strictEqual(events[0], [...relatedEvents][0]);
-    assert.lengthOf(scriptHist.allBins[3].diagnosticMaps, 1);
+    assert.lengthOf(scriptHist.allBins[3].samples, 1);
     assert.lengthOf(
-        scriptHist.allBins[3].diagnosticMaps[0]
+        scriptHist.allBins[3].samples[0].diagnostics
             .get('relatedEvents'), 1);
     assert.strictEqual(events[1],
-        [...scriptHist.allBins[3].diagnosticMaps[0]
+        [...scriptHist.allBins[3].samples[0].diagnostics
             .get('relatedEvents')][0]);
 
     const styleHist = histograms.getHistogramNamed('foo-style');
     assert.instanceOf(styleHist, tr.v.Histogram);
-    assert.lengthOf(styleHist.allBins[4].diagnosticMaps, 1);
-    relatedEvents = styleHist.allBins[4].diagnosticMaps[0]
+    assert.lengthOf(styleHist.allBins[4].samples, 1);
+    relatedEvents = styleHist.allBins[4].samples[0].diagnostics
         .get('relatedEvents');
     assert.strictEqual(styleHist, diagnostic.get('style'));
     assert.lengthOf(relatedEvents, 1);
