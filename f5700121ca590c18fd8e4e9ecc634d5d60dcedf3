@@ -34,6 +34,24 @@
       "revId": "f5700121ca590c18fd8e4e9ecc634d5d60dcedf3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2853add3_71343888",
+        "filename": "telemetry/telemetry/internal/util/external_modules.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1172235
+      },
+      "writtenOn": "2017-10-16T17:47:23Z",
+      "side": 1,
+      "message": "It\u0027s a known incompatibility. Both numpy 1.12 and cv2 3.x were available a few months ago when I did this work, but I had to specifically use earlier versions of both since they did not work with Catapult.\n\nI have not looked into any changes to Catapult to make numpy 1.12 or cv2 3.x work. The only work I\u0027ve ever done in Catapult is to set up the binary dependencies, and I don\u0027t know anything about the actual testing code or what might need to be done to make it work.\n\nCan our already-prebuilt binaries be used (at least on the test bots) inside the VirtualEnv?",
+      "parentUuid": "80aee4e2_46598f67",
+      "revId": "f5700121ca590c18fd8e4e9ecc634d5d60dcedf3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
