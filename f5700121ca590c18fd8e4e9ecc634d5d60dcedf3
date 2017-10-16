@@ -16,6 +16,24 @@
       "revId": "f5700121ca590c18fd8e4e9ecc634d5d60dcedf3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80aee4e2_46598f67",
+        "filename": "telemetry/telemetry/internal/util/external_modules.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1109829
+      },
+      "writtenOn": "2017-10-16T17:35:49Z",
+      "side": 1,
+      "message": "\u003e When I wrote this patch, both cv2 3.x and numpy 1.12 were incompatible with Catapult\n\nIs incompatibility known or just suspected? If the latter, can we try and test this?\n\n\u003e numpy 1.12 just removed a deprecated functionality (indexing arrays with float values) so it\u0027s possible that catapult no longer has this issue.\n\nThis sounds like a problem with catapult trying to use float values? But either way, this is the easy problem to solve, since \"numpy\" provides packages for all of their releases.\n\n\u003e But cv2 3.x is an API breaking release, and IIRC has some pretty huge changes that make it impossible to support both.\n\nIs this something you\u0027ve looked into at all? The literature that I have read suggests that some APIs have broken but most have not, and that supporting both can be done (depending on the API). If you haven\u0027t looked into the effort to make code OpenCV3-compatible, is this something you\u0027d be willing to do?\n\nA problem I\u0027ve encountered since is that pre-built OpenCV2 Python wheels don\u0027t seem to actually exist, meaning that we are complete at the mercy of our underlying OS to provide this capability. To use this in a VirtualEnv, we basically have to build these wheels ourselves, and it\u0027d be much less effort on the foundations side to be able to use OpenCV\u0027s prebuilt wheels.",
+      "parentUuid": "16a547bd_94ba9c30",
+      "revId": "f5700121ca590c18fd8e4e9ecc634d5d60dcedf3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
