@@ -81,11 +81,12 @@ tr.exportTo('tr.importer', function() {
     'gpu.WebVR FPS',
     'gpu.WebVR frame time (ms)',
     'gpu.WebVR pose prediction (ms)',
+  ];
+  const VR_EVENT_NAMES = [
     'VrShellGl::AcquireFrame',
     'VrShellGl::DrawFrame',
     'VrShellGl::DrawSubmitFrameWhenReady',
     'VrShellGl::DrawUiView',
-    'VrShellGl::DrawWorldElements',
     'VrShellGl::UpdateController',
   ];
   /* 500 ms is a bit arbitrary, but it reliably avoids all the jank caused by
@@ -824,34 +825,57 @@ tr.exportTo('tr.importer', function() {
           }
         }
       }
+      for (const thread of Object.values(proc.threads)) {
+        for (const container of thread.childEventContainers()) {
+          for (const slice of container.slices) {
+            if (VR_EVENT_NAMES.includes(slice.title)) {
+              events.push(slice);
+            }
+          }
+        }
+      }
     }
 
     if (events.length === 0) {
       return [];
     }
 
-    events.sort((x, y) => x.timestamp - y.timestamp);
+    events.sort(function(x, y) {
+      if (x.range.min !== y.range.min) {
+        return x.range.min - y.range.min;
+      }
+      return x.guid - y.guid;
+    });
 
-    const firstTimestamp = events[0].timestamp;
+    const start = events[0].range.min;
     const responsePE = new ProtoExpectation(ProtoExpectation.RESPONSE_TYPE,
         INITIATOR_TYPE.VR);
     const animationPE = new ProtoExpectation(ProtoExpectation.ANIMATION_TYPE,
         INITIATOR_TYPE.VR);
-    let lastResponseEvent;
+    let lastResponseSample;
 
     for (const event of events) {
       // Categorize the first 500 ms of VR time as entry/response
       // TODO(bsheedy): Make this smarter by basing response duration off trace
       // data instead of a fixed duration
-      if (event.timestamp - firstTimestamp < VR_RESPONSE_MS) {
-        responsePE.pushSample(event);
-        lastResponseEvent = event;
+      if (event.range.min - start < VR_RESPONSE_MS) {
+        if (event instanceof tr.model.CounterSample) {
+          responsePE.pushSample(event);
+          lastResponseSample = event;
+        } else {
+          responsePE.pushEvent(event);
+        }
       } else {
-        animationPE.pushSample(event);
+        if (event instanceof tr.model.CounterSample) {
+          animationPE.pushSample(event);
+        } else {
+          animationPE.pushEvent(event);
+        }
       }
     }
+
     // Make sure that there isn't a gap between the two expectations
-    animationPE.pushSample(lastResponseEvent);
+    animationPE.pushSample(lastResponseSample);
     return [responsePE, animationPE];
   }
 
