@@ -70,6 +70,24 @@
       "revId": "f5700121ca590c18fd8e4e9ecc634d5d60dcedf3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e03e8c73_4a8cadfe",
+        "filename": "telemetry/telemetry/internal/util/external_modules.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1172235
+      },
+      "writtenOn": "2017-10-16T22:29:27Z",
+      "side": 1,
+      "message": "\u003e Not really. What we\u0027re using now is Ubuntu packages, which only work so long as Ubuntu happens to offer the right version. \"pip\" can use eggs, but those are incompatible with our VirtualEnv deployment system, which requires prebuilt binaries (wheels). This is a hard requirement, since we don\u0027t want to require every target system to have a compatible set of build tools on it.\n\nI was just suggesting to try importing it at runtime, into the catapult python process, the same exact way we do it now. If this works with system python now, shouldn\u0027t it work with VirtualEnv python too?\n\nIn any case, if the whole system is switching to VirtualEnv I think it makes more sense to invest time in building these wheels rather than continuing to use the magic runtime download-extract-and-import thing we use now.\n\n\u003e It looks like the path of least resistance is to build OpenCV2 wheels for every platform. 64-bit Linux is obviously impacted; any idea what other platforms may OpenCV? I\u0027m thinking:\n\nThe ones we personally care about are just the configurations on the bots. That list seems reasonable off the top of my head.",
+      "parentUuid": "93d5d09d_7cc02bbb",
+      "revId": "f5700121ca590c18fd8e4e9ecc634d5d60dcedf3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
