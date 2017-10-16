@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a9129dc4_3a7ed5f0",
+        "filename": "tracing/tracing/importer/find_input_expectations.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2017-10-16T23:32:32Z",
+      "side": 1,
+      "message": "I removed DrawWorldElements since it doesn\u0027t exist anymore. I would let DrawUiView in here since it is generated in VR and may be used in the future. What do you think?",
+      "parentUuid": "f4e90908_91985422",
+      "range": {
+        "startLine": 90,
+        "startChar": 16,
+        "endLine": 90,
+        "endChar": 33
+      },
+      "revId": "e1b942f5708b43ec27bcd897badeadb4b97f8745",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "99f198af_7516c190",
         "filename": "tracing/tracing/importer/find_input_expectations.html",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2017-10-16T19:49:30Z",
       "side": 1,
       "message": "Have you checked to make sure that including both VrShell events and WebVR counters in the same user expectation still properly ignores the VR entry jank? From what I remember, the VrShell events start appearing earlier, so the VR Response expectation will be shifted to be earlier.",
+      "range": {
+        "startLine": 829,
+        "startChar": 6,
+        "endLine": 829,
+        "endChar": 57
+      },
+      "revId": "e1b942f5708b43ec27bcd897badeadb4b97f8745",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fbba4051_7bd7c3bb",
+        "filename": "tracing/tracing/importer/find_input_expectations.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 829,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2017-10-16T23:32:32Z",
+      "side": 1,
+      "message": "In my tests it seemed all good. Let me check again.",
+      "parentUuid": "99f198af_7516c190",
       "range": {
         "startLine": 829,
         "startChar": 6,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "29bc4045_139ac6c9",
+        "filename": "tracing/tracing/metrics/vr/frame_cycle_duration_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2017-10-16T23:32:32Z",
+      "side": 1,
+      "message": "I think the WebVR metric also skips user expectations that do not intersect with the range of interest. Do you mean skipping events that are not in the range of interest but in a user expectation that intersects with the range of interest (that\u0027s done below)?\n\nbenjhayden@, is considering only events that are within both the user expectation and the range of interest the correct approach?",
+      "parentUuid": "0a96ce2e_7e6db8e8",
+      "range": {
+        "startLine": 51,
+        "startChar": 6,
+        "endLine": 52,
+        "endChar": 18
+      },
+      "revId": "e1b942f5708b43ec27bcd897badeadb4b97f8745",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "57db1060_3f9e2c1b",
         "filename": "tracing/tracing/metrics/vr/frame_cycle_duration_metric.html",
         "patchSetId": 3
@@ -82,6 +154,30 @@
       "writtenOn": "2017-10-16T19:49:30Z",
       "side": 1,
       "message": "Nit: The Telemetry code in //tools/perf prefers to avoid one-character differences like this. Not sure if that applies here, as well.",
+      "range": {
+        "startLine": 74,
+        "startChar": 13,
+        "endLine": 74,
+        "endChar": 40
+      },
+      "revId": "e1b942f5708b43ec27bcd897badeadb4b97f8745",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3dd2d4d_ade18793",
+        "filename": "tracing/tracing/metrics/vr/frame_cycle_duration_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2017-10-16T23:32:32Z",
+      "side": 1,
+      "message": "Hmmmm, this code I actually didn\u0027t touch in this CL. benjhayden@, what do you think?",
+      "parentUuid": "57db1060_3f9e2c1b",
       "range": {
         "startLine": 74,
         "startChar": 13,
