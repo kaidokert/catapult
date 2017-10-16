@@ -69,6 +69,9 @@ class RunTestsCommand(command_line.OptparseCommand):
                       action='append', help=(
                           'Globs of test names to skip (defaults to '
                           '%(default)s).'))
+    parser.add_option('--skip-file', dest='skip_file', metavar='FILENAME',
+                      action='store', help=('If specified, reads a list of test'
+                                            ' names to skip.'))
 
     typ.ArgumentParser.add_option_group(parser,
                                         "Options for running the tests",
@@ -168,6 +171,11 @@ class RunTestsCommand(command_line.OptparseCommand):
       runner.args.jobs = max(int(args.jobs) // 2, 1)
 
     runner.args.skip = args.skip
+    if args.skip_file:
+      with open(args.skip_file, 'r') as f:
+        for line in f:
+          runner.args.skip.append(line.strip())
+
     runner.args.metadata = args.metadata
     runner.args.passthrough = args.passthrough
     runner.args.path = args.path
