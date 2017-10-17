@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "812b87b0_857c1a74",
+        "filename": "telemetry/telemetry/internal/snap_page_util.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-10-17T10:29:11Z",
+      "side": 1,
+      "message": "style nit: top level blocks are separated by 2 blank lines",
+      "revId": "831c9ef0ff4257b29a8abe5e9140ca25b5d03e10",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1490519_727ad33e",
+        "filename": "telemetry/telemetry/internal/snap_page_util.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-10-17T10:29:11Z",
+      "side": 1,
+      "message": "Rather than having a verbose variable, we can just use logging.info which will only show message if you pass \"-v\"",
+      "revId": "831c9ef0ff4257b29a8abe5e9140ca25b5d03e10",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "beb012f0_bcccafbe",
+        "filename": "telemetry/telemetry/internal/snap_page_util.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-10-17T10:29:11Z",
+      "side": 1,
+      "message": "I thought htmlSerializer is supposed to strip the query param for us already?",
+      "revId": "831c9ef0ff4257b29a8abe5e9140ca25b5d03e10",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47fb5369_28373c1b",
+        "filename": "telemetry/telemetry/internal/snap_page_util.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-10-17T10:29:11Z",
+      "side": 1,
+      "message": "this seems a bit complex, why not just os.path.join(os.path.dirname(snapshot_path), \u0027images\u0027)?",
+      "revId": "831c9ef0ff4257b29a8abe5e9140ca25b5d03e10",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bcf42302_c0886a74",
+        "filename": "telemetry/telemetry/internal/snap_page_util.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-10-17T10:29:11Z",
+      "side": 1,
+      "message": "external_images is no simple data type, so it might be easier to follow if you add comment explaining what this container is supposed to hold.",
+      "revId": "831c9ef0ff4257b29a8abe5e9140ca25b5d03e10",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
