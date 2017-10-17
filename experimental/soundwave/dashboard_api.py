@@ -119,7 +119,19 @@ class PerfDashboardCommunicator(object):
            ],
        'test_path': test_path}
     """
+    # Some test paths contain ? which will cause the dashboard request to fail.
+    if '?' in test_path:
+      test_path = test_path.replace('?', '%3F')
+
     r = 'timeseries/%s' % test_path
     if days:
       r += '?num_days=%d' % days
     return self._MakeApiRequest(r)
+
+  def GetBugData(self, bug):
+    return self._MakeApiRequest('bugs/%s' % bug)
+
+  def GetAlertData(self, benchmark, days=30):
+    """Returns alerts for given benchmark."""
+    return self._MakeApiRequest(
+        'alerts/history/%d?benchmark=%s' % (days, benchmark))
