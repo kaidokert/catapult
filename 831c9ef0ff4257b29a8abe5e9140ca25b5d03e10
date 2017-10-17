@@ -125,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "89c472f2_33cc66cb",
+        "filename": "telemetry/telemetry/internal/snap_page_util.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1128438
+      },
+      "writtenOn": "2017-10-17T19:36:33Z",
+      "side": 1,
+      "message": "I added a comment to note this is done to avoid shipping add\u0027l data around, and referencing where we do same in JS.",
+      "parentUuid": "76065690_571c4c52",
+      "revId": "831c9ef0ff4257b29a8abe5e9140ca25b5d03e10",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "47fb5369_28373c1b",
         "filename": "telemetry/telemetry/internal/snap_page_util.py",
         "patchSetId": 4
@@ -175,6 +193,24 @@
       "revId": "831c9ef0ff4257b29a8abe5e9140ca25b5d03e10",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b76ab18_73fe5900",
+        "filename": "telemetry/telemetry/internal/snap_page_util.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1128438
+      },
+      "writtenOn": "2017-10-17T19:36:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ff8ff59_f2e71a2b",
+      "revId": "831c9ef0ff4257b29a8abe5e9140ca25b5d03e10",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
