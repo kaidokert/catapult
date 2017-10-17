@@ -789,6 +789,13 @@ class AddHistogramsTest(testing_common.TestCase):
     test_path = add_histograms.ComputeTestPath(hist.guid, histograms)
     self.assertEqual('master/bot/benchmark/hist', test_path)
 
+
+  def testComputeTestPathWithIsRefWithoutStory(self):
+    TODO
+
+  def testComputeTestPathWithIsRefAndStory(self):
+    TODO
+
   def testComputeRevision(self):
     hist = histogram_module.Histogram('hist', 'count')
     histograms = histogram_set.HistogramSet([hist])
