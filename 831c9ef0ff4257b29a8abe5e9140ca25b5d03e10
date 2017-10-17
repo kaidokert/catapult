@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0987781a_e79d51cd",
+        "filename": "telemetry/telemetry/internal/snap_page_util.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1128438
+      },
+      "writtenOn": "2017-10-17T17:32:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "812b87b0_857c1a74",
+      "revId": "831c9ef0ff4257b29a8abe5e9140ca25b5d03e10",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e1490519_727ad33e",
         "filename": "telemetry/telemetry/internal/snap_page_util.py",
         "patchSetId": 4
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "32808406_b5a2398e",
+        "filename": "telemetry/telemetry/internal/snap_page_util.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1128438
+      },
+      "writtenOn": "2017-10-17T17:32:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1490519_727ad33e",
+      "revId": "831c9ef0ff4257b29a8abe5e9140ca25b5d03e10",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "beb012f0_bcccafbe",
         "filename": "telemetry/telemetry/internal/snap_page_util.py",
         "patchSetId": 4
@@ -47,6 +83,24 @@
       "writtenOn": "2017-10-17T10:29:11Z",
       "side": 1,
       "message": "I thought htmlSerializer is supposed to strip the query param for us already?",
+      "revId": "831c9ef0ff4257b29a8abe5e9140ca25b5d03e10",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5d2abf8_2bf3b2c6",
+        "filename": "telemetry/telemetry/internal/snap_page_util.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1128438
+      },
+      "writtenOn": "2017-10-17T17:32:23Z",
+      "side": 1,
+      "message": "The serializer strips the param and uses it to rewrite the url in the html it generates, but it does not pass the stripped name back to this script. It only passes back (1) the element id, and (2) the original image src url.\n\nWe need (1) to build the local image filename to match what\u0027s in the rewritten html. We need (2) to fetch the actual image from the external server.\n\nWe could have serializer pass back the stripped name as well, but given that we can recreate it from (2) which we need anyway, I figured it was better to ship less data around.",
+      "parentUuid": "beb012f0_bcccafbe",
       "revId": "831c9ef0ff4257b29a8abe5e9140ca25b5d03e10",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "35bb1ecf_80f546bf",
+        "filename": "telemetry/telemetry/internal/snap_page_util.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1128438
+      },
+      "writtenOn": "2017-10-17T17:32:23Z",
+      "side": 1,
+      "message": "The directory has to incorporate a snapshot_path-specific name. The second param here is just stripping the html suffix and otherwise using the user-provided snapshot basename.\n\nI mean, we could use \u0027images\u0027 to store external images regardless of what snapshot_path is, but then the user would have to carefully move/rename the \u0027images\u0027 directory after each time they snap a page. We can\u0027t currently store images for two snapped pages in the same directory because the filenames could conflict. They\u0027re currently built as \u003cframe number\u003e-snapit\\d+.\u003csuffix\u003e where \u0027snapit\u0027 could also alternately be the actual id in the page.",
+      "parentUuid": "47fb5369_28373c1b",
+      "revId": "831c9ef0ff4257b29a8abe5e9140ca25b5d03e10",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bcf42302_c0886a74",
         "filename": "telemetry/telemetry/internal/snap_page_util.py",
         "patchSetId": 4
@@ -84,6 +156,24 @@
       "revId": "831c9ef0ff4257b29a8abe5e9140ca25b5d03e10",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2cc3a1b3_ff7dd094",
+        "filename": "telemetry/telemetry/internal/snap_page_util.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1128438
+      },
+      "writtenOn": "2017-10-17T17:32:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bcf42302_c0886a74",
+      "revId": "831c9ef0ff4257b29a8abe5e9140ca25b5d03e10",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
