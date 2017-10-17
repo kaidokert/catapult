@@ -239,6 +239,30 @@
     },
     {
       "key": {
+        "uuid": "597e1b15_b466dfb0",
+        "filename": "tracing/tracing/metrics/vr/frame_cycle_duration_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2017-10-17T20:49:25Z",
+      "side": 1,
+      "message": "I think the WebVR metric adds all samples that are in a UE that intersects with the RoI (the UE doesn\u0027t need to be fully contained in the RoI). However, this means also samples not inside the RoI are added. I think this should be changed so that only samples in the RoI are added.",
+      "parentUuid": "48e742ee_a6a917e5",
+      "range": {
+        "startLine": 51,
+        "startChar": 6,
+        "endLine": 52,
+        "endChar": 18
+      },
+      "revId": "e1b942f5708b43ec27bcd897badeadb4b97f8745",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "57db1060_3f9e2c1b",
         "filename": "tracing/tracing/metrics/vr/frame_cycle_duration_metric.html",
         "patchSetId": 3
