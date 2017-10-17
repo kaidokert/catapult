@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "e5febcc3_2d14bff1",
+        "filename": "tracing/tracing/importer/find_input_expectations.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2017-10-17T20:32:11Z",
+      "side": 1,
+      "message": "Leaving it in SGTM if it might be useful in the future.",
+      "parentUuid": "a9129dc4_3a7ed5f0",
+      "range": {
+        "startLine": 90,
+        "startChar": 16,
+        "endLine": 90,
+        "endChar": 33
+      },
+      "revId": "e1b942f5708b43ec27bcd897badeadb4b97f8745",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "99f198af_7516c190",
         "filename": "tracing/tracing/importer/find_input_expectations.html",
         "patchSetId": 3
@@ -108,6 +132,30 @@
       "side": 1,
       "message": "Changed it so that the VR response is VR_RESPONSE_MS from either the start of WebVR counters or VR browsing events depending on what happened later. This errs on the side of putting too many events in VR response. But I think this is safer.",
       "parentUuid": "fbba4051_7bd7c3bb",
+      "range": {
+        "startLine": 829,
+        "startChar": 6,
+        "endLine": 829,
+        "endChar": 57
+      },
+      "revId": "e1b942f5708b43ec27bcd897badeadb4b97f8745",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ebb6161_96f62b2d",
+        "filename": "tracing/tracing/importer/find_input_expectations.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 829,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2017-10-17T20:32:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8ecda684_5fc308ca",
       "range": {
         "startLine": 829,
         "startChar": 6,
