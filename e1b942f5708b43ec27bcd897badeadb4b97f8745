@@ -215,6 +215,30 @@
     },
     {
       "key": {
+        "uuid": "48e742ee_a6a917e5",
+        "filename": "tracing/tracing/metrics/vr/frame_cycle_duration_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2017-10-17T20:37:19Z",
+      "side": 1,
+      "message": "I believe the current WebVR metric adds samples that are contained within a user expectation that is fully within the range of interest? So it works fine if the range of interest is an entire user expectation, but I don\u0027t think it works properly if the RoI spans multiple expectations, with one or more expectations only partially overlapping with the RoI.",
+      "parentUuid": "29bc4045_139ac6c9",
+      "range": {
+        "startLine": 51,
+        "startChar": 6,
+        "endLine": 52,
+        "endChar": 18
+      },
+      "revId": "e1b942f5708b43ec27bcd897badeadb4b97f8745",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "57db1060_3f9e2c1b",
         "filename": "tracing/tracing/metrics/vr/frame_cycle_duration_metric.html",
         "patchSetId": 3
