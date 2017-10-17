@@ -42,7 +42,6 @@ found in the LICENSE file.
 
 <script>
 'use strict';
-
 tr.exportTo('tr.v.ui', function() {
   const DEFAULT_COLOR_SCHEME = new tr.b.SinebowColorGenerator();
 
@@ -53,14 +52,38 @@ tr.exportTo('tr.v.ui', function() {
     return nameMap.get(key);
   }
 
+  function getColorScheme(colorSchemeName) {
+    if (colorSchemeName ===
+        tr.v.d.COLOR_SCHEME_CHROME_USER_FRIENDLY_CATEGORY_DRIVER) {
+      return name => {
+        let cat = name.split(' ');
+        cat = cat[cat.length - 1];
+        return tr.e.chrome.ChromeUserFriendlyCategoryDriver.getColor(cat);
+      };
+    }
+
+    if (colorSchemeName !== undefined) {
+      return name => tr.b.FixedColorSchemeRegistry.lookUp(
+          colorSchemeName).getColor(name);
+    }
+
+    return name => DEFAULT_COLOR_SCHEME.colorForKey(name);
+  }
+
+  function getUnit(name, histograms) {
+    const candidates = histograms.getHistogramsNamed(name);
+    if (candidates.length === 0) return undefined;
+    return candidates[0].unit;
+  }
+
   class BreakdownTableSummaryRow {
-    constructor(displayElement, histogramNames) {
-      this.displayElement_ = displayElement;
+    constructor(valueSpan, histogramNames) {
+      this.valueSpan_ = valueSpan;
       this.histogramNames_ = histogramNames;
       this.keySpan_ = undefined;
     }
 
-    get numberValue() {
+    get sanitizedValue() {
       // Prevent this row from appearing in the ColumnChart.
       return undefined;
     }
@@ -82,11 +105,11 @@ tr.exportTo('tr.v.ui', function() {
       return 'Sum';
     }
 
-    get displayElement() {
-      return this.displayElement_;
+    get valueSpan() {
+      return this.valueSpan_;
     }
 
-    get stringPercent() {
+    get percentString() {
       return '100%';
     }
   }
@@ -110,12 +133,12 @@ tr.exportTo('tr.v.ui', function() {
       hsl.l *= 0.85;
       this.highlightedColor_ = tr.b.Color.fromHSL(hsl);
 
-      if (this.unit_) {
-        this.displayElement_ = tr.v.ui.createScalarSpan(this.numberValue, {
+      if (this.sanitizedValue !== undefined && this.unit_) {
+        this.valueSpan_ = tr.v.ui.createScalarSpan(this.sanitizedValue, {
           unit: this.unit_,
         });
       } else {
-        this.displayElement_ = tr.ui.b.createSpan({
+        this.valueSpan_ = tr.ui.b.createSpan({
           textContent: this.stringValue,
         });
       }
@@ -123,6 +146,23 @@ tr.exportTo('tr.v.ui', function() {
 
     get name() {
       return this.name_;
+    }
+
+    get unit() {
+      return this.unit_;
+    }
+
+    /**
+     * @return {number|undefined}
+     */
+    get sanitizedValue() {
+      if (isNaN(this.value_) ||
+          this.value_ === Infinity ||
+          this.value_ === -Infinity ||
+          this.value_ < 0) {
+        return undefined;
+      }
+      return this.value_;
     }
 
     get color() {
@@ -142,33 +182,17 @@ tr.exportTo('tr.v.ui', function() {
           this.keySpan_.color = this.color;
           this.keySpan_.title = this.histogramName_;
         } else {
-          this.keySpan_ = document.createElement('span');
-          this.keySpan_.innerText = this.name;
-          this.keySpan_.style.color = this.color;
+          this.keySpan_ = tr.ui.b.createSpan({
+            textContent: this.name,
+            color: this.color,
+          });
         }
       }
       return this.keySpan_;
     }
 
-    /**
-    * @return {number|undefined}
-    */
-    get numberValue() {
-      if (!isNaN(this.value_) &&
-          (this.value_ !== Infinity) &&
-          (this.value_ !== -Infinity) &&
-          (this.value_ > 0)) return this.value_;
-      // Prevent this row from appearing in the ColumnChart.
-      return undefined;
-    }
-
     get stringValue() {
-      if ((this.unit_ !== undefined) &&
-          !isNaN(this.value_) &&
-          (this.value_ !== Infinity) &&
-          (this.value_ !== -Infinity)) {
-        return this.unit_.format(this.value_);
-      }
+      if (this.unit !== undefined) return this.unit.format(this.value_);
       return this.value_.toString();
     }
 
@@ -176,31 +200,31 @@ tr.exportTo('tr.v.ui', function() {
       this.tableSum_ = s;
     }
 
-    get stringPercent() {
+    get percentString() {
       if (this.tableSum_ === undefined) return '';
-      const num = this.numberValue;
+      const num = this.sanitizedValue;
       if (num === undefined) return '';
       return Math.floor(num * 100.0 / this.tableSum_) + '%';
     }
 
-    get displayElement() {
-      return this.displayElement_;
+    get valueSpan() {
+      return this.valueSpan_;
     }
 
     compare(other) {
-      if (this.numberValue === undefined) {
-        if (other.numberValue === undefined) {
+      if (this.sanitizedValue === undefined) {
+        if (other.sanitizedValue === undefined) {
           return this.name.localeCompare(other.name);
         }
         return 1;
       }
-      if (other.numberValue === undefined) {
+      if (other.sanitizedValue === undefined) {
         return -1;
       }
-      if (this.numberValue === other.numberValue) {
+      if (this.sanitizedValue === other.sanitizedValue) {
         return this.name.localeCompare(other.name);
       }
-      return other.numberValue - this.numberValue;
+      return other.sanitizedValue - this.sanitizedValue;
     }
   }
 
@@ -224,17 +248,17 @@ tr.exportTo('tr.v.ui', function() {
     onRectMouseEnter_(event) {
       for (const row of this.$.table.tableRows) {
         if (row.name === event.rect.key) {
-          row.displayElement.style.background = event.rect.color;
+          row.valueSpan.style.background = event.rect.color;
           row.keySpan.scrollIntoViewIfNeeded();
         } else {
-          row.displayElement.style.background = '';
+          row.valueSpan.style.background = '';
         }
       }
     },
 
     onRectMouseLeave_(event) {
       for (const row of this.$.table.tableRows) {
-        row.displayElement.style.background = '';
+        row.valueSpan.style.background = '';
       }
     },
 
@@ -248,11 +272,11 @@ tr.exportTo('tr.v.ui', function() {
           value: row => row.keySpan,
         },
         {
-          value: row => row.displayElement,
+          value: row => row.valueSpan,
           align: tr.ui.b.TableFormat.ColumnAlignment.RIGHT,
         },
         {
-          value: row => row.stringPercent,
+          value: row => row.percentString,
           align: tr.ui.b.TableFormat.ColumnAlignment.RIGHT,
         },
       ];
@@ -263,54 +287,40 @@ tr.exportTo('tr.v.ui', function() {
       this.$.table.style.display = 'none';
       this.$.empty.style.display = 'block';
 
-      if (!this.diagnostic_) {
+      if (!this.diagnostic_ || this.diagnostic_.size === 0) {
         this.chart_.data = [];
         return;
       }
 
-      if (this.histogram_) this.chart_.unit = this.histogram_.unit;
-
-      let colorScheme = undefined;
-      // https://github.com/catapult-project/catapult/issues/2970
-      if (this.diagnostic.colorScheme ===
-          tr.v.d.COLOR_SCHEME_CHROME_USER_FRIENDLY_CATEGORY_DRIVER) {
-        colorScheme = (name) => {
-          let cat = name.split(' ');
-          cat = cat[cat.length - 1];
-          return tr.e.chrome.ChromeUserFriendlyCategoryDriver.getColor(cat);
-        };
-      } else if (this.diagnostic.colorScheme !== undefined) {
-        colorScheme = (name) => tr.b.FixedColorSchemeRegistry.lookUp(
-            this.diagnostic.colorScheme).getColor(name);
-      } else {
-        colorScheme = (name) => DEFAULT_COLOR_SCHEME.colorForKey(name);
-      }
-
+      const colorScheme = getColorScheme(this.diagnostic.colorScheme);
       const tableRows = [];
+      const histogramNames = new Set();
       let tableSum = 0;
       const histogramNames = [];
       for (const [key, value] of this.diagnostic) {
-        let histogramName;
-        let row;
-        if (value instanceof tr.v.Histogram) {
-          // TODO(#3761): Remove with RelatedHistogramBreakdown.
-          histogramName = value.name;
-          row = new BreakdownTableRow(
-              key, value.sum, histogramName, value.unit, colorScheme(key));
-        } else {
-          histogramName = getHistogramName(this.histogram_, this.name_, key);
-          row = new BreakdownTableRow(
-              key, value, histogramName, this.chart_.unit, colorScheme(key));
-        }
+        const histogramName = getHistogramName(
+            this.histogram_, this.name_, key);
+        const unit = getUnit(histogramName, this.histograms_);
+        const row = new BreakdownTableRow(
+            key, value, histogramName, unit, colorScheme(key));
         tableRows.push(row);
-        if (row.numberValue !== undefined) tableSum += row.numberValue;
+        if (row.sanitizedValue !== undefined) tableSum += row.sanitizedValue;
         if (histogramName) {
           histogramNames.push(histogramName);
         }
       }
       tableRows.sort((x, y) => x.compare(y));
 
-      if (tableSum > 0) {
+      let unit = tableRows[0].unit;
+      for (const row of tableRows.slice(1)) {
+        if (row.unit !== unit) {
+          unit = undefined;
+          break;
+        }
+      }
+      this.chart_.unit = unit;
+
+      if (tableRows.length > 1) {
         let summaryDisplayElement = tableSum;
         if (this.chart_.unit !== undefined) {
           summaryDisplayElement = this.chart_.unit.format(tableSum);
@@ -324,13 +334,15 @@ tr.exportTo('tr.v.ui', function() {
 
       const chartData = {x: 0};
       for (const row of tableRows) {
-        if (row.numberValue === undefined) continue;
+        if (row.sanitizedValue === undefined) continue;
 
-        // Let the row compute its percentage.
-        row.tableSum = tableSum;
+        if (tableRows.length > 1) {
+          // Let the row compute its percentage.
+          row.tableSum = tableSum;
+        }
 
         // Add it to the chart.
-        chartData[row.name] = row.numberValue;
+        chartData[row.name] = row.sanitizedValue;
 
         // Configure the colors.
         const dataSeries = this.chart_.getDataSeries(row.name);
@@ -345,7 +357,7 @@ tr.exportTo('tr.v.ui', function() {
         this.$.table.rebuild();
       }
 
-      if (Object.keys(chartData).length > 1) {
+      if (Object.keys(chartData).length > 2) {
         this.$.container.style.display = 'block';
         this.$.empty.style.display = 'none';
         this.chart_.data = [chartData];
