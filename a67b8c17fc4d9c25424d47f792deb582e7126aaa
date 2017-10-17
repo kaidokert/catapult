@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ec50b88_edaed162",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1000169
+      },
+      "writtenOn": "2017-10-17T07:58:32Z",
+      "side": 1,
+      "message": "Could you add a TODO to remove this when it becomes unnecessary?",
+      "range": {
+        "startLine": 503,
+        "startChar": 20,
+        "endLine": 503,
+        "endChar": 51
+      },
+      "revId": "a67b8c17fc4d9c25424d47f792deb582e7126aaa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "baf62505_19c49dbf",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000169
+      },
+      "writtenOn": "2017-10-17T07:58:32Z",
+      "side": 1,
+      "message": "Could you add a TODO to remove this when it becomes unnecessary?",
+      "range": {
+        "startLine": 32,
+        "startChar": 59,
+        "endLine": 33,
+        "endChar": 49
+      },
+      "revId": "a67b8c17fc4d9c25424d47f792deb582e7126aaa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
