@@ -26,11 +26,15 @@ def main(args):
       help='Activate interactive mode after loading the page')
   parser.add_option('--snapshot-path', help='Where to save the snapshot',
       default='snapshot.html')
+  parser.add_option('--verbose-snap-logging',
+      help='Whether to enable verbose snap_page script logging', default=False,
+      action='store_true')
   parser.parse_args(args)
 
   binary_manager.InitDependencyManager([])
   snap_page_util.SnapPage(options, options.url, options.interactive,
-                          options.snapshot_path, options.enable_browser_log)
+      options.verbose_snap_logging, options.snapshot_path,
+      options.enable_browser_log)
 
 if __name__ == '__main__':
   sys.exit(main(sys.argv[1:]))
