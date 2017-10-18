@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "133ee9a0_6b832356",
+        "filename": "tracing/tracing/metrics/system_health/expected_queueing_time_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2017-10-18T13:52:21Z",
+      "side": 1,
+      "message": "We could improve this, by computing the tasks for all of these in one pass and avoid iterating through all slices multiple times. If we move to the one pass one, it will involve changes to other parts of the code and might complicate it. So to keep the initial implementation simple I just chose the one with minimal impact.",
+      "revId": "37b8c446d0bea9546dedc8807bb60882231bfed0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
