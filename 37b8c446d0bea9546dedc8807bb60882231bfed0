@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "3d73baaa_60f29353",
+        "filename": "tracing/tracing/metrics/system_health/expected_queueing_time_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2017-10-18T14:28:02Z",
+      "side": 1,
+      "message": "Let\u0027s avoid hardcoding the metric name.\n\nI guess we now have to pass in the indication of cpu_time/non_cpu_time from the higher levels.",
+      "range": {
+        "startLine": 187,
+        "startChar": 12,
+        "endLine": 187,
+        "endChar": 42
+      },
+      "revId": "37b8c446d0bea9546dedc8807bb60882231bfed0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "212c8bd9_9fbfb965",
+        "filename": "tracing/tracing/metrics/system_health/expected_queueing_time_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2017-10-18T14:28:02Z",
+      "side": 1,
+      "message": "Could you please add a separate function getV8EventNamesWithTaskExtractorsWithRCS_ that is similar to this function except\n1) it uses RCS\n2) it is called only for non-cpu times.\n3) its metric names have \"rcs\" substring, e.g. v8:gc_rcs\n\nThis will allow us to compare non-rcs metrics with rcs metrics.",
+      "range": {
+        "startLine": 210,
+        "startChar": 11,
+        "endLine": 210,
+        "endChar": 45
+      },
+      "revId": "37b8c446d0bea9546dedc8807bb60882231bfed0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "917b38ba_9ea7ac24",
+        "filename": "tracing/tracing/metrics/system_health/expected_queueing_time_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2017-10-18T14:28:02Z",
+      "side": 1,
+      "message": "Please remove the unused exludePredicate that was added only for compile events.",
+      "range": {
+        "startLine": 240,
+        "startChar": 38,
+        "endLine": 240,
+        "endChar": 54
+      },
+      "revId": "37b8c446d0bea9546dedc8807bb60882231bfed0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "133ee9a0_6b832356",
         "filename": "tracing/tracing/metrics/system_health/expected_queueing_time_metric.html",
         "patchSetId": 1
@@ -16,6 +85,24 @@
       "revId": "37b8c446d0bea9546dedc8807bb60882231bfed0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71d21c70_9bbd7e3d",
+        "filename": "tracing/tracing/metrics/system_health/expected_queueing_time_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2017-10-18T14:28:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "133ee9a0_6b832356",
+      "revId": "37b8c446d0bea9546dedc8807bb60882231bfed0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
