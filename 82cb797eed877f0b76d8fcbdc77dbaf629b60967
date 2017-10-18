@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f9668ddf_322916d0",
+        "filename": "experimental/soundwave/dashboard_api.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-10-18T18:25:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d13497b3_c26bcb56",
+      "revId": "82cb797eed877f0b76d8fcbdc77dbaf629b60967",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2fa37804_f57684a6",
         "filename": "experimental/soundwave/dashboard_api.py",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "82cb797eed877f0b76d8fcbdc77dbaf629b60967",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7c0fc14_6b1dc402",
+        "filename": "experimental/soundwave/dashboard_api.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-10-18T18:25:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2fa37804_f57684a6",
+      "revId": "82cb797eed877f0b76d8fcbdc77dbaf629b60967",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "71573470_7a31dbc3",
+        "filename": "experimental/soundwave/dashboard_api.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-10-18T18:25:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82377ca1_7e82a487",
+      "revId": "82cb797eed877f0b76d8fcbdc77dbaf629b60967",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "583a3e49_2aca3c72",
         "filename": "experimental/soundwave/fetch_alert_data",
         "patchSetId": 2
@@ -64,6 +118,24 @@
       "writtenOn": "2017-10-18T08:48:34Z",
       "side": 1,
       "message": "If 1000 alerts point to the same bug, you will get x1000 times the bug data in the output json.\n\nWhy not dump two files instead:\n- alerts.json with essentially the result of GetAlertData\n- bugs.json with the bug data for the set of all all bug id\u0027s mentioned in alerts.json",
+      "revId": "82cb797eed877f0b76d8fcbdc77dbaf629b60967",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "455d9317_80874388",
+        "filename": "experimental/soundwave/fetch_alert_data",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-10-18T18:25:05Z",
+      "side": 1,
+      "message": "Done, but its in one json file with two sections:\n\n{\n  \u0027alerts\u0027: [{alert_bug: bug_id},...],\n  \u0027bugs\u0027: {\u0027bug_id\u0027:bug_data,...}\n}",
+      "parentUuid": "583a3e49_2aca3c72",
       "revId": "82cb797eed877f0b76d8fcbdc77dbaf629b60967",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
