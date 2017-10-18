@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e7fde9d3_060dd53c",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-18T09:07:36Z",
+      "side": 1,
+      "message": "should this say: \"The result value is missing\"? e.g. maybe we somehow got an empty list here?\n\nAlso, what if chart[\u0027type\u0027] doesn\u0027t match any of the expected types?",
+      "revId": "8938c02fe1a4a3e61c11e3b711bcd91313ffeb0f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
