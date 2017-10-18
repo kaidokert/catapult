@@ -182,7 +182,9 @@ tr.exportTo('tr.metrics.sh', function() {
     const breakdownForTotal = new tr.v.d.RelatedHistogramMap();
     const breakdownForInteractive = new tr.v.d.RelatedHistogramMap();
     const eventNamesWithTaskExtractors =
-        getV8EventNamesWithTaskExtractors_(getEventTimes);
+        getV8EventNamesWithTaskExtractors_(
+            getEventTimes,
+            eqtName === 'renderer_eqt_cpu');
     for (const [eventName, getTasks] of eventNamesWithTaskExtractors) {
       const contribution = contributionToExpectedQueueingTime_(
           eqtName, eventName, getTasks, rendererToInteractiveTimestamps,
@@ -205,7 +207,7 @@ tr.exportTo('tr.metrics.sh', function() {
    * @returns {!Map.<string, TaskExtractor>} a map from V8 event names to
    *     the corresponding task extractor functions.
    */
-  function getV8EventNamesWithTaskExtractors_(getEventTimes) {
+  function getV8EventNamesWithTaskExtractors_(getEventTimes, cpuMetrics) {
     /**
      * @param {!tr.b.Event} slice.
      * @param {!function(tr.b.Event): boolean} predicate that selects V8 events.
@@ -251,27 +253,51 @@ tr.exportTo('tr.metrics.sh', function() {
       };
     }
 
-    return new Map([
+    /**
+     * @param {!function(!string): boolean} predicate that selects RCS category.
+     * @returns {!TaskExtractor} a function that extracts tasks from the given
+     *     renderer. Each task is a pair of {start, end} times and its duration
+     *     represents the contribution of the events selected by the given
+     *     |predicate|.
+     */
+    function RCStaskExtractor(predicate) {
+      return function(rendererHelper) {
+        const result = [];
+        for (const topSlice of
+            rendererHelper.mainThread.sliceGroup.topLevelSlices) {
+          const times = getEventTimes(topSlice);
+          if (times.duration <= 0 || containsForcedGC_(topSlice)) {
+            continue;
+          }
+          const v8ThreadSlices = [];
+          for (const slice of topSlice.descendentSlices) {
+            if (slice instanceof tr.e.v8.V8ThreadSlice) {
+              v8ThreadSlices.push(slice);
+            }
+          }
+          const runtimeGroupCollection =
+              new tr.e.v8.RuntimeStatsGroupCollection();
+          runtimeGroupCollection.addSlices(v8ThreadSlices);
+          let duration = 0;
+          for (const runtimeGroup of runtimeGroupCollection.runtimeGroups) {
+            if (predicate(runtimeGroup.name)) {
+              duration += runtimeGroup.time;
+            }
+          }
+          duration = tr.b.convertUnit(
+              duration,
+              tr.b.UnitPrefixScale.METRIC.MICRO,
+              tr.b.UnitPrefixScale.METRIC.MILLI);
+          result.push({start: times.start, end: times.start + duration});
+        }
+        return result;
+      };
+    }
+
+    const taskExtractorMap = new Map([
       [
         'v8',
         taskExtractor(tr.metrics.v8.utils.isV8Event)
-      ],
-      [
-        'v8:compile',
-        taskExtractor(tr.metrics.v8.utils.isCompileEvent)
-      ],
-      [
-        'v8:compile:optimize',
-        taskExtractor(tr.metrics.v8.utils.isCompileOptimizeEvent)
-      ],
-      [
-        'v8:compile:parse',
-        taskExtractor(tr.metrics.v8.utils.isCompileParseEvent)
-      ],
-      [
-        'v8:compile:compile-unoptimize',
-        taskExtractor(tr.metrics.v8.utils.isCompileUnoptimizeEvent,
-            tr.metrics.v8.utils.isCompileParseEvent)
       ],
       [
         'v8:execute',
@@ -302,6 +328,21 @@ tr.exportTo('tr.metrics.sh', function() {
         taskExtractor(tr.metrics.v8.utils.isScavengerEvent)
       ]
     ]);
+    if (!cpuMetrics) {
+      taskExtractorMap.set(
+          'v8:compie',
+          RCStaskExtractor(tr.metrics.v8.utils.isCompileEvent));
+      taskExtractorMap.set(
+          'v8:compile:optimize',
+          RCStaskExtractor(tr.metrics.v8.utils.isCompileOptimizeEvent));
+      taskExtractorMap.set(
+          'v8:compile:parse',
+          RCStaskExtractor(tr.metrics.v8.utils.isCompileParseEvent));
+      taskExtractorMap.set(
+          'v8:compile:compile-unoptimize',
+          RCStaskExtractor(tr.metrics.v8.utils.isCompileUnoptimizeEvent));
+    }
+    return taskExtractorMap;
   }
 
   /**
