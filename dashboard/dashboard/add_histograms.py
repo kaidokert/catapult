@@ -212,10 +212,18 @@ def ComputeTestPath(guid, histograms):
   if tir_label:
     path += '/' + tir_label
 
+  is_ref = hist.diagnostics.get(reserved_infos.IS_REFERENCE_BUILD.name)
+  if is_ref and len(is_ref) == 1:
+    is_ref = list(is_ref)[0]
+
   story_name = hist.diagnostics.get(reserved_infos.STORIES.name)
   if story_name and len(story_name) == 1:
     escaped_story_name = add_point.EscapeName(list(story_name)[0])
     path += '/' + escaped_story_name
+    if is_ref:
+      path += '_ref'
+  elif is_ref:
+    path += '/ref'
 
   return path
 
