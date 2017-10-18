@@ -14,7 +14,7 @@ UI_COMP_NAME = 'INPUT_EVENT_LATENCY_UI_COMPONENT'
 # This is when the input event was originally created by OS.
 ORIGINAL_COMP_NAME = 'INPUT_EVENT_LATENCY_ORIGINAL_COMPONENT'
 # This is when the input event was sent from browser to renderer.
-BEGIN_COMP_NAME = 'INPUT_EVENT_LATENCY_BEGIN_RWH_COMPONENT'
+RWH_COMP_NAME = 'INPUT_EVENT_LATENCY_BEGIN_RWH_COMPONENT'
 # This is when an input event is turned into a scroll update.
 BEGIN_SCROLL_UPDATE_COMP_NAME = (
     'LATENCY_BEGIN_SCROLL_LISTENER_UPDATE_MAIN_COMPONENT')
@@ -22,7 +22,17 @@ BEGIN_SCROLL_UPDATE_COMP_NAME = (
 FORWARD_SCROLL_UPDATE_COMP_NAME = (
     'INPUT_EVENT_LATENCY_FORWARD_SCROLL_UPDATE_TO_MAIN_COMPONENT')
 # This is when the input event has reached swap buffer.
-END_COMP_NAME = 'INPUT_EVENT_GPU_SWAP_BUFFER_COMPONENT'
+#END_COMP_NAME = 'INPUT_EVENT_GPU_SWAP_BUFFER_COMPONENT'
+#END_COMP_NAME = 'INPUT_EVENT_LATENCY_TERMINATED_FRAME_SWAP_COMPONENT'
+
+RENDERING_SCHEDULED_MAIN = (
+    'INPUT_EVENT_LATENCY_RENDERING_SCHEDULED_MAIN_COMPONENT')
+RENDERING_SCHEDULED_IMPL = (
+    'INPUT_EVENT_LATENCY_RENDERING_SCHEDULED_IMPL_COMPONENT')
+RENDERER_SWAP = 'INPUT_EVENT_LATENCY_RENDERER_SWAP_COMPONENT'
+DISPLAY_COMPOSITOR_FRAME = 'DISPLAY_COMPOSITOR_RECEIVED_FRAME_COMPONENT'
+GPU_SWAP_BEGIN = 'INPUT_EVENT_GPU_SWAP_BUFFER_COMPONENT'
+GPU_SWAP_END = 'INPUT_EVENT_LATENCY_TERMINATED_FRAME_SWAP_COMPONENT'
 
 # Name for a main thread scroll update latency event.
 MAIN_THREAD_SCROLL_UPDATE_EVENT_NAME = 'Latency::ScrollUpdate'
@@ -38,6 +48,15 @@ CHECKERBOARDED_VISIBLE_CONTENT_DATA = 'checkerboarded_visible_content_area'
 # RenderingStats in this file.
 APPROXIMATED_PIXEL_ERROR = 'approximated_pixel_percentages'
 CHECKERBOARDED_PIXEL_ERROR = 'checkerboarded_pixel_percentages'
+
+TOTAL_LABEL = 'total_latency'
+OLD_TOTAL_LABEL = 'old_total_latency'
+START_TO_RENDER_SCHEDULED_LABEL = 'start_to_render_scheduled_latency'
+RENDER_SCHEDULED_TO_RENDER_SWAP_LABEL = (
+    'render_scheduled_to_render_swap_latency')
+RENDER_SWAP_TO_DC_LABEL = 'render_swap_to_display_compositor_latency'
+DC_TO_GPU_SWAP_BEGIN_LABEL = 'display_compositor_to_gpu_swap_begin_latency'
+GPU_SWAP_BEGIN_TO_GPU_SWAP_END_LABEL = 'gpu_swap_begin_to_gpu_swap_end_latency'
 
 
 def GetLatencyEvents(process, timeline_range):
@@ -66,7 +85,7 @@ def GetLatencyEvents(process, timeline_range):
 def ComputeEventLatencies(input_events):
   """ Compute input event latencies.
 
-  Input event latency is the time from when the input event is created to
+  Input event total_latency is the time from when the input event is created to
   when its resulted page is swap buffered.
   Input event on different platforms uses different LatencyInfo component to
   record its creation timestamp. We go through the following component list
@@ -75,9 +94,9 @@ def ComputeEventLatencies(input_events):
   2. INPUT_EVENT_LATENCY_UI_COMPONENT -- when event reaches Chrome
   3. INPUT_EVENT_LATENCY_BEGIN_RWH_COMPONENT -- when event reaches RenderWidget
 
-  If the latency starts with a
+  If the total_latency starts with a
   LATENCY_BEGIN_SCROLL_UPDATE_MAIN_COMPONENT component, then it is
-  classified as a scroll update instead of a normal input latency measure.
+  classified as a scroll update instead of a normal input total_latency measure.
 
   Returns:
     A list sorted by increasing start time of latencies which are tuples of
@@ -86,23 +105,84 @@ def ComputeEventLatencies(input_events):
   input_event_latencies = []
   for event in input_events:
     data = event.args['data']
-    if END_COMP_NAME in data:
-      end_time = data[END_COMP_NAME]['time']
+#    print event.name
+    if GPU_SWAP_END in data:
+      gpu_swap_end_time = data[GPU_SWAP_END]['time']
+      end_time = gpu_swap_end_time
+      if GPU_SWAP_BEGIN in data:
+        gpu_swap_begin_time = data[GPU_SWAP_BEGIN]['time']
+      else:
+        raise ValueError(
+          'LatencyInfo has no INPUT_EVENT_GPU_SWAP_BUFFER_COMPONENT component')
+
       if ORIGINAL_COMP_NAME in data:
         start_time = data[ORIGINAL_COMP_NAME]['time']
       elif UI_COMP_NAME in data:
         start_time = data[UI_COMP_NAME]['time']
-      elif BEGIN_COMP_NAME in data:
-        start_time = data[BEGIN_COMP_NAME]['time']
+      elif RWH_COMP_NAME in data:
+        start_time = data[RWH_COMP_NAME]['time']
       elif BEGIN_SCROLL_UPDATE_COMP_NAME in data:
         start_time = data[BEGIN_SCROLL_UPDATE_COMP_NAME]['time']
       else:
         raise ValueError('LatencyInfo has no begin component')
-      latency = (end_time - start_time) / 1000.0
-      input_event_latencies.append((start_time, event.name, latency))
 
+      if RENDERING_SCHEDULED_MAIN in data:
+        rendering_scheduled_time =  data[RENDERING_SCHEDULED_MAIN]['time']
+      elif RENDERING_SCHEDULED_IMPL in data:
+        rendering_scheduled_time = data[RENDERING_SCHEDULED_IMPL]['time']
+      else:
+        # This is happening for main thread scrolls
+#        print "No RENDERING_SCHEDULED for " + event.name
+#        print "Data: " + repr(data)
+        continue
+
+      if RENDERER_SWAP in data:
+        renderer_swap_time = data[RENDERER_SWAP]['time']
+      else:
+#        print "No RENDERER_SWAP for " + event.name
+        continue
+
+      if DISPLAY_COMPOSITOR_FRAME in data:
+        dispay_compositor_time = data[DISPLAY_COMPOSITOR_FRAME]['time']
+      else:
+#        print "No DISPLAY_COMPOSITOR_FRAME for " + event.name
+        continue
+
+#      if event.name == MAIN_THREAD_SCROLL_UPDATE_EVENT_NAME:
+#        print "Done " + MAIN_THREAD_SCROLL_UPDATE_EVENT_NAME
+      
+      total_latency = (end_time - start_time) / 1000.0
+      old_total_latency = (gpu_swap_begin_time - start_time) / 1000.0
+      start_to_render_scheduled_latency = (
+        rendering_scheduled_time - start_time) / 1000.0
+      render_scheduled_to_render_swap_latency = (
+        renderer_swap_time - rendering_scheduled_time) / 1000.0
+      render_swap_to_display_compositor_latency = (
+        dispay_compositor_time - renderer_swap_time) / 1000.0
+      display_compositor_to_gpu_swap_begin_latency = (
+        gpu_swap_begin_time - dispay_compositor_time) / 1000.0
+      gpu_swap_begin_to_gpu_swap_end_latency = (
+        gpu_swap_end_time - gpu_swap_begin_time) / 1000
+        
+      latency_dictionary = {}
+      latency_dictionary[TOTAL_LABEL] = total_latency
+      latency_dictionary[OLD_TOTAL_LABEL] = old_total_latency
+      latency_dictionary[START_TO_RENDER_SCHEDULED_LABEL] = (
+                         start_to_render_scheduled_latency)
+      latency_dictionary[RENDER_SCHEDULED_TO_RENDER_SWAP_LABEL] = (
+                         render_scheduled_to_render_swap_latency)
+      latency_dictionary[RENDER_SWAP_TO_DC_LABEL] = (
+                         render_swap_to_display_compositor_latency)
+      latency_dictionary[DC_TO_GPU_SWAP_BEGIN_LABEL] = (
+                         display_compositor_to_gpu_swap_begin_latency)
+      latency_dictionary[GPU_SWAP_BEGIN_TO_GPU_SWAP_END_LABEL] = (
+                         gpu_swap_begin_to_gpu_swap_end_latency)
+    
+      input_event_latencies.append((start_time, event.name, latency_dictionary))
+      
   input_event_latencies.sort()
-  return [(name, latency) for _, name, latency in input_event_latencies]
+  return [(name, latency_dictionary) for 
+          _, name, latency_dictionary in input_event_latencies]
 
 
 def HasDrmStats(process):
@@ -192,6 +272,13 @@ class RenderingStats(object):
     self.main_thread_scroll_latency = []
     # Latency for a GestureScrollUpdate input event.
     self.gesture_scroll_update_latency = []
+    
+    self.old_input_event_latency = []
+    self.start_to_render_scheduled_latency = []
+    self.render_scheduled_to_render_swap_latency = []
+    self.render_swap_to_display_compositor_latency = []
+    self.display_compositor_to_gpu_swap_begin_latency = []
+    self.gpu_swap_begin_to_gpu_swap_end_latency = []
 
     for timeline_range in timeline_ranges:
       self.frame_timestamps.append([])
@@ -201,6 +288,13 @@ class RenderingStats(object):
       self.input_event_latency.append([])
       self.main_thread_scroll_latency.append([])
       self.gesture_scroll_update_latency.append([])
+
+      self.old_input_event_latency.append([])
+      self.start_to_render_scheduled_latency.append([])
+      self.render_scheduled_to_render_swap_latency.append([])
+      self.render_swap_to_display_compositor_latency.append([])
+      self.display_compositor_to_gpu_swap_begin_latency.append([])
+      self.gpu_swap_begin_to_gpu_swap_end_latency.append([])
 
       if timeline_range.is_empty:
         continue
@@ -228,14 +322,41 @@ class RenderingStats(object):
     # because scroll updates can take much more time to process than other
     # input events and would therefore add noise to overall latency numbers.
     self.input_event_latency[-1] = [
-        latency for name, latency in event_latencies
+        latency_dictionary[TOTAL_LABEL] for name, latency_dictionary in event_latencies
         if name != MAIN_THREAD_SCROLL_UPDATE_EVENT_NAME]
+#    print "input_event_latency list length: " + str(len(self.input_event_latency[-1]))
     self.main_thread_scroll_latency[-1] = [
-        latency for name, latency in event_latencies
+        latency_dictionary[TOTAL_LABEL] for name, latency_dictionary in event_latencies
         if name == MAIN_THREAD_SCROLL_UPDATE_EVENT_NAME]
+#    print "main_thread_scroll_latency list length: " + str(len(self.main_thread_scroll_latency[-1]))
     self.gesture_scroll_update_latency[-1] = [
-        latency for name, latency in event_latencies
+        latency_dictionary[TOTAL_LABEL] for name, latency_dictionary in event_latencies
         if name == GESTURE_SCROLL_UPDATE_EVENT_NAME]
+
+    self.old_input_event_latency[-1] = [
+        latency_dictionary[OLD_TOTAL_LABEL] for
+        name, latency_dictionary in event_latencies
+        if name != MAIN_THREAD_SCROLL_UPDATE_EVENT_NAME]
+    self.start_to_render_scheduled_latency[-1] = [
+        latency_dictionary[START_TO_RENDER_SCHEDULED_LABEL] for
+        name, latency_dictionary in event_latencies
+        if name != MAIN_THREAD_SCROLL_UPDATE_EVENT_NAME]
+    self.render_scheduled_to_render_swap_latency[-1] = [
+        latency_dictionary[RENDER_SCHEDULED_TO_RENDER_SWAP_LABEL] for
+        name, latency_dictionary in event_latencies
+        if name != MAIN_THREAD_SCROLL_UPDATE_EVENT_NAME]
+    self.render_swap_to_display_compositor_latency[-1] = [
+        latency_dictionary[RENDER_SWAP_TO_DC_LABEL] for
+        name, latency_dictionary in event_latencies
+        if name != MAIN_THREAD_SCROLL_UPDATE_EVENT_NAME]
+    self.display_compositor_to_gpu_swap_begin_latency[-1] = [
+        latency_dictionary[DC_TO_GPU_SWAP_BEGIN_LABEL] for
+        name, latency_dictionary in event_latencies
+        if name != MAIN_THREAD_SCROLL_UPDATE_EVENT_NAME]
+    self.gpu_swap_begin_to_gpu_swap_end_latency[-1] = [
+        latency_dictionary[GPU_SWAP_BEGIN_TO_GPU_SWAP_END_LABEL] for
+        name, latency_dictionary in event_latencies
+        if name != MAIN_THREAD_SCROLL_UPDATE_EVENT_NAME]
 
   def _GatherEvents(self, event_name, process, timeline_range):
     events = []
