@@ -14,6 +14,8 @@ from telemetry.timeline import tracing_config
 from telemetry.value import trace
 from telemetry.value import common_value_helpers
 from telemetry.web_perf.metrics import timeline_based_metric
+from telemetry.web_perf.metrics import indexeddb_timeline
+from telemetry.web_perf.metrics import layout
 from telemetry.web_perf.metrics import smoothness
 from telemetry.web_perf import smooth_gesture_util
 from telemetry.web_perf import story_test
@@ -38,7 +40,9 @@ def _GetAllLegacyTimelineBasedMetrics():
   # TODO(nednguyen): use discovery pattern to return all the instances of
   # all TimelineBasedMetrics class in web_perf/metrics/ folder.
   # This cannot be done until crbug.com/460208 is fixed.
-  return (smoothness.SmoothnessMetric(),)
+  return (smoothness.SmoothnessMetric(),
+          layout.LayoutMetric(),
+          indexeddb_timeline.IndexedDBTimelineMetric())
 
 
 class InvalidInteractions(Exception):
@@ -272,6 +276,7 @@ class TimelineBasedMeasurement(story_test.StoryTest):
     platform.tracing_controller.StartTracing(self._tbm_options.config)
 
   def Measure(self, platform, results):
+    logging.warning('(maxlg) Measure start.')
     """Collect all possible metrics and added them to results."""
     platform.tracing_controller.telemetry_info = results.telemetry_info
     trace_result = platform.tracing_controller.StopTracing()
@@ -300,8 +305,10 @@ class TimelineBasedMeasurement(story_test.StoryTest):
         self._ComputeLegacyTimelineBasedMetrics(results, trace_result)
     finally:
       trace_result.CleanUpAllTraces()
+    logging.warning('(maxlg) Measure end.')
 
   def DidRunStory(self, platform, results):
+    logging.warning('(maxlg) DidRunStory start.')
     """Clean up after running the story."""
     if platform.tracing_controller.is_tracing_running:
       trace_result = platform.tracing_controller.StopTracing()
@@ -312,8 +319,10 @@ class TimelineBasedMeasurement(story_test.StoryTest):
           upload_bucket=results.telemetry_info.upload_bucket,
           cloud_url=results.telemetry_info.trace_remote_url)
       results.AddValue(trace_value)
+    logging.warning('(maxlg) DidRunStory end.')
 
   def _ComputeTimelineBasedMetrics(self, results, trace_value):
+    logging.warning('(maxlg) _ComputeTimelineBasedMetrics start.')
     metrics = self._tbm_options.GetTimelineBasedMetrics()
     extra_import_options = {
         'trackDetailedModelStats': True
@@ -337,6 +346,7 @@ class TimelineBasedMeasurement(story_test.StoryTest):
 
     for d in mre_result.pairs.get('scalars', []):
       results.AddValue(common_value_helpers.TranslateScalarValue(d, page))
+    logging.warning('(maxlg) _ComputeTimelineBasedMetrics end.')
 
   def _ComputeLegacyTimelineBasedMetrics(self, results, trace_result):
     model = model_module.TimelineModel(trace_result)

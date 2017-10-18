@@ -236,6 +236,7 @@ def Run(test, story_set, finder_options, results, max_failures=None,
           return
   finally:
     results.PopulateHistogramSet(metadata)
+    logging.warning('(maxlg) PopulateHistogramSet end.')
 
     for name, diag in device_info_diags.iteritems():
       results.histograms.AddSharedDiagnostic(name, diag)
@@ -244,6 +245,7 @@ def Run(test, story_set, finder_options, results, max_failures=None,
     if tagmap.tags_to_story_names:
       results.histograms.AddSharedDiagnostic(
           reserved_infos.TAG_MAP.name, tagmap)
+    logging.warning('(maxlg) AddSharedDiagnostic end.')
 
     if state:
       has_existing_exception = sys.exc_info() != (None, None, None)
