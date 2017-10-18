@@ -3,6 +3,7 @@ import json
 from oauth2client import client
 from oauth2client import service_account # pylint: disable=no-name-in-module
 import time
+import urllib
 
 
 class PerfDashboardCommunicator(object):
@@ -101,7 +102,7 @@ class PerfDashboardCommunicator(object):
       r += '?sheriff=%s' % sheriff
     return self._MakeApiRequest(r)
 
-  def GetTimeseries(self, test_path, days=False):
+  def GetTimeseries(self, test_path, days=30):
     """Get timeseries for given test path.
 
     args:
@@ -119,7 +120,15 @@ class PerfDashboardCommunicator(object):
            ],
        'test_path': test_path}
     """
-    r = 'timeseries/%s' % test_path
-    if days:
-      r += '?num_days=%d' % days
+    options = urllib.urlencode({'num_days': days})
+    r = 'timeseries/%s?%s' % (urllib.quote_plus(test_path), options)
     return self._MakeApiRequest(r)
+
+  def GetBugData(self, bug_id):
+    """Returns data on given bug."""
+    return self._MakeApiRequest('bugs/%d' % bug_id)
+
+  def GetAlertData(self, benchmark, days=30):
+    """Returns alerts for given benchmark."""
+    options = urllib.urlencode({'benchmark': benchmark})
+    return self._MakeApiRequest('alerts/history/%d?%s' % (days, options))
