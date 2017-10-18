@@ -196,6 +196,11 @@ def _MakeRowDict(revision, test_path, tracing_histogram):
   d['revision'] = revision
   d['supplemental_columns'] = {}
 
+  trace_url_set = tracing_histogram.diagnostics.get(
+      reserved_infos.TRACE_URLS.name)
+  if trace_url_set:
+    d['supplemental_columns']['a_tracing_uri'] = list(trace_url_set)[0]
+
   for diag_name, annotation in DIAGNOSTIC_NAMES_TO_ANNOTATION_NAMES.iteritems():
     revision_info = tracing_histogram.diagnostics.get(diag_name)
     value = list(revision_info) if revision_info else None
