@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d13497b3_c26bcb56",
+        "filename": "experimental/soundwave/dashboard_api.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-18T08:48:34Z",
+      "side": 1,
+      "message": "I think you should be using urlencode and then forget about all these encoding issues.\n\nhttps://docs.python.org/2/library/urllib.html#urllib.urlencode",
+      "revId": "82cb797eed877f0b76d8fcbdc77dbaf629b60967",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fa37804_f57684a6",
+        "filename": "experimental/soundwave/dashboard_api.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-18T08:48:34Z",
+      "side": 1,
+      "message": "nit: is the bug always an int? If so I would (1) rename the variable name to bug_id and (2) use %d in the string interpolation to make that explicit.",
+      "revId": "82cb797eed877f0b76d8fcbdc77dbaf629b60967",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82377ca1_7e82a487",
+        "filename": "experimental/soundwave/dashboard_api.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-18T08:48:34Z",
+      "side": 1,
+      "message": "ditto, maybe go for urlencode already?",
+      "revId": "82cb797eed877f0b76d8fcbdc77dbaf629b60967",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "583a3e49_2aca3c72",
+        "filename": "experimental/soundwave/fetch_alert_data",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-18T08:48:34Z",
+      "side": 1,
+      "message": "If 1000 alerts point to the same bug, you will get x1000 times the bug data in the output json.\n\nWhy not dump two files instead:\n- alerts.json with essentially the result of GetAlertData\n- bugs.json with the bug data for the set of all all bug id\u0027s mentioned in alerts.json",
+      "revId": "82cb797eed877f0b76d8fcbdc77dbaf629b60967",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
