@@ -22,6 +22,30 @@
       "revId": "214f0113156613822780ce4ca192d40a8cf48e04",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b3c8e56_08e49930",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-18T16:39:15Z",
+      "side": 1,
+      "message": "Sorry, I\u0027m not sure what you\u0027re asking.\nHistogramSet doesn\u0027t have chartjson\u0027s concept of trace_name that can be \u0027summary\u0027.\n\"Summary\" timeseries seem to be those that have child timeseries, i.e. those that have multiple story names.",
+      "parentUuid": "faadfb33_2b70c07a",
+      "range": {
+        "startLine": 223,
+        "startChar": 7,
+        "endLine": 223,
+        "endChar": 13
+      },
+      "revId": "214f0113156613822780ce4ca192d40a8cf48e04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
