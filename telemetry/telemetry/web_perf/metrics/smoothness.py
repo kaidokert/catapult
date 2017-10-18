@@ -71,6 +71,26 @@ class SmoothnessMetric(timeline_based_metric.TimelineBasedMetric):
     values += self._ComputeLatencyMetric(page, stats,
                                          'main_thread_scroll_latency',
                                          stats.main_thread_scroll_latency)
+
+    values += self._ComputeLatencyMetric(page, stats,
+                                         'old_input_event_latency',
+                                         stats.old_input_event_latency)
+    values += self._ComputeLatencyMetric(page, stats,
+                                         'start_to_render_scheduled_latency',
+                                         stats.start_to_render_scheduled_latency)
+    values += self._ComputeLatencyMetric(page, stats,
+                                         'render_scheduled_to_render_swap_latency',
+                                         stats.render_scheduled_to_render_swap_latency)
+    values += self._ComputeLatencyMetric(page, stats,
+                                         'render_swap_to_display_compositor_latency',
+                                         stats.render_swap_to_display_compositor_latency)
+    values += self._ComputeLatencyMetric(page, stats,
+                                         'display_compositor_to_gpu_swap_begin_latency',
+                                         stats.display_compositor_to_gpu_swap_begin_latency)
+    values += self._ComputeLatencyMetric(page, stats,
+                                         'gpu_swap_begin_to_gpu_swap_end_latency',
+                                         stats.gpu_swap_begin_to_gpu_swap_end_latency)
+
     values.append(self._ComputeFirstGestureScrollUpdateLatencies(page, stats))
     values += self._ComputeFrameTimeMetric(page, stats)
     if has_surface_flinger_stats:
