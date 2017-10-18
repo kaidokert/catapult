@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "faadfb33_2b70c07a",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-18T14:57:57Z",
+      "side": 1,
+      "message": "So the logic in /add_point seems slightly different at first glance. In there it\u0027s:\n\nif trace_name \u003d\u003d \u0027summary\u0027 and is_ref:\n  path +\u003d \u0027/ref\u0027\nelse trace_name !\u003d \u0027summary\u0027 and is_ref:\n  path +\u003d \u0027_ref\u0027\n\nWhy is this different?",
+      "range": {
+        "startLine": 223,
+        "startChar": 7,
+        "endLine": 223,
+        "endChar": 13
+      },
+      "revId": "214f0113156613822780ce4ca192d40a8cf48e04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
