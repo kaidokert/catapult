@@ -12,7 +12,7 @@ from telemetry.internal.results import output_formatter
 from tracing.value import histograms_to_csv
 
 
-def _ReadCsv(text):
+def ReadCsv(text):
   dicts = []
   header = None
   for row in csv.reader(text.split('\n')):
@@ -46,11 +46,11 @@ class CsvOutputFormatter(output_formatter.OutputFormatter):
     os.close(file_descriptor)
     json.dump(histograms, file(json_path, 'w'))
     vinn_result = histograms_to_csv.HistogramsToCsv(json_path)
-    dicts = _ReadCsv(vinn_result.stdout)
+    dicts = ReadCsv(vinn_result.stdout)
 
     self._output_stream.seek(0)
     if not self._reset_results:
-      dicts += _ReadCsv(self._output_stream.read())
+      dicts += ReadCsv(self._output_stream.read())
       self._output_stream.seek(0)
     _WriteCsv(dicts, self._output_stream)
     self._output_stream.truncate()
