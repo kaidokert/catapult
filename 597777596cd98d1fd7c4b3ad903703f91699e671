@@ -60,6 +60,24 @@
     },
     {
       "key": {
+        "uuid": "a1d29ee0_b508855b",
+        "filename": "dashboard/dashboard/elements/test-picker.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-19T20:35:38Z",
+      "side": 1,
+      "message": "3965 is the same bug as 3963.\nI asked natorion to check that this CL (clearing autocomplete-box\u0027s selectedItem when its query is cleared) fixes his issue.\nHe replied that it does, except, when he clears the Bot autocomplete-box, it also automatically clears all subtests, which makes it difficult to select the same metric between different Bots.\nThe repro steps are to 1. select a full test-path, 2. clear the Bot autocomplete-box, 3. observe that subtest menus are cleared.\nThis branch in updateBotMenu is what was clearing subtests when the Bot menu was cleared. I removed this branch so that natorion can select the same metric between different bots.\nBefore this CL cleared autocomplete-box\u0027s selectedItem, this branch was dead code (afaict), and was not causing a problem.",
+      "parentUuid": "e98f8e8f_d780910e",
+      "revId": "597777596cd98d1fd7c4b3ad903703f91699e671",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "77b06e0c_ae2bb3c8",
         "filename": "dashboard/dashboard/elements/test-picker.html",
         "patchSetId": 2
@@ -89,6 +107,24 @@
       "side": 1,
       "message": "Thanks for digging a bit deeper on this, that at least clears up understanding of the call stack that leads here.\n\nSo I\u0027m still a bit unclear what this function is used for in test-picker. Who are the callers, what\u0027s the return value used for, is it ok for part of the path to be missing? It kinda seems in general that test-picker isn\u0027t written for chunks of the test path to be missing.",
       "parentUuid": "77b06e0c_ae2bb3c8",
+      "revId": "597777596cd98d1fd7c4b3ad903703f91699e671",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7ad5bc1_8d7228ca",
+        "filename": "dashboard/dashboard/elements/test-picker.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-19T20:35:38Z",
+      "side": 1,
+      "message": "getCurrentSelectedPathUpTo is only called in test-picker.\ngetCurrentSelection calls getCurrentSelectedPathUpTo(-1, true) to collect the full selected test-path.\n\nupdateSubtestMenus takes a |startIndex| and calls getCurrentSelectedPathUpTo 3 times:\n1 and 2: with startIndex and (i+1) in a loop to get the selected path up to |startIndex| so that it can call /list_tests via subtests.get() and update subtest menus.\n3: getCurrentSelectedPathUpTo(0) to get the test-suite-level test-path in order to fetch the story tag map.\n\nonDropdownSelect also calls getCurrentSelectedPathUpTo(0) to get the test-suite-level test-path in order to fetch the story tag map.\n\nSorry, I\u0027m not sure what you mean about missing chunks of the test-path.",
+      "parentUuid": "55289f0b_12bf33bb",
       "revId": "597777596cd98d1fd7c4b3ad903703f91699e671",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
