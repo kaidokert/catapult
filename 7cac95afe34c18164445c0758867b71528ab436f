@@ -22,6 +22,30 @@
       "revId": "7cac95afe34c18164445c0758867b71528ab436f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fea8030_d17023d6",
+        "filename": "dashboard/dashboard/elements/chart-container.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 1826,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2017-10-19T16:54:39Z",
+      "side": 1,
+      "message": "Could it be part of the SeriesGroup class, maybe static?\nCould it be a static method in chart-container? I assume you\u0027ll dislike that idea because chart-container is so monolithic, but maybe that\u0027s a call to pull a small piece out into a class (assuming that piece isn\u0027t already SeriesGroup)",
+      "parentUuid": "9dbdcc8f_f3da82a6",
+      "range": {
+        "startLine": 1826,
+        "startChar": 14,
+        "endLine": 1826,
+        "endChar": 32
+      },
+      "revId": "7cac95afe34c18164445c0758867b71528ab436f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
