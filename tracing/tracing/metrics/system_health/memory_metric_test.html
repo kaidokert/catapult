@@ -3674,10 +3674,19 @@ tr.b.unittest.testSuite(function() {
     const browserHistogram =
         histograms.getHistogramNamed(`${prefix}browser_process${suffix}`);
 
-    const breakdown = allHistogram.diagnostics.get('processes');
-    assert.strictEqual(breakdown.get('browser_process'), browserHistogram);
-    assert.strictEqual(breakdown.get('renderer_processes'), rendererHistogram);
-    assert.strictEqual(breakdown.get('gpu_process'), undefined);
+    const relatedNameMap = allHistogram.diagnostics.get('processes');
+    assert.strictEqual(relatedNameMap.get('browser_process'),
+        browserHistogram.name);
+    assert.strictEqual(relatedNameMap.get('renderer_processes'),
+        rendererHistogram.name);
+    assert.strictEqual(relatedNameMap.get('gpu_process'), undefined);
+
+    const bin = allHistogram.getBinForValue(allHistogram.average);
+    const breakdown = tr.b.getOnlyElement(bin.diagnosticMaps).get('processes');
+    assert.strictEqual(breakdown.get('browser_process'),
+        browserHistogram.average);
+    assert.strictEqual(breakdown.get('renderer_processes'),
+        rendererHistogram.average);
   });
 
   test('componentsHaveBreakdowns', function() {
