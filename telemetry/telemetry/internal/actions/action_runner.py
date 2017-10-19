@@ -171,7 +171,7 @@ class ActionRunner(object):
     self._tab.PrepareForLeakDetection()
 
   def Navigate(self, url, script_to_evaluate_on_commit=None,
-               timeout_in_seconds=60):
+               timeout_in_seconds=90):
     """Navigates to |url|.
 
     If |script_to_evaluate_on_commit| is given, the script source string will be
