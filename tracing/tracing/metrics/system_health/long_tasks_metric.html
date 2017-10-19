@@ -21,46 +21,37 @@ tr.exportTo('tr.metrics.sh', function() {
   const LONGEST_TASK_MS = 1000;
 
   /**
-   * This helper function calls |cb| for each of the top-level tasks on the
-   * given thread in the given range whose duration is longer than LONG_TASK_MS.
+   * This yields the top-level tasks on the given thread in the given range
+   * whose duration is longer than LONG_TASK_MS.
    *
    * @param {tr.model.Thread} thread
    * @param {tr.b.math.Range=} opt_range
-   * @param {function()} cb
-   * @param {Object=} opt_this
    */
-  function iterateLongTopLevelTasksOnThreadInRange(
-      thread, opt_range, cb, opt_this) {
-    thread.sliceGroup.topLevelSlices.forEach(function(slice) {
+  function* iterateLongTopLevelTasksOnThreadInRange(thread, opt_range) {
+    for (const slice of thread.sliceGroup.topLevelSlices) {
       if (opt_range &&
           !opt_range.intersectsExplicitRangeInclusive(slice.start, slice.end)) {
-        return;
+        continue;
       }
 
-      if (slice.duration < LONG_TASK_MS) return;
+      if (slice.duration < LONG_TASK_MS) continue;
 
-      cb.call(opt_this, slice);
-    });
+      yield slice;
+    }
   }
 
   /**
-   * This helper function calls |cb| for each of the main renderer threads in
-   * the model.
+   * This yields the main renderer threads in the model.
    *
    * @param {tr.model.Model} model The model.
-   * @param {function()} cb Callback.
-   * @param {Object=} opt_this Context object.
    */
-  function iterateRendererMainThreads(model, cb, opt_this) {
+  function* iterateRendererMainThreads(model) {
     const modelHelper = model.getOrCreateHelper(
         tr.model.helpers.ChromeModelHelper);
-    if (modelHelper !== undefined) {
-      Object.values(modelHelper.rendererHelpers).forEach(
-          function(rendererHelper) {
-            if (!rendererHelper.mainThread) return;
-
-            cb.call(opt_this, rendererHelper.mainThread);
-          });
+    if (modelHelper === undefined) return;
+    for (const rendererHelper of Object.values(modelHelper.rendererHelpers)) {
+      if (!rendererHelper.mainThread) continue;
+      yield rendererHelper.mainThread;
     }
   }
 
@@ -75,32 +66,51 @@ tr.exportTo('tr.metrics.sh', function() {
   function longTasksMetric(histograms, model, opt_options) {
     const rangeOfInterest = opt_options ? opt_options.rangeOfInterest :
       undefined;
-    const longTaskHist = new tr.v.Histogram('long tasks',
-        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
-        tr.v.HistogramBinBoundaries.createLinear(
-            LONG_TASK_MS, LONGEST_TASK_MS, 40));
-    longTaskHist.description = 'durations of long tasks';
-    const slices = new tr.model.EventSet();
-    iterateRendererMainThreads(model, function(thread) {
-      iterateLongTopLevelTasksOnThreadInRange(
-          thread, rangeOfInterest, function(task) {
-            longTaskHist.addSample(task.duration,
-                {relatedEvents: new tr.v.d.RelatedEventSet([task])});
-            slices.push(task);
-            slices.addEventSet(task.descendentSlices);
-          });
-    });
-    histograms.addHistogram(longTaskHist);
+    const longTaskHist = histograms.createHistogram(
+        'longTasks', tr.b.Unit.byName.timeDurationInMs_smallerIsBetter, [], {
+          description: 'wall durations of long tasks',
+          binBoundaries: tr.v.HistogramBinBoundaries.createLinear(
+              LONG_TASK_MS, LONGEST_TASK_MS, 40),
+        });
 
-    const sampleForEvent = undefined;
-    const breakdown = tr.v.d.RelatedHistogramBreakdown.buildFromEvents(
-        histograms, 'long tasks ', slices,
-        e => (model.getUserFriendlyCategoryFromEvent(e) || 'unknown'),
-        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter, sampleForEvent,
-        tr.v.HistogramBinBoundaries.createExponential(1, LONGEST_TASK_MS, 40));
-    breakdown.colorScheme =
-      tr.v.d.COLOR_SCHEME_CHROME_USER_FRIENDLY_CATEGORY_DRIVER;
-    longTaskHist.diagnostics.set('category', breakdown);
+    const relatedHistograms = new Map();
+    const relatedNames = new tr.v.d.RelatedNameMap();
+    longTaskHist.diagnostics.set('breakdown', relatedNames);
+    const binBoundaries = tr.v.HistogramBinBoundaries.createExponential(
+        1, LONGEST_TASK_MS, 40);
+
+    for (const thread of iterateRendererMainThreads(model)) {
+      for (const task of iterateLongTopLevelTasksOnThreadInRange(
+          thread, rangeOfInterest)) {
+        const breakdown = new tr.v.d.Breakdown();
+        breakdown.colorScheme =
+          tr.v.d.COLOR_SCHEME_CHROME_USER_FRIENDLY_CATEGORY_DRIVER;
+        for (const slice of task.descendentSlices) {
+          const category = model.getUserFriendlyCategoryFromEvent(slice) ||
+            'unknown';
+          const relatedName = `longTasks:${category}`;
+          let relatedHist = relatedHistograms.get(category);
+          if (!relatedHist) {
+            relatedHist = histograms.createHistogram(
+                relatedName, longTaskHist.unit, [], {
+                  binBoundaries,
+                });
+            relatedHistograms.set(category, relatedHist);
+            relatedNames.set(category, relatedName);
+          }
+          const sample = slice.cpuSelfTime;
+          breakdown.set(category, breakdown.get(category) + sample);
+          relatedHist.addSample(sample, {
+            event: new tr.v.d.RelatedEventSet(slice),
+          });
+        }
+
+        longTaskHist.addSample(task.duration, {
+          breakdown,
+          task: new tr.v.d.RelatedEventSet(task),
+        });
+      }
+    }
   }
 
   tr.metrics.MetricRegistry.register(longTasksMetric, {
@@ -110,10 +120,6 @@ tr.exportTo('tr.metrics.sh', function() {
 
   return {
     longTasksMetric,
-    iterateLongTopLevelTasksOnThreadInRange,
-    iterateRendererMainThreads,
-    LONG_TASK_MS,
-    LONGEST_TASK_MS,
   };
 });
 </script>

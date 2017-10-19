@@ -38,7 +38,7 @@ tr.exportTo('tr.v.d', function() {
     }
 
     /**
-     * Add a Value by an explicit name to this map.
+     * Add a numeric value by name.
      *
      * @param {string} name
      * @param {number} value
@@ -48,6 +48,7 @@ tr.exportTo('tr.v.d', function() {
           typeof value !== 'number') {
         throw new Error('Breakdown maps from strings to numbers');
       }
+
       this.values_.set(name, value);
     }
 
@@ -70,13 +71,8 @@ tr.exportTo('tr.v.d', function() {
     }
 
     asDictInto_(d) {
-      d.values = {};
-      for (const [name, value] of this) {
-        d.values[name] = tr.b.numberToJson(value);
-      }
-      if (this.colorScheme) {
-        d.colorScheme = this.colorScheme;
-      }
+      d.entries = Array.from(this);
+      if (this.colorScheme) d.colorScheme = this.colorScheme;
     }
 
     static fromEntries(entries) {
@@ -88,13 +84,8 @@ tr.exportTo('tr.v.d', function() {
     }
 
     static fromDict(d) {
-      const breakdown = new Breakdown();
-      for (const [name, value] of Object.entries(d.values)) {
-        breakdown.set(name, tr.b.numberFromJson(value));
-      }
-      if (d.colorScheme) {
-        breakdown.colorScheme = d.colorScheme;
-      }
+      const breakdown = Breakdown.fromEntries(d.entries);
+      if (d.colorScheme) breakdown.colorScheme = d.colorScheme;
       return breakdown;
     }
   }
