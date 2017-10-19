@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "214b4e95_4140db93",
+        "filename": "tracing/tracing/metrics/system_health/expected_queueing_time_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2017-10-19T11:58:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d73baaa_60f29353",
+      "range": {
+        "startLine": 187,
+        "startChar": 12,
+        "endLine": 187,
+        "endChar": 42
+      },
+      "revId": "37b8c446d0bea9546dedc8807bb60882231bfed0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "212c8bd9_9fbfb965",
         "filename": "tracing/tracing/metrics/system_health/expected_queueing_time_metric.html",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "449f7954_782778ad",
+        "filename": "tracing/tracing/metrics/system_health/expected_queueing_time_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2017-10-19T11:58:34Z",
+      "side": 1,
+      "message": "I added another function and added equivalent metrics for most of them. I haven\u0027t added the rcs metrics for the following:\n1. v8:execute\n2. v8:gc:latency-mark-compactor\n3. v8:gc:memory-mark-compactor.\n\nFrom the quick discussion we had, it is not possible currently to distinguish between latency-mc and memory-mc. Also, in my understanding there is nothing equivalent for v8:excute. RCS are reported along with v8.execute trace events along with a couple of more trace events. So, in all these cases, it is not possible unless we look at the higher level event. So, I am not sure if we even possible/need rcs in such cases.",
+      "parentUuid": "212c8bd9_9fbfb965",
+      "range": {
+        "startLine": 210,
+        "startChar": 11,
+        "endLine": 210,
+        "endChar": 45
+      },
+      "revId": "37b8c446d0bea9546dedc8807bb60882231bfed0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "917b38ba_9ea7ac24",
         "filename": "tracing/tracing/metrics/system_health/expected_queueing_time_metric.html",
         "patchSetId": 1
@@ -68,6 +116,30 @@
       "revId": "37b8c446d0bea9546dedc8807bb60882231bfed0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f1428a7_706f9ed4",
+        "filename": "tracing/tracing/metrics/system_health/expected_queueing_time_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2017-10-19T11:58:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "917b38ba_9ea7ac24",
+      "range": {
+        "startLine": 240,
+        "startChar": 38,
+        "endLine": 240,
+        "endChar": 54
+      },
+      "revId": "37b8c446d0bea9546dedc8807bb60882231bfed0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
