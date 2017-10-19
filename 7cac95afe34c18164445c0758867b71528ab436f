@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9dbdcc8f_f3da82a6",
+        "filename": "dashboard/dashboard/elements/chart-container.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 1826,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-19T16:30:54Z",
+      "side": 1,
+      "message": "Don\u0027t like the code duplication here, it\u0027s the same code from test-picker, and again in chart-container. Not sure what the best way to tackle this is. Feel like maybe a wrapper over the endpoints (could rework AsyncMap as that wrapper even). Then you\u0027d be calling endpoint_wrapper.listTests(params) instead of simple_xhr everywhere, and it\u0027d handle the specifics of json\u0027ing bits, etc.",
+      "range": {
+        "startLine": 1826,
+        "startChar": 14,
+        "endLine": 1826,
+        "endChar": 32
+      },
+      "revId": "7cac95afe34c18164445c0758867b71528ab436f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
