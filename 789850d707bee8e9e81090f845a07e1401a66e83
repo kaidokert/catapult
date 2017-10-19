@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b6d37884_f7a16bd6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2017-10-19T00:01:33Z",
+      "side": 1,
+      "message": "It would be really awesome to clarify further here. This CL unblocks pinpoint, but someone still needs to deploy the viewer on either pinpoint or perf dashboard and have pinpoint make use of it. I think it\u0027s important to be clear from a code archeology point of view. Some context from the code review guide, which I find super helpful:\nhttps://engdoc.corp.google.com/eng/doc/devguide/coding/review/developer/handling-comments.md?cl\u003dhead#code\n\"If a reviewer says that they don\u0027t understand something in your code, your first response should be to clarify the code itself. If the code can\u0027t be clarified, add a code comment that explains why the code is there. If a comment seems pointless, only then should your response be an explanation in Critique.\"\n\nHere, I\u0027m referring to the CL description rather than the code, but I think it still applies.",
+      "range": {
+        "startLine": 15,
+        "startChar": 29,
+        "endLine": 15,
+        "endChar": 0
+      },
+      "revId": "789850d707bee8e9e81090f845a07e1401a66e83",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04ec0e1c_f2aadd9c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2017-10-19T00:01:33Z",
+      "side": 1,
+      "message": "Can you format this so that Gerrit can update the bug?\n\nBug: catapult:#3925",
+      "range": {
+        "startLine": 17,
+        "startChar": 56,
+        "endLine": 17,
+        "endChar": 0
+      },
+      "revId": "789850d707bee8e9e81090f845a07e1401a66e83",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
