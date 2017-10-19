@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "86199ced_778f10f7",
+        "filename": "dashboard/dashboard/add_histograms_queue.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2017-10-19T13:01:00Z",
+      "side": 1,
+      "message": "Excited to see this go in! It\u0027s really awesome that histogramset has the full set of trace urls, and not just the first one like chartjson did. We have gotten questions in the past about how to see all of the traces; would you mind filing a catapult bug for that and adding a TODO here?",
+      "range": {
+        "startLine": 201,
+        "startChar": 71,
+        "endLine": 201,
+        "endChar": 0
+      },
+      "revId": "32d6c77457f3a481638108884e86f72d157565f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
