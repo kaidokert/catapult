@@ -263,6 +263,30 @@
     },
     {
       "key": {
+        "uuid": "c35371ee_55e8f923",
+        "filename": "tracing/tracing/metrics/vr/frame_cycle_duration_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2017-10-19T15:06:43Z",
+      "side": 1,
+      "message": "Will change the WebVr metric in a follow up CL.",
+      "parentUuid": "597e1b15_b466dfb0",
+      "range": {
+        "startLine": 51,
+        "startChar": 6,
+        "endLine": 52,
+        "endChar": 18
+      },
+      "revId": "e1b942f5708b43ec27bcd897badeadb4b97f8745",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "57db1060_3f9e2c1b",
         "filename": "tracing/tracing/metrics/vr/frame_cycle_duration_metric.html",
         "patchSetId": 3
