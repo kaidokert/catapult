@@ -154,6 +154,42 @@ tr.exportTo('tr.metrics.v8.utils', function() {
     return event.title === 'V8.GCScavenger';
   }
 
+  function isCompileOptimizeRCSCategory(name) {
+    return name === 'Optimize';
+  }
+
+  function isCompileUnoptimizeRCSCategory(name) {
+    return name === 'Compile';
+  }
+
+  function isCompileParseRCSCategory(name) {
+    return name === 'Parse';
+  }
+
+  function isCompileRCSCategory(name) {
+    return name === 'Compile' || name === 'Optimize' || name === 'Parse';
+  }
+
+  function isGarbageCollectionRCSCategory(name) {
+    return name === 'GC';
+  }
+
+  function isFullMarkCompactorRCSCategory(name) {
+    return name.includes('GC_MC');
+  }
+
+  function isIncrementalMarkingRCSCategory(name) {
+    return name.includes('INCREMENTAL');
+  }
+
+  function isScavengerRCSCategory(name) {
+    return name.includes('SCAVENGER');
+  }
+
+  function isV8RCSCategory(name) {
+    return name === 'Total';
+  }
+
   function topGarbageCollectionEventName(event) {
     if (event.title === FULL_GC_EVENT) {
       // Full mark compact events inside a low memory notification
@@ -256,6 +292,15 @@ tr.exportTo('tr.metrics.v8.utils', function() {
     isTopV8ExecuteEvent,
     isV8Event,
     isV8ExecuteEvent,
+    isCompileRCSCategory,
+    isCompileOptimizeRCSCategory,
+    isCompileUnoptimizeRCSCategory,
+    isCompileParseRCSCategory,
+    isGarbageCollectionRCSCategory,
+    isFullMarkCompactorRCSCategory,
+    isIncrementalMarkingRCSCategory,
+    isScavengerRCSCategory,
+    isV8RCSCategory,
     rangeForMemoryDumps,
     subGarbageCollectionEventName,
     topGarbageCollectionEventName,

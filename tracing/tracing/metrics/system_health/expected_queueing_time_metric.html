@@ -84,11 +84,13 @@ tr.exportTo('tr.metrics.sh', function() {
     addExpectedQueueingTimeMetric_(
         'renderer_eqt',
         event => {return {start: event.start, duration: event.duration};},
-        rendererHelpers, rendererToInteractiveTimestamps, histograms, model);
+        false, rendererHelpers, rendererToInteractiveTimestamps, histograms,
+        model);
     addExpectedQueueingTimeMetric_(
         'renderer_eqt_cpu',
         event => {return {start: event.cpuStart, duration: event.cpuDuration};},
-        rendererHelpers, rendererToInteractiveTimestamps, histograms, model);
+        true, rendererHelpers, rendererToInteractiveTimestamps, histograms,
+        model);
   }
 
   /**
@@ -105,7 +107,7 @@ tr.exportTo('tr.metrics.sh', function() {
    * @param {!Map.<number, Array.<number>>} rendererToInteractiveTimestamps
    *     a map from renderer pid to an array of interactive timestamps.
    */
-  function addExpectedQueueingTimeMetric_(eqtName, getEventTimes,
+  function addExpectedQueueingTimeMetric_(eqtName, getEventTimes, isCpuTime,
       rendererHelpers, rendererToInteractiveTimestamps, histograms, model) {
     /**
      * Extracts tasks for EQT computation from the given renderer.
@@ -154,7 +156,7 @@ tr.exportTo('tr.metrics.sh', function() {
               WINDOW_SIZE_MS, tasks));
     }
     addV8ContributionToExpectedQueueingTime_(
-        eqtName, getEventTimes, totalHistogram, interactiveHistogram,
+        eqtName, getEventTimes, isCpuTime, totalHistogram, interactiveHistogram,
         rendererToInteractiveTimestamps, histograms, model);
     histograms.addHistogram(totalHistogram);
     histograms.addHistogram(interactiveHistogram);
@@ -176,13 +178,24 @@ tr.exportTo('tr.metrics.sh', function() {
    *     a map from renderer pid to an array of interactive timestamps.
    */
   function addV8ContributionToExpectedQueueingTime_(
-      eqtName, getEventTimes, totalEqtHistogram, interactiveEqtHistogram,
-      rendererToInteractiveTimestamps, histograms, model) {
+      eqtName, getEventTimes, isCpuTime, totalEqtHistogram,
+      interactiveEqtHistogram, rendererToInteractiveTimestamps,
+      histograms, model) {
     if (!model.categories.includes('v8')) return;
     const breakdownForTotal = new tr.v.d.RelatedHistogramMap();
     const breakdownForInteractive = new tr.v.d.RelatedHistogramMap();
+    // Include task extractors that use tracing.
     const eventNamesWithTaskExtractors =
         getV8EventNamesWithTaskExtractors_(getEventTimes);
+    if (!isCpuTime) {
+      // Include task extractors that use RCS. RCS does not provide cpu time
+      // so include these only for wall clock time.
+      const taskExtractorsUsingRCS =
+          getV8EventNamesWithTaskExtractorsUsingRCS_(getEventTimes);
+      for (const entry of taskExtractorsUsingRCS.entries()) {
+        eventNamesWithTaskExtractors.set(entry[0], entry[1]);
+      }
+    }
     for (const [eventName, getTasks] of eventNamesWithTaskExtractors) {
       const contribution = contributionToExpectedQueueingTime_(
           eqtName, eventName, getTasks, rendererToInteractiveTimestamps,
@@ -205,7 +218,7 @@ tr.exportTo('tr.metrics.sh', function() {
    * @returns {!Map.<string, TaskExtractor>} a map from V8 event names to
    *     the corresponding task extractor functions.
    */
-  function getV8EventNamesWithTaskExtractors_(getEventTimes) {
+  function getV8EventNamesWithTaskExtractors_(getEventTimes, cpuMetrics) {
     /**
      * @param {!tr.b.Event} slice.
      * @param {!function(tr.b.Event): boolean} predicate that selects V8 events.
@@ -215,13 +228,10 @@ tr.exportTo('tr.metrics.sh', function() {
      *     slice that satisfy the given |predicate| after filtering out any
      *     events that satisfy the |excludePredicate| in the subslices.
      */
-    function durationOfTopmostSubSlices(slice, predicate, excludePredicate) {
+    function durationOfTopmostSubSlices(slice, predicate) {
       let duration = 0;
       for (const sub of slice.findTopmostSlicesRelativeToThisSlice(predicate)) {
         duration += getEventTimes(sub).duration;
-        if (excludePredicate !== null && excludePredicate !== undefined) {
-          duration -= durationOfTopmostSubSlices(sub, excludePredicate);
-        }
       }
       return duration;
     }
@@ -235,15 +245,14 @@ tr.exportTo('tr.metrics.sh', function() {
      *     represents the contribution of the events selected by the
      *     given |predicate| and |excludePredicate|.
      */
-    function taskExtractor(predicate, excludePredicate) {
+    function taskExtractor(predicate) {
       return function(rendererHelper) {
         const slices = rendererHelper.mainThread.sliceGroup.topLevelSlices;
         const result = [];
         for (const slice of slices) {
           const times = getEventTimes(slice);
           if (times.duration > 0 && !containsForcedGC_(slice)) {
-            const duration = durationOfTopmostSubSlices(
-                slice, predicate, excludePredicate);
+            const duration = durationOfTopmostSubSlices(slice, predicate);
             result.push({start: times.start, end: times.start + duration});
           }
         }
@@ -300,6 +309,119 @@ tr.exportTo('tr.metrics.sh', function() {
       [
         'v8:gc:scavenger',
         taskExtractor(tr.metrics.v8.utils.isScavengerEvent)
+      ]
+    ]);
+  }
+
+  /**
+   * @param {!EventTimesCallback} getEventTimes.
+   * @returns {!Map.<string, TaskExtractor>} a map from V8 event names to
+   *     the corresponding task extractor functions.
+   */
+  function getV8EventNamesWithTaskExtractorsUsingRCS_(getEventTimes) {
+    /**
+     * @param {!function(!string): boolean} predicate that selects RCS category.
+     * @param {!function(!string): boolean} subPredicate optional parameter
+     *     that selects sub events in the top level RCS category.
+     * @returns {!TaskExtractor} a function that extracts tasks from the given
+     *     renderer. Each task is a pair of {start, end} times and its duration
+     *     represents the contribution of the events selected by the given
+     *     |subPredicate| inside the top level events selected by |predicate|.
+     *     If subPredicate is null then all events in the top level events are
+     *     included.
+     */
+    function taskExtractorUsingRCS(predicate, subPredicate) {
+      return function(rendererHelper) {
+        const result = [];
+        for (const topSlice of
+            rendererHelper.mainThread.sliceGroup.topLevelSlices) {
+          const times = getEventTimes(topSlice);
+          if (times.duration <= 0 || containsForcedGC_(topSlice)) {
+            continue;
+          }
+          // Find all V8ThreadSlices in the top level slice.
+          const v8ThreadSlices = [];
+          for (const slice of topSlice.descendentSlices) {
+            if (slice instanceof tr.e.v8.V8ThreadSlice) {
+              v8ThreadSlices.push(slice);
+            }
+          }
+
+          // Find the event specified by subPredicate inside the top level
+          // events specified by predicate.
+          const runtimeGroupCollection =
+              new tr.e.v8.RuntimeStatsGroupCollection();
+          runtimeGroupCollection.addSlices(v8ThreadSlices);
+          let duration = 0;
+          for (const runtimeGroup of runtimeGroupCollection.runtimeGroups) {
+            if (!predicate(runtimeGroup.name)) {
+              continue;
+            }
+            if (subPredicate === undefined) {
+              duration += runtimeGroup.time;
+            } else {
+              for (const entry of runtimeGroup.values) {
+                if (subPredicate(entry.name)) {
+                  duration += entry.time;
+                }
+              }
+            }
+          }
+
+          duration = tr.b.convertUnit(
+              duration,
+              tr.b.UnitPrefixScale.METRIC.MICRO,
+              tr.b.UnitPrefixScale.METRIC.MILLI);
+          result.push({start: times.start, end: times.start + duration});
+        }
+        return result;
+      };
+    }
+
+    return new Map([
+      [
+        'v8_rcs',
+        taskExtractorUsingRCS(tr.metrics.v8.utils.isV8RCSCategory)
+      ],
+      [
+        'v8:compile_rcs',
+        taskExtractorUsingRCS(tr.metrics.v8.utils.isCompileRCSCategory)
+      ],
+      [
+        'v8:compile:optimize_rcs',
+        taskExtractorUsingRCS(tr.metrics.v8.utils.isCompileOptimizeRCSCategory)
+      ],
+      [
+        'v8:compile:parse_rcs',
+        taskExtractorUsingRCS(tr.metrics.v8.utils.isCompileParseRCSCategory)
+      ],
+      [
+        'v8:compile:compile-unoptimize_rcs',
+        taskExtractorUsingRCS(
+            tr.metrics.v8.utils.isCompileUnoptimizeRCSCategory)
+      ],
+      [
+        'v8:gc_rcs',
+        taskExtractorUsingRCS(
+            tr.metrics.v8.utils.isGarbageCollectionRCSCategory)
+      ],
+      [
+        'v8:gc:full-mark-compactor_rcs',
+        taskExtractorUsingRCS(
+            tr.metrics.v8.utils.isGarbageCollectionRCSCategory,
+            tr.metrics.v8.utils.isFullMarkCompactorRCSCategory)
+      ],
+      [
+        'v8:gc:incremental-marking_rcs',
+        taskExtractorUsingRCS(
+            tr.metrics.v8.utils.isGarbageCollectionRCSCategory,
+            tr.metrics.v8.utils.isIncrementalMarkingRCSCategory)
+      ],
+      [
+        'v8:gc:scavenger_rcs',
+        taskExtractorUsingRCS(
+            tr.metrics.v8.utils.isGarbageCollectionRCSCategory,
+            tr.metrics.v8.utils.isScavengerRCSCategory)
       ]
     ]);
   }
