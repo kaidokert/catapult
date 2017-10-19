@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "cba8107d_964572e1",
+        "filename": "tracing/tracing/metrics/system_health/expected_queueing_time_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2017-10-19T15:10:19Z",
+      "side": 1,
+      "message": "Sounds good short-term.\n\nLong-term if we want to replace the existing GC metrics with RCS, we need to find a way to distinguish latency-mark-compactor, memory-mark-compactor, and full-mark-compactor. Currently all that time is accounted in v8:gc:full-mark-compactor_rcs, which is not correct.",
+      "parentUuid": "449f7954_782778ad",
+      "range": {
+        "startLine": 210,
+        "startChar": 11,
+        "endLine": 210,
+        "endChar": 45
+      },
+      "revId": "37b8c446d0bea9546dedc8807bb60882231bfed0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "917b38ba_9ea7ac24",
         "filename": "tracing/tracing/metrics/system_health/expected_queueing_time_metric.html",
         "patchSetId": 1
