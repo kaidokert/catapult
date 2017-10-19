@@ -45,6 +45,30 @@
       "revId": "789850d707bee8e9e81090f845a07e1401a66e83",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6dda49b1_b02c4861",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-19T04:58:57Z",
+      "side": 1,
+      "message": "Sorry, I\u0027m confused on two counts.\n\n1. It doesn\u0027t look like gerrit supports catapult issues because the link is\nhttps://github.com/catapult-project/catapult/issues/$2\nNote the \"$2\" at the end instead of 3925.\nI assumed we were still waiting for somebody to make gerrit support catapult bugs.\n\n2. It looks like chromium-infra-bot handles these full links. It updated 3973 even though the CL contained the full link instead of the Bug: line.\nhttps://github.com/catapult-project/catapult/issues/3973",
+      "parentUuid": "04ec0e1c_f2aadd9c",
+      "range": {
+        "startLine": 17,
+        "startChar": 56,
+        "endLine": 17,
+        "endChar": 0
+      },
+      "revId": "789850d707bee8e9e81090f845a07e1401a66e83",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
