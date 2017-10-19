@@ -18,9 +18,7 @@ tr.b.unittest.testSuite(function() {
     diagnostics.set('generic', new tr.v.d.GenericSet([{a: ['b', 3]}]));
     diagnostics.set('breakdown', new tr.v.d.Breakdown());
     diagnostics.set('events', new tr.v.d.RelatedEventSet());
-    diagnostics.set('map', new tr.v.d.RelatedHistogramMap());
-    diagnostics.set('histogram breakdown',
-        new tr.v.d.RelatedHistogramBreakdown());
+    diagnostics.set('map', new tr.v.d.RelatedNameMap());
 
     const clone = tr.v.d.DiagnosticMap.fromDict(diagnostics.asDict());
     assert.instanceOf(clone.get('generic'), tr.v.d.GenericSet);
@@ -28,9 +26,7 @@ tr.b.unittest.testSuite(function() {
         tr.b.getOnlyElement(diagnostics.get('generic')));
     assert.instanceOf(clone.get('breakdown'), tr.v.d.Breakdown);
     assert.instanceOf(clone.get('events'), tr.v.d.RelatedEventSet);
-    assert.instanceOf(clone.get('map'), tr.v.d.RelatedHistogramMap);
-    assert.instanceOf(clone.get('histogram breakdown'),
-        tr.v.d.RelatedHistogramBreakdown);
+    assert.instanceOf(clone.get('map'), tr.v.d.RelatedNameMap);
   });
 
   test('fromObject', function() {
@@ -74,7 +70,7 @@ tr.b.unittest.testSuite(function() {
     };
     const generic = new tr.v.d.GenericSet(['generic diagnostic']);
     const generic2 = new tr.v.d.GenericSet(['generic diagnostic 2']);
-    const relatedMap = new tr.v.d.RelatedHistogramMap();
+    const relatedMap = new tr.v.d.RelatedNameMap();
     const events = new tr.v.d.RelatedEventSet([event]);
 
     // When Histograms are merged, first an empty clone is created with an empty
@@ -109,7 +105,7 @@ tr.b.unittest.testSuite(function() {
     assert.strictEqual(
         tr.b.getOnlyElement(generic), tr.b.getOnlyElement(diagnostics[0]));
     // Don't test merging relationships here.
-    assert.instanceOf(diagnostics[1], tr.v.d.RelatedHistogramMap);
+    assert.instanceOf(diagnostics[1], tr.v.d.RelatedNameMap);
 
     // UnmergeableDiagnosticSets are mergeable.
     const hist5 = new tr.v.Histogram('', tr.b.Unit.byName.count);
@@ -122,7 +118,7 @@ tr.b.unittest.testSuite(function() {
     assert.lengthOf(diagnostics, 3);
     assert.instanceOf(diagnostics[0], tr.v.d.GenericSet);
     assert.deepEqual(Array.from(diagnostics[0]), [...generic, ...generic2]);
-    assert.instanceOf(diagnostics[1], tr.v.d.RelatedHistogramMap);
+    assert.instanceOf(diagnostics[1], tr.v.d.RelatedNameMap);
     assert.instanceOf(diagnostics[2], tr.v.d.CollectedRelatedEventSet);
   });
 
@@ -130,12 +126,9 @@ tr.b.unittest.testSuite(function() {
     const aHist0 = new tr.v.Histogram('a', tr.b.Unit.byName.count);
     const bHist0 = new tr.v.Histogram('b', tr.b.Unit.byName.count);
 
-    let map = new tr.v.d.RelatedHistogramMap();
+    let map = new tr.v.d.RelatedNameMap();
     map.set('c', bHist0);
     aHist0.diagnostics.set('map', map);
-    let breakdown = new tr.v.d.RelatedHistogramBreakdown();
-    breakdown.set('d', bHist0);
-    aHist0.diagnostics.set('breakdown', breakdown);
     aHist0.diagnostics.set('unmergeable',
         new tr.v.d.GenericSet(['unmergeable']));
 
@@ -147,13 +140,10 @@ tr.b.unittest.testSuite(function() {
     const aHist1 = new tr.v.Histogram('a', tr.b.Unit.byName.count);
     const bHist1 = new tr.v.Histogram('b', tr.b.Unit.byName.count);
 
-    map = new tr.v.d.RelatedHistogramMap();
+    map = new tr.v.d.RelatedNameMap();
     map.set('c', bHist1);
     aHist1.diagnostics.set('map', map);
-    breakdown = new tr.v.d.RelatedHistogramBreakdown();
-    breakdown.set('d', bHist1);
-    aHist1.diagnostics.set('breakdown', breakdown);
-    aHist1.diagnostics.set('unmergeable', new tr.v.d.RelatedHistogramMap());
+    aHist1.diagnostics.set('unmergeable', new tr.v.d.RelatedNameMap());
 
     const histograms1 = new tr.v.HistogramSet([aHist1, bHist1]);
 
@@ -175,14 +165,9 @@ tr.b.unittest.testSuite(function() {
     bMergedHist.diagnostics.mergeRelationships(bMergedHist);
 
     const aMergedMap = aMergedHist.diagnostics.get('map');
-    assert.instanceOf(aMergedMap, tr.v.d.RelatedHistogramMap);
+    assert.instanceOf(aMergedMap, tr.v.d.RelatedNameMap);
     assert.lengthOf(aMergedMap, 1);
     assert.strictEqual(bMergedHist, aMergedMap.get('c'));
-
-    const aMergedBreakdown = aMergedHist.diagnostics.get('breakdown');
-    assert.instanceOf(aMergedBreakdown, tr.v.d.RelatedHistogramBreakdown);
-    assert.lengthOf(aMergedBreakdown, 1);
-    assert.strictEqual(bMergedHist, aMergedBreakdown.get('d'));
 
     const aMergedUnmergeable = aMergedHist.diagnostics.get('unmergeable');
     assert.instanceOf(aMergedUnmergeable, tr.v.d.UnmergeableDiagnosticSet);
