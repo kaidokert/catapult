@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e4005661_cb034d7f",
+        "filename": "dashboard/dashboard/elements/chart-container.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-19T20:56:48Z",
+      "side": 1,
+      "message": "I extended this comment. PTAL?\n\"All that\u0027s involved\" is probably too much for this CL.",
+      "parentUuid": "223647ca_48a9783a",
+      "range": {
+        "startLine": 676,
+        "startChar": 15,
+        "endLine": 676,
+        "endChar": 39
+      },
+      "revId": "53cc774dacf3e34d5110f6194e46e36836129689",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e3b1c696_bb1eec2e",
         "filename": "dashboard/dashboard/elements/report-page.html",
         "patchSetId": 12
@@ -36,6 +60,30 @@
       "writtenOn": "2017-10-16T20:59:41Z",
       "side": 1,
       "message": "This is much better than the first version, but think it could be more straightforward. Why not something like:\n\nfor (const chartStateDict of pageState.charts) {\n  this.addChartFromState(chartStateDict);\n}\n\n\nasync addChartFromState(chartStateDict) {\n  const chartState \u003d await this.chartStateFromDict_(chartStateDict);\n\n  this.addChart(chartState, false);\n}\n\nasync chartStateFromDict_(chartStateDict) {\n  ... same internals mostly\n\n  const seriesGroups \u003d await Promise.all(seriesGroupPromises);\n\n  return {\n    selectedRelatedTab: selectedRelatedTab,\n    seriesGroups: seriesGroups\n  };\n}\n\nI find this easier to follow.",
+      "range": {
+        "startLine": 180,
+        "startChar": 37,
+        "endLine": 180,
+        "endChar": 46
+      },
+      "revId": "53cc774dacf3e34d5110f6194e46e36836129689",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9527941a_54ca9d16",
+        "filename": "dashboard/dashboard/elements/report-page.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-19T20:56:48Z",
+      "side": 1,
+      "message": "Yes, that would be easier to follow, however it would make the order of charts on the page nondeterministic. This code currently ensures that charts are added to the page in the correct order by waiting for all chart states to be reconstructed first, and then it adds the charts in the order prescribed by the page state.\n\nWe could plumb a chartIndex from onUriLoad down to addChart, and monkey-patch the DOM to insertion-sort the charts, but I\u0027m going to guess that that would seem more complex than this.",
+      "parentUuid": "e3b1c696_bb1eec2e",
       "range": {
         "startLine": 180,
         "startChar": 37,
