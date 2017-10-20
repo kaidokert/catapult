@@ -14,6 +14,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+        "time"
 )
 
 const errStatus = http.StatusInternalServerError
@@ -101,6 +102,12 @@ func (proxy *replayingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 			storedResp.Header.Set("Content-Length", strconv.Itoa(len(body)))
 		}
 	}
+
+        // Update 'Date' in response header.
+        now := time.Now()
+        local, _ := time.LoadLocation("GMT")
+        updateRespHeaderDate := now.In(local).Format("Mon, 02 Jan 2006 15:04:05 MST")
+        storedResp.Header.Set("Date", updateRespHeaderDate)
 
 	// Transform.
 	for _, t := range proxy.transformers {
