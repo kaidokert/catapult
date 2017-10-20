@@ -5,11 +5,10 @@ Use of this source code is governed by a BSD-style license that can be
 found in the LICENSE file.
 -->
 
+<link rel="import" href="/components/google-signin/google-signin.html">
 <link rel="import" href="/components/iron-icons/iron-icons.html">
 <link rel="import" href="/components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="/components/paper-tooltip/paper-tooltip.html">
-
-<link rel="import" href="/dashboard/static/simple_xhr.html">
 
 <dom-module id="navigation-bar">
   <template>
@@ -19,12 +18,6 @@ found in the LICENSE file.
         display: flex;
         font-weight: bold;
         width: 100%;
-      }
-
-      #sign-in {
-        line-height: 24px;
-        padding: 8px;
-        text-decoration: none;
       }
 
       #spacer {
@@ -37,6 +30,11 @@ found in the LICENSE file.
 
       a:hover {
         color: white;
+      }
+
+      google-signin {
+        margin: 0;
+        padding: 8px;
       }
     </style>
 
@@ -57,9 +55,11 @@ found in the LICENSE file.
         <paper-icon-button icon="feedback"></paper-icon-button>
         <paper-tooltip>File a bug</paper-tooltip>
       </a>
-      <a id="sign-in" href$="[[loginUrl]]" title="Switch user">
-        [[displayUsername]]
-      </a>
+      <google-signin
+          client-id="62121018386-aqdfougp0ddn93knqj6g79vvn42ajmrg.apps.googleusercontent.com"
+          height="short" theme="dark"
+          on-google-signin-success="handleSignIn"
+          on-google-signed-out="handleSignOut"></google-signin>
     </nav>
   </template>
 
@@ -68,18 +68,21 @@ found in the LICENSE file.
     Polymer({
       is: 'navigation-bar',
 
-      ready() {
-        simple_xhr.send('/api/login',
-                        {'path': location.pathname + location.search},
-            function(response) {
-              this.loginUrl = response.login_url;
-              if ('display_username' in response) {
-                this.displayUsername = response.display_username;
-              } else {
-                this.displayUsername = 'Sign in';
-              }
-            }.bind(this));
-      }
+      properties: {
+        user: {
+          type: Object,
+          notify: true,
+          readonly: true
+        }
+      },
+
+      handleSignIn() {
+        this.user = gapi.auth2.getAuthInstance().currentUser.get();
+      },
+
+      handleSignOut() {
+        this.user = null;
+      },
     });
   </script>
 </dom-module>
