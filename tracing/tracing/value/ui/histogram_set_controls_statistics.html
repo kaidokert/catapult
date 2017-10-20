@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/base/timing.html">
+<link rel="import" href="/tracing/ui/base/dom_helpers.html">
+<link rel="import" href="/tracing/ui/base/grouping_table_groupby_picker.html">
+<link rel="import" href="/tracing/value/ui/histogram_set_view_state.html">
+
+<dom-module id="tr-v-ui-histogram-set-controls-statistics">
+  <template>
+    <style>
+    :host {
+      display: flex;
+    }
+    .vertical {
+      display: flex
+      flex-direction: column;
+    }
+    .heading {
+      font-weight: bold;
+    }
+    </style>
+
+    <div class="vertical">
+      <div class="heading">Open Cells</div>
+      <tr-ui-b-table id="open_cells"></tr-ui-b-table>
+    </div>
+
+    <div class="vertical">
+      <div class="heading">Closed Cells</div>
+      <tr-ui-b-table id="closed_cells"></tr-ui-b-table>
+    </div>
+  </template>
+</dom-module>
+
+<script>
+'use strict';
+tr.exportTo('tr.v.ui', function() {
+  class StatisticButtonRow {
+    constructor(displayName, opt_options) {
+      const options = opt_options || {};
+      this.displayName_ = displayName;
+      this.statName_ = options.statName || displayName;
+      this.deltaOnly_ = options.deltaOnly || false;
+    }
+
+    nonDelta() {
+      if (this.deltaOnly_) return '';
+    }
+
+    delta() {
+    }
+
+    percentDelta() {
+      if (this.deltaOnly_) return '';
+    }
+  }
+
+  Polymer({
+    is: 'tr-v-ui-histogram-set-controls-statistics',
+
+    created() {
+      this.viewState_ = undefined;
+    },
+
+    ready() {
+      this.$.open_cells.showHeader = false;
+      this.$.closed_cells.showHeader = false;
+
+      const columns = [
+        {value: row => row.nonDelta()},
+        {value: row => row.delta()},
+        {value: row => row.percentDelta()},
+      ];
+      this.$.open_cells.tableColumns = columns;
+      this.$.closed_cells.tableColumns = columns;
+
+      const rows = [
+        StatisticButtonRow('avg'),
+        StatisticButtonRow('stddev'),
+        StatisticButtonRow('min'),
+        StatisticButtonRow('max'),
+        StatisticButtonRow('count'),
+        StatisticButtonRow('nans'),
+        StatisticButtonRow('sum'),
+        StatisticButtonRow('geomean', {statName: 'geometricMean'}),
+        StatisticButtonRow('median', {statName: 'pct_050'}),
+        StatisticButtonRow('pct_090'),
+        StatisticButtonRow('pct_095'),
+        StatisticButtonRow('pct_099'),
+        StatisticButtonRow('p-value', {deltaOnly: true}),
+        StatisticButtonRow('z-score', {deltaOnly: true}),
+        StatisticButtonRow('U', {deltaOnly: true}),
+      ];
+      this.$.open_cells.tableRows = rows;
+      this.$.closed_cells.tableRows = rows;
+    },
+
+    get viewState() {
+      return this.viewState_;
+    },
+
+    set viewState(vs) {
+      if (this.viewState_) {
+        throw new Error('viewState must be set exactly once.');
+      }
+      this.viewState_ = vs;
+      this.viewState.addUpdateListener(this.onViewStateUpdate_.bind(this));
+      // It would be arduous to construct a delta and call viewStateListener_
+      // here in case vs contains non-default values, so callers must set
+      // viewState first and then update it.
+    },
+  });
+
+  return {
+  };
+});
+</script>
