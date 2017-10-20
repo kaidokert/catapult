@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8f6459d9_f03e5fdc",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-20T20:55:44Z",
+      "side": 1,
+      "message": "Although this refers to chartjson, the run_telemetry_benchmark_as_googletest just outputs everything to the specified file. I can loop back around once this is all confirmed working and use the new flag name, which is just a renamed version to be less specific to chartjson.",
+      "revId": "aa2799617f94b8f71f83b43c6222b211d2c077e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85431c2a_0dd3edde",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-20T20:55:44Z",
+      "side": 1,
+      "message": "Think there\u0027s a js implementation that hasn\u0027t made its way to python that might help with these hardcoded values, is that right Ben?",
+      "range": {
+        "startLine": 200,
+        "startChar": 27,
+        "endLine": 200,
+        "endChar": 30
+      },
+      "revId": "aa2799617f94b8f71f83b43c6222b211d2c077e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
