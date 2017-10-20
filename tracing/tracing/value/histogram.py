@@ -24,6 +24,10 @@ from tracing.value.diagnostics import reserved_infos
 JS_MAX_VALUE = 1.7976931348623157e+308
 
 
+def IsNumberType(x):
+  return isinstance(x, (int, long, float))
+
+
 # Converts the given percent to a string in the following format:
 # 0.x produces '0x0',
 # 0.xx produces '0xx',
@@ -371,8 +375,8 @@ class Breakdown(diagnostic.Diagnostic):
       d['colorScheme'] = self._color_scheme
 
   def Set(self, name, value):
-    assert isinstance(name, basestring)
-    assert isinstance(value, (int, float))
+    assert isinstance(name, basestring), name
+    assert IsNumberType(value), value
     self._values[name] = value
 
   def Get(self, name):
@@ -559,7 +563,7 @@ class RelatedHistogramMap(diagnostic.Diagnostic):
     return self._histograms_by_name.get(name)
 
   def Set(self, name, hist):
-    assert isinstance(hist, (Histogram, HistogramRef))
+    assert isinstance(hist, (Histogram, HistogramRef)), hist
     self._histograms_by_name[name] = hist
 
   def Add(self, hist):
@@ -605,7 +609,7 @@ class RelatedHistogramBreakdown(RelatedHistogramMap):
 
   def Set(self, name, hist):
     if not isinstance(hist, HistogramRef):
-      assert isinstance(hist, Histogram)
+      assert isinstance(hist, Histogram), hist
       # All Histograms must have the same unit.
       for _, other_hist in self:
         expected_unit = other_hist.unit
@@ -886,7 +890,7 @@ ExtendUnitNames()
 class Scalar(object):
 
   def __init__(self, unit, value):
-    assert unit in UNIT_NAMES
+    assert unit in UNIT_NAMES, unit
     self._unit = unit
     self._value = value
 
@@ -924,7 +928,7 @@ DEFAULT_SUMMARY_OPTIONS = {
 class Histogram(object):
 
   def __init__(self, name, unit, bin_boundaries=None):
-    assert unit in UNIT_NAMES
+    assert unit in UNIT_NAMES, unit
 
     if bin_boundaries is None:
       bin_boundaries = DEFAULT_BOUNDARIES_FOR_UNIT[unit]
@@ -993,7 +997,7 @@ class Histogram(object):
 
   @guid.setter
   def guid(self, g):
-    assert self._guid is None
+    assert self._guid is None, self._guid
     self._guid = g
 
   @property
@@ -1108,7 +1112,7 @@ class Histogram(object):
         not isinstance(diagnostic_map, DiagnosticMap)):
       diagnostic_map = DiagnosticMap(diagnostic_map)
 
-    if not isinstance(value, (int, float)) or math.isnan(value):
+    if not IsNumberType(value) or math.isnan(value):
       self._num_nans += 1
       if diagnostic_map:
         UniformlySampleStream(self._nan_diagnostic_maps, self.num_nans,
@@ -1191,7 +1195,7 @@ class Histogram(object):
         if self._running is None:
           self._running = RunningStatistics()
         stat_value = getattr(self._running, key)
-        if isinstance(stat_value, (int, float)):
+        if IsNumberType(stat_value):
           results[stat_name] = Scalar(stat_unit, stat_value)
     return results
 
@@ -1359,7 +1363,7 @@ class HistogramBinBoundaries(object):
     return self._bin_ranges
 
   def _Build(self):
-    if not isinstance(self._builder[0], (int, float)):
+    if not IsNumberType(self._builder[0]):
       raise ValueError('Invalid start of builder_')
 
     self._bin_ranges = []
