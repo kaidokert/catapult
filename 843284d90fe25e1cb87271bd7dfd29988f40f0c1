@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a339c712_436a7603",
+        "filename": "tracing/tracing/ui/base/dropdown.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-20T19:43:07Z",
+      "side": 0,
+      "message": "New one lgtm, seems a lot simpler, I take it these are functionally the same? For my own understanding, can you explain a bit why the old one was so much more complex? What these onOuterKeyDown_/onOuterClick_ were doing, what tr-ui-b-toolbar-button did, etc.",
+      "range": {
+        "startLine": 88,
+        "startChar": 2,
+        "endLine": 88,
+        "endChar": 17
+      },
+      "revId": "843284d90fe25e1cb87271bd7dfd29988f40f0c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
