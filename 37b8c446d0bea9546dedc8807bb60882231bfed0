@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "e62d4ef4_f5d8d23e",
+        "filename": "tracing/tracing/metrics/system_health/expected_queueing_time_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2017-10-20T11:43:40Z",
+      "side": 1,
+      "message": "As discussed offline, I think it is better to keep the existing GC metrics instead of adding RCS based ones. Since we already have the required trace events. RCS will be used only for the events that do not have a corresponding trace event.",
+      "parentUuid": "cba8107d_964572e1",
+      "range": {
+        "startLine": 210,
+        "startChar": 11,
+        "endLine": 210,
+        "endChar": 45
+      },
+      "revId": "37b8c446d0bea9546dedc8807bb60882231bfed0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "917b38ba_9ea7ac24",
         "filename": "tracing/tracing/metrics/system_health/expected_queueing_time_metric.html",
         "patchSetId": 1

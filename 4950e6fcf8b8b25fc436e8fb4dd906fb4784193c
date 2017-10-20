@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6304f298_a3109ae9",
+        "filename": "tracing/tracing/metrics/system_health/expected_queueing_time_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2017-10-20T11:43:40Z",
+      "side": 1,
+      "message": "I just put this back because I haven\u0027t removed v8_compile metrics yet. My plan is as follows:\n1. Have both rcs and non rcs metrics for compile / parse / optimize.\n2. After a week check if the metrics look close. (they match locally. just thought it is safer).\n3. Remove the non rcs metrics for compile / parse / optimize.\n\nI was planning to retain _rcs suffix for metrics that are computed based on rcs. For example v8:compile_rcs etc., Let me know if this sounds Ok.",
+      "revId": "4950e6fcf8b8b25fc436e8fb4dd906fb4784193c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
