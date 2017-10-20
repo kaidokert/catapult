@@ -22,6 +22,30 @@
       "revId": "843284d90fe25e1cb87271bd7dfd29988f40f0c1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3bec1238_997a4157",
+        "filename": "tracing/tracing/ui/base/dropdown.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-20T20:35:32Z",
+      "side": 0,
+      "message": "Yep, functionally the same as far as I can tell.\n\ntoolbar-button just wraps some CSS to make it easy to have multiple toolbar-buttons that all look the same. We could keep the toolbar-button here in dropdown, and use a css mixin to allow results.html to customize it, but it\u0027s not worth it: the new \u003cbutton\u003e only needs a few rules in timeline-view to make it look right, and the toolbar-button required a fair amount of javascript to make it function right that isn\u0027t needed with the \u003cbutton\u003e.\n\nonOuterKeyDown_ opens the dialog when the user presses the spacebar while focused on the button. It was necessary because toolbar-button didn\u0027t handle that because it\u0027s just a \u003cdiv\u003e, but \u003cbutton\u003e does fire the click event when you send it a spacebar keypress.\n\nI might be reading it wrong, but onOuterClick_ looks to me like a copy-paste error.\nIt opens the dialog when the user clicks the button, but that doesn\u0027t require the bounding rect math.\nThe bounding rect math looks like it was trying to use this trick to close the dialog when the user clicks on the background outside the dialog:\nhttps://stackoverflow.com/questions/25864259/how-to-close-the-new-html-dialog-tag-by-clicking-on-its-backdrop\nBut it\u0027s in the wrong callback. That math is supposed to be in onDialogClick_.\n\nonDialogClick_ was using a simpler approach to decide when to close the dialog (event.srcElement !\u003d\u003d this.$.dialog), which only works if everything inside the dialog would intercept click events and stop the click event from propagating up to the dialog. When the user clicked outside the dialog, srcElement would equal the dialog, so it would close like it\u0027s supposed to. But if there were something like plain text inside the dialog, then srcElement would !\u003d the dialog, so clicking on the plain text inside the dialog would close it, too, which is not what we want. Timeline-view only adds form elements to its dropdown, so it was ok, but results.html will be adding plain text, so now it needs to use the bounding rect math.",
+      "parentUuid": "a339c712_436a7603",
+      "range": {
+        "startLine": 88,
+        "startChar": 2,
+        "endLine": 88,
+        "endChar": 17
+      },
+      "revId": "843284d90fe25e1cb87271bd7dfd29988f40f0c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
