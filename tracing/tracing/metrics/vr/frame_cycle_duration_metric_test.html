@@ -42,8 +42,8 @@ tr.b.unittest.testSuite(function() {
     const durations = [
       {
         title: 'VrShellGl::DrawFrame',
-        wall: 25,
-        cpu: 12,
+        wall: 35,
+        cpu: 20,
         sub: [
           {title: 'VrShellGl::AcquireFrame', wall: 2, cpu: 2},
           {title: 'VrShellGl::AcquireFrame', wall: 2.5, cpu: 1.5},
@@ -65,6 +65,34 @@ tr.b.unittest.testSuite(function() {
             wall: 3.5,
             cpu: 0.5
           },
+          {title: 'UiScene::OnBeginFrame.UpdateAnimations', wall: 3, cpu: 2},
+          {title: 'UiScene::OnBeginFrame.UpdateAnimations', wall: 2, cpu: 1},
+          {title: 'UiScene::OnBeginFrame.UpdateBindings', wall: 3, cpu: 2},
+          {title: 'UiScene::OnBeginFrame.UpdateBindings', wall: 2, cpu: 1},
+          {title: 'UiScene::OnBeginFrame.UpdateOpacity', wall: 3, cpu: 2},
+          {title: 'UiScene::OnBeginFrame.UpdateOpacity', wall: 2, cpu: 1},
+          {
+            title: 'UiScene::OnBeginFrame.UpdateTexturesAndSizes',
+            wall: 3,
+            cpu: 2
+          },
+          {
+            title: 'UiScene::OnBeginFrame.UpdateTexturesAndSizes',
+            wall: 2,
+            cpu: 1
+          },
+          {title: 'UiScene::OnBeginFrame.UpdateLayout', wall: 3, cpu: 2},
+          {title: 'UiScene::OnBeginFrame.UpdateLayout', wall: 2, cpu: 1},
+          {
+            title: 'UiScene::OnBeginFrame.UpdateWorldSpaceTransform',
+            wall: 3,
+            cpu: 2
+          },
+          {
+            title: 'UiScene::OnBeginFrame.UpdateWorldSpaceTransform',
+            wall: 2,
+            cpu: 1
+          },
         ]
       },
       {title: 'VrShellGl::DrawFrame', wall: 20, cpu: 10},
@@ -83,9 +111,9 @@ tr.b.unittest.testSuite(function() {
     tr.metrics.vr.frameCycleDurationMetric(histograms, model);
 
     assert.closeTo(histograms.getHistogramNamed('draw_frame_wall').average,
-        22.5, TOLERANCE);
+        27.5, TOLERANCE);
     assert.closeTo(histograms.getHistogramNamed('draw_frame_cpu').average,
-        11, TOLERANCE);
+        15, TOLERANCE);
 
     assert.closeTo(
         histograms.getHistogramNamed('acquire_frame_wall').average,
@@ -116,6 +144,50 @@ tr.b.unittest.testSuite(function() {
         1.75, TOLERANCE);
     assert.closeTo(histograms.getHistogramNamed('draw_ui_cpu').average,
         1.25, TOLERANCE);
+
+    assert.closeTo(
+        histograms.getHistogramNamed('update_animations_wall').average, 2.5,
+        TOLERANCE);
+    assert.closeTo(
+        histograms.getHistogramNamed('update_animations_cpu').average, 1.5,
+        TOLERANCE);
+
+    assert.closeTo(
+        histograms.getHistogramNamed('update_bindings_wall').average, 2.5,
+        TOLERANCE);
+    assert.closeTo(
+        histograms.getHistogramNamed('update_bindings_cpu').average, 1.5,
+        TOLERANCE);
+
+    assert.closeTo(
+        histograms.getHistogramNamed('update_opacity_wall').average, 2.5,
+        TOLERANCE);
+    assert.closeTo(
+        histograms.getHistogramNamed('update_opacity_cpu').average, 1.5,
+        TOLERANCE);
+
+    assert.closeTo(
+        histograms.getHistogramNamed('update_textures_and_sizes_wall').average,
+        2.5, TOLERANCE);
+    assert.closeTo(
+        histograms.getHistogramNamed('update_textures_and_sizes_cpu').average,
+        1.5, TOLERANCE);
+
+    assert.closeTo(
+        histograms.getHistogramNamed('update_layout_wall').average, 2.5,
+        TOLERANCE);
+    assert.closeTo(
+        histograms.getHistogramNamed('update_layout_cpu').average, 1.5,
+        TOLERANCE);
+
+    assert.closeTo(
+        histograms.getHistogramNamed('update_world_space_transforms_wall')
+            .average,
+        2.5, TOLERANCE);
+    assert.closeTo(
+        histograms.getHistogramNamed('update_world_space_transforms_cpu')
+            .average,
+        1.5, TOLERANCE);
   });
 });
 </script>
