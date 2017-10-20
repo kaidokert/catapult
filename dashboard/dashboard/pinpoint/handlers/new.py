@@ -24,6 +24,7 @@ class New(webapp2.RequestHandler):
       self._WriteErrorMessage(e.message)
 
   def _WriteErrorMessage(self, message):
+    self.response.set_status(400)
     self.response.out.write(json.dumps({'error': message}))
 
   @api_auth.Authorize
@@ -72,12 +73,7 @@ class New(webapp2.RequestHandler):
     job.Start()
     job.put()
 
-    # TODO: Figure out if these should be underscores or lowerCamelCase.
-    # TODO: They should match the input arguments.
-    self.response.out.write(json.dumps({
-        'jobId': job.job_id,
-        'jobUrl': job.url,
-    }))
+    self.response.write(json.dumps(job.AsDict()))
 
 
 def _ValidateRepeatCount(repeat_count):
