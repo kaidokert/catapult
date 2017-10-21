@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<!--
+Copyright 2016 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/base/assert_utils.html">
+<link rel="import" href="/tracing/base/utils.html">
+<link rel="import" href="/tracing/ui/base/deep_utils.html">
+<link rel="import" href="/tracing/value/ui/histogram_set_controls_statistics.html">
+
+<script>
+'use strict';
+tr.b.unittest.testSuite(function() {
+  test('statistics', async function() {
+    const statisticsControl = document.createElement(
+        'tr-v-ui-histogram-set-controls-statistics');
+    this.addHTMLOutput(statisticsControl);
+    statisticsControl.viewState = new tr.v.ui.HistogramSetViewState();
+  });
+});
+</script>
