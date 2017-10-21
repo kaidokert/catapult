@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/ui/base/table.html">
+<link rel="import" href="/tracing/value/ui/histogram_set_view_state.html">
+
+<dom-module id="tr-v-ui-histogram-set-controls-statistics">
+  <template>
+    <style>
+    :host {
+      display: flex;
+    }
+    .vertical {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+    }
+    .heading {
+      font-weight: bold;
+    }
+    </style>
+
+    <div class="vertical">
+      <div class="heading">Closed Cells</div>
+      <tr-ui-b-table id="closed_cells"></tr-ui-b-table>
+    </div>
+
+    <div class="vertical">
+      <div class="heading">Open Cells</div>
+      <tr-ui-b-table id="open_cells"></tr-ui-b-table>
+    </div>
+  </template>
+</dom-module>
+
+<dom-module id="tr-v-ui-histogram-set-controls-statistics-button">
+  <template>
+    <style>
+    #button {
+      -webkit-appearance: none;
+      background-color: white;
+      border: 0;
+      color: #666;
+      font-weight: bold;
+      outline: 0;
+      padding: 5px;
+    }
+    #button.checked {
+      background-color: #ddd;
+      color: #444;
+    }
+    </style>
+    <button id="button" on-tap="onTap_"></button>
+  </template>
+</dom-module>
+
+<script>
+'use strict';
+tr.exportTo('tr.v.ui', function() {
+  Polymer({
+    is: 'tr-v-ui-histogram-set-controls-statistics-button',
+
+    get viewState() {
+      return this.viewState_;
+    },
+
+    build(viewState, stateProperty, displayName, statName) {
+      if (this.viewState_) {
+        throw new Error('viewState must be set exactly once.');
+      }
+      this.viewState_ = viewState;
+      this.viewState.addUpdateListener(this.onViewStateUpdate_.bind(this));
+
+      this.stateProperty_ = stateProperty;
+      this.$.button.textContent = displayName;
+      this.statName_ = statName;
+
+      if (this.viewState_[this.stateProperty_].includes(this.statName_)) {
+        this.$.button.classList.add('checked');
+      }
+    },
+
+    get isChecked() {
+      return this.$.button.classList.contains('checked');
+    },
+
+    onViewStateUpdate_(event) {
+      if (!event.delta[this.stateProperty_]) return;
+      if (this.isChecked !== this.viewState_[this.stateProperty_].includes(
+          this.statName_)) {
+        this.$.button.classList.toggle('checked');
+      }
+    },
+
+    onTap_(event) {
+      event.stopPropagation();
+      const statisticNames = Array.from(this.viewState_[this.stateProperty_]);
+      if (!this.isChecked) {
+        statisticNames.push(this.statName_);
+        this.$.button.classList.add('checked');
+      } else if (statisticNames.length > 1) {
+        // Prevent users from displaying zero statistics. Both table-cell and
+        // histogram-span assume that they will always display at least one
+        // statistic.
+        statisticNames.splice(statisticNames.indexOf(this.statName_), 1);
+        this.$.button.classList.remove('checked');
+      } else {
+        return;
+      }
+      this.viewState_.update(new Map([[this.stateProperty_, statisticNames]]));
+    },
+  });
+
+  class StatisticButtonRow {
+    constructor(viewState, displayName, opt_options) {
+      const options = opt_options || {};
+      this.viewState_ = viewState;
+      this.displayName_ = displayName;
+      this.statName_ = options.statName || displayName;
+      this.deltaOnly_ = options.deltaOnly || false;
+    }
+
+    createButton_(stateProperty, displayName, statName) {
+      const button = document.createElement(
+          'tr-v-ui-histogram-set-controls-statistics-button');
+      button.build(this.viewState_, stateProperty, displayName, statName);
+      return button;
+    }
+
+    nonDeltaButton(stateProperty) {
+      if (this.deltaOnly_) return '';
+      return this.createButton_(
+          stateProperty, this.displayName_, this.statName_);
+    }
+
+    deltaButton(stateProperty) {
+      if (this.deltaOnly_) {
+        return this.createButton_(
+            stateProperty, this.displayName_, this.statName_);
+      }
+      return this.createButton_(
+          stateProperty,
+          tr.v.DELTA + this.displayName_,
+          tr.v.DELTA + this.statName_);
+    }
+
+    percentDeltaButton(stateProperty) {
+      if (this.deltaOnly_) return '';
+      return this.createButton_(
+          stateProperty,
+          '%' + tr.v.DELTA + this.displayName_,
+          '%' + tr.v.DELTA + this.statName_);
+    }
+  }
+
+  Polymer({
+    is: 'tr-v-ui-histogram-set-controls-statistics',
+
+    get viewState() {
+      return this.viewState_;
+    },
+
+    set viewState(vs) {
+      this.viewState_ = vs;
+
+      this.$.open_cells.showHeader = false;
+      this.$.closed_cells.showHeader = false;
+
+      this.$.open_cells.tableColumns = [
+        {value: row => row.nonDeltaButton('openCellStatisticNames')},
+        {value: row => row.deltaButton('openCellStatisticNames')},
+        {value: row => row.percentDeltaButton('openCellStatisticNames')},
+      ];
+      this.$.closed_cells.tableColumns = [
+        {value: row => row.nonDeltaButton('closedCellStatisticNames')},
+        {value: row => row.deltaButton('closedCellStatisticNames')},
+        {value: row => row.percentDeltaButton('closedCellStatisticNames')},
+      ];
+
+      const rows = [
+        new StatisticButtonRow(this.viewState, 'avg'),
+        new StatisticButtonRow(this.viewState, 'std'),
+        new StatisticButtonRow(this.viewState, 'min'),
+        new StatisticButtonRow(this.viewState, 'max'),
+        new StatisticButtonRow(this.viewState, 'count'),
+        new StatisticButtonRow(this.viewState, 'nans'),
+        new StatisticButtonRow(this.viewState, 'sum'),
+        new StatisticButtonRow(this.viewState, 'geomean', {statName:
+          'geometricMean'}),
+        new StatisticButtonRow(this.viewState, 'median', {statName: 'pct_050'}),
+        new StatisticButtonRow(this.viewState, 'pct_090'),
+        new StatisticButtonRow(this.viewState, 'pct_095'),
+        new StatisticButtonRow(this.viewState, 'pct_099'),
+        new StatisticButtonRow(this.viewState, 'p-value', {deltaOnly: true}),
+        new StatisticButtonRow(this.viewState, 'z-score', {deltaOnly: true}),
+        new StatisticButtonRow(this.viewState, 'U', {deltaOnly: true}),
+      ];
+      this.$.open_cells.tableRows = rows;
+      this.$.closed_cells.tableRows = rows;
+    },
+  });
+
+  return {
+  };
+});
+</script>
