@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3945db03_d2ab7421",
+        "filename": "tracing/tracing/value/histogram.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-10-21T12:02:44Z",
+      "side": 1,
+      "message": "Can we use this instead? https://stackoverflow.com/a/4187266",
+      "revId": "5f47ed4200b81440b384d01814877f3329835211",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8f32d62_ce031687",
+        "filename": "tracing/tracing/value/histogram.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-10-21T12:02:44Z",
+      "side": 1,
+      "message": "Can you improve the assertion message to say the type of |name| \u0026 |value|?",
+      "revId": "5f47ed4200b81440b384d01814877f3329835211",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
