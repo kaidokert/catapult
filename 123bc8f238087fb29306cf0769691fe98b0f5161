@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "23dad6aa_024a9511",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-23T09:36:44Z",
+      "side": 1,
+      "message": "Just curious, how fast is this? Assuming e.g. having to extract some metric from a system_health.memory_mobile histograms.json?",
+      "revId": "123bc8f238087fb29306cf0769691fe98b0f5161",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc5d1dce_05e9d44d",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-23T09:36:44Z",
+      "side": 1,
+      "message": "nit: this might be more readable as a straight for loop, e.g.:\n\nresult_values \u003d []\nfor h in matching_hisgograms:\n  result_values.extend(self._GetValuesOrStatistic(h))",
+      "revId": "123bc8f238087fb29306cf0769691fe98b0f5161",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58b9f061_935c1beb",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-23T09:36:44Z",
+      "side": 1,
+      "message": "nit: This would be clearer as \"Result values missing.\" (there was nothing in particular with a python None value.)",
+      "revId": "123bc8f238087fb29306cf0769691fe98b0f5161",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f15dd32_4d7e9f0f",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-23T09:36:44Z",
+      "side": 1,
+      "message": "Can you add an explanation or example? What is coming in as STORY_TAGS and why do we need to mangle them in this way?\n\nSomewhat related. As far as I know, story names are meant to be unique within a given benchmark, so it should be possible to find metrics just by matching the story name and ignoring the \"tir\" label (which is an obsolete concept now).\n\n+nednguyen who might be able to confirm this.",
+      "revId": "123bc8f238087fb29306cf0769691fe98b0f5161",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

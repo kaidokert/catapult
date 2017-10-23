@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "84144ed5_2234ed51",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-23T09:36:44Z",
+      "side": 1,
+      "message": "Ack. Can you leave a TODO here?",
+      "parentUuid": "8f6459d9_f03e5fdc",
+      "revId": "aa2799617f94b8f71f83b43c6222b211d2c077e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "85431c2a_0dd3edde",
         "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
         "patchSetId": 1
@@ -54,6 +72,30 @@
       "side": 1,
       "message": "Yes, this code looks like Histogram.getStatisticScalar(), which is only implemented in JS:\nhttps://github.com/catapult-project/catapult/blob/master/tracing/tracing/value/histogram.html#L645",
       "parentUuid": "85431c2a_0dd3edde",
+      "range": {
+        "startLine": 200,
+        "startChar": 27,
+        "endLine": 200,
+        "endChar": 30
+      },
+      "revId": "aa2799617f94b8f71f83b43c6222b211d2c077e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff0624d7_0025f4e6",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-23T09:36:44Z",
+      "side": 1,
+      "message": "Would it make sense to add that to the python moule instead?",
+      "parentUuid": "caaa2873_e278c3f3",
       "range": {
         "startLine": 200,
         "startChar": 27,
