@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "fd1dc1d9_0e0baf66",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-23T16:48:36Z",
+      "side": 1,
+      "message": "Sure, I actually meant to loop around immediately following the cl but in case I don\u0027t.",
+      "parentUuid": "84144ed5_2234ed51",
+      "revId": "aa2799617f94b8f71f83b43c6222b211d2c077e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "85431c2a_0dd3edde",
         "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
         "patchSetId": 1
@@ -96,6 +114,30 @@
       "side": 1,
       "message": "Would it make sense to add that to the python moule instead?",
       "parentUuid": "caaa2873_e278c3f3",
+      "range": {
+        "startLine": 200,
+        "startChar": 27,
+        "endLine": 200,
+        "endChar": 30
+      },
+      "revId": "aa2799617f94b8f71f83b43c6222b211d2c077e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f819303_7c68be08",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-23T16:48:36Z",
+      "side": 1,
+      "message": "Added a TODO to use getStatisticScalar once it\u0027s been ported.",
+      "parentUuid": "ff0624d7_0025f4e6",
       "range": {
         "startLine": 200,
         "startChar": 27,

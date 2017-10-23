@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0fdb8dd6_70618db0",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-23T16:48:36Z",
+      "side": 1,
+      "message": "I have no idea, haven\u0027t profiled it yet. We\u0027re probably going to do an optimization pass as histograms rolls out to more benchmarks, so any work there will likely benefit Pinpoint.",
+      "parentUuid": "23dad6aa_024a9511",
+      "revId": "123bc8f238087fb29306cf0769691fe98b0f5161",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cc5d1dce_05e9d44d",
         "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "26cec549_a3fb63fb",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-23T16:48:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc5d1dce_05e9d44d",
+      "revId": "123bc8f238087fb29306cf0769691fe98b0f5161",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "58b9f061_935c1beb",
         "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
         "patchSetId": 2
@@ -50,6 +86,24 @@
       "revId": "123bc8f238087fb29306cf0769691fe98b0f5161",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e779221_50ad73b8",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-23T16:48:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58b9f061_935c1beb",
+      "revId": "123bc8f238087fb29306cf0769691fe98b0f5161",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -82,6 +136,24 @@
       "side": 1,
       "message": "We haven\u0027t killed tir_label yet, but it\u0027s in our plan for the future.\nloading.desktop \u0026 loading.mobile still use tir_label, for example",
       "parentUuid": "6f15dd32_4d7e9f0f",
+      "revId": "123bc8f238087fb29306cf0769691fe98b0f5161",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8121c78_5aa18f9f",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-23T16:48:36Z",
+      "side": 1,
+      "message": "Oops there\u0027s this wasn\u0027t meant to be cut\u0026paste, already exists. Ben can give a better explanation from the histograms side about what\u0027s stored and why, but we had to look into this a bit for https://github.com/catapult-project/catapult/issues/3944 when we added tir_label support for /add_histograms. Basically this is to replicate what chartjson does, and the dashboard only knows the mangled name. Can remove this entirely once tir_labels are stripped from existing benchmarks and the dashboard\u0027s test paths are migrated, as Ned mentions.",
+      "parentUuid": "cb08029e_2cccae07",
       "revId": "123bc8f238087fb29306cf0769691fe98b0f5161",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
