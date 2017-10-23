@@ -538,6 +538,7 @@ class BatteryUtils(object):
       temp: maximum temperature to allow in tenths of degrees c.
       wait_period: time in seconds to wait between checking.
     """
+    return
     def cool_device():
       temp = self.GetBatteryInfo().get('temperature')
       if temp is None:
