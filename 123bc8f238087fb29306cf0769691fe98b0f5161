@@ -67,6 +67,24 @@
       "revId": "123bc8f238087fb29306cf0769691fe98b0f5161",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb08029e_2cccae07",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-10-23T12:00:39Z",
+      "side": 1,
+      "message": "We haven\u0027t killed tir_label yet, but it\u0027s in our plan for the future.\nloading.desktop \u0026 loading.mobile still use tir_label, for example",
+      "parentUuid": "6f15dd32_4d7e9f0f",
+      "revId": "123bc8f238087fb29306cf0769691fe98b0f5161",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
