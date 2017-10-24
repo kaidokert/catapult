@@ -18,6 +18,11 @@ DEPENDENCY_MANAGER_PATH = os.path.join(
 PYMOCK_PATH = os.path.join(
     CATAPULT_ROOT_PATH, 'third_party', 'mock')
 
+from devil.utils import compatibility
+
+
+compatibility.CheckRequiredModules()
+
 
 @contextlib.contextmanager
 def SysPath(path):
@@ -191,4 +196,3 @@ def GetPlatform(arch=None, device=None):
 
 
 config = _Environment()
-
