@@ -130,9 +130,22 @@ tr.exportTo('tr.metrics.sh', function() {
         d.start, d.end));
   }
 
+  /**
+   * Returns true if |category| is one of the categories of |event|, and |event|
+   * has title |title|.
+   *
+   * Ideally this should be method on a common parent classes of ThreadSlice or
+   * InstantEvent etc., buy we don't have a suitable parent class today.
+   */
+  function hasCategoryAndName(event, category, title) {
+    return event.title === title && event.category &&
+        tr.b.getCategoryParts(event.category).includes(category);
+  }
+
   return {
-    perceptualBlend,
+    hasCategoryAndName,
     filterExpectationsByRange,
+    perceptualBlend,
     splitGlobalDumpsByBrowserName
   };
 });
