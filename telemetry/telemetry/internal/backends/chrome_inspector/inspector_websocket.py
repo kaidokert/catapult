@@ -163,9 +163,9 @@ class InspectorWebsocket(object):
           raise
       else:
         break
-
+    logging.warning('(maxlg) loads')
     result = json.loads(data)
-    if logging.getLogger().isEnabledFor(logging.DEBUG):
+    if True:
       logging.debug(
           'got [%s]', json.dumps(result, indent=2, sort_keys=True))
     if 'method' in result:
