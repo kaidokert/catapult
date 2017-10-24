@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a7e13125_463d69c3",
+        "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2017-10-24T02:18:46Z",
+      "side": 1,
+      "message": "\"We use threading to parallelize http requests...\"\n\nJust in case it\u0027s not clear, some people don\u0027t think much about this type of parallelization.",
+      "range": {
+        "startLine": 80,
+        "startChar": 20,
+        "endLine": 80,
+        "endChar": 21
+      },
+      "revId": "40d806a3b6371f23bf678a2f4e6be5dfe69e66d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1084184_b970b6cc",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2017-10-24T02:18:46Z",
+      "side": 1,
+      "message": "Should have a comment about what this does and why, ideally referencing a bug for follow up discussion.",
+      "range": {
+        "startLine": 79,
+        "startChar": 69,
+        "endLine": 79,
+        "endChar": 0
+      },
+      "revId": "40d806a3b6371f23bf678a2f4e6be5dfe69e66d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
