@@ -3,7 +3,7 @@ service: pinpoint
 runtime: python27
 api_version: 1
 threadsafe: true
-instance_class: F1
+instance_class: F4_1G
 
 libraries:
 - name: pycrypto
@@ -49,6 +49,16 @@ handlers:
 - url: /dashboard/pinpoint/elements/(.*\.html)$
   static_files: dashboard/pinpoint/elements/\1
   upload: dashboard/pinpoint/elements/.*\.html$
+  secure: always
+
+- url: /vulcanized_histograms_viewer/
+  static_dir: vulcanized_histograms_viewer/
+  secure: always
+  application_readable: true
+
+- url: /results2/.*
+  script: dashboard.pinpoint.dispatcher.APP
+  login: admin
   secure: always
 
 - url: /flot/(.*\.js)$
