@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a300af0_d33a46eb",
+        "filename": "devil/devil/utils/compatibility/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2017-10-24T16:02:08Z",
+      "side": 1,
+      "message": "Is this limited to devil? Perhaps it\u0027d be better put in common/py_utils?",
+      "revId": "086c44221bf2c16835a4c53209a9083a7c42e381",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec399e8f_cc8131cc",
+        "filename": "devil/devil/utils/compatibility/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2017-10-24T16:02:08Z",
+      "side": 1,
+      "message": "Is the version part of this name syntax for importlib documented somewhere? I\u0027m having a hard time finding it...",
+      "revId": "086c44221bf2c16835a4c53209a9083a7c42e381",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e863b1e2_a1c19689",
+        "filename": "devil/devil/utils/compatibility/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2017-10-24T16:02:08Z",
+      "side": 1,
+      "message": "Do we know that __version__ exists?",
+      "revId": "086c44221bf2c16835a4c53209a9083a7c42e381",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
