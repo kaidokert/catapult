@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1d095f16_9db48127",
+        "filename": "devil/devil/devil_env.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-24T12:49:44Z",
+      "side": 1,
+      "message": "I thought adding the check to devil_env would make the most sense, as is supposed to be imported by anything using devil. And the intent of the module is basically to properly check/set \"dependencies\" of devil.\n\nNot sure if you have other suggestions. Or whether the check should wait, e.g., until config.Initialize() is called.",
+      "revId": "9cbbfec2fee3de5930c7b12f82a88d57e374da49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4733747f_6e7b24e9",
+        "filename": "devil/devil/utils/compatibility/__init__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-24T12:49:44Z",
+      "side": 1,
+      "message": "Also not sure whether these should be listed here, or at some point within devil_env itself.",
+      "range": {
+        "startLine": 45,
+        "startChar": 2,
+        "endLine": 45,
+        "endChar": 15
+      },
+      "revId": "9cbbfec2fee3de5930c7b12f82a88d57e374da49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
