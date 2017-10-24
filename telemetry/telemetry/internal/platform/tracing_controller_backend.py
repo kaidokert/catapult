@@ -28,7 +28,8 @@ def _IterAllTracingAgentClasses():
       os.path.dirname(os.path.realpath(__file__)), 'tracing_agent')
   return discover.DiscoverClasses(
       tracing_agent_dir, util.GetTelemetryDir(),
-      tracing_agent.TracingAgent).itervalues()
+      tracing_agent.TracingAgent,
+      ignore_import_error=True).itervalues()
 
 
 class _TracingState(object):

@@ -241,11 +241,14 @@ def _MatchingCommands(string, commands):
 def _Benchmarks(environment):
   benchmarks = []
   for search_dir in environment.benchmark_dirs:
+    # Set ignore_import_error to skip ill-behaved benchmarks without affecting
+    # running target benchmark.
     benchmarks += discover.DiscoverClasses(
         search_dir,
         environment.top_level_dir,
         benchmark.Benchmark,
-        index_by_class_name=True).values()
+        index_by_class_name=True,
+        ignore_import_error=True).values()
   return benchmarks
 
 

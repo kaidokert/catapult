@@ -44,14 +44,17 @@ def GetHostPlatform():
 def _IterAllPlatformBackendClasses():
   platform_dir = os.path.dirname(os.path.realpath(
       platform_backend_module.__file__))
+  # Set ignore_import_error to suppress platform-dependent import error.
   return discover.DiscoverClasses(
       platform_dir, util.GetTelemetryDir(),
-      platform_backend_module.PlatformBackend).itervalues()
+      platform_backend_module.PlatformBackend,
+      ignore_import_error=True).itervalues()
 
 
 def GetPlatformForDevice(device, finder_options, logging=real_logging):
-  """ Returns a platform instance for the device.
-    Args:
+  """Returns a platform instance for the device.
+
+  Args:
       device: a device.Device instance.
   """
   if device.guid in _REMOTE_PLATFORMS:

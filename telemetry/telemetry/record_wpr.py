@@ -75,7 +75,7 @@ class RecorderPageTest(legacy_page_test.LegacyPageTest):
 
 
 def _GetSubclasses(base_dir, cls):
-  """Returns all subclasses of |cls| in |base_dir|.
+  """Returns all valid subclasses of |cls| in |base_dir|.
 
   Args:
     cls: a class
@@ -83,8 +83,10 @@ def _GetSubclasses(base_dir, cls):
   Returns:
     dict of {underscored_class_name: benchmark class}
   """
+  # Skip ill-behaved modules.
   return discover.DiscoverClasses(base_dir, base_dir, cls,
-                                  index_by_class_name=True)
+                                  index_by_class_name=True,
+                                  ignore_import_error=True)
 
 
 def _MaybeGetInstanceOfClass(target, base_dir, cls):

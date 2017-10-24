@@ -13,7 +13,8 @@ def _DiscoverProfilers():
   profiler_dir = os.path.dirname(__file__)
   return discover.DiscoverClasses(profiler_dir, util.GetTelemetryDir(),
                                   profiler.Profiler,
-                                  index_by_class_name=True).values()
+                                  index_by_class_name=True,
+                                  ignore_import_error=True).values()
 
 
 def FindProfiler(name):

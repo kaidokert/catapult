@@ -5,6 +5,7 @@
 import fnmatch
 import importlib
 import inspect
+import logging
 import os
 import re
 import sys
@@ -12,13 +13,16 @@ import sys
 from py_utils import camel_case
 
 
-def DiscoverModules(start_dir, top_level_dir, pattern='*'):
+def DiscoverModules(start_dir, top_level_dir, pattern='*',
+                    ignore_import_error=False):
   """Discover all modules in |start_dir| which match |pattern|.
 
   Args:
     start_dir: The directory to recursively search.
     top_level_dir: The top level of the package, for importing.
     pattern: Unix shell-style pattern for filtering the filenames to import.
+    ignore_import_error: True to just log to ERROR for import error. Default
+        raise ImportError exception when a module failed to import.
 
   Returns:
     list of modules.
@@ -57,6 +61,10 @@ def DiscoverModules(start_dir, top_level_dir, pattern='*'):
         sys.path.insert(0, top_level_dir)
         module = importlib.import_module(module_name)
         modules.append(module)
+      except ImportError:
+        if ignore_import_error:
+          logging.error('Unable to import module %s from %s', module_name,
+                        top_level_dir)
       finally:
         sys.path = original_sys_path
   return modules
@@ -78,7 +86,8 @@ def DiscoverClasses(start_dir,
                     base_class,
                     pattern='*',
                     index_by_class_name=True,
-                    directly_constructable=False):
+                    directly_constructable=False,
+                    ignore_import_error=False):
   """Discover all classes in |start_dir| which subclass |base_class|.
 
   Base classes that contain subclasses are ignored by default.
@@ -92,11 +101,14 @@ def DiscoverClasses(start_dir,
         lowercase_with_underscores instead of module name in return dict keys.
     directly_constructable: If True, will only return classes that can be
         constructed without arguments
+    ignore_import_error: True to just log to ERROR for import error. Default
+        raise ImportError exception when a module failed to import.
 
   Returns:
     dict of {module_name: class} or {underscored_class_name: class}
   """
-  modules = DiscoverModules(start_dir, top_level_dir, pattern)
+  modules = DiscoverModules(start_dir, top_level_dir, pattern,
+                            ignore_import_error=ignore_import_error)
   classes = {}
   for module in modules:
     new_classes = DiscoverClassesInModule(

@@ -255,7 +255,8 @@ class Value(object):
     value_dir = os.path.dirname(__file__)
     value_classes = discover.DiscoverClasses(
         value_dir, util.GetTelemetryDir(),
-        Value, index_by_class_name=True)
+        Value, index_by_class_name=True,
+        ignore_import_error=True)
 
     value_json_types = dict(
         (value_classes[x].GetJSONTypeName(), x) for x in value_classes)
