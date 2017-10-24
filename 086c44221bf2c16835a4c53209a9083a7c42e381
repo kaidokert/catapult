@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e916e5b6_9c5272e7",
+        "filename": "devil/devil/utils/compatibility/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-24T16:26:23Z",
+      "side": 1,
+      "message": "Good idea. I\u0027ll move this method there.\n\nStill, the specific modules/versions required (i.e. CheckRequiredModules below) should be specified on devil_env? (Also see my comments on patch set 1).\n\nAnd how about the psutil tests? Is it OK to keep them in devil (mostly so they are run in devil/bin/run_py_tests)?",
+      "parentUuid": "5a300af0_d33a46eb",
+      "revId": "086c44221bf2c16835a4c53209a9083a7c42e381",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ec399e8f_cc8131cc",
         "filename": "devil/devil/utils/compatibility/__init__.py",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "d27edfdc_e35e6d6d",
+        "filename": "devil/devil/utils/compatibility/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-24T16:26:23Z",
+      "side": 1,
+      "message": "importlib documented here:\nhttps://docs.python.org/2.7/library/importlib.html#importlib.import_module\n\nfor the disutils.version stuff, apparently the docs are only found on docstrings from the source, highlights here:\nhttps://stackoverflow.com/a/11887885\n\nNote, this code is also \"inspired\" in\nhttps://github.com/catapult-project/catapult/blob/5bc80741d635f850e78248a04b988d8a6f3dec47/telemetry/telemetry/internal/util/external_modules.py#L18\n\nWhich hopefully this will serve as a replacement for.",
+      "parentUuid": "ec399e8f_cc8131cc",
+      "revId": "086c44221bf2c16835a4c53209a9083a7c42e381",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e863b1e2_a1c19689",
         "filename": "devil/devil/utils/compatibility/__init__.py",
         "patchSetId": 3
@@ -47,6 +83,24 @@
       "writtenOn": "2017-10-24T16:02:08Z",
       "side": 1,
       "message": "Do we know that __version__ exists?",
+      "revId": "086c44221bf2c16835a4c53209a9083a7c42e381",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8384cfb9_c42b83e9",
+        "filename": "devil/devil/utils/compatibility/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-24T16:26:23Z",
+      "side": 1,
+      "message": "Not always. I thought we could rely on this most of the time, and get it fixed/accommodated if we ever need to require a module which does not expose such a __version__.\n\nMaybe I\u0027ll just leave a TODO here to adjust if needed for new modules?",
+      "parentUuid": "e863b1e2_a1c19689",
       "revId": "086c44221bf2c16835a4c53209a9083a7c42e381",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
