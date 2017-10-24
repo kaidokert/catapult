@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a7de16e4_d48d7774",
+        "filename": "dashboard/dashboard/pinpoint/handlers/quest_generator.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-24T02:12:19Z",
+      "side": 1,
+      "message": "So I add a dummy --results-label parameter here that run_test will fill in.",
+      "range": {
+        "startLine": 113,
+        "startChar": 9,
+        "endLine": 113,
+        "endChar": 16
+      },
+      "revId": "9a83f83e7d8e2c4bf87c2c869c9fa62970efa323",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8b54462_ff4b5b54",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-24T02:12:19Z",
+      "side": 1,
+      "message": "We need the labelling in order for results2 to display different columns for the data. Few spots were considered. Tried it out as a post step, but its super slow to deserialize, modify, reserialize and ended up doubling load time.\n\nWe can do it here, where we slightly modify the extra_args sent through to the execution, filling in the appropriate label based on the change. This has the added upside of not actually modifying the execution, and thus if we tear it out later, no big deal, no data needs to be migrated.",
+      "range": {
+        "startLine": 77,
+        "startChar": 4,
+        "endLine": 77,
+        "endChar": 14
+      },
+      "revId": "9a83f83e7d8e2c4bf87c2c869c9fa62970efa323",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
