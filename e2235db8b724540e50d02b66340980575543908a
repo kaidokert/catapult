@@ -16,6 +16,24 @@
       "revId": "e2235db8b724540e50d02b66340980575543908a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1cbc1d89_700e9d7f",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-24T16:23:52Z",
+      "side": 1,
+      "message": "Yeah that\u0027d work just fine too, only downside was that you\u0027re not guaranteed this is a telemetry test, only that it\u0027s a test of some sort. So we\u0027d need some additional telemetry-specific testing in here. Decided to go this way instead, but either could work.",
+      "parentUuid": "7a029a70_3272fa79",
+      "revId": "e2235db8b724540e50d02b66340980575543908a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
