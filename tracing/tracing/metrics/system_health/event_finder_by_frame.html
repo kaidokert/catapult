@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/metrics/system_health/utils.html">
+
+<script>
+'use strict';
+
+tr.exportTo('tr.metrics.sh', function() {
+  /**
+   * Utility class for caching all events with title |eventTitle| and category
+   * |eventCategory| of |rendererHelper|. Provides methods to query them by
+   * frame ID and time windows.
+   */
+  class EventFinderByFrame {
+    /**
+     * @param {tr.model.helpers.ChromeRendererHelper} rendererHelper
+     * @param {string} eventTitle
+     * @param {string} eventCategory
+     */
+    constructor(rendererHelper, eventTitle, eventCategory) {
+      const eventsByFrameId = new Map();
+
+      for (const ev of rendererHelper.process.getDescendantEvents()) {
+        if (rendererHelper.isTelemetryInternalEvent(ev)) continue;
+        if (!tr.metrics.sh.hasCategoryAndName(ev, eventTitle, eventCategory)) {
+          continue;
+        }
+
+        const frameIdRef = ev.args.frame;
+        if (frameIdRef === undefined) continue;
+        if (!eventsByFrameId.has(frameIdRef)) {
+          eventsByFrameId.set(frameIdRef, []);
+        }
+        eventsByFrameId.get(frameIdRef).push(ev);
+      }
+
+      this.eventsByFrameId_ = eventsByFrameId;
+    }
+
+    /**
+     * Returns array of events for |frameIdRef| in the range [windowStart,
+     * windowEnd] (inclusive).
+     *
+     * @param {string} frameIdRef
+     * @param {number} windowStart
+     * @param {number} windowEnd
+     * @returns {Array<!tr.model.Event>}
+     */
+    findEventsForFrameInWindow(frameIdRef, windowStart, windowEnd) {
+      const eventsForFrame = this.eventsByFrameId_.get(frameIdRef);
+      if (eventsForFrame === undefined) return [];
+      return eventsForFrame.filter(ev =>
+          windowStart <= ev.start && ev.start <= windowEnd);
+    }
+
+    /**
+     * Returns latest event for |frameIdRef| before |timestamp|, or undefined if
+     * no such event exists.
+     *
+     * @param {string} frameIdRef
+     * @param {number} timestamp
+     * @returns {tr.model.Event|undefined}
+     */
+    findLastEventForFrameBeforeTimestamp(frameIdRef, timestamp) {
+      const events = this.eventsByFrameId_.get(frameIdRef);
+      if (events === undefined) return undefined;
+
+      for (let i = events.length - 1; i >= 0; i--) {
+        const ev = events[i];
+        if (ev.start < timestamp) return ev;
+      }
+      return undefined;
+    }
+
+    /**
+     * Returns earliest event for |frameIdRef| after |timestamp|, or undefined
+     * if no such event exists.
+     *
+     * @param {string} frameIdRef
+     * @param {number} timestamp
+     * @returns {tr.model.Event|undefined}
+     */
+    findNextEventForFrameAfterTimestamp(frameIdRef, timestamp) {
+      const events = this.eventsByFrameId_.get(frameIdRef);
+      if (events === undefined) return undefined;
+
+      for (const ev of events) {
+        if (ev.start > timestamp) return ev;
+      }
+      return undefined;
+    }
+  }
+
+  return {
+    EventFinderByFrame,
+  };
+});
+</script>

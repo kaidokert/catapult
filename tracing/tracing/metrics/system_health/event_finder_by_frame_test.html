@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2016 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/core/test_utils.html">
+<link rel="import" href="/tracing/metrics/system_health/event_finder_by_frame.html">
+<link rel="import" href="/tracing/model/helpers/chrome_model_helper.html">
+
+<script>
+'use strict';
+
+const EventFinderByFrame = tr.metrics.sh.EventFinderByFrame;
+
+tr.b.unittest.testSuite(function() {
+  test('findsEventsWithCorrectFrameId', () => {
+    const model = tr.c.TestUtils.newModel(model => {
+      const rendererProcess = model.getOrCreateProcess(1);
+      const mainThread = rendererProcess.getOrCreateThread(2);
+      mainThread.name = 'CrRendererMain';
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing',
+        title: 'navigationStart',
+        start: 200,
+        duration: 0.0,
+        args: {frame: '0x0'}
+      }));
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing',
+        title: 'navigationStart',
+        start: 300,
+        duration: 0.0,
+        args: {frame: '0x1'}
+      }));
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing',
+        title: 'navigationStart',
+        start: 400,
+        duration: 0.0,
+        args: {frame: '0x0'}
+      }));
+    });
+
+    const chromeHelper = model.getOrCreateHelper(
+        tr.model.helpers.ChromeModelHelper);
+    const eventFinder = new EventFinderByFrame(chromeHelper.rendererHelpers[1],
+        'blink.user_timing', 'navigationStart');
+
+    const eventsInWindow =
+        eventFinder.findEventsForFrameInWindow('0x1', 0, 500);
+    assert.strictEqual(eventsInWindow.length, 1);
+    assert.strictEqual(eventsInWindow[0].args.frame, '0x1');
+    assert.strictEqual(eventsInWindow[0].start, 300);
+  });
+
+  test('findsEventsWithCorrectTitle', () => {
+    const model = tr.c.TestUtils.newModel(model => {
+      const rendererProcess = model.getOrCreateProcess(1);
+      const mainThread = rendererProcess.getOrCreateThread(2);
+      mainThread.name = 'CrRendererMain';
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing',
+        title: 'navigationStart',
+        start: 200,
+        duration: 0.0,
+        args: {frame: '0x0'}
+      }));
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing',
+        title: 'firstPaint',
+        start: 300,
+        duration: 0.0,
+        args: {frame: '0x0'}
+      }));
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing',
+        title: 'navigationStart',
+        start: 400,
+        duration: 0.0,
+        args: {frame: '0x0'}
+      }));
+    });
+
+    const chromeHelper = model.getOrCreateHelper(
+        tr.model.helpers.ChromeModelHelper);
+    const eventFinder = new EventFinderByFrame(chromeHelper.rendererHelpers[1],
+        'blink.user_timing', 'firstPaint');
+
+    const eventsInWindow =
+        eventFinder.findEventsForFrameInWindow('0x0', 0, 500);
+    assert.strictEqual(eventsInWindow.length, 1);
+    assert.strictEqual(eventsInWindow[0].title, 'firstPaint');
+    assert.strictEqual(eventsInWindow[0].start, 300);
+  });
+
+  test('findsEventsWithCorrectCategory', () => {
+    const model = tr.c.TestUtils.newModel(model => {
+      const rendererProcess = model.getOrCreateProcess(1);
+      const mainThread = rendererProcess.getOrCreateThread(2);
+      mainThread.name = 'CrRendererMain';
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing',
+        title: 'navigationStart',
+        start: 200,
+        duration: 0.0,
+        args: {frame: '0x0'}
+      }));
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'rail',
+        title: 'navigationStart',
+        start: 300,
+        duration: 0.0,
+        args: {frame: '0x0'}
+      }));
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing',
+        title: 'navigationStart',
+        start: 400,
+        duration: 0.0,
+        args: {frame: '0x0'}
+      }));
+    });
+
+    const chromeHelper = model.getOrCreateHelper(
+        tr.model.helpers.ChromeModelHelper);
+    const eventFinder = new EventFinderByFrame(chromeHelper.rendererHelpers[1],
+        'rail', 'navigationStart');
+
+    const eventsInWindow =
+        eventFinder.findEventsForFrameInWindow('0x0', 0, 500);
+    assert.strictEqual(eventsInWindow.length, 1);
+    assert.strictEqual(eventsInWindow[0].category, 'rail');
+    assert.strictEqual(eventsInWindow[0].start, 300);
+  });
+
+
+  test('canHandleMultipleCategoriesOnAnEvent', () => {
+    const model = tr.c.TestUtils.newModel(model => {
+      const rendererProcess = model.getOrCreateProcess(1);
+      const mainThread = rendererProcess.getOrCreateThread(2);
+      mainThread.name = 'CrRendererMain';
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing,rail',
+        title: 'navigationStart',
+        start: 200,
+        duration: 0.0,
+        args: {frame: '0x0'}
+      }));
+    });
+
+    const chromeHelper = model.getOrCreateHelper(
+        tr.model.helpers.ChromeModelHelper);
+    const eventFinder = new EventFinderByFrame(chromeHelper.rendererHelpers[1],
+        'rail', 'navigationStart');
+
+    const eventsInWindow =
+        eventFinder.findEventsForFrameInWindow('0x0', 0, 500);
+    assert.strictEqual(eventsInWindow.length, 1);
+    assert.strictEqual(eventsInWindow[0].category, 'blink.user_timing,rail');
+    assert.strictEqual(eventsInWindow[0].start, 200);
+  });
+
+  test('findEventsForFrameInWindow', () => {
+    const model = tr.c.TestUtils.newModel(model => {
+      const rendererProcess = model.getOrCreateProcess(1);
+      const mainThread = rendererProcess.getOrCreateThread(2);
+      mainThread.name = 'CrRendererMain';
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing',
+        title: 'navigationStart',
+        start: 100,
+        duration: 0.0,
+        args: {frame: '0x0'}
+      }));
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing',
+        title: 'navigationStart',
+        start: 300,
+        duration: 0.0,
+        args: {frame: '0x0'}
+      }));
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing',
+        title: 'navigationStart',
+        start: 400,
+        duration: 0.0,
+        args: {frame: '0x0'}
+      }));
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing',
+        title: 'navigationStart',
+        start: 600,
+        duration: 0.0,
+        args: {frame: '0x0'}
+      }));
+    });
+
+    const chromeHelper = model.getOrCreateHelper(
+        tr.model.helpers.ChromeModelHelper);
+    const eventFinder = new EventFinderByFrame(chromeHelper.rendererHelpers[1],
+        'blink.user_timing', 'navigationStart');
+
+    const eventsInWindow =
+        eventFinder.findEventsForFrameInWindow('0x0', 200, 500);
+    assert.strictEqual(eventsInWindow.length, 2);
+    assert.strictEqual(eventsInWindow[0].start, 300);
+    assert.strictEqual(eventsInWindow[1].start, 400);
+  });
+
+  test('findLastEventForFrameBeforeTimestamp', () => {
+    const model = tr.c.TestUtils.newModel(model => {
+      const rendererProcess = model.getOrCreateProcess(1);
+      const mainThread = rendererProcess.getOrCreateThread(2);
+      mainThread.name = 'CrRendererMain';
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing',
+        title: 'navigationStart',
+        start: 100,
+        duration: 0.0,
+        args: {frame: '0x0'}
+      }));
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing',
+        title: 'navigationStart',
+        start: 300,
+        duration: 0.0,
+        args: {frame: '0x0'}
+      }));
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing',
+        title: 'navigationStart',
+        start: 400,
+        duration: 0.0,
+        args: {frame: '0x0'}
+      }));
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing',
+        title: 'navigationStart',
+        start: 600,
+        duration: 0.0,
+        args: {frame: '0x0'}
+      }));
+    });
+
+    const chromeHelper = model.getOrCreateHelper(
+        tr.model.helpers.ChromeModelHelper);
+    const eventFinder = new EventFinderByFrame(chromeHelper.rendererHelpers[1],
+        'blink.user_timing', 'navigationStart');
+
+    const event1 = eventFinder.findLastEventForFrameBeforeTimestamp('0x0', 350);
+    const event2 = eventFinder.findLastEventForFrameBeforeTimestamp('0x0', 100);
+    assert.strictEqual(event1.start, 300);
+    assert.isUndefined(event2);
+  });
+
+  test('findNextEventForFrameAfterTimestamp', () => {
+    const model = tr.c.TestUtils.newModel(model => {
+      const rendererProcess = model.getOrCreateProcess(1);
+      const mainThread = rendererProcess.getOrCreateThread(2);
+      mainThread.name = 'CrRendererMain';
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing',
+        title: 'navigationStart',
+        start: 100,
+        duration: 0.0,
+        args: {frame: '0x0'}
+      }));
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing',
+        title: 'navigationStart',
+        start: 300,
+        duration: 0.0,
+        args: {frame: '0x0'}
+      }));
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing',
+        title: 'navigationStart',
+        start: 400,
+        duration: 0.0,
+        args: {frame: '0x0'}
+      }));
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing',
+        title: 'navigationStart',
+        start: 600,
+        duration: 0.0,
+        args: {frame: '0x0'}
+      }));
+    });
+
+    const chromeHelper = model.getOrCreateHelper(
+        tr.model.helpers.ChromeModelHelper);
+    const eventFinder = new EventFinderByFrame(chromeHelper.rendererHelpers[1],
+        'blink.user_timing', 'navigationStart');
+
+    const event1 = eventFinder.findNextEventForFrameAfterTimestamp('0x0', 350);
+    const event2 = eventFinder.findNextEventForFrameAfterTimestamp('0x0', 600);
+    assert.strictEqual(event1.start, 400);
+    assert.isUndefined(event2);
+  });
+});
+</script>
