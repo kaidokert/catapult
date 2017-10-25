@@ -68,6 +68,10 @@ def AddCommandLineArgs(parser):
                     dest='run_disabled_tests',
                     action='store_true', default=False,
                     help='Ignore @Disabled and @Enabled restrictions.')
+  parser.add_option('-p', '--also-run-platform-disabled-tests',
+                    dest='run_platform_disabled_tests',
+                    action='store_true', default=False,
+                    help='Ignore benchmark supported-platforms restrictions.')
 
 def ProcessCommandLineArgs(parser, args):
   story_module.StoryFilter.ProcessCommandLineArgs(parser, args)
@@ -294,8 +298,15 @@ def RunBenchmark(benchmark, finder_options):
     print '%s is disabled on the selected browser' % benchmark.Name()
     if finder_options.run_disabled_tests and can_run_on_platform:
       print 'Running benchmark anyway due to: --also-run-disabled-tests'
+    elif finder_options.run_platform_disabled_tests:
+      print ('Running benchmark anyway due to: '
+             '--also-run-platform-disabled-tests')
     else:
-      print 'Try --also-run-disabled-tests to force the benchmark to run.'
+      if expectations_disabled:
+        print 'Try --also-run-disabled-tests to force the benchmark to run.'
+      elif not can_run_on_platform:
+        print ('Try --also-run-platform-disabled-tests to force the '
+               'benchmark to run.')
       # If chartjson is specified, this will print a dict indicating the
       # benchmark name and disabled state.
       with results_options.CreateResults(
