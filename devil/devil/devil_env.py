@@ -17,6 +17,8 @@ DEPENDENCY_MANAGER_PATH = os.path.join(
     CATAPULT_ROOT_PATH, 'dependency_manager')
 PYMOCK_PATH = os.path.join(
     CATAPULT_ROOT_PATH, 'third_party', 'mock')
+PY_UTILS_PATH = os.path.join(
+    CATAPULT_ROOT_PATH, 'common', 'py_utils')
 
 
 @contextlib.contextmanager
@@ -28,8 +30,15 @@ def SysPath(path):
   else:
     sys.path.pop()
 
+
+with SysPath(PY_UTILS_PATH):
+  from py_utils import compatibility
+  compatibility.CheckModules()
+
+
 with SysPath(DEPENDENCY_MANAGER_PATH):
   import dependency_manager  # pylint: disable=import-error
+
 
 _ANDROID_BUILD_TOOLS = {'aapt', 'dexdump', 'split-select'}
 
@@ -191,4 +200,3 @@ def GetPlatform(arch=None, device=None):
 
 
 config = _Environment()
-
