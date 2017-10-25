@@ -37,6 +37,8 @@ class GroupReportHandler(chart_handler.ChartHandler):
       keys: A comma-separated list of urlsafe Anomaly keys (optional).
       bug_id: A bug number on the Chromium issue tracker (optional).
       rev: A revision number (optional).
+      rev_one: A revision number (optional).
+      rev_two: A revision number (optional).
       sid: A hash of a group of keys from /short_uri (optional).
 
     Outputs:
@@ -46,6 +48,8 @@ class GroupReportHandler(chart_handler.ChartHandler):
     rev = self.request.get('rev')
     keys = self.request.get('keys')
     hash_code = self.request.get('sid')
+    rev_one = self.request.get('rev_one')
+    rev_two = self.request.get('rev_two')
 
     # sid takes precedence.
     if hash_code:
@@ -61,6 +65,8 @@ class GroupReportHandler(chart_handler.ChartHandler):
         alert_list = GetAlertsWithBugId(bug_id)
       elif keys:
         alert_list = GetAlertsForKeys(keys)
+      elif rev_one and rev_two:
+        alert_list = GetAlertsAroundRevisions(rev_one, rev_two)
       elif rev:
         alert_list = GetAlertsAroundRevision(rev)
       else:
@@ -124,6 +130,47 @@ def GetAlertsAroundRevision(rev):
   anomaly_query = anomaly_query.order(anomaly.Anomaly.end_revision)
   anomalies = anomaly_query.fetch(limit=_QUERY_LIMIT)
   return [a for a in anomalies if a.start_revision <= rev]
+
+
+def GetAlertsAroundRevisions(rev_one, rev_two):
+  """Gets the alerts whose revision range includes the given revision.
+
+  Args:
+    rev_one: A revision number, as a string.
+    rev_two: A revision number, as a string.
+
+  Returns:
+    list of anomaly.Anomaly
+  """
+  if not _IsInt(rev_one):
+    raise request_handler.InvalidInputError('Invalid rev "%s".' % rev_one)
+  rev_one = int(rev_one)
+  if not _IsInt(rev_two):
+    raise request_handler.InvalidInputError('Invalid rev "%s".' % rev_two)
+  rev_two = int(rev_two)
+
+  # We can't make a query that has two inequality filters on two different
+  # properties (start_revision and end_revision). Therefore we first query
+  # Anomaly entities based on one of these, then filter the resulting list.
+  anomaly_query = anomaly.Anomaly.query(anomaly.Anomaly.end_revision >= rev_two)
+  anomaly_query = anomaly_query.order(anomaly.Anomaly.end_revision)
+  anomalies = anomaly_query.fetch(limit=_QUERY_LIMIT)
+
+  anomaly_query = anomaly.Anomaly.query(anomaly.Anomaly.end_revision >= rev_one)
+  anomaly_query = anomaly_query.order(-anomaly.Anomaly.end_revision)
+  anomalies += anomaly_query.fetch(limit=_QUERY_LIMIT)
+
+  dictionary = {}
+  for a in anomalies:
+    dictionary[str(a.start_revision)+a.test.id()+str(a.end_revision)] = a
+  unique_as = dictionary.values()
+
+  filtered = [a for a in unique_as if(
+      (a.start_revision >= rev_one and a.start_revision <= rev_two) or
+      (a.end_revision >= rev_one and a.end_revision <= rev_two) or
+      (a.start_revision <= rev_one and rev_two <= a.end_revision))]
+
+  return filtered
 
 
 def GetAlertsForKeys(keys):

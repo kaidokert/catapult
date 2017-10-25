@@ -914,18 +914,10 @@ found in the LICENSE file.
           const parseNumber = function(str) {
             return Number(str.match(/^\d*(\.\d+)?/)[0]);
           };
-          let numA = parseNumber(valA);
-          let numB = parseNumber(valB);
+          const numA = Math.abs(parseNumber(valA));
+          const numB = Math.abs(parseNumber(valB));
           let result;
           if (numA && numB) {
-            if (sortBy == 'absolute_delta' || sortBy == 'percent_changed') {
-              if (!alertA.improvement) {
-                numA = -numA;
-              }
-              if (!alertB.improvement) {
-                numB = -numB;
-              }
-            }
             result = numA - numB;
           } else {
             result = 0;

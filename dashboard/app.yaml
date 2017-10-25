@@ -6,6 +6,8 @@ api_version: 1
 threadsafe: false
 instance_class: F4_1G
 
+default_expiration: "30s"
+
 libraries:
 - name: jinja2
   version: "2.6"

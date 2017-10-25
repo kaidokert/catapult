@@ -435,6 +435,14 @@ found in the LICENSE file.
         if (rev) {
           params.rev = rev;
         }
+        const revTwo = uri.getParameter('revTwo');
+        if (revTwo) {
+          params.revTwo = revTwo;
+        }
+        const revOne = uri.getParameter('revOne');
+        if (revOne) {
+          params.revOne = revOne;
+        }
         simple_xhr.send('/group_report', params,
             function(response) {
               this.revisionInfo = response.revision_info;

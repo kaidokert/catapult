@@ -18,3 +18,11 @@ def GetNumbering(number, numbering_identifier, numbering_type, project, repo):
   }
 
   return request.RequestJson(url, 'GET', **params)
+
+
+def GetRevision(commit_hash):
+  url = 'https://cr-rev.appspot.com/_ah/api/crrev/v1/commit/' + commit_hash
+  result = request.RequestJson(url, 'GET')
+  if 'number' in result:
+    return result['number']
+  return ''

@@ -14,10 +14,12 @@ from google.appengine.api import taskqueue
 from google.appengine.ext import ndb
 from google.appengine.runtime import apiproxy_errors
 
+from dashboard import group_report
 from dashboard.common import utils
 from dashboard.pinpoint.models import attempt as attempt_module
 from dashboard.pinpoint.models import change as change_module
 from dashboard.pinpoint.models import mann_whitney_u
+from dashboard.services import crrev_service
 from dashboard.services import issue_tracker_service
 
 
@@ -39,6 +41,11 @@ _UNKNOWN = 'unknown'
 _CRYING_CAT_FACE = u'\U0001f63f'
 _MIDDLE_DOT = u'\xb7'
 _ROUND_PUSHPIN = u'\U0001f4cd'
+
+
+_ANOMALY_FMT_STRING = '%8s|%15s|%15s| %s'
+_ANOMALY_FMT_TEST_LENGTH = 40
+_ANOMALIES_LIMIT = 15
 
 
 def JobFromId(job_id):
@@ -135,6 +142,7 @@ class Job(ndb.Model):
     owner = None
     cc_list = set()
     commit_details = []
+    summary_details = []
     for _, change in differences:
       commit_info = change.last_commit.Details()
 
@@ -145,6 +153,24 @@ class Job(ndb.Model):
                                       commit_info['message']))
       commit_details.append(_FormatCommitForBug(
           change.last_commit, commit_info))
+
+      # Include list of anomalies.
+      rev = crrev_service.GetRevision(change.last_commit.git_hash)
+      if rev:
+        # Append URL.
+        rev_link = (
+            'https://chromeperf.appspot.com/group_report?rev=%s' %
+            str(rev))
+        summary_details.append(
+            '<b>Top %d impacts of this CL, ordered by magnitude of percentage '
+            'change</b>\nPlease see %s for more details.' %
+            (_ANOMALIES_LIMIT, rev_link))
+        # Append data (GetAlertsAroundRevision)
+        anomalies = group_report.GetAlertsAroundRevision(rev)
+        anomalies = _GetSortedAnomaliesByPercentChangeMagnitude(
+            anomalies)[:_ANOMALIES_LIMIT]
+        summary_details += _GetFormattedAnomalies(anomalies)
+    commit_details.append('\n'.join(summary_details))
 
     # Header.
     if len(differences) == 1:
@@ -439,3 +465,44 @@ def _CompareValues(values_a, values_b):
     return _DIFFERENT
   else:
     return _UNKNOWN
+
+
+def _FormatAnomaly(anomaly, index):
+  percent_changed = anomaly.GetDisplayPercentChanged()
+  improved = anomaly.is_improvement
+
+  test_raw = anomaly.test.id()
+  test_formatted = '/'.join(test_raw.split('/')[1:])
+  if len(test_formatted) > 2*_ANOMALY_FMT_TEST_LENGTH:
+    test_formatted = ('%s...%s [%d]' % (
+        test_formatted[:_ANOMALY_FMT_TEST_LENGTH],
+        test_formatted[-_ANOMALY_FMT_TEST_LENGTH:],
+        index))
+
+  return _ANOMALY_FMT_STRING % (
+      str(anomaly.bug_id) if anomaly.bug_id else '',
+      percent_changed if not improved else '',
+      percent_changed if improved else '',
+      test_formatted), test_raw
+
+
+def _GetFormattedAnomalies(anomalies):
+  header = [_ANOMALY_FMT_STRING % (
+      'Bug ID', 'Regressed (%)', 'Improved (%)', 'Test Name')]
+  header.append('--------+---------------+---------------+%s' %
+      ('-'*(2*_ANOMALY_FMT_TEST_LENGTH + 9)))
+  formatted_anomalies = [
+      _FormatAnomaly(anomaly, i) for i, anomaly in enumerate(anomalies)]
+  return (
+      header +
+      [anomaly[0] for anomaly in formatted_anomalies] +
+      ['[%d] %s' % (i, anomaly[1])
+       for (i, anomaly) in enumerate(formatted_anomalies)])
+
+
+def _GetSortedAnomaliesByPercentChangeMagnitude(anomalies):
+  anomalies = [
+      (anomaly, abs(anomaly.percent_changed))
+      for anomaly in anomalies]
+  anomalies.sort(key=lambda tup: tup[1], reverse=True)
+  return [anomaly[0] for anomaly in anomalies]

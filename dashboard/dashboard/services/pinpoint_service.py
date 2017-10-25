@@ -10,7 +10,7 @@ import urllib
 from dashboard.common import datastore_hooks
 from dashboard.common import utils
 
-_PINPOINT_URL = 'https://pinpoint-dot-chromeperf.appspot.com'
+_PINPOINT_URL = 'https://dev-jchinlee-5d951d4a-dot-pinpoint-dot-chromeperf.appspot.com/'
 
 
 def NewJob(params):

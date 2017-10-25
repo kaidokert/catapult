@@ -188,6 +188,13 @@ def _AdditionalDetails(bug_id, alerts):
     comment += '\n'.join(sorted(bot_names))
   else:
     comment += '\nCould not extract bot names from the list of alerts.'
+
+  end_revisions = [a.end_revision for a in alerts if hasattr(a, 'end_revision')]
+  start_revisions = [a.start_revision for a in alerts if hasattr(a, 'start_revision')]
+  end_revision = max(end_revisions)
+  start_revision = min(start_revisions)
+  comment += "\nAlerts fired for ranges overlapping the given range:\n  "
+  comment += "%s?rev_one=%s&rev_two=%s\n\n" % (base_url, start_revision, end_revision)
   return comment
 
 
