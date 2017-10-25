@@ -70,6 +70,24 @@
       "revId": "8106591e7c9c6406c83f9ae24edfdfa13d4a7618",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23d99a07_0c85c19b",
+        "filename": "devil/devil/compatibility/psutil_compatibility_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-25T13:58:19Z",
+      "side": 1,
+      "message": "OK. Convinced and DONE. :)",
+      "parentUuid": "d1ccd466_5ebff0ad",
+      "revId": "8106591e7c9c6406c83f9ae24edfdfa13d4a7618",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
