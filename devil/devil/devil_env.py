@@ -17,6 +17,8 @@ DEPENDENCY_MANAGER_PATH = os.path.join(
     CATAPULT_ROOT_PATH, 'dependency_manager')
 PYMOCK_PATH = os.path.join(
     CATAPULT_ROOT_PATH, 'third_party', 'mock')
+PY_UTILS_PATH = os.path.join(
+    CATAPULT_ROOT_PATH, 'common', 'py_utils')
 
 
 @contextlib.contextmanager
@@ -28,8 +30,23 @@ def SysPath(path):
   else:
     sys.path.pop()
 
+
+with SysPath(PY_UTILS_PATH):
+  from py_utils import compatibility
+
+  # Not compatible with versions below 2.x due to changes in:
+  # http://grodola.blogspot.com/2014/01/psutil-20-porting.html
+  # Chose 2.2.1 as it's the earliest with documentation on:
+  # http://psutil.readthedocs.io/en/release-2.2.1/
+  # Tested to work on versions at least up to 5.4.0, but hopefully future
+  # versions should also work too.
+  # See devil.compatibility.psutil_compatibility_test for details.
+  compatibility.RequireModule('psutil', '2.2.1')
+
+
 with SysPath(DEPENDENCY_MANAGER_PATH):
   import dependency_manager  # pylint: disable=import-error
+
 
 _ANDROID_BUILD_TOOLS = {'aapt', 'dexdump', 'split-select'}
 
@@ -191,4 +208,3 @@ def GetPlatform(arch=None, device=None):
 
 
 config = _Environment()
-
