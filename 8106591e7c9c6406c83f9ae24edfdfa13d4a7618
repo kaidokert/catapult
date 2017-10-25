@@ -34,6 +34,24 @@
       "revId": "8106591e7c9c6406c83f9ae24edfdfa13d4a7618",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4826ed6d_9d4811ce",
+        "filename": "devil/devil/compatibility/psutil_compatibility_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-25T13:26:37Z",
+      "side": 1,
+      "message": "Ah, this is also, btw, why the actual assert (the call to RequireModule) is in devil_env.",
+      "parentUuid": "07d0fd06_5557ae97",
+      "revId": "8106591e7c9c6406c83f9ae24edfdfa13d4a7618",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
