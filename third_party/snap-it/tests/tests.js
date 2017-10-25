@@ -174,7 +174,7 @@ QUnit.test('fullyQualifiedURL', function(assert) {
   var serializer = new HTMLSerializer();
   var iframe = document.createElement('iframe');
   iframe.setAttribute('src', 'page.html');
-  var url = serializer.fullyQualifiedURL(iframe);
+  var url = serializer.fullyQualifiedURLByElement(iframe);
   var href = window.location.href;
   var path = href.slice(0, href.lastIndexOf('/'));
   assert.equal(path + '/page.html', url.href);

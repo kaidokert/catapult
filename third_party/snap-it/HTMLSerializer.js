@@ -345,6 +345,49 @@ var HTMLSerializer = class {
     this.html.push(text);
   }
 
+  processBackgroundImageStyle(styleMap, element, id) {
+    var imageStyleValue = styleMap['background-image'];
+    if (!imageStyleValue || imageStyleValue == 'none')
+      return;
+
+    var win = element.ownerDocument.defaultView;
+    var imageUrls = imageStyleValue.split(',');
+    var outImageUrls = [];
+    var urlRegex = /\s*url\("([^)]*)"\)/;
+    for (var i = 0; i < imageUrls.length; i++) {
+      var matches = imageUrls[i].match(urlRegex);
+      // If it doesn't look like a url, leave it alone.
+      if (!matches) {
+        outImageUrls.push(imageUrls[i]);
+        continue;
+      }
+
+      var parsedUrl = matches[1];
+      var url = this.fullyQualifiedURL(parsedUrl);
+      var sameOrigin = window.location.host == url.host;
+
+      if (this.isImageDataUrl(url.href)) {
+        // Just pass the url through as it will render directly.
+        outImageUrls.push('url("' + url.href + '")');
+      } else {
+        // TODO(wkorman): For same-origin images, consider creating a
+        // "hole" and processing it somehow. For now we just punt and
+        // treat same-origin images as external images, which is
+        // inefficient, but should generally work.
+        this.externalImages.push([id, url.href]);
+        outImageUrls.push('url("' + this.getExternalImageUrl(id, url.href) + '")');
+      }
+    }
+
+    var processedImageStyleValue = outImageUrls.join(',');
+    // console.log('Processed background images [out=' + processedImageStyleValue
+    //             + ', in=' + styleMap['background-image'] + '].');
+    styleMap['background-image'] = processedImageStyleValue;
+
+    // TODO(wkorman): Test style values with single images, multiple
+    // images, data images.
+  }
+
   /**
    * Takes an html element, and populates this object's fields with the
    * appropriate attribute names and values.
@@ -369,6 +412,8 @@ var HTMLSerializer = class {
     }
     this.processSimpleAttribute(win, 'style', style.cssText);
     this.processSimpleAttribute(win, 'id', id);
+
+    this.processBackgroundImageStyle(styleMap, element, id);
 
     var attributes = element.attributes;
     if (attributes) {
@@ -455,7 +500,7 @@ var HTMLSerializer = class {
    */
   processSrcAttribute(element, id) {
     var win = element.ownerDocument.defaultView;
-    var url = this.fullyQualifiedURL(element);
+    var url = this.fullyQualifiedURLByElement(element);
     var sameOrigin = window.location.host == url.host;
     switch (element.tagName) {
       case 'IFRAME':
@@ -501,8 +546,18 @@ var HTMLSerializer = class {
    * @param {Element} element The element for which to retrieve the URL.
    * @return {URL} The URL object.
    */
-  fullyQualifiedURL(element) {
+  fullyQualifiedURLByElement(element) {
     var url = element.attributes.src.value;
+    return this.fullyQualifiedURL(url);
+  }
+
+  /**
+   * Get a URL object for the given url string.
+   *
+   * @param {string} url The url as a string.
+   * @return {URL} The URL object.
+   */
+  fullyQualifiedURL(url) {
     var a = document.createElement('a');
     a.href = url;
     url = a.href; // Retrieve fully qualified URL.
@@ -519,7 +574,7 @@ var HTMLSerializer = class {
   processSrcHole(element) {
     var win = element.ownerDocument.defaultView;
     var valueIndex = this.processHoleAttribute(win, 'src');
-    this.srcHoles[valueIndex] = this.fullyQualifiedURL(element).href;
+    this.srcHoles[valueIndex] = this.fullyQualifiedURLByElement(element).href;
   }
 
   /**

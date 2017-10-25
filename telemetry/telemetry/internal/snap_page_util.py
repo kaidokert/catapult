@@ -102,8 +102,10 @@ def _FetchImages(image_dir, frame_number, external_images):
       print 'Error copying image [local_file=%s, url=%s, message=%s].' % (
           image_file, image_url, e)
 
+
 def _GetLocalImageDirectory(snapshot_path):
   return os.path.splitext(snapshot_path)[0]
+
 
 def _SnapPageToFile(finder_options, url, interactive, snapshot_path,
                     snapshot_file, enable_browser_log):
