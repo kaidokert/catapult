@@ -16,6 +16,24 @@
       "revId": "8106591e7c9c6406c83f9ae24edfdfa13d4a7618",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07d0fd06_5557ae97",
+        "filename": "devil/devil/compatibility/psutil_compatibility_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-25T13:25:00Z",
+      "side": 1,
+      "message": "Both devil and Telemetry, each independently, depend on psutil. And we want both of them to depend on psutil v2 or higher.\n\nI added the test to devil, because Telemetry depends on devil. The rationale being, if the test passes for devil, then all of devil clients (including Telemetry, but also any others), can assume psutil will work for them.\n\nThe other way around, if we have the tests in Telemetry, then devil (which _also_ uses psutil) has no such guarantee. Someone cloning catapult just to use devil will not learn about this requirement when running e.g. devil/bin/run_py_tests, and then be surprised when devil appears to have some erratic behavior.\n\nI do not want to add the tests to common/ because that would sort of imply \"all of catapult\" depending on psutil v2; which I\u0027m not sure is the thing we want to assert? (Maybe yes, not sure, opinions?)",
+      "parentUuid": "d22e5009_b570430f",
+      "revId": "8106591e7c9c6406c83f9ae24edfdfa13d4a7618",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
