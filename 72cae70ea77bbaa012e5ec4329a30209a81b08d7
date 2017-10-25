@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "667fb2f4_51bd75c4",
+        "filename": "common/py_utils/py_utils/compatibility.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-25T11:59:41Z",
+      "side": 1,
+      "message": "I thought so too. But worried about callers \"catching\" the exception and creating even more subtle bugs (e.g. I think ImportOptionalModule [1] is a hazard and has bitten us a few times).\n\nNote this _will_ log the exception (with the call stack) before exiting.\n\nNot a terribly strong opinion, though. I\u0027m also happy to just raise the exception and hope callers do the right thing.\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/util/external_modules.py?q\u003dImportOptionalModule",
+      "parentUuid": "4632bae2_a6dc4f24",
+      "revId": "72cae70ea77bbaa012e5ec4329a30209a81b08d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5c846509_31ef7929",
         "filename": "common/py_utils/py_utils/compatibility.py",
         "patchSetId": 5
@@ -30,6 +48,24 @@
       "writtenOn": "2017-10-25T11:50:08Z",
       "side": 1,
       "message": "We can raise ImportError(\u0027Invalid...\u0027) here",
+      "revId": "72cae70ea77bbaa012e5ec4329a30209a81b08d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b2ce092_c8de809f",
+        "filename": "common/py_utils/py_utils/compatibility.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-25T11:59:41Z",
+      "side": 1,
+      "message": "Will do.",
+      "parentUuid": "5c846509_31ef7929",
       "revId": "72cae70ea77bbaa012e5ec4329a30209a81b08d7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
