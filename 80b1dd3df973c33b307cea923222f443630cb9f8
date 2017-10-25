@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "233222d9_f3498fcc",
+        "filename": "tracing/tracing/metrics/system_health/event_finder_by_frame.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1116050
+      },
+      "writtenOn": "2017-10-25T13:12:43Z",
+      "side": 1,
+      "message": "Will eventsForFrame be sorted?\nShould it be?\n\nIf its, we can make this filter a bunch faster.",
+      "range": {
+        "startLine": 58,
+        "startChar": 10,
+        "endLine": 58,
+        "endChar": 58
+      },
+      "revId": "80b1dd3df973c33b307cea923222f443630cb9f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75658de1_4cad45db",
+        "filename": "tracing/tracing/metrics/system_health/event_finder_by_frame.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1116050
+      },
+      "writtenOn": "2017-10-25T13:12:43Z",
+      "side": 1,
+      "message": "Same comment as above regarding sorting.",
+      "range": {
+        "startLine": 73,
+        "startChar": 6,
+        "endLine": 73,
+        "endChar": 9
+      },
+      "revId": "80b1dd3df973c33b307cea923222f443630cb9f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b48d320_dd939557",
+        "filename": "tracing/tracing/metrics/system_health/utils.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1116050
+      },
+      "writtenOn": "2017-10-25T13:12:43Z",
+      "side": 1,
+      "message": "Maybe phrase this as a TODO?",
+      "range": {
+        "startLine": 137,
+        "startChar": 5,
+        "endLine": 137,
+        "endChar": 12
+      },
+      "revId": "80b1dd3df973c33b307cea923222f443630cb9f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
