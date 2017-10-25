@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "112dedbb_bdd6366a",
+        "filename": "common/py_utils/py_utils/compatibility.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-25T12:21:44Z",
+      "side": 1,
+      "message": "Ok. DONE.\n\nI still catch and re-raise, so even if the module is missing, we get to log a message with the version that we expect users to install.",
+      "parentUuid": "2eb6e93c_57404ac3",
+      "revId": "72cae70ea77bbaa012e5ec4329a30209a81b08d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5c846509_31ef7929",
         "filename": "common/py_utils/py_utils/compatibility.py",
         "patchSetId": 5
@@ -84,6 +102,24 @@
       "side": 1,
       "message": "Will do.",
       "parentUuid": "5c846509_31ef7929",
+      "revId": "72cae70ea77bbaa012e5ec4329a30209a81b08d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a323fd69_67fdeed3",
+        "filename": "common/py_utils/py_utils/compatibility.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-25T12:21:44Z",
+      "side": 1,
+      "message": "DONE",
+      "parentUuid": "9b2ce092_c8de809f",
       "revId": "72cae70ea77bbaa012e5ec4329a30209a81b08d7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
