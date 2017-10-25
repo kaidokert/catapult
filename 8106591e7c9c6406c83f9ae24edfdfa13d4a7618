@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d22e5009_b570430f",
+        "filename": "devil/devil/compatibility/psutil_compatibility_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-10-25T12:55:10Z",
+      "side": 1,
+      "message": "devil shouldn\u0027t depend on Telemetry, so it\u0027s weird that this unittest live in devil \u0026 also test stuffs in Telemetry.\n\nI think this compatibility test should either live in Telemetry or common/ (preferred)",
+      "revId": "8106591e7c9c6406c83f9ae24edfdfa13d4a7618",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
