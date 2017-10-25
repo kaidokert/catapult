@@ -104,6 +104,20 @@ def ComputeEventLatencies(input_events):
   input_event_latencies.sort()
   return [(name, latency) for _, name, latency in input_event_latencies]
 
+def GetFinishImplFrameEvents(process, timeline_range):
+  """Get FinishImplFrame trace events from the process's trace buffer that are
+     within the timeline_range.
+  """
+  frame_events = []
+  if not process:
+    return frame_events
+  for event in itertools.chain(
+      process.IterAllAsyncSlicesStartsWithName('FinishImplFrame')):
+    if event.start >= timeline_range.min and event.end <= timeline_range.max:
+      for ss in event.sub_slices:
+        frame_events.append(ss)
+  return frame_events
+
 
 def HasDrmStats(process):
   """ Return True if the process contains DrmEventFlipComplete event.
@@ -181,6 +195,7 @@ class RenderingStats(object):
 
     self.frame_timestamps = []
     self.frame_times = []
+    self.frame_events = []
     self.approximated_pixel_percentages = []
     self.checkerboarded_pixel_percentages = []
     # End-to-end latency for input event - from when input event is
@@ -196,6 +211,7 @@ class RenderingStats(object):
     for timeline_range in timeline_ranges:
       self.frame_timestamps.append([])
       self.frame_times.append([])
+      self.frame_events.append([])
       self.approximated_pixel_percentages.append([])
       self.checkerboarded_pixel_percentages.append([])
       self.input_event_latency.append([])
@@ -207,6 +223,8 @@ class RenderingStats(object):
       self._InitFrameTimestampsFromTimeline(
           timestamp_process, timestamp_event_name, timeline_range)
       self._InitImplThreadRenderingStatsFromTimeline(
+          renderer_process, timeline_range)
+      self._InitFrameEventsFromTimeline(
           renderer_process, timeline_range)
       self._InitInputLatencyStatsFromTimeline(
           browser_process, renderer_process, timeline_range)
@@ -236,6 +254,9 @@ class RenderingStats(object):
     self.gesture_scroll_update_latency[-1] = [
         latency for name, latency in event_latencies
         if name == GESTURE_SCROLL_UPDATE_EVENT_NAME]
+
+  def _InitFrameEventsFromTimeline(self, process, timeline_range):
+    self.frame_events[-1] = GetFinishImplFrameEvents(process, timeline_range)
 
   def _GatherEvents(self, event_name, process, timeline_range):
     events = []

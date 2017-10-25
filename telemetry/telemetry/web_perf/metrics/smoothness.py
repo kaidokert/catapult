@@ -64,7 +64,7 @@ class SmoothnessMetric(timeline_based_metric.TimelineBasedMetric):
         self._ComputeQueueingDuration(page, stats),
         self._ComputeFrameTimeDiscrepancy(page, stats),
         self._ComputeMeanPixelsApproximated(page, stats),
-        self._ComputeMeanPixelsCheckerboarded(page, stats)
+        self._ComputeMeanPixelsCheckerboarded(page, stats),
     ]
     values += self._ComputeLatencyMetric(page, stats, 'input_event_latency',
                                          stats.input_event_latency)
@@ -75,6 +75,8 @@ class SmoothnessMetric(timeline_based_metric.TimelineBasedMetric):
     values += self._ComputeFrameTimeMetric(page, stats)
     if has_surface_flinger_stats:
       values += self._ComputeSurfaceFlingerMetric(page, stats)
+
+    values += self._ComputeFrameEventMetric(page, stats)
 
     for v in values:
       results.AddValue(v)
@@ -241,6 +243,40 @@ class SmoothnessMetric(timeline_based_metric.TimelineBasedMetric):
                     'main thread.',
         none_value_reason=none_value_reason,
         improvement_direction=improvement_direction.DOWN)
+
+  def _ComputeFrameEventMetric(self, page, stats):
+    frame_events = None
+    num_frame_events = None
+    jank_count = None
+    percentage_smooth = None
+    none_value_reason = None
+
+    if self._HasEnoughFrames(stats.frame_events):
+      frame_events = perf_tests_helper.FlattenList(stats.frame_events)
+      num_frame_events = len(frame_events)
+      smooth_count = sum(
+          1 for t in frame_events if t.name == 'FinishImplFrame:DidDraw')
+      jank_count = num_frame_events - smooth_count
+      percentage_smooth = float(smooth_count) / float(num_frame_events) * 100.0
+    else:
+      none_value_reason = NOT_ENOUGH_FRAMES_MESSAGE
+    return (
+        scalar.ScalarValue(
+            page, 'num_frame_events', 'events', num_frame_events,
+            description='Number of frame events recorded.',
+            none_value_reason=none_value_reason,
+            improvement_direction=improvement_direction.UP),
+        scalar.ScalarValue(
+            page, 'new_jank_count', 'janks', jank_count,
+            description='Number of frame jank events recorded.',
+            none_value_reason=none_value_reason,
+            improvement_direction=improvement_direction.DOWN),
+        scalar.ScalarValue(
+            page, 'new_percentage_smooth', 'score', percentage_smooth,
+            description='Percentage of frames that were hitting 60 fps.',
+            none_value_reason=none_value_reason,
+            improvement_direction=improvement_direction.UP),
+    )
 
   def _ComputeFrameTimeMetric(self, page, stats):
     """Returns Values for the frame time metrics.
