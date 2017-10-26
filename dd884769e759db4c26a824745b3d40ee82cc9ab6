@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "56d332f8_1f3e6688",
+        "filename": ".vpython",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1109829
+      },
+      "writtenOn": "2017-10-26T12:06:39Z",
+      "side": 1,
+      "message": "Might want to update these comments/paths for the current repo.",
+      "range": {
+        "startLine": 27,
+        "startChar": 1,
+        "endLine": 31,
+        "endChar": 78
+      },
+      "revId": "dd884769e759db4c26a824745b3d40ee82cc9ab6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1625aa4e_9cbd8bf8",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1109829
+      },
+      "writtenOn": "2017-10-26T12:06:39Z",
+      "side": 1,
+      "message": "This is fine, but if your tryjob is, itself, launched through \"vpython\" by the recipe, you shouldn\u0027t need to do this at all, since the VirtualEnv Python will be in PATH.\n\nEdit: I see https://chromium-review.googlesource.com/c/infra/luci/recipes-py/+/738113 now, nevermind, you\u0027re on top of this.",
+      "range": {
+        "startLine": 205,
+        "startChar": 1,
+        "endLine": 206,
+        "endChar": 18
+      },
+      "revId": "dd884769e759db4c26a824745b3d40ee82cc9ab6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
