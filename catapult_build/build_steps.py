@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 
 import argparse
+import functools
 import json
 import os
 import sys
@@ -197,6 +198,15 @@ _CATAPULT_TESTS = [
 _STALE_FILE_TYPES = ['.pyc', '.pseudo_lock']
 
 
+def _BuildPythonCmd(checkout_path, script, *args):
+  """Build a python command to run a script relative to a checkout path."""
+  # Python command chosen to mirror m.python(.., venv=True) as implemented at:
+  # https://chromium.googlesource.com/infra/luci/recipes-py/+/c07de907b2223efcacbf45d7b793fc0d8a964f31/recipe_modules/python/api.py#17
+  cmd = ['vpython', '-u', os.path.join(checkout_path, script)]
+  cmd.extend(args)
+  return cmd
+
+
 def main(args=None):
   """Send list of test to run to recipes generator_script.
 
@@ -212,14 +222,15 @@ def main(args=None):
   parser.add_argument('--output-json', help='Output for buildbot status page')
   args = parser.parse_args(args)
 
+
+  python_cmd = functools.partial(_BuildPythonCmd, args.api_path_checkout)
+
   steps = [{
       # Always remove stale files first. Not listed as a test above
       # because it is a step and not a test, and must be first.
       'name': 'Remove Stale files',
-      'cmd': ['python',
-              os.path.join(args.api_path_checkout,
-                           'catapult_build', 'remove_stale_files.py'),
-              args.api_path_checkout, ','.join(_STALE_FILE_TYPES)]
+      'cmd': python_cmd('catapult_build/remove_stale_files.py',
+                        args.api_path_checkout, ','.join(_STALE_FILE_TYPES)),
   }]
   if args.platform == 'android':
     # On Android, we need to prepare the devices a bit before using them in
@@ -228,21 +239,15 @@ def main(args=None):
     steps.extend([
         {
             'name': 'Android: Recover Devices',
-            'cmd': ['python',
-                    os.path.join(args.api_path_checkout, 'devil', 'devil',
-                                 'android', 'tools', 'device_recovery.py')],
+            'cmd': python_cmd('devil/devil/android/tools/device_recovery.py'),
         },
         {
             'name': 'Android: Provision Devices',
-            'cmd': ['python',
-                    os.path.join(args.api_path_checkout, 'devil', 'devil',
-                                 'android', 'tools', 'provision_devices.py')],
+            'cmd': python_cmd('devil/devil/android/tools/provision_devices.py'),
         },
         {
             'name': 'Android: Device Status',
-            'cmd': ['python',
-                    os.path.join(args.api_path_checkout, 'devil', 'devil',
-                                 'android', 'tools', 'device_status.py')],
+            'cmd': python_cmd('devil/devil/android/tools/device_status.py'),
         },
     ])
 
@@ -253,7 +258,7 @@ def main(args=None):
         'name': test['name'],
         'env': {}
     }
-    step['cmd'] = ['python', os.path.join(args.api_path_checkout, test['path'])]
+    step['cmd'] = python_cmd(test['path'])
     if step['name'] == 'Systrace Tests':
       step['cmd'] += ['--device=' + args.platform]
     if test.get('additional_args'):
