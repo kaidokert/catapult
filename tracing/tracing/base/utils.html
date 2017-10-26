@@ -614,7 +614,31 @@ tr.exportTo('tr.b', function() {
     return hiInt;
   }
 
+  /**
+  * Returns first index i in |array| such that |test| is true for array[i].
+  * Returns array.length if no such i is found. Runtime is O(log(array.length)).
+  * Assumes |test| is monotonic boolean on |array|, i.e. if test(array[i]) is
+  * true, then test(array[i + 1]) is also true.
+  *
+  * @param {Array} array Array of elements to perform binary search on.
+  * @param {function(*):boolean} test Monotonic boolean test function.
+  */
+  function binarySearchForFirstTrueIndex(array, test) {
+    let i0 = 0;
+    let i1 = array.length;
+    while (i0 < i1) {
+      const i = Math.trunc((i0 + i1) / 2);
+      if (test(array[i])) {
+        i1 = i;  // Explore the left branch.
+      } else {
+        i0 = i + 1;  // Explore the right branch.
+      }
+    }
+    return i1;
+  }
+
   return {
+    binarySearchForFirstTrueIndex,
     compareArrays,
     deepCopy,
     findClosestElementInSortedArray,
