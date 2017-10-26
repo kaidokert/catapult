@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1cba1614_a690ae98",
+        "filename": "tracing/tracing/metrics/system_health/event_finder_by_frame.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2017-10-26T16:37:11Z",
+      "side": 1,
+      "message": "benjhayden@: Is it ok to make this assumption?",
+      "revId": "06ec14277de82e46cf8a460c49877a8dad2f00b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
