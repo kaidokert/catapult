@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "80217222_a415dcfc",
+        "filename": "third_party/snap-it/HTMLSerializer.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-10-26T20:30:55Z",
+      "side": 1,
+      "message": "this variable is not used anywhere?",
+      "revId": "e2d5e7fd3de1208b2470f879800407444fcc00cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
