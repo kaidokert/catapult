@@ -219,7 +219,7 @@ class InspectorBackend(object):
       exceptions.DevtoolsTargetCrashException
     """
     # Use the default both when timeout=None or the option is ommited.
-    timeout = kwargs.pop('timeout', None) or 60
+    timeout = kwargs.pop('timeout', None) or 180
     context_id = kwargs.pop('context_id', None)
     statement = js_template.Render(statement, **kwargs)
     self._runtime.Execute(statement, context_id, timeout)

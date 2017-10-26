@@ -385,7 +385,7 @@ class DevToolsClientBackend(object):
     finally:
       self._tracing_backend.StopTracing()
 
-  def CollectChromeTracingData(self, trace_data_builder, timeout=60):
+  def CollectChromeTracingData(self, trace_data_builder, timeout=300):
     try:
       trace_data_builder.AddTraceFor(
           trace_data_module.TAB_ID_PART, self._tab_ids[:])

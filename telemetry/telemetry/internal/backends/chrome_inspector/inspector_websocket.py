@@ -163,7 +163,6 @@ class InspectorWebsocket(object):
           raise
       else:
         break
-
     result = json.loads(data)
     if logging.getLogger().isEnabledFor(logging.DEBUG):
       logging.debug(
