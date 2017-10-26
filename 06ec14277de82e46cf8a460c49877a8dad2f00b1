@@ -39,6 +39,30 @@
       "revId": "06ec14277de82e46cf8a460c49877a8dad2f00b1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66f01820_222592af",
+        "filename": "tracing/tracing/metrics/system_health/event_finder_by_frame.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2017-10-26T18:23:03Z",
+      "side": 1,
+      "message": "I ran the binary search for events that start strictly after |timestamp|. If events[0] is strictly after, there is no event on or before. Note the \u0027- 1\u0027 in the line below.",
+      "parentUuid": "4873c651_3e891ee9",
+      "range": {
+        "startLine": 81,
+        "startChar": 43,
+        "endLine": 81,
+        "endChar": 44
+      },
+      "revId": "06ec14277de82e46cf8a460c49877a8dad2f00b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
