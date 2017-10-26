@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/base/math/range.html">
+<link rel="import" href="/tracing/metrics/system_health/utils.html">
+
+<script>
+'use strict';
+
+tr.exportTo('tr.metrics.sh', function() {
+  /**
+   * Utility class for caching all events with title |eventTitle| and category
+   * |eventCategory| of |rendererHelper|. Provides methods to query them by
+   * frame ID and time windows.
+   */
+  class EventFinderByFrame {
+    /**
+     * @param {tr.model.helpers.ChromeRendererHelper} rendererHelper
+     * @param {string} eventTitle
+     * @param {string} eventCategory
+     */
+    constructor(rendererHelper, eventTitle, eventCategory) {
+      const eventsByFrameId = new Map();
+
+      for (const ev of rendererHelper.process.getDescendantEvents()) {
+        if (rendererHelper.isTelemetryInternalEvent(ev)) continue;
+        if (!tr.metrics.sh.hasCategoryAndName(ev, eventTitle, eventCategory)) {
+          continue;
+        }
+
+        const frameIdRef = ev.args.frame;
+        if (frameIdRef === undefined) continue;
+        if (!eventsByFrameId.has(frameIdRef)) {
+          eventsByFrameId.set(frameIdRef, []);
+        }
+        eventsByFrameId.get(frameIdRef).push(ev);
+      }
+
+      // Return value of getDescendantEvents can be assumed to be sorted by
+      // begin timestamps, so events are sorted here for each frame.
+      this.eventsByFrameId_ = eventsByFrameId;
+    }
+
+
+    /**
+     * Returns array of events for |frameIdRef| that starts in the range
+     * [windowStart, windowEnd).
+     *
+     * @param {string} frameIdRef
+     * @param {number} windowStart
+     * @param {number} windowEnd
+     * @returns {Array<!tr.model.Event>}
+     */
+    findEventsForFrameStartingInWindow(frameIdRef, windowStart, windowEnd) {
+      const eventsForFrame = this.eventsByFrameId_.get(frameIdRef);
+      if (eventsForFrame === undefined) return [];
+      const windowRange =
+          tr.b.math.Range.fromExplicitRange(windowStart, windowEnd);
+      return windowRange.filterArray(eventsForFrame, e => e.start);
+    }
+
+    /**
+     * Returns latest event for |frameIdRef| that starts on or before
+     * |timestamp|, or undefined if no such event exists.
+     *
+     * @param {string} frameIdRef
+     * @param {number} timestamp
+     * @returns {tr.model.Event|undefined}
+     */
+    findLastEventForFrameStartingOnOrBeforeTimestamp(frameIdRef, timestamp) {
+      const events = this.eventsByFrameId_.get(frameIdRef);
+      if (events === undefined) return undefined;
+
+      const firstIndexAtOrAfterTimestamp =
+          tr.b.binarySearchForFirstTrueIndex(events, e => e.start > timestamp);
+
+      if (firstIndexAtOrAfterTimestamp === 0) return undefined;
+      return events[firstIndexAtOrAfterTimestamp - 1];
+    }
+
+    /**
+     * Returns earliest event for |frameIdRef| that starts on or after
+     * |timestamp|, or undefined if no such event exists.
+     *
+     * @param {string} frameIdRef
+     * @param {number} timestamp
+     * @returns {tr.model.Event|undefined}
+     */
+    findNextEventForFrameStartingOnOrAfterTimestamp(frameIdRef, timestamp) {
+      const events = this.eventsByFrameId_.get(frameIdRef);
+      if (events === undefined) return undefined;
+
+      const firstIndexAfterTimestamp =
+          tr.b.binarySearchForFirstTrueIndex(
+              events, e => e.start >= timestamp);
+
+      if (firstIndexAfterTimestamp === events.length) return undefined;
+      return events[firstIndexAfterTimestamp];
+    }
+  }
+
+  return {
+    EventFinderByFrame,
+  };
+});
+</script>

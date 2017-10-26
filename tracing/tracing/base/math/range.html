@@ -207,33 +207,16 @@ tr.exportTo('tr.b.math', function() {
      */
     filterArray(array, opt_keyFunc, opt_this) {
       if (this.isEmpty_) return [];
-      // Binary search. |test| is a function that should return true when we
-      // need to explore the left branch and false to explore the right branch.
-      function binSearch(test) {
-        let i0 = 0;
-        let i1 = array.length;
-        while (i0 < i1) {
-          const i = Math.trunc((i0 + i1) / 2);
-          if (test(i)) {
-            i1 = i;  // Explore the left branch.
-          } else {
-            i0 = i + 1;  // Explore the right branch.
-          }
-        }
-        return i1;
-      }
 
       const keyFunc = opt_keyFunc || (x => x);
-      function getValue(index) {
-        return keyFunc.call(opt_this, array[index]);
+      function getValue(obj) {
+        return keyFunc.call(opt_this, obj);
       }
 
-      const first = binSearch(function(i) {
-        return this.min_ === undefined || this.min_ <= getValue(i);
-      }.bind(this));
-      const last = binSearch(function(i) {
-        return this.max_ !== undefined && this.max_ < getValue(i);
-      }.bind(this));
+      const first = tr.b.binarySearchForFirstTrueIndex(array,
+          obj => this.min_ === undefined || this.min_ <= getValue(obj));
+      const last = tr.b.binarySearchForFirstTrueIndex(array,
+          obj => this.max_ !== undefined && this.max_ < getValue(obj));
       return array.slice(first, last);
     }
   };
