@@ -2,6 +2,74 @@
   "comments": [
     {
       "key": {
+        "uuid": "7c44bef1_d8a740de",
+        "filename": "tracing/tracing/base/math/range.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-26T22:35:16Z",
+      "side": 1,
+      "message": "Thank you for refactoring this!",
+      "revId": "06ec14277de82e46cf8a460c49877a8dad2f00b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2bdaccc_b7e49eaa",
+        "filename": "tracing/tracing/base/utils.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-26T22:35:16Z",
+      "side": 1,
+      "message": "This looks a lot like findHighIndexInSortedArray. Can they share code?",
+      "revId": "06ec14277de82e46cf8a460c49877a8dad2f00b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1adfc92_e4361516",
+        "filename": "tracing/tracing/metrics/system_health/event_finder_by_frame.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-26T22:35:16Z",
+      "side": 1,
+      "message": "I think it would be good to integrate this with the ChromeModelHelper family somehow.\nMaybe a method on ChromeProcessHelper or ChromeThreadHelper like findEventsByFrame(title, category) -\u003e Map(frameIdRef -\u003e sorted array of events)?\nThat might require moving hasCategoryAndTitle into the Event family of classes sooner than later.\nIf you\u0027re trying to get something done by a particular time, you can file a Code Health bug and add a TODO here to figure out the design later.",
+      "revId": "06ec14277de82e46cf8a460c49877a8dad2f00b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fca72796_fe196184",
+        "filename": "tracing/tracing/metrics/system_health/event_finder_by_frame.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-26T22:35:16Z",
+      "side": 1,
+      "message": "Why not use this.eventsByFrameId_ \u003d new Map() here, and use that in the loop, so you don\u0027t need to set it later?",
+      "revId": "06ec14277de82e46cf8a460c49877a8dad2f00b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1cba1614_a690ae98",
         "filename": "tracing/tracing/metrics/system_health/event_finder_by_frame.html",
         "patchSetId": 4
@@ -13,6 +81,58 @@
       "writtenOn": "2017-10-26T16:37:11Z",
       "side": 1,
       "message": "benjhayden@: Is it ok to make this assumption?",
+      "revId": "06ec14277de82e46cf8a460c49877a8dad2f00b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da83476b_51ffda3e",
+        "filename": "tracing/tracing/metrics/system_health/event_finder_by_frame.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-26T22:35:16Z",
+      "side": 1,
+      "message": "EventContainer.getDescendantEvents() does not make any attempt to guarantee that they are sorted, it just yields all childEvents() and then all events from all child event containers, without interleaving them. \nIn your case, you\u0027re filtering the events by whether they have args.frame. So, if only ThreadSlices on only the MainThread have args.frame, then you can assume that eventsByFrameId is sorted, but if that\u0027s the case then it would be more efficient to only iterate over rendererHelper.mainThread.sliceGroup.childEvents().\n\nSo, if you can iterate over an EventContainer that does not have child event containers, then you don\u0027t need to sort eventsByFrameId. If you need to iterate over a composite EventContainer, then you need to sort eventsByFrameId here.",
+      "parentUuid": "1cba1614_a690ae98",
+      "revId": "06ec14277de82e46cf8a460c49877a8dad2f00b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2ab352d_f9e2ce64",
+        "filename": "tracing/tracing/metrics/system_health/event_finder_by_frame.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-26T22:35:16Z",
+      "side": 1,
+      "message": "Could this be spelled in terms of findEventsForFrameStartingInWindow instead of binary search?\nThe linear search might be less efficient than binary search, but how many events are usually in eventsForFrame?",
+      "revId": "06ec14277de82e46cf8a460c49877a8dad2f00b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7a76190_8c69a5b7",
+        "filename": "tracing/tracing/metrics/system_health/event_finder_by_frame.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-26T22:35:16Z",
+      "side": 1,
+      "message": "\"findLastEventForFrameStartingOnOrBeforeTimestamp\" is quite a long name. That suggests to me that it\u0027s conflating multiple operations.\nWhat would you think of splitting this method and findNextEventForFrameStartingOnOrAfterTimestamp so callers would call both getEventsForFrame(id) and a binary search function?",
       "revId": "06ec14277de82e46cf8a460c49877a8dad2f00b1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -54,6 +174,30 @@
       "side": 1,
       "message": "I ran the binary search for events that start strictly after |timestamp|. If events[0] is strictly after, there is no event on or before. Note the \u0027- 1\u0027 in the line below.",
       "parentUuid": "4873c651_3e891ee9",
+      "range": {
+        "startLine": 81,
+        "startChar": 43,
+        "endLine": 81,
+        "endChar": 44
+      },
+      "revId": "06ec14277de82e46cf8a460c49877a8dad2f00b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be3ba3cb_52c84358",
+        "filename": "tracing/tracing/metrics/system_health/event_finder_by_frame.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-26T22:35:16Z",
+      "side": 1,
+      "message": "That would be good to record in a comment in the code.",
+      "parentUuid": "66f01820_222592af",
       "range": {
         "startLine": 81,
         "startChar": 43,
