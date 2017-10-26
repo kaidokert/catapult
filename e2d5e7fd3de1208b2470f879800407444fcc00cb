@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ecad79e4_2f81d231",
+        "filename": "third_party/snap-it/HTMLSerializer.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1128438
+      },
+      "writtenOn": "2017-10-26T22:26:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80217222_a415dcfc",
+      "revId": "e2d5e7fd3de1208b2470f879800407444fcc00cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "529df038_4cce393a",
         "filename": "third_party/snap-it/HTMLSerializer.js",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2017-10-26T20:40:14Z",
       "side": 1,
       "message": "Actually this might be missing a few cases. \n\nWhat about the case of:\nbackground-image:\nurl(\"https://www.images.com/foo.png\"), \nurl(\"data:image/gif;base64,R0lGODlhAQABAIAAAA\"), \nurl(\"https://www.images.com/bar.png\"), \nlinear-gradient(to bottom, rgba(255,255,0,0.5), rgba(0,0,255,0.5)), url(\"https://www.images.com/baz.png\")\n\n?",
+      "revId": "e2d5e7fd3de1208b2470f879800407444fcc00cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc24ed2a_6ee01937",
+        "filename": "third_party/snap-it/HTMLSerializer.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1128438
+      },
+      "writtenOn": "2017-10-26T22:26:56Z",
+      "side": 1,
+      "message": "I added a test case for this. It works, except that it suffers from the multiple-images issue noted in TODO at line 369. I am thinking to address that in a separate change.\n\nThe data url is passed along at line 383/397, and the linear-gradiant at 376/397. The foo/bar/baz are aggregated at line 391 - 393 and joined in 397, but getExternalImageUrl() will generate the same local image name for all, so that\u0027s the TODO.",
+      "parentUuid": "529df038_4cce393a",
       "revId": "e2d5e7fd3de1208b2470f879800407444fcc00cb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
