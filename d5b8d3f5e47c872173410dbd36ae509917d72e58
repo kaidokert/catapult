@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5e72aaa2_3186cf35",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2017-10-27T21:39:44Z",
+      "side": 1,
+      "message": "This documentation should discuss limitations. For example, what can it work with multiple videos on one page at the same time? Does it work for flash playback (no).",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 45
+      },
+      "revId": "d5b8d3f5e47c872173410dbd36ae509917d72e58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8e84964_e7d76e84",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2017-10-27T21:39:44Z",
+      "side": 1,
+      "message": "Instead of \"data\", what about \"playback_id_to_metrics_map\" or something like that? data is not a good variable name because it is not at all specific.",
+      "range": {
+        "startLine": 68,
+        "startChar": 6,
+        "endLine": 68,
+        "endChar": 16
+      },
+      "revId": "d5b8d3f5e47c872173410dbd36ae509917d72e58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca426c8f_6b7fc2fe",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2017-10-27T21:39:44Z",
+      "side": 1,
+      "message": "This and other functions should be renamed.",
+      "range": {
+        "startLine": 82,
+        "startChar": 8,
+        "endLine": 82,
+        "endChar": 18
+      },
+      "revId": "d5b8d3f5e47c872173410dbd36ae509917d72e58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad3a062b_4bbed7ee",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2017-10-27T21:39:44Z",
+      "side": 1,
+      "message": "suggest breaking the inside of this out into another function to make this easier to read:\n\nfor (const playback_id of playback_id_to_metrics_map) {\n    AddMetricsToHistograms(playback_id_to_metrics_map[playback_id])\n}\n\nThen the definition of AddMetricsToHistograms can note the type of the input so that you can read that code in isolation.",
+      "range": {
+        "startLine": 85,
+        "startChar": 6,
+        "endLine": 85,
+        "endChar": 45
+      },
+      "revId": "d5b8d3f5e47c872173410dbd36ae509917d72e58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "540050d2_5e6f5255",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2017-10-27T21:39:44Z",
+      "side": 1,
+      "message": "This function needs to be renamed since now it gets multiple play starts and it does not return them.",
+      "range": {
+        "startLine": 128,
+        "startChar": 11,
+        "endLine": 128,
+        "endChar": 23
+      },
+      "revId": "d5b8d3f5e47c872173410dbd36ae509917d72e58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b71a13b_f0cd5f5c",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2017-10-27T21:39:44Z",
+      "side": 1,
+      "message": "*generate\n\nI think actually a single \u003cvideo\u003e element can have multiple different WMPI instances associated with it over its lifetime. (Dale, is this true?) So what we really want to say here is that each video *player* can generate multiple Render events.",
+      "range": {
+        "startLine": 145,
+        "startChar": 20,
+        "endLine": 145,
+        "endChar": 64
+      },
+      "revId": "d5b8d3f5e47c872173410dbd36ae509917d72e58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b9621e6_9a09cf27",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2017-10-27T21:39:44Z",
+      "side": 1,
+      "message": "do make this all cleaner, I suggest making a MediaPlaybackMetrics class that contains members for each metric like timeToAudioPlay. Then you can put that class near the top of the file and instead of needing to document each of the metrics in the toplevel module doc, you can document them inside the class and have the toplevel module doc refer to the class for definitions. This will also make it so that when people add new metrics they will have a system in place to follow. And it will make it easy to read various peices of code in isolation. For example, a reader can read the histogram code in isolation if it is in a function that declares its input to be of type MediaPlaybackMetrics",
+      "range": {
+        "startLine": 160,
+        "startChar": 15,
+        "endLine": 163,
+        "endChar": 37
+      },
+      "revId": "d5b8d3f5e47c872173410dbd36ae509917d72e58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
