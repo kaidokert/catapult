@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d2026c1f_8e4b524d",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1115949
+      },
+      "writtenOn": "2017-10-27T07:27:43Z",
+      "side": 1,
+      "message": "Instead of setting Date manually...",
+      "revId": "fdaaca5a73177550053c39ad4bb89586b14ca184",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90eafc8e_f15789db",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1115949
+      },
+      "writtenOn": "2017-10-27T07:27:43Z",
+      "side": 1,
+      "message": "You can simply skip copying if k \u003d\u003d \"Date\" here, and http.ResponseWriter will automatically fill Date from time.Now()",
+      "revId": "fdaaca5a73177550053c39ad4bb89586b14ca184",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
