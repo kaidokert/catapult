@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "caef4f66_3fa6d344",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-27T08:24:54Z",
+      "side": 1,
+      "message": "I think this is also mutating the options, and should be done to the copy only?",
+      "revId": "5122f5d53650fe6a410e1415b6fd1b7a337eb5b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
