@@ -57,101 +57,118 @@ tr.exportTo('tr.metrics', function() {
       if (mainThread === undefined) continue;
 
       const compositorThread = rendererHelper.compositorThread;
-      const audioThread =
-        rendererHelper.process.findAtMostOneThreadNamed('AudioOutputDevice');
-      if (compositorThread === undefined && audioThread === undefined) continue;
+      const audioThreads =
+        rendererHelper.process.findAllThreadsNamed('AudioOutputDevice');
+      if (compositorThread === undefined && audioThreads.length === 0) continue;
 
-      const playStart = getPlayStart(mainThread);
-      if (playStart === undefined) continue;
+      // All the perf data we collect are stored in the following Map.
+      // The keys of the map are IDs of each media element, and the value
+      // associated with each key is an object containing all the perf data for
+      // that media element.
+      const data = new Map();
 
-      const timeToVideoPlay = compositorThread === undefined ? undefined :
-        getTimeToVideoPlay(compositorThread, playStart);
-      const timeToAudioPlay = audioThread === undefined ? undefined :
-        getTimeToAudioPlay(audioThread, playStart);
+      getPlayStart(mainThread, data);
+      if (data.size === 0) continue;
 
-      if (timeToVideoPlay === undefined && timeToAudioPlay === undefined) {
-        continue;
+      if (compositorThread !== undefined) {
+        getTimeToVideoPlay(compositorThread, data);
+        getDroppedFrameCount(compositorThread, data);
       }
 
-      const droppedFrameCount = timeToVideoPlay === undefined ? undefined :
-        getDroppedFrameCount(compositorThread);
-      const seekTimes = getSeekTimes(mainThread);
-      const bufferingTime = seekTimes.size !== 0 ? undefined :
-        getBufferingTime(mainThread, playStart, timeToVideoPlay,
-            timeToAudioPlay);
+      if (audioThreads.length !== 0) {
+        getTimeToAudioPlay(audioThreads, data);
+      }
 
-      if (timeToVideoPlay !== undefined) {
-        histograms.createHistogram('time_to_video_play',
-            tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
-            timeToVideoPlay);
-      }
-      if (timeToAudioPlay !== undefined) {
-        histograms.createHistogram('time_to_audio_play',
-            tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
-            timeToAudioPlay);
-      }
-      if (droppedFrameCount !== undefined) {
-        histograms.createHistogram('dropped_frame_count',
-            tr.b.Unit.byName.count_smallerIsBetter, droppedFrameCount);
-      }
-      for (const [key, value] of seekTimes.entries()) {
-        // key is a numerical value that can have '.' when converted to string.
-        // However, '.' causes problems in histogram names, so replace with '_'.
-        const keyString = key.toString().replace('.', '_');
-        histograms.createHistogram(
-            'pipeline_seek_time_' + keyString,
-            tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
-            value.pipelineSeekTime);
-        histograms.createHistogram(
-            'seek_time_' + keyString,
-            tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
-            value.seekTime);
-      }
-      if (bufferingTime !== undefined) {
-        histograms.createHistogram('buffering_time',
-            tr.b.Unit.byName.timeDurationInMs_smallerIsBetter, bufferingTime);
+      getSeekTimes(mainThread, data);
+      getBufferingTime(mainThread, data);
+
+      for (const [id, elementData] of data) {
+        if (elementData.timeToVideoPlay !== undefined) {
+          addSample(histograms, 'time_to_video_play',
+              tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
+              elementData.timeToVideoPlay);
+        }
+        if (elementData.timeToAudioPlay !== undefined) {
+          addSample(histograms, 'time_to_audio_play',
+              tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
+              elementData.timeToAudioPlay);
+        }
+        // elementData.droppedFrameCount is undefined if no frames are dropped,
+        // thus we can't use it in the following if statement. Instead, we
+        // report droppedFrameCount whenever there is video played.
+        if (elementData.timeToVideoPlay !== undefined) {
+          addSample(histograms, 'dropped_frame_count',
+              tr.b.Unit.byName.count_smallerIsBetter,
+              elementData.droppedFrameCount || 0);
+        }
+        if (!elementData.seekError && elementData.seekTimes !== undefined &&
+            elementData.currentSeek === undefined) {
+          for (const [key, value] of elementData.seekTimes.entries()) {
+            // key is a numerical value that can have '.' when converted to
+            // string. However, '.' causes problems in histogram names, so
+            // replace with '_'.
+            const keyString = key.toString().replace('.', '_');
+            addSample(histograms, 'pipeline_seek_time_' + keyString,
+                tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
+                value.pipelineSeekTime);
+            addSample(histograms, 'seek_time_' + keyString,
+                tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
+                value.seekTime);
+          }
+        }
+        if (elementData.bufferingTime !== undefined) {
+          addSample(histograms, 'buffering_time',
+              tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
+              elementData.bufferingTime);
+        }
       }
     }
   }
 
-  function getPlayStart(mainThread) {
-    let playStart;
+  function getPlayStart(mainThread, data) {
     for (const event of mainThread.sliceGroup.getDescendantEvents()) {
       if (event.title === 'WebMediaPlayerImpl::DoLoad') {
-        // TODO(johnchen@chromium.org): Support multiple audio/video
-        // elements per page. Currently, we only support a single
-        // audio or video element, so we can store the start time in
-        // a simple variable.
-        if (playStart !== undefined) {
+        const id = event.args.id;
+        if (data.has(id)) {
           throw new Error(
-              'Loading multiple audio/video elements not yet supported');
+              'Unexpected multiple initialization of an audio/video elements');
         }
-        playStart = event.start;
+        data.set(id, { playStart: event.start });
       }
     }
-    return playStart;
   }
 
-  function getTimeToVideoPlay(compositorThread, playStart) {
+  function getTimeToVideoPlay(compositorThread, data) {
     for (const event of compositorThread.sliceGroup.getDescendantEvents()) {
       if (event.title === 'VideoRendererImpl::Render') {
-        return event.start - playStart;
+        const elementData = data.get(event.args.id);
+        // Each video element can generte multiple Render events, one for each
+        // frame. For calculating time to video play, we only use the first
+        // Render event.
+        if (elementData !== undefined &&
+            elementData.timeToVideoPlay === undefined) {
+          elementData.timeToVideoPlay = event.start - elementData.playStart;
+        }
       }
     }
-    return undefined;
   }
 
-  function getTimeToAudioPlay(audioThread, playStart) {
-    for (const event of audioThread.sliceGroup.getDescendantEvents()) {
-      if (event.title === 'AudioRendererImpl::Render') {
-        return event.start - playStart;
+  function getTimeToAudioPlay(audioThreads, data) {
+    for (const audioThread of audioThreads) {
+      for (const event of audioThread.sliceGroup.getDescendantEvents()) {
+        if (event.title === 'AudioRendererImpl::Render') {
+          const elementData = data.get(event.args.id);
+          if (elementData !== undefined &&
+              elementData.timeToAudioPlay === undefined) {
+            elementData.timeToAudioPlay = event.start - elementData.playStart;
+          }
+        }
       }
     }
-    return undefined;
   }
 
-  function getSeekTimes(mainThread) {
-    // We support multiple seeks per page, as long as they seek to different
+  function getSeekTimes(mainThread, data) {
+    // We support multiple seeks per element, as long as they seek to different
     // target time. Thus the seek times are stored in a map instead of a simple
     // variable. The key of the map is event.args.target, which is a numerical
     // value indicating the target location of the seek, in unit of seconds.
@@ -166,23 +183,31 @@ tr.exportTo('tr.metrics', function() {
     // * seekTime: amount of seek time perceived by the user (milliseconds)
     // If any unexpected conditions occur, we stop processing by returning an
     // empty Map. TODO: Emit detailed warnings.
-    const seekTimes = new Map();
-    // |currentSeek| refers to the object associated with the seek that is
-    // currently being processed. It is used to match seek end events against
-    // seek start events.
-    let currentSeek;
     for (const event of mainThread.sliceGroup.getDescendantEvents()) {
       if (event.title === 'WebMediaPlayerImpl::DoSeek') {
-        if (currentSeek !== undefined) {
+        const elementData = data.get(event.args.id);
+        if (elementData === undefined) continue;
+        // |elementData.currentSeek| refers to the object associated with the
+        // seek that is currently being processed for this media element.
+        // It is used to match seek end events against seek start events.
+        if (elementData.currentSeek !== undefined) {
           // TODO warning 'Overlapping seek not supported'
-          return new Map();
+          elementData.seekError = true;
+          continue;
         }
-        currentSeek = {
+        elementData.currentSeek = {
           target: event.args.target,
           startTime: event.start
         };
-        seekTimes.set(event.args.target, currentSeek);
+        let seekTimes = elementData.seekTimes;
+        if (seekTimes === undefined) {
+          seekTimes = elementData.seekTimes = new Map();
+        }
+        seekTimes.set(event.args.target, elementData.currentSeek);
       } else if (event.title === 'WebMediaPlayerImpl::OnPipelineSeeked') {
+        const elementData = data.get(event.args.id);
+        if (elementData === undefined || elementData.seekError) continue;
+        const currentSeek = elementData.currentSeek;
         if (currentSeek === undefined) {
           // OK to have this event when there is no active seek, as this event
           // can be generated for other reasons, e.g., initial loading of media
@@ -192,14 +217,19 @@ tr.exportTo('tr.metrics', function() {
         if (currentSeek.target !== event.args.target) {
           // TODO warning 'WebMediaPlayerImpl::OnPipelineSeeked to unexpected
           // target'
-          return new Map();
+          elementData.seekError = true;
+          continue;
         }
         if (currentSeek.pipelineSeekTime !== undefined) {
           // TODO warning 'Multiple WebMediaPlayerImpl::OnPipelineSeeked events'
-          return new Map();
+          elementData.seekError = true;
+          continue;
         }
         currentSeek.pipelineSeekTime = event.start - currentSeek.startTime;
       } else if (event.title === 'WebMediaPlayerImpl::BufferingHaveEnough') {
+        const elementData = data.get(event.args.id);
+        if (elementData === undefined || elementData.seekError) continue;
+        const currentSeek = elementData.currentSeek;
         if (currentSeek === undefined) {
           // No current seek means this event is generated by non-seek related
           // events, e.g., initial loading of media.
@@ -213,52 +243,58 @@ tr.exportTo('tr.metrics', function() {
         }
         currentSeek.seekTime = event.start - currentSeek.startTime;
         // Finished processing current seek.
-        currentSeek = undefined;
+        elementData.currentSeek = undefined;
       }
     }
-    if (currentSeek !== undefined) {
-      // TODO warning 'Incomplete seek events'
-      return new Map();
-    }
-    return seekTimes;
   }
 
-  function getBufferingTime(mainThread, playStart, timeToVideoPlay,
-      timeToAudioPlay) {
-    let playEnd;
-    let duration;
+  function getBufferingTime(mainThread, data) {
     for (const event of mainThread.sliceGroup.getDescendantEvents()) {
       if (event.title === 'WebMediaPlayerImpl::OnEnded') {
-        // TODO(johnchen@chromium.org): Support multiple audio/video
-        // elements per page. Currently, we only support a single
-        // audio or video element, so we can store the end time in
-        // a simple variable.
-        if (playEnd !== undefined) {
-          throw new Error(
-              'Multiple media ended events not yet supported');
+        const elementData = data.get(event.args.id);
+        if (elementData === undefined || elementData.playStart === undefined ||
+            elementData.seekTimes !== undefined) {
+          continue;
         }
-        playEnd = event.start;
-        duration = 1000 * event.args.duration;  // seconds to milliseconds
+        if (elementData.bufferingTime !== undefined) {
+          // Play was resumed after it ended previously.
+          continue;
+        }
+        const playEnd = event.start;
+        const duration = 1000 * event.args.duration;  // seconds to milliseconds
+        const playTime = playEnd - elementData.playStart;
+        if (elementData.timeToVideoPlay !== undefined) {
+          elementData.bufferingTime =
+            playTime - duration - elementData.timeToVideoPlay;
+        } else if (elementData.timeToAudioPlay !== undefined) {
+          elementData.bufferingTime =
+            playTime - duration - elementData.timeToAudioPlay;
+        }
       }
     }
-    if (playEnd === undefined) return undefined;
-    let bufferingTime = playEnd - playStart - duration;
-    if (timeToVideoPlay !== undefined) {
-      bufferingTime -= timeToVideoPlay;
-    } else {
-      bufferingTime -= timeToAudioPlay;
-    }
-    return bufferingTime;
   }
 
-  function getDroppedFrameCount(compositorThread) {
-    let droppedFrameCount = 0;
+  function getDroppedFrameCount(compositorThread, data) {
     for (const event of compositorThread.sliceGroup.getDescendantEvents()) {
       if (event.title === 'VideoFramesDropped') {
-        droppedFrameCount += event.args.count;
+        const elementData = data.get(event.args.id);
+        if (elementData === undefined) continue;
+        if (elementData.droppedFrameCount === undefined) {
+          elementData.droppedFrameCount = event.args.count;
+        } else {
+          elementData.droppedFrameCount += event.args.count;
+        }
       }
     }
-    return droppedFrameCount;
+  }
+
+  function addSample(histograms, name, unit, sample) {
+    const histogram = histograms.getHistogramNamed(name);
+    if (histogram === undefined) {
+      histograms.createHistogram(name, unit, sample);
+    } else {
+      histogram.addSample(sample);
+    }
   }
 
   tr.metrics.MetricRegistry.register(mediaMetric);
