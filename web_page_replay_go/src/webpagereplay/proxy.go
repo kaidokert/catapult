@@ -110,6 +110,9 @@ func (proxy *replayingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 	// Forward the response.
 	logf("serving %v response", storedResp.StatusCode)
 	for k, v := range storedResp.Header {
+                if k == "Date" {
+                        continue
+                }
 		w.Header()[k] = append([]string{}, v...)
 	}
 	w.WriteHeader(storedResp.StatusCode)
