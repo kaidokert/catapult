@@ -162,11 +162,13 @@ class RenderingStats(object):
     assert len(timeline_ranges) > 0
     self.refresh_period = None
 
-    # Find the top level process with rendering stats (browser or renderer).
+    # Find the top level process with rendering stats (browser, renderer, or
+    # gpu). The gpu process can have rendering stats with viz (where the display
+    # compositor lives in th gpu process).
     if surface_flinger_process:
       timestamp_process = surface_flinger_process
       self._GetRefreshPeriodFromSurfaceFlingerProcess(surface_flinger_process)
-    elif HasDrmStats(gpu_process):
+    elif HasDrmStats(gpu_process) or HasRenderingStats(gpu_process):
       timestamp_process = gpu_process
     elif HasRenderingStats(browser_process):
       timestamp_process = browser_process
