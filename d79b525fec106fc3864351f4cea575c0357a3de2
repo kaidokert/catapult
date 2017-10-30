@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "38af12cd_e6fb8e55",
+        "filename": "tracing/tracing/mre/gtest_progress_reporter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-10-30T19:42:27Z",
+      "side": 1,
+      "message": "Dumb unicode question, can you just .encode(\u0027utf-8\u0027) instead?",
+      "revId": "d79b525fec106fc3864351f4cea575c0357a3de2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
