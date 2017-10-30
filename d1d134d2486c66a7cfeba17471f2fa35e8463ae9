@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "11ceea62_38fc2d18",
+        "filename": "telemetry/telemetry/timeline/trace_event_importer.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1116061
+      },
+      "writtenOn": "2017-10-30T23:44:58Z",
+      "side": 1,
+      "message": "Is it possible to make the choice here more deterministic?  I think we should have \u0027DrmThread\u0027 \u003e \u0027CrGpuMain\u0027 \u003e \u0027VizMain\u0027 order.",
+      "revId": "d1d134d2486c66a7cfeba17471f2fa35e8463ae9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
