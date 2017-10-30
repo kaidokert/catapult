@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "046a29ad_b406220c",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1384,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-30T15:37:16Z",
+      "side": 1,
+      "message": "this was nasty! logging.log added extra calls to time.time, which made this test depend on the psutil version installed :-/",
+      "revId": "d3b00b4991a06aa57a0c60dfd1b86097b5c8a3b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

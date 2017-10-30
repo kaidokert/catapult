@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "714154f8_33d19a33",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-30T15:37:16Z",
+      "side": 1,
+      "message": "Adding here to log after each story is run, to see if there is anything eating more and more memory.",
+      "revId": "8dd78c23532dc93d4c6942787d0210a23787926c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64ed3008_5f818d26",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-30T15:37:16Z",
+      "side": 1,
+      "message": "Adding these around the output_formatter, since this is precisely where the bots are running out of memory.",
+      "revId": "8dd78c23532dc93d4c6942787d0210a23787926c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
