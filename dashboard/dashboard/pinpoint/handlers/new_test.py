@@ -59,7 +59,8 @@ class NewTest(testing_common.TestCase):
       'dashboard.services.issue_tracker_service.IssueTrackerService',
       mock.MagicMock())
   @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
-  @mock.patch.object(gitiles_service, 'CommitInfo', mock.MagicMock())
+  @mock.patch.object(gitiles_service, 'CommitInfo', mock.MagicMock(
+      return_value={'commit': 'abc'}))
   @mock.patch.object(gitiles_service, 'CommitRange')
   def testPost(self, mock_commit_range):
     mock_commit_range.return_value = [
@@ -81,6 +82,8 @@ class NewTest(testing_common.TestCase):
     response = self.testapp.post('/api/new', request, status=200)
     self.assertIn('error', json.loads(response.body))
 
+  @mock.patch.object(gitiles_service, 'CommitInfo', mock.MagicMock(
+      return_value={'commit': 'abc'}))
   def testPost_InvalidTestConfig(self):
     request = dict(_BASE_REQUEST)
     del request['configuration']
@@ -115,7 +118,8 @@ class NewTest(testing_common.TestCase):
       'dashboard.services.issue_tracker_service.IssueTrackerService',
       mock.MagicMock())
   @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
-  @mock.patch.object(gitiles_service, 'CommitInfo', mock.MagicMock())
+  @mock.patch.object(gitiles_service, 'CommitInfo', mock.MagicMock(
+      return_value={'commit': 'abc'}))
   @mock.patch.object(gitiles_service, 'CommitRange')
   def testPost_EmptyBug(self, mock_commit_range):
     mock_commit_range.return_value = [
