@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "cc74f52f_4ee040be",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2017-10-30T21:58:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e72aaa2_3186cf35",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 45
+      },
+      "revId": "d5b8d3f5e47c872173410dbd36ae509917d72e58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d8e84964_e7d76e84",
         "filename": "tracing/tracing/metrics/media_metric.html",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "2d61cc28_47cc381d",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2017-10-30T21:58:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8e84964_e7d76e84",
+      "range": {
+        "startLine": 68,
+        "startChar": 6,
+        "endLine": 68,
+        "endChar": 16
+      },
+      "revId": "d5b8d3f5e47c872173410dbd36ae509917d72e58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ca426c8f_6b7fc2fe",
         "filename": "tracing/tracing/metrics/media_metric.html",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2017-10-27T21:39:44Z",
       "side": 1,
       "message": "This and other functions should be renamed.",
+      "range": {
+        "startLine": 82,
+        "startChar": 8,
+        "endLine": 82,
+        "endChar": 18
+      },
+      "revId": "d5b8d3f5e47c872173410dbd36ae509917d72e58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c01fd139_8a769b62",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2017-10-30T21:58:23Z",
+      "side": 1,
+      "message": "Renamed get* to process*. Not sure if that\u0027s best naming. I\u0027m open to suggestions.",
+      "parentUuid": "ca426c8f_6b7fc2fe",
       "range": {
         "startLine": 82,
         "startChar": 8,
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "b2681a62_39e43b9a",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2017-10-30T21:58:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad3a062b_4bbed7ee",
+      "range": {
+        "startLine": 85,
+        "startChar": 6,
+        "endLine": 85,
+        "endChar": 45
+      },
+      "revId": "d5b8d3f5e47c872173410dbd36ae509917d72e58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "540050d2_5e6f5255",
         "filename": "tracing/tracing/metrics/media_metric.html",
         "patchSetId": 1
@@ -114,6 +210,30 @@
       "revId": "d5b8d3f5e47c872173410dbd36ae509917d72e58",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e379f25_51c94ca7",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2017-10-30T21:58:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "540050d2_5e6f5255",
+      "range": {
+        "startLine": 128,
+        "startChar": 11,
+        "endLine": 128,
+        "endChar": 23
+      },
+      "revId": "d5b8d3f5e47c872173410dbd36ae509917d72e58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "21902819_3c6ebc86",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2017-10-30T21:58:23Z",
+      "side": 1,
+      "message": "I changed the term to \"playback\", which is the term used in the bug for this CL.",
+      "parentUuid": "0b71a13b_f0cd5f5c",
+      "range": {
+        "startLine": 145,
+        "startChar": 20,
+        "endLine": 145,
+        "endChar": 64
+      },
+      "revId": "d5b8d3f5e47c872173410dbd36ae509917d72e58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6b9621e6_9a09cf27",
         "filename": "tracing/tracing/metrics/media_metric.html",
         "patchSetId": 1
@@ -151,6 +295,30 @@
       "writtenOn": "2017-10-27T21:39:44Z",
       "side": 1,
       "message": "do make this all cleaner, I suggest making a MediaPlaybackMetrics class that contains members for each metric like timeToAudioPlay. Then you can put that class near the top of the file and instead of needing to document each of the metrics in the toplevel module doc, you can document them inside the class and have the toplevel module doc refer to the class for definitions. This will also make it so that when people add new metrics they will have a system in place to follow. And it will make it easy to read various peices of code in isolation. For example, a reader can read the histogram code in isolation if it is in a function that declares its input to be of type MediaPlaybackMetrics",
+      "range": {
+        "startLine": 160,
+        "startChar": 15,
+        "endLine": 163,
+        "endChar": 37
+      },
+      "revId": "d5b8d3f5e47c872173410dbd36ae509917d72e58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68bf6717_46bb26a2",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2017-10-30T21:58:23Z",
+      "side": 1,
+      "message": "Add MediaPlaybackMetric class, and restructured the code. Please let me know what you think.",
+      "parentUuid": "6b9621e6_9a09cf27",
       "range": {
         "startLine": 160,
         "startChar": 15,
