@@ -16,6 +16,24 @@
       "revId": "690226be67071a7b33b2a451f0c5436c84125a82",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0dcb3682_5a4c1843",
+        "filename": "devil/devil/android/tools/device_recovery.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2017-10-30T13:54:06Z",
+      "side": 1,
+      "message": "I *think* using adb exactly would catch both client and server processes, in which case it\u0027d be fine.",
+      "parentUuid": "a51c3bbc_9867d23d",
+      "revId": "690226be67071a7b33b2a451f0c5436c84125a82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
