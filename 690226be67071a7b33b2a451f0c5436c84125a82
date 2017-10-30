@@ -34,6 +34,24 @@
       "revId": "690226be67071a7b33b2a451f0c5436c84125a82",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f79734e5_1468ce5f",
+        "filename": "devil/devil/android/tools/device_recovery.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-30T14:12:47Z",
+      "side": 1,
+      "message": "Tried locally, it does match server and clients. I\u0027ll give it a try with the exact match. If we find adb instability issues resurfacing we can revisit.",
+      "parentUuid": "0dcb3682_5a4c1843",
+      "revId": "690226be67071a7b33b2a451f0c5436c84125a82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
