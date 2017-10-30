@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a51c3bbc_9867d23d",
+        "filename": "devil/devil/android/tools/device_recovery.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-10-30T11:58:27Z",
+      "side": 1,
+      "message": "This seems too broad to me, could mismatch many processes we do not intend to kill. Any thoughts on a more strict pattern? (Is matching \"adb\" exactly too strict?)",
+      "revId": "690226be67071a7b33b2a451f0c5436c84125a82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
