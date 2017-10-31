@@ -738,10 +738,18 @@ class AndroidPlatformBackend(
     tombstones = os.path.join(util.GetChromiumSrcDir(), 'build', 'android',
                               'tombstones.py')
     if os.path.exists(tombstones):
+      output_directory = None
+      for build_path in util.GetBuildDirectories():
+        if os.path.exists(build_path):
+          output_directory = build_path
+          break
+      if output_directory == None:
+        raise Exception("Failed to find an output directory for tombstones.")
       tombstones_cmd = [
           tombstones, '-w',
           '--device', self._device.adb.GetDeviceSerial(),
           '--adb-path', self._device.adb.GetAdbPath(),
+          '--output-directory', output_directory,
       ]
       ret += Decorate('Tombstones',
                       subprocess.Popen(tombstones_cmd,
