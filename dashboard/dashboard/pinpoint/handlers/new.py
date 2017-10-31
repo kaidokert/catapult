@@ -37,14 +37,15 @@ class New(webapp2.RequestHandler):
         'commits': [{
             'repository': self.request.get('start_repository'),
             'git_hash': self.request.get('start_git_hash')
-        }]
+        }],
     }
 
     change_2 = {
         'commits': [{
             'repository': self.request.get('end_repository'),
             'git_hash': self.request.get('end_git_hash')
-        }]
+        }],
+        'patch': self.request.get('patch')
     }
 
     # Validate arguments and convert them to canonical internal representation.
@@ -72,8 +73,6 @@ class New(webapp2.RequestHandler):
     job.Start()
     job.put()
 
-    # TODO: Figure out if these should be underscores or lowerCamelCase.
-    # TODO: They should match the input arguments.
     self.response.out.write(json.dumps({
         'jobId': job.job_id,
         'jobUrl': job.url,
