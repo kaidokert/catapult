@@ -16,6 +16,24 @@
       "revId": "d79b525fec106fc3864351f4cea575c0357a3de2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4acdbdf9_8f46d717",
+        "filename": "tracing/tracing/mre/gtest_progress_reporter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-10-31T19:36:45Z",
+      "side": 1,
+      "message": "I was being conservative, but, yes, it looks like that might work, and it would be less confusing than random question marks.",
+      "parentUuid": "38af12cd_e6fb8e55",
+      "revId": "d79b525fec106fc3864351f4cea575c0357a3de2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
