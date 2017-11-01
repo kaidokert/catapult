@@ -71,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "0e092e1c_08476001",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1115949
+      },
+      "writtenOn": "2017-11-01T12:47:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3f4b0226_1d205676",
+      "revId": "626aca685334aa8a21ba3d0fac768177458dd546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "01eea824_14db2101",
         "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
         "patchSetId": 6
@@ -118,6 +136,24 @@
       "side": 1,
       "message": "I understood what you addressed here, and should we also use storedResp.Header[k] instead of v in line #133?",
       "parentUuid": "8c424222_af82d56b",
+      "revId": "626aca685334aa8a21ba3d0fac768177458dd546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e45dfce3_84887849",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1115949
+      },
+      "writtenOn": "2017-11-01T12:47:09Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "7362cfe6_4b382745",
       "revId": "626aca685334aa8a21ba3d0fac768177458dd546",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
