@@ -22,6 +22,30 @@
       "revId": "e40ea69bbe8cc72d2e35206909ead149c9e5968a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34726878_cc1ace6d",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-11-01T15:43:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "001c30e3_ee5dc2d2",
+      "range": {
+        "startLine": 302,
+        "startChar": 46,
+        "endLine": 302,
+        "endChar": 56
+      },
+      "revId": "e40ea69bbe8cc72d2e35206909ead149c9e5968a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
