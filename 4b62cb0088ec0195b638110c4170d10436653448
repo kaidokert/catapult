@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ec22cc0b_f9eebcda",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2017-11-01T21:53:08Z",
+      "side": 1,
+      "message": "Should this also be plural like calculateTimeToVideoPlays?",
+      "range": {
+        "startLine": 60,
+        "startChar": 21,
+        "endLine": 60,
+        "endChar": 44
+      },
+      "revId": "4b62cb0088ec0195b638110c4170d10436653448",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13dad4f4_fe93bd18",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2017-11-01T21:53:08Z",
+      "side": 1,
+      "message": "I think this function name is confusing. We need something more like getPerPlaybackObject_() or something like that. The reason is that getPlaybackData_() function name makes it sound like the function is going to be pulling data out of the event and turning it isn\u0027t an object... See my other comment on the function itself below.",
+      "range": {
+        "startLine": 117,
+        "startChar": 33,
+        "endLine": 117,
+        "endChar": 54
+      },
+      "revId": "4b62cb0088ec0195b638110c4170d10436653448",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "499d5349_ac7e243a",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2017-11-01T21:53:08Z",
+      "side": 1,
+      "message": "The code inside this for loop could just be moved to PerPlaybackData class in a function called addMetricToHistograms(histograms). This would reinforce/clarify the idea that a PerProcessPlaybackData class simply contains a bunch of PerPlaybackDatas.",
+      "range": {
+        "startLine": 167,
+        "startChar": 8,
+        "endLine": 167,
+        "endChar": 40
+      },
+      "revId": "4b62cb0088ec0195b638110c4170d10436653448",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cbb942e5_423b5952",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2017-11-01T21:53:08Z",
+      "side": 1,
+      "message": "I think this function should instead take the playback_id as an argument so that it\u0027s clear to readers that it is used to fetch an already existent object rather than used to build an object from scratch. so then callers of this function would do\n\nplaybackObject \u003d getPerPlaybackObject_(event.args.id);\n\nAnother idea is to name these classes PerPlaybackObject and PerProcessObject instead of PerPlaybackData and PerProcessData... just an idea...",
+      "range": {
+        "startLine": 195,
+        "startChar": 4,
+        "endLine": 195,
+        "endChar": 29
+      },
+      "revId": "4b62cb0088ec0195b638110c4170d10436653448",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
