@@ -89,6 +89,29 @@
     },
     {
       "key": {
+        "uuid": "f700b4ae_c185ad96",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1247140
+      },
+      "writtenOn": "2017-11-01T18:32:26Z",
+      "side": 1,
+      "message": "Use http.ParseTime.\nhttps://golang.org/pkg/net/http/#ParseTime",
+      "range": {
+        "startLine": 42,
+        "startChar": 36,
+        "endLine": 42,
+        "endChar": 46
+      },
+      "revId": "626aca685334aa8a21ba3d0fac768177458dd546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "01eea824_14db2101",
         "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
         "patchSetId": 6
@@ -171,6 +194,24 @@
       "writtenOn": "2017-11-01T06:50:15Z",
       "side": 1,
       "message": "Let\u0027s a comment that this will make http.ResponseWriter fill in current time for \"Date\" header.",
+      "revId": "626aca685334aa8a21ba3d0fac768177458dd546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5298d739_9cc7fac3",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1247140
+      },
+      "writtenOn": "2017-11-01T18:32:26Z",
+      "side": 1,
+      "message": "I think the following would be simpler:\n\nupdateDates(storedResp.Header)\nfor k, v :\u003d range storedResp.Header {\n  w.Header()[k] \u003d append([]string{}, v...)\n}\nw.WriteHeader(storedResp.StatusCode)\n\n\nfunc updateDate(h http.Header, name string, now, oldNow time.Time) {\n  val :\u003d h.Get(name)\n  if val \u003d\u003d \"\" {\n    return\n  }\n  oldTime, err :\u003d http.ParseTime(val)\n  if err !\u003d nil {\n    return\n  }\n  newTime :\u003d now.Add(oldTime.Sub(oldNow))\n  h.Set(name, newTime.UTC().Format(http.TimeFormat))\n}\n\nfunc updateDates(h http.Header) {\n  now :\u003d time.Now()\n  oldNow, err :\u003d http.ParseTime(h.Get(\"Date\"))\n  h.Set(\"Date\", now.UTC().Format(http.TimeFormat))\n  if err !\u003d nil {\n    return\n  }\n  updateDate(h, \"Last-Modified\", now, oldNow)\n  updateDate(h, \"Expires\", now, oldNow)\n}",
+      "parentUuid": "4bf4d529_6e474acf",
       "revId": "626aca685334aa8a21ba3d0fac768177458dd546",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
