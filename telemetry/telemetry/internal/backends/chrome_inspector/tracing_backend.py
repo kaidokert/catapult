@@ -225,11 +225,13 @@ class TracingBackend(object):
     result = response['result']
     return result['dumpGuid'] if result['success'] else None
 
-  def CollectTraceData(self, trace_data_builder, timeout=60):
+  def CollectTraceData(self, trace_data_builder, timeout=300):
+    logging.warning('(maxlg) CollectTraceData start.')
     if not self._can_collect_data:
       raise Exception('Cannot collect before tracing is finished.')
     self._CollectTracingData(trace_data_builder, timeout)
     self._can_collect_data = False
+    logging.warning('(maxlg) CollectTraceData end.')
 
   def _CollectTracingData(self, trace_data_builder, timeout):
     """Collects tracing data. Assumes that Tracing.end has already been sent.

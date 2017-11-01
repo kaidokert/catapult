@@ -46,28 +46,19 @@ tr.exportTo('tr.v', function() {
               improvementDirection);
 
           const hist = new tr.v.Histogram(
-              value.name,
+              name,
               tr.b.Unit.byName[unitName + unitNameSuffix],
               tr.v.HistogramBinBoundaries.SINGULAR);
           hist.description = value.description || '';
           histograms.addHistogram(hist);
 
-          if (traceValues) {
-            const traceValue = traceValues[storyName] || {};
-            let traceUrl = traceValue.cloud_url;
-            if (!traceUrl && traceValue.file_path) {
-              traceUrl = 'file://' + traceValue.file_path;
-            }
-            if (traceUrl) {
-              hist.diagnostics.set(tr.v.d.RESERVED_NAMES.TRACE_URLS,
-                  new tr.v.d.GenericSet([traceUrl]));
-            }
+          if (value.cloud_url) {
+            hist.diagnostics.set(tr.v.d.RESERVED_NAMES.TRACE_URLS,
+                new tr.v.d.GenericSet([value.cloud_url]));
           }
 
-          if (pageValuesCount > 1) {
-            hist.diagnostics.set(tr.v.d.RESERVED_NAMES.STORIES,
-                new tr.v.d.GenericSet([storyName]));
-          }
+          hist.diagnostics.set(tr.v.d.RESERVED_NAMES.STORIES,
+              new tr.v.d.GenericSet([storyName]));
 
           if (value.tir_label) {
             hist.diagnostics.set(

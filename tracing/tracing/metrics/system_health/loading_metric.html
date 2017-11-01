@@ -530,6 +530,7 @@ tr.exportTo('tr.metrics.sh', function() {
           description: 'time to first interactive',
           summaryOptions: SUMMARY_OPTIONS,
         });
+    return;
 
     const chromeHelper = model.getOrCreateHelper(
         tr.model.helpers.ChromeModelHelper);
