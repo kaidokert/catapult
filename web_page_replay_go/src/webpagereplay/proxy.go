@@ -14,6 +14,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+        "time"
 )
 
 const errStatus = http.StatusInternalServerError
@@ -33,6 +34,19 @@ func fixupRequestURL(req *http.Request, scheme string) {
 	if req.URL.Host == "" {
 		req.URL.Host = req.Host
 	}
+}
+
+// Update date based on its delta from the "Date" header.
+func updateDate(header string, headerDate []string, resp *http.Response) string {
+        if headerDateTime, err := time.Parse(http.TimeFormat, headerDate[0]) ; err == nil {
+                if dateTime, err := time.Parse(http.TimeFormat, resp.Header.Get("Date")) ; err == nil {
+                        if headerDateTime.Unix() != 0 && dateTime.Unix() != 0 {
+                                updatedDate := headerDateTime.Add(time.Since(dateTime))
+                                return updatedDate.UTC().Format(http.TimeFormat)
+                        }
+                }
+        }
+        return headerDate[0]
 }
 
 // NewReplayingProxy constructs an HTTP proxy that replays responses from an archive.
@@ -110,6 +124,12 @@ func (proxy *replayingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 	// Forward the response.
 	logf("serving %v response", storedResp.StatusCode)
 	for k, v := range storedResp.Header {
+                if k == "Date" {
+                        continue
+                }
+                if k == "Last-Modified" || k == "Expires" {
+                        storedResp.Header.Set(k, updateDate(k, v, storedResp))
+                }
 		w.Header()[k] = append([]string{}, v...)
 	}
 	w.WriteHeader(storedResp.StatusCode)
