@@ -53,6 +53,24 @@
     },
     {
       "key": {
+        "uuid": "3f4b0226_1d205676",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1240549
+      },
+      "writtenOn": "2017-11-01T07:54:53Z",
+      "side": 1,
+      "message": "Get(\"Date\") here is to get the original date from the response header, rather than the current date. shiftHeaderDate \u003d headerDate + (now - originalDate), and this is implemented in line #45.",
+      "parentUuid": "12e18855_6509875a",
+      "revId": "626aca685334aa8a21ba3d0fac768177458dd546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "01eea824_14db2101",
         "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
         "patchSetId": 6
@@ -64,6 +82,24 @@
       "writtenOn": "2017-11-01T06:50:15Z",
       "side": 1,
       "message": "I think this should be \"for k, _\". net/http.Header looks like it deserves to be accessed via its Get() func.",
+      "revId": "626aca685334aa8a21ba3d0fac768177458dd546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c424222_af82d56b",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1240549
+      },
+      "writtenOn": "2017-11-01T07:54:53Z",
+      "side": 1,
+      "message": "Maybe use Get() func can\u0027t satisfy header copying in line#133, would you please elaborate more on why we should use \"for k, _\" instead of \"for k, v\"?",
+      "parentUuid": "01eea824_14db2101",
       "revId": "626aca685334aa8a21ba3d0fac768177458dd546",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
