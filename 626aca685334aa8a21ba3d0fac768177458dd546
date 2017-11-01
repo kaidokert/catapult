@@ -1,0 +1,135 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "672393f9_9da17e75",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1115949
+      },
+      "writtenOn": "2017-11-01T06:50:15Z",
+      "side": 1,
+      "message": "Can we make this return (string, error) and pass through the errors?",
+      "revId": "626aca685334aa8a21ba3d0fac768177458dd546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0d6d3c3_1feb6a0a",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1115949
+      },
+      "writtenOn": "2017-11-01T06:50:15Z",
+      "side": 1,
+      "message": "Please avoid deep nesting if blks.\nheaderDateTime, err :\u003d time.Parse(..)\nif err !\u003d nil {\n  return headerDate;\n}\n\n...",
+      "revId": "626aca685334aa8a21ba3d0fac768177458dd546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12e18855_6509875a",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1115949
+      },
+      "writtenOn": "2017-11-01T06:50:15Z",
+      "side": 1,
+      "message": "can we use time.Now() instead?",
+      "revId": "626aca685334aa8a21ba3d0fac768177458dd546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01eea824_14db2101",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1115949
+      },
+      "writtenOn": "2017-11-01T06:50:15Z",
+      "side": 1,
+      "message": "I think this should be \"for k, _\". net/http.Header looks like it deserves to be accessed via its Get() func.",
+      "revId": "626aca685334aa8a21ba3d0fac768177458dd546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bf4d529_6e474acf",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1115949
+      },
+      "writtenOn": "2017-11-01T06:50:15Z",
+      "side": 1,
+      "message": "Let\u0027s a comment that this will make http.ResponseWriter fill in current time for \"Date\" header.",
+      "revId": "626aca685334aa8a21ba3d0fac768177458dd546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "124a6f51_10d9b08d",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1115949
+      },
+      "writtenOn": "2017-11-01T06:50:15Z",
+      "side": 1,
+      "message": "Let\u0027s add a comment that we are adjusting Last-Modified/Expires relative to current time.",
+      "range": {
+        "startLine": 130,
+        "startChar": 29,
+        "endLine": 130,
+        "endChar": 30
+      },
+      "revId": "626aca685334aa8a21ba3d0fac768177458dd546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef990df6_0f41aca4",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1115949
+      },
+      "writtenOn": "2017-11-01T06:50:15Z",
+      "side": 1,
+      "message": "we should pass storedResp.Header.Get(k) instead of v",
+      "range": {
+        "startLine": 131,
+        "startChar": 66,
+        "endLine": 131,
+        "endChar": 76
+      },
+      "revId": "626aca685334aa8a21ba3d0fac768177458dd546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
