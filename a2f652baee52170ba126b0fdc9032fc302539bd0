@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b42d9486_267fb3dc",
+        "filename": "tracing/tracing/model/async_slice_group.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1149089
+      },
+      "writtenOn": "2017-11-01T15:14:46Z",
+      "side": 1,
+      "message": "nested_level_ and title_ may only be set inside this class, it\u0027s not available for users.",
+      "parentUuid": "7c046af9_70073be0",
+      "revId": "a2f652baee52170ba126b0fdc9032fc302539bd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2378ca03_3cbbe79d",
         "filename": "tracing/tracing/model/async_slice_group.html",
         "patchSetId": 1
@@ -30,6 +48,30 @@
       "writtenOn": "2017-11-01T15:08:13Z",
       "side": 1,
       "message": "Should this invalidate the cached viewSubGroups_?",
+      "range": {
+        "startLine": 75,
+        "startChar": 6,
+        "endLine": 75,
+        "endChar": 29
+      },
+      "revId": "a2f652baee52170ba126b0fdc9032fc302539bd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d78ebd90_dbe08af1",
+        "filename": "tracing/tracing/model/async_slice_group.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1149089
+      },
+      "writtenOn": "2017-11-01T15:14:46Z",
+      "side": 1,
+      "message": "Ah right, it should. Will fix that.",
+      "parentUuid": "2378ca03_3cbbe79d",
       "range": {
         "startLine": 75,
         "startChar": 6,
@@ -62,6 +104,30 @@
       "revId": "a2f652baee52170ba126b0fdc9032fc302539bd0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eebdc408_9fc25c11",
+        "filename": "tracing/tracing/model/async_slice_group.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1149089
+      },
+      "writtenOn": "2017-11-01T15:14:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a75266eb_16618189",
+      "range": {
+        "startLine": 91,
+        "startChar": 11,
+        "endLine": 91,
+        "endChar": 52
+      },
+      "revId": "a2f652baee52170ba126b0fdc9032fc302539bd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -111,6 +177,30 @@
     },
     {
       "key": {
+        "uuid": "9005efea_002cf5a8",
+        "filename": "tracing/tracing/model/async_slice_group.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1149089
+      },
+      "writtenOn": "2017-11-01T15:14:46Z",
+      "side": 1,
+      "message": "Ok worth to comment. As described above \"Thread can have number of AsyncSliceGroups and these  groups can have nested groups too. No further nested levels are allowed\"",
+      "parentUuid": "fbb61c70_0a18201f",
+      "range": {
+        "startLine": 149,
+        "startChar": 31,
+        "endLine": 149,
+        "endChar": 55
+      },
+      "revId": "a2f652baee52170ba126b0fdc9032fc302539bd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c3dd79d5_55561d5e",
         "filename": "tracing/tracing/model/async_slice_group.html",
         "patchSetId": 1
@@ -134,6 +224,30 @@
     },
     {
       "key": {
+        "uuid": "6041a445_c465d08a",
+        "filename": "tracing/tracing/model/async_slice_group.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1149089
+      },
+      "writtenOn": "2017-11-01T15:14:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c3dd79d5_55561d5e",
+      "range": {
+        "startLine": 153,
+        "startChar": 6,
+        "endLine": 153,
+        "endChar": 46
+      },
+      "revId": "a2f652baee52170ba126b0fdc9032fc302539bd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a18b139_49b57674",
         "filename": "tracing/tracing/model/async_slice_group.html",
         "patchSetId": 1
@@ -145,6 +259,30 @@
       "writtenOn": "2017-11-01T15:08:13Z",
       "side": 1,
       "message": "Could be a Map?",
+      "range": {
+        "startLine": 159,
+        "startChar": 14,
+        "endLine": 159,
+        "endChar": 30
+      },
+      "revId": "a2f652baee52170ba126b0fdc9032fc302539bd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b4a0660_d335920a",
+        "filename": "tracing/tracing/model/async_slice_group.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1149089
+      },
+      "writtenOn": "2017-11-01T15:14:46Z",
+      "side": 1,
+      "message": "Yep",
+      "parentUuid": "5a18b139_49b57674",
       "range": {
         "startLine": 159,
         "startChar": 14,
@@ -180,6 +318,30 @@
     },
     {
       "key": {
+        "uuid": "a0b5b775_f0569798",
+        "filename": "tracing/tracing/model/async_slice_group.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1149089
+      },
+      "writtenOn": "2017-11-01T15:14:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c3a16a91_1d677e31",
+      "range": {
+        "startLine": 175,
+        "startChar": 14,
+        "endLine": 175,
+        "endChar": 38
+      },
+      "revId": "a2f652baee52170ba126b0fdc9032fc302539bd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce1302c9_8aeff670",
         "filename": "tracing/tracing/model/async_slice_group.html",
         "patchSetId": 1
@@ -200,6 +362,30 @@
       "revId": "a2f652baee52170ba126b0fdc9032fc302539bd0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "723aeb44_7dd2bd5e",
+        "filename": "tracing/tracing/model/async_slice_group.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1149089
+      },
+      "writtenOn": "2017-11-01T15:14:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ce1302c9_8aeff670",
+      "range": {
+        "startLine": 184,
+        "startChar": 9,
+        "endLine": 184,
+        "endChar": 23
+      },
+      "revId": "a2f652baee52170ba126b0fdc9032fc302539bd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -226,6 +412,30 @@
     },
     {
       "key": {
+        "uuid": "8d837bdb_99c2298e",
+        "filename": "tracing/tracing/model/async_slice_group.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1149089
+      },
+      "writtenOn": "2017-11-01T15:14:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2ae51df5_477a54d4",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 191,
+        "endChar": 7
+      },
+      "revId": "a2f652baee52170ba126b0fdc9032fc302539bd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d0effba9_5dbf45cd",
         "filename": "tracing/tracing/ui/tracks/thread_track.html",
         "patchSetId": 1
@@ -246,6 +456,30 @@
       "revId": "a2f652baee52170ba126b0fdc9032fc302539bd0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ba2cef2_35a25f83",
+        "filename": "tracing/tracing/ui/tracks/thread_track.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1149089
+      },
+      "writtenOn": "2017-11-01T15:14:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d0effba9_5dbf45cd",
+      "range": {
+        "startLine": 123,
+        "startChar": 9,
+        "endLine": 123,
+        "endChar": 13
+      },
+      "revId": "a2f652baee52170ba126b0fdc9032fc302539bd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
