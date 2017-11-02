@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 
 from telemetry import decorators
+from telemetry.internal.actions import page_action
 from telemetry.internal.actions import scroll
 from telemetry.internal.actions import utils
 from telemetry.testing import tab_test_case
@@ -26,6 +27,67 @@ class ScrollActionTest(tab_test_case.TabTestCase):
     tab_test_case.TabTestCase.setUp(self)
     self.Navigate('blank.html')
     utils.InjectJavaScript(self._tab, 'gesture_common.js')
+
+  def _doScrollDistanceTest(self, distance, speed, source, maxError):
+    # Hide the URL bar so we can measure scrolled distance without worrying
+    # about the URL bar consuming delta.
+    self._tab.ExecuteJavaScript(
+        'chrome.gpuBenchmarking.setBrowserControlsShown(false);')
+
+    # Make the document tall enough to accomodate the requested distance
+    screenHeight = self._tab.EvaluateJavaScript('window.visualViewport.height')
+    documentHeight = screenHeight + distance
+
+    self._tab.ExecuteJavaScript(
+        'document.body.style.height = "' + str(documentHeight) + 'px";')
+    self.assertEquals(
+        self._tab.EvaluateJavaScript('document.scrollingElement.scrollTop'), 0)
+
+    i = scroll.ScrollAction(
+        distance=distance,
+        direction="down",
+        speed_in_pixels_per_second=speed,
+        synthetic_gesture_source=source)
+    i.WillRunAction(self._tab)
+    i.RunAction(self._tab)
+
+    actual = self._tab.EvaluateJavaScript('window.visualViewport.pageTop')
+
+    # Error should only undershoot the target offset since we truncate when we
+    # snap pixels.
+    self.assertLess(distance - actual, distance * maxError)
+
+  def testScrollDistanceFastTouch(self):
+    # Scrolling distance for touch will have some error from the excess delta
+    # of the event that crosses the slop threshold but isn't applied.
+    self._doScrollDistanceTest(
+        500000, 200000, page_action.GESTURE_SOURCE_TOUCH, 0.0001)
+
+  def testScrollDistanceFastWheel(self):
+    # Wheel scrolling will have a much greater error than touch. There's 2
+    # reasons: 1) synthetic wheel gesture accumulate the sent deltas and use
+    # that to determine how much delta to send at each event dispatch time.
+    # This assumes that the entire sent delta is applied which is wrong due to
+    # physical pixel snapping which accumulates over the gesture.
+    # 2) We can only send delta as ticks of the wheel. If the total delta is
+    # not a multiple of the tick size, we'll "lose" the remainder.
+    self._doScrollDistanceTest(
+        500000, 200000, page_action.GESTURE_SOURCE_MOUSE, 0.03)
+
+  def testScrollDistanceSlowTouch(self):
+    # Scrolling slowly produces larger error since each event will have a
+    # smaller delta. Thus error from snapping in each event will be a larger
+    # share of the total delta.
+    self._doScrollDistanceTest(
+        1000, 300, page_action.GESTURE_SOURCE_TOUCH, 0.01)
+
+  def testScrollDistanceSlowWheel(self):
+    self._doScrollDistanceTest(1000, 300, page_action.GESTURE_SOURCE_MOUSE, 0.1)
+
+  def testScrollDistanceWhileZoomed(self):
+    self._tab.EvaluateJavaScript('chrome.gpuBenchmarking.setPageScaleFactor(2)')
+    self._doScrollDistanceTest(
+        2000, 2000, page_action.GESTURE_SOURCE_TOUCH, 0.01)
 
   def testScrollAction(self):
 
