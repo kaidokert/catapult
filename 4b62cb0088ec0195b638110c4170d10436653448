@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8249fe27_3dfd530f",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2017-11-02T00:43:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec22cc0b_f9eebcda",
+      "range": {
+        "startLine": 60,
+        "startChar": 21,
+        "endLine": 60,
+        "endChar": 44
+      },
+      "revId": "4b62cb0088ec0195b638110c4170d10436653448",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "13dad4f4_fe93bd18",
         "filename": "tracing/tracing/metrics/media_metric.html",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "4b62cb0088ec0195b638110c4170d10436653448",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78f77efc_bd36b7c4",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2017-11-02T00:43:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13dad4f4_fe93bd18",
+      "range": {
+        "startLine": 117,
+        "startChar": 33,
+        "endLine": 117,
+        "endChar": 54
+      },
+      "revId": "4b62cb0088ec0195b638110c4170d10436653448",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "31dddcbf_3a444d41",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2017-11-02T00:43:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "499d5349_ac7e243a",
+      "range": {
+        "startLine": 167,
+        "startChar": 8,
+        "endLine": 167,
+        "endChar": 40
+      },
+      "revId": "4b62cb0088ec0195b638110c4170d10436653448",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cbb942e5_423b5952",
         "filename": "tracing/tracing/metrics/media_metric.html",
         "patchSetId": 4
@@ -91,6 +163,30 @@
       "revId": "4b62cb0088ec0195b638110c4170d10436653448",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78cb41dd_1f5a778c",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2017-11-02T00:43:18Z",
+      "side": 1,
+      "message": "Renamed method to getPerPlaybackObject_ and changed the argument to playback ID. I decided not to change the class names though.",
+      "parentUuid": "cbb942e5_423b5952",
+      "range": {
+        "startLine": 195,
+        "startChar": 4,
+        "endLine": 195,
+        "endChar": 29
+      },
+      "revId": "4b62cb0088ec0195b638110c4170d10436653448",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
