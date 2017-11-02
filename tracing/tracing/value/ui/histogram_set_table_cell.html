@@ -108,6 +108,7 @@ tr.exportTo('tr.v.ui', function() {
       this.histogram_ = undefined;
       this.histogramSpan_ = undefined;
       this.overviewChart_ = undefined;
+      this.mwuResult_ = undefined;
     },
 
     ready() {
@@ -141,6 +142,14 @@ tr.exportTo('tr.v.ui', function() {
       this.row.viewState.addUpdateListener(this.onRowStateUpdate_.bind(this));
       if (this.isAttached) {
         this.row.rootViewState.addUpdateListener(this.rootListener_);
+      }
+
+      const referenceHistogram = this.referenceHistogram;
+      if (this.histogram.canCompare(referenceHistogram)) {
+        this.mwuResult_ = tr.b.math.Statistics.mwu(
+            this.histogram.sampleValues,
+            referenceHistogram.sampleValues,
+            this.row.rootViewState.alpha);
       }
 
       // this.histogram_ and this.referenceHistogram might be undefined,
@@ -225,9 +234,11 @@ tr.exportTo('tr.v.ui', function() {
         this.histogramSpan_.build(this.histogram, this.referenceHistogram);
       }
       if (event.delta.displayStatisticName ||
-          event.delta.referenceDisplayLabel ||
-          event.delta.alpha) {
+          event.delta.referenceDisplayLabel) {
         this.updateContents_();
+      } else if (event.delta.alpha && this.mwuResult_) {
+        this.mwuResult_.compare(this.rootState.alpha);
+        this.updateSignificance_();
       }
       if (this.row.viewState.isOverviewed &&
           (event.delta.sortColumnIndex ||
