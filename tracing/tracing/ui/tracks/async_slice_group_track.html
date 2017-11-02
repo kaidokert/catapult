@@ -32,7 +32,7 @@ tr.exportTo('tr.ui.tracks', function() {
       this.group_ = undefined;
     },
 
-    addSubTrack_(slices) {
+    addSubTrack_(slices) {  // override
       const track = new tr.ui.tracks.SliceTrack(this.viewport);
       track.slices = slices;
       Polymer.dom(this).appendChild(track);
@@ -46,23 +46,27 @@ tr.exportTo('tr.ui.tracks', function() {
 
     set group(group) {
       this.group_ = group;
+      this.setItemsToGroup(this.tidySlices_(this.group_.slices), this.group_);
+    },
 
-      // Hide top-level slices that contain 1 sub-slice, which are used to group
-      // the sub-slices into a single track, but provide no information
-      // themselves.
-      const slices = [];
-      for (const slice of this.group_.slices) {
-        if (slice.subSlices.length === 1 &&
-            tr.b.math.approximately(slice.subSlices[0].start, slice.start, 1) &&
-            tr.b.math.approximately(
-                slice.subSlices[0].duration, slice.duration, 1)) {
-          slices.push(slice.subSlices[0]);
-        } else {
-          slices.push(slice);
+    /**
+     * Omit top-level slices that contain only one sub-slice fitting the entire
+     * duration, which are solely used to group slices into a single track.
+     */
+    tidySlices_(slices) {
+      const tidySlices = [];
+      for (const slice of slices) {
+        if (slice.subSlices.length === 1) {
+          const subSlice = slice.subSlices[0];
+          if (tr.b.math.approximately(subSlice.start, slice.start, 1) &&
+              tr.b.math.approximately(subSlice.duration, slice.duration, 1)) {
+            tidySlices.push(subSlice);
+            continue;
+          }
         }
+        tidySlices.push(slice);
       }
-
-      this.setItemsToGroup(slices, this.group_);
+      return tidySlices;
     },
 
     get eventContainer() {
@@ -85,7 +89,15 @@ tr.exportTo('tr.ui.tracks', function() {
      * subSlices recursively into rows below parent slice according to which
      * nested level the child is in.
      */
-    buildSubRows_(slices, opt_skipSort) {
+    buildSubRows_(slices, opt_skipSort) {  // override
+      if (this.group_.viewSubGroups.length !== 0) {
+        const subRows = [];
+        for (const subGroup of this.group_.viewSubGroups) {
+          subRows.push(this.tidySlices_(subGroup.slices));
+        }
+        return subRows;
+      }
+
       if (!opt_skipSort) {
         slices.sort(function(x, y) {
           return x.start - y.start;
