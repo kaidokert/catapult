@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e49eb9f_f96f742d",
+        "filename": "experimental/soundwave/dashboard_api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-02T22:50:27Z",
+      "side": 1,
+      "message": "add a docstring",
+      "revId": "ff54fdc943caea411943fe8a4c9fc65760a3950f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee6a14ee_dfd93306",
+        "filename": "experimental/soundwave/dashboard_api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-02T22:50:27Z",
+      "side": 1,
+      "message": "rather than appending to a list, you could turn this into a generator and yield each row; code is a bit cleaner and a lot more memory efficient.",
+      "revId": "ff54fdc943caea411943fe8a4c9fc65760a3950f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "764204bb_33811edf",
+        "filename": "experimental/soundwave/fetch_timeseries_data_for_benchmark",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-02T22:50:27Z",
+      "side": 1,
+      "message": "nit: line -\u003e row",
+      "revId": "ff54fdc943caea411943fe8a4c9fc65760a3950f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
