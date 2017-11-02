@@ -133,3 +133,18 @@ class PerfDashboardCommunicator(object):
     """Returns alerts for the given benchmark."""
     options = urllib.urlencode({'benchmark': benchmark})
     return self._MakeApiRequest('alerts/history/%d?%s' % (days, options))
+
+  def GetAllTimeseriesForBenchmark(self, benchmark, days=30, filters=None):
+    timeseries_data = []
+    timeseries_data.append(['bot', 'benchmark', 'metric', 'story', 'revision',
+                            'value', 'timestamp', 'r_commit_pos', 'r_chromium',
+                            'r_webkit_rev'])
+    test_paths = self.ListTestPaths(benchmark)
+
+    for tp in test_paths:
+      if not filters or all(f in tp for f in filters):
+        ts = self.GetTimeseries(tp, days=days)
+        for point in ts['timeseries'][1:]:
+          test_data = tp.split('/', 4)[1:] + [data for data in point]
+          timeseries_data.append(test_data)
+    return timeseries_data
