@@ -218,6 +218,24 @@
     },
     {
       "key": {
+        "uuid": "8d418961_3e78f3c9",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1115949
+      },
+      "writtenOn": "2017-11-02T00:26:55Z",
+      "side": 1,
+      "message": "+1. Also, maybe we should utilize proxy.transformers mechanism instead of doing this here ad-hoc.",
+      "parentUuid": "5298d739_9cc7fac3",
+      "revId": "626aca685334aa8a21ba3d0fac768177458dd546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "124a6f51_10d9b08d",
         "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
         "patchSetId": 6
