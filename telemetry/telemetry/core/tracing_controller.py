@@ -43,7 +43,8 @@ class TracingController(tracing_agent.TracingAgent):
     self._tracing_controller_backend.StartTracing(tracing_config, timeout)
 
   def StopTracing(self):
-    """Stops tracing and returns a TraceValue."""
+    """Stops tracing and returns a tuple of
+    (TraceValue, list_of_nonfatal_exceptions)."""
     return self._tracing_controller_backend.StopTracing()
 
   def FlushTracing(self):
