@@ -1023,6 +1023,13 @@ class StartBisectTest(testing_common.TestCase):
         bisect_bot='android_nexus7_perf_bisect',
         suite='tracing_perftests')
 
+  def testGetConfig_GpuPerftests(self):
+    self._TestGetConfigCommand(
+        ('.\\src\\out\\Release\\gpu_perftests.exe '
+         '--test-launcher-print-test-stdio=always --verbose'),
+        bisect_bot='win_perf_bisect',
+        suite='gpu_perftests')
+
   def testGetConfig_IdbPerf(self):
     self._TestGetConfigCommand(
         ('.\\src\\out\\Release\\performance_ui_tests.exe '

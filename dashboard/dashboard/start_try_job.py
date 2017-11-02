@@ -60,6 +60,11 @@ _NON_TELEMETRY_TEST_COMMANDS = {
         '--test-launcher-print-test-stdio=always',
         '--verbose',
     ],
+    'gpu_perftests': [
+        './out/Release/gpu_perftests',
+        '--test-launcher-print-test-stdio=always',
+        '--verbose',
+    ],
     'idb_perf': [
         './out/Release/performance_ui_tests',
         '--gtest_filter=IndexedDBTest.Perf',
