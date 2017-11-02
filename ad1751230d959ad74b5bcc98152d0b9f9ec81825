@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "47add22e_e01d277c",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2017-11-02T21:16:00Z",
+      "side": 1,
+      "message": "I know internally we call it \"results2\", but that\u0027s pretty confusing to users who just stumbled on this page because the directions said to click the button to re-run the test.\n\nMaybe \"benchmark results\"?",
+      "range": {
+        "startLine": 69,
+        "startChar": 55,
+        "endLine": 69,
+        "endChar": 0
+      },
+      "revId": "ad1751230d959ad74b5bcc98152d0b9f9ec81825",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
