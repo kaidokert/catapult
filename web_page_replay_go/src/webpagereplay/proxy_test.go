@@ -240,3 +240,28 @@ func TestEndToEnd(t *testing.T) {
 		t.Errorf("status code for /not_found_in_archive: got: %v want: %v", got, want)
 	}
 }
+
+func TestUpdateDate(t *testing.T){
+        const date = "Thu, 17 Aug 2017 19:12:18 GMT"
+        const lastModified = "Mon, 11 Jul 2016 23:59:41 GMT"
+        const expires = "Fri, 17 Aug 2018 19:12:18 GMT"
+        responseHeader := http.Header{
+                "Date": []string{date},
+                "Last-Modified": []string{lastModified},
+                "Expires": []string{expires}}
+        updateDates(responseHeader)
+
+        // Compare updated headers against original headers
+        updateDate := responseHeader.Get("Date")
+        if updateDate == date {
+                t.Fatal("Date header should be updated")
+        }
+        updateLastModified := responseHeader.Get("Last-Modified")
+        if updateLastModified == lastModified {
+                t.Fatal("Last-Modified header should be updated")
+        }
+        updateExpires := responseHeader.Get("Expires")
+        if updateExpires == expires {
+                t.Fatal("Expires header should be updated")
+        }
+}
