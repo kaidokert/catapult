@@ -134,7 +134,11 @@ tr.exportTo('tr.model', function() {
         yield slice;
       }
       for (const slice of this.subSlices) {
-        yield* slice.enumerateAllDescendents();
+        // Slices might contain sub-events different from AsyncSlice.
+        // We don't go any deeper in that case.
+        if (slice.enumerateAllDescendents !== undefined) {
+          yield* slice.enumerateAllDescendents();
+        }
       }
     },
 

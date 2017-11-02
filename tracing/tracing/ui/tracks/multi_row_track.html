@@ -33,6 +33,7 @@ tr.exportTo('tr.ui.tracks', function() {
 
       this.groupingSource_ = undefined;
       this.itemsToGroup_ = undefined;
+      this.hasItems_ = false;
 
       this.defaultToCollapsedWhenSubRowCountMoreThan = 1;
 
@@ -46,8 +47,19 @@ tr.exportTo('tr.ui.tracks', function() {
       return this.itemsToGroup_;
     },
 
-    setItemsToGroup(itemsToGroup, opt_groupingSource) {
-      this.itemsToGroup_ = itemsToGroup;
+    /**
+     * Set items to group. If not provided, it's assumed that user takes
+     * responsibility to handle these items and MultiRowTrack will not be able
+     * to detect any changes to them.
+     */
+    setItemsToGroup(opt_itemsToGroup, opt_groupingSource) {
+      if (opt_itemsToGroup !== undefined) {
+        this.itemsToGroup_ = opt_itemsToGroup;
+        this.hasItems_ = (opt_itemsToGroup.length > 0);
+      } else {
+        this.itemsToGroup_ = [];
+        this.hasItems_ = true;
+      }
       this.groupingSource_ = opt_groupingSource;
       this.updateContents_();
       this.updateExpandedStateFromGroupingSource_();
@@ -145,7 +157,7 @@ tr.exportTo('tr.ui.tracks', function() {
 
     updateContents_() {
       tr.ui.tracks.ContainerTrack.prototype.updateContents_.call(this);
-      if (!this.itemsToGroup_) {
+      if (!this.hasItems_) {
         this.updateHeadingAndTooltip_();
         this.currentSubRows_ = [];
         return;
@@ -160,20 +172,13 @@ tr.exportTo('tr.ui.tracks', function() {
       this.itemsGroupedOnLastUpdateContents_ = this.itemsToGroup_;
 
       this.detach();
-      if (!this.itemsToGroup_.length) {
+      if (!this.hasItems_) {
         this.currentSubRows_ = [];
         return;
       }
       const subRows = this.buildSubRows_(this.itemsToGroup_);
       this.currentSubRows_ = subRows;
-      for (let srI = 0; srI < subRows.length; srI++) {
-        const subRow = subRows[srI];
-        if (!subRow.length) continue;
-
-        const track = this.addSubTrack_(subRow);
-        track.addEventListener(
-            'heading-clicked', this.onHeadingClicked_.bind(this));
-      }
+      this.buildSubTracks_(subRows);
       this.updateHeadingAndTooltip_();
       this.expandedStateChanged_();
     },
@@ -195,6 +200,17 @@ tr.exportTo('tr.ui.tracks', function() {
 
     addSubTrack_(subRowItems) {
       throw new Error('Not implemented');
+    },
+
+    buildSubTracks_(subRows) {
+      for (const subRow of subRows) {
+        if (subRow.length === 0) {
+          continue;
+        }
+        const track = this.addSubTrack_(subRow);
+        track.addEventListener(
+            'heading-clicked', this.onHeadingClicked_.bind(this));
+      }
     },
 
     areArrayContentsSame_(a, b) {
