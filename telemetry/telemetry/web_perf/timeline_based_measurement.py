@@ -283,23 +283,24 @@ class TimelineBasedMeasurement(story_test.StoryTest):
         cloud_url=results.telemetry_info.trace_remote_url)
     results.AddValue(trace_value)
 
-    try:
-      if self._tbm_options.GetTimelineBasedMetrics():
-        assert not self._tbm_options.GetLegacyTimelineBasedMetrics(), (
-            'Specifying both TBMv1 and TBMv2 metrics is not allowed.')
-        self._ComputeTimelineBasedMetrics(results, trace_value)
-      else:
-        # Run all TBMv1 metrics if no other metric is specified
-        # (legacy behavior)
-        if not self._tbm_options.GetLegacyTimelineBasedMetrics():
-          logging.warn('Please specify the TBMv1 metrics you are interested in '
-                       'explicitly. This implicit functionality will be removed'
-                       ' on July 17, 2016.')
-          self._tbm_options.SetLegacyTimelineBasedMetrics(
-              _GetAllLegacyTimelineBasedMetrics())
-        self._ComputeLegacyTimelineBasedMetrics(results, trace_result)
-    finally:
-      trace_result.CleanUpAllTraces()
+    # try:
+    #   if self._tbm_options.GetTimelineBasedMetrics():
+    #     assert not self._tbm_options.GetLegacyTimelineBasedMetrics(), (
+    #         'Specifying both TBMv1 and TBMv2 metrics is not allowed.')
+    #     self._ComputeTimelineBasedMetrics(results, trace_value)
+    #   else:
+    #     # Run all TBMv1 metrics if no other metric is specified
+    #     # (legacy behavior)
+    #     if not self._tbm_options.GetLegacyTimelineBasedMetrics():
+    #       logging.warn('Please specify the TBMv1 metrics you are interested in '
+    #                    'explicitly. This implicit functionality will be removed'
+    #                    ' on July 17, 2016.')
+    #       self._tbm_options.SetLegacyTimelineBasedMetrics(
+    #           _GetAllLegacyTimelineBasedMetrics())
+    #     self._ComputeLegacyTimelineBasedMetrics(results, trace_result)
+    # finally:
+    trace_result.CleanUpAllTraces()
+    logging.warning('(maxlg) Measure end.')
 
   def DidRunStory(self, platform, results):
     """Clean up after running the story."""
