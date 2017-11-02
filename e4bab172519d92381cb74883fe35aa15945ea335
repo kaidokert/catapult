@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7c46879b_7fda263c",
+        "filename": "dashboard/dashboard/find_anomalies.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2017-11-02T21:21:10Z",
+      "side": 1,
+      "message": "Not sure if these will actually be put() by the time this runs? I don\u0027t quite get how yield() works in async datastore puts.",
+      "revId": "e4bab172519d92381cb74883fe35aa15945ea335",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
