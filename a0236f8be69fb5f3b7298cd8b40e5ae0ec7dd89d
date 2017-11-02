@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "142dfb4d_a013b805",
+        "filename": "telemetry/telemetry/core/tracing_controller.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-02T14:49:12Z",
+      "side": 1,
+      "message": "nits: \neither this doc should be: \n\"\"\"Stops tracing and returns a tuple of (TraceValue object, list of non fatal exceptions)\"\"\"\n\nor\n\"\"\"\nStops tracing and returns a tuple of (trace_value, nonfatal_exceptions_list)\n\nWhereas:\n  trace_value: an instance of trace_value.TraceValue\n  nonfatal_exceptions_list: a list of exceptions (type Exception).\n\"\"\"",
+      "revId": "a0236f8be69fb5f3b7298cd8b40e5ae0ec7dd89d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33eaae61_6aec6586",
+        "filename": "telemetry/telemetry/internal/platform/tracing_controller_backend_unittest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-02T14:49:12Z",
+      "side": 1,
+      "message": "Can you add another test which the exception list is non empty?",
+      "revId": "a0236f8be69fb5f3b7298cd8b40e5ae0ec7dd89d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
