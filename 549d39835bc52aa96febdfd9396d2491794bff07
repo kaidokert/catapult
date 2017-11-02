@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c309fd82_746efdbc",
+        "filename": "telemetry/telemetry/internal/platform/network_controller_backend_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-02T22:44:53Z",
+      "side": 1,
+      "message": "super nit: I would import the module as platform_backend, and call this local variable just \"backend\" or even \"pb\".",
+      "revId": "549d39835bc52aa96febdfd9396d2491794bff07",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
