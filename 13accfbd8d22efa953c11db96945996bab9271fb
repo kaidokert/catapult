@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6444161c_10f19173",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2017-11-02T14:00:52Z",
+      "side": 1,
+      "message": "Ideally this would be TODO(simonhatch, eakuefner) with a bug link",
+      "range": {
+        "startLine": 78,
+        "startChar": 79,
+        "endLine": 78,
+        "endChar": 0
+      },
+      "revId": "13accfbd8d22efa953c11db96945996bab9271fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
