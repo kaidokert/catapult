@@ -86,6 +86,24 @@
       "revId": "a0236f8be69fb5f3b7298cd8b40e5ae0ec7dd89d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dceaab3f_0a219366",
+        "filename": "telemetry/telemetry/internal/platform/tracing_controller_backend_unittest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-02T18:06:14Z",
+      "side": 1,
+      "message": "You can mock out the StopTracing method of a particular tracing_agent (see https://stackoverflow.com/a/8182480). If you hate mock, we can also make tracing_controller_backend\u0027s init take a list of tracing_agent objects so that you in test code, you can init it with your [FailedTracingAgent()]",
+      "parentUuid": "9fe7f2d4_9a5c1228",
+      "revId": "a0236f8be69fb5f3b7298cd8b40e5ae0ec7dd89d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
