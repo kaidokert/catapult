@@ -76,17 +76,20 @@ tr.exportTo('tr.v', function() {
     }
 
     /**
-     * Add a Diagnostic to all Histograms in this HistogramSet in such a way
-     * that it will only be serialized once rather than once per Histogram.
+     * Add a Diagnostic to this HistogramSet so that it will only be serialized
+     * once per HistogramSet rather than once per Histogram that contains it.
+     * If |name| is specified, adds it to all Histograms in this HistogramSet.
      *
-     * @param {string} name
+     * @param {string=} name
      * @param {!tr.v.d.Diagnostic} diagnostic
      */
     addSharedDiagnostic(name, diagnostic) {
       this.sharedDiagnosticsByGuid_.set(diagnostic.guid, diagnostic);
 
-      for (const hist of this) {
-        hist.diagnostics.set(name, diagnostic);
+      if (name) {
+        for (const hist of this) {
+          hist.diagnostics.set(name, diagnostic);
+        }
       }
     }
 
