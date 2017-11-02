@@ -32,7 +32,7 @@ tr.exportTo('tr.ui.tracks', function() {
       this.group_ = undefined;
     },
 
-    addSubTrack_(slices) {
+    addSubTrack_(slices) {  // override
       const track = new tr.ui.tracks.SliceTrack(this.viewport);
       track.slices = slices;
       Polymer.dom(this).appendChild(track);
@@ -46,23 +46,7 @@ tr.exportTo('tr.ui.tracks', function() {
 
     set group(group) {
       this.group_ = group;
-
-      // Hide top-level slices that contain 1 sub-slice, which are used to group
-      // the sub-slices into a single track, but provide no information
-      // themselves.
-      const slices = [];
-      for (const slice of this.group_.slices) {
-        if (slice.subSlices.length === 1 &&
-            tr.b.math.approximately(slice.subSlices[0].start, slice.start, 1) &&
-            tr.b.math.approximately(
-                slice.subSlices[0].duration, slice.duration, 1)) {
-          slices.push(slice.subSlices[0]);
-        } else {
-          slices.push(slice);
-        }
-      }
-
-      this.setItemsToGroup(slices, this.group_);
+      this.setItemsToGroup(undefined, this.group_);
     },
 
     get eventContainer() {
@@ -85,11 +69,14 @@ tr.exportTo('tr.ui.tracks', function() {
      * subSlices recursively into rows below parent slice according to which
      * nested level the child is in.
      */
-    buildSubRows_(slices, opt_skipSort) {
-      if (!opt_skipSort) {
-        slices.sort(function(x, y) {
-          return x.start - y.start;
-        });
+    buildSubRows_(itemsToGroup) {  // override
+      if (this.group_.viewSubGroups.length !== 0) {
+        // Assumed there's no overlapping slices in sub-groups.
+        const subRows = [];
+        for (const subGroup of this.group_.viewSubGroups) {
+          subRows.push(this.tidySlices_(subGroup.slices));
+        }
+        return subRows;
       }
 
       // Helper function that returns true if it can put the slice on row n.
@@ -115,6 +102,7 @@ tr.exportTo('tr.ui.tracks', function() {
         return false;
       };
 
+      const slices = this.tidySlices_(this.group_.slices);
       const subRows = [];
       for (const slice of slices) {
         let found = false;
@@ -147,6 +135,27 @@ tr.exportTo('tr.ui.tracks', function() {
         fitSubSlicesRecursively(slice.subSlices, index + 1, subRows);
       }
       return subRows;
+    },
+
+    /**
+     * Omit top-level slices that contain only one sub-slice fitting the entire
+     * duration, which are solely used to group slices into a single track.
+     */
+    tidySlices_(slices) {
+      const tidySlices = [];
+      for (const slice of slices) {
+        if (slice.subSlices.length === 1) {
+          const subSlice = slice.subSlices[0];
+          if (tr.b.math.approximately(subSlice.start, slice.start, 1) &&
+              tr.b.math.approximately(subSlice.duration, slice.duration, 1)) {
+            tidySlices.push(subSlice);
+            continue;
+          }
+        }
+        tidySlices.push(slice);
+      }
+      tidySlices.sort((x, y) => x.start > y.start);
+      return tidySlices;
     }
   };
 
