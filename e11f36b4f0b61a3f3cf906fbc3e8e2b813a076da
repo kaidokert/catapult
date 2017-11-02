@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "67938600_e800e76e",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1247140
+      },
+      "writtenOn": "2017-11-02T16:23:09Z",
+      "side": 1,
+      "message": "I just realized that technically, this is not correct. What we should actually do is record time.Now() in the archive and adjust these headers using the delta between archive.Now and time.Now(). Otherwise, we won\u0027t correctly replay responses like:\n\nDate: \u003c1 hour ago\u003e\nAge: 3600\nCache-Control: max-age\u003d4000  // technically should expire now since the effective age is 2hrs\n\nWhile this seems more correct, I don\u0027t know how it will affect Chromium tests. It also implies that we would have to regenerate all saved archives (or at least, default to time.Now() if archive.Now is missing from the archive). Kouhei, WDYT?",
+      "revId": "e11f36b4f0b61a3f3cf906fbc3e8e2b813a076da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd392c1d_cdc9553d",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1247140
+      },
+      "writtenOn": "2017-11-02T16:23:09Z",
+      "side": 1,
+      "message": "nit: you can drop the []string:\n\n\"Date\": {date},",
+      "revId": "e11f36b4f0b61a3f3cf906fbc3e8e2b813a076da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20fb7ee4_0fc48b53",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1247140
+      },
+      "writtenOn": "2017-11-02T16:23:09Z",
+      "side": 1,
+      "message": "nit: move the closing brace to the following line",
+      "range": {
+        "startLine": 251,
+        "startChar": 44,
+        "endLine": 251,
+        "endChar": 45
+      },
+      "revId": "e11f36b4f0b61a3f3cf906fbc3e8e2b813a076da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c658c1d9_19dc5339",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1247140
+      },
+      "writtenOn": "2017-11-02T16:23:09Z",
+      "side": 1,
+      "message": "It would be better to check the actual values. To make testing easier, you could pass time.Now() to updateDates. Something like:\n\nconst (\n  oldDate         \u003d \"Thu, 17 Aug 2017 12:00:00 GMT\"\n  oldLastModified \u003d \"Thu, 17 Aug 2017 09:00:00 GMT\"\n  oldExpires      \u003d \"Thu, 17 Aug 2017 17:00:00 GMT\"\n  newDate         \u003d \"Fri, 17 Aug 2018 12:00:00 GMT\"\n  newLastModified \u003d \"Fri, 17 Aug 2018 09:00:00 GMT\"\n  newExpires      \u003d \"Fri, 17 Aug 2018 17:00:00 GMT\"\n)\n\nnow, err :\u003d http.ParseTime(newDate)\nif err !\u003d nil {\n  t.Fatal(err)\n}\n\nresponseHeader :\u003d http.Header{.... using old consts ....}\nupdateDates(responseHeader, now)\n\nwantHeader :\u003d http.Header{.... using new consts ....}\nif !reflect.DeepEqual(responseHeader, wantHeader) {\n  t.Errorf(\"got: %v\\nwant: %v\", responseHeader, wantHeader)\n}",
+      "revId": "e11f36b4f0b61a3f3cf906fbc3e8e2b813a076da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

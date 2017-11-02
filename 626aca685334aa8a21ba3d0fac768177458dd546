@@ -207,6 +207,24 @@
     },
     {
       "key": {
+        "uuid": "68277cfd_3c42db29",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1247140
+      },
+      "writtenOn": "2017-11-02T16:23:09Z",
+      "side": 1,
+      "message": "\u003e I understood what you addressed here, and should we also use storedResp.Header[k] instead of v in line #133?\n\nThere\u0027s no reason to use storedResp.Header[k] instead of v. They are equivalent.",
+      "parentUuid": "e45dfce3_84887849",
+      "revId": "626aca685334aa8a21ba3d0fac768177458dd546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4bf4d529_6e474acf",
         "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
         "patchSetId": 6
