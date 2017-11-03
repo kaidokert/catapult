@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/value/ui/histogram_set_view_state.html">
+
+<dom-module id="tr-v-ui-histogram-set-controls-statistics">
+  <template>
+    <style>
+    :host {
+      display: flex;
+    }
+    .vertical {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+    }
+    .vertical:not(:last-child) {
+      border-right: 1px solid black;
+      margin-right: 1em;
+      padding-right: 1em;
+    }
+    .heading {
+      font-weight: bold;
+    }
+    grid {
+      display: grid;
+      grid-template-columns: auto auto auto;
+    }
+    </style>
+
+    <div class="vertical">
+      <div class="heading">Closed Cells</div>
+      <grid id="closed_cell_buttons"></grid>
+    </div>
+
+    <div class="vertical">
+      <div class="heading">Open Cells</div>
+      <grid id="open_cell_buttons"></grid>
+    </div>
+  </template>
+</dom-module>
+
+<dom-module id="tr-v-ui-histogram-set-controls-statistics-button">
+  <template>
+    <style>
+    #button {
+      -webkit-appearance: none;
+      background-color: white;
+      border: 0;
+      color: #666;
+      font-weight: bold;
+      outline: 0;
+      padding: 5px;
+      text-align: left;
+      width: 100%;
+    }
+    #button.checked {
+      background-color: #ddd;
+      color: #444;
+    }
+    </style>
+    <button id="button" on-tap="onTap_">[[name]]</button>
+  </template>
+</dom-module>
+
+<script>
+'use strict';
+tr.exportTo('tr.v.ui', function() {
+  Polymer({
+    is: 'tr-v-ui-histogram-set-controls-statistics-button',
+
+    properties: {
+      name: String,
+    },
+
+    get isChecked() {
+      return this.$.button.classList.contains('checked');
+    },
+
+    set isChecked(c) {
+      if (this.isChecked === c) return;
+      this.$.button.classList.toggle('checked');
+    },
+
+    onTap_(event) {
+      event.stopPropagation();
+      this.$.button.classList.toggle('checked');
+      this.fire('statisticChanged');
+    },
+  });
+
+  const ROW_SPECS = [
+    {name: 'avg'},
+    {name: 'std'},
+    {name: 'min'},
+    {name: 'max'},
+    {name: 'count'},
+    {name: 'nans'},
+    {name: 'sum'},
+    {displayName: 'geomean', statName: 'geometricMean'},
+    {displayName: 'median', statName: 'pct_050'},
+    {name: 'pct_090'},
+    {name: 'pct_095'},
+    {name: 'pct_099'},
+    {name: 'p-value', deltaOnly: true},
+    {name: 'z-score', deltaOnly: true},
+    {name: 'U', deltaOnly: true},
+  ];
+
+  Polymer({
+    is: 'tr-v-ui-histogram-set-controls-statistics',
+
+    created() {
+      this.viewState_ = undefined;
+      this.closedButtons_ = new Map();
+      this.openButtons_ = new Map();
+    },
+
+    createButton_(openness, prefix, displayName, statName) {
+      const button = document.createElement(
+          'tr-v-ui-histogram-set-controls-statistics-button');
+      button.set('name', prefix + displayName);
+      this[openness + 'Buttons_'].set(prefix + statName, button);
+      this.$[openness + '_cell_buttons'].appendChild(button);
+    },
+
+    ready() {
+      for (const spec of ROW_SPECS) {
+        const displayName = spec.displayName || spec.name;
+        const statName = spec.statName || spec.name;
+
+        for (const openness of ['open', 'closed']) {
+          if (spec.deltaOnly) {
+            // Place-holder for the non-delta column:
+            this.$[openness + '_cell_buttons'].appendChild(
+                document.createElement('span'));
+
+            this.createButton_(openness, '', displayName, statName);
+
+            // Place-holder for the percent-delta column:
+            this.$[openness + '_cell_buttons'].appendChild(
+                document.createElement('span'));
+          } else {
+            this.createButton_(openness, '', displayName, statName);
+            this.createButton_(openness, tr.v.DELTA, displayName, statName);
+            this.createButton_(openness, '%' + tr.v.DELTA, displayName,
+                statName);
+          }
+        }
+      }
+    },
+
+    get viewState() {
+      return this.viewState_;
+    },
+
+    set viewState(vs) {
+      this.viewState_ = vs;
+      this.viewState.addUpdateListener(this.onViewStateUpdate_.bind(this));
+      this.updateButtons_('closed');
+      this.updateButtons_('open');
+    },
+
+    updateButtons_(openness) {
+      const enabledStatNames = this.viewState_[openness + 'CellStatisticNames'];
+      for (const [statName, button] of this[openness + 'Buttons_']) {
+        button.isChecked = enabledStatNames.includes(statName);
+      }
+    },
+
+    onViewStateUpdate_(event) {
+      if (event.delta.openCellStatisticNames) this.updateButtons_('open');
+      if (event.delta.closedCellStatisticNames) this.updateButtons_('closed');
+    },
+
+    listeners: {
+      statisticChanged: 'onButtonChanged_',
+    },
+
+    onButtonChanged_(event) {
+      const openness = event.path[1].id.split('_')[0];
+      const enabledStatNames = [];
+      for (const [statName, button] of this[openness + 'Buttons_']) {
+        if (button.isChecked) enabledStatNames.push(statName);
+      }
+      this.viewState_.update(new Map([
+          [openness + 'CellStatisticNames', enabledStatNames],
+      ]));
+    },
+  });
+
+  return {
+  };
+});
+</script>
