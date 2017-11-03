@@ -22,6 +22,30 @@
       "revId": "ad1751230d959ad74b5bcc98152d0b9f9ec81825",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "742da3c1_1fd3aad1",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-11-03T14:16:09Z",
+      "side": 1,
+      "message": "Bisect calls them HTML results, maybe something similar for existing users?\n\nnote: haven\u0027t tried this for bisect jobs, so no idea how long those take to load.",
+      "parentUuid": "47add22e_e01d277c",
+      "range": {
+        "startLine": 69,
+        "startChar": 55,
+        "endLine": 69,
+        "endChar": 0
+      },
+      "revId": "ad1751230d959ad74b5bcc98152d0b9f9ec81825",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
