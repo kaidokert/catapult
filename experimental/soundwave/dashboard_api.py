@@ -133,3 +133,26 @@ class PerfDashboardCommunicator(object):
     """Returns alerts for the given benchmark."""
     options = urllib.urlencode({'benchmark': benchmark})
     return self._MakeApiRequest('alerts/history/%d?%s' % (days, options))
+
+  def GetAllTimeseriesForBenchmark(self, benchmark, days=30, filters=None):
+    """ Generator function returning timeseries enteries for a benchmark.
+
+    args:
+      benchmark: benchmark you want data for.
+      days: number of days to return data for.
+      filter: A list of strings. The metric must contain at least one of the
+          given strings.
+
+    yields:
+      Timeseries data point.
+    """
+    header = ['bot', 'benchmark', 'metric', 'story', 'revision', 'value',
+              'timestamp', 'r_commit_pos', 'r_chromium', 'r_webkit_rev']
+    yield header
+    test_paths = self.ListTestPaths(benchmark)
+    for tp in test_paths:
+      if not filters or all(f in tp for f in filters):
+        ts = self.GetTimeseries(tp, days=days)
+        for point in ts['timeseries'][1:]:
+          test_data = tp.split('/', 4)[1:] + [data for data in point]
+          yield test_data
