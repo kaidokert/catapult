@@ -16,6 +16,24 @@
       "revId": "e4bab172519d92381cb74883fe35aa15945ea335",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20edc0f2_d5ba440d",
+        "filename": "dashboard/dashboard/find_anomalies.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-11-03T14:11:41Z",
+      "side": 1,
+      "message": "https://cloud.google.com/appengine/docs/standard/python/ndb/async#tasklets\n\nYeah should be fine, the yield waits for the Future, so the async_put() will have completed.",
+      "parentUuid": "7c46879b_7fda263c",
+      "revId": "e4bab172519d92381cb74883fe35aa15945ea335",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
