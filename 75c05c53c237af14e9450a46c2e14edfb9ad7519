@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7d34e41f_801a1fb3",
+        "filename": "telemetry/telemetry/internal/actions/scroll_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-03T18:20:04Z",
+      "side": 1,
+      "message": "Does this work on desktop environment?",
+      "revId": "75c05c53c237af14e9450a46c2e14edfb9ad7519",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
