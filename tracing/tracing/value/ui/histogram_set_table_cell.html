@@ -108,6 +108,7 @@ tr.exportTo('tr.v.ui', function() {
       this.histogram_ = undefined;
       this.histogramSpan_ = undefined;
       this.overviewChart_ = undefined;
+      this.mwuResult_ = undefined;
     },
 
     ready() {
@@ -126,6 +127,15 @@ tr.exportTo('tr.v.ui', function() {
       // lifetimes are the same as |this|.
     },
 
+    updateMwu_() {
+      const referenceHistogram = this.referenceHistogram;
+      if (!this.histogram.canCompare(referenceHistogram)) return;
+      this.mwuResult_ = tr.b.math.Statistics.mwu(
+          this.histogram.sampleValues,
+          referenceHistogram.sampleValues,
+          this.row.rootViewState.alpha);
+    },
+
     build(row, displayLabel, viewState) {
       this.row_ = row;
       this.displayLabel_ = displayLabel;
@@ -142,6 +152,8 @@ tr.exportTo('tr.v.ui', function() {
       if (this.isAttached) {
         this.row.rootViewState.addUpdateListener(this.rootListener_);
       }
+
+      this.updateMwu_();
 
       // this.histogram_ and this.referenceHistogram might be undefined,
       // a HistogramSet of unmergeable Histograms, or a Histogram.
@@ -224,11 +236,16 @@ tr.exportTo('tr.v.ui', function() {
           this.histogramSpan_) {
         this.histogramSpan_.build(this.histogram, this.referenceHistogram);
       }
+
       if (event.delta.displayStatisticName ||
-          event.delta.referenceDisplayLabel ||
-          event.delta.alpha) {
+          event.delta.referenceDisplayLabel) {
+        this.updateMwu_();
+        this.updateContents_();
+      } else if (event.delta.alpha && this.mwuResult_) {
+        this.mwuResult_.compare(this.rootState.alpha);
         this.updateContents_();
       }
+
       if (this.row.viewState.isOverviewed &&
           (event.delta.sortColumnIndex ||
            event.delta.sortDescending ||
