@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "36cceafa_7cc9b4e1",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2017-11-03T21:38:40Z",
+      "side": 1,
+      "message": "With large_output, this is redirecting to a file on the device, pulling the file to the host, reading the file, and then returning the contents. Since you just want that to write to a file, you could just write the bugreport to a file on the device and then pull that to path?",
+      "revId": "501db7b33d196017a4c1056894716b63bd130325",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
