@@ -16,6 +16,24 @@
       "revId": "501db7b33d196017a4c1056894716b63bd130325",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1f11c04_f0a14be3",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2017-11-03T23:11:01Z",
+      "side": 1,
+      "message": "ah ok, changed it to pulling a file instead.",
+      "parentUuid": "36cceafa_7cc9b4e1",
+      "revId": "501db7b33d196017a4c1056894716b63bd130325",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
