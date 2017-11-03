@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "57c88751_3e0f2544",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2017-11-03T20:42:35Z",
+      "side": 1,
+      "message": "Couldn\u0027t think of a clean/automatic way to get the right repo URL.",
+      "range": {
+        "startLine": 377,
+        "startChar": 60,
+        "endLine": 377,
+        "endChar": 0
+      },
+      "revId": "5e4e1bf33032737389435af9f9006185d2311677",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
