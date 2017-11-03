@@ -177,7 +177,8 @@ tr.exportTo('tr.v.ui', function() {
     },
 
     onRootStateUpdate_(event) {
-      if (event.delta.alpha) {
+      if (event.delta.alpha ||
+          event.delta.openCellStatisticNames) {
         this.updateContents_();
       }
     },
@@ -426,34 +427,6 @@ tr.exportTo('tr.v.ui', function() {
       return this.referenceHistogram_;
     },
 
-    getDeltaScalars_(statNames, scalarMap) {
-      if (!this.histogram.canCompare(this.referenceHistogram)) return;
-
-      const mwu = tr.b.math.Statistics.mwu(
-          this.histogram.sampleValues,
-          this.referenceHistogram.sampleValues,
-          this.rootState.alpha);
-
-      for (const deltaStatName of tr.v.Histogram.getDeltaStatisticsNames(
-          statNames)) {
-        if (IGNORE_DELTA_STATISTICS_NAMES.includes(deltaStatName)) continue;
-        const scalar = this.histogram.getStatisticScalar(
-            deltaStatName, this.referenceHistogram, mwu);
-        if (scalar === undefined) continue;
-        scalarMap.set(deltaStatName, scalar);
-      }
-
-      if (this.histogram.unit.improvementDirection !==
-          tr.b.ImprovementDirection.DONT_CARE) {
-        this.$.stats.setSignificanceForKey(
-            `${tr.v.DELTA}avg`, mwu.significance);
-      }
-    },
-
-    set isYLogScale(logScale) {
-      this.chart_.isYLogScale = logScale;
-    },
-
     async updateContents_() {
       this.$.chart.style.display = 'none';
       this.$.drag_handle.style.display = 'none';
@@ -467,12 +440,28 @@ tr.exportTo('tr.v.ui', function() {
       if (!this.histogram) return;
       this.$.container.style.display = '';
 
+      let mwu;
+      if (this.histogram.canCompare(this.referenceHistogram)) {
+        mwu = tr.b.math.Statistics.mwu(
+            this.histogram.sampleValues,
+            this.referenceHistogram.sampleValues,
+            this.rootState.alpha);
+      }
+
       const scalarMap = new Map();
-      this.getDeltaScalars_(this.histogram.statisticsNames, scalarMap);
-      for (const [name, scalar] of this.histogram.statisticsScalars) {
-        scalarMap.set(name, scalar);
+      for (const statName of this.rootState.openCellStatisticNames) {
+        if (statName !== this.histogram.getAvailableStatisticName(
+            statName, this.referenceHistogram)) {
+          continue;
+        }
+        scalarMap.set(statName, this.histogram.getStatisticScalar(
+            statName, this.referenceHistogram, mwu));
       }
       this.$.stats.scalarMap = scalarMap;
+      if (mwu) {
+        this.$.stats.setSignificanceForKey(
+            this.rootState.openCellStatisticNames[0], mwu.significance);
+      }
 
       const metricDiagnosticMap = new tr.v.d.DiagnosticMap();
       const metadataDiagnosticMap = new tr.v.d.DiagnosticMap();
