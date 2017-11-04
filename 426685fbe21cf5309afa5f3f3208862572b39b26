@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8f6a30c2_1dfa2faa",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2699,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2017-11-04T01:39:44Z",
+      "side": 1,
+      "message": "nit: keep the sorting for order stability.",
+      "revId": "426685fbe21cf5309afa5f3f3208862572b39b26",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
