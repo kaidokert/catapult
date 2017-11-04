@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "ea8d53f0_51f3c2d3",
+        "filename": "tracing/tracing/base/utils.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2017-11-04T01:53:10Z",
+      "side": 1,
+      "message": "Split and created https://chromium-review.googlesource.com/c/catapult/+/753831.",
+      "parentUuid": "b2bdaccc_b7e49eaa",
+      "revId": "06ec14277de82e46cf8a460c49877a8dad2f00b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d1adfc92_e4361516",
         "filename": "tracing/tracing/metrics/system_health/event_finder_by_frame.html",
         "patchSetId": 4
@@ -53,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "3d2e2474_367c8cd0",
+        "filename": "tracing/tracing/metrics/system_health/event_finder_by_frame.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2017-11-04T01:53:10Z",
+      "side": 1,
+      "message": "Let\u0027s file a code health bug for now until I get TTI landed - that\u0027s a P0.5 this quarter. I filed https://github.com/catapult-project/catapult/issues/4023.\n\nI tried to move it to chrome thread helper but the design here is less straightforward than I thought (I need process helper to filter telemetry events and but it\u0027s awkward to access the parent process helper from a thread helper.) I should VC with you before I sink too many hours in this.",
+      "parentUuid": "d1adfc92_e4361516",
+      "revId": "06ec14277de82e46cf8a460c49877a8dad2f00b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fca72796_fe196184",
         "filename": "tracing/tracing/metrics/system_health/event_finder_by_frame.html",
         "patchSetId": 4
@@ -64,6 +100,24 @@
       "writtenOn": "2017-10-26T22:35:16Z",
       "side": 1,
       "message": "Why not use this.eventsByFrameId_ \u003d new Map() here, and use that in the loop, so you don\u0027t need to set it later?",
+      "revId": "06ec14277de82e46cf8a460c49877a8dad2f00b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c01aaca7_d26849e6",
+        "filename": "tracing/tracing/metrics/system_health/event_finder_by_frame.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2017-11-04T01:53:10Z",
+      "side": 1,
+      "message": "\u003cComment obsolete because made the class a static method\u003e",
+      "parentUuid": "fca72796_fe196184",
       "revId": "06ec14277de82e46cf8a460c49877a8dad2f00b1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -105,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "0a1adbd4_5e1d625e",
+        "filename": "tracing/tracing/metrics/system_health/event_finder_by_frame.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2017-11-04T01:53:10Z",
+      "side": 1,
+      "message": "Thanks a lot for clarifying! My understanding of descendantEvents vs childEvents was severely flawed. I changed it to only iterating over main thread events and renamed function to getSortedMainThreadEventsByFrame to make this explicit.",
+      "parentUuid": "da83476b_51ffda3e",
+      "revId": "06ec14277de82e46cf8a460c49877a8dad2f00b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c2ab352d_f9e2ce64",
         "filename": "tracing/tracing/metrics/system_health/event_finder_by_frame.html",
         "patchSetId": 4
@@ -122,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "0f40497c_c60dda34",
+        "filename": "tracing/tracing/metrics/system_health/event_finder_by_frame.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2017-11-04T01:53:10Z",
+      "side": 1,
+      "message": "For my TTI code it won\u0027t have too many events, but I can imagine someone using this code in the future with lots of events (e.g. querying for a specific input event.) I think it\u0027s nice to have a method that\u0027s fast by default (this was done after tdresser@ asked to make this optimization in the review comments), and it\u0027s not too much harder to understand than the linear search method.",
+      "parentUuid": "c2ab352d_f9e2ce64",
+      "revId": "06ec14277de82e46cf8a460c49877a8dad2f00b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b7a76190_8c69a5b7",
         "filename": "tracing/tracing/metrics/system_health/event_finder_by_frame.html",
         "patchSetId": 4
@@ -133,6 +223,24 @@
       "writtenOn": "2017-10-26T22:35:16Z",
       "side": 1,
       "message": "\"findLastEventForFrameStartingOnOrBeforeTimestamp\" is quite a long name. That suggests to me that it\u0027s conflating multiple operations.\nWhat would you think of splitting this method and findNextEventForFrameStartingOnOrAfterTimestamp so callers would call both getEventsForFrame(id) and a binary search function?",
+      "revId": "06ec14277de82e46cf8a460c49877a8dad2f00b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "afab2dc0_8f764f02",
+        "filename": "tracing/tracing/metrics/system_health/event_finder_by_frame.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2017-11-04T01:53:10Z",
+      "side": 1,
+      "message": "That does sound better. I split up the finding events with correct frame and finding events with right timestamp part. I dropped the windowing function altogether because range.filterArray was now sufficiently succint. I kept the before/after timestamp functions because they did make code easier to understand as opposed to using binary search / iterating over an array to find an event.",
+      "parentUuid": "b7a76190_8c69a5b7",
       "revId": "06ec14277de82e46cf8a460c49877a8dad2f00b1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -207,6 +315,30 @@
       "revId": "06ec14277de82e46cf8a460c49877a8dad2f00b1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6759735a_440044c9",
+        "filename": "tracing/tracing/metrics/system_health/event_finder_by_frame.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2017-11-04T01:53:10Z",
+      "side": 1,
+      "message": "Done. Also I realized my variable name was totally wrong which was probably another source of confusion - it should\u0027ve been firstIndexAfterTimestamp, definitely not firstIndexAtOrAfterTimestamp. Thanks!",
+      "parentUuid": "be3ba3cb_52c84358",
+      "range": {
+        "startLine": 81,
+        "startChar": 43,
+        "endLine": 81,
+        "endChar": 44
+      },
+      "revId": "06ec14277de82e46cf8a460c49877a8dad2f00b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
