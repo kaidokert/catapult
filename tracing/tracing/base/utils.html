@@ -601,9 +601,9 @@ tr.exportTo('tr.b', function() {
 
   /**
   * Returns first index i in |array| such that |test| is true for array[i].
-  * Returns array.length if no such i is found. Runtime is O(log(array.length)).
-  * Assumes |test| is monotonic boolean on |array|, i.e. if test(array[i]) is
-  * true, then test(array[i + 1]) is also true.
+  * Returns array.length if no such i is found. Assumes |test| is monotonic
+  * boolean on |array|, i.e. if test(array[i]) is true, then test(array[i + 1])
+  * is also true.
   *
   * @param {Array} array Array of elements to perform binary search on.
   * @param {function(*):boolean} test Monotonic boolean test function.
