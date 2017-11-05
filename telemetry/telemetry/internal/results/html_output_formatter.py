@@ -12,6 +12,7 @@ from py_utils import cloud_storage
 
 from telemetry.internal.results import chart_json_output_formatter
 from telemetry.internal.results import output_formatter
+from telemetry.util import heap_metric
 
 from tracing.value import convert_chart_json
 from tracing.value import histogram_set
@@ -55,6 +56,9 @@ class HtmlOutputFormatter(output_formatter.OutputFormatter):
     if not histograms:
       histograms = self._ConvertChartJson(page_test_results)
     if isinstance(histograms, histogram_set.HistogramSet):
+      heap_metric.HeapMetric(
+          histograms, label='TOT', html_filename=os.path.join(
+              os.path.dirname(self._output_stream.name), 'heap.html'))
       histograms = histograms.AsDicts()
 
     vulcanize_histograms_viewer.VulcanizeAndRenderHistogramsViewer(
