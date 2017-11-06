@@ -391,6 +391,7 @@ def GetIfHashChanged(cs_path, download_path, bucket, file_hash):
     PermissionError if the user does not have permission to access the bucket.
     NotFoundError if the file is not in the given bucket in cloud_storage.
   """
+  print 'checking', download_path, cs_path
   with _FileLock(download_path):
     if (os.path.exists(download_path) and
         CalculateHash(download_path) == file_hash):
