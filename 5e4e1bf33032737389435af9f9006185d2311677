@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "4c8f8fec_31f73b46",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-11-06T18:22:48Z",
+      "side": 1,
+      "message": "nit: maybe more readable as:\n\nrevision \u003d alerts[0].start_revision\nif not all(a.start_revision \u003d\u003d revision and a.end_revision \u003d\u003d revision for a in alerts):\n  return None\nreturn revision",
+      "range": {
+        "startLine": 346,
+        "startChar": 9,
+        "endLine": 346,
+        "endChar": 12
+      },
+      "revId": "5e4e1bf33032737389435af9f9006185d2311677",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8fd61ebe_5fe4c686",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-11-06T18:22:48Z",
+      "side": 1,
+      "message": "nit: So pinpoint_request does basically the same thing, maybe we should make this available somewhere where both can call it. Add a TODO here to move this to a common spot?",
+      "range": {
+        "startLine": 358,
+        "startChar": 8,
+        "endLine": 358,
+        "endChar": 13
+      },
+      "revId": "5e4e1bf33032737389435af9f9006185d2311677",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "57c88751_3e0f2544",
         "filename": "dashboard/dashboard/file_bug.py",
         "patchSetId": 1
@@ -18,6 +64,53 @@
         "startChar": 60,
         "endLine": 377,
         "endChar": 0
+      },
+      "revId": "5e4e1bf33032737389435af9f9006185d2311677",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fff48f74_1a501c04",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-11-06T18:22:48Z",
+      "side": 1,
+      "message": "Yeah off top of my head don\u0027t know of a good way at the moment.",
+      "parentUuid": "57c88751_3e0f2544",
+      "range": {
+        "startLine": 377,
+        "startChar": 60,
+        "endLine": 377,
+        "endChar": 0
+      },
+      "revId": "5e4e1bf33032737389435af9f9006185d2311677",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0346b5a1_05fb9da7",
+        "filename": "dashboard/dashboard/file_bug_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-11-06T18:22:48Z",
+      "side": 1,
+      "message": "Think a test covering when it\u0027s not chromiumperf or clankinternal would be good.",
+      "range": {
+        "startLine": 263,
+        "startChar": 6,
+        "endLine": 263,
+        "endChar": 49
       },
       "revId": "5e4e1bf33032737389435af9f9006185d2311677",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
