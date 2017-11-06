@@ -8,6 +8,8 @@ from tracing.value.diagnostics import all_diagnostics
 
 
 class Diagnostic(object):
+  __slots__ = '_guid',
+
   def __init__(self):
     self._guid = None
 
