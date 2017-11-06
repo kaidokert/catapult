@@ -22,6 +22,30 @@
       "revId": "bb305dcd764e9f8f0f62ef214740cbf03c39c16b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd619ade_614074c7",
+        "filename": "tracing/tracing/base/math/statistics.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 807,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-11-06T23:38:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb034d5c_173ed498",
+      "range": {
+        "startLine": 807,
+        "startChar": 8,
+        "endLine": 807,
+        "endChar": 28
+      },
+      "revId": "bb305dcd764e9f8f0f62ef214740cbf03c39c16b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
