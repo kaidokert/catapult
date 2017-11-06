@@ -46,6 +46,30 @@
       "revId": "ad1751230d959ad74b5bcc98152d0b9f9ec81825",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fef3aa9c_4c45f8a5",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2017-11-06T21:22:08Z",
+      "side": 1,
+      "message": "\"HTML results\" is very confusing too, because the page you\u0027re looking at is in HTML and has results...\n\nI\u0027m thinking more along the lines of \"trace analysis\" or \"result analysis\", something that indicates that it\u0027s a way to deep-dive into the numbers.\n\nBut users looking for results2 may be confused by a completely new wording. Maybe the right thing to do is use something that will make sense to old users now, and once they get used to the location of the link, then change it to something that will make sense to new users. Or maybe \"result analysis\" has enough of the old name to help users make the connection?",
+      "parentUuid": "742da3c1_1fd3aad1",
+      "range": {
+        "startLine": 69,
+        "startChar": 55,
+        "endLine": 69,
+        "endChar": 0
+      },
+      "revId": "ad1751230d959ad74b5bcc98152d0b9f9ec81825",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
