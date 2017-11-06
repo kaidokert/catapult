@@ -391,6 +391,14 @@ tr.exportTo('tr.v.ui', function() {
     },
 
     onSortColumnChanged_(event) {
+      if (this.$.table.tableRows !== this.tableRows_) {
+        // In this case, the sortColumnIndex/sortDescending is being changed by
+        // this.updateContents_(), not the user, so ignore this event.
+        // this.updateContents_ sets this.tableRows_, then sortColumnIndex and
+        // sortDescending, then this.$.table.tableRows.
+        return;
+      }
+
       tr.b.Timing.instant('histogram-set-table', 'sortColumn');
       this.viewState.update({
         sortColumnIndex: event.sortColumnIndex,
