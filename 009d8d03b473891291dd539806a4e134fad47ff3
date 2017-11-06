@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2a99c242_9956f2c9",
+        "filename": "experimental/soundwave/dashboard_api.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-11-06T14:52:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "014b1d59_3be748cb",
+      "range": {
+        "startLine": 138,
+        "startChar": 48,
+        "endLine": 138,
+        "endChar": 56
+      },
+      "revId": "009d8d03b473891291dd539806a4e134fad47ff3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0637d6de_0eb7f3bf",
         "filename": "experimental/soundwave/dashboard_api.py",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2017-11-03T17:14:22Z",
       "side": 1,
       "message": "The description of \"filter\" above seems to suggest that the metric has to contain at least one of these strings, but this logic seems to indicate that the metric has to contain *all* of the strings. Are we sure that this is right?",
+      "range": {
+        "startLine": 154,
+        "startChar": 24,
+        "endLine": 154,
+        "endChar": 27
+      },
+      "revId": "009d8d03b473891291dd539806a4e134fad47ff3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "afd06eab_408a3182",
+        "filename": "experimental/soundwave/dashboard_api.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-11-06T14:52:29Z",
+      "side": 1,
+      "message": "This is what I get for writing code and documenting it a week later. Fixed the wording of the doc string.",
+      "parentUuid": "0637d6de_0eb7f3bf",
       "range": {
         "startLine": 154,
         "startChar": 24,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "98071f94_2639621b",
+        "filename": "experimental/soundwave/dashboard_api.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-11-06T14:52:29Z",
+      "side": 1,
+      "message": "Its metadata (saying what is in each column) but the format of what data the dashboard returns keeps changing, so I\u0027ve made some changes to how we generate the header to use this row so we can dynamically adjust.",
+      "parentUuid": "363ed3ad_e6e14bce",
+      "range": {
+        "startLine": 156,
+        "startChar": 21,
+        "endLine": 156,
+        "endChar": 42
+      },
+      "revId": "009d8d03b473891291dd539806a4e134fad47ff3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "57018187_df9fb3fd",
         "filename": "experimental/soundwave/dashboard_api.py",
         "patchSetId": 2
@@ -82,6 +154,30 @@
       "writtenOn": "2017-11-03T17:14:22Z",
       "side": 1,
       "message": "This takes a lot of mental load to figure out why we\u0027re splitting the test path by the first four \"/\"\u0027s: presumably, the first is the bot, the next the benchmark name, the next the story name, and the next the metric name? So is the deal that we\u0027re dropping the bot name and returning something akin to \n\n[\"power.idle_platform\", \"idle_story_10s\", \"story:power_avg\", 7.2]?\n\nOne thing that\u0027s tough here is that we\u0027re returning a \"Timeseries data point\", but that\u0027s not really defined anywhere that I can tell. Maybe it would help to give an example of what that looks like?",
+      "range": {
+        "startLine": 157,
+        "startChar": 22,
+        "endLine": 157,
+        "endChar": 38
+      },
+      "revId": "009d8d03b473891291dd539806a4e134fad47ff3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc0745f3_be28f06c",
+        "filename": "experimental/soundwave/dashboard_api.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-11-06T14:52:29Z",
+      "side": 1,
+      "message": "I added a comment to clear stuff up. We split it out into bot, benchmark_name, metric, story, \u003cdata from dashboard here\u003e which at the current time is:\n[u\u0027revision\u0027, u\u0027value\u0027, u\u0027timestamp\u0027, u\u0027r_commit_pos\u0027, u\u0027r_webrtc_rev\u0027, u\u0027r_chromium\u0027, u\u0027r_webkit_rev\u0027, u\u0027r_v8_rev\u0027]",
+      "parentUuid": "57018187_df9fb3fd",
       "range": {
         "startLine": 157,
         "startChar": 22,
