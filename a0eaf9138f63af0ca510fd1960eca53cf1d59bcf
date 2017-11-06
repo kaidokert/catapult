@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b4bf1d0a_9d27bb09",
+        "filename": "tracing/tracing/value/histogram.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-11-06T18:58:11Z",
+      "side": 1,
+      "message": "I\u0027d explain the optimization you\u0027re doing here for anyone else that happens through.",
+      "range": {
+        "startLine": 944,
+        "startChar": 17,
+        "endLine": 944,
+        "endChar": 21
+      },
+      "revId": "a0eaf9138f63af0ca510fd1960eca53cf1d59bcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
