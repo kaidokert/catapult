@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "14b5cacb_721f6225",
+        "filename": "tracing/tracing/value/chart_json_converter.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-11-06T19:11:05Z",
+      "side": 1,
+      "message": "Using undefined here to prevent propagating to all histograms comes off a bit sketchy. Why not just introduce a function that does what you need, or add a param to only add to shared but skip the histograms or something.",
+      "range": {
+        "startLine": 39,
+        "startChar": 10,
+        "endLine": 39,
+        "endChar": 20
+      },
+      "revId": "3caf51dd776b508f8eec7b0e02c4f8903d317433",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
