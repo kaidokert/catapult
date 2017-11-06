@@ -22,6 +22,30 @@
       "revId": "a0eaf9138f63af0ca510fd1960eca53cf1d59bcf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e34ed5c_1ea80c67",
+        "filename": "tracing/tracing/value/histogram.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-11-06T21:46:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4bf1d0a_9d27bb09",
+      "range": {
+        "startLine": 944,
+        "startChar": 17,
+        "endLine": 944,
+        "endChar": 21
+      },
+      "revId": "a0eaf9138f63af0ca510fd1960eca53cf1d59bcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
