@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "60480ac3_0bfbf327",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1240549
+      },
+      "writtenOn": "2017-11-07T01:48:23Z",
+      "side": 1,
+      "message": "Thanks for the comments, Tom. \nFrom what I understand, the \u0027Date\u0027 header is actually recorded as time.Now() when the archive is recorded, I\u0027m not sure if this is the archive.Now you mentioned above.\nIn the Chromium side, it\u0027ll also follow the http spec (https://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html#sec13.2.3) and handle the calculation of response\u0027s CurrentAge using both \u0027Date\u0027 and \u0027Age\u0027 header (https://cs.chromium.org/chromium/src/third_party/WebKit/Source/platform/loader/fetch/Resource.cpp?sq\u003dpackage:chromium\u0026l\u003d463).\nI’m not sure if my understanding is correct, your main point is that we should regenerate all the archives based on your concern. I think this might be another topic, could we possibly separate it into a different CL and go ahead with the current one?",
+      "parentUuid": "67938600_e800e76e",
+      "revId": "e11f36b4f0b61a3f3cf906fbc3e8e2b813a076da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cd392c1d_cdc9553d",
         "filename": "web_page_replay_go/src/webpagereplay/proxy_test.go",
         "patchSetId": 7
@@ -33,6 +51,24 @@
       "revId": "e11f36b4f0b61a3f3cf906fbc3e8e2b813a076da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb963e74_19e24e01",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1240549
+      },
+      "writtenOn": "2017-11-07T01:48:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd392c1d_cdc9553d",
+      "revId": "e11f36b4f0b61a3f3cf906fbc3e8e2b813a076da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "1db2a02f_83d70668",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1240549
+      },
+      "writtenOn": "2017-11-07T01:48:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20fb7ee4_0fc48b53",
+      "range": {
+        "startLine": 251,
+        "startChar": 44,
+        "endLine": 251,
+        "endChar": 45
+      },
+      "revId": "e11f36b4f0b61a3f3cf906fbc3e8e2b813a076da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c658c1d9_19dc5339",
         "filename": "web_page_replay_go/src/webpagereplay/proxy_test.go",
         "patchSetId": 7
@@ -73,6 +133,24 @@
       "revId": "e11f36b4f0b61a3f3cf906fbc3e8e2b813a076da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b3c0035_4380bf9b",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1240549
+      },
+      "writtenOn": "2017-11-07T01:48:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c658c1d9_19dc5339",
+      "revId": "e11f36b4f0b61a3f3cf906fbc3e8e2b813a076da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
