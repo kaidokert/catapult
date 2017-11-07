@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "9623f629_3c3a9354",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1247140
+      },
+      "writtenOn": "2017-11-07T03:00:36Z",
+      "side": 1,
+      "message": "Sorry! I had the wrong definition of Date in my head. I thought it was date of generation at the origin server, but actually it\u0027s the date of generation of the message (either the origin or the first proxy server with a cache hit), which should be (roughly) time.Now. So, ignore this thread.",
+      "parentUuid": "60480ac3_0bfbf327",
+      "revId": "e11f36b4f0b61a3f3cf906fbc3e8e2b813a076da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd392c1d_cdc9553d",
         "filename": "web_page_replay_go/src/webpagereplay/proxy_test.go",
         "patchSetId": 7
