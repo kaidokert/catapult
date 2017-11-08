@@ -824,10 +824,45 @@ class DiagnosticMap(dict):
 MAX_DIAGNOSTIC_MAPS = 16
 
 
-class HistogramBin(object):
+class EmptyHistogramBin(object):
+  __slots__ = '_range',
 
   def __init__(self, rang):
     self._range = rang
+
+  @property
+  def range(self):
+    return self._range
+
+  @property
+  def count(self):
+    return 0
+
+  @property
+  def diagnostic_maps(self):
+    return []
+
+  def AddSample(self, unused_x):
+    raise NotImplementedError
+
+  def AddBin(self, other):
+    raise NotImplementedError
+
+  def AddDiagnosticMap(self, diagnostics):
+    raise NotImplementedError
+
+  def FromDict(self, dct):
+    raise NotImplementedError
+
+  def AsDict(self):
+    return [0]
+
+
+class HistogramBin(EmptyHistogramBin):
+  __slots__ = '_count', '_diagnostic_maps'
+
+  def __init__(self, rang):
+    super(HistogramBin, self).__init__(rang)
     self._count = 0
     self._diagnostic_maps = []
 
@@ -837,10 +872,6 @@ class HistogramBin(object):
   @property
   def count(self):
     return self._count
-
-  @property
-  def range(self):
-    return self._range
 
   def AddBin(self, other):
     self._count += other.count
@@ -1391,7 +1422,7 @@ class HistogramBinBoundaries(object):
     return self._bins
 
   def _BuildBins(self):
-    self._bins = [HistogramBin(r) for r in self.bin_ranges]
+    self._bins = [EmptyHistogramBin(r) for r in self.bin_ranges]
 
   @property
   def bin_ranges(self):
