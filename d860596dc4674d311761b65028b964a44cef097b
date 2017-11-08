@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9554b376_0cfd873e",
+        "filename": "docs/metrics-results-ui.md",
+        "patchSetId": 24
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-11-08T16:47:53Z",
+      "side": 1,
+      "message": "You might want to enclose the names of the buttons in quotes, to make this easier to parse.",
+      "revId": "d860596dc4674d311761b65028b964a44cef097b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9585e20b_70b59e82",
+        "filename": "tracing/tracing/ui/base/table.html",
+        "patchSetId": 24
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-11-08T16:47:53Z",
+      "side": 1,
+      "message": "What does this do?",
+      "revId": "d860596dc4674d311761b65028b964a44cef097b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ccdd124b_efeb37a6",
+        "filename": "tracing/tracing/value/ui/histogram_set_controls_statistics.html",
+        "patchSetId": 24
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-11-08T16:47:53Z",
+      "side": 1,
+      "message": "waaat",
+      "revId": "d860596dc4674d311761b65028b964a44cef097b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7e148bc_f8abb144",
+        "filename": "tracing/tracing/value/ui/histogram_set_table_cell.html",
+        "patchSetId": 24
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-11-08T16:47:53Z",
+      "side": 1,
+      "message": "Along the same lines as above, can you explain what this syntax does?",
+      "revId": "d860596dc4674d311761b65028b964a44cef097b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d42c733_3dfd4bee",
+        "filename": "tracing/tracing/value/ui/histogram_span.html",
+        "patchSetId": 24
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-11-08T16:47:53Z",
+      "side": 1,
+      "message": "Should this be mwu !\u003d\u003d undefined?",
+      "revId": "d860596dc4674d311761b65028b964a44cef097b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
