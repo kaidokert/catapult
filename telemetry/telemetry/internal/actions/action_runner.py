@@ -789,6 +789,12 @@ class ActionRunner(object):
     """
     self._tab.browser.SimulateMemoryPressureNotification(pressure_level)
 
+  def EnterOverviewMode(self):
+    self._tab.browser.window_manager_backend.EnterOverviewMode()
+
+  def ExitOverviewMode(self):
+    self._tab.browser.window_manager_backend.ExitOverviewMode()
+
   def PauseInteractive(self):
     """Pause the page execution and wait for terminal interaction.
 
