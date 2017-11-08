@@ -376,6 +376,10 @@ class Browser(app.App):
         pressure_level, timeout)
 
   @property
+  def window_manager_backend(self):
+    return self._browser_backend.window_manager_backend()
+
+  @property
   def supports_cpu_metrics(self):
     return self._browser_backend.supports_cpu_metrics
 

@@ -15,6 +15,9 @@ from telemetry.internal.platform import profiling_controller_backend
 class ExtensionsNotSupportedException(Exception):
   pass
 
+class WindowManagerNotSupportedException(Exception):
+  pass
+
 
 class BrowserBackend(app_backend.AppBackend):
   """A base class for browser backends."""
@@ -161,6 +164,10 @@ class BrowserBackend(app_backend.AppBackend):
 
   def SimulateMemoryPressureNotification(
       self, pressure_level, timeout=web_contents.DEFAULT_WEB_CONTENTS_TIMEOUT):
+    raise NotImplementedError()
+
+  @property
+  def window_manager_backend(self):
     raise NotImplementedError()
 
   @property

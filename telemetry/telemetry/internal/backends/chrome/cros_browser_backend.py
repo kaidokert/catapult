@@ -253,6 +253,10 @@ class CrOSBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     return None
 
   @property
+  def window_manager_backend(self):
+    return self.devtools_client.cros_window_manager_backend
+
+  @property
   @decorators.Cache
   def misc_web_contents_backend(self):
     """Access to chrome://oobe/login page."""
