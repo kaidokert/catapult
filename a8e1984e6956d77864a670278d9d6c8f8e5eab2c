@@ -46,6 +46,30 @@
       "revId": "a8e1984e6956d77864a670278d9d6c8f8e5eab2c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bb5d1b7_bfec66a0",
+        "filename": "common/py_utils/py_utils/slots_metaclass.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-11-08T19:20:08Z",
+      "side": 1,
+      "message": "Ah, thanks for explaining, still lgtm.",
+      "parentUuid": "241f6217_d5895f3b",
+      "range": {
+        "startLine": 5,
+        "startChar": 6,
+        "endLine": 5,
+        "endChar": 20
+      },
+      "revId": "a8e1984e6956d77864a670278d9d6c8f8e5eab2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
