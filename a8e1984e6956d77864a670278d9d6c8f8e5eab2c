@@ -22,6 +22,30 @@
       "revId": "a8e1984e6956d77864a670278d9d6c8f8e5eab2c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "241f6217_d5895f3b",
+        "filename": "common/py_utils/py_utils/slots_metaclass.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-11-08T19:14:16Z",
+      "side": 1,
+      "message": "Metaclasses are a hook to let you run a bit of code when the class or any subclass is defined.\nSlotsMetaclass asserts that the class/subclass specifies __slots__.\nDiagnostic is the only class that we expect to be subclassed.\nWhen somebody adds a new Diagnostic subclass, we want to ensure that they specify __slots__ in order to prevent regressing memory consumption.\n\nI added a comment to diagnostic.py",
+      "parentUuid": "10f72d7a_c514d5e8",
+      "range": {
+        "startLine": 5,
+        "startChar": 6,
+        "endLine": 5,
+        "endChar": 20
+      },
+      "revId": "a8e1984e6956d77864a670278d9d6c8f8e5eab2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
