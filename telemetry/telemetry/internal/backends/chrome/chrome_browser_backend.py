@@ -336,6 +336,11 @@ class ChromeBrowserBackend(browser_backend.BrowserBackend):
         pressure_level, timeout)
 
   @property
+  def window_manager_backend(self):
+    raise browser_backend.WindowManagerNotSupportedException(
+        'Window manager backend is only supported by the Chrome OS browser')
+
+  @property
   def supports_cpu_metrics(self):
     return True
 
