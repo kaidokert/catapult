@@ -100,7 +100,7 @@ class PerfDashboardCommunicator(object):
     """
     r = 'list_timeseries/%s' % benchmark
     if sheriff:
-      r += '?sheriff=%s' % sheriff
+      r += '?sheriff=%s' % urllib.quote_plus(sheriff)
     return self._MakeApiRequest(r)
 
   def GetTimeseries(self, test_path, days=30):
@@ -147,6 +147,9 @@ class PerfDashboardCommunicator(object):
     """
     header = ['bot', 'benchmark', 'metric', 'story']
     test_paths = self.ListTestPaths(benchmark)
+    if not test_paths:
+      print 'No test paths found for benchmark %s' % benchmark
+      return
     for tp in test_paths:
       if not filters or all(f in tp for f in filters):
         ts = self.GetTimeseries(tp, days=days)
@@ -155,6 +158,9 @@ class PerfDashboardCommunicator(object):
           full_header = header + ts['timeseries'][0]
           header = None
           yield full_header
+        if not ts:
+          print 'No data or test path %s. Skipping.' % tp
+          continue
         for point in ts['timeseries'][1:]:
           # Splits the test path into [bot, benchmark, metric, story] and
           # appends the data from a timeseries entry. Current data returned:
@@ -162,7 +168,3 @@ class PerfDashboardCommunicator(object):
           # 'r_chromium', 'r_webkit_rev', 'r_v8_rev'
           test_data = tp.split('/', 4)[1:] + [data for data in point]
           yield test_data
-
-
-
-
