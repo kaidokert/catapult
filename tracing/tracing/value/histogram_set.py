@@ -60,11 +60,6 @@ class HistogramSet(object):
     for hist in self:
       hist.diagnostics.ResolveSharedDiagnostics(self)
       HandleDiagnosticMap(hist.diagnostics)
-      for dm in hist.nan_diagnostic_maps:
-        HandleDiagnosticMap(dm)
-      for hbin in hist.bins:
-        for dm in hbin.diagnostic_maps:
-          HandleDiagnosticMap(dm)
 
   def __len__(self):
     return len(self._histograms_by_guid)
