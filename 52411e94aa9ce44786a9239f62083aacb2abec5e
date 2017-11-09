@@ -16,6 +16,24 @@
       "revId": "52411e94aa9ce44786a9239f62083aacb2abec5e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eabf20b3_b765ba8c",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2017-11-09T18:58:58Z",
+      "side": 1,
+      "message": "You are right, this appears to be a typo, since uhh... Job mostly isn\u0027t unit tested yet.\nShould be `execution.result_valuse for execution`",
+      "parentUuid": "1e7a0ac5_242d404f",
+      "revId": "52411e94aa9ce44786a9239f62083aacb2abec5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
