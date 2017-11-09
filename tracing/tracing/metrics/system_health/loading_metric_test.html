@@ -92,7 +92,8 @@ tr.b.unittest.testSuite(function() {
         'resource_loading'), fcpResourceLoading);
     assert.strictEqual(fcpResourceLoading.sum, 100);
     assert.strictEqual(tr.b.getOnlyElement(hist.getBinForValue(
-        800).diagnosticMaps).get('breakdown').get('resource_loading'), 100);
+        800).samples).diagnostics.get('breakdown').get('resource_loading'),
+        100);
   });
 
   test('timeToFirstContentfulPaintIgnoringWarmCache', function() {
@@ -262,9 +263,9 @@ tr.b.unittest.testSuite(function() {
     const hist = histograms.getHistogramNamed('cpuTimeToFirstMeaningfulPaint');
     assert.deepEqual(hist.sampleValues, [40]);
     const histBin = hist.getBinForValue(40);
-    assert.strictEqual(histBin.diagnosticMaps[0]
+    assert.strictEqual(histBin.samples[0].diagnostics
         .get('breakdown').get('other'), 35);
-    assert.strictEqual(histBin.diagnosticMaps[0]
+    assert.strictEqual(histBin.samples[0].diagnostics
         .get('breakdown').get('resource_loading'), 15);
   });
 
@@ -423,10 +424,10 @@ tr.b.unittest.testSuite(function() {
     const hist = histograms.getHistogramNamed('cpuTimeToFirstMeaningfulPaint');
     assert.deepEqual(hist.sampleValues, [50, 100]);
     const histBin1 = hist.getBinForValue(50);
-    assert.strictEqual(histBin1.diagnosticMaps[0]
+    assert.strictEqual(histBin1.samples[0].diagnostics
         .get('breakdown').get('resource_loading'), 50);
     const histBin2 = hist.getBinForValue(100);
-    assert.strictEqual(histBin2.diagnosticMaps[0]
+    assert.strictEqual(histBin2.samples[0].diagnostics
         .get('breakdown').get('other'), 100);
   });
 
@@ -514,9 +515,9 @@ tr.b.unittest.testSuite(function() {
     assert.strictEqual(1, hist.running.count);
     assert.strictEqual(15200, hist.running.mean);
     const binsWithSampleDiagnosticMaps = hist.allBins.filter(
-        bin => bin.diagnosticMaps.length > 0);
+        bin => bin.samples.length > 0);
     const diagnostic = tr.b.getOnlyElement(binsWithSampleDiagnosticMaps[0]
-        .diagnosticMaps[0].get('infos'));
+        .samples[0].diagnostics.get('infos'));
     assert.strictEqual(diagnostic.start, 200);
     assert.strictEqual(diagnostic.interactive, 15400);
     assert.strictEqual(diagnostic.pid, 1984);
