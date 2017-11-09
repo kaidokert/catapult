@@ -217,7 +217,7 @@ statistics produced by the Histogram such as "avg", "stddev", "min", "max", etc.
 the Histogram statistic table will also display statistics about the delta
 between that Histogram and the corresponding reference Histogram. Delta
 statistics include
- * abs&#916;avg: absolute delta between Histogram averages,
+ * &#916;avg: absolute delta between Histogram averages,
  * %&#916;avg: percent delta average,
  * z-score: (aka standard score) the number of standard deviations between the
    Histogram average and the reference Histogram average,
@@ -302,16 +302,16 @@ be considered significant, and display a neutral emoji.
 ![Slide the significance threshold
 ](/docs/images/metrics-results-ui-significance-threshold-slider.png)
 
-### The Summary Statistic Selector
+### The Statistic Menu
 
-This selector controls which statistics are displayed in the table. You can
-select from the any of the statistics that any Histogram was configured to
-produce by the metric that produced it.
+The Statistics dropdown contains 2 grids of toggle buttons:
+ * Collapsed Cells controls which statistics are displayed in cells that are
+   collapsed, and
+ * Expanded Cells controls which statistics in cells that are expanded.
 
-When a reference column is selected, you can also select from any of several
-delta statistics: absΔavg, %Δavg, z-score, absΔstd, %Δstd, p-value, U.
-These delta statistics will only be displayed in non-reference columns; avg or
-std will be displayed in the reference column.
+If a delta statistic is selected but cannot be computed for a cell (either when
+no reference column is selected, or for cells in the reference column), then the
+corresponding non-delta statistic will be displayed instead.
 
 ![Select a summary statistic.
 ](/docs/images/metrics-results-ui-summary-statistic-selector.png)

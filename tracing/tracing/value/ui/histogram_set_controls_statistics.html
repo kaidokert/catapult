@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/value/ui/histogram_set_view_state.html">
+
+<dom-module id="tr-v-ui-histogram-set-controls-statistics-button-group">
+  <template>
+    <style>
+    :host {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+    }
+    grid {
+      display: grid;
+      grid-template-columns: auto auto auto;
+    }
+    </style>
+
+    <h3>[[label]]</h3>
+    <grid id="buttons"></grid>
+  </template>
+</dom-module>
+
+<dom-module id="tr-v-ui-histogram-set-controls-statistics-button">
+  <template>
+    <style>
+    button {
+      -webkit-appearance: none;
+      background-color: white;
+      border: 0;
+      color: #666;
+      font-weight: bold;
+      outline: 0;
+      padding: 5px;
+      text-align: left;
+      width: 100%;
+    }
+    button.checked {
+      background-color: #ddd;
+      color: #444;
+    }
+    </style>
+
+    <button id="button" on-tap="onTap_">[[displayName]]</button>
+  </template>
+</dom-module>
+
+<script>
+'use strict';
+tr.exportTo('tr.v.ui', function() {
+  const ROW_SPECS = [
+    {name: 'avg'},
+    {name: 'std'},
+    {name: 'min'},
+    {name: 'max'},
+    {name: 'count'},
+    {name: 'nans'},
+    {name: 'sum'},
+    {displayName: 'geomean', statName: 'geometricMean'},
+    {displayName: 'median', statName: 'pct_050'},
+    {name: 'pct_090'},
+    {name: 'pct_095'},
+    {name: 'pct_099'},
+    {name: 'p-value', deltaOnly: true},
+    {name: 'z-score', deltaOnly: true},
+    {name: 'U', deltaOnly: true},
+  ];
+
+  Polymer({
+    is: 'tr-v-ui-histogram-set-controls-statistics-button-group',
+
+    properties: {
+      label: String,
+      stateProperty: String,
+    },
+
+    listeners: {
+      statisticChanged: 'onButtonChanged_',
+    },
+
+    created() {
+      this.viewState_ = undefined;
+      this.buttons_ = new Map();
+    },
+
+    ready() {
+      for (const spec of ROW_SPECS) {
+        const displayName = spec.displayName || spec.name;
+        const statName = spec.statName || spec.name;
+
+        if (spec.deltaOnly) {
+          // Place-holder for the non-delta column:
+          this.$.buttons.appendChild(document.createElement('span'));
+
+          this.createButton_('', displayName, statName);
+
+          // Place-holder for the percent-delta column:
+          this.$.buttons.appendChild(document.createElement('span'));
+        } else {
+          this.createButton_('', displayName, statName);
+          this.createButton_(tr.v.DELTA, displayName, statName);
+          this.createButton_('%' + tr.v.DELTA, displayName, statName);
+        }
+      }
+    },
+
+    createButton_(prefix, displayName, statName) {
+      displayName = prefix + displayName;
+      statName = prefix + statName;
+
+      const button = document.createElement(
+          'tr-v-ui-histogram-set-controls-statistics-button');
+      button.set('displayName', displayName);
+      button.set('statisticName', statName);
+      this.buttons_.set(statName, button);
+      this.$.buttons.appendChild(button);
+    },
+
+    get viewState() {
+      return this.viewState_;
+    },
+
+    set viewState(vs) {
+      this.viewState_ = vs;
+      this.viewState.addUpdateListener(this.onViewStateUpdate_.bind(this));
+      this.updateButtons_();
+    },
+
+    onViewStateUpdate_(event) {
+      if (!event.delta[this.stateProperty]) return;
+      this.updateButtons_();
+    },
+
+    updateButtons_() {
+      const enabledStatNames = this.viewState_[this.stateProperty];
+      for (const [statName, button] of this.buttons_) {
+        button.isChecked = enabledStatNames.includes(statName);
+      }
+    },
+
+    async onButtonChanged_(event) {
+      const button = event.path[0];
+      const mark = tr.b.Timing.mark('histogram-set-controls-statistics',
+          (button.isChecked ? 'enable' : 'disable') + '_' +
+          this.stateProperty.substr(0, this.stateProperty.indexOf('C')) + '_' +
+          button.statisticName);
+      const enabledStatNames = Array.from(this.viewState_[this.stateProperty]);
+      const index = enabledStatNames.indexOf(button.statisticName);
+      if (index >= 0) {
+        enabledStatNames.splice(index, 1);
+      }
+      if (button.isChecked) {
+        enabledStatNames.push(button.statisticName);
+      }
+      if (enabledStatNames.length === 0) {
+        enabledStatNames.push(`%${tr.v.DELTA}avg`);
+        this.buttons_.get(enabledStatNames[0]).isChecked = true;
+      }
+      await this.viewState_.update(new Map([
+          [this.stateProperty, enabledStatNames],
+      ]));
+      mark.end();
+    },
+  });
+
+  Polymer({
+    is: 'tr-v-ui-histogram-set-controls-statistics-button',
+
+    properties: {
+      displayName: String,
+      statisticName: String,
+    },
+
+    get isChecked() {
+      return this.$.button.classList.contains('checked');
+    },
+
+    set isChecked(c) {
+      if (this.isChecked === c) return;
+      this.$.button.classList.toggle('checked');
+    },
+
+    onTap_(event) {
+      event.stopPropagation();
+      this.$.button.classList.toggle('checked');
+      this.fire('statisticChanged');
+    },
+  });
+
+  return {};
+});
+</script>

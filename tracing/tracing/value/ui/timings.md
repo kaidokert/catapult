@@ -22,8 +22,9 @@ Both measures and instant events are recorded as Events in Google Analytics.
      source Histograms only.
    * `showOverviewCharts` measures response latency of showing all overview
      charts.
-   * `statistic` measures response latency of changing the statistic that is
-     displayed in histogram-set-table-cells.
+ * histogram-set-controls-statistics
+   * {enable,disable}{open,closed}<statisticName> measures response latency of
+     enabling or disabling a statistic.
  * HistogramSetLocation
    * `onPopState` measures response latency of the browser back button.
    * `pushState` measures latency of serializing the view state and pushing it
