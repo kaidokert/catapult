@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1e7a0ac5_242d404f",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-09T16:13:47Z",
+      "side": 1,
+      "message": "\"x for x in y\"\n\nisn\u0027t that the same as \"iter(y)\" ?",
+      "revId": "52411e94aa9ce44786a9239f62083aacb2abec5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
