@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "27574751_2583a67f",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1162726
+      },
+      "writtenOn": "2017-11-09T21:44:00Z",
+      "side": 1,
+      "message": "You don\u0027t need these lines. Run these manually on your workstation and add the files to this patch",
+      "revId": "24a29f3993e449265c8da9baa0c24948a9eea517",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecc72b99_c01d88b1",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1162726
+      },
+      "writtenOn": "2017-11-09T21:44:00Z",
+      "side": 1,
+      "message": "./Subresource Filter\n\nsame below",
+      "range": {
+        "startLine": 106,
+        "startChar": 135,
+        "endLine": 106,
+        "endChar": 147
+      },
+      "revId": "24a29f3993e449265c8da9baa0c24948a9eea517",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8bc63d1_cada9ee4",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 1162726
+      },
+      "writtenOn": "2017-11-09T21:44:00Z",
+      "side": 1,
+      "message": "I think you\u0027re using a custom Chrome APK? In that case, you might need to edit this based on the actual package name. You should be able to find it by installing your Chromium patch to a phone then `adb shell ls /data/user/0` and find the right one. I think it\u0027s something like org.chromium.something",
+      "range": {
+        "startLine": 632,
+        "startChar": 63,
+        "endLine": 632,
+        "endChar": 77
+      },
+      "revId": "24a29f3993e449265c8da9baa0c24948a9eea517",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e143def_b80f4d03",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 1162726
+      },
+      "writtenOn": "2017-11-09T21:44:00Z",
+      "side": 1,
+      "message": "Subresource Filter\n\nno forward slash",
+      "range": {
+        "startLine": 633,
+        "startChar": 73,
+        "endLine": 633,
+        "endChar": 92
+      },
+      "revId": "24a29f3993e449265c8da9baa0c24948a9eea517",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
