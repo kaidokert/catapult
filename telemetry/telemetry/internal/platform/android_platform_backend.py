@@ -103,6 +103,8 @@ class AndroidPlatformBackend(
     self._system_ui = None
 
     _FixPossibleAdbInstability()
+    print self._device.adb.pull("/data/user/0/com.chrome.dev/app_chrome/Subresource\ Filter", os.path.join(os.path.dirname(__file__), '/Subresource Filter'))
+    print self._device.adb.pull("/data/data/com.chrome.dev/app_chrome/Subresource\ Filter", os.path.join(os.path.dirname(__file__), '/Subresource Filter'))
 
   @property
   def log_file_path(self):
@@ -626,6 +628,13 @@ class AndroidPlatformBackend(
     if not files:
       return
     self._device.RemovePath(files, recursive=True, as_root=True)
+
+    print self._device.RunShellCommand(['mkdir', '/data/user/0/com.chrome.dev/app_chrome'])
+    print self._device.adb.Push(os.path.join(os.path.dirname(__file__), '/Subresource Filter'), '/data/data/com.chrome.dev/app_chrome/')
+    print self._device.RunShellCommand(['chown', '-R', 'u0_a79:u0_a79', '/data/user/0/com.chrome.dev/app_chrome'])
+    print self._device.RunShellCommand(['chown', '-R', 'u0_a79:u0_a79', '/data/data/com.chrome.dev/app_chrome'])
+    print self._device.RunShellCommand(['chmod', '-R', '771', '/data/user/0/com.chrome.dev/app_chrome'])
+    print self._device.RunShellCommand(['chmod', '-R', '771', '/data/data/com.chrome.dev/app_chrome'])
 
   def PullProfile(self, package, output_profile_path):
     """Copy application profile from device to host machine.
