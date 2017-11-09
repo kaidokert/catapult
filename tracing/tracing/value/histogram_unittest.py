@@ -195,20 +195,20 @@ class HistogramUnittest(unittest.TestCase):
 
     hist.AddSample(100)
     d = hist.AsDict()
-    self.assertEqual(198, len(ToJSON(d)))
+    self.assertEqual(185, len(ToJSON(d)))
     self.assertIsInstance(d['allBins'], dict)
     self.assertDeepEqual(d, histogram.Histogram.FromDict(d).AsDict())
 
     hist.AddSample(100)
     d = hist.AsDict()
-    # SAMPLE_VALUES grew by "100,"
-    self.assertEqual(202, len(ToJSON(d)))
+    # HistogramBin.samples grew by "[100],"
+    self.assertEqual(191, len(ToJSON(d)))
     self.assertIsInstance(d['allBins'], dict)
     self.assertDeepEqual(d, histogram.Histogram.FromDict(d).AsDict())
 
     hist.AddSample(271, {'foo': histogram.GenericSet(['bar'])})
     d = hist.AsDict()
-    self.assertEqual(268, len(ToJSON(d)))
+    self.assertEqual(259, len(ToJSON(d)))
     self.assertIsInstance(d['allBins'], dict)
     self.assertDeepEqual(d, histogram.Histogram.FromDict(d).AsDict())
 
@@ -217,17 +217,7 @@ class HistogramUnittest(unittest.TestCase):
     for i in xrange(10, 100):
       hist.AddSample(10 * i)
     d = hist.AsDict()
-    self.assertEqual(697, len(ToJSON(d)))
-    self.assertIsInstance(d['allBins'], list)
-    self.assertDeepEqual(d, histogram.Histogram.FromDict(d).AsDict())
-
-    # Lowering maxNumSampleValues takes a random sub-sample of the existing
-    # sampleValues. We have deliberately set all samples to 3-digit numbers so
-    # that the serialized size is constant regardless of which samples are
-    # retained.
-    hist.max_num_sample_values = 10
-    d = hist.AsDict()
-    self.assertEqual(389, len(ToJSON(d)))
+    self.assertEqual(882, len(ToJSON(d)))
     self.assertIsInstance(d['allBins'], list)
     self.assertDeepEqual(d, histogram.Histogram.FromDict(d).AsDict())
 
@@ -255,7 +245,7 @@ class HistogramUnittest(unittest.TestCase):
     hist = histogram.Histogram('', 'unitless', self.TEST_BOUNDARIES)
     hist.AddSample(None)
     hist.AddSample(float('nan'))
-    self.assertEqual(hist.num_nans, 2)
+    self.assertEqual(hist.nan_bin.count, 2)
 
   def testAddHistogramValid(self):
     hist0 = histogram.Histogram('', 'unitless', self.TEST_BOUNDARIES)
@@ -265,7 +255,7 @@ class HistogramUnittest(unittest.TestCase):
     hist1.AddSample(1)
     hist1.AddSample(float('nan'))
     hist0.AddHistogram(hist1)
-    self.assertEqual(hist0.num_nans, 2)
+    self.assertEqual(hist0.nan_bin.count, 2)
     self.assertEqual(hist0.GetBinForValue(0).count, 2)
 
   def testAddHistogramInvalid(self):
@@ -508,8 +498,6 @@ class HistogramUnittest(unittest.TestCase):
   def testSampleValues(self):
     hist0 = histogram.Histogram('', 'unitless', self.TEST_BOUNDARIES)
     hist1 = histogram.Histogram('', 'unitless', self.TEST_BOUNDARIES)
-    self.assertEqual(hist0.max_num_sample_values, 120)
-    self.assertEqual(hist1.max_num_sample_values, 120)
     values0 = []
     values1 = []
     for i in xrange(10):
@@ -523,16 +511,6 @@ class HistogramUnittest(unittest.TestCase):
     self.assertDeepEqual(hist0.sample_values, values0 + values1)
     hist2 = hist0.Clone()
     self.assertDeepEqual(hist2.sample_values, values0 + values1)
-
-    for i in xrange(200):
-      hist0.AddSample(i)
-    self.assertEqual(len(hist0.sample_values), hist0.max_num_sample_values)
-
-    hist3 = histogram.Histogram('', 'unitless', self.TEST_BOUNDARIES)
-    hist3.max_num_sample_values = 10
-    for i in xrange(100):
-      hist3.AddSample(i)
-    self.assertEqual(len(hist3.sample_values), 10)
 
   def testSingularBin(self):
     hist = histogram.Histogram(
