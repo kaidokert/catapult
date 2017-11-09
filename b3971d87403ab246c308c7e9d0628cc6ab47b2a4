@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "78be67ad_43a014ca",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-09T20:27:20Z",
+      "side": 0,
+      "message": "+primiano I found out this code while cleaning up and removing the old legacy memory metrics. Appears to be using the tool in:\nhttps://cs.chromium.org/chromium/src/tools/android/purge_ashmem\n\nIs this something that could/should be done for memory-infra? Or is just not relevant or not needed?\n\nIf not needed I could also kill that purge_ashmem on a follow up CL, I think this is the only client using that.",
+      "revId": "b3971d87403ab246c308c7e9d0628cc6ab47b2a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2b0bd07_cbb3fbb1",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-09T20:27:20Z",
+      "side": 0,
+      "message": "I don\u0027t remember how we came up with those dates in the first place. But they look scarily accurate to the point when this is actually happening!",
+      "revId": "b3971d87403ab246c308c7e9d0628cc6ab47b2a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
