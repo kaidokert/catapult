@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ed8f38cc_89a8d68e",
+        "filename": "telemetry/telemetry/value/failure.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-10T21:54:31Z",
+      "side": 1,
+      "message": "How is message different from description?",
+      "revId": "8b8fc2fe6be6cf8b591d074cc44e1bf504d45592",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c0c7e1d_7526aa59",
+        "filename": "tracing/tracing/metrics/metric_map_function.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-10T21:54:31Z",
+      "side": 1,
+      "message": "So we still need histogram to exist to stick failureDiag in? I thought you mentioned that we can just attach diagnostic to histogram_set directly?",
+      "revId": "8b8fc2fe6be6cf8b591d074cc44e1bf504d45592",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b0a5ad5_eaa9caa9",
+        "filename": "tracing/tracing/value/histogram_set.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-10T21:54:31Z",
+      "side": 1,
+      "message": "By the name, I assume histogramsByGuid_ is a dict? I don\u0027t think we can make guarantee about order of dict\u0027s values.",
+      "revId": "8b8fc2fe6be6cf8b591d074cc44e1bf504d45592",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
