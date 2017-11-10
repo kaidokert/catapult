@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c143d_22c1a05d",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-11-10T19:19:57Z",
+      "side": 1,
+      "message": "Please use histograms.createHistogram() instead so that you don\u0027t need to also call addHistogram().",
+      "revId": "988153ae1b5891fc42b5d1b709e1eed8e4f1dfcc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d85898dc_36ee0bc3",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-11-10T19:19:57Z",
+      "side": 1,
+      "message": "model.getDescendantEvents() can take a very long time. Can you use the ChromeModelHelper or AndroidModelHelper to find the specific AsyncSliceGroup that contains this event? Most other metrics use the ChromeModelHelper, so you can look at any of them to see how.",
+      "revId": "988153ae1b5891fc42b5d1b709e1eed8e4f1dfcc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67af11cf_4b003042",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-11-10T19:19:57Z",
+      "side": 1,
+      "message": "Please add a dangling comma to be consistent with other files and to make it easy to add other entries to this object in the future.",
+      "revId": "988153ae1b5891fc42b5d1b709e1eed8e4f1dfcc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47ea4734_e1dca047",
+        "filename": "tracing/tracing/metrics/android_startup_metric_test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-11-10T19:19:57Z",
+      "side": 1,
+      "message": "Please move this function inside the testSuite() callback in order to avoid littering the global namespace.",
+      "revId": "988153ae1b5891fc42b5d1b709e1eed8e4f1dfcc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
