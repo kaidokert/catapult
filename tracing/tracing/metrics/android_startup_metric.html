@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/metrics/metric_registry.html">
+<link rel="import" href="/tracing/value/histogram.html">
+
+<script>
+'use strict';
+
+tr.exportTo('tr.metrics.sh', function() {
+  function androidStartupMetric(histograms, model) {
+    const messageLoopStartHistogram = new tr.v.Histogram(
+        'messageloop_start_time',
+        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter);
+
+    for (const slice of model.getDescendantEvents()) {
+      if (!(slice instanceof tr.model.AsyncSlice)) continue;
+
+      // This messageloop start time does not include the time to initialize the
+      // native library on Android. TODO(pasko): Improve the metric by enabling
+      // early tracing before any benchmark using this can be moved out of
+      // experimental status.
+      if (slice.title === 'Startup.BrowserMessageLoopStartTimeFromMainEntry2') {
+        messageLoopStartHistogram.addSample(slice.duration);
+      }
+    }
+
+    histograms.addHistogram(messageLoopStartHistogram);
+  }
+
+  tr.metrics.MetricRegistry.register(androidStartupMetric);
+
+  return {
+    androidStartupMetric
+  };
+});
+</script>
