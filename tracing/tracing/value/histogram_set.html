@@ -109,6 +109,12 @@ tr.exportTo('tr.v', function() {
       }
     }
 
+    getFirstHistogram() {
+      for (const hist of this.histogramsByGuid_.values()) {
+        return hist;
+      }
+    }
+
     /**
      * Filters Histograms by matching their name exactly.
      *
