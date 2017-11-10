@@ -25,7 +25,7 @@ class FailureValue(value_module.Value):
     self._exc_info = exc_info
 
   @classmethod
-  def FromMessage(cls, page, message):
+  def FromMessage(cls, page, message, description=None):
     """Creates a failure value for a given string message.
 
     Args:
@@ -33,7 +33,7 @@ class FailureValue(value_module.Value):
       message: A string message describing the failure.
     """
     exc_info = cls._GetExcInfoFromMessage(message)
-    return FailureValue(page, exc_info)
+    return FailureValue(page, exc_info, description)
 
   @staticmethod
   def _GetExcInfoFromMessage(message):

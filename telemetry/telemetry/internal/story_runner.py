@@ -87,11 +87,15 @@ def _GenerateTagMapFromStorySet(stories):
 
 
 def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
-  def ProcessError(description=None):
+  def ProcessError(description=None, msg=None):
     state.DumpStateUponFailure(story, results)
     # Note: adding the FailureValue to the results object also normally
     # cause the progress_reporter to log it in the output.
-    results.AddValue(failure.FailureValue(story, sys.exc_info(), description))
+    if msg is not None:
+      fv = failure.FailureValue.FromMessage(story, msg, description)
+    else:
+      fv = failure.FailureValue(story, sys.exc_info(), description)
+    results.AddValue(fv)
   try:
     if isinstance(test, story_test.StoryTest):
       test.WillRunStory(state.platform)
@@ -104,7 +108,11 @@ def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
       return
     state.RunStory(results)
     if isinstance(test, story_test.StoryTest):
-      test.Measure(state.platform, results)
+      metric_failures = test.Measure(state.platform, results)
+      if metric_failures is not None:
+        ProcessError(
+            'metric failures',
+            'There were metric failures: %s' % metric_failures)
   except (legacy_page_test.Failure, exceptions.TimeoutException,
           exceptions.LoginException, exceptions.ProfilingException,
           py_utils.TimeoutException):

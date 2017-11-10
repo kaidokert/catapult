@@ -8,6 +8,7 @@ found in the LICENSE file.
 <link rel="import" href="/tracing/metrics/all_metrics.html">
 <link rel="import" href="/tracing/metrics/metric_registry.html">
 <link rel="import" href="/tracing/mre/function_handle.html">
+<link rel="import" href="/tracing/value/diagnostics/generic_set.html">
 <link rel="import" href="/tracing/value/diagnostics/reserved_names.html">
 <link rel="import" href="/tracing/value/histogram_set.html">
 
@@ -151,6 +152,11 @@ tr.exportTo('tr.metrics', function() {
           description: value.description,
         });
       }
+    }
+    const firstHist = histograms.getFirstHistogram();
+    const failureDiag = firstHist.diagnostics.get('failure');
+    if (failureDiag instanceof tr.v.d.GenericSet) {
+      result.addPair('metricFailures', failureDiag.asDict().values);
     }
     result.addPair('scalars', scalarDicts);
   }

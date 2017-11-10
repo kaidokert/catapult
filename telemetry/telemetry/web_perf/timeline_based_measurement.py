@@ -288,7 +288,7 @@ class TimelineBasedMeasurement(story_test.StoryTest):
       if self._tbm_options.GetTimelineBasedMetrics():
         assert not self._tbm_options.GetLegacyTimelineBasedMetrics(), (
             'Specifying both TBMv1 and TBMv2 metrics is not allowed.')
-        self._ComputeTimelineBasedMetrics(results, trace_value)
+        return self._ComputeTimelineBasedMetrics(results, trace_value)
       else:
         # Run all TBMv1 metrics if no other metric is specified
         # (legacy behavior)
@@ -340,6 +340,8 @@ class TimelineBasedMeasurement(story_test.StoryTest):
 
     for d in mre_result.pairs.get('scalars', []):
       results.AddValue(common_value_helpers.TranslateScalarValue(d, page))
+
+    return mre_result.pairs.get('metricFailures')
 
   def _ComputeLegacyTimelineBasedMetrics(self, results, trace_result):
     model = model_module.TimelineModel(trace_result)
