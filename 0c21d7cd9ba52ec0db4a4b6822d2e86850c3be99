@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "1478876c_2810e27a",
+        "filename": "tracing/tracing/value/heap_profiler.py",
+        "patchSetId": 33
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-10T00:38:12Z",
+      "side": 1,
+      "message": "to make the API more friendly to use, I suggest to default html_filename\u003d\"memory_profile.html\". This way user can just import this lib \u0026 run.\n\nheap_profiler.Profile(\u003cmy python Obj\u003e) \u0026 open memory_profile.html to see their object.",
+      "revId": "0c21d7cd9ba52ec0db4a4b6822d2e86850c3be99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "56b98f11_f6d11f29",
         "filename": "tracing/tracing/value/heap_profiler.py",
         "patchSetId": 33
@@ -13,6 +30,23 @@
       "writtenOn": "2017-11-10T00:31:02Z",
       "side": 1,
       "message": "Can you document this using the style in https://google.github.io/styleguide/pyguide.html#Comments?",
+      "revId": "0c21d7cd9ba52ec0db4a4b6822d2e86850c3be99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb6bb6c2_7acad839",
+        "filename": "tracing/tracing/value/heap_profiler.py",
+        "patchSetId": 33
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-10T00:38:12Z",
+      "side": 1,
+      "message": "why are these try catch needed?",
       "revId": "0c21d7cd9ba52ec0db4a4b6822d2e86850c3be99",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
