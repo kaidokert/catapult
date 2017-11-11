@@ -72,8 +72,10 @@ tr.exportTo('tr.metrics.v8', function() {
     runtimeGroupCollection.addSlices(slices);
 
     function addHistogramsForRuntimeGroup(runtimeGroup) {
-      const durationSamples = new tr.v.d.RelatedHistogramBreakdown();
-      const countSamples = new tr.v.d.RelatedHistogramBreakdown();
+      const durationRelatedNames = new tr.v.d.RelatedNameMap();
+      const durationBreakdown = new tr.v.d.Breakdown();
+      const countRelatedNames = new tr.v.d.RelatedNameMap();
+      const countBreakdown = new tr.v.d.Breakdown();
       for (const entry of runtimeGroup.values) {
         const durationSampleHistogram = histograms.createHistogram(
             `${entry.name}:duration`,
@@ -82,8 +84,8 @@ tr.exportTo('tr.metrics.v8', function() {
               binBoundaries: DURATION_CUSTOM_BOUNDARIES,
               summaryOptions: SUMMARY_OPTIONS,
             });
-        durationSamples.set(
-            durationSampleHistogram.name, durationSampleHistogram);
+        durationBreakdown.set(entry.name, convertMicroToMilli_(entry.time));
+        durationRelatedNames.set(entry.name, durationSampleHistogram.name);
 
         const countSampleHistogram = histograms.createHistogram(
             `${entry.name}:count`,
@@ -92,28 +94,31 @@ tr.exportTo('tr.metrics.v8', function() {
               binBoundaries: COUNT_CUSTOM_BOUNDARIES,
               summaryOptions: SUMMARY_OPTIONS,
             });
-        countSamples.set(
-            countSampleHistogram.name, countSampleHistogram);
+        countBreakdown.set(entry.name, entry.count);
+        countRelatedNames.set(
+            entry.name, countSampleHistogram.name);
       }
 
       histograms.createHistogram(
           `${runtimeGroup.name}:duration`,
           tr.b.Unit.byName.timeDurationInMs_smallerIsBetter, {
             value: convertMicroToMilli_(runtimeGroup.time),
-            diagnostics: {samples: durationSamples},
+            diagnostics: {samples: durationBreakdown},
           }, {
             binBoundaries: DURATION_CUSTOM_BOUNDARIES,
             summaryOptions: SUMMARY_OPTIONS,
+            diagnostics: {samples: durationRelatedNames},
           });
 
       histograms.createHistogram(
           `${runtimeGroup.name}:count`,
           tr.b.Unit.byName.count_smallerIsBetter, {
             value: runtimeGroup.count,
-            diagnostics: {samples: countSamples},
+            diagnostics: {samples: countBreakdown},
           }, {
             binBoundaries: COUNT_CUSTOM_BOUNDARIES,
             summaryOptions: SUMMARY_OPTIONS,
+            diagnostics: {samples: countRelatedNames},
           });
     }
 
@@ -148,11 +153,11 @@ tr.exportTo('tr.metrics.v8', function() {
           summaryOptions: SUMMARY_OPTIONS,
         });
 
-    // Record this histogram in RelatedHistogramMap.
+    // Record this histogram in RelatedNameMap.
     if (durationRelatedHistsByGroupName.get(runtimeGroupName) ===
       undefined) {
-      const durationHistogramMap = new tr.v.d.RelatedHistogramMap();
-      durationHistogramMap.set(railStageName, durationHistogram);
+      const durationHistogramMap = new tr.v.d.RelatedNameMap();
+      durationHistogramMap.set(railStageName, durationHistogram.name);
       durationRelatedHistsByGroupName.set(runtimeGroupName,
           durationHistogramMap);
     } else {
@@ -170,9 +175,9 @@ tr.exportTo('tr.metrics.v8', function() {
           summaryOptions: SUMMARY_OPTIONS,
         });
 
-    // Record this histogram in RelatedHistogramMap.
+    // Record this histogram in RelatedNameMap.
     if (countRelatedHistsByGroupName.get(runtimeGroupName) === undefined) {
-      const countHistogramMap = new tr.v.d.RelatedHistogramMap();
+      const countHistogramMap = new tr.v.d.RelatedNameMap();
       countHistogramMap.set(railStageName, countHistogram);
       countRelatedHistsByGroupName.set(runtimeGroupName,
           countHistogramMap);
@@ -227,7 +232,7 @@ tr.exportTo('tr.metrics.v8', function() {
     const countRelatedHistsByGroupName = new Map();
 
     // Compute runtimeStats in each of the UE buckets. Also record the
-    // histograms in RelatedHistogramMap. These histograms are added to the
+    // histograms in RelatedNameMap. These histograms are added to the
     // corresponding histograms in the total bucket as a diagnostic. This keeps
     // the data grouped.
     for (const [name, slicesUE] of v8SlicesBucketOnUEMap) {
