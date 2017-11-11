@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/base/base.html">
+<link rel="import" href="/tracing/ui/base/base.html">
+
+<!--
+  This is very similar to tr-ui-b-dropdown and paper-dropdown-menu,
+  but py_vulcanizer can't handle paper-dropdown-menu, and tr-ui-b-dropdown
+  contains some things that can't be changed easily like its #state.
+-->
+<dom-module id="tr-v-ui-dropdown">
+  <template>
+    <style>
+    button {
+      @apply(--dropdown-button);
+    }
+    button.open {
+      @apply(--dropdown-button-open);
+    }
+    dialog {
+      position: absolute;
+      margin: 0;
+      padding: 1em;
+      border: 1px solid darkgrey;
+      @apply(--dropdown-dialog);
+    }
+    </style>
+
+    <button id="button" on-tap="open">[[label]]</button>
+
+    <dialog id="dialog" on-click="onDialogClick_" on-cancel="close">
+      <content></content>
+    </dialog>
+  </template>
+</dom-module>
+
+<script>
+'use strict';
+tr.exportTo('tr.v.ui', function() {
+  Polymer({
+    is: 'tr-v-ui-dropdown',
+
+    properties: {
+      label: {
+        type: String,
+        value: '',
+      },
+    },
+
+    open(event) {
+      this.$.button.classList.add('open');
+
+      const buttonRect = this.$.button.getBoundingClientRect();
+      this.$.dialog.style.top = buttonRect.bottom + 'px';
+      this.$.dialog.style.left = buttonRect.left + 'px';
+      this.$.dialog.showModal();
+
+      const dialogRect = this.$.dialog.getBoundingClientRect();
+      if (dialogRect.right > window.innerWidth) {
+        this.$.dialog.style.left = Math.max(0, buttonRect.right -
+            dialogRect.width) + 'px';
+      }
+    },
+
+    onDialogClick_(event) {
+      // When the user clicks outside the dialog, close it.
+      // Modal dialogs draw a backdrop over the rest of the screen.
+      // Clicking on that backdrop fires a click event to the dialog element,
+      // but outside the dialog's own bounding rect.
+      const dialogRect = this.$.dialog.getBoundingClientRect();
+      let inside = true;
+      inside &= event.clientX >= dialogRect.left;
+      inside &= event.clientX < dialogRect.right;
+      inside &= event.clientY >= dialogRect.top;
+      inside &= event.clientY < dialogRect.bottom;
+      if (!inside) this.close();
+    },
+
+    close() {
+      this.$.dialog.close();
+      this.$.button.classList.remove('open');
+    },
+  });
+
+  return {
+  };
+});
+</script>
