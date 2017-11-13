@@ -16,6 +16,24 @@
       "revId": "5e22725a1f6fb93bdb5b144465a012107f0c2750",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb2855be_170ed20b",
+        "filename": "tracing/tracing/value/histogram.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1191,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-11-13T05:04:33Z",
+      "side": 1,
+      "message": "This CL moves merged_from from DiagnosticMap.Merge() up to its caller, Histogram.AddHistogram() in order to bring it in line with the JS implementation and so that DiagnosticMap.Merge() doesn\u0027t need to take parent_hist and other_parent_hist.\nhttps://github.com/catapult-project/catapult/blob/master/tracing/tracing/value/diagnostics/diagnostic_map.html#L128\nhttps://github.com/catapult-project/catapult/blob/master/tracing/tracing/value/histogram.html#L579",
+      "parentUuid": "4441d4f2_5b738727",
+      "revId": "5e22725a1f6fb93bdb5b144465a012107f0c2750",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
