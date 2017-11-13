@@ -33,6 +33,24 @@
       "revId": "06f03ae2387b70cef5b3fd993d1216480cdc1251",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "500814e4_7577af04",
+        "filename": "tracing/tracing/value/histogram_grouping.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-11-13T17:31:29Z",
+      "side": 1,
+      "message": "The class docstring below no longer refers to grouping keys as names, which was confusing.\nBY_KEY is now GROUPINGS_BY_KEY.\nDoes that help?",
+      "parentUuid": "a35530db_d51e3321",
+      "revId": "06f03ae2387b70cef5b3fd993d1216480cdc1251",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
