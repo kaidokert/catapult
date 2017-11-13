@@ -47,6 +47,17 @@ tr.exportTo('tr.model.helpers', function() {
         process.labels[0] === 'chrome://tracing';
   };
 
+  /**
+   * Applies custom grouping rules for AsyncSliceGroup.
+   * @return Name and title or undefined if no special rule applies.
+   */
+  ChromeRendererHelper.groupAsyncSlice = function(slice) {
+    if (slice.viewSubGroupTitle.startsWith('WebFrameScheduler.')) {
+      return { name: 'WebFrameTuple', title: 'WebFrame' + slice.id };
+    }
+    return undefined;
+  };
+
   ChromeRendererHelper.prototype = {
     __proto__: tr.model.helpers.ChromeProcessHelper.prototype,
 
