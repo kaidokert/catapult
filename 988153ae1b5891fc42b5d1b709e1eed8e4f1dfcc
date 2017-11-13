@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7c8970a2_033f4794",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2017-11-13T18:12:30Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "291c143d_22c1a05d",
+      "revId": "988153ae1b5891fc42b5d1b709e1eed8e4f1dfcc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d85898dc_36ee0bc3",
         "filename": "tracing/tracing/metrics/android_startup_metric.html",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "988153ae1b5891fc42b5d1b709e1eed8e4f1dfcc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31d09346_30472b04",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2017-11-13T18:12:30Z",
+      "side": 1,
+      "message": "I am trying it, but unfortunately with this approach model.getOrCreateHelper(tr.model.helpers.ChromeModelHelper) returns undefined in test code (even though it works with the real trace). The reasons are not clear to me .. the undefined comes from the condition in model.html:\n\nif (!this.doesHelperGUIDSupportThisModel_[constructor.guid]) {\n   return undefined;\n}\n\nAny clue how to add \u0027GUID support\u0027 for the test model?\n\nIf you want to repro locally, I included it into my last upload.",
+      "parentUuid": "d85898dc_36ee0bc3",
+      "revId": "988153ae1b5891fc42b5d1b709e1eed8e4f1dfcc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "3d56a926_16396d2c",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2017-11-13T18:12:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67af11cf_4b003042",
+      "revId": "988153ae1b5891fc42b5d1b709e1eed8e4f1dfcc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "47ea4734_e1dca047",
         "filename": "tracing/tracing/metrics/android_startup_metric_test.html",
         "patchSetId": 2
@@ -67,6 +121,24 @@
       "revId": "988153ae1b5891fc42b5d1b709e1eed8e4f1dfcc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cada5afc_1ab29425",
+        "filename": "tracing/tracing/metrics/android_startup_metric_test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2017-11-13T18:12:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47ea4734_e1dca047",
+      "revId": "988153ae1b5891fc42b5d1b709e1eed8e4f1dfcc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
