@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "d8264330_3e3727c0",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-11-13T18:26:23Z",
+      "side": 1,
+      "message": "The ChromeModelHelper decides whether it supports a Model by looking for browser and renderer processes, which it recognizes by thread names such as \u0027CrBrowserMain\u0027, \u0027CrRendererMain\u0027, \u0027Compositor\u0027, \u0027Chrome_InProcRendererThread\u0027, etc.\n\nSee power_metric_test.html for an example of how to set thread.name so that ChromeModelHelper recognizes it:\nhttps://github.com/catapult-project/catapult/blob/master/tracing/tracing/metrics/system_health/power_metric_test.html#L84",
+      "parentUuid": "31d09346_30472b04",
+      "revId": "988153ae1b5891fc42b5d1b709e1eed8e4f1dfcc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "67af11cf_4b003042",
         "filename": "tracing/tracing/metrics/android_startup_metric.html",
         "patchSetId": 2
