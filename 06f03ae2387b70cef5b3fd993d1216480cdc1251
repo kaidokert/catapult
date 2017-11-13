@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "007e63ae_cfa179db",
+        "filename": "tracing/tracing/value/histogram.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-11-13T16:37:51Z",
+      "side": 1,
+      "message": "Please make this __str__ instead.",
+      "revId": "06f03ae2387b70cef5b3fd993d1216480cdc1251",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a35530db_d51e3321",
+        "filename": "tracing/tracing/value/histogram_grouping.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-11-13T16:37:51Z",
+      "side": 1,
+      "message": "nit: This dict is confusing to me. I realize that it might be difficult to go back and change this in the JS, but if keys are names, why not just call them names?",
+      "revId": "06f03ae2387b70cef5b3fd993d1216480cdc1251",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
