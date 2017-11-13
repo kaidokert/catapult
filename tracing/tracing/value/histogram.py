@@ -1213,11 +1213,15 @@ class Histogram(object):
       self._summary_options[key] = value
 
   def Clone(self):
-    return Histogram.FromDict(self.AsDict())
-
-  def CloneEmpty(self):
-    return Histogram(self.name, self.unit, HistogramBinBoundaries.FromDict(
-        self._bin_boundaries_dict))
+    boundaries = HistogramBinBoundaries.FromDict(self._bin_boundaries_dict)
+    hist = Histogram(self.name, self.unit, boundaries)
+    for stat, option in self._summary_options.iteritems():
+      if stat in ['percentile', 'iprs']:
+        hist._summary_options[stat] = list(option)
+      else:
+        hist._summary_options[stat] = option
+    hist.AddHistogram(self)
+    return hist
 
   @property
   def statistics_scalars(self):
