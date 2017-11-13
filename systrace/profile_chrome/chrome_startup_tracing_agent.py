@@ -8,6 +8,7 @@ import py_utils
 import re
 
 from devil.android import flag_changer
+from devil.android.constants import chrome
 from devil.android.perf import cache_control
 from devil.android.sdk import intent
 
@@ -49,6 +50,12 @@ class ChromeStartupTracingAgent(tracing_agents.TracingAgent):
           action='android.intent.action.MAIN',
           package=self._package_info.package,
           activity=self._package_info.activity)
+    # crbug.com/782425: start tracing for WebApks.
+    elif not 'chrome' in self._package_info.package:
+      launch_intent = intent.Intent(
+          package=self._package_info.package,
+          activity=self._package_info.activity,
+          data=self._url)
     else:
       launch_intent = intent.Intent(
           package=self._package_info.package,
@@ -121,9 +128,17 @@ def add_options(parser):
   options.add_option('--cold', help='Flush the OS page cache before starting '
                      'the browser. Note that this require a device with root '
                      'access.', default=False, action='store_true')
+  options.add_option('--component', help='Specify the component name with '
+                     'package name prefix to create an explicit intent, '
+                     'such as com.example.app/com.example.app.ExampleActivity.')
   return options
 
 def get_config(options):
+  if options.component and '/' in options.component:
+    options.package, options.activity = options.component.split('/', 1)
+    options.package_info = chrome.PackageInfo(
+        options.package, options.activity, options.package_info.cmdline_file,
+        options.package_info.devtools_socket)
   return ChromeStartupConfig(options.device, options.package_info,
                              options.cold, options.url,
                              options.chrome_categories, options.trace_time)
