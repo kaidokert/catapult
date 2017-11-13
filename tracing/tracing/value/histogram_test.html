@@ -40,6 +40,36 @@ tr.b.unittest.testSuite(function() {
     }
   }
 
+  test('clone', function() {
+    const boundaries = tr.v.HistogramBinBoundaries.createLinear(0, 1.0, 10);
+    const hist = new tr.v.Histogram('nomenclature', unitlessNumber, boundaries);
+    hist.description = 'Once upon a time';
+    hist.shortName = 'nom';
+    hist.maxNumSampleValues = 42;
+    hist.customizeSummaryOptions({avg: false, percentile: [0.9]});
+    hist.diagnostics.set('how', new tr.v.d.GenericSet(['method']));
+    hist.addSample(0.5, {diag: new tr.v.d.GenericSet(['value'])});
+    const clone = hist.clone();
+
+    assert.notEqual(hist.guid, clone.guid);
+    assert.strictEqual(clone.name, 'nomenclature');
+    assert.strictEqual(clone.unit, unitlessNumber);
+    assert.lengthOf(clone.allBins, 12);
+    assert.strictEqual(clone.description, 'Once upon a time');
+    assert.strictEqual(clone.maxNumSampleValues, 42);
+    assert.strictEqual(clone.summaryOptions.get('avg'), false);
+    assert.strictEqual(tr.b.getOnlyElement(
+        clone.summaryOptions.get('percentile')), 0.9);
+    assert.strictEqual(clone.shortName, 'nom');
+    assert.strictEqual(clone.average, 0.5);
+    assert.strictEqual(clone.numValues, 1);
+    assert.strictEqual(tr.b.getOnlyElement(clone.diagnostics.get('how')),
+        'method');
+    const diagnostics = tr.b.getOnlyElement(
+        clone.getBinForValue(clone.average).diagnosticMaps);
+    assert.strictEqual(tr.b.getOnlyElement(diagnostics.get('diag')), 'value');
+  });
+
   test('createWithNameUnitNumber', function() {
     const hist = tr.v.Histogram.create('a', unitlessNumber, 1);
     assert.strictEqual(hist.name, 'a');
