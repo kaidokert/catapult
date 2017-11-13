@@ -847,6 +847,9 @@ tr.exportTo('tr.v', function() {
       const binBoundaries = HistogramBinBoundaries.fromDict(
           this.binBoundariesDict_);
       const hist = new Histogram(this.name, this.unit, binBoundaries);
+      hist.description = this.description;
+      hist.shortName = this.shortName;
+      hist.maxNumSampleValues = this.maxNumSampleValues;
       for (const [stat, option] of this.summaryOptions) {
         // Copy arrays, but not ipr Ranges.
         if (stat === 'percentile' || stat === 'iprs') {
