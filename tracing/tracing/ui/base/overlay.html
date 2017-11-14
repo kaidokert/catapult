@@ -10,138 +10,113 @@ found in the LICENSE file.
 <link rel="import" href="/tracing/ui/base/ui.html">
 <link rel="import" href="/tracing/ui/base/utils.html">
 
-<template id="overlay-template">
-  <style>
-    overlay-mask {
-      left: 0;
-      padding: 8px;
-      position: absolute;
-      top: 0;
-      z-index: 1000;
-      font-family: sans-serif;
-      -webkit-justify-content: center;
-      background: rgba(0, 0, 0, 0.8);
-      display: flex;
-      height: 100%;
-      left: 0;
-      position: fixed;
-      top: 0;
-      width: 100%;
-    }
-    overlay-mask:focus {
-      outline: none;
-    }
-    overlay-vertical-centering-container {
-      -webkit-justify-content: center;
-      flex-direction: column;
-      display: flex;
-    }
-    overlay-frame {
-      z-index: 1100;
-      background: rgb(255, 255, 255);
-      border: 1px solid #ccc;
-      margin: 75px;
-      display: flex;
-      flex-direction: column;
-      min-height: 0;
-    }
-    title-bar {
-      -webkit-align-items: center;
-      flex-direction: row;
-      border-bottom: 1px solid #ccc;
-      background-color: #ddd;
-      display: flex;
-      padding: 5px;
-      flex: 0 0 auto;
-    }
-    title {
-      display: inline;
-      font-weight: bold;
-      flex: 1 1 auto;
-    }
-    close-button {
-      -webkit-align-self: flex-end;
-      border: 1px solid #eee;
-      background-color: #999;
-      font-size: 10pt;
-      font-weight: bold;
-      padding: 2px;
-      text-align: center;
-      width: 16px;
-    }
-    close-button:hover {
-      background-color: #ddd;
-      border-color: black;
-      cursor: pointer;
-    }
-    overlay-content {
-      display: flex;
-      flex: 1 1 auto;
-      flex-direction: column;
-      overflow-y: auto;
-      padding: 10px;
-      min-width: 300px;
-      min-height: 0;
-    }
-    button-bar {
-      -webkit-align-items: baseline;
-      border-top: 1px solid #ccc;
-      display: flex;
-      flex: 0 0 auto;
-      flex-direction: row-reverse;
-      padding: 4px;
-    }
-  </style>
+<dom-module id="tr-ui-b-overlay">
+  <template>
+    <style>
+      overlay-mask {
+        left: 0;
+        padding: 8px;
+        position: absolute;
+        top: 0;
+        z-index: 1000;
+        font-family: sans-serif;
+        -webkit-justify-content: center;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        height: 100%;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+      }
+      overlay-mask:focus {
+        outline: none;
+      }
+      overlay-vertical-centering-container {
+        -webkit-justify-content: center;
+        flex-direction: column;
+        display: flex;
+      }
+      #overlay_frame {
+        z-index: 1100;
+        background: rgb(255, 255, 255);
+        border: 1px solid #ccc;
+        margin: 75px;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+      }
+      #title_bar {
+        -webkit-align-items: center;
+        flex-direction: row;
+        border-bottom: 1px solid #ccc;
+        background-color: #ddd;
+        display: flex;
+        padding: 5px;
+        flex: 0 0 auto;
+      }
+      #title {
+        font-weight: bold;
+        flex: 1 1 auto;
+      }
+      close-button {
+        -webkit-align-self: flex-end;
+        border: 1px solid #eee;
+        background-color: #999;
+        font-size: 10pt;
+        font-weight: bold;
+        padding: 2px;
+        text-align: center;
+        width: 16px;
+      }
+      close-button:hover {
+        background-color: #ddd;
+        border-color: black;
+        cursor: pointer;
+      }
+      overlay-content {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        overflow-y: auto;
+        padding: 10px;
+        min-width: 300px;
+        min-height: 0;
+      }
+      #button_bar {
+        -webkit-align-items: baseline;
+        border-top: 1px solid #ccc;
+        display: flex;
+        flex: 0 0 auto;
+        flex-direction: row-reverse;
+        padding: 4px;
+      }
+    </style>
 
-  <overlay-mask>
-    <overlay-vertical-centering-container>
-      <overlay-frame>
-        <title-bar>
-          <title></title>
-          <close-button>&#x2715</close-button>
-        </title-bar>
-        <overlay-content>
-          <slot></slot>
-        </overlay-content>
-        <button-bar></button-bar>
-      </overlay-frame>
-    </overlay-vertical-centering-container>
-  </overlay-mask>
-</template>
+    <overlay-mask>
+      <overlay-vertical-centering-container>
+        <div id="overlay_frame">
+          <div id="title_bar">
+            <span id="title"></span>
+            <close-button id="close_button">&#x2715</close-button>
+          </div>
+          <overlay-content>
+            <slot></slot>
+          </overlay-content>
+          <div id="button_bar"></div>
+        </div>
+      </overlay-vertical-centering-container>
+    </overlay-mask>
+  </template>
+</dom-module>
 
 <script>
 'use strict';
-
-/**
- * @fileoverview Implements an element that is hidden by default, but
- * when shown, dims and (attempts to) disable the main document.
- *
- * You can turn any div into an overlay. Note that while an
- * overlay element is shown, its parent is changed. Hiding the overlay
- * restores its original parentage.
- *
- */
 tr.exportTo('tr.ui.b', function() {
-  if (tr.isHeadless) return {};
+  Polymer({
+    is: 'tr-ui-b-overlay',
 
-  const THIS_DOC = document.currentScript.ownerDocument;
-
-  /**
-   * Creates a new overlay element. It will not be visible until shown.
-   * @constructor
-   * @extends {HTMLDivElement}
-   */
-  const Overlay = tr.ui.b.define('overlay');
-
-  Overlay.prototype = {
-    __proto__: HTMLDivElement.prototype,
-
-    /**
-     * Initializes the overlay element.
-     */
-    decorate() {
-      Polymer.dom(this).classList.add('overlay');
-
+    created() {
       this.parentEl_ = this.ownerDocument.body;
 
       this.visible_ = false;
@@ -154,26 +129,18 @@ tr.exportTo('tr.ui.b', function() {
       this.onClose_ = this.onClose_.bind(this);
 
       this.addEventListener('visible-change',
-          tr.ui.b.Overlay.prototype.onVisibleChange_.bind(this), true);
+          this.onVisibleChange_.bind(this), true);
+    },
 
-      // Setup the shadow root
-      const createShadowRoot = this.createShadowRoot ||
-          this.webkitCreateShadowRoot;
-      this.shadow_ = createShadowRoot.call(this);
-      Polymer.dom(this.shadow_).appendChild(
-          tr.ui.b.instantiateTemplate('#overlay-template', THIS_DOC));
+    ready() {
+      this.$.close_button.addEventListener('click', this.onClose_);
 
-      this.closeBtn_ = Polymer.dom(this.shadow_).querySelector('close-button');
-      this.closeBtn_.addEventListener('click', this.onClose_);
-
-      Polymer.dom(this.shadow_)
-          .querySelector('overlay-frame')
-          .addEventListener('click', this.onClick_);
+      this.$.overlay_frame.addEventListener('click', this.onClick_);
 
       this.observer_ = new WebKitMutationObserver(
           this.didButtonBarMutate_.bind(this));
       this.observer_.observe(
-          Polymer.dom(this.shadow_).querySelector('button-bar'),
+          this.$.button_bar,
           { childList: true });
 
       // title is a variable on regular HTMLElements. However, we want to
@@ -181,24 +148,22 @@ tr.exportTo('tr.ui.b', function() {
       Object.defineProperty(
           this, 'title', {
             get() {
-              return Polymer.dom(Polymer.dom(this.shadow_)
-                  .querySelector('title')).textContent;
+              return this.$.title.textContent;
             },
             set(title) {
-              Polymer.dom(Polymer.dom(this.shadow_).querySelector('title'))
-                  .textContent = title;
+              this.$.title.textContent = title;
             }
           });
     },
 
     set userCanClose(userCanClose) {
       this.userCanClose_ = userCanClose;
-      this.closeBtn_.style.display =
+      this.$.close_button.style.display =
           userCanClose ? 'block' : 'none';
     },
 
     get buttons() {
-      return Polymer.dom(this.shadow_).querySelector('button-bar');
+      return this.$.button_bar;
     },
 
     get visible() {
@@ -223,7 +188,7 @@ tr.exportTo('tr.ui.b', function() {
       if (this.userCanClose_) {
         this.addEventListener('keydown', this.onKeyDown_.bind(this));
         this.addEventListener('click', this.onDocumentClick_.bind(this));
-        this.closeBtn_.addEventListener('click', this.onClose_);
+        this.$.close_button.addEventListener('click', this.onClose_);
       }
 
       this.parentEl_.addEventListener('focusin', this.onFocusIn_);
@@ -234,7 +199,7 @@ tr.exportTo('tr.ui.b', function() {
       const elList =
           Polymer.dom(this).querySelectorAll('button, input, list, select, a');
       if (elList.length > 0) {
-        if (elList[0] === this.closeBtn_) {
+        if (elList[0] === this.$.close_button) {
           if (elList.length > 1) return elList[1].focus();
         } else {
           return elList[0].focus();
@@ -248,8 +213,8 @@ tr.exportTo('tr.ui.b', function() {
 
       this.parentEl_.removeEventListener('focusin', this.onFocusIn_);
 
-      if (this.closeBtn_) {
-        this.closeBtn_.removeEventListener('click', this.onClose_);
+      if (this.$.close_button) {
+        this.$.close_button.removeEventListener('click', this.onClose_);
       }
 
       document.removeEventListener('keydown', this.onKeyDown_);
@@ -288,10 +253,10 @@ tr.exportTo('tr.ui.b', function() {
     didButtonBarMutate_(e) {
       const hasButtons = this.buttons.children.length > 0;
       if (hasButtons) {
-        Polymer.dom(this.shadow_).querySelector('button-bar').style.display =
+        this.$.button_bar.style.display =
             undefined;
       } else {
-        Polymer.dom(this.shadow_).querySelector('button-bar').style.display =
+        this.$.button_bar.style.display =
             'none';
       }
     },
@@ -319,7 +284,11 @@ tr.exportTo('tr.ui.b', function() {
 
       this.onClose_(e);
     }
-  };
+  });
+
+  function Overlay() {
+    return document.createElement('tr-ui-b-overlay');
+  }
 
   Overlay.showError = function(msg, opt_err) {
     const o = new Overlay();

@@ -10,185 +10,181 @@ found in the LICENSE file.
 <link rel="import" href="/tracing/ui/base/overlay.html">
 <link rel="import" href="/tracing/ui/base/utils.html">
 
-<template id="record-selection-dialog-template">
-  <style>
-  .categories-column-view {
-    display: flex;
-    flex-direction: column;
-    font-family: sans-serif;
-    max-width: 640px;
-    min-height: 0;
-    min-width: 0;
-    opacity: 1;
-    transition: max-height 1s ease, max-width 1s ease, opacity 1s ease;
-    will-change: opacity;
-  }
+<dom-module id="tr-ui-e-record-selection-dialog">
+  <template>
+    <style>
+    #categories_column_view {
+      display: flex;
+      flex-direction: column;
+      font-family: sans-serif;
+      max-width: 640px;
+      min-height: 0;
+      min-width: 0;
+      opacity: 1;
+      transition: max-height 1s ease, max-width 1s ease, opacity 1s ease;
+      will-change: opacity;
+    }
 
-  .categories-column-view-hidden {
-    max-height: 0;
-    max-width: 0;
-    opacity: 0;
-    overflow: hidden;
-    display: none;
-  }
+    .categories-column-view-hidden {
+      max-height: 0;
+      max-width: 0;
+      opacity: 0;
+      overflow: hidden;
+      display: none;
+    }
 
-  .categories-selection {
-    display: flex;
-    flex-direction: row;
-  }
+    .categories-selection {
+      display: flex;
+      flex-direction: row;
+    }
 
-  .category-presets {
-    padding: 4px;
-  }
+    #category_presets {
+      padding: 4px;
+    }
 
-  .category-description {
-    color: #aaa;
-    font-size: small;
-    max-height: 1em;
-    opacity: 1;
-    padding-left: 4px;
-    padding-right: 4px;
-    text-align: right;
-    transition: max-height 1s ease, opacity 1s ease;
-    will-change: opacity;
-  }
+    #category_description {
+      color: #aaa;
+      font-size: small;
+      max-height: 1em;
+      opacity: 1;
+      padding-left: 4px;
+      padding-right: 4px;
+      text-align: right;
+      transition: max-height 1s ease, opacity 1s ease;
+      will-change: opacity;
+    }
 
-  .category-description-hidden {
-    max-height: 0;
-    opacity: 0;
-  }
+    .category-description-hidden {
+      max-height: 0;
+      opacity: 0;
+    }
 
-  .default-enabled-categories,
-  .default-disabled-categories {
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-    padding: 4px;
-    width: 300px;
-  }
+    #default_enabled_categories,
+    #default_disabled_categories {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      padding: 4px;
+      width: 300px;
+    }
 
-  .default-enabled-categories > div,
-  .default-disabled-categories > div {
-    padding: 4px;
-  }
+    #default_enabled_categories > div,
+    #default_disabled_categories > div {
+      padding: 4px;
+    }
 
-  .tracing-modes {
-    flex: 1 0 auto;
-    display: flex;
-    flex-direction: reverse;
-    padding: 4px;
-    border-bottom: 2px solid #ddd;
-    border-top: 2px solid #ddd;
-  }
+    #tracing_modes {
+      flex: 1 0 auto;
+      display: flex;
+      flex-direction: reverse;
+      padding: 4px;
+      border-bottom: 2px solid #ddd;
+      border-top: 2px solid #ddd;
+    }
 
-  .default-disabled-categories {
-    border-left: 2px solid #ddd;
-  }
+    #default_disabled_categories {
+      border-left: 2px solid #ddd;
+    }
 
-  .warning-default-disabled-categories {
-    display: inline-block;
-    font-weight: bold;
-    text-align: center;
-    color: #BD2E2E;
-    width: 2.0ex;
-    height: 2.0ex;
-    border-radius: 2.0ex;
-    border: 1px solid #BD2E2E;
-  }
+    #warning_default_disabled_categories {
+      display: inline-block;
+      font-weight: bold;
+      text-align: center;
+      color: #BD2E2E;
+      width: 2.0ex;
+      height: 2.0ex;
+      border-radius: 2.0ex;
+      border: 1px solid #BD2E2E;
+    }
 
-  .categories {
-    font-size: 80%;
-    padding: 10px;
-    flex: 1 1 auto;
-  }
+    .categories {
+      font-size: 80%;
+      padding: 10px;
+      flex: 1 1 auto;
+    }
 
-  .group-selectors {
-    font-size: 80%;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 6px;
-    flex: 0 0 auto;
-  }
+    .group-selectors {
+      font-size: 80%;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 6px;
+      flex: 0 0 auto;
+    }
 
-  .group-selectors button {
-    padding: 1px;
-  }
+    .group-selectors button {
+      padding: 1px;
+    }
 
-  .record-selection-dialog .labeled-option-group {
-    flex: 0 0 auto;
-    flex-direction: column;
-    display: flex;
-  }
+    .record-selection-dialog .labeled-option-group {
+      flex: 0 0 auto;
+      flex-direction: column;
+      display: flex;
+    }
 
-  .record-selection-dialog .labeled-option {
-    border-top: 5px solid white;
-    border-bottom: 5px solid white;
-  }
+    .record-selection-dialog .labeled-option {
+      border-top: 5px solid white;
+      border-bottom: 5px solid white;
+    }
 
-  .record-selection-dialog .edit-categories {
-    padding-left: 6px;
-  }
+    .record-selection-dialog .edit-categories {
+      padding-left: 6px;
+    }
 
-  .record-selection-dialog .edit-categories:after {
-    padding-left: 15px;
-    font-size: 125%;
-  }
+    .record-selection-dialog .edit-categories:after {
+      padding-left: 15px;
+      font-size: 125%;
+    }
 
-  .record-selection-dialog .labeled-option-group:not(.categories-expanded)
-      .edit-categories:after {
-    content: '\25B8'; /* Right triangle */
-  }
+    .record-selection-dialog .labeled-option-group:not(.categories-expanded)
+        .edit-categories:after {
+      content: '\25B8'; /* Right triangle */
+    }
 
-  .record-selection-dialog .labeled-option-group.categories-expanded
-      .edit-categories:after {
-    content: '\25BE'; /* Down triangle */
-  }
+    .record-selection-dialog .labeled-option-group.categories-expanded
+        .edit-categories:after {
+      content: '\25BE'; /* Down triangle */
+    }
 
-  </style>
+    </style>
 
-  <div class="record-selection-dialog">
-    <tr-ui-b-info-bar-group></tr-ui-b-info-bar-group>
-    <div class="category-presets">
-    </div>
-    <div class="category-description"></div>
-    <div class="categories-column-view">
-      <div class="tracing-modes"></div>
-      <div class="categories-selection">
-        <div class="default-enabled-categories">
-          <div>Record&nbsp;Categories</div>
-          <div class="group-selectors">
-            Select
-            <button class="all-btn">All</button>
-            <button class="none-btn">None</button>
-          </div>
-          <div class="categories"></div>
+    <tr-ui-b-overlay id="overlay">
+      <div class="record-selection-dialog">
+        <tr-ui-b-info-bar-group></tr-ui-b-info-bar-group>
+        <div id="category_presets">
         </div>
-        <div class="default-disabled-categories">
-          <div>Disabled&nbsp;by&nbsp;Default&nbsp;Categories
-            <a class="warning-default-disabled-categories">!</a>
+        <div id="category_description"></div>
+        <div id="categories_column_view">
+          <div id="tracing_modes"></div>
+          <div class="categories-selection">
+            <div id="default_enabled_categories">
+              <div>Record&nbsp;Categories</div>
+              <div class="group-selectors">
+                Select
+                <button class="all-btn">All</button>
+                <button class="none-btn">None</button>
+              </div>
+              <div class="categories"></div>
+            </div>
+            <div id="default_disabled_categories">
+              <div>Disabled&nbsp;by&nbsp;Default&nbsp;Categories
+                <a id="warning_default_disabled_categories">!</a>
+              </div>
+              <div class="group-selectors">
+                Select
+                <button class="all-btn">All</button>
+                <button class="none-btn">None</button>
+              </div>
+              <div class="categories"></div>
+            </div>
           </div>
-          <div class="group-selectors">
-            Select
-            <button class="all-btn">All</button>
-            <button class="none-btn">None</button>
-          </div>
-          <div class="categories"></div>
         </div>
       </div>
-    </div>
-  </div>
-</template>
+    </tr-ui-b-overlay>
+  </template>
+</dom-module>
 
 <script>
 'use strict';
-
-/**
- * @fileoverview RecordSelectionDialog presents the available categories
- * to be enabled/disabled during tr.c.
- */
 tr.exportTo('tr.ui.e.about_tracing', function() {
-  const THIS_DOC = document.currentScript.ownerDocument;
-  const RecordSelectionDialog = tr.ui.b.define('div');
-
   const DEFAULT_PRESETS = [
     {title: 'Web developer',
       categoryFilter: ['blink', 'cc', 'netlog', 'renderer.scheduler',
@@ -222,19 +218,11 @@ tr.exportTo('tr.ui.e.about_tracing', function() {
   const DEFAULT_SYSTEM_TRACING = true;
   const DEFAULT_SAMPLING_TRACING = false;
 
-  RecordSelectionDialog.prototype = {
-    __proto__: tr.ui.b.Overlay.prototype,
+  Polymer({
+    is: 'tr-ui-e-record-selection-dialog',
 
-    decorate() {
-      tr.ui.b.Overlay.prototype.decorate.call(this);
-      this.title = 'Record a new trace...';
-
-      Polymer.dom(this).classList.add('record-dialog-overlay');
-
-      const node =
-          tr.ui.b.instantiateTemplate('#record-selection-dialog-template',
-              THIS_DOC);
-      Polymer.dom(this).appendChild(node);
+    ready() {
+      this.$.overlay.title = 'Record a new trace...';
 
       this.recordButtonEl_ = document.createElement('button');
       Polymer.dom(this.recordButtonEl_).textContent = 'Record';
@@ -242,12 +230,9 @@ tr.exportTo('tr.ui.e.about_tracing', function() {
           'click',
           this.onRecordButtonClicked_.bind(this));
       this.recordButtonEl_.style.fontSize = '110%';
-      Polymer.dom(this.buttons).appendChild(this.recordButtonEl_);
+      this.$.overlay.buttons.appendChild(this.recordButtonEl_);
 
-      this.categoriesView_ = Polymer.dom(this).querySelector(
-          '.categories-column-view');
-      this.presetsEl_ = Polymer.dom(this).querySelector('.category-presets');
-      Polymer.dom(this.presetsEl_).appendChild(tr.ui.b.createOptionGroup(
+      this.$.category_presets.appendChild(tr.ui.b.createOptionGroup(
           this, 'currentlyChosenPreset',
           'about_tracing.record_selection_dialog_preset',
           DEFAULT_PRESETS[0].categoryFilter,
@@ -268,30 +253,25 @@ tr.exportTo('tr.ui.e.about_tracing', function() {
           undefined, undefined,
           'recordSelectionDialog.useSampling', DEFAULT_SAMPLING_TRACING,
           'State sampling');
-      this.tracingModesContainerEl_ = Polymer.dom(this).querySelector(
-          '.tracing-modes');
-      Polymer.dom(this.tracingModesContainerEl_).appendChild(
+      Polymer.dom(this.$.tracing_modes).appendChild(
           this.tracingRecordModeSltr_);
-      Polymer.dom(this.tracingModesContainerEl_).appendChild(
+      Polymer.dom(this.$.tracing_modes).appendChild(
           this.systemTracingBn_);
-      Polymer.dom(this.tracingModesContainerEl_).appendChild(
+      Polymer.dom(this.$.tracing_modes).appendChild(
           this.samplingTracingBn_);
 
       this.enabledCategoriesContainerEl_ =
           Polymer.dom(this).querySelector(
-              '.default-enabled-categories .categories');
+              '#default_enabled_categories .categories');
 
       this.disabledCategoriesContainerEl_ =
           Polymer.dom(this).querySelector(
-              '.default-disabled-categories .categories');
+              '#default_disabled_categories .categories');
 
-      this.createGroupSelectButtons_(
-          Polymer.dom(this).querySelector('.default-enabled-categories'));
-      this.createGroupSelectButtons_(
-          Polymer.dom(this).querySelector('.default-disabled-categories'));
+      this.createGroupSelectButtons_(this.$.default_enabled_categories);
+      this.createGroupSelectButtons_(this.$.default_disabled_categories);
       this.createDefaultDisabledWarningDialog_(
-          Polymer.dom(this).querySelector(
-              '.warning-default-disabled-categories'));
+          this.$.warning_default_disabled_categories);
       this.editCategoriesOpened_ = false;
 
       // TODO(chrishenry): When used with tr.ui.b.Overlay (such as in
@@ -382,7 +362,7 @@ tr.exportTo('tr.ui.e.about_tracing', function() {
     },
 
     updateManualSelectionView_() {
-      const classList = Polymer.dom(this.categoriesView_).classList;
+      const classList = Polymer.dom(this.$.categories_column_view).classList;
       if (!this.usingPreset_()) {
         classList.remove('categories-column-view-hidden');
       } else {
@@ -440,8 +420,7 @@ tr.exportTo('tr.ui.e.about_tracing', function() {
     },
 
     updatePresetDescription_() {
-      const description = Polymer.dom(this).querySelector(
-          '.category-description');
+      const description = this.$.category_description;
       if (this.usingPreset_()) {
         description.innerText = this.currentlyChosenPreset_;
         Polymer.dom(description).classList.remove(
@@ -619,8 +598,7 @@ tr.exportTo('tr.ui.e.about_tracing', function() {
         const categoryEl = this.querySelector(
             '#category-preset-Manually-select-settings');
         categoryEl.checked = true;
-        const description = Polymer.dom(this).querySelector(
-            '.category-description');
+        const description = this.$.category_description;
         description.innerText = '';
         Polymer.dom(description).classList.add('category-description-hidden');
       }
@@ -679,7 +657,11 @@ tr.exportTo('tr.ui.e.about_tracing', function() {
       }
       warningLink.onclick = onClickHandler.bind(this);
     }
-  };
+  });
+
+  function RecordSelectionDialog() {
+    return document.createElement('tr-ui-e-record-selection-dialog');
+  }
 
   return {
     RecordSelectionDialog,
