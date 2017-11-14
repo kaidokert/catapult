@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "421dd04f_542eed06",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-11-14T19:58:51Z",
+      "side": 1,
+      "message": "You can remove \", {}\" because the last parameter `opt_options` is optional.",
+      "revId": "75c88cbc0dcda42db9351f9c3d2da8e8434ffec3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fdc67eb_c18db0a2",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-11-14T19:58:51Z",
+      "side": 1,
+      "message": "Please rename this to `chromeHelper` to be consistent with the other users of ChromeModelHelper.",
+      "revId": "75c88cbc0dcda42db9351f9c3d2da8e8434ffec3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c284411_5d246b69",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-11-14T19:58:51Z",
+      "side": 1,
+      "message": "We like to early-return in order to keep indentation levels down:\nif (!chromeBrowserHelper) return;",
+      "revId": "75c88cbc0dcda42db9351f9c3d2da8e8434ffec3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5db208f_332d383d",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-11-14T19:58:51Z",
+      "side": 1,
+      "message": "Please use ES6 for..of:\nfor (const helper of chromeBrowserHelper.browserHelpers) {",
+      "revId": "75c88cbc0dcda42db9351f9c3d2da8e8434ffec3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7637fda_9bfa3cdc",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-11-14T19:58:51Z",
+      "side": 1,
+      "message": "Adding a RelatedEventSet diagnostic will allow the metrics side panel (and eventually results.html and the dashboard) to link directly to `ev`:\nmessageLoopStartHistogram.addSample(ev.duration, {\n  events: new tr.v.d.RelatedEventSet([ev]),\n});",
+      "revId": "75c88cbc0dcda42db9351f9c3d2da8e8434ffec3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
