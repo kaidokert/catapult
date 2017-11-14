@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4cbe05ca_cfe011f5",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1112850
+      },
+      "writtenOn": "2017-11-14T22:30:59Z",
+      "side": 1,
+      "message": "Can we make WebApk a supported browser? What is its package name and component name?\nhttps://cs.chromium.org/chromium/src/third_party/catapult/devil/devil/android/constants/chrome.py",
+      "revId": "070c094f87ff28032a4866c5e98c84d1d8daf9de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b74f20d_d8088d2d",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1112850
+      },
+      "writtenOn": "2017-11-14T22:30:59Z",
+      "side": 1,
+      "message": "This is a little hacky for WebApk case. Can we support WebApk like other browser packages?",
+      "range": {
+        "startLine": 137,
+        "startChar": 2,
+        "endLine": 141,
+        "endChar": 45
+      },
+      "revId": "070c094f87ff28032a4866c5e98c84d1d8daf9de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
