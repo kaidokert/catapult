@@ -212,18 +212,14 @@ class LinuxFindTest(fake_filesystem_unittest.TestCase):
     self._finder_options.browser_executable = '/foo/chrome'
     self.assertIn('exact', self.DoFindAllTypes())
 
-  def testErrorWithNonExistent(self):
+  def testNoErrorWithNonExistent(self):
     self._finder_options.browser_executable = '/foo/chrome.apk'
-    with self.assertRaises(exceptions.PathMissingError) as cm:
-      self.DoFindAllTypes()
-    self.assertIn('does not exist or is not executable', str(cm.exception))
+    self.assertNotIn('exact', self.DoFindAllTypes())
 
-  def testErrorWithNonExecutable(self):
+  def testNoErrorWithNonExecutable(self):
     self.fs.CreateFile('/foo/another_browser')
     self._finder_options.browser_executable = '/foo/another_browser'
-    with self.assertRaises(exceptions.PathMissingError) as cm:
-      self.DoFindAllTypes()
-    self.assertIn('does not exist or is not executable', str(cm.exception))
+    self.assertNotIn('exact', self.DoFindAllTypes())
 
   def testFindAllWithInstalled(self):
     official_names = ['chrome', 'chrome-beta', 'chrome-unstable']
