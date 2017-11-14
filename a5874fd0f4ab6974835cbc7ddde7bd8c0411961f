@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ec57d62_63e05ad4",
+        "filename": "tracing/tracing/metrics/metric_map_function.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-11-14T19:43:16Z",
+      "side": 1,
+      "message": "Should the metrics side panel pass addFailureCb, or should runMetrics allow addFailureCb to be undefined?",
+      "revId": "a5874fd0f4ab6974835cbc7ddde7bd8c0411961f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
