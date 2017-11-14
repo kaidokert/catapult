@@ -35,16 +35,19 @@ tr.exportTo('tr.metrics', function() {
 
     const histograms = new tr.v.HistogramSet();
 
-    for (const metricName of metricNames) {
-      const metric = tr.metrics.MetricRegistry.findTypeInfoWithName(metricName);
-      if (metric === undefined) {
-        throw new Error(`"${metricName}" is not a registered metric.`);
+    try {
+      for (const metricName of metricNames) {
+        const metric = tr.metrics.MetricRegistry.findTypeInfoWithName(
+            metricName);
+        if (metric === undefined) {
+          throw new Error(`"${metricName}" is not a registered metric.`);
+        }
+        validateTraceCategories(metric.metadata.requiredCategories, categories);
+        metric.constructor(histograms, model, options);
       }
-      validateTraceCategories(metric.metadata.requiredCategories, categories);
-      metric.constructor(histograms, model, options);
+    } finally {
+      validateDiagnosticNames(histograms);
     }
-
-    validateDiagnosticNames(histograms);
 
     return histograms;
   }
@@ -137,7 +140,13 @@ tr.exportTo('tr.metrics', function() {
    * @param {!Array.<string>} options.metrics
    */
   function metricMapFunction(result, model, options) {
-    const histograms = runMetrics(model, options);
+    try {
+      const histograms = runMetrics(model, options);
+    } catch (e) {
+      result.addFailure(new Failure(
+          undefined, 'metricMapFunction', model.canonicalUrl, e.typeName,
+          e.message, e.stack));
+    }
     addTelemetryInfo(histograms, model);
 
     result.addPair('histograms', histograms.asDicts());
