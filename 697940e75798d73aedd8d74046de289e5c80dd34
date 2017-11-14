@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1f19c746_c46ebde6",
+        "filename": "tracing/tracing/model/async_slice_group.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1149089
+      },
+      "writtenOn": "2017-11-14T10:32:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7550439c_9186a233",
+      "revId": "697940e75798d73aedd8d74046de289e5c80dd34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a3a73222_5e441d53",
         "filename": "tracing/tracing/model/async_slice_group.html",
         "patchSetId": 5
@@ -30,6 +48,24 @@
       "writtenOn": "2017-11-13T23:46:53Z",
       "side": 1,
       "message": "Yeah, sorry, this is a layer violation. :-)\nI\u0027m not sure yet what the right way to structure this is. I have one idea. Can I ask you to prove it out? Let me know if you think it might work, and I\u0027ll be happy to consider alternatives. I suggest organizing notes about this in a design doc, doesn\u0027t have to be super formal or take up a lot of time with formatting, but it would be nice to be able to refer back to it if anybody has any questions about how this feature works.\n\nHere\u0027s my idea.\nOne of the many steps in the trace import process involves running Auditors. These are hooks that can add data to the Model. I recommend skimming tracing/importer/import.html and seeing where the Auditors are created as well as where they are run in relation to importEvents, createSubSlices, etc. I recommend skimming all of the Auditors, too, but I want to bring your attention to the ChromeAuditor in particular. This class does nothing if ChromeModelHelper doesn\u0027t support the trace, but if ChromeModelHelper does support the trace, then it can find renderer processes and modify their async events. For example, maybe ChromeAuditor could set AsyncSlice.viewSubGroupTitle (which is currently always this.title). Maybe it could add a little data to AsyncSliceGroup, or call a different method.\n\nI\u0027d like to see how much of this code you can move to ChromeAuditor, and I\u0027d like to see how little you absolutely need to change in the model/ directory. The model/ directory is mission-critical for everything that depends on tracing, so we try to be very careful with it. Of course, everything is a balance, so, given the choice, it would be better to add a small hook to AsyncSlice or AsyncSliceGroup than run a O(n^2) algorithm in ChromeAuditor, for example. I\u0027ll try to help you navigate those trade-offs as best I can given all the other things I need to work on.",
+      "revId": "697940e75798d73aedd8d74046de289e5c80dd34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ded3af2_2275878f",
+        "filename": "tracing/tracing/model/async_slice_group.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1149089
+      },
+      "writtenOn": "2017-11-14T10:32:34Z",
+      "side": 1,
+      "message": "Thanks for great suggestion, will take a look.",
+      "parentUuid": "a3a73222_5e441d53",
       "revId": "697940e75798d73aedd8d74046de289e5c80dd34",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
