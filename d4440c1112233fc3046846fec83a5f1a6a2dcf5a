@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3a23a50b_a644eef5",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2017-11-15T01:13:55Z",
+      "side": 1,
+      "message": "Only CrOS browser backend supports the overview mode and the action runner checks if overview mode is supported before entering/exiting overview mode, as suggested in the other comment. But, if somehow the WindowManagerBackend methods are called on a non-CrOS chrome, they won\u0027t do anything; the request sent through the WebSocket will return an error which will be ignored.",
+      "parentUuid": "4e4934de_71686213",
+      "revId": "d4440c1112233fc3046846fec83a5f1a6a2dcf5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "01be9e5a_3f3e0a91",
         "filename": "telemetry/telemetry/internal/browser/browser.py",
         "patchSetId": 7
@@ -33,6 +51,24 @@
       "revId": "d4440c1112233fc3046846fec83a5f1a6a2dcf5a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d86f783_095f17d9",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2017-11-15T01:13:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01be9e5a_3f3e0a91",
+      "revId": "d4440c1112233fc3046846fec83a5f1a6a2dcf5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
