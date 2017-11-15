@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "cb82ba0e_2df5fbfe",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2017-11-15T17:03:21Z",
+      "side": 1,
+      "message": "How can I do that? Looking at the InspectorWebsocket class, I don\u0027t see a way to check if a domain is supported other than by actually trying to send an enter/exit overview mode request and see if an error happens. But that would affect the browser if overview mode is supported.\n\nDo you think it is OK to attempt entering overview mode and immediately exiting overview mode to check if the window manager domain is supported by the browser?",
+      "parentUuid": "d0cdf5fa_a857eba7",
+      "revId": "d4440c1112233fc3046846fec83a5f1a6a2dcf5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "01be9e5a_3f3e0a91",
         "filename": "telemetry/telemetry/internal/browser/browser.py",
         "patchSetId": 7
