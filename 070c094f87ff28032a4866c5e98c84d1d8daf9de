@@ -123,6 +123,30 @@
       "revId": "070c094f87ff28032a4866c5e98c84d1d8daf9de",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7eba0a02_a5f3224a",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1112850
+      },
+      "writtenOn": "2017-11-15T01:48:05Z",
+      "side": 1,
+      "message": "Actually I don\u0027t think adb_profile_chrome uses |devtools_socket|, so you do not need to worry about it.\n\nBut I am still curious when WebAPK is open, is it still a web page in Clank or it is a different app (with different package name and activity etc)?",
+      "parentUuid": "c2eff651_6e32cd2e",
+      "range": {
+        "startLine": 137,
+        "startChar": 2,
+        "endLine": 141,
+        "endChar": 45
+      },
+      "revId": "070c094f87ff28032a4866c5e98c84d1d8daf9de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
