@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "15cce8e8_6a47782a",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-15T21:26:43Z",
+      "side": 1,
+      "message": "nits: top level classes/methods are separated by 2 spaces",
+      "revId": "2750b611d60411126e2f2830538c5f53cec7c051",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c312dbf4_f8da23e3",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-15T21:26:43Z",
+      "side": 1,
+      "message": "s/_story_artifacts/_test_artifacts",
+      "revId": "2750b611d60411126e2f2830538c5f53cec7c051",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c20753f_46ee3db2",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-15T21:26:43Z",
+      "side": 1,
+      "message": "Instead of this API, let\u0027s create another API:\ndef GetArtifact(self, test_name)",
+      "revId": "2750b611d60411126e2f2830538c5f53cec7c051",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a939d4f_f5d45513",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-15T21:26:43Z",
+      "side": 1,
+      "message": "can you change story to \"test_name\" and make it a string instead? Later we want to extend this for unittest, so it\u0027s better to keep this generic.",
+      "revId": "2750b611d60411126e2f2830538c5f53cec7c051",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2c86c38_4222506d",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-15T21:26:43Z",
+      "side": 1,
+      "message": "artifact_path should then never be None",
+      "revId": "2750b611d60411126e2f2830538c5f53cec7c051",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c97142f2_1c25781c",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-15T21:26:43Z",
+      "side": 1,
+      "message": "Can you remove the \u0027data\u0027 param? I think let makes it the responsibility of the call site to create the file",
+      "revId": "2750b611d60411126e2f2830538c5f53cec7c051",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf2f22bb_2fd66f77",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-15T21:26:43Z",
+      "side": 1,
+      "message": "This should add artifact_path to a list because a test can be repeated multiple times.",
+      "revId": "2750b611d60411126e2f2830538c5f53cec7c051",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
