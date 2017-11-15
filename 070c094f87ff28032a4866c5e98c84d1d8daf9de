@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b0e9964d_ccd031c6",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1117405
+      },
+      "writtenOn": "2017-11-15T00:20:55Z",
+      "side": 1,
+      "message": "There could be many WebAPKs, like so many Android apps in Play Store. For any website that has PWA, we can create a WebAPK for it. go/webapk provides more information. The package name is the WebAPK\u0027s package name on Android, and component is the combination of package name and class name. Same as the component in Intent (https://cs.chromium.org/chromium/src/third_party/catapult/devil/devil/android/sdk/intent.py).",
+      "parentUuid": "4cbe05ca_cfe011f5",
+      "revId": "070c094f87ff28032a4866c5e98c84d1d8daf9de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5b74f20d_d8088d2d",
         "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
         "patchSetId": 7
@@ -30,6 +48,30 @@
       "writtenOn": "2017-11-14T22:30:59Z",
       "side": 1,
       "message": "This is a little hacky for WebApk case. Can we support WebApk like other browser packages?",
+      "range": {
+        "startLine": 137,
+        "startChar": 2,
+        "endLine": 141,
+        "endChar": 45
+      },
+      "revId": "070c094f87ff28032a4866c5e98c84d1d8daf9de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bb26a65_2d458bf1",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1117405
+      },
+      "writtenOn": "2017-11-15T00:20:55Z",
+      "side": 1,
+      "message": "It changes the package name and the class name of the launch intent. I am new here, will it cause any issue by using the same |cmdline_file| and |devtools_socket|?",
+      "parentUuid": "5b74f20d_d8088d2d",
       "range": {
         "startLine": 137,
         "startChar": 2,
