@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<title>Chromeperf Dashboard</title>
+
+<style>
+  body {
+    margin: 0;
+    font: 0.8em helvetica,arial,sans-serif;
+  }
+</style>
+
+<script>
+'use strict';
+window.Polymer = {dom: 'shadow'};
+</script>
+
+<link rel="import" href="/components/polymer/polymer.html">
+
+<script src="/redux.js"></script>
+<link rel="import" href="/components/polymer-redux/polymer-redux.html">
+<script src="/dashboard/spa/state.js"></script>
+<script src="/dashboard/spa/reducers.js"></script>
+<script src="/dashboard/spa/actions.js"></script>
+<script>
+'use strict';
+window.ReduxMixin = PolymerRedux(Redux.createStore(REDUCERS, DEFAULT_STATE));
+</script>
+
+<link rel="import" href="/dashboard/spa/chromeperf-app.html">
+
+<chromeperf-app></chromeperf-app>
