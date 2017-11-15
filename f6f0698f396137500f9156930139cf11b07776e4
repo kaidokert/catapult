@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b02c84e8_62bfab78",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-11-15T23:51:18Z",
+      "side": 1,
+      "message": "There is a defacto check for this. Below (line 104) checks that all parsed tags are set in the file. I\u0027m not sure if they have a use case for not having all the tags defined at the beginning (I assume not) so I\u0027ll wait until we have them look at this to decide on how to proceed.",
+      "parentUuid": "99c1b425_b69af179",
+      "revId": "f6f0698f396137500f9156930139cf11b07776e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4802e697_5cc19c7e",
         "filename": "telemetry/telemetry/story/expectations.py",
         "patchSetId": 1
@@ -47,6 +65,24 @@
       "writtenOn": "2017-11-15T23:37:10Z",
       "side": 1,
       "message": "I suggest using regex instead.\n\nimport re\n\npattern \u003d re.compile(\u0027(.+) \\[(.+)\\] (.+) \\[(.+)\\]\u0027)\nm \u003d pattern.match(\u0027crbug.com/123 [ Win ] benchmark/story [ Skip ]\u0027)\n\nprint m.groups()\n\n# this prints: (\u0027crbug.com/123\u0027, \u0027 Win \u0027, \u0027benchmark/story\u0027, \u0027 Skip \u0027)",
+      "revId": "f6f0698f396137500f9156930139cf11b07776e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e11aa25e_0f361eda",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-11-15T23:51:18Z",
+      "side": 1,
+      "message": "Doesn\u0027t that regex assume that all sections are guaranteed to be there?\nWe only are guaranteed that the test and results sections will be there, per the grammar at go/chromium-test-list-format The lack of the guarantee is why this code is as complicated as it is.\n\nI\u0027m.. not very good at regexes so I\u0027m assuming there is a good way to make a regex that will yield what we want, but dont know how. I\u0027ll see if I can create one that works.",
+      "parentUuid": "6a1ec473_4b77fab8",
       "revId": "f6f0698f396137500f9156930139cf11b07776e4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
