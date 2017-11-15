@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ca2be7e2_bb4041b3",
+        "filename": "telemetry/telemetry/internal/actions/action_runner_unittest.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-15T23:44:51Z",
+      "side": 1,
+      "message": "interesting. What if we take screen screenshot \u0026 assert the screenshot is different? (not the best test, but at least it make sure something is changing)",
+      "revId": "df456c29553445874bb66e14c0bf9b2f18505284",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2ebe291_98ce09a9",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-15T23:44:51Z",
+      "side": 1,
+      "message": "The superclass browser_backend implement these two ethods \u0026 throw UnsupportedError",
+      "revId": "df456c29553445874bb66e14c0bf9b2f18505284",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0de8c0e1_10916702",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-15T23:44:51Z",
+      "side": 1,
+      "message": "Can you just call this window_manager_backend? In general, code at this layer shouldn\u0027t be platform specific.",
+      "revId": "df456c29553445874bb66e14c0bf9b2f18505284",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bca26306_a66604c8",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-15T23:44:51Z",
+      "side": 1,
+      "message": "Can you instead make browser_backend.supports_overview_mode return False \u0026 override it to True in cros_browser_backend?",
+      "revId": "df456c29553445874bb66e14c0bf9b2f18505284",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
