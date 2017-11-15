@@ -105,7 +105,7 @@ class TestSharedState(story_module.SharedState):
   def TearDownState(self):
     pass
 
-  def DumpStateUponFailure(self, story, results):
+  def DumpStateUponFailure(self, story, results, exc):
     pass
 
 
@@ -536,7 +536,7 @@ class StoryRunnerTest(unittest.TestCase):
         unit_test_events.append('tear-down-state')
         raise DidRunTestError
 
-      def DumpStateUponFailure(self, story, results):
+      def DumpStateUponFailure(self, story, results, exc):
         unit_test_events.append('dump-state')
 
 
@@ -956,7 +956,7 @@ class StoryRunnerTest(unittest.TestCase):
       def TearDownState(self):
         pass
 
-      def DumpStateUponFailure(self, story, results):
+      def DumpStateUponFailure(self, story, results, exc):
         pass
 
     class FailingStory(story_module.Story):
