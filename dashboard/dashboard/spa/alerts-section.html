@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<dom-module id="alerts-section">
+  <template>
+    <style>
+    </style>
+
+    alertsy mcalertsface
+    <table>
+      <tr>
+        <th>heady mcheadface
+        </th>
+      </tr>
+      <template is="dom-repeat" items="[[rows]]">
+        <tr>
+          <td>celly mccellface
+          </td>
+        </tr>
+      </template>
+    </table>
+  </template>
+</dom-module>
+
+<script>
+'use strict';
+class AlertsSection extends ReduxMixin(Polymer.Element) {
+  static get is() { return 'alerts-section'; }
+
+  static get actions() { return ACTIONS; }
+
+  static get properties() {
+    return {
+      sectionId: {
+        type: Number,
+      },
+
+      rows: {
+        type: Array,
+        statePath(state) {
+          return state.sections[this.sectionId].rows;
+        }
+      }
+    };
+  }
+}
+customElements.define(AlertsSection.is, AlertsSection);
+</script>
