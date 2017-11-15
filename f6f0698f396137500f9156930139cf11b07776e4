@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "99c1b425_b69af179",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-15T23:37:10Z",
+      "side": 1,
+      "message": "Might want to add some error reporting to make sure that \"tags\" must be defined at the top of the file (i.e: before any expectation encountered)",
+      "revId": "f6f0698f396137500f9156930139cf11b07776e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4802e697_5cc19c7e",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-15T23:37:10Z",
+      "side": 1,
+      "message": "nits: you can set TAGS_TOKEN \u003d \u0027# tags:\u0027\n\nthen write:  for word in line[len(TAGS_TOKEN):].split()",
+      "revId": "f6f0698f396137500f9156930139cf11b07776e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a1ec473_4b77fab8",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-15T23:37:10Z",
+      "side": 1,
+      "message": "I suggest using regex instead.\n\nimport re\n\npattern \u003d re.compile(\u0027(.+) \\[(.+)\\] (.+) \\[(.+)\\]\u0027)\nm \u003d pattern.match(\u0027crbug.com/123 [ Win ] benchmark/story [ Skip ]\u0027)\n\nprint m.groups()\n\n# this prints: (\u0027crbug.com/123\u0027, \u0027 Win \u0027, \u0027benchmark/story\u0027, \u0027 Skip \u0027)",
+      "revId": "f6f0698f396137500f9156930139cf11b07776e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84df59dd_73cbc12a",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-15T23:37:10Z",
+      "side": 1,
+      "message": "You may want to add another method like: ToExpectationString() which turn this object to string form of expectation. This is so that later we can use it for formatting (e.g: ensure the expectations are alphabetically ordered).",
+      "revId": "f6f0698f396137500f9156930139cf11b07776e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
