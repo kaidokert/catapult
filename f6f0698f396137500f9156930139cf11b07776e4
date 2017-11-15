@@ -89,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "f817db76_74120edc",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-15T23:53:00Z",
+      "side": 1,
+      "message": "For our perf use case, I think we can assume a stricter subset of the general test grammar :-)",
+      "parentUuid": "e11aa25e_0f361eda",
+      "revId": "f6f0698f396137500f9156930139cf11b07776e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "84df59dd_73cbc12a",
         "filename": "telemetry/telemetry/story/expectations.py",
         "patchSetId": 1
