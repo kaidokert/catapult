@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4578db9f_49e24b56",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2017-11-15T23:38:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce187003_53e25486",
+      "revId": "82a468edc342ddaefd992cc02451c7b7abf610d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c7459c5b_50592492",
         "filename": "dashboard/dashboard/pinpoint/models/job.py",
         "patchSetId": 5
@@ -33,6 +51,24 @@
       "revId": "82a468edc342ddaefd992cc02451c7b7abf610d3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85788dbd_515fc439",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2017-11-15T23:38:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7459c5b_50592492",
+      "revId": "82a468edc342ddaefd992cc02451c7b7abf610d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "edcb26e0_8b0f23db",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2017-11-15T23:38:11Z",
+      "side": 1,
+      "message": "Done. This is specifically for performance numbers, not exceptions. E.g. the test has a 50% success rate at both change_a and change_b. We run 10 iterations each, but only get 5 perf values for each, which is not enough data. Instead of returning _SAME, we want to return _UNKNOWN to run more iterations.",
+      "parentUuid": "904092cd_c3d5ccbf",
+      "revId": "82a468edc342ddaefd992cc02451c7b7abf610d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a657841_e94f1522",
         "filename": "dashboard/dashboard/pinpoint/models/job.py",
         "patchSetId": 5
@@ -64,6 +118,24 @@
       "writtenOn": "2017-11-15T09:48:56Z",
       "side": 1,
       "message": "wow, throws ValueError to signal identical values? That doesn\u0027t seem very intuitive, could we change that in MannWhitneyU?",
+      "revId": "82a468edc342ddaefd992cc02451c7b7abf610d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bb27cbd_6dddb162",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2017-11-15T23:38:11Z",
+      "side": 1,
+      "message": "What should it do instead?\n(Background: most of the statistical tests in SciPy throw ValueError or return NaN in this scenario)",
+      "parentUuid": "7a657841_e94f1522",
       "revId": "82a468edc342ddaefd992cc02451c7b7abf610d3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -84,6 +156,24 @@
       "revId": "82a468edc342ddaefd992cc02451c7b7abf610d3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec7af996_eca76be3",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2017-11-15T23:38:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fec51050_b889a480",
+      "revId": "82a468edc342ddaefd992cc02451c7b7abf610d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
