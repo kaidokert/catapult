@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "aade1732_2e1bf139",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1112850
+      },
+      "writtenOn": "2017-11-15T01:35:03Z",
+      "side": 1,
+      "message": "Ah I see.\n\nI want to understand more about how tracing would work for WebAPKs. Do you also need non-startup use cases? That means, take traces after WebAPK is launched.",
+      "parentUuid": "b0e9964d_ccd031c6",
+      "revId": "070c094f87ff28032a4866c5e98c84d1d8daf9de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5b74f20d_d8088d2d",
         "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
         "patchSetId": 7
@@ -72,6 +90,30 @@
       "side": 1,
       "message": "It changes the package name and the class name of the launch intent. I am new here, will it cause any issue by using the same |cmdline_file| and |devtools_socket|?",
       "parentUuid": "5b74f20d_d8088d2d",
+      "range": {
+        "startLine": 137,
+        "startChar": 2,
+        "endLine": 141,
+        "endChar": 45
+      },
+      "revId": "070c094f87ff28032a4866c5e98c84d1d8daf9de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2eff651_6e32cd2e",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1112850
+      },
+      "writtenOn": "2017-11-15T01:35:03Z",
+      "side": 1,
+      "message": "|cmdline_file| is used by Clank during startup. It is equivalent to specifying command line flags for desktop Chrome. Does WebAPK support it or use the same file?\n\nAs for |devtools_socket|, when WebAPK is created, do we know if it will be open with Chrome?",
+      "parentUuid": "2bb26a65_2d458bf1",
       "range": {
         "startLine": 137,
         "startChar": 2,
