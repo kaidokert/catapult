@@ -452,6 +452,16 @@ class ActionRunnerTest(tab_test_case.TabTestCase):
         'document.querySelector("textarea").value === "This is interesting"',
         timeout=1)
 
+  @decorators.Enabled('chromeos')
+  def testOverviewMode(self):
+    action_runner = action_runner_module.ActionRunner(
+        self._tab, skip_waits=True)
+    # TODO(chiniforooshan): Currently, there is no easy way to verify that the
+    # browser has actually entered to/exited from the overview mode. For now, we
+    # just make sure that running the actions does not raise an exception.
+    action_runner.EnterOverviewMode()
+    action_runner.ExitOverviewMode()
+
 
 class InteractionTest(unittest.TestCase):
 
