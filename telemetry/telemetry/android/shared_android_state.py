@@ -77,6 +77,6 @@ class SharedAndroidState(story_module.SharedState):
     """
     pass
 
-  def DumpStateUponFailure(self, story, results):
+  def DumpStateUponFailure(self, story, results, exc):
     # TODO: Dump the state of the Android app.
     pass
