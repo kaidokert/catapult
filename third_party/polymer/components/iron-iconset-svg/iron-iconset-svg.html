@@ -219,7 +219,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var content = sourceSvg.cloneNode(true),
             svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
             viewBox = content.getAttribute('viewBox') || '0 0 ' + size + ' ' + size,
-            cssText = 'pointer-events: none; display: block; width: 100%; height: 100%;';
+            cssText = 'pointer-events: none; display: block; width: inherit; height: inherit;';
 
         if (mirrorAllowed && content.hasAttribute('mirror-in-rtl')) {
           cssText += '-webkit-transform:scale(-1,1);transform:scale(-1,1);';
