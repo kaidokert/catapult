@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e4934de_71686213",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-15T00:15:50Z",
+      "side": 1,
+      "message": "What happens when this is called by a non CrOS backend?",
+      "revId": "d4440c1112233fc3046846fec83a5f1a6a2dcf5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01be9e5a_3f3e0a91",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-15T00:15:50Z",
+      "side": 1,
+      "message": "We shouldn\u0027t add a backend API at browser level.\n\nI would just copy the window_manager_backend\u0027s methods to here instead \u0026 add support_... methods (similar to ForceJavaHeapGarbageCollection above)",
+      "revId": "d4440c1112233fc3046846fec83a5f1a6a2dcf5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
