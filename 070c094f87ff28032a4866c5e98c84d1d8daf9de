@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "93e64be7_8951133f",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1117405
+      },
+      "writtenOn": "2017-11-15T15:07:32Z",
+      "side": 1,
+      "message": "I\u0027m not sure, the initial plan is to make the startup case work for WebAPKs:)\n+yfriedman@",
+      "parentUuid": "aade1732_2e1bf139",
+      "revId": "070c094f87ff28032a4866c5e98c84d1d8daf9de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5b74f20d_d8088d2d",
         "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
         "patchSetId": 7
@@ -138,6 +156,30 @@
       "side": 1,
       "message": "Actually I don\u0027t think adb_profile_chrome uses |devtools_socket|, so you do not need to worry about it.\n\nBut I am still curious when WebAPK is open, is it still a web page in Clank or it is a different app (with different package name and activity etc)?",
       "parentUuid": "c2eff651_6e32cd2e",
+      "range": {
+        "startLine": 137,
+        "startChar": 2,
+        "endLine": 141,
+        "endChar": 45
+      },
+      "revId": "070c094f87ff28032a4866c5e98c84d1d8daf9de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e78b9c4_49621a6b",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1117405
+      },
+      "writtenOn": "2017-11-15T15:07:32Z",
+      "side": 1,
+      "message": "When WebAPK is launching, it intents to Chrome and opens a full screen Chrome\u0027s activity. In other words, it starts Chrome, and technically it is still Chrome is running. It kinds like we don\u0027t start a Chrome channel directly, but starts another app to launch Chrome. We specify which Chrome channel to start in WebAPKs. Sounds like as long as Chrome starts, we are ok to keep both |cmdline_file| and |devtools_socket|, is my understanding correct?",
+      "parentUuid": "7eba0a02_a5f3224a",
       "range": {
         "startLine": 137,
         "startChar": 2,
