@@ -5,9 +5,11 @@
 import logging
 import os
 import sys
+import tempfile
 
 from telemetry.core import platform as platform_module
 from telemetry.core import util
+from telemetry.core import exceptions
 from telemetry import decorators
 from telemetry.internal.browser import browser_finder
 from telemetry.internal.browser import browser_finder_exceptions
@@ -73,6 +75,7 @@ class SharedPageState(story_module.SharedState):
     self._previous_page = None
     self._current_page = None
     self._current_tab = None
+    self._log_file = None
 
     self._test.SetOptions(self._finder_options)
 
@@ -128,7 +131,7 @@ class SharedPageState(story_module.SharedState):
       sys.exit(0)
     return possible_browser
 
-  def DumpStateUponFailure(self, page, results):
+  def DumpStateUponFailure(self, page, results, exc):
     # Dump browser standard output and log.
     if self._browser:
       self._browser.DumpStateUponFailure()
@@ -140,8 +143,16 @@ class SharedPageState(story_module.SharedState):
       fh = screenshot.TryCaptureScreenShot(self.platform, self._current_tab)
       if fh is not None:
         results.AddProfilingFile(page, fh)
+        results.AddArtifactFromPageRun(page, 'screenshot', fh)
     else:
       logging.warning('Taking screenshots upon failures disabled.')
+
+    # Dump minidump, if present
+    if exc:
+      if isinstance(exc, exceptions.AppCrashException):
+        minidump_path = exc.minidump_path
+        if minidump_path:
+          results.AddArtifactFromPageRun(page, 'minidump', minidump_path)
 
   def DidRunStory(self, results):
     if self._finder_options.profiler:
@@ -168,9 +179,20 @@ class SharedPageState(story_module.SharedState):
               '%s raised while closing tab connections; tab will be closed.',
               type(exc).__name__)
           self._current_tab.Close()
+
+      results.AddArtifactFromPageRun(self._current_page, 'logs', self._log_file)
+
+      # Don't capture logging output anymore
+      logger = logging.getLogger()
+      currentLevel = logger.level
+      logger.handlers = []
+      ch = logging.StreamHandler()
+      ch.setLevel(currentLevel)
+      logger.addHandler(ch)
     finally:
       self._current_page = None
       self._current_tab = None
+
 
   def ShouldStopBrowserAfterStoryRun(self, story):
     """Specify whether the browser should be closed after running a story.
@@ -281,6 +303,18 @@ class SharedPageState(story_module.SharedState):
     # Start profiling if needed.
     if self._finder_options.profiler:
       self._StartProfiling(self._current_page)
+
+    # Capture logging output to a file, so we can dump it as a test artifact.
+    logger = logging.getLogger()
+    currentLevel = logger.level
+    logger.handlers = []
+    _, self._log_file = tempfile.mkstemp(prefix='perf_story_log')
+    fh = logging.FileHandler(self._log_file)
+    fh.setLevel(currentLevel)
+    ch = logging.StreamHandler()
+    ch.setLevel(currentLevel)
+    logger.addHandler(fh)
+    logger.addHandler(ch)
 
   def CanRunStory(self, page):
     return self.CanRunOnBrowser(browser_info_module.BrowserInfo(self.browser),
