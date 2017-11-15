@@ -252,6 +252,12 @@ class CrOSBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   def SymbolizeMinidump(self, minidump_path):
     return None
 
+  def EnterOverviewMode(self, timeout):
+    self.devtools_client.cros_window_manager_backend.EnterOverviewMode(timeout)
+
+  def ExitOverviewMode(self, timeout):
+    self.devtools_client.cros_window_manager_backend.ExitOverviewMode(timeout)
+
   @property
   @decorators.Cache
   def misc_web_contents_backend(self):
