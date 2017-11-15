@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "68fe699d_8d9113f1",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-15T09:29:16Z",
+      "side": 1,
+      "message": "nit: use \"story\" rather than \"page\" in all new code.",
+      "revId": "1bfecae142087fe6c1ba142bba73b3dc16194d91",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31996f79_44279d17",
+        "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-15T09:29:16Z",
+      "side": 1,
+      "message": "Why do we need this? Can\u0027t we try to make sure that artifacts are always created within the output dir to begin with?",
+      "revId": "1bfecae142087fe6c1ba142bba73b3dc16194d91",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f93af136_2beba7fd",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 5
@@ -30,6 +64,24 @@
       "writtenOn": "2017-11-15T01:11:39Z",
       "side": 1,
       "message": "I think this logic of enabling \u0026 disabling the logger should live in the story_runner since it\u0027s generic to all benchmarks",
+      "revId": "1bfecae142087fe6c1ba142bba73b3dc16194d91",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17e98207_cb7586b6",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-15T09:29:16Z",
+      "side": 1,
+      "message": "Yes, big +1 to this.\n\nI\u0027m also hoping to reduce the amount of code that needs to live in the shared state. Soon we\u0027ll be creating a new shared state for Android Go stories, and we shouldn\u0027t need to duplicate this functionality there.",
+      "parentUuid": "06240f78_c79e33c9",
       "revId": "1bfecae142087fe6c1ba142bba73b3dc16194d91",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
