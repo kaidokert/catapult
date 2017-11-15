@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f93af136_2beba7fd",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-15T01:11:39Z",
+      "side": 1,
+      "message": "instead of delegating to state for capturing the artifacts, I think we can capture the artifacts right here",
+      "revId": "1bfecae142087fe6c1ba142bba73b3dc16194d91",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06240f78_c79e33c9",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-15T01:11:39Z",
+      "side": 1,
+      "message": "I think this logic of enabling \u0026 disabling the logger should live in the story_runner since it\u0027s generic to all benchmarks",
+      "revId": "1bfecae142087fe6c1ba142bba73b3dc16194d91",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
