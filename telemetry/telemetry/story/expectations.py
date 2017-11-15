@@ -3,6 +3,115 @@
 # found in the LICENSE file.
 
 import logging
+import os
+
+
+class ParseError(Exception):
+  pass
+
+
+class TestExpectationParser(object):
+  """Parse expectations file.
+
+  This parser covers the 'tagged' test lists format in:
+      go/chromium-test-list-format.
+
+  It takes the path to the expectation file as an argument.
+
+  Example expectation file to parse:
+    # This is an example expectation file.
+    #
+    # tags: Mac Mac10.10 Mac10.11
+    # tags: Win Win8
+
+    crbug.com/123 [ Win ] benchmark/story [ Skip ]
+  """
+  def __init__(self, path):
+    assert os.path.exists(path), 'Path to expectation file must exist.'
+    self._path = path
+    self._tags = []
+    self._expectations = []
+    self._ParseExpectationFile(path)
+
+  def _ParseExpectationFile(self, path):
+    with open(path, 'r') as fp:
+      raw_data = fp.read()
+    for line in raw_data.splitlines():
+      # Handle metadata and comments.
+      if line.startswith('# tags:'):
+        for word in line[8:].split():
+          self._tags.append(word)
+      elif line.startswith('#') or not line:
+        continue  # Ignore, it is just a comment or empty.
+      else:
+        self._expectations.append(self._ParseExpectationLine(line, self._tags))
+
+  @staticmethod
+  def _ParseExpectationLine(line, tags):
+    e = {
+        'reason': None,
+        'conditions': [],
+        'results': []
+    }
+    # These keep track of where in the parsing process we are.
+    in_conditions = False
+    finished_conditions = False
+    in_results = False
+    finished_results = False
+    for word in line.split():
+      # Detect error states.
+      if word == ']' and not in_conditions and not in_results:
+        raise ParseError('Found ] when not in condition or result section.')
+      if word == '[' and (in_conditions or in_results):
+        raise ParseError('Found [ when already in condition or results.')
+      # Detect bug information.
+      elif word.startswith('crbug') or word.startswith('Bug('):
+        assert not e.get('reason'), 'Bug already detected'
+        e['reason'] = word
+      # Detect test name
+      elif not in_conditions and word != '[' and not e.get('test'):
+        # Test name is after condition. If name is set we are past conditions.
+        finished_conditions = True
+        e['test'] = word
+      # Detect start of platform/results listing.
+      elif word == '[':
+        if not finished_conditions:
+          in_conditions = True
+        else:
+          in_results = True
+
+      # Special conditions/results modes after this.
+      elif in_conditions:
+        # Detect end of condtions listing.
+        if word == ']':
+          in_conditions = False
+          finished_conditions = True
+        else:
+          e['conditions'].append(word)
+      elif in_results:
+        # Detect end of results.
+        if word == ']':
+          in_results = False
+          finished_results = True
+        else:
+          e['results'].append(word)
+      # If this triggers, we are in an unanticipated state.
+      else:
+        raise ParseError('Parser in unknown state mid expectation.\n '
+                         'Line:%s \n Token:%s' % (line, word))
+    if not (e['test'] and finished_conditions and finished_results):
+      raise ParseError('Parsing did not end in a valid final state.\n %s' % e)
+    for tag in e['conditions']:
+      assert tag in tags
+    return e
+
+  @property
+  def expectations(self):
+    return self._expectations
+
+  @property
+  def tags(self):
+    return self._tags
 
 
 class StoryExpectations(object):
@@ -17,12 +126,20 @@ class StoryExpectations(object):
       self.DisableStory('story_name2', [expectations.ALL], 'crbug.com/789')
       ...
   """
-  def __init__(self):
+  def __init__(self, expectation_file=None):
     self._disabled_platforms = []
     self._expectations = {}
     self._frozen = False
     self.SetExpectations()
+    if expectation_file:
+      parser = TestExpectationParser(expectation_file)
+      self._MapExpectationsFromFile(parser)
     self._Freeze()
+
+  # TODO(rnephew): Transform parsed expectation file into StoryExpectations.
+  # crbug.com/781409
+  def _MapExpectationsFromFile(self, _):
+    pass
 
   def AsDict(self):
     """Returns information on disabled stories/benchmarks as a dictionary"""
