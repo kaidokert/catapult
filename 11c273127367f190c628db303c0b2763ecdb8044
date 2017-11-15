@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b7a3b73_f573a1ba",
+        "filename": "telemetry/telemetry/internal/actions/action_runner.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 794,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-15T01:17:52Z",
+      "side": 1,
+      "message": "we should throw exception in case the this is not supported. Same for below.",
+      "revId": "11c273127367f190c628db303c0b2763ecdb8044",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

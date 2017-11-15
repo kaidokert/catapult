@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "d0cdf5fa_a857eba7",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-15T01:17:52Z",
+      "side": 1,
+      "message": "Instead of making this specific to CrOS, I think we should have s.t like:\n try to setup window_manager_backend\n    succeed --\u003e window_manager_backend supported\n    failed --\u003e window_manager_backend not supported on this platform.\n\nThat way, if we ever expand the support to other platform in the future, we don\u0027t have to update the abstraction here.",
+      "parentUuid": "3a23a50b_a644eef5",
+      "revId": "d4440c1112233fc3046846fec83a5f1a6a2dcf5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "01be9e5a_3f3e0a91",
         "filename": "telemetry/telemetry/internal/browser/browser.py",
         "patchSetId": 7
