@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "b6b5cb6c_b6c05121",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1001618
+      },
+      "writtenOn": "2017-11-15T15:59:53Z",
+      "side": 1,
+      "message": "I could see that being useful, sure. Basically WebApk\u0027s are alternate rendering mode within chrome. We need to launch them differently but then it\u0027s chrome running so any tracing you perform during the webapk actually being visible can be profiled using chrome\u0027s package name and config.\n\nSo without knowing the full extent of this system: I think logically Xi\u0027s change makes some sense where we want chorme but launched via a different intent. Truthfully you could make the same case for CCT - we want to test a different launch mode of chrome",
+      "parentUuid": "93e64be7_8951133f",
+      "revId": "070c094f87ff28032a4866c5e98c84d1d8daf9de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5b74f20d_d8088d2d",
         "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
         "patchSetId": 7
