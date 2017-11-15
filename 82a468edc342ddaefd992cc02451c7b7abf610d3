@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce187003_53e25486",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-15T09:48:56Z",
+      "side": 1,
+      "message": "nit: We could drop these if\u0027s right? AddAttempts will do the right thing if we hit _MAX_REPEAT_COUNT.",
+      "revId": "82a468edc342ddaefd992cc02451c7b7abf610d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7459c5b_50592492",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-15T09:48:56Z",
+      "side": 1,
+      "message": "nit: maybe rephrase these are \"samples appear to come from different distributions\", and so on for _SAME.",
+      "revId": "82a468edc342ddaefd992cc02451c7b7abf610d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "904092cd_c3d5ccbf",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-15T09:48:56Z",
+      "side": 1,
+      "message": "nit: I\u0027m unclear about this comment. If at change_a the test runs are failing a lot, and at change_b test runs are passing no problem, the the answer should be _DIFFERENT, right?\n\nI suppose this is not an issue since we would catch this when comparing exceptions (right?), just the comment here is not very clear.",
+      "revId": "82a468edc342ddaefd992cc02451c7b7abf610d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a657841_e94f1522",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-15T09:48:56Z",
+      "side": 1,
+      "message": "wow, throws ValueError to signal identical values? That doesn\u0027t seem very intuitive, could we change that in MannWhitneyU?",
+      "revId": "82a468edc342ddaefd992cc02451c7b7abf610d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fec51050_b889a480",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-15T09:48:56Z",
+      "side": 1,
+      "message": "nit: be different -\u003e come from different distributions",
+      "revId": "82a468edc342ddaefd992cc02451c7b7abf610d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
