@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/value/ui/histogram_set_table.html">
+
+<dom-module id="chart-section">
+</dom-module>
+
+<script>
+'use strict';
+class ChartSection extends ReduxMixin(Polymer.Element) {
+  static get is() { return 'chart-section'; }
+
+  static get actions() { return ACTIONS; }
+
+  static get properties() {
+    return {
+    };
+  }
+}
+customElements.define(ChartSection.is, ChartSection);
+</script>
