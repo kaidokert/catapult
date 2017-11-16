@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "880eda8a_50bcedc4",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-11-16T00:34:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68fe699d_8d9113f1",
+      "revId": "1bfecae142087fe6c1ba142bba73b3dc16194d91",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "31996f79_44279d17",
         "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
         "patchSetId": 5
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "a7170f3c_07d99a4a",
+        "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-11-16T00:34:15Z",
+      "side": 1,
+      "message": "That makes sense. It means anything that creates the artifact needs to know the output directory, but I think that\u0027s doable. I did this",
+      "parentUuid": "31996f79_44279d17",
+      "revId": "1bfecae142087fe6c1ba142bba73b3dc16194d91",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f93af136_2beba7fd",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 5
@@ -50,6 +86,24 @@
       "revId": "1bfecae142087fe6c1ba142bba73b3dc16194d91",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c3d3ec1_567fd882",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-11-16T00:34:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f93af136_2beba7fd",
+      "revId": "1bfecae142087fe6c1ba142bba73b3dc16194d91",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -85,6 +139,24 @@
       "revId": "1bfecae142087fe6c1ba142bba73b3dc16194d91",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "664ec43f_3230f13a",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-11-16T00:34:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17e98207_cb7586b6",
+      "revId": "1bfecae142087fe6c1ba142bba73b3dc16194d91",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
