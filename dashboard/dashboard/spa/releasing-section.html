@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/value/ui/histogram_set_table.html">
+
+<dom-module id="releasing-section">
+  <template>
+    <style>
+      #controls {
+        display: flex;
+      }
+
+      #spacer {
+        flex-grow: 1;
+      }
+    </style>
+
+    <div id="controls">
+      speed releasing table
+      <span id="spacer">&nbsp;</span>
+      <paper-icon-button icon="close"
+                         on-tap="closeSection_"></paper-icon-button>
+    </div>
+  </template>
+</dom-module>
+
+<script>
+'use strict';
+(function() {
+class ReleasingSection extends ReduxMixin(Polymer.Element) {
+  static get is() { return 'releasing-section'; }
+
+  static get actions() { return window.ACTION_CREATORS; }
+
+  static get properties() {
+    return Object.assign(
+      {sectionId: Number},
+      bindSectionState(Boolean, 'isLoading'));
+  }
+
+  closeSection_() {
+    this.dispatch({
+      type: 'closeSection',
+      sectionId: this.sectionId,
+    });
+  }
+}
+customElements.define(ReleasingSection.is, ReleasingSection);
+})();
+</script>
