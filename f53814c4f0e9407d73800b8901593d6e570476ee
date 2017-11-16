@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f7e8f87_20078900",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-16T00:58:43Z",
+      "side": 1,
+      "message": "Why do we need to sanitize the test name \u0026 add output_dir to it? This is mainly use for looking up the artifact only, isn\u0027t it?",
+      "revId": "f53814c4f0e9407d73800b8901593d6e570476ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e3d0b59_5eb07a7e",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-16T00:58:43Z",
+      "side": 1,
+      "message": "Hmhh, now I remember there is also the case of:\n\nfoo\u0027s 1st run: pass, produce \"foo_trace.1\"\nfoo\u0027s 2nd run: fail, produce None\nfoo\u0027s 3rd run: pass, produce produce \"foo_trace.2\".\n\nWe want to make sure that the \"trace\" artifacts for \"foo\" look like [\"foo_trace.1\", null, \"foo_trace.2\"]\n\nMay be the easiest way to implement this is add an optional \"run_order\" param? If \"run_order\" is greater than the current artifact lengths, we automatically append None values to fill the artifact array.",
+      "revId": "f53814c4f0e9407d73800b8901593d6e570476ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4e87173_75ee7e43",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-16T00:58:43Z",
+      "side": 1,
+      "message": "We might need to make sure that artifact_path is unique file in artifact_dir. Otherwise we may accidentally erase existing files there",
+      "revId": "f53814c4f0e9407d73800b8901593d6e570476ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
