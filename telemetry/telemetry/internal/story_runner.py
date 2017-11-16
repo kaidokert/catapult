@@ -86,9 +86,28 @@ def _GenerateTagMapFromStorySet(stories):
   return tagmap
 
 
+def _GetStoryLogLocation(story, results):
+  out_dir = os.path.join(results._output_dir, 'artifacts')
+  if not os.path.exists(out_dir):
+    os.makedirs(out_dir)
+  story_name = story.name
+  to_replace = ('/', ':', ' ', '.')
+  for ch in to_replace:
+    story_name = story_name.replace(ch, '_')
+  return os.path.join(out_dir, story_name)
+
+
 def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
-  def ProcessError(description=None):
+  def ProcessError(exc=None, description=None):
     state.DumpStateUponFailure(story, results)
+
+    # Dump app crash, if present
+    if exc:
+      if isinstance(exc, exceptions.AppCrashException):
+        crash_path = exc.crash_path
+        if crash_path:
+          results.AddArtifactFromPageRun(page, 'crash', crash_path)
+
     # Note: adding the FailureValue to the results object also normally
     # cause the progress_reporter to log it in the output.
     results.AddValue(failure.FailureValue(story, sys.exc_info(), description))
@@ -96,6 +115,19 @@ def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
     if isinstance(test, story_test.StoryTest):
       test.WillRunStory(state.platform)
     state.WillRunStory(story)
+
+    # Capture logging output to a file, so we can dump it as a test artifact.
+    logger = logging.getLogger()
+    currentLevel = logger.level
+    logger.handlers = []
+    log_file = _GetStoryLogLocation(story, results)
+    fh = logging.FileHandler(log_file)
+    fh.setLevel(currentLevel)
+    ch = logging.StreamHandler()
+    ch.setLevel(currentLevel)
+    logger.addHandler(fh)
+    logger.addHandler(ch)
+
     if not state.CanRunStory(story):
       results.AddValue(skip.SkipValue(
           story,
@@ -107,10 +139,10 @@ def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
       test.Measure(state.platform, results)
   except (legacy_page_test.Failure, exceptions.TimeoutException,
           exceptions.LoginException, exceptions.ProfilingException,
-          py_utils.TimeoutException):
-    ProcessError()
-  except exceptions.Error:
-    ProcessError()
+          py_utils.TimeoutException) as e:
+    ProcessError(e)
+  except exceptions.Error as e:
+    ProcessError(e)
     raise
   except page_action.PageActionNotSupported as e:
     results.AddValue(
@@ -132,9 +164,19 @@ def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
         test.DidRunPage(state.platform)
       # And the following normally causes the browser to be closed.
       state.DidRunStory(results)
-    except Exception: # pylint: disable=broad-except
+
+      results.AddArtifact(story, 'logs', log_file)
+      # Don't capture logging output anymore
+      logger = logging.getLogger()
+      currentLevel = logger.level
+      logger.handlers = []
+      ch = logging.StreamHandler()
+      ch.setLevel(currentLevel)
+      logger.addHandler(ch)
+
+    except Exception as exc: # pylint: disable=broad-except
       if not has_existing_exception:
-        state.DumpStateUponFailure(story, results)
+        state.DumpStateUponFailure(story, results, exc)
         raise
       # Print current exception and propagate existing exception.
       exception_formatter.PrintFormattedException(

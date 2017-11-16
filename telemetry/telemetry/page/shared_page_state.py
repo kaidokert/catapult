@@ -8,6 +8,7 @@ import sys
 
 from telemetry.core import platform as platform_module
 from telemetry.core import util
+from telemetry.core import exceptions
 from telemetry import decorators
 from telemetry.internal.browser import browser_finder
 from telemetry.internal.browser import browser_finder_exceptions
@@ -140,6 +141,7 @@ class SharedPageState(story_module.SharedState):
       fh = screenshot.TryCaptureScreenShot(self.platform, self._current_tab)
       if fh is not None:
         results.AddProfilingFile(page, fh)
+        results.AddArtifactFromPageRun(page, 'screenshot', fh)
     else:
       logging.warning('Taking screenshots upon failures disabled.')
 
