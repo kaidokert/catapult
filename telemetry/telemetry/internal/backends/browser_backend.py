@@ -16,6 +16,10 @@ class ExtensionsNotSupportedException(Exception):
   pass
 
 
+class OverviewModeNotSupportedException(Exception):
+  pass
+
+
 class BrowserBackend(app_backend.AppBackend):
   """A base class for browser backends."""
 
@@ -174,3 +178,13 @@ class BrowserBackend(app_backend.AppBackend):
   @property
   def supports_power_metrics(self):
     raise NotImplementedError()
+
+  @property
+  def supports_overview_mode(self): # pylint: disable=invalid-name
+    return False
+
+  def EnterOverviewMode(self, timeout): # pylint: disable=unused-argument
+    raise OverviewModeNotSupportedException()
+
+  def ExitOverviewMode(self, timeout): # pylint: disable=unused-argument
+    raise OverviewModeNotSupportedException()
