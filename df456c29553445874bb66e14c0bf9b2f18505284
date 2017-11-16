@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "364d6933_a36bab47",
+        "filename": "telemetry/telemetry/internal/actions/action_runner_unittest.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2017-11-16T18:00:54Z",
+      "side": 1,
+      "message": "Capturing screenshots seems to be broken. Created https://github.com/catapult-project/catapult/issues/4043",
+      "parentUuid": "ca2be7e2_bb4041b3",
+      "revId": "df456c29553445874bb66e14c0bf9b2f18505284",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d2ebe291_98ce09a9",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
         "patchSetId": 11
@@ -33,6 +51,24 @@
       "revId": "df456c29553445874bb66e14c0bf9b2f18505284",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a4ac201_1f2fb84b",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2017-11-16T18:00:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2ebe291_98ce09a9",
+      "revId": "df456c29553445874bb66e14c0bf9b2f18505284",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "62d044f8_b7228c78",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2017-11-16T18:00:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0de8c0e1_10916702",
+      "revId": "df456c29553445874bb66e14c0bf9b2f18505284",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bca26306_a66604c8",
         "filename": "telemetry/telemetry/internal/browser/browser.py",
         "patchSetId": 11
@@ -67,6 +121,24 @@
       "revId": "df456c29553445874bb66e14c0bf9b2f18505284",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "334f7f1e_0bd9bb6c",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2017-11-16T18:00:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bca26306_a66604c8",
+      "revId": "df456c29553445874bb66e14c0bf9b2f18505284",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
