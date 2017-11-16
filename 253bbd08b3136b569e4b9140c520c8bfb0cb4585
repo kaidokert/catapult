@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "cc598097_6e6ac9de",
+        "filename": "devil/devil/android/constants/webapk.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2017-11-16T18:05:56Z",
+      "side": 1,
+      "message": "\u003e John, is it ok to add this constant to devil for webapk?\n\ndevil, yes, though I\u0027m wondering why it\u0027s not a PackageInfo instance in devil/android/constants/chrome.py\n\n\u003e \n\u003e And a somewhat separate question is:\n\u003e Is is possible to get the webapk\u0027s browser information from python script? (WebApk specify which browser to open the webapk in its manifest I think).\n\nhttps://codesearch.chromium.org/chromium/src/third_party/catapult/devil/devil/android/apk_helper.py?rcl\u003da708a70f7608fd7540512b9f62c128cbf3c4c979\u0026l\u003d117 has a lot of logic for parsing information out of the manifest and may be useful.",
+      "parentUuid": "0b4d5ee0_ac53162e",
+      "range": {
+        "startLine": 5,
+        "startChar": 24,
+        "endLine": 5,
+        "endChar": 66
+      },
+      "revId": "253bbd08b3136b569e4b9140c520c8bfb0cb4585",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a12d5f3_889123f8",
         "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
         "patchSetId": 16
