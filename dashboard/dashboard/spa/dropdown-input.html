@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="/components/paper-input/paper-input.html">
+<link rel="import" href="/components/paper-item/paper-item.html">
+<link rel="import" href="/components/paper-listbox/paper-listbox.html">
+<link rel="import" href="/components/paper-styles/element-styles/paper-material-styles.html">
+
+<dom-module id="dropdown-input">
+  <template>
+    <style include="paper-material-styles">
+      #dropdown_scroll {
+        @apply --paper-material-elevation-2;
+        background-color: white;
+        position: absolute;
+      }
+
+      #dropdown_scroll[hidden] {
+        display: none;
+      }
+    </style>
+
+    <paper-input id="input"
+                 disabled$="[[disabled]]"
+                 label="[[placeholder]]"
+                 value="{{value}}"
+                 on-blur="onInputBlur_"
+                 on-focus="onInputFocus_"
+                 on-keydown="onInputKeydown_">
+      <paper-icon-button id="input_clear"
+                         suffix
+                         icon="clear"
+                         title="clear"
+                         alt="clear"
+                         on-tap="onInputClear_"/>
+    </paper-input>
+
+    <div id="dropdown_scroll"
+         hidden$="[[!isDropdownOpen_]]">
+      <paper-listbox id="dropdown_listbox"
+                      tabindex="-1"
+                      selected="{{value}}"
+                      attr-for-selected="value">
+        <dom-repeat items="[[options]]">
+          <template>
+            <paper-item item="[[item]]"
+                        value="[[item]]">
+              [[item]]
+            </paper-item>
+          </template>
+        </dom-repeat>
+      </paper-listbox>
+    </div>
+  </template>
+</dom-module>
+
+<script>
+'use strict';
+(function() {
+class DropdownInput extends Polymer.Element {
+  static get is() { return 'dropdown-input'; }
+
+  static get properties() {
+    return {
+      placeholder: {
+        type: String,
+      },
+
+      disabled: {
+        type: Boolean,
+      },
+
+      value: {
+        type: String,
+      },
+
+      options: {
+        type: Array,
+      },
+
+      isDropdownOpen_: {
+        type: Boolean,
+        value: false,
+      }
+    };
+  }
+
+  focus() {
+    this.$.input.focus();
+  }
+
+  blur() {
+    this.$.input.blur();
+  }
+
+  onInputFocus_() {
+    this.isDropdownOpen_ = true;
+  }
+
+  onInputBlur_() {
+    this.isDropdownOpen_ = false;
+  }
+
+  onInputKeydown_(e) {
+    console.log(e);
+  }
+
+  onDropdownSelect_(e) {
+    console.log(e);
+  }
+}
+customElements.define(DropdownInput.is, DropdownInput);
+})();
+</script>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/dashboard/spa/dropdown-input.html">
+<link rel="import" href="/tracing/value/ui/histogram_set_table.html">
+
+<dom-module id="chart-section">
+  <template>
+    <style>
+      #controls {
+        display: flex;
+      }
+
+      dropdown-input {
+        margin-right: 1em;
+      }
+
+      #spacer {
+        flex-grow: 1;
+      }
+    </style>
+
+    <div id="controls">
+      <dom-repeat items="[[testPathComponents]]">
+        <template>
+          <dropdown-input placeholder="[[item.placeholder]]"
+                          value="[[item.value]]"
+                          options="[[item.options]]">
+          </dropdown-input>
+        </template>
+      </dom-repeat>
+
+      <span id="spacer">&nbsp;</span>
+
+      <paper-icon-button icon="close"
+                         on-tap="closeSection_">
+      </paper-icon-button>
+    </div>
+
+    charty mcchartface
+
+  </template>
+</dom-module>
+
+<script>
+'use strict';
+(function() {
+class ChartSection extends ReduxMixin(Polymer.Element) {
+  static get is() { return 'chart-section'; }
+
+  static get actions() { return window.ACTION_CREATORS; }
+
+  static get properties() {
+    return sectionProperties({
+      isLoading: {type: Boolean},
+      testPathComponents: {
+        type: Array,
+        observer: 'onTestPathComponentsChanged_',
+      },
+    });
+  }
+
+  closeSection_() {
+    this.dispatch({
+      type: 'closeSection',
+      sectionId: this.sectionId,
+    });
+  }
+
+  onTestPathComponentsChanged_() {
+    if (this.testPathComponents &&
+        !this.testPathComponents[0].value) {
+      Polymer.RenderStatus.beforeNextRender(this, () => {
+        this.shadowRoot.querySelector('dropdown-input').focus();
+      });
+    }
+  }
+}
+customElements.define(ChartSection.is, ChartSection);
+})();
+</script>
