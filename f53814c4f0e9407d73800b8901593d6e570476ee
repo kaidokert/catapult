@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "3036f8e2_cd9ccc41",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-16T01:48:13Z",
+      "side": 1,
+      "message": "We should separate the logic of test name which is used for look up artifacts \u0026 the logic of creating log file\u0027s name. \n\nFor generating the log file, sanitizing the test name \u0026 add it to the output_dir is a good option, or random number is even better.",
+      "parentUuid": "db4543b6_81b7a1ea",
+      "revId": "f53814c4f0e9407d73800b8901593d6e570476ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3e3d0b59_5eb07a7e",
         "filename": "telemetry/telemetry/internal/results/artifact_results.py",
         "patchSetId": 12
