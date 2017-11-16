@@ -16,6 +16,24 @@
       "revId": "8209177a1da880ec061c064422b7f6eeccdd5478",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "387ac916_eadee313",
+        "filename": "telemetry/telemetry/internal/backends/browser_backend.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2017-11-16T19:54:06Z",
+      "side": 1,
+      "message": "If I do that then I have to implement these methods in other subclases, like AndroidBrowserBackend and throw StoryActionError there, or presubmit will complain that abstract methods are not implemented. Is that preferred?",
+      "parentUuid": "bae2339d_49c66ca2",
+      "revId": "8209177a1da880ec061c064422b7f6eeccdd5478",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
