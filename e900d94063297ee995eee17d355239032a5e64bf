@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1f87f49e_8eb8199f",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-11-16T22:10:33Z",
+      "side": 1,
+      "message": "I\u0027ll move it to the constructor. Good idea. I didn\u0027t like doing it in the property either, this makes more sense.",
+      "parentUuid": "274990a7_28eb7522",
+      "revId": "e900d94063297ee995eee17d355239032a5e64bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a44dc517_0c150518",
         "filename": "telemetry/telemetry/internal/results/artifact_results.py",
         "patchSetId": 14
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "e4b3cb68_e01c5f19",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-11-16T22:10:33Z",
+      "side": 1,
+      "message": "Ah yes, we should. I\u0027ll catch that.",
+      "parentUuid": "a44dc517_0c150518",
+      "revId": "e900d94063297ee995eee17d355239032a5e64bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "33326f86_36f54602",
         "filename": "telemetry/telemetry/internal/results/artifact_results.py",
         "patchSetId": 14
@@ -47,6 +83,24 @@
       "writtenOn": "2017-11-16T10:35:13Z",
       "side": 1,
       "message": "Should we move or copy?\n\nAlso, do we expect this to be a temporary thing? I would actually prefer to just assert that the artifact is in the correct path, and complain if it is not.",
+      "revId": "e900d94063297ee995eee17d355239032a5e64bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d0671f1_1919915b",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-11-16T22:10:33Z",
+      "side": 1,
+      "message": "\u003e Should we move or copy?\n\nI\u0027m fine with either. Theoretically it\u0027s slightly more space efficient to move, since we don\u0027t have 2 copies of the data on disk.\n\nOn swarming, everything gets deleted after the run is completed, so it doesn\u0027t really matter.\n\u003e \n\u003e Also, do we expect this to be a temporary thing? I would actually prefer to just assert that the artifact is in the correct path, and complain if it is not.\n\nI\u0027d prefer to move; if we just assert, we need to make sure that clients know where they should be creating files, and I feel like plumbing that around would be some extra work. I can just assert if really want though.",
+      "parentUuid": "33326f86_36f54602",
       "revId": "e900d94063297ee995eee17d355239032a5e64bf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "a1e46d07_028219a1",
+        "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-11-16T22:10:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6ce2626_fbec2ccf",
+      "revId": "e900d94063297ee995eee17d355239032a5e64bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6776d414_bf3edad2",
         "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
         "patchSetId": 14
@@ -81,6 +153,24 @@
       "writtenOn": "2017-11-16T10:35:13Z",
       "side": 1,
       "message": "what is `artifacts`? a dictionary or an ArtifactResult\u0027s object? you\u0027re sometimes doing .get and sometimes .GetArtifact",
+      "revId": "e900d94063297ee995eee17d355239032a5e64bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3223f14_552961f5",
+        "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-11-16T22:10:33Z",
+      "side": 1,
+      "message": "It\u0027s an ArtifactResults object. Just forgot to change that.",
+      "parentUuid": "6776d414_bf3edad2",
       "revId": "e900d94063297ee995eee17d355239032a5e64bf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
