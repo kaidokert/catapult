@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "1e70d78e_cd35537b",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-11-16T18:10:49Z",
+      "side": 1,
+      "message": "This file is already big (270 lines): I\u0027d strongly suggest moving this out into its own file.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 36
+      },
+      "revId": "f6f0698f396137500f9156930139cf11b07776e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "99c1b425_b69af179",
         "filename": "telemetry/telemetry/story/expectations.py",
         "patchSetId": 1
@@ -179,6 +202,24 @@
     },
     {
       "key": {
+        "uuid": "945d1f41_30c8164c",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-11-16T18:10:49Z",
+      "side": 1,
+      "message": "Agree with Ned that I\u0027d prefer to use regexp and the stricter format if possible, but will wait for Dirk and Sean to chime in",
+      "parentUuid": "6f862368_60eec6e6",
+      "revId": "f6f0698f396137500f9156930139cf11b07776e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "84df59dd_73cbc12a",
         "filename": "telemetry/telemetry/story/expectations.py",
         "patchSetId": 1
@@ -190,6 +231,91 @@
       "writtenOn": "2017-11-15T23:37:10Z",
       "side": 1,
       "message": "You may want to add another method like: ToExpectationString() which turn this object to string form of expectation. This is so that later we can use it for formatting (e.g: ensure the expectations are alphabetically ordered).",
+      "revId": "f6f0698f396137500f9156930139cf11b07776e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62b3963a_ba6f2857",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-11-16T18:10:49Z",
+      "side": 1,
+      "message": "As mentioned offline, one thing that we\u0027re going to need to pay attention to here is that the way that multiple tags are combined in Telemetry is a logical OR, whereas the way that multiple tags are combined according to go/chromium-test-list-format is a logical AND.",
+      "revId": "f6f0698f396137500f9156930139cf11b07776e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6a8fc9d_e84faf95",
+        "filename": "telemetry/telemetry/story/expectations_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-11-16T18:10:49Z",
+      "side": 1,
+      "message": "I think across all python unit tests, it should be self.assert_____(actual, expected), whereas here you have assertEqual(expected, actual). The biggest ramification of this is that the messages given when a failure appears won\u0027t make sense\n\nSource: https://docs.python.org/2/library/unittest.html#unittest.TestCase.assertItemsEqual\n\n(You also do it correctly elsewhere, so I\u0027m guessing this probably isn\u0027t news to you)",
+      "revId": "f6f0698f396137500f9156930139cf11b07776e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "734e5daa_3898f01f",
+        "filename": "telemetry/telemetry/story/expectations_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-11-16T18:10:49Z",
+      "side": 1,
+      "message": "Probably makes sense to change this test example to be something other than \u0027Mac\u0027 \u0027Win\u0027 given that they shouldn\u0027t ever appear together.",
+      "revId": "f6f0698f396137500f9156930139cf11b07776e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe60565f_0dd04cd2",
+        "filename": "telemetry/telemetry/story/expectations_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-11-16T18:10:49Z",
+      "side": 1,
+      "message": "My vote is to just inline bad_data here and ditch the member variable. The conciseness gained by storing it in a constant elsewhere isn\u0027t a whole lot, whereas we lose some completeness for the test (discussed more at go/unit-test-best-practices#goals_1).\n\nUp to you what you ultimately do, though.",
+      "revId": "f6f0698f396137500f9156930139cf11b07776e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "217f4cca_8ffa8f53",
+        "filename": "telemetry/telemetry/story/expectations_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-11-16T18:10:49Z",
+      "side": 1,
+      "message": "Thanks for sending out a CL with great test coverage :-)",
       "revId": "f6f0698f396137500f9156930139cf11b07776e4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
