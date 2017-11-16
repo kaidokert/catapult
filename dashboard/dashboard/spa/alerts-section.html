@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/components/paper-button/paper-button.html">
+<link rel="import" href="/components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="/components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="/components/paper-item/paper-item.html">
+<link rel="import" href="/components/paper-listbox/paper-listbox.html">
+<link rel="import" href="/components/paper-spinner/paper-spinner.html">
+<link rel="import" href="/components/paper-toggle-button/paper-toggle-button.html">
+
+<dom-module id="alerts-section">
+  <template>
+    <style>
+      #controls {
+        display: flex;
+      }
+
+      #menu {
+        min-width: 350px;
+      }
+
+      paper-toggle-button {
+        display: inline-flex;
+      }
+
+      #triaged {
+        margin-left: 2em;
+      }
+
+      .sheriff-item {
+        white-space: nowrap;
+      }
+
+      #summary {
+        flex-grow: 1;
+        margin: auto;
+        text-align: center;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      table thead th {
+        background-color: #e8eaf6;
+      }
+
+      table tbody tr:nth-child(even) {
+        background: rgba(232, 234, 246, 0.5);
+      }
+
+      td {
+        padding: 0.5em;
+      }
+
+      th.delta_pct {
+        padding-right: 0.5em;
+      }
+
+      paper-button.expand_group {
+        font-size: x-large;
+        line-height: 0;
+        margin: 0;
+        min-width: 0;
+        padding: 0;
+      }
+
+      td.delta,
+      td.delta_pct {
+        text-align: right;
+      }
+    </style>
+
+    <div id="controls">
+      <paper-dropdown-menu id="menu"
+                          label="Sheriff"
+                          on-iron-select="onMenuSelect_">
+        <paper-listbox slot="dropdown-content" selected="{{selectedSheriffIndex}}">
+          <template is="dom-repeat" items="[[sheriffList]]">
+            <paper-item label="[[item]]" class="sheriff-item">[[item]]</paper-item>
+          </template>
+        </paper-listbox>
+      </paper-dropdown-menu>
+
+      <span id="summary">[[summary]]</span>
+
+      <paper-toggle-button id="improvements"
+                          checked$="[[showingImprovements]]"
+                          on-change="toggleShowingImprovements_">
+        Improvements
+      </paper-toggle-button>
+
+      <paper-toggle-button id="triaged"
+                    checked$="[[showingTriaged]]"
+                    on-change="toggleShowingTriaged_">
+        Triaged
+      </paper-toggle-button>
+
+      <paper-icon-button icon="close"
+                         on-tap="closeSection_"></paper-icon-button>
+    </div>
+
+    <paper-spinner active$="[[isLoading]]"></paper-spinner>
+
+    <template is="dom-if" if="[[any_(rows)]]">
+      <table>
+        <thead>
+          <tr>
+            <th>&nbsp;</th>
+            <th><paper-checkbox></paper-checkbox></th>
+            <th>Revisions</th>
+            <th>Bot</th>
+            <th>Test Suite</th>
+            <th>Test</th>
+            <th>Delta</th>
+            <th class="delta_pct">Delta %</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <template is="dom-repeat" items="[[rows]]">
+            <tr>
+              <td>
+                <template is="dom-if" if="[[item.isGroupHeader]]">
+                  <paper-button class="expand_group"
+                                on-tap="toggleGroupExpanded_">
+                    <template is="dom-if" if="[[item.isGroupExpanded]]">
+                      &#8963;
+                    </template>
+                    <template is="dom-if" if="[[!item.isGroupExpanded]]">
+                      &#8964;
+                    </template>
+                  </paper-button>
+                  [[item.numGroupMembers]]
+                </template>
+              </td>
+              <td><paper-checkbox></paper-checkbox></td>
+              <td>[[item.revisions]]</td>
+              <td>[[item.bot]]</td>
+              <td>[[item.testSuite]]</td>
+              <td>[[item.test]]</td>
+              <td class="delta">[[item.delta]]</td>
+              <td class="delta_pct">[[item.deltaPct]]</td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+    </template>
+  </template>
+</dom-module>
+
+<script>
+'use strict';
+(function() {
+class AlertsSection extends ReduxMixin(Polymer.Element) {
+  static get is() { return 'alerts-section'; }
+
+  static get actions() { return window.ACTION_CREATORS; }
+
+  static get properties() {
+    return Object.assign(
+      {sectionId: Number},
+      bindSectionState(Boolean, 'isLoading'),
+      bindSectionState(String, 'summary'),
+      bindSectionState(Array, 'sheriffList'),
+      bindSectionState(Boolean, 'showingImprovements'),
+      bindSectionState(Boolean, 'showingTriaged'),
+      bindSectionState(Array, 'rows'));
+  }
+
+  any_(arr) {
+    return arr && (arr.length > 0);
+  }
+
+  onMenuSelect_(e) {
+    this.dispatch('loadAlerts', this.sectionId, e.detail.item.label);
+  }
+
+  toggleShowingImprovements_() {
+    // TODO this.dispatch('toggleShowingImprovements', this.sectionId);
+  }
+
+  toggleShowingTriaged_() {
+    // TODO this.dispatch('toggleShowingTriaged', this.sectionId);
+  }
+
+  toggleGroupExpanded_(e) {
+    console.log(arguments);
+  }
+
+  closeSection_() {
+    this.dispatch('closeSection', this.sectionId);
+  }
+}
+customElements.define(AlertsSection.is, AlertsSection);
+})();
+</script>
