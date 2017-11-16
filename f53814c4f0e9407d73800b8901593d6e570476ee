@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "db4543b6_81b7a1ea",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-11-16T01:32:21Z",
+      "side": 1,
+      "message": "I needed to do this because I was creating the log files as \"artifacts/storyname_log\". This was problematic when the story name was \"http://google.com\", since that\u0027s a not normal file name. So I sanitized it.\n\nCould also just generate a random number or something.",
+      "parentUuid": "3f7e8f87_20078900",
+      "revId": "f53814c4f0e9407d73800b8901593d6e570476ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3e3d0b59_5eb07a7e",
         "filename": "telemetry/telemetry/internal/results/artifact_results.py",
         "patchSetId": 12
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "684ff247_fc8ec438",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-11-16T01:32:21Z",
+      "side": 1,
+      "message": "Actually, I had planned to kinda ignore this case right now. We\u0027re not outputting more than one run in the test results anyways; see https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/results/json_3_output_formatter.py?q\u003djson_3\u0026sq\u003dpackage:chromium\u0026l\u003d68; that block of code removes any multiple run info we have in the test results right now.",
+      "parentUuid": "3e3d0b59_5eb07a7e",
+      "revId": "f53814c4f0e9407d73800b8901593d6e570476ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c4e87173_75ee7e43",
         "filename": "telemetry/telemetry/internal/results/artifact_results.py",
         "patchSetId": 12
@@ -47,6 +83,24 @@
       "writtenOn": "2017-11-16T00:58:43Z",
       "side": 1,
       "message": "We might need to make sure that artifact_path is unique file in artifact_dir. Otherwise we may accidentally erase existing files there",
+      "revId": "f53814c4f0e9407d73800b8901593d6e570476ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8c10aba_da8bd7f9",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-11-16T01:32:21Z",
+      "side": 1,
+      "message": "I\u0027ll add this.",
+      "parentUuid": "c4e87173_75ee7e43",
       "revId": "f53814c4f0e9407d73800b8901593d6e570476ee",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
