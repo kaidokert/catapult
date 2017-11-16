@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ac9d1090_5d9bf2d6",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-16T11:00:26Z",
+      "side": 1,
+      "message": "This _RunStoryAndProcessErrorIfNeeded is already quite large and unwieldy (the nested try-catching madness bellow already gives me headaches when trying to reason about it!).\n\nCould we implement this as a contextlib.contextmanager we could use like:\n\n  with CaputureLogsArtifact(results, ...):\n    # all the existing madness\n\nSo CaputureLogsArtifact will setup the needed handlers, let the context-managed code run in a try-finally block, then in finally bit push the logs to the results object and reset handlers as needed?",
+      "revId": "25a58d69d2c6eecd2699d4c93952086a0d36998f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbdb3742_4ac44a75",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-16T11:00:26Z",
+      "side": 1,
+      "message": "Maybe just use tempfile.NamedTemporaryFile?",
+      "revId": "25a58d69d2c6eecd2699d4c93952086a0d36998f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4538498_09df3272",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-16T11:00:26Z",
+      "side": 1,
+      "message": "Add a TODO to remove the AddProfilingFile when it can be replaced by the new artifacts system",
+      "revId": "25a58d69d2c6eecd2699d4c93952086a0d36998f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
