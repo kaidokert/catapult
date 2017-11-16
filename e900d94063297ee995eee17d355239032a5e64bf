@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "274990a7_28eb7522",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-16T10:35:13Z",
+      "side": 1,
+      "message": "I think it\u0027s weird that reading a property causes a directory to be created on the host. I would suggest either:\n\n1. moving the directory creation up to __init__, and store as _artifact_dir (no need to keep track of the output dir after that)\n2. move the responsibility of choosing and creating the directory up to the clients, so ArtifactResults receives the artifact_dir and can assume that the directory already exists.\n\nProbably a slight preference towards 1?",
+      "revId": "e900d94063297ee995eee17d355239032a5e64bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a44dc517_0c150518",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-16T10:35:13Z",
+      "side": 1,
+      "message": "Should we allow placing files e.g. in output_dir/artifacts/foo/bar/thing.log?",
+      "revId": "e900d94063297ee995eee17d355239032a5e64bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33326f86_36f54602",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-16T10:35:13Z",
+      "side": 1,
+      "message": "Should we move or copy?\n\nAlso, do we expect this to be a temporary thing? I would actually prefer to just assert that the artifact is in the correct path, and complain if it is not.",
+      "revId": "e900d94063297ee995eee17d355239032a5e64bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6ce2626_fbec2ccf",
+        "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-16T10:35:13Z",
+      "side": 1,
+      "message": "update docstring",
+      "revId": "e900d94063297ee995eee17d355239032a5e64bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6776d414_bf3edad2",
+        "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-16T10:35:13Z",
+      "side": 1,
+      "message": "what is `artifacts`? a dictionary or an ArtifactResult\u0027s object? you\u0027re sometimes doing .get and sometimes .GetArtifact",
+      "revId": "e900d94063297ee995eee17d355239032a5e64bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
