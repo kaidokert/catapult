@@ -143,6 +143,24 @@
     },
     {
       "key": {
+        "uuid": "6f862368_60eec6e6",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-11-16T00:07:53Z",
+      "side": 1,
+      "message": "I agree, but dont want to make an assumption. If they can promise us that the telemetry expectation file will always contain the [ condition ] section, I\u0027ll switch to the regex you gave.\n\nAdding them now.",
+      "parentUuid": "05d6ce47_04402495",
+      "revId": "f6f0698f396137500f9156930139cf11b07776e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "84df59dd_73cbc12a",
         "filename": "telemetry/telemetry/story/expectations.py",
         "patchSetId": 1
