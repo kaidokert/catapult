@@ -19,6 +19,41 @@
     },
     {
       "key": {
+        "uuid": "37df29be_8ad6d2cc",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-16T11:03:05Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "ac9d1090_5d9bf2d6",
+      "revId": "25a58d69d2c6eecd2699d4c93952086a0d36998f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f545d074_eb30b12d",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-16T11:03:05Z",
+      "side": 1,
+      "message": "You can use https://docs.python.org/2/library/uuid.html instead :)",
+      "revId": "25a58d69d2c6eecd2699d4c93952086a0d36998f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dbdb3742_4ac44a75",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 6
