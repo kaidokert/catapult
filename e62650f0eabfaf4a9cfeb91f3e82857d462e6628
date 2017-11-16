@@ -33,6 +33,24 @@
       "revId": "e62650f0eabfaf4a9cfeb91f3e82857d462e6628",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d251f0c_682a275e",
+        "filename": "tracing/tracing/metrics/system_health/limited_cpu_time_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2017-11-16T18:13:30Z",
+      "side": 1,
+      "message": "I kept histograms as histograms, since that is the conventional argument name in every other metric. I changed limitedHistograms to allCpuHistograms to better reflect intent.",
+      "parentUuid": "99c465b3_a9f32eb9",
+      "revId": "e62650f0eabfaf4a9cfeb91f3e82857d462e6628",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
