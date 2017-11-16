@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bae2339d_49c66ca2",
+        "filename": "telemetry/telemetry/internal/backends/browser_backend.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-16T19:43:12Z",
+      "side": 1,
+      "message": "nits: you can just raise  NotImplementedError() here \u0026 below for consistency",
+      "revId": "8209177a1da880ec061c064422b7f6eeccdd5478",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
