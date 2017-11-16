@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "d7c01671_a3f2f84c",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-16T09:50:58Z",
+      "side": 1,
+      "message": "I understand that. What I\u0027m saying is, suppose the test has 90% success rate at change_a, and 30% success rate at change_b. We run 10 iterations each, getting 9 and 3 perf values for each. You would say \"there is not enough data to make a call because, look at those measly 3 samples!\". But clearly we have enough data to say that something changed between A and B, it\u0027s now failing a lot more!",
+      "parentUuid": "edcb26e0_8b0f23db",
+      "revId": "82a468edc342ddaefd992cc02451c7b7abf610d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a657841_e94f1522",
         "filename": "dashboard/dashboard/pinpoint/models/job.py",
         "patchSetId": 5
@@ -136,6 +154,24 @@
       "side": 1,
       "message": "What should it do instead?\n(Background: most of the statistical tests in SciPy throw ValueError or return NaN in this scenario)",
       "parentUuid": "7a657841_e94f1522",
+      "revId": "82a468edc342ddaefd992cc02451c7b7abf610d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "798ed494_437f759f",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-16T09:50:58Z",
+      "side": 1,
+      "message": "Maybe make it return float(\u0027inf\u0027)? (Could also be in a follow up CL to keep these two changes separate.)",
+      "parentUuid": "4bb27cbd_6dddb162",
       "revId": "82a468edc342ddaefd992cc02451c7b7abf610d3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
