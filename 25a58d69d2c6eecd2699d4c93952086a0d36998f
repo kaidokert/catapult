@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "6a2de437_02a0b477",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-11-16T22:18:53Z",
+      "side": 1,
+      "message": "Good idea. Done.",
+      "parentUuid": "37df29be_8ad6d2cc",
+      "revId": "25a58d69d2c6eecd2699d4c93952086a0d36998f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f545d074_eb30b12d",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 6
@@ -85,6 +103,24 @@
       "revId": "25a58d69d2c6eecd2699d4c93952086a0d36998f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73a53152_89a7b0be",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-11-16T22:18:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4538498_09df3272",
+      "revId": "25a58d69d2c6eecd2699d4c93952086a0d36998f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
