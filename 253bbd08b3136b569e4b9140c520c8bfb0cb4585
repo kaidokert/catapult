@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0b4d5ee0_ac53162e",
+        "filename": "devil/devil/android/constants/webapk.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1112850
+      },
+      "writtenOn": "2017-11-16T17:51:01Z",
+      "side": 1,
+      "message": "John, is it ok to add this constant to devil for webapk?\n\nAnd a somewhat separate question is:\nIs is possible to get the webapk\u0027s browser information from python script? (WebApk specify which browser to open the webapk in its manifest I think).",
+      "range": {
+        "startLine": 5,
+        "startChar": 24,
+        "endLine": 5,
+        "endChar": 66
+      },
+      "revId": "253bbd08b3136b569e4b9140c520c8bfb0cb4585",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a12d5f3_889123f8",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1112850
+      },
+      "writtenOn": "2017-11-16T17:51:01Z",
+      "side": 1,
+      "message": "You can print warning here when killing the browser.",
+      "revId": "253bbd08b3136b569e4b9140c520c8bfb0cb4585",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9de7ef3e_96be3862",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1112850
+      },
+      "writtenOn": "2017-11-16T17:51:01Z",
+      "side": 1,
+      "message": "What happens when url is empty for WebApk?",
+      "range": {
+        "startLine": 68,
+        "startChar": 10,
+        "endLine": 68,
+        "endChar": 24
+      },
+      "revId": "253bbd08b3136b569e4b9140c520c8bfb0cb4585",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "052f73aa_9baabceb",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1112850
+      },
+      "writtenOn": "2017-11-16T17:51:01Z",
+      "side": 1,
+      "message": "Is WebAPK going to be the only external app package? If so, use a more specific flag name here, e.g. |--webapk-name| or something similar.",
+      "range": {
+        "startLine": 137,
+        "startChar": 22,
+        "endLine": 137,
+        "endChar": 44
+      },
+      "revId": "253bbd08b3136b569e4b9140c520c8bfb0cb4585",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54832187_23cce927",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent_unittest.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1112850
+      },
+      "writtenOn": "2017-11-16T17:51:01Z",
+      "side": 1,
+      "message": "Can we add comments for those parameters for better readability?",
+      "range": {
+        "startLine": 20,
+        "startChar": 40,
+        "endLine": 20,
+        "endChar": 75
+      },
+      "revId": "253bbd08b3136b569e4b9140c520c8bfb0cb4585",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
