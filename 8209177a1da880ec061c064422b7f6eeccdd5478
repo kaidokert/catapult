@@ -34,6 +34,24 @@
       "revId": "8209177a1da880ec061c064422b7f6eeccdd5478",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e4daea4_1299aad0",
+        "filename": "telemetry/telemetry/internal/backends/browser_backend.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-16T19:55:41Z",
+      "side": 1,
+      "message": "Oh I see. Keeping this is fine then.",
+      "parentUuid": "387ac916_eadee313",
+      "revId": "8209177a1da880ec061c064422b7f6eeccdd5478",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
