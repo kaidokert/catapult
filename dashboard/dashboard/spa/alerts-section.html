@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/components/paper-button/paper-button.html">
+<link rel="import" href="/components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="/components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="/components/paper-item/paper-item.html">
+<link rel="import" href="/components/paper-listbox/paper-listbox.html">
+<link rel="import" href="/components/paper-spinner/paper-spinner.html">
+<link rel="import" href="/components/paper-toggle-button/paper-toggle-button.html">
+
+<dom-module id="alerts-section">
+  <template>
+    <style>
+      #controls {
+        display: flex;
+      }
+
+      #menu {
+        min-width: 350px;
+      }
+
+      paper-toggle-button {
+        display: inline-flex;
+      }
+
+      #triaged {
+        margin-left: 2em;
+      }
+
+      .sheriff-item {
+        white-space: nowrap;
+      }
+
+      #summary {
+        flex-grow: 1;
+        margin: auto;
+        text-align: center;
+      }
+
+      #table_container {
+        position: relative;
+      }
+
+      #spinner_container {
+        bottom: 0;
+        display: none;
+        height: 100%;
+        position: absolute;
+        width: 100%;
+      }
+
+      #spinner_container[active] {
+        display: flex;
+      }
+
+      paper-spinner {
+        margin: auto;
+      }
+
+      #table_container table[placeholder] {
+        color: var(--paper-grey-500);
+        width: 100%;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      table thead th {
+        background-color: #e8eaf6;
+      }
+
+      table tbody tr:nth-child(even) {
+        background: rgba(232, 234, 246, 0.5);
+      }
+
+      td {
+        padding: 0.5em;
+      }
+
+      th.delta_pct {
+        padding-right: 0.5em;
+      }
+
+      td.delta,
+      td.delta_pct {
+        text-align: right;
+      }
+
+      td.checkbox {
+        text-align: center;
+      }
+
+      td[expandedGroup] {
+        background-color: var(--paper-grey-500);
+      }
+
+      paper-button.expand_group {
+        font-size: x-large;
+        line-height: 0;
+        margin: 0;
+        min-width: 0;
+        padding: 0;
+      }
+
+      .collapse_row_up_arrow {
+        position: relative;
+        bottom: -12px;
+      }
+    </style>
+
+    <div id="controls">
+      <paper-dropdown-menu id="menu"
+                           label="Sheriff"
+                           on-iron-select="onMenuSelect_">
+        <paper-listbox slot="dropdown-content" selected="{{selectedSheriffIndex}}">
+          <template is="dom-repeat" items="[[sheriffList]]">
+            <paper-item label="[[item]]" class="sheriff-item">[[item]]</paper-item>
+          </template>
+        </paper-listbox>
+      </paper-dropdown-menu>
+
+      <span id="summary">[[summary]]</span>
+
+      <paper-toggle-button id="improvements"
+                          checked$="[[showingImprovements]]"
+                          on-change="toggleShowingImprovements_">
+        Improvements
+      </paper-toggle-button>
+
+      <paper-toggle-button id="triaged"
+                    checked$="[[showingTriaged]]"
+                    on-change="toggleShowingTriaged_">
+        Triaged
+      </paper-toggle-button>
+
+      <paper-icon-button icon="close"
+                         on-tap="closeSection_"></paper-icon-button>
+    </div>
+
+    <template is="dom-if" if="[[!any_(rows)]]">
+      TODO cat
+    </template>
+
+    <template is="dom-if" if="[[any_(rows)]]">
+      <div id="table_container">
+        <table placeholder$=[[areRowsPlaceholders]]>
+          <thead>
+            <tr>
+              <th>&nbsp;</th>
+              <th><paper-checkbox></paper-checkbox></th>
+              <th>Revisions</th>
+              <th>Bot</th>
+              <th>Test Suite</th>
+              <th colspan="5">Test</th>
+              <th>Delta</th>
+              <th class="delta_pct">Delta %</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <template is="dom-repeat" items="[[rows]]">
+              <tr>
+                <td expandedGroup$="[[item.isGroupExpanded]]">
+                  <template is="dom-if" if="[[item.numGroupMembers]]">
+                    <paper-button class="expand_group"
+                                  on-tap="toggleGroupExpanded_">
+                      <template is="dom-if" if="[[item.isGroupExpanded]]">
+                        <div class="collapse_row_up_arrow">&#8963;</div>
+                      </template>
+                      <template is="dom-if" if="[[!item.isGroupExpanded]]">
+                        <div>&#8964;</div>
+                      </template>
+                    </paper-button>
+                    [[item.numGroupMembers]]
+                  </template>
+                </td>
+                <td class="checkbox"><paper-checkbox></paper-checkbox></td>
+                <td>[[item.revisions]]</td>
+                <td>[[item.bot]]</td>
+                <td>[[item.testSuite]]</td>
+                <template is="dom-repeat" items="[[item.testParts]]">
+                  <td>[[item]]</td>
+                </template>
+                <td class="delta">[[item.delta]]</td>
+                <td class="delta_pct">[[item.deltaPct]]</td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+
+        <div id="spinner_container" active$="[[isLoading]]">
+          <paper-spinner active$="[[isLoading]]"></paper-spinner>
+        </div>
+      </div>
+    </template>
+  </template>
+</dom-module>
+
+<script>
+'use strict';
+(function() {
+class AlertsSection extends ReduxMixin(Polymer.Element) {
+  static get is() { return 'alerts-section'; }
+
+  static get actions() { return window.ACTION_CREATORS; }
+
+  static get properties() {
+    return sectionProperties({
+      isLoading: {type: Boolean},
+      summary: {type: String},
+      sheriffList: {type: Array},
+      showingImprovements: {type: Boolean},
+      showingTriaged: {type: Boolean},
+      areRowsPlaceholders: {type: Boolean},
+      rows: {type: Array},
+    });
+  }
+
+  ready() {
+    super.ready();
+    this.$.menu.open();
+  }
+
+  any_(arr) {
+    return arr && (arr.length > 0);
+  }
+
+  onMenuSelect_(e) {
+    this.dispatch('loadAlerts', this.sectionId, e.detail.item.label);
+  }
+
+  toggleShowingImprovements_() {
+    // TODO this.dispatch('toggleShowingImprovements', this.sectionId);
+  }
+
+  toggleShowingTriaged_() {
+    // TODO this.dispatch('toggleShowingTriaged', this.sectionId);
+  }
+
+  toggleGroupExpanded_(event) {
+    const tbody = event.path[6];
+    if (tbody.tagName !== 'TBODY') throw 'update event.path index tbody';
+    const tr = event.path[5];
+    if (tr.tagName !== 'TR') throw 'update event.path index tr';
+
+    this.dispatch({
+      type: 'toggleAlertGroupExpanded',
+      sectionId: this.sectionId,
+      rowIndex: Array.from(tbody.children).indexOf(tr),
+    });
+  }
+
+  closeSection_() {
+    this.dispatch({
+      type: 'closeSection',
+      sectionId: this.sectionId,
+    });
+  }
+}
+customElements.define(AlertsSection.is, AlertsSection);
+})();
+</script>
