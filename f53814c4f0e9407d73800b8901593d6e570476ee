@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "b7b58847_b4d7ce71",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-11-16T03:14:16Z",
+      "side": 1,
+      "message": "I moved the generating of a log file to the other CL. \n\nRemoved the sanitizing here, as these are only used for keys in a dictionary.",
+      "parentUuid": "3036f8e2_cd9ccc41",
+      "revId": "f53814c4f0e9407d73800b8901593d6e570476ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3e3d0b59_5eb07a7e",
         "filename": "telemetry/telemetry/internal/results/artifact_results.py",
         "patchSetId": 12
