@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "33d2b17c_9d0293d9",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-17T12:27:13Z",
+      "side": 1,
+      "message": "To make this more unittestable, I suggest making a simple API\n\n\"def CaptureLogs(file_stream)\"  # --\u003e this probably should live in common/py_utils/\n\n\nThen you can make def CaptureLogsAsArtifacts(results, test_name) method in story_runner.py which is a thin wrapper around CaptureLogs with some logic to generate the file \u0026 add them to results object.",
+      "revId": "ec69cab6b41d00707e127b9b4eee06e87ac5b11e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d051272f_b446adb8",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 7
