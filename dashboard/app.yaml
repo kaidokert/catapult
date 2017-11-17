@@ -60,6 +60,11 @@ handlers:
   upload: polymer/components/.*/.*\.(html|js|css)$
   secure: always
 
+- url: /bower_components/(.*)/(.*\.(html|js|css))$
+  static_files: polymer2/bower_components/\1/\2
+  upload: polymer2/bower_components/.*/.*\.(html|js|css)$
+  secure: always
+
 - url: /tracing/(.*)/(.*\.(html|js|css))$
   static_files: tracing/\1/\2
   upload: tracing/.*/.*\.(html|js|css)$
