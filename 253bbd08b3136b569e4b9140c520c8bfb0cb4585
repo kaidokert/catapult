@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "5af4ba91_b9320c22",
+        "filename": "devil/devil/android/constants/webapk.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1117405
+      },
+      "writtenOn": "2017-11-17T19:25:46Z",
+      "side": 1,
+      "message": "Thanks John. The tricky thing is apk_helper needs the path of the real .apk file, but we only provide the package name of an installed WebAPK. I look through the dir of apk_helper.py, but cannot find anything helps. We could get the the path of the base.apk from the install the WebAPK, but the path will be /data/app/webapk_package_name-X, \"X\" could be 1 or 2, which is used in turn by Android. Do you have any suggestion?",
+      "parentUuid": "cc598097_6e6ac9de",
+      "range": {
+        "startLine": 5,
+        "startChar": 24,
+        "endLine": 5,
+        "endChar": 66
+      },
+      "revId": "253bbd08b3136b569e4b9140c520c8bfb0cb4585",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a12d5f3_889123f8",
         "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
         "patchSetId": 16
