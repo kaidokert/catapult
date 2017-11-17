@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import contextlib
 import logging
 import subprocess
 
@@ -78,7 +79,6 @@ class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     self.platform_backend.StopApplication(self._backend_settings.package)
 
   def Start(self):
-    self.device.adb.Logcat(clear=True)
     if self.browser_options.startup_url:
       url = self.browser_options.startup_url
     elif self.browser_options.profile_dir:
@@ -88,10 +88,32 @@ class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       # startup with the NTP can lead to race conditions with Telemetry
       url = 'about:blank'
 
-    self.platform_backend.DismissCrashDialogIfNeeded()
-
     user_agent_dict = user_agent.GetChromeUserAgentDictFromType(
         self.browser_options.browser_user_agent_type)
+
+    with self.StartEnvironment():
+      self.device.StartActivity(
+          intent.Intent(package=self._backend_settings.package,
+                        activity=self._backend_settings.activity,
+                        action=None, data=url, category=None,
+                        extras=user_agent_dict),
+          blocking=True)
+
+  @contextlib.contextmanager
+  def StartEnvironment(self):
+    """Allow to start the browser from a custom launch scenario.
+
+    When entering the context manager, command line flags will be set in the
+    device, and the browser's profile will be set as required.
+
+    The context managed code is responsible for interacting with the platform
+    and cause the browser to be launched.
+
+    When successfully exiting the context manager, a DevTools connection with
+    the now active browser will be established.
+    """
+    self.device.adb.Logcat(clear=True)
+    self.platform_backend.DismissCrashDialogIfNeeded()
 
     browser_startup_args = self.GetBrowserStartupArgs()
     command_line_name = self._backend_settings.command_line_name
@@ -112,12 +134,7 @@ class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
               self._backend_settings.package,
               self._backend_settings.profile_ignore_list)
 
-      self.device.StartActivity(
-          intent.Intent(package=self._backend_settings.package,
-                        activity=self._backend_settings.activity,
-                        action=None, data=url, category=None,
-                        extras=user_agent_dict),
-          blocking=True)
+      yield
 
       # TODO(crbug.com/404771): Move port forwarding to network_controller.
       remote_devtools_port = self._backend_settings.GetDevtoolsRemotePort(
