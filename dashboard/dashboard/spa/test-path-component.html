@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="/dashboard/spa/dropdown-input.html">
+<link rel="import" href="/tracing/value/ui/histogram_set_view.html">
+
+<dom-module id="test-path-component">
+  <template>
+    <style>
+    </style>
+
+    <dropdown-input placeholder="[[placeholder]]"
+                    value="[[value]]"
+                    options="[[options]]"
+                    is-focused="[[item.isFocused]]"
+                    on-input-focus="onFocus_"
+                    on-input-blur="onBlur_"
+                    on-input-keydown="onKeydown_"
+                    on-clear="onTestPathClear_"
+                    on-option-select="onSelect_">
+    </dropdown-input>
+
+    <paper-checkbox id="aggregate"
+                    disabled="[[!multipleValues_(values)]]"
+                    checked="[[isAggregated]]"
+                    hidden$="[[!canAggregate]]"
+                    on-change="onAggregateChange_">
+      Aggregate
+    </paper-checkbox>
+  </template>
+</dom-module>
+
+<script>
+'use strict';
+(function() {
+function makeProperties(configs) {
+  const properties = {
+    sectionId: Number,
+    componentIndex: Number,
+  };
+  for (const [name, config] of Object.entries(configs)) {
+    properties[name] = Object.assign(config, {
+      statePath(state) {
+        if (!state.sections[this.sectionId]) return undefined;
+        if (!state.sections[this.sectionId].testPathComponents[
+            this.componentIndex]) {
+          return undefined;
+        }
+        return state.sections[this.sectionId].testPathComponents[
+            this.componentIndex][name];
+      }
+    });
+  }
+  return properties;
+}
+
+class TestPathComponent extends ReduxMixin(Polymer.Element) {
+  static get is() { return 'test-path-component'; }
+
+  static get actions() { return window.ACTION_CREATORS; }
+
+  static get properties() {
+    return makeProperties({
+      placeholder: {type: String},
+      value: {type: String},
+      options: {type: Array},
+      isFocused: {type: Array},
+      canAggregate: {type: Boolean},
+      isAggregated: {type: Boolean},
+    });
+  }
+
+  multipleValues_(values) {
+    return values && values.length > 1;
+  }
+
+  onFocus_(e) {
+    this.dispatch({
+      type: 'testPathFocus',
+      sectionId: this.sectionId,
+      componentIndex: this.componentIndex,
+      isFocused: true,
+    });
+  }
+
+  onBlur_(e) {
+    this.dispatch({
+      type: 'testPathFocus',
+      sectionId: this.sectionId,
+      componentIndex: this.componentIndex,
+      isFocused: false,
+    });
+  }
+
+  onKeydown_(e) {
+    this.dispatch({
+      type: 'testPathKeydown',
+      sectionId: this.sectionId,
+      componentIndex: this.componentIndex,
+      value: e.detail.value,
+    });
+  }
+
+  onSelect_(e) {
+    if (e.detail.value !== this.value) {
+      this.dispatch({
+        type: 'selectTestPathComponent',
+        sectionId: this.sectionId,
+        componentIndex: this.componentIndex,
+        value: e.detail.value,
+      });
+    }
+  }
+
+  onAggregateChange_(e) {
+    this.dispatch({
+      type: 'testPathAggregate',
+        sectionId: this.sectionId,
+        componentIndex: this.componentIndex,
+        value: this.$.aggregate.checked,
+    });
+  }
+}
+customElements.define(TestPathComponent.is, TestPathComponent);
+})();
+</script>
