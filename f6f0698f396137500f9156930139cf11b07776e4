@@ -238,6 +238,24 @@
     },
     {
       "key": {
+        "uuid": "73a48736_6754772d",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-11-17T19:08:38Z",
+      "side": 1,
+      "message": "For a regexp that works regardless of whether a platform is present, you can do:\n\n\u0027(\\S+) (?:(\\[.+\\]) )?(.+) \\[(.+)\\]\u0027\n\nIn order to document the regexp better, I might consider doing:\nr \u003d \u0027(\\S+) \u0027  # The bug field.\nr +\u003d \u0027(?:(\\[.+\\]) )?\u0027  # The label field (optional).\nr +\u003d \u0027(.+) \u0027  # The test path field.\nr +\u003d \u0027\\[(.+)\\]\u0027  # The expectation field.\n\n\u003e\u003e\u003e print re.match(\u0027(\\S+) (?:(\\[.+\\]) )?(.+) \\[(.+)\\]\u0027, \"crbug.com/12345 [Mac] b1/s1 [ Skip ]\").groups()\n(\u0027crbug.com/12345\u0027, \u0027[Mac]\u0027, \u0027b1/s1\u0027, \u0027 Skip \u0027)\n\n\u003e\u003e\u003e print re.match(\u0027(\\S+) (?:(\\[.+\\]) )?(.+) \\[(.+)\\]\u0027, \"crbug.com/12345 b1/s1 [ Skip ]\").groups()\n(\u0027crbug.com/12345\u0027, None, \u0027b1/s1\u0027, \u0027 Skip \u0027)\n\nWith this, you can just test whether groups[1] is None and, if it is, make it equivalent to story.expectations.ALL.\n\nThe trick with the regexp is to put \"(?:\" at the start of that part of the regexp, and \")\" at the end. This creates what\u0027s called a \"non-capturing group\" - basically a logical regexp group to which we can then attach the \"?\" afterwards in order to indicate \"this group may or may not exist in the regexp\". Inside of that non-capturing group, we put another \"(\" and \")\" around all the parts that we care about - basically everything but the space that needs to exist in between that group and the next one.",
+      "parentUuid": "945d1f41_30c8164c",
+      "revId": "f6f0698f396137500f9156930139cf11b07776e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "84df59dd_73cbc12a",
         "filename": "telemetry/telemetry/story/expectations.py",
         "patchSetId": 1
