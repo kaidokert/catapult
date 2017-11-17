@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "acf86d84_051abc3a",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-11-17T21:51:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e70d78e_cd35537b",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 36
+      },
+      "revId": "f6f0698f396137500f9156930139cf11b07776e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "99c1b425_b69af179",
         "filename": "telemetry/telemetry/story/expectations.py",
         "patchSetId": 1
@@ -74,6 +98,24 @@
       "revId": "f6f0698f396137500f9156930139cf11b07776e4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b99b518c_ec5e81fb",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-11-17T21:51:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4802e697_5cc19c7e",
+      "revId": "f6f0698f396137500f9156930139cf11b07776e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -274,6 +316,24 @@
     },
     {
       "key": {
+        "uuid": "bb58c53b_8a0854ae",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-11-17T21:51:41Z",
+      "side": 1,
+      "message": "Simplified regex version complete. It doesn\u0027t require the subset.",
+      "parentUuid": "6dbf542c_550962c5",
+      "revId": "f6f0698f396137500f9156930139cf11b07776e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "84df59dd_73cbc12a",
         "filename": "telemetry/telemetry/story/expectations.py",
         "patchSetId": 1
@@ -285,6 +345,24 @@
       "writtenOn": "2017-11-15T23:37:10Z",
       "side": 1,
       "message": "You may want to add another method like: ToExpectationString() which turn this object to string form of expectation. This is so that later we can use it for formatting (e.g: ensure the expectations are alphabetically ordered).",
+      "revId": "f6f0698f396137500f9156930139cf11b07776e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3050be5_e1fe25bf",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-11-17T21:51:41Z",
+      "side": 1,
+      "message": "I just want to confirm I understand what you are saying before implementing:\nYou want a Method that you can give a list of tags/StoryEpectations to and then create the expectation file from that?",
+      "parentUuid": "84df59dd_73cbc12a",
       "revId": "f6f0698f396137500f9156930139cf11b07776e4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -308,6 +386,24 @@
     },
     {
       "key": {
+        "uuid": "79e031d1_d48461e8",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-11-17T21:51:41Z",
+      "side": 1,
+      "message": "Made the comment say this explicitly since we do not want to forget that fact.",
+      "parentUuid": "62b3963a_ba6f2857",
+      "revId": "f6f0698f396137500f9156930139cf11b07776e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f6a8fc9d_e84faf95",
         "filename": "telemetry/telemetry/story/expectations_unittest.py",
         "patchSetId": 1
@@ -322,6 +418,24 @@
       "revId": "f6f0698f396137500f9156930139cf11b07776e4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "689c8eeb_13dded7d",
+        "filename": "telemetry/telemetry/story/expectations_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-11-17T21:51:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6a8fc9d_e84faf95",
+      "revId": "f6f0698f396137500f9156930139cf11b07776e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -342,6 +456,24 @@
     },
     {
       "key": {
+        "uuid": "0009bd6b_380b2442",
+        "filename": "telemetry/telemetry/story/expectations_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-11-17T21:51:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "734e5daa_3898f01f",
+      "revId": "f6f0698f396137500f9156930139cf11b07776e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fe60565f_0dd04cd2",
         "filename": "telemetry/telemetry/story/expectations_unittest.py",
         "patchSetId": 1
@@ -356,6 +488,24 @@
       "revId": "f6f0698f396137500f9156930139cf11b07776e4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "918e74d0_80ab7722",
+        "filename": "telemetry/telemetry/story/expectations_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-11-17T21:51:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe60565f_0dd04cd2",
+      "revId": "f6f0698f396137500f9156930139cf11b07776e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
