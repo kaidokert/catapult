@@ -126,6 +126,24 @@
     },
     {
       "key": {
+        "uuid": "83192331_fdf963c4",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-17T11:20:46Z",
+      "side": 1,
+      "message": "yep, +1 to Ned\n\nAlso note: we *do* output several test results e.g. \"PASS FAIL PASS\" is possible. What we do there on that bit of code is collapse \"PASS PASS PASS\" to just \"PASS\" because of some logic mismatch of what repeating a test means for us and what it means for other flakiness dashboard clients.",
+      "parentUuid": "41534c78_c08ba6da",
+      "revId": "f53814c4f0e9407d73800b8901593d6e570476ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c4e87173_75ee7e43",
         "filename": "telemetry/telemetry/internal/results/artifact_results.py",
         "patchSetId": 12
