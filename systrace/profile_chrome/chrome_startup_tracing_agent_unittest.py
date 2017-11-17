@@ -17,7 +17,8 @@ class ChromeAgentTest(agents_unittest.BaseAgentTest):
   @decorators.Disabled
   def testTracing(self):
     agent = chrome_startup_tracing_agent.ChromeStartupTracingAgent(
-        self.device, self.package_info, False, 'https://www.google.com')
+        self.device, self.package_info, '', # webapk_package
+        False, 'https://www.google.com')
 
     try:
       agent.StartAgentTracing(None)
