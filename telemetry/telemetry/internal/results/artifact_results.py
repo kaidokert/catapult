@@ -54,8 +54,9 @@ class ArtifactResults(object):
     # If the artifact isn't in the artifact directory, move it.
     if not artifact_path.startswith(self.artifact_dir + os.sep):
       shutil.move(artifact_path, self.artifact_dir)
-
-    # Make path relative to artifact directory.
-    artifact_path = artifact_path[len(self.artifact_dir + os.sep):]
+      artifact_path = os.path.basename(artifact_path)
+    else:
+      # Make path relative to artifact directory.
+      artifact_path = artifact_path[len(self.artifact_dir + os.sep):]
 
     self._test_artifacts[test_name][name].append(artifact_path)

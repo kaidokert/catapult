@@ -60,8 +60,9 @@ class ArtifactResultsUnittest(unittest.TestCase):
   def testAddAndMove(self, make_patch, move_patch):
     ar = artifact_results.ArtifactResults('/foo')
 
-    ar.AddArtifact('test', 'artifact_name', '/other/directory/bar.log')
-    move_patch.assert_called_with('/other/directory/bar.log', '/foo/artifacts')
+    ar.AddArtifact('test', 'artifact_name', '/another/directory/bar.log')
+    move_patch.assert_called_with(
+        '/another/directory/bar.log', '/foo/artifacts')
     make_patch.assert_called_with('/foo/artifacts')
 
     self.assertEqual({k: dict(v) for k, v in ar._test_artifacts.items()}, {
