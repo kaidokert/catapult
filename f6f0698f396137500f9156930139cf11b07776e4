@@ -220,6 +220,24 @@
     },
     {
       "key": {
+        "uuid": "afb1baa7_aa5fbfc5",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2017-11-17T19:07:54Z",
+      "side": 1,
+      "message": "WRT to parsing code complexity, could you use the formal parsing expression grammar in the \"Syntax\" section to generate a parser automatically? https://docs.google.com/document/d/1Y4nwK4b3_xyc5Uh8-LwgpN5VKbBc6-2whof_yoNOalI/edit?pli\u003d1#heading\u003dh.takylyrs6wxr\n\nThat would be ideal, I think. I haven\u0027t tried it in Go yet but that would be my plan. The Go parser for the existing Test Expectation (not Dirk\u0027s proposal but the existing one) syntax was not particularly fun to write.",
+      "parentUuid": "945d1f41_30c8164c",
+      "revId": "f6f0698f396137500f9156930139cf11b07776e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "84df59dd_73cbc12a",
         "filename": "telemetry/telemetry/story/expectations.py",
         "patchSetId": 1
