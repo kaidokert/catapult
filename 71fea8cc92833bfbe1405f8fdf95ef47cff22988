@@ -177,6 +177,24 @@
     },
     {
       "key": {
+        "uuid": "805eea1d_f5022efb",
+        "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-11-17T23:17:30Z",
+      "side": 1,
+      "message": "I actually removed this being a default argument, and just checked to see if it\u0027s non None below.",
+      "parentUuid": "2ee0df1e_26e8457e",
+      "revId": "71fea8cc92833bfbe1405f8fdf95ef47cff22988",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "235a9998_061a506b",
         "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
         "patchSetId": 17
