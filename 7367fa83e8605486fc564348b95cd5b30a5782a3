@@ -70,6 +70,24 @@
     },
     {
       "key": {
+        "uuid": "50367714_95e0bd31",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-17T20:35:18Z",
+      "side": 1,
+      "message": "Yeah, I don\u0027t like this part. I have a trouble with understanding why we need to separate create the browser from preparing the environment for the startup. Is that because we haven\u0027t plumbed all the configurable bit of starting the browser to the browser_options object yet?",
+      "parentUuid": "f0c10bf3_692cb416",
+      "revId": "7367fa83e8605486fc564348b95cd5b30a5782a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "34567be4_e5eeb551",
         "filename": "telemetry/telemetry/internal/browser/browser.py",
         "patchSetId": 1
