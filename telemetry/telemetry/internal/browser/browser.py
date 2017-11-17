@@ -30,7 +30,7 @@ class Browser(app.App):
     with browser_to_create.Create(options) as browser:
       ... do all your operations on browser here
   """
-  def __init__(self, backend, platform_backend, credentials_path):
+  def __init__(self, backend, platform_backend, credentials_path, started=True):
     super(Browser, self).__init__(app_backend=backend,
                                   platform_backend=platform_backend)
     try:
@@ -56,11 +56,12 @@ class Browser(app.App):
               'Did not flush system cache.')
 
       self._browser_backend.SetBrowser(self)
-      self._browser_backend.Start()
-      self._LogBrowserInfo()
-      self._platform_backend.DidStartBrowser(self, self._browser_backend)
-      self._profiling_controller = profiling_controller.ProfilingController(
-          self._browser_backend.profiling_controller_backend)
+      if started:
+        self._browser_backend.Start()
+        self._LogBrowserInfo()
+        self._platform_backend.DidStartBrowser(self, self._browser_backend)
+        self._profiling_controller = profiling_controller.ProfilingController(
+            self._browser_backend.profiling_controller_backend)
     except Exception:
       exc_info = sys.exc_info()
       logging.error(
@@ -217,6 +218,9 @@ class Browser(app.App):
         continue
       result[process_type].update(cpu_timestamp)
     return result
+
+  def StartEnvironment(self):
+    return self._browser_backend.StartEnvironment()
 
   def Close(self):
     """Closes this browser."""
