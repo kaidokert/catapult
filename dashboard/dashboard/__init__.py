@@ -23,6 +23,7 @@ THIRD_PARTY_LIBRARIES = [
     'flot',
     'jquery',
     'polymer',
+    'polymer2',
     'six',
 ]
 
