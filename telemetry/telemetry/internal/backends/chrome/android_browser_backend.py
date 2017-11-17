@@ -4,6 +4,7 @@
 
 import logging
 import subprocess
+import time
 
 from telemetry.core import exceptions
 from telemetry.internal.platform import android_platform_backend as \
@@ -172,6 +173,7 @@ class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       except:
         self.Close()
         raise
+    time.sleep(10)
 
   def Foreground(self):
     package = self._backend_settings.package
