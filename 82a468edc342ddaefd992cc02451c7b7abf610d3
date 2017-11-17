@@ -125,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "bc81c7ab_31b8b99e",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2017-11-17T02:19:03Z",
+      "side": 1,
+      "message": "Oh, it works because the functional and performance comparisons are done separately. The functional comparison would have (9 pass, 1 fail) and (3 pass, 7 fail), so there would be 10 values each, which is enough data. But the perf comparison would have 9 and 3 values, which would be too few.\n\nLet me know if you still want me to make any changes to this comment!",
+      "parentUuid": "d7c01671_a3f2f84c",
+      "revId": "82a468edc342ddaefd992cc02451c7b7abf610d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a657841_e94f1522",
         "filename": "dashboard/dashboard/pinpoint/models/job.py",
         "patchSetId": 5
@@ -175,6 +193,24 @@
       "revId": "82a468edc342ddaefd992cc02451c7b7abf610d3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9af85b7c_fcedf7fc",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2017-11-17T02:19:03Z",
+      "side": 1,
+      "message": "Done. I used 1.0, which is the highest possible p-value.",
+      "parentUuid": "798ed494_437f759f",
+      "revId": "82a468edc342ddaefd992cc02451c7b7abf610d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
