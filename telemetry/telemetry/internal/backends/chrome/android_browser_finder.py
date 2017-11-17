@@ -126,14 +126,19 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
   def _InitPlatformIfNeeded(self):
     pass
 
-  def Create(self, finder_options):
-    self._InitPlatformIfNeeded()
+  # TODO: Need to add "started" option to other browser backends.
+  def Create(self, finder_options,  # pylint: disable=arguments-differ,
+             started=True):
+    self._InitPlatformIfNeeded()  ## WTF?? Can be removed?
     browser_backend = android_browser_backend.AndroidBrowserBackend(
         self._platform_backend,
-        finder_options.browser_options, self._backend_settings)
+        finder_options.browser_options,   # Sad
+        self._backend_settings)
     try:
       return browser.Browser(
-          browser_backend, self._platform_backend, self._credentials_path)
+          browser_backend, self._platform_backend,
+          self._credentials_path,  # Also sad
+          started=started)
     except Exception:
       exc_info = sys.exc_info()
       logging.error(
