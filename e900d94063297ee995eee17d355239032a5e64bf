@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "b236ee87_b81cd897",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-17T09:54:19Z",
+      "side": 1,
+      "message": "Right. I think it\u0027s ok to move. As a compromise, maybe at least emit a warning that the file is being moved, and leave a TODO to eventually turn this into a strict check.",
+      "parentUuid": "3d0671f1_1919915b",
+      "revId": "e900d94063297ee995eee17d355239032a5e64bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f6ce2626_fbec2ccf",
         "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
         "patchSetId": 14

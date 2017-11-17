@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "29c34102_ff299ffa",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-17T09:54:19Z",
+      "side": 1,
+      "message": "nit: make this:\n\n    self._artifact_dit \u003d os.path.join(output_dir, \u0027artifacts\u0027)\n\nno need to keep track of the original output dir, and to recompute the artifacts dir every time we access it via the property",
+      "revId": "71fea8cc92833bfbe1405f8fdf95ef47cff22988",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40181654_27451d8e",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-17T09:54:19Z",
+      "side": 1,
+      "message": "nit: should this be called GetTestArtifacts? Also add docstring and mention this returns a dict.",
+      "revId": "71fea8cc92833bfbe1405f8fdf95ef47cff22988",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9941325c_0593b13f",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-17T09:54:19Z",
+      "side": 1,
+      "message": "I don\u0027t think this check is quite right due to possible relative paths and symbolic links. Probably needs some combination of os.path.realpath and then check for .startswith(... + os.sep)",
+      "revId": "71fea8cc92833bfbe1405f8fdf95ef47cff22988",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71779c0d_4be64fa8",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-17T09:54:19Z",
+      "side": 1,
+      "message": "nit: use os.path.relpath",
+      "revId": "71fea8cc92833bfbe1405f8fdf95ef47cff22988",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c027109_c3bba930",
+        "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-17T09:54:19Z",
+      "side": 1,
+      "message": "This should be an empty ArtifactResults.",
+      "revId": "71fea8cc92833bfbe1405f8fdf95ef47cff22988",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "235a9998_061a506b",
+        "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-17T09:54:19Z",
+      "side": 1,
+      "message": "this whole thing could be:\n\nstory_artifacts \u003d artifacts.GetArtifact(run.story.name)\nif story_artifacts:\n  test[\u0027artifacts\u0027] \u003d dict(story_artifacts)",
+      "revId": "71fea8cc92833bfbe1405f8fdf95ef47cff22988",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
