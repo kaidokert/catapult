@@ -108,6 +108,24 @@
     },
     {
       "key": {
+        "uuid": "41534c78_c08ba6da",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-17T11:14:15Z",
+      "side": 1,
+      "message": "Sigh, this is a case of technical debt leads to more technical debt :-/\n\nIt\u0027s ok to ignore that case in implementation for now, though I still think the API needs to support \"run_order\" param. Inside the implementation, we can add some comment about why we are not supporting run_order param correctly yet.\n\nChanging implementation is easy, changing API is hard++, so always strive to make API look right early.",
+      "parentUuid": "684ff247_fc8ec438",
+      "revId": "f53814c4f0e9407d73800b8901593d6e570476ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c4e87173_75ee7e43",
         "filename": "telemetry/telemetry/internal/results/artifact_results.py",
         "patchSetId": 12
