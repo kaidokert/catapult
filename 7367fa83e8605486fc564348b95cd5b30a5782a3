@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5fe1becf_a390bded",
+        "filename": "telemetry/foo_perf/benchmarks/android_go_benchmark.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-17T16:00:28Z",
+      "side": 1,
+      "message": "This is a dummy example to show how SharedState, Story and Benchmark would be implemented.",
+      "revId": "7367fa83e8605486fc564348b95cd5b30a5782a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f02971f2_00d78e10",
+        "filename": "telemetry/foo_perf/benchmarks/android_go_benchmark.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-17T16:00:28Z",
+      "side": 1,
+      "message": "This is the main bit changing w.r.t. the typical shared state: we need to \"create\" the browser but do not launch it just yet. Since the story is the one responsible for deciding exactly how that happens.\n\nThe StartEnvironment wraps around the code to launch the browser: making sure that e.g. command line flags are set *before* launching the browser, and establishing a devtools connection to it afterwards.\n\nSee the docstring of that method below.\n\nHappy to hear if you have other suggestions for this interface.",
+      "revId": "7367fa83e8605486fc564348b95cd5b30a5782a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e7a0f6c_54578fd6",
+        "filename": "telemetry/foo_perf/run_example.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-17T16:00:28Z",
+      "side": 1,
+      "message": "You can ignore this.\n\nThis is just a dummy copy of tools/perf/run_benchmark, so I can test the new benchmark in a single catapult CL.",
+      "revId": "7367fa83e8605486fc564348b95cd5b30a5782a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0c10bf3_692cb416",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-17T16:00:28Z",
+      "side": 1,
+      "message": "This is probably the most controversial change. In the past we made every effort to tie the lifetime of the Browser object and the actual browser process running on the platform.\n\nThis would allow to create the browser object but *not* start it. Also sort of defeats the purpose of separating \"possible_browser\" (before creation) and \"browser\" (after creation).\n\nNot sure what are your thoughts. Or if you can think of an alternative way to achieve this?",
+      "revId": "7367fa83e8605486fc564348b95cd5b30a5782a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34567be4_e5eeb551",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-17T16:00:28Z",
+      "side": 1,
+      "message": "This would also need to be implemented for non-android browsers. (Although we might not use it there, it does make a bit of sense to have something similar there: i.e. allow the browser to be created through other means, and then find and connect to the browser.)",
+      "revId": "7367fa83e8605486fc564348b95cd5b30a5782a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
