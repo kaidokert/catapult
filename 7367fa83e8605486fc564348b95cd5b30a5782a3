@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "b84fd179_0bc629a1",
+        "filename": "telemetry/foo_perf/benchmarks/android_go_benchmark.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-17T20:37:34Z",
+      "side": 1,
+      "message": "I think there is no need for this shared_state to hold the handle to browser. This only need the possible_browser object. To ensure shared_state kill of the browser, we can add s.t like KillAllChromeBrowser to android_platform API which search for all chrome pids \u0026 kill them",
+      "revId": "7367fa83e8605486fc564348b95cd5b30a5782a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f02971f2_00d78e10",
         "filename": "telemetry/foo_perf/benchmarks/android_go_benchmark.py",
         "patchSetId": 1
