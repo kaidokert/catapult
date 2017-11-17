@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d051272f_b446adb8",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-17T10:10:05Z",
+      "side": 1,
+      "message": "Instead of clearing the existing handlers, maybe just add the new one and remove it afterwards?",
+      "revId": "ec69cab6b41d00707e127b9b4eee06e87ac5b11e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2107e20_1d9108fa",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-17T10:10:05Z",
+      "side": 1,
+      "message": "nit: tempfile.mkstemp(prefix\u003d\u0027test_\u0027, suffix\u003d\u0027.log\u0027, dir\u003dresults.artifacts_dir, text\u003dTrue)",
+      "revId": "ec69cab6b41d00707e127b9b4eee06e87ac5b11e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91eb0d43_8168631a",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-17T10:10:05Z",
+      "side": 1,
+      "message": "To avoid opening the file twice (mkstemp already gives you an open file handle) you can use\n\nf, log_file \u003d tempfile.mkstep(...)\nlogging.FileStream(f)",
+      "revId": "ec69cab6b41d00707e127b9b4eee06e87ac5b11e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ec7202c_c4defb8e",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-17T10:10:05Z",
+      "side": 1,
+      "message": "you need to put these on a try-finally block, or you run the risk of not resetting log handlers if something goes wrong; e.g.\n\n  try:\n    yield\n  finally:\n    results.AddArtifact(...)\n    ...",
+      "revId": "ec69cab6b41d00707e127b9b4eee06e87ac5b11e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ab42820_78c2b27d",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-17T10:10:05Z",
+      "side": 1,
+      "message": "nit: e -\u003e exc (for consistency)",
+      "revId": "ec69cab6b41d00707e127b9b4eee06e87ac5b11e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
