@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b116787b_fcc1a857",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-17T20:18:20Z",
+      "side": 1,
+      "message": "nits: we don\u0027t need self._output_dir for anything beyond the line below, better to remove this property.",
+      "revId": "b31bad77be503fd2bbad8b4a9637d73ba26f61ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
