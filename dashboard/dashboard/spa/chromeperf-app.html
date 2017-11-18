@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/bower_components/google-signin/google-signin.html">
+<link rel="import" href="/bower_components/iron-icons/communication-icons.html">
+<link rel="import" href="/bower_components/iron-icons/editor-icons.html">
+<link rel="import" href="/bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="/bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="/bower_components/paper-tooltip/paper-tooltip.html">
+<link rel="import" href="/dashboard/spa/alerts-section.html">
+<link rel="import" href="/dashboard/spa/chart-section.html">
+<link rel="import" href="/dashboard/spa/releasing-section.html">
+
+<dom-module id="chromeperf-app">
+  <template>
+    <style>
+      #nav {
+        background-color: var(--paper-indigo-500);
+        color: white;
+        display: flex;
+        font-weight: bold;
+        width: 100%;
+      }
+
+      #title {
+        font-size: large;
+        line-height: 27px; /* match height of google-signin */
+        padding: 8px;
+      }
+
+      #spacer {
+        margin: auto;
+      }
+
+      #nav a {
+        color: var(--paper-indigo-50);
+      }
+
+      google-signin {
+        margin: 0;
+        padding: 8px;
+      }
+
+      .section_container {
+        /* Use full-bleed dividers between sections.
+           https://material.io/guidelines/components/dividers.html
+           */
+        margin: 0;
+        padding: 1em;
+      }
+
+      .section_container:not(:first-child) {
+        border-top: 1px solid grey;
+      }
+
+      paper-fab {
+        --paper-fab-background: var(--paper-indigo-500);
+      }
+
+      #fabs_container {
+        bottom: 0;
+        float: right;
+        right: 0;
+        padding: 1em;
+        position: fixed;
+        user-select: none;
+      }
+
+      #fabs {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto;
+        position: absolute;
+        bottom: 16px;
+        right: 1em;
+        transition: opacity 0.5s;
+        opacity: 0;
+      }
+
+      .fab_label {
+        background-color: var(--paper-grey-700);
+        border-radius: 3px;
+        color: white;
+        font-weight: bold;
+        margin: auto 16px auto auto;
+        padding: 5px;
+        text-align: right;
+      }
+
+      #add_alerts {
+        --paper-fab-background: var(--paper-red-500);
+      }
+
+      #add_releasing {
+        --paper-fab-background: var(--paper-green-500);
+      }
+
+      #fabs_container:hover #fabs {
+        opacity: 1;
+      }
+
+      #add_alerts, #add_releasing {
+        margin: 8px;
+      }
+
+      #add_chart {
+        margin-top: 8px;
+      }
+    </style>
+
+    <div id="nav">
+      <span id="title">
+        Chromeperf Dashboard
+      </span>
+      <span id="spacer"></span>
+      <a href="https://github.com/catapult-project/catapult/tree/master/dashboard/dashboard/pinpoint" target="_blank">
+        <paper-icon-button icon="help"></paper-icon-button>
+        <paper-tooltip>Documentation</paper-tooltip>
+      </a>
+      <a href="https://github.com/catapult-project/catapult/issues/new?title=[📍]+&assignees=dave-2&labels=Bisect" target="_blank">
+        <paper-icon-button icon="feedback"></paper-icon-button>
+        <paper-tooltip>File a bug</paper-tooltip>
+      </a>
+      <google-signin
+          client-id="62121018386-aqdfougp0ddn93knqj6g79vvn42ajmrg.apps.googleusercontent.com"
+          height="short" theme="dark"
+          scopes="email"
+          on-google-signin-success="handleSignIn"
+          on-google-signed-out="handleSignOut"></google-signin>
+    </div>
+
+    <dom-repeat items="[[sections]]">
+      <template>
+        <div class="section_container">
+          <dom-if if="[[isSectionType_(item.type, 'chart')]]">
+            <template>
+              <chart-section section-id="[[index]]">
+              </chart-section>
+            </template>
+          </dom-if>
+
+          <dom-if if="[[isSectionType_(item.type, 'alerts')]]">
+            <template>
+              <alerts-section section-id="[[index]]">
+              </alerts-section>
+            </template>
+          </dom-if>
+
+          <dom-if if="[[isSectionType_(item.type, 'releasing')]]">
+            <template>
+              <releasing-section section-id="[[index]]">
+              </releasing-section>
+            </template>
+          </dom-if>
+        </div>
+      </template>
+    </dom-repeat>
+
+    <div id="fabs_container">
+      <paper-fab id="add_fab" icon="add" on-tap="showFabs_"></paper-fab>
+
+      <div id="fabs">
+        <div class="fab_label">Releasing</div>
+        <paper-fab id="add_releasing"
+                   mini
+                   icon="communication:business"
+                   on-tap="newReleasingSection_">
+        </paper-fab>
+
+        <div class="fab_label">Alerts</div>
+        <paper-fab id="add_alerts"
+                   mini
+                   icon="add-alert"
+                   on-tap="newAlertsSection_">
+        </paper-fab>
+
+        <div class="fab_label">Chart</div>
+        <paper-fab id="add_chart"
+                   icon="editor:show-chart"
+                   on-tap="newChartSection_">
+        </paper-fab>
+      </div>
+    </div>
+  </template>
+</dom-module>
+
+<script>
+'use strict';
+(function() {
+  class ChromeperfApp extends ReduxMixin(Polymer.Element) {
+    static get is() { return 'chromeperf-app'; }
+
+    static get actions() { return window.ACTION_CREATORS; }
+
+    static get properties() {
+      return {
+        sections: {
+          type: Array,
+          statePath: 'sections',
+        },
+      };
+    }
+
+    isSectionType_(a, b) {
+      return a === b;
+    }
+
+    newAlertsSection_() {
+      this.dispatch({
+        type: 'appendSection',
+        section: 'alerts',
+      });
+    }
+
+    newChartSection_() {
+      this.dispatch({
+        type: 'appendSection',
+        section: 'chart',
+      });
+    }
+
+    newReleasingSection_() {
+      this.dispatch({
+        type: 'appendSection',
+        section: 'releasing',
+      });
+    }
+
+    showFabs_() {
+      // TODO for touchscreens
+    }
+  }
+  customElements.define(ChromeperfApp.is, ChromeperfApp);
+})();
+</script>
