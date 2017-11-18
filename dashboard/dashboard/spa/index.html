@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<title>Chromeperf Dashboard</title>
+
+<style>
+  body {
+    margin: 0;
+    font: 0.8em helvetica,arial,sans-serif;
+  }
+</style>
+
+<script>
+'use strict';
+window.Polymer = {dom: 'shadow'};
+</script>
+
+<link rel="import" href="/bower_components/polymer/polymer.html">
+
+<!-- TODO remove this import when reducers.js doesn't need to statically refer
+  to tr.b.Unit
+-->
+<link rel="import" href="/tracing/value/ui/histogram_set_view.html">
+
+<script src="/redux.min.js"></script>
+<link rel="import" href="/bower_components/polymer-redux/polymer-redux.html">
+<script src="/dashboard/spa/reducers.js"></script>
+<script src="/dashboard/spa/action_creators.js"></script>
+
+<!-- TODO Remove this import when KeyframeEffect launches to stable. -->
+<link rel="import" href="/bower_components/neon-animation/web-animations.html">
+
+<link rel="import" href="/dashboard/spa/chromeperf-app.html">
+
+<chromeperf-app></chromeperf-app>
