@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="/bower_components/paper-input/paper-input.html">
+<link rel="import" href="/bower_components/paper-item/paper-item.html">
+<link rel="import" href="/bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="/bower_components/paper-styles/element-styles/paper-material-styles.html">
+
+<dom-module id="dropdown-input">
+  <template>
+    <style include="paper-material-styles">
+      #dropdown_scroll {
+        @apply --paper-material-elevation-2;
+        background-color: white;
+        position: absolute;
+        z-index: 100;
+      }
+
+      #dropdown_scroll[hidden] {
+        display: none;
+      }
+    </style>
+
+    <paper-input id="input"
+                 tabindex="1"
+                 autofocus="[[isFocused]]"
+                 disabled$="[[disabled]]"
+                 label="[[placeholder]]"
+                 value="{{value}}"
+                 on-blur="onInputBlur_"
+                 on-focus="onInputFocus_"
+                 on-keydown="onInputKeydown_">
+      <paper-icon-button id="input_clear"
+                         slot="suffix"
+                         icon="clear"
+                         title="clear"
+                         alt="clear"
+                         on-tap="onInputClear_">
+      </paper-icon-button>
+    </paper-input>
+
+    <div id="dropdown_scroll"
+         hidden$="[[!isFocused]]">
+      <paper-listbox id="dropdown_listbox"
+                     tabindex="2"
+                     selected="{{value}}"
+                     attr-for-selected="item"
+                     on-iron-select="onDropdownSelect_">
+        <dom-repeat items="[[options]]">
+          <template>
+            <paper-item item="[[item]]">
+              [[item]]
+            </paper-item>
+          </template>
+        </dom-repeat>
+      </paper-listbox>
+    </div>
+  </template>
+</dom-module>
+
+<script>
+'use strict';
+(function() {
+  class DropdownInput extends Polymer.Element {
+    static get is() { return 'dropdown-input'; }
+
+    static get properties() {
+      return {
+        placeholder: {
+          type: String,
+          value: '',
+        },
+
+        disabled: {
+          type: Boolean,
+          value: false,
+        },
+
+        value: {
+          type: String,
+          value: '',
+        },
+
+        options: {
+          type: Array,
+          value: [],
+        },
+
+        isFocused: {
+          type: Boolean,
+          value: false,
+          observer: 'onIsFocusedChange_',
+        }
+      };
+    }
+
+    onIsFocusedChange_() {
+      if (this.isFocused) {
+        this.$.input.focus();
+      } else {
+        this.$.input.blur();
+      }
+    }
+
+    connectedCallback() {
+      super.connectedCallback();
+      if (this.isFocused) {
+        this.$.input.focus();
+      } else {
+        this.$.input.blur();
+      }
+    }
+
+    onInputFocus_(e) {
+      this.dispatchEvent(new CustomEvent('input-focus'));
+    }
+
+    onInputBlur_(e) {
+      if (e.relatedTarget === null) {
+        // TODO or if e.relatedTarget is an element outside of dropdown_scroll
+        this.dispatchEvent(new CustomEvent('input-blur'));
+      }
+    }
+
+    onInputKeydown_(e) {
+      this.dispatchEvent(new CustomEvent('input-keydown', {
+        detail: {value: this.value},
+      }));
+    }
+
+    onInputClear_(e) {
+      this.dispatchEvent(new CustomEvent('clear'));
+    }
+
+    onDropdownSelect_(e) {
+      this.dispatchEvent(new CustomEvent('option-select', {
+        detail: {value: e.path[0].selectedItem.item},
+      }));
+    }
+  }
+  customElements.define(DropdownInput.is, DropdownInput);
+})();
+</script>
