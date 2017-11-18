@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad4f768_cac11494",
+        "filename": "telemetry/telemetry/internal/results/artifact_results_unittest.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-18T00:08:25Z",
+      "side": 1,
+      "message": "use os.path.join(...) to avoid the nasty windows paths error.\n\nMaybe os.path.normpath work too, I am not sure.\n\nAnother way you can try is using pyfakefs library (already checked in catapult) to avoid those mocks call.",
+      "revId": "ba571e9d34ff04cf44fa7b53f065988f3cc587ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
