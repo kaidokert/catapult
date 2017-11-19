@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<dom-module id="line-chart">
+  <template>
+    <style>
+      .axis {
+        stroke-width: 1;
+      }
+
+      .tickLine {
+        stroke-width: 1;
+        stroke: rgba(0, 0, 0, 0.1);
+      }
+
+      circle:hover {
+        opacity: 1;
+      }
+    </style>
+
+    <svg id="svg"
+         width$="[[layout.width]]"
+         height$="[[layout.height]]">
+      <!-- TODO are axis lines necessary?
+      <line x1$="[[layout.left]]"
+            x2$="[[layout.left]]"
+            y1$="[[layout.top]]"
+            y2$="[[layout.bottom]]"
+            class="axis">
+      </line>
+      <line x1$="[[layout.left]]"
+            x2$="[[layout.right]]"
+            y1$="[[layout.bottom]]"
+            y2$="[[layout.bottom]]"
+            class="axis">
+      </line>
+      -->
+
+      <dom-repeat items="[[layout.yAxisTicks]]" as="tick">
+        <template>
+          <text x$="[[tick.x]]" y$="[[tick.y]]">[[tick.text]]</text>
+
+          <dom-if if="[[layout.showYAxisTickLines]]">
+            <template>
+              <line x1$="[[layout.left]]"
+                    x2$="[[layout.right]]"
+                    y1$="[[tick.y]]"
+                    y2$="[[tick.y]]"
+                    class="tickLine">
+              </line>
+            </template>
+          </dom-if>
+        </template>
+      </dom-repeat>
+
+      <dom-repeat items="[[layout.xAxisTicks]]" as="tick">
+        <template>
+          <text x$="[[tick.x]]" y$="[[tick.y]]">[[tick.text]]</text>
+
+          <dom-if if="[[layout.showXAxisTickLines]]">
+            <template>
+              <line x1$="[[tick.x]]"
+                    x2$="[[tick.x]]"
+                    y1$="[[layout.top]]"
+                    y2$="[[layout.bottom]]"
+                    class="tickLine">
+              </line>
+            </template>
+          </dom-if>
+        </template>
+      </dom-repeat>
+
+      <dom-repeat items="[[layout.sequences]]" as="sequence">
+        <template>
+          <path d$="[[sequence.path]]"
+                stroke$="[[sequence.color]]"
+                fill="none"
+                stroke-width="2">
+          </path>
+
+          <dom-repeat items="[[sequence.data]]" as="datum">
+            <template>
+              <circle cx$="[[datum.x]]"
+                      cy$="[[datum.y]]"
+                      r$="[[layout.dotRadius]]"
+                      fill$="[[sequence.dotColor]]"
+                      opacity="0"
+                      on-tap="onDotClick_">
+              </circle>
+
+              <dom-repeat items="[[datum.icons]]" as="icon">
+                <template>
+                  <!-- TODO -->
+                </template>
+              </dom-repeat>
+            </template>
+          </dom-repeat>
+        </template>
+      </dom-repeat>
+
+      <dom-repeat items="[[layout.antiBrushes]]" as="antiBrush">
+        <template>
+          <rect x$="[[antiBrush.x]]"
+                y$="[[layout.top]]"
+                width="[[antiBrush.width]]"
+                height="[[layout.bottom]]"
+                fill="rgba(0, 0, 0, 0.2)">
+          </rect>
+
+          <rect x$="[[antiBrush.x]]"
+                y$="[[layout.brushHandleTop]]"
+                width="10"
+                height="30"
+                fill="rgba(0, 0, 0, 0.6)"
+                on-mousedown="onBrushHandleMouseDown_"
+                on-mousemove="onBrushHandleMouseMove_"
+                on-mouseup="onBrushHandleMouseUp_">
+          </rect>
+
+          <rect x$="[[antiBrush.right]]"
+                y$="[[layout.brushHandleTop]]"
+                width="10"
+                height="30"
+                fill="rgba(0, 0, 0, 0.6)"
+                on-mousedown="onBrushHandleMouseDown_"
+                on-mousemove="onBrushHandleMouseMove_"
+                on-mouseup="onBrushHandleMouseUp_">
+          </rect>
+        </template>
+      </dom-repeat>
+    </svg>
+  </template>
+</dom-module>
+
+<script>
+'use strict';
+tr.exportTo('cp', () => {
+  class LineChart extends Polymer.Element {
+    static get is() { return 'line-chart'; }
+
+    static get properties() {
+      return {
+        layout: {
+          type: Object,
+          value: {
+            width: 100,
+            height: 100,
+            left: 0,
+            right: 100,
+            top: 0,
+            bottom: 100,
+            dotRadius: 6,
+            brushHandleTop: 50,
+            sequences: [],
+            yAxisLabel: '',
+            yAxisTicks: [],
+            xAxisTicks: [],
+            showYAxisTickLines: true,
+            showXAxisTickLines: true,
+            antiBrushes: [],
+          },
+        },
+      };
+    }
+
+    /**
+     * Non-Polymer-Redux Usage:
+     *   this.$.line_chart.layout = await LineChart.layout(options);
+     * Polymer-Redux usage:
+     *   - call layout() in an action creator,
+     *   - then() dispatch an action containing the layout object,
+     *   - data-bind the layout object to a <line-chart> element.
+     */
+    static async layout(options) {
+      // TODO Promise.all(ticks.map(tick => cp.measureText(tick, {})))
+    }
+
+    onDotClick_(event) {
+      this.dispatchEvent(new CustomEvent('dot-click', {
+        detail: event.model,
+      }));
+    }
+
+    onBrushHandleMouseDown_(event) {
+      this.dispatchEvent(new CustomEvent('brush-handle-down', {
+        detail: event.model,
+      }));
+    }
+
+    onBrushHandleMouseMove_(event) {
+      this.dispatchEvent(new CustomEvent('brush-handle-move', {
+        detail: event.model,
+      }));
+    }
+
+    onBrushHandleMouseUp_(event) {
+      this.dispatchEvent(new CustomEvent('brush-handle-up', {
+        detail: event.model,
+      }));
+    }
+  }
+  customElements.define(LineChart.is, LineChart);
+
+  return {
+    LineChart,
+  }
+});
+</script>
