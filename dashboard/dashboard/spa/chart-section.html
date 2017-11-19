@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/bower_components/paper-button/paper-button.html">
+<link rel="import" href="/dashboard/spa/line-chart.html">
+<link rel="import" href="/dashboard/spa/test-path-component.html">
+<link rel="import" href="/tracing/value/ui/histogram_set_view.html">
+<script src="/dashboard/spa/chart-section-actions.js"></script>
+<script src="/dashboard/spa/chart-section-reducers.js"></script>
+
+<dom-module id="chart-section">
+  <template>
+    <style>
+      #controls {
+        display: flex;
+        margin-bottom: 1em;
+      }
+
+      test-path-component {
+        margin-right: 1em;
+      }
+
+      #spacer {
+        flex-grow: 1;
+      }
+
+      #minimap, #chart {
+        display: block;
+        width: 100%;
+      }
+
+      #toggle_chart_only {
+        display: block;
+        min-width: 0;
+        padding: 8px;
+        margin: 0;
+      }
+    </style>
+
+    <div id="controls">
+      <dom-if if="[[!onlyChart]]">
+        <template>
+          <dom-repeat items="[[testPathComponents]]">
+            <template>
+              <test-path-component section-id="[[sectionId]]"
+                                  component-index="[[index]]">
+              </test-path-component>
+            </template>
+          </dom-repeat>
+        </template>
+      </dom-if>
+
+      <span id="spacer">&nbsp;</span>
+
+      <paper-button id="toggle_chart_only"
+                    on-tap="toggleChartOnly_">
+        <dom-if if="[[onlyChart]]">
+          <template>
+            <iron-icon icon="expand-more">
+            </iron-icon>
+          </template>
+        </dom-if>
+        <dom-if if="[[!onlyChart]]">
+          <template>
+            <iron-icon icon="expand-less">
+            </iron-icon>
+          </template>
+        </dom-if>
+      </paper-button>
+
+      <paper-icon-button icon="close"
+                         on-tap="closeSection_">
+      </paper-icon-button>
+    </div>
+
+    <dom-if if="[[!onlyChart]]">
+      <template>
+        [[testSuiteDescription]]
+      </template>
+    </dom-if>
+
+    <line-chart id="minimap"
+                height="40"
+                width="1000"
+                left="100"
+                right="900"
+                top="0"
+                bottom="40"
+                sequences="[[minimap.sequences]]"
+                x-axis-ticks="[[minimap.xAxisTicks]]"
+                anti-brushes="[[minimap.antiBrushes]]"
+                on-brush-handle-down="[[onMinimapBrushHandleDown_]]"
+                on-brush-handle-move="[[onMinimapBrushHandleMove_]]"
+                on-brush-handle-up="[[onMinimapBrushHandleUp_]]">
+    </line-chart>
+
+    <line-chart id="chart"
+                height="200"
+                width="1000"
+                left="100"
+                right="900"
+                top="0"
+                bottom="180"
+                sequences="[[sequences]]"
+                y-axis-ticks="[[yAxisTicks]]"
+                x-axis-ticks="[[xAxisTicks]]"
+                anti-brushes="[[antiBrushes]]"
+                on-dot-click="[[onDotClick_]]"
+                on-brush-handle-down="[[onBrushHandleDown_]]"
+                on-brush-handle-move="[[onBrushHandleMove_]]"
+                on-brush-handle-up="[[onBrushHandleUp_]]">
+    </line-chart>
+
+    <dom-if if="[[!onlyChart]]">
+      <template>
+        <dom-if if="[[anyHistograms_(histograms)]]">
+          <template>
+            <tr-v-ui-histogram-set-view id="histograms">
+            </tr-v-ui-histogram-set-view>
+          </template>
+        </dom-if>
+
+        <!-- TODO related sparklines tabs -->
+      </template>
+    </dom-if>
+  </template>
+</dom-module>
+
+<script>
+'use strict';
+tr.exportTo('cp.cs', () => {
+  class ChartSection extends cp.Element {
+    static get is() { return 'chart-section'; }
+
+    static get actions() { return cp.cs.ACTIONS; }
+
+    static get properties() {
+      return cp.sectionProperties({
+        isLoading: {type: Boolean},
+        histograms: {type: tr.v.HistogramSet},
+        onlyChart: {type: Boolean},
+        testPathComponents: {type: Array},
+        testSuiteDescription: {type: String},
+      });
+    }
+
+    closeSection_() {
+      this.dispatch('closeSection', this.sectionId);
+    }
+
+    toggleChartOnly_() {
+      this.dispatch('toggleChartOnly', this.sectionId);
+    }
+
+    anyHistograms_(histograms) {
+      return histograms && histograms.length;
+    }
+  }
+  customElements.define(ChartSection.is, ChartSection);
+
+  return {
+  };
+});
+</script>
