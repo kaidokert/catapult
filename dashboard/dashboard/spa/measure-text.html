@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<dom-module id="measure-text">
+  <template>
+    <style>
+      :host {
+        visibility: hidden;
+        position: fixed;
+        z-index: -1000;
+      }
+    </style>
+  </template>
+</dom-module>
+
+<script>
+'use strict';
+tr.exportTo('cp', () => {
+  let MEASURE_TEXT;
+
+  class MeasureText extends Polymer.Element {
+    static get is() { return 'measure-text'; }
+
+    connectedCallback() {
+      super.connectedCallback();
+      MEASURE_TEXT = this.shadowRoot;
+    }
+
+    disconnectedCallback() {
+      super.disconnectedCallback();
+      if (MEASURE_TEXT === this.shadowRoot) MEASURE_TEXT = undefined;
+    }
+  }
+  customElements.define(MeasureText.is, MeasureText);
+
+  /**
+   * Returns a Promise which resolves with the bounding rect of the given
+   * text. Does not force layout. Centralizing this functionality allows for
+   * a single animation frame callback to handle measuring a large number of
+   * texts.
+   *
+   * @param {!Element} element
+   * @return {!Promise.<BoundingRect>}
+   */
+  async function measureText(text, opt_options) {
+    const span = document.createElement('span');
+    span.textContent = text;
+    Object.assign(span.style, opt_options);
+    MEASURE_TEXT.appendChild(span);
+    const rect = await cp.measureElement(span);
+    MEASURE_TEXT.removeChild(span);
+    return rect;
+  }
+
+  return {
+    measureText,
+  };
+});
+</script>
