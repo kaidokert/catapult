@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 import os
+import StringIO
 import sys
 import unittest
 
@@ -53,3 +54,4 @@ class WaitForTest(unittest.TestCase):
   def testWaitForFalseLambda(self):
     with self.assertRaises(py_utils.TimeoutException):
       py_utils.WaitFor(lambda: False, .1)
+
