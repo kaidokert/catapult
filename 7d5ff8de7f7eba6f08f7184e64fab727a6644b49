@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b99f155_0ab57311",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-20T09:43:45Z",
+      "side": 1,
+      "message": "nit: null -\u003e None",
+      "revId": "7d5ff8de7f7eba6f08f7184e64fab727a6644b49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4adfe92_6338495f",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-20T09:43:45Z",
+      "side": 1,
+      "message": "log a warning noting that the file is being moved",
+      "revId": "7d5ff8de7f7eba6f08f7184e64fab727a6644b49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "afd8f9d0_89cc644e",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-20T09:43:45Z",
+      "side": 1,
+      "message": "hmm, this extra fdopen stuff looks a bit annoying; maybe use tempfile.NamedTemporaryFile with delete\u003dFalse? That is supposed to already return a file-like object which you should be able to send to the StreamHandler; also you can put it in a with-statement so it auto-closes the file when done with it.",
+      "revId": "7d5ff8de7f7eba6f08f7184e64fab727a6644b49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
