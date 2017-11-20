@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "02a134b5_08ed4b1d",
+        "filename": "telemetry/foo_perf/benchmarks/android_go_benchmark.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-20T12:24:16Z",
+      "side": 1,
+      "message": "We need to hold the browser to create the action_runner for RunStory.\n\nThe alternative is for the _story_ to hold the browser itself. Not sure which is better?",
+      "parentUuid": "b84fd179_0bc629a1",
+      "revId": "7367fa83e8605486fc564348b95cd5b30a5782a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f02971f2_00d78e10",
         "filename": "telemetry/foo_perf/benchmarks/android_go_benchmark.py",
         "patchSetId": 1
@@ -99,6 +117,24 @@
       "side": 1,
       "message": "Yeah, I don\u0027t like this part. I have a trouble with understanding why we need to separate create the browser from preparing the environment for the startup. Is that because we haven\u0027t plumbed all the configurable bit of starting the browser to the browser_options object yet?",
       "parentUuid": "f0c10bf3_692cb416",
+      "revId": "7367fa83e8605486fc564348b95cd5b30a5782a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ed6068f_5d81dcac",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-20T12:24:16Z",
+      "side": 1,
+      "message": "The problem is that we want to give stories full control on how does the browser actually gets started. The story, however, shouldn\u0027t be concerned with setting up the environment or establishing a devtools connection afterwards. Those bits are common to all stories and rely on Telemetry-specific internal details.\n\nI created https://docs.google.com/a/google.com/document/d/1hGRbKgHbKY7GwAacq0QcCYqOPpCmlz6FeFayUyZ72FM/edit?usp\u003dsharing to discuss the problem and possible solutions.",
+      "parentUuid": "50367714_95e0bd31",
       "revId": "7367fa83e8605486fc564348b95cd5b30a5782a3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
