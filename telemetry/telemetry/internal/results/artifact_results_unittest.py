@@ -18,6 +18,7 @@ def _abs_join(*args):
   """Helper to do a path join that's an absolute path."""
   return ROOT_CHAR + os.path.join(*args)
 
+
 class ArtifactResultsUnittest(unittest.TestCase):
   @mock.patch('telemetry.internal.results.artifact_results.shutil.move')
   @mock.patch('telemetry.internal.results.artifact_results.os.makedirs')

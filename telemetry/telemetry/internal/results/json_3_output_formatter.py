@@ -6,6 +6,7 @@ import collections
 import json
 
 from telemetry.internal.results import output_formatter
+from telemetry.internal.results import artifact_results
 
 
 def _mk_dict(d, *args):
