@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "84aa0a6d_0459eb03",
+        "filename": "telemetry/foo_perf/benchmarks/android_go_benchmark.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-20T12:36:31Z",
+      "side": 1,
+      "message": "There is no need to create action_runner. Tab objects already created it always: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/browser/tab.py?rcl\u003d37921f135dc61021b8ced4c73375339658ac9953\u0026l\u003d35",
+      "parentUuid": "02a134b5_08ed4b1d",
+      "revId": "7367fa83e8605486fc564348b95cd5b30a5782a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f02971f2_00d78e10",
         "filename": "telemetry/foo_perf/benchmarks/android_go_benchmark.py",
         "patchSetId": 1
