@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "7afe6c1f_7176662a",
+        "filename": "telemetry/foo_perf/benchmarks/android_go_benchmark.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-20T12:38:02Z",
+      "side": 1,
+      "message": "still, we need the browser to get the tab :P",
+      "parentUuid": "84aa0a6d_0459eb03",
+      "revId": "7367fa83e8605486fc564348b95cd5b30a5782a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f02971f2_00d78e10",
         "filename": "telemetry/foo_perf/benchmarks/android_go_benchmark.py",
         "patchSetId": 1
