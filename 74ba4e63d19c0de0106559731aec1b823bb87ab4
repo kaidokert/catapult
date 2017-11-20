@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e4a7ef8e_e143cb04",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1112850
+      },
+      "writtenOn": "2017-11-20T18:26:29Z",
+      "side": 1,
+      "message": "Currently this is not true. It is stopping the browser provided by --browser, not the browser of the WebAPK. If in the end we have to use --browser, we need to warn that --browser needs to match WebAPK\u0027s browser.",
+      "revId": "74ba4e63d19c0de0106559731aec1b823bb87ab4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "467e169a_38eaad54",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent_unittest.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1112850
+      },
+      "writtenOn": "2017-11-20T18:26:29Z",
+      "side": 1,
+      "message": "Can you also comment those two parameters?",
+      "revId": "74ba4e63d19c0de0106559731aec1b823bb87ab4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
