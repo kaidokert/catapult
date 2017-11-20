@@ -28,32 +28,48 @@ class NetworkControllerBackend(object):
 
   def __init__(self, platform_backend):
     self._platform_backend = platform_backend
+    # Controller options --- bracketed by Open/Close
     self._wpr_mode = None
     self._extra_wpr_args = None
+    # Replay options --- bracketed by StartReplay/StopReplay
     self._archive_path = None
     self._make_javascript_deterministic = None
+    # Network control services
+    self._ts_proxy_server = None
     self._forwarder = None
     self._wpr_server = None
-    self._ts_proxy_server = None
-    self._port_pair = None
-    self._use_live_traffic = None
 
-  def InitializeIfNeeded(self, use_live_traffic):
-    """
-    This may, e.g., install test certificates and perform any needed setup
-    on the target platform.
+  def Open(self, wpr_mode, extra_wpr_args):
+    """Get the target platform ready for network control.
+
+    This will both start a TsProxy server and set up a forwarder to it.
+
+    If the controller is already open, and options are compatible with the
+    existing instance, then existing proxy and fowarders will be reused.
 
     After network interactions are over, clients should call the Close method.
+
+    Args:
+      wpr_mode: a mode for web page replay; available modes are
+          wpr_modes.WPR_OFF, wpr_modes.APPEND, wpr_modes.WPR_REPLAY, or
+          wpr_modes.WPR_RECORD.
+      extra_wpr_args: an list of extra arguments for web page replay.
     """
-    if self._use_live_traffic is None:
-      self._use_live_traffic = use_live_traffic
-    assert self._use_live_traffic == use_live_traffic, (
-        'inconsistent state of use_live_traffic')
-    assert bool(self._ts_proxy_server) == bool(self._forwarder)
-    if self._ts_proxy_server:
+    if self.is_open:
+      if self._wpr_mode != wpr_mode:
+        raise RuntimeError(
+            'Changing wpr mode %r -> %r. Must close and re-open network'
+            ' controller' % (self._wpr_mode, wpr_mode))
+      if self._extra_wpr_args != extra_wpr_args:
+        raise RuntimeError(
+            'Changing extra wpr args %r -> %r. Must close and re-open network'
+            ' controller' % (self._extra_wpr_args, extra_wpr_args))
       return
+
+    self._wpr_mode = wpr_mode
+    self._extra_wpr_args = extra_wpr_args
     try:
-      local_port = self._StartTsProxyServer(self._use_live_traffic)
+      local_port = self._StartTsProxyServer()
       self._forwarder = self._platform_backend.forwarder_factory.Create(
           self._platform_backend.GetPortPairForForwarding(local_port))
     except Exception:
@@ -62,11 +78,11 @@ class NetworkControllerBackend(object):
 
   @property
   def is_open(self):
-    return self._wpr_mode is not None
+    return self._ts_proxy_server is not None
 
   @property
-  def is_initialized(self):
-    return self._forwarder is not None
+  def use_live_traffic(self):
+    return self._wpr_mode == wpr_modes.WPR_OFF
 
   @property
   def host_ip(self):
@@ -78,24 +94,6 @@ class NetworkControllerBackend(object):
       return self._forwarder.port_pairs.remote_ports
     except AttributeError:
       return None
-
-  def Open(self, wpr_mode, extra_wpr_args):
-    """Configure and prepare target platform for network control.
-
-    This may, e.g., install test certificates and perform any needed setup
-    on the target platform.
-
-    After network interactions are over, clients should call the Close method.
-
-    Args:
-      wpr_mode: a mode for web page replay; available modes are
-          wpr_modes.WPR_OFF, wpr_modes.APPEND, wpr_modes.WPR_REPLAY, or
-          wpr_modes.WPR_RECORD.
-      extra_wpr_args: an list of extra arguments for web page replay.
-    """
-    assert not self.is_open, 'Network controller is already open'
-    self._wpr_mode = wpr_mode
-    self._extra_wpr_args = extra_wpr_args
 
   def Close(self):
     """Undo changes in the target platform used for network control.
@@ -110,7 +108,7 @@ class NetworkControllerBackend(object):
     self._extra_wpr_args = None
     self._wpr_mode = None
 
-  def StartReplay(self, archive_path, make_javascript_deterministic=False):
+  def StartReplay(self, archive_path, make_javascript_deterministic):
     """Start web page replay from a given replay archive.
 
     Starts as needed, and reuses if possible, the replay server on the host and
@@ -137,7 +135,7 @@ class NetworkControllerBackend(object):
           to make JavaScript behave deterministically (e.g., override Date()).
     """
     assert self.is_open, 'Network controller is not open'
-    if self._wpr_mode == wpr_modes.WPR_OFF:
+    if self.use_live_traffic:
       return
     if not archive_path:
       # TODO(slamm, tonyg): Ideally, replay mode should be stopped when there is
@@ -207,11 +205,9 @@ class NetworkControllerBackend(object):
       wpr_args.append('--inject_scripts=')
     return wpr_args
 
-  def _StartTsProxyServer(self, use_live_traffic):
+  def _StartTsProxyServer(self):
     assert not self._ts_proxy_server, 'ts_proxy_server is already started'
-    host_ip = None
-    if not use_live_traffic:
-      host_ip = self.host_ip
+    host_ip = None if self.use_live_traffic else self.host_ip
     self._ts_proxy_server = ts_proxy_server.TsProxyServer(host_ip=host_ip)
     self._ts_proxy_server.StartServer()
     return self._ts_proxy_server.port
