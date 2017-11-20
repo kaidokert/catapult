@@ -16,6 +16,7 @@ from telemetry.internal.browser import browser_options
 from telemetry.internal.platform import system_info
 from telemetry.page import shared_page_state
 from telemetry.util import image_util
+from telemetry.util import wpr_modes
 from telemetry.testing.internal import fake_gpu_info
 from types import ModuleType
 
@@ -380,36 +381,37 @@ class _FakeNetworkController(object):
   def __init__(self):
     self.wpr_mode = None
     self.extra_wpr_args = None
-    self.is_initialized = False
-    self.is_open = False
-    self.use_live_traffic = None
 
-  def InitializeIfNeeded(self, use_live_traffic=False):
-    self.use_live_traffic = use_live_traffic
+  @property
+  def is_open(self):
+    return self.wpr_mode is not None
+
+  @property
+  def use_live_traffic(self):
+    return self.wpr_mode == wpr_modes.WPR_OFF
+
+  def Open(self, wpr_mode=None):
+    self.wpr_mode = wpr_mode if wpr_mode is not None else wpr_modes.WPR_REPLAY
 
   def UpdateTrafficSettings(
       self, round_trip_latency_ms=None,
       download_bandwidth_kbps=None, upload_bandwidth_kbps=None):
     pass
 
-  def Open(self, wpr_mode, extra_wpr_args):
-    self.wpr_mode = wpr_mode
-    self.extra_wpr_args = extra_wpr_args
-    self.is_open = True
-
   def Close(self):
+    self.StopReplay()
     self.wpr_mode = None
-    self.extra_wpr_args = None
-    self.is_initialized = False
-    self.is_open = False
 
-  def StartReplay(self, archive_path, make_javascript_deterministic=False):
+  def StartReplay(self, archive_path, make_javascript_deterministic=False,
+                  extra_wpr_args=None):
+    del archive_path  # Unused.
     del make_javascript_deterministic  # Unused.
     assert self.is_open
-    self.is_initialized = archive_path is not None
+    extra_wpr_args = tuple(extra_wpr_args) if extra_wpr_args else ()
+    self.extra_wpr_args = extra_wpr_args
 
   def StopReplay(self):
-    self.is_initialized = False
+    self.extra_wpr_args = None
 
 
 class _FakeTab(object):
