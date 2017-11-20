@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f7fe9ce6_b7399ef5",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-11-20T19:59:44Z",
+      "side": 1,
+      "message": "nit: swap out \"its\" (a possessive indicating that \"it\" owns something) for it\u0027s (contraction for \"it is\")",
+      "range": {
+        "startLine": 31,
+        "startChar": 25,
+        "endLine": 31,
+        "endChar": 28
+      },
+      "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7884e63a_30ab406c",
+        "filename": "telemetry/telemetry/story/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-11-20T19:59:44Z",
+      "side": 1,
+      "message": "Can you coordinate w/ Dirk to get a public-viewable version of this doc w/ a bit.ly link? We really shouldn\u0027t have links in Catapult to go/ sites, because:\n\n1) If some external contributor wants to learn more, they can\u0027t\n2) Technically those links are confidential, and shouldn\u0027t be spread (rschoen@ checked on this a while ago, although it\u0027s pretty loosely enforced)",
+      "range": {
+        "startLine": 17,
+        "startChar": 6,
+        "endLine": 17,
+        "endChar": 34
+      },
+      "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2731cbe1_e5567cea",
+        "filename": "telemetry/telemetry/story/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-11-20T19:59:44Z",
+      "side": 1,
+      "message": "Maybe \"must be valid\" instead of \"must exist\"? One seems to indicate that the path is not None, whereas the other seems to indicate that it\u0027s not None and points to a valid filesystem location",
+      "range": {
+        "startLine": 38,
+        "startChar": 64,
+        "endLine": 38,
+        "endChar": 69
+      },
+      "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41a75008_c1f16d16",
+        "filename": "telemetry/telemetry/story/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-11-20T19:59:44Z",
+      "side": 1,
+      "message": "Two suggestions to make this error more understandable (which seems good, because it seems like one that people might run into when editing the file):\n\n1) Give a line number \n2) Modify the ParseError text to indicate that the line has an invalid syntax",
+      "range": {
+        "startLine": 62,
+        "startChar": 6,
+        "endLine": 62,
+        "endChar": 60
+      },
+      "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d03dd5ac_3acdb66c",
+        "filename": "telemetry/telemetry/story/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-11-20T19:59:44Z",
+      "side": 1,
+      "message": "Maybe raise a ParseError with a more user-friendly error message, given that this is totally an error I could see people running into if they fat finger a line in the file? (also with line #, similar to above)\n\ne.g.: ParseError on line 145: the line contains an unknown tag\n\nor something like that",
+      "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
