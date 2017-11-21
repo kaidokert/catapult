@@ -2,6 +2,57 @@
   "comments": [
     {
       "key": {
+        "uuid": "e531941d_ac1b0242",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2017-11-21T00:16:55Z",
+      "side": 1,
+      "message": "use https://bit.ly/chromium-test-list-format instead.",
+      "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06e77d1f_3ebe104b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2017-11-21T00:16:55Z",
+      "side": 1,
+      "message": "use https://bit.ly/chromium-test-list-format instead.",
+      "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "060873fa_8671a06e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2017-11-21T00:16:55Z",
+      "side": 1,
+      "message": "s/enteries/entries, s/guarenteed/guaranteed/ :).",
+      "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f7fe9ce6_b7399ef5",
         "filename": "telemetry/telemetry/story/expectations.py",
         "patchSetId": 3
@@ -48,6 +99,30 @@
     },
     {
       "key": {
+        "uuid": "50411376_516bde0a",
+        "filename": "telemetry/telemetry/story/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2017-11-21T00:16:55Z",
+      "side": 1,
+      "message": "I\u0027m not sure what rschoen@ looked in to, but it is okay to have (properly vetted) go/links visible publicly.\n\nThat said, I agree that we should prefer bit.ly links, and in this case, it already exists, https://bit.ly/chromium-test-list-format .",
+      "parentUuid": "7884e63a_30ab406c",
+      "range": {
+        "startLine": 17,
+        "startChar": 6,
+        "endLine": 17,
+        "endChar": 34
+      },
+      "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2731cbe1_e5567cea",
         "filename": "telemetry/telemetry/story/expectations_parser.py",
         "patchSetId": 3
@@ -65,6 +140,64 @@
         "endLine": 38,
         "endChar": 69
       },
+      "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f05e3ef0_d927d782",
+        "filename": "telemetry/telemetry/story/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2017-11-21T00:16:55Z",
+      "side": 1,
+      "message": "I wouldn\u0027t make this an assert, you\u0027d have no way to test something with an invalid path ... Plus, it seems reasonable that you might get this handed to you from the user, in which case you\u0027d be better off returning a proper error, rather than asserting.",
+      "parentUuid": "2731cbe1_e5567cea",
+      "range": {
+        "startLine": 38,
+        "startChar": 64,
+        "endLine": 38,
+        "endChar": 69
+      },
+      "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf04c5ad_c52a2cc9",
+        "filename": "telemetry/telemetry/story/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2017-11-21T00:16:55Z",
+      "side": 1,
+      "message": "If possible, I\u0027d refactor things so that you pass the contents of the file in as well as the path. That makes it possible to test things without requiring files to actually exist on disk (or requiring you to mock out `open`).",
+      "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91751fb3_3a124ddf",
+        "filename": "telemetry/telemetry/story/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2017-11-21T00:16:55Z",
+      "side": 1,
+      "message": "this\u0027ll handle `# tag` lines anywhere in the file. My intent was to require them to only be in the initial comment block, so you might want to handle that.",
       "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -105,6 +238,40 @@
       "writtenOn": "2017-11-20T19:59:44Z",
       "side": 1,
       "message": "Maybe raise a ParseError with a more user-friendly error message, given that this is totally an error I could see people running into if they fat finger a line in the file? (also with line #, similar to above)\n\ne.g.: ParseError on line 145: the line contains an unknown tag\n\nor something like that",
+      "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f508d2c6_b6f8534e",
+        "filename": "telemetry/telemetry/story/expectations_parser_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2017-11-21T00:16:55Z",
+      "side": 1,
+      "message": "See my other comment about changing things so that you don\u0027t actually have to write test data to disk.",
+      "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2fe1d31_80f9244d",
+        "filename": "telemetry/telemetry/story/expectations_parser_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2017-11-21T00:16:55Z",
+      "side": 1,
+      "message": "The format allows you to have wildcards, dunno if you want to handle them directly here, or if you want to treat the test name as an opaque string that you then handle elsewhere?",
       "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
