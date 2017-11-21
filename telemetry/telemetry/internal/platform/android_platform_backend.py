@@ -7,6 +7,7 @@ import os
 import posixpath
 import re
 import subprocess
+import tarfile
 import tempfile
 
 from battor import battor_wrapper
@@ -71,7 +72,7 @@ class AndroidPlatformBackend(
         'AndroidPlatformBackend can only be initialized from remote device')
     super(AndroidPlatformBackend, self).__init__(device)
     self._device = device_utils.DeviceUtils(device.device_id)
-    # Trying to root the device, if possible.
+#Trying to root the device, if possible.
     if not self._device.HasRoot():
       try:
         self._device.EnableRoot()
@@ -173,7 +174,7 @@ class AndroidPlatformBackend(
     return forwarder.Forwarder.DevicePortForHostPort(port) or 0
 
   def CreatePortForwarder(self, port_pair, use_remote_port_forwarding):
-    # use_remote_port_forwarding is ignored as it is always true for
+# use_remote_port_forwarding is ignored as it is always true for
     # Android device.
     return self.forwarder_factory.Create(port_pair)
 
@@ -502,7 +503,7 @@ class AndroidPlatformBackend(
     # This used to run `adb forward --list` to check that the requested
     # port was actually being forwarded to self._device. Unfortunately,
     # starting in adb 1.0.36, a bug (b/31811775) keeps this from working.
-    # For now, try to remove the port forwarding and ignore failures.
+    #For now, try to remove the port forwarding and ignore failures.
     try:
       self._device.adb.ForwardRemove('tcp:%d' % host_port)
     except device_errors.AdbCommandFailedError:
@@ -577,6 +578,36 @@ class AndroidPlatformBackend(
   def GetPortPairForForwarding(self, local_port):
     return forwarders.PortPair(local_port=local_port, remote_port=0)
 
+  def appChromeExisted(self):
+    if self._device.PathExists('/data/user/0/org.chromium.chrome/app_chrome'):
+      print "app_chrome exist."
+      return True
+    print "app_chrome doesn't exist yet."
+    return False
+
+  def createSubresourceFilter(self):
+    if not self.appChromeExisted():
+      raise Exception("app_chrome/ doesn't exist before creating Subresource Filter.")
+    print self._device.RunShellCommand(['mkdir', '/data/user/0/org.chromium.chrome/app_chrome'])
+    print self._device.RunShellCommand(['mkdir', '/data/data/org.chromium.chrome/app_chrome'])
+
+    if self._device.PathExists('/data/user/0/org.chromium.chrome/app_chrome/Subresource Filter'):
+      print("Subresource Filter already exist.")
+      return
+    print("Subresource Filter doesn't exist.")
+    with tarfile.open(os.path.join(os.path.dirname(__file__), 'static_sf', 'sf_data_user.tar.gz')) as tarball:
+      tarball.extractall(os.path.join(os.path.dirname(__file__), 'static_sf'))
+    print self._device.adb.Push(os.path.join(os.path.dirname(__file__), 'static_sf', 'user', 'Subresource Filter'), '/data/user/0/org.chromium.chrome/app_chrome/')
+    print self._device.adb.Push(os.path.join(os.path.dirname(__file__), 'static_sf', 'data', 'Subresource Filter'), '/data/data/org.chromium.chrome/app_chrome/')
+    print self._device.RunShellCommand(['chown', '-R', 'u0_a79:u0_a79', '/data/user/0/org.chromium.chrome/app_chrome'])
+    print self._device.RunShellCommand(['chown', '-R', 'u0_a79:u0_a79', '/data/data/org.chromium.chrome/app_chrome'])
+    print self._device.RunShellCommand(['chmod', '-R', '771', '/data/user/0/org.chromium.chrome/app_chrome'])
+    print self._device.RunShellCommand(['chmod', '-R', '771', '/data/data/org.chromium.chrome/app_chrome'])
+    if self._device.PathExists('/data/user/0/org.chromium.chrome/app_chrome/Subresource Filter'):
+      print("Subresource Filter created successfully.")
+      return
+    print("Subresource Filter creation failed.")
+
   def RemoveProfile(self, package, ignore_list):
     """Delete application profile on device.
 
@@ -595,6 +626,25 @@ class AndroidPlatformBackend(
     if not files:
       return
     self._device.RemovePath(files, recursive=True, as_root=True)
+
+    print self._device.RunShellCommand(['mkdir', '/data/user/0/org.chromium.chrome/app_chrome'])
+    found = False
+    for line in self._device.RunShellCommand(['ls', '/data/user/0/org.chromium.chrome/app_chrome']):
+      if line == 'Subresource Filter':
+        found = True
+        break
+    if found:
+      print("Subresource Filter already exist.")
+      return
+    print("Subresource Filter doesn't exist.")
+    with tarfile.open(os.path.join(os.path.dirname(__file__), 'static_sf', 'sf_data_user.tar.gz')) as tarball:
+      tarball.extractall(os.path.join(os.path.dirname(__file__), 'static_sf'))
+    print self._device.adb.Push(os.path.join(os.path.dirname(__file__), 'static_sf', 'user', 'Subresource Filter'), '/data/user/0/org.chromium.chrome/app_chrome/')
+    print self._device.adb.Push(os.path.join(os.path.dirname(__file__), 'static_sf', 'data', 'Subresource Filter'), '/data/data/org.chromium.chrome/app_chrome/')
+    print self._device.RunShellCommand(['chown', '-R', 'u0_a79:u0_a79', '/data/user/0/org.chromium.chrome/app_chrome'])
+    print self._device.RunShellCommand(['chown', '-R', 'u0_a79:u0_a79', '/data/data/org.chromium.chrome/app_chrome'])
+    print self._device.RunShellCommand(['chmod', '-R', '771', '/data/user/0/org.chromium.chrome/app_chrome'])
+    print self._device.RunShellCommand(['chmod', '-R', '771', '/data/data/org.chromium.chrome/app_chrome'])
 
   def PullProfile(self, package, output_profile_path):
     """Copy application profile from device to host machine.
