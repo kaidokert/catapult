@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4d431e05_bc684d6b",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1112850
+      },
+      "writtenOn": "2017-11-21T21:42:05Z",
+      "side": 1,
+      "message": "Please reorder the if conditions here:\n\nif self._webapk_packege:\n  ...\nelse if self._url \u003d\u003d \u0027\u0027:\n  ...\nelse",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 25
+      },
+      "revId": "37ee5cc8e45cdcfd340a95db427f2e6e9f6fa666",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da03db80_e53a657e",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1112850
+      },
+      "writtenOn": "2017-11-21T21:42:05Z",
+      "side": 1,
+      "message": "s/app/WebAPK",
+      "range": {
+        "startLine": 143,
+        "startChar": 29,
+        "endLine": 143,
+        "endChar": 32
+      },
+      "revId": "37ee5cc8e45cdcfd340a95db427f2e6e9f6fa666",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd9b9c17_1412e840",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1112850
+      },
+      "writtenOn": "2017-11-21T21:42:05Z",
+      "side": 1,
+      "message": "You mentioned that URL can be empty. The description does not reflect that.",
+      "range": {
+        "startLine": 143,
+        "startChar": 33,
+        "endLine": 143,
+        "endChar": 56
+      },
+      "revId": "37ee5cc8e45cdcfd340a95db427f2e6e9f6fa666",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f662c031_dab0e50f",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1112850
+      },
+      "writtenOn": "2017-11-21T21:42:05Z",
+      "side": 1,
+      "message": "Can we also explicitly list the default value here?",
+      "revId": "37ee5cc8e45cdcfd340a95db427f2e6e9f6fa666",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
