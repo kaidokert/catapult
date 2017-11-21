@@ -58,7 +58,6 @@ class HistogramSet(object):
           diag.Resolve(histograms)
 
     for hist in self:
-      hist.diagnostics.ResolveSharedDiagnostics(self)
       HandleDiagnosticMap(hist.diagnostics)
       for dm in hist.nan_diagnostic_maps:
         HandleDiagnosticMap(dm)
@@ -79,7 +78,9 @@ class HistogramSet(object):
         diag = diagnostic.Diagnostic.FromDict(d)
         self._shared_diagnostics_by_guid[d['guid']] = diag
       else:
-        self.AddHistogram(histogram_module.Histogram.FromDict(d))
+        hist = histogram_module.Histogram.FromDict(d)
+        hist.diagnostics.ResolveSharedDiagnostics(self)
+        self.AddHistogram(hist)
 
   def AsDicts(self):
     dcts = []
