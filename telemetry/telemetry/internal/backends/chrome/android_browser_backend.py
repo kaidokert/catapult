@@ -111,13 +111,15 @@ class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
           self.platform_backend.RemoveProfile(
               self._backend_settings.package,
               self._backend_settings.profile_ignore_list)
-
+      print("Print Self:")
+      print(vars(self._backend_settings))
       self.device.StartActivity(
           intent.Intent(package=self._backend_settings.package,
                         activity=self._backend_settings.activity,
                         action=None, data=url, category=None,
                         extras=user_agent_dict),
           blocking=True)
+      print("Activity started.")
 
       # TODO(crbug.com/404771): Move port forwarding to network_controller.
       remote_devtools_port = self._backend_settings.GetDevtoolsRemotePort(
@@ -172,6 +174,7 @@ class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       except:
         self.Close()
         raise
+    self.platform_backend.createSubresourceFilter()
 
   def Foreground(self):
     package = self._backend_settings.package
