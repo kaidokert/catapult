@@ -69,6 +69,24 @@
       "revId": "2b79b08a0cb7acf65740043c6ef6978f320ce57b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8d540ea_77997926",
+        "filename": "telemetry/telemetry/page/cache_temperature.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-22T13:03:53Z",
+      "side": 1,
+      "message": "You\u0027re right, we can\u0027t have a single TEMPERATURE. Sorry that I didn\u0027t think this through.",
+      "parentUuid": "439b44f0_456a2bf0",
+      "revId": "2b79b08a0cb7acf65740043c6ef6978f320ce57b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
