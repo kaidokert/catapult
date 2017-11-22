@@ -18,11 +18,18 @@ ANY = 'any'
 # Emulates cold runs. Clears various caches and data with using tab.ClearCache()
 # and tab.ClearDataForOrigin().
 COLD = 'cold'
-# Emulates warm runs. Ensures that the page was visited once before the run.
-WARM = 'warm'
-# Emulates hot runs. Ensures that the page was visited at least twice before
-# the run.
-HOT = 'hot'
+# Emulates warm browser runs. Ensures that the page was visited once in a
+# different renderer.
+WARM_BROWSER = 'warm-browser'
+# Emulates hot runs. Ensures that the page was visited at least twice in a
+# different renderer before the run.
+HOT_BROWSER = 'hot-browser'
+# Emulates warm renderer runs. Ensures that the page was visited once before the
+# run in the same renderer.
+WARM = 'warm-renderer'
+# Emulates hot renderer runs. Ensures that the page was visited at least twice
+# in the same renderer before the run.
+HOT = 'hot-renderer'
 
 
 class _MarkTelemetryInternal(object):
@@ -65,21 +72,24 @@ def _WarmCache(page, tab, temperature):
 
 
 class CacheManipulator(object):
-  TEMPERATURE = None
+  RENDERER_TEMPERATURE = None
+  BROWSER_TEMPERATURE = None
   @staticmethod
   def PrepareCache(page, tab, previous_page):
     raise NotImplementedError
 
 
 class AnyCacheManipulator(CacheManipulator):
-  TEMPERATURE = ANY
+  RENDERER_TEMPERATURE = ANY
+  BROWSER_TEMPERATURE = ANY
   @staticmethod
   def PrepareCache(page, tab, previous_page):
     pass
 
 
 class ColdCacheManipulator(CacheManipulator):
-  TEMPERATURE = COLD
+  RENDERER_TEMPERATURE = COLD
+  BROWSER_TEMPERATURE = COLD
   @staticmethod
   def PrepareCache(page, tab, previous_page):
     if previous_page is None:
@@ -96,7 +106,8 @@ class ColdCacheManipulator(CacheManipulator):
 
 
 class WarmCacheManipulator(CacheManipulator):
-  TEMPERATURE = WARM
+  RENDERER_TEMPERATURE = WARM
+  BROWSER_TEMPERATURE = WARM_BROWSER
   @staticmethod
   def PrepareCache(page, tab, previous_page):
     if (previous_page is not None and
@@ -116,11 +127,12 @@ class WarmCacheManipulator(CacheManipulator):
       tab.StopAllServiceWorkers()
     else:
       _ClearCacheAndData(tab, page.url)
-      _WarmCache(page, tab, WARM)
+      _WarmCache(page, tab, 'warm')
 
 
 class HotCacheManipulator(CacheManipulator):
-  TEMPERATURE = HOT
+  RENDERER_TEMPERATURE = HOT
+  BROWSER_TEMPERATURE = HOT_BROWSER
   @staticmethod
   def PrepareCache(page, tab, previous_page):
     if (previous_page is not None and
@@ -144,8 +156,8 @@ class HotCacheManipulator(CacheManipulator):
 
     else:
       _ClearCacheAndData(tab, page.url)
-      _WarmCache(page, tab, WARM)
-      _WarmCache(page, tab, HOT)
+      _WarmCache(page, tab, 'warm')
+      _WarmCache(page, tab, 'hot')
 
 
 def EnsurePageCacheTemperature(page, browser, previous_page=None):
@@ -153,7 +165,13 @@ def EnsurePageCacheTemperature(page, browser, previous_page=None):
   logging.info('PageCacheTemperature: %s', temperature)
   for c in [AnyCacheManipulator, ColdCacheManipulator, WarmCacheManipulator,
             HotCacheManipulator]:
-    if temperature == c.TEMPERATURE:
+    if temperature == c.RENDERER_TEMPERATURE:
       c.PrepareCache(page, browser.tabs[0], previous_page)
+      return
+    elif temperature == c.BROWSER_TEMPERATURE:
+      # Perform browser cache manipulation in a different tab.
+      tab = browser.tabs.New()
+      c.PrepareCache(page, tab, previous_page)
+      tab.Close()
       return
   raise NotImplementedError('Unrecognized cache temperature: %s' % temperature)
