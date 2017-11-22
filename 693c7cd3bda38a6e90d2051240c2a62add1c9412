@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1bbea722_0177df09",
+        "filename": "telemetry/telemetry/page/cache_temperature.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-22T17:46:03Z",
+      "side": 1,
+      "message": "BROWSER_TEMPERATURE should be None here\n\nAlso can you make def PrepareBrowserCache raise Error(\u0027Browser renderer cache not supported\u0027) here?\n\n(Error from https://github.com/catapult-project/catapult/blob/master/telemetry/telemetry/core/exceptions.py#L8)",
+      "revId": "693c7cd3bda38a6e90d2051240c2a62add1c9412",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "476c218f_74a7d97c",
+        "filename": "telemetry/telemetry/page/cache_temperature.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-22T17:46:03Z",
+      "side": 1,
+      "message": "Ditto",
+      "revId": "693c7cd3bda38a6e90d2051240c2a62add1c9412",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "331b888d_e03a1e8e",
+        "filename": "telemetry/telemetry/page/cache_temperature_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-22T17:46:03Z",
+      "side": 1,
+      "message": "Is there any assertion we can do to make sure that browser cache is warm? Here we just assure that we don\u0027t mistakenly activate the renderer cache.",
+      "revId": "693c7cd3bda38a6e90d2051240c2a62add1c9412",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46e82e4c_3815b180",
+        "filename": "telemetry/telemetry/page/cache_temperature_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-22T17:46:03Z",
+      "side": 1,
+      "message": "nits: remove extra space here",
+      "revId": "693c7cd3bda38a6e90d2051240c2a62add1c9412",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a689bb7_c25bfa8b",
+        "filename": "telemetry/telemetry/page/cache_temperature_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-22T17:46:03Z",
+      "side": 1,
+      "message": "Same question",
+      "revId": "693c7cd3bda38a6e90d2051240c2a62add1c9412",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
