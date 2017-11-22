@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "21ee7713_791683e7",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-22T15:19:22Z",
+      "side": 0,
+      "message": "we can drop the HasRoot check since this is now required for the android platform.",
+      "revId": "2126f67e1ca97ed0128fd8945a69e5f6df3ae3f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
