@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "40c2229d_c3462f5a",
+        "filename": "telemetry/telemetry/page/cache_temperature.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1002763
+      },
+      "writtenOn": "2017-11-22T12:50:06Z",
+      "side": 1,
+      "message": "Done - https://chromium-review.googlesource.com/c/catapult/+/785352",
+      "parentUuid": "77b57d81_32f50be0",
+      "revId": "2b79b08a0cb7acf65740043c6ef6978f320ce57b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0aa69d66_fd7a68da",
         "filename": "telemetry/telemetry/page/cache_temperature.py",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2017-11-21T17:36:00Z",
       "side": 1,
       "message": "This flow is right, but a bit hard to follow. Instead, can you keep a single TEMPERATURE for each CacheManipulator classes, and then do the following:\n\nif temperature in RENDERER_TEMPERATURES:\n    c.PrepareRendererCache(page, browser.tabs[0], previous_page)\n    return\nelif temperature in BROWSER_TEMPERATURES:\n    c.PrepareBrowserCache(page, browser.tabs[0], previous_page)\n    return\n\n\nDefault implementation of PrepareBrowserCache is basically line 173 to line 175 below.",
+      "revId": "2b79b08a0cb7acf65740043c6ef6978f320ce57b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "439b44f0_456a2bf0",
+        "filename": "telemetry/telemetry/page/cache_temperature.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1002763
+      },
+      "writtenOn": "2017-11-22T12:50:06Z",
+      "side": 1,
+      "message": "I\u0027ve done the PrepareBrowserCache change, but I\u0027m not sure how you want a single TEMPERATURE for each CacheManiuplator class? How would I match both HOT_BROWSER and HOT(_RENDERER) to a CacheManipulator if the manipulator only specified temperature of HOT?",
+      "parentUuid": "0aa69d66_fd7a68da",
       "revId": "2b79b08a0cb7acf65740043c6ef6978f320ce57b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
