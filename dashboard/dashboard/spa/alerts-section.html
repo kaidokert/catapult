@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="/bower_components/paper-button/paper-button.html">
+<link rel="import" href="/bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="/bower_components/paper-item/paper-item.html">
+<link rel="import" href="/bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="/bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="/bower_components/paper-toggle-button/paper-toggle-button.html">
+
+<dom-module id="alerts-section">
+  <template>
+    <style>
+      #controls {
+        display: flex;
+      }
+
+      #menu {
+        min-width: 350px;
+      }
+
+      paper-toggle-button {
+        display: inline-flex;
+      }
+
+      #triaged {
+        margin-left: 2em;
+      }
+
+      .sheriff-item {
+        white-space: nowrap;
+      }
+
+      #summary {
+        flex-grow: 1;
+        margin: auto;
+        text-align: center;
+      }
+
+      #table_container {
+        position: relative;
+      }
+
+      #spinner_container {
+        bottom: 0;
+        display: none;
+        height: 100%;
+        position: absolute;
+        width: 100%;
+      }
+
+      #spinner_container[active] {
+        display: flex;
+      }
+
+      paper-spinner {
+        margin: auto;
+      }
+
+      #table_container table[placeholder] {
+        color: var(--paper-grey-500);
+        width: 100%;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      table thead th {
+        background-color: #e8eaf6;
+      }
+
+      table tbody tr:nth-child(even) {
+        background: rgba(232, 234, 246, 0.5);
+      }
+
+      td {
+        padding: 0.5em;
+      }
+
+      th.delta_pct {
+        padding-right: 0.5em;
+      }
+
+      td.delta,
+      td.delta_pct {
+        text-align: right;
+      }
+
+      td.checkbox {
+        text-align: center;
+      }
+
+      td[expandedGroup] {
+        background-color: var(--paper-grey-400);
+      }
+
+      paper-button.expand_group {
+        margin: 0;
+        min-width: 0;
+        padding: 0;
+      }
+
+      paper-button.expand_group iron-icon {
+        height: 20px;
+        padding: 0;
+        width: 20px;
+      }
+
+      #close {
+        flex-shrink: 0;
+      }
+    </style>
+
+    <div id="controls">
+      <dropdown-input id="menu"
+                      placeholder="Sheriff or Bug"
+                      value="[[sheriffOrBug]]"
+                      options="[[sheriffList]]"
+                      is-focused="[[isMenuFocused]]"
+                      on-input-focus="onMenuFocus_"
+                      on-input-blur="onMenuBlur_"
+                      on-input-keydown="onMenuKeydown_"
+                      on-clear="onMenuClear_"
+                      on-option-select="onMenuSelect_">
+      </dropdown-input>
+
+      <span id="summary">[[summary]]</span>
+
+      <paper-toggle-button id="improvements"
+                          checked$="[[showingImprovements]]"
+                          on-change="toggleShowingImprovements_">
+        Improvements
+      </paper-toggle-button>
+
+      <paper-toggle-button id="triaged"
+                    checked$="[[showingTriaged]]"
+                    on-change="toggleShowingTriaged_">
+        Triaged
+      </paper-toggle-button>
+
+      <paper-icon-button id="close"
+                         icon="close"
+                         on-tap="closeSection_"></paper-icon-button>
+    </div>
+
+    <dom-if if="[[!any_(rows)]]">
+      <template>
+        TODO cat
+      </template>
+    </dom-if>
+
+    <dom-if if="[[any_(rows)]]">
+      <template>
+        <div id="table_container">
+          <table placeholder$=[[areRowsPlaceholders]]>
+            <thead>
+              <tr>
+                <th>&nbsp;</th>
+                <th><paper-checkbox></paper-checkbox></th>
+                <th>Revisions</th>
+                <th>Bot</th>
+                <th>Test Suite</th>
+                <th colspan="5">Test</th>
+                <th>Delta</th>
+                <th class="delta_pct">Delta %</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <!-- TODO why doesn't <dom-repeat> work for tr or td? -->
+              <template is="dom-repeat" items="[[rows]]">
+                <tr>
+                  <td expandedGroup$="[[item.isGroupExpanded]]">
+                    <dom-if if="[[item.numGroupMembers]]">
+                      <template>
+                        <paper-button class="expand_group"
+                                      on-tap="toggleGroupExpanded_">
+                          <dom-if if="[[item.isGroupExpanded]]">
+                            <template>
+                              <iron-icon icon="expand-less">
+                              </iron-icon>
+                            </template>
+                          </dom-if>
+
+                          <dom-if if="[[!item.isGroupExpanded]]">
+                            <template>
+                              <iron-icon icon="expand-more">
+                              </iron-icon>
+                            </template>
+                          </dom-if>
+
+                          [[item.numGroupMembers]]
+                        </paper-button>
+                      </template>
+                    </dom-if>
+                  </td>
+
+                  <td class="checkbox"><paper-checkbox></paper-checkbox></td>
+                  <td>[[item.revisions]]</td>
+                  <td>[[item.bot]]</td>
+                  <td>[[item.testSuite]]</td>
+
+                  <template is="dom-repeat" items="[[item.testParts]]">
+                    <td>[[item]]</td>
+                  </template>
+
+                  <td class="delta">[[item.delta]]</td>
+                  <td class="delta_pct">[[item.deltaPct]]</td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+
+          <div id="spinner_container" active$="[[isLoading]]">
+            <paper-spinner active$="[[isLoading]]"></paper-spinner>
+          </div>
+        </div>
+      </template>
+    </dom-if>
+  </template>
+</dom-module>
+
+<script src="/dashboard/spa/alerts-section.js"></script>
