@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "365f4969_4d0a0cd4",
+        "filename": "telemetry/telemetry/page/cache_temperature.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1002763
+      },
+      "writtenOn": "2017-11-23T16:57:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1bbea722_0177df09",
+      "revId": "693c7cd3bda38a6e90d2051240c2a62add1c9412",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "476c218f_74a7d97c",
         "filename": "telemetry/telemetry/page/cache_temperature.py",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "919098c7_ede47255",
+        "filename": "telemetry/telemetry/page/cache_temperature.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1002763
+      },
+      "writtenOn": "2017-11-23T16:57:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "476c218f_74a7d97c",
+      "revId": "693c7cd3bda38a6e90d2051240c2a62add1c9412",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "331b888d_e03a1e8e",
         "filename": "telemetry/telemetry/page/cache_temperature_unittest.py",
         "patchSetId": 3
@@ -47,6 +83,24 @@
       "writtenOn": "2017-11-22T17:46:03Z",
       "side": 1,
       "message": "Is there any assertion we can do to make sure that browser cache is warm? Here we just assure that we don\u0027t mistakenly activate the renderer cache.",
+      "revId": "693c7cd3bda38a6e90d2051240c2a62add1c9412",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc007455_d1721fe5",
+        "filename": "telemetry/telemetry/page/cache_temperature_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1002763
+      },
+      "writtenOn": "2017-11-23T16:57:14Z",
+      "side": 1,
+      "message": "I can\u0027t think of any way to verify this as a unittest I\u0027m afraid.",
+      "parentUuid": "331b888d_e03a1e8e",
       "revId": "693c7cd3bda38a6e90d2051240c2a62add1c9412",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "ae27b14d_fbb3c1cd",
+        "filename": "telemetry/telemetry/page/cache_temperature_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1002763
+      },
+      "writtenOn": "2017-11-23T16:57:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46e82e4c_3815b180",
+      "revId": "693c7cd3bda38a6e90d2051240c2a62add1c9412",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a689bb7_c25bfa8b",
         "filename": "telemetry/telemetry/page/cache_temperature_unittest.py",
         "patchSetId": 3
@@ -81,6 +153,24 @@
       "writtenOn": "2017-11-22T17:46:03Z",
       "side": 1,
       "message": "Same question",
+      "revId": "693c7cd3bda38a6e90d2051240c2a62add1c9412",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24e21437_a24dcf4d",
+        "filename": "telemetry/telemetry/page/cache_temperature_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1002763
+      },
+      "writtenOn": "2017-11-23T16:57:14Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "3a689bb7_c25bfa8b",
       "revId": "693c7cd3bda38a6e90d2051240c2a62add1c9412",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
