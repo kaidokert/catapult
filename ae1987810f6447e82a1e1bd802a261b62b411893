@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6bb46434_af15b4d4",
+        "filename": "telemetry/telemetry/internal/forwarders/android_forwarder.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-24T17:01:33Z",
+      "side": 1,
+      "message": "The CromeOs forwarder has a similar concept. I\u0027m planning to unify their API\u0027s in a follow up CL.",
+      "revId": "ae1987810f6447e82a1e1bd802a261b62b411893",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb8c7651_010907a4",
+        "filename": "telemetry/telemetry/internal/forwarders/android_forwarder.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-24T17:01:33Z",
+      "side": 1,
+      "message": "This is hopefully a lot easier to read now!",
+      "revId": "ae1987810f6447e82a1e1bd802a261b62b411893",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
