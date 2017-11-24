@@ -6,12 +6,15 @@ from py_utils import atexit_with_log
 import logging
 import subprocess
 
+from telemetry.core import util
 from telemetry.internal import forwarders
 
+from devil.android import device_errors
 try:
   from devil.android import forwarder
-except ImportError:
-  forwarder = None
+except ImportError as exc:
+  # Module is not importable e.g. on Windows hosts.
+  logging.warning('Failed to import devil.android.forwarder: %s', exc)
 
 
 class AndroidForwarderFactory(forwarders.ForwarderFactory):
@@ -20,51 +23,93 @@ class AndroidForwarderFactory(forwarders.ForwarderFactory):
     super(AndroidForwarderFactory, self).__init__()
     self._device = device
 
-  def Create(self, port_pair):
+  def Create(self, port_pair,  # pylint: disable=arguments-differ
+             reverse=False):
     try:
-      return AndroidForwarder(self._device, port_pair)
+      if reverse:
+        raise Exception('boom!')
+        return AndroidReverseForwarder(self._device, port_pair)
+      else:
+        return AndroidForwarder(self._device, port_pair)
     except Exception:
-      try:
-        logging.warning('Failed to create forwarder. '
-                        'Currently forwarded connections:')
-        for line in self._device.adb.ForwardList().splitlines():
-          logging.warning('  %s', line)
-      except Exception: # pylint: disable=broad-except
-        logging.warning('Exception raised while listing forwarded connections.')
+      logging.exception(
+          'Failed to map local_port=%r to remote_port=%r (reverse=%r).',
+          port_pair.local_port, port_pair.remote_port, reverse)
+      logging.warning('== dumping possibly useful debug information ==')
 
-      logging.warning('Relevant device tcp sockets in use:')
-      try:
-        proc_net_tcp_target = ':%s ' % hex(port_pair.remote_port)[2:]
-        for line in self._device.ReadFile('/proc/net/tcp', as_root=True,
-                                          force_pull=True).splitlines():
-          if proc_net_tcp_target in line:
-            logging.warning('  %s', line)
-      except Exception: # pylint: disable=broad-except
-        logging.warning('Exception raised while listing tcp sockets.')
+      def ListCurrentAdbConnections():
+        """Currently forwarded connections"""
+        return self._device.adb.ForwardList().splitlines()
 
-      logging.warning('Possibly relevant lsof entries:')
-      try:
-        lsof_output = self._device.RunShellCommand(
-            ['lsof'], as_root=True, check_return=True)
-        lsof_target = str(port_pair.remote_port)
-        for line in lsof_output:
-          if lsof_target in line:
-            logging.warning('  %s', line)
-      except Exception: # pylint: disable=broad-except
-        logging.warning('Exception raised running lsof.')
+      def ListHostTcpPortsInUse():
+        """Host tcp ports in use"""
+        return subprocess.check_output(['netstat', '-t']).splitlines()
 
-      logging.warning('Alive webpagereplay instances:')
-      try:
+      def ListDeviceUnixDomainSocketsInUse():
+        """Device unix domain socets in use"""
+        return self._device.ReadFile('/proc/net/unix', as_root=True,
+                                     force_pull=True).splitlines()
+
+      def ListWebPageReplayInstances():
+        """Alive webpagereplay instances"""
         for line in subprocess.check_output(['ps', '-ef']).splitlines():
           if 'webpagereplay' in line:
-            logging.warning('  %s', line)
-      except Exception: # pylint: disable=broad-except
-        logging.warning('Exception raised while listing WPR intances.')
+            yield line
 
+      def ListDeviceTcpPortsInUse():
+        """Possibly relevant device tcp ports in use"""
+        proc_net_tcp_target = ':%s ' % hex(port_pair.remote_port)[2:]
+        for line in self._device.ReadFile(
+            '/proc/net/tcp', as_root=True, force_pull=True).splitlines():
+          if proc_net_tcp_target in line:
+            yield line
+
+      def ListRelevantLsofEntries():
+        """Possibly relevant lsof entries"""
+        lsof_target = str(port_pair.remote_port)
+        for line in self._device.RunShellCommand(
+            ['lsof'], as_root=True, check_return=True):
+          if lsof_target in line:
+            yield line
+
+      debug_infos = [
+          ListCurrentAdbConnections,
+          ListHostTcpPortsInUse,
+          ListDeviceUnixDomainSocketsInUse,
+          ListWebPageReplayInstances,
+      ]
+      if port_pair.remote_port:
+        debug_infos.extend([
+            ListDeviceTcpPortsInUse,
+            ListRelevantLsofEntries,
+        ])
+
+      _LogDebugInfos(debug_infos)
+      logging.warning('===============================================')
       raise
 
 
+def _LogDebugInfos(debug_infos):
+  for list_debug_lines in debug_infos:
+    logging.warning('- %s:', list_debug_lines.__doc__)
+    try:
+      for line in list_debug_lines():
+        logging.warning('  - %s', line)
+    except Exception:  # pylint: disable=broad-except
+      logging.exception(
+          'Ignoring exception raised during %s.', list_debug_lines.__name__)
+
+
 class AndroidForwarder(forwarders.Forwarder):
+  """Use host_forwarder to map a known local port with a remote (device) port.
+
+  The remote port may be 0, in such case the forwarder will automatically
+  chose an available port.
+
+  See:
+  - chromium:/src/tools/android/forwarder2
+  - catapult:/devil/devil/android/forwarder.py
+  """
 
   def __init__(self, device, port_pair):
     super(AndroidForwarder, self).__init__(port_pair)
@@ -83,3 +128,38 @@ class AndroidForwarder(forwarders.Forwarder):
       forwarder.Forwarder.UnmapDevicePort(
           self._port_pair.remote_port, self._device)
     super(AndroidForwarder, self).Close()
+
+
+class AndroidReverseForwarder(forwarders.Forwarder):
+  """Use adb forward to map a known remote (device) port with a local port.
+
+  The local port may be 0, in such case the forwarder will automatically
+  chose an available port.
+
+  See:
+  - catapult:/devil/devil/android/sdk/adb_wrapper.py
+  """
+
+  def __init__(self, device, port_pair):
+    super(AndroidReverseForwarder, self).__init__(port_pair)
+    local_port, remote_port = port_pair
+    assert remote_port, 'Remove port must be given'
+    if not local_port:
+      local_port = util.GetUnreservedAvailableLocalPort()
+    self._device = device
+    self._device.adb.Forward('tcp:%d' % local_port, remote_port)
+    self._port_pair = forwarders.PortPair(local_port, remote_port)
+
+  def Close(self):
+    if self._forwarding:
+      # This used to run `adb forward --list` to check that the requested
+      # port was actually being forwarded to self._device. Unfortunately,
+      # starting in adb 1.0.36, a bug (b/31811775) keeps this from working.
+      # For now, try to remove the port forwarding and ignore failures.
+      local_address = 'tcp:%d' % self._port_pair.local_port
+      try:
+        self._device.adb.ForwardRemove(local_address)
+      except device_errors.AdbCommandFailedError:
+        logging.critical(
+            'Attempted to unforward %s but failed.', local_address)
+    super(AndroidReverseForwarder, self).Close()
