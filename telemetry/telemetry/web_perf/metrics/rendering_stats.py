@@ -126,6 +126,17 @@ def GetTimeStampEventNameAndProcess(browser_process, surface_flinger_process,
   return display_rendering_stats, browser_process
 
 
+def GetEventLatencyInFrames(process, timeline_range):
+  latency_in_frames = []
+  if not process:
+    return latency_in_frames
+  for event in process.IterAllSlicesOfName('EventEndToEndLatency'):
+    if event.start >= timeline_range.min and event.end <= timeline_range.max:
+      if 'frames' in event.args:
+        latency_in_frames.append(event.args['frames'])
+  return latency_in_frames
+
+
 class RenderingStats(object):
   def __init__(self, renderer_process, browser_process, surface_flinger_process,
                gpu_process, timeline_ranges):
@@ -164,6 +175,8 @@ class RenderingStats(object):
     self.main_thread_scroll_latency = []
     # Latency for a GestureScrollUpdate input event.
     self.gesture_scroll_update_latency = []
+    # Event latency in number of frames.
+    self.event_latency_in_frames = []
 
     for timeline_range in timeline_ranges:
       self.frame_timestamps.append([])
@@ -209,6 +222,8 @@ class RenderingStats(object):
     self.gesture_scroll_update_latency[-1] = [
         latency for name, latency in event_latencies
         if name == GESTURE_SCROLL_UPDATE_EVENT_NAME]
+    self.event_latency_in_frames = GetEventLatencyInFrames(browser_process,
+                                                           timeline_range)
 
   def _GatherEvents(self, event_name, process, timeline_range):
     events = []

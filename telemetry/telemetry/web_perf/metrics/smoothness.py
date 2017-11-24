@@ -73,6 +73,8 @@ class SmoothnessMetric(timeline_based_metric.TimelineBasedMetric):
     values += self._ComputeLatencyMetric(page, stats,
                                          'main_thread_scroll_latency',
                                          stats.main_thread_scroll_latency)
+    values.append(self._ComputeEventLatencyInFramesMetric(
+        page, stats, stats.event_latency_in_frames))
     values.append(self._ComputeFirstGestureScrollUpdateLatencies(page, stats))
     values += self._ComputeFrameTimeMetric(page, stats)
     if has_surface_flinger_stats:
@@ -164,6 +166,15 @@ class SmoothnessMetric(timeline_based_metric.TimelineBasedMetric):
             description='Frame time in vsyncs as measured by the platform\'s '
                         'SurfaceFlinger.',
             none_value_reason=none_value_reason,
+            improvement_direction=improvement_direction.DOWN)
+    )
+
+  def _ComputeEventLatencyInFramesMetric(self, page, stats, latency_list):
+    return (
+        list_of_scalar_values.ListOfScalarValues(
+            page, 'event_latency_in_frames', 'frames', latency_list,
+            description='End to end latency, from input to display update.',
+            none_value_reason=None,
             improvement_direction=improvement_direction.DOWN)
     )
 
