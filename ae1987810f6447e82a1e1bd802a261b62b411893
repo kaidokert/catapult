@@ -50,6 +50,24 @@
       "revId": "ae1987810f6447e82a1e1bd802a261b62b411893",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da3c9682_f69ddca3",
+        "filename": "telemetry/telemetry/internal/forwarders/android_forwarder.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-27T16:56:36Z",
+      "side": 1,
+      "message": "Will do. :)",
+      "parentUuid": "399a9f76_1324d9b2",
+      "revId": "ae1987810f6447e82a1e1bd802a261b62b411893",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

@@ -16,6 +16,24 @@
       "revId": "86c17b98f5364a8a3f903df3d946ea7afe4d729b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "303eeccb_bd261fb7",
+        "filename": "telemetry/telemetry/core/util.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-27T16:56:36Z",
+      "side": 0,
+      "message": "Done: https://chromium-review.googlesource.com/c/catapult/+/790870\n\nWill rebase on top of that after it lands.",
+      "parentUuid": "05074aae_483d18f7",
+      "revId": "86c17b98f5364a8a3f903df3d946ea7afe4d729b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
