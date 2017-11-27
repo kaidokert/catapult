@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "8508c700_94028dd4",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1596,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-27T15:50:17Z",
+      "side": 1,
+      "message": "ACK. You could close the file on the parent host after writing to it (and before deleting), but that\u0027s awkward too. Maybe just add a comment stating the rationale for this use case in tempfile_ext?",
+      "parentUuid": "1d510238_f0c7b84b",
+      "revId": "043971b98dd6dc47470b3db7d8c3cd9e31b5e238",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cc1f33d9_e8f6c8ba",
         "filename": "devil/devil/utils/cmd_helper.py",
         "patchSetId": 1
@@ -136,6 +154,24 @@
       "side": 1,
       "message": "It should; it\u0027s a pattern I\u0027ve been adopting, though (to wit: https://codesearch.chromium.org/search/?q\u003dmain%5C(raw_args%5C)\u0026sq\u003dpackage:chromium\u0026type\u003dcs). This would allow other callers (or tests) to call main with some other set of args.",
       "parentUuid": "ee9ce914_0cc13e92",
+      "revId": "043971b98dd6dc47470b3db7d8c3cd9e31b5e238",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "03e4e550_82912c84",
+        "filename": "devil/devil/utils/zip_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-27T15:50:17Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "08e403c6_3e56f840",
       "revId": "043971b98dd6dc47470b3db7d8c3cd9e31b5e238",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
