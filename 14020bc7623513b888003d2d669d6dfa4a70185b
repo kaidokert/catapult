@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "29a0bd63_4e8b1f26",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1112850
+      },
+      "writtenOn": "2017-11-27T17:38:01Z",
+      "side": 1,
+      "message": "nit\n\nIn this if clause, we are force stopping WebAPK, not the browser.\n\nCan we put the force stop for webapk to after force stopping the browser? Then in the warning, you can say \"Force to stop WebAPK and the browser provided by...\"",
+      "revId": "14020bc7623513b888003d2d669d6dfa4a70185b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65a6e56c_501bd75f",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1112850
+      },
+      "writtenOn": "2017-11-27T17:38:01Z",
+      "side": 1,
+      "message": "nit: no need to include the bug here.",
+      "range": {
+        "startLine": 58,
+        "startChar": 8,
+        "endLine": 58,
+        "endChar": 24
+      },
+      "revId": "14020bc7623513b888003d2d669d6dfa4a70185b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
