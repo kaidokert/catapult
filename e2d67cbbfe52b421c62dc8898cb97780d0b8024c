@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ab43c21_e126563a",
+        "filename": "telemetry/telemetry/internal/actions/scroll_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-27T23:54:22Z",
+      "side": 1,
+      "message": "naming nits:\n\nrename this to \"_RunScrollDistanceTest\" instead",
+      "revId": "e2d67cbbfe52b421c62dc8898cb97780d0b8024c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5cfa6c25_de057bf5",
+        "filename": "telemetry/telemetry/internal/actions/scroll_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-27T23:54:22Z",
+      "side": 1,
+      "message": "you can use self.assertAlmostEqual",
+      "revId": "e2d67cbbfe52b421c62dc8898cb97780d0b8024c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
