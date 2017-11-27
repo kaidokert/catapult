@@ -95,6 +95,10 @@ tr.exportTo('tr.model', function() {
       return this.title;
     },
 
+    get viewSubGroupTopLevelGroupingKey() {
+      return undefined;
+    },
+
     get userFriendlyName() {
       return 'Async slice ' + this.title + ' at ' +
           tr.b.Unit.byName.timeStampInMs.format(this.start);
@@ -134,7 +138,11 @@ tr.exportTo('tr.model', function() {
         yield slice;
       }
       for (const slice of this.subSlices) {
-        yield* slice.enumerateAllDescendents();
+        // Slices might contain sub-events different from AsyncSlice.
+        // We don't go any deeper in that case.
+        if (slice.enumerateAllDescendents !== undefined) {
+          yield* slice.enumerateAllDescendents();
+        }
       }
     },
 
