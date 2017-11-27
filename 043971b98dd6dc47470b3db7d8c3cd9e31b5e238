@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1d510238_f0c7b84b",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1596,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2017-11-27T15:44:39Z",
+      "side": 1,
+      "message": "This is one of the weird things that I wanted to address w/ the rewrite. w/ NamedTemporaryFile, we either:\n\n- have open file handles to the temporary file in both the child and parent processes, which I\u0027d like to avoid\n- use delete\u003dTrue and close the temporary file in the parent process, which means we still need to delete the file in a finally\n\nw/ NamedTemporaryDirectory, we can use the context manager to delete the temporary and not worry about duplicate file handles.",
+      "parentUuid": "5fd5fd1c_4013c8ed",
+      "revId": "043971b98dd6dc47470b3db7d8c3cd9e31b5e238",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cc1f33d9_e8f6c8ba",
         "filename": "devil/devil/utils/cmd_helper.py",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2017-11-27T15:31:33Z",
       "side": 1,
       "message": "nit: unrelated? still I think it would be clearer: (exit_code, stdout, stderr)",
+      "revId": "043971b98dd6dc47470b3db7d8c3cd9e31b5e238",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48b1bbf4_d7e8b76b",
+        "filename": "devil/devil/utils/cmd_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2017-11-27T15:44:39Z",
+      "side": 1,
+      "message": "Yeah, it\u0027s totally unrelated. I was looking at using GetCmdStatusOutputAndError in another blink change and noticed that this documentation was wrong.",
+      "parentUuid": "cc1f33d9_e8f6c8ba",
       "revId": "043971b98dd6dc47470b3db7d8c3cd9e31b5e238",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "8433101d_b87428e3",
+        "filename": "devil/devil/utils/zip_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2017-11-27T15:44:39Z",
+      "side": 1,
+      "message": "Same reasoning.",
+      "parentUuid": "c6e8542a_7dc01c4c",
+      "revId": "043971b98dd6dc47470b3db7d8c3cd9e31b5e238",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee9ce914_0cc13e92",
         "filename": "devil/devil/utils/zip_utils.py",
         "patchSetId": 1
@@ -67,6 +121,24 @@
       "revId": "043971b98dd6dc47470b3db7d8c3cd9e31b5e238",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08e403c6_3e56f840",
+        "filename": "devil/devil/utils/zip_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2017-11-27T15:44:39Z",
+      "side": 1,
+      "message": "It should; it\u0027s a pattern I\u0027ve been adopting, though (to wit: https://codesearch.chromium.org/search/?q\u003dmain%5C(raw_args%5C)\u0026sq\u003dpackage:chromium\u0026type\u003dcs). This would allow other callers (or tests) to call main with some other set of args.",
+      "parentUuid": "ee9ce914_0cc13e92",
+      "revId": "043971b98dd6dc47470b3db7d8c3cd9e31b5e238",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
