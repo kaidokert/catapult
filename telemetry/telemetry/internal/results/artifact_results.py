@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 
 import collections
+import logging
 import os
 import shutil
 
@@ -41,7 +42,7 @@ class ArtifactResults(object):
           proper artifact directory, it will be moved there.
       * run_number: Which run of a test this is. If the current number of
           artifacts for the (test_name, name) key is less than this number,
-          new `null` artifacts will be inserted, with the assumption that
+          new `None` artifacts will be inserted, with the assumption that
           other runs of this test did not produce the same set of artifacts.
           NOT CURRENTLY IMPLEMENTED.
     """
@@ -53,6 +54,8 @@ class ArtifactResults(object):
 
     # If the artifact isn't in the artifact directory, move it.
     if not artifact_path.startswith(self.artifact_dir + os.sep):
+      logging.warning("Moving artifact file %r to %r" % (
+          artifact_path, self.artifact_dir))
       shutil.move(artifact_path, self.artifact_dir)
       artifact_path = os.path.basename(artifact_path)
     else:
