@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "05074aae_483d18f7",
+        "filename": "telemetry/telemetry/core/util.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-27T16:00:19Z",
+      "side": 0,
+      "message": "Can you elaborate how is this no longer needed? REmoving this seems worth a separate CL",
+      "revId": "86c17b98f5364a8a3f903df3d946ea7afe4d729b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
