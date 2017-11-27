@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4457fcdc_7a611125",
+        "filename": "telemetry/telemetry/core/util.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-27T16:55:26Z",
+      "side": 1,
+      "message": "Copied over and added some docs on why these options were there on the PortKeeper. Hopefully saves others the Google-trip I just had to do now to understand them myself.",
+      "revId": "e8d3f9fa211bec611f049511d4e8e0deefbcd4b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6bb9014_9dbaeafc",
+        "filename": "telemetry/telemetry/core/util.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-27T16:55:26Z",
+      "side": 1,
+      "message": "Similar here, also I pulled out the original rational given when this was introduced in:\nhttps://codereview.chromium.org/1292643002/",
+      "revId": "e8d3f9fa211bec611f049511d4e8e0deefbcd4b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
