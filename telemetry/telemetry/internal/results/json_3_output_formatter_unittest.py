@@ -216,6 +216,7 @@ class Json3OutputFormatterTest(unittest.TestCase):
     options.upload_results = False
     tempfile_dir = 'unittest_results'
     options.output_dir = tempfile_dir
+    options.move_artifacts = False
     options.suppress_gtest_report = False
     options.results_label = None
     parser = options.CreateParser()
@@ -245,6 +246,7 @@ class Json3OutputFormatterTest(unittest.TestCase):
     options.upload_results = False
     tempfile_dir = 'unittest_results'
     options.output_dir = tempfile_dir
+    options.move_artifacts = False
     options.suppress_gtest_report = False
     options.results_label = None
     parser = options.CreateParser()
