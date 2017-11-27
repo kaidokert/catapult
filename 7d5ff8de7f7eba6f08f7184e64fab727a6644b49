@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fea73e1c_3962a2f8",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-11-27T17:45:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b99f155_0ab57311",
+      "revId": "7d5ff8de7f7eba6f08f7184e64fab727a6644b49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d4adfe92_6338495f",
         "filename": "telemetry/telemetry/internal/results/artifact_results.py",
         "patchSetId": 11
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "59d3f589_c622630e",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-11-27T17:45:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4adfe92_6338495f",
+      "revId": "7d5ff8de7f7eba6f08f7184e64fab727a6644b49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "afd8f9d0_89cc644e",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 11
@@ -50,6 +86,24 @@
       "revId": "7d5ff8de7f7eba6f08f7184e64fab727a6644b49",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a360a4d_5d3e8ca1",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-11-27T17:45:43Z",
+      "side": 1,
+      "message": "Ah, didn\u0027t realize that returned a file object. Done.",
+      "parentUuid": "afd8f9d0_89cc644e",
+      "revId": "7d5ff8de7f7eba6f08f7184e64fab727a6644b49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
