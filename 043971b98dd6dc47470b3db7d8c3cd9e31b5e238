@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "79957c78_f9f0b768",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1596,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2017-11-27T16:11:06Z",
+      "side": 1,
+      "message": "Comment added to tempfile_ext.",
+      "parentUuid": "8508c700_94028dd4",
+      "revId": "043971b98dd6dc47470b3db7d8c3cd9e31b5e238",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cc1f33d9_e8f6c8ba",
         "filename": "devil/devil/utils/cmd_helper.py",
         "patchSetId": 1
