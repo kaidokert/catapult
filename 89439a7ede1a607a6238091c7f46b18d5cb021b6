@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2cec0099_ff2e1688",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-11-27T23:15:11Z",
+      "side": 1,
+      "message": "I seem to have to do this here, and a few other places. Should I need to do this? Should I make this change somewhere else?",
+      "revId": "89439a7ede1a607a6238091c7f46b18d5cb021b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
