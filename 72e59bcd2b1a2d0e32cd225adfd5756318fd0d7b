@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "46653698_a58e74f8",
+        "filename": "telemetry/telemetry/internal/results/results_options.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-27T23:29:52Z",
+      "side": 1,
+      "message": "Hmhh, why do we need this extra flag? Can you do this in a separate CL instead since this one is already big?",
+      "revId": "72e59bcd2b1a2d0e32cd225adfd5756318fd0d7b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
