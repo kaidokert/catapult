@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<dom-module id="line-chart">
+  <template>
+    <style>
+      .tickLine {
+        stroke-width: 1;
+        stroke: #ccc;
+      }
+
+      circle:hover {
+        opacity: 1;
+      }
+    </style>
+
+    <svg id="svg"
+         width$="[[layout.width]]"
+         height$="[[layout.height]]">
+      <template is="dom-repeat" items="[[layout.yAxisTicks]]" as="tick">
+        <text x$="[[tick.x]]" y$="[[tick.y]]" alignment-baseline="middle">[[tick.text]]</text>
+
+        <template is="dom-if" if="[[layout.showYAxisTickLines]]">
+          <line x1$="[[layout.left]]"
+                x2$="[[layout.right]]"
+                y1$="[[tick.y]]"
+                y2$="[[tick.y]]"
+                class="tickLine">
+          </line>
+        </template>
+      </template>
+
+      <template is="dom-repeat" items="[[layout.xAxisTicks]]" as="tick">
+        <text x$="[[tick.x]]" y$="[[tick.y]]" text-anchor="middle">[[tick.text]]</text>
+
+        <template is="dom-if" if="[[layout.showXAxisTickLines]]">
+          <line x1$="[[tick.x]]"
+                x2$="[[tick.x]]"
+                y1$="[[layout.top]]"
+                y2$="[[layout.bottom]]"
+                class="tickLine">
+          </line>
+        </template>
+      </template>
+
+      <template is="dom-repeat" items="[[layout.antiBrushes]]" as="antiBrush">
+        <rect x$="[[antiBrush.x]]"
+              y$="[[layout.top]]"
+              width$="[[antiBrush.width]]"
+              height$="[[layout.graphHeight]]"
+              fill="rgba(0, 0, 0, 0.2)">
+        </rect>
+
+        <template is="dom-if" if="[[antiBrush.leftHandle]]">
+          <path d="M0,0 L10,0 L10,10 L5,15 L0,10"
+                style="transform: translate([[antiBrush.leftHandleX]]px, [[layout.brushHandleTop]]px)"
+                fill="rgba(0, 0, 0, 0.2)"
+                cursor="move"
+                on-mousedown="onBrushHandleMouseDown_"
+                on-mousemove="onBrushHandleMouseMove_"
+                on-mouseup="onBrushHandleMouseUp_">
+          </path>
+        </template>
+
+        <template is="dom-if" if="[[antiBrush.rightHandle]]">
+          <path d="M0,0 L10,0 L10,10 L5,15 L0,10"
+                style="transform: translate([[antiBrush.rightHandleX]]px, [[layout.brushHandleTop]]px)"
+                fill="rgba(0, 0, 0, 0.2)"
+                cursor="move"
+                on-mousedown="onBrushHandleMouseDown_"
+                on-mousemove="onBrushHandleMouseMove_"
+                on-mouseup="onBrushHandleMouseUp_">
+          </rect>
+        </template>
+      </template>
+      <template is="dom-repeat" items="[[layout.sequences]]" as="sequence">
+        <path d$="[[sequence.path]]"
+              stroke$="[[sequence.color]]"
+              fill="none">
+        </path>
+
+        <template is="dom-repeat" items="[[sequence.data]]" as="datum">
+          <circle cx$="[[datum.x]]"
+                  cy$="[[datum.y]]"
+                  r$="[[layout.dotRadius]]"
+                  fill$="[[sequence.dotColor]]"
+                  cursor$="[[layout.dotCursor]]"
+                  opacity="0"
+                  on-tap="onDotClick_">
+          </circle>
+
+          <template is="dom-repeat" items="[[datum.icons]]" as="icon">
+            <!-- TODO -->
+          </template>
+        </template>
+      </template>
+
+    </svg>
+  </template>
+</dom-module>
+
+<script src="/dashboard/spa/line-chart.js"></script>
