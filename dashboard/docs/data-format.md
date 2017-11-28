@@ -75,6 +75,21 @@ the test.
         "values": [13, 14, 12, 13],
         "file": "gs://..."
       },
+    },
+    "html_size": {
+      "http://www.google.com/": {
+        "type": "scalar",
+        "value": 13579,
+        "units": "bytes"
+      }
+    },
+    "load_times": {
+      "http://www.google.com/": {
+        "type": "list_of_scalar_values",
+        "value": [4.2],
+        "std": 1.25,
+        "units": "sec"
+      }
     }
   }
 }
@@ -89,7 +104,11 @@ Fields:
  to their trace dicts.
  * `type`: [string] `"scalar"`, `"list_of_scalar_values"` or `"histogram"`,
  which tells the dashboard how to interpret the rest of the fields.
- * `improvement_direction` (string): Either `"bigger_is_better"`, or
+   * `scalar` points require the field `"value"` [number].
+   * `list_of_scalar_values` points require the field `"values"` [list of
+   numbers]. An alternative way to specify a value and standard deviation is to
+   provide a list of one number for `"values"` and a number for `"std"`.
+ * `improvement_direction`: [string] Either `"bigger_is_better"`, or
  `"smaller_is_better"`.
  * `summary`: A special trace name which denotes the trace in a chart which does
  not correspond to a specific page.
