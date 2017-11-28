@@ -23,18 +23,16 @@ class AndroidForwarderFactory(forwarders.ForwarderFactory):
     super(AndroidForwarderFactory, self).__init__()
     self._device = device
 
-  # TODO(#1977): Make API consistent accross forwarders.
-  def Create(self, port_pair,  # pylint: disable=arguments-differ
-             reverse=False):
+  def Create(self, local_port, remote_port, reverse=False):
     try:
       if reverse:
-        return AndroidReverseForwarder(self._device, port_pair)
+        return AndroidReverseForwarder(self._device, local_port, remote_port)
       else:
-        return AndroidForwarder(self._device, port_pair)
+        return AndroidForwarder(self._device, local_port, remote_port)
     except Exception:
       logging.exception(
           'Failed to map local_port=%r to remote_port=%r (reverse=%r).',
-          port_pair.local_port, port_pair.remote_port, reverse)
+          local_port, remote_port, reverse)
       util.LogExtraDebugInformation(
           self._ListCurrentAdbConnections,
           self._ListWebPageReplayInstances,
@@ -85,22 +83,18 @@ class AndroidForwarder(forwarders.Forwarder):
   - catapult:/devil/devil/android/forwarder.py
   """
 
-  def __init__(self, device, port_pair):
-    super(AndroidForwarder, self).__init__(port_pair)
+  def __init__(self, device, local_port, remote_port):
+    super(AndroidForwarder, self).__init__(local_port, remote_port)
     self._device = device
-    forwarder.Forwarder.Map(
-        [(port_pair.remote_port, port_pair.local_port)], self._device)
-    self._port_pair = (
-        forwarders.PortPair(
-            port_pair.local_port,
-            forwarder.Forwarder.DevicePortForHostPort(port_pair.local_port)))
+    forwarder.Forwarder.Map([(remote_port, local_port)], self._device)
+    self._forwarding = True
+    self._remote_port = forwarder.Forwarder.DevicePortForHostPort(local_port)
     atexit_with_log.Register(self.Close)
     # TODO(tonyg): Verify that each port can connect to host.
 
   def Close(self):
     if self._forwarding:
-      forwarder.Forwarder.UnmapDevicePort(
-          self._port_pair.remote_port, self._device)
+      forwarder.Forwarder.UnmapDevicePort(self.remote_port, self._device)
     super(AndroidForwarder, self).Close()
 
 

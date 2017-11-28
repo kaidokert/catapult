@@ -5,7 +5,6 @@
 import weakref
 
 from battor import battor_wrapper
-from telemetry.internal import forwarders
 from telemetry.internal.forwarders import do_nothing_forwarder
 from telemetry.internal.platform import network_controller_backend
 from telemetry.internal.platform import tracing_controller_backend
@@ -86,7 +85,8 @@ class PlatformBackend(object):
     return self._forwarder_factory
 
   def GetPortPairForForwarding(self, local_port):
-    return forwarders.PortPair(local_port=local_port, remote_port=local_port)
+    # Default to no-op forwarding.
+    return (local_port, local_port)
 
   def GetRemotePort(self, port):
     return port

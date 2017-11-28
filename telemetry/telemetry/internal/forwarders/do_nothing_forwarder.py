@@ -28,8 +28,35 @@ class ConnectionError(Error):
 
 class DoNothingForwarderFactory(forwarders.ForwarderFactory):
 
-  def Create(self, port_pair):
-    return DoNothingForwarder(port_pair)
+  def Create(self, local_port, remote_port, reverse=False):
+    del reverse  # Irrelevant for DoNothingForwarder.
+    return DoNothingForwarder(local_port, remote_port)
+
+
+def _ValidatePortValues(local_port, remote_port):
+  if not local_port:
+    if not remote_port:
+      raise PortsMismatchError(
+          'Either local_port or remote_port must be given')
+    local_port = remote_port
+  elif not remote_port:
+    remote_port = local_port
+  if local_port != remote_port:
+    raise PortsMismatchError('Local port forwarding is not supported')
+  return (local_port, remote_port)
+
+
+def _CheckLocalPortSupportsConnections(local_port, timeout=10):
+  def CanConnect():
+    with contextlib.closing(socket.socket()) as s:
+      return s.connect_ex((_LOCAL_HOST, local_port)) == 0
+
+  try:
+    py_utils.WaitFor(CanConnect, timeout)
+    logging.debug(
+        'Connection test succeeded for %s:%d', _LOCAL_HOST, local_port)
+  except py_utils.TimeoutException
+  
 
 
 class DoNothingForwarder(forwarders.Forwarder):
@@ -39,28 +66,27 @@ class DoNothingForwarder(forwarders.Forwarder):
   forwarder does not make sense. (Raises PortsMismatchError.)
 
   Also, check that all TCP ports support connections.  (Raises ConnectionError.)
-  """
 
-  def __init__(self, port_pair):
-    super(DoNothingForwarder, self).__init__(port_pair)
-    self._CheckPortPair()
+  Either local_port or remote_port may be missing, but not both.
+  """
+  LOCAL_HOST = ''
+
+  def __init__(self, local_port, remote_port):
+    super(DoNothingForwarder, self).__init__()
+    local_port, remote_port = _ValidatePorts(local_port, remote_port)
+    _CheckPortSupportsConnections(local_port)
+    self._ForwardingStarted(local_port, remote_port)
 
   def _CheckPortPair(self):
-    if self._port_pair.local_port != self._port_pair.remote_port:
-      raise PortsMismatchError('Local port forwarding is not supported')
     try:
-      self._WaitForConnectionEstablished(
-          (self.host_ip, self._port_pair.local_port), timeout=10)
+      self._WaitForConnectionEstablished(timeout=10)
       logging.debug(
           'Connection test succeeded for %s:%d',
-          self.host_ip, self._port_pair.local_port)
+          self.local_host, self.local_port)
     except py_utils.TimeoutException:
       raise ConnectionError(
           'Unable to connect to address: %s:%d',
-          self.host_ip, self._port_pair.local_port)
+          self.local_host, self.local_port)
 
-  def _WaitForConnectionEstablished(self, address, timeout):
-    def CanConnect():
-      with contextlib.closing(socket.socket()) as s:
-        return s.connect_ex(address) == 0
+  def _WaitForConnectionEstablished(self, timeout):
     py_utils.WaitFor(CanConnect, timeout)

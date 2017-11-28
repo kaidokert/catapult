@@ -416,6 +416,7 @@ class Platform(object):
     if not paths:
       return False
 
+    # TODO(#1977): Move MemoryCacheHTTPServer to network_controller.
     server = memory_cache_http_server.MemoryCacheHTTPServer(paths)
     self.StartLocalServer(server)
 
@@ -424,9 +425,9 @@ class Platform(object):
     # remote machine with ssh/adb remote port forwarding.
     if (self.GetOSName() == 'chromeos' and
         self._platform_backend.IsRemoteDevice()):
+      # TODO(#1977): Move forwarder to network_controller.
       self._forwarder = self._platform_backend.CreatePortForwarder(
-          forwarders.PortPair(self.http_server.port, 0),
-          use_remote_port_forwarding=True)
+          local_port=self.http_server.port, remote_port=0, reverse=True)
       self.http_server.port = self._forwarder.host_port
     return True
 
