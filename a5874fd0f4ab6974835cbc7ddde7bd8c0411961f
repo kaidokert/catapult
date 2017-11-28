@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8a10a079_ac22d56c",
+        "filename": "tracing/tracing/metrics/metric_map_function.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-11-28T18:27:06Z",
+      "side": 1,
+      "message": "I think the metrics side panel will currently blow up if there are any failures (i.e. it\u0027ll show a red error message instead of the histogram-set-table). Optimally we would surface them both but it\u0027s not super urgent, so I\u0027ve:\n\n1. Made addFailureCb opt_addFailureCb in the latest patchset, and\n2. Filed https://github.com/catapult-project/catapult/issues/4058 (P3) about changing the way we surface failures in the metrics side panel.",
+      "parentUuid": "6ec57d62_63e05ad4",
+      "revId": "a5874fd0f4ab6974835cbc7ddde7bd8c0411961f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8f76739a_4b251b3b",
         "filename": "tracing/tracing/metrics/metric_map_function_test.html",
         "patchSetId": 3
@@ -33,6 +51,24 @@
       "revId": "a5874fd0f4ab6974835cbc7ddde7bd8c0411961f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21382a9b_1533c91f",
+        "filename": "tracing/tracing/metrics/metric_map_function_test.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-11-28T18:27:06Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "8f76739a_4b251b3b",
+      "revId": "a5874fd0f4ab6974835cbc7ddde7bd8c0411961f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
