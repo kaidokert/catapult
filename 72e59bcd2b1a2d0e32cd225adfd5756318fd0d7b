@@ -34,6 +34,24 @@
       "revId": "72e59bcd2b1a2d0e32cd225adfd5756318fd0d7b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0dd2cc36_a18fd401",
+        "filename": "telemetry/telemetry/internal/results/results_options.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-28T00:57:20Z",
+      "side": 1,
+      "message": "Why not set output-dir to a tempdir, then rmdir that one in the tearDown method?",
+      "parentUuid": "7d024479_6c37e212",
+      "revId": "72e59bcd2b1a2d0e32cd225adfd5756318fd0d7b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
