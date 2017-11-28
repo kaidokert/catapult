@@ -252,6 +252,7 @@ class BrowserRestoreSessionTest(unittest.TestCase):
     cls._number_of_tabs = 4
     cls._profile_dir = _GenerateBrowserProfile(cls._number_of_tabs)
     cls._options = options_for_unittests.GetCopy()
+    cls._options.browser_options.clear_sytem_cache_for_browser_and_profile_on_start = True
     cls._options.browser_options.AppendExtraBrowserArgs(
         ['--restore-last-session'])
     cls._options.browser_options.profile_dir = cls._profile_dir
