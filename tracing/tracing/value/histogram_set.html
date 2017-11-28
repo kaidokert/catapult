@@ -209,6 +209,8 @@ tr.exportTo('tr.v', function() {
      * @return {!Array.<!Object>}
      */
     asDicts() {
+      this.deduplicateDiagnostics();
+
       const dicts = [];
       for (const diagnostic of this.sharedDiagnosticsByGuid_.values()) {
         dicts.push(diagnostic.asDict());

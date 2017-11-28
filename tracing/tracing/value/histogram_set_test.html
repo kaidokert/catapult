@@ -219,7 +219,31 @@ tr.b.unittest.testSuite(function() {
         aHist.diagnostics.get('generic'), bHist.diagnostics.get('generic'));
     assert.strictEqual(
         aHist.diagnostics.get('date'), bHist.diagnostics.get('date'));
+  });
 
+  test('asDictsDeduplicates', function() {
+    const genericA = new tr.v.d.GenericSet(['A']);
+    const genericB = new tr.v.d.GenericSet(['B']);
+    const dateA = new tr.v.d.DateRange(42);
+    const dateB = new tr.v.d.DateRange(57);
+
+    const aHist = new tr.v.Histogram('a', tr.b.Unit.byName.count);
+    const generic0 = genericA.clone();
+    generic0.addDiagnostic(genericB);
+    aHist.diagnostics.set('generic', generic0);
+    const date0 = dateA.clone();
+    date0.addDiagnostic(dateB);
+    aHist.diagnostics.set('date', date0);
+
+    const bHist = new tr.v.Histogram('b', tr.b.Unit.byName.count);
+    const generic1 = genericA.clone();
+    generic1.addDiagnostic(genericB);
+    bHist.diagnostics.set('generic', generic1);
+    const date1 = dateA.clone();
+    date1.addDiagnostic(dateB);
+    bHist.diagnostics.set('date', date1);
+
+    const histograms = new tr.v.HistogramSet([aHist, bHist]);
     const histograms2 = new tr.v.HistogramSet();
     histograms2.importDicts(histograms.asDicts());
     histograms2.resolveRelatedHistograms();
