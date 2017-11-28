@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "6f8d364d_360e5330",
+        "filename": "devil/devil/android/constants/webapk.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1117405
+      },
+      "writtenOn": "2017-11-28T14:57:16Z",
+      "side": 1,
+      "message": "There could be tens of thousands of WebAPKs, we can\u0027t define them as known PackageInfo instances as we did for chrome. That is why we have to ask user to specify the package name of the WebAPK they want to launch.",
+      "parentUuid": "b369df38_b30e8f59",
+      "range": {
+        "startLine": 5,
+        "startChar": 24,
+        "endLine": 5,
+        "endChar": 66
+      },
+      "revId": "253bbd08b3136b569e4b9140c520c8bfb0cb4585",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a12d5f3_889123f8",
         "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
         "patchSetId": 16
