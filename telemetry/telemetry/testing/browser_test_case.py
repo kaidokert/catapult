@@ -82,6 +82,7 @@ class BrowserTestCase(unittest.TestCase):
 
     options = options_for_unittests.GetCopy()
 
+    options.browser_options.clear_sytem_cache_for_browser_and_profile_on_start = True
     cls.CustomizeBrowserOptions(options.browser_options)
     if not current_browser or (current_browser_options !=
                                options.browser_options):

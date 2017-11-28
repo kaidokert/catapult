@@ -218,6 +218,9 @@ class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
 
   @property
   def profile_directory(self):
+    print "Profile dir logging"
+    print self._backend_settings
+    print self._backend_settings.profile_dir
     return self._backend_settings.profile_dir
 
   @property
