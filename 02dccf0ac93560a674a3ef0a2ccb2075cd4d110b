@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "62ca83d5_02bcd161",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2017-11-28T18:07:12Z",
+      "side": 1,
+      "message": "Would you mind giving a more descriptive message here? Since this is visible to the user.",
+      "range": {
+        "startLine": 198,
+        "startChar": 28,
+        "endLine": 198,
+        "endChar": 34
+      },
+      "revId": "02dccf0ac93560a674a3ef0a2ccb2075cd4d110b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
