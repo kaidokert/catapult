@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5d9f2f07_80b8d7a0",
+        "filename": "telemetry/telemetry/core/local_server_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-29T17:54:59Z",
+      "side": 0,
+      "message": "This appears to be a stray unused property, the LocalServer no longer has a forwarder attribute.",
+      "revId": "cbba42a8e6eb4e5f35b02a1e1611e515e7f5013f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1de68bd_f626b043",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-29T17:54:59Z",
+      "side": 0,
+      "message": "For rationale, see changes in platform_backend.py bellow.",
+      "revId": "cbba42a8e6eb4e5f35b02a1e1611e515e7f5013f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3606189_71b3ea1a",
+        "filename": "telemetry/telemetry/internal/platform/network_controller_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-29T17:54:59Z",
+      "side": 0,
+      "message": "Another stray attribute apparently not used any more.",
+      "revId": "cbba42a8e6eb4e5f35b02a1e1611e515e7f5013f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4316436c_bd5ae1e8",
+        "filename": "telemetry/telemetry/internal/platform/platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-29T17:54:59Z",
+      "side": 0,
+      "message": "clients should use platform_backend.forwarder_factory.Create instead.",
+      "revId": "cbba42a8e6eb4e5f35b02a1e1611e515e7f5013f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6cfd48f9_885d02be",
+        "filename": "telemetry/telemetry/internal/util/webpagereplay_go_server.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-29T17:54:59Z",
+      "side": 0,
+      "message": "This was the only remaining use of PortSet on the entire code base. Thought it was an overkill to have that for a single client.",
+      "revId": "cbba42a8e6eb4e5f35b02a1e1611e515e7f5013f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

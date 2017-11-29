@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f200696_3f5e8d11",
+        "filename": "telemetry/telemetry/internal/platform/network_controller_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-29T17:54:59Z",
+      "side": 1,
+      "message": "What all implementations want is to use a fixed local_port, and let the forwarder choose a suitable remote_port. This doesn\u0027t work yet because the DoNothingForwarder doesn\u0027t support this usage yet. Planning to fix that on a follow up CL.",
+      "revId": "4a8160dd9839bcee8db586c5d5855fb50af91aaa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9494da0d_04035c85",
+        "filename": "telemetry/telemetry/internal/platform/platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-29T17:54:59Z",
+      "side": 1,
+      "message": "subclasses only need to override this now.",
+      "revId": "4a8160dd9839bcee8db586c5d5855fb50af91aaa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
