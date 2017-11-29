@@ -30,9 +30,9 @@ tr.exportTo('tr.b', function() {
      */
     static fromNames(names) {
       const namesToColors = new Map();
-      const generator = new tr.b.SinebowColorGenerator();
-      for (const name of names) {
-        namesToColors.set(name, generator.colorForKey(name));
+      const colors = tr.b.generateFixedColorScheme(names.length);
+      for (let i = 0; i < names.length; ++i) {
+        namesToColors.set(names[i], colors[i]);
       }
       return new FixedColorScheme(namesToColors);
     }

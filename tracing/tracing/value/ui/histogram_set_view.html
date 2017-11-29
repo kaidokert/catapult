@@ -55,6 +55,13 @@ tr.exportTo('tr.v.ui', function() {
       export: 'onExport_',
     },
 
+    properties: {
+      histograms: {
+        type: Object,
+        observer: 'onHistogramsChanged_',
+      },
+    },
+
     created() {
       this.brushingStateController_ = new tr.ui.NullBrushingStateController();
       this.viewState_ = new tr.v.ui.HistogramSetViewState();
@@ -70,16 +77,16 @@ tr.exportTo('tr.v.ui', function() {
           tr.c.BrushingStateController.getControllerForElement(this.parentNode);
     },
 
+    onHistogramsChanged_() {
+      this.build(this.histograms);
+    },
+
     get brushingStateController() {
       return this.brushingStateController_;
     },
 
     get viewState() {
       return this.viewState_;
-    },
-
-    get histograms() {
-      return this.$.table.histograms;
     },
 
     /**
