@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c28ae5a7_6dd53bf1",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-29T16:57:01Z",
+      "side": 1,
+      "message": "Hmm, BrowserBackendTestCase seems a bit pointless; can this just be a BrowserTestCase?\n\nmaybe add a browser_backend property to BrowserTestCase?",
+      "revId": "978c3567af9dc0eb6b35bb7605768e7f3f8e270b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
