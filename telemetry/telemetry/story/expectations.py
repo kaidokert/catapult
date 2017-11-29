@@ -3,7 +3,7 @@
 # found in the LICENSE file.
 
 import logging
-
+from telemetry.story import expectations_parser
 
 class StoryExpectations(object):
   """An object that contains disabling expectations for benchmarks and stories.
@@ -17,12 +17,23 @@ class StoryExpectations(object):
       self.DisableStory('story_name2', [expectations.ALL], 'crbug.com/789')
       ...
   """
-  def __init__(self):
+  def __init__(self, expectation_file=None):
     self._disabled_platforms = []
     self._expectations = {}
     self._frozen = False
     self.SetExpectations()
+    if expectation_file:
+      parser = expectations_parser.TestExpectationParser(expectation_file)
+      self._MapExpectationsFromFile(parser)
     self._Freeze()
+
+  # TODO(rnephew): Transform parsed expectation file into StoryExpectations.
+  # When working on this it's important to note that StoryExpectations uses
+  # logical OR to combine multiple conditions in a single expectation. The
+  # expectation files use logical AND when combining multiple conditions.
+  # crbug.com/781409
+  def _MapExpectationsFromFile(self, _):
+    pass
 
   def AsDict(self):
     """Returns information on disabled stories/benchmarks as a dictionary"""
