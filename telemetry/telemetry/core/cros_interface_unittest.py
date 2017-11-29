@@ -13,7 +13,6 @@ import mock
 
 from telemetry.core import cros_interface
 from telemetry import decorators
-from telemetry.internal import forwarders
 from telemetry.internal.forwarders import cros_forwarder
 from telemetry.testing import options_for_unittests
 
@@ -72,36 +71,25 @@ class CrOSInterfaceTest(unittest.TestCase):
     with self._GetCRI() as cri:
       self.assertTrue(cri.IsServiceRunning('openssh-server'))
 
-  # TODO(achuith): Fix this test. crbug.com/619767.
-  @decorators.Disabled('all')
+  @decorators.Enabled('chromeos')
   def testGetRemotePortAndIsHTTPServerRunningOnPort(self):
     with self._GetCRI() as cri:
-      # Create local server.
-      sock = socket.socket()
-      sock.bind(('', 0))
-      port = sock.getsockname()[1]
-      sock.listen(0)
-
       # Get remote port and ensure that it was unused.
       remote_port = cri.GetRemotePort()
       self.assertFalse(cri.IsHTTPServerRunningOnPort(remote_port))
 
       # Forward local server's port to remote device's remote_port.
       forwarder = cros_forwarder.CrOsForwarderFactory(cri).Create(
-          forwarders.PortPairs(http=forwarders.PortPair(port, remote_port),
-                               https=None,
-                               dns=None))
+          local_port=None, remote_port=remote_port, reverse=True)
+      try:
+        # At this point, remote device should be able to connect to local server.
+        self.assertTrue(cri.IsHTTPServerRunningOnPort(remote_port))
 
-      # At this point, remote device should be able to connect to local server.
-      self.assertTrue(cri.IsHTTPServerRunningOnPort(remote_port))
-
-      # Next remote port shouldn't be the same as remote_port, since remote_port
-      # is now in use.
-      self.assertTrue(cri.GetRemotePort() != remote_port)
-
-      # Close forwarder and local server ports.
-      forwarder.Close()
-      sock.close()
+        # GetRemotePort should now return a port distinct from remote_port,
+        # since that is now in use.
+        self.assertTrue(cri.GetRemotePort() != remote_port)
+      finally:
+        forwarder.Close()
 
       # Device should no longer be able to connect to remote_port since it is no
       # longer in use.

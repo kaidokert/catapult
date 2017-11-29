@@ -85,9 +85,6 @@ class PlatformBackend(object):
       self._forwarder_factory = do_nothing_forwarder.DoNothingForwarderFactory()
     return self._forwarder_factory
 
-  def GetPortPairForForwarding(self, local_port):
-    return forwarders.PortPair(local_port=local_port, remote_port=local_port)
-
   def GetRemotePort(self, port):
     return port
 

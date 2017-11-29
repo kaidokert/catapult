@@ -11,7 +11,6 @@ from telemetry.core import util
 from telemetry import decorators
 from telemetry.internal.backends.chrome import chrome_browser_backend
 from telemetry.internal.backends.chrome import misc_web_contents_backend
-from telemetry.internal import forwarders
 
 import py_utils
 
@@ -28,7 +27,6 @@ class CrOSBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     self._is_guest = is_guest
     # TODO(#1977): Move forwarder to network_controller.
     self._forwarder = None
-    self._remote_debugging_port = None
     self._port = None
 
     extensions_to_load = browser_options.extensions_to_load
@@ -68,20 +66,15 @@ class CrOSBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     if len(file_content) == 0:
       return False
     port_target = file_content.split('\n')
-    self._remote_debugging_port = int(port_target[0])
-    # Use _remote_debugging_port for _port for now (local telemetry case)
-    # Override it with the forwarded port below for the remote telemetry case.
-    self._port = self._remote_debugging_port
+    remote_port = int(port_target[0])
     if len(port_target) > 1 and port_target[1]:
       self._browser_target = port_target[1]
-    logging.info('Discovered ephemeral port %s', self._port)
+    logging.info('Discovered ephemeral port %s', remote_port)
     logging.info('Browser target: %s', self._browser_target)
 
-    if not self._cri.local:
-      self._port = util.GetUnreservedAvailableLocalPort()
-      self._forwarder = self._platform_backend.forwarder_factory.Create(
-          forwarders.PortPair(self._port, self._remote_debugging_port),
-          use_remote_port_forwarding=False)
+    self._forwarder = self._platform_backend.CreatePortForwarder(
+        local_port=None, remote_port=remote_port, reverse=True)
+    self._port = self._forwarder.local_port
     return super(CrOSBrowserBackend, self).HasBrowserFinishedLaunching()
 
   def GetBrowserStartupArgs(self):
