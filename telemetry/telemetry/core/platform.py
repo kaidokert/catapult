@@ -10,7 +10,6 @@ from telemetry.core import memory_cache_http_server
 from telemetry.core import network_controller
 from telemetry.core import tracing_controller
 from telemetry.core import util
-from telemetry.internal import forwarders
 from telemetry.internal.platform import (platform_backend as
                                          platform_backend_module)
 
@@ -425,9 +424,8 @@ class Platform(object):
     if (self.GetOSName() == 'chromeos' and
         self._platform_backend.IsRemoteDevice()):
       self._forwarder = self._platform_backend.CreatePortForwarder(
-          forwarders.PortPair(self.http_server.port, 0),
-          use_remote_port_forwarding=True)
-      self.http_server.port = self._forwarder.host_port
+          local_port=self.http_server.port, remote_port=None)
+      self.http_server.port = self.remote_port
     return True
 
   def StopAllLocalServers(self):

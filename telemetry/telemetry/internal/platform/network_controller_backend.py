@@ -69,7 +69,7 @@ class NetworkControllerBackend(object):
     try:
       local_port = self._StartTsProxyServer()
       self._forwarder = self._platform_backend.forwarder_factory.Create(
-          self._platform_backend.GetPortPairForForwarding(local_port))
+          local_port=local_port, remote_port=None)
     except Exception:
       self.Close()
       raise
