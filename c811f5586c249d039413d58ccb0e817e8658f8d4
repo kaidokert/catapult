@@ -76,6 +76,30 @@
     },
     {
       "key": {
+        "uuid": "a3dfccbb_c7b0ba17",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-11-29T18:55:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7fe9ce6_b7399ef5",
+      "range": {
+        "startLine": 31,
+        "startChar": 25,
+        "endLine": 31,
+        "endChar": 28
+      },
+      "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7884e63a_30ab406c",
         "filename": "telemetry/telemetry/story/expectations_parser.py",
         "patchSetId": 3
@@ -120,6 +144,30 @@
       "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4a6cfed_321048b6",
+        "filename": "telemetry/telemetry/story/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-11-29T18:55:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50411376_516bde0a",
+      "range": {
+        "startLine": 17,
+        "startChar": 6,
+        "endLine": 17,
+        "endChar": 34
+      },
+      "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -170,6 +218,30 @@
     },
     {
       "key": {
+        "uuid": "51dfef5c_ad8d5eb2",
+        "filename": "telemetry/telemetry/story/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-11-29T18:55:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f05e3ef0_d927d782",
+      "range": {
+        "startLine": 38,
+        "startChar": 64,
+        "endLine": 38,
+        "endChar": 69
+      },
+      "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bf04c5ad_c52a2cc9",
         "filename": "telemetry/telemetry/story/expectations_parser.py",
         "patchSetId": 3
@@ -187,6 +259,24 @@
     },
     {
       "key": {
+        "uuid": "655f1810_542ae136",
+        "filename": "telemetry/telemetry/story/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-11-29T18:55:38Z",
+      "side": 1,
+      "message": "It was already somewhat architected in that way. The majority of the unit tests are on the ParseExpectationLine method, which takes raw data. Only 2 tests use files to test things, just to exercise all lines of code.\n\nIt might still be useful to have it take raw data though, so changes still made.",
+      "parentUuid": "bf04c5ad_c52a2cc9",
+      "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "91751fb3_3a124ddf",
         "filename": "telemetry/telemetry/story/expectations_parser.py",
         "patchSetId": 3
@@ -198,6 +288,24 @@
       "writtenOn": "2017-11-21T00:16:55Z",
       "side": 1,
       "message": "this\u0027ll handle `# tag` lines anywhere in the file. My intent was to require them to only be in the initial comment block, so you might want to handle that.",
+      "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a80a38ec_cf5f871b",
+        "filename": "telemetry/telemetry/story/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-11-29T18:55:38Z",
+      "side": 1,
+      "message": "Good to know. I didn\u0027t know of there would be a use case similar to:\n\n# Benchmark 1\n# tags: tag1 tag2 tag3\n\u003cexpectations\u003e\n\n# Benchmark 2 \n# tags: tag4 tag5\n...\n\nKnowing thats not a supported use case I will make this stricter.",
+      "parentUuid": "91751fb3_3a124ddf",
       "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -227,6 +335,30 @@
     },
     {
       "key": {
+        "uuid": "78d95bf2_80b25110",
+        "filename": "telemetry/telemetry/story/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-11-29T18:55:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "41a75008_c1f16d16",
+      "range": {
+        "startLine": 62,
+        "startChar": 6,
+        "endLine": 62,
+        "endChar": 60
+      },
+      "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d03dd5ac_3acdb66c",
         "filename": "telemetry/telemetry/story/expectations_parser.py",
         "patchSetId": 3
@@ -241,6 +373,24 @@
       "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b027f6fe_e81a2611",
+        "filename": "telemetry/telemetry/story/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-11-29T18:55:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d03dd5ac_3acdb66c",
+      "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -261,6 +411,24 @@
     },
     {
       "key": {
+        "uuid": "1b7def49_33e7225f",
+        "filename": "telemetry/telemetry/story/expectations_parser_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-11-29T18:55:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f508d2c6_b6f8534e",
+      "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e2fe1d31_80f9244d",
         "filename": "telemetry/telemetry/story/expectations_parser_unittest.py",
         "patchSetId": 3
@@ -272,6 +440,24 @@
       "writtenOn": "2017-11-21T00:16:55Z",
       "side": 1,
       "message": "The format allows you to have wildcards, dunno if you want to handle them directly here, or if you want to treat the test name as an opaque string that you then handle elsewhere?",
+      "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7972a55_d98d7437",
+        "filename": "telemetry/telemetry/story/expectations_parser_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-11-29T18:55:38Z",
+      "side": 1,
+      "message": "I do not foresee telemetry using it in that way (with wildcards). If we do, we should handle it at the StoryExpectation level, not the TextExpectation parser level.",
+      "parentUuid": "e2fe1d31_80f9244d",
       "revId": "c811f5586c249d039413d58ccb0e817e8658f8d4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
