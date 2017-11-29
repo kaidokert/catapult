@@ -30,7 +30,7 @@ class TestErrorDoNothingForwarder(do_nothing_forwarder.DoNothingForwarder):
 
 class CheckPortPairsTest(unittest.TestCase):
   def testBasicCheck(self):
-    port_pair = forwarders.PortPair(80, 80)
+    port_pair = forwarders._PortPair(80, 80)
     f = TestDoNothingForwarder(port_pair)
     expected_connected_addresses = [
         ('127.0.0.1', 80),
