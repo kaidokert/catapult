@@ -528,6 +528,7 @@ tr.exportTo('tr.ui.b', function() {
         const td = this.appendNewElement_(tr, 'td');
 
         const headerCell = document.createElement('tr-ui-b-table-header-cell');
+        Polymer.dom(td).appendChild(headerCell);
         headerCell.column = this.tableColumns_[i];
 
         // If the table can be sorted by this column and the user can modify
@@ -550,7 +551,6 @@ tr.exportTo('tr.ui.b', function() {
           }
         }
 
-        Polymer.dom(td).appendChild(headerCell);
         this.headerCells_.push(headerCell);
       }
     },
