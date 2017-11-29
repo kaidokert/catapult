@@ -269,6 +269,18 @@ class TestMetadata(internal_only_model.CreateHookInternalOnlyModel):
     kwargs['description'] = description[:_MAX_STRING_LENGTH]
     super(TestMetadata, self).__init__(*args, **kwargs)
 
+  def SelectSheriff(self, sheriffs):
+    # Set the sheriff to the first sheriff (alphabetically by sheriff name)
+    # that has a test pattern that matches this test.
+    selected_sheriff = None
+    for sheriff_entity in sheriffs:
+      for pattern in sheriff_entity.patterns:
+        if utils.TestMatchesPattern(self, pattern):
+          selected_sheriff = sheriff_entity.key
+      if selected_sheriff:
+        break
+    return selected_sheriff
+
   def _pre_put_hook(self):
     """This method is called before a TestMetadata is put into the datastore.
 
@@ -283,16 +295,8 @@ class TestMetadata(internal_only_model.CreateHookInternalOnlyModel):
     path_parts = self.key.id().split('/')
     assert len(path_parts) >= 3
 
-    # Set the sheriff to the first sheriff (alphabetically by sheriff name)
-    # that has a test pattern that matches this test.
     old_sheriff = self.sheriff
-    self.sheriff = None
-    for sheriff_entity in sheriff_module.Sheriff.query().fetch():
-      for pattern in sheriff_entity.patterns:
-        if utils.TestMatchesPattern(self, pattern):
-          self.sheriff = sheriff_entity.key
-      if self.sheriff:
-        break
+    self.sheriff = self.SelectSheriff(sheriff_module.Sheriff.query().fetch())
 
     # TODO(simonhatch): Remove this logging. Trying to track down alerts being
     # generated for tests that seemingly have no sheriff.

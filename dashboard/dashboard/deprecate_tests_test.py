@@ -12,6 +12,7 @@ import webtest
 from dashboard import deprecate_tests
 from dashboard.common import testing_common
 from dashboard.common import utils
+from dashboard.models import sheriff as sheriff_module
 
 
 _DEPRECATE_DAYS = deprecate_tests._DEPRECATION_REVISION_DELTA.days + 1
@@ -60,6 +61,7 @@ class DeprecateTestsTest(testing_common.TestCase):
     self.testapp = webtest.TestApp(app)
 
     deprecate_tests._DEPRECATE_TESTS_PARALLEL_SHARDS = 2
+    self.SetCurrentUser('foo@chromium.org', is_admin=True)
 
   def _AddMockRows(self, test_path, age):
     """Adds sample TestMetadata and Row entities."""
@@ -77,6 +79,38 @@ class DeprecateTestsTest(testing_common.TestCase):
     test = test_key.get()
 
     self.assertEqual(test.deprecated, deprecated)
+
+  @mock.patch.object(deprecate_tests, '_AddDeleteTestDataTask')
+  def testPost_SheriffChangesResave(self, mock_delete):
+    s = sheriff_module.Sheriff(
+        id='foo', email='a@chromium.org')
+    s.put()
+
+    testing_common.AddTests(*_TESTS_MULTIPLE)
+    self._AddMockRows('ChromiumPerf/mac/SunSpider/Total/t', 0)
+    self._AddMockRows('ChromiumPerf/mac/SunSpider/Total/t_ref', 0)
+    self._AddMockRows('ChromiumPerf/mac/OtherTest/OtherMetric/foo1', 0)
+    self._AddMockRows('ChromiumPerf/mac/OtherTest/OtherMetric/foo2', 0)
+
+    t = utils.TestKey('ChromiumPerf/mac/SunSpider/Total/t').get()
+    t.put()
+
+    s.patterns = ['ChromiumPerf/mac/SunSpider/Total/t']
+    s.put()
+
+    self.assertIsNone(t.sheriff)
+
+    self.testapp.post('/deprecate_tests')
+    self.ExecuteTaskQueueTasks(
+        '/deprecate_tests', deprecate_tests._DEPRECATE_TESTS_TASK_QUEUE_NAME)
+
+    self.AssertDeprecated('ChromiumPerf/mac/SunSpider', False)
+    self.AssertDeprecated('ChromiumPerf/mac/SunSpider/Total/t', False)
+    self.AssertDeprecated('ChromiumPerf/mac/SunSpider/Total/t_ref', False)
+
+    self.assertEqual(t.sheriff, s.key)
+
+    self.assertFalse(mock_delete.called)
 
   @mock.patch.object(deprecate_tests, '_AddDeleteTestDataTask')
   def testPost_DeprecateOldTest(self, mock_delete):
