@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "37a98187_08ef7f8b",
+        "filename": "telemetry/telemetry/internal/platform/network_controller_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-29T20:23:17Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9f200696_3f5e8d11",
+      "revId": "4a8160dd9839bcee8db586c5d5855fb50af91aaa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9494da0d_04035c85",
         "filename": "telemetry/telemetry/internal/platform/platform_backend.py",
         "patchSetId": 4
@@ -33,6 +51,24 @@
       "revId": "4a8160dd9839bcee8db586c5d5855fb50af91aaa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e013f3a0_eeb5a29a",
+        "filename": "telemetry/telemetry/internal/platform/platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-29T20:23:17Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9494da0d_04035c85",
+      "revId": "4a8160dd9839bcee8db586c5d5855fb50af91aaa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

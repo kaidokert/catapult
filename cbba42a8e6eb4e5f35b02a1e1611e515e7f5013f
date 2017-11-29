@@ -70,6 +70,24 @@
     },
     {
       "key": {
+        "uuid": "ed18ce47_be863c4e",
+        "filename": "telemetry/telemetry/internal/platform/platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-29T20:23:17Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "4316436c_bd5ae1e8",
+      "revId": "cbba42a8e6eb4e5f35b02a1e1611e515e7f5013f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6cfd48f9_885d02be",
         "filename": "telemetry/telemetry/internal/util/webpagereplay_go_server.py",
         "patchSetId": 4
@@ -84,6 +102,24 @@
       "revId": "cbba42a8e6eb4e5f35b02a1e1611e515e7f5013f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e195303_8d4a77fd",
+        "filename": "telemetry/telemetry/internal/util/webpagereplay_go_server.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-29T20:23:17Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "6cfd48f9_885d02be",
+      "revId": "cbba42a8e6eb4e5f35b02a1e1611e515e7f5013f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
