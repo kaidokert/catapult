@@ -387,31 +387,74 @@ tr.exportTo('tr.metrics.sh', function() {
     };
   }
 
+  function logAllMainThreadEvents(rendererHelper) {
+    for (const event of rendererHelper.mainThread.sliceGroup.topLevelSlices) {
+      console.log("maxlog: mainThread: {"+event.start+","+event.duration+"}");
+    }
+  }
+
+  function getResourceInfo(info) {
+    var s = "" +
+        ",request.GetFrameType::" + info['request.GetFrameType'] +
+        ",request.GetKeepalive::" + info['request.GetKeepalive'] +
+        ",request.HttpMethod::" + info['request.HttpMethod'] +
+        ",request.priority::" + info['request.priority'] +
+        ",resource.decodedSize::" + info['resource.decodedSize'] +
+        ",resource.encodedSize::" + info['resource.encodedSize'] +
+        ",resource.httpContentType::" + info['resource.httpContentType'] +
+        ",resource.overheadSize::" + info['resource.overheadSize'] +
+        ",resource.size::" + info['resource.size'] +
+        ",resource.stillNeedsLoad::" + info['resource.stillNeedsLoad'] +
+        ",resourceType::" + info['resourceType'] +
+        ",response.AlpnNegotiatedProtocol::" + info['response.AlpnNegotiatedProtocol'] +
+        ",response.ExpectedContentLength::" + info['response.ExpectedContentLength'] +
+        ",response.IsMultipart::" + info['esponse.IsMultipart'] +
+        ",response.TextEncodingName::" + info['response.TextEncodingName'] +
+        ",response.mimeType::" + info['response.mimeType'] +
+        ",response.securityDetailsSubjectName::" + info['response.securityDetailsSubjectName'] +
+        ",response.url::" + info['response.url'];
+    return s;
+  }
+
+  function logAllNetworkEvents(rendererHelper) {
+    const networkEvents = getNetworkEventsInRange(
+        rendererHelper.process, rendererHelper.mainThread.bounds);
+    for (const event of networkEvents) {
+      console.log("maxlog: network: {"+event.start+","+event.duration+"|"+getResourceInfo(event.args.resourceInfo)+"}");
+    }
+  }
+
   function collectLoadingMetricsForRenderer(rendererHelper) {
-    const frameToNavStartEvents =
-        EventFinderUtils.getSortedMainThreadEventsByFrame(
-            rendererHelper, 'navigationStart', 'blink.user_timing');
-    const firstPaintSamples = collectTimeToEvent(
-        'loading', 'firstPaint',
-        rendererHelper, frameToNavStartEvents);
-    const firstContentfulPaintSamples = collectTimeToEvent(
-        'loading', 'firstContentfulPaint',
-        rendererHelper, frameToNavStartEvents);
-    const onLoadSamples = collectTimeToEvent(
-        'blink.user_timing', 'loadEventStart',
-        rendererHelper, frameToNavStartEvents);
-    const {firstMeaningfulPaintSamples, firstMeaningfulPaintCpuTimeSamples,
-        firstInteractiveSamples} =
-        collectFirstMeaningfulPaintAndTimeToInteractiveForRenderer(
-            rendererHelper, frameToNavStartEvents);
-    return {
-      firstPaintSamples,
-      firstContentfulPaintSamples,
-      onLoadSamples,
-      firstMeaningfulPaintSamples,
-      firstMeaningfulPaintCpuTimeSamples,
-      firstInteractiveSamples
-    };
+    console.log("maxlog: start paint");
+    var range = rendererHelper.mainThread.bounds;
+    console.log("maxlog: roi: {"+range.min+","+range.max+"}")
+    logAllMainThreadEvents(rendererHelper);
+    logAllNetworkEvents(rendererHelper);
+    // const frameToNavStartEvents =
+    //     EventFinderUtils.getSortedMainThreadEventsByFrame(
+    //         rendererHelper, 'navigationStart', 'blink.user_timing');
+    // const firstPaintSamples = collectTimeToEvent(
+    //     'loading', 'firstPaint',
+    //     rendererHelper, frameToNavStartEvents);
+    // const firstContentfulPaintSamples = collectTimeToEvent(
+    //     'loading', 'firstContentfulPaint',
+    //     rendererHelper, frameToNavStartEvents);
+    // const onLoadSamples = collectTimeToEvent(
+    //     'blink.user_timing', 'loadEventStart',
+    //     rendererHelper, frameToNavStartEvents);
+    // const {firstMeaningfulPaintSamples, firstMeaningfulPaintCpuTimeSamples,
+    //     firstInteractiveSamples} =
+    //     collectFirstMeaningfulPaintAndTimeToInteractiveForRenderer(
+    //         rendererHelper, frameToNavStartEvents);
+    // return {
+    //   firstPaintSamples,
+    //   firstContentfulPaintSamples,
+    //   onLoadSamples,
+    //   firstMeaningfulPaintSamples,
+    //   firstMeaningfulPaintCpuTimeSamples,
+    //   firstInteractiveSamples
+    // };
+    console.log("maxlog: end paint");
   }
 
   function addSamplesToHistogram(samples, histogram, histograms) {
@@ -499,29 +542,29 @@ tr.exportTo('tr.metrics.sh', function() {
       const rendererHelper = chromeHelper.rendererHelpers[pid];
       if (rendererHelper.isChromeTracingUI) continue;
 
-      const samplesSet =
+      // const samplesSet =
           collectLoadingMetricsForRenderer(rendererHelper);
 
-      addSamplesToHistogram(
-          samplesSet.firstPaintSamples, firstPaintHistogram, histograms);
-      addSamplesToHistogram(
-          samplesSet.firstContentfulPaintSamples,
-          firstContentfulPaintHistogram,
-          histograms);
-      addSamplesToHistogram(
-          samplesSet.onLoadSamples, onLoadHistogram, histograms);
-      addSamplesToHistogram(
-          samplesSet.firstMeaningfulPaintSamples,
-          firstMeaningfulPaintHistogram,
-          histograms);
-      addSamplesToHistogram(
-          samplesSet.firstMeaningfulPaintCpuTimeSamples,
-          firstMeaningfulPaintCpuTimeHistogram,
-          histograms);
-      addSamplesToHistogram(
-          samplesSet.firstInteractiveSamples,
-          firstInteractiveHistogram,
-          histograms);
+      // addSamplesToHistogram(
+      //     samplesSet.firstPaintSamples, firstPaintHistogram, histograms);
+      // addSamplesToHistogram(
+      //     samplesSet.firstContentfulPaintSamples,
+      //     firstContentfulPaintHistogram,
+      //     histograms);
+      // addSamplesToHistogram(
+      //     samplesSet.onLoadSamples, onLoadHistogram, histograms);
+      // addSamplesToHistogram(
+      //     samplesSet.firstMeaningfulPaintSamples,
+      //     firstMeaningfulPaintHistogram,
+      //     histograms);
+      // addSamplesToHistogram(
+      //     samplesSet.firstMeaningfulPaintCpuTimeSamples,
+      //     firstMeaningfulPaintCpuTimeHistogram,
+      //     histograms);
+      // addSamplesToHistogram(
+      //     samplesSet.firstInteractiveSamples,
+      //     firstInteractiveHistogram,
+      //     histograms);
     }
   }
 
