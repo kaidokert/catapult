@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "15c471c6_4b57dae4",
+        "filename": "third_party/polymer2/bower.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2017-11-29T20:19:09Z",
+      "side": 1,
+      "message": "^ is not the same as \"greater than\". Use \"^2.0.0\" to use the latest 2.0 version.\nhttps://github.com/npm/node-semver#caret-ranges-123-025-004\n\n\"^1.0.4\" means \"\u003e\u003d1.0.4 \u003c1.0.5\"\n\"^2.2.0\" means \"\u003e\u003d2.2.0 \u003c2.3.0\"",
+      "range": {
+        "startLine": 23,
+        "startChar": 5,
+        "endLine": 23,
+        "endChar": 12
+      },
+      "revId": "71a0bd77e9470f78d864e5f24e1fa94aebd4a34a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
