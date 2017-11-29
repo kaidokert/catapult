@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f21099f6_07f45de4",
+        "filename": "tracing/tracing/value/histogram_set.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-11-29T23:54:20Z",
+      "side": 1,
+      "message": "Why is this check needed, because you didn\u0027t implement __eq__ on everything?",
+      "range": {
+        "startLine": 107,
+        "startChar": 15,
+        "endLine": 107,
+        "endChar": 22
+      },
+      "revId": "a29b0da9dae0365405864e2a86c3df78f0b4a5ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
