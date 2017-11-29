@@ -66,10 +66,15 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
       try:
         returned_browser = None
 
+        browser_options = finder_options.browser_options
         browser_backend = desktop_browser_backend.DesktopBrowserBackend(
             self._platform_backend,
-            finder_options.browser_options, self._local_executable,
+            browser_options, self._local_executable,
             self._flash_path, self._is_content_shell, self._browser_directory)
+
+        self.ClearCache(
+            self._platform, browser_backend,
+            browser_options.clear_sytem_cache_for_browser_and_profile_on_start)
 
         returned_browser = browser.Browser(
             browser_backend, self._platform_backend)
