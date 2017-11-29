@@ -2,7 +2,10 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import logging
+
 from telemetry.internal.app import possible_app
+
 
 
 class PossibleBrowser(possible_app.PossibleApp):
@@ -49,3 +52,17 @@ class PossibleBrowser(possible_app.PossibleApp):
   @property
   def last_modification_time(self):
     return -1
+
+  def ClearCache(self, platform, browser_backend, clear_system_cache):
+    platform.FlushDnsCache()
+    if not clear_system_cache:
+      return
+    if platform.CanFlushIndividualFilesFromSystemCache():
+      platform.FlushSystemCacheForDirectory(browser_backend.profile_directory)
+      platform.FlushSystemCacheForDirectory(browser_backend.browser_directory)
+    elif platform.SupportFlushEntireSystemCache():
+      platform.FlushEntireSystemCache()
+    else:
+      logging.warning(
+          'Flush system cache is not supported. ' +
+          'Did not flush system cache.')
