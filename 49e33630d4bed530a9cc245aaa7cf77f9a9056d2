@@ -16,6 +16,24 @@
       "revId": "49e33630d4bed530a9cc245aaa7cf77f9a9056d2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65b6704c_e0ce18c7",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-29T18:03:08Z",
+      "side": 1,
+      "message": "Oops, silly me. Done.",
+      "parentUuid": "77011f3e_19931565",
+      "revId": "49e33630d4bed530a9cc245aaa7cf77f9a9056d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
