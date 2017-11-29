@@ -16,6 +16,24 @@
       "revId": "978c3567af9dc0eb6b35bb7605768e7f3f8e270b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "357b4c59_395b7d56",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-29T17:24:00Z",
+      "side": 1,
+      "message": "I thought about that but that seems like it could pave the way for people to poke at browser_backend for browser/tab tests, which is not great.",
+      "parentUuid": "c28ae5a7_6dd53bf1",
+      "revId": "978c3567af9dc0eb6b35bb7605768e7f3f8e270b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
