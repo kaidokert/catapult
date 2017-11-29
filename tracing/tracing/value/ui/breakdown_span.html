@@ -44,7 +44,10 @@ found in the LICENSE file.
 'use strict';
 
 tr.exportTo('tr.v.ui', function() {
-  const DEFAULT_COLOR_SCHEME = new tr.b.SinebowColorGenerator();
+  const DEFAULT_COLOR_SCHEME = new Map();
+  const COLOR_GENERATOR = tr.b.generateColors({
+    brightnessRange: tr.b.math.Range.fromExplicitRange(0.3, 0.7),
+  });
 
   function getHistogramName(histogram, diagnosticName, key) {
     if (histogram === undefined) return undefined;
@@ -283,7 +286,10 @@ tr.exportTo('tr.v.ui', function() {
         colorScheme = (name) => tr.b.FixedColorSchemeRegistry.lookUp(
             this.diagnostic.colorScheme).getColor(name);
       } else {
-        colorScheme = (name) => DEFAULT_COLOR_SCHEME.colorForKey(name);
+        if (!DEFAULT_COLOR_SCHEME.has(name)) {
+          DEFAULT_COLOR_SCHEME.set(name, COLOR_GENERATOR.next().value);
+        }
+        colorScheme = (name) => DEFAULT_COLOR_SCHEME.get(name);
       }
 
       const tableRows = [];
