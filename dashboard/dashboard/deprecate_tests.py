@@ -19,6 +19,7 @@ from dashboard.common import datastore_hooks
 from dashboard.common import request_handler
 from dashboard.common import utils
 from dashboard.models import graph_data
+from dashboard.models import sheriff as sheriff_module
 
 # Length of time required to pass for a test to be considered deprecated.
 _DEPRECATION_REVISION_DELTA = datetime.timedelta(days=14)
@@ -69,6 +70,11 @@ class DeprecateTestsHandler(request_handler.RequestHandler):
       _MarkTestDeprecated(test_key)
       return
 
+    if task_type == 'testmetadata-put':
+      test_key = ndb.Key(urlsafe=self.request.get('test_key'))
+      _TestMetadataPut(test_key)
+      return
+
     logging.error(
         'Unknown task_type posted to /deprecate_tests: %s', task_type)
 
@@ -87,7 +93,19 @@ def _DeprecateTestsTask(start_cursor):
         'type': 'fetch-and-process-tests',
         'start_cursor': next_cursor.urlsafe()})
 
+  sheriffs_future = sheriff_module.Sheriff.query().fetch_async()
+
   yield [_CheckTestForDeprecationOrRemoval(k) for k in keys]
+
+  sheriffs = yield sheriffs_future
+
+  for k in keys:
+    t = k.get()
+    sheriff = t.SelectSheriff(sheriffs)
+    if sheriff != t.sheriff:
+      _AddDeprecateTestDataTask({
+          'type': 'testmetadata-put',
+          'test_key': k.urlsafe()})
 
 
 @ndb.tasklet
@@ -177,6 +195,13 @@ def _AddDeleteTestDataTask(entity):
           'notify': 'false',
       },
       queue_name=_DELETE_TASK_QUEUE_NAME)
+
+
+def _TestMetadataPut(test_key):
+  """Marks a TestMetadata as deprecated and clears any related cached data."""
+  logging.warning("_TestMetadataPut: %s", str(test_key.id()))
+  test = test_key.get()
+  test.put()
 
 
 def _MarkTestDeprecated(test_key):
