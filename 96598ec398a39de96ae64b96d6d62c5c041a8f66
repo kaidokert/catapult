@@ -16,6 +16,24 @@
       "revId": "96598ec398a39de96ae64b96d6d62c5c041a8f66",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6eea96ef_06588ac4",
+        "filename": "telemetry/telemetry/internal/forwarders/android_forwarder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-30T13:59:16Z",
+      "side": 1,
+      "message": "How is \"not None\" positive? I thought what they recommend there is the first branch should not contain \"not\"?",
+      "parentUuid": "3e47c620_bbde30c5",
+      "revId": "96598ec398a39de96ae64b96d6d62c5c041a8f66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
