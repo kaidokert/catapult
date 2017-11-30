@@ -101,6 +101,42 @@ class HistogramSet(object):
 
   def DeduplicateDiagnostics(self):
     names_to_candidates = {}
+    diagnostics_to_histograms = collections.defaultdict(list)
+
+    for hist in self:
+      for name, candidate in hist.diagnostics.iteritems():
+        # TODO(#3695): Remove this check once equality is smoke-tested.
+        if not hasattr(candidate, '__eq__'):
+          self._shared_diagnostics_by_guid[candidate.guid] = candidate
+          continue
+
+        diagnostics_to_histograms[candidate].append(hist)
+
+        if name not in names_to_candidates:
+          names_to_candidates[name] = set()
+        names_to_candidates[name].add(candidate)
+
+    for name, candidates in names_to_candidates.iteritems():
+      deduplicated_diagnostics = set()
+
+      for candidate in candidates:
+        found = False
+        for test in deduplicated_diagnostics:
+          if candidate == test:
+            hists = diagnostics_to_histograms.get(candidate)
+            for h in hists:
+              h.diagnostics[name] = test
+              print h
+            found = True
+            break
+        if not found:
+          deduplicated_diagnostics.add(candidate)
+
+        for diag in deduplicated_diagnostics:
+          self._shared_diagnostics_by_guid[diag.guid] = diag
+
+  def DeduplicateDiagnostics2(self):
+    names_to_candidates = {}
     diagnostics_to_histograms = {}
 
     for hist in self:
