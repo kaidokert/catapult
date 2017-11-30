@@ -202,11 +202,16 @@ tr.b.unittest.testSuite(function() {
     date1.addDiagnostic(dateB);
     bHist.diagnostics.set('date', date1);
 
+    const cHist = new tr.v.Histogram('c', tr.b.Unit.byName.count);
+    cHist.diagnostics.set('generic', generic1);
+
     const histograms = new tr.v.HistogramSet([aHist, bHist]);
     assert.notStrictEqual(
         aHist.diagnostics.get('generic'), bHist.diagnostics.get('generic'));
+    assert.strictEqual(
+        bHist.diagnostics.get('generic'), cHist.diagnostics.get('generic'));
     assert.isTrue(
-        aHist.diagnostics.get('generic').equals(
+        bHist.diagnostics.get('generic').equals(
             bHist.diagnostics.get('generic')));
     assert.notStrictEqual(
         aHist.diagnostics.get('date'), bHist.diagnostics.get('date'));
@@ -219,6 +224,8 @@ tr.b.unittest.testSuite(function() {
         aHist.diagnostics.get('generic'), bHist.diagnostics.get('generic'));
     assert.strictEqual(
         aHist.diagnostics.get('date'), bHist.diagnostics.get('date'));
+    assert.strictEqual(
+        bHist.diagnostics.get('generic'), cHist.diagnostics.get('generic'));
 
     const histograms2 = new tr.v.HistogramSet();
     histograms2.importDicts(histograms.asDicts());
