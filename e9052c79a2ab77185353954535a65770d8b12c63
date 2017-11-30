@@ -39,6 +39,30 @@
       "revId": "e9052c79a2ab77185353954535a65770d8b12c63",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba08b513_c7f6966d",
+        "filename": "telemetry/telemetry/internal/browser/possible_browser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-30T14:22:07Z",
+      "side": 1,
+      "message": "I think a global function is probably the best choice for future extension. I will move this to a cache_util module.",
+      "parentUuid": "1da6f72a_bc891f2a",
+      "range": {
+        "startLine": 56,
+        "startChar": 6,
+        "endLine": 56,
+        "endChar": 16
+      },
+      "revId": "e9052c79a2ab77185353954535a65770d8b12c63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
