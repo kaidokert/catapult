@@ -22,6 +22,30 @@
       "revId": "a29b0da9dae0365405864e2a86c3df78f0b4a5ba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9eae3e0_8ee62452",
+        "filename": "tracing/tracing/value/histogram_set.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-11-30T17:55:01Z",
+      "side": 1,
+      "message": "Good question. This is analogous to the candidate.equals \u003d\u003d\u003d undefined check in the JavaScript. Eventually we want all diagnostics to have equals methods defined, but some don\u0027t right now.\n\nThe goal of this CL is just to match the existing behavior of the JS version, but in https://chromium-review.googlesource.com/c/catapult/+/781363 once this CL is landed, we\u0027ll need to add diagnostics that don\u0027t have equals methods to shared_diagnostics_by_guid outright (so that they can be serialized as refs).\n\nWe have an existing bug https://github.com/catapult-project/catapult/issues/3695 about smoke testing diagnostic equality. Once that is done, we won\u0027t have to consider this case.",
+      "parentUuid": "f21099f6_07f45de4",
+      "range": {
+        "startLine": 107,
+        "startChar": 15,
+        "endLine": 107,
+        "endChar": 22
+      },
+      "revId": "a29b0da9dae0365405864e2a86c3df78f0b4a5ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
