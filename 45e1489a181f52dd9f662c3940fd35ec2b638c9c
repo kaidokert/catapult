@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0a6f0fc6_3c1702ad",
+        "filename": "dashboard/docs/data-format.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1179484
+      },
+      "writtenOn": "2017-11-30T22:08:44Z",
+      "side": 1,
+      "message": "I want to show the use case where no exact values are known, only value and standard deviation.\nHow about adding std to one item above but also keeping this one?",
+      "parentUuid": "145c568f_6b42b32f",
+      "revId": "45e1489a181f52dd9f662c3940fd35ec2b638c9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "467ca5eb_466bca14",
         "filename": "dashboard/docs/data-format.md",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "45e1489a181f52dd9f662c3940fd35ec2b638c9c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "880efa51_bd353b39",
+        "filename": "dashboard/docs/data-format.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1179484
+      },
+      "writtenOn": "2017-11-30T22:08:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "467ca5eb_466bca14",
+      "revId": "45e1489a181f52dd9f662c3940fd35ec2b638c9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
