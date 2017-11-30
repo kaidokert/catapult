@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2eb20e64_d862c8cb",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-30T23:26:44Z",
+      "side": 1,
+      "message": "I would make this public and make it a @staticmethod (basically a factory method, or a fancy way to say this is a method that acts like a constructor)\n\ndef CreateBenchmarkExpectationsFromExpectationData(benchmark_data, benchmark_name):",
+      "revId": "24d1909f0dcd941568ac7b256aa76055ccaf6a77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d015de3c_a5c56223",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-30T23:26:44Z",
+      "side": 1,
+      "message": "The diff between left \u0026 right make me a bit nervous. Is it possible to keep the list of test condition as-is to the left, then make this EXPECTATION_NAME_MAP map from condition string to the condition constants?\n\ne.g:\nEXPECTATION_NAME_MAP \u003d { \n   \u0027All_Platforms\u0027: ALL,\n    \u0027Mac_Platforms\u0027: ALL_MAc,\n ...\n}",
+      "revId": "24d1909f0dcd941568ac7b256aa76055ccaf6a77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
