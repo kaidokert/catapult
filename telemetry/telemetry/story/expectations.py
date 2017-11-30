@@ -19,14 +19,25 @@ class StoryExpectations(object):
       self.DisableStory('story_name2', [expectations.ALL], 'crbug.com/789')
       ...
   """
-  def __init__(self, expectation_file=None):
+  # TODO(rnephew): Make benchmark non-optional when fully integrated with TA/DA.
+  def __init__(
+      self, expectation_file=None, expectations_data=None, benchmark=None):
     self._disabled_platforms = []
     self._expectations = {}
     self._frozen = False
     self.SetExpectations()
-    if expectation_file:
-      parser = expectations_parser.TestExpectationParser(expectation_file)
-      self._MapExpectationsFromFile(parser)
+    if expectation_file or expectations_data:
+      # TODO(rnephew): Delete this check when benchmark is required.
+      if not benchmark:
+        raise ValueError(
+            'Must pass benchmark name if expectation file is given')
+      if expectation_file:
+        parser = expectations_parser.TestExpectationParser(
+            path=expectation_file)
+      else:
+        parser = expectations_parser.TestExpectationParser(
+            raw=expectations_data)
+      self._GetBenchmarkExpectationsFromParser(parser.expectations, benchmark)
     self._Freeze()
 
   # TODO(rnephew): Transform parsed expectation file into StoryExpectations.
@@ -34,8 +45,22 @@ class StoryExpectations(object):
   # logical OR to combine multiple conditions in a single expectation. The
   # expectation files use logical AND when combining multiple conditions.
   # crbug.com/781409
-  def _MapExpectationsFromFile(self, _):
-    pass
+  def _GetBenchmarkExpectationsFromParser(self, expectations, benchmark):
+    for expectation in expectations:
+      if expectation['test'].startswith('%s/' % benchmark):
+        # Strip off benchmark name. In format: benchmark/story
+        story = expectation['test'][len(benchmark)+1:]
+        try:
+          conditions = (
+              [EXPECTATION_NAME_MAP[c] for c in expectation['conditions']])
+        except KeyError:
+          logging.critical('Unable to map expectation in file to TestCondition')
+          raise
+        conditions_str = '+'.join(expectation['conditions'])
+        self.DisableStory(
+            story,
+            [_TestConditionLogicalAndConditions(conditions, conditions_str)],
+            expectation.get('reason'))
 
   def AsDict(self):
     """Returns information on disabled stories/benchmarks as a dictionary"""
@@ -53,6 +78,7 @@ class StoryExpectations(object):
         logging.error('Story %s is not in the story set.' % story_name)
     return invalid_story_names
 
+  # TODO(rnephew): When TA/DA conversion is complete, remove this method.
   def SetExpectations(self):
     """Sets the Expectations for test disabling
 
@@ -267,39 +293,70 @@ class _TestConditionLogicalOrConditions(_TestCondition):
         c.ShouldDisable(platform, finder_options) for c in self._conditions)
 
 
-ALL = _AllTestCondition()
-ALL_MAC = _TestConditionByPlatformList(['mac'], 'Mac Platforms')
-ALL_WIN = _TestConditionByPlatformList(['win'], 'Win Platforms')
-ALL_LINUX = _TestConditionByPlatformList(['linux'], 'Linux Platforms')
-ALL_CHROMEOS = _TestConditionByPlatformList(['chromeos'], 'ChromeOS Platforms')
-ALL_ANDROID = _TestConditionByPlatformList(['android'], 'Android Platforms')
-ALL_DESKTOP = _TestConditionByPlatformList(
-    ['mac', 'linux', 'win', 'chromeos'], 'Desktop Platforms')
-ALL_MOBILE = _TestConditionByPlatformList(['android'], 'Mobile Platforms')
-ANDROID_NEXUS5 = _TestConditionByAndroidModel('Nexus 5')
+# Helper conditions used to build more complicated ones.
 _ANDROID_NEXUS5X = _TestConditionByAndroidModel('Nexus 5X')
 _ANDROID_NEXUS5XAOSP = _TestConditionByAndroidModel('AOSP on BullHead')
-ANDROID_NEXUS5X = _TestConditionLogicalOrConditions(
-    [_ANDROID_NEXUS5X, _ANDROID_NEXUS5XAOSP], 'Nexus 5X')
 _ANDROID_NEXUS6 = _TestConditionByAndroidModel('Nexus 6')
 _ANDROID_NEXUS6AOSP = _TestConditionByAndroidModel('AOSP on Shamu')
 ANDROID_NEXUS6 = _TestConditionLogicalOrConditions(
     [_ANDROID_NEXUS6, _ANDROID_NEXUS6AOSP], 'Nexus 6')
-ANDROID_NEXUS6P = _TestConditionByAndroidModel('Nexus 6P')
-ANDROID_NEXUS7 = _TestConditionByAndroidModel('Nexus 7')
-ANDROID_ONE = _TestConditionByAndroidModel(
-    'W6210', 'Cherry Mobile Android One')
-ANDROID_SVELTE = _TestConditionAndroidSvelte()
+ANDROID_NEXUS5X = _TestConditionLogicalOrConditions(
+    [_ANDROID_NEXUS5X, _ANDROID_NEXUS5XAOSP], 'Nexus 5X')
 ANDROID_WEBVIEW = _TestConditionAndroidWebview()
-ANDROID_NOT_WEBVIEW = _TestConditionAndroidNotWebview()
-# MAC_10_11 Includes:
-#   Mac 10.11 Perf, Mac Retina Perf, Mac Pro 10.11 Perf, Mac Air 10.11 Perf
-MAC_10_11 = _TestConditionByMacVersion('10.11', 'Mac 10.11')
-# Mac 10_12 Includes:
-#   Mac 10.12 Perf, Mac Mini 8GB 10.12 Perf
-MAC_10_12 = _TestConditionByMacVersion('10.12', 'Mac 10.12')
 
-ANDROID_NEXUS6_WEBVIEW = _TestConditionLogicalAndConditions(
-    [ANDROID_NEXUS6, ANDROID_WEBVIEW], 'Nexus6 Webview')
-ANDROID_NEXUS5X_WEBVIEW = _TestConditionLogicalAndConditions(
-    [ANDROID_NEXUS5X, ANDROID_WEBVIEW], 'Nexus5X Webview')
+EXPECTATION_NAME_MAP = {
+    'All_Platforms': _AllTestCondition(),
+    'Android_Svelte': _TestConditionAndroidSvelte(),
+    'Android_Webview': ANDROID_WEBVIEW,
+    'Android_but_not_webview': _TestConditionAndroidNotWebview(),
+    'Mac_Platforms': _TestConditionByPlatformList(['mac'], 'Mac Platforms'),
+    'Win_Platforms': _TestConditionByPlatformList(['win'], 'Win Platforms'),
+    'Linux_Platforms': _TestConditionByPlatformList(['linux'],
+                                                    'Linux Platforms'),
+    'ChromeOS_Platforms': _TestConditionByPlatformList(['chromeos'],
+                                                       'ChromeOS Platforms'),
+    'Android_Platforms': _TestConditionByPlatformList(['android'],
+                                                      'Android Platforms'),
+    'Desktop_Platforms': _TestConditionByPlatformList(
+        ['mac', 'linux', 'win', 'chromeos'], 'Desktop Platforms'),
+    'Mobile_Platforms': _TestConditionByPlatformList(['android'],
+                                                     'Mobile Platforms'),
+    'Nexus_5': _TestConditionByAndroidModel('Nexus 5'),
+    'Nexus_5X': _ANDROID_NEXUS5X,
+    'Nexus_6': ANDROID_NEXUS6,
+    'Nexus_6P': _TestConditionByAndroidModel('Nexus 6P'),
+    'Nexus_7': _TestConditionByAndroidModel('Nexus 7'),
+    'Cherry_Mobile_Android_One': _TestConditionByAndroidModel(
+        'W6210', 'Cherry Mobile Android One'),
+    # MAC_10_11 Includes:
+    #   Mac 10.11 Perf, Mac Retina Perf, Mac Pro 10.11 Perf, Mac Air 10.11 Perf
+    'Mac_10.11': _TestConditionByMacVersion('10.11', 'Mac 10.11'),
+    # Mac 10_12 Includes:
+    #   Mac 10.12 Perf, Mac Mini 8GB 10.12 Perf
+    'Mac_10.12': _TestConditionByMacVersion('10.12', 'Mac 10.12'),
+    'Nexus6_Webview': _TestConditionLogicalAndConditions(
+        [ANDROID_NEXUS6, ANDROID_WEBVIEW], 'Nexus6 Webview'),
+    'Nexus5X_Webview': _TestConditionLogicalAndConditions(
+        [ANDROID_NEXUS5X, ANDROID_WEBVIEW], 'Nexus5X Webview'),
+}
+
+# TODO(rnephew): After TA/DA conversion is complete, delete these.
+ALL = EXPECTATION_NAME_MAP['All_Platforms']
+ALL_MAC = EXPECTATION_NAME_MAP['Mac_Platforms']
+ALL_WIN = EXPECTATION_NAME_MAP['Win_Platforms']
+ALL_LINUX = EXPECTATION_NAME_MAP['Linux_Platforms']
+ALL_CHROMEOS = EXPECTATION_NAME_MAP['ChromeOS_Platforms']
+ALL_ANDROID = EXPECTATION_NAME_MAP['Android_Platforms']
+ALL_DESKTOP = EXPECTATION_NAME_MAP['Desktop_Platforms']
+ALL_MOBILE = EXPECTATION_NAME_MAP['Mobile_Platforms']
+ANDROID_NEXUS5 = EXPECTATION_NAME_MAP['Nexus_5']
+ANDROID_NEXUS6P = EXPECTATION_NAME_MAP['Nexus_6P']
+ANDROID_NEXUS7 = EXPECTATION_NAME_MAP['Nexus_7']
+ANDROID_ONE = EXPECTATION_NAME_MAP['Cherry_Mobile_Android_One']
+ANDROID_SVELTE = EXPECTATION_NAME_MAP['Android_Svelte']
+ANDROID_NOT_WEBVIEW = EXPECTATION_NAME_MAP['Android_but_not_webview']
+MAC_10_11 = EXPECTATION_NAME_MAP['Mac_10.11']
+MAC_10_12 = EXPECTATION_NAME_MAP['Mac_10.12']
+ANDROID_NEXUS6_WEBVIEW = EXPECTATION_NAME_MAP['Nexus6_Webview']
+ANDROID_NEXUS5X_WEBVIEW = EXPECTATION_NAME_MAP['Nexus5X_Webview']
+
