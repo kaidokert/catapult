@@ -22,6 +22,30 @@
       "revId": "9dd0d2fb4cd703371718cfb372635a35ef96bd9d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a5f949c_8a0e1529",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-30T14:21:41Z",
+      "side": 1,
+      "message": "Yeah, we call this profile directory across all Telemetry. THanks for the info, I filed a bug about renaming here: https://bugs.chromium.org/p/chromium/issues/detail?id\u003d789961",
+      "parentUuid": "6c4ee11c_5ad315c1",
+      "range": {
+        "startLine": 192,
+        "startChar": 17,
+        "endLine": 192,
+        "endChar": 33
+      },
+      "revId": "9dd0d2fb4cd703371718cfb372635a35ef96bd9d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
