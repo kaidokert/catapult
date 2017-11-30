@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3e47c620_bbde30c5",
+        "filename": "telemetry/telemetry/internal/forwarders/android_forwarder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-30T12:42:37Z",
+      "side": 1,
+      "message": "After some thinking I got to believe that \"not reverse\" counts as positive just like \"not None\", so putting that branch first. c.f. https://docs.google.com/document/d/1QzsV4wFMDeFbMx13gsV092i9RfGc5cbF8ERbPZ65Q6c/edit",
+      "revId": "96598ec398a39de96ae64b96d6d62c5c041a8f66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
