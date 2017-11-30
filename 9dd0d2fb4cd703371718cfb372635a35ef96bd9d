@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6c4ee11c_5ad315c1",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2017-11-30T13:00:44Z",
+      "side": 1,
+      "message": "Do we call the user data directory as \u0027profile_directory\u0027 across all Telemetry? The Chrome-side name for this thing is \u0027user data directory\u0027, and to get a profile directory, we\u0027d need to append \u0027app_chrome/Default\u0027 to this path. See:\n\nhttps://chromium.googlesource.com/chromium/src/+/master/docs/user_data_dir.md\n\nI do not insist on renaming, just curious whether Android is special in this naming inconsistency.",
+      "range": {
+        "startLine": 192,
+        "startChar": 17,
+        "endLine": 192,
+        "endChar": 33
+      },
+      "revId": "9dd0d2fb4cd703371718cfb372635a35ef96bd9d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
