@@ -428,8 +428,13 @@ class PageTestResults(object):
     self._current_page_run.AddValue(value)
     self._progress_reporter.DidAddValue(value)
 
-  def AddArtifact(self, story, item, reason):
-    self._artifact_results.AddArtifact(story, item, reason)
+  def AddArtifact(self, story, name, path):
+    if self._artifact_results:
+      self._artifact_results.AddArtifact(story, name, path)
+    else:
+      logging.warning(
+          "tried to log artifact %r for %r, but no results object present" % (
+          name, story))
 
   def AddProfilingFile(self, page, file_handle):
     self._pages_to_profiling_files[page].append(file_handle)

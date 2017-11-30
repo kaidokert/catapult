@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import contextlib
 import json
 import math
 import os
@@ -204,6 +205,7 @@ class FakeBenchmark(benchmark.Benchmark):
 def _GetOptionForUnittest():
   options = options_for_unittests.GetCopy()
   options.output_formats = ['none']
+  options.output_dir = tempfile.mkdtemp(prefix='story_runner_test')
   options.suppress_gtest_report = False
   parser = options.CreateParser()
   story_runner.AddCommandLineArgs(parser)
@@ -289,6 +291,8 @@ class StoryRunnerTest(unittest.TestCase):
     if os.path.isfile(results_file_path):
       os.remove(results_file_path)
     self.RestoreExceptionFormatter()
+
+    shutil.rmtree(self.options.output_dir)
 
   def testRunStorySet(self):
     number_stories = 3
@@ -986,15 +990,18 @@ class StoryRunnerTest(unittest.TestCase):
     if options_max_failures:
       options.max_failures = options_max_failures
 
-    results = results_options.CreateResults(EmptyMetadataForTest(), options)
-    story_runner.Run(
-        DummyTest(), story_set, options,
-        results, max_failures=runner_max_failures,
-        metadata=EmptyMetadataForTest())
-    self.assertEquals(0, GetNumberOfSuccessfulPageRuns(results))
-    self.assertEquals(expected_num_failures, len(results.failures))
-    for ii, story in enumerate(story_set.stories):
-      self.assertEqual(story.was_run, ii < expected_num_failures)
+    try:
+      results = results_options.CreateResults(EmptyMetadataForTest(), options)
+      story_runner.Run(
+          DummyTest(), story_set, options,
+          results, max_failures=runner_max_failures,
+          metadata=EmptyMetadataForTest())
+      self.assertEquals(0, GetNumberOfSuccessfulPageRuns(results))
+      self.assertEquals(expected_num_failures, len(results.failures))
+      for ii, story in enumerate(story_set.stories):
+        self.assertEqual(story.was_run, ii < expected_num_failures)
+    finally:
+      shutil.rmtree(options.output_dir)
 
   def testMaxFailuresNotSpecified(self):
     self._testMaxFailuresOptionIsRespectedAndOverridable(
@@ -1039,53 +1046,74 @@ class StoryRunnerTest(unittest.TestCase):
 
     return root_mock
 
+  @contextlib.contextmanager
+  def _CreateNamedTemporaryFilePatch(self, filename):
+    with mock.patch(
+        'telemetry.internal.story_runner.tempfile.NamedTemporaryFile') as (
+            ntf_patch):
+      @contextlib.contextmanager
+      def tmp_file_gen():
+        file_mock = mock.Mock()
+        file_mock.name = filename
+        yield file_mock
+
+      ntf_patch.return_value = tmp_file_gen()
+
+      yield ntf_patch
+
   def testRunStoryAndProcessErrorIfNeeded_success(self):
     root_mock = self._CreateErrorProcessingMock()
 
-    story_runner._RunStoryAndProcessErrorIfNeeded(
-        root_mock.story, root_mock.results, root_mock.state, root_mock.test)
+    with self._CreateNamedTemporaryFilePatch('/tmp/test_deadbeef.log') as ntf_patch:
+      story_runner._RunStoryAndProcessErrorIfNeeded(
+          root_mock.story, root_mock.results, root_mock.state, root_mock.test)
 
-    self.assertEquals(root_mock.method_calls, [
-        mock.call.test.WillRunStory(root_mock.state.platform),
-        mock.call.state.WillRunStory(root_mock.story),
-        mock.call.state.CanRunStory(root_mock.story),
-        mock.call.state.RunStory(root_mock.results),
-        mock.call.test.Measure(root_mock.state.platform, root_mock.results),
-        mock.call.test.DidRunStory(root_mock.state.platform, root_mock.results),
-        mock.call.state.DidRunStory(root_mock.results),
-    ])
+      self.assertEquals(root_mock.method_calls, [
+          mock.call.test.WillRunStory(root_mock.state.platform),
+          mock.call.state.WillRunStory(root_mock.story),
+          mock.call.state.CanRunStory(root_mock.story),
+          mock.call.state.RunStory(root_mock.results),
+          mock.call.test.Measure(root_mock.state.platform, root_mock.results),
+          mock.call.test.DidRunStory(root_mock.state.platform, root_mock.results),
+          mock.call.state.DidRunStory(root_mock.results),
+          mock.call.results.AddArtifact(root_mock.story.name, 'logs', '/tmp/test_deadbeef.log')
+      ])
 
   def testRunStoryAndProcessErrorIfNeeded_successLegacy(self):
     root_mock = self._CreateErrorProcessingMock(legacy_test=True)
 
-    story_runner._RunStoryAndProcessErrorIfNeeded(
-        root_mock.story, root_mock.results, root_mock.state, root_mock.test)
+    with self._CreateNamedTemporaryFilePatch('/tmp/test_deadbeef.log') as ntf_patch:
+      story_runner._RunStoryAndProcessErrorIfNeeded(
+          root_mock.story, root_mock.results, root_mock.state, root_mock.test)
 
-    self.assertEquals(root_mock.method_calls, [
-        mock.call.state.WillRunStory(root_mock.story),
-        mock.call.state.CanRunStory(root_mock.story),
-        mock.call.state.RunStory(root_mock.results),
-        mock.call.test.DidRunPage(root_mock.state.platform),
-        mock.call.state.DidRunStory(root_mock.results),
-    ])
+      self.assertEquals(root_mock.method_calls, [
+          mock.call.state.WillRunStory(root_mock.story),
+          mock.call.state.CanRunStory(root_mock.story),
+          mock.call.state.RunStory(root_mock.results),
+          mock.call.test.DidRunPage(root_mock.state.platform),
+          mock.call.state.DidRunStory(root_mock.results),
+            mock.call.results.AddArtifact(root_mock.story.name, 'logs', '/tmp/test_deadbeef.log')
+      ])
 
   def testRunStoryAndProcessErrorIfNeeded_tryTimeout(self):
     root_mock = self._CreateErrorProcessingMock(method_exceptions={
         'state.WillRunStory': exceptions.TimeoutException('foo')
     })
 
-    story_runner._RunStoryAndProcessErrorIfNeeded(
-        root_mock.story, root_mock.results, root_mock.state, root_mock.test)
+    with self._CreateNamedTemporaryFilePatch('/tmp/test_deadbeef.log') as ntf_patch:
+      story_runner._RunStoryAndProcessErrorIfNeeded(
+          root_mock.story, root_mock.results, root_mock.state, root_mock.test)
 
-    self.assertEquals(root_mock.method_calls, [
-        mock.call.test.WillRunStory(root_mock.state.platform),
-        mock.call.state.WillRunStory(root_mock.story),
-        mock.call.state.DumpStateUponFailure(
-            root_mock.story, root_mock.results),
-        mock.call.results.AddValue(FailureValueMatcher('foo')),
-        mock.call.test.DidRunStory(root_mock.state.platform, root_mock.results),
-        mock.call.state.DidRunStory(root_mock.results),
-    ])
+      self.assertEquals(root_mock.method_calls, [
+          mock.call.test.WillRunStory(root_mock.state.platform),
+          mock.call.state.WillRunStory(root_mock.story),
+          mock.call.state.DumpStateUponFailure(
+              root_mock.story, root_mock.results),
+          mock.call.results.AddValue(FailureValueMatcher('foo')),
+          mock.call.test.DidRunStory(root_mock.state.platform, root_mock.results),
+          mock.call.state.DidRunStory(root_mock.results),
+          mock.call.results.AddArtifact(root_mock.story.name, 'logs', '/tmp/test_deadbeef.log')
+      ])
 
   def testRunStoryAndProcessErrorIfNeeded_tryError(self):
     root_mock = self._CreateErrorProcessingMock(method_exceptions={
@@ -1112,18 +1140,20 @@ class StoryRunnerTest(unittest.TestCase):
         'state.RunStory': page_action.PageActionNotSupported('foo')
     })
 
-    story_runner._RunStoryAndProcessErrorIfNeeded(
-        root_mock.story, root_mock.results, root_mock.state, root_mock.test)
 
-    self.assertEquals(root_mock.method_calls, [
-        mock.call.test.WillRunStory(root_mock.state.platform),
-        mock.call.state.WillRunStory(root_mock.story),
-        mock.call.state.CanRunStory(root_mock.story),
-        mock.call.state.RunStory(root_mock.results),
-        mock.call.results.AddValue(SkipValueMatcher()),
-        mock.call.test.DidRunStory(root_mock.state.platform, root_mock.results),
-        mock.call.state.DidRunStory(root_mock.results),
-    ])
+    with self._CreateNamedTemporaryFilePatch('/tmp/test_deadbeef.log') as ntf_patch:
+      story_runner._RunStoryAndProcessErrorIfNeeded(
+          root_mock.story, root_mock.results, root_mock.state, root_mock.test)
+      self.assertEquals(root_mock.method_calls, [
+          mock.call.test.WillRunStory(root_mock.state.platform),
+          mock.call.state.WillRunStory(root_mock.story),
+          mock.call.state.CanRunStory(root_mock.story),
+          mock.call.state.RunStory(root_mock.results),
+          mock.call.results.AddValue(SkipValueMatcher()),
+          mock.call.test.DidRunStory(root_mock.state.platform, root_mock.results),
+          mock.call.state.DidRunStory(root_mock.results),
+          mock.call.results.AddArtifact(root_mock.story.name, 'logs', '/tmp/test_deadbeef.log')
+      ])
 
   def testRunStoryAndProcessErrorIfNeeded_tryUnhandlable(self):
     root_mock = self._CreateErrorProcessingMock(method_exceptions={
@@ -1144,24 +1174,26 @@ class StoryRunnerTest(unittest.TestCase):
     ])
 
   def testRunStoryAndProcessErrorIfNeeded_finallyException(self):
+    exc = Exception('bar')
     root_mock = self._CreateErrorProcessingMock(method_exceptions={
-        'state.DidRunStory': Exception('bar')
+        'state.DidRunStory': exc,
     })
 
-    with self.assertRaisesRegexp(Exception, 'bar'):
-      story_runner._RunStoryAndProcessErrorIfNeeded(
-          root_mock.story, root_mock.results, root_mock.state, root_mock.test)
+    with self._CreateNamedTemporaryFilePatch('/tmp/test_deadbeef.log') as ntf_patch:
+      with self.assertRaisesRegexp(Exception, 'bar'):
+        story_runner._RunStoryAndProcessErrorIfNeeded(
+            root_mock.story, root_mock.results, root_mock.state, root_mock.test)
 
-    self.assertEquals(root_mock.method_calls, [
-        mock.call.test.WillRunStory(root_mock.state.platform),
-        mock.call.state.WillRunStory(root_mock.story),
-        mock.call.state.CanRunStory(root_mock.story),
-        mock.call.state.RunStory(root_mock.results),
-        mock.call.test.Measure(root_mock.state.platform, root_mock.results),
-        mock.call.test.DidRunStory(root_mock.state.platform, root_mock.results),
-        mock.call.state.DidRunStory(root_mock.results),
-        mock.call.state.DumpStateUponFailure(root_mock.story, root_mock.results)
-    ])
+      self.assertEquals(root_mock.method_calls, [
+          mock.call.test.WillRunStory(root_mock.state.platform),
+          mock.call.state.WillRunStory(root_mock.story),
+          mock.call.state.CanRunStory(root_mock.story),
+          mock.call.state.RunStory(root_mock.results),
+          mock.call.test.Measure(root_mock.state.platform, root_mock.results),
+          mock.call.test.DidRunStory(root_mock.state.platform, root_mock.results),
+          mock.call.state.DidRunStory(root_mock.results),
+          mock.call.state.DumpStateUponFailure(root_mock.story, root_mock.results, exc),
+      ])
 
   def testRunStoryAndProcessErrorIfNeeded_tryTimeout_finallyException(self):
     root_mock = self._CreateErrorProcessingMock(method_exceptions={
@@ -1169,20 +1201,22 @@ class StoryRunnerTest(unittest.TestCase):
         'state.DidRunStory': Exception('bar')
     })
 
-    story_runner._RunStoryAndProcessErrorIfNeeded(
-        root_mock.story, root_mock.results, root_mock.state, root_mock.test)
+    with self._CreateNamedTemporaryFilePatch('/tmp/test_deadbeef.log') as ntf_patch:
+      story_runner._RunStoryAndProcessErrorIfNeeded(
+          root_mock.story, root_mock.results, root_mock.state, root_mock.test)
 
-    self.assertEquals(root_mock.method_calls, [
-        mock.call.test.WillRunStory(root_mock.state.platform),
-        mock.call.state.WillRunStory(root_mock.story),
-        mock.call.state.CanRunStory(root_mock.story),
-        mock.call.state.RunStory(root_mock.results),
-        mock.call.state.DumpStateUponFailure(
-            root_mock.story, root_mock.results),
-        mock.call.results.AddValue(FailureValueMatcher('foo')),
-        mock.call.test.DidRunStory(root_mock.state.platform, root_mock.results),
-        mock.call.state.DidRunStory(root_mock.results)
-    ])
+      self.assertEquals(root_mock.method_calls, [
+          mock.call.test.WillRunStory(root_mock.state.platform),
+          mock.call.state.WillRunStory(root_mock.story),
+          mock.call.state.CanRunStory(root_mock.story),
+          mock.call.state.RunStory(root_mock.results),
+          mock.call.state.DumpStateUponFailure(
+              root_mock.story, root_mock.results),
+          mock.call.results.AddValue(FailureValueMatcher('foo')),
+          mock.call.test.DidRunStory(root_mock.state.platform, root_mock.results),
+          mock.call.state.DidRunStory(root_mock.results),
+          mock.call.results.AddArtifact(root_mock.story.name, 'logs', '/tmp/test_deadbeef.log'),
+      ])
 
   def testRunStoryAndProcessErrorIfNeeded_tryError_finallyException(self):
     root_mock = self._CreateErrorProcessingMock(method_exceptions={
@@ -1210,16 +1244,18 @@ class StoryRunnerTest(unittest.TestCase):
         'state.DidRunStory': Exception('bar')
     })
 
-    story_runner._RunStoryAndProcessErrorIfNeeded(
-        root_mock.story, root_mock.results, root_mock.state, root_mock.test)
+    with self._CreateNamedTemporaryFilePatch('/tmp/test_deadbeef.log') as ntf_patch:
+      story_runner._RunStoryAndProcessErrorIfNeeded(
+          root_mock.story, root_mock.results, root_mock.state, root_mock.test)
 
-    self.assertEquals(root_mock.method_calls, [
-        mock.call.test.WillRunStory(root_mock.state.platform),
-        mock.call.results.AddValue(SkipValueMatcher()),
-        mock.call.test.DidRunStory(
-            root_mock.state.platform, root_mock.results),
-        mock.call.state.DidRunStory(root_mock.results)
-    ])
+      self.assertEquals(root_mock.method_calls, [
+          mock.call.test.WillRunStory(root_mock.state.platform),
+          mock.call.results.AddValue(SkipValueMatcher()),
+          mock.call.test.DidRunStory(
+              root_mock.state.platform, root_mock.results),
+          mock.call.state.DidRunStory(root_mock.results),
+          mock.call.results.AddArtifact(root_mock.story.name, 'logs', '/tmp/test_deadbeef.log'),
+      ])
 
   def testRunStoryAndProcessErrorIfNeeded_tryUnhandlable_finallyException(self):
     root_mock = self._CreateErrorProcessingMock(method_exceptions={
@@ -1255,6 +1291,7 @@ class StoryRunnerTest(unittest.TestCase):
     options.pageset_repeat = 1
     options.output_formats = ['chartjson']
     options.run_disabled_tests = False
+    options.move_artifacts = False
     return options
 
   def testRunBenchmarkDisabledBenchmarkViaCanRunonPlatform(self):
