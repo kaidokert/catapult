@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "40733836_9b2691c4",
+        "filename": "tracing/tracing/value/histogram_set.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-11-30T18:45:24Z",
+      "side": 1,
+      "message": "Thanks for noting this. We may have reached a point of semantic satiation with the word \"deduplicate\", and it\u0027s also a little confusing that we also use this same word on the dashboard side to describe a slightly different process.",
+      "parentUuid": "88d56066_65be419a",
+      "range": {
+        "startLine": 101,
+        "startChar": 6,
+        "endLine": 101,
+        "endChar": 28
+      },
+      "revId": "a29b0da9dae0365405864e2a86c3df78f0b4a5ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f21099f6_07f45de4",
         "filename": "tracing/tracing/value/histogram_set.py",
         "patchSetId": 1
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "Alright, I find that a bit weird, feel like this should assert if they\u0027re undefined not silently let them pass through. If you\u0027re fixing that as a followup reasonably soon, add a TODO here to remove that and change it to an assert or something once 3695 is fixed.",
       "parentUuid": "f9eae3e0_8ee62452",
+      "range": {
+        "startLine": 107,
+        "startChar": 15,
+        "endLine": 107,
+        "endChar": 22
+      },
+      "revId": "a29b0da9dae0365405864e2a86c3df78f0b4a5ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ddaa30a6_5b65de1b",
+        "filename": "tracing/tracing/value/histogram_set.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-11-30T18:45:24Z",
+      "side": 1,
+      "message": "Agreed. I plan to add a TODO in https://chromium-review.googlesource.com/c/catapult/+/781363",
+      "parentUuid": "f2fa4dfc_90197b92",
       "range": {
         "startLine": 107,
         "startChar": 15,
