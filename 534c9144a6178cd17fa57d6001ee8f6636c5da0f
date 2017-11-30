@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "af80e669_971bf0e8",
+        "filename": "telemetry/telemetry/internal/forwarders/__init__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-30T18:53:31Z",
+      "side": 1,
+      "message": "why not have self._local_port \u0026 self._remote_port instead?",
+      "revId": "534c9144a6178cd17fa57d6001ee8f6636c5da0f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df9448c5_2577510e",
+        "filename": "telemetry/telemetry/internal/forwarders/cros_forwarder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-30T18:53:31Z",
+      "side": 1,
+      "message": "This refactor is a bit hard to understand, can you summarize what\u0027s going on here?",
+      "revId": "534c9144a6178cd17fa57d6001ee8f6636c5da0f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
