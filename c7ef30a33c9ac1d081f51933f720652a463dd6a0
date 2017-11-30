@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1d9a105f_89566645",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-30T16:39:28Z",
+      "side": 1,
+      "message": "nit: s/clear/clears/g",
+      "revId": "c7ef30a33c9ac1d081f51933f720652a463dd6a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
