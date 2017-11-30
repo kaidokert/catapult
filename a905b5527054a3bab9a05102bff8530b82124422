@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a360d389_32c959ee",
+        "filename": "common/py_utils/py_utils/expectations_parser.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-11-30T19:15:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4a7e9e4_9b64eeaf",
+      "range": {
+        "startLine": 43,
+        "startChar": 14,
+        "endLine": 43,
+        "endChar": 24
+      },
+      "revId": "a905b5527054a3bab9a05102bff8530b82124422",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ab76d129_c9cfc3c4",
         "filename": "common/py_utils/py_utils/expectations_parser.py",
         "patchSetId": 6
@@ -39,6 +63,24 @@
       "revId": "a905b5527054a3bab9a05102bff8530b82124422",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65398d69_0bfa1939",
+        "filename": "common/py_utils/py_utils/expectations_parser.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-11-30T19:15:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab76d129_c9cfc3c4",
+      "revId": "a905b5527054a3bab9a05102bff8530b82124422",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -62,6 +104,30 @@
       "revId": "a905b5527054a3bab9a05102bff8530b82124422",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "442a2e9e_072d9dba",
+        "filename": "common/py_utils/py_utils/expectations_parser.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-11-30T19:15:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4cdfaf51_9b4f21d7",
+      "range": {
+        "startLine": 80,
+        "startChar": 18,
+        "endLine": 80,
+        "endChar": 36
+      },
+      "revId": "a905b5527054a3bab9a05102bff8530b82124422",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
