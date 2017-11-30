@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0be17336_4d543982",
+        "filename": "telemetry/telemetry/core/cache_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2017-11-30T14:59:33Z",
+      "side": 1,
+      "message": "nit: s/Notes that/Note:/",
+      "range": {
+        "startLine": 15,
+        "startChar": 2,
+        "endLine": 15,
+        "endChar": 7
+      },
+      "revId": "60c4e9dc23d67694f57093b3dd66a65a7f8eca2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "054991df_663bfbbf",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2017-11-30T14:59:33Z",
+      "side": 1,
+      "message": "Not sure which style you are following in catapult, but I thought I\u0027d still put a comment about a comment (i.e. my favorite).\n\nTODO(nednguyen)",
+      "range": {
+        "startLine": 134,
+        "startChar": 6,
+        "endLine": 134,
+        "endChar": 10
+      },
+      "revId": "60c4e9dc23d67694f57093b3dd66a65a7f8eca2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0da9d9e2_98dd98e0",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2017-11-30T14:59:33Z",
+      "side": 1,
+      "message": "nit: I think multiple comments will go out of sync and will raise more questions than needed. I think leaving only one of them would be good from maintenance standpoint.\n\nUp to you, of course.",
+      "range": {
+        "startLine": 76,
+        "startChar": 8,
+        "endLine": 76,
+        "endChar": 79
+      },
+      "revId": "60c4e9dc23d67694f57093b3dd66a65a7f8eca2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
