@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f4a7e9e4_9b64eeaf",
+        "filename": "common/py_utils/py_utils/expectations_parser.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-11-30T19:00:16Z",
+      "side": 1,
+      "message": "Normally, I see invalid arguments listed as \"ValueErrors\" - that probably makes sense here, given that the path isn\u0027t actually parsed at all?",
+      "range": {
+        "startLine": 43,
+        "startChar": 14,
+        "endLine": 43,
+        "endChar": 24
+      },
+      "revId": "a905b5527054a3bab9a05102bff8530b82124422",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab76d129_c9cfc3c4",
+        "filename": "common/py_utils/py_utils/expectations_parser.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-11-30T19:00:16Z",
+      "side": 1,
+      "message": "There\u0027s actually a bug here due to the way that you increment the line number at the end of the loop: when you \"continue\" on line 62, you skip over the part of the loop that increments the line number, resulting in the line count getting off.\n\nI think the pythonic way of doing this is to use the https://docs.python.org/2/library/functions.html#enumerate function with parameter start\u003d1",
+      "revId": "a905b5527054a3bab9a05102bff8530b82124422",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4cdfaf51_9b4f21d7",
+        "filename": "common/py_utils/py_utils/expectations_parser.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-11-30T19:00:16Z",
+      "side": 1,
+      "message": "It feels a little weird to pass the current line number via a member variable but pass the line itself via a parameter - as far as I can tell, there\u0027s not a ton of rationale for the different behaviors. Maybe move both of them to parameters? The self._current_line smells a little too similar to global state for me to love it",
+      "range": {
+        "startLine": 80,
+        "startChar": 18,
+        "endLine": 80,
+        "endChar": 36
+      },
+      "revId": "a905b5527054a3bab9a05102bff8530b82124422",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
