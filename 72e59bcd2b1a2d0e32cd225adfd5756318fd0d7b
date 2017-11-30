@@ -179,6 +179,24 @@
     },
     {
       "key": {
+        "uuid": "e9d4eef7_05121832",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-11-30T21:48:40Z",
+      "side": 1,
+      "message": "Actually, I forgot why I needed this. If I don\u0027t mock this out, I\u0027m going to get a randomly generated temp file name, which is hard to assert about. This way, I know exactly what it\u0027s returning, and I can do asserts like line 1074. And I think plumbing the created tempfile to be visible to the code there would be a lot of work.",
+      "parentUuid": "6d79fc79_52d8ec3a",
+      "revId": "72e59bcd2b1a2d0e32cd225adfd5756318fd0d7b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "45074c66_3349a253",
         "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
         "patchSetId": 17
