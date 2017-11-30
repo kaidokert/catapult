@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "23fd9afd_ba5791f0",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-11-30T21:27:03Z",
+      "side": 1,
+      "message": "Seems like this might be a bit fragile in that there will probably start to be multiple log URLs as the OBBS work progresses.\n\nProbably you want\n\nif log_urls:\n  if len(log_urls) \u003d\u003d 1:\n    ...\n  else:\n    # Just log the list\nelse:\n  ...",
+      "revId": "65ffd66d684c6469b08897b22f2bda36882e6e51",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
