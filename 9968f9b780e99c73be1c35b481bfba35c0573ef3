@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "40d6f401_7f4ed8b1",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-30T15:35:50Z",
+      "side": 0,
+      "message": "Looking at this again carefully, pushing and duplicating a good fraction of this code into individual possible_browser implementations sounds like a step in the wrong direction.\n\nI think instead we should:\n\n- move this code to the browser_backend base class (it\u0027s the same implementation for all browsers), e.g. something like\n\n  def ClearBrowserCaches(self, clear_system_cache\u003dTrue):\n    ## something quite similar to the code above\n\n- leave a single TODO there, to possibly move that code out of the browser_backend and into the possible_browser base class (if/when browser_directory and user_directory are moved there).\n\n- remove this code from the browser constructor (as done now)\n\n- on each individual possible browser (where you are adding new code now) have instead:\n\n  def Create(self, ...):\n    # ...\n\n    browser_backend.ClearBrowserCaches(\n        browser_options.clear_sytem_cache_for_browser_and_profile_on_start)\n\nwhat do you think?",
+      "revId": "9968f9b780e99c73be1c35b481bfba35c0573ef3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
