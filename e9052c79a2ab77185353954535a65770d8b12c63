@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "065087f7_4f62bc35",
+        "filename": "telemetry/telemetry/internal/browser/possible_browser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-11-30T09:24:21Z",
+      "side": 1,
+      "message": "All sub-classes eventually define a `self._platform`, probably this is something that should be taken as an argument in the `PossibleBowser` constructor and populated then (rather than passing `platform` as an argument here)?\n\nand nit: maybe call this ClearCaches (as it clears both Dns and SystemCache-thingies); also add a docstring.",
+      "revId": "e9052c79a2ab77185353954535a65770d8b12c63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
