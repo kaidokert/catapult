@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1f289fbd_de9dc753",
+        "filename": "telemetry/telemetry/core/cache_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-30T15:25:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0be17336_4d543982",
+      "range": {
+        "startLine": 15,
+        "startChar": 2,
+        "endLine": 15,
+        "endChar": 7
+      },
+      "revId": "60c4e9dc23d67694f57093b3dd66a65a7f8eca2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "054991df_663bfbbf",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2017-11-30T14:59:33Z",
       "side": 1,
       "message": "Not sure which style you are following in catapult, but I thought I\u0027d still put a comment about a comment (i.e. my favorite).\n\nTODO(nednguyen)",
+      "range": {
+        "startLine": 134,
+        "startChar": 6,
+        "endLine": 134,
+        "endChar": 10
+      },
+      "revId": "60c4e9dc23d67694f57093b3dd66a65a7f8eca2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd11eecd_d26100aa",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-11-30T15:25:32Z",
+      "side": 1,
+      "message": "THe preferred comment style is TODO(bug number) if the TODO need more context. TODO with ldap don\u0027t work well in practice because by the time someone has bandwidth to do this, the person with ldap might no longer with on the project :-)",
+      "parentUuid": "054991df_663bfbbf",
       "range": {
         "startLine": 134,
         "startChar": 6,
