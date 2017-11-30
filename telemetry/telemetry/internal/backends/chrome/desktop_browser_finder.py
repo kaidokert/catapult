@@ -9,6 +9,7 @@ import sys
 
 import dependency_manager  # pylint: disable=import-error
 
+from telemetry.core import cache_utils
 from telemetry.core import exceptions
 from telemetry.core import platform as platform_module
 from telemetry.internal.backends.chrome import desktop_browser_backend
@@ -66,10 +67,20 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
       try:
         returned_browser = None
 
+        browser_options = finder_options.browser_options
         browser_backend = desktop_browser_backend.DesktopBrowserBackend(
             self._platform_backend,
-            finder_options.browser_options, self._local_executable,
+            browser_options, self._local_executable,
             self._flash_path, self._is_content_shell, self._browser_directory)
+
+        # TODO: consider migrating profile_directory & browser_directory out of
+        # browser_backend so we don't have to rely on creating browser_backend
+        # before clearing browser caches.
+        cache_utils.ClearCaches(
+            self._platform,
+            browser_options.clear_sytem_cache_for_browser_and_profile_on_start,
+            browser_backend.profile_directory,
+            browser_backend.browser_directory)
 
         returned_browser = browser.Browser(
             browser_backend, self._platform_backend)

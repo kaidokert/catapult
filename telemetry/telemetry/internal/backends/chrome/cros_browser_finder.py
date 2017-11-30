@@ -5,6 +5,7 @@
 
 import logging
 
+from telemetry.core import cache_utils
 from telemetry.core import cros_interface
 from telemetry.core import platform as platform_module
 from telemetry.internal.backends.chrome import cros_browser_backend
@@ -43,6 +44,16 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
     browser_backend = cros_browser_backend.CrOSBrowserBackend(
         self._platform_backend, browser_options, self._platform_backend.cri,
         self._is_guest)
+
+    # TODO: consider migrating profile_directory & browser_directory out of
+    # browser_backend so we don't have to rely on creating browser_backend
+    # before clearing browser caches.
+    cache_utils.ClearCaches(
+        self._platform,
+        browser_options.clear_sytem_cache_for_browser_and_profile_on_start,
+        browser_backend.profile_directory,
+        browser_backend.browser_directory)
+
     if browser_options.create_browser_with_oobe:
       return cros_browser_with_oobe.CrOSBrowserWithOOBE(
           browser_backend, self._platform_backend)

@@ -13,6 +13,7 @@ from py_utils import dependency_util
 from devil import base_error
 from devil.android import apk_helper
 
+from telemetry.core import cache_utils
 from telemetry.core import exceptions
 from telemetry.core import platform
 from telemetry.core import util
@@ -124,9 +125,20 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
 
   def Create(self, finder_options):
     self._InitPlatformIfNeeded()
+
+    browser_options = finder_options.browser_options
+
     browser_backend = android_browser_backend.AndroidBrowserBackend(
-        self._platform_backend,
-        finder_options.browser_options, self._backend_settings)
+        self._platform_backend, browser_options, self._backend_settings)
+
+    # TODO: consider migrating profile_directory & browser_directory out of
+    # browser_backend so we don't have to rely on creating browser_backend
+    # before clearing browser caches.
+    cache_utils.ClearCaches(
+        self._platform,
+        browser_options.clear_sytem_cache_for_browser_and_profile_on_start,
+        browser_backend.profile_directory,
+        browser_backend.browser_directory)
     try:
       return browser.Browser(
           browser_backend, self._platform_backend)
