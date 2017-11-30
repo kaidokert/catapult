@@ -16,6 +16,29 @@
       "revId": "e9052c79a2ab77185353954535a65770d8b12c63",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1da6f72a_bc891f2a",
+        "filename": "telemetry/telemetry/internal/browser/possible_browser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2017-11-30T13:27:29Z",
+      "side": 1,
+      "message": "+1 for nit ClearCaches().\n\nQuestion: what are the reasons for clearing caches at PossibleBrowser creation? We want to do it in some stories anyway. Is this for predictability?\n\nSuggestion: @staticmethod or gust a global function? Since we are only delegating work to |platform| here, I don\u0027t see value in the flexibility to override this method in descendants. On the negative side, it adds an indirection which complicates reading the code.",
+      "range": {
+        "startLine": 56,
+        "startChar": 6,
+        "endLine": 56,
+        "endChar": 16
+      },
+      "revId": "e9052c79a2ab77185353954535a65770d8b12c63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
