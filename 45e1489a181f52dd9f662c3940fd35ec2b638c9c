@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "145c568f_6b42b32f",
+        "filename": "dashboard/docs/data-format.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-11-30T21:07:46Z",
+      "side": 1,
+      "message": "Rather than adding this load_times chart, can you just add units to the warm_times values above, and std to just one of them (to show that it\u0027s optional)?",
+      "revId": "45e1489a181f52dd9f662c3940fd35ec2b638c9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "467ca5eb_466bca14",
+        "filename": "dashboard/docs/data-format.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-11-30T21:07:46Z",
+      "side": 1,
+      "message": "This is not quite right. It\u0027s not that something magical happens for singleton lists, but rather just that we will use std if provided, or compute it if not. So instead of this sentence, you probably want to say:\n\nLists of scalar values can optionally specify the \u0027std\u0027 field, which will be used as the standard deviation by the dashboard. If \u0027std\u0027 is omitted, the dashboard will compute the standard deviation.",
+      "revId": "45e1489a181f52dd9f662c3940fd35ec2b638c9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
