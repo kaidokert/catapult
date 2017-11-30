@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5fd94ea2_d4314188",
+        "filename": "common/py_utils/py_utils/expectations_parser_unittest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-11-30T20:24:01Z",
+      "side": 1,
+      "message": "In line w/ http://bit.ly/2zQokz7, I\u0027d recommend moving the tests that use an internal API (_ParseExpectationLine) to instead via the public APIs of the class if possible, like above",
+      "range": {
+        "startLine": 77,
+        "startChar": 15,
+        "endLine": 77,
+        "endChar": 36
+      },
+      "revId": "04b01498dddc093011e7e7be34240657082f4dc7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
