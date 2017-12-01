@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0f34f35d_7ade796f",
+        "filename": "common/py_utils/py_utils/expectations_parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-12-01T22:28:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63724b46_8f2bffbd",
+      "revId": "452b9d29e383491fe585bd781bb8f276ed77a29d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "52f6b778_1f15312f",
         "filename": "common/py_utils/py_utils/expectations_parser.py",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2017-12-01T22:21:09Z",
       "side": 1,
       "message": "Should we also assert the possible values of results? e.g:\n\nfor r in results:\n  if r not in _RESULT_VALUES:\n     raise ValueError(\u0027Unsupported result type: %s\u0027 % r)",
+      "revId": "452b9d29e383491fe585bd781bb8f276ed77a29d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "123f2956_85018ced",
+        "filename": "common/py_utils/py_utils/expectations_parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-12-01T22:28:17Z",
+      "side": 1,
+      "message": "I was assuming TADA would do their own validation. Unless we can get a list of valid results from them (which we might in the future) I wouldn\u0027t want to do this since they could add new results, and if we dont add them here it could cause failures.",
+      "parentUuid": "52f6b778_1f15312f",
       "revId": "452b9d29e383491fe585bd781bb8f276ed77a29d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
