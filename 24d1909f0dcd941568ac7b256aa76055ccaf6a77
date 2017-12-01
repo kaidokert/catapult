@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "97b7359c_c4fb63ef",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-12-01T17:09:14Z",
+      "side": 1,
+      "message": "I just want to make sure I understand how you want this to act. \n\nIt currently acts as a hybrid, merging the old and new ways. This method will most likely eventually be moved completely into the constructor when we no longer use the old way anywhere. I just have it separate now because it is cleaner and I think will make the refactor easier. I can add a comment that lays this out clearly, since my intentions aren\u0027t obvious there.\n\nYou are suggesting that instead I have it completely overwrite anything done in the real constructor, making it a new constructor that the user can use? That would mean we would have to have the consumer (story_runner.py) know when to use which method. This means we have to convert it all over at once; and since it requires both chromium and catapult changes that might be tricky. \n\nOr are you suggesting that I just change the api to take different arguments and the hybrid approach is still ok to use?",
+      "parentUuid": "2eb20e64_d862c8cb",
+      "revId": "24d1909f0dcd941568ac7b256aa76055ccaf6a77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d015de3c_a5c56223",
         "filename": "telemetry/telemetry/story/expectations.py",
         "patchSetId": 1
