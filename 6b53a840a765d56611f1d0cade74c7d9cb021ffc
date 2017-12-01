@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c1d7b48a_d55efb76",
+        "filename": "telemetry/telemetry/story/expectations_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-01T18:12:22Z",
+      "side": 1,
+      "message": "In general, try avoid asserting on private member (as those are implementation details \u0026 can be expected to change more often).\n\nFor _exepectation, you can assert using AsDict() method instead.\nFor _frozen, you don\u0027t need to assert it in every test. You just need one test which shows that trying call anything that may modify expectation data after GetBenchmarkExpectationsFromParser() invoked will throw exception.",
+      "revId": "6b53a840a765d56611f1d0cade74c7d9cb021ffc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
