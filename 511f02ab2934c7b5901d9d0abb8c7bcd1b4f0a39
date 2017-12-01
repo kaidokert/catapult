@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8da7f10b_dd519616",
+        "filename": "telemetry/telemetry/internal/results/json_3_output_formatter_unittest.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-01T16:01:19Z",
+      "side": 1,
+      "message": "nit: don\u0027t forget to remove.",
+      "revId": "511f02ab2934c7b5901d9d0abb8c7bcd1b4f0a39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
