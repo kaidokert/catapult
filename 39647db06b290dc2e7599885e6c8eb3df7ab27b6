@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "bac4291b_20389f73",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-12-01T20:58:18Z",
+      "side": 1,
+      "message": "My high-level thought here: it feels wrong for StoryExpectations to know anything about how the expectations are passed in (in this case, from the parser), and the fact that we have \"GetBenchmarkExpectationsFromParser\" feels like we\u0027re running into a leaky abstraction here. \n\nIt made sense before that there was no way to set a benchmark\u0027s _expectations field from outside of the benchmark because it was expected that each benchmark would define its own GetExpectations() method internally. However, now that an external thing is responsible for controlling the expectations, it seems like we need some glue code that\u0027s extracting the expectations from the parser and assigning them to the benchmarks. nednguyen@google.com, do you agree? Do you have any feeling on where this code should go?",
+      "revId": "39647db06b290dc2e7599885e6c8eb3df7ab27b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9a7586f8_bf874e75",
         "filename": "telemetry/telemetry/story/expectations.py",
         "patchSetId": 6
@@ -13,6 +30,29 @@
       "writtenOn": "2017-12-01T20:06:43Z",
       "side": 1,
       "message": "I\u0027m debating if this should be changed to be:\n\nstr(condition): condition.\n\nIt decreases the readability since you\u0027ll have to figure out what the str evaluates to, but would make it less prone to breakage. \n\nBut there could also just be a comment after each saying what the str evaluates to:\nstr(ALL): ALL, # All_Platforms\n\n\nThoughts?",
+      "range": {
+        "startLine": 332,
+        "startChar": 5,
+        "endLine": 332,
+        "endChar": 18
+      },
+      "revId": "39647db06b290dc2e7599885e6c8eb3df7ab27b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af870c56_4be1db3f",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-12-01T20:58:18Z",
+      "side": 1,
+      "message": "My vote is to strip the \"_Platforms\" suffix from each of these, unless there\u0027s something that I\u0027m missing: I think \"Mac\" is as understandable as \"Mac_Platforms\", more concise, and more in line w/ what we\u0027ve used historically",
       "range": {
         "startLine": 332,
         "startChar": 5,
