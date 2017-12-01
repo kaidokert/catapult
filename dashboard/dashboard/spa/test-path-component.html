@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="/dashboard/spa/dropdown-input.html">
+<link rel="import" href="/tracing/value/ui/histogram_set_view.html">
+
+<dom-module id="test-path-component">
+  <template>
+    <style>
+    </style>
+
+    <dropdown-input placeholder="[[placeholder]]"
+                    input-value="[[inputValue]]"
+                    selected-options="[[selectedOptions]]"
+                    options="[[options]]"
+                    is-focused="[[isFocused]]"
+                    on-input-focus="onFocus_"
+                    on-input-blur="onBlur_"
+                    on-input-keydown="onKeydown_"
+                    on-clear="onClear_"
+                    on-option-select="onSelect_">
+    </dropdown-input>
+
+    <paper-checkbox id="aggregate"
+                    disabled$="[[!multipleSelectedOptions]]"
+                    checked="[[isAggregated]]"
+                    hidden$="[[!canAggregate]]"
+                    on-change="onAggregateChange_">
+      Aggregate
+    </paper-checkbox>
+  </template>
+</dom-module>
+
+<script src="/dashboard/spa/test-path-component.js"></script>
