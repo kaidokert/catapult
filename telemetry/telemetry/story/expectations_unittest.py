@@ -515,3 +515,152 @@ class StoryExpectationsTest(unittest.TestCase):
     e = FooExpectations()
     s = MockStorySet([MockStory('good_name')])
     self.assertEqual(e.GetBrokenExpectations(s), [])
+
+  def testGetBenchmarkExpectationsFromParserNoBenchmarkMatch(self):
+    raw_data = [{
+        'reason': 'crbug.com/12345',
+        'test': 'benchmark2/story',
+        'conditions': ['All_Platforms'],
+        'results': ['Skip']
+    }]
+    e = expectations.StoryExpectations()
+    e.GetBenchmarkExpectationsFromParser(raw_data, 'benchmark1')
+    actual = e.AsDict()
+    expected = {'platforms': (), 'stories': {}}
+    self.assertEqual(actual, expected)
+
+  @staticmethod
+  def _ConvertTestConditionsToStrings(e):
+    for story in e['stories']:
+      for index in range(0, len(e['stories'][story])):
+        conditions, reason = e['stories'][story][index]
+        conditions = [str(c) for c in conditions]
+        e['stories'][story][index] = (conditions, reason)
+    return e
+
+  def testGetBenchmarkExpectationsFromParserOneCondition(self):
+    raw_data = [{
+        'reason': 'crbug.com/12345',
+        'test': 'benchmark1/story',
+        'conditions': ['All_Platforms'],
+        'results': ['Skip']
+    }]
+    e = expectations.StoryExpectations()
+    e.GetBenchmarkExpectationsFromParser(raw_data, 'benchmark1')
+    actual = self._ConvertTestConditionsToStrings(e.AsDict())
+    expected = {
+        'platforms': (),
+        'stories': {
+            'story': [(['All_Platforms'], 'crbug.com/12345')],
+        }
+    }
+    self.assertEqual(actual, expected)
+
+  def testGetBenchmarkExpectationsFromParserMultipleConditions(self):
+    raw_data = [{
+        'reason': 'crbug.com/23456',
+        'test': 'benchmark1/story',
+        'conditions': ['Win_Platforms', 'Mac_Platforms'],
+        'results': ['Skip']
+    }]
+    e = expectations.StoryExpectations()
+    e.GetBenchmarkExpectationsFromParser(raw_data, 'benchmark1')
+    actual = self._ConvertTestConditionsToStrings(e.AsDict())
+    expected = {
+        'platforms': (),
+        'stories': {
+            'story': [(['Win_Platforms+Mac_Platforms'], 'crbug.com/23456')],
+        }
+    }
+    self.assertEqual(actual, expected)
+
+  def testGetBenchmarkExpectationsFromParserMultipleDisablesDifBenchmarks(self):
+    raw_data = [
+        {
+            'reason': 'crbug.com/123',
+            'test': 'benchmark1/story',
+            'conditions': ['Win_Platforms', 'Mac_Platforms'],
+            'results': ['Skip']
+        },
+        {
+            'reason': 'crbug.com/234',
+            'test': 'benchmark1/story2',
+            'conditions': ['Win_Platforms'],
+            'results': ['Skip']
+        },
+        {
+            'reason': 'crbug.com/345',
+            'test': 'benchmark2/story',
+            'conditions': ['Mac_Platforms'],
+            'results': ['Skip']
+        }]
+    e = expectations.StoryExpectations()
+    e.GetBenchmarkExpectationsFromParser(raw_data, 'benchmark1')
+
+    actual = self._ConvertTestConditionsToStrings(e.AsDict())
+    expected = {
+        'platforms': (),
+        'stories': {
+            'story': [(['Win_Platforms+Mac_Platforms'], 'crbug.com/123')],
+            'story2': [(['Win_Platforms'], 'crbug.com/234')]
+        }
+    }
+    self.assertEqual(actual, expected)
+
+  def testGetBenchmarkExpectationsFromParserMultipleDisablesSameBenchmark(
+      self):
+    raw_data = [
+        {
+            'reason': 'crbug.com/123',
+            'test': 'benchmark1/story',
+            'conditions': ['Win_Platforms'],
+            'results': ['Skip']
+        },
+        {
+            'reason': 'crbug.com/234',
+            'test': 'benchmark2/story2',
+            'conditions': ['Win_Platforms'],
+            'results': ['Skip']
+        },
+        {
+            'reason': 'crbug.com/345',
+            'test': 'benchmark1/story',
+            'conditions': ['Mac_Platforms'],
+            'results': ['Skip']
+        }]
+    e = expectations.StoryExpectations()
+    e.GetBenchmarkExpectationsFromParser(raw_data, 'benchmark1')
+    actual = self._ConvertTestConditionsToStrings(e.AsDict())
+    expected = {
+        'platforms': (),
+        'stories': {
+            'story': [
+                (['Win_Platforms'], 'crbug.com/123'),
+                (['Mac_Platforms'], 'crbug.com/345'),
+            ],
+        }
+    }
+    self.assertEqual(actual, expected)
+
+  def testGetBenchmarkExpectationsFromParserUnmappedTag(self):
+    raw_data = [{
+        'reason': 'crbug.com/23456',
+        'test': 'benchmark1/story',
+        'conditions': ['Unmapped_Tag'],
+        'results': ['Skip']
+    }]
+    e = expectations.StoryExpectations()
+    with self.assertRaises(KeyError):
+      e.GetBenchmarkExpectationsFromParser(raw_data, 'benchmark1')
+
+  def testGetBenchmarkExpectationsFromParserRefreeze(self):
+    raw_data = [{
+        'reason': 'crbug.com/23456',
+        'test': 'benchmark1/story',
+        'conditions': ['All_Platforms'],
+        'results': ['Skip']
+    }]
+    e = expectations.StoryExpectations()
+    e.GetBenchmarkExpectationsFromParser(raw_data, 'benchmark1')
+    with self.assertRaises(AssertionError):
+      e.DisableStory('story', [], 'reason')
