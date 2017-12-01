@@ -266,6 +266,7 @@ class Json3OutputFormatterTest(unittest.TestCase):
     results.PrintSummary()
     results.CloseOutputFormatters()
 
+    print tempfile_dir
     tempfile_name = os.path.join(tempfile_dir, 'test-results.json')
     with open(tempfile_name) as f:
       json_test_results = json.load(f)
