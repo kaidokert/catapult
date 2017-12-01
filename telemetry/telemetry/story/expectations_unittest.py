@@ -4,6 +4,7 @@
 
 import unittest
 
+from py_utils import expectations_parser
 from telemetry.story import expectations
 from telemetry.testing import fakes
 
@@ -515,3 +516,98 @@ class StoryExpectationsTest(unittest.TestCase):
     e = FooExpectations()
     s = MockStorySet([MockStory('good_name')])
     self.assertEqual(e.GetBrokenExpectations(s), [])
+
+  def testGetBenchmarkExpectationsFromParserNoBenchmark(self):
+    raw_data = """# tags: All_Platforms
+crbug.com/12345 [ All_Platforms ] benchmark2/story [ Skip ]
+"""
+    with self.assertRaises(ValueError):
+      expectations.StoryExpectations(expectations_data=raw_data)
+
+  def testGetBenchmarkExpectationsFromParserNoBenchmarkMatch(self):
+    raw_data = """# tags: All_Platforms
+crbug.com/12345 [ All_Platforms ] benchmark2/story [ Skip ]
+"""
+    e = expectations.StoryExpectations(
+        expectations_data=raw_data, benchmark='benchmark1')
+    self.assertDictEqual(e._expectations, {})
+
+  def testGetBenchmarkExpectationsFromParserOneCondition(self):
+    raw_data = """# tags: All_Platforms
+crbug.com/12345 [ All_Platforms ] benchmark1/story [ Skip ]
+"""
+    e = expectations.StoryExpectations(
+        expectations_data=raw_data, benchmark='benchmark1')
+    self.assertEqual(len(e._expectations), 1)
+    c, r = e._expectations['story'][0]
+    self.assertEqual(r, 'crbug.com/12345')
+    self.assertEqual(str(c[0]), 'All_Platforms')
+
+
+  def testGetBenchmarkExpectationsFromParserMultipleConditions(self):
+    raw_data = """# tags: Win_Platforms Mac_Platforms
+crbug.com/23456 [ Win_Platforms Mac_Platforms ] benchmark1/story [ Skip ]
+"""
+    e = expectations.StoryExpectations(
+        expectations_data=raw_data, benchmark='benchmark1')
+    self.assertEqual(len(e._expectations), 1)
+    c, r = e._expectations['story'][0]
+    self.assertEqual(r, 'crbug.com/23456')
+    self.assertEqual(str(c[0]), 'Win_Platforms+Mac_Platforms')
+
+  def testGetBenchmarkExpectationsFromParserMissingTag(self):
+    raw_data = """# tags: Win_Platforms
+crbug.com/23456 [ Win_Platforms Mac_Platforms ] benchmark1/story [ Skip ]
+"""
+    with self.assertRaises(expectations_parser.ParseError):
+      expectations.StoryExpectations(
+          expectations_data=raw_data, benchmark='benchmark1')
+
+  def testGetBenchmarkExpectationsFromParserMultipleDisablesDifBenchmarks(self):
+    raw_data = """# tags: Win_Platforms Mac_Platforms
+crbug.com/123 [ Win_Platforms Mac_Platforms ] benchmark1/story [ Skip ]
+crbug.com/234 [ Win_Platforms ] benchmark1/story2 [ Skip ]
+crbug.com/345 [ Mac_Platforms ] benchmark2/story [ Skip ]
+"""
+    e = expectations.StoryExpectations(
+        expectations_data=raw_data, benchmark='benchmark1')
+    self.assertEqual(len(e._expectations), 2)
+    # crbug.com/123 [ Win_Platforms Mac_Platforms ] benchmark1/story [ Skip ]
+    c, r = e._expectations['story'][0]
+    self.assertEqual(r, 'crbug.com/123')
+    self.assertEqual(str(c[0]), 'Win_Platforms+Mac_Platforms')
+    # crbug.com/234 [ Win_Platforms ] benchmark1/story2 [ Skip ]
+    c, r = e._expectations['story2'][0]
+    self.assertEqual(r, 'crbug.com/234')
+    self.assertEqual(str(c[0]), 'Win_Platforms')
+    # benchmark2 entry should be skipped since benchmark doesn't match.
+
+  def testGetBenchmarkExpectationsFromParserMultipleDisablesSameBenchmark(
+      self):
+    raw_data = """# tags: Win_Platforms Mac_Platforms
+crbug.com/123 [ Win_Platforms ] benchmark1/story [ Skip ]
+crbug.com/234 [ Win_Platforms ] benchmark2/story2 [ Skip ]
+crbug.com/345 [ Mac_Platforms ] benchmark1/story [ Skip ]
+"""
+    e = expectations.StoryExpectations(
+        expectations_data=raw_data, benchmark='benchmark1')
+    self.assertEqual(len(e._expectations), 1)
+    # crbug.com/123 [ Win_Platforms ] benchmark1/story [ Skip ]
+    c, r = e._expectations['story'][0]
+    self.assertEqual(r, 'crbug.com/123')
+    self.assertEqual(str(c[0]), 'Win_Platforms')
+    # crbug.com/234 [ Win_Platforms ] benchmark1/story [ Skip ]
+    c, r = e._expectations['story'][1]
+    self.assertEqual(r, 'crbug.com/345')
+    self.assertEqual(str(c[0]), 'Mac_Platforms')
+    # benchmark2 entry should be skipped since benchmark doesn't match.
+
+  def testGetBenchmarkExpectationsFromParserUnmappedTag(self):
+    raw_data = """# tags: Unmapped_Tag
+crbug.com/23456 [ Unmapped_Tag ] benchmark1/story [ Skip ]
+"""
+    with self.assertRaises(KeyError):
+      expectations.StoryExpectations(
+          expectations_data=raw_data, benchmark='benchmark1')
+
+
