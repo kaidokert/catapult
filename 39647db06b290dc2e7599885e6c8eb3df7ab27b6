@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a7586f8_bf874e75",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-12-01T20:06:43Z",
+      "side": 1,
+      "message": "I\u0027m debating if this should be changed to be:\n\nstr(condition): condition.\n\nIt decreases the readability since you\u0027ll have to figure out what the str evaluates to, but would make it less prone to breakage. \n\nBut there could also just be a comment after each saying what the str evaluates to:\nstr(ALL): ALL, # All_Platforms\n\n\nThoughts?",
+      "range": {
+        "startLine": 332,
+        "startChar": 5,
+        "endLine": 332,
+        "endChar": 18
+      },
+      "revId": "39647db06b290dc2e7599885e6c8eb3df7ab27b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
