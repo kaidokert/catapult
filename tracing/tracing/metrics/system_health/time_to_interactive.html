@@ -144,8 +144,20 @@ tr.exportTo('tr.metrics.sh', function() {
     let mainThreadQuietWindowStart = searchBegin;
     let fciCandidate = undefined;
     let activeRequests = 0;
+    let maxNetworkQuietDuration = undefined;
 
     for (const endpoint of endpoints) {
+      if (networkQuietWindowStart !== undefined && endpoint.type === ENDPOINT_TYPES.REQUEST_END) {
+        const quietDurationSinceLastBusy = Math.min(
+            endpoint.time - networkQuietWindowStart,
+            endpoint.time - mainThreadQuietWindowStart);
+        if (!maxNetworkQuietDuration ||
+            maxNetworkQuietDuration < quietDurationSinceLastBusy &&
+            quietDurationSinceLastBusy >= 0) {
+          maxNetworkQuietDuration = quietDurationSinceLastBusy;
+        }
+      }
+
       if (reachedTTIQuiscence_(endpoint.time,
           networkQuietWindowStart, mainThreadQuietWindowStart)) {
         fciCandidate = mainThreadQuietWindowStart;
@@ -183,9 +195,12 @@ tr.exportTo('tr.metrics.sh', function() {
       fciCandidate = mainThreadQuietWindowStart;
     }
 
-    if (fciCandidate === undefined) return undefined;
+    if (fciCandidate === undefined) 
+      return {interativeTime: undefined,
+          maxNetworkQuietDuration: maxNetworkQuietDuration};
 
-    return Math.max(fciCandidate, domContentLoadedEnd);
+    return {interactiveTime: Math.max(fciCandidate, domContentLoadedEnd),
+        maxNetworkQuietDuration: maxNetworkQuietDuration};
   }
 
   /**
