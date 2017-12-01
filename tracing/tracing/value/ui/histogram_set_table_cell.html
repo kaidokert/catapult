@@ -109,6 +109,9 @@ tr.exportTo('tr.v.ui', function() {
       this.histogramSpan_ = undefined;
       this.overviewChart_ = undefined;
       this.mwuResult_ = undefined;
+      this.attachedPromise_ = new Promise(resolve => {
+        this.resolveAttachedPromise_ = resolve;
+      });
     },
 
     ready() {
@@ -116,12 +119,16 @@ tr.exportTo('tr.v.ui', function() {
     },
 
     attached() {
+      this.resolveAttachedPromise_();
       if (this.row) {
         this.row.rootViewState.addUpdateListener(this.rootListener_);
       }
     },
 
     detached() {
+      this.attachedPromise_ = new Promise(resolve => {
+        this.resolveAttachedPromise_ = resolve;
+      });
       this.row.rootViewState.removeUpdateListener(this.rootListener_);
       // Don't need to removeUpdateListener for the row and cells; their
       // lifetimes are the same as |this|.
@@ -138,7 +145,7 @@ tr.exportTo('tr.v.ui', function() {
           this.row.rootViewState.alpha);
     },
 
-    build(row, displayLabel, viewState) {
+    async build(row, displayLabel, viewState) {
       this.row_ = row;
       this.displayLabel_ = displayLabel;
       this.viewState_ = viewState;
@@ -154,6 +161,8 @@ tr.exportTo('tr.v.ui', function() {
       if (this.isAttached) {
         this.row.rootViewState.addUpdateListener(this.rootListener_);
       }
+
+      await this.attachedPromise_;
 
       this.updateMwu_();
 
@@ -213,11 +222,11 @@ tr.exportTo('tr.v.ui', function() {
       // building the table.
       if (open && this.histogramSpan_ === undefined) {
         this.histogramSpan_ = document.createElement('tr-v-ui-histogram-span');
+        this.$.histogram.appendChild(this.histogramSpan_);
         this.histogramSpan_.viewState = this.viewState;
         this.histogramSpan_.rowState = this.row.viewState;
         this.histogramSpan_.rootState = this.row.rootViewState;
         this.histogramSpan_.build(this.histogram, this.referenceHistogram);
-        this.$.histogram.appendChild(this.histogramSpan_);
       }
 
       this.viewState.isOpen = open;

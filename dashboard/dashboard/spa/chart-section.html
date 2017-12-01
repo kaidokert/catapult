@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/bower_components/paper-button/paper-button.html">
+<link rel="import" href="/dashboard/spa/line-chart.html">
+<link rel="import" href="/dashboard/spa/chart-placeholder.html">
+<link rel="import" href="/dashboard/spa/test-path-component.html">
+<link rel="import" href="/tracing/value/ui/histogram_set_view.html">
+
+<dom-module id="chart-section">
+  <template>
+    <style>
+      #controls {
+        display: flex;
+        margin-bottom: 1em;
+      }
+
+      test-path-component {
+        margin-right: 1em;
+      }
+
+      #loading_spinner {
+        visibility: hidden;
+      }
+
+      #loading_spinner[active] {
+        visibility: visible;
+      }
+
+      #spacer {
+        flex-grow: 1;
+      }
+
+      #description {
+        margin-bottom: 1em;
+      }
+
+      #minimap, #chart {
+        width: 100%;
+      }
+
+      #toggle_chart_only {
+        display: block;
+        min-width: 0;
+        padding: 8px;
+        margin: 0;
+      }
+
+      #close {
+        flex-shrink: 0;
+      }
+
+      #chart_container {
+        display: flex;
+        height: 290px;
+      }
+
+      #chart_container div {
+        flex-grow: 1;
+        margin-right: 1em;
+      }
+
+      #histograms {
+        max-height: 290px;
+        overflow-y: auto;
+      }
+    </style>
+
+    <div id="controls">
+      <dom-if if="[[!onlyChart]]">
+        <template>
+          <dom-repeat items="[[testPathComponents]]">
+            <template>
+              <test-path-component section-id="[[sectionId]]"
+                                   component-index="[[index]]">
+              </test-path-component>
+            </template>
+          </dom-repeat>
+        </template>
+      </dom-if>
+
+      <paper-spinner id="loading_spinner"
+                     active$="[[isLoading]]">
+      </paper-spinner>
+
+      <span id="spacer">&nbsp;</span>
+
+      <paper-button id="toggle_chart_only"
+                    on-tap="toggleChartOnly_">
+        <dom-if if="[[onlyChart]]">
+          <template>
+            <iron-icon icon="expand-more">
+            </iron-icon>
+          </template>
+        </dom-if>
+        <dom-if if="[[!onlyChart]]">
+          <template>
+            <iron-icon icon="expand-less">
+            </iron-icon>
+          </template>
+        </dom-if>
+      </paper-button>
+
+      <paper-icon-button id="close"
+                         icon="close"
+                         on-tap="closeSection_">
+      </paper-icon-button>
+    </div>
+
+    <div id="description">
+      <dom-if if="[[!onlyChart]]">
+        <template>
+          [[testSuiteDescription]]
+        </template>
+      </dom-if>
+    </div>
+
+    <div id="chart_container">
+      <div>
+        <dom-if if="[[chartLayout]]">
+          <template>
+            <dom-if if="[[!onlyChart]]">
+              <template>
+                <line-chart id="minimap"
+                            layout="[[minimapLayout]]"
+                            on-brush-handle-down="onMinimapBrushHandleDown_"
+                            on-brush-handle-move="onMinimapBrushHandleMove_"
+                            on-brush-handle-up="onMinimapBrushHandleUp_">
+                </line-chart>
+              </template>
+            </dom-if>
+
+            <line-chart id="chart"
+                        layout="[[chartLayout]]"
+                        on-dot-click="onDotClick_"
+                        on-dot-mouseover="onDotMouseOver_"
+                        on-dot-mouseout="onDotMouseOut_"
+                        on-brush-handle-down="onBrushHandleDown_"
+                        on-brush-handle-move="onBrushHandleMove_"
+                        on-brush-handle-up="onBrushHandleUp_">
+            </line-chart>
+          </template>
+        </dom-if>
+
+        <dom-if if="[[!chartLayout]]">
+          <template>
+            <chart-placeholder>
+            </chart-placeholder>
+          </template>
+        </dom-if>
+      </div>
+
+      <dom-if if="[[!onlyChart]]">
+        <template>
+          <dom-if if="[[!_empty(histograms)]]">
+            <template>
+              <tr-v-ui-histogram-set-view id="histograms"
+                                          histograms="[[histograms]]">
+              </tr-v-ui-histogram-set-view>
+            </template>
+          </dom-if>
+        </template>
+      </dom-if>
+    </div>
+    <!-- TODO related sparklines tabs -->
+  </template>
+</dom-module>
+
+<script src="/dashboard/spa/chart-section.js"></script>
