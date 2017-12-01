@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0109daf5_b8bc4fb5",
+        "filename": "common/py_utils/py_utils/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-12-01T22:49:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e90b00bf_dec7e502",
+      "range": {
+        "startLine": 20,
+        "startChar": 26,
+        "endLine": 20,
+        "endChar": 29
+      },
+      "revId": "ce983ee9e5fa803fac25540a99255737a5f0c1cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4a4727df_32888e90",
         "filename": "common/py_utils/py_utils/expectations_parser_unittest.py",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "ce983ee9e5fa803fac25540a99255737a5f0c1cb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c331b27_80dd6cdf",
+        "filename": "common/py_utils/py_utils/expectations_parser_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-12-01T22:49:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a4727df_32888e90",
+      "range": {
+        "startLine": 13,
+        "startChar": 2,
+        "endLine": 18,
+        "endChar": 62
+      },
+      "revId": "ce983ee9e5fa803fac25540a99255737a5f0c1cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
