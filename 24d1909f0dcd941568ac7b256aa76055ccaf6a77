@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "25f82320_10ce771c",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-01T17:19:40Z",
+      "side": 1,
+      "message": "I see. I was thinking that we can keep the constructor as simple as possible for unittesting purpose, it\u0027s so that we can test this class without needing to create expectation string in the future. For this \"primitive\" constructor, probably all we need are the expectation_dict \u0026 disabled_platforms as params.\n\nThen we add another constructor (a factory method) to create Expectation class from expectation string \u0026 benchmark name. This is the one would be used by our productionized code to create Expectations instance.",
+      "parentUuid": "97b7359c_c4fb63ef",
+      "revId": "24d1909f0dcd941568ac7b256aa76055ccaf6a77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d015de3c_a5c56223",
         "filename": "telemetry/telemetry/story/expectations.py",
         "patchSetId": 1
