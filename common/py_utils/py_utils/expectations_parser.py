@@ -10,6 +10,34 @@ class ParseError(Exception):
   pass
 
 
+class Expectation(object):
+  def __init__(self, reason, test, conditions, results):
+    assert isinstance(reason, basestring) or reason is None
+    self._reason = reason
+    assert isinstance(test, basestring)
+    self._test = test
+    assert isinstance(conditions, list)
+    self._conditions = conditions
+    assert isinstance(results, list)
+    self._results = results
+
+  @property
+  def reason(self):
+    return self._reason
+
+  @property
+  def test(self):
+    return self._test
+
+  @property
+  def conditions(self):
+    return self._conditions
+
+  @property
+  def results(self):
+    return self._results
+
+
 class TestExpectationParser(object):
   """Parse expectations file.
 
@@ -76,13 +104,7 @@ class TestExpectationParser(object):
         raise ParseError(
             'Condition %s not found in expectations tag data. Line %d'
             % (c, line_number))
-
-    return {
-        'reason': reason,
-        'test': test,
-        'conditions': conditions,
-        'results': [r for r in results.split()]
-    }
+    return Expectation(reason, test, conditions, [r for r in results.split()])
 
   @property
   def expectations(self):
