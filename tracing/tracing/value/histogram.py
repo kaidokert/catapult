@@ -398,6 +398,9 @@ class Breakdown(diagnostic.Diagnostic):
     for name, value in self._values.iteritems():
       yield name, value
 
+  def __len__(self):
+    return len(self._values)
+
 
 # A GenericSet diagnostic can contain any Plain-Ol'-Data objects that can be
 # serialized using json.dumps(): None, boolean, number, string, list, dict.
@@ -561,6 +564,9 @@ class RelatedNameMap(diagnostic.Diagnostic):
   def __iter__(self):
     for key, name in self._map.iteritems():
       yield key, name
+
+  def __len__(self):
+    return len(self._map)
 
   def Values(self):
     return self._map.values()
