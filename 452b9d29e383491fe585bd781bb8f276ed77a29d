@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "63724b46_8f2bffbd",
+        "filename": "common/py_utils/py_utils/expectations_parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-01T22:21:09Z",
+      "side": 1,
+      "message": "Can you document the fields?\ne.g:\n\nresults: list of results string, e.g: [\u0027Skip\u0027, \u0027Pass\u0027, ...]",
+      "revId": "452b9d29e383491fe585bd781bb8f276ed77a29d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52f6b778_1f15312f",
+        "filename": "common/py_utils/py_utils/expectations_parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-01T22:21:09Z",
+      "side": 1,
+      "message": "Should we also assert the possible values of results? e.g:\n\nfor r in results:\n  if r not in _RESULT_VALUES:\n     raise ValueError(\u0027Unsupported result type: %s\u0027 % r)",
+      "revId": "452b9d29e383491fe585bd781bb8f276ed77a29d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
