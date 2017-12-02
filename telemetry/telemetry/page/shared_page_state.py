@@ -169,8 +169,7 @@ class SharedPageState(story_module.SharedState):
 
     Subclasses may override this method to change this behavior.
     """
-    del story
-    return self.platform.GetOSName() != 'chromeos'
+    return False
 
   @property
   def platform(self):
