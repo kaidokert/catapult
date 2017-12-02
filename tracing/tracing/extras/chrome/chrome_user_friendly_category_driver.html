@@ -190,7 +190,7 @@ tr.exportTo('tr.e.chrome', function() {
     ]
   };
 
-  const COLOR_FOR_USER_FRIENDLY_CATEGORY = new tr.b.SinebowColorGenerator();
+  const COLOR_FOR_USER_FRIENDLY_CATEGORY = new Map();
   const USER_FRIENDLY_CATEGORY_FOR_TITLE = new Map();
 
   for (const category in TITLES_FOR_USER_FRIENDLY_CATEGORY) {
@@ -238,7 +238,7 @@ tr.exportTo('tr.e.chrome', function() {
   };
 
   ChromeUserFriendlyCategoryDriver.getColor = function(ufc) {
-    return COLOR_FOR_USER_FRIENDLY_CATEGORY.colorForKey(ufc);
+    return COLOR_FOR_USER_FRIENDLY_CATEGORY.get(ufc);
   };
 
   ChromeUserFriendlyCategoryDriver.ALL_TITLES = ['other'];
@@ -251,11 +251,11 @@ tr.exportTo('tr.e.chrome', function() {
     ChromeUserFriendlyCategoryDriver.ALL_TITLES.push(category);
   }
   ChromeUserFriendlyCategoryDriver.ALL_TITLES.sort();
-
-  // Prime the color generator by iterating through all UFCs in alphabetical
-  // order.
-  for (const category of ChromeUserFriendlyCategoryDriver.ALL_TITLES) {
-    ChromeUserFriendlyCategoryDriver.getColor(category);
+  const colors = tr.b.generateFixedColorScheme(
+      ChromeUserFriendlyCategoryDriver.ALL_TITLES.length);
+  for (let i = 0; i < colors.length; ++i) {
+    COLOR_FOR_USER_FRIENDLY_CATEGORY.set(
+      ChromeUserFriendlyCategoryDriver.ALL_TITLES[i], colors[i]);
   }
 
   return {

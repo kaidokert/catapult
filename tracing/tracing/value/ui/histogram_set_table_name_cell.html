@@ -138,15 +138,22 @@ tr.exportTo('tr.v.ui', function() {
       this.overviewChart_ = undefined;
       this.cellListener_ = this.onCellStateUpdate_.bind(this);
       this.rootListener_ = this.onRootStateUpdate_.bind(this);
+      this.attachedPromise_ = new Promise(resolve => {
+        this.resolveAttachedPromise_ = resolve;
+      });
     },
 
     attached() {
+      this.resolveAttachedPromise_();
       if (this.row) {
         this.row.rootViewState.addUpdateListener(this.rootListener_);
       }
     },
 
     detached() {
+      this.attachedPromise_ = new Promise(resolve => {
+        this.resolveAttachedPromise_ = resolve;
+      });
       this.row.rootViewState.removeUpdateListener(this.rootListener_);
       // Don't need to removeUpdateListener for the row and cells; their
       // lifetimes are the same as |this|.
@@ -156,12 +163,15 @@ tr.exportTo('tr.v.ui', function() {
       return this.row_;
     },
 
-    build(row) {
+    async build(row) {
       if (this.row_ !== undefined) {
         throw new Error('row must be set exactly once.');
       }
       this.row_ = row;
       this.row.viewState.addUpdateListener(this.onRowStateUpdate_.bind(this));
+
+      await this.attachedPromise_;
+
       this.constrainWidth = this.row.rootViewState.constrainNameColumn;
       if (this.isAttached) {
         this.row.rootViewState.addUpdateListener(this.rootListener_);
@@ -172,6 +182,22 @@ tr.exportTo('tr.v.ui', function() {
       }
 
       Polymer.dom(this.$.name).textContent = this.row.name;
+
+      const rowNameColors = new Set();
+      for (const cell of this.row.columns.values()) {
+        if (!(cell instanceof tr.v.Histogram)) continue;
+        const cellNameColors = cell.diagnostics.get(
+            tr.v.d.RESERVED_NAMES.NAME_COLORS);
+        if (!cellNameColors) continue;
+        for (const color of cellNameColors) rowNameColors.add(color);
+      }
+      if (rowNameColors.size === 1) {
+        this.$.name.style.color = tr.b.getOnlyElement(rowNameColors);
+        this.$.name.style.fontWeight = 'bold';
+      } else {
+        this.$.name.style.color = '';
+        this.$.name.style.fontWeight = '';
+      }
 
       this.title = this.row.name;
       if (this.row.description) {

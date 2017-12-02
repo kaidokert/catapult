@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/bower_components/paper-styles/element-styles/paper-material-styles.html">
+<link rel="import" href="/tracing/value/ui/histogram_set_table.html">
+
+<dom-module id="releasing-section">
+  <template>
+    <style include="paper-material-styles">
+      #controls {
+        display: flex;
+      }
+
+      #loading_spinner {
+        visibility: hidden;
+      }
+
+      #loading_spinner[active] {
+        visibility: visible;
+      }
+
+      #buttons {
+        align-items: center;
+        display: flex;
+        flex-grow: 1;
+        justify-content: center;
+        margin: auto 0;
+        font-size: large;
+      }
+
+      #buttons paper-button {
+        @apply --paper-material-elevation-1;
+        background-color: var(--paper-indigo-500);
+        color: white;
+        margin: 0 1em;
+        padding: 5px;
+      }
+
+      #buttons paper-button[disabled] {
+        background-color: var(--paper-grey-500);
+      }
+
+      #add_alerts {
+        height: 34px;
+      }
+
+      #close {
+        flex-shrink: 0;
+      }
+
+      #tables {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+      }
+
+      #tables div {
+        margin: 0.5em;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      table thead th,
+      th[even-category] {
+        background-color: #e8eaf6;
+      }
+
+      h2 {
+        text-align: center;
+      }
+
+      .name_column {
+        text-align: left;
+      }
+
+      tr:nth-child(even) {
+        background: rgba(232, 234, 246, 0.5);
+      }
+
+      td, th {
+        padding: 4px;
+      }
+    </style>
+
+    <div id="controls">
+      <dropdown-input id="menu"
+                      placeholder="Report"
+                      input-value="[[menu.inputValue]]"
+                      is-focused="[[menu.isFocused]]"
+                      options="[[menu.options]]"
+                      selected-options="[[menu.selectedOptions]]"
+                      on-input-focus="onMenuFocus_"
+                      on-input-blur="onMenuBlur_"
+                      on-input-keydown="onMenuKeydown_"
+                      on-clear="onMenuClear_"
+                      on-option-select="onMenuSelect_">
+      </dropdown-input>
+
+      <paper-spinner id="loading_spinner"
+                     active$="[[isLoading]]">
+      </paper-spinner>
+
+      <div id="buttons">
+        <paper-button disabled$="[[!isPreviousMilestone]]"
+                      on-tap="previousMilestone_">
+          M[[_add(milestone, -1)]]
+          <iron-icon icon="chevron-left"></iron-icon>
+        </paper-button>
+
+        <div id="current_milestone">
+          M[[milestone]]
+        </div>
+
+        <paper-button disabled$="[[!isNextMilestone]]"
+                      on-tap="nextMilestone_">
+          <iron-icon icon="chevron-right"></iron-icon>
+          M[[_add(milestone, 1)]]
+        </paper-button>
+
+        <paper-button id="add_alerts"
+                      disabled$="[[!anyAlerts]]"
+                      on-tap="addAlertsSection_">
+          Alerts
+        </paper-button>
+      </div>
+
+      <paper-icon-button id="close"
+                         icon="close"
+                         on-tap="closeSection_"></paper-icon-button>
+    </div>
+
+    <div id="tables">
+      <template is="dom-repeat" items="[[tables]]">
+        <div>
+          <h2>[[item.title]]</h2>
+
+          <table>
+            <thead>
+              <th colspan="2">&nbsp;</th>
+              <th>Current<br>[[item.currentVersion]]</th>
+              <th>Reference<br>[[item.referenceVersion]]</th>
+              <th colspan="2">Change</th>
+            </thead>
+            <tbody>
+              <template is="dom-repeat" items="[[item.rows]]">
+                <tr>
+                  <template is="dom-if" if="[[item.isFirstInCategory]]">
+                    <th row-span="[[item.rowCount]]"
+                        even-category$="[[item.evenCategory]]">
+                      [[item.category]]
+                    </th>
+                  </template>
+
+                  <th class="name_column">
+                    <a href="[[item.href]]">[[item.name]]</a>
+                  </th>
+
+                  <td>
+                    <tr-v-ui-scalar-span value="[[item.currentValue]]"
+                                          unit="[[item.unit]]">
+                    </tr-v-ui-scalar-span>
+                  </td>
+
+                  <td>
+                    <tr-v-ui-scalar-span value="[[item.referenceValue]]"
+                                          unit="[[item.unit]]">
+                    </tr-v-ui-scalar-span>
+                  </td>
+
+                  <td>
+                    <tr-v-ui-scalar-span value="[[item.percentDeltaValue]]"
+                                          unit="[[item.percentDeltaUnit]]">
+                    </tr-v-ui-scalar-span>
+                  </td>
+
+                  <td>
+                    <tr-v-ui-scalar-span value="[[item.deltaValue]]"
+                                          unit="[[item.deltaUnit]]">
+                    </tr-v-ui-scalar-span>
+                  </td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
+      </template>
+    </div>
+  </template>
+</dom-module>
+
+<script src="/dashboard/spa/releasing-section.js"></script>
