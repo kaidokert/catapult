@@ -145,16 +145,35 @@ tr.exportTo('tr.metrics.sh', function() {
     let fciCandidate = undefined;
     let activeRequests = 0;
 
+    let firstLongTaskAfterTTI = undefined;
+    let quietWindowsBeforeTTI = [];
+
     for (const endpoint of endpoints) {
-      if (reachedTTIQuiscence_(endpoint.time,
-          networkQuietWindowStart, mainThreadQuietWindowStart)) {
+      if (fciCandidate === undefined && // |fciCandidate| only be recorded once
+          reachedTTIQuiscence_(endpoint.time, networkQuietWindowStart, mainThreadQuietWindowStart)) {
         fciCandidate = mainThreadQuietWindowStart;
-        break;
+        // remove break so that we continue to record |firstLongTaskAfterTTI|
+      }
+      if (fciCandidate === undefined && networkQuietWindowStart &&
+          mainThreadQuietWindowStart) {
+        let quietWindowSize = Math.min(endpoint.time - networkQuietWindowStart, endpoint.time - mainThreadQuietWindowStart);
+          if (quietWindowSize > 0) {
+          quietWindowsBeforeTTI.push({
+            duration: quietWindowSize,
+            start: mainThreadQuietWindowStart
+          });
+        }
       }
 
       switch (endpoint.type) {
         case ENDPOINT_TYPES.LONG_TASK_START:
           mainThreadQuietWindowStart = undefined;
+          if (fciCandidate) {
+            firstLongTaskAfterTTI = {
+              value: endpoint.time - fciCandidate,
+              start: endpoint.time
+            };
+          }
           break;
         case ENDPOINT_TYPES.LONG_TASK_END:
           mainThreadQuietWindowStart = endpoint.time;
@@ -176,6 +195,7 @@ tr.exportTo('tr.metrics.sh', function() {
           // This should never happen.
           throw new Error('Internal Error: Unhandled endpoint type.');
       }
+      if (firstLongTaskAfterTTI !== undefined) break;
     }
 
     if (reachedTTIQuiscence_(searchEnd,
@@ -183,9 +203,29 @@ tr.exportTo('tr.metrics.sh', function() {
       fciCandidate = mainThreadQuietWindowStart;
     }
 
-    if (fciCandidate === undefined) return undefined;
+    let maxWindowSizeBeforeTTI = undefined;
+    if (fciCandidate && quietWindowsBeforeTTI.length > 0) {
+      maxWindowSizeBeforeTTI = findMaxWindowSizeBefore(
+          quietWindowsBeforeTTI, fciCandidate);
+    }
 
-    return Math.max(fciCandidate, domContentLoadedEnd);
+    let interactiveTime = undefined;
+    if (fciCandidate !== undefined) {
+      interactiveTime = Math.max(fciCandidate, domContentLoadedEnd);
+    }
+
+    return {interactiveTime, firstLongTaskAfterTTI, maxWindowSizeBeforeTTI};
+  }
+
+  function findMaxWindowSizeBefore(quietWindowsBeforeTTI, fciCandidate) {
+    let maxQuietWindowSize = undefined;
+    for (let quietWindow of quietWindowsBeforeTTI) {
+      if (quietWindow.start < fciCandidate &&
+          (maxQuietWindowSize === undefined || maxQuietWindowSize.duration < quietWindow.duration)) {
+        maxQuietWindowSize = quietWindow;
+      }
+    }
+    return maxQuietWindowSize;
   }
 
   /**
