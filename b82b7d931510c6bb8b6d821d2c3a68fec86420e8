@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5e308f80_03e8e871",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-04T09:41:41Z",
+      "side": 1,
+      "message": "nit: this looks brittle, you could remove this line and then replace the next one with:\n\nartifact_path \u003d \u0027/\u0027.join([\u0027artifacts\u0027] + artifact_path.split(os.sep))",
+      "revId": "b82b7d931510c6bb8b6d821d2c3a68fec86420e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a8c1ad0_cacb8837",
+        "filename": "telemetry/telemetry/internal/results/json_3_output_formatter_unittest.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-04T09:41:41Z",
+      "side": 1,
+      "message": "nit: don\u0027t forget to remove.",
+      "revId": "b82b7d931510c6bb8b6d821d2c3a68fec86420e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ccc7cc1e_d1722cb9",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-04T09:41:41Z",
+      "side": 1,
+      "message": "nit: Make this info rather than warning (as this happens normally when not using the appropriate output format, there is nothing \"wrong\" that we need to \"warn\" about).\n\nIn that same vein maybe rephrase to: \"Deleting unused artifact {name} of {story}.\"",
+      "revId": "b82b7d931510c6bb8b6d821d2c3a68fec86420e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28fb2d2b_8116c252",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-04T09:41:41Z",
+      "side": 1,
+      "message": "nit: revert fh -\u003e file_handle",
+      "revId": "b82b7d931510c6bb8b6d821d2c3a68fec86420e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77ae8873_2dbdf61b",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-04T09:41:41Z",
+      "side": 1,
+      "message": "nit: revert fh -\u003e file_handle",
+      "revId": "b82b7d931510c6bb8b6d821d2c3a68fec86420e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f298c98_b051bf47",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-04T09:41:41Z",
+      "side": 1,
+      "message": "nit: strictly speaking I think it should be:\n\nwith tempfile.NTF(...) as file_obj:\n  try:\n    with logging_util.CL(file_obj):\n      yield\n  finally:\n    results.AddArtifact(..., file_obj.name)\n\nAll of the file_obj references should be in the scope of the context manager that created it. Otherwise you could end up trying to access it before it gets created, or after it got destroyed.",
+      "revId": "b82b7d931510c6bb8b6d821d2c3a68fec86420e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78d75c8e_497d30fb",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-04T09:41:41Z",
+      "side": 1,
+      "message": "nit: leave an extra blank line before this one",
+      "revId": "b82b7d931510c6bb8b6d821d2c3a68fec86420e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f15d18ab_f1efa233",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 1004,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-04T09:41:41Z",
+      "side": 1,
+      "message": "nit: is this needed? you are already doing it in tearDown, right?",
+      "revId": "b82b7d931510c6bb8b6d821d2c3a68fec86420e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66cadd0f_6ae52d00",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 1050,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-04T09:41:41Z",
+      "side": 1,
+      "message": "nit: this is no longer used.",
+      "revId": "b82b7d931510c6bb8b6d821d2c3a68fec86420e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a3ccca7_48e715a5",
+        "filename": "telemetry/telemetry/page/page_run_end_to_end_unittest.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-04T09:41:41Z",
+      "side": 1,
+      "message": "nit: can you replace these with tempfile_ext.NamedTemporaryDirectory()?",
+      "revId": "b82b7d931510c6bb8b6d821d2c3a68fec86420e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
