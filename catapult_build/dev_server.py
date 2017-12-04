@@ -37,6 +37,8 @@ _QUICK_LINKS = [
      '/tracing_examples/trace_viewer.html'),
     ('Metrics debugger',
      '/tracing_examples/metrics_debugger.html'),
+    ('chrome://tracing',
+     '/tracing/ui/extras/about_tracing/about_tracing.html'),
 ]
 
 _LINK_ITEM = '<li><a href="%s">%s</a></li>'
