@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e02146aa_a9e2d4af",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-12-04T22:28:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fd08407_e35849f8",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 58
+      },
+      "revId": "0b7abc632da96dcbacf6023218dda3a8a723dadc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "626b0195_00c66c71",
         "filename": "telemetry/telemetry/story/expectations.py",
         "patchSetId": 7
@@ -36,6 +60,30 @@
       "writtenOn": "2017-12-04T22:08:47Z",
       "side": 1,
       "message": "My vote is for:\n\nlogging.exception(\"Failed to map expectation in file to a TestCondition\")\n\nThis adds call stack support on top of logging.critical to help make exceptions more debuggable.",
+      "range": {
+        "startLine": 53,
+        "startChar": 54,
+        "endLine": 53,
+        "endChar": 67
+      },
+      "revId": "0b7abc632da96dcbacf6023218dda3a8a723dadc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d7a3e9f_9ef72f61",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-12-04T22:28:45Z",
+      "side": 1,
+      "message": "Does logging.exception() add anything that wouldn\u0027t be there based on the re-raising done below?",
+      "parentUuid": "626b0195_00c66c71",
       "range": {
         "startLine": 53,
         "startChar": 54,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "cf4f7aef_0d3abb23",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-12-04T22:28:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c84e437e_61c84bbc",
+      "range": {
+        "startLine": 58,
+        "startChar": 14,
+        "endLine": 58,
+        "endChar": 79
+      },
+      "revId": "0b7abc632da96dcbacf6023218dda3a8a723dadc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "84fa4a16_690f6791",
         "filename": "telemetry/telemetry/story/expectations.py",
         "patchSetId": 7
@@ -91,6 +163,30 @@
       "revId": "0b7abc632da96dcbacf6023218dda3a8a723dadc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98b2b08a_7688c8cd",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-12-04T22:28:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84fa4a16_690f6791",
+      "range": {
+        "startLine": 61,
+        "startChar": 6,
+        "endLine": 61,
+        "endChar": 25
+      },
+      "revId": "0b7abc632da96dcbacf6023218dda3a8a723dadc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
