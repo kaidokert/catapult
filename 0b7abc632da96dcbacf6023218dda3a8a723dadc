@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6fd08407_e35849f8",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-12-04T22:08:47Z",
+      "side": 1,
+      "message": "nit: I\u0027d early out in this case, given that nothing else needs to happen. I think that generally follows the Chromium style more, which is to try and keep the nesting level as low as possible by taking the early out\n\ne.g.\n\nif not expectation.test.startswith(\u0027%s/\u0027 % benchmark):\n  return\n\n# Strip off benchmark name...",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 58
+      },
+      "revId": "0b7abc632da96dcbacf6023218dda3a8a723dadc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "626b0195_00c66c71",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-12-04T22:08:47Z",
+      "side": 1,
+      "message": "My vote is for:\n\nlogging.exception(\"Failed to map expectation in file to a TestCondition\")\n\nThis adds call stack support on top of logging.critical to help make exceptions more debuggable.",
+      "range": {
+        "startLine": 53,
+        "startChar": 54,
+        "endLine": 53,
+        "endChar": 67
+      },
+      "revId": "0b7abc632da96dcbacf6023218dda3a8a723dadc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c84e437e_61c84bbc",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-12-04T22:08:47Z",
+      "side": 1,
+      "message": "It seems like there\u0027s some context that\u0027s important to note for this line of code: when two conditions occur together in this file format, it means that the test is only disabled if both of those conditions are met, which differs from the traditional Telemetry combining behavior where tests are disabled if any of the conditions are met. I think it\u0027s probably worth adding a comment to this effect before you combine the two conditions.",
+      "range": {
+        "startLine": 58,
+        "startChar": 14,
+        "endLine": 58,
+        "endChar": 79
+      },
+      "revId": "0b7abc632da96dcbacf6023218dda3a8a723dadc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84fa4a16_690f6791",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-12-04T22:08:47Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be self._Freeze() instead? It seems like, otherwise, we\u0027d fail to recalculate self._disabled_platforms",
+      "range": {
+        "startLine": 61,
+        "startChar": 6,
+        "endLine": 61,
+        "endChar": 25
+      },
+      "revId": "0b7abc632da96dcbacf6023218dda3a8a723dadc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b7bc35a_6ddb94e8",
+        "filename": "telemetry/telemetry/story/expectations_unittest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-12-04T22:08:47Z",
+      "side": 1,
+      "message": "Maybe move this above all of the tests?",
+      "revId": "0b7abc632da96dcbacf6023218dda3a8a723dadc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc317340_5594b474",
+        "filename": "telemetry/telemetry/story/expectations_unittest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-12-04T22:08:47Z",
+      "side": 1,
+      "message": "Maybe check in this test or another that _disabled_platforms is recalculated?",
+      "revId": "0b7abc632da96dcbacf6023218dda3a8a723dadc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
