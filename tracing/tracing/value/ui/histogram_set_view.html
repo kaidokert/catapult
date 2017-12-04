@@ -19,6 +19,10 @@ found in the LICENSE file.
       font-family: sans-serif;
     }
 
+    *[hidden] {
+      display: none;
+    }
+
     #zero {
       color: red;
       /* histogram-set-table is used by both metrics-side-panel and results.html.
@@ -37,10 +41,11 @@ found in the LICENSE file.
     <div id="zero">zero Histograms</div>
 
     <div id="container">
-      <tr-v-ui-histogram-set-controls id="controls">
+      <tr-v-ui-histogram-set-controls id="controls"
+                                      hidden$="[[!showControls]]">
       </tr-v-ui-histogram-set-controls>
 
-      <tr-v-ui-histogram-set-table id="table"></tr-v-ui-histogram-set-table>
+      <tr-v-ui-histogram-set-table id="table" />
     </div>
   </template>
 </dom-module>
@@ -53,6 +58,21 @@ tr.exportTo('tr.v.ui', function() {
 
     listeners: {
       export: 'onExport_',
+    },
+
+    properties: {
+      showControls: {
+        type: Boolean,
+        value: true,
+      },
+      expandAllRows: {
+        type: Boolean,
+        value: false,
+      },
+      histograms: {
+        type: Object,
+        observer: 'onHistogramsChanged_',
+      },
     },
 
     created() {
@@ -70,16 +90,18 @@ tr.exportTo('tr.v.ui', function() {
           tr.c.BrushingStateController.getControllerForElement(this.parentNode);
     },
 
+    onHistogramsChanged_() {
+      this.build(this.histograms, {
+        expandAllRows: this.expandAllRows,
+      });
+    },
+
     get brushingStateController() {
       return this.brushingStateController_;
     },
 
     get viewState() {
       return this.viewState_;
-    },
-
-    get histograms() {
-      return this.$.table.histograms;
     },
 
     /**
@@ -132,6 +154,17 @@ tr.exportTo('tr.v.ui', function() {
       // Table.build() displays its own progress.
       await this.$.table.build(
           histograms, sourceHistograms, displayLabels, progress);
+
+      if (options.expandAllRows) {
+        await this.viewState.update({
+          groupings: parameterCollector.possibleGroupings,
+        })
+        for (const row of tr.v.ui.HistogramSetTableRowState.walkAll(
+              this.viewState.tableRowStates.values())) {
+          if (row.subRows.size === 0) continue;
+          await row.update({isExpanded: true});
+        }
+      }
 
       buildMark.end();
     },
