@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6a4c2aae_135a5e46",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-12-04T17:37:16Z",
+      "side": 1,
+      "message": "Talked offline about this issue. This code, when everything is said and done, will only be the glue code that allows telemetry to know how to deal with TA/DA expectations. \n\nThere was a bit of confusion here around the fact that the parser for TA/DA was generic and not telemetry specific.\n\nWe are now using structured Expectation data returned from the parser to make it clearer what the parser is returning.",
+      "parentUuid": "bac4291b_20389f73",
+      "revId": "39647db06b290dc2e7599885e6c8eb3df7ab27b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9a7586f8_bf874e75",
         "filename": "telemetry/telemetry/story/expectations.py",
         "patchSetId": 6
@@ -77,6 +95,30 @@
       "side": 1,
       "message": "+1",
       "parentUuid": "af870c56_4be1db3f",
+      "range": {
+        "startLine": 332,
+        "startChar": 5,
+        "endLine": 332,
+        "endChar": 18
+      },
+      "revId": "39647db06b290dc2e7599885e6c8eb3df7ab27b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f2c5031_09019840",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-12-04T17:37:16Z",
+      "side": 1,
+      "message": "_Platforms removed.",
+      "parentUuid": "9c0a28b3_46797c54",
       "range": {
         "startLine": 332,
         "startChar": 5,
