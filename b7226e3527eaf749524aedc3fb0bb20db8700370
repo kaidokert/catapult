@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9422ba2d_5b89746a",
+        "filename": "telemetry/telemetry/internal/forwarders/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2017-12-04T18:56:01Z",
+      "side": 1,
+      "message": "nit: newline after this line?",
+      "revId": "b7226e3527eaf749524aedc3fb0bb20db8700370",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40ff9d4f_604fb644",
+        "filename": "telemetry/telemetry/internal/forwarders/cros_forwarder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2017-12-04T18:56:01Z",
+      "side": 1,
+      "message": "Any reason why this and _ForwardingArgs aren\u0027t private static methods of CrOsSshForwarder?",
+      "revId": "b7226e3527eaf749524aedc3fb0bb20db8700370",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bbaa6643_1b079e85",
+        "filename": "telemetry/telemetry/internal/forwarders/cros_forwarder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2017-12-04T18:56:01Z",
+      "side": 1,
+      "message": "Just want to make sure that you\u0027ve tested both these cases as cros uses them both.",
+      "revId": "b7226e3527eaf749524aedc3fb0bb20db8700370",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30ecb972_769034e3",
+        "filename": "telemetry/telemetry/internal/forwarders/cros_forwarder_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2017-12-04T18:56:01Z",
+      "side": 1,
+      "message": "Thanks for expanding and improving these!",
+      "revId": "b7226e3527eaf749524aedc3fb0bb20db8700370",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
