@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d29a5eec_ce553860",
+        "filename": "telemetry/telemetry/internal/forwarders/__init__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-04T13:30:52Z",
+      "side": 1,
+      "message": "yeah, you are right. I\u0027ll do that instead.",
+      "parentUuid": "af80e669_971bf0e8",
+      "revId": "534c9144a6178cd17fa57d6001ee8f6636c5da0f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "df9448c5_2577510e",
         "filename": "telemetry/telemetry/internal/forwarders/cros_forwarder.py",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2017-11-30T18:53:31Z",
       "side": 1,
       "message": "This refactor is a bit hard to understand, can you summarize what\u0027s going on here?",
+      "revId": "534c9144a6178cd17fa57d6001ee8f6636c5da0f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e93d710_c99ec9b5",
+        "filename": "telemetry/telemetry/internal/forwarders/cros_forwarder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-04T13:30:52Z",
+      "side": 1,
+      "message": "Yup, changes are:\n\n- Renamed \u0027use_remote_port_forwarding\u0027 to \u0027port_forward\u0027 for consistency and simplicity.\n\n- L37-43: Check and allow for one of the ports to be missing, the forwarder will pick an available port in that case. Allowing missing ports is a new behavior.\n\n- Old _ForwardingArgs (was a staticmethod) and _get_remote_port (was a nested function) get promoted to private module level functions. Just for clarity. No behavior change.\n\n- L48: using a context manager for the stderr tempfile to ensure the file is always closed/deleted.\n\n- L56: The condition can be simplified, since now (due to L37-43) remote_port may only be missing if port_forward is True.",
+      "parentUuid": "df9448c5_2577510e",
       "revId": "534c9144a6178cd17fa57d6001ee8f6636c5da0f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
