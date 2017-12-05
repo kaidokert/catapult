@@ -194,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "0470ae0b_65101a83",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-12-05T22:18:12Z",
+      "side": 1,
+      "message": "Actually, I can\u0027t do this, because on windows it tries to delete a file which is still open, because we haven\u0027t exited the with statement. \n\nI reverted to the old try-finally order, and store the file name in a variable so that if the with statement doesn\u0027t happen, it doesn\u0027t try to delete anything.",
+      "parentUuid": "edd02aa8_12e5ed54",
+      "revId": "b82b7d931510c6bb8b6d821d2c3a68fec86420e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "78d75c8e_497d30fb",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 29
