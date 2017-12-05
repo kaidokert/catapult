@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b1b96d6c_03538660",
+        "filename": "telemetry/telemetry/internal/forwarders/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-05T09:55:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9422ba2d_5b89746a",
+      "revId": "b7226e3527eaf749524aedc3fb0bb20db8700370",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "40ff9d4f_604fb644",
         "filename": "telemetry/telemetry/internal/forwarders/cros_forwarder.py",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "f7884e0b_f1f9ccae",
+        "filename": "telemetry/telemetry/internal/forwarders/cros_forwarder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-05T09:55:02Z",
+      "side": 1,
+      "message": "Static methods mean they don\u0027t depend on the object, and they don\u0027t depend on the class. So why should they belong to the class at all? I think static methods are useful only on very limited situations (e.g. if you expect subclasses to override them). The other argument I\u0027ve heard for them is to organize code but, particularly for private members of small modules like this one, I don\u0027t think it makes much of a difference and I lean slightly towards making them module level just to keep things simple.",
+      "parentUuid": "40ff9d4f_604fb644",
+      "revId": "b7226e3527eaf749524aedc3fb0bb20db8700370",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bbaa6643_1b079e85",
         "filename": "telemetry/telemetry/internal/forwarders/cros_forwarder.py",
         "patchSetId": 3
@@ -47,6 +83,24 @@
       "writtenOn": "2017-12-04T18:56:01Z",
       "side": 1,
       "message": "Just want to make sure that you\u0027ve tested both these cases as cros uses them both.",
+      "revId": "b7226e3527eaf749524aedc3fb0bb20db8700370",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14d8e221_78fc853d",
+        "filename": "telemetry/telemetry/internal/forwarders/cros_forwarder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-05T09:55:02Z",
+      "side": 1,
+      "message": "Yes, both are unit-tested. Also, after the other CLs this depends on have landed, I\u0027ll re-run some of the telemetry tests on cros to double-check.",
+      "parentUuid": "bbaa6643_1b079e85",
       "revId": "b7226e3527eaf749524aedc3fb0bb20db8700370",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
