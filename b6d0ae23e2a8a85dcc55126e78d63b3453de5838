@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4358ad9a_37e9b31d",
+        "filename": "dashboard/dashboard/pinpoint/models/change/change.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-05T10:18:45Z",
+      "side": 1,
+      "message": "if dep is a Dep, we can then write dep.repository_url instead of dep[0]\n\n(and so on below)",
+      "revId": "b6d0ae23e2a8a85dcc55126e78d63b3453de5838",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1d529d2_298a21f0",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-05T10:18:45Z",
+      "side": 1,
+      "message": "Let\u0027s define:\n\nDep \u003d collections.namedtuple(\u0027Dep\u0027, (\u0027repository_url\u0027, \u0027git_hash\u0027))",
+      "revId": "b6d0ae23e2a8a85dcc55126e78d63b3453de5838",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "204f396f_cbb05880",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-05T10:18:45Z",
+      "side": 1,
+      "message": "return a frozenset of Dep\u0027s.",
+      "revId": "b6d0ae23e2a8a85dcc55126e78d63b3453de5838",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
