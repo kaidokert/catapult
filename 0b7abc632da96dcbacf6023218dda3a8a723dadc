@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "c793b7cf_cb61e268",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-12-05T19:50:32Z",
+      "side": 1,
+      "message": "I do not plan to catch this exception anywhere. having an unmapable condition is and should be a fail condition that will be caught by presubmit checks. I would assume it would be the responsibility of the end user to do something with the exception that they are catching. As such I\u0027m going to leave it as is for now.",
+      "parentUuid": "b95fd7b1_2af6770c",
+      "range": {
+        "startLine": 53,
+        "startChar": 54,
+        "endLine": 53,
+        "endChar": 67
+      },
+      "revId": "0b7abc632da96dcbacf6023218dda3a8a723dadc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c84e437e_61c84bbc",
         "filename": "telemetry/telemetry/story/expectations.py",
         "patchSetId": 7
