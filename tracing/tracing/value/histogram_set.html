@@ -325,7 +325,7 @@ tr.exportTo('tr.v', function() {
      */
     deduplicateDiagnostics() {
       const namesToCandidates = new Map();  // string: Set<Diagnostic>
-      const diagnosticsToHistograms = new Map();  // Diagnostic: Histogram
+      const diagnosticsToHistograms = new Map();  // Diagnostic: [Histogram]
 
       for (const hist of this) {
         for (const [name, candidate] of hist.diagnostics) {
@@ -335,7 +335,11 @@ tr.exportTo('tr.v', function() {
             continue;
           }
 
-          diagnosticsToHistograms.set(candidate, hist);
+          if (diagnosticsToHistograms.get(candidate) === undefined) {
+            diagnosticsToHistograms.set(candidate, [hist]);
+          } else {
+            diagnosticsToHistograms.get(candidate).push(hist);
+          }
 
           if (!namesToCandidates.has(name)) {
             namesToCandidates.set(name, new Set());
