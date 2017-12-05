@@ -1264,7 +1264,8 @@ class StoryRunnerTest(unittest.TestCase):
     tmp_path = tempfile.mkdtemp()
     try:
       options.output_dir = tmp_path
-      story_runner.RunBenchmark(fake_benchmark, options)
+      expectations = fake_benchmark.InitializeExpectations()
+      story_runner.RunBenchmark(fake_benchmark, options, expectations)
       with open(os.path.join(tmp_path, 'results-chart.json')) as f:
         data = json.load(f)
       self.assertFalse(data['enabled'])
@@ -1278,7 +1279,8 @@ class StoryRunnerTest(unittest.TestCase):
     tmp_path = tempfile.mkdtemp()
     try:
       options.output_dir = tmp_path
-      story_runner.RunBenchmark(fake_benchmark, options)
+      expectations = fake_benchmark.InitializeExpectations()
+      story_runner.RunBenchmark(fake_benchmark, options, expectations)
       with open(os.path.join(tmp_path, 'results-chart.json')) as f:
         data = json.load(f)
       self.assertFalse(data['enabled'])
@@ -1293,7 +1295,8 @@ class StoryRunnerTest(unittest.TestCase):
     temp_path = tempfile.mkdtemp()
     try:
       options.output_dir = temp_path
-      story_runner.RunBenchmark(fake_benchmark, options)
+      expectations = fake_benchmark.InitializeExpectations()
+      story_runner.RunBenchmark(fake_benchmark, options, expectations)
       with open(os.path.join(temp_path, 'results-chart.json')) as f:
         data = json.load(f)
       self.assertTrue(data['enabled'])
@@ -1408,7 +1411,8 @@ class StoryRunnerTest(unittest.TestCase):
     tmp_path = tempfile.mkdtemp()
     try:
       options.output_dir = tmp_path
-      rc = story_runner.RunBenchmark(fake_benchmark, options)
+      expectations = fake_benchmark.InitializeExpectations()
+      rc = story_runner.RunBenchmark(fake_benchmark, options, expectations)
       # Test should return 0 since only error messages are logged.
       self.assertEqual(rc, 0)
     finally:
@@ -1425,3 +1429,16 @@ class StoryRunnerTest(unittest.TestCase):
     self.assertEquals(1, len(self.results.failures))
     self.assertEquals(0, GetNumberOfSuccessfulPageRuns(self.results))
     self.assertIn('Too many values: 1 > 0', self.fake_stdout.getvalue())
+
+  def testRunBenchmarkNoExpectations(self):
+    fake_benchmark = FakeBenchmark()
+    options = self._GenerateBaseBrowserFinderOptions()
+    tmp_path = tempfile.mkdtemp()
+    try:
+      options.output_dir = tmp_path
+      story_runner.RunBenchmark(fake_benchmark, options, expectations=None)
+      with open(os.path.join(tmp_path, 'results-chart.json')) as f:
+        data = json.load(f)
+      self.assertTrue(data['enabled'])
+    finally:
+      shutil.rmtree(tmp_path)
