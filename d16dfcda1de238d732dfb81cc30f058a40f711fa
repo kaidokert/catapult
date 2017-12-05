@@ -22,6 +22,30 @@
       "revId": "d16dfcda1de238d732dfb81cc30f058a40f711fa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8465609_8f4e53c3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001794
+      },
+      "writtenOn": "2017-12-05T22:41:37Z",
+      "side": 1,
+      "message": "Probably. Will try to look into it once I have a spare moment. I managed to fix my pet peeve rendering issue, though, so my itch is already scratched :)",
+      "parentUuid": "0d28f4b4_ac40e6eb",
+      "range": {
+        "startLine": 14,
+        "startChar": 14,
+        "endLine": 14,
+        "endChar": 27
+      },
+      "revId": "d16dfcda1de238d732dfb81cc30f058a40f711fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
