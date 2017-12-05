@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9038dd54_86bfa48a",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-05T23:22:49Z",
+      "side": 1,
+      "message": "Somehow I missed this in previous code review. In my opinion, if there are many ways to construct an object, it\u0027s better to have different factory method (static class methods) rather than param1, param2, param3,... \u0026 asserting that only one of those param is non None.",
+      "revId": "dc0a67fcb588d62d0ea9492a2304d3b054762de5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c0ca704_97a68947",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-05T23:22:49Z",
+      "side": 1,
+      "message": "I don\u0027t see any caller that uses data, except the unittest. Why not just keep a single data param \u0026 make the file reading happen earlier?",
+      "revId": "dc0a67fcb588d62d0ea9492a2304d3b054762de5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
