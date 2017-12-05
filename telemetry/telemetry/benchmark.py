@@ -94,9 +94,11 @@ class Benchmark(command_line.Command):
         return True
     return False
 
-  def Run(self, finder_options):
+  #p pylint: disable=arguments-differ
+  def Run(self, finder_options, benchmark_expectations=None):
     """Do not override this method."""
-    return story_runner.RunBenchmark(self, finder_options)
+    return story_runner.RunBenchmark(
+        self, finder_options, benchmark_expectations)
 
   @property
   def max_failures(self):

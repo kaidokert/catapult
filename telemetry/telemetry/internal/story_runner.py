@@ -265,7 +265,7 @@ def ValidateStory(story):
         story.name)
 
 
-def RunBenchmark(benchmark, finder_options):
+def RunBenchmark(benchmark, finder_options, expectations=None):
   """Run this test with the given options.
 
   Returns:
@@ -277,7 +277,6 @@ def RunBenchmark(benchmark, finder_options):
 
   benchmark_metadata = benchmark.GetMetadata()
   possible_browser = browser_finder.FindBrowser(finder_options)
-  expectations = benchmark.InitializeExpectations()
 
   if not possible_browser:
     print ('Cannot find browser of type %s. To list out all '
@@ -289,7 +288,7 @@ def RunBenchmark(benchmark, finder_options):
                                                     finder_options)
 
   expectations_disabled = expectations.IsBenchmarkDisabled(
-      possible_browser.platform, finder_options)
+      possible_browser.platform, finder_options) if expectations else False
 
   if expectations_disabled or not can_run_on_platform:
     print '%s is disabled on the selected browser' % benchmark.Name()
