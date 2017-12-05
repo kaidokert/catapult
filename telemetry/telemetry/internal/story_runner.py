@@ -289,7 +289,7 @@ def RunBenchmark(benchmark, finder_options):
                                                     finder_options)
 
   expectations_disabled = expectations.IsBenchmarkDisabled(
-      possible_browser.platform, finder_options)
+      possible_browser.platform, finder_options) if expectations else False
 
   if expectations_disabled or not can_run_on_platform:
     print '%s is disabled on the selected browser' % benchmark.Name()
