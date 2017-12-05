@@ -6,6 +6,7 @@ import optparse
 import sys
 
 from py_utils import class_util
+from py_utils import expectations_parser
 from telemetry import decorators
 from telemetry.internal import story_runner
 from telemetry.internal.util import command_line
@@ -328,8 +329,7 @@ class Benchmark(command_line.Command):
       return self._expectations.GetBrokenExpectations(story_set)
     return []
 
-  # TODO(rnephew): Rename InitializeExpectations to GetExpectations
-  def InitializeExpectations(self):
+  def InitializeExpectations(self, path=None, data=None):
     """Returns StoryExpectation object.
 
     This is a wrapper for GetExpectations. The user overrides GetExpectatoins
@@ -338,6 +338,12 @@ class Benchmark(command_line.Command):
     """
     if not self._expectations:
       self._expectations = self.GetExpectations()
+      if path or data:
+        assert not (path and data), ('Can only set expectations with file or '
+                                     'data; not both.')
+        parser = expectations_parser.TestExpectationParser(path=path, raw=data)
+        self._expectations.GetBenchmarkExpectationsFromParser(
+            parser.expectations, self.Name())
     return self._expectations
 
   # TODO(rnephew): Rename GetExpectations to CreateExpectations
