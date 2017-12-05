@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "8b40016b_2a636713",
+        "filename": "tracing/tracing/value/histogram_set.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2017-12-05T01:54:02Z",
+      "side": 1,
+      "message": "Think you need to iterate the list of hists and call hist.diagnostic.set(foo, bar);",
+      "range": {
+        "startLine": 355,
+        "startChar": 14,
+        "endLine": 355,
+        "endChar": 18
+      },
+      "revId": "df47a8d4d4b9d7624080e7b4ab543446827a700e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "38510d7b_f9dc77ed",
         "filename": "tracing/tracing/value/histogram_set_test.html",
         "patchSetId": 1
