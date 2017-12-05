@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0d28f4b4_ac40e6eb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002142
+      },
+      "writtenOn": "2017-12-05T21:39:04Z",
+      "side": 1,
+      "message": "Should we just add the load button to the Trace File Viewer?",
+      "range": {
+        "startLine": 14,
+        "startChar": 14,
+        "endLine": 14,
+        "endChar": 27
+      },
+      "revId": "d16dfcda1de238d732dfb81cc30f058a40f711fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
