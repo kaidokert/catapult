@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8528c230_d98b0e6b",
+        "filename": "common/py_utils/py_utils/expectations_parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-12-06T16:35:51Z",
+      "side": 1,
+      "message": "Could you add documentation about what raw_data should be?",
+      "range": {
+        "startLine": 79,
+        "startChar": 21,
+        "endLine": 79,
+        "endChar": 29
+      },
+      "revId": "3624e39122f57f5cc84488d880d961d46993d160",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
