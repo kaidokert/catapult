@@ -128,15 +128,14 @@ def ProcessHistogramSet(histogram_dicts):
       if name in SUITE_LEVEL_SPARSE_DIAGNOSTIC_NAMES:
         if diagnostic_names_added.get(name) is None:
           diagnostic_names_added[name] = diag.guid
+          suite_level_sparse_diagnostic_entities.append(
+              histogram.SparseDiagnostic(
+                  id=diag.guid, data=diag.AsDict(), test=suite_key,
+                  start_revision=revision, end_revision=sys.maxint, name=name))
 
         if diagnostic_names_added.get(name) != diag.guid:
           raise ValueError(
               name + ' diagnostics must be the same for all histograms')
-
-        suite_level_sparse_diagnostic_entities.append(
-            histogram.SparseDiagnostic(
-                id=diag.guid, data=diag.AsDict(), test=suite_key,
-                start_revision=revision, end_revision=sys.maxint, name=name))
 
   # TODO(eakuefner): Refactor master/bot computation to happen above this line
   # so that we can replace with a DiagnosticRef rather than a full diagnostic.
@@ -188,6 +187,10 @@ def DeduplicateAndPut(new_entities, test, rev):
   diagnostic_entities = query.fetch()
   entity_futures = []
   new_guids_to_existing_diagnostics = {}
+
+  print 'DeduplicateAndPut'
+  print 'num entities: %d' % len(new_entities)
+
   for new_entity in new_entities:
     type_str = new_entity.data['type']
     old_entity = _GetDiagnosticEntityMatchingType(type_str, diagnostic_entities)
@@ -205,6 +208,7 @@ def DeduplicateAndPut(new_entities, test, rev):
       continue
     # Case 3: Nothing in datastore.
     entity_futures.append(new_entity.put_async())
+  print 'num futures: %d' % len(entity_futures)
   ndb.Future.wait_all(entity_futures)
   return new_guids_to_existing_diagnostics
 
