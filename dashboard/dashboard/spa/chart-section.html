@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="/bower_components/paper-button/paper-button.html">
+<link rel="import" href="/bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="/dashboard/spa/chart-placeholder.html">
+<link rel="import" href="/dashboard/spa/line-chart.html">
+<link rel="import" href="/dashboard/spa/test-path-component.html">
+<link rel="import" href="/tracing/value/ui/histogram_set_view.html">
+
+<dom-module id="chart-section">
+  <template>
+    <style>
+      #controls {
+        display: flex;
+        margin-bottom: 8px;
+      }
+
+      test-path-component {
+        margin-right: 8px;
+      }
+
+      #loading_spinner {
+        visibility: hidden;
+        flex-shrink: 0;
+      }
+
+      #loading_spinner[active] {
+        visibility: visible;
+      }
+
+      #title {
+        flex-grow: 1;
+      }
+
+      #spacer {
+        flex-grow: 1;
+      }
+
+      #description {
+        margin-bottom: 8px;
+      }
+
+      #minimap, #chart {
+        width: 100%;
+      }
+
+      #toggle_chart_only {
+        display: block;
+        min-width: 0;
+        padding: 8px;
+        margin: 0;
+      }
+
+      #close {
+        flex-shrink: 0;
+      }
+
+      #chart_container {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      #chart_inner {
+        min-width: 500px;
+        flex-grow: 1;
+        margin-right: 8px;
+      }
+
+      #placeholder_container {
+        height: 290px;
+      }
+
+      #histograms {
+        flex-shrink: 0;
+        max-height: 290px;
+        overflow-y: auto;
+      }
+
+      #related_tabstrip {
+        color: white;
+        display: flex;
+        margin-top: 8px;
+        background: var(--paper-indigo-500);
+        align-items: center;
+        padding-left: 8px;
+      }
+
+      #related_tabstrip paper-tabs {
+        flex-grow: 1;
+        text-align: left;
+        margin-left: 8px;
+        height: 2em;
+        --paper-tabs-selection-bar-color: var(--paper-indigo-200);
+      }
+
+      #related_tabstrip paper-tab {
+        flex-grow: 0;
+      }
+
+      #related_tabstrip paper-tab:last-of-type {
+        flex-grow: 1;
+        --paper-tab-content: {
+          justify-content: flex-end;
+        }
+      }
+
+      .related_tab {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .sparkline_tile {
+        cursor: pointer;
+        width: 200px;
+        margin: 0.25em;
+        background: rgba(0, 0, 0, 0.05);
+        margin: 5px;
+      }
+
+      .sparkline_name {
+        padding: 16px;
+      }
+    </style>
+
+    <div id="controls">
+      <template is="dom-if" if="[[!onlyChart]]">
+        <template is="dom-repeat" items="[[testPathComponents]]">
+          <test-path-component section-id="[[sectionId]]"
+                               component-index="[[index]]">
+          </test-path-component>
+        </template>
+      </template>
+
+      <template is="dom-if" if="[[onlyChart]]">
+        <paper-input id="title"
+                     value="[[title]]"
+                     label="Title"
+                     on-keyup="onTitleKeyup_">
+        </paper-input>
+      </template>
+
+      <paper-spinner id="loading_spinner"
+                     active$="[[isLoading]]">
+      </paper-spinner>
+
+      <template is="dom-if" if="[[!onlyChart]]">
+        <span id="spacer">&nbsp;</span>
+      </template>
+
+      <paper-button id="toggle_chart_only"
+                    on-tap="toggleChartOnly_">
+        <template is="dom-if" if="[[onlyChart]]">
+          <iron-icon icon="expand-more">
+          </iron-icon>
+        </template>
+        <template is="dom-if" if="[[!onlyChart]]">
+          <iron-icon icon="expand-less">
+          </iron-icon>
+        </template>
+      </paper-button>
+
+      <paper-icon-button id="close"
+                         icon="close"
+                         on-tap="closeSection_">
+      </paper-icon-button>
+    </div>
+
+    <div id="description">
+      <template is="dom-if" if="[[!onlyChart]]">
+        [[testSuiteDescription]]
+      </template>
+    </div>
+
+    <div id="chart_container">
+      <div id="chart_inner">
+        <template is="dom-if" if="[[chartLayout]]">
+          <template is="dom-if" if="[[!onlyChart]]">
+            <line-chart id="minimap"
+                        layout="[[minimapLayout]]"
+                        on-brush-handle-down="onMinimapBrushHandleDown_"
+                        on-brush-handle-move="onMinimapBrushHandleMove_"
+                        on-brush-handle-up="onMinimapBrushHandleUp_">
+            </line-chart>
+          </template>
+
+          <line-chart id="chart"
+                      layout="[[chartLayout]]"
+                      on-dot-click="onDotClick_"
+                      on-dot-mouseover="onDotMouseOver_"
+                      on-dot-mouseout="onDotMouseOut_"
+                      on-brush-handle-down="onBrushHandleDown_"
+                      on-brush-handle-move="onBrushHandleMove_"
+                      on-brush-handle-up="onBrushHandleUp_">
+          </line-chart>
+        </template>
+
+        <template is="dom-if" if="[[!chartLayout]]">
+          <div id="placeholder_container">
+            <chart-placeholder/>
+          </div>
+        </template>
+      </div>
+
+      <template is="dom-if" if="[[!onlyChart]]">
+        <template is="dom-if" if="[[!_empty(histograms)]]">
+          <tr-v-ui-histogram-set-view id="histograms"
+                                      show-controls="[[showHistogramsControls]]"
+                                      expand-all-rows
+                                      histograms="[[histograms]]">
+          </tr-v-ui-histogram-set-view>
+        </template>
+      </template>
+    </div>
+
+    <template is="dom-if" if="[[!onlyChart]]">
+      <template is="dom-if" if="[[!_empty(relatedTabs)]]">
+        <div id="related_tabstrip">
+          <div>Related</div>
+          <paper-tabs selected="[[selectedRelatedTabIndex]]"
+                      on-iron-select="onSelectRelatedTab_"
+                      on-iron-deselect="onSelectRelatedTab_">
+            <template is="dom-repeat" items="[[relatedTabs]]" as="tab">
+              <paper-tab>[[tab.name]]</paper-tab>
+            </template>
+
+            <paper-tab id="close_related_tab">
+              &mdash;
+            </paper-tab>
+          </paper-tabs>
+        </div>
+
+        <iron-pages selected="[[selectedRelatedTabIndex]]">
+          <template is="dom-repeat" items="[[relatedTabs]]" as="tab">
+            <div class="related_tab">
+              <template is="dom-repeat" items="[[tab.sparklines]]" as="sparkline">
+                <div class="sparkline_tile"
+                    on-tap="onSparklineTap_">
+                  <line-chart class="sparkline"
+                              layout="[[sparkline.layout]]">
+                  </line-chart>
+                  <div class="sparkline_name">[[sparkline.name]]</div>
+                </div>
+              </template>
+            </div>
+          </template>
+        </iron-pages>
+      </template>
+    </template>
+  </template>
+</dom-module>
+
+<script src="/dashboard/spa/chart-section.js"></script>
