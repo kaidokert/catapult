@@ -80,7 +80,7 @@ tr.exportTo('tr.metrics.sh', function() {
    * @returns {boolean}
    */
   function reachedTTIQuiscence_(timestamp,
-      networkQuietWindowStart, mainThreadQuietWindowStart) {
+      networkQuietWindowStart, mainThreadQuietWindowStart, windowSize) {
     if (networkQuietWindowStart === undefined ||
         mainThreadQuietWindowStart === undefined) {
       return false;
@@ -88,11 +88,11 @@ tr.exportTo('tr.metrics.sh', function() {
 
     const mainThreadQuietForLongEnough =
           timestamp - mainThreadQuietWindowStart >=
-          TIME_TO_INTERACTIVE_WINDOW_SIZE_MS;
+          windowSize;
 
     const networkQuietForLongEnough =
           timestamp - networkQuietWindowStart >=
-          TIME_TO_INTERACTIVE_WINDOW_SIZE_MS;
+          windowSize;
 
     return mainThreadQuietForLongEnough && networkQuietForLongEnough;
   }
@@ -130,7 +130,7 @@ tr.exportTo('tr.metrics.sh', function() {
    * @returns {number|undefined}
    */
   function findInteractiveTime(searchBegin, searchEnd,
-      domContentLoadedEnd, longTasksInWindow, networkRequests) {
+      domContentLoadedEnd, longTasksInWindow, networkRequests, windowSize) {
     // It is sufficient to only look at the end points of long tasks and network
     // requests. These are the points where any meaningful changes happen.
     const longTaskEndpoints = getEndpoints_(longTasksInWindow,
@@ -147,7 +147,7 @@ tr.exportTo('tr.metrics.sh', function() {
 
     for (const endpoint of endpoints) {
       if (reachedTTIQuiscence_(endpoint.time,
-          networkQuietWindowStart, mainThreadQuietWindowStart)) {
+          networkQuietWindowStart, mainThreadQuietWindowStart, windowSize)) {
         fciCandidate = mainThreadQuietWindowStart;
         break;
       }
@@ -179,7 +179,7 @@ tr.exportTo('tr.metrics.sh', function() {
     }
 
     if (reachedTTIQuiscence_(searchEnd,
-        networkQuietWindowStart, mainThreadQuietWindowStart)) {
+        networkQuietWindowStart, mainThreadQuietWindowStart, windowSize)) {
       fciCandidate = mainThreadQuietWindowStart;
     }
 
