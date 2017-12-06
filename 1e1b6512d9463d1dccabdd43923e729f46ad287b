@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "62d8fa26_2fd1f152",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-06T20:45:45Z",
+      "side": 1,
+      "message": "nits: remove default param if no callsite should call this with no param",
+      "revId": "1e1b6512d9463d1dccabdd43923e729f46ad287b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
