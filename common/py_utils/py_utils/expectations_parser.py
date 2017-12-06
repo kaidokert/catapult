@@ -2,7 +2,6 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-import os
 import re
 
 
@@ -77,18 +76,10 @@ class TestExpectationParser(object):
   _MATCH_STRING += r'\[ ([^\[.]+) \]$'  # The expectation field.
   MATCHER = re.compile(_MATCH_STRING)
 
-  def __init__(self, path=None, raw=None):
+  def __init__(self, raw_data):
     self._tags = []
     self._expectations = []
-    if path:
-      if not os.path.exists(path):
-        raise ValueError('Path to expectation file must be valid.')
-      with open(path, 'r') as fp:
-        self._ParseRawExpectationData(fp.read())
-    elif raw:
-      self._ParseRawExpectationData(raw)
-    else:
-      raise ParseError('Must specify raw string or expectation file to decode.')
+    self._ParseRawExpectationData(raw_data)
 
   def _ParseRawExpectationData(self, raw_data):
     for count, line in list(enumerate(raw_data.splitlines(), start=1)):
