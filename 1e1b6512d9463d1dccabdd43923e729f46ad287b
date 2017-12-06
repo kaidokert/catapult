@@ -16,6 +16,98 @@
       "revId": "1e1b6512d9463d1dccabdd43923e729f46ad287b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77444a8c_eb7c82a1",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-12-06T20:57:50Z",
+      "side": 1,
+      "message": "It took me a couple minutes to figure out how self_expectations works, and it\u0027s pretty weird:\n\n1) For self._expectations to return a valid value, self.InitializeExpectations() needs to have been called first\n2) GetExpectations() sometimes returns the same thing as InitializeExpectations(), but sometimes doesn\u0027t\n3) InitializeExpectations() returns the expectations that are eventually calculated, whereas I might expect an Init...() function to be strictly imperative and have no return value\n4) Calling InitializeExpectations() is a race: currently, if anything calls it before the benchmark_runner calls it with the overridden expectations from the file, then InitializeExpectations() will silently do nothing, probably leaving the caller thinking that the benchmarks\u0027s expectations reflect |data|, whereas in reality they reflect what\u0027s in GetExpectations().\n\nI\u0027m totally aware that part of this is because we\u0027re using a temporary hack to make these things live alongside each other, but I think we can still do a couple things to improve the situation:\n\n1) Get rid of self._expectations altogether and replace all current places where we use it with self.GetExpectations(). I don\u0027t think there are any cases where self.GetExpectations() is so computationally expensive that it warrants the caching layer that exists around it.\n\n2) Replace InitializeExpectations with OverrideExpectations, making it an imperative method that just sets a self._overridden_expectations member variable. That makes GetBrokenExpectations() look like:\n\nexpectations \u003d self._overridden_expectations if self._overridden_expectations else self.GetExpectations()\nreturn expectations.GetBrokenExpectations(story_set)\n\nIMO this makes what\u0027s going on much clearer: if self._overridden_expectations is present, we use that. Otherwise, we fall back to self.GetExpectations()",
+      "range": {
+        "startLine": 332,
+        "startChar": 6,
+        "endLine": 332,
+        "endChar": 16
+      },
+      "revId": "1e1b6512d9463d1dccabdd43923e729f46ad287b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a0e292f_be9896b0",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-12-06T20:57:50Z",
+      "side": 1,
+      "message": "leaving out \"mark\" here seems unnecessary :-)",
+      "range": {
+        "startLine": 42,
+        "startChar": 21,
+        "endLine": 42,
+        "endChar": 26
+      },
+      "revId": "1e1b6512d9463d1dccabdd43923e729f46ad287b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9ebfa63_4e4e8ca3",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-12-06T20:57:50Z",
+      "side": 1,
+      "message": "Seems like we can just pass data here",
+      "range": {
+        "startLine": 47,
+        "startChar": 38,
+        "endLine": 47,
+        "endChar": 42
+      },
+      "revId": "1e1b6512d9463d1dccabdd43923e729f46ad287b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c843f41_a769ee2c",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-12-06T20:57:50Z",
+      "side": 1,
+      "message": "spelling",
+      "range": {
+        "startLine": 157,
+        "startChar": 8,
+        "endLine": 157,
+        "endChar": 24
+      },
+      "revId": "1e1b6512d9463d1dccabdd43923e729f46ad287b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
