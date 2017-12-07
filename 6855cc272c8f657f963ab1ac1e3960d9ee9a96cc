@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "66dfa85f_033ba0c6",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-12-07T16:41:12Z",
+      "side": 1,
+      "message": "nit: please write this as {k: d.AsDict() for k, d...}",
+      "revId": "6855cc272c8f657f963ab1ac1e3960d9ee9a96cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6621e647_0d5caec4",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-12-07T16:41:12Z",
+      "side": 1,
+      "message": "nit: please use itervalues.",
+      "revId": "6855cc272c8f657f963ab1ac1e3960d9ee9a96cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f882f94_a205b3e0",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-12-07T16:41:12Z",
+      "side": 1,
+      "message": "Can you put TODO(#4092) to fix this?",
+      "revId": "6855cc272c8f657f963ab1ac1e3960d9ee9a96cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
