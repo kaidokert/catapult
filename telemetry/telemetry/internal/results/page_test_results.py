@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import contextlib
 import collections
 import copy
 import datetime
@@ -428,6 +429,18 @@ class PageTestResults(object):
     # TODO(eakuefner/chrishenry): Add only one skip per pagerun assert here
     self._current_page_run.AddValue(value)
     self._progress_reporter.DidAddValue(value)
+
+  @contextlib.contextmanager
+  def CreateArtifact(self, story, name):
+    file_name = ''
+    try:
+      with tempfile.NamedTemporaryFile(
+          prefix='telemetry_test_%s' % story, delete=False) as file_obj:
+        file_name = file_obj.name
+        yield
+    finally:
+      if file_name:
+        self.AddArtifact(story, name, file_name)
 
   def AddArtifact(self, story, name, path):
     if self._artifact_results:
