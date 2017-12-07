@@ -165,8 +165,8 @@ def _MakeTask(hist, test_path, revision, diagnostics=None):
   # same diagnostic out (datastore contention), at the cost of copyin the
   # data. These are sparsely written to datastore anyway, so the extra
   # storage should be minimal.
-  diagnostics = dict((k, d.AsDict()) for k, d in diagnostics.iteritems())
-  for d in diagnostics.values():
+  diagnostics = {k: d.AsDict() for k, d in diagnostics.iteritems()}
+  for d in diagnostics.itervalues():
     d['guid'] = str(uuid.uuid4())
 
   params['diagnostics'] = json.dumps(diagnostics)
@@ -214,6 +214,7 @@ def _GetDiagnosticEntityMatchingName(name, diagnostic_entities):
 
 
 def _IsDifferent(diagnostic_a, diagnostic_b):
+  # TODO(eakuefner): Remove the not once __ne__ lands
   return not (
       diagnostic.Diagnostic.FromDict(diagnostic_a) ==
       diagnostic.Diagnostic.FromDict(diagnostic_b))
