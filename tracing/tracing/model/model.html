@@ -413,10 +413,6 @@ tr.exportTo('tr', function() {
     },
 
     set canonicalUrl(value) {
-      if (this.canonicalUrl_ === value) return;
-      if (this.canonicalUrl_ !== undefined) {
-        throw new Error('canonicalUrl already set');
-      }
       this.canonicalUrl_ = value;
     },
 
