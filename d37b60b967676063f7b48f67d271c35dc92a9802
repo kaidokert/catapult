@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "234a21c4_22522dc9",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-12-07T20:53:38Z",
+      "side": 1,
+      "message": "Just a slight nit on the phrasing here: the word \"augment\" makes sense here (to add to something that already exists), but I think augmenting \"with\" is more common than augmenting \"from\". In other words, I think \"AugmentExpectationsWithParser\" would be a little less awkward",
+      "range": {
+        "startLine": 45,
+        "startChar": 31,
+        "endLine": 45,
+        "endChar": 41
+      },
+      "revId": "d37b60b967676063f7b48f67d271c35dc92a9802",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
