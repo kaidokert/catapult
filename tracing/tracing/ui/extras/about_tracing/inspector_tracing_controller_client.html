@@ -121,6 +121,8 @@ tr.exportTo('tr.ui.e.about_tracing', function() {
           'Tracing.start',
           {
             traceConfig: traceConfigStr,
+            transferMode: 'ReturnAsStream',
+            streamCompression: 'gzip',
             bufferUsageReportingInterval: 1000
           });
       res = res.then(
@@ -172,13 +174,26 @@ tr.exportTo('tr.ui.e.about_tracing', function() {
 
       this.recording_ = 'stopping';
       return new Promise(function(resolve, reject) {
-        function tracingComplete() {
+        function tracingComplete(params) {
           clearListeners();
           this.recording_ = false;
-          this.currentTraceTextChunks_.push(']');
-          const traceText = this.currentTraceTextChunks_.join('');
-          this.currentTraceTextChunks_ = undefined;
-          resolve(traceText);
+          this.traceName_ = 'trace.json';
+          if ('stream' in params) {
+            const streamCompression = params.streamCompression || 'none';
+            if (streamCompression === 'gzip') {
+              this.traceName_ = 'trace.json.gz';
+            }
+            resolve(this.conn_.readStream(params.stream).then(
+                function(traceData) {
+                  this.conn_.closeStream(params.stream);
+                  return traceData;
+                }.bind(this)));
+          } else {
+            this.currentTraceTextChunks_.push(']');
+            const traceText = this.currentTraceTextChunks_.join('');
+            this.currentTraceTextChunks_ = undefined;
+            resolve(traceText);
+          }
         }
 
         function tracingFailed(err) {
@@ -199,7 +214,7 @@ tr.exportTo('tr.ui.e.about_tracing', function() {
     },
 
     defaultTraceName() {
-      return 'trace.json';
+      return this.traceName_;
     }
   };
 
