@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d4a328fe_48a129b5",
+        "filename": "common/py_utils/py_utils/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-07T22:30:55Z",
+      "side": 1,
+      "message": "I think this log is not necessary :-)",
+      "revId": "ab5b31d958fdbe7493f93b19a70c287367645692",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c65944a9_8b724ba5",
+        "filename": "common/py_utils/py_utils/expectations_parser_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-07T22:30:55Z",
+      "side": 1,
+      "message": "nits: remove 2 trailing empty lines",
+      "revId": "ab5b31d958fdbe7493f93b19a70c287367645692",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
