@@ -73,6 +73,12 @@ tr.exportTo('tr.e.chrome', function() {
       'PaintLayer::updateLayerPositionsAfterLayout',
       'ResourceLoadPriorityOptimizer::updateAllImageResourcePriorities',
       'WebViewImpl::layout',
+      'LocalFrameView::invalidateTree',
+      'LocalFrameView::layout',
+      'LocalFrameView::performLayout',
+      'LocalFrameView::performPostLayoutTasks',
+      'LocalFrameView::performPreLayoutTasks',
+      'Document::rebuildLayoutTree'
     ],
 
     parseHTML: [
@@ -84,6 +90,8 @@ tr.exportTo('tr.e.chrome', function() {
       'HTMLDocumentParser::processParsedChunkFromBackgroundParser',
       'HTMLDocumentParser::processTokenizedChunkFromBackgroundParser',
       'ParseHTML',
+      'BackgroundHTMLParser::pumpTokenizer',
+      'BackgroundHTMLParser::sendTokensToMainThread',
     ],
 
     raster: [
@@ -130,6 +138,7 @@ tr.exportTo('tr.e.chrome', function() {
       'StyleEngine::updateActiveStyleSheets',
       'StyleSheetContents::parseAuthorStyleSheet',
       'UpdateLayoutTree',
+      'Document::recalcStyle'
     ],
 
     script_parse_and_compile: [
@@ -141,6 +150,11 @@ tr.exportTo('tr.e.chrome', function() {
       'V8.ScriptCompiler',
       'v8.compile',
       'v8.parseOnBackground',
+      'V8.CompileFullCode',
+      'V8.Parse',
+      'V8.ParseLazy',
+      'V8.RecompileSynchronous',
+      'V8.ScriptCompiler',
     ],
 
     script_execute: [
@@ -172,6 +186,16 @@ tr.exportTo('tr.e.chrome', function() {
       'WebURLLoaderImpl::loadAsynchronously',
       'WebURLLoaderImpl::loadSynchronously',
       'content::mojom::URLLoaderClient',
+      'Resource::appendData',
+      'ResourceDispatcher::OnRequestComplete',
+      'ResourceFetcher::requestResource',
+      'WebURLLoaderImpl::Context::OnCompletedRequest',
+      'WebURLLoaderImpl::Context::OnReceivedData',
+      'WebURLLoaderImpl::Context::OnReceivedResponse',
+      'WebURLLoaderImpl::Context::Start',
+      'WebURLLoaderImpl::Context::Cancel',
+      'WebURLLoaderImpl::loadAsynchronously',
+      'WebURLLoaderImpl::loadSynchronously',
     ],
 
     // Where do these go?
