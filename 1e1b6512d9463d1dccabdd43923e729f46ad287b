@@ -42,6 +42,48 @@
     },
     {
       "key": {
+        "uuid": "03390307_a46b8dc3",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-12-07T18:12:28Z",
+      "side": 1,
+      "message": "InitializeExpectations is what is used by StoryRunner to pull the expectations. The caching from calling it here with the expectations file data is what allows us to not have to pass around the expectation file data to story_runner.py. If we replace InitializeExpectations with OverrideExpectations we will have to pass the expectation data down to story_runner.py since this caching will no longer occur. \n\nI know it is a bit confusing now, but I think your solution to make it less confusing just moves the confusion around instead of solving it. Eventually GetExpectations should just dumbly pass the expectation data, and InitializeExpectations will disappear into the constructor. At that point we may want something that overrides expectations.",
+      "parentUuid": "77444a8c_eb7c82a1",
+      "range": {
+        "startLine": 332,
+        "startChar": 6,
+        "endLine": 332,
+        "endChar": 16
+      },
+      "revId": "1e1b6512d9463d1dccabdd43923e729f46ad287b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b56747f_77a9021a",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-12-07T18:12:28Z",
+      "side": 1,
+      "message": "story_runner.py calls it without data. Eventually this method will disappear all together, but that\u0027s a few CLs away.",
+      "parentUuid": "62d8fa26_2fd1f152",
+      "revId": "1e1b6512d9463d1dccabdd43923e729f46ad287b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3a0e292f_be9896b0",
         "filename": "telemetry/telemetry/benchmark_runner.py",
         "patchSetId": 9
@@ -53,6 +95,30 @@
       "writtenOn": "2017-12-06T20:57:50Z",
       "side": 1,
       "message": "leaving out \"mark\" here seems unnecessary :-)",
+      "range": {
+        "startLine": 42,
+        "startChar": 21,
+        "endLine": 42,
+        "endChar": 26
+      },
+      "revId": "1e1b6512d9463d1dccabdd43923e729f46ad287b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d20bda38_ca1a68c1",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-12-07T18:12:28Z",
+      "side": 1,
+      "message": "alas python disagrees.\n\nfrom telemetry import benchmark\n\nW: 42,21: Redefining name \u0027benchmark\u0027 from outer scope (line 14) (redefined-outer-name)",
+      "parentUuid": "3a0e292f_be9896b0",
       "range": {
         "startLine": 42,
         "startChar": 21,
@@ -88,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "5de3033a_8079a457",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-12-07T18:12:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9ebfa63_4e4e8ca3",
+      "range": {
+        "startLine": 47,
+        "startChar": 38,
+        "endLine": 47,
+        "endChar": 42
+      },
+      "revId": "1e1b6512d9463d1dccabdd43923e729f46ad287b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0c843f41_a769ee2c",
         "filename": "telemetry/telemetry/benchmark_runner.py",
         "patchSetId": 9
@@ -108,6 +198,30 @@
       "revId": "1e1b6512d9463d1dccabdd43923e729f46ad287b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56bd197d_a7a6575c",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-12-07T18:12:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c843f41_a769ee2c",
+      "range": {
+        "startLine": 157,
+        "startChar": 8,
+        "endLine": 157,
+        "endChar": 24
+      },
+      "revId": "1e1b6512d9463d1dccabdd43923e729f46ad287b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
