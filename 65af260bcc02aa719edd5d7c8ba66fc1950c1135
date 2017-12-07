@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ddd82787_15b1f085",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-07T10:39:46Z",
+      "side": 1,
+      "message": "add dir\u003dself.artifacts_dir; otherwise we\u0027re back to the same collision possibility as before. :)\n\nalso, since there won\u0027t be any \"moving\", we can even add the filename to the internal artifcats dict even *before* the yield. This way we ensure it\u0027s there no matter what.",
+      "revId": "65af260bcc02aa719edd5d7c8ba66fc1950c1135",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6a9b967_f8c23a0d",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-07T10:39:46Z",
+      "side": 1,
+      "message": "I think this implementation should be added to results_artifact, even if you also want to expose it\u0027s interface here",
+      "revId": "65af260bcc02aa719edd5d7c8ba66fc1950c1135",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
