@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "351507ea_9d8b965e",
+        "filename": "common/py_utils/py_utils/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2017-12-07T02:00:55Z",
+      "side": 1,
+      "message": "technically, you\u0027re allowed to have a trailing comment, so you probably want \nthis last line to be:\n\n_MATCH_STRING +\u003d r\u0027\\[ (^[.]+) \\]\u0027 # The expectation field\n_MATCH_STRING +\u003d r\u0027(\\s+\u0027#\u0027.*)?$\u0027  # Optional comment",
+      "revId": "c41298929a2e751ecb8741af27a38a9fb8f5f6eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
