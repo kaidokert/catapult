@@ -2,10 +2,13 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import contextlib
 import collections
+import hashlib
 import logging
 import os
 import shutil
+import tempfile
 
 from telemetry.internal.util import file_handle
 
@@ -36,6 +39,31 @@ class ArtifactResults(object):
   @property
   def artifact_dir(self):
     return self._artifact_dir
+
+  @contextlib.contextmanager
+  def CreateArtifact(self, story, name, run_number=None):
+    """Create an artifact.
+
+    Args:
+      * story: The name of the story this artifact belongs to.
+      * name: The name of this artifact; 'logs', 'screenshot'.
+      * run_number: Which run of a test this is. If the current number of
+          artifacts for the (test_name, name) key is less than this number,
+          new `None` artifacts will be inserted, with the assumption that
+          other runs of this test did not produce the same set of artifacts.
+          NOT CURRENTLY IMPLEMENTED.
+    Returns:
+      A generator yielding a file object.
+    """
+    del run_number
+    # hash the story name to get rid of weird characters that can't be used as
+    # filenames.
+    story_digest = hashlib.sha1(story).hexdigest()
+    with tempfile.NamedTemporaryFile(
+        prefix='telemetry_test_%s' % story_digest, dir=self._artifact_dir,
+        delete=False) as file_obj:
+      self.AddArtifact(story, name, file_obj.name)
+      yield file_obj
 
   def AddArtifact(self, test_name, name, artifact_path, run_number=None):
     """Adds an artifact.

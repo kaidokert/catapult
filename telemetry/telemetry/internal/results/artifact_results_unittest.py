@@ -2,12 +2,15 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import hashlib
 import mock
 import os
 import unittest
 
 from telemetry.internal.results import artifact_results
 from telemetry.internal.util import file_handle
+
+from py_utils import tempfile_ext
 
 
 # splitdrive returns '' on systems which don't have drives, like linux.
@@ -20,6 +23,23 @@ def _abs_join(*args):
 
 
 class ArtifactResultsUnittest(unittest.TestCase):
+  def testCreateBasic(self):
+    with tempfile_ext.NamedTemporaryDirectory(
+        prefix='artifact_tests') as tempdir:
+      ar = artifact_results.ArtifactResults(tempdir)
+      filename = ''
+      with ar.CreateArtifact('bad//story:name', 'logs') as log_file:
+        filename = log_file.name
+        self.assertTrue(
+            os.path.basename(filename).startswith(
+                'telemetry_test_%s' % hashlib.sha1(
+                    'bad//story:name').hexdigest()))
+        log_file.write('hi\n')
+
+      with open(filename) as f:
+        self.assertEqual(f.read(), 'hi\n')
+
+
   @mock.patch('telemetry.internal.results.artifact_results.shutil.move')
   @mock.patch('telemetry.internal.results.artifact_results.os.makedirs')
   def testAddBasic(self, make_patch, move_patch):
