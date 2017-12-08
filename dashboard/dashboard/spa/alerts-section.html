@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="/bower_components/paper-button/paper-button.html">
+<link rel="import" href="/bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="/bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="/bower_components/paper-item/paper-item.html">
+<link rel="import" href="/bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="/bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="/bower_components/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="/dashboard/spa/chart-placeholder.html">
+
+<dom-module id="alerts-section">
+  <template>
+    <link rel="stylesheet" href="/dashboard/spa/alerts-section.css">
+
+    <div id="controls">
+      <dropdown-input id="source"
+                      placeholder="Source"
+                      input-value="[[source.inputValue]]"
+                      is-focused="[[source.isFocused]]"
+                      options="[[source.options]]"
+                      selected-options="[[source.selectedOptions]]"
+                      on-input-focus="onSourceFocus_"
+                      on-input-blur="onSourceBlur_"
+                      on-input-keydown="onSourceKeydown_"
+                      on-clear="onSourceClear_"
+                      on-toggle-group-expanded="onSourceToggleGroupExpanded_"
+                      on-option-select="onSourceSelect_">
+      </dropdown-input>
+
+      <paper-spinner id="loading_spinner"
+                     active$="[[isLoading]]">
+      </paper-spinner>
+
+      <span id="summary">[[summary]]</span>
+
+      <paper-toggle-button id="improvements"
+                           checked$="[[showingImprovements]]"
+                           on-change="toggleShowingImprovements_">
+        Improvements
+      </paper-toggle-button>
+
+      <paper-toggle-button id="triaged"
+                           checked$="[[showingTriaged]]"
+                           on-change="toggleShowingTriaged_">
+        Triaged
+      </paper-toggle-button>
+
+      <a id="documentation"
+         href="#"
+         target="_blank"
+         title="Documentation">
+        <paper-icon-button icon="help"></paper-icon-button>
+      </a>
+
+      <paper-icon-button id="close"
+                         icon="close"
+                         on-tap="closeSection_">
+      </paper-icon-button>
+    </div>
+
+    <div id="triage_controls">
+      <paper-toggle-button checked$="[[isPreviewing]]"
+                           on-change="togglePreviewing_">
+        Preview
+      </paper-toggle-button>
+
+      <span class="dialog_container">
+        <paper-button id="file_new_bug"
+                      disabled$="[[!anyAlertsSelected]]"
+                      on-tap="fileNewBug_">
+          New Bug
+        </paper-button>
+
+        <paper-dialog id="new_bug_dialog"
+                      opened="[[isFilingNewBug]]"
+                      horizontal-align="left"
+                      vertical-align="top"
+                      no-overlap
+                      on-iron-overlay-canceled="onCancelNewBug_">
+          <paper-input autofocus
+                      placeholder="Summary">
+          </paper-input>
+          <paper-textarea placeholder="Description">
+          </paper-textarea>
+          <paper-input placeholder="Owner">
+          </paper-input>
+          <paper-input placeholder="CC">
+          </paper-input>
+          <paper-button id="submit_new_bug"
+                        on-tap="submitNewBug_">
+            Submit
+          </paper-button>
+        </paper-dialog>
+      </span>
+
+      <span class="dialog_container">
+        <paper-button id="file_existing_bug"
+                      disabled$="[[!anyAlertsSelected]]"
+                      on-tap="fileExistingBug_">
+          Existing Bug
+        </paper-button>
+        <paper-dialog id="existing_bug_dialog"
+                      opened="[[isFilingExistingBug]]"
+                      horizontal-align="left"
+                      vertical-align="top"
+                      no-overlap
+                      on-iron-overlay-canceled="onCancelExistingBug_">
+          <paper-input placeholder="Bug Number">
+          </paper-input>
+          <table>
+            <tr>
+              <th>Bug #</th>
+              <th>Status</th>
+              <th>Owner</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td>654321</td>
+              <td>Untriaged</td>
+              <td>benhenry</td>
+              <td>42 bazillion percent regression</td>
+            </tr>
+            <tr>
+              <td>765432</td>
+              <td>Assigned</td>
+              <td>benhenry</td>
+              <td>42 bazillion percent regression</td>
+            </tr>
+            <tr>
+              <td>876543</td>
+              <td>Started</td>
+              <td>benhenry</td>
+              <td>42 bazillion percent regression</td>
+            </tr>
+            <tr>
+              <td>987654</td>
+              <td>WontFix</td>
+              <td>benhenry</td>
+              <td>42 bazillion percent regression</td>
+            </tr>
+          </table>
+          <paper-button id="submit_existing_bug"
+                        on-tap="submitExistingBug_">
+            Submit
+          </paper-button>
+        </paper-dialog>
+      </span>
+
+      <paper-button disabled$="[[!anyAlertsSelected]]"
+                    on-tap="ignore_">
+        Ignore
+      </paper-button>
+
+      <paper-button disabled$="[[!anyAlertsSelected]]"
+                    on-tap="reportInvalid_">
+        Report Invalid
+      </paper-button>
+    </div>
+
+    <iron-collapse opened="[[isPreviewing]]">
+      <div id="preview">
+        <template is="dom-if" if="[[!previewLayout]]">
+          <chart-placeholder>
+            Select alerts using the checkboxes in the table below to preview their timeseries.
+          </chart-placeholder>
+        </template>
+
+        <template is="dom-if" if="[[previewLayout]]">
+          <line-chart layout="[[previewLayout]]"
+                      on-dot-click="onDotClick_"
+                      on-dot-mouseover="onDotMouseOver_"
+                      on-dot-mouseout="onDotMouseOut_">
+          </line-chart>
+        </template>
+      </div>
+    </iron-collapse>
+
+    <template is="dom-if" if="[[_empty(alertGroups)]]">
+      TODO cat picture
+    </template>
+
+    <template is="dom-if" if="[[!_empty(alertGroups)]]">
+      <div id="table_container">
+        <table placeholder$=[[areAlertGroupsPlaceholders]]>
+          <thead>
+            <tr>
+              <th>&nbsp;</th>
+              <th>
+                <paper-checkbox checked="[[anyAlertsSelected]]"
+                                on-change="selectAllAlerts_">
+                </paper-checkbox>
+              </th>
+              <th>Revisions</th>
+              <th>Bot</th>
+              <th>Test Suite</th>
+              <th colspan="5">Test</th>
+              <th>Delta</th>
+              <th class="delta_pct">Delta %</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <template is="dom-repeat" items="[[alertGroups]]" as="alertGroup" index-as="alertGroupIndex">
+              <template is="dom-repeat" items="[[alertGroup.alerts]]" as="alert" index-as="alertIndex">
+                <template is="dom-if" if="[[shouldDisplayAlert_(alertGroup, alertIndex)]]">
+                  <tr style$="color: [[alert.color]];">
+                    <td expandedGroup$="[[alertGroup.isExpanded]]">
+                      <template is="dom-if" if="[[shouldDisplayExpandGroupButton_(alertGroup, alertIndex)]]">
+                        <paper-button class="expand_group"
+                                      on-tap="toggleGroupExpanded_">
+                          <template is="dom-if" if="[[alertGroup.isExpanded]]">
+                            <iron-icon icon="expand-less" />
+                          </template>
+
+                          <template is="dom-if" if="[[!alertGroup.isExpanded]]">
+                            <iron-icon icon="expand-more" />
+                          </template>
+
+                          [[_len(alertGroup.alerts)]]
+                        </paper-button>
+                      </template>
+                    </td>
+
+                    <td class="checkbox">
+                      <paper-checkbox checked="[[alert.isSelected]]"
+                                      on-change="selectAlert_">
+                      </paper-checkbox>
+                    </td>
+                    <td>[[alert.revisions]]</td>
+                    <td>[[alert.bot]]</td>
+                    <td>[[alert.testSuite]]</td>
+
+                    <template is="dom-repeat" items="[[alert.testParts]]" as="testPart" index-as="testPartIndex">
+                      <td>[[testPart]]</td>
+                    </template>
+
+                    <td>
+                      <tr-v-ui-scalar-span value="[[alert.deltaValue]]"
+                                           unit="[[alert.deltaUnit]]">
+                      </tr-v-ui-scalar-span>
+                    </td>
+
+                    <td>
+                      <tr-v-ui-scalar-span value="[[alert.percentDeltaValue]]"
+                                           unit="[[alert.percentDeltaUnit]]">
+                      </tr-v-ui-scalar-span>
+                    </td>
+                  </tr>
+                </template>
+              </template>
+            </template>
+          </tbody>
+        </table>
+      </div>
+    </template>
+  </template>
+</dom-module>
+
+<script src="/dashboard/spa/alerts-section.js"></script>
