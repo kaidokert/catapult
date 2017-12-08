@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b2ed903c_075e89bc",
+        "filename": "common/py_utils/py_utils/logging_util.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-12-08T21:46:37Z",
+      "side": 1,
+      "message": "This line feels hacky to me, but it does make the log file more readable....",
+      "revId": "32b79922460854d6d5261c8f5d9604f517fa4dc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

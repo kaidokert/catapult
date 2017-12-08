@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a64914b5_f7488615",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-12-08T21:46:37Z",
+      "side": 1,
+      "message": "Not sure if this is needed or not? Maybe just remove? I\u0027m worried about the case where code calls this when _artifacts_results is not set.",
+      "range": {
+        "startLine": 439,
+        "startChar": 0,
+        "endLine": 444,
+        "endChar": 0
+      },
+      "revId": "80902cc69687175d4ad75c5118bd4c43a2ca1fa0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
