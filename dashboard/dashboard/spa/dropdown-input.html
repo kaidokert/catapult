@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/bower_components/paper-button/paper-button.html">
+<link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="/bower_components/paper-input/paper-input.html">
+<link rel="import" href="/bower_components/paper-styles/element-styles/paper-material-styles.html">
+
+<dom-module id="dropdown-input">
+  <template>
+    <style include="paper-material-styles">
+      paper-input {
+        --paper-input-container: {
+          padding: 0;
+        }
+      }
+
+      #dropdown {
+        @apply --paper-material-elevation-2;
+        background-color: white;
+        font-size: 16px;
+        position: absolute;
+        z-index: 100;
+      }
+
+      div.item {
+        align-items: center;
+        border-left-color: var(--paper-indigo-100);
+        border-left-style: solid;
+        display: flex;
+        height: 36px;
+      }
+
+      paper-button {
+        border-radius: 0;
+        height: 100%;
+        justify-content: space-between;
+        margin: 0;
+        min-width: 0;
+        padding: 0 8px 0 16px;
+        width: 74px;
+        --paper-button-ink-color: var(--paper-indigo-300);
+        flex-shrink: 0;
+      }
+
+      paper-button[expanded] {
+        background-color: var(--paper-indigo-100);
+      }
+
+      paper-checkbox {
+        margin: 0 16px;
+        flex-grow: 1;
+        flex-shrink: 0;
+      }
+    </style>
+
+    <paper-input id="input"
+                 autofocus="[[isFocused]]"
+                 disabled$="[[disabled]]"
+                 label="[[placeholder]]"
+                 tabindex="1"
+                 value="[[inputValue]]"
+                 on-blur="onInputBlur_"
+                 on-focus="onInputFocus_"
+                 on-keydown="onInputKeydown_">
+      <paper-icon-button id="input_clear"
+                         slot="suffix"
+                         icon="clear"
+                         title="clear"
+                         alt="clear"
+                         on-tap="onInputClear_">
+      </paper-icon-button>
+    </paper-input>
+
+    <div id="dropdown">
+      <iron-collapse opened="[[isFocused]]">
+        <template is="dom-repeat" items="[[visibleOptions_(options)]]" as="option" index-as="optionIndex">
+          <div class="item"
+              style$="border-left-width: calc(74px * [[option.depth]]);">
+            <template is="dom-if" if="[[option.isGroupHeader]]">
+              <paper-button on-tap="toggleGroupExpanded_"
+                            expanded$="[[option.isExpanded]]">
+                <template is="dom-if" if="[[option.isExpanded]]">
+                  <iron-icon icon="expand-less" />
+                </template>
+
+                <template is="dom-if" if="[[!option.isExpanded]]">
+                  <iron-icon icon="expand-more" />
+                </template>
+
+                [[option.count]]
+              </paper-button>
+            </template>
+
+            <paper-checkbox checked="[[isSelected_(option)]]"
+                            on-change="onDropdownSelect_">
+              [[option.label]]
+            </paper-checkbox>
+          </div>
+        </template>
+      </iron-collapse>
+    </div>
+  </template>
+</dom-module>
+<script src="/dashboard/spa/dropdown-input.js"></script>
