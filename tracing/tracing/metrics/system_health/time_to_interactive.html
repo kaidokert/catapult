@@ -15,7 +15,7 @@ tr.exportTo('tr.metrics.sh', function() {
   const TIME_TO_INTERACTIVE_WINDOW_SIZE_MS = 5000;
 
   // Number of requests tolerated before network is considered busy.
-  const ACTIVE_REQUEST_TOLERANCE = 2;
+  const ACTIVE_REQUEST_TOLERANCE = 0;
 
   // Minimum gap between task clusters for determining First CPU Idle.
   const FCI_MIN_CLUSTER_SEPARATION_MS = 1000;
@@ -80,7 +80,7 @@ tr.exportTo('tr.metrics.sh', function() {
    * @returns {boolean}
    */
   function reachedTTIQuiscence_(timestamp,
-      networkQuietWindowStart, mainThreadQuietWindowStart) {
+      networkQuietWindowStart, mainThreadQuietWindowStart, windowSize) {
     if (networkQuietWindowStart === undefined ||
         mainThreadQuietWindowStart === undefined) {
       return false;
@@ -88,13 +88,20 @@ tr.exportTo('tr.metrics.sh', function() {
 
     const mainThreadQuietForLongEnough =
           timestamp - mainThreadQuietWindowStart >=
-          TIME_TO_INTERACTIVE_WINDOW_SIZE_MS;
+          windowSize;
 
     const networkQuietForLongEnough =
           timestamp - networkQuietWindowStart >=
-          TIME_TO_INTERACTIVE_WINDOW_SIZE_MS;
+          windowSize;
 
     return mainThreadQuietForLongEnough && networkQuietForLongEnough;
+  }
+
+  function filterNetworkByResourceType(networkRequests) {
+    return networkRequests.filter((request)=>{
+      const type = request.args.resourceInfo.resourceType;
+      return type === 'Resource' || type === 'Main resource' || type ==="CSS stylesheet";
+    });
   }
 
   /**
@@ -130,11 +137,12 @@ tr.exportTo('tr.metrics.sh', function() {
    * @returns {number|undefined}
    */
   function findInteractiveTime(searchBegin, searchEnd,
-      domContentLoadedEnd, longTasksInWindow, networkRequests) {
+      domContentLoadedEnd, longTasksInWindow, networkRequests, windowSize) {
     // It is sufficient to only look at the end points of long tasks and network
     // requests. These are the points where any meaningful changes happen.
     const longTaskEndpoints = getEndpoints_(longTasksInWindow,
         ENDPOINT_TYPES.LONG_TASK_START, ENDPOINT_TYPES.LONG_TASK_END);
+    const filteredNetworkRequests = filterNetworkByResourceType(networkRequests);
     const networkRequestEndpoints = getEndpoints_(networkRequests,
         ENDPOINT_TYPES.REQUEST_START, ENDPOINT_TYPES.REQUEST_END);
     const endpoints = longTaskEndpoints.concat(networkRequestEndpoints);
@@ -147,7 +155,7 @@ tr.exportTo('tr.metrics.sh', function() {
 
     for (const endpoint of endpoints) {
       if (reachedTTIQuiscence_(endpoint.time,
-          networkQuietWindowStart, mainThreadQuietWindowStart)) {
+          networkQuietWindowStart, mainThreadQuietWindowStart, windowSize)) {
         fciCandidate = mainThreadQuietWindowStart;
         break;
       }
@@ -179,7 +187,7 @@ tr.exportTo('tr.metrics.sh', function() {
     }
 
     if (reachedTTIQuiscence_(searchEnd,
-        networkQuietWindowStart, mainThreadQuietWindowStart)) {
+        networkQuietWindowStart, mainThreadQuietWindowStart, windowSize)) {
       fciCandidate = mainThreadQuietWindowStart;
     }
 
