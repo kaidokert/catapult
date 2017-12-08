@@ -241,50 +241,6 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     diagnostics = histogram.SparseDiagnostic.query().fetch()
     self.assertEqual(len(diagnostics), 3)
 
-  def testPostSparseDiagnostic(self):
-    stored_object.Set(
-        add_point_queue.BOT_WHITELIST_KEY, ['win7'])
-
-    test_path = 'Chromium/win7/suite/metric'
-    params = {
-        'data': json.dumps(TEST_BENCHMARKS),
-        'test_path': test_path,
-        'revision': 123
-    }
-    self.testapp.post('/add_histograms_queue', params)
-
-    test_key = utils.TestKey(test_path)
-
-    test = test_key.get()
-    self.assertIsNone(test.units)
-
-    original_diagnostic = TEST_BENCHMARKS
-    diagnostic_entity = ndb.Key(
-        'SparseDiagnostic', original_diagnostic['guid']).get()
-    self.assertFalse(diagnostic_entity.internal_only)
-
-  def testPostSparseDiagnostic_Internal(self):
-    stored_object.Set(
-        add_point_queue.BOT_WHITELIST_KEY, ['mac'])
-
-    test_path = 'Chromium/win7/suite/metric'
-    test_key = utils.TestKey(test_path)
-
-    params = {
-        'data': json.dumps(TEST_BENCHMARKS),
-        'test_path': test_path,
-        'revision': 123
-    }
-    self.testapp.post('/add_histograms_queue', params)
-
-    test = test_key.get()
-    self.assertIsNone(test.units)
-
-    original_diagnostic = TEST_BENCHMARKS
-    diagnostic_entity = ndb.Key(
-        'SparseDiagnostic', original_diagnostic['guid']).get()
-    self.assertTrue(diagnostic_entity.internal_only)
-
   def testGetUnitArgs_Up(self):
     unit_args = add_histograms_queue.GetUnitArgs('count_biggerIsBetter')
     self.assertEquals(anomaly.UP, unit_args['improvement_direction'])

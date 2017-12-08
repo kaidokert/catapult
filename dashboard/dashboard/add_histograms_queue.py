@@ -108,38 +108,31 @@ class AddHistogramsQueueHandler(request_handler.RequestHandler):
     added_rows = []
     monitored_test_keys = []
 
-    if is_diagnostic:
-      entity = histogram.SparseDiagnostic(
-          id=guid, data=data, test=test_key, start_revision=revision,
-          end_revision=revision, internal_only=internal_only)
-    else:
-      diagnostics = self.request.get('diagnostics')
+    diagnostics = self.request.get('diagnostics')
 
-      new_guids_to_existing_diagnostics = ProcessDiagnostics(
-          diagnostics, revision, test_key, internal_only)
+    new_guids_to_existing_diagnostics = ProcessDiagnostics(
+        diagnostics, revision, test_key, internal_only)
 
-      # TODO(eakuefner): Move per-histogram monkeypatching logic to Histogram.
-      hs = histogram_set.HistogramSet()
-      hs.ImportDicts([data_dict])
-      # TODO(eakuefner): Share code for replacement logic with add_histograms
-      for new_guid, existing_diagnostic in new_guids_to_existing_diagnostics:
-        hs.ReplaceSharedDiagnostic(
-            new_guid, diagnostic_ref.DiagnosticRef(
-                existing_diagnostic['guid']))
-      data = hs.GetFirstHistogram().AsDict()
+    # TODO(eakuefner): Move per-histogram monkeypatching logic to Histogram.
+    hs = histogram_set.HistogramSet()
+    hs.ImportDicts([data_dict])
+    # TODO(eakuefner): Share code for replacement logic with add_histograms
+    for new_guid, existing_diagnostic in new_guids_to_existing_diagnostics:
+      hs.ReplaceSharedDiagnostic(
+          new_guid, diagnostic_ref.DiagnosticRef(
+              existing_diagnostic['guid']))
+    data = hs.GetFirstHistogram().AsDict()
 
-      entity = histogram.Histogram(
-          id=guid, data=data, test=test_key, revision=revision,
-          internal_only=internal_only)
-      row = AddRow(data_dict, test_key, revision, test_path, internal_only)
-      added_rows.append(row)
-
-      is_monitored = parent_test.sheriff and parent_test.has_rows
-      if is_monitored:
-        monitored_test_keys.append(parent_test.key)
-
-
+    entity = histogram.Histogram(
+        id=guid, data=data, test=test_key, revision=revision,
+        internal_only=internal_only)
     entity.put()
+    row = AddRow(data_dict, test_key, revision, test_path, internal_only)
+    added_rows.append(row)
+
+    is_monitored = parent_test.sheriff and parent_test.has_rows
+    if is_monitored:
+      monitored_test_keys.append(parent_test.key)
 
     tests_keys = [
         k for k in monitored_test_keys if not add_point_queue.IsRefBuild(k)]
