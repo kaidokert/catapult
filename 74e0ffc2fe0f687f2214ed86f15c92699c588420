@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cb02e0e6_5f1bd125",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_connection.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-12-08T21:11:51Z",
+      "side": 1,
+      "message": "You don\u0027t use Base64 that many times in this file. Can you please just write it out rather than renaming here?",
+      "revId": "74e0ffc2fe0f687f2214ed86f15c92699c588420",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2865623e_7f84127a",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_connection.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-12-08T21:11:51Z",
+      "side": 1,
+      "message": "Does this need to be a function? It seems like you just want to do two things at once -- why not write that out and simplify the code?",
+      "revId": "74e0ffc2fe0f687f2214ed86f15c92699c588420",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4b5ce7c_e84ebbb9",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_connection.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-12-08T21:11:51Z",
+      "side": 1,
+      "message": "Please use async functions.",
+      "revId": "74e0ffc2fe0f687f2214ed86f15c92699c588420",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa1d675b_13dfb30a",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_connection.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-12-08T21:11:51Z",
+      "side": 1,
+      "message": "Please use a for..of loop, here and below..",
+      "revId": "74e0ffc2fe0f687f2214ed86f15c92699c588420",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a55ec23_5dba6233",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_connection.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-12-08T21:11:51Z",
+      "side": 1,
+      "message": "This thing with \"done\" is pretty confusing. It seems like you might be better served by making a class and making these methods of the class instead.",
+      "revId": "74e0ffc2fe0f687f2214ed86f15c92699c588420",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0ebe55a_70999ece",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_connection.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-12-08T21:11:51Z",
+      "side": 1,
+      "message": "Magic number?",
+      "revId": "74e0ffc2fe0f687f2214ed86f15c92699c588420",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ee5e1cc_9da76db1",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_tracing_controller_client.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-12-08T21:11:51Z",
+      "side": 1,
+      "message": "I think you should go ahead and make this function async as well. It\u0027ll make the promise goop below a lot more readable.",
+      "revId": "74e0ffc2fe0f687f2214ed86f15c92699c588420",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be0f3d75_6c60027e",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_tracing_controller_client.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-12-08T21:11:51Z",
+      "side": 1,
+      "message": "Can you please add test coverage for this stream/gzip stuff?",
+      "revId": "74e0ffc2fe0f687f2214ed86f15c92699c588420",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88ae51c1_7ce332a3",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_tracing_controller_client.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-12-08T21:11:51Z",
+      "side": 1,
+      "message": "If you choose not to make endRecording async, then please write this as an arrow.",
+      "revId": "74e0ffc2fe0f687f2214ed86f15c92699c588420",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
