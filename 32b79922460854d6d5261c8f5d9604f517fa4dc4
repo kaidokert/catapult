@@ -16,6 +16,75 @@
       "revId": "32b79922460854d6d5261c8f5d9604f517fa4dc4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be064f16_d29e4e7b",
+        "filename": "common/py_utils/py_utils/logging_util.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-08T21:58:50Z",
+      "side": 1,
+      "message": "How about just copy this constant:  https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/record_wpr.py?rcl\u003d3572e89d92c2ce8d58ab62ad7fde5e2f628c1475\u0026l\u003d25",
+      "parentUuid": "b2ed903c_075e89bc",
+      "revId": "32b79922460854d6d5261c8f5d9604f517fa4dc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57f9e39b_eb7bd322",
+        "filename": "telemetry/telemetry/internal/results/artifact_results_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-08T21:58:50Z",
+      "side": 1,
+      "message": "I wouldn\u0027t assert the name here. I will just change the test to  s.t like creating 2 artifact file for 2 different story \u0026 asserting that the two files in the artifact folder  with expected content..\n\nYou may want to create another test which create 2 artifact files for a same story name \u0026 assert that we can find 2 files in the artifact folder with expected content.",
+      "revId": "32b79922460854d6d5261c8f5d9604f517fa4dc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bc46b83_244159f3",
+        "filename": "telemetry/telemetry/internal/results/artifact_results_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-08T21:58:50Z",
+      "side": 1,
+      "message": "nits: remove extra blank line here",
+      "revId": "32b79922460854d6d5261c8f5d9604f517fa4dc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e59dfe5e_ca0155cd",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-08T21:58:50Z",
+      "side": 1,
+      "message": "I would just assert self._artifact_results so that there is no \"else\" case here. It\u0027s usually better to fail hard \u0026 early when unexpected things happen :-)",
+      "revId": "32b79922460854d6d5261c8f5d9604f517fa4dc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
