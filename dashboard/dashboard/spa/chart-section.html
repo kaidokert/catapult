@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="/bower_components/neon-animation/neon-animations.html">
+<link rel="import" href="/bower_components/paper-button/paper-button.html">
+<link rel="import" href="/bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="/dashboard/spa/chart-placeholder.html">
+<link rel="import" href="/dashboard/spa/line-chart.html">
+<link rel="import" href="/dashboard/spa/test-path-component.html">
+<link rel="import" href="/tracing/value/ui/histogram_set_view.html">
+
+<dom-module id="chart-section">
+  <template>
+    <link rel="stylesheet" href="/dashboard/spa/chart-section.css">
+
+    <div id="controls">
+      <div id="controls_inner">
+        <iron-collapse id="test_path"
+                       opened="[[!onlyChart]]">
+          <template is="dom-repeat" items="[[testPathComponents]]">
+            <test-path-component section-id="[[sectionId]]"
+                                component-index="[[index]]">
+            </test-path-component>
+          </template>
+
+          <paper-spinner active$="[[isLoading]]">
+          </paper-spinner>
+
+          <a id="documentation"
+             href="#"
+             target="_blank"
+             title="Documentation">
+            <paper-icon-button icon="help"></paper-icon-button>
+          </a>
+        </iron-collapse>
+
+        <iron-collapse opened="[[onlyChart]]">
+          <paper-input id="title"
+                       value="[[title]]"
+                       label="Title"
+                       on-keyup="onTitleKeyup_">
+          </paper-input>
+        </iron-collapse>
+      </div>
+
+      <span id="spacer">&nbsp;</span>
+
+      <paper-button id="toggle_chart_only"
+                    on-tap="toggleChartOnly_">
+        <template is="dom-if" if="[[onlyChart]]">
+          <iron-icon icon="expand-more">
+          </iron-icon>
+        </template>
+        <template is="dom-if" if="[[!onlyChart]]">
+          <iron-icon icon="expand-less">
+          </iron-icon>
+        </template>
+      </paper-button>
+
+      <paper-icon-button id="close"
+                         icon="close"
+                         on-tap="closeSection_">
+      </paper-icon-button>
+    </div>
+
+    <div id="chart_container">
+      <div id="chart_inner">
+        <template is="dom-if" if="[[chartLayout]]">
+          <span id="options_container">
+            <iron-collapse opened="[[!onlyChart]]">
+              <paper-icon-button id="options"
+                                 icon="more-vert"
+                                 style$="width: calc([[chartLayout.yAxisWidth]]px - 8px);"
+                                 on-tap="toggleOptions_">
+              </paper-icon-button>
+
+              <paper-dialog opened="[[isShowingOptions]]"
+                            horizontal-align="left"
+                            vertical-align="top"
+                            entry-animation="slide-from-left-animation"
+                            exit-animation="slide-left-animation"
+                            on-iron-overlay-canceled="toggleOptions_">
+                <paper-toggle-button>
+                  Normalize
+                </paper-toggle-button>
+                <paper-toggle-button>
+                  Zero Y-Axis
+                </paper-toggle-button>
+                <paper-toggle-button>
+                  Fixed X-Axis
+                </paper-toggle-button>
+              </paper-dialog>
+            </iron-collapse>
+          </span>
+
+          <iron-collapse opened="[[!onlyChart]]">
+            <line-chart id="minimap"
+                        layout="[[minimapLayout]]"
+                        on-brush-handle-down="onMinimapBrushHandleDown_"
+                        on-brush-handle-move="onMinimapBrushHandleMove_"
+                        on-brush-handle-up="onMinimapBrushHandleUp_">
+            </line-chart>
+          </iron-collapse>
+
+          <line-chart id="chart"
+                      layout="[[chartLayout]]"
+                      on-dot-click="onDotClick_"
+                      on-dot-mouseover="onDotMouseOver_"
+                      on-dot-mouseout="onDotMouseOut_"
+                      on-brush-handle-down="onBrushHandleDown_"
+                      on-brush-handle-move="onBrushHandleMove_"
+                      on-brush-handle-up="onBrushHandleUp_">
+          </line-chart>
+        </template>
+
+        <template is="dom-if" if="[[!chartLayout]]">
+          <div id="placeholder_container">
+            <chart-placeholder>
+              Select one or more Test suites, Bots, Measurements, and
+              Statistics, and zero or more Stories above.
+            </chart-placeholder>
+          </div>
+        </template>
+      </div>
+
+      <template is="dom-if" if="[[!_empty(histograms)]]">
+        <iron-collapse opened="[[!onlyChart]]">
+          <iron-collapse horizontal opened="[[!onlyChart]]">
+            <tr-v-ui-histogram-set-view id="histograms"
+                                        show-controls="[[showHistogramsControls]]"
+                                        expand-all-rows
+                                        histograms="[[histograms]]">
+            </tr-v-ui-histogram-set-view>
+          </iron-collapse>
+        </iron-collapse>
+      </template>
+    </div>
+
+    <iron-collapse id="related_tabs"
+                   opened="[[!onlyChart]]">
+      <template is="dom-if" if="[[!_empty(relatedTabs)]]">
+        <div id="related_tabstrip">
+          <div>Related</div>
+          <paper-tabs selected="[[selectedRelatedTabIndex]]"
+                      on-iron-select="onSelectRelatedTab_"
+                      on-iron-deselect="onSelectRelatedTab_">
+            <template is="dom-repeat" items="[[relatedTabs]]" as="tab">
+              <paper-tab>[[tab.name]]</paper-tab>
+            </template>
+
+            <paper-tab id="close_related_tab">
+              &mdash;
+            </paper-tab>
+          </paper-tabs>
+        </div>
+
+        <!-- iron-pages disallows CSS transitions -->
+        <template is="dom-repeat" items="[[relatedTabs]]" as="tab" index-as="tabIndex">
+          <div class="related_tab"
+               selected$="[[_eq(tabIndex, selectedRelatedTabIndex)]]">
+            <template is="dom-repeat" items="[[tab.sparklines]]" as="sparkline">
+              <div class="sparkline_tile"
+                  on-tap="onSparklineTap_">
+                <line-chart class="sparkline"
+                            layout="[[sparkline.layout]]">
+                </line-chart>
+                <div class="sparkline_name">[[sparkline.name]]</div>
+              </div>
+            </template>
+          </div>
+        </template>
+      </template>
+    </iron-collapse>
+  </template>
+</dom-module>
+
+<script src="/dashboard/spa/chart-section.js"></script>
