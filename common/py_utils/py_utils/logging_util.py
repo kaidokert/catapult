@@ -12,8 +12,14 @@ import logging
 
 @contextlib.contextmanager
 def CaptureLogs(file_stream):
+  if not file_stream:
+    # No file stream given, just don't capture logs.
+    yield
+    return
+
   logger = logging.getLogger()
   fh = logging.StreamHandler(file_stream)
+  fh.formatter = logger.handlers[0].formatter
   logger.addHandler(fh)
 
   try:
