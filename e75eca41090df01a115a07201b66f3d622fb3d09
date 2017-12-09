@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "add52cac_e2dada08",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2017-12-09T04:07:45Z",
+      "side": 1,
+      "message": "I might use the words conjunction and disjunction here, or put \"logical and\" and \"logical or\" in quotes to make it more visually distinct.",
+      "revId": "e75eca41090df01a115a07201b66f3d622fb3d09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "feafb5cf_e474941b",
+        "filename": "telemetry/telemetry/story/expectations_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2017-12-09T04:07:45Z",
+      "side": 1,
+      "message": "I think I\u0027m confused by this, and hence I think I\u0027m not really understanding this CL.\n\nIn the syntax, `crbug.com/23456 [ Win Mac ] benchmark1/story [ Skip]` would never match anything, since nothing is running on Win and Mac at the same time. This is an intentional change from the LayoutTest syntax to the new syntax.\n\nBut, that doesn\u0027t seem like what\u0027s being tested here?",
+      "revId": "e75eca41090df01a115a07201b66f3d622fb3d09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
