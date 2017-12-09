@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bee441ab_0a531bbb",
+        "filename": "common/py_utils/py_utils/expectations_parser.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2017-12-09T04:14:47Z",
+      "side": 1,
+      "message": "It\u0027s probably overly strict to reject a line w/ trailing spaces but no comment, so you might want to allow that, but this is a nit.",
+      "revId": "82576a5bdd2ef41eedc0b95c3c47115585f4e73c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
