@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "88eb44fc_8829e64f",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-12-11T15:56:37Z",
+      "side": 1,
+      "message": "+1 for \"logical and\", \"logical or\", which I think are more intuitive for programmers than \"conjunction\"/\"disjunction\"",
+      "parentUuid": "add52cac_e2dada08",
+      "revId": "e75eca41090df01a115a07201b66f3d622fb3d09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "feafb5cf_e474941b",
         "filename": "telemetry/telemetry/story/expectations_unittest.py",
         "patchSetId": 3
@@ -30,6 +48,29 @@
       "writtenOn": "2017-12-09T04:07:45Z",
       "side": 1,
       "message": "I think I\u0027m confused by this, and hence I think I\u0027m not really understanding this CL.\n\nIn the syntax, `crbug.com/23456 [ Win Mac ] benchmark1/story [ Skip]` would never match anything, since nothing is running on Win and Mac at the same time. This is an intentional change from the LayoutTest syntax to the new syntax.\n\nBut, that doesn\u0027t seem like what\u0027s being tested here?",
+      "revId": "e75eca41090df01a115a07201b66f3d622fb3d09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6cb3ab6_35f4776c",
+        "filename": "telemetry/telemetry/story/expectations_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-12-11T15:56:37Z",
+      "side": 1,
+      "message": "I\u0027m not sure I wholly understand the reason for the different format between the \u0027platforms\u0027 entry and the \u0027stories\u0027 key. Intuitively, it makes sense that \u0027platforms\u0027 doesn\u0027t need to be a dictionary because every item in it is assumed to apply to the whole benchmark. Similarly, it makes sense that each story needs a list of disables, because each might be on a different platform, for a different bug, etc. Why does the first item in each of those disable tuples need to be a list, though? As an example, [\u0027Mac\u0027], below\n\nAll of the conditions on a given line are combined via \"and\". [\u0027Win\u0027, \u0027Mac\u0027] in the test expectation file becomes \u0027Win+Mac\u0027 in our system, so it seems impossible for a single line in the test expectation file to result in multiple list items in that first tuple item. There also don\u0027t seem to be any unit tests that have multiple items in that first tuple. Should we switch it to just being a string as that first item, making it consistent with \u0027platforms\u0027?",
+      "range": {
+        "startLine": 672,
+        "startChar": 17,
+        "endLine": 672,
+        "endChar": 24
+      },
       "revId": "e75eca41090df01a115a07201b66f3d622fb3d09",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
