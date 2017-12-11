@@ -412,14 +412,45 @@ def GetIfChanged(file_path, bucket):
   """
   with _FileLock(file_path):
     hash_path = file_path + '.sha1'
+    precomputed_local_hash_path = file_path + '.sha1-precomputed'
     if not os.path.exists(hash_path):
       logger.warning('Hash file not found: %s', hash_path)
       return False
 
     expected_hash = ReadHash(hash_path)
+
+    # To save the time required computing binary hash (which is an expensive
+    # operation, see crbug.com/793609#c2 for details), any time we fetch a new
+    # binary, we save not only that binary but also its hash to a
+    # |precomputed_local_hash_path|. Anytime the file is updated (its
+    # hash in |hash_path| change), we can just need to compare the expected hash
+    # with the hash in |precomputed_local_hash_path| to figure out if the update
+    # operation has been done.
+    #
+    # Notes: for this to work, we make the assumption that only
+    # cloud_storage.GetIfChanged modifies the local |file_path| binary.
+
+    if os.path.exists(precomputed_local_hash_path):
+      precomputed_local_hash = ReadHash(precomputed_local_hash_path)
+      if os.path.exists(file_path) and precomputed_local_hash == expected_hash:
+        return False
+
+    # Whether the binary stored in local already has hash matched
+    # expected_hash or we need to fetch new binary from cloud, the hash of that
+    # final binary would be |expected_hash|.
+    with open(precomputed_local_hash_path, 'w') as f:
+      f.write(expected_hash)
+
     if os.path.exists(file_path) and CalculateHash(file_path) == expected_hash:
       return False
     _GetLocked(bucket, expected_hash, file_path)
+    if CalculateHash(file_path) != expected_hash:
+      os.remove(precomputed_local_hash_path)
+      raise RuntimeError(
+          'Binary stored in cloud storage does not have hash matching .sha1 '
+          'file. Please make sure that the binary file is uploaded using '
+          'depot_tools/upload_to_google_storage.py script or through automatic '
+          'framework.')
     return True
 
 
