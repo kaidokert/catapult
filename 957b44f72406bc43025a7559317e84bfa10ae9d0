@@ -48,6 +48,54 @@
     },
     {
       "key": {
+        "uuid": "80d0e23d_3e953b53",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2017-12-11T19:29:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab803b59_4984c51f",
+      "range": {
+        "startLine": 74,
+        "startChar": 28,
+        "endLine": 74,
+        "endChar": 32
+      },
+      "revId": "957b44f72406bc43025a7559317e84bfa10ae9d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fb4c9adc_dd4ea9ed",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2017-12-11T19:29:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b49c6c07_e416d980",
+      "range": {
+        "startLine": 74,
+        "startChar": 43,
+        "endLine": 74,
+        "endChar": 52
+      },
+      "revId": "957b44f72406bc43025a7559317e84bfa10ae9d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bd723e5a_1ce04dfb",
         "filename": "tracing/tracing/metrics/system_health/time_to_interactive.html",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2017-12-11T14:24:01Z",
       "side": 1,
       "message": "Is this First CPU Idle here? Or is it TTI?",
+      "range": {
+        "startLine": 181,
+        "startChar": 8,
+        "endLine": 181,
+        "endChar": 20
+      },
+      "revId": "957b44f72406bc43025a7559317e84bfa10ae9d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f53daf31_57fd9432",
+        "filename": "tracing/tracing/metrics/system_health/time_to_interactive.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2017-12-11T19:29:32Z",
+      "side": 1,
+      "message": "Probably forgot to change this variable name when we renamed from FCI -\u003e TTI. Changed to interactiveCandidate.",
+      "parentUuid": "bd723e5a_1ce04dfb",
       "range": {
         "startLine": 181,
         "startChar": 8,
