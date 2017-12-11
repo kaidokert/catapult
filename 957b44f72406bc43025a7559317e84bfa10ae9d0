@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b49c6c07_e416d980",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1116050
+      },
+      "writtenOn": "2017-12-11T14:24:01Z",
+      "side": 1,
+      "message": "40 seconds",
+      "range": {
+        "startLine": 74,
+        "startChar": 43,
+        "endLine": 74,
+        "endChar": 52
+      },
+      "revId": "957b44f72406bc43025a7559317e84bfa10ae9d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab803b59_4984c51f",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1116050
+      },
+      "writtenOn": "2017-12-11T14:24:01Z",
+      "side": 1,
+      "message": "TTCI -\u003e TTI",
+      "range": {
+        "startLine": 74,
+        "startChar": 28,
+        "endLine": 74,
+        "endChar": 32
+      },
+      "revId": "957b44f72406bc43025a7559317e84bfa10ae9d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd723e5a_1ce04dfb",
+        "filename": "tracing/tracing/metrics/system_health/time_to_interactive.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1116050
+      },
+      "writtenOn": "2017-12-11T14:24:01Z",
+      "side": 1,
+      "message": "Is this First CPU Idle here? Or is it TTI?",
+      "range": {
+        "startLine": 181,
+        "startChar": 8,
+        "endLine": 181,
+        "endChar": 20
+      },
+      "revId": "957b44f72406bc43025a7559317e84bfa10ae9d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
