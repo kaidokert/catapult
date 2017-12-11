@@ -178,8 +178,9 @@ tr.exportTo('tr.metrics.sh', function() {
       }
     }
 
-    if (reachedTTIQuiscence_(searchEnd,
-        networkQuietWindowStart, mainThreadQuietWindowStart)) {
+    if (fciCandidate === undefined &&
+        reachedTTIQuiscence_(searchEnd,
+            networkQuietWindowStart, mainThreadQuietWindowStart)) {
       fciCandidate = mainThreadQuietWindowStart;
     }
 
