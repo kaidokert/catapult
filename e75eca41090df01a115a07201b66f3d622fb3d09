@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "e7b497c2_9d337168",
+        "filename": "telemetry/telemetry/story/expectations_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-12-11T16:04:46Z",
+      "side": 1,
+      "message": "As of right now, the existing test conditions we have do not have much ability to overlap. (This is because we used logical or in the old StoryExpectations so the existing expectations are very specifically able to target certain bots. We can probably get rid of a few of our TestConditions since TA/DA will use logical and.\n\nSince we do not have a lot over over-lapable conditions, I just chose to pick a nonsensical one  that would never evaluate to true just for the purpose of testing the merging of conditions. The TestConditions are tested in telemetry/story/expectations_unittest.py",
+      "parentUuid": "feafb5cf_e474941b",
+      "revId": "e75eca41090df01a115a07201b66f3d622fb3d09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c6cb3ab6_35f4776c",
         "filename": "telemetry/telemetry/story/expectations_unittest.py",
         "patchSetId": 3
@@ -65,6 +83,30 @@
       "writtenOn": "2017-12-11T15:56:37Z",
       "side": 1,
       "message": "I\u0027m not sure I wholly understand the reason for the different format between the \u0027platforms\u0027 entry and the \u0027stories\u0027 key. Intuitively, it makes sense that \u0027platforms\u0027 doesn\u0027t need to be a dictionary because every item in it is assumed to apply to the whole benchmark. Similarly, it makes sense that each story needs a list of disables, because each might be on a different platform, for a different bug, etc. Why does the first item in each of those disable tuples need to be a list, though? As an example, [\u0027Mac\u0027], below\n\nAll of the conditions on a given line are combined via \"and\". [\u0027Win\u0027, \u0027Mac\u0027] in the test expectation file becomes \u0027Win+Mac\u0027 in our system, so it seems impossible for a single line in the test expectation file to result in multiple list items in that first tuple item. There also don\u0027t seem to be any unit tests that have multiple items in that first tuple. Should we switch it to just being a string as that first item, making it consistent with \u0027platforms\u0027?",
+      "range": {
+        "startLine": 672,
+        "startChar": 17,
+        "endLine": 672,
+        "endChar": 24
+      },
+      "revId": "e75eca41090df01a115a07201b66f3d622fb3d09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbf779cb_e2af1553",
+        "filename": "telemetry/telemetry/story/expectations_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-12-11T16:04:46Z",
+      "side": 1,
+      "message": "This is an ugly grinding point of the old and new ways. The old way you can have a list of conditions and if any single one of them evaluates to true it will disable. This is the opposite of how TADA works. To get around that we are currently combining them with the logical and wrap around. After the old way is completely gone, there should be a fair bit of refactoring work that makes this all cleaner.",
+      "parentUuid": "c6cb3ab6_35f4776c",
       "range": {
         "startLine": 672,
         "startChar": 17,
