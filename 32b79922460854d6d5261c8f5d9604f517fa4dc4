@@ -37,6 +37,41 @@
     },
     {
       "key": {
+        "uuid": "70460c57_3117038c",
+        "filename": "common/py_utils/py_utils/logging_util.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-11T10:03:26Z",
+      "side": 1,
+      "message": "TBH I think this is fine. It\u0027s a reasonable assumption to try to copy the format that the client may have carefully crafted and use the same for the captured logs here. Maybe just leave a comment to explain this rationale before the line.",
+      "parentUuid": "be064f16_d29e4e7b",
+      "revId": "32b79922460854d6d5261c8f5d9604f517fa4dc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6d0dc37_cec88fb7",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-11T10:03:26Z",
+      "side": 1,
+      "message": "I don\u0027t see much usefulness of the story_digest here (it\u0027s not readable for humans, and the tempfile is going to append another hash for uniqueness anyway). I suggest just using prefix\u003d\u0027telemetry_artifact_\u0027 and leaving it at that.",
+      "revId": "32b79922460854d6d5261c8f5d9604f517fa4dc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "57f9e39b_eb7bd322",
         "filename": "telemetry/telemetry/internal/results/artifact_results_unittest.py",
         "patchSetId": 4
@@ -82,6 +117,24 @@
       "writtenOn": "2017-12-08T21:58:50Z",
       "side": 1,
       "message": "I would just assert self._artifact_results so that there is no \"else\" case here. It\u0027s usually better to fail hard \u0026 early when unexpected things happen :-)",
+      "revId": "32b79922460854d6d5261c8f5d9604f517fa4dc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "930fd32b_d62525f1",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-11T10:03:26Z",
+      "side": 1,
+      "message": "The need for the \"noop\" branches comes from supporting the case of output-formatters that do not care about artifacts; so this is an optimization to not collect artifacts at all in those situations.\n\nBut I do agree that all this branching (see also in AddArtifact below) is becoming messy.\n\nI would suggest either:\n\n1) collect the artifacts anyway, even if just to throw them away at the end; that \"optimization\" is leading to an increase in code complexity and is probably just not worth paying.\n\n2) create a NoopArtifactResults class, that has the same API as ArtifactResults but doesn\u0027t actually store any artifacts. Then clients like this wouldn\u0027t need to do any branching.\n\nTBH I\u0027m leaning a bit towards 1.",
+      "parentUuid": "e59dfe5e_ca0155cd",
       "revId": "32b79922460854d6d5261c8f5d9604f517fa4dc4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
