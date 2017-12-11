@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/bower_components/paper-styles/element-styles/paper-material-styles.html">
+
+<dom-module id="releasing-section">
+  <template>
+    <style>
+      #controls {
+        display: flex;
+        align-items: center;
+      }
+
+      paper-spinner {
+        visibility: hidden;
+        margin: 16px;
+      }
+
+      paper-spinner[active] {
+        visibility: visible;
+      }
+
+      #controls paper-button {
+        @apply --paper-material-elevation-1;
+        background-color: var(--paper-indigo-500);
+        color: white;
+        font-size: larger;
+        margin: 0 16px;
+        padding: 6px;
+      }
+
+      #controls paper-button[disabled] {
+        background-color: var(--paper-grey-500);
+      }
+
+      #current_milestone {
+        font-size: large;
+      }
+
+      #add_alerts {
+        height: 34px;
+        margin: 0;
+      }
+
+      #close {
+        align-self: flex-start;
+        flex-shrink: 0;
+      }
+
+      #tables {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+      }
+
+      #tables div {
+        margin: 0.5em;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      h2 {
+        text-align: center;
+      }
+
+      .name_column {
+        text-align: left;
+      }
+
+      td, th {
+        padding: 6px;
+        vertical-align: top;
+      }
+
+      #spacer {
+        flex-grow: 1;
+      }
+
+      #edit, #documentation {
+        color: var(--paper-indigo-500);
+        margin: auto;
+      }
+
+      paper-dialog {
+        margin: 0;
+      }
+    </style>
+
+    <div id="controls">
+      <dropdown-input id="source"
+                      placeholder="Report"
+                      input-value="[[source.inputValue]]"
+                      is-focused="[[source.isFocused]]"
+                      options="[[source.options]]"
+                      selected-options="[[source.selectedOptions]]"
+                      on-input-focus="onFocusSource_"
+                      on-input-blur="onBlurSource_"
+                      on-input-keydown="onKeydownSource_"
+                      on-clear="onClearSource_"
+                      on-option-select="onSelectSource_">
+      </dropdown-input>
+
+      <template is="dom-if" if="[[!_empty(tables)]]">
+        <template is="dom-if" if="[[isOwner]]">
+          <span>
+            <paper-icon-button id="edit"
+                               icon="editor:mode-edit"
+                               on-tap="toggleEditing_">
+            </paper-icon-button>
+
+            <paper-dialog opened="[[isEditing]]"
+                          horizontal-align="left"
+                          vertical-align="top"
+                          entry-animation="scale-up-animation"
+                          exit-animation="scale-down-animation"
+                          on-iron-overlay-canceled="toggleEditing_">
+              TODO edit report form
+            </paper-dialog>
+          </span>
+        </template>
+        <template is="dom-if" if="[[!isOwner]]">
+          <a id="documentation"
+             href="#"
+             target="_blank"
+             title="Documentation">
+            <paper-icon-button icon="help"></paper-icon-button>
+          </a>
+        </template>
+      </template>
+
+      <paper-spinner active$="[[isLoading]]">
+      </paper-spinner>
+
+      <paper-button disabled$="[[!isPreviousMilestone]]"
+                    on-tap="previousMilestone_">
+        M[[_add(milestone, -1)]]
+        <iron-icon icon="chevron-left"></iron-icon>
+      </paper-button>
+
+      <div id="current_milestone">
+        M[[milestone]]
+      </div>
+
+      <paper-button disabled$="[[!isNextMilestone]]"
+                    on-tap="nextMilestone_">
+        <iron-icon icon="chevron-right"></iron-icon>
+        M[[_add(milestone, 1)]]
+      </paper-button>
+
+      <paper-button id="add_alerts"
+                    disabled$="[[!anyAlerts]]"
+                    on-tap="addAlertsSection_">
+        Alerts
+      </paper-button>
+
+      <span id="spacer">&nbsp;</span>
+
+      <paper-icon-button id="close"
+                         icon="close"
+                         on-tap="closeSection_">
+      </paper-icon-button>
+    </div>
+
+    <div id="tables">
+      <template is="dom-repeat" items="[[tables]]" as="table">
+        <div>
+          <h2>[[table.title]]</h2>
+
+          <table>
+            <thead>
+              <th colspan="2">&nbsp;</th>
+              <th>Current<br>[[table.currentVersion]]</th>
+              <th>Reference<br>[[table.referenceVersion]]</th>
+              <th colspan="2">Change</th>
+            </thead>
+            <tbody>
+              <template is="dom-repeat" items="[[table.rows]]" as="row">
+                <tr>
+                  <template is="dom-if" if="[[row.isFirstInCategory]]">
+                    <th row-span="[[row.rowCount]]">
+                      [[row.category]]
+                    </th>
+                  </template>
+
+                  <th class="name_column">
+                    <a href="[[row.href]]"
+                       on-tap="openChart_">
+                      [[row.name]]
+                    </a>
+                  </th>
+
+                  <td>
+                    <tr-v-ui-scalar-span value="[[row.currentValue]]"
+                                         unit="[[row.unit]]">
+                    </tr-v-ui-scalar-span>
+                  </td>
+
+                  <td>
+                    <tr-v-ui-scalar-span value="[[row.referenceValue]]"
+                                         unit="[[row.unit]]">
+                    </tr-v-ui-scalar-span>
+                  </td>
+
+                  <td>
+                    <tr-v-ui-scalar-span value="[[row.percentDeltaValue]]"
+                                         unit="[[row.percentDeltaUnit]]">
+                    </tr-v-ui-scalar-span>
+                  </td>
+
+                  <td>
+                    <tr-v-ui-scalar-span value="[[row.deltaValue]]"
+                                         unit="[[row.deltaUnit]]">
+                    </tr-v-ui-scalar-span>
+                  </td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
+      </template>
+    </div>
+  </template>
+</dom-module>
+<script src="/dashboard/spa/releasing-section.js"></script>
