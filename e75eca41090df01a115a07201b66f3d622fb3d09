@@ -134,6 +134,30 @@
       "revId": "e75eca41090df01a115a07201b66f3d622fb3d09",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11a008e8_093c330f",
+        "filename": "telemetry/telemetry/story/expectations_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2017-12-11T16:16:05Z",
+      "side": 1,
+      "message": "Got it. I didn\u0027t look at the file, and thought this was the output of the parser rather than the test conditions converted to strings. Given that, I see why this is necessary (for now)",
+      "parentUuid": "dbf779cb_e2af1553",
+      "range": {
+        "startLine": 672,
+        "startChar": 17,
+        "endLine": 672,
+        "endChar": 24
+      },
+      "revId": "e75eca41090df01a115a07201b66f3d622fb3d09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
