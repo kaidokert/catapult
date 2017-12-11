@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "518c322e_ce72a8b4",
+        "filename": "common/py_utils/py_utils/logging_util.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-12-11T21:54:13Z",
+      "side": 1,
+      "message": "I\u0027m going to leave a comment explaining this. I\u0027m more concerned about the case where there\u0027s no handler already or something. I\u0027ll add an if statement to guard against that though.",
+      "parentUuid": "70460c57_3117038c",
+      "revId": "32b79922460854d6d5261c8f5d9604f517fa4dc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d6d0dc37_cec88fb7",
         "filename": "telemetry/telemetry/internal/results/artifact_results.py",
         "patchSetId": 4
@@ -69,6 +87,24 @@
       "revId": "32b79922460854d6d5261c8f5d9604f517fa4dc4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20aff6f2_98ebc25c",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-12-11T21:54:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6d0dc37_cec88fb7",
+      "revId": "32b79922460854d6d5261c8f5d9604f517fa4dc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -89,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "d3a703a1_7b7dbc14",
+        "filename": "telemetry/telemetry/internal/results/artifact_results_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-12-11T21:54:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57f9e39b_eb7bd322",
+      "revId": "32b79922460854d6d5261c8f5d9604f517fa4dc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9bc46b83_244159f3",
         "filename": "telemetry/telemetry/internal/results/artifact_results_unittest.py",
         "patchSetId": 4
@@ -103,6 +157,24 @@
       "revId": "32b79922460854d6d5261c8f5d9604f517fa4dc4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da1e8d7b_c21f6bea",
+        "filename": "telemetry/telemetry/internal/results/artifact_results_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-12-11T21:54:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9bc46b83_244159f3",
+      "revId": "32b79922460854d6d5261c8f5d9604f517fa4dc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -135,6 +207,24 @@
       "side": 1,
       "message": "The need for the \"noop\" branches comes from supporting the case of output-formatters that do not care about artifacts; so this is an optimization to not collect artifacts at all in those situations.\n\nBut I do agree that all this branching (see also in AddArtifact below) is becoming messy.\n\nI would suggest either:\n\n1) collect the artifacts anyway, even if just to throw them away at the end; that \"optimization\" is leading to an increase in code complexity and is probably just not worth paying.\n\n2) create a NoopArtifactResults class, that has the same API as ArtifactResults but doesn\u0027t actually store any artifacts. Then clients like this wouldn\u0027t need to do any branching.\n\nTBH I\u0027m leaning a bit towards 1.",
       "parentUuid": "e59dfe5e_ca0155cd",
+      "revId": "32b79922460854d6d5261c8f5d9604f517fa4dc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68fe781f_66b08fd1",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-12-11T21:54:13Z",
+      "side": 1,
+      "message": "I tried out the first idea at some point, with the cleanup happening in story_runner somewhere I think (can\u0027t remember exactly where). The problem I found was that it still seemed to dump temp files out, which weren\u0027t cleaned up, I think because of exceptions circumventing the normal clean up logic. Can\u0027t exactly remember though.\n\nI\u0027m going to try the Noop class, and see how that works.",
+      "parentUuid": "930fd32b_d62525f1",
       "revId": "32b79922460854d6d5261c8f5d9604f517fa4dc4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
