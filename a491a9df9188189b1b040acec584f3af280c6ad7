@@ -34,6 +34,24 @@
       "revId": "a491a9df9188189b1b040acec584f3af280c6ad7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e82fa90b_0f7a6569",
+        "filename": "common/py_utils/py_utils/cloud_storage.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2017-12-11T18:57:39Z",
+      "side": 1,
+      "message": "Conceptually, yes. \n\nTechnically, no, not just mtime, because it\u0027s written in c++ and life is more complicated if you want to be fast and precise and cross-platform, see https://github.com/ninja-build/ninja/blob/master/src/disk_interface.cc :).",
+      "parentUuid": "6c22249f_1bbd7c45",
+      "revId": "a491a9df9188189b1b040acec584f3af280c6ad7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
