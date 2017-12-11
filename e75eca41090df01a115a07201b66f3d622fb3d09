@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "0fe25cd1_6c885f08",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-12-11T16:27:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81ef57ab_716d4aa0",
+      "revId": "e75eca41090df01a115a07201b66f3d622fb3d09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "feafb5cf_e474941b",
         "filename": "telemetry/telemetry/story/expectations_unittest.py",
         "patchSetId": 3
