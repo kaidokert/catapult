@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bb666869_856447ab",
+        "filename": "common/py_utils/py_utils/cloud_storage.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2017-12-11T18:43:17Z",
+      "side": 1,
+      "message": "It occurred to me a bit ago that we\u0027re probably over-complicating this, and you can probably just compare timestamps. If, when we download something, we set it to the download time, that\u0027ll *always* be newer than the timestamp of the sha1, and if we then update the timestamp of the sha1, *most* of the time that\u0027ll mean that we should redownload the file.\n\nThis is, of course, how ninja builds work, and so it\u0027s a fairly safe (but not foolproof) assumption. \n\nDoes that make sense? If so, I think we should probably do that just to be consistent with how we determine \"correct\" elsewhere.",
+      "revId": "a491a9df9188189b1b040acec584f3af280c6ad7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
