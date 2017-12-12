@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "083feb44_b480384c",
+        "filename": "tracing/tracing/model/async_slice_group.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-12-12T23:35:14Z",
+      "side": 1,
+      "message": "\"ones get their titles\"? Which \"ones\"?",
+      "revId": "86c49562a6500a1db44585673458f3f226b2c4b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "756fa562_beee45ee",
+        "filename": "tracing/tracing/model/async_slice_group.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-12-12T23:35:14Z",
+      "side": 1,
+      "message": "It looks like this is set on the subGroup, so a better variable name for this would be \"subGroupTitle\".",
+      "revId": "86c49562a6500a1db44585673458f3f226b2c4b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca9205f7_66fa6abd",
+        "filename": "tracing/tracing/model/async_slice_group.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-12-12T23:35:14Z",
+      "side": 1,
+      "message": "What does \"as a settings key\" mean? It looks like this is passed to the AsyncSliceGroup constructor, so a better variable name for this would be \"subGroupName\".",
+      "revId": "86c49562a6500a1db44585673458f3f226b2c4b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb42cf5a_454ca104",
+        "filename": "tracing/tracing/model/async_slice_group.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-12-12T23:35:14Z",
+      "side": 1,
+      "message": "Why can\u0027t BlinkSchedulerAsyncSlice override viewSubGroupTitle instead of creating another hook?",
+      "revId": "86c49562a6500a1db44585673458f3f226b2c4b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1f8ecc1_c0f203ba",
+        "filename": "tracing/tracing/model/async_slice_group.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-12-12T23:35:14Z",
+      "side": 1,
+      "message": "Why not keep calling compareTo()?",
+      "revId": "86c49562a6500a1db44585673458f3f226b2c4b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30dbddf8_ef841f96",
+        "filename": "tracing/tracing/model/async_slice_group_test.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-12-12T23:35:14Z",
+      "side": 1,
+      "message": "We\u0027re trying to deprecate newAsyncSliceNamed in favor of the more general newAsyncSliceEx. Can you use newAsyncSliceEx instead?",
+      "revId": "86c49562a6500a1db44585673458f3f226b2c4b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2e6f461_fa5b203b",
+        "filename": "tracing/tracing/model/helpers/chrome_renderer_helper.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-12-12T23:35:14Z",
+      "side": 1,
+      "message": "It looks like this file does not need either BlinkSchedulerAsyncSlice or ChromeUserFriendlyCategoryDriver, so can you remove both of these imports?\nIf you just need to import blink_scheduler_async_slice.html somewhere so that it can register itself, I think that\u0027s what chrome_config.html is for:\nhttps://github.com/catapult-project/catapult/blob/master/tracing/tracing/extras/chrome_config.html",
+      "revId": "86c49562a6500a1db44585673458f3f226b2c4b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
