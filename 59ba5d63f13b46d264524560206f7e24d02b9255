@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "59fc92e2_197c9e96",
+        "filename": "dashboard/dashboard/add_histograms_queue.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-12-12T21:01:25Z",
+      "side": 1,
+      "message": "Can you put a TODO to https://github.com/catapult-project/catapult/issues/4110",
+      "revId": "59ba5d63f13b46d264524560206f7e24d02b9255",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
