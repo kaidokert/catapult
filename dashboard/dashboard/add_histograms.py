@@ -7,7 +7,6 @@
 import json
 import logging
 import sys
-import traceback
 import uuid
 
 from google.appengine.api import taskqueue
@@ -73,18 +72,18 @@ class AddHistogramsHandler(api_request_handler.ApiRequestHandler):
 
       histogram_dicts = json.loads(data_str)
       ProcessHistogramSet(histogram_dicts)
-    except api_request_handler.BadRequestError:
+    except api_request_handler.BadRequestError as e:
       # TODO(simonhatch, eakuefner: Remove this later.
       # When this has all stabilized a bit, remove and let this 400 to clients,
       # but for now to preven the waterfall from re-uploading over and over
       # while we bug fix, let's just log the error.
       # https://github.com/catapult-project/catapult/issues/4019
-      logging.error(traceback.format_exc())
-    except Exception:  # pylint: disable=broad-except
+      logging.error(e.message)
+    except Exception as e:  # pylint: disable=broad-except
       # TODO(simonhatch, eakuefner: Remove this later.
       # We shouldn't be catching ALL exceptions, this is just while the
       # stability of the endpoint is being worked on.
-      logging.error(traceback.format_exc())
+      logging.error(e.message)
 
 
 def _LogDebugInfo(histograms):
@@ -130,61 +129,30 @@ def ProcessHistogramSet(histogram_dicts):
     histograms.ReplaceSharedDiagnostic(
         new_guid, diagnostic.Diagnostic.FromDict(old_diagnostic))
 
-  tasks = _BatchHistogramsIntoTasks(histograms, revision)
-
-  _QueueHistogramTasks(tasks)
-
-
-def _MakeTask(params):
-  return taskqueue.Task(
-      url='/add_histograms_queue', params={'params': json.dumps(params)})
-
-
-def _BatchHistogramsIntoTasks(histograms, revision):
-  params = []
-  tasks = []
+  task_list = []
 
   for hist in histograms:
-    diagnostics = FindHistogramLevelSparseDiagnostics(hist.guid, histograms)
+    guid = hist.guid
+    diagnostics = FindHistogramLevelSparseDiagnostics(guid, histograms)
     # TODO(eakuefner): Don't compute full diagnostics, because we need anyway to
     # call GetOrCreate here and in the queue.
-    test_path = ComputeTestPath(hist.guid, histograms)
-
+    test_path = ComputeTestPath(guid, histograms)
     # TODO(eakuefner): Batch these better than one per task.
-    task_dict = _MakeTaskDict(hist, test_path, revision, diagnostics)
+    task_list.append(_MakeTask(hist, test_path, revision, diagnostics))
 
-    # taskqueue.Task does size checking and throws an exception if you're over
-    # the payload limit.
-    try:
-      _MakeTask(params + [task_dict])
-      params.append(task_dict)
-    except taskqueue.TaskTooLargeError:
-      t = _MakeTask(params)
-      tasks.append(t)
-      params = []
-
-  if params:
-    t = _MakeTask(params)
-    tasks.append(t)
-
-  return tasks
-
-
-def _QueueHistogramTasks(tasks):
   queue = taskqueue.Queue(TASK_QUEUE_NAME)
+
   futures = []
-  for i in xrange(0, len(tasks), taskqueue.MAX_TASKS_PER_ADD):
-    f = queue.add_async(tasks[i:i + taskqueue.MAX_TASKS_PER_ADD])
+  for i in xrange(0, len(task_list), taskqueue.MAX_TASKS_PER_ADD):
+    f = queue.add_async(task_list[i:i + taskqueue.MAX_TASKS_PER_ADD])
     futures.append(f)
   for f in futures:
     f.get_result()
 
 
-def _MakeTaskDict(hist, test_path, revision, diagnostics):
-  # TODO(simonhatch): "revision" is common to all tasks, as is the majority of
-  # the test path
+def _MakeTask(hist, test_path, revision, diagnostics=None):
   params = {
-      'data': hist.AsDict(),
+      'data': json.dumps(hist.AsDict()),
       'test_path': test_path,
       'revision': revision
   }
@@ -198,9 +166,9 @@ def _MakeTaskDict(hist, test_path, revision, diagnostics):
   for d in diagnostics.itervalues():
     d['guid'] = str(uuid.uuid4())
 
-  params['diagnostics'] = diagnostics
+  params['diagnostics'] = json.dumps(diagnostics)
 
-  return params
+  return taskqueue.Task(url='/add_histograms_queue', params=params)
 
 
 # TODO(eakuefner): Clean this up by making it accept raw diagnostics.
