@@ -16,6 +16,24 @@
       "revId": "9143ba8c4e6ab0934564d093397791be58869abf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "012742d3_fb90e240",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2323,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-12T09:28:50Z",
+      "side": 1,
+      "message": "To be honest for some time I\u0027ve been wanting to get rid of GetPids, as none of its clients actually want what it provides (i.e. the grouping of PIDs by process name). Since the API of ListProcesses turned out to be much more versatile, I\u0027ll be happy to remove GetPids after migrating away its clients.\n\nAdded a TODO here and filed https://github.com/catapult-project/catapult/issues/4103",
+      "parentUuid": "3a15f926_ab70db0f",
+      "revId": "9143ba8c4e6ab0934564d093397791be58869abf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
