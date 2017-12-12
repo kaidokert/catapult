@@ -4,8 +4,11 @@
 
 import json
 
+from dashboard.common import namespaced_stored_object
 from dashboard.pinpoint.models import quest as quest_module
 
+
+_BOTS_TO_DIMENSIONS = 'bot_dimensions_map'
 
 _DEFAULT_REPEAT_COUNT = 10
 
@@ -68,17 +71,23 @@ def _TelemetryRunTest(request):
   arguments = {}
   swarming_extra_args = []
 
-  dimensions = request.get('dimensions')
-  if not dimensions:
-    return {}, None
-  dimensions = json.loads(dimensions)
-  arguments['dimensions'] = json.dumps(dimensions)
-
   benchmark = request.get('benchmark')
   if not benchmark:
-    raise TypeError('Missing "benchmark" argument.')
+    return {}, None
   arguments['benchmark'] = benchmark
   swarming_extra_args.append(benchmark)
+
+  configuration = request.get('configuration')
+  dimensions = request.get('dimensions')
+  if dimensions:
+    dimensions = json.loads(dimensions)
+    arguments['dimensions'] = json.dumps(dimensions)
+  elif configuration:
+    arguments['configuration'] = configuration
+    bots_to_dimensions = namespaced_stored_object.Get(_BOTS_TO_DIMENSIONS)
+    dimensions = bots_to_dimensions[configuration]
+  else:
+    raise TypeError('Missing a "configuration" or a "dimensions" argument.')
 
   story = request.get('story')
   if story:
@@ -120,11 +129,17 @@ def _GTestRunTest(request):
   arguments = {}
   swarming_extra_args = []
 
+  configuration = request.get('configuration')
   dimensions = request.get('dimensions')
-  if not dimensions:
-    return {}, None
-  dimensions = json.loads(dimensions)
-  arguments['dimensions'] = json.dumps(dimensions)
+  if dimensions:
+    dimensions = json.loads(dimensions)
+    arguments['dimensions'] = json.dumps(dimensions)
+  elif configuration:
+    arguments['configuration'] = configuration
+    bots_to_dimensions = namespaced_stored_object.Get(_BOTS_TO_DIMENSIONS)
+    dimensions = bots_to_dimensions[configuration]
+  else:
+    raise TypeError('Missing a "configuration" or a "dimensions" argument.')
 
   test = request.get('test')
   if test:
