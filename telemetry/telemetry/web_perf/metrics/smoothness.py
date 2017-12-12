@@ -55,7 +55,8 @@ class SmoothnessMetric(timeline_based_metric.TimelineBasedMetric):
     renderer_process = renderer_thread.parent
     stats = rendering_stats.RenderingStats(
         renderer_process, model.browser_process, model.surface_flinger_process,
-        model.gpu_process, [r.GetBounds() for r in interaction_records])
+        model.gpu_process, [r.GetBounds() for r in interaction_records],
+        model.flow_events)
     has_surface_flinger_stats = model.surface_flinger_process is not None
     self._PopulateResultsFromStats(results, stats, has_surface_flinger_stats)
 
@@ -78,6 +79,7 @@ class SmoothnessMetric(timeline_based_metric.TimelineBasedMetric):
     if has_surface_flinger_stats:
       values += self._ComputeSurfaceFlingerMetric(page, stats)
 
+    values += self._ComputeCompositorFrameTransportMetrics(page, stats)
     for v in values:
       results.AddValue(v)
 
@@ -249,6 +251,49 @@ class SmoothnessMetric(timeline_based_metric.TimelineBasedMetric):
                     'main thread.',
         none_value_reason=none_value_reason,
         improvement_direction=improvement_direction.DOWN)
+
+  def _ComputeCompositorFrameTransportMetrics(self, page, stats):
+    """ Returns values for the compositor frame transport metrics.
+
+    This includes the raw and mean compositor frame transport times, as well as
+    percentage of deserialization time.
+    """
+    compositor_frame_transport_time = None
+    compositor_frame_deserialization_time = None
+    compositor_frame_deserialization_percentage = None
+    none_value_reason = None
+    if self._HasEnoughFrames(stats.compositor_frame_submit):
+      compositor_frame_transport_time = perf_tests_helper.FlattenList(
+          stats.compositor_frame_submit)
+      compositor_frame_deserialization_time = perf_tests_helper.FlattenList(
+          stats.compositor_frame_read)
+      compositor_frame_deserialization_percentage = [
+          read_time / submit_time for submit_time, read_time in zip(
+              compositor_frame_transport_time,
+              compositor_frame_deserialization_time)]
+    else:
+      none_value_reason = NOT_ENOUGH_FRAMES_MESSAGE
+
+    return (
+        list_of_scalar_values.ListOfScalarValues(
+            page, 'compositor_frame_transport_times', 'ms',
+            compositor_frame_transport_time,
+            description='List of raw CF transport time',
+            none_value_reason=none_value_reason,
+            improvement_direction=improvement_direction.DOWN),
+        list_of_scalar_values.ListOfScalarValues(
+            page, 'compositor_frame_deserialization_times', 'ms',
+            compositor_frame_deserialization_time,
+            description='List of raw CF deserialization time',
+            none_value_reason=none_value_reason,
+            improvement_direction=improvement_direction.DOWN),
+        list_of_scalar_values.ListOfScalarValues(
+            page, 'compositor_frame_deserialization_percentage', '%',
+            compositor_frame_deserialization_percentage,
+            description='List of raw CF transport time',
+            none_value_reason=none_value_reason,
+            improvement_direction=improvement_direction.DOWN)
+        )
 
   def _ComputeFrameTimeMetric(self, page, stats):
     """Returns Values for the frame time metrics.

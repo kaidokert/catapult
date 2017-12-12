@@ -29,6 +29,11 @@ MAIN_THREAD_SCROLL_UPDATE_EVENT_NAME = 'Latency::ScrollUpdate'
 # Name for a gesture scroll update latency event.
 GESTURE_SCROLL_UPDATE_EVENT_NAME = 'InputLatency::GestureScrollUpdate'
 
+# Name for time in compositor frame submit event.
+COMPOSITOR_FRAME_SUBMIT_EVENT_NAME = 'SubmitCompositorFrame'
+# Name for reading compositor frame.
+COMPOSITOR_FRAME_READ_EVENT_NAME = 'StructTraits::CompositorFrame::Read'
+
 # These are keys used in the 'data' field dictionary located in
 # BenchmarkInstrumentation::ImplThreadRenderingStats.
 VISIBLE_CONTENT_DATA = 'visible_content_area'
@@ -65,7 +70,7 @@ def GetLatencyEvents(process, timeline_range):
 
 def ComputeEventLatencies(input_events):
   """ Compute input event latencies.
-
+g
   Input event latency is the time from when the input event is created to
   when its resulted page is swap buffered.
   Input event on different platforms uses different LatencyInfo component to
@@ -128,7 +133,7 @@ def GetTimeStampEventNameAndProcess(browser_process, surface_flinger_process,
 
 class RenderingStats(object):
   def __init__(self, renderer_process, browser_process, surface_flinger_process,
-               gpu_process, timeline_ranges):
+               gpu_process, timeline_ranges, flow_events):
     """
     Utility class for extracting rendering statistics from the timeline (or
     other logging facilities), and providing them in a common format to classes
@@ -164,6 +169,10 @@ class RenderingStats(object):
     self.main_thread_scroll_latency = []
     # Latency for a GestureScrollUpdate input event.
     self.gesture_scroll_update_latency = []
+    # Time elapsed for submit compositor frame.
+    self.compositor_frame_submit = []
+    # Time for compositor frame read.
+    self.compositor_frame_read = []
 
     for timeline_range in timeline_ranges:
       self.frame_timestamps.append([])
@@ -173,12 +182,16 @@ class RenderingStats(object):
       self.input_event_latency.append([])
       self.main_thread_scroll_latency.append([])
       self.gesture_scroll_update_latency.append([])
+      self.compositor_frame_submit.append([])
+      self.compositor_frame_read.append([])
 
       if timeline_range.is_empty:
         continue
       if timestamp_process:
         self._InitFrameTimestampsFromTimeline(
             timestamp_process, timestamp_event_name, timeline_range)
+      self._InitCompositorFrameTransportTimeFromTimeline(
+          flow_events, browser_process)
       self._InitImplThreadRenderingStatsFromTimeline(
           renderer_process, timeline_range)
       self._InitInputLatencyStatsFromTimeline(
@@ -209,6 +222,24 @@ class RenderingStats(object):
     self.gesture_scroll_update_latency[-1] = [
         latency for name, latency in event_latencies
         if name == GESTURE_SCROLL_UPDATE_EVENT_NAME]
+
+  def _GatherFlowEvents(self, event_name, flow_events):
+    events = []
+    for event in flow_events:
+      start_event = event[0]
+      if start_event.name == event_name:
+        events.append(start_event)
+    events.sort(key=attrgetter('start'))
+    return events
+
+  def _GatherSlices(self, event_name, process):
+    events = []
+    for thread in process.threads.itervalues():
+      for event in thread.toplevel_slices:
+        if event.name == event_name:
+          events.append(event)
+    events.sort(key=attrgetter('start'))
+    return events
 
   def _GatherEvents(self, event_name, process, timeline_range):
     events = []
@@ -241,6 +272,16 @@ class RenderingStats(object):
     for event in self._GatherEvents(
         timestamp_event_name, process, timeline_range):
       self._AddFrameTimestamp(event)
+
+  def _InitCompositorFrameTransportTimeFromTimeline(self, flow_events, process):
+    event_name = COMPOSITOR_FRAME_SUBMIT_EVENT_NAME
+    for event in self._GatherFlowEvents(event_name, flow_events):
+      data = event.duration
+      self.compositor_frame_submit[-1].append(data)
+    event_name = COMPOSITOR_FRAME_READ_EVENT_NAME
+    for event in self._GatherSlices(event_name, process):
+      data = event.duration
+      self.compositor_frame_read[-1].append(data)
 
   def _InitImplThreadRenderingStatsFromTimeline(self, process, timeline_range):
     event_name = 'BenchmarkInstrumentation::ImplThreadRenderingStats'

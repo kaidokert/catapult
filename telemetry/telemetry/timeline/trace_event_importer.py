@@ -414,6 +414,7 @@ class TraceEventTimelineImporter(importer.TimelineImporter):
     for data in self._all_flow_events:
       event = data['event']
       thread = data['thread']
+
       if 'name' not in event:
         self._model.import_errors.append(
             'Flow events (ph: s, t or f) require a name parameter.')
@@ -445,6 +446,7 @@ class TraceEventTimelineImporter(importer.TimelineImporter):
                   event['ph'], event['id']))
           continue
         flow_position = flow_id_to_event[event['id']]
+        flow_position.duration = flow_event.start - flow_position.start
         self._model.flow_events.append([flow_position, flow_event])
 
         if event['ph'] == 'f':
