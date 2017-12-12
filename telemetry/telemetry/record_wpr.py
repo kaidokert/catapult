@@ -127,7 +127,7 @@ def _PrintPairs(pairs, output_stream, prefix=''):
 
 class WprRecorder(object):
 
-  def __init__(self, base_dir, target, args=None):
+  def __init__(self, base_dir, target, expectations_data, args=None):
     self._base_dir = base_dir
     self._record_page_test = RecorderPageTest()
     self._options = self._CreateOptions()
@@ -145,7 +145,9 @@ class WprRecorder(object):
         test = timeline_based_page_test.TimelineBasedPageTest(test)
       # This must be called after the command line args are added.
       self._record_page_test.page_test = test
-      self._expectations = self._benchmark.GetExpectations()
+      if expectations_data:
+        self._benchmark.AugmentExpectationsWithParser(expectations_data)
+      self._expectations = self._benchmark.expectations
 
     self._page_set_base_dir = (
         self._options.page_set_base_dir if self._options.page_set_base_dir
@@ -299,11 +301,15 @@ def Main(environment, **log_config_kwargs):
     return 0
 
   binary_manager.InitDependencyManager(environment.client_configs)
-
+  expectations_data = None
+  if environment.expectations_file:
+    with open(environment.expectations_file) as fp:
+      expectations_data = fp.read()
   # TODO(nednguyen): update WprRecorder so that it handles the difference
   # between recording a benchmark vs recording a story better based on
   # the distinction between args.benchmark & args.story
-  wpr_recorder = WprRecorder(environment.top_level_dir, target, extra_args)
+  wpr_recorder = WprRecorder(environment.top_level_dir, target,
+                             expectations_data, extra_args)
   results = wpr_recorder.CreateResults()
   wpr_recorder.Record(results)
   wpr_recorder.HandleResults(results, args.upload)

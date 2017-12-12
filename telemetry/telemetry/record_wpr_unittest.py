@@ -156,7 +156,7 @@ class RecordWprUnitTests(tab_test_case.TabTestCase):
     flags = self.GetBrowserDeviceFlags()
     mock_story_set = MockStorySet(url=self._url)
     wpr_recorder = record_wpr.WprRecorder(self._test_data_dir,
-                                          mock_story_set, flags)
+                                          mock_story_set, None, flags)
     results = wpr_recorder.CreateResults()
     wpr_recorder.Record(results)
     self.assertEqual(set(mock_story_set.stories), results.pages_that_succeeded)
@@ -166,7 +166,7 @@ class RecordWprUnitTests(tab_test_case.TabTestCase):
     flags.extend(['--mock-benchmark-url', self._url])
     mock_benchmark = MockBenchmark()
     wpr_recorder = record_wpr.WprRecorder(self._test_data_dir, mock_benchmark,
-                                          flags)
+                                          None, flags)
     results = wpr_recorder.CreateResults()
     wpr_recorder.Record(results)
     self.assertEqual(set(mock_benchmark.mock_story_set.stories),
@@ -177,11 +177,57 @@ class RecordWprUnitTests(tab_test_case.TabTestCase):
     flags.extend(['--mock-benchmark-url', self._url])
     mock_benchmark = MockTimelineBasedMeasurementBenchmark()
     wpr_recorder = record_wpr.WprRecorder(self._test_data_dir, mock_benchmark,
-                                          flags)
+                                          None, flags)
     results = wpr_recorder.CreateResults()
     wpr_recorder.Record(results)
     self.assertEqual(set(mock_benchmark.mock_story_set.stories),
                      results.pages_that_succeeded)
+
+  @staticmethod
+  def _ConvertTestConditionsToStrings(e):
+    for s in e['stories']:
+      for index in range(0, len(e['stories'][s])):
+        conditions, reason = e['stories'][s][index]
+        conditions = [str(c) for c in conditions]
+        e['stories'][s][index] = (conditions, reason)
+    return e
+
+  def testWprRecorderWithExpectationsFileMatchingStory(self):
+    flags = self.GetBrowserDeviceFlags()
+    flags.extend(['--mock-benchmark-url', self._url])
+    mock_benchmark = MockTimelineBasedMeasurementBenchmark()
+    benchmark_name = mock_benchmark.Name()
+    story_name = self._url
+    expectations_data = ('# tags: Mac\ncrbug.com/123 [ Mac ] %s/%s [ Skip ]'
+                         % (benchmark_name, story_name))
+    record_wpr.WprRecorder(
+        self._test_data_dir, mock_benchmark, expectations_data, flags)
+    expected = {
+        'platforms': (),
+        'stories': {
+            story_name: [(['Mac'], 'crbug.com/123')]
+        }
+    }
+    actual = self._ConvertTestConditionsToStrings(
+        mock_benchmark.expectations.AsDict())
+    self.assertEqual(expected, actual)
+
+  def testWprRecorderWithExpectationsFileNoMatchingStories(self):
+    flags = self.GetBrowserDeviceFlags()
+    flags.extend(['--mock-benchmark-url', self._url])
+    mock_benchmark = MockTimelineBasedMeasurementBenchmark()
+    story_name = self._url
+    expectations_data = ('# tags: Mac\ncrbug.com/123 [ Mac ] abc/%s [ Skip ]'
+                         % story_name)
+    record_wpr.WprRecorder(
+        self._test_data_dir, mock_benchmark, expectations_data, flags)
+    expected = {
+        'platforms': (),
+        'stories': {},
+    }
+    actual = self._ConvertTestConditionsToStrings(
+        mock_benchmark.expectations.AsDict())
+    self.assertEqual(expected, actual)
 
   def testPageSetBaseDirFlag(self):
     flags = self.GetBrowserDeviceFlags()
@@ -189,7 +235,7 @@ class RecordWprUnitTests(tab_test_case.TabTestCase):
                   '--mock-benchmark-url', self._url])
     mock_benchmark = MockBenchmark()
     wpr_recorder = record_wpr.WprRecorder(
-        'non-existent-dummy-dir', mock_benchmark, flags)
+        'non-existent-dummy-dir', mock_benchmark, None, flags)
     results = wpr_recorder.CreateResults()
     wpr_recorder.Record(results)
     self.assertEqual(set(mock_benchmark.mock_story_set.stories),
@@ -202,7 +248,7 @@ class RecordWprUnitTests(tab_test_case.TabTestCase):
         '--upload',
     ]
     wpr_recorder = record_wpr.WprRecorder(self._test_data_dir, MockBenchmark(),
-                                          flags)
+                                          None, flags)
     # page_runner command-line args
     self.assertEquals(2, wpr_recorder.options.pageset_repeat)
     # benchmark command-line args
@@ -215,7 +261,7 @@ class RecordWprUnitTests(tab_test_case.TabTestCase):
   def testRecordingEnabled(self):
     flags = ['--mock-benchmark-url', self._url]
     wpr_recorder = record_wpr.WprRecorder(self._test_data_dir, MockBenchmark(),
-                                          flags)
+                                          None, flags)
     self.assertEqual(wpr_modes.WPR_RECORD,
                      wpr_recorder.options.browser_options.wpr_mode)
 
@@ -226,7 +272,7 @@ class RecordWprUnitTests(tab_test_case.TabTestCase):
     record_page_test = record_wpr.RecorderPageTest()
     record_page_test.page_test = MockBenchmark().test()
     wpr_recorder = record_wpr.WprRecorder(self._test_data_dir, MockBenchmark(),
-                                          flags)
+                                          None, flags)
     record_page_test.CustomizeBrowserOptions(wpr_recorder.options)
     record_page_test.WillStartBrowser(self._tab.browser.platform)
     record_page_test.DidStartBrowser(self._tab.browser)
@@ -238,4 +284,4 @@ class RecordWprUnitTests(tab_test_case.TabTestCase):
   def testUseLiveSitesUnsupported(self):
     flags = ['--use-live-sites']
     with self.assertRaises(SystemExit):
-      record_wpr.WprRecorder(self._test_data_dir, MockBenchmark(), flags)
+      record_wpr.WprRecorder(self._test_data_dir, MockBenchmark(), None, flags)
