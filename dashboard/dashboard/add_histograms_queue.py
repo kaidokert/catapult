@@ -133,7 +133,8 @@ def _ProcessHistogram(params):
       internal_only=internal_only)
   entity.put()
   row = AddRow(data_dict, test_key, revision, test_path, internal_only)
-  added_rows.append(row)
+  if row:
+    added_rows.append(row)
 
   is_monitored = parent_test.sheriff and parent_test.has_rows
   if is_monitored:
