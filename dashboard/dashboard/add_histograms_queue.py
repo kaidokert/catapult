@@ -26,6 +26,7 @@ from dashboard.models import graph_data
 from dashboard.models import histogram
 from tracing.value import histogram as histogram_module
 from tracing.value import histogram_set
+from tracing.value.diagnostics import diagnostic
 from tracing.value.diagnostics import diagnostic_ref
 from tracing.value.diagnostics import reserved_infos
 
@@ -100,6 +101,20 @@ class AddHistogramsQueueHandler(request_handler.RequestHandler):
     ndb.Future.wait_all(futures)
 
 
+def _GetStoryFromDiagnosticsDict(diagnostics):
+  if not diagnostics:
+    return None
+
+  story_name = diagnostics.get(reserved_infos.STORIES.name)
+  if not story_name:
+    return None
+
+  story_name = diagnostic.Diagnostic.FromDict(story_name)
+  if story_name and len(story_name) == 1:
+    return list(story_name)[0]
+  return None
+
+
 def _PrewarmGets(params):
   keys = set()
 
@@ -133,11 +148,14 @@ def _ProcessRowAndHistogram(params, bot_whitelist):
   internal_only = add_point_queue.BotInternalOnly(bot, bot_whitelist)
   extra_args = GetUnitArgs(data_dict['unit'])
 
+  unescaped_story_name = _GetStoryFromDiagnosticsDict(params.get('diagnostics'))
+
   # TDOO(eakuefner): Populate benchmark_description once it appears in
   # diagnostics.
   # https://github.com/catapult-project/catapult/issues/4096
   parent_test = add_point_queue.GetOrCreateAncestors(
-      master, bot, test_name, internal_only, **extra_args)
+      master, bot, test_name, internal_only,
+      unescaped_story_name=unescaped_story_name, **extra_args)
   test_key = parent_test.key
 
   return [
