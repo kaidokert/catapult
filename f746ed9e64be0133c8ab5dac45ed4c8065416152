@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6dc0e225_59b4ebfd",
+        "filename": "tracing/tracing/metrics/blink/leak_detection_metric_test.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-12-12T16:01:33Z",
+      "side": 1,
+      "message": "Should be able to use assert.throws instead of these try..catch blocks, right?",
+      "revId": "f746ed9e64be0133c8ab5dac45ed4c8065416152",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
