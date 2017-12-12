@@ -207,8 +207,13 @@ class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       # descendant of the Android zygote. (See crbug.com/785446)
       zygote_pid = self.device.GetApplicationPids('zygote', at_most_one=True)
       assert zygote_pid is not None, 'Android zygote not found'
-      logging.info('Android zygote found with PID=%s', zygote_pid)
+      logging.info('Android zygote found with PID=%d', zygote_pid)
       processes = self.device.ListProcesses(self._backend_settings.package)
+      if processes:
+        # TODO: Switch to debug before landing.
+        logging.info('Candidate processes found:')
+        for process in processes:
+          logging.info('- %s', process)
       processes = [
           p for p in processes
           if p.name == self._backend_settings.package and p.ppid == zygote_pid]
@@ -219,7 +224,7 @@ class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
           self.browser, 'Error getting browser PID: %s' % exc)
     if not processes:
       raise exceptions.BrowserGoneException(self.browser)
-    return int(processes[0].pid)
+    return processes[0].pid
 
   @property
   def browser_directory(self):
