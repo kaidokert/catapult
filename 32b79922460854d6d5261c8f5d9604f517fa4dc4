@@ -228,6 +228,24 @@
       "revId": "32b79922460854d6d5261c8f5d9604f517fa4dc4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4ea37ba_e6a69d54",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-12T09:48:41Z",
+      "side": 1,
+      "message": "\u003e The problem I found was that it still seemed to dump temp files out, which weren\u0027t cleaned up, I think because of exceptions circumventing the normal clean up logic.\n\nTemp files should ideally be cleaned up even in the case of errors. If they weren\u0027t that sounds like a bug we should try to fix. Let\u0027s file a bug and follow up on it if you stumble upon a repro case again in the future.",
+      "parentUuid": "68fe781f_66b08fd1",
+      "revId": "32b79922460854d6d5261c8f5d9604f517fa4dc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
