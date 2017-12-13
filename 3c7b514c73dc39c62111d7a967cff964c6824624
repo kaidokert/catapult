@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "18a3d735_88ba97bf",
+        "filename": "dashboard/dashboard/pinpoint/handlers/quest_generator.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2017-12-13T18:53:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "adac6c22_e92915a1",
+      "revId": "3c7b514c73dc39c62111d7a967cff964c6824624",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8721b910_e591dece",
         "filename": "dashboard/dashboard/pinpoint/handlers/quest_generator_test.py",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "3c7b514c73dc39c62111d7a967cff964c6824624",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f497374_49c3576d",
+        "filename": "dashboard/dashboard/pinpoint/handlers/quest_generator_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2017-12-13T18:53:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8721b910_e591dece",
+      "revId": "3c7b514c73dc39c62111d7a967cff964c6824624",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
