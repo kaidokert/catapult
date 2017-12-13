@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fe5f05c4_118f6b6d",
+        "filename": "tracing/tracing/model/async_slice_group.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1149089
+      },
+      "writtenOn": "2017-12-13T11:45:15Z",
+      "side": 1,
+      "message": "Yes it was bad wording.\n\n// Title isn\u0027t defined for the root group because it contains slices as before grouping gets done. All the nested groups have their titles.",
+      "parentUuid": "083feb44_b480384c",
+      "revId": "86c49562a6500a1db44585673458f3f226b2c4b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "756fa562_beee45ee",
         "filename": "tracing/tracing/model/async_slice_group.html",
         "patchSetId": 6
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "13931ae8_4e7119a0",
+        "filename": "tracing/tracing/model/async_slice_group.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1149089
+      },
+      "writtenOn": "2017-12-13T11:45:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "756fa562_beee45ee",
+      "revId": "86c49562a6500a1db44585673458f3f226b2c4b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ca9205f7_66fa6abd",
         "filename": "tracing/tracing/model/async_slice_group.html",
         "patchSetId": 6
@@ -47,6 +83,24 @@
       "writtenOn": "2017-12-12T23:35:14Z",
       "side": 1,
       "message": "What does \"as a settings key\" mean? It looks like this is passed to the AsyncSliceGroup constructor, so a better variable name for this would be \"subGroupName\".",
+      "revId": "86c49562a6500a1db44585673458f3f226b2c4b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d663527_93df5ce4",
+        "filename": "tracing/tracing/model/async_slice_group.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1149089
+      },
+      "writtenOn": "2017-12-13T11:45:15Z",
+      "side": 1,
+      "message": "Ok, will make it more clear. I tried to preserve the existing logic using title as a settings key for styles, expanded state, etc.",
+      "parentUuid": "ca9205f7_66fa6abd",
       "revId": "86c49562a6500a1db44585673458f3f226b2c4b6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "d2c93d9b_ed6f7204",
+        "filename": "tracing/tracing/model/async_slice_group.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1149089
+      },
+      "writtenOn": "2017-12-13T11:45:15Z",
+      "side": 1,
+      "message": "Because in case of NetAsyncSlice it should be grouped into a single multi-row track named as viewSubGroupTitle, we shouldn\u0027t split them up by raw title. In case of scheduler we need to create an individual track for each viewSubGroupTopLevelGroupingKey. It\u0027s different grouping rules.",
+      "parentUuid": "eb42cf5a_454ca104",
+      "revId": "86c49562a6500a1db44585673458f3f226b2c4b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f1f8ecc1_c0f203ba",
         "filename": "tracing/tracing/model/async_slice_group.html",
         "patchSetId": 6
@@ -84,6 +156,24 @@
       "revId": "86c49562a6500a1db44585673458f3f226b2c4b6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "952dfd04_4ec89ced",
+        "filename": "tracing/tracing/model/async_slice_group.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1149089
+      },
+      "writtenOn": "2017-12-13T11:45:15Z",
+      "side": 1,
+      "message": "Ok will fix that",
+      "parentUuid": "f1f8ecc1_c0f203ba",
+      "revId": "86c49562a6500a1db44585673458f3f226b2c4b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "3ffb9821_68c7d475",
+        "filename": "tracing/tracing/model/async_slice_group_test.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1149089
+      },
+      "writtenOn": "2017-12-13T11:45:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "30dbddf8_ef841f96",
+      "revId": "86c49562a6500a1db44585673458f3f226b2c4b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a2e6f461_fa5b203b",
         "filename": "tracing/tracing/model/helpers/chrome_renderer_helper.html",
         "patchSetId": 6
@@ -118,6 +226,24 @@
       "revId": "86c49562a6500a1db44585673458f3f226b2c4b6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce0e2b91_a357f78b",
+        "filename": "tracing/tracing/model/helpers/chrome_renderer_helper.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1149089
+      },
+      "writtenOn": "2017-12-13T11:45:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a2e6f461_fa5b203b",
+      "revId": "86c49562a6500a1db44585673458f3f226b2c4b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
