@@ -49,6 +49,7 @@ class Story(object):
                       shared_state_module.SharedState)
     self._shared_state_class = shared_state_class
     assert name, 'All stories must be named.'
+    assert ' ' not in name, 'Stories names must not contain spaces.'
     self._name = name
     self._platform_specific = platform_specific
     global _next_story_id # pylint: disable=global-statement
