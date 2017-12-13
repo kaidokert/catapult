@@ -16,6 +16,24 @@
       "revId": "5644341f7b9ca5b2cd47968236aaf4dfbdeb4a90",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "064ff1ae_1eedb01e",
+        "filename": "tracing/tracing/extras/importer/linux_perf/ftrace_importer_test.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1179424
+      },
+      "writtenOn": "2017-12-13T03:28:31Z",
+      "side": 1,
+      "message": "I tried to use assert.isAtLeast() but got some error:\nTypeError: assert.isAtLeast is not a function\nThat\u0027s because the chai.js in catapult is the older version:\nhttps://cs.chromium.org/chromium/src/third_party/catapult/third_party/chai/README.chromium\nUpdating chai.js is not trivial as updating to latest chai.js breaks some existing tests.\nI would keep using \"assert.isTrue(slice.end \u003e\u003d slice.start)\".",
+      "parentUuid": "78186cb3_82efd44e",
+      "revId": "5644341f7b9ca5b2cd47968236aaf4dfbdeb4a90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
