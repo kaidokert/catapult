@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "63924f1f_09685d40",
+        "filename": "common/py_utils/py_utils/logging_util.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-12-13T22:42:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6221b084_268befc3",
+      "revId": "22124cbfeb947cc50213f747b29d4d6c286d4dae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2eebf5b1_4c0d5bfe",
         "filename": "common/py_utils/py_utils/logging_util.py",
         "patchSetId": 5
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "ba94e2f6_923fdd19",
+        "filename": "common/py_utils/py_utils/logging_util.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-12-13T22:42:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2eebf5b1_4c0d5bfe",
+      "revId": "22124cbfeb947cc50213f747b29d4d6c286d4dae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6c62f38f_d62166ca",
         "filename": "telemetry/telemetry/internal/results/artifact_results.py",
         "patchSetId": 5
@@ -47,6 +83,24 @@
       "writtenOn": "2017-12-12T09:48:41Z",
       "side": 1,
       "message": "I think you could also `return open(os.devnull, \u0027w\u0027)` (and remove the contextmanager decorator). This way the returned object works as a \"writeable file object\" too and clients don\u0027t have to special-case for the None value.",
+      "revId": "22124cbfeb947cc50213f747b29d4d6c286d4dae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d56164a7_88737340",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-12-13T22:42:44Z",
+      "side": 1,
+      "message": "I need to yield, because clients are expecting a context manager. But devnull is a good idea.",
+      "parentUuid": "6c62f38f_d62166ca",
       "revId": "22124cbfeb947cc50213f747b29d4d6c286d4dae",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
