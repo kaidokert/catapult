@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fe652ae2_19cd4a5f",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1116050
+      },
+      "writtenOn": "2017-12-13T19:52:56Z",
+      "side": 1,
+      "message": "Should this say Time To Interactive?",
+      "range": {
+        "startLine": 314,
+        "startChar": 30,
+        "endLine": 314,
+        "endChar": 35
+      },
+      "revId": "121cf572a77df73be82185828d43f9fd619f1402",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9afe7c2b_6dcf65ee",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1116050
+      },
+      "writtenOn": "2017-12-13T19:52:56Z",
+      "side": 1,
+      "message": "FCI?",
+      "range": {
+        "startLine": 414,
+        "startChar": 31,
+        "endLine": 414,
+        "endChar": 32
+      },
+      "revId": "121cf572a77df73be82185828d43f9fd619f1402",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "610c36b5_b281dc1f",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric_test.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 745,
+      "author": {
+        "id": 1116050
+      },
+      "writtenOn": "2017-12-13T19:52:56Z",
+      "side": 1,
+      "message": "Can\u0027t we use the helper?",
+      "range": {
+        "startLine": 745,
+        "startChar": 16,
+        "endLine": 745,
+        "endChar": 31
+      },
+      "revId": "121cf572a77df73be82185828d43f9fd619f1402",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0409a889_b31bf607",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric_test.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 753,
+      "author": {
+        "id": 1116050
+      },
+      "writtenOn": "2017-12-13T19:52:56Z",
+      "side": 1,
+      "message": "Can\u0027t we use the helper here?",
+      "range": {
+        "startLine": 753,
+        "startChar": 16,
+        "endLine": 753,
+        "endChar": 40
+      },
+      "revId": "121cf572a77df73be82185828d43f9fd619f1402",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cdd82c83_552c941e",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric_test.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 783,
+      "author": {
+        "id": 1116050
+      },
+      "writtenOn": "2017-12-13T19:52:56Z",
+      "side": 1,
+      "message": "Can we update all usages to use the helper methods?",
+      "range": {
+        "startLine": 783,
+        "startChar": 16,
+        "endLine": 783,
+        "endChar": 31
+      },
+      "revId": "121cf572a77df73be82185828d43f9fd619f1402",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
