@@ -16,6 +16,24 @@
       "revId": "f746ed9e64be0133c8ab5dac45ed4c8065416152",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e03e75ee_9c30e58b",
+        "filename": "tracing/tracing/metrics/blink/leak_detection_metric_test.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1151889
+      },
+      "writtenOn": "2017-12-13T01:38:25Z",
+      "side": 1,
+      "message": "Yes, assert.throws() catches the error, but I wanted to test the contents in the resulting histogram too, and that\u0027s why I\u0027m handling this with try \u0026 catch. :-)",
+      "parentUuid": "6dc0e225_59b4ebfd",
+      "revId": "f746ed9e64be0133c8ab5dac45ed4c8065416152",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
