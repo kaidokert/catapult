@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "aae4c8fe_f58c20b0",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_connection.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001794
+      },
+      "writtenOn": "2017-12-13T01:43:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb02e0e6_5f1bd125",
+      "revId": "74e0ffc2fe0f687f2214ed86f15c92699c588420",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2865623e_7f84127a",
         "filename": "tracing/tracing/ui/extras/about_tracing/inspector_connection.html",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "74e0ffc2fe0f687f2214ed86f15c92699c588420",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "749f6bf6_858be65f",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_connection.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1001794
+      },
+      "writtenOn": "2017-12-13T01:43:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2865623e_7f84127a",
+      "revId": "74e0ffc2fe0f687f2214ed86f15c92699c588420",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "3370719c_950e9545",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_connection.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1001794
+      },
+      "writtenOn": "2017-12-13T01:43:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4b5ce7c_e84ebbb9",
+      "revId": "74e0ffc2fe0f687f2214ed86f15c92699c588420",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa1d675b_13dfb30a",
         "filename": "tracing/tracing/ui/extras/about_tracing/inspector_connection.html",
         "patchSetId": 1
@@ -67,6 +121,24 @@
       "revId": "74e0ffc2fe0f687f2214ed86f15c92699c588420",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83358f36_f306a928",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_connection.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1001794
+      },
+      "writtenOn": "2017-12-13T01:43:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa1d675b_13dfb30a",
+      "revId": "74e0ffc2fe0f687f2214ed86f15c92699c588420",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "98bde1fb_118742e5",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_connection.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1001794
+      },
+      "writtenOn": "2017-12-13T01:43:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a55ec23_5dba6233",
+      "revId": "74e0ffc2fe0f687f2214ed86f15c92699c588420",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a0ebe55a_70999ece",
         "filename": "tracing/tracing/ui/extras/about_tracing/inspector_connection.html",
         "patchSetId": 1
@@ -101,6 +191,24 @@
       "revId": "74e0ffc2fe0f687f2214ed86f15c92699c588420",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "346be6ae_2f80bce8",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_connection.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1001794
+      },
+      "writtenOn": "2017-12-13T01:43:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0ebe55a_70999ece",
+      "revId": "74e0ffc2fe0f687f2214ed86f15c92699c588420",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "c09544de_5460046f",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_tracing_controller_client.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1001794
+      },
+      "writtenOn": "2017-12-13T01:43:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ee5e1cc_9da76db1",
+      "revId": "74e0ffc2fe0f687f2214ed86f15c92699c588420",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "be0f3d75_6c60027e",
         "filename": "tracing/tracing/ui/extras/about_tracing/inspector_tracing_controller_client.html",
         "patchSetId": 1
@@ -138,6 +264,24 @@
     },
     {
       "key": {
+        "uuid": "351a3a46_f58d4925",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_tracing_controller_client.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1001794
+      },
+      "writtenOn": "2017-12-13T01:43:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be0f3d75_6c60027e",
+      "revId": "74e0ffc2fe0f687f2214ed86f15c92699c588420",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "88ae51c1_7ce332a3",
         "filename": "tracing/tracing/ui/extras/about_tracing/inspector_tracing_controller_client.html",
         "patchSetId": 1
@@ -152,6 +296,24 @@
       "revId": "74e0ffc2fe0f687f2214ed86f15c92699c588420",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4e4ede6_3ecbc57c",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_tracing_controller_client.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1001794
+      },
+      "writtenOn": "2017-12-13T01:43:59Z",
+      "side": 1,
+      "message": "No longer applicable.",
+      "parentUuid": "88ae51c1_7ce332a3",
+      "revId": "74e0ffc2fe0f687f2214ed86f15c92699c588420",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
