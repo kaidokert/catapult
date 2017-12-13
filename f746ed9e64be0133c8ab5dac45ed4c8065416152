@@ -34,6 +34,24 @@
       "revId": "f746ed9e64be0133c8ab5dac45ed4c8065416152",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44dfa0cc_15abbad2",
+        "filename": "tracing/tracing/metrics/blink/leak_detection_metric_test.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1115933
+      },
+      "writtenOn": "2017-12-13T02:35:21Z",
+      "side": 1,
+      "message": "It looks like tests use the chai testing library so maybe doing this will let you continue after failure?\nexpect(badFn).to.throw();",
+      "parentUuid": "e03e75ee_9c30e58b",
+      "revId": "f746ed9e64be0133c8ab5dac45ed4c8065416152",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
