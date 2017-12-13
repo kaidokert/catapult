@@ -70,6 +70,24 @@
       "revId": "f746ed9e64be0133c8ab5dac45ed4c8065416152",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18389d1f_360df353",
+        "filename": "tracing/tracing/metrics/blink/leak_detection_metric_test.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-12-13T04:50:37Z",
+      "side": 1,
+      "message": "We don\u0027t use the \"expect\" style, but what Keishi wrote is effectively equivalent to assert.throws().\n\nYuzu, you should be able to use assert.throws(() \u003d\u003e tr.metrics.blink.leakDetectionMetric(...)) and continue making further assertions about the contents of the HistogramSet after that, because it should just handle the try/catch for you. Can you let me know if that doesn\u0027t work?",
+      "parentUuid": "44dfa0cc_15abbad2",
+      "revId": "f746ed9e64be0133c8ab5dac45ed4c8065416152",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
