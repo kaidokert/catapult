@@ -31,7 +31,6 @@ from telemetry.testing import fakes
 from telemetry.testing import options_for_unittests
 from telemetry.testing import system_stub
 
-from py_utils import tempfile_ext
 
 
 class DummyTest(legacy_page_test.LegacyPageTest):
@@ -142,22 +141,19 @@ class ActualPageRunEndToEndTests(unittest.TestCase):
     options = options_for_unittests.GetCopy()
     options.output_formats = ['none']
     options.suppress_gtest_report = True
-
-    with tempfile_ext.NamedTemporaryDirectory('page_E2E_tests') as tempdir:
-      options.output_dir = tempdir
-      test = Test()
-      SetUpStoryRunnerArguments(options)
-      results = results_options.CreateResults(EmptyMetadataForTest(), options)
-      story_runner.Run(
-          test, story_set, options, results, metadata=EmptyMetadataForTest())
-      self.assertEquals(len(story_set), len(GetSuccessfulPageRuns(results)))
-      # Browser is started once per story run, except in ChromeOS where a single
-      # instance is reused for all stories.
-      if test.platform_name == 'chromeos':
-        self.assertEquals(1, test.browser_starts)
-      else:
-        self.assertEquals(len(story_set), test.browser_starts)
-      self.assertFormattedExceptionIsEmpty()
+    test = Test()
+    SetUpStoryRunnerArguments(options)
+    results = results_options.CreateResults(EmptyMetadataForTest(), options)
+    story_runner.Run(
+        test, story_set, options, results, metadata=EmptyMetadataForTest())
+    self.assertEquals(len(story_set), len(GetSuccessfulPageRuns(results)))
+    # Browser is started once per story run, except in ChromeOS where a single
+    # instance is reused for all stories.
+    if test.platform_name == 'chromeos':
+      self.assertEquals(1, test.browser_starts)
+    else:
+      self.assertEquals(len(story_set), test.browser_starts)
+    self.assertFormattedExceptionIsEmpty()
 
   @decorators.Disabled('chromeos')  # crbug.com/483212
   def testUserAgent(self):
@@ -185,15 +181,12 @@ class ActualPageRunEndToEndTests(unittest.TestCase):
     options = options_for_unittests.GetCopy()
     options.output_formats = ['none']
     options.suppress_gtest_report = True
+    SetUpStoryRunnerArguments(options)
+    results = results_options.CreateResults(EmptyMetadataForTest(), options)
+    story_runner.Run(
+        test, story_set, options, results, metadata=EmptyMetadataForTest())
 
-    with tempfile_ext.NamedTemporaryDirectory('page_E2E_tests') as tempdir:
-      options.output_dir = tempdir
-      SetUpStoryRunnerArguments(options)
-      results = results_options.CreateResults(EmptyMetadataForTest(), options)
-      story_runner.Run(
-          test, story_set, options, results, metadata=EmptyMetadataForTest())
-
-      self.assertTrue(hasattr(test, 'hasRun') and test.hasRun)
+    self.assertTrue(hasattr(test, 'hasRun') and test.hasRun)
 
   # Ensure that story_runner forces exactly 1 tab before running a page.
   @decorators.Enabled('has tabs')
@@ -217,13 +210,10 @@ class ActualPageRunEndToEndTests(unittest.TestCase):
     options = options_for_unittests.GetCopy()
     options.output_formats = ['none']
     options.suppress_gtest_report = True
-
-    with tempfile_ext.NamedTemporaryDirectory('page_E2E_tests') as tempdir:
-      options.output_dir = tempdir
-      SetUpStoryRunnerArguments(options)
-      results = results_options.CreateResults(EmptyMetadataForTest(), options)
-      story_runner.Run(
-          test, story_set, options, results, metadata=EmptyMetadataForTest())
+    SetUpStoryRunnerArguments(options)
+    results = results_options.CreateResults(EmptyMetadataForTest(), options)
+    story_runner.Run(
+        test, story_set, options, results, metadata=EmptyMetadataForTest())
 
   @decorators.Disabled('chromeos')  # crbug.com/652385
   def testTrafficSettings(self):
@@ -259,17 +249,14 @@ class ActualPageRunEndToEndTests(unittest.TestCase):
     options = options_for_unittests.GetCopy()
     options.output_formats = ['none']
     options.suppress_gtest_report = True
-
-    with tempfile_ext.NamedTemporaryDirectory('page_E2E_tests') as tempdir:
-      options.output_dir = tempdir
-      SetUpStoryRunnerArguments(options)
-      results = results_options.CreateResults(EmptyMetadataForTest(), options)
-      story_runner.Run(
-          test, story_set, options, results, metadata=EmptyMetadataForTest())
-      # Slow page should be slower than fast page by at least 300 ms (roundtrip
-      # time of 2G) - 2 ms (roundtrip time of Wifi)
-      self.assertGreater(latencies_by_page_in_ms['slow'],
-                         latencies_by_page_in_ms['fast'] + 300 - 2)
+    SetUpStoryRunnerArguments(options)
+    results = results_options.CreateResults(EmptyMetadataForTest(), options)
+    story_runner.Run(
+        test, story_set, options, results, metadata=EmptyMetadataForTest())
+    # Slow page should be slower than fast page by at least 300 ms (roundtrip
+    # time of 2G) - 2 ms (roundtrip time of Wifi)
+    self.assertGreater(latencies_by_page_in_ms['slow'],
+                       latencies_by_page_in_ms['fast'] + 300 - 2)
 
   # Ensure that story_runner allows the test to customize the browser
   # before it launches.
@@ -302,13 +289,10 @@ class ActualPageRunEndToEndTests(unittest.TestCase):
     options = options_for_unittests.GetCopy()
     options.output_formats = ['none']
     options.suppress_gtest_report = True
-
-    with tempfile_ext.NamedTemporaryDirectory('page_E2E_tests') as tempdir:
-      options.output_dir = tempdir
-      SetUpStoryRunnerArguments(options)
-      results = results_options.CreateResults(EmptyMetadataForTest(), options)
-      story_runner.Run(
-          test, story_set, options, results, metadata=EmptyMetadataForTest())
+    SetUpStoryRunnerArguments(options)
+    results = results_options.CreateResults(EmptyMetadataForTest(), options)
+    story_runner.Run(
+        test, story_set, options, results, metadata=EmptyMetadataForTest())
 
   def testRunPageWithStartupUrl(self):
     num_times_browser_closed = [0]
@@ -341,19 +325,16 @@ class ActualPageRunEndToEndTests(unittest.TestCase):
     options.suppress_gtest_report = True
     if not browser_finder.FindBrowser(options):
       return
-
-    with tempfile_ext.NamedTemporaryDirectory('page_E2E_tests') as tempdir:
-      options.output_dir = tempdir
-      test = Measurement()
-      SetUpStoryRunnerArguments(options)
-      results = results_options.CreateResults(EmptyMetadataForTest(), options)
-      story_runner.Run(
-          test, story_set, options, results, metadata=EmptyMetadataForTest())
-      self.assertEquals('about:blank', options.browser_options.startup_url)
-      # _StopBrowser should be called 2 times:
-      # 1. browser restarts after page 1 run
-      # 2. in the TearDownState after all the pages have run.
-      self.assertEquals(num_times_browser_closed[0], 2)
+    test = Measurement()
+    SetUpStoryRunnerArguments(options)
+    results = results_options.CreateResults(EmptyMetadataForTest(), options)
+    story_runner.Run(
+        test, story_set, options, results, metadata=EmptyMetadataForTest())
+    self.assertEquals('about:blank', options.browser_options.startup_url)
+    # _StopBrowser should be called 2 times:
+    # 1. browser restarts after page 1 run
+    # 2. in the TearDownState after all the pages have run.
+    self.assertEquals(num_times_browser_closed[0], 2)
 
   # Ensure that story_runner calls cleanUp when a page run fails.
   def testCleanUpPage(self):
@@ -380,14 +361,11 @@ class ActualPageRunEndToEndTests(unittest.TestCase):
     options = options_for_unittests.GetCopy()
     options.output_formats = ['none']
     options.suppress_gtest_report = True
-
-    with tempfile_ext.NamedTemporaryDirectory('page_E2E_tests') as tempdir:
-      options.output_dir = tempdir
-      SetUpStoryRunnerArguments(options)
-      results = results_options.CreateResults(EmptyMetadataForTest(), options)
-      story_runner.Run(
-          test, story_set, options, results, metadata=EmptyMetadataForTest())
-      assert test.did_call_clean_up
+    SetUpStoryRunnerArguments(options)
+    results = results_options.CreateResults(EmptyMetadataForTest(), options)
+    story_runner.Run(
+        test, story_set, options, results, metadata=EmptyMetadataForTest())
+    assert test.did_call_clean_up
 
   # Ensure skipping the test if shared state cannot be run on the browser.
   def testSharedPageStateCannotRunOnBrowser(self):
@@ -660,29 +638,22 @@ class FakePageRunEndToEndTests(unittest.TestCase):
                                    name='failing')
     story_set.AddStory(failing_page)
 
-    self.options.output_formats = ['json-test-results']
-    with tempfile_ext.NamedTemporaryDirectory() as tempdir:
-      self.options.output_dir = tempdir
-      results = results_options.CreateResults(
-          EmptyMetadataForTest(), self.options)
-
-      # This ensures the output stream used by the json test results object is
-      # closed. On windows, we can't delete the temp directory if a file in that
-      # directory is still in use.
-      with results:
-        story_runner.Run(DummyTest(), story_set, self.options, results,
-                         max_failures=2,
-                         metadata=EmptyMetadataForTest())
-        self.assertEquals(1, len(results.failures))
-        artifacts = results._artifact_results.GetTestArtifacts(
-            failing_page.name)
-        self.assertIsNotNone(artifacts)
-        self.assertIn('screenshot', artifacts)
-
-        screenshot_file_path = os.path.join(tempdir, artifacts['screenshot'][0])
-
-        actual_screenshot_img = image_util.FromPngFile(screenshot_file_path)
-        self.assertTrue(
-            image_util.AreEqual(
-                image_util.FromBase64Png(expected_png_base64),
-                actual_screenshot_img))
+    results = results_options.CreateResults(
+        EmptyMetadataForTest(), self.options)
+    story_runner.Run(DummyTest(), story_set, self.options, results,
+                     max_failures=2,
+                     metadata=EmptyMetadataForTest())
+    self.assertEquals(1, len(results.failures))
+    self.assertEquals(1, len(results.pages_to_profiling_files))
+    self.assertIn(failing_page,
+                  results.pages_to_profiling_files)
+    screenshot_file_path = (
+        results.pages_to_profiling_files[failing_page][0].GetAbsPath())
+    try:
+      actual_screenshot_img = image_util.FromPngFile(screenshot_file_path)
+      self.assertTrue(
+          image_util.AreEqual(
+              image_util.FromBase64Png(expected_png_base64),
+              actual_screenshot_img))
+    finally:  # Must clean up screenshot file if exists.
+      os.remove(screenshot_file_path)
