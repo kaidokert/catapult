@@ -14,32 +14,20 @@ found in the LICENSE file.
  * tracing, and that tracing can use to talk to inspector.
  */
 tr.exportTo('tr.ui.e.about_tracing', function() {
-  // Interface used by inspector when it hands data to us from the backend.
-  window.DevToolsAPI = {
-    setToolbarColors() { },
-    addExtensions() { },
-    setInspectedPageId() { },
-
-    dispatchMessage(payload) {
-      throw new Error('Should have been patched by InspectorConnection');
-    }
-  };
-  // Temporary until inspector backend switches to DevToolsAPI.
-  window.InspectorFrontendAPI = window.DevToolsAPI;
-
   /**
    * @constructor
    */
-  function InspectorConnection() {
-    if (InspectorConnection.instance) {
-      throw new Error('Singleton');
+  function InspectorConnection(windowGlobal) {
+    if (!windowGlobal.DevToolsHost) {
+      throw new Error('Requires window.DevToolsHost');
     }
+    this.devToolsHost_ = windowGlobal.DevToolsHost;
+    this.installDevToolsAPI_(windowGlobal);
 
     this.nextRequestId_ = 1;
     this.pendingRequestResolversId_ = {};
 
     this.notificationListenersByMethodName_ = {};
-    DevToolsAPI.dispatchMessage = this.dispatchMessage_.bind(this);
   }
 
   InspectorConnection.prototype = {
@@ -52,7 +40,7 @@ tr.exportTo('tr.ui.e.about_tracing', function() {
       });
       const devtoolsMessageStr = JSON.stringify(
         {id, 'method': 'dispatchProtocolMessage', 'params': [msg]});
-      DevToolsHost.sendMessageToEmbedder(devtoolsMessageStr);
+      this.devToolsHost_.sendMessageToEmbedder(devtoolsMessageStr);
 
       return new Promise(function(resolve, reject) {
         this.pendingRequestResolversId_[id] = {
@@ -107,14 +95,21 @@ tr.exportTo('tr.ui.e.about_tracing', function() {
         listener(message.params);
         return;
       }
+    },
+
+    installDevToolsAPI_(windowGlobal) {
+      // Interface used by inspector when it hands data to us from the backend.
+      windowGlobal.DevToolsAPI = {
+        setToolbarColors() { },
+        addExtensions() { },
+        setInspectedPageId() { },
+        dispatchMessage: this.dispatchMessage_.bind(this),
+      };
+
+      // Temporary until inspector backend switches to DevToolsAPI.
+      windowGlobal.InspectorFrontendAPI = windowGlobal.DevToolsAPI;
     }
   };
-
-  if (window.DevToolsHost) {
-    InspectorConnection.instance = new InspectorConnection();
-  } else {
-    InspectorConnection.instance = undefined;
-  }
 
   return {
     InspectorConnection,
