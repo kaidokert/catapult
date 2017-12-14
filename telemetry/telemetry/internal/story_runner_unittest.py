@@ -134,7 +134,7 @@ class EmptyMetadataForTest(benchmark.BenchmarkMetadata):
 class DummyLocalStory(story_module.Story):
   def __init__(self, shared_state_class, name='', tags=None):
     if name == '':
-      name = 'dummy local story'
+      name = 'dummy_local_story'
     super(DummyLocalStory, self).__init__(
         shared_state_class, name=name, tags=tags)
 
@@ -721,7 +721,7 @@ class StoryRunnerTest(unittest.TestCase):
     class ErrorRaisingDummyLocalStory(DummyLocalStory):
       def __init__(self, shared_state_class, name='', tags=None):
         if name == '':
-          name = 'dummy local story'
+          name = 'dummy_local_story'
         super(ErrorRaisingDummyLocalStory, self).__init__(
             shared_state_class, name=name, tags=tags)
 
