@@ -3,10 +3,12 @@
 # found in the LICENSE file.
 
 import logging
+import subprocess
 
 from telemetry.core import exceptions
 from telemetry.internal.platform import android_platform_backend as \
   android_platform_backend_module
+from telemetry.core import util
 from telemetry.internal.backends import android_browser_backend_settings
 from telemetry.internal.backends import browser_backend
 from telemetry.internal.backends.chrome import chrome_browser_backend
@@ -126,6 +128,7 @@ class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
                         action=None, data=url, category=None,
                         extras=user_agent_dict),
           blocking=True)
+      print("Activity started.")
 
       remote_devtools_port = self._backend_settings.GetDevtoolsRemotePort(
           self.device)
@@ -149,6 +152,7 @@ class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       except:
         self.Close()
         raise
+    self.platform_backend.createSubresourceFilter()
 
   def Foreground(self):
     package = self._backend_settings.package

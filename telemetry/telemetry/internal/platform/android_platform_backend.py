@@ -7,6 +7,7 @@ import os
 import posixpath
 import re
 import subprocess
+import tarfile
 import tempfile
 
 from battor import battor_wrapper
@@ -562,6 +563,35 @@ class AndroidPlatformBackend(
 
   def GetPortPairForForwarding(self, local_port):
     return forwarders.PortPair(local_port=local_port, remote_port=0)
+
+  def appChromeExisted(self):
+    if self._device.PathExists('/data/user/0/org.chromium.chrome/app_chrome'):
+      print "app_chrome exist."
+      return True
+    print "app_chrome doesn't exist yet."
+    return False
+
+  def createSubresourceFilter(self):
+    if not self.appChromeExisted():
+      print self._device.RunShellCommand(['mkdir', '/data/user/0/org.chromium.chrome/app_chrome'])
+      print self._device.RunShellCommand(['mkdir', '/data/data/org.chromium.chrome/app_chrome'])
+
+    if self._device.PathExists('/data/user/0/org.chromium.chrome/app_chrome/Subresource Filter'):
+      print("Subresource Filter already exist.")
+      return
+    print("Subresource Filter doesn't exist.")
+    with tarfile.open(os.path.join(os.path.dirname(__file__), 'static_sf', 'sf_data_user.tar.gz')) as tarball:
+      tarball.extractall(os.path.join(os.path.dirname(__file__), 'static_sf'))
+    print self._device.adb.Push(os.path.join(os.path.dirname(__file__), 'static_sf', 'user', 'Subresource Filter'), '/data/user/0/org.chromium.chrome/app_chrome/')
+    print self._device.adb.Push(os.path.join(os.path.dirname(__file__), 'static_sf', 'data', 'Subresource Filter'), '/data/data/org.chromium.chrome/app_chrome/')
+    print self._device.RunShellCommand(['chown', '-R', 'u0_a79:u0_a79', '/data/user/0/org.chromium.chrome/app_chrome'])
+    print self._device.RunShellCommand(['chown', '-R', 'u0_a79:u0_a79', '/data/data/org.chromium.chrome/app_chrome'])
+    print self._device.RunShellCommand(['chmod', '-R', '771', '/data/user/0/org.chromium.chrome/app_chrome'])
+    print self._device.RunShellCommand(['chmod', '-R', '771', '/data/data/org.chromium.chrome/app_chrome'])
+    if self._device.PathExists('/data/user/0/org.chromium.chrome/app_chrome/Subresource Filter'):
+      print("Subresource Filter created successfully.")
+      return
+    print("Subresource Filter creation failed.")
 
   def RemoveProfile(self, package, ignore_list):
     """Delete application profile on device.
