@@ -320,6 +320,10 @@ class MemoryMap(NodeWrapper):
     def size(self):
       return self._size
 
+    @size.setter
+    def size(self, value):
+      self._size = value
+
     @property
     def code_id(self):
       return self._code_id
@@ -352,17 +356,24 @@ class MemoryMap(NodeWrapper):
 
   def __init__(self, process_mmaps_node):
     regions = []
+    last_region = None
     for region_node in process_mmaps_node['vm_regions']:
       file_offset = long(region_node['fo'], 16) if 'fo' in region_node else 0
       region = self.Region(long(region_node['sa'], 16),
                            long(region_node['sz'], 16),
                            region_node['mf'],
                            file_offset)
-      regions.append(region)
-
       # Keep track of code-identifier when present.
       if 'ts' in region_node and 'sz' in region_node:
         region._code_id = "%08X%X" % (long(region_node['ts'], 16), region.size)
+
+      if last_region and last_region.file_path == region.file_path and last_region.start_address + last_region.size == region.start_address:
+          last_region.size = last_region.size + region.size
+          # intentionally keep last_region the same
+      else:
+          regions.append(region)
+          last_region = region
+
 
     regions.sort()
 
