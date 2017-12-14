@@ -151,7 +151,7 @@ tr.b.unittest.testSuite(function() {
           });
       mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
         cat: 'loading,rail,devtools.timeline',
-        title: 'firstContentfulPaint',
+          title: 'firstContentfulPaint',
         start: 2400,
         duration: 0.0,
         args: {frame: '0xdeadbeef'}
@@ -430,15 +430,7 @@ tr.b.unittest.testSuite(function() {
         .get('breakdown').get('other'), 100);
   });
 
-  test('timeToInteractive', function() {
-    // Our renderer thread would looks like
-    //
-    // *                            *  [  main thread busy ]   *
-    // |                            |                          |
-    // |                            |                          |
-    // v                            v                          v
-    // First navigation             FMP                        TTI
-    // 200                          9200                      15400
+  test('interactivityMetrics_notAffectedByShortTasks', function() {
     const model = tr.c.TestUtils.newModel(function(model) {
       const rendererProcess = model.getOrCreateProcess(1984);
       const mainThread = rendererProcess.getOrCreateThread(2);
@@ -456,70 +448,181 @@ tr.b.unittest.testSuite(function() {
             frame: {id_ref: '0xdeadbeef'},
             documentLoaderURL: 'http://example.com'
           });
-
       mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
         cat: 'loading',
         title: 'firstMeaningfulPaintCandidate',
-        start: 9180,
+        start: 500,
+        duration: 0.0,
+        args: {frame: '0xdeadbeef'}
+      }));
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing',
+        title: 'domContentLoadedEventEnd',
+        start: 600,
         duration: 0.0,
         args: {frame: '0xdeadbeef'}
       }));
 
+      // Add main thread tasks.
+      const mainThreadTopLevelTasks = [
+        {start: 800, duration: 100},   // Long task
+        {start: 1500, duration: 200},  // Last long task. TTI at 1700.
+        {start: 2000, duration: 49},   // Short task.
+      ].forEach(task => {
+        mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+          cat: 'toplevel',
+          title: 'TaskQueueManager::ProcessTaskFromWorkQueue',
+          start: task.start,
+          duration: task.duration,
+        }));
+      });
+
+      // New navigation to close the search window.
       mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
-        cat: 'loading',
-        title: 'firstMeaningfulPaintCandidate',
-        start: 9200,
+        cat: 'blink.user_timing',
+        title: 'navigationStart',
+        start: 7000,
         duration: 0.0,
         args: {frame: '0xdeadbeef'}
-      }));
-
-      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
-        cat: 'toplevel',
-        title: 'TaskQueueManager::ProcessTaskFromWorkQueue',
-        start: 9350,
-        duration: 100,
-      }));
-
-      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
-        cat: 'toplevel',
-        title: 'TaskQueueManager::ProcessTaskFromWorkQueue',
-        start: 11150,
-        duration: 100,
-      }));
-
-      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
-        cat: 'toplevel',
-        title: 'TaskQueueManager::ProcessTaskFromWorkQueue',
-        start: 12550,
-        duration: 100,
-      }));
-
-      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
-        cat: 'toplevel',
-        title: 'TaskQueueManager::ProcessTaskFromWorkQueue',
-        start: 14950,
-        duration: 500,
-      }));
-
-      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
-        cat: 'toplevel',
-        title: 'TaskQueueManager::ProcessTaskFromWorkQueue',
-        start: 22150,
-        duration: 10,
       }));
     });
+
     const histograms = new tr.v.HistogramSet();
     tr.metrics.sh.loadingMetric(histograms, model);
-    const hist = histograms.getHistogramNamed('timeToFirstInteractive');
-    assert.strictEqual(1, hist.running.count);
-    assert.strictEqual(15200, hist.running.mean);
-    const binsWithSampleDiagnosticMaps = hist.allBins.filter(
-        bin => bin.diagnosticMaps.length > 0);
-    const diagnostic = tr.b.getOnlyElement(binsWithSampleDiagnosticMaps[0]
-        .diagnosticMaps[0].get('infos'));
-    assert.strictEqual(diagnostic.start, 200);
-    assert.strictEqual(diagnostic.interactive, 15400);
-    assert.strictEqual(diagnostic.pid, 1984);
+    const ttiHist = histograms.getHistogramNamed('timeToInteractive');
+    assert.strictEqual(1, ttiHist.running.count);
+    // 1700 - 200 (navStart) = 1500.
+    assert.strictEqual(1500, ttiHist.running.mean);
+    const firstCpuIdleHist = histograms.getHistogramNamed('timeToFirstCpuIdle');
+    assert.strictEqual(1, firstCpuIdleHist.running.count);
+    // 1700 - 200 (navStart) = 1500.
+    assert.strictEqual(1500, firstCpuIdleHist.running.mean);
+  });
+
+  test('interactivityMetrics_DclPickedProperly', function() {
+    const model = tr.c.TestUtils.newModel(function(model) {
+      const rendererProcess = model.getOrCreateProcess(1984);
+      const mainThread = rendererProcess.getOrCreateThread(2);
+      mainThread.name = 'CrRendererMain';
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing',
+        title: 'navigationStart',
+        start: 200,
+        duration: 0.0,
+        args: {frame: '0xdeadbeef'}
+      }));
+      rendererProcess.objects.addSnapshot('ptr', 'loading', 'FrameLoader', 300,
+          {
+            isLoadingMainFrame: true,
+            frame: {id_ref: '0xdeadbeef'},
+            documentLoaderURL: 'http://example.com'
+          });
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'loading',
+        title: 'firstMeaningfulPaintCandidate',
+        start: 500,
+        duration: 0.0,
+        args: {frame: '0xdeadbeef'}
+      }));
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing',
+        title: 'domContentLoadedEventEnd',
+        start: 4000,  // TTI will be at 4000.
+        duration: 0.0,
+        args: {frame: '0xdeadbeef'}
+      }));
+
+      // Add main thread tasks.
+      const mainThreadTopLevelTasks = [
+        {start: 800, duration: 100},   // Long task.
+        {start: 1500, duration: 200},  // Long task.
+      ].forEach(task => {
+        mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+          cat: 'toplevel',
+          title: 'TaskQueueManager::ProcessTaskFromWorkQueue',
+          start: task.start,
+          duration: task.duration,
+        }));
+      });
+
+      // New navigation to close the search window.
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing',
+        title: 'navigationStart',
+        start: 7000,
+        duration: 0.0,
+        args: {frame: '0xdeadbeef'}
+      }));
+    });
+
+    const histograms = new tr.v.HistogramSet();
+    tr.metrics.sh.loadingMetric(histograms, model);
+    const ttiHist = histograms.getHistogramNamed('timeToInteractive');
+    assert.strictEqual(1, ttiHist.running.count);
+    // 4000 - 200 (navStart) = 3800.
+    assert.strictEqual(3800, ttiHist.running.mean);
+    const firstCpuIdleHist = histograms.getHistogramNamed('timeToFirstCpuIdle');
+    assert.strictEqual(1, firstCpuIdleHist.running.count);
+    // 4000 - 200 (navStart) = 3800.
+    assert.strictEqual(3800, firstCpuIdleHist.running.mean);
+  });
+
+  test('interactivityMetrics_NotReportedIfTracingEndedEarly', function() {
+    const model = tr.c.TestUtils.newModel(function(model) {
+      const rendererProcess = model.getOrCreateProcess(1984);
+      const mainThread = rendererProcess.getOrCreateThread(2);
+      mainThread.name = 'CrRendererMain';
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing',
+        title: 'navigationStart',
+        start: 200,
+        duration: 0.0,
+        args: {frame: '0xdeadbeef'}
+      }));
+      rendererProcess.objects.addSnapshot('ptr', 'loading', 'FrameLoader', 300,
+          {
+            isLoadingMainFrame: true,
+            frame: {id_ref: '0xdeadbeef'},
+            documentLoaderURL: 'http://example.com'
+          });
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'loading',
+        title: 'firstMeaningfulPaintCandidate',
+        start: 500,
+        duration: 0.0,
+        args: {frame: '0xdeadbeef'}
+      }));
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing',
+        title: 'domContentLoadedEventEnd',
+        start: 800,  // TTI will be at 4000.
+        duration: 0.0,
+        args: {frame: '0xdeadbeef'}
+      }));
+
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'toplevel',
+        title: 'TaskQueueManager::ProcessTaskFromWorkQueue',
+        start: 1000,
+        duration: 1200,
+      }));
+
+      // Last slice in the model. We do not have space for a big enough quiet
+      // window for Time to Interactive and First CPU Idle.
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'toplevel',
+        title: 'TaskQueueManager::ProcessTaskFromWorkQueue',
+        start: 2000,
+        duration: 50,
+      }));
+    });
+
+    const histograms = new tr.v.HistogramSet();
+    tr.metrics.sh.loadingMetric(histograms, model);
+    assert.strictEqual(0,
+        histograms.getHistogramNamed('timeToInteractive').numValues);
+    assert.strictEqual(0,
+        histograms.getHistogramNamed('timeToFirstCpuIdle').numValues);
   });
 
   test('multiTimeToInteractive', function() {
