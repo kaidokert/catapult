@@ -7,6 +7,7 @@ import os
 import posixpath
 import re
 import subprocess
+import tarfile
 import tempfile
 
 from battor import battor_wrapper
@@ -552,6 +553,16 @@ class AndroidPlatformBackend(
   def GetPortPairForForwarding(self, local_port):
     # TODO(#1977): Remove when all forwarders support default remote ports.
     return (local_port, 0)
+
+  def createSubresourceFilter(self):
+    with tarfile.open(os.path.join(os.path.dirname(__file__), 'static_sf', 'sf_data_user.tar.gz')) as tarball:
+      tarball.extractall(os.path.join(os.path.dirname(__file__), 'static_sf'))
+    print self._device.adb.Push(os.path.join(os.path.dirname(__file__), 'static_sf', 'user', 'Subresource Filter'), '/data/user/0/org.chromium.chrome/')
+    print self._device.adb.Push(os.path.join(os.path.dirname(__file__), 'static_sf', 'data', 'Subresource Filter'), '/data/data/org.chromium.chrome/')
+    print self._device.RunShellCommand(['chown', '-R', 'u0_a79:u0_a79', '/data/user/0/org.chromium.chrome/app_chrome'])
+    print self._device.RunShellCommand(['chown', '-R', 'u0_a79:u0_a79', '/data/data/org.chromium.chrome/app_chrome'])
+    print self._device.RunShellCommand(['chmod', '-R', '771', '/data/user/0/org.chromium.chrome/app_chrome'])
+    print self._device.RunShellCommand(['chmod', '-R', '771', '/data/data/org.chromium.chrome/app_chrome'])
 
   def RemoveProfile(self, package, ignore_list):
     """Delete application profile on device.
