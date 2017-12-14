@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1efc8f2b_e0cf7699",
+        "filename": "tracing/tracing/ui/extras/about_tracing/devtools_stream.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-12-14T16:48:49Z",
+      "side": 1,
+      "message": "nit: no (c)",
+      "revId": "bc0258d098af83628360adb7ad9b4463f2e31cd2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5251b61_de6a829d",
+        "filename": "tracing/tracing/ui/extras/about_tracing/devtools_stream.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-12-14T16:48:49Z",
+      "side": 1,
+      "message": "Please write this as an ES6 class: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+      "revId": "bc0258d098af83628360adb7ad9b4463f2e31cd2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85f4e8a7_a00d66b2",
+        "filename": "tracing/tracing/ui/extras/about_tracing/devtools_stream.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-12-14T16:48:49Z",
+      "side": 1,
+      "message": "It seems like this logic is going to wait for the first one to finish before making a new request. Is that what you want? What if the second one finishes first? Should you use Promise.race here instead?",
+      "revId": "bc0258d098af83628360adb7ad9b4463f2e31cd2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5eb2c2ef_be9660de",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_tracing_controller_client.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-12-14T16:48:49Z",
+      "side": 1,
+      "message": "Sorry the linter didn\u0027t catch this, but this.conn_ should go on the next line.",
+      "revId": "bc0258d098af83628360adb7ad9b4463f2e31cd2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33c14e0a_078494d2",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_tracing_controller_client_test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-12-14T16:48:49Z",
+      "side": 1,
+      "message": "Why this name? Maybe you can explain a little bit about the landscape here? What\u0027s DevToolsHost and how does it relate to InspectorTraingControllerClient? Where is it defined?",
+      "revId": "bc0258d098af83628360adb7ad9b4463f2e31cd2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6097035c_8308d720",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_tracing_controller_client_test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-12-14T16:48:49Z",
+      "side": 1,
+      "message": "I\u0027m sort of uncomfortable with this idea of modifying globals to make these tests work. We don\u0027t really have tests in trace-viewer that do that right now and I think needing to do that in order to get test coverage is maybe a smell. Could we refactor InspectorTracingControllerClient to take a optional connection instead, to make it easier to test without modifying globals?",
+      "revId": "bc0258d098af83628360adb7ad9b4463f2e31cd2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b86ea9f2_d9dc22ec",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_tracing_controller_client_test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-12-14T16:48:49Z",
+      "side": 1,
+      "message": "What\u0027s this doing? Could we maybe put a comment here?\n\nAlso, nit, you don\u0027t need braces or a semicolon. You can just write () \u003d\u003e handlersToRemove.push(handler).",
+      "revId": "bc0258d098af83628360adb7ad9b4463f2e31cd2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "457bf829_b936d598",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_tracing_controller_client_test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-12-14T16:48:49Z",
+      "side": 1,
+      "message": "Please use await instead of then.",
+      "revId": "bc0258d098af83628360adb7ad9b4463f2e31cd2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
