@@ -3,12 +3,10 @@
 # found in the LICENSE file.
 
 import logging
-import subprocess
 
 from telemetry.core import exceptions
 from telemetry.internal.platform import android_platform_backend as \
   android_platform_backend_module
-from telemetry.core import util
 from telemetry.internal.backends import android_browser_backend_settings
 from telemetry.internal.backends import browser_backend
 from telemetry.internal.backends.chrome import chrome_browser_backend
@@ -120,8 +118,35 @@ class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       # command line flags, in case some other Android process manages to
       # trigger Chrome's startup before we do.
       self._StopBrowser()
+<<<<<<< HEAD
       self._SetupProfile()
 
+||||||| merged common ancestors
+
+      if self.device.HasRoot() or self.device.NeedsSU():
+        if self.browser_options.profile_dir:
+          self.platform_backend.PushProfile(
+              self._backend_settings.package,
+              self.browser_options.profile_dir)
+        elif not self.browser_options.dont_override_profile:
+          self.platform_backend.RemoveProfile(
+              self._backend_settings.package,
+              self._backend_settings.profile_ignore_list)
+
+=======
+
+      if self.device.HasRoot() or self.device.NeedsSU():
+        if self.browser_options.profile_dir:
+          self.platform_backend.PushProfile(
+              self._backend_settings.package,
+              self.browser_options.profile_dir)
+        elif not self.browser_options.dont_override_profile:
+          self.platform_backend.RemoveProfile(
+              self._backend_settings.package,
+              self._backend_settings.profile_ignore_list)
+      print("Print Self:")
+      print(vars(self._backend_settings))
+>>>>>>> add logging. hack traceUrls.
       self.device.StartActivity(
           intent.Intent(package=self._backend_settings.package,
                         activity=self._backend_settings.activity,
