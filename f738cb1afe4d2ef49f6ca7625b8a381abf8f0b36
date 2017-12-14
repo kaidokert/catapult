@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f468686_40af1a29",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 1162726
+      },
+      "writtenOn": "2017-12-14T23:47:30Z",
+      "side": 1,
+      "message": "I wonder if this might be an issue. I presume it\u0027s possible that all swarming bots might not match this user id, but I\u0027m not sure. You might try running a stat command and grep the user from that.",
+      "range": {
+        "startLine": 562,
+        "startChar": 56,
+        "endLine": 562,
+        "endChar": 69
+      },
+      "revId": "f738cb1afe4d2ef49f6ca7625b8a381abf8f0b36",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
