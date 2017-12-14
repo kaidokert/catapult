@@ -104,6 +104,24 @@
       "revId": "22124cbfeb947cc50213f747b29d4d6c286d4dae",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d19a9178_bb25e63d",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-14T09:42:36Z",
+      "side": 1,
+      "message": "open(os.devnull, \u0027w\u0027) is a context manager",
+      "parentUuid": "d56164a7_88737340",
+      "revId": "22124cbfeb947cc50213f747b29d4d6c286d4dae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
