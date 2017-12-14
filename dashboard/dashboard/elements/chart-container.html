@@ -277,8 +277,16 @@ triaging functionality in the chart.
       // Regex for links in series annotation which are shown in tooltip.
       const TOOLTIP_LINK_REGEX = /\[(.+?)\]\((.+?)\)/;
 
-      // Sinebow generator for graph color picking.
-      const GENERATOR = new tr.b.SinebowColorGenerator();
+      const COLORS_BY_TESTPATH = new Map();
+      const COLOR_GENERATOR = tr.b.generateColors({
+        brightnessRange: tr.b.math.Range.fromExplicitRange(0.3, 0.7),
+      });
+      function colorForTestpath(testpath) {
+        if (!COLORS_BY_TESTPATH.has(testpath)) {
+          COLORS_BY_TESTPATH.set(testpath, COLOR_GENERATOR.next().value);
+        }
+        return COLORS_BY_TESTPATH.get(testpath);
+      }
 
       /**
        * Returns a date corresponding to the given timestamp, or null.
@@ -853,7 +861,7 @@ triaging functionality in the chart.
           for (const testPath of testPaths) {
             // XHRs are asynchronous, so the data can arrive in any order.
             // Pre-compute colors for testPaths in a deterministic order.
-            GENERATOR.colorForKey(testPath);
+            colorForTestpath(testPath);
           }
 
           // Checks if test path already exists.
@@ -1087,7 +1095,7 @@ triaging functionality in the chart.
               this.nextSeriesIndex++;
             }
 
-            const color = GENERATOR.colorForKey(testPath).toString();
+            const color = colorForTestpath(testPath).toString();
             newJson.data[index].color = color;
             this.updateJsonDataIndex(newJson.data[index], nextIndex);
             this.json.data[nextIndex] = newJson.data[index];
@@ -2903,7 +2911,7 @@ triaging functionality in the chart.
               const testpath = test.path || seriesGroup.path + '/' + test.name;
               sourceTestPaths.push({
                 testpath,
-                color: GENERATOR.colorForKey(testpath).toString(),
+                color: colorForTestpath(testpath).toString(),
               });
             }
           }
