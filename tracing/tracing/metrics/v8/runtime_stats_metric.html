@@ -71,15 +71,13 @@ tr.exportTo('tr.metrics.v8', function() {
     const runtimeGroupCollection = new tr.e.v8.RuntimeStatsGroupCollection();
     runtimeGroupCollection.addSlices(slices);
 
-    function addHistogramsForRuntimeGroup(runtimeGroup) {
-      const durationSamples = new tr.v.d.RelatedHistogramBreakdown();
-      const countSamples = new tr.v.d.RelatedHistogramBreakdown();
-
+    function addHistogramsForRuntimeGroup(runtimeGroup, durationSamples,
+        countSamples) {
       histograms.createHistogram(
           `${runtimeGroup.name}:duration`,
           tr.b.Unit.byName.timeDurationInMs_smallerIsBetter, {
             value: convertMicroToMilli_(runtimeGroup.time),
-            diagnostics: {samples: durationSamples},
+            diagnostics: durationSamples ? {samples: durationSamples} : null
           }, {
             binBoundaries: DURATION_CUSTOM_BOUNDARIES,
             summaryOptions: SUMMARY_OPTIONS,
@@ -89,11 +87,40 @@ tr.exportTo('tr.metrics.v8', function() {
           `${runtimeGroup.name}:count`,
           tr.b.Unit.byName.count_smallerIsBetter, {
             value: runtimeGroup.count,
-            diagnostics: {samples: countSamples},
+            diagnostics: countSamples ? {samples: countSamples} : null
           }, {
             binBoundaries: COUNT_CUSTOM_BOUNDARIES,
             summaryOptions: SUMMARY_OPTIONS,
           });
+    }
+
+    function addDetailedHistogramsForRuntimeGroup(runtimeGroup) {
+      const durationSamples = new tr.v.d.RelatedHistogramBreakdown();
+      const countSamples = new tr.v.d.RelatedHistogramBreakdown();
+
+      for (const entry of runtimeGroup.values) {
+        const durationSampleHistogram = histograms.createHistogram(
+            `${entry.name}:duration`,
+            tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
+            convertMicroToMilli_(entry.time), {
+              binBoundaries: DURATION_CUSTOM_BOUNDARIES,
+              summaryOptions: SUMMARY_OPTIONS,
+            });
+        durationSamples.set(
+            durationSampleHistogram.name, durationSampleHistogram);
+
+        const countSampleHistogram = histograms.createHistogram(
+            `${entry.name}:count`,
+            tr.b.Unit.byName.count_smallerIsBetter,
+            entry.count, {
+              binBoundaries: COUNT_CUSTOM_BOUNDARIES,
+              summaryOptions: SUMMARY_OPTIONS,
+            });
+        countSamples.set(
+            countSampleHistogram.name, countSampleHistogram);
+      }
+
+      addHistogramsForRuntimeGroup(runtimeGroup, durationSamples, countSamples);
     }
 
     for (const runtimeGroup of runtimeGroupCollection.runtimeGroups) {
@@ -102,7 +129,8 @@ tr.exportTo('tr.metrics.v8', function() {
 
     const blinkGroupCollection = runtimeGroupCollection.blinkRCSGroupCollection;
     if (blinkGroupCollection.totalTime > 0) {
-      blinkGroupCollection.runtimeGroups.forEach(addHistogramsForRuntimeGroup);
+      blinkGroupCollection.runtimeGroups.forEach(
+          addDetailedHistogramsForRuntimeGroup);
     }
   }
 
