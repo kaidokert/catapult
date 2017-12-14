@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5f4c895a_1955db6a",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2017-12-14T20:06:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe652ae2_19cd4a5f",
+      "range": {
+        "startLine": 314,
+        "startChar": 30,
+        "endLine": 314,
+        "endChar": 35
+      },
+      "revId": "121cf572a77df73be82185828d43f9fd619f1402",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9afe7c2b_6dcf65ee",
         "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "2ac48ee8_574da972",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2017-12-14T20:06:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9afe7c2b_6dcf65ee",
+      "range": {
+        "startLine": 414,
+        "startChar": 31,
+        "endLine": 414,
+        "endChar": 32
+      },
+      "revId": "121cf572a77df73be82185828d43f9fd619f1402",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "610c36b5_b281dc1f",
         "filename": "tracing/tracing/metrics/system_health/loading_metric_test.html",
         "patchSetId": 3
@@ -59,6 +107,30 @@
       "writtenOn": "2017-12-13T19:52:56Z",
       "side": 1,
       "message": "Can\u0027t we use the helper?",
+      "range": {
+        "startLine": 745,
+        "startChar": 16,
+        "endLine": 745,
+        "endChar": 31
+      },
+      "revId": "121cf572a77df73be82185828d43f9fd619f1402",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e3a4cb7_3d4c0adc",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric_test.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 745,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2017-12-14T20:06:36Z",
+      "side": 1,
+      "message": "The frame is different. I don\u0027t want frame as an arg in the helper function - it\u0027s distracting and not needed in any test other than this one.",
+      "parentUuid": "610c36b5_b281dc1f",
       "range": {
         "startLine": 745,
         "startChar": 16,
@@ -105,6 +177,30 @@
       "writtenOn": "2017-12-13T19:52:56Z",
       "side": 1,
       "message": "Can we update all usages to use the helper methods?",
+      "range": {
+        "startLine": 783,
+        "startChar": 16,
+        "endLine": 783,
+        "endChar": 31
+      },
+      "revId": "121cf572a77df73be82185828d43f9fd619f1402",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "674db167_0e041ec5",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric_test.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 783,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2017-12-14T20:06:36Z",
+      "side": 1,
+      "message": "This CL is already massive - let\u0027s do this in a future CL.",
+      "parentUuid": "cdd82c83_552c941e",
       "range": {
         "startLine": 783,
         "startChar": 16,
