@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e906ef03_694fef47",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2017-12-14T14:10:34Z",
+      "side": 1,
+      "message": "perhaps for extra robustness .. explicitly search for zygote and zygote64 without substring-matching being sufficient?\n\nAlso, makes sense to extra check that we are not choosing something wild as zygote: PPID(zygote) \u003d\u003d 1 and (not PPID(zygote64) or PPID(zygote64) \u003d\u003d 1)",
+      "range": {
+        "startLine": 208,
+        "startChar": 6,
+        "endLine": 208,
+        "endChar": 51
+      },
+      "revId": "8fcc6dc5d4cda33532e4f10ecd8d4709c5c717d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd2a9396_2c97205a",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2017-12-14T14:10:34Z",
+      "side": 1,
+      "message": "nit: multiline list comprehension is not as smooth to read as a traditional loop",
+      "range": {
+        "startLine": 215,
+        "startChar": 10,
+        "endLine": 215,
+        "endChar": 80
+      },
+      "revId": "8fcc6dc5d4cda33532e4f10ecd8d4709c5c717d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
