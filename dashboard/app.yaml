@@ -55,14 +55,49 @@ handlers:
   upload: dashboard/elements/.*\.html$
   secure: always
 
+- url: /dashboard/spa/(.*\.(html|js|css))$
+  static_files: dashboard/spa/\1
+  upload: dashboard/spa/.*\.(html|js|css)$
+  secure: always
+
+- url: /spa.*
+  static_files: dashboard/spa/index.html
+  upload: dashboard/spa/index.html
+  secure: always
+
 - url: /components/(.*)/(.*\.(html|js|css))$
   static_files: polymer/components/\1/\2
   upload: polymer/components/.*/.*\.(html|js|css)$
   secure: always
 
+- url: /bower_components/(.*)/(.*\.(html|js|css))$
+  static_files: polymer2/bower_components/\1/\2
+  upload: polymer2/bower_components/.*/.*\.(html|js|css)$
+  secure: always
+
+- url: /redux.min.js
+  static_files: redux/redux.min.js
+  upload: redux/redux\.min\.js
+  secure: always
+
 - url: /tracing/(.*)/(.*\.(html|js|css))$
   static_files: tracing/\1/\2
   upload: tracing/.*/.*\.(html|js|css)$
+  secure: always
+
+- url: /tracing/(.*)/(.*)/(.*\.(html|js|css))$
+  static_files: tracing/\1/\2/\3
+  upload: tracing/.*/.*/.*\.(html|js|css)$
+  secure: always
+
+- url: /mannwhitneyu/mannwhitneyu\.js
+  static_files: mannwhitneyu/mannwhitneyu.js
+  upload: mannwhitneyu/mannwhitneyu\.js
+  secure: always
+
+- url: /d3.min.js
+  static_files: d3/d3.min.js
+  upload: d3/d3.min.js
   secure: always
 
 - url: /flot/(.*\.js)$
