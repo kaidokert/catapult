@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<dom-module id="chart-legend">
+  <template>
+    <style>
+      :host {
+        display: flex;
+      }
+      chart-legend {
+        margin-left: 16px;
+      }
+      .leaf {
+        font-weight: bold;
+      }
+    </style>
+
+    <template is="dom-repeat" items="[[items]]">
+      <template is="dom-if" if="[[item.children]]">
+        <div class="branch">
+          [[item.label]]
+        </div>
+
+        <chart-legend items="[[item.children]]">
+        </chart-legend>
+      </template>
+
+      <template is="dom-if" if="[[!item.children]]">
+        <div class="leaf"
+             style$="color: [[item.color]];">
+          [[item.label]]
+        </div>
+      </template>
+    </template>
+  </template>
+</dom-module>
+<script src="/dashboard/spa/chart-legend.js"></script>
