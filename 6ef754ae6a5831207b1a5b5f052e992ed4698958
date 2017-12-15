@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e4b647da_c6df700e",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_connection.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-12-15T18:41:00Z",
+      "side": 1,
+      "message": "Could you go ahead and upgrade this to an ES6 class as well?",
+      "revId": "6ef754ae6a5831207b1a5b5f052e992ed4698958",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49c3eaed_fb2915da",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_tracing_controller_client.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-12-15T18:41:00Z",
+      "side": 1,
+      "message": "Class here as well I think.",
+      "revId": "6ef754ae6a5831207b1a5b5f052e992ed4698958",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ac0b6ff_53427177",
+        "filename": "tracing/tracing/ui/extras/about_tracing/inspector_tracing_controller_client_test.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2017-12-15T18:41:00Z",
+      "side": 1,
+      "message": "nit: I think Fowler[0] would call this a fake. In Telemetry, we have a similar set of fakes used for testing: https://github.com/catapult-project/catapult/blob/master/telemetry/telemetry/testing/fakes/__init__.py\n\n[0] https://martinfowler.com/articles/mocksArentStubs.html",
+      "revId": "6ef754ae6a5831207b1a5b5f052e992ed4698958",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
