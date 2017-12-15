@@ -46,6 +46,30 @@
       "revId": "f738cb1afe4d2ef49f6ca7625b8a381abf8f0b36",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48f96f4e_40c8eea5",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 1162726
+      },
+      "writtenOn": "2017-12-15T00:37:47Z",
+      "side": 1,
+      "message": "When the files are copied over, it is typically by the root user on Android (ADB is root for most development phones), so the files are owned by root and I think the permissions are something like 600.",
+      "parentUuid": "2977baba_e032e866",
+      "range": {
+        "startLine": 562,
+        "startChar": 56,
+        "endLine": 562,
+        "endChar": 69
+      },
+      "revId": "f738cb1afe4d2ef49f6ca7625b8a381abf8f0b36",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
