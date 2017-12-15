@@ -85,7 +85,7 @@ class ReplayServer(object):
         self._GetGoBinaryPath(), http_port, https_port, replay_options,
         archive_path)
 
-    if 'record' in replay_options:
+    if '--record' in replay_options:
       self._CheckPath('archive directory', os.path.dirname(self.archive_path))
     elif not os.path.exists(self.archive_path):
       self._CheckPath('archive file', self.archive_path)
