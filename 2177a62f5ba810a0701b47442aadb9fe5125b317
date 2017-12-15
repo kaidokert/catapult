@@ -22,6 +22,30 @@
       "revId": "2177a62f5ba810a0701b47442aadb9fe5125b317",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a566396e_5bd766eb",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 1215729
+      },
+      "writtenOn": "2017-12-15T18:55:41Z",
+      "side": 1,
+      "message": "All of these above are tried locally up til now. We want to make sure it run successfully on local mobile first before moving to cluster telemetry.\n\nI\u0027ve checked the uid in org.chromium.chrom/, I assume the uid of SF should be the same as other files, so I use u0_a117 instead.\n\nAfter chown/chmod to SF, the uid/gid of SF is the same as other files in the folder, but chrome://components shows SF version to be 0.0, and it fails to filter Ads. \n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\n/data/user/0/org.chromium.chrome/:\n\n-rw------- u0_a117  u0_a117   8388608 2017-12-15 15:17 BrowserMetrics-spare.pma\ndrwx------ u0_a117  u0_a117           2017-12-15 15:18 Default\ndrwx------ u0_a117  u0_a117           2017-12-15 15:17 DownloadableStrings\ndrwx------ u0_a117  u0_a117           2017-12-15 15:17 FileTypePolicies\n-rw------- u0_a117  u0_a117      3545 2017-12-15 15:17 Local State\ndrwx------ u0_a117  u0_a117           2017-12-15 15:17 OriginTrials\ndrwx------ u0_a117  u0_a117           2017-12-15 15:17 ShaderCache\ndrwxrwx--x u0_a117  u0_a117           2017-12-15 15:17 Subresource Filter\ndrwx------ u0_a117  u0_a117           2017-12-15 15:17 app_chrome\ndrwxrwx--x u0_a117  u0_a117           2017-12-15 15:17 app_dex\ndrwxrwx--x u0_a117  u0_a117           2017-12-15 15:17 app_download_internal\ndrwxrwx--x u0_a117  u0_a117           2017-12-15 15:17 app_tabs\ndrwxrwx--x u0_a117  u0_a117           2017-12-15 15:17 app_textures\ndrwxrwx--x u0_a117  u0_a117           2017-12-15 15:17 cache\ndrwxrwx--x u0_a117  u0_a117           2017-12-15 15:17 code_cache\ndrwxrwx--x u0_a117  u0_a117           2017-12-15 15:17 files\nlrwxrwxrwx root     root              2017-12-14 22:11 lib -\u003e /data/app/org.chromium.chrome-1/lib/arm\ndrwxrwx--x u0_a117  u0_a117           2017-12-15 15:17 shared_prefs",
+      "parentUuid": "70c45fcc_15f184e7",
+      "range": {
+        "startLine": 562,
+        "startChar": 56,
+        "endLine": 562,
+        "endChar": 69
+      },
+      "revId": "2177a62f5ba810a0701b47442aadb9fe5125b317",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
