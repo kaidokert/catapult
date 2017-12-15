@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "1b6f70dc_fb438c26",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2017-12-15T18:58:04Z",
+      "side": 1,
+      "message": "As I mentioned yesterday, I think we want to create this file before the browser starts up, is that possible? During startup Chrome looks for the file.",
+      "revId": "2177a62f5ba810a0701b47442aadb9fe5125b317",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "70c45fcc_15f184e7",
         "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
         "patchSetId": 14
