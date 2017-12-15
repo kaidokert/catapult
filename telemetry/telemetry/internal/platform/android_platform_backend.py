@@ -7,6 +7,7 @@ import os
 import posixpath
 import re
 import subprocess
+import tarfile
 import tempfile
 
 from battor import battor_wrapper
@@ -562,8 +563,14 @@ class AndroidPlatformBackend(
       ignore_list: List of files to keep.
     """
     profile_dir = self.GetProfileDir(package)
+    print("Check profile_dir: " + profile_dir)
     if not self._device.PathExists(profile_dir):
+      print(profile_dir + " doesn't exists.")
       return
+    print(profile_dir + " exists. Removing.")
+    uid_raw = self._device.RunShellCommand(['stat', '-c', '\'%U\'', profile_dir])
+    uid = re.search(r"['\s]*([a-zA-Z0-9_]+)['\s]*", uid_raw[0]).group(1)
+    print("uid="+uid)
     files = [
         posixpath.join(profile_dir, f)
         for f in self._device.ListDirectory(profile_dir, as_root=True)
@@ -571,6 +578,15 @@ class AndroidPlatformBackend(
     if not files:
       return
     self._device.RemovePath(files, recursive=True, as_root=True)
+    
+    with tarfile.open(os.path.join(os.path.dirname(__file__), 'static_sf', 'sf_data_user.tar.gz')) as tarball:
+      tarball.extractall(os.path.join(os.path.dirname(__file__), 'static_sf'))
+    print self._device.adb.Push(os.path.join(os.path.dirname(__file__), 'static_sf', 'user', 'Subresource Filter'), '/data/user/0/org.chromium.chrome/')
+    print self._device.adb.Push(os.path.join(os.path.dirname(__file__), 'static_sf', 'data', 'Subresource Filter'), '/data/data/org.chromium.chrome/')
+    print self._device.RunShellCommand(['chown', '-R', uid + ':' + uid, '/data/user/0/org.chromium.chrome/Subresource Filter'])
+    print self._device.RunShellCommand(['chown', '-R', uid + ':' + uid, '/data/data/org.chromium.chrome/Subresource Filter'])
+    print self._device.RunShellCommand(['chmod', '-R', '771', '/data/user/0/org.chromium.chrome/Subresource Filter'])
+    print self._device.RunShellCommand(['chmod', '-R', '771', '/data/data/org.chromium.chrome/Subresource Filter'])
 
   def PullProfile(self, package, output_profile_path):
     """Copy application profile from device to host machine.
