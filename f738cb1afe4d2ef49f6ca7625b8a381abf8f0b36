@@ -22,6 +22,30 @@
       "revId": "f738cb1afe4d2ef49f6ca7625b8a381abf8f0b36",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2977baba_e032e866",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 1215729
+      },
+      "writtenOn": "2017-12-15T00:33:27Z",
+      "side": 1,
+      "message": "What\u0027s the purpose of changing the ownership of these folders? Should we change to use../app_chrome instead accordingly now that the SF folder is now under ../app_chrome?",
+      "parentUuid": "3f468686_40af1a29",
+      "range": {
+        "startLine": 562,
+        "startChar": 56,
+        "endLine": 562,
+        "endChar": 69
+      },
+      "revId": "f738cb1afe4d2ef49f6ca7625b8a381abf8f0b36",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
