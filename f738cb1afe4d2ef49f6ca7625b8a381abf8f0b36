@@ -94,6 +94,30 @@
       "revId": "f738cb1afe4d2ef49f6ca7625b8a381abf8f0b36",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ba09999_bf2a7aa8",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 1162726
+      },
+      "writtenOn": "2017-12-15T01:17:33Z",
+      "side": 1,
+      "message": "sgtm",
+      "parentUuid": "e1b7149b_2f55b945",
+      "range": {
+        "startLine": 562,
+        "startChar": 56,
+        "endLine": 562,
+        "endChar": 69
+      },
+      "revId": "f738cb1afe4d2ef49f6ca7625b8a381abf8f0b36",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
