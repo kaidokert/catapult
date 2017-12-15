@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "66a200b5_91452099",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-15T17:11:46Z",
+      "side": 1,
+      "message": "Better to create a mini class that group all these data together",
+      "revId": "7fa650fb13da0524696ea5ce9d404c84b96bf233",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b26c9876_7d8cf62b",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-15T17:11:46Z",
+      "side": 1,
+      "message": "Hmhh, I don\u0027t think we should do the wait-for code later. Don\u0027t you need to do it now? otherwise, this CL is making a risky behavior change",
+      "revId": "7fa650fb13da0524696ea5ce9d404c84b96bf233",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
