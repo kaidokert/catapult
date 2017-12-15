@@ -332,6 +332,10 @@ class MemoryMap(NodeWrapper):
     def file_offset(self):
       return self._file_offset
 
+    @file_offset.setter
+    def file_offset(self, value):
+      self._file_offset = value
+
     def __cmp__(self, other):
       if isinstance(other, type(self)):
         other_start_address = other._start_address
@@ -358,13 +362,37 @@ class MemoryMap(NodeWrapper):
                            long(region_node['sz'], 16),
                            region_node['mf'],
                            file_offset)
-      regions.append(region)
-
       # Keep track of code-identifier when present.
       if 'ts' in region_node and 'sz' in region_node:
         region._code_id = "%08X%X" % (long(region_node['ts'], 16), region.size)
+      regions.append(region)
 
     regions.sort()
+
+    # Iterate through the regions in order. If two regions border each other,
+    # and have the same file_path, but the latter region has file_offset == 0,
+    # then set the file_offset of the latter region to be
+    # former_region.file_offset + former_region.size.
+    #
+    # Rationale: There's a bug in Chrome whereby file_offset is not emitted. For
+    # macOS and Windows, this doesn't seem to be a problem - the executable
+    # region [the only one that matters] happens to have file_offset 0. However,
+    # for Linux, the executable region is not the first region, and this causes
+    # symbolization to fail.
+    #
+    # This hack relies on the assumption that if two regions are being mapped
+    # from the same file, and are next to each other, then their file_offsets
+    # can be computed based on the previous region's size. It's possible to
+    # construct pathological scenarios where this will fail, but those have not
+    # been observed.
+    last_region = None
+    for region in regions:
+      if (last_region and
+          last_region.file_path == region.file_path and
+          last_region.start_address + last_region.size == region.start_address
+          and region.file_offset == 0):
+        region.file_offset = last_region.file_offset + last_region.size
+      last_region = region
 
     # Copy regions without duplicates and check for overlaps.
     self._regions = []
@@ -1441,7 +1469,7 @@ def FetchAndExtractBreakpadSymbols(symbol_base_directory,
         # Some version, like mac, doesn't have the .zip extension.
         gcs_file = gcs_file + '.zip'
       elif not cloud_storage.Exists(cloud_storage_bucket, gcs_file):
-        print "Can't find symbols on GCS."
+        print "Can't find symbols on GCS. " + gcs_file
         return False
       print 'Downloading symbols files from GCS, please wait.'
       cloud_storage.Get(cloud_storage_bucket, gcs_file, zip_path)
