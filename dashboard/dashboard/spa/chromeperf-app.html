@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/bower_components/app-route/app-location.html">
+<link rel="import" href="/bower_components/app-route/app-route.html">
+<link rel="import" href="/bower_components/google-signin/google-signin.html">
+<link rel="import" href="/bower_components/iron-icons/communication-icons.html">
+<link rel="import" href="/bower_components/iron-icons/editor-icons.html">
+<link rel="import" href="/bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="/bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="/bower_components/paper-input/paper-textarea.html">
+<link rel="import" href="/bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="/bower_components/paper-tooltip/paper-tooltip.html">
+<link rel="import" href="/dashboard/spa/alerts-section.html">
+<link rel="import" href="/dashboard/spa/chart-section.html">
+<link rel="import" href="/dashboard/spa/pivot-section.html">
+<link rel="import" href="/dashboard/spa/releasing-section.html">
+
+<dom-module id="chromeperf-app">
+  <template>
+    <style>
+      :host {
+        /* https://material.io/guidelines/motion/material-motion.html#material-motion-how-does-material-move */
+        --transition-long: 0.4s;
+        --transition-short: 0.2s;
+      }
+
+      #nav {
+        background-color: var(--paper-indigo-500);
+        color: white;
+        display: flex;
+        font-weight: bold;
+        width: 100%;
+      }
+
+      #title {
+        font-size: large;
+        line-height: 27px; /* match height of google-signin */
+        padding: 8px;
+      }
+
+      #title_version {
+        color: var(--paper-yellow-500);
+      }
+
+      #spacer {
+        margin: auto;
+      }
+
+      #nav a {
+        color: var(--paper-indigo-50);
+      }
+
+      google-signin {
+        margin: 0;
+        padding: 8px;
+      }
+
+      .section_container {
+        /* Use full-bleed dividers between sections.
+            https://material.io/guidelines/components/dividers.html
+            */
+        margin: 0;
+        padding: 16px;
+      }
+
+      .section_container:not(:first-child) {
+        border-top: 1px solid grey;
+      }
+
+      #fabs_spacer {
+        height: 80px;
+      }
+
+      paper-fab {
+        --paper-fab-background: var(--paper-indigo-500);
+      }
+
+      #fabs_container {
+        bottom: 0;
+        float: right;
+        right: 0;
+        padding: 16px;
+        position: fixed;
+        user-select: none;
+      }
+
+      #fabs {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto;
+        position: absolute;
+        bottom: 16px;
+        right: 16px;
+        transition: opacity var(--transition-short);
+        opacity: 0;
+      }
+
+      .fab_label {
+        background-color: var(--paper-grey-700);
+        border-radius: 3px;
+        color: white;
+        font-weight: bold;
+        margin: auto 16px auto auto;
+        padding: 5px;
+        text-align: right;
+      }
+
+      #add_alerts {
+        --paper-fab-background: var(--paper-red-500);
+      }
+
+      #add_releasing {
+        --paper-fab-background: var(--paper-green-500);
+      }
+
+      #add_pivot {
+        --paper-fab-background: var(--paper-blue-grey-500);
+      }
+
+      #fabs_container:hover #fabs {
+        opacity: 1;
+      }
+
+      #add_alerts, #add_releasing, #add_pivot {
+        margin: 8px;
+      }
+
+      #add_chart {
+        margin-top: 8px;
+      }
+
+      #fab_callout {
+        background: var(--paper-yellow-300);
+        display: flex;
+      }
+
+      #fab_callout_contents {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #fab_callout_contents iron-icon {
+        background: var(--paper-indigo-500);
+        border-radius: 50%;
+        color: white;
+        margin: 0 16px;
+        padding: 4px;
+      }
+    </style>
+
+    <app-location route="{{route}}">
+    </app-location>
+    <app-route id="route"
+               route="{{route}}"
+               pattern="/spa/:routeMode"
+               data="{{routeData}}"
+               query-params="{{routeQueryParams}}">
+    </app-route>
+
+    <div id="nav">
+      <span id="title">
+        Chromeperf Dashboard <span id="title_version">v2.0!</span>
+      </span>
+      <span id="spacer"></span>
+      <a href="https://github.com/catapult-project/catapult/tree/master/dashboard/dashboard/pinpoint"
+         target="_blank"
+         title="Documentation">
+        <paper-icon-button icon="help"></paper-icon-button>
+      </a>
+      <a href="https://github.com/catapult-project/catapult/issues/new?title=[📍]+&assignees=dave-2&labels=Bisect"
+         target="_blank"
+         title="File a bug">
+        <paper-icon-button icon="feedback"></paper-icon-button>
+      </a>
+      <google-signin client-id="62121018386-aqdfougp0ddn93knqj6g79vvn42ajmrg.apps.googleusercontent.com"
+                     height="short"
+                     theme="dark"
+                     scopes="email"
+                     on-google-signin-success="handleSignIn"
+                     on-google-signed-out="handleSignOut">
+      </google-signin>
+    </div>
+
+    <iron-collapse id="fab_callout"
+                   opened="[[isExplainingFab]]">
+      <div id="fab_callout_contents">
+        Add Releasing reports, Alerts, and Charts using the floating action
+        buttons <iron-icon icon="add"></iron-icon> in the bottom right corner.
+      </div>
+
+      <paper-icon-button id="close"
+                         icon="close"
+                         on-tap="closeFabCallout_">
+      </paper-icon-button>
+    </iron-collapse>
+
+    <template is="dom-repeat" items="[[sections]]" as="section">
+      <div class="section_container">
+        <template is="dom-if" if="[[_eq(section.type, 'chart-section')]]">
+          <chart-section section-id="[[section.id]]">
+          </chart-section>
+        </template>
+
+        <template is="dom-if" if="[[_eq(section.type, 'alerts-section')]]">
+          <alerts-section section-id="[[section.id]]">
+          </alerts-section>
+        </template>
+
+        <template is="dom-if" if="[[_eq(section.type, 'releasing-section')]]">
+          <releasing-section section-id="[[section.id]]">
+          </releasing-section>
+        </template>
+
+        <template is="dom-if" if="[[_eq(section.type, 'pivot-section')]]">
+          <pivot-section section-id="[[section.id]]">
+          </pivot-section>
+        </template>
+      </div>
+    </template>
+
+    <div id="fabs_spacer">&nbsp;</div>
+
+    <div id="fabs_container">
+      <paper-fab id="add_fab" icon="add" on-tap="showFabs_">
+      </paper-fab>
+
+      <div id="fabs">
+        <div class="fab_label">Releasing</div>
+
+        <paper-fab id="add_releasing"
+                   mini
+                   icon="communication:business"
+                   on-tap="newReleasingSection_">
+        </paper-fab>
+
+        <div class="fab_label">Alerts</div>
+        <paper-fab id="add_alerts"
+                   mini
+                   icon="add-alert"
+                   on-tap="newAlertsSection_">
+        </paper-fab>
+
+        <div class="fab_label">Pivot</div>
+        <!-- TODO define iconset
+          https://icons8.com/icon/46316/pivot-table
+        -->
+        <paper-fab id="add_pivot"
+                   mini
+                   src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADfSURBVEhL7ZXLDcIwEERzoikKANEUOUCjfNoIzDjPGDCWEhsOIJ5kxTu7ngErUrrfYRiGjdbp0og9tNbYJiQemWlGXgdsE/QyaBf7JTiWQM+g/Q9IBpTVYPOeAL0tWy/KADblgGdoZ9iYEb+WtxCktoB780gMoWz/B4aRhxmkuoAp9400PyBeC6XrpWs9z0gBa4YygZ7hXjR/hXq7YADI8wL06Mcq4V+utdd2EQxg7M4MMNqGEMoinjGUCfQM2gGVPdsi46nKgClwLD+n+/zsB0fi2g1mqrGH1grbr6frrsVAUusNfuo/AAAAAElFTkSuQmCC"
+                   on-tap="newPivotSection_">
+        </paper-fab>
+
+        <div class="fab_label">Chart</div>
+        <paper-fab id="add_chart"
+                   icon="editor:show-chart"
+                   on-tap="newChartSection_">
+        </paper-fab>
+      </div>
+    </div>
+
+    <paper-toast id="reopen_section"
+                 opened="[[hasClosedSection]]">
+      <paper-button on-tap="reopenClosedSection_">
+        Reopen [[closedSectionType]]
+      </paper-button>
+    </paper-toast>
+  </template>
+</dom-module>
+<script src="/dashboard/spa/chromeperf-app.js"></script>
