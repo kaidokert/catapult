@@ -29,8 +29,6 @@ class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         supports_tab_control=backend_settings.supports_tab_control,
         supports_extensions=False, browser_options=browser_options)
 
-    self._port = None
-    # TODO(#1977): Move forwarder to network_controller.
     self._forwarder = None
 
     extensions_to_load = browser_options.extensions_to_load
@@ -118,7 +116,6 @@ class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       # trigger Chrome's startup before we do.
       self._StopBrowser()
       self._SetupProfile()
-
       self.device.StartActivity(
           intent.Intent(package=self._backend_settings.package,
                         activity=self._backend_settings.activity,
@@ -126,28 +123,32 @@ class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
                         extras=user_agent_dict),
           blocking=True)
 
-      remote_devtools_port = self._backend_settings.GetDevtoolsRemotePort(
-          self.device)
-      # Setting local_port=0 allows the forwarder to pick an available port.
-      self._forwarder = self.platform_backend.forwarder_factory.Create(
-          local_port=0, remote_port=remote_devtools_port, reverse=True)
-      self._port = self._forwarder.local_port
-
       try:
-        self._WaitForBrowserToComeUp(remote_devtools_port)
-      except exceptions.BrowserGoneException:
-        logging.critical('Failed to connect to browser.')
-        if not (self.device.HasRoot() or self.device.NeedsSU()):
-          logging.critical(
-              'Resolve this by either: '
-              '(1) Flashing to a userdebug build OR '
-              '(2) Manually enabling web debugging in Chrome at '
-              'Settings > Developer tools > Enable USB Web debugging.')
-        self.Close()
-        raise
+        self.BindDevToolsClient()
       except:
         self.Close()
         raise
+
+  def _GetDevToolsClientConfig(self):
+    if self._forwarder is None:
+      remote_port = self._backend_settings.GetDevtoolsRemotePort(self.device)
+      self._forwarder = self.platform_backend.forwarder_factory.Create(
+          local_port=None, remote_port=remote_port, reverse=True)
+    # Other clients can return None to signal devtools config is not ready.
+    return (self._forwarder.local_port, None, self._forwarder.remote_port)
+
+  def BindDevToolsClient(self):
+    try:
+      super(AndroidBrowserBackend, self).BindDevToolsClient()
+    except exceptions.BrowserGoneException:
+      logging.critical('Failed to connect to browser.')
+      if not (self.device.HasRoot() or self.device.NeedsSU()):
+        logging.critical(
+            'Resolve this by either: '
+            '(1) Flashing to a userdebug build OR '
+            '(2) Manually enabling web debugging in Chrome at '
+            'Settings > Developer tools > Enable USB Web debugging.')
+      raise
 
   def Foreground(self):
     package = self._backend_settings.package

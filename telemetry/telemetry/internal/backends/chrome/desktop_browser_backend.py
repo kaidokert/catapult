@@ -135,8 +135,6 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
           'Content shell does not support extensions.')
 
     self._browser_directory = browser_directory
-    self._port = None
-    self._browser_target = None
     self._tmp_minidump_dir = tempfile.mkdtemp()
     if self.is_logging_enabled:
       self._log_file_path = os.path.join(tempfile.mkdtemp(), 'chrome.log')
@@ -234,12 +232,17 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         return app_path
     return None
 
-  def HasBrowserFinishedLaunching(self):
-    # In addition to the functional check performed by the base class, quickly
-    # check if the browser process is still alive.
+  def _GetDevToolsClientConfig(self):
+    # Started process must be alive.
     if not self.IsBrowserRunning():
       raise exceptions.ProcessGoneException(
           "Return code: %d" % self._proc.returncode)
+
+    
+
+
+
+  def HasBrowserFinishedLaunching(self):
     # Start DevTools on an ephemeral port and wait for the well-known file
     # containing the port number to exist.
     port_file = self._GetDevToolsActivePortPath()
@@ -268,9 +271,7 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
 
   def GetBrowserStartupArgs(self):
     args = super(DesktopBrowserBackend, self).GetBrowserStartupArgs()
-    self._port = 0
-    logging.info('Requested remote debugging port: %d', self._port)
-    args.append('--remote-debugging-port=%i' % self._port)
+    args.append('--remote-debugging-port=0')  # Allow Chrome to choose a port.
     args.append('--enable-crash-reporter-for-testing')
     args.append('--disable-component-update')
     if not self._is_content_shell:
