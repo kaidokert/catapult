@@ -80,7 +80,7 @@ tr.exportTo('tr.metrics.sh', function() {
    * @returns {boolean}
    */
   function reachedTTIQuiscence_(timestamp,
-      networkQuietWindowStart, mainThreadQuietWindowStart) {
+      networkQuietWindowStart, mainThreadQuietWindowStart, windowSize) {
     if (networkQuietWindowStart === undefined ||
         mainThreadQuietWindowStart === undefined) {
       return false;
@@ -88,13 +88,21 @@ tr.exportTo('tr.metrics.sh', function() {
 
     const mainThreadQuietForLongEnough =
           timestamp - mainThreadQuietWindowStart >=
-          TIME_TO_INTERACTIVE_WINDOW_SIZE_MS;
+          windowSize;
 
     const networkQuietForLongEnough =
           timestamp - networkQuietWindowStart >=
-          TIME_TO_INTERACTIVE_WINDOW_SIZE_MS;
+          windowSize;
 
     return mainThreadQuietForLongEnough && networkQuietForLongEnough;
+  }
+
+  function filterNetworkByResourceType(networkRequests) {
+    return networkRequests.filter((request)=>{
+      const type = request.args.resourceInfo.resourceType;
+      return type === 'Resource' || type === 'Main resource' ||
+          type ==='CSS stylesheet' || type === 'Script';
+    });
   }
 
   /**
@@ -130,11 +138,19 @@ tr.exportTo('tr.metrics.sh', function() {
    * @returns {number|undefined}
    */
   function findInteractiveTime(searchBegin, searchEnd,
-      domContentLoadedEnd, longTasksInWindow, networkRequests) {
+      domContentLoadedEnd, longTasksInWindow, networkRequests, windowSize,
+      activeRequestTolerance) {
+    if (windowSize === 3000 && activeRequestTolerance === 0) {
+      console.log("3.0-0");
+    }
+    if (windowSize === 5000 && activeRequestTolerance === 2) {
+      console.log("5.0-2");
+    }
     // It is sufficient to only look at the end points of long tasks and network
     // requests. These are the points where any meaningful changes happen.
     const longTaskEndpoints = getEndpoints_(longTasksInWindow,
         ENDPOINT_TYPES.LONG_TASK_START, ENDPOINT_TYPES.LONG_TASK_END);
+    // const filteredNetworkRequests = filterNetworkByResourceType(networkRequests);
     const networkRequestEndpoints = getEndpoints_(networkRequests,
         ENDPOINT_TYPES.REQUEST_START, ENDPOINT_TYPES.REQUEST_END);
     const endpoints = longTaskEndpoints.concat(networkRequestEndpoints);
@@ -147,7 +163,7 @@ tr.exportTo('tr.metrics.sh', function() {
 
     for (const endpoint of endpoints) {
       if (reachedTTIQuiscence_(endpoint.time,
-          networkQuietWindowStart, mainThreadQuietWindowStart)) {
+          networkQuietWindowStart, mainThreadQuietWindowStart, windowSize)) {
         fciCandidate = mainThreadQuietWindowStart;
         break;
       }
@@ -161,13 +177,13 @@ tr.exportTo('tr.metrics.sh', function() {
           break;
         case ENDPOINT_TYPES.REQUEST_START:
           activeRequests++;
-          if (activeRequests > ACTIVE_REQUEST_TOLERANCE) {
+          if (activeRequests > activeRequestTolerance) {
             networkQuietWindowStart = undefined;
           }
           break;
         case ENDPOINT_TYPES.REQUEST_END:
           activeRequests--;
-          if (activeRequests === ACTIVE_REQUEST_TOLERANCE) {
+          if (activeRequests === activeRequestTolerance) {
             // Just became network 2-quiet.
             networkQuietWindowStart = endpoint.time;
           }
@@ -179,7 +195,7 @@ tr.exportTo('tr.metrics.sh', function() {
     }
 
     if (reachedTTIQuiscence_(searchEnd,
-        networkQuietWindowStart, mainThreadQuietWindowStart)) {
+        networkQuietWindowStart, mainThreadQuietWindowStart, windowSize)) {
       fciCandidate = mainThreadQuietWindowStart;
     }
 

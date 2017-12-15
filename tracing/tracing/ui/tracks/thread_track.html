@@ -101,7 +101,7 @@ tr.exportTo('tr.ui.tracks', function() {
         track.group = this.thread_.sliceGroup;
         if (track.hasVisibleContent) {
           needsHeading = false;
-          Polymer.dom(this).appendChild(track);
+          // Polymer.dom(this).appendChild(track);
         }
       }
 
@@ -113,14 +113,86 @@ tr.exportTo('tr.ui.tracks', function() {
     appendAsyncSliceTracks_() {
       const subGroups = this.thread_.asyncSliceGroup.viewSubGroups;
       subGroups.forEach(function(subGroup) {
-        const asyncTrack = new tr.ui.tracks.AsyncSliceGroupTrack(this.viewport);
-        const title = subGroup.slices[0].viewSubGroupTitle;
+        let asyncTrack = new tr.ui.tracks.AsyncSliceGroupTrack(this.viewport);
+        let title = subGroup.slices[0].viewSubGroupTitle;
         asyncTrack.group = subGroup;
         asyncTrack.heading = title;
         if (asyncTrack.hasVisibleContent) {
           Polymer.dom(this).appendChild(asyncTrack);
         }
+        if (subGroup.name_ === 'ResourceLoad') {
+          // Group 1
+          let newSubGroup = this.shallow_clone(subGroup);
+          asyncTrack = new tr.ui.tracks.AsyncSliceGroupTrack(this.viewport);
+          title = newSubGroup.slices[0].viewSubGroupTitle;
+          newSubGroup.slices = newSubGroup.slices.filter((slice)=>{
+            if (!slice.args || !slice.args.resourceInfo ||
+                !slice.args.resourceInfo['resourceType']) {
+              return false;
+            }
+            const resourceType = slice.args.resourceInfo['resourceType'];
+            return resourceType === 'Script';
+          })
+          asyncTrack.group = newSubGroup;
+          asyncTrack.heading = title + " Script only";
+          if (asyncTrack.hasVisibleContent) {
+            Polymer.dom(this).appendChild(asyncTrack);
+          }
+
+          // Group 2
+          newSubGroup = this.shallow_clone(subGroup);
+          asyncTrack = new tr.ui.tracks.AsyncSliceGroupTrack(this.viewport);
+          title = newSubGroup.slices[0].viewSubGroupTitle;
+          newSubGroup.slices = newSubGroup.slices.filter((slice)=>{
+            if (!slice.args || !slice.args.resourceInfo ||
+                !slice.args.resourceInfo['resourceType']) {
+              return false;
+            }
+            const resourceType = slice.args.resourceInfo['resourceType'];
+            return resourceType === 'Image';
+          })
+          asyncTrack.group = newSubGroup;
+          asyncTrack.heading = title + " Image only";
+          if (asyncTrack.hasVisibleContent) {
+            Polymer.dom(this).appendChild(asyncTrack);
+          }
+        }
       }, this);
+    },
+
+    shallow_clone(obj) {
+      var copy;
+
+      // Handle the 3 simple types, and null or undefined
+      if (null == obj || "object" != typeof obj) return obj;
+
+      // Handle Date
+      if (obj instanceof Date) {
+          copy = new Date();
+          copy.setTime(obj.getTime());
+          return copy;
+      }
+
+      // Handle Array
+      if (obj instanceof Array) {
+          copy = [];
+          for (var i = 0, len = obj.length; i < len; i++) {
+              copy[i] = obj[i];
+          }
+          return copy;
+      }
+
+      // Handle Object
+      if (obj instanceof Object) {
+          copy = {};
+          for (var attr in obj) {
+              if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+          }
+          copy.__proto__ = obj.__proto__;
+          return copy;
+      }
+
+      throw new Error("Unable to copy obj! Its type isn't supported.");
     },
 
     appendThreadSamplesTracks_() {
