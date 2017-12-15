@@ -118,6 +118,30 @@
       "revId": "f738cb1afe4d2ef49f6ca7625b8a381abf8f0b36",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aaa1f7f4_d22cea0b",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 1215729
+      },
+      "writtenOn": "2017-12-15T01:38:48Z",
+      "side": 1,
+      "message": "I\u0027ve tried chmod\u0026chown to org.chromium.chrome/, but Chromium crashes after doing so.\n Should we only do it to \"Subresource Filter/\"? \n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\ndrwxrwx--x u0_a86   u0_a86            2017-12-14 21:49 ShaderCache\ndrwxrwxr-x root     root              2017-12-14 22:07 Subresource Filter\ndrwxrwx--x u0_a86   u0_a86            2017-12-14 21:49 app_chrome\ndrwxrwx--x u0_a86   u0_a86            2017-12-14 21:49 app_dex\ndrwxrwx--x u0_a86   u0_a86            2017-12-14 21:49 app_download_internal",
+      "parentUuid": "6ba09999_bf2a7aa8",
+      "range": {
+        "startLine": 562,
+        "startChar": 56,
+        "endLine": 562,
+        "endChar": 69
+      },
+      "revId": "f738cb1afe4d2ef49f6ca7625b8a381abf8f0b36",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
