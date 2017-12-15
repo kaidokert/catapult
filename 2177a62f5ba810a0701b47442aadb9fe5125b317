@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4d047862_f6b00b23",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1215729
+      },
+      "writtenOn": "2017-12-15T19:05:02Z",
+      "side": 1,
+      "message": "It works now:) Problem solved. I tried it yesterday but no luck probably because the chmod\u0026chown wasn\u0027t right.",
+      "parentUuid": "1b6f70dc_fb438c26",
+      "revId": "2177a62f5ba810a0701b47442aadb9fe5125b317",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "70c45fcc_15f184e7",
         "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
         "patchSetId": 14
