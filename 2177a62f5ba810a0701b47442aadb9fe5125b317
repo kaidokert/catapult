@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "70c45fcc_15f184e7",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 1162726
+      },
+      "writtenOn": "2017-12-15T17:24:18Z",
+      "side": 1,
+      "message": "This value probably needs to be dynamically found, not a hard-coded value. \nIt\u0027d be something like: \n\nprint self._device.RunShellCommand([\"sh\", \"-c\", \"ls -al /data/data/org.chromium.chrome/ | grep -E \u0027[a-z-]+ [a-z0-9_]+\u0027 | cut -c11-\"])\n\nAlthough, make sure to check that locally, I couldn\u0027t verify it since my android phone is busted right now.",
+      "range": {
+        "startLine": 562,
+        "startChar": 56,
+        "endLine": 562,
+        "endChar": 69
+      },
+      "revId": "2177a62f5ba810a0701b47442aadb9fe5125b317",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
