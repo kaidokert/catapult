@@ -282,6 +282,24 @@
       "revId": "32b79922460854d6d5261c8f5d9604f517fa4dc4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "661b71fa_cd7b9eb8",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1148599
+      },
+      "writtenOn": "2017-12-15T01:04:21Z",
+      "side": 1,
+      "message": "https://bugs.chromium.org/p/chromium/issues/detail?id\u003d795147",
+      "parentUuid": "9ad983a2_b0f0dee0",
+      "revId": "32b79922460854d6d5261c8f5d9604f517fa4dc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
