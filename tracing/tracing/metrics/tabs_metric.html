@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/metrics/metric_registry.html">
+
+<script>
+'use strict';
+
+tr.exportTo('tr.metrics.tabs', function() {
+  function findDisplayCompositorThread(model) {
+    const threads = model.findAllThreadsNamed('CompositorThread');
+    if (threads.length > 0) {
+      return threads[0];
+    }
+    return model.findAllThreadsNamed('CrBrowserMain')[0];
+  }
+
+  function tabsMetric(histograms, model, opt_options) {
+    const thread = findDisplayCompositorThread(model);
+    const tabSwitchLatencies = [];
+    if (thread) {
+      for (const container of thread.childEventContainers()) {
+        for (const slice of container.slices) {
+          if (slice.title === 'TabSwitching::Latency') {
+            tabSwitchLatencies.push(slice.args.ms);
+          }
+        }
+      }
+    }
+    const options = {
+      description: 'Tab switching time in ms',
+    };
+    histograms.createHistogram('tab_switching_latency',
+        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
+        tabSwitchLatencies, options);
+  }
+
+  tr.metrics.MetricRegistry.register(tabsMetric, {
+    supportsRangeOfInterest: true,
+  });
+
+  return {
+    tabsMetric,
+  };
+});
+</script>
