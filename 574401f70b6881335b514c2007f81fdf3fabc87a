@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fc1a3ca3_f782b5d5",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-12-17T19:43:48Z",
+      "side": 1,
+      "message": "70 bins will make the histogram bar chart 350px tall minimum, which might be a lot on laptops. I think that 40-50 bins total would look better, but this is totally up to you.",
+      "revId": "574401f70b6881335b514c2007f81fdf3fabc87a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70f6a5e1_9dec3dd0",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-12-17T19:43:48Z",
+      "side": 1,
+      "message": "This suggests to me that OOP might help organize the code better by allowing you to store artifacts like longTasksInWindow in an object with methods, but I\u0027ll leave that up to you if you just want to land this and move on.",
+      "revId": "574401f70b6881335b514c2007f81fdf3fabc87a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
