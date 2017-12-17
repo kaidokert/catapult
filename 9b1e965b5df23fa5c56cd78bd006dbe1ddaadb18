@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ab8a558_751fc916",
+        "filename": "tracing/tracing/metrics/v8/runtime_stats_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2017-12-17T20:01:38Z",
+      "side": 1,
+      "message": "Can you use RelatedNameMaps and Breakdowns instead? RelatedHistogram diagnostics are being deprecated.\nhttps://chromium-review.googlesource.com/c/catapult/+/764858\nhttps://docs.google.com/document/d/1Lv-KoSFEq4EvWoXCTk_TO-YVqPWg53RwE4x1xBR0QoI/edit",
+      "revId": "9b1e965b5df23fa5c56cd78bd006dbe1ddaadb18",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
