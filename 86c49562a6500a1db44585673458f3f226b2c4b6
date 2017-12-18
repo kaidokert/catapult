@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "14e681ec_7dc1cc81",
+        "filename": "tracing/tracing/model/async_slice_group.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1149089
+      },
+      "writtenOn": "2017-12-18T15:36:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe5f05c4_118f6b6d",
+      "revId": "86c49562a6500a1db44585673458f3f226b2c4b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "756fa562_beee45ee",
         "filename": "tracing/tracing/model/async_slice_group.html",
         "patchSetId": 6
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "756fa562_beee45ee",
+      "revId": "86c49562a6500a1db44585673458f3f226b2c4b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e502ba5a_631c13c4",
+        "filename": "tracing/tracing/model/async_slice_group.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1149089
+      },
+      "writtenOn": "2017-12-18T15:36:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13931ae8_4e7119a0",
       "revId": "86c49562a6500a1db44585673458f3f226b2c4b6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -104,6 +140,24 @@
       "revId": "86c49562a6500a1db44585673458f3f226b2c4b6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2b516be_cdd1e247",
+        "filename": "tracing/tracing/model/async_slice_group.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1149089
+      },
+      "writtenOn": "2017-12-18T15:36:47Z",
+      "side": 1,
+      "message": "Decided to always use title instead. It will preserve existing logic better and simplier.",
+      "parentUuid": "9d663527_93df5ce4",
+      "revId": "86c49562a6500a1db44585673458f3f226b2c4b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -177,6 +231,24 @@
     },
     {
       "key": {
+        "uuid": "16e75553_f1299812",
+        "filename": "tracing/tracing/model/async_slice_group.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1149089
+      },
+      "writtenOn": "2017-12-18T15:36:47Z",
+      "side": 1,
+      "message": "String\u0027s prototype has compareTo, it\u0027s localeCompare.",
+      "parentUuid": "952dfd04_4ec89ced",
+      "revId": "86c49562a6500a1db44585673458f3f226b2c4b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "30dbddf8_ef841f96",
         "filename": "tracing/tracing/model/async_slice_group_test.html",
         "patchSetId": 6
@@ -212,6 +284,24 @@
     },
     {
       "key": {
+        "uuid": "dfe974d4_7c91c122",
+        "filename": "tracing/tracing/model/async_slice_group_test.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1149089
+      },
+      "writtenOn": "2017-12-18T15:36:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ffb9821_68c7d475",
+      "revId": "86c49562a6500a1db44585673458f3f226b2c4b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a2e6f461_fa5b203b",
         "filename": "tracing/tracing/model/helpers/chrome_renderer_helper.html",
         "patchSetId": 6
@@ -241,6 +331,24 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "a2e6f461_fa5b203b",
+      "revId": "86c49562a6500a1db44585673458f3f226b2c4b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9222cefe_52bb39fb",
+        "filename": "tracing/tracing/model/helpers/chrome_renderer_helper.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1149089
+      },
+      "writtenOn": "2017-12-18T15:36:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce0e2b91_a357f78b",
       "revId": "86c49562a6500a1db44585673458f3f226b2c4b6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
