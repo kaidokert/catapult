@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dd512f08_05073c8d",
+        "filename": "telemetry/telemetry/internal/actions/action_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-18T22:44:52Z",
+      "side": 1,
+      "message": "We are trying to get rid of interaction record and have logic to discover animation from the trace itself with TBMv2 direction",
+      "revId": "7a3abe8248a598c0ec7e121f13963c046cdac726",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
