@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bd27a878_029704fe",
+        "filename": "web_page_replay_go/src/wpr.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1247140
+      },
+      "writtenOn": "2017-12-18T20:28:01Z",
+      "side": 1,
+      "message": "Sorry, another nit, this should be updated as well.",
+      "range": {
+        "startLine": 112,
+        "startChar": 64,
+        "endLine": 112,
+        "endChar": 73
+      },
+      "revId": "5273538c9d45ad76ef8a2da4d28f8be355b1311c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
