@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "34efa76d_3cb7fa40",
+        "filename": "web_page_replay_go/src/wpr.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1247140
+      },
+      "writtenOn": "2017-12-18T18:36:43Z",
+      "side": 1,
+      "message": "While you\u0027re here, this should default to \"localhost\" instead of \"127.0.0.1\" in case the machine is locked to IPv6.",
+      "revId": "fbc45adf35bd96e9de30112db22f5bbd142cf77b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
