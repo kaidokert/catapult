@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "d8adf27f_947f7863",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-18T16:48:40Z",
+      "side": 1,
+      "message": "I\u0027ve just finished coding that CL :P\n\nhttps://chromium-review.googlesource.com/#/c/catapult/+/832866\n\nHaving a look at it now, though, it\u0027s probably fine and not much extra work to break the \"Configuration\" and \"Connection\" parts into two separate classes.",
+      "parentUuid": "aca4f237_c0b6e0f3",
+      "revId": "7fa650fb13da0524696ea5ce9d404c84b96bf233",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b26c9876_7d8cf62b",
         "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
         "patchSetId": 2
