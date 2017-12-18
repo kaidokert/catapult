@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "fc2743c6_3bfc2608",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-18T15:11:41Z",
+      "side": 1,
+      "message": "Having DevToolsClientBackend \u0026 a Connect method sgtm. Just need to make sure that you add some book keeping so that it blows up if connect is invoked twice, or people use other methods on it when it\u0027s not connected yet",
+      "parentUuid": "c9cf4913_0e6a9553",
+      "revId": "7fa650fb13da0524696ea5ce9d404c84b96bf233",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b26c9876_7d8cf62b",
         "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
         "patchSetId": 2
