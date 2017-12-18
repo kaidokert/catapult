@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c9cf4913_0e6a9553",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-18T14:19:23Z",
+      "side": 1,
+      "message": "I started writing this mini-class, which in fact helps reducing some code duplication going on now between the current IsDevToolsAgentAvailable and DevToolsClientBackend (e.g. providing a default browser_target and computing the websocket_url). So, nice!\n\nHowever this new mini-class started looking more and more like a DevToolsClientBackend just-not-connected-yet.\n\nWould you be opposed to splitting the current DevToolsClientBackend constructor into a __init__, mainly just recording the ports and browser_target args, and a new Connect method, to actually establish the connection with the devtools agent?\n\nOr would you insist on having separate classes for the DevToolsConfig and the DevToolsClientBackend which-is-always-surely-connected-from-creation?",
+      "parentUuid": "66a200b5_91452099",
+      "revId": "7fa650fb13da0524696ea5ce9d404c84b96bf233",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b26c9876_7d8cf62b",
         "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2017-12-15T17:11:46Z",
       "side": 1,
       "message": "Hmhh, I don\u0027t think we should do the wait-for code later. Don\u0027t you need to do it now? otherwise, this CL is making a risky behavior change",
+      "revId": "7fa650fb13da0524696ea5ce9d404c84b96bf233",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "598a818a_ae3b1b03",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-18T14:19:23Z",
+      "side": 1,
+      "message": "Yes, sorry for the time-travelling. This TODO was for a CL that I hadn\u0027t written yet, but should be landed before this one.",
+      "parentUuid": "b26c9876_7d8cf62b",
       "revId": "7fa650fb13da0524696ea5ce9d404c84b96bf233",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
