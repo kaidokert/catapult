@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "789b1a0e_9ca303c6",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2017-12-18T17:04:54Z",
+      "side": 1,
+      "message": "Very fair point. I changed it to 50 bins total.",
+      "parentUuid": "fc1a3ca3_f782b5d5",
+      "revId": "574401f70b6881335b514c2007f81fdf3fabc87a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "70f6a5e1_9dec3dd0",
         "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2017-12-17T19:43:48Z",
       "side": 1,
       "message": "This suggests to me that OOP might help organize the code better by allowing you to store artifacts like longTasksInWindow in an object with methods, but I\u0027ll leave that up to you if you just want to land this and move on.",
+      "revId": "574401f70b6881335b514c2007f81fdf3fabc87a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7fb0c98_ce5abcd4",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2017-12-18T17:04:54Z",
+      "side": 1,
+      "message": "Thanks for pointing this out. I think the whole loading_metrics file can use some refactoring - I\u0027ll consider sending a CL in near future.",
+      "parentUuid": "70f6a5e1_9dec3dd0",
       "revId": "574401f70b6881335b514c2007f81fdf3fabc87a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
