@@ -62,7 +62,7 @@ class ActionRunner(object):
     action.WillRunAction(self._tab)
     action.RunAction(self._tab)
 
-  def CreateInteraction(self, label, repeatable=False):
+  def CreateInteraction(self, label, repeatable=False, ui_interaction=False):
     """ Create an action.Interaction object that issues interaction record.
 
     An interaction record is a labeled time period containing
@@ -85,6 +85,7 @@ class ActionRunner(object):
       repeatable: Whether other interactions may use the same logical name
           as this interaction. All interactions with the same logical name must
           have the same flags.
+      ui_interaction: Whether this is a UI interaction, like window resizing.
 
     Returns:
       An instance of action_runner.Interaction
@@ -92,6 +93,8 @@ class ActionRunner(object):
     flags = []
     if repeatable:
       flags.append(timeline_interaction_record.REPEATABLE)
+    if ui_interaction:
+      flags.append(timeline_interaction_record.UI_INTERACTION)
 
     return Interaction(self, label, flags)
 
