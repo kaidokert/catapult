@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "aca4f237_c0b6e0f3",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-18T15:20:31Z",
+      "side": 1,
+      "message": "Actually given the number of methods of DevToolsClientBackend that only work if it\u0027s connected, I think it\u0027s easier to just have separate classes for the DevToolsConfig and the DevToolsClientBackend",
+      "parentUuid": "fc2743c6_3bfc2608",
+      "revId": "7fa650fb13da0524696ea5ce9d404c84b96bf233",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b26c9876_7d8cf62b",
         "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
         "patchSetId": 2
