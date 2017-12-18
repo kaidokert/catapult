@@ -16,6 +16,24 @@
       "revId": "9500eb72f69a93955c57a68da1d778d62b0c0b4b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "738e2d54_253c594f",
+        "filename": "tracing/tracing/metrics/tabs_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2017-12-18T17:06:02Z",
+      "side": 1,
+      "message": "Wanted to confirm something: in this case, the request will start in the browser process, and the end can happen in a different process. Is that going to be a problem? Or will this just work in that scenario too?",
+      "parentUuid": "6d650e5e_8b718cf2",
+      "revId": "9500eb72f69a93955c57a68da1d778d62b0c0b4b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
