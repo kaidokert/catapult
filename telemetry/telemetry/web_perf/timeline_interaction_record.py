@@ -10,7 +10,11 @@ import telemetry.timeline.bounds as timeline_bounds
 # Allows multiple duplicate interactions of the same type
 REPEATABLE = 'repeatable'
 
-FLAGS = [REPEATABLE]
+# Marks the interaction as a UI interaction so that UI-specific metrics are
+# collected during this interaction.
+UI_INTERACTION = 'ui_interaction'
+
+FLAGS = [REPEATABLE, UI_INTERACTION]
 
 
 class ThreadTimeRangeOverlappedException(Exception):
@@ -118,6 +122,10 @@ class TimelineInteractionRecord(object):
   @property
   def repeatable(self):
     return REPEATABLE in self._flags
+
+  @property
+  def ui_interaction(self):
+    return UI_INTERACTION in self._flags
 
   # TODO(nednguyen): After crbug.com/367175 is marked fixed, we should be able
   # to get rid of perf.measurements.smooth_gesture_util and make this the only
