@@ -187,16 +187,22 @@ class ChromeBrowserBackend(browser_backend.BrowserBackend):
       # otherwise re-creating it will fail.
       self._devtools_client.Close()
       self._devtools_client = None
+
+    devtools_client = devtools_client_backend.DevToolsClientBackend(
+        local_port=self._port,
+        remote_port=remote_devtools_port,
+        browser_target=self._browser_target,
+        app_backend=self)
+    timeout = self.browser_options.browser_startup_timeout
+
     try:
-      timeout = self.browser_options.browser_startup_timeout
-      py_utils.WaitFor(self.HasBrowserFinishedLaunching, timeout=timeout)
+      devtools_client.Connect(timeout=timeout)
     except (py_utils.TimeoutException, exceptions.ProcessGoneException) as e:
       if not self.IsBrowserRunning():
         raise exceptions.BrowserGoneException(self.browser, e)
       raise exceptions.BrowserConnectionGoneException(self.browser, e)
-    self._devtools_client = devtools_client_backend.DevToolsClientBackend(
-        self._port, self._browser_target,
-        remote_devtools_port or self._port, self)
+
+    self._devtools_client = devtools_client
 
   def _WaitForExtensionsToLoad(self):
     """ Wait for all extensions to load.
@@ -373,5 +379,3 @@ class ChromeBrowserBackend(browser_backend.BrowserBackend):
   @property
   def supports_power_metrics(self):
     return True
-
-
