@@ -52,6 +52,24 @@
       "revId": "9500eb72f69a93955c57a68da1d778d62b0c0b4b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8dea1cf4_8434a00d",
+        "filename": "tracing/tracing/metrics/tabs_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2017-12-18T21:52:01Z",
+      "side": 1,
+      "message": "It turns out it is very possible. I have made this change. (I will put up the corresponding chrome CL shortly).",
+      "parentUuid": "d033dc5f_286c161b",
+      "revId": "9500eb72f69a93955c57a68da1d778d62b0c0b4b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
