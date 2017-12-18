@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d650e5e_8b718cf2",
+        "filename": "tracing/tracing/metrics/tabs_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-18T11:20:08Z",
+      "side": 1,
+      "message": "hmhh, interesting. Why not creating tracing events which start when TabSwitching start \u0026 ends when it ends instead? That would make debugging latency increase easy",
+      "revId": "9500eb72f69a93955c57a68da1d778d62b0c0b4b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
