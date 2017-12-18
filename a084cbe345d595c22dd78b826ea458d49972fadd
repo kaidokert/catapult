@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "88d0f15e_e5e05f8a",
+        "filename": "telemetry/telemetry/internal/app/android_process.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-18T17:36:23Z",
+      "side": 1,
+      "message": "This changes self._devtools_client from the client to the client config. Is it intentional?",
+      "revId": "a084cbe345d595c22dd78b826ea458d49972fadd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2feb98b_435bcacc",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-18T17:36:23Z",
+      "side": 1,
+      "message": "If you already define others property \u0026 methods, I would just make this class DevToolsClientConfig(object) \u0026 make a usual __init__ methods with \u0027local_port\u0027, \u0027app_backend\u0027, \u0027remote_port\u0027, \u0027browser_target\u0027 attributes",
+      "revId": "a084cbe345d595c22dd78b826ea458d49972fadd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e839dbff_c8bb7a23",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-18T17:36:23Z",
+      "side": 1,
+      "message": "Add some variable so that this can only be called once?",
+      "revId": "a084cbe345d595c22dd78b826ea458d49972fadd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
