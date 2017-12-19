@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "35c7f254_c4e0ba67",
+        "filename": "telemetry/telemetry/internal/actions/play_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-19T10:23:10Z",
+      "side": 1,
+      "message": "are these still failing on chromeos?",
+      "revId": "f44ee534fb9df66915a945fdb7f8a603cb9be47b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
