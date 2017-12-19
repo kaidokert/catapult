@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "88172527_750d7ef5",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1132400
+      },
+      "writtenOn": "2017-12-19T22:07:45Z",
+      "side": 1,
+      "message": "nit: extra line doesn\u0027t seen to add anything.",
+      "revId": "2088ecf9a57b87a93693e92c4904bc9a6dcdb690",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
