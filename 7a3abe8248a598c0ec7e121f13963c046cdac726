@@ -16,6 +16,24 @@
       "revId": "7a3abe8248a598c0ec7e121f13963c046cdac726",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29df4cab_8ed2b7f5",
+        "filename": "telemetry/telemetry/internal/actions/action_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2017-12-19T15:39:03Z",
+      "side": 1,
+      "message": "Smoothness is a legacy benchmark and uses interaction records. We will get rid of interaction records when we migrate smoothness to TBMv2. I don\u0027t think that would be a problem. We can create an async event on chrome side, when we enter/exit the overview mode or when we do other UI animations.",
+      "parentUuid": "dd512f08_05073c8d",
+      "revId": "7a3abe8248a598c0ec7e121f13963c046cdac726",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
