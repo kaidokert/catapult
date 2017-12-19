@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bbf3eeb5_5e4c9be8",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1215674
+      },
+      "writtenOn": "2017-12-19T02:30:20Z",
+      "side": 1,
+      "message": "Well! This rational is not quite true.\nThe FileOffset doesn\u0027t have the right meaning on these architecture.\n\nThis is why they are not emitted.\nYour comment suggest the bug is in chrome, but it\u0027s on these operating system instead.\n\nIf I\u0027m right, on linux every ELF section is map separately and the fileoffset is the mapping of the section in the file. If this is the case, than the file-offset is required.\nI wanted to double check that, but I\u0027m away from a Linux computer. \n\nAs far as I get, the main difference is the way the loader work on these architectures.",
+      "revId": "3e0598daf21787ff4b2cce36c9424baff58451a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "361d7567_0fe2a8b8",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1215674
+      },
+      "writtenOn": "2017-12-19T02:30:20Z",
+      "side": 1,
+      "message": "There is no issue with padding?",
+      "revId": "3e0598daf21787ff4b2cce36c9424baff58451a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2062fb0_ace0f302",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1472,
+      "author": {
+        "id": 1215674
+      },
+      "writtenOn": "2017-12-19T02:30:20Z",
+      "side": 1,
+      "message": "can you just rephrase this, or remove the path (if it\u0027s for debuggin).\n\nprint \"Can\u0027t find symbols on GCS on \u0027\" + gcs_file + \"\u0027\"",
+      "revId": "3e0598daf21787ff4b2cce36c9424baff58451a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7aeb298a_05756502",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace_end_to_end_test_slow.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1215674
+      },
+      "writtenOn": "2017-12-19T02:30:20Z",
+      "side": 1,
+      "message": "+1 \n\nI also needed to figure out on my own.",
+      "revId": "3e0598daf21787ff4b2cce36c9424baff58451a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
