@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7e6ba963_24797b15",
+        "filename": "telemetry/telemetry/internal/app/android_process.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-19T09:40:03Z",
+      "side": 1,
+      "message": "on the config we do WaitForAndCreate() to get the actual client.\n\nI can break this into two statements to make that more explicit/easier to read.",
+      "parentUuid": "88d0f15e_e5e05f8a",
+      "revId": "a084cbe345d595c22dd78b826ea458d49972fadd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c2feb98b_435bcacc",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "e67a91f3_0e7f29d7",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-19T09:40:03Z",
+      "side": 1,
+      "message": "What I like about this is that (being a tuple) the object is immutable, so it freezes the config. No strong objection to change to a regular object, though, if that\u0027s what you prefer.",
+      "parentUuid": "c2feb98b_435bcacc",
+      "revId": "a084cbe345d595c22dd78b826ea458d49972fadd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e839dbff_c8bb7a23",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2017-12-18T17:36:23Z",
       "side": 1,
       "message": "Add some variable so that this can only be called once?",
+      "revId": "a084cbe345d595c22dd78b826ea458d49972fadd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21a45bea_362f087a",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-19T09:40:03Z",
+      "side": 1,
+      "message": "I think it should be legit to do:\n\ndevtools_config \u003d DevToolsClientConfig(...)\ndevtools_client_1 \u003d devtools_config.Create()\n# do something\ndevtools_client_1.Close()\ndevtools_client_2 \u003d devtools_config.Create()\n# do something\ndevtools_client_2.Close()\n\nno?",
+      "parentUuid": "e839dbff_c8bb7a23",
       "revId": "a084cbe345d595c22dd78b826ea458d49972fadd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
