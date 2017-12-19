@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "6660ec2b_3d312106",
+        "filename": "telemetry/telemetry/internal/app/android_process.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-19T11:24:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec30b810_7a80d6f2",
+      "revId": "a084cbe345d595c22dd78b826ea458d49972fadd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c2feb98b_435bcacc",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
         "patchSetId": 2
@@ -108,6 +126,24 @@
     },
     {
       "key": {
+        "uuid": "c81cc95e_37ac731a",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-19T11:24:10Z",
+      "side": 1,
+      "message": "That\u0027s not \"really\" frozen, but fine. :)\n\nDone",
+      "parentUuid": "209818af_d10d7a65",
+      "revId": "a084cbe345d595c22dd78b826ea458d49972fadd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e839dbff_c8bb7a23",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
         "patchSetId": 2
@@ -155,6 +191,24 @@
       "side": 1,
       "message": "ok. I mostly worry about people create two devtool clients to the same end point at the same time. But maybe there is no harm in doing so, not sure.",
       "parentUuid": "21a45bea_362f087a",
+      "revId": "a084cbe345d595c22dd78b826ea458d49972fadd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9730b23d_f2634f08",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-19T11:24:10Z",
+      "side": 1,
+      "message": "Done your original suggestion.\n\nNow that this is not a namedtuple I don\u0027t feel as bad adding state to it.",
+      "parentUuid": "37819a9e_32309f7c",
       "revId": "a084cbe345d595c22dd78b826ea458d49972fadd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
