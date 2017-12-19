@@ -7,7 +7,6 @@ import os
 import time
 
 from telemetry.core import exceptions
-from telemetry.core import util
 from telemetry import decorators
 from telemetry.internal.backends.chrome import chrome_browser_backend
 from telemetry.internal.backends.chrome import misc_web_contents_backend
@@ -56,36 +55,31 @@ class CrOSBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   def devtools_file_path(self):
     return '/home/chronos/DevToolsActivePort'
 
+  def _FindDevToolsPortAndTarget(self):
+    def GetDevToolsActivePortLines():
+      try:
+        return self._cri.GetFileContents(self.devtools_file_path).splitlines()
+      except (IOError, OSError):
+        return None  # DevTools file not ready yet. Retry.
+
+    # Retry until file is readable and not empty.
+    lines = py_utils.WaitFor(
+        GetDevToolsActivePortLines,
+        timeout=self.browser_options.browser_startup_timeout)
+
+    devtools_port = int(lines[0])
+    browser_target = lines[1] if len(lines) >= 2 else None
+    return devtools_port, browser_target
+
   def _GetDevToolsClientConfig(self):
-    # TODO(crbug.com/787834): Split into reading DevToolsActivePort, retrying
-    # if needed, and setting up fowarder.
-    try:
-      file_content = self._cri.GetFileContents(self.devtools_file_path)
-    except (IOError, OSError):
-      return False
+    devtools_port, browser_target = self._FindDevToolsPortAndTarget()
 
-    if len(file_content) == 0:
-      return False
-    port_target = file_content.split('\n')
-    remote_port = int(port_target[0])
-    # Use _remote_debugging_port for _port for now (local telemetry case)
-    # Override it with the forwarded port below for the remote telemetry case.
-    local_port = remote_port
-    if len(port_target) > 1 and port_target[1]:
-      browser_target = port_target[1]
-    logging.info('Discovered ephemeral port %s', local_port)
-    logging.info('Browser target: %s', browser_target)
-
-    # TODO(#1977): Can simplify using local forwarding and default ports.
-    if not self._cri.local:
-      local_port = util.GetUnreservedAvailableLocalPort()
-      self._forwarder = self._platform_backend.forwarder_factory.Create(
-          local_port=local_port, remote_port=remote_port,
-          reverse=True)
+    self._forwarder = self._platform_backend.forwarder_factory.Create(
+        local_port=None, remote_port=devtools_port, reverse=True)
 
     return devtools_client_backend.DevToolsClientConfig(
-        local_port=local_port,
-        remote_port=remote_port,
+        local_port=self._forwarder.local_port,
+        remote_port=self._forwarder.remote_port,
         browser_target=browser_target,
         app_backend=self)
 
