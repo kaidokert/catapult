@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a75f4c79_58419b0d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-19T09:52:38Z",
+      "side": 1,
+      "message": "will DidCreateBrowser go away on a follow up?",
+      "revId": "f3fc016bcbc46449a7cee3a52845ef35adea686e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b21f01d_4b5bfed8",
+        "filename": "telemetry/telemetry/testing/fakes/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-19T09:52:38Z",
+      "side": 1,
+      "message": "nit: should this do logging.info(\u0027Performance mode not implemented in platform X\u0027)?",
+      "revId": "f3fc016bcbc46449a7cee3a52845ef35adea686e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
