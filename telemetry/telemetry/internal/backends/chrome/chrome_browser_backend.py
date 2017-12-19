@@ -170,9 +170,10 @@ class ChromeBrowserBackend(browser_backend.BrowserBackend):
 
   def HasBrowserFinishedLaunching(self):
     assert self._port, 'No DevTools port info available.'
-    return devtools_client_backend.IsDevToolsAgentAvailable(
-        self._port,
-        self._browser_target, self)
+    devtools_config = devtools_client_backend.DevToolsClientConfig(
+        local_port=self._port, browser_target=self._browser_target,
+        app_backend=self)
+    return devtools_config.IsAgentReady()
 
   def _WaitForBrowserToComeUp(self, remote_devtools_port=None):
     """ Wait for browser to come up.
@@ -194,9 +195,12 @@ class ChromeBrowserBackend(browser_backend.BrowserBackend):
       if not self.IsBrowserRunning():
         raise exceptions.BrowserGoneException(self.browser, e)
       raise exceptions.BrowserConnectionGoneException(self.browser, e)
-    self._devtools_client = devtools_client_backend.DevToolsClientBackend(
-        self._port, self._browser_target,
-        remote_devtools_port or self._port, self)
+
+    self._devtools_client = devtools_client_backend.DevToolsClientConfig(
+        local_port=self._port,
+        remote_port=remote_devtools_port,
+        browser_target=self._browser_target,
+        app_backend=self).Create()
 
   def _WaitForExtensionsToLoad(self):
     """ Wait for all extensions to load.
@@ -373,5 +377,3 @@ class ChromeBrowserBackend(browser_backend.BrowserBackend):
   @property
   def supports_power_metrics(self):
     return True
-
-
