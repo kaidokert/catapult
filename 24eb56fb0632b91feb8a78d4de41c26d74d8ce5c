@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "00ef4b57_83112963",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_with_oobe.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-19T15:45:27Z",
+      "side": 1,
+      "message": "this appears to be called here:\nhttps://cs.corp.google.com/chromeos_public/src/third_party/autotest/files/client/common_lib/cros/chrome.py?rcl\u003db978c3d2d137b5f056e6ae5034bd97f9a06dd671\u0026l\u003d284\n\n+Achuith could you help migrating that reference?",
+      "revId": "24eb56fb0632b91feb8a78d4de41c26d74d8ce5c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
