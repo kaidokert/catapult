@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "ec30b810_7a80d6f2",
+        "filename": "telemetry/telemetry/internal/app/android_process.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-19T11:05:56Z",
+      "side": 1,
+      "message": "Ah I see. Yeah, break into two statements would make it easier to read.",
+      "parentUuid": "7e6ba963_24797b15",
+      "revId": "a084cbe345d595c22dd78b826ea458d49972fadd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c2feb98b_435bcacc",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
         "patchSetId": 2
@@ -72,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "209818af_d10d7a65",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-19T11:05:56Z",
+      "side": 1,
+      "message": "we can freeze the config by using @property :-)",
+      "parentUuid": "e67a91f3_0e7f29d7",
+      "revId": "a084cbe345d595c22dd78b826ea458d49972fadd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e839dbff_c8bb7a23",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
         "patchSetId": 2
@@ -101,6 +137,24 @@
       "side": 1,
       "message": "I think it should be legit to do:\n\ndevtools_config \u003d DevToolsClientConfig(...)\ndevtools_client_1 \u003d devtools_config.Create()\n# do something\ndevtools_client_1.Close()\ndevtools_client_2 \u003d devtools_config.Create()\n# do something\ndevtools_client_2.Close()\n\nno?",
       "parentUuid": "e839dbff_c8bb7a23",
+      "revId": "a084cbe345d595c22dd78b826ea458d49972fadd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37819a9e_32309f7c",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-19T11:05:56Z",
+      "side": 1,
+      "message": "ok. I mostly worry about people create two devtool clients to the same end point at the same time. But maybe there is no harm in doing so, not sure.",
+      "parentUuid": "21a45bea_362f087a",
       "revId": "a084cbe345d595c22dd78b826ea458d49972fadd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
