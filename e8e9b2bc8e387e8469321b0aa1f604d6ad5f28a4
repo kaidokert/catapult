@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2493647f_7702351f",
+        "filename": "telemetry/telemetry/internal/app/android_process.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-19T12:37:55Z",
+      "side": 1,
+      "message": "reverted to the old behavior (no WaitFor-), as apparently this is used with processes which may not have a webview at all.",
+      "revId": "e8e9b2bc8e387e8469321b0aa1f604d6ad5f28a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d030b5eb_70d8b406",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-19T12:37:55Z",
+      "side": 1,
+      "message": "Added a convenient __str__ method",
+      "revId": "e8e9b2bc8e387e8469321b0aa1f604d6ad5f28a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
