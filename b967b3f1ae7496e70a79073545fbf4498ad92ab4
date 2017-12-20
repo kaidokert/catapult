@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a46269c9_1ac0af04",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-20T20:57:51Z",
+      "side": 0,
+      "message": "Now this is gone, it seems to me we can simplify further of how expectation is processed. Do you have any plan there?",
+      "revId": "b967b3f1ae7496e70a79073545fbf4498ad92ab4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
