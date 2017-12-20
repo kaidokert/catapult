@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "596cba13_db89a561",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-20T16:28:50Z",
+      "side": 1,
+      "message": "I did this mostly for consistency with:\nhttps://github.com/catapult-project/catapult/blob/75149e9ea2a082634a59412eade1f15c87688a0d/telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py#L205\n\nbut I could also switch things the other way around and make that a property. WDYT?",
+      "parentUuid": "08c553db_e2cbf777",
+      "revId": "e8f0772b42832c72a1a49df5d865ca7593dbc00b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4ad5cf28_2a92662b",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2017-12-20T15:23:09Z",
       "side": 1,
       "message": "just to check, cros_forwader_factory will automatically generate a local port if local_port\u003dNone?",
+      "revId": "e8f0772b42832c72a1a49df5d865ca7593dbc00b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ca5b045_119792a9",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-20T16:28:50Z",
+      "side": 1,
+      "message": "yes, that was part of my forwarders cleanup:\nhttps://github.com/catapult-project/catapult/blob/75149e9ea2a082634a59412eade1f15c87688a0d/telemetry/telemetry/internal/forwarders/cros_forwarder.py#L41",
+      "parentUuid": "4ad5cf28_2a92662b",
       "revId": "e8f0772b42832c72a1a49df5d865ca7593dbc00b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
