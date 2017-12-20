@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "51006ac1_c83e63c1",
+        "filename": "telemetry/telemetry/internal/actions/pinch_unittest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1002681
+      },
+      "writtenOn": "2017-12-20T21:46:46Z",
+      "side": 1,
+      "message": "Nope, updated the code in this file to use M63 changes. I\u0027ll put up another patch in a bit to remove some of the temporary code in gpuBenchmarking and elsewhere.",
+      "parentUuid": "efef1003_96ba8125",
+      "revId": "cc006f8acd8b28d53f0b0423539116282e8eb9fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0d5b4f06_6320b491",
         "filename": "telemetry/telemetry/internal/actions/pinch_unittest.py",
         "patchSetId": 8
@@ -30,6 +48,24 @@
       "writtenOn": "2017-12-20T20:53:34Z",
       "side": 1,
       "message": "How long should this run? Note that there is some overhead from telemetry communicating with devtool \u0026 execute the commmand, so I think we should make sure that the time of running pinch action dominates the total runtime, otherwise this test can be quite flaky",
+      "revId": "cc006f8acd8b28d53f0b0423539116282e8eb9fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d51a3640_d8d8e48f",
+        "filename": "telemetry/telemetry/internal/actions/pinch_unittest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1002681
+      },
+      "writtenOn": "2017-12-20T21:46:46Z",
+      "side": 1,
+      "message": "Yeah, the allowable error is quite forgiving for that reason. I would assume this will be much larger than the overhead (~500ms or so). I haven\u0027t seen any flakes locally but if we do find it to be I can remove/update it.",
+      "parentUuid": "0d5b4f06_6320b491",
       "revId": "cc006f8acd8b28d53f0b0423539116282e8eb9fb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "8ea67b4e_1903673f",
+        "filename": "telemetry/telemetry/internal/actions/pinch_unittest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1002681
+      },
+      "writtenOn": "2017-12-20T21:46:46Z",
+      "side": 1,
+      "message": "You mean assertAlmostEqual? (Couldn\u0027t find assertClose in the codebase anywhere). Done.",
+      "parentUuid": "5fbe099e_0c978696",
+      "revId": "cc006f8acd8b28d53f0b0423539116282e8eb9fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7266560a_e61f50e5",
         "filename": "telemetry/telemetry/internal/actions/pinch_unittest.py",
         "patchSetId": 8
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "3d0dcb4b_b5557d0c",
+        "filename": "telemetry/telemetry/internal/actions/pinch_unittest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1002681
+      },
+      "writtenOn": "2017-12-20T21:46:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7266560a_e61f50e5",
+      "revId": "cc006f8acd8b28d53f0b0423539116282e8eb9fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae7c94e8_5b0ed110",
         "filename": "telemetry/telemetry/internal/actions/pinch_unittest.py",
         "patchSetId": 8
@@ -84,6 +156,24 @@
       "revId": "cc006f8acd8b28d53f0b0423539116282e8eb9fb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efecea5b_8cb3511b",
+        "filename": "telemetry/telemetry/internal/actions/pinch_unittest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1002681
+      },
+      "writtenOn": "2017-12-20T21:46:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae7c94e8_5b0ed110",
+      "revId": "cc006f8acd8b28d53f0b0423539116282e8eb9fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
