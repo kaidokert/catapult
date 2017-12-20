@@ -19,9 +19,6 @@ class ForwarderFactory(object):
     local_port and, if this is missing, then the forwarder will choose an
     available port on the host.
 
-    # TODO(#1977): Ensure all implementations fully support the previous
-    # description regarding missing ports.
-
     Args:
       local_port: An http port on the local host.
       remote_port: An http port on the remote device.
