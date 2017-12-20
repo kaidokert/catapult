@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5923888c_97f31217",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-20T11:38:48Z",
+      "side": 1,
+      "message": "Renamed this to be consistent with the desktop_browser_backend. Also there was no need for this to be a public API.",
+      "revId": "902d34ce516338bb2016885fa8fb8b1099d2066d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
