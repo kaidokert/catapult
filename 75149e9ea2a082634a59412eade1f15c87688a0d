@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "977ae7e0_705561d8",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-20T15:42:26Z",
+      "side": 1,
+      "message": "Seems like a bad API to me, to be honest. A method called IsFoo should return only True/False. The alternative is adding another method to return the reason, or rename this to st like GetStoryDisableStateAndReason which return a tuple (is_story_disable, reason)",
+      "revId": "75149e9ea2a082634a59412eade1f15c87688a0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
