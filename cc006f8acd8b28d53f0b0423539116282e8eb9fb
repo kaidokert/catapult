@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "efef1003_96ba8125",
+        "filename": "telemetry/telemetry/internal/actions/pinch_unittest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-20T20:53:34Z",
+      "side": 1,
+      "message": "I just roll ref build to Clank 63.0.3239.111, is this still needed?",
+      "revId": "cc006f8acd8b28d53f0b0423539116282e8eb9fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d5b4f06_6320b491",
+        "filename": "telemetry/telemetry/internal/actions/pinch_unittest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-20T20:53:34Z",
+      "side": 1,
+      "message": "How long should this run? Note that there is some overhead from telemetry communicating with devtool \u0026 execute the commmand, so I think we should make sure that the time of running pinch action dominates the total runtime, otherwise this test can be quite flaky",
+      "revId": "cc006f8acd8b28d53f0b0423539116282e8eb9fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5fbe099e_0c978696",
+        "filename": "telemetry/telemetry/internal/actions/pinch_unittest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-20T20:53:34Z",
+      "side": 1,
+      "message": "use self.assertClose",
+      "revId": "cc006f8acd8b28d53f0b0423539116282e8eb9fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7266560a_e61f50e5",
+        "filename": "telemetry/telemetry/internal/actions/pinch_unittest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-20T20:53:34Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "cc006f8acd8b28d53f0b0423539116282e8eb9fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae7c94e8_5b0ed110",
+        "filename": "telemetry/telemetry/internal/actions/pinch_unittest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-20T20:53:34Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "cc006f8acd8b28d53f0b0423539116282e8eb9fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
