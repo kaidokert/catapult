@@ -80,7 +80,7 @@ tr.exportTo('tr.metrics.sh', function() {
    * @returns {boolean}
    */
   function reachedTTIQuiscence_(timestamp,
-      networkQuietWindowStart, mainThreadQuietWindowStart) {
+      networkQuietWindowStart, mainThreadQuietWindowStart, windowSize) {
     if (networkQuietWindowStart === undefined ||
         mainThreadQuietWindowStart === undefined) {
       return false;
@@ -88,13 +88,35 @@ tr.exportTo('tr.metrics.sh', function() {
 
     const mainThreadQuietForLongEnough =
           timestamp - mainThreadQuietWindowStart >=
-          TIME_TO_INTERACTIVE_WINDOW_SIZE_MS;
+          windowSize;
 
     const networkQuietForLongEnough =
           timestamp - networkQuietWindowStart >=
-          TIME_TO_INTERACTIVE_WINDOW_SIZE_MS;
+          windowSize;
 
     return mainThreadQuietForLongEnough && networkQuietForLongEnough;
+  }
+
+  function filterNetworkByResourceType(networkRequests) {
+    return networkRequests.filter((request)=>{
+      if (!request.args || !request.args.resourceInfo || !request.args.resourceInfo.resourceType)
+        return false;
+      const type = request.args.resourceInfo.resourceType;
+      return type === 'Resource' || type ==='CSS stylesheet' ||
+          type === 'Script';
+    });
+  }
+
+  function repeatParticularNetworkEvents(networkRequests, url) {
+    const newNetworkRequests = networkRequests.slice(0);
+    networkRequests.forEach((e)=>{
+      if ((e.args.resourceInfo && e.args.resourceInfo['response.url'] && e.args.resourceInfo['response.url'].startsWith(url)) &&
+          (e.args.resourceInfo.resourceType === "Script" ||
+          e.args.resourceInfo.resourceType === "CSS stylesheet")) {
+        newNetworkRequests.push(e);
+      }
+    });
+    return newNetworkRequests;
   }
 
   /**
@@ -130,12 +152,16 @@ tr.exportTo('tr.metrics.sh', function() {
    * @returns {number|undefined}
    */
   function findInteractiveTime(searchBegin, searchEnd,
-      domContentLoadedEnd, longTasksInWindow, networkRequests) {
+      domContentLoadedEnd, longTasksInWindow, networkRequests, url, windowSize,
+      activeRequestTolerance) {
     // It is sufficient to only look at the end points of long tasks and network
     // requests. These are the points where any meaningful changes happen.
     const longTaskEndpoints = getEndpoints_(longTasksInWindow,
         ENDPOINT_TYPES.LONG_TASK_START, ENDPOINT_TYPES.LONG_TASK_END);
-    const networkRequestEndpoints = getEndpoints_(networkRequests,
+    const filteredNetworkRequests = filterNetworkByResourceType(networkRequests);
+    // const augmentedNetworkRequests =
+    //     repeatParticularNetworkEvents(networkRequests, url);
+    const networkRequestEndpoints = getEndpoints_(filteredNetworkRequests,
         ENDPOINT_TYPES.REQUEST_START, ENDPOINT_TYPES.REQUEST_END);
     const endpoints = longTaskEndpoints.concat(networkRequestEndpoints);
     endpoints.sort((a, b) => a.time - b.time);
@@ -143,12 +169,16 @@ tr.exportTo('tr.metrics.sh', function() {
     let networkQuietWindowStart = searchBegin;
     let mainThreadQuietWindowStart = searchBegin;
     let fciCandidate = undefined;
+    let detectionTime = undefined;
     let activeRequests = 0;
 
     for (const endpoint of endpoints) {
       if (reachedTTIQuiscence_(endpoint.time,
-          networkQuietWindowStart, mainThreadQuietWindowStart)) {
+          networkQuietWindowStart, mainThreadQuietWindowStart, windowSize)) {
         fciCandidate = mainThreadQuietWindowStart;
+        detectionTime = mainThreadQuietWindowStart + 
+            Math.max(networkQuietWindowStart - mainThreadQuietWindowStart, 0) +
+            windowSize;
         break;
       }
 
@@ -161,13 +191,13 @@ tr.exportTo('tr.metrics.sh', function() {
           break;
         case ENDPOINT_TYPES.REQUEST_START:
           activeRequests++;
-          if (activeRequests > ACTIVE_REQUEST_TOLERANCE) {
+          if (activeRequests > activeRequestTolerance) {
             networkQuietWindowStart = undefined;
           }
           break;
         case ENDPOINT_TYPES.REQUEST_END:
           activeRequests--;
-          if (activeRequests === ACTIVE_REQUEST_TOLERANCE) {
+          if (activeRequests === activeRequestTolerance) {
             // Just became network 2-quiet.
             networkQuietWindowStart = endpoint.time;
           }
@@ -179,13 +209,20 @@ tr.exportTo('tr.metrics.sh', function() {
     }
 
     if (reachedTTIQuiscence_(searchEnd,
-        networkQuietWindowStart, mainThreadQuietWindowStart)) {
+        networkQuietWindowStart, mainThreadQuietWindowStart, windowSize)) {
       fciCandidate = mainThreadQuietWindowStart;
+      detectionTime = mainThreadQuietWindowStart + 
+            Math.max(networkQuietWindowStart - mainThreadQuietWindowStart, 0) +
+            windowSize;
     }
 
     if (fciCandidate === undefined) return undefined;
 
-    return Math.max(fciCandidate, domContentLoadedEnd);
+    if (fciCandidate > domContentLoadedEnd) {
+      return {tti: fciCandidate, detectionTime};
+    } else {
+      return {tti: domContentLoadedEnd, detectionTime: domContentLoadedEnd};
+    }
   }
 
   /**
