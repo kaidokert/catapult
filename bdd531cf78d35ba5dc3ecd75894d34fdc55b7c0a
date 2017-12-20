@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "33efe8d0_7c4ccbe4",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-20T15:08:34Z",
+      "side": 1,
+      "message": "Hmhh, I am not sure overriding this is a good idea since this method is quite complex at the parent level. \n\nI am also not sure whethere these logging message is still important.",
+      "revId": "bdd531cf78d35ba5dc3ecd75894d34fdc55b7c0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
