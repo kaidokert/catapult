@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "08c553db_e2cbf777",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-20T15:23:09Z",
+      "side": 1,
+      "message": "nits: GetX usually means lots of work need to be done to retrieve X. I would just keep @property as before",
+      "revId": "e8f0772b42832c72a1a49df5d865ca7593dbc00b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ad5cf28_2a92662b",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-20T15:23:09Z",
+      "side": 1,
+      "message": "just to check, cros_forwader_factory will automatically generate a local port if local_port\u003dNone?",
+      "revId": "e8f0772b42832c72a1a49df5d865ca7593dbc00b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
