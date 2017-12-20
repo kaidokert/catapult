@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "8ce326ee_0584736e",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2017-12-20T16:32:21Z",
+      "side": 1,
+      "message": "Ah, consistency with other browser_backend wins in this case then :-)",
+      "parentUuid": "596cba13_db89a561",
+      "revId": "e8f0772b42832c72a1a49df5d865ca7593dbc00b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4ad5cf28_2a92662b",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
         "patchSetId": 4
