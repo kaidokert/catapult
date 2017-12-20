@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "86436a42_eab9eed7",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1115906
+      },
+      "writtenOn": "2017-12-20T17:32:45Z",
+      "side": 1,
+      "message": "I updated the comment.",
+      "parentUuid": "bbf3eeb5_5e4c9be8",
+      "revId": "3e0598daf21787ff4b2cce36c9424baff58451a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "361d7567_0fe2a8b8",
         "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2017-12-19T02:30:20Z",
       "side": 1,
       "message": "There is no issue with padding?",
+      "revId": "3e0598daf21787ff4b2cce36c9424baff58451a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90a2c0d0_62f789be",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1115906
+      },
+      "writtenOn": "2017-12-20T17:32:45Z",
+      "side": 1,
+      "message": "nope",
+      "parentUuid": "361d7567_0fe2a8b8",
       "revId": "3e0598daf21787ff4b2cce36c9424baff58451a7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -50,6 +86,24 @@
       "revId": "3e0598daf21787ff4b2cce36c9424baff58451a7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee80a711_4bbfa32d",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1472,
+      "author": {
+        "id": 1115906
+      },
+      "writtenOn": "2017-12-20T17:32:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2062fb0_ace0f302",
+      "revId": "3e0598daf21787ff4b2cce36c9424baff58451a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
