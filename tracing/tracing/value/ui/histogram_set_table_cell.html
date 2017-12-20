@@ -23,22 +23,6 @@ found in the LICENSE file.
       flex-grow: 1;
     }
 
-    #open_histogram, #close_histogram, #open_histogram svg, #close_histogram svg {
-      height: 1em;
-    }
-
-    #open_histogram svg {
-      margin-left: 4px;
-      stroke-width: 0;
-      stroke: blue;
-      fill: blue;
-    }
-    :host(:hover) #open_histogram svg {
-      background: blue;
-      stroke: white;
-      fill: white;
-    }
-
     #scalar {
       flex-grow: 1;
       white-space: nowrap;
@@ -48,19 +32,14 @@ found in the LICENSE file.
       flex-grow: 1;
     }
 
-    #close_histogram svg line {
-      stroke-width: 18;
-      stroke: black;
-    }
-    #close_histogram:hover svg {
-      background: black;
-    }
-    #close_histogram:hover svg line {
-      stroke: white;
-    }
-
     #overview_container {
       display: none;
+    }
+
+    #expand {
+      margin: 0;
+      padding: 0;
+      width: 100%;
     }
     </style>
 
@@ -69,24 +48,19 @@ found in the LICENSE file.
       <span id="empty">(empty)</span>
       <span id="unmergeable">(unmergeable)</span>
 
-      <tr-v-ui-scalar-span id="scalar" on-click="openHistogram_"></tr-v-ui-scalar-span>
+      <paper-button id="expand" on-click="toggleHistogram_">
+        <template is="dom-if" if="[[!isHistogramOpen]]">
+          <iron-icon icon="expand-more" />
+          <tr-v-ui-scalar-span id="scalar"></tr-v-ui-scalar-span>
+        </template>
 
-      <span id="open_histogram" on-click="openHistogram_">
-        <svg viewbox="0 0 128 128">
-          <rect x="16" y="24" width="32" height="16"/>
-          <rect x="16" y="56" width="96" height="16"/>
-          <rect x="16" y="88" width="64" height="16"/>
-        </svg>
-      </span>
+        <template is="dom-if" if="[[isHistogramOpen]]">
+          <iron-icon icon="expand-less" />
+          <tr-v-ui-scalar-map-table id="stats"></tr-v-ui-scalar-map-table>
+        </template>
+      </paper-button>
 
       <span id="histogram"></span>
-
-      <span id="close_histogram" on-click="closeHistogram_">
-        <svg viewbox="0 0 128 128">
-          <line x1="28" y1="28" x2="100" y2="100"/>
-          <line x1="28" y1="100" x2="100" y2="28"/>
-        </svg>
-      </span>
     </div>
 
     <div id="overview_container">
@@ -109,6 +83,9 @@ tr.exportTo('tr.v.ui', function() {
       this.histogramSpan_ = undefined;
       this.overviewChart_ = undefined;
       this.mwuResult_ = undefined;
+      this.attachedPromise_ = new Promise(resolve => {
+        this.resolveAttachedPromise_ = resolve;
+      });
     },
 
     ready() {
@@ -116,12 +93,16 @@ tr.exportTo('tr.v.ui', function() {
     },
 
     attached() {
+      this.resolveAttachedPromise_();
       if (this.row) {
         this.row.rootViewState.addUpdateListener(this.rootListener_);
       }
     },
 
     detached() {
+      this.attachedPromise_ = new Promise(resolve => {
+        this.resolveAttachedPromise_ = resolve;
+      });
       this.row.rootViewState.removeUpdateListener(this.rootListener_);
       // Don't need to removeUpdateListener for the row and cells; their
       // lifetimes are the same as |this|.
@@ -138,7 +119,7 @@ tr.exportTo('tr.v.ui', function() {
           this.row.rootViewState.alpha);
     },
 
-    build(row, displayLabel, viewState) {
+    async build(row, displayLabel, viewState) {
       this.row_ = row;
       this.displayLabel_ = displayLabel;
       this.viewState_ = viewState;
@@ -154,6 +135,8 @@ tr.exportTo('tr.v.ui', function() {
       if (this.isAttached) {
         this.row.rootViewState.addUpdateListener(this.rootListener_);
       }
+
+      await this.attachedPromise_;
 
       this.updateMwu_();
 
@@ -203,9 +186,6 @@ tr.exportTo('tr.v.ui', function() {
       // updateContents_().
 
       this.$.scalar.style.display = open ? 'none' : 'flex';
-      this.$.open_histogram.style.display = open ? 'none' : 'block';
-
-      this.$.close_histogram.style.display = open ? 'block' : 'none';
       this.$.histogram.style.display = open ? 'block' : 'none';
 
       // Wait to create the histogram-span until the user wants to display it
@@ -213,11 +193,11 @@ tr.exportTo('tr.v.ui', function() {
       // building the table.
       if (open && this.histogramSpan_ === undefined) {
         this.histogramSpan_ = document.createElement('tr-v-ui-histogram-span');
+        this.$.histogram.appendChild(this.histogramSpan_);
         this.histogramSpan_.viewState = this.viewState;
         this.histogramSpan_.rowState = this.row.viewState;
         this.histogramSpan_.rootState = this.row.rootViewState;
         this.histogramSpan_.build(this.histogram, this.referenceHistogram);
-        this.$.histogram.appendChild(this.histogramSpan_);
       }
 
       this.viewState.isOpen = open;
@@ -275,14 +255,10 @@ tr.exportTo('tr.v.ui', function() {
       event.stopPropagation();
     },
 
-    openHistogram_() {
-      this.isHistogramOpen = true;
-      tr.b.Timing.instant('histogram-set-table-cell', 'open');
-    },
-
-    closeHistogram_() {
-      this.isHistogramOpen = false;
-      tr.b.Timing.instant('histogram-set-table-cell', 'close');
+    toggleHistogram_(e) {
+      this.isHistogramOpen = !this.isHistogramOpen;
+      tr.b.Timing.instant('histogram-set-table-cell', this.isHistogramOpen ?
+          'open' : 'close');
     },
 
     updateContents_() {
@@ -292,8 +268,6 @@ tr.exportTo('tr.v.ui', function() {
       this.$.unmergeable.style.display = 'none';
       this.$.scalar.style.display = 'none';
       this.$.histogram.style.display = 'none';
-      this.$.close_histogram.style.display = 'none';
-      this.$.open_histogram.style.visibility = 'hidden';
 
       if (!this.histogram) {
         this.$.missing.style.display = 'block';
@@ -316,8 +290,6 @@ tr.exportTo('tr.v.ui', function() {
         return;
       }
 
-      this.$.open_histogram.style.display = 'block';
-      this.$.open_histogram.style.visibility = 'visible';
       this.$.scalar.style.display = 'flex';
 
       this.updateSignificance_();
