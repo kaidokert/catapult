@@ -16,6 +16,24 @@
       "revId": "bdd531cf78d35ba5dc3ecd75894d34fdc55b7c0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bcdea15e_905eaf11",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-20T16:20:34Z",
+      "side": 1,
+      "message": "True, it is in fact irrelevant due to:\nhttps://github.com/catapult-project/catapult/blob/75149e9ea2a082634a59412eade1f15c87688a0d/telemetry/telemetry/internal/platform/android_platform_backend.py#L79\n\nRemoved.",
+      "parentUuid": "33efe8d0_7c4ccbe4",
+      "revId": "bdd531cf78d35ba5dc3ecd75894d34fdc55b7c0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
