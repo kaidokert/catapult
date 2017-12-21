@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "761c0704_8e10b67f",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2017-12-21T08:22:26Z",
+      "side": 1,
+      "message": "I\u0027m confused about this one. Before the devtools_client got created, we should have called WaitFor (and indirectly _IsInspectorWebsocketReady above) on the devtools_config. So the websocket should be ready at this point. Why is it not?",
+      "revId": "928fc9d37730186db0551c401314f41db4111806",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
