@@ -56,6 +56,10 @@ class CrOSBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   def devtools_file_path(self):
     return '/home/chronos/DevToolsActivePort'
 
+  def HasBrowserFinishedLaunching(self):
+    """DEPRECATED: Use BindDevToolsClient instead."""
+    self.BindDevToolsClient()
+
   def _GetDevToolsClientConfig(self):
     # TODO(crbug.com/787834): Split into reading DevToolsActivePort, retrying
     # if needed, and setting up fowarder.
