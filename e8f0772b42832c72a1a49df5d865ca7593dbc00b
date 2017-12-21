@@ -87,6 +87,24 @@
       "revId": "e8f0772b42832c72a1a49df5d865ca7593dbc00b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "634f4d4a_4fde6d6e",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2017-12-21T18:44:09Z",
+      "side": 1,
+      "message": "Does it make sense to call this out in a comment?",
+      "parentUuid": "0ca5b045_119792a9",
+      "revId": "e8f0772b42832c72a1a49df5d865ca7593dbc00b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
