@@ -138,7 +138,7 @@ def _RunCommand(args):
     args = [sys.executable, _GSUTIL_PATH] + args
   else:
     # Don't do it on POSIX, in case someone is using a shell script to redirect.
-    args = [_GSUTIL_PATH] + args
+    args = [_GSUTIL_PATH, "-D"] + args
     _EnsureExecutable(_GSUTIL_PATH)
 
   if args[0] not in ('help', 'hash', 'version') and not IsNetworkIOEnabled():
@@ -146,12 +146,35 @@ def _RunCommand(args):
         "Environment variable DISABLE_CLOUD_STORAGE_IO is set to 1. "
         'Command %s is not allowed to run' % args)
 
-  gsutil = subprocess.Popen(args, stdout=subprocess.PIPE,
-                            stderr=subprocess.PIPE, env=gsutil_env)
-  stdout, stderr = gsutil.communicate()
+  # TODO(https://github.com/catapult-project/catapult/issues/4134): Remove
+  # retries once gsutil is updated past 4.28.
+  lock_file_retries = 3
+  logger.error('lallalla')
+  logger.error('lallalla')
+  logger.error('lallalla')
+  logger.error('lallalla')
+  logger.error('lallalla')
+  logger.error('lallalla')
 
-  if gsutil.returncode:
-    raise GetErrorObjectForCloudStorageStderr(stderr)
+  while True:
+    gsutil = subprocess.Popen(args, stdout=subprocess.PIPE,
+                              stderr=subprocess.PIPE, env=gsutil_env)
+    stdout, stderr = gsutil.communicate()
+    if gsutil.returncode:
+      if lock_file_retries and '33' in stderr and 'LockFileEx' in stderr:
+        logger.error(
+            'Failed to acquire a lock for oauth2 credentials. See '
+            'https://github.com/catapult-project/catapult/issues/4134 . '
+            'Retrying. %s \n'
+            'Full error: %s', lock_file_retries, stderr)
+        lock_file_retries -= 1
+        time.sleep(.5)
+        continue
+      raise GetErrorObjectForCloudStorageStderr("%s, %s, %s" % (
+          stderr, stdout, ' '.join(args)))
+    break
+  if lock_file_retries < 3:
+    raise Exception
 
   return stdout
 
