@@ -104,21 +104,11 @@ tr.exportTo('tr.ui.b', function() {
         width: 30px;
       }
 
-      table > thead > tr > td.sensitive:hover {
-        background-color: #fcfcfc;
-      }
-
       table > thead > tr > td {
-        font-weight: bold;
-        text-align: left;
-
-        background-color: #eee;
-        white-space: nowrap;
         overflow: hidden;
+        text-align: left;
         text-overflow: ellipsis;
-
-        border-top: 1px solid #ffffff;
-        border-bottom: 1px solid #aaa;
+        white-space: nowrap;
       }
 
       table > tfoot {
@@ -523,12 +513,14 @@ tr.exportTo('tr.ui.b', function() {
       Polymer.dom(this.$.head).textContent = '';
       if (!this.showHeader_) return;
 
-      const tr = this.appendNewElement_(this.$.head, 'tr');
+      const trElem = this.appendNewElement_(this.$.head, 'tr');
       for (let i = 0; i < this.tableColumns_.length; i++) {
-        const td = this.appendNewElement_(tr, 'td');
+        const td = this.appendNewElement_(trElem, 'td');
 
-        const headerCell = document.createElement('tr-ui-b-table-header-cell');
-        headerCell.column = this.tableColumns_[i];
+        const headerCell = document.createElement('column-head');
+        Polymer.dom(td).appendChild(headerCell);
+        headerCell.appendChild(tr.ui.b.asHTMLOrTextNode(
+            this.tableColumns_[i].title));
 
         // If the table can be sorted by this column and the user can modify
         // the sort order, attach a tap callback to the column.
@@ -550,7 +542,6 @@ tr.exportTo('tr.ui.b', function() {
           }
         }
 
-        Polymer.dom(td).appendChild(headerCell);
         this.headerCells_.push(headerCell);
       }
     },
@@ -771,8 +762,6 @@ tr.exportTo('tr.ui.b', function() {
           clickEvent.preventDefault();
 
           if (!isBodyRow && !isExpandableRow) return;
-
-          clickEvent.stopPropagation();
 
           if (clickEvent.target.tagName === 'EXPAND-BUTTON') {
             this.setExpandedForUserRow_(
@@ -1005,6 +994,7 @@ tr.exportTo('tr.ui.b', function() {
       const expandButton =
           Polymer.dom(rowInfo.htmlNode).querySelector('expand-button');
       if (rowInfo.isExpanded) {
+        if (!expandButton) return;
         Polymer.dom(expandButton).classList.add('button-expanded');
         const lastAddedRow = rowInfo.htmlNode;
         if (rowInfo.userRow[this.subRowsPropertyName_]) {
