@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5fe837dd_c2c7b912",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1002960
+      },
+      "writtenOn": "2017-12-22T02:14:51Z",
+      "side": 1,
+      "message": "This appears to be missing the change to HasDevToolsConnection.\nThis is causing autotests to fail.",
+      "range": {
+        "startLine": 299,
+        "startChar": 16,
+        "endLine": 299,
+        "endChar": 43
+      },
+      "revId": "a586b0072a208470e55680d2d6f097e5b7c674ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
