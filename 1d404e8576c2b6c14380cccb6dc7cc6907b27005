@@ -34,6 +34,24 @@
       "revId": "1d404e8576c2b6c14380cccb6dc7cc6907b27005",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9d2e61b_debbee65",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2017-12-23T01:05:25Z",
+      "side": 1,
+      "message": "I did #3.\n\nAlso, for #1, adding the retry to catapult is a bad idea because \na. this fix is needed for other code as well: anything that uses\ngsutil would need this retry\nb. the retry would be fairly complicated because I wouldn\u0027t want\nto retry by default i.e. for any failure because that is generally\nbad practice. So I would have to do string matching to know whether\nto retry, and that\u0027s pretty messy. The gsutil command by default\ndoesn\u0027t pass back detailed information about failures.\nc. Sometimes the gsutil call affects state so we could get into a\nweird state.... retries aren\u0027t generally very nice.",
+      "parentUuid": "00cf100f_81f04553",
+      "revId": "1d404e8576c2b6c14380cccb6dc7cc6907b27005",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
