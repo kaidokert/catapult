@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec60f9e_a615dbb6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1115906
+      },
+      "writtenOn": "2017-12-23T00:49:09Z",
+      "side": 1,
+      "message": "Thanks for looking into this!\n\nWe generally try not to make changes to third_party repos, it causes O(n) merge conflicts in the future.\n\nUsually we try to [in order of preference]:\n1) Make a modification to the way we use third_party libraries. In this case...do we need to use oauth2client to do the lock check? Do we need gsutil to do the check? Can we add a retry to catapult?\n\n2) Try to upstream the relevant change, and then do pull the changes down.\n\n3) Make a change to the third_party repo, and document the change in the README.chromium.",
+      "revId": "1d404e8576c2b6c14380cccb6dc7cc6907b27005",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
