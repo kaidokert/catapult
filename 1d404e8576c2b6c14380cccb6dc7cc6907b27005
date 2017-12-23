@@ -52,6 +52,24 @@
       "revId": "1d404e8576c2b6c14380cccb6dc7cc6907b27005",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1b7aafd3_e76af0b3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1115906
+      },
+      "writtenOn": "2017-12-23T01:10:34Z",
+      "side": 1,
+      "message": "#3: Please create a crbug that describes the conditions necessary to remove the local modifications, and a link to the crbug from the README.\n\nWe strongly prefer (1) in Chromium, but given that (3) is a temporary workaround that can be removed in the not-too-distant future [basically whenever we roll, thus negating the merge-conflict issue], I\u0027m not concerned.\n\nlgtm",
+      "parentUuid": "00cf100f_81f04553",
+      "revId": "1d404e8576c2b6c14380cccb6dc7cc6907b27005",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
