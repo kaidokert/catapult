@@ -16,6 +16,24 @@
       "revId": "1d404e8576c2b6c14380cccb6dc7cc6907b27005",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00cf100f_81f04553",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2017-12-23T00:56:14Z",
+      "side": 1,
+      "message": "#1 doesn\u0027t work. The check is performed in order to get credentials to download tracing files that the test needs.\n\n#2 the real fix is already upstreamed, but it\u0027s not a \"release\" version yet. So it may not be a good idea to depend on it yet since it may not have undergone as much testing as full release versions.\n\n#3 I can document the change.",
+      "parentUuid": "8ec60f9e_a615dbb6",
+      "revId": "1d404e8576c2b6c14380cccb6dc7cc6907b27005",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
