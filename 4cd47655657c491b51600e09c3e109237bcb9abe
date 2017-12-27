@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "55ec4d14_4f44acb5",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 1001646
+      },
+      "writtenOn": "2017-12-27T17:07:01Z",
+      "side": 1,
+      "message": "You can put |profile_path| here directly.",
+      "range": {
+        "startLine": 494,
+        "startChar": 41,
+        "endLine": 494,
+        "endChar": 74
+      },
+      "revId": "4cd47655657c491b51600e09c3e109237bcb9abe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
