@@ -1,0 +1,4 @@
+finish migrating to updatingReducer/statePathReducer
+finish migrating to updateObjectAtPath/setStateAtPath
+merge updateObject with setState?
+ChartSection testPathComponents observer call maybeLoadTimeseries
