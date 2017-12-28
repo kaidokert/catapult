@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5e31f31a_f17aad1e",
+        "filename": "telemetry/telemetry/internal/actions/pinch_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2017-12-28T21:49:52Z",
+      "side": 1,
+      "message": "Perhaps these tests work on android? I think it\u0027s safer to just add chromeos here?",
+      "revId": "b90aa4dd36140a6498d95659db30cc53277db8d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
