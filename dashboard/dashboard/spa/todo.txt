@@ -1,0 +1,7 @@
+finish migrating to updatingReducer/statePathReducer
+finish migrating to updateObjectAtPath/setStateAtPath
+remove toggleGroupExpanded
+merge updateObject with setState?
+ChartSection testPathComponents observer call maybeLoadTimeseries
+should TestPathComponent etc dispatch ChromeperfApp.actions?
+change NEW_STATE to a static method. maybe action creator?
