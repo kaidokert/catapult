@@ -16,6 +16,24 @@
       "revId": "b90aa4dd36140a6498d95659db30cc53277db8d9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65bf0983_46a098a4",
+        "filename": "telemetry/telemetry/internal/actions/pinch_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1125479
+      },
+      "writtenOn": "2017-12-28T22:21:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e31f31a_f17aad1e",
+      "revId": "b90aa4dd36140a6498d95659db30cc53277db8d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
