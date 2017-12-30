@@ -1,0 +1,6 @@
+merge updateObject with setState?
+use string statePaths with Polymer.Path.get()?
+ChartSection testPathComponents observer call maybeLoadTimeseries
+should TestPathComponent etc dispatch ChromeperfApp.actions?
+change NEW_STATE to a static method. maybe action creator?
+newState methods for all elements
