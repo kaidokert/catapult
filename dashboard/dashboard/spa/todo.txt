@@ -1,0 +1,3 @@
+ChartSection testPathComponents observer call maybeLoadTimeseries
+should TestPathComponent etc dispatch ChromeperfApp.actions?
+change NEW_STATE to actions.initialize
