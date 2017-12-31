@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="/bower_components/paper-button/paper-button.html">
+<link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="/bower_components/paper-input/paper-input.html">
+<link rel="import" href="/bower_components/paper-styles/element-styles/paper-material-styles.html">
+<link rel="import" href="/dashboard/spa/option-group.html">
+
+<dom-module id="dropdown-input">
+  <template>
+    <style include="paper-material-styles">
+      paper-input {
+        --paper-input-container: {
+          padding: 0;
+        }
+      }
+
+      #dropdown {
+        @apply --paper-material-elevation-2;
+        background-color: white;
+        font-size: 16px;
+        position: absolute;
+        z-index: 100;
+      }
+
+      #dropdown iron-collapse {
+        display: flex;
+      }
+    </style>
+
+    <paper-input id="input"
+                 autofocus="[[isFocused]]"
+                 disabled$="[[disabled]]"
+                 label="[[placeholder]]"
+                 tabindex="1"
+                 value="[[inputValue]]"
+                 on-blur="onBlur_"
+                 on-focus="onFocus_"
+                 on-keydown="onKeydown_">
+      <paper-icon-button id="input_clear"
+                         slot="suffix"
+                         icon="clear"
+                         title="clear"
+                         alt="clear"
+                         on-tap="onClear_">
+      </paper-icon-button>
+    </paper-input>
+
+    <div id="dropdown">
+      <iron-collapse opened="[[isFocused]]">
+        <slot name="dropdown_extra"></slot>
+        <option-group state-path="[[statePath]]"
+                      is-root
+                      on-option-select="onSelect_">
+        </option-group>
+      </iron-collapse>
+    </div>
+  </template>
+</dom-module>
+<script src="/dashboard/spa/dropdown-input.js"></script>
