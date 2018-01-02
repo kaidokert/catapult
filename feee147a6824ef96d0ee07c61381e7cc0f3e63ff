@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b2a32a0d_7b6f8b65",
+        "filename": "dashboard/dashboard/pinpoint/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-02T10:14:31Z",
+      "side": 1,
+      "message": "nit: \"they have\" -\u003e \"they may produce\"",
+      "revId": "feee147a6824ef96d0ee07c61381e7cc0f3e63ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10aaec06_de6a8246",
+        "filename": "dashboard/dashboard/pinpoint/models/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-02T10:14:31Z",
+      "side": 1,
+      "message": "maybe for follow ups, but it would be great to create a diagram to help better understand these relations.",
+      "revId": "feee147a6824ef96d0ee07c61381e7cc0f3e63ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1eb74bb2_d2933ae6",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-02T10:14:31Z",
+      "side": 1,
+      "message": "I think it\u0027s a bit strange to be documenting here private internal methods. Wouldn\u0027t it be better to keep this sort of information within the source py file? \n\nIf you think it\u0027s better to keep this here, maybe just place it under a subsection named e.g. \"Implementation details\".",
+      "revId": "feee147a6824ef96d0ee07c61381e7cc0f3e63ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "810acbae_aad5cff4",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-02T10:14:31Z",
+      "side": 1,
+      "message": "nit: maybe provide an example?",
+      "revId": "feee147a6824ef96d0ee07c61381e7cc0f3e63ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
