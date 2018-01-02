@@ -52,6 +52,24 @@
       "revId": "3a2960d64edb3ee86f7ce7f015e810001c54dd34",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "782ed377_0412565f",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-01-02T19:01:48Z",
+      "side": 1,
+      "message": "FWIW, I also find @decorators.Cache to be pretty surprising, numerous times it slowed down my understanding of the code. +1 to remove it. Will change this one tomorrow to make something like self._cache_clearing_tool_pushed if you don\u0027t mind.",
+      "parentUuid": "df944f05_2d6df632",
+      "revId": "3a2960d64edb3ee86f7ce7f015e810001c54dd34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
