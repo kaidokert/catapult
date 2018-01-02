@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0208d1e0_ea9c2328",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-02T11:51:16Z",
+      "side": 1,
+      "message": "drop the `#` here for chromium bugs",
+      "revId": "a5e96be57f7e53f7473ef1e3c52c159a6fecc090",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
