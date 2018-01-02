@@ -61,6 +61,7 @@ _DEVICE_COPY_SCRIPT_FILE = os.path.abspath(os.path.join(
     os.path.dirname(__file__), 'efficient_android_directory_copy.sh'))
 _DEVICE_COPY_SCRIPT_LOCATION = (
     '/data/local/tmp/efficient_android_directory_copy.sh')
+_DEVICE_CLEAR_SYSTEM_CACHE_TOOL_LOCATION = '/data/local/tmp/clear_system_cache'
 
 
 class AndroidPlatformBackend(
@@ -214,6 +215,10 @@ class AndroidPlatformBackend(
   def TakeScreenshot(self, file_path):
     return bool(self._device.TakeScreenshot(host_path=file_path))
 
+  def CooperativelyShutdown(self, proc, app_name):
+    # Suppress the 'abstract-method' lint warning.
+    return False
+
   def SetFullPerformanceModeEnabled(self, enabled):
     if not self._enable_performance_mode:
       logging.warning('CPU governor will not be set!')
@@ -304,7 +309,7 @@ class AndroidPlatformBackend(
     return ''  # TODO(kbr): Implement this.
 
   def CanFlushIndividualFilesFromSystemCache(self):
-    return False
+    return True
 
   def SupportFlushEntireSystemCache(self):
     return self._can_elevate_privilege
@@ -313,8 +318,30 @@ class AndroidPlatformBackend(
     cache = cache_control.CacheControl(self._device)
     cache.DropRamCaches()
 
+  @decorators.Cache
+  def _InstallCacheClearingTool(self):
+    device = self._device
+    host_path = binary_manager.FetchPath(
+        'clear_system_cache', device.GetABI(), 'android')
+    if not host_path:
+      logging.error('clear_system_cache binary "%s" could not be installed',
+                    host_path)
+      return False
+    device_path = _DEVICE_CLEAR_SYSTEM_CACHE_TOOL_LOCATION
+    device.PushChangedFiles([(host_path, device_path)])
+    device.RunShellCommand(['chmod', '777', device_path], check_return=True)
+    return True
+
   def FlushSystemCacheForDirectory(self, directory):
-    raise NotImplementedError()
+    if not directory:
+      # There is no support for browser_directory in android_browser_backend,
+      # do nothing for it.
+      return
+    if not self._InstallCacheClearingTool():
+      raise Exception('Error installing clear_system_cache')
+    self._device.RunShellCommand(
+        [_DEVICE_CLEAR_SYSTEM_CACHE_TOOL_LOCATION, '--recurse', directory],
+        as_root=True, check_return=True)
 
   def FlushDnsCache(self):
     self._device.RunShellCommand(
