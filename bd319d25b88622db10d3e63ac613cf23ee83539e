@@ -16,6 +16,24 @@
       "revId": "bd319d25b88622db10d3e63ac613cf23ee83539e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6aeeffb7_e263e077",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2018-01-02T16:44:51Z",
+      "side": 0,
+      "message": "Could you please add a comment so future refactorings know that this order is important?",
+      "parentUuid": "7c32a34c_cc171397",
+      "revId": "bd319d25b88622db10d3e63ac613cf23ee83539e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
