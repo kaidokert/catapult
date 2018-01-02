@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "066c77c1_2d983042",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-02T18:01:34Z",
+      "side": 1,
+      "message": "It seems problematic that we need to install the clear_system_cache binary any time this is invoked. I think it\u0027s better to change _InstallCacheClearingTool to _InstallCacheClearingToolIfNeeded() and add some check if the tool exist there?",
+      "revId": "3a2960d64edb3ee86f7ce7f015e810001c54dd34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
