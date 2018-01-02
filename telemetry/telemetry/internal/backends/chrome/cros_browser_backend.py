@@ -308,13 +308,13 @@ class CrOSBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     return not self._GetLoginStatus()
 
   def _WaitForLogin(self):
-    # Wait for cryptohome to mount.
-    py_utils.WaitFor(self._IsLoggedIn, 900)
-
     # For incognito mode, the session manager actually relaunches chrome with
     # new arguments, so we have to wait for the browser to come up and bind
     # the new DevTools agent to this backend.
     self.BindDevToolsClient()
+
+    # Wait for cryptohome to mount.
+    py_utils.WaitFor(self._IsLoggedIn, 900)
 
     # Wait for extensions to load.
     if self._supports_extensions:
