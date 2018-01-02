@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "59947355_5563a278",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2018-01-02T16:55:10Z",
+      "side": 1,
+      "message": "Excellent, thanks!",
+      "revId": "eb424332322ab4d2d93036e88f25ada68bcbb10d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
