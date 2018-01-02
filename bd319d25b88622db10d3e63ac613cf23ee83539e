@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7c32a34c_cc171397",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-02T12:37:10Z",
+      "side": 0,
+      "message": "This call, which used to be self._WaitForBrowserToComeUp(), wasn\u0027t actually needed, since that method basically just calls self.HasBrowserFinishedLaunching until it returns True; and that method exactly is what self._IsLoggedIn used to call before I changed it to HasDevToolsConnection.\n\nTL;DR: The fix is just to swap the order of the two.",
+      "revId": "bd319d25b88622db10d3e63ac613cf23ee83539e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
