@@ -1,0 +1,3 @@
+ChartSection testPathComponents observer call maybeLoadTimeseries
+elements should not dispatch ChromeperfApp.actions
+change NEW_STATE to actions.initialize
