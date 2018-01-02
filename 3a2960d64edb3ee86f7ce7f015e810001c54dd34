@@ -34,6 +34,24 @@
       "revId": "3a2960d64edb3ee86f7ce7f015e810001c54dd34",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df944f05_2d6df632",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-02T18:38:54Z",
+      "side": 1,
+      "message": "\u003e I thought this mitigation is enough to avoid excessive pushing:\n\u003e 1. device.PushChangedFiles() would md5sum both sides and would only push if there is mismatch\n\nAh, I wasn\u0027t aware of this :-)\n\n\u003e 2. _InstallCacheClearingTool() has @decorators.Cache which means once the tool is pushed, subsequent calls of _InstallCacheClearingTool() on the same AndroidPlatformBackend instance would assume everything is installed and would skip even the md5sum step.\n\nActually this step is pretty cheap. I would rather avoid the @decorators.Cache. It has quite a history of a bad API:\nhttps://groups.google.com/a/chromium.org/d/msg/telemetry/uhuyYqvlrHc/bPfsiQGfyakJ\nhttps://groups.google.com/a/chromium.org/d/msg/telemetry/yW9Ve9_CnX8/uZZ2PFhabmcJ\n\nA bit late but I guess it\u0027s  time to file a bug to kill this :)\n\n\u003e \n\u003e Is this not enough or my reading is incorrect?\n\u003e \n\u003e Renaming to _InstallCacheClearingToolIfNeeded() is a good idea, will do.",
+      "parentUuid": "ccfce39c_520c7e8f",
+      "revId": "3a2960d64edb3ee86f7ce7f015e810001c54dd34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
