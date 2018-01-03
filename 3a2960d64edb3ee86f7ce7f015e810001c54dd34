@@ -106,6 +106,24 @@
       "revId": "3a2960d64edb3ee86f7ce7f015e810001c54dd34",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d08bbd0b_cd95f357",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-03T14:23:44Z",
+      "side": 1,
+      "message": "That sounds like a good compromise to me. Can we do that in this CL? At least for clear_system_cache; we can then move other clients on follow ups.\n\nnit on `arch\u003ddevice.GetABI()` could the method be able to get that itself from `device\u003dself._device`?",
+      "parentUuid": "d0494f86_90be8199",
+      "revId": "3a2960d64edb3ee86f7ce7f015e810001c54dd34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
