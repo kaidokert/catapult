@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0abc5b61_1a1dc69c",
+        "filename": "tracing/tracing/value/diagnostics/all_diagnostics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-01-03T22:23:06Z",
+      "side": 1,
+      "message": "Based on speed ops chat, might need to use global?",
+      "range": {
+        "startLine": 33,
+        "startChar": 2,
+        "endLine": 33,
+        "endChar": 18
+      },
+      "revId": "efc76bd5a4cee926266836b008fed0cd4b74e58b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bce497a_8b4890dd",
+        "filename": "tracing/tracing/value/diagnostics/all_diagnostics_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-01-03T22:23:06Z",
+      "side": 1,
+      "message": "Maybe additional tests for when the diagnostic doesn\u0027t exist, and potentially that it\u0027s using the memoized data.",
+      "range": {
+        "startLine": 12,
+        "startChar": 6,
+        "endLine": 12,
+        "endChar": 35
+      },
+      "revId": "efc76bd5a4cee926266836b008fed0cd4b74e58b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
