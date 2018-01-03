@@ -88,6 +88,24 @@
       "revId": "3a2960d64edb3ee86f7ce7f015e810001c54dd34",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0494f86_90be8199",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-01-03T14:16:09Z",
+      "side": 1,
+      "message": "I do not (yet) have an opinion about the long term unification for pushing binaries. Registering ondevice binary requirements may turn out to be elegant or ugly, hard to say upfront.\n\nAs for reusing android_prebuilt_profiler_helper to avoid duplication, we cannot reuse it without renaming and parametrizing, hence I am leaning towards moving this code into binary_manager, which would make it an invocation like:\n\nbinary_manager.ReinstallHelperIfNeeded(\n    \u0027clear_system_cache\u0027, _DEVICE_CLEAR_SYSTEM_CACHE_TOOL_LOCATION, arch\u003ddevice.GetABI(), os_name\u003d\u0027android\u0027, os_version\u003dNone, device\u003dself._device)\n\n// The |arch| and |os_name| are mandatory params, the rest is optional.\n\nThis would add a dependency in binary_manager to start worrying about |device|, but binary_manager already knows some specials about os_name\u003d\u003d\u0027android\u0027, so it does not look like a big layering violation to me. Having a special helper class in a different file to hold 10 lines of code sounds like a bigger readability problem to me.\n\nI can do it in this change or in a followup. WDYT?",
+      "parentUuid": "2ceaebdb_073fb63c",
+      "revId": "3a2960d64edb3ee86f7ce7f015e810001c54dd34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
