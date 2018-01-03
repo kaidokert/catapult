@@ -8,7 +8,7 @@ import sys
 
 MODULES_BY_DIAGNOSTIC_NAME = {
     'Breakdown': 'histogram',
-    'GenericSet': 'histogram',
+    'GenericSet': 'diagnostics.generic_set',
     'UnmergeableDiagnosticSet': 'histogram',
     'RelatedEventSet': 'histogram',
     'DateRange': 'histogram',
