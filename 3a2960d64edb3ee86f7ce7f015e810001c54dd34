@@ -124,6 +124,24 @@
       "revId": "3a2960d64edb3ee86f7ce7f015e810001c54dd34",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f265003_66e24f4e",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-01-03T14:29:04Z",
+      "side": 1,
+      "message": "\u003e That sounds like a good compromise to me. Can we do that in this CL? At least for clear_system_cache; we can then move other clients on follow ups.\n\nOK, will do in this change\n\n\u003e nit on `arch\u003ddevice.GetABI()` could the method be able to get that itself from `device\u003dself._device`?\n\nyeah, let\u0027s do it this way, if a need emerges to know the target arch on non-Android, we can change this API.",
+      "parentUuid": "d08bbd0b_cd95f357",
+      "revId": "3a2960d64edb3ee86f7ce7f015e810001c54dd34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
