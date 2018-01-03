@@ -70,6 +70,24 @@
       "revId": "3a2960d64edb3ee86f7ce7f015e810001c54dd34",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ceaebdb_073fb63c",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-03T12:09:01Z",
+      "side": 1,
+      "message": "It looks like every time we need to do something like this we end up duplicating some bit of code, and not even in a very consistent sort of way.\n\nAt least as a start, could this use android_prebuilt_profiler_helper [1], similar to how we install the memtrack_helper [2]?\n\nIn the longer term, maybe we need a more unified way to track/identify which helper apps may need installing, and make sure they are installed before actually trying to run tests?\n\n[1]: https://github.com/catapult-project/catapult/blob/7365f02611830723d60963f0619d5bab45060849/telemetry/telemetry/internal/platform/profiler/android_prebuilt_profiler_helper.py\n[2]: https://github.com/catapult-project/catapult/blob/7365f02611830723d60963f0619d5bab45060849/telemetry/telemetry/internal/platform/android_platform_backend.py#L247",
+      "parentUuid": "782ed377_0412565f",
+      "revId": "3a2960d64edb3ee86f7ce7f015e810001c54dd34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
