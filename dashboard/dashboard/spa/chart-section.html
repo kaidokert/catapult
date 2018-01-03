@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="/bower_components/neon-animation/neon-animations.html">
+<link rel="import" href="/bower_components/neon-animation/web-animations.html">
+<link rel="import" href="/bower_components/paper-button/paper-button.html">
+<link rel="import" href="/bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="/dashboard/spa/chart-legend.html">
+<link rel="import" href="/dashboard/spa/chart-placeholder.html">
+<link rel="import" href="/dashboard/spa/multi-chart.html">
+<link rel="import" href="/dashboard/spa/test-path-component.html">
+<link rel="import" href="/tracing/value/ui/histogram_set_view.html">
+
+<dom-module id="chart-section">
+  <template>
+    <style>
+      #controls {
+        align-items: center;
+        display: flex;
+        margin-bottom: 8px;
+      }
+
+      #controls_inner {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #test_path {
+        display: flex;
+      }
+
+      test-path-component:not(:first-of-type) {
+        margin-left: 8px;
+      }
+
+      paper-spinner {
+        flex-shrink: 0;
+        margin: 16px;
+        opacity: 0;
+        transition: opacity var(--transition-short);
+      }
+
+      paper-spinner[active] {
+        opacity: 1;
+      }
+
+      #title {
+        flex-grow: 1;
+        --paper-input-container: {
+          padding: 0 !important;
+        }
+      }
+
+      #spacer {
+        flex-grow: 1;
+      }
+
+      #minimap, #chart {
+        width: 100%;
+      }
+
+      #minimap {
+        max-height: 75px;
+      }
+
+      #toggle_chart_only {
+        align-self: flex-start;
+        display: block;
+        flex-grow: 0;
+        flex-shrink: 0;
+        margin: 0;
+        min-width: 0;
+        padding: 8px;
+      }
+
+      #close {
+        align-self: flex-start;
+        flex-shrink: 0;
+      }
+
+      #chart_container {
+        display: flex;
+      }
+
+      #chart_inner {
+        flex-grow: 1;
+        margin-right: 8px;
+        min-width: 500px;
+      }
+
+      chart-placeholder, chart-legend {
+        height: 290px;
+      }
+
+      chart-legend {
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+
+      #related_tabstrip {
+        color: white;
+        display: flex;
+        margin-top: 8px;
+        background: var(--paper-indigo-500);
+        align-items: center;
+      }
+
+      #related_tabstrip paper-tabs {
+        flex-grow: 1;
+        text-align: left;
+        height: 24px;
+        --paper-tabs-selection-bar-color: var(--paper-indigo-200);
+      }
+
+      #related_tabstrip paper-tab {
+        flex-grow: 0;
+      }
+
+      #related_tabstrip paper-tab:last-of-type {
+        flex-grow: 1;
+        --paper-tab-content: {
+          justify-content: flex-end;
+        }
+      }
+
+      .related_tab {
+        display: flex;
+        flex-wrap: wrap;
+        max-height: 324px;
+        overflow: auto;
+      }
+
+      .sparkline_tile {
+        background: rgba(0, 0, 0, 0.05);
+        cursor: pointer;
+        margin: 4px;
+        width: 200px;
+      }
+
+      .sparkline_name {
+        padding: 16px;
+      }
+
+      #documentation {
+        align-self: center;
+        color: var(--paper-indigo-500);
+      }
+
+      #options {
+        background: var(--paper-indigo-500);
+        border-radius: 3px;
+        color: white;
+        height: 30px;
+        max-height: 30px;
+        padding: 0;
+      }
+
+      #options_container {
+        display: inline-block;
+        position: absolute;
+        margin-top: 15px;
+      }
+
+      paper-dialog {
+        margin: 0;
+      }
+    </style>
+
+    <div id="controls">
+      <div id="controls_inner">
+        <iron-collapse id="test_path"
+                       opened="[[!onlyChart]]">
+          <template is="dom-repeat" items="[[testPathComponents]]">
+            <test-path-component state-path="[[statePath]].testPathComponents.[[index]]"
+                                 on-option-select="onSelectTestPathComponent_"
+                                 on-aggregate="onAggregateTestPathComponent_">
+            </test-path-component>
+            <template is="dom-if" if="[[_eq(index, 0)]]">
+              <a id="documentation"
+                 href="#"
+                 target="_blank"
+                 title="Documentation">
+                <paper-icon-button icon="help"></paper-icon-button>
+              </a>
+            </template>
+          </template>
+
+          <paper-spinner active$="[[isLoading]]">
+          </paper-spinner>
+        </iron-collapse>
+
+        <iron-collapse opened="[[onlyChart]]">
+          <paper-input id="title"
+                       value="[[title]]"
+                       label="Title"
+                       on-keyup="onTitleKeyup_">
+          </paper-input>
+        </iron-collapse>
+      </div>
+
+      <span id="spacer">&nbsp;</span>
+
+      <paper-button id="toggle_chart_only"
+                    on-tap="toggleChartOnly_">
+        <template is="dom-if" if="[[onlyChart]]">
+          <iron-icon icon="expand-more">
+          </iron-icon>
+        </template>
+        <template is="dom-if" if="[[!onlyChart]]">
+          <iron-icon icon="expand-less">
+          </iron-icon>
+        </template>
+      </paper-button>
+
+      <paper-icon-button id="close"
+                         icon="close"
+                         on-tap="closeSection_">
+      </paper-icon-button>
+    </div>
+
+    <div id="chart_container">
+      <div id="chart_inner">
+        <template is="dom-if" if="[[chartLayout]]">
+          <span id="options_container">
+            <iron-collapse opened="[[!onlyChart]]">
+              <paper-icon-button id="options"
+                                 icon="more-vert"
+                                 style$="width: calc([[chartLayout.yAxisWidth]]px - 8px);"
+                                 on-tap="toggleOptions_">
+              </paper-icon-button>
+
+              <paper-dialog opened="[[isShowingOptions]]"
+                            horizontal-align="left"
+                            vertical-align="top"
+                            entry-animation="slide-from-left-animation"
+                            exit-animation="slide-left-animation"
+                            on-iron-overlay-canceled="toggleOptions_">
+                <paper-toggle-button>
+                  Reference
+                </paper-toggle-button>
+                <paper-toggle-button>
+                  Normalize
+                </paper-toggle-button>
+                <paper-toggle-button>
+                  Zero Y-Axis
+                </paper-toggle-button>
+                <paper-toggle-button>
+                  Fixed X-Axis
+                </paper-toggle-button>
+              </paper-dialog>
+            </iron-collapse>
+          </span>
+
+          <iron-collapse opened="[[!onlyChart]]">
+            <multi-chart id="minimap"
+                         state-path="[[statePath]].minimapLayout"
+                         on-brush="onMinimapBrush_">
+            </multi-chart>
+          </iron-collapse>
+
+          <multi-chart id="chart"
+                       state-path="[[statePath]].chartLayout"
+                       on-chart-click="onChartClick_"
+                       on-dot-click="onDotClick_"
+                       on-dot-mouseover="onDotMouseOver_"
+                       on-dot-mouseout="onDotMouseOut_"
+                       on-brush="onBrush_">
+          </multi-chart>
+        </template>
+
+        <template is="dom-if" if="[[!chartLayout]]">
+          <chart-placeholder>
+            Select one or more Test suites, Bots, Measurements, and
+            Statistics, and zero or more Stories above.
+          </chart-placeholder>
+        </template>
+      </div>
+
+      <iron-collapse horizontal
+                     opened="[[showLegend_(onlyChart, legend, histograms)]]">
+        <chart-legend items="[[legend]]"
+                      on-leaf-mouseover="onLegendMouseOver_"
+                      on-leaf-mouseout="onLegendMouseOut_">
+        </chart-legend>
+      </iron-collapse>
+    </div>
+
+    <iron-collapse opened="[[!_empty(histograms)]]">
+      <iron-collapse opened="[[!onlyChart]]">
+        <pivot-table id="pivot"
+                     state-path="[[statePath]].pivotTable">
+        </pivot-table>
+        <!-- TODO remove h-s-v -->
+        <tr-v-ui-histogram-set-view id="histograms"
+                                    show-controls="[[showHistogramsControls]]"
+                                    expand-all-rows
+                                    histograms="[[histograms]]">
+        </tr-v-ui-histogram-set-view>
+      </iron-collapse>
+    </iron-collapse>
+
+    <iron-collapse id="related_tabs"
+                   opened="[[!onlyChart]]">
+      <template is="dom-if" if="[[!_empty(relatedTabs)]]">
+        <div id="related_tabstrip">
+          <paper-tabs selected="[[selectedRelatedTabIndex]]"
+                      on-iron-select="onSelectRelatedTab_"
+                      on-iron-deselect="onSelectRelatedTab_">
+            <template is="dom-repeat" items="[[relatedTabs]]" as="tab">
+              <paper-tab>[[tab.name]]</paper-tab>
+            </template>
+
+            <paper-tab id="close_related_tab">
+              &mdash;
+            </paper-tab>
+          </paper-tabs>
+        </div>
+
+        <!-- iron-pages disallows CSS transitions -->
+        <template is="dom-repeat" items="[[relatedTabs]]" as="tab" index-as="tabIndex">
+          <iron-collapse opened="[[_eq(tabIndex, selectedRelatedTabIndex)]]"
+                         class="related_tab">
+            <template is="dom-repeat" items="[[tab.sparklines]]" as="sparkline" index-as="sparklineIndex">
+              <div class="sparkline_tile"
+                   on-tap="onSparklineTap_">
+                <multi-chart class="sparkline"
+                             state-path="[[statePath]].relatedTabs.[[tabIndex]].sparklines.[[sparklineIndex]].layout">
+                </multi-chart>
+                <div class="sparkline_name">[[sparkline.name]]</div>
+              </div>
+            </template>
+          </iron-collapse>
+        </template>
+      </template>
+    </iron-collapse>
+  </template>
+</dom-module>
+<script src="/dashboard/spa/chart-section.js"></script>
