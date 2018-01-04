@@ -16,6 +16,24 @@
       "revId": "aadff7def3d1d71cdd77b1346edde6ac4aee90d4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a6080f7_e78f43da",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-04T17:17:43Z",
+      "side": 0,
+      "message": "yes, the retry logic is now handled all the way up by the single WaitFor in chrome_browser_backend.BindDevToolsClient; makes all of the code a lot easier to read too.",
+      "parentUuid": "7aa16e90_048e86a2",
+      "revId": "aadff7def3d1d71cdd77b1346edde6ac4aee90d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
