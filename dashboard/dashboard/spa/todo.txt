@@ -1,0 +1,2 @@
+change NEW_STATE to actions.initialize
+refactor ChromeperfApp.actions.updateRoute calls to dispatch event
