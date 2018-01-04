@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c6e62413_2415c4b3",
+        "filename": "tracing/tracing/metrics/v8/runtime_stats_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-01-04T18:55:34Z",
+      "side": 1,
+      "message": "This still needs Breakdown sample diagnostics whose keys match the RelatedNameMap keys.\nhistograms.createHistogram(\n          `${runtimeGroup.name}:duration`,\n          tr.b.Unit.byName.timeDurationInMs_smallerIsBetter, {\n            value: convertMicroToMilli_(runtimeGroup.time),\n{durations: tr.v.d.Breakdown.fromEntries(...)},...);",
+      "revId": "f5f21785231e36840d15b281eabd0721d05e86e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9411a981_0519f4e0",
+        "filename": "tracing/tracing/metrics/v8/runtime_stats_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-01-04T18:55:34Z",
+      "side": 1,
+      "message": "RelatedNameMap values need to be full Histogram names, but the keys can be shorter. Maybe just entry.name in this case?",
+      "revId": "f5f21785231e36840d15b281eabd0721d05e86e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
