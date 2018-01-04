@@ -7,6 +7,7 @@ import os
 import re
 import shutil
 import tempfile
+import types
 import unittest
 
 from telemetry.core import exceptions
@@ -311,3 +312,30 @@ class TestBrowserCreation(unittest.TestCase):
       tab = browser.tabs.New()
       tab.Navigate('about:blank')
       self.assertEquals(2, tab.EvaluateJavaScript('1 + 1'))
+
+  def testBrowserBindsToCurrentDevToolsClient(self):
+    old_browser_init = browser_module.Browser.__init__
+    def new_browser_init(self, browser_backend, platform_backend):
+      # Monkey patch the browser_backend to make the first couple of calls
+      # to _FindDevToolsPortAndTarget fail.
+      old_find_devtools = browser_backend._FindDevToolsPortAndTarget
+      browser_backend._find_devtools_tries = 0
+      def new_find_devtools(self):
+        self._find_devtools_tries += 1
+        if self._find_devtools_tries == 1:
+          raise OSError  # DevTools file not yet ready.
+        elif self._find_devtools_tries == 2:
+          return (1023, None)  # Return some unaccessible port.
+        else:
+          return old_find_devtools()  # Return the actual port.
+      browser_backend._FindDevToolsPortAndTarget = types.MethodType(
+          new_find_devtools, browser_backend)
+      old_browser_init(self, browser_backend, platform_backend)
+
+    with mock.patch(
+        'telemetry.internal.browser.browser.Browser.__init__',
+        new=new_browser_init):
+      with self.browser_to_create.Create(self.finder_options) as browser:
+        tab = browser.tabs.New()
+        tab.Navigate('about:blank')
+        self.assertEquals(2, tab.EvaluateJavaScript('1 + 1'))

@@ -49,7 +49,7 @@ class DoNothingForwarder(forwarders.Forwarder):
     super(DoNothingForwarder, self).__init__()
     local_port, remote_port = _ValidatePorts(local_port, remote_port)
     self._StartedForwarding(local_port, remote_port)
-    self._WaitForConnectionEstablished()
+    # self._WaitForConnectionEstablished()
 
   def _WaitForConnectionEstablished(self):
     address = (self.host_ip, self.local_port)
