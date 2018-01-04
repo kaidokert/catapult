@@ -1,0 +1,3 @@
+change NEW_STATE to actions.initialize
+refactor ChromeperfApp.actions.focus calls to store focusTimestamp at root and at leaves
+refactor ChromeperfApp.actions.updateRoute calls to dispatch event
