@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "6aad09c9_cd04bec6",
+        "filename": "tracing/tracing/value/diagnostics/all_diagnostics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-01-04T18:25:27Z",
+      "side": 1,
+      "message": "Can you make this private as well, and expose a function like IsDiagnosticType or GetDiagnosticTypes?",
+      "revId": "efc76bd5a4cee926266836b008fed0cd4b74e58b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7169dd33_60dc7034",
+        "filename": "tracing/tracing/value/diagnostics/all_diagnostics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-01-04T18:25:27Z",
+      "side": 1,
+      "message": "assert IsDiagnosticType(name)?",
+      "revId": "efc76bd5a4cee926266836b008fed0cd4b74e58b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0abc5b61_1a1dc69c",
         "filename": "tracing/tracing/value/diagnostics/all_diagnostics.py",
         "patchSetId": 2
@@ -42,6 +76,23 @@
         "endLine": 12,
         "endChar": 35
       },
+      "revId": "efc76bd5a4cee926266836b008fed0cd4b74e58b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d31fb562_d175827c",
+        "filename": "tracing/tracing/value/histogram_set.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-01-04T18:25:27Z",
+      "side": 1,
+      "message": "based on offline discussion, this can use Diagnostic-specific logic if \u0027type\u0027 in d, and separately test whether d[\u0027type\u0027] is a valid Diagnostic type, and throw or ignore if not.",
       "revId": "efc76bd5a4cee926266836b008fed0cd4b74e58b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
