@@ -311,3 +311,11 @@ class TestBrowserCreation(unittest.TestCase):
       tab = browser.tabs.New()
       tab.Navigate('about:blank')
       self.assertEquals(2, tab.EvaluateJavaScript('1 + 1'))
+
+  def testBrowserBindsToCurrentDevToolsClient(self):
+    # TODO: Patch browser_backend._FindDevToolsPortAndTarget to return
+    # bogus ports on the first couple of attempts.
+    with self.browser_to_create.Create(self.finder_options) as browser:
+      tab = browser.tabs.New()
+      tab.Navigate('about:blank')
+      self.assertEquals(2, tab.EvaluateJavaScript('1 + 1'))
