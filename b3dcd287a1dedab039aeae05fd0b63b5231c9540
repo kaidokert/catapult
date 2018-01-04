@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "39b4ee04_e8e0a1ea",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2018-01-04T17:01:58Z",
+      "side": 1,
+      "message": "Does it make sense to mark this as @abstractmethod?",
+      "revId": "b3dcd287a1dedab039aeae05fd0b63b5231c9540",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cf1819f4_4c5d5f78",
         "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
         "patchSetId": 3
@@ -30,6 +47,23 @@
       "writtenOn": "2018-01-04T16:08:41Z",
       "side": 1,
       "message": "As I chatted off thread with Ned, this is the test I could write, however I feel it\u0027s pretty hacky. Also needs us to remove the connection check in the \"do nothing forwarder\", as that would fail even before we even get to try to ping the agent to see if it\u0027s ready.\n\nSo maybe just don\u0027t add this test?",
+      "revId": "b3dcd287a1dedab039aeae05fd0b63b5231c9540",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c553d35_b6829c04",
+        "filename": "telemetry/telemetry/internal/forwarders/do_nothing_forwarder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2018-01-04T17:01:58Z",
+      "side": 1,
+      "message": "?",
       "revId": "b3dcd287a1dedab039aeae05fd0b63b5231c9540",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
