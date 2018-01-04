@@ -70,6 +70,34 @@ class ChromeBrowserBackend(browser_backend.BrowserBackend):
     args = []
     args.extend(self.browser_options.extra_browser_args)
 
+    # Merge multiple instances of --enable-features, --disable-features, and
+    # --force-field-trials since Chrome ends up using whatever switch it finds
+    # last instead of merging multiple instances
+    disable_features = set()
+    enable_features = set()
+    force_field_trials = set()
+    temp_args = []
+    for arg in args:
+      if arg.startswith('--disable-features='):
+        disable_features.update(arg.split('=', 1)[1].split(','))
+      elif arg.startswith('--enable-features='):
+        enable_features.update(arg.split('=', 1)[1].split(','))
+      elif arg.startswith('--force-field-trials'):
+        force_field_trials.update(arg.split('=', 1)[1].split(','))
+      else:
+        temp_args.append(arg)
+
+    if disable_features:
+      temp_args.append(
+          '--disable-features=%s' % ','.join(list(disable_features)))
+    if enable_features:
+      temp_args.append(
+          '--enable-features=%s' % ','.join(list(enable_features)))
+    if force_field_trials:
+      temp_args.append(
+          '--force-field-trials=%s' % ','.join(list(force_field_trials)))
+    args = temp_args
+
     args.append('--enable-net-benchmarking')
     args.append('--metrics-recording-only')
     args.append('--no-default-browser-check')
