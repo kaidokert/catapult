@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1845fcb4_e04651f2",
+        "filename": "tracing/tracing/extras/chrome/blink/blink_scheduler_async_slice.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-01-04T18:36:52Z",
+      "side": 1,
+      "message": "Namespaces should match directory structure as much as possible within reason, so I\u0027d leave off the \"_scheduler\".",
+      "revId": "53149ddc741bc3ebe2c39e33b11a9a7be89daeea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1408e016_68a4fa02",
+        "filename": "tracing/tracing/model/async_slice.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-01-04T18:36:52Z",
+      "side": 1,
+      "message": "Why \"TopLevelGroupingKey\" instead of just \"GroupingKey\"? I don\u0027t see any other types of view subgroup grouping keys.\n\nAlso, can you add a comment to this method to explain why it\u0027s different from viewSubGroupTitle?",
+      "revId": "53149ddc741bc3ebe2c39e33b11a9a7be89daeea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2593e465_7078e49f",
+        "filename": "tracing/tracing/model/async_slice_group.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-01-04T18:36:52Z",
+      "side": 1,
+      "message": "I think eslint should have complained about blank lines at the start of blocks?",
+      "revId": "53149ddc741bc3ebe2c39e33b11a9a7be89daeea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63f0442d_7fa09d2f",
+        "filename": "tracing/tracing/model/async_slice_group.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-01-04T18:36:52Z",
+      "side": 1,
+      "message": "\"thier\" should be \"their\"",
+      "revId": "53149ddc741bc3ebe2c39e33b11a9a7be89daeea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a257081_2c12733a",
+        "filename": "tracing/tracing/model/async_slice_group.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-01-04T18:36:52Z",
+      "side": 1,
+      "message": "What are \"other UX rules\"? Is that just viewSubGroupTopLevelGroupingKey?",
+      "revId": "53149ddc741bc3ebe2c39e33b11a9a7be89daeea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
