@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b13055f_43016176",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-04T11:08:08Z",
+      "side": 1,
+      "message": "+1",
+      "revId": "b6513212ac46fb312745e66bab683d9cf8ba6ccd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
