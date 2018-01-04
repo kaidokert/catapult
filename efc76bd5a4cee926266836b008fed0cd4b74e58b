@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9f9e0bfd_aadb665c",
+        "filename": "tracing/tracing/value/diagnostics/all_diagnostics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-01-04T18:48:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6aad09c9_cd04bec6",
+      "revId": "efc76bd5a4cee926266836b008fed0cd4b74e58b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7169dd33_60dc7034",
         "filename": "tracing/tracing/value/diagnostics/all_diagnostics.py",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "efc76bd5a4cee926266836b008fed0cd4b74e58b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0754dbdd_4b0d060c",
+        "filename": "tracing/tracing/value/diagnostics/all_diagnostics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-01-04T18:48:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7169dd33_60dc7034",
+      "revId": "efc76bd5a4cee926266836b008fed0cd4b74e58b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "2bd23c9a_ffeaee7d",
+        "filename": "tracing/tracing/value/diagnostics/all_diagnostics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-01-04T18:48:11Z",
+      "side": 1,
+      "message": "No, so this is what Ned was talking about. If you do a raw assignment, it\u0027ll allocate a fresh name in this scope, but if you\u0027re just calling methods on the data structure, it\u0027s fine.",
+      "parentUuid": "0abc5b61_1a1dc69c",
+      "range": {
+        "startLine": 33,
+        "startChar": 2,
+        "endLine": 33,
+        "endChar": 18
+      },
+      "revId": "efc76bd5a4cee926266836b008fed0cd4b74e58b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2bce497a_8b4890dd",
         "filename": "tracing/tracing/value/diagnostics/all_diagnostics_unittest.py",
         "patchSetId": 2
@@ -82,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "adee9d36_084b084e",
+        "filename": "tracing/tracing/value/diagnostics/all_diagnostics_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-01-04T18:48:11Z",
+      "side": 1,
+      "message": "Done. It\u0027s hard to add a test for the memoization directly, but I added a second call to this test to make sure we get the same thing both times.",
+      "parentUuid": "2bce497a_8b4890dd",
+      "range": {
+        "startLine": 12,
+        "startChar": 6,
+        "endLine": 12,
+        "endChar": 35
+      },
+      "revId": "efc76bd5a4cee926266836b008fed0cd4b74e58b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d31fb562_d175827c",
         "filename": "tracing/tracing/value/histogram_set.py",
         "patchSetId": 2
@@ -96,6 +180,24 @@
       "revId": "efc76bd5a4cee926266836b008fed0cd4b74e58b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f35b63e5_e7fe7a98",
+        "filename": "tracing/tracing/value/histogram_set.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-01-04T18:48:11Z",
+      "side": 1,
+      "message": "Filed https://github.com/catapult-project/catapult/issues/4145 and will address as a followup in JS + Python.",
+      "parentUuid": "d31fb562_d175827c",
+      "revId": "efc76bd5a4cee926266836b008fed0cd4b74e58b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
