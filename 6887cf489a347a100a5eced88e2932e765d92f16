@@ -16,6 +16,24 @@
       "revId": "6887cf489a347a100a5eced88e2932e765d92f16",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b714539_16b5d876",
+        "filename": "telemetry/telemetry/android/shared_android_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1120845
+      },
+      "writtenOn": "2018-01-04T17:16:41Z",
+      "side": 1,
+      "message": "I agree. This is confusing. This came up when I am trying to run cronet\u0027s story set (components/cronet/android/test/javaperftests/run.py). Making the interface consistent would be great.",
+      "parentUuid": "abf3e401_05348617",
+      "revId": "6887cf489a347a100a5eced88e2932e765d92f16",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
