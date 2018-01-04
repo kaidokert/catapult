@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7aa16e90_048e86a2",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-04T17:09:41Z",
+      "side": 0,
+      "message": "look like this retry logic gone away? Just want to confirm since I also find that we probably don\u0027t need the retry here.",
+      "revId": "aadff7def3d1d71cdd77b1346edde6ac4aee90d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

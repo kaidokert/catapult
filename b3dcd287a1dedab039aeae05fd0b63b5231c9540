@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "987ad99d_37e83684",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-04T17:09:41Z",
+      "side": 1,
+      "message": "SGTM!",
+      "parentUuid": "44b2e3a7_e46a815c",
+      "revId": "b3dcd287a1dedab039aeae05fd0b63b5231c9540",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "39b4ee04_e8e0a1ea",
         "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2018-01-04T17:01:58Z",
       "side": 1,
       "message": "Does it make sense to mark this as @abstractmethod?",
+      "revId": "b3dcd287a1dedab039aeae05fd0b63b5231c9540",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4083ba9b_19c369ef",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-04T17:09:41Z",
+      "side": 1,
+      "message": "This is the first time I hear about that decorator. So far we have been using \"raise NotImplementedError\" I would just stick to the convention for now.",
+      "parentUuid": "39b4ee04_e8e0a1ea",
       "revId": "b3dcd287a1dedab039aeae05fd0b63b5231c9540",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
