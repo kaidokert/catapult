@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "abf3e401_05348617",
+        "filename": "telemetry/telemetry/android/shared_android_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-04T17:06:37Z",
+      "side": 1,
+      "message": "This is certainly inconsistent in the code base.\nhttps://cs.chromium.org/search/?q\u003ddef%5C+DidRunStory+-file:%5Esrc/third_party/android_tools+-file:%5Einfra/infra/services/android_docker\u0026type\u003dcs\n\ntest objects do need 2 args (so your change is correct), but shared states require only 1 arg.\n\nthis is probably out of the scope for your CL, but I\u0027m wondering whether it would make sense to have them all use a consistent interface?",
+      "revId": "6887cf489a347a100a5eced88e2932e765d92f16",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
