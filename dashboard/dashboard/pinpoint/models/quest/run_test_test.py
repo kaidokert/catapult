@@ -87,13 +87,13 @@ class TelemetryQuestTest(testing_common.TestCase):
     namespaced_stored_object.Set('bot_dimensions_map', {
         'chromium-rel-mac11-pro': {},
     })
+    namespaced_stored_object.Set('bot_browser_map', [])
 
   def testMissingArguments(self):
     arguments = {
         'configuration': 'chromium-rel-mac11-pro',
         'target': 'telemetry_perf_tests',
-        'benchmark': 'speedometer',
-        # browser is missing.
+        # benchmark is missing.
     }
     with self.assertRaises(TypeError):
       run_test.RunTest.FromDict(arguments)
@@ -103,7 +103,6 @@ class TelemetryQuestTest(testing_common.TestCase):
         'configuration': 'chromium-rel-mac11-pro',
         'target': 'telemetry_perf_tests',
         'benchmark': 'speedometer',
-        'browser': 'release',
     }
 
     expected = run_test.RunTest({}, _MIN_TELEMETRY_RUN_TEST_ARGUMENTS)
@@ -129,19 +128,17 @@ class TelemetryQuestTest(testing_common.TestCase):
     arguments = {
         'configuration': 'chromium-rel-mac11-pro',
         'target': 'telemetry_perf_tests',
-        'dimensions': '{}',
         'benchmark': 'speedometer',
-        'browser': 'release',
         'extra_test_args': '"this is a string"',
     }
 
     with self.assertRaises(TypeError):
       run_test.RunTest.FromDict(arguments)
 
-  def testWithConfigurationOnly(self):
+  def testWithNoConfiguration(self):
     arguments = {
-        'configuration': 'chromium-rel-mac11-pro',
         'target': 'telemetry_perf_tests',
+        'dimensions': '{}',
         'benchmark': 'speedometer',
         'browser': 'release',
     }
