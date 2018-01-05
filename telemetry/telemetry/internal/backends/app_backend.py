@@ -37,7 +37,11 @@ class AppBackend(object):
   def platform_backend(self):
     return self._platform_backend
 
-  def Start(self):
+  def GetAppStartupArgs(self):
+    # TODO: Consider moving to possible_app instead.
+    return []
+
+  def Start(self, startup_args):
     raise NotImplementedError
 
   def Foreground(self):

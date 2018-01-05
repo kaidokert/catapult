@@ -124,14 +124,14 @@ class CrOSBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   def __del__(self):
     self.Close()
 
-  def Start(self):
+  def Start(self, startup_args):
     # Remove the stale file with the devtools port / browser target
     # prior to restarting chrome.
     self._cri.RmRF(self._GetDevToolsActivePortPath())
 
     # Escape all commas in the startup arguments we pass to Chrome
     # because dbus-send delimits array elements by commas
-    startup_args = [a.replace(',', '\\,') for a in self.GetBrowserStartupArgs()]
+    startup_args = [a.replace(',', '\\,') for a in startup_args]
 
     # Restart Chrome with the login extension and remote debugging.
     pid = self.pid

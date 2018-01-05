@@ -56,7 +56,7 @@ class AndroidAppBackend(app_backend.AppBackend):
     if has_ready_predicate:
       py_utils.WaitFor(IsAppReady, timeout=60)
 
-  def Start(self):
+  def Start(self, startup_args):
     """Start an Android app and wait for it to finish launching.
 
     If the app has webviews, the app is launched with the suitable
@@ -66,12 +66,11 @@ class AndroidAppBackend(app_backend.AppBackend):
     for a more specific event if needed.
     """
     if self._app_has_webviews:
-      webview_startup_args = self.GetWebviewStartupArgs()
       command_line_name = (
           android_browser_backend_settings.WebviewBackendSettings(
               'android-webview')).command_line_name
       with flag_changer.CustomCommandLineFlags(
-          self.device, command_line_name, webview_startup_args):
+          self.device, command_line_name, startup_args):
         self._LaunchAndWaitForApplication()
     else:
       self._LaunchAndWaitForApplication()
@@ -139,15 +138,14 @@ class AndroidAppBackend(app_backend.AppBackend):
       webviews.update(process.GetWebViews())
     return webviews
 
-  def GetWebviewStartupArgs(self):
-    assert self._app_has_webviews
+  def GetAppStartupArgs(self):
     args = []
-
-    # Turn on GPU benchmarking extension for all runs. The only side effect of
-    # the extension being on is that render stats are tracked. This is believed
-    # to be effectively free. And, by doing so here, it avoids us having to
-    # programmatically inspect a pageset's actions in order to determine if it
-    # might eventually scroll.
-    args.append('--enable-gpu-benchmarking')
+    if self._app_has_webviews:
+      # Turn on GPU benchmarking extension for all runs. The only side effect of
+      # the extension being on is that render stats are tracked. This is believed
+      # to be effectively free. And, by doing so here, it avoids us having to
+      # programmatically inspect a pageset's actions in order to determine if it
+      # might eventually scroll.
+      args.append('--enable-gpu-benchmarking')
 
     return args

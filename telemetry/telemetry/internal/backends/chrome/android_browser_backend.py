@@ -87,7 +87,7 @@ class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       self.platform_backend.PullProfile(
           self._backend_settings.package, self._output_profile_path)
 
-  def Start(self):
+  def Start(self, startup_args):
     self.device.adb.Logcat(clear=True)
     if self.browser_options.startup_url:
       url = self.browser_options.startup_url
@@ -103,10 +103,9 @@ class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     user_agent_dict = user_agent.GetChromeUserAgentDictFromType(
         self.browser_options.browser_user_agent_type)
 
-    browser_startup_args = self.GetBrowserStartupArgs()
     command_line_name = self._backend_settings.command_line_name
     with flag_changer.CustomCommandLineFlags(
-        self.device, command_line_name, browser_startup_args):
+        self.device, command_line_name, startup_args):
       # Stop existing browser, if any. This is done *after* setting the
       # command line flags, in case some other Android process manages to
       # trigger Chrome's startup before we do.

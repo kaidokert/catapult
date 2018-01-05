@@ -271,7 +271,7 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       args.append('--trace-config-file=%s' % trace_config_file)
     return args
 
-  def Start(self):
+  def Start(self, startup_args):
     assert not self._proc, 'Must call Close() before Start()'
 
     # macOS displays a blocking crash resume dialog that we need to suppress.
@@ -289,10 +289,10 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
           '-bool', 'false'
       ])
 
-    args = [self._executable]
-    args.extend(self.GetBrowserStartupArgs())
+    cmd = [self._executable]
+    cmd.extend(startup_args)
     if self.browser_options.startup_url:
-      args.append(self.browser_options.startup_url)
+      cmd.append(self.browser_options.startup_url)
     env = os.environ.copy()
     env['CHROME_HEADLESS'] = '1'  # Don't upload minidumps.
     env['BREAKPAD_DUMP_LOCATION'] = self._tmp_minidump_dir
@@ -300,14 +300,14 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       sys.stderr.write(
           'Chrome log file will be saved in %s\n' % self.log_file_path)
       env['CHROME_LOG_FILE'] = self.log_file_path
-    logging.info('Starting Chrome %s', args)
+    logging.info('Starting Chrome %s', cmd)
 
     if not self.browser_options.show_stdout:
       self._tmp_output_file = tempfile.NamedTemporaryFile('w', 0)
       self._proc = subprocess.Popen(
-          args, stdout=self._tmp_output_file, stderr=subprocess.STDOUT, env=env)
+          cmd, stdout=self._tmp_output_file, stderr=subprocess.STDOUT, env=env)
     else:
-      self._proc = subprocess.Popen(args, env=env)
+      self._proc = subprocess.Popen(cmd, env=env)
 
     try:
       self.BindDevToolsClient()

@@ -16,7 +16,8 @@ class AndroidApp(app.App):
   def __init__(self, app_backend, platform_backend):
     super(AndroidApp, self).__init__(app_backend=app_backend,
                                      platform_backend=platform_backend)
-    self._app_backend.Start()
+    startup_args = self._app_backend.GetAppStartupArgs()
+    self._app_backend.Start(startup_args)
 
   @property
   def ui(self): # pylint: disable=invalid-name
