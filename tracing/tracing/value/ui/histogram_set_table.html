@@ -19,9 +19,6 @@ found in the LICENSE file.
       min-height: 0px;
       overflow: auto;
     }
-    #table {
-      margin-top: 5px;
-    }
     </style>
 
     <tr-ui-b-table id="table"/>
@@ -58,7 +55,6 @@ tr.exportTo('tr.v.ui', function() {
     },
 
     ready() {
-      this.$.table.zebra = true;
       this.addEventListener('sort-column-changed',
           this.sortColumnChangedListener_);
       this.addEventListener('requestSelectionChange',
@@ -112,6 +108,35 @@ tr.exportTo('tr.v.ui', function() {
           cmp: (a, b) => a.compareNames(b),
         }
       ].concat(displayLabels.map(l => this.buildColumn_(l)));
+
+      this.$.table.headRows = [
+        {
+          nameCell: tr.ui.b.createSpan({
+            textContent: 'chromium revisions',
+            color: '#9e9e9e',
+          }),
+          getCell(displayLabel) {
+            return tr.ui.b.createLink({
+              textContent: '123456-234567',
+              href: '#',
+            });
+          },
+          compareNames() { return 0; },
+        },
+        {
+          nameCell: tr.ui.b.createSpan({
+            textContent: 'v8 revisions',
+            color: '#9e9e9e',
+          }),
+          getCell(displayLabel) {
+            return tr.ui.b.createLink({
+              textContent: '123456-234567',
+              href: '#',
+            });
+          },
+          compareNames() { return 0; },
+        },
+      ];
 
       tr.b.Timing.instant('histogram-set-table', 'columnCount',
           this.$.table.tableColumns.length);
