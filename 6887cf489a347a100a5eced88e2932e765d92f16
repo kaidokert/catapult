@@ -70,6 +70,24 @@
       "revId": "6887cf489a347a100a5eced88e2932e765d92f16",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06f3bdbd_f51dcc58",
+        "filename": "telemetry/telemetry/android/shared_android_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1120845
+      },
+      "writtenOn": "2018-01-05T15:34:57Z",
+      "side": 1,
+      "message": "I found this when I was working on Cronet Perf Tests (crbug.com/763998).\n\nThat basically involves running our python script (components/cronet/android/test/javaperftests/run.py) which invokes DidRunStory() here.\n\nThis seems to be a recent regression, because last time I ran that script, I didn\u0027t see an error.",
+      "parentUuid": "3d2eb368_3518ff26",
+      "revId": "6887cf489a347a100a5eced88e2932e765d92f16",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
