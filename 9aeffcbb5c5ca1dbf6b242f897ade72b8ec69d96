@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "70a725dd_890bea82",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-05T11:30:59Z",
+      "side": 1,
+      "message": "nit: configuration_to_browser",
+      "revId": "9aeffcbb5c5ca1dbf6b242f897ade72b8ec69d96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e12b153b_78ad8429",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-05T11:30:59Z",
+      "side": 1,
+      "message": "can we make this match exactly instead of looking only for a prefix match?",
+      "revId": "9aeffcbb5c5ca1dbf6b242f897ade72b8ec69d96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b67a167e_74a06a08",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-05T11:30:59Z",
+      "side": 1,
+      "message": "wondering whether this should:\n\n1. place a UI alert somewhere on pinpoint for the user to know that a browser could not be found and the default is being used, or\n2. raise a TypeError and right out refuse to run until a browser is defined for this configuration.\n\nleaning towards 2",
+      "revId": "9aeffcbb5c5ca1dbf6b242f897ade72b8ec69d96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00f47b1e_bb890ed4",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-05T11:30:59Z",
+      "side": 1,
+      "message": "add a test that looks up the browser from the map?",
+      "revId": "9aeffcbb5c5ca1dbf6b242f897ade72b8ec69d96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
