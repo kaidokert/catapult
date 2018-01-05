@@ -52,6 +52,24 @@
       "revId": "6887cf489a347a100a5eced88e2932e765d92f16",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d2eb368_3518ff26",
+        "filename": "telemetry/telemetry/android/shared_android_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-05T15:31:44Z",
+      "side": 1,
+      "message": "Yes, handling the inconsistent interface gonna be lots of work. So it\u0027s better to just fix the problem here \u0026 file a follow-up bug.\n\nThough I am not sure how this slips through our existing test coverage. How do you happen to file this bug?",
+      "parentUuid": "2c7871c6_3d2ae834",
+      "revId": "6887cf489a347a100a5eced88e2932e765d92f16",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
