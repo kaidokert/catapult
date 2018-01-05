@@ -1,0 +1,9 @@
+chart tooltip
+refactor test-path-component to chart-parameter
+alerts-section: omit Master, Test Case columns when all same
+change NEW_STATE to actions.initialize
+refactor ChromeperfApp.actions.updateRoute calls to dispatch event
+alerts PRETRIAGE menu
+alt+click+drag alerts to nudge
+drag across chart to brush multiple points
+chart vertical zoom
