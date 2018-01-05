@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "91c546c0_afd95b81",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2018-01-05T17:50:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6afe374_6f8f2bc3",
+      "revId": "53e6a3b5eefff8e5827696a036c54bf0a3bc8681",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "152f321b_45517446",
         "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "53e6a3b5eefff8e5827696a036c54bf0a3bc8681",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19c7482a_3a900aa5",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2018-01-05T17:50:12Z",
+      "side": 1,
+      "message": "Yep, that\u0027s sufficient. Removed.",
+      "parentUuid": "152f321b_45517446",
+      "revId": "53e6a3b5eefff8e5827696a036c54bf0a3bc8681",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
