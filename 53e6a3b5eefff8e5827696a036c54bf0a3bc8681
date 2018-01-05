@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d6afe374_6f8f2bc3",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-05T10:10:34Z",
+      "side": 1,
+      "message": "We had chatted for a while about having a smarter \"ChromeArgsBuilder\" which can validate flags as they are added, group them together if needed and complain if conflicting values are set (e.g. both enabling and disabling the same feature) at the time when the conflicting flag is added.\n\nFor now this change is probably OK. But please leave a TODO on crbug.com/799411 to implement a proper fix.",
+      "revId": "53e6a3b5eefff8e5827696a036c54bf0a3bc8681",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "152f321b_45517446",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-05T10:10:34Z",
+      "side": 1,
+      "message": "this should be `--force-fieldtrials`, and it\u0027s a little trickier to parse since it\u0027s a slash separated list of key/value pairs.\nhttps://peter.sh/experiments/chromium-command-line-switches/#force-fieldtrials\n\nfor your bug, and to keep things simple for now, would it be enough to just group together the disabled/endabled features?",
+      "revId": "53e6a3b5eefff8e5827696a036c54bf0a3bc8681",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
