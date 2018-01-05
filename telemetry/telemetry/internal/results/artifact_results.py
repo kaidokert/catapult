@@ -21,6 +21,10 @@ class NoopArtifactResults(object):
   def artifact_dir(self):
     return self._artifact_dir
 
+  def IterTestAndArtifacts(self):
+    return
+    yield  # pylint: disable=unreachable
+
   def GetTestArtifacts(self, test_name):
     del test_name
     return {}
@@ -53,6 +57,17 @@ class ArtifactResults(object):
 
     if not os.path.exists(self.artifact_dir):
       os.makedirs(self.artifact_dir)
+
+  def IterTestAndArtifacts(self):
+    """ Iter all artifacts by |test_name| and corresponding |artifacts|.
+
+      test_name: the name of test in string
+      artifacts: a dictionary whose keys are the name of artifact type
+        (e.g: 'screenshot', 'log'..) and values are the list of file paths of
+        those artifacts.
+    """
+    for test_name, artifacts in self._test_artifacts.iteritems():
+      yield test_name, artifacts
 
   def GetTestArtifacts(self, test_name):
     """Gets all artifacts for a test.
