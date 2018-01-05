@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c12e4dc8_7849986e",
+        "filename": "dashboard/dashboard/api/api_auth.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-01-05T16:19:04Z",
+      "side": 1,
+      "message": "nit: Should we add a comment with poc or something?",
+      "range": {
+        "startLine": 22,
+        "startChar": 5,
+        "endLine": 22,
+        "endChar": 15
+      },
+      "revId": "081db0dfc3204174718ef8b7be199fa70e1a5152",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
