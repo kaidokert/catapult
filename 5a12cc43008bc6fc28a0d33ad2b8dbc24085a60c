@@ -101,6 +101,40 @@
       "revId": "5a12cc43008bc6fc28a0d33ad2b8dbc24085a60c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5382d0e7_6e056443",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-08T11:13:54Z",
+      "side": 1,
+      "message": "nits: replace this and 3 lines below with nits: self.assertEquals({\u0027\u0027Feature1\u0027, \u0027\u0027Feature2\u0027, \u0027\u0027Feature3\u0027}, set(split_args))",
+      "revId": "5a12cc43008bc6fc28a0d33ad2b8dbc24085a60c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8912ec4e_47837462",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-08T11:13:54Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "5a12cc43008bc6fc28a0d33ad2b8dbc24085a60c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
