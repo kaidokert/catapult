@@ -12,14 +12,22 @@ import tempfile
 from telemetry.internal.util import file_handle
 
 
+_ARTIFACT_DIRNAME = 'artifacts'
+
+
 class NoopArtifactResults(object):
   """A no-op artifact results object."""
   def __init__(self, output_dir):
-    self._artifact_dir = os.path.join(os.path.realpath(output_dir), 'artifacts')
+    self._artifact_dir = os.path.abspath(
+        os.path.join(os.path.realpath(output_dir), _ARTIFACT_DIRNAME))
 
   @property
   def artifact_dir(self):
     return self._artifact_dir
+
+  def IterTestAndArtifacts(self):
+    return
+    yield  # pylint: disable=unreachable
 
   def GetTestArtifacts(self, test_name):
     del test_name
@@ -49,10 +57,22 @@ class ArtifactResults(object):
     # Maps test name -> mapping of artifact name to list of artifacts
     self._test_artifacts = collections.defaultdict(
         lambda: collections.defaultdict(list))
-    self._artifact_dir = os.path.join(os.path.realpath(output_dir), 'artifacts')
+    self._artifact_dir = os.path.abspath(os.path.join(
+        os.path.realpath(output_dir), _ARTIFACT_DIRNAME))
 
     if not os.path.exists(self.artifact_dir):
       os.makedirs(self.artifact_dir)
+
+  def IterTestAndArtifacts(self):
+    """ Iter all artifacts by |test_name| and corresponding |artifacts|.
+
+      test_name: the name of test in string
+      artifacts: a dictionary whose keys are the name of artifact type
+        (e.g: 'screenshot', 'log'..) and values are the list of file paths of
+        those artifacts.
+    """
+    for test_name, artifacts in self._test_artifacts.iteritems():
+      yield test_name, artifacts
 
   def GetTestArtifacts(self, test_name):
     """Gets all artifacts for a test.
@@ -64,6 +84,20 @@ class ArtifactResults(object):
   @property
   def artifact_dir(self):
     return self._artifact_dir
+
+  def GetAbsPath(self, artifact_path):
+    """ Returns absolute path to artifact_path stored in |artifact_dir|.
+
+    Note: this does not check whether |artifact_path| actually exists.
+    """
+    if artifact_path.startswith(self._artifact_dir):
+      return os.path.abspath(artifact_path)
+    assert artifact_path.startswith(_ARTIFACT_DIRNAME), (
+        'artifact_path must either be absolute path or relative to '
+        'output directory. Unrecognized path: %s' % artifact_path)
+    output_dir = os.path.join(self._artifact_dir, '..')
+    return os.path.abspath(os.path.join(output_dir, artifact_path))
+
 
   @contextlib.contextmanager
   def CreateArtifact(self, story, name, run_number=None):
@@ -121,7 +155,7 @@ class ArtifactResults(object):
     # relative to the output directory. The filter is there because
     # os.path.split returns an empty string when run on a filename;
     # os.path.split('bar') -> ('', 'bar').
-    artifact_path = '/'.join(['artifacts'] + list(
+    artifact_path = '/'.join([_ARTIFACT_DIRNAME] + list(
         path for path in os.path.split(artifact_path) if path))
 
     self._test_artifacts[test_name][name].append(artifact_path)
