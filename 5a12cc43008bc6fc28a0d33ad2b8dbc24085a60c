@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "57b937db_4b5bfd85",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-08T10:06:56Z",
+      "side": 1,
+      "message": "nit: space missing between \"--disable-features\" and \"since\".",
+      "revId": "5a12cc43008bc6fc28a0d33ad2b8dbc24085a60c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34dcd409_d75d2627",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-08T10:06:56Z",
+      "side": 1,
+      "message": "super nit: end sentences with periods.",
+      "revId": "5a12cc43008bc6fc28a0d33ad2b8dbc24085a60c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2354fb3c_da117406",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-08T10:06:56Z",
+      "side": 1,
+      "message": "super nit: ditto.",
+      "revId": "5a12cc43008bc6fc28a0d33ad2b8dbc24085a60c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc67f082_981361ee",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-08T10:06:56Z",
+      "side": 1,
+      "message": "nit: I think the \"list\" here is not needed; you can also join the set.",
+      "revId": "5a12cc43008bc6fc28a0d33ad2b8dbc24085a60c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c94a04e_e3186118",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-08T10:06:56Z",
+      "side": 1,
+      "message": "nit: ditto.",
+      "revId": "5a12cc43008bc6fc28a0d33ad2b8dbc24085a60c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69611260_72d38ca5",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-08T10:06:56Z",
+      "side": 1,
+      "message": "nit: also add a \u0027--foo\u0027 argument, and check that \u0027--foo\u0027 is still returned in the startup args.",
+      "revId": "5a12cc43008bc6fc28a0d33ad2b8dbc24085a60c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
