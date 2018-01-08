@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ab0e469e_09687993",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-08T15:46:25Z",
+      "side": 1,
+      "message": "This is a bit awkward.\n\nI think AddArtifact ensures that all artifact paths are relative to the artifact_dir, right? Could the caller instead just do os.path.join(artifact_results.artifact_dir, artifact_path) to make them absolute?",
+      "revId": "c8d8b92675b1f90664d5c806963388838580a64a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9eb73aa_90aadfe9",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-08T15:46:25Z",
+      "side": 1,
+      "message": "nit: for i, artifact_path in enumerate(artifacts[artifact_type])",
+      "revId": "c8d8b92675b1f90664d5c806963388838580a64a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8eac4398_53d84743",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-08T15:46:25Z",
+      "side": 1,
+      "message": "nit: Uploading",
+      "revId": "c8d8b92675b1f90664d5c806963388838580a64a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb644095_e0bdbdd3",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 525,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-08T15:46:25Z",
+      "side": 1,
+      "message": "this should just be `total_num_artifacts`?",
+      "revId": "c8d8b92675b1f90664d5c806963388838580a64a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
