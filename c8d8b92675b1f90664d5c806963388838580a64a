@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1169a37a_18bad938",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-08T15:51:48Z",
+      "side": 1,
+      "message": "\"os.path.join(artifact_results.artifact_dir, artifact_path)\" is not correct, it should be \"os.path.join(artifact_results.artifact_dir, \u0027..\u0027, artifact_path)\". \n\nI thought about putting this in the caller, but the fact about where these |artifact_path| are relative to is held by this class. Assembling that back is a bit non trivial to figure out, so that\u0027s why I put this here.",
+      "parentUuid": "ab0e469e_09687993",
+      "revId": "c8d8b92675b1f90664d5c806963388838580a64a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f9eb73aa_90aadfe9",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 4
