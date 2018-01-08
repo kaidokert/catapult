@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "10a31959_e7cd589e",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-08T16:27:43Z",
+      "side": 1,
+      "message": "That would make the job of the recipe to figure out where the artifacts are stored harder. Note that the recipe just pass in --output-dir, hence it only knows about the output_directory.",
+      "parentUuid": "79e948e1_b05c0421",
+      "revId": "c8d8b92675b1f90664d5c806963388838580a64a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f9eb73aa_90aadfe9",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 4
@@ -69,6 +87,24 @@
       "revId": "c8d8b92675b1f90664d5c806963388838580a64a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a5a062d_d94dbacb",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-08T16:27:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9eb73aa_90aadfe9",
+      "revId": "c8d8b92675b1f90664d5c806963388838580a64a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -89,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "b6ca4bfc_3d8f8874",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-08T16:27:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8eac4398_53d84743",
+      "revId": "c8d8b92675b1f90664d5c806963388838580a64a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bb644095_e0bdbdd3",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 4
@@ -103,6 +157,24 @@
       "revId": "c8d8b92675b1f90664d5c806963388838580a64a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1cb0d11_8b4bc08a",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 525,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-08T16:27:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb644095_e0bdbdd3",
+      "revId": "c8d8b92675b1f90664d5c806963388838580a64a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
