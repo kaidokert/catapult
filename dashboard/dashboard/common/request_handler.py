@@ -75,6 +75,7 @@ class RequestHandler(webapp2.RequestHandler):
       login_url = users.create_login_url('/')
     user_info = '<a href="%s" title="%s">%s</a>' % (
         login_url, title, display_username)
+    login_url = login_url.replace('passive=true', 'passive=false')
     template_values['login_url'] = login_url
     template_values['display_username'] = display_username
     template_values['user_info'] = user_info
