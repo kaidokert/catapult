@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "54874748_7c226add",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-08T16:47:01Z",
+      "side": 1,
+      "message": "Then the caller should do the same thing that the recipe would do: use the fact that artifact paths are relative to the output dir.",
+      "parentUuid": "10a31959_e7cd589e",
+      "revId": "c8d8b92675b1f90664d5c806963388838580a64a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f9eb73aa_90aadfe9",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 4
