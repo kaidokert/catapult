@@ -91,6 +91,24 @@
     },
     {
       "key": {
+        "uuid": "a72d7176_524e0cd7",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-08T17:47:56Z",
+      "side": 1,
+      "message": "In this case, the caller needs to know which artifact paths belong to which page for meaningful messaging to the log. Can you be more specific about your proposal of how callers should handle this?\n\n\nIf you think the API is awkward (which I am also agree), another option I have is to changing this to GetArtifactAbsPath(self, test_name). Wdyt?",
+      "parentUuid": "54874748_7c226add",
+      "revId": "c8d8b92675b1f90664d5c806963388838580a64a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f9eb73aa_90aadfe9",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 4
