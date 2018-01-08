@@ -15,7 +15,6 @@ from telemetry.internal.backends import browser_backend
 from telemetry.internal.backends.chrome import extension_backend
 from telemetry.internal.backends.chrome import tab_list_backend
 from telemetry.internal.backends.chrome_inspector import devtools_client_backend
-from telemetry.internal.browser import user_agent
 from telemetry.internal.browser import web_contents
 from telemetry.testing import options_for_unittests
 
@@ -68,63 +67,13 @@ class ChromeBrowserBackend(browser_backend.BrowserBackend):
 
   def GetBrowserStartupArgs(self):
     # TODO(crbug.com/787834): Move to the corresponding possible-browser class.
-    assert not '--no-proxy-server' in self.browser_options.extra_browser_args, (
-        '--no-proxy-server flag is disallowed as Chrome needs to be route to '
-        'ts_proxy_server')
-    args = []
-    args.extend(self.browser_options.extra_browser_args)
-
-    args.append('--enable-net-benchmarking')
-    args.append('--metrics-recording-only')
-    args.append('--no-default-browser-check')
-    args.append('--no-first-run')
-
-    # Turn on GPU benchmarking extension for all runs. The only side effect of
-    # the extension being on is that render stats are tracked. This is believed
-    # to be effectively free. And, by doing so here, it avoids us having to
-    # programmatically inspect a pageset's actions in order to determine if it
-    # might eventually scroll.
-    args.append('--enable-gpu-benchmarking')
-
-    # Suppress all permission prompts by atomatically denying them.
-    args.append('--deny-permission-prompts')
-
-    # Override the need for a user gesture in order to play media.
-    args.append('--autoplay-policy=no-user-gesture-required')
-
-    if self.browser_options.disable_background_networking:
-      args.append('--disable-background-networking')
-    args.extend(self.GetReplayBrowserStartupArgs())
-    args.extend(user_agent.GetChromeUserAgentArgumentFromType(
-        self.browser_options.browser_user_agent_type))
+    args = self.GetReplayBrowserStartupArgs()
 
     extensions = [extension.local_path
                   for extension in self._extensions_to_load]
     extension_str = ','.join(extensions)
     if len(extensions) > 0:
       args.append('--load-extension=%s' % extension_str)
-
-    if self.browser_options.disable_component_extensions_with_background_pages:
-      args.append('--disable-component-extensions-with-background-pages')
-
-    # Disables the start page, as well as other external apps that can
-    # steal focus or make measurements inconsistent.
-    if self.browser_options.disable_default_apps:
-      args.append('--disable-default-apps')
-
-    # Disable the search geolocation disclosure infobar, as it is only shown a
-    # small number of times to users and should not be part of perf comparisons.
-    args.append('--disable-search-geolocation-disclosure')
-
-    if (self.browser_options.logging_verbosity ==
-        self.browser_options.NON_VERBOSE_LOGGING):
-      args.extend(['--enable-logging', '--v=0'])
-    elif (self.browser_options.logging_verbosity ==
-          self.browser_options.VERBOSE_LOGGING):
-      args.extend(['--enable-logging', '--v=1'])
-    elif (self.browser_options.logging_verbosity ==
-          self.browser_options.SUPER_VERBOSE_LOGGING):
-      args.extend(['--enable-logging', '--v=2'])
 
     return args
 
