@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "79e948e1_b05c0421",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-08T16:17:53Z",
+      "side": 1,
+      "message": "Hmm, I think it\u0027s a bug that it\u0027s hard for clients of this class to figure out the paths to the artifacts stored in there.\n\nIs there a reason why we need to hard-code the \u0027artifacts\u0027 bit at the start of each relative path?\n\nIn other words, rather than:\n\nartifact_results \u003d ArtifactResults(\u0027/path/to/output\u0027)\nartifact_results.artifacts_dir \u003d \u0027/path/to/output/artifacts\u0027\nartifact_results.GetTestArtifacts(\u0027foo\u0027)[\u0027log\u0027] \u003d\u003d \u0027artifacts/my_log.txt\u0027\n\ncould we have:\n\nartifact_results \u003d ArtifactResults(\u0027/path/to/output/artifacts\u0027)\nartifact_results.artifacts_dir \u003d \u0027/path/to/output/artifacts\u0027\nartifact_results.GetTestArtifacts(\u0027foo\u0027)[\u0027log\u0027] \u003d\u003d \u0027my_log.txt\u0027\n\nand then getting absolute paths for the artifacts would be easy.",
+      "parentUuid": "1169a37a_18bad938",
+      "revId": "c8d8b92675b1f90664d5c806963388838580a64a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f9eb73aa_90aadfe9",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 4
