@@ -4,6 +4,7 @@
 
 import logging
 import os
+import shutil
 
 import py_utils
 from py_utils import binary_manager
@@ -35,6 +36,7 @@ CloudStorageError = dependency_manager.CloudStorageError
 
 
 _binary_manager = None
+_installed_helpers = set()
 
 
 def NeedsInit():
@@ -149,6 +151,40 @@ def FetchBinaryDependencies(
     devil_env.config.Initialize()
     devil_env.config.PrefetchPaths(arch=platform.GetArchName())
     devil_env.config.PrefetchPaths()
+
+
+def ReinstallHelperIfNeeded(
+    binary_name, install_path, os_name, os_version=None, device=None):
+  """ Install an binary helper to a specific location.
+
+  Args:
+    binary_name: (str) The name of the binary from binary_dependencies.json
+    install_path: (str) The path to install the binary at
+    os_name: (str) OS name as returned by Platform.GetOSName()
+    os_version: (str) OS version suffix for versioned binaries (rarely found)
+    device: (device_utils.DeviceUtils) an device to install the helper when
+        os_name == 'android'
+  Raises:
+    Exception: When the binary could not be fetched or cannot be pushed to the
+        device
+  """
+  if binary_name in _installed_helpers:
+    return
+  arch = None
+  if os_name == 'android':
+    arch = device.GetABI()
+  else:
+    arch = py_utils.GetHostArchName()
+  host_path = FetchPath(binary_name, arch, os_name, os_version)
+  if not host_path:
+    raise Exception(
+        '%s binary could not be fetched as %s', binary_name, host_path)
+  if os_name == 'android':
+    device.PushChangedFiles([(host_path, install_path)])
+    device.RunShellCommand(['chmod', '777', install_path], check_return=True)
+  else:
+    shutil.copy(host_path, install_path)
+  _installed_helpers.add(binary_name)
 
 
 def _FetchReferenceBrowserBinary(platform):
