@@ -16,6 +16,24 @@
       "revId": "cfe68d515a96b35db927adcf8b2fa657b6db4824",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "acd58a35_0fa438d4",
+        "filename": "telemetry/telemetry/page/shared_page_state_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-01-08T16:38:22Z",
+      "side": 1,
+      "message": "You know, after this many years of coding, you\u0027d think it would occur to me to ask these same questions. I\u0027ll go ahead and submit a CL that just removes this code - doesn\u0027t appear to be called from anywhere.",
+      "parentUuid": "b9be3080_9e3bd9b4",
+      "revId": "cfe68d515a96b35db927adcf8b2fa657b6db4824",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
