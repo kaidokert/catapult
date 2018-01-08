@@ -109,6 +109,24 @@
     },
     {
       "key": {
+        "uuid": "bf6992dc_0e85c20f",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-08T20:20:55Z",
+      "side": 1,
+      "message": "I think I thought too hard on this. Just moved all of this to call site instead.\n\nPTAL",
+      "parentUuid": "a72d7176_524e0cd7",
+      "revId": "c8d8b92675b1f90664d5c806963388838580a64a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f9eb73aa_90aadfe9",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 4
