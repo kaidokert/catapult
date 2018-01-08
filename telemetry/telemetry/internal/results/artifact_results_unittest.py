@@ -139,3 +139,18 @@ class ArtifactResultsUnittest(unittest.TestCase):
             'artifact_name': ['artifacts/bar.log', 'artifacts/bam.log'],
         }
     })
+
+  def testGetAbsArtifactPath(self):
+    with tempfile_ext.NamedTemporaryDirectory(
+        prefix='artifact_tests') as tempdir:
+      ar = artifact_results.ArtifactResults(tempdir)
+
+      with ar.CreateArtifact('story_name', 'logs') as log_file:
+        log_file.write('hi\n')
+
+      artifact_path = ar.GetTestArtifacts('story_name')['logs'][0]
+      abs_artifact_path = ar.GetAbsPath(artifact_path)
+
+      self.assertTrue(os.path.exists(abs_artifact_path))
+      self.assertEquals(os.path.abspath(abs_artifact_path), abs_artifact_path)
+      self.assertEquals(abs_artifact_path, ar.GetAbsPath(abs_artifact_path))
