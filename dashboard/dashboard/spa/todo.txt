@@ -1,0 +1,13 @@
+chart tooltip
+switch to /api/alerts
+/api/alerts/update
+refactor test-path-component to chart-parameter
+alerts-section: omit Master, Test Case columns when all same
+fuzzy autocomplete
+refactor NEW_STATE to actions.initialize
+refactor all ChromeperfApp.actions/reducers calls to dispatch event
+alerts PRETRIAGE menu
+dynamic hover y-axis in chart
+alt+click+drag alerts to nudge
+drag across chart to brush multiple points
+chart vertical zoom
