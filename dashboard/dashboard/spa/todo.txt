@@ -1,0 +1,31 @@
+alerts-section existing bug
+alerts-section ignore
+alerts-section new bug labels, components
+alerts-section source bug
+alerts-section source Commit Position
+alerts-section preview /api/timeseries
+alerts-section preview tooltips
+alerts-section preview dot click open timeseries
+chart-section /api/timeseries
+chart-section /get_histograms, /get_diagnostics
+releasing-section tables
+releasing-section alerts button
+releasing-section charts links
+
+PROJECT REVIEW
+
+chart-section refactor to call MultiChart methods in reducers
+switch to /api/alerts
+rename test-path-component to chart-parameter
+chart-section explode testPathComponents
+chart-parameter fuzzy autocomplete
+refactor NEW_STATE to actions.initialize
+refactor all ChromeperfApp.actions/reducers calls to dispatch event
+chart-section dynamic hover y-axis
+chart-section alt+drag alerts to nudge
+chart-section drag across chart to brush multiple points
+multi-chart vertical zoom
+multi-chart should be responsible for updating its brushes on-track, and only dispatch an event so that embedders can update other stuff
+alerts-section PRETRIAGE
+alerts-section table css transition tbody height expandedGroup
+chromeperf-app fabs hover
