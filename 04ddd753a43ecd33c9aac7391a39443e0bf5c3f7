@@ -34,6 +34,24 @@
       "revId": "04ddd753a43ecd33c9aac7391a39443e0bf5c3f7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc1ccaa2_18b439dc",
+        "filename": "telemetry/telemetry/internal/util/binary_manager.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-09T14:47:48Z",
+      "side": 1,
+      "message": "I suggest just making this whole API specific to ANdroid (or probably move this to AndroidPlatformBackend). Overall, we are not using it anywhere, and generalizing it to all platforms seem non trivial.",
+      "parentUuid": "8a9c76f8_6988fe63",
+      "revId": "04ddd753a43ecd33c9aac7391a39443e0bf5c3f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
