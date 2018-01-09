@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ff8898ec_921903f8",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-01-09T12:44:32Z",
+      "side": 1,
+      "message": "Oh, sorry for the wrong reference to android_browser_backend, I think it was left from my previous attempts.\n\nI like your suggestion. Done. I also decided to fall back to full cache clearing when there is neither profile directory nor browser directory provided. Let me know if it is overthinking.",
+      "parentUuid": "da895373_f7d3606a",
+      "revId": "19f399d01ebee9c7cf32e27a74e156b7c89ee7a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "72fbd914_b51b689b",
         "filename": "telemetry/telemetry/internal/util/binary_manager.py",
         "patchSetId": 4
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "00f573c6_e225c9d3",
+        "filename": "telemetry/telemetry/internal/util/binary_manager.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-01-09T12:44:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72fbd914_b51b689b",
+      "revId": "19f399d01ebee9c7cf32e27a74e156b7c89ee7a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "beb8e91e_9607d9d0",
         "filename": "telemetry/telemetry/internal/util/binary_manager.py",
         "patchSetId": 4
@@ -47,6 +83,24 @@
       "writtenOn": "2018-01-09T10:33:33Z",
       "side": 1,
       "message": "nit: an -\u003e a",
+      "revId": "19f399d01ebee9c7cf32e27a74e156b7c89ee7a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5490804_00c056df",
+        "filename": "telemetry/telemetry/internal/util/binary_manager.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-01-09T12:44:32Z",
+      "side": 1,
+      "message": "Done. Grammatically sorry, this was a typo, though not sure how I ended up making this typo twice...",
+      "parentUuid": "beb8e91e_9607d9d0",
       "revId": "19f399d01ebee9c7cf32e27a74e156b7c89ee7a4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "182e73d9_ef38d32f",
+        "filename": "telemetry/telemetry/internal/util/binary_manager.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-01-09T12:44:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fbd59d35_7c5cf32a",
+      "revId": "19f399d01ebee9c7cf32e27a74e156b7c89ee7a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d76a9837_c6b243d6",
         "filename": "telemetry/telemetry/internal/util/binary_manager.py",
         "patchSetId": 4
@@ -81,6 +153,24 @@
       "writtenOn": "2018-01-09T10:33:33Z",
       "side": 1,
       "message": "Wondering whether we should cache something like (device, install_path) instead. Otherwise we won\u0027t be able to install the same helper on, e.g., several OSes or devices.",
+      "revId": "19f399d01ebee9c7cf32e27a74e156b7c89ee7a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68851d0d_781c940f",
+        "filename": "telemetry/telemetry/internal/util/binary_manager.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-01-09T12:44:32Z",
+      "side": 1,
+      "message": "That\u0027s a really good suggestion. I was wondering what to include in the tuple .. os_name, os_version looked verbose, and was worried about holding a reference to |device| unnecessarily. If you say it is OK to keep the device here, then Done.",
+      "parentUuid": "d76a9837_c6b243d6",
       "revId": "19f399d01ebee9c7cf32e27a74e156b7c89ee7a4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
