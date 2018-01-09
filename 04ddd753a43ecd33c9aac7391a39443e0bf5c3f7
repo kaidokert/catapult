@@ -88,6 +88,24 @@
       "revId": "04ddd753a43ecd33c9aac7391a39443e0bf5c3f7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b71746d1_224590c6",
+        "filename": "telemetry/telemetry/internal/util/binary_manager.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-01-09T17:13:47Z",
+      "side": 1,
+      "message": "Done: removed non-android paths, renamed, reduced params, updated the docstring, PTAL",
+      "parentUuid": "a2101c41_b9c952e2",
+      "revId": "04ddd753a43ecd33c9aac7391a39443e0bf5c3f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
