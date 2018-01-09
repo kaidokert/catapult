@@ -70,6 +70,24 @@
       "revId": "04ddd753a43ecd33c9aac7391a39443e0bf5c3f7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2101c41_b9c952e2",
+        "filename": "telemetry/telemetry/internal/util/binary_manager.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-09T15:33:55Z",
+      "side": 1,
+      "message": "Keep in binary_manager \u0026 rename sgtm. May also want to reduce the params, update the doc..",
+      "parentUuid": "8f8b81f6_7ae21bb0",
+      "revId": "04ddd753a43ecd33c9aac7391a39443e0bf5c3f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
