@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "142258ac_40baf9c5",
+        "filename": "dashboard/dashboard/pinpoint/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-01-09T23:44:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2a32a0d_7b6f8b65",
+      "revId": "feee147a6824ef96d0ee07c61381e7cc0f3e63ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "10aaec06_de6a8246",
         "filename": "dashboard/dashboard/pinpoint/models/README.md",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "feee147a6824ef96d0ee07c61381e7cc0f3e63ff",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9b2dab4_c2a92a2e",
+        "filename": "dashboard/dashboard/pinpoint/models/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-01-09T23:44:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "10aaec06_de6a8246",
+      "revId": "feee147a6824ef96d0ee07c61381e7cc0f3e63ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "005aa42e_5e66dd64",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-01-09T23:44:56Z",
+      "side": 1,
+      "message": "I guess they\u0027re protected from the perspective of the implementation. It\u0027s intended for someone who is integrating Pinpoint into their own infrastructure and therefore writing their own Quests/Executions. I\u0027ve added an intro explaining this.",
+      "parentUuid": "1eb74bb2_d2933ae6",
+      "revId": "feee147a6824ef96d0ee07c61381e7cc0f3e63ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "810acbae_aad5cff4",
         "filename": "dashboard/dashboard/pinpoint/models/quest/README.md",
         "patchSetId": 1
@@ -67,6 +121,24 @@
       "revId": "feee147a6824ef96d0ee07c61381e7cc0f3e63ff",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3cf10032_166b7dfa",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-01-09T23:44:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "810acbae_aad5cff4",
+      "revId": "feee147a6824ef96d0ee07c61381e7cc0f3e63ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
