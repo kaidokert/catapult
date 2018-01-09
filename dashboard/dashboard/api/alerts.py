@@ -1,7 +1,9 @@
 # Copyright 2017 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
+
 import datetime
+import logging
 
 from google.appengine.ext import ndb
 
@@ -38,6 +40,19 @@ class AlertsHandler(api_request_handler.ApiRequestHandler):
       elif list_type.startswith('rev'):
         rev = list_type.replace('rev/', '')
         alert_list = group_report.GetAlertsAroundRevision(rev)
+      elif list_type.startswith('new_bug'):
+        logging.info(args)
+        summary = self.request.get('summary')
+        logging.info(summary)
+        description = self.request.get('description')
+        logging.info(description)
+        labels = self.request.get_all('label')
+        logging.info(labels)
+        components = self.request.get_all('component')
+        logging.info(components)
+        keys = self.request.get('keys')
+        logging.info(keys)
+        alert_list = []
       elif list_type.startswith('history'):
         try:
           days = int(list_type.replace('history/', ''))
