@@ -16,6 +16,24 @@
       "revId": "04ddd753a43ecd33c9aac7391a39443e0bf5c3f7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a9c76f8_6988fe63",
+        "filename": "telemetry/telemetry/internal/util/binary_manager.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-01-09T14:32:58Z",
+      "side": 1,
+      "message": "ah, oops, pressed the CQ before seeing this. Would NotImplementedError for non-Android be appropriate here?",
+      "parentUuid": "c603a9fe_2e5d28a2",
+      "revId": "04ddd753a43ecd33c9aac7391a39443e0bf5c3f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
