@@ -16,6 +16,24 @@
       "revId": "730c3357546479ef62897b86147e07de29958938",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fc9f882_53c8515f",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-09T11:11:44Z",
+      "side": 1,
+      "message": "abspath does resolve the \"..\", so I think we are good here :-)",
+      "parentUuid": "52ebc850_607181f1",
+      "revId": "730c3357546479ef62897b86147e07de29958938",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
