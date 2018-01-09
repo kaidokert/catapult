@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da895373_f7d3606a",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-09T10:33:33Z",
+      "side": 1,
+      "message": "I didn\u0027t understand this comment until I saw [1], where we flush both the profile_directory and browser_directory.\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py?rcl\u003de1f9b2c0b5761fd51e665b82f50ae96d9ded2cf3\u0026l\u003d407\n\nI think this makes the logic quite obscure. Should we instead modify the caller to _not_ call FlushSystemCacheForDirectory if the browser_directoy is not set?",
+      "revId": "19f399d01ebee9c7cf32e27a74e156b7c89ee7a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72fbd914_b51b689b",
+        "filename": "telemetry/telemetry/internal/util/binary_manager.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-09T10:33:33Z",
+      "side": 1,
+      "message": "nit: an -\u003e a",
+      "revId": "19f399d01ebee9c7cf32e27a74e156b7c89ee7a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "beb8e91e_9607d9d0",
+        "filename": "telemetry/telemetry/internal/util/binary_manager.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-09T10:33:33Z",
+      "side": 1,
+      "message": "nit: an -\u003e a",
+      "revId": "19f399d01ebee9c7cf32e27a74e156b7c89ee7a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fbd59d35_7c5cf32a",
+        "filename": "telemetry/telemetry/internal/util/binary_manager.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-09T10:33:33Z",
+      "side": 1,
+      "message": "nits: end sentences with periods (also above in Args).",
+      "revId": "19f399d01ebee9c7cf32e27a74e156b7c89ee7a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d76a9837_c6b243d6",
+        "filename": "telemetry/telemetry/internal/util/binary_manager.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-09T10:33:33Z",
+      "side": 1,
+      "message": "Wondering whether we should cache something like (device, install_path) instead. Otherwise we won\u0027t be able to install the same helper on, e.g., several OSes or devices.",
+      "revId": "19f399d01ebee9c7cf32e27a74e156b7c89ee7a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
