@@ -174,6 +174,24 @@
       "revId": "19f399d01ebee9c7cf32e27a74e156b7c89ee7a4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b53e962_631fcd95",
+        "filename": "telemetry/telemetry/internal/util/binary_manager.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-09T12:48:22Z",
+      "side": 1,
+      "message": "device.serial (if device is not None) should probably be better.",
+      "parentUuid": "68851d0d_781c940f",
+      "revId": "19f399d01ebee9c7cf32e27a74e156b7c89ee7a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
