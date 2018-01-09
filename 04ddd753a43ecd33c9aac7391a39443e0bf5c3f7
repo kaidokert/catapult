@@ -52,6 +52,24 @@
       "revId": "04ddd753a43ecd33c9aac7391a39443e0bf5c3f7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f8b81f6_7ae21bb0",
+        "filename": "telemetry/telemetry/internal/util/binary_manager.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-01-09T15:32:43Z",
+      "side": 1,
+      "message": "moving it to AndroidPlatformBackend looks non-trivial because PrepareDeviceForPerf() in android_profiling_helper.py does not know about AndroidPlatformBackend.\n\nCan we keep it in binary_manager and and name something like ReinstallAndroidHelperIfNeeded()?\n\nIf teaching the profiling helper about android platform backend is preferable, what would be the way/time to plumb the reference in?",
+      "parentUuid": "bc1ccaa2_18b439dc",
+      "revId": "04ddd753a43ecd33c9aac7391a39443e0bf5c3f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
