@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c603a9fe_2e5d28a2",
+        "filename": "telemetry/telemetry/internal/util/binary_manager.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-09T14:30:52Z",
+      "side": 1,
+      "message": "actually this may not be correct. We have the case of running CHromeOS remotely. I would suggest making this method supporting Android only for now to simplify it",
+      "revId": "04ddd753a43ecd33c9aac7391a39443e0bf5c3f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
