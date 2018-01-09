@@ -11,6 +11,9 @@ from dashboard.common import utils
 
 
 OAUTH_CLIENT_ID_WHITELIST = [
+    # This oauth client id is for V2SPA.
+    # TODO(benjhayden) Remove this before launching.
+    '62121018386-rhk28ad5lbqheinh05fgau3shotl2t6c.apps.googleusercontent.com',
     # This oauth client id is from Pinpoint.
     '62121018386-aqdfougp0ddn93knqj6g79vvn42ajmrg.apps.googleusercontent.com',
     # This oauth client id is from the 'chromeperf' API console.

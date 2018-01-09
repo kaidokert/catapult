@@ -1,7 +1,10 @@
 # Copyright 2017 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
+
 import datetime
+import httplib2
+import logging
 
 from google.appengine.ext import ndb
 
@@ -10,6 +13,7 @@ from dashboard.common import request_handler
 from dashboard.models import anomaly
 from dashboard import alerts
 from dashboard import group_report
+from dashboard import file_bug
 
 
 class AlertsHandler(api_request_handler.ApiRequestHandler):
@@ -38,6 +42,37 @@ class AlertsHandler(api_request_handler.ApiRequestHandler):
       elif list_type.startswith('rev'):
         rev = list_type.replace('rev/', '')
         alert_list = group_report.GetAlertsAroundRevision(rev)
+      elif list_type.startswith('new_bug'):
+        logging.info(args)
+        logging.info(self.request.headers.get('Authorization'))
+        owner = self.request.get('owner')
+        logging.info(owner)
+        cc = self.request.get('cc')
+        logging.info(cc)
+        if owner and not owner.endswith('@chromium.org'):
+          raise Exception('Owner email address must end with @chromium.org')
+        summary = self.request.get('summary')
+        logging.info(summary)
+        description = self.request.get('description')
+        logging.info(description)
+        labels = self.request.get_all('label')
+        logging.info(labels)
+        components = self.request.get_all('component')
+        logging.info(components)
+        keys = self.request.get_all('key')
+        logging.info(keys)
+        http = httplib2.Http()
+        orig_request = http.request
+        def NewRequest(uri, method='GET', body=None, headers=None,
+                       redirections=httplib2.DEFAULT_MAX_REDIRECTS,
+                       connection_type=None):
+          headers = dict(headers or {})
+          headers['Authorization'] = self.request.headers.get('Authorization')
+          return orig_request(uri, method, body, headers, redirections,
+                              connection_type)
+        http.request = NewRequest
+        return file_bug.FileBug(
+            http, keys, summary, description, labels, components, owner, cc)
       elif list_type.startswith('history'):
         try:
           days = int(list_type.replace('history/', ''))
