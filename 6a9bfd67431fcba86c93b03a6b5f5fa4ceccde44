@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "a7945eff_5a0e962f",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-01-10T19:50:39Z",
+      "side": 1,
+      "message": "Don\u0027t think we should have 2 ways to do this, can you file a bug to switch dashboard to using the same thing?",
+      "range": {
+        "startLine": 214,
+        "startChar": 4,
+        "endLine": 214,
+        "endChar": 15
+      },
+      "revId": "6a9bfd67431fcba86c93b03a6b5f5fa4ceccde44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "98c7d4a0_62f1cc5d",
         "filename": "dashboard/dashboard/templates/edit_site_config.html",
         "patchSetId": 2
