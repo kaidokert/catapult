@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "993b7140_bd61723c",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-01-10T20:07:09Z",
+      "side": 1,
+      "message": "Done. https://github.com/catapult-project/catapult/issues/4153",
+      "parentUuid": "a7945eff_5a0e962f",
+      "range": {
+        "startLine": 214,
+        "startChar": 4,
+        "endLine": 214,
+        "endChar": 15
+      },
+      "revId": "6a9bfd67431fcba86c93b03a6b5f5fa4ceccde44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "98c7d4a0_62f1cc5d",
         "filename": "dashboard/dashboard/templates/edit_site_config.html",
         "patchSetId": 2
@@ -36,6 +60,24 @@
       "writtenOn": "2018-01-10T10:26:20Z",
       "side": 1,
       "message": "nit: if it isn\u0027t too much hassle to change, maybe call these bot_browser_map_exact?",
+      "revId": "6a9bfd67431fcba86c93b03a6b5f5fa4ceccde44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6514bce1_3da9ec67",
+        "filename": "dashboard/dashboard/templates/edit_site_config.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-01-10T20:07:09Z",
+      "side": 1,
+      "message": "Going to change this in a followup for https://github.com/catapult-project/catapult/issues/4153 .",
+      "parentUuid": "98c7d4a0_62f1cc5d",
       "revId": "6a9bfd67431fcba86c93b03a6b5f5fa4ceccde44",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
