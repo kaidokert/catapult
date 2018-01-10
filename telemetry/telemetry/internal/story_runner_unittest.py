@@ -73,6 +73,7 @@ class FakePlatform(object):
   def GetDeviceId(self):
     return None
 
+
 class TestSharedState(story_module.SharedState):
 
   _platform = FakePlatform()
@@ -1479,3 +1480,78 @@ class StoryRunnerTest(unittest.TestCase):
     self.assertEquals(1, len(self.results.failures))
     self.assertEquals(0, GetNumberOfSuccessfulPageRuns(self.results))
     self.assertIn('Too many values: 1 > 0', self.fake_stdout.getvalue())
+
+  def testRunBenchmarkReturnCodeSuccessfulRun(self):
+
+    class DoNothingSharedState(TestSharedState):
+      def RunStory(self, results):
+        pass
+
+    class SuccessfulBenchmark(benchmark.Benchmark):
+      test = DummyTest
+      def CreateStorySet(self, options):
+        story_set = story_module.StorySet()
+        story_set.AddStory(page_module.Page(
+            'http://foo', name='foo',
+            shared_page_state_class=DoNothingSharedState))
+        story_set.AddStory(page_module.Page(
+            'http://bar', name='bar',
+            shared_page_state_class=DoNothingSharedState))
+        return story_set
+
+    sucessful_benchmark = SuccessfulBenchmark()
+    options = self._GenerateBaseBrowserFinderOptions()
+    options.output_dir = '/does/not/exist'
+    options.output_formats = ['none']
+    return_code = story_runner.RunBenchmark(sucessful_benchmark, options)
+    self.assertEquals(0, return_code)
+
+  def testRunBenchmarkReturnCodeCaughtException(self):
+
+    class DoNothingSharedState(TestSharedState):
+      def RunStory(self, results):
+        raise exceptions.AppCrashException()
+
+    class SuccessfulBenchmark(benchmark.Benchmark):
+      test = DummyTest
+      def CreateStorySet(self, options):
+        story_set = story_module.StorySet()
+        story_set.AddStory(page_module.Page(
+            'http://foo', name='foo',
+            shared_page_state_class=DoNothingSharedState))
+        story_set.AddStory(page_module.Page(
+            'http://bar', name='bar',
+            shared_page_state_class=DoNothingSharedState))
+        return story_set
+
+    sucessful_benchmark = SuccessfulBenchmark()
+    options = self._GenerateBaseBrowserFinderOptions()
+    options.output_dir = '/does/not/exist'
+    options.output_formats = ['none']
+    return_code = story_runner.RunBenchmark(sucessful_benchmark, options)
+    self.assertEquals(1, return_code)
+
+
+  def testRunBenchmarkReturnCodeUnCaughtException(self):
+    class DoNothingSharedState(TestSharedState):
+      def RunStory(self, results):
+        raise Exception('Unexpected exception')
+
+    class SuccessfulBenchmark(benchmark.Benchmark):
+      test = DummyTest
+      def CreateStorySet(self, options):
+        story_set = story_module.StorySet()
+        story_set.AddStory(page_module.Page(
+            'http://foo', name='foo',
+            shared_page_state_class=DoNothingSharedState))
+        story_set.AddStory(page_module.Page(
+            'http://bar', name='bar',
+            shared_page_state_class=DoNothingSharedState))
+        return story_set
+
+    sucessful_benchmark = SuccessfulBenchmark()
+    options = self._GenerateBaseBrowserFinderOptions()
+    options.output_dir = '/does/not/exist'
+    options.output_formats = ['none']
+    return_code = story_runner.RunBenchmark(sucessful_benchmark, options)
+    self.assertEquals(2, return_code)
