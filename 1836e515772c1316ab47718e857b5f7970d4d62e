@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1d8f11b8_a8f8e80c",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1490,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-10T13:32:46Z",
+      "side": 1,
+      "message": "nit: call this TestBenchmark (on the other test cases it\u0027s not technically \"successful\").",
+      "revId": "1836e515772c1316ab47718e857b5f7970d4d62e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "746ddffe_0930ff6e",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1511,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-10T13:32:46Z",
+      "side": 1,
+      "message": "nit: call this StoryFailureSharedState (?) or something along those lines",
+      "revId": "1836e515772c1316ab47718e857b5f7970d4d62e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07a9d809_4105893a",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1536,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-10T13:32:46Z",
+      "side": 1,
+      "message": "nit: call this UnhandledFailureSharedState (?) or something ...",
+      "revId": "1836e515772c1316ab47718e857b5f7970d4d62e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
