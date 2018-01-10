@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!--
+Copyright 2016 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/base/category_util.html">
+<link rel="import" href="/tracing/base/math/statistics.html">
+<link rel="import" href="/tracing/metrics/metric_registry.html">
+<link rel="import" href="/tracing/metrics/system_health/event_finder_utils.html">
+<link rel="import" href="/tracing/metrics/system_health/utils.html">
+<link rel="import" href="/tracing/model/helpers/chrome_model_helper.html">
+<link rel="import" href="/tracing/model/helpers/chrome_thread_helper.html">
+<link rel="import" href="/tracing/model/timed_event.html">
+<link rel="import" href="/tracing/value/diagnostics/diagnostic_map.html">
+<link rel="import" href="/tracing/value/histogram.html">
+
+<script>
+'use strict';
+
+tr.exportTo('tr.metrics.sh', function() {
+  const timeDurationInMs_smallerIsBetter =
+      tr.b.Unit.byName.timeDurationInMs_smallerIsBetter;
+  const hasCategoryAndName = tr.metrics.sh.hasCategoryAndName;
+  const EventFinderUtils = tr.metrics.sh.EventFinderUtils;
+
+  const LOADING_METRIC_BOUNDARIES = tr.v.HistogramBinBoundaries
+    .createLinear(0, 5, 10);
+
+  const SUMMARY_OPTIONS = {
+    avg: false,
+    count: true,
+    max: false,
+    min: false,
+    std: false,
+    sum: false,
+  };
+
+  function findAllEvents(rendererHelper, category, title) {
+    const targetEvents = [];
+
+    for (const ev of rendererHelper.process.getDescendantEvents()) {
+      if (!hasCategoryAndName(ev, category, title)) continue;
+      targetEvents.push(ev);
+    }
+
+    return targetEvents;
+  }
+
+  function collectSfRuleEvent(
+      category, eventName, rendererHelper, frameToNavStartEvents) {
+    const targetEvents = findAllEvents(rendererHelper, category, eventName);
+    const samples = [];
+    for (const ev of targetEvents) {
+      samples.push({
+        value: 1,
+        diagnostics: tr.v.d.DiagnosticMap.fromObject({
+          'matching_rule': new tr.v.d.GenericSet([ev.args.matching_rule])
+        }),
+      });
+    }
+    return samples;
+  }
+
+  function addSamplesToHistogram(samples, histogram, histograms) {
+    for (const sample of samples) {
+      histogram.addSample(sample.value, sample.diagnostics);
+
+      // Only add breakdown histograms for FCP.
+      // http://crbug.com/771610
+      if (histogram.name !== 'timeToFirstContentfulPaint') continue;
+
+      if (!sample.breakdownTree) continue;
+      for (const [category, breakdown] of Object.entries(
+          sample.breakdownTree)) {
+        const relatedName = `${histogram.name}:${category}`;
+        let relatedHist = histograms.getHistogramsNamed(relatedName)[0];
+        if (!relatedHist) {
+          relatedHist = histograms.createHistogram(
+              relatedName, histogram.unit, [], {
+                binBoundaries: LOADING_METRIC_BOUNDARIES,
+                summaryOptions: {
+                  count: false,
+                  max: false,
+                  min: false,
+                  sum: false,
+                },
+              });
+
+          let relatedNames = histogram.diagnostics.get('breakdown');
+          if (!relatedNames) {
+            relatedNames = new tr.v.d.RelatedHistogramBreakdown();
+            histogram.diagnostics.set('breakdown', relatedNames);
+          }
+          relatedNames.set(category, relatedHist);
+        }
+        relatedHist.addSample(breakdown.total, {
+          breakdown: tr.v.d.Breakdown.fromEntries(
+              Object.entries(breakdown.events)),
+        });
+      }
+    }
+  }
+
+  function sfruleMetric(histograms, model) {
+    const sfRuleHistogram = histograms.createHistogram(
+        'sfRule', timeDurationInMs_smallerIsBetter, [], {
+          binBoundaries: LOADING_METRIC_BOUNDARIES,
+          description: 'sf rule set counting',
+          summaryOptions: SUMMARY_OPTIONS,
+        });
+
+    const chromeHelper = model.getOrCreateHelper(
+        tr.model.helpers.ChromeModelHelper);
+    for (const pid in chromeHelper.rendererHelpers) {
+      const rendererHelper = chromeHelper.rendererHelpers[pid];
+      if (rendererHelper.isChromeTracingUI) continue;
+
+      const frameToNavStartEvents =
+        EventFinderUtils.getSortedMainThreadEventsByFrame(
+            rendererHelper, 'navigationStart', 'blink.user_timing');
+
+      const sfRuleSamples =
+        collectSfRuleEvent('loading', 'UrlPatternIndexMatcher::FindMatch',
+        rendererHelper, frameToNavStartEvents);
+
+      addSamplesToHistogram(
+          sfRuleSamples,
+          sfRuleHistogram,
+          histograms);
+    }
+  }
+
+  tr.metrics.MetricRegistry.register(sfruleMetric);
+
+  return {
+    sfruleMetric,
+  };
+});
+</script>
