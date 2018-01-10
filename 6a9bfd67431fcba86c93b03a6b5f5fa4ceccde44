@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "7302138a_8ff63235",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-01-10T20:27:40Z",
+      "side": 1,
+      "message": "I think the blocker I have here is I have no idea what bots the dashboard has. Seems like it\u0027s way more than the number of Pinpoint bots.",
+      "parentUuid": "993b7140_bd61723c",
+      "range": {
+        "startLine": 214,
+        "startChar": 4,
+        "endLine": 214,
+        "endChar": 15
+      },
+      "revId": "6a9bfd67431fcba86c93b03a6b5f5fa4ceccde44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "98c7d4a0_62f1cc5d",
         "filename": "dashboard/dashboard/templates/edit_site_config.html",
         "patchSetId": 2
