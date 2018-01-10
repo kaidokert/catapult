@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "6c849095_fac25f14",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-10T02:01:37Z",
+      "side": 1,
+      "message": "sgtm",
+      "parentUuid": "57837b77_b4e1a2a2",
+      "revId": "a1f77ffb3e511909e8a1c97ddd6640af36f6d78c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b5f1719f_318edfc0",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_runtime.py",
         "patchSetId": 1
