@@ -17,6 +17,7 @@ Rows. Datastore operations often time out after a few hundred puts(), so this
 task is split up using the task queue.
 """
 
+import json
 import re
 
 from google.appengine.api import mail
@@ -475,3 +476,205 @@ def _CreateRenamedEntityIfNotExists(
     create_args[prop] = val
   new_entity = cls(**create_args)
   return new_entity
+
+
+
+
+
+import collections
+import re
+
+from google.appengine.api import mail
+from google.appengine.api import taskqueue
+from google.appengine.ext import ndb
+
+from dashboard import graph_revisions
+from dashboard import list_tests
+from dashboard.common import datastore_hooks
+from dashboard.common import request_handler
+from dashboard.common import utils
+from dashboard.models import anomaly
+from dashboard.models import graph_data
+
+
+
+STAT_TYPES = [
+    'avg', 'min', 'max', 'sum', 'std', 'count'
+]
+
+
+class MigrateSuiteHandler(request_handler.RequestHandler):
+
+  def post(self):
+    datastore_hooks.SetPrivilegedRequest()
+    migrate_top_level(json.loads(self.request.get('parent_paths')))
+
+
+class MigrateSuiteRowsHandler(request_handler.RequestHandler):
+
+  def post(self):
+    datastore_hooks.SetPrivilegedRequest()
+    dst_path = self.request.get('dst_path')
+    src_paths = json.loads(self.request.get('src_paths'))
+    task_to_migrate(dst_path, src_paths)
+
+
+def strip_name_of_stat(test_path):
+  stripped_name = test_path
+  for s in STAT_TYPES:
+    if stripped_name.endswith('_%s' % s):
+      stripped_name = stripped_name.replace('_%s' % s, '')
+  return stripped_name
+
+
+def stat_from_test_path(test_path):
+  parts = test_path.split('/')
+  for s in STAT_TYPES:
+    for p in reversed(parts):
+      if ('_%s' % s) in p:
+        return 'd_%s' % s
+  return None
+
+
+def migrate_top_level(parent_paths, level=0):
+  # M/B/S
+
+  child_paths = []
+  for test_path in parent_paths:
+    child_paths.extend(list_tests.GetTestsMatchingPattern(
+      test_path + '/*', list_entities=False))
+
+  # Group them
+  grouped_paths = collections.defaultdict(list)
+
+  for c in child_paths:
+    stripped_name = strip_name_of_stat(c)
+
+    grouped_paths[stripped_name].append(c)
+
+  # {
+  #   'benchmark_duration': ['benchmark_duration'],
+  #   'foo': ['foo_avg', 'foo_std'],
+  # }
+
+  queue = taskqueue.Queue('deprecate-tests-queue')
+
+  for g, v in grouped_paths.iteritems():
+    if len(v) > 1 or v[0] != g:
+      path = '/'.join(g.split('/')[2:])
+      print '------------------------------------------'
+      print 'migrate : %s' % g
+      print v
+      print
+      # task_to_migrate(g, v)
+
+      task_params = {
+          'dst_path': g,
+          'src_paths': json.dumps(v),
+      }
+      t = taskqueue.Task(
+          url='/migrate_suite_rows', params=task_params)
+      queue.add(t)
+
+  for k, v in grouped_paths.iteritems():
+    #print 'checking %s' % k
+    task_params = {
+        'parent_paths': json.dumps(v),
+    }
+    t = taskqueue.Task(
+        url='/migrate_suite', params=task_params)
+    queue.add(t)
+
+    # migrate_top_level(v, level=level+1)
+
+
+def get_latest_rows_for_all(test_paths):
+  results = collections.defaultdict(dict)
+
+  for t in test_paths:
+    rows = graph_data.GetLatestRowsForTest(t, 10)
+
+    for r in rows:
+      results[t][r.revision] = r
+
+  return results
+
+
+def task_to_migrate(dst_path, src_paths):
+  # {
+  #    'foo_avg': {123: row, 124: row, etc...}
+  # }
+  dst_path_parts = dst_path.split('/')[2:]
+  dst_path = '/'.join(['ChromiumPerfFyi', 'histogram-simon-test-migrate'] + dst_path_parts)
+  rows_by_name_and_rev = get_latest_rows_for_all(src_paths)
+
+  # Figure out latest N revisions
+  revisions = set()
+  for r in rows_by_name_and_rev.itervalues():
+    for rev in r.iterkeys():
+      revisions.add(rev)
+
+  revisions = sorted(list(revisions), key=lambda x: -x)
+  revisions = revisions[:100]
+
+  new_parent_key = utils.TestKey(dst_path)
+
+  rows_to_put = []
+  rows_to_delete = []
+  for rev in revisions:
+    rows_with_revision = []
+    for rows_by_rev in rows_by_name_and_rev.itervalues():
+      row_entity = rows_by_rev.get(rev)
+      if row_entity:
+        rows_with_revision.append(row_entity)
+
+    row_to_put = _CreateRenamedEntityIfNotExists(
+        graph_data.Row, rows_with_revision[0], rows_with_revision[0].key.id(),
+        new_parent_key, _ROW_EXCLUDE)
+
+    supplemental_columns = {}
+    for r in rows_with_revision:
+      rows_to_delete.append(r.key)
+
+      stat_name = stat_from_test_path(r.key.parent().id())
+      if stat_name == 'd_avg':
+        row_to_put.value = r.value
+      elif stat_name == 'd_std':
+        row_to_put.error = r.value
+      else:
+        supplemental_columns[stat_name] = r.value
+    for k, v in supplemental_columns.iteritems():
+      if not hasattr(row_to_put, k):
+        setattr(row_to_put, k, v)
+    rows_to_put.append(row_to_put)
+
+  #futures = [
+  #  ndb.put_multi_async(rows_to_put),
+  #  ndb.delete_multi_async(rows_to_delete),
+  #  graph_revisions.DeleteCacheAsync(dst_path)
+  #]
+  #futures.extend([graph_revisions.DeleteCacheAsync(utils.TestPath(r.parent_test))
+
+  #print rows_to_put
+
+  if not revisions:
+    # task_to_migrate_anomalies(dst_path, src_paths)
+    pass
+
+  print 'put: %d' % len(rows_to_put)
+  print 'delete: %d' % len(rows_to_delete)
+  print 'fini - %s' % dst_path
+  print
+
+  # queue = taskqueue.Queue('deprecate-tests-queue')
+
+  # task_params = {
+  #     'dst_path': dst_path,
+  #     'src_paths': json.dumps(src_paths),
+  # }
+  # t = taskqueue.Task(
+  #     url='/migrate_suite_rows', params=task_params, retry_count=0)
+  # queue.add(t)
+
+
+#migrate_top_level(['ChromiumPerf/chromium-rel-mac11/system_health.common_desktop'])

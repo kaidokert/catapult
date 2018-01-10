@@ -58,6 +58,7 @@ def _VersionName():
   email = _Run(['git', 'config', '--get', 'user.email'])
   username = email[0:email.find('@')]
   commit_hash = _Run(['git', 'rev-parse', '--short=8', 'HEAD']).strip()
+  commit_hash = '4f00cadd'
   return '%s-%s-%s' % (deployment_type, username, commit_hash)
 
 

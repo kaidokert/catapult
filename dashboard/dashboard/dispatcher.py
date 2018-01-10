@@ -109,6 +109,10 @@ _URL_MAPPING = [
     ('/', main.MainHandler),
     ('/memory_report', memory_report.MemoryReportHandler),
     ('/migrate_test_names', migrate_test_names.MigrateTestNamesHandler),
+
+    ('/migrate_suite', migrate_test_names.MigrateSuiteHandler),
+    ('/migrate_suite_rows', migrate_test_names.MigrateSuiteRowsHandler),
+
     ('/deprecate_tests', deprecate_tests.DeprecateTestsHandler),
     ('/navbar', navbar.NavbarHandler),
     ('/new_points', new_points.NewPointsHandler),
