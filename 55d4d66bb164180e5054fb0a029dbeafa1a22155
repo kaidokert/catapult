@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "67df3f1d_98deca72",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-10T10:36:50Z",
+      "side": 1,
+      "message": "Particularly for the UI, can we call these \"Builders\", \"Bots\" or even \"Trybots\"? Also would it be possible to select more than one bot? If I already ran a job on one bot, how can I easily run the same job on another one?",
+      "revId": "55d4d66bb164180e5054fb0a029dbeafa1a22155",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
