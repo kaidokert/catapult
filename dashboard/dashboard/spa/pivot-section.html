@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/dashboard/spa/dropdown-input.html">
+<link rel="import" href="/tracing/value/ui/histogram_set_view.html">
+
+<dom-module id="pivot-section">
+  <template>
+    <style>
+      #controls {
+        align-items: center;
+        display: flex;
+        margin-bottom: 8px;
+      }
+
+      dropdown-input:not(:first-of-type) {
+        margin-left: 8px;
+      }
+
+      paper-spinner {
+        flex-shrink: 0;
+        margin: 16px;
+        opacity: 0;
+        transition: opacity var(--transition-short);
+      }
+
+      paper-spinner[active] {
+        opacity: 1;
+      }
+
+      #spacer {
+        flex-grow: 1;
+      }
+
+      #close {
+        align-self: flex-start;
+        flex-shrink: 0;
+      }
+
+      #documentation, #open_url {
+        color: var(--paper-indigo-500);
+        flex-shrink: 0;
+      }
+    </style>
+
+    <div id="controls">
+      <dropdown-input state-path="[[statePath]].testSuites"
+                      on-input-keydown="onKeydown_"
+                      on-option-select="onSelect_">
+      </dropdown-input>
+
+      <a id="documentation"
+          href="#"
+          target="_blank"
+          title="Documentation">
+        <paper-icon-button icon="help"></paper-icon-button>
+      </a>
+
+      <dropdown-input state-path="[[statePath]].revisions"
+                      on-input-keydown="onKeydown_"
+                      on-option-select="onSelect_">
+      </dropdown-input>
+
+      <paper-icon-button id="open_url"
+                         icon="cloud-upload"
+                         on-tap="openUrl_">
+      </paper-icon-button>
+
+      <paper-spinner active$="[[isLoading]]">
+      </paper-spinner>
+
+      <span id="spacer">&nbsp;</span>
+
+      <paper-icon-button id="close"
+                         icon="close"
+                         on-tap="closeSection_">
+      </paper-icon-button>
+    </div>
+
+    <tr-v-ui-histogram-set-view id="histograms"
+                                histograms="[[histograms]]">
+    </tr-v-ui-histogram-set-view>
+  </template>
+</dom-module>
+<script src="/dashboard/spa/pivot-section.js"></script>
