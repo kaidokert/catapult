@@ -79,17 +79,20 @@ _SWARMING_DIMENSIONS = [
 ]
 
 
-class TelemetryQuestTest(testing_common.TestCase):
+class _QuestTest(testing_common.TestCase):
 
   def setUp(self):
-    super(TelemetryQuestTest, self).setUp()
+    super(_QuestTest, self).setUp()
     self.SetCurrentUser('internal@chromium.org', is_admin=True)
-    namespaced_stored_object.Set('bot_dimensions_map', {
-        'chromium-rel-mac11-pro': {},
+    namespaced_stored_object.Set('bots', {
+        'chromium-rel-mac11-pro': {
+            'browser': 'release',
+            'dimensions': {},
+        },
     })
-    namespaced_stored_object.Set('bot_browser_map_2', {
-        'chromium-rel-mac11-pro': 'release',
-    })
+
+
+class TelemetryQuestTest(_QuestTest):
 
   def testMissingArguments(self):
     arguments = {
@@ -171,15 +174,7 @@ class TelemetryQuestTest(testing_common.TestCase):
                      (arguments, expected))
 
 
-class GTestQuestTest(testing_common.TestCase):
-
-  def setUp(self):
-    super(GTestQuestTest, self).setUp()
-    self.SetCurrentUser('internal@chromium.org', is_admin=True)
-    namespaced_stored_object.Set('bot_dimensions_map', {
-        'chromium-rel-mac11-pro': {},
-    })
-
+class GTestQuestTest(_QuestTest):
 
   def testMinimumArguments(self):
     arguments = {
