@@ -92,7 +92,6 @@ class ReplayServer(object):
 
     self.replay_process = None
 
-
   @classmethod
   def _GetGoBinaryPath(cls):
     if not cls._go_binary_path:
@@ -152,6 +151,9 @@ class ReplayServer(object):
 
   def _LogLines(self):
     """Yields the log lines."""
+    if not self._temp_log_file_path:
+      yield '(N/A)'
+      return
     if not os.path.isfile(self._temp_log_file_path):
       return
     with open(self._temp_log_file_path) as f:
@@ -160,8 +162,7 @@ class ReplayServer(object):
 
   def _IsStarted(self):
     """Returns true if the server is up and running."""
-    if self.replay_process.poll() is not None:
-      # The process terminated.
+    if not self._IsReplayProcessStarted():
       return False
 
     def HasIncompleteStartedPorts():
@@ -230,14 +231,20 @@ class ReplayServer(object):
       logging.info('WPR ports: %s' % self._started_ports)
       atexit_with_log.Register(self.StopServer)
       return dict(self._started_ports)
-    except py_utils.TimeoutException:
+    except Exception:
+      self.StopServer()
       raise ReplayNotStartedError(
           'Web Page Replay failed to start. Log output:\n%s' %
           ''.join(self._LogLines()))
 
+  def _IsReplayProcessStarted(self):
+    if not self.replay_process:
+      return False
+    return self.replay_process.poll() is None
+
   def StopServer(self):
     """Stop Web Page Replay."""
-    if self._IsStarted():
+    if self._IsReplayProcessStarted():
       try:
         self._StopReplayProcess()
       finally:
@@ -256,6 +263,7 @@ class ReplayServer(object):
       pass
     try:
       py_utils.WaitFor(lambda: self.replay_process.poll() is not None, 10)
+      self.replay_process = None
     except py_utils.TimeoutException:
       try:
         # Use a SIGINT so that it can do graceful cleanup.
@@ -281,6 +289,7 @@ class ReplayServer(object):
         except:  # pylint: disable=bare-except
           pass
       self.replay_process.wait()
+      self.replay_process = None
 
   def _CreateTempLogFilePath(self):
     assert self._temp_log_file_path is None
