@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "809b166c_615767ff",
+        "filename": "dashboard/dashboard/pinpoint/handlers/config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-11T09:19:31Z",
+      "side": 1,
+      "message": "nit: maybe call this `bot_configs` or even `bot_configurations`?",
+      "revId": "33988adc96e75234bd93756b82ed426466fc6bf6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c8cdae5_80dbc205",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-11T09:19:31Z",
+      "side": 1,
+      "message": "Should there also be a test case with non-empty dimensions?",
+      "revId": "33988adc96e75234bd93756b82ed426466fc6bf6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
