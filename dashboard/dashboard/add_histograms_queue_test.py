@@ -280,11 +280,11 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     unit_args = add_histograms_queue.GetUnitArgs('count')
     self.assertEquals(anomaly.UNKNOWN, unit_args['improvement_direction'])
 
-  def testAddRow(self):
+  def testAddRows(self):
     test_path = 'Chromium/win7/suite/metric'
     test_key = utils.TestKey(test_path)
-    add_histograms_queue.AddRow(
-        TEST_HISTOGRAM, test_key, 123, test_path, False).put()
+    add_histograms_queue.AddRows(
+        TEST_HISTOGRAM, test_key, {}, 123, False).put()
 
     row = graph_data.Row.query().fetch()[0]
     fields = row.to_dict().iterkeys()
@@ -330,7 +330,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
         'min': False,
         'sum': False
         })
-    add_histograms_queue.AddRow(
+    add_histograms_queue.AddRows(
         hist.AsDict(), test_key, 123, test_path, False).put()
     row = graph_data.Row.query().fetch()[0]
     fields = row.to_dict().iterkeys()
@@ -342,7 +342,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
   def testAddRow_SetsInternalOnly(self):
     test_path = 'Chromium/win7/suite/metric'
     test_key = utils.TestKey(test_path)
-    add_histograms_queue.AddRow(
+    add_histograms_queue.AddRows(
         TEST_HISTOGRAM, test_key, 123, test_path, True).put()
     row = graph_data.Row.query().fetch()[0]
     self.assertTrue(row.internal_only)
@@ -351,7 +351,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     hist = histogram_module.Histogram('foo', 'count').AsDict()
     test_path = 'Chromium/win7/suite/metric'
     test_key = utils.TestKey(test_path)
-    row = add_histograms_queue.AddRow(hist, test_key, 123, test_path, True)
+    row = add_histograms_queue.AddRows(hist, test_key, 123, test_path, True)
 
     rows = graph_data.Row.query().fetch()
     self.assertEqual(0, len(rows))
@@ -365,4 +365,4 @@ class AddHistogramsQueueTest(testing_common.TestCase):
         'type': 'GenericSet', 'values': [123, 456]}
 
     with self.assertRaises(add_histograms_queue.BadRequestError):
-      add_histograms_queue.AddRow(hist, test_key, 123, test_path, False).put()
+      add_histograms_queue.AddRows(hist, test_key, 123, test_path, False).put()
