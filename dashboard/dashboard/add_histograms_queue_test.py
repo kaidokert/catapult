@@ -280,13 +280,18 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     unit_args = add_histograms_queue.GetUnitArgs('count')
     self.assertEquals(anomaly.UNKNOWN, unit_args['improvement_direction'])
 
-  def testAddRow(self):
+  def testAddRows(self):
     test_path = 'Chromium/win7/suite/metric'
     test_key = utils.TestKey(test_path)
-    add_histograms_queue.AddRow(
-        TEST_HISTOGRAM, test_key, 123, test_path, False).put()
+    rows_to_put = add_histograms_queue.AddRows(
+        TEST_HISTOGRAM, test_key, {}, 123, False)
+    ndb.put_multi(rows_to_put)
 
-    row = graph_data.Row.query().fetch()[0]
+    NUM_SCALARS =
+    row = graph_data.Row.query().fetch()
+    self.assertEqual(len(rows))
+
+    row = rows[0]
     fields = row.to_dict().iterkeys()
     d_fields = []
     r_fields = []
@@ -317,7 +322,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     self.assertEqual('http://google.com/', row.a_tracing_uri)
     self.assertEqual('http://log.url/', row.a_stdio_url)
 
-  def testAddRow_WithCustomSummaryOptions(self):
+  def testAddRows_WithCustomSummaryOptions(self):
     test_path = 'Chromium/win7/suite/metric'
     test_key = utils.TestKey(test_path)
 
@@ -330,8 +335,18 @@ class AddHistogramsQueueTest(testing_common.TestCase):
         'min': False,
         'sum': False
         })
-    add_histograms_queue.AddRow(
-        hist.AsDict(), test_key, 123, test_path, False).put()
+
+    stat_names_to_test_keys = {
+      'avg': utils.TestKey('Chromium/win7/suite/metric_avg'),
+      'std': utils.TestKey('Chromium/win7/suite/metric_std'),
+      'count': utils.TestKey('Chromium/win7/suite/metric_count')
+    }
+    rows = add_histograms_queue.AddRows(
+        hist.AsDict(), test_key, stat_names_to_test_keys, 123, False)
+
+    self.assertEqual(4, len(rows))
+
+    ndb.put_multi(rows)
     row = graph_data.Row.query().fetch()[0]
     fields = row.to_dict().iterkeys()
     d_fields = [field for field in fields if field.startswith('d_')]
@@ -339,25 +354,27 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     self.assertEqual(1, len(d_fields))
     self.assertEqual(3, row.d_count)
 
-  def testAddRow_SetsInternalOnly(self):
+  def testAddRows_SetsInternalOnly(self):
     test_path = 'Chromium/win7/suite/metric'
     test_key = utils.TestKey(test_path)
-    add_histograms_queue.AddRow(
-        TEST_HISTOGRAM, test_key, 123, test_path, True).put()
-    row = graph_data.Row.query().fetch()[0]
-    self.assertTrue(row.internal_only)
+    rows_to_put = add_histograms_queue.AddRows(
+        TEST_HISTOGRAM, test_key, {}, 123, True)
+    ndb.put_multi(rows_to_put)
+    rows = graph_data.Row.query().fetch()
+    for row in rows:
+      self.assertTrue(row.internal_only)
 
-  def testAddRow_DoesntAddRowForEmptyHistogram(self):
+  def testAddRows_DoesntAddRowForEmptyHistogram(self):
     hist = histogram_module.Histogram('foo', 'count').AsDict()
     test_path = 'Chromium/win7/suite/metric'
     test_key = utils.TestKey(test_path)
-    row = add_histograms_queue.AddRow(hist, test_key, 123, test_path, True)
+    row = add_histograms_queue.AddRows(hist, test_key, 123, test_path, True)
 
     rows = graph_data.Row.query().fetch()
     self.assertEqual(0, len(rows))
     self.assertIsNone(row)
 
-  def testAddRow_FailsWithNonSingularRevisionInfo(self):
+  def testAddRows_FailsWithNonSingularRevisionInfo(self):
     test_path = 'Chromium/win7/suite/metric'
     test_key = utils.TestKey(test_path)
     hist = copy.deepcopy(TEST_HISTOGRAM)
@@ -365,4 +382,4 @@ class AddHistogramsQueueTest(testing_common.TestCase):
         'type': 'GenericSet', 'values': [123, 456]}
 
     with self.assertRaises(add_histograms_queue.BadRequestError):
-      add_histograms_queue.AddRow(hist, test_key, 123, test_path, False).put()
+      add_histograms_queue.AddRows(hist, test_key, 123, test_path, False).put()
