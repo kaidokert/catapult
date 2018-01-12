@@ -25,9 +25,13 @@ class Browser(app.App):
 
   Be sure to clean up after yourself by calling Close() when you are done with
   the browser. Or better yet:
-    browser_to_create = FindBrowser(options)
-    with browser_to_create.Create(options) as browser:
-      ... do all your operations on browser here
+
+    possible_browser = FindBrowser(finder_options)
+    with possible_browser.BrowserSession(
+        finder_options.browser_options) as browser:
+      # Do all your operations on browser here.
+
+  See telemetry.internal.browser.possible_browser for more details.
   """
   def __init__(self, backend, platform_backend, startup_args):
     super(Browser, self).__init__(app_backend=backend,

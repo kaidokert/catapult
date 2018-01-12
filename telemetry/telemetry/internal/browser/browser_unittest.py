@@ -206,7 +206,7 @@ def _GenerateBrowserProfile(number_of_tabs):
   browser_to_create = browser_finder.FindBrowser(options)
   browser_to_create.platform.network_controller.Open()
   try:
-    with browser_to_create.Create(options) as browser:
+    with browser_to_create.BrowserSession(options.browser_options) as browser:
       browser.platform.SetHTTPServerDirectories(path.GetUnittestDataDir())
       blank_file_path = os.path.join(path.GetUnittestDataDir(), 'blank.html')
       blank_url = browser.platform.http_server.UrlOf(blank_file_path)
@@ -265,7 +265,8 @@ class BrowserRestoreSessionTest(unittest.TestCase):
   @decorators.Disabled('chromeos', 'win', 'mac')
   # TODO(nednguyen): Enable this test on windowsn platform
   def testRestoreBrowserWithMultipleTabs(self):
-    with self._browser_to_create.Create(self._options) as browser:
+    with self._browser_to_create.BrowserSession(
+        self._options.browser_options) as browser:
       # The number of tabs will be self._number_of_tabs + 1 as it includes the
       # old tabs and a new blank tab.
       expected_number_of_tabs = self._number_of_tabs + 1
@@ -298,8 +299,9 @@ class TestBrowserCreation(unittest.TestCase):
   # TODO(ashleymarie): Re-enable on mac (BUG=catapult:#3523)
   @decorators.Isolated
   def testBrowserNotLeakingTempFiles(self):
+    browser_options = self.finder_options.browser_options
     before_browser_run_temp_dir_content = os.listdir(tempfile.tempdir)
-    with self.browser_to_create.Create(self.finder_options) as browser:
+    with self.browser_to_create.BrowserSession(browser_options) as browser:
       tab = browser.tabs.New()
       tab.Navigate('about:blank')
       self.assertEquals(2, tab.EvaluateJavaScript('1 + 1'))
@@ -310,7 +312,7 @@ class TestBrowserCreation(unittest.TestCase):
   def testSuccessfullyStartBrowserWithSystemCacheClearOptions(self):
     browser_options = self.finder_options.browser_options
     browser_options.clear_sytem_cache_for_browser_and_profile_on_start = True
-    with self.browser_to_create.Create(self.finder_options) as browser:
+    with self.browser_to_create.BrowserSession(browser_options) as browser:
       tab = browser.tabs.New()
       tab.Navigate('about:blank')
       self.assertEquals(2, tab.EvaluateJavaScript('1 + 1'))
