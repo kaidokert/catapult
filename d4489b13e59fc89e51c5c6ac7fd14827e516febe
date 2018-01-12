@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "673013cd_565b36f5",
+        "filename": "tracing/tracing/metrics/android_startup_metric_test.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-01-12T17:11:48Z",
+      "side": 0,
+      "message": "note: this comment was in incorrect place, should have referred to \"...MainEntry2\"",
+      "range": {
+        "startLine": 30,
+        "startChar": 6,
+        "endLine": 30,
+        "endChar": 40
+      },
+      "revId": "d4489b13e59fc89e51c5c6ac7fd14827e516febe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
