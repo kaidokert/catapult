@@ -53,7 +53,7 @@ class CrOSTestCase(unittest.TestCase):
     if gaia_id is not None:
       browser_options.gaia_id = gaia_id
 
-    return browser_to_create.Create(options)
+    return browser_to_create.BrowserSession(browser_options)
 
   def _GetAutotestExtension(self, browser):
     """Returns the autotest extension instance"""

@@ -211,13 +211,20 @@ class FakePossibleBrowser(object):
     """The browser object that will be returned through later API calls."""
     return self._returned_browser
 
-  def Create(self, browser_options):
+  def SetUpEnvironment(self, browser_options):
+    self.browser_options = browser_options
+
+  def Create(self, browser_options=None):
     if self.execute_on_startup is not None:
       self.execute_on_startup()
-    self.browser_options = browser_options
+    if browser_options is not None:
+      self.browser_options = browser_options
     if self.execute_after_browser_creation is not None:
       self.execute_after_browser_creation(self._returned_browser)
     return self.returned_browser
+
+  def CleanUpEnvironment(self):
+    self.browser_options = None
 
   @property
   def platform(self):

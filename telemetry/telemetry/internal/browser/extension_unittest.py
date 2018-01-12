@@ -17,6 +17,7 @@ from telemetry.testing import options_for_unittests
 
 class ExtensionTest(unittest.TestCase):
   def setUp(self):
+    self._possible_browser = None
     self._browser = None
     self._platform = None
     self._extension = None
@@ -33,9 +34,11 @@ class ExtensionTest(unittest.TestCase):
     if not browser_to_create:
       # May not find a browser that supports extensions.
       return False
-    self._platform = browser_to_create.platform
+    self._possible_browser = browser_to_create
+    self._platform = self._possible_browser.platform
     self._platform.network_controller.Open()
-    self._browser = browser_to_create.Create(options)
+    self._possible_browser.SetUpEnvironment(options.browser_options)
+    self._browser = self._possible_browser.Create()
     self._extension = self._browser.extensions[load_extension]
     self._extension_id = load_extension.extension_id
     self.assertTrue(self._extension)
@@ -45,6 +48,8 @@ class ExtensionTest(unittest.TestCase):
     if self._browser:
       self._browser.Close()
       self._platform.network_controller.Close()
+    if self._possible_browser:
+      self._possible_browser.CleanUpEnvironment()
 
   def testExtensionBasic(self):
     """Test ExtensionPage's ExecuteJavaScript and EvaluateJavaScript."""
@@ -104,7 +109,7 @@ class NonExistentExtensionTest(unittest.TestCase):
     browser_to_create = browser_finder.FindBrowser(options)
     try:
       browser_to_create.platform.network_controller.Open()
-      with browser_to_create.Create(options) as b:
+      with browser_to_create.BrowserSession(options.browser_options) as b:
         if b.supports_extensions:
           self.assertRaises(KeyError, lambda: b.extensions[load_extension])
     finally:
@@ -130,18 +135,23 @@ class MultipleExtensionTest(unittest.TestCase):
     options.browser_options.extensions_to_load = self._extensions_to_load
     browser_to_create = browser_finder.FindBrowser(options)
     self._platform = None
+    self._possible_browser = None
     self._browser = None
     # May not find a browser that supports extensions.
     if browser_to_create:
-      self._platform = browser_to_create.platform
+      self._possible_browser = browser_to_create
+      self._platform = self._possible_browser.platform
       self._platform.network_controller.Open()
-      self._browser = browser_to_create.Create(options)
+      self._possible_browser.SetUpEnvironment(options.browser_options)
+      self._browser = self._possible_browser.Create()
 
   def tearDown(self):
     if self._platform:
       self._platform.network_controller.Close()
     if self._browser:
       self._browser.Close()
+    if self._possible_browser:
+      self._possible_browser.CleanUpEnvironment()
     for d in self._extension_dirs:
       shutil.rmtree(d)
 

@@ -51,11 +51,11 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
     # pylint: disable=protected-access
     self._platform_backend = self._platform._platform_backend
 
-  def Create(self, browser_options):
-    # TODO(crbug.com/801214): Remove this check once all clients pass the
-    # browser_options instead of the finder_options.
-    if hasattr(browser_options, 'browser_options'):
-      browser_options = browser_options.browser_options
+  def Create(self, finder_options=None):
+    # TODO(crbug.com/787834): Remove finder_options arg when all clients
+    # make sure to call SetUpEnvironment themselves.
+    if finder_options is not None:
+      self.SetUpEnvironment(finder_options.browser_options)
 
     if self._flash_path and not os.path.exists(self._flash_path):
       logging.warning(
@@ -66,7 +66,7 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
 
     self._InitPlatformIfNeeded()
 
-    startup_args = self.GetBrowserStartupArgs(browser_options)
+    startup_args = self.GetBrowserStartupArgs(self._browser_options)
 
     num_retries = 3
     for x in range(0, num_retries):
@@ -75,9 +75,9 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
         returned_browser = None
 
         browser_backend = desktop_browser_backend.DesktopBrowserBackend(
-            self._platform_backend,
-            browser_options, self._local_executable,
-            self._flash_path, self._is_content_shell, self._browser_directory)
+            self._platform_backend, self._browser_options,
+            self._local_executable, self._flash_path,
+            self._is_content_shell, self._browser_directory)
 
         browser_backend.ClearCaches()
 

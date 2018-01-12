@@ -194,7 +194,8 @@ class SharedPageState(story_module.SharedState):
     if page.startup_url:
       browser_options.startup_url = page.startup_url
     browser_options.AppendExtraBrowserArgs(page.extra_browser_args)
-    self._browser = self._possible_browser.Create(browser_options)
+    self._possible_browser.SetUpEnvironment(browser_options)
+    self._browser = self._possible_browser.Create()
     self._test.DidStartBrowser(self.browser)
 
     if self._first_browser:
@@ -321,6 +322,8 @@ class SharedPageState(story_module.SharedState):
     if self._browser:
       self._browser.Close()
       self._browser = None
+    if self._possible_browser:
+      self._possible_browser.CleanUpEnvironment()
 
   def _StartProfiling(self, page):
     output_file = os.path.join(self._finder_options.output_dir,
