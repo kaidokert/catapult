@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f5cce254_d01effda",
+        "filename": "telemetry/telemetry/internal/browser/possible_browser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-12T17:48:19Z",
+      "side": 1,
+      "message": "This bit was driving me mad.\n\nTrying to import the browser_options module here to make an isinstance check caused pylint to complain about a cyclic import; even if I tried to hide the import within this method. Trying to disable that warning also did not work, probably because of https://github.com/PyCQA/pylint/issues/59 which got fixed on pylint 2.0, but pylint on depot_tools is still at 1.4.1.\n\nI also tried to provide a more useful error message; but finder_options has an old-style class with nothing useful on __name__ (just reports \"instance\" rather than \"FinderOptions\"). So I settled with this. Hopefully you think it\u0027s not terrible?",
+      "revId": "19a2587a0815f901400971fc74ab16666240b5fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
