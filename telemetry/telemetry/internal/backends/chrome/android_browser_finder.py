@@ -127,8 +127,12 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
   def _InitPlatformIfNeeded(self):
     pass
 
-  def Create(self, finder_options):
-    browser_options = finder_options.browser_options
+  def Create(self, browser_options):
+    # TODO(crbug.com/801214): Remove this check once all clients pass the
+    # browser_options instead of the finder_options.
+    if hasattr(browser_options, 'browser_options'):
+      browser_options = browser_options.browser_options
+
     startup_args = self.GetBrowserStartupArgs(browser_options)
 
     self._InitPlatformIfNeeded()

@@ -54,7 +54,7 @@ def _CreateBrowser(finder_options, enable_browser_log):
     finder_options.browser_options.logs_cloud_bucket = None
 
   possible_browser = browser_finder.FindBrowser(finder_options)
-  return possible_browser.Create(finder_options)
+  return possible_browser.Create(finder_options.browser_options)
 
 
 def _ReadSnapItSource(path):

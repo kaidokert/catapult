@@ -30,7 +30,7 @@ class PossibleBrowser(possible_app.PossibleApp):
   def _InitPlatformIfNeeded(self):
     raise NotImplementedError()
 
-  def Create(self, finder_options):
+  def Create(self, browser_options):
     raise NotImplementedError()
 
   def SupportsOptions(self, browser_options):

@@ -51,7 +51,12 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
     # pylint: disable=protected-access
     self._platform_backend = self._platform._platform_backend
 
-  def Create(self, finder_options):
+  def Create(self, browser_options):
+    # TODO(crbug.com/801214): Remove this check once all clients pass the
+    # browser_options instead of the finder_options.
+    if hasattr(browser_options, 'browser_options'):
+      browser_options = browser_options.browser_options
+
     if self._flash_path and not os.path.exists(self._flash_path):
       logging.warning(
           'Could not find Flash at %s. Continuing without Flash.\n'
@@ -61,7 +66,6 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
 
     self._InitPlatformIfNeeded()
 
-    browser_options = finder_options.browser_options
     startup_args = self.GetBrowserStartupArgs(browser_options)
 
     num_retries = 3

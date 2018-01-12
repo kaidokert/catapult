@@ -35,12 +35,16 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
   def _InitPlatformIfNeeded(self):
     pass
 
-  def Create(self, finder_options):
-    if finder_options.browser_options.output_profile_path:
+  def Create(self, browser_options):
+    # TODO(crbug.com/801214): Remove this check once all clients pass the
+    # browser_options instead of the finder_options.
+    if hasattr(browser_options, 'browser_options'):
+      browser_options = browser_options.browser_options
+
+    if browser_options.output_profile_path:
       raise NotImplementedError(
           'Profile generation is not yet supported on CrOS.')
 
-    browser_options = finder_options.browser_options
     startup_args = self.GetBrowserStartupArgs(browser_options)
 
     browser_backend = cros_browser_backend.CrOSBrowserBackend(
