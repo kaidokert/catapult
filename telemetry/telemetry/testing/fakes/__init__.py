@@ -12,7 +12,7 @@ may need to be called in tests.
 """
 from telemetry.core import exceptions
 from telemetry.internal.backends.chrome_inspector import websocket
-from telemetry.internal.browser import browser_options
+from telemetry.internal.browser import browser_options as b_options
 from telemetry.internal.platform import system_info
 from telemetry.page import shared_page_state
 from telemetry.util import image_util
@@ -204,17 +204,17 @@ class FakePossibleBrowser(object):
     self.is_remote = False
     self.execute_on_startup = execute_on_startup
     self.execute_after_browser_creation = execute_after_browser_creation
-    self.finder_options = None  # This is set in Create().
+    self.browser_options = None  # This is set in Create().
 
   @property
   def returned_browser(self):
     """The browser object that will be returned through later API calls."""
     return self._returned_browser
 
-  def Create(self, finder_options):
+  def Create(self, browser_options):
     if self.execute_on_startup is not None:
       self.execute_on_startup()
-    self.finder_options = finder_options
+    self.browser_options = browser_options
     if self.execute_after_browser_creation is not None:
       self.execute_after_browser_creation(self._returned_browser)
     return self.returned_browser
@@ -263,10 +263,12 @@ class FakeSystemInfo(system_info.SystemInfo):
     super(FakeSystemInfo, self).__init__(model_name, gpu_dict, command_line)
 
 
-class _FakeBrowserFinderOptions(browser_options.BrowserFinderOptions):
+class _FakeBrowserFinderOptions(b_options.BrowserFinderOptions):
   def __init__(self, execute_on_startup=None,
-               execute_after_browser_creation=None, *args, **kwargs):
-    browser_options.BrowserFinderOptions.__init__(self, *args, **kwargs)
+               execute_after_browser_creation=None, **kwargs):
+    # BrowserFinderOptions subclasses optparse.Values, and old-style class,
+    # so it's not possible to use `super` here.
+    b_options.BrowserFinderOptions.__init__(self, **kwargs)
     self.fake_possible_browser = \
       FakePossibleBrowser(
           execute_on_startup=execute_on_startup,
