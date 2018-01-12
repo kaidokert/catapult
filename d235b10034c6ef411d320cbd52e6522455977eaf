@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9450d325_29749f43",
+        "filename": "telemetry/telemetry/internal/util/webpagereplay_go_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-12T10:53:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69ec492e_8e11a513",
+      "revId": "d235b10034c6ef411d320cbd52e6522455977eaf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c9c804df_c62d81ab",
         "filename": "telemetry/telemetry/internal/util/webpagereplay_go_server.py",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "d235b10034c6ef411d320cbd52e6522455977eaf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7eba9c45_7f752060",
+        "filename": "telemetry/telemetry/internal/util/webpagereplay_go_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-12T10:53:38Z",
+      "side": 1,
+      "message": "No, line 291 belongs to the except block :)\n\nLet me rewrite it a bit to make this code simpler to consume :-/",
+      "parentUuid": "c9c804df_c62d81ab",
+      "revId": "d235b10034c6ef411d320cbd52e6522455977eaf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
