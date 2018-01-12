@@ -52,19 +52,18 @@ class TimeseriesHandler(api_request_handler.ApiRequestHandler):
     q = q.filter(graph_data.Row.timestamp > before)
 
     rows = q.fetch()
+    result = {'test_path': test_path}
     if not rows:
-      return []
+      return result
     revisions = [rev for rev in rows[0].to_dict() if rev.startswith('r_')]
     header = ['revision', 'value', 'timestamp'] + revisions
     timeseries = [header]
     for row in sorted(rows, key=lambda r: r.revision):
       timeseries.append([self._GetValue(row, a) for a in header])
 
-    return {
-        'timeseries': timeseries,
-        'test_path': test_path,
-        'revision_logs': namespaced_stored_object.Get('revision_info'),
-    }
+    result['timeseries'] = timeseries
+    result['revision_logs'] = namespaced_stored_object.Get('revision_info')
+    return result
 
   def _GetValue(self, row, attr):
     value = getattr(row, attr, None)
