@@ -11,6 +11,7 @@ from dashboard.common import request_handler
 _ALLOWED_ORIGINS = [
     'chromiumdash.appspot.com',
     'chromiumdash-staging.googleplex.com',
+    'v2spa-dot-chromeperf.appspot.com',
 ]
 
 
