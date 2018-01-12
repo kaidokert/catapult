@@ -114,13 +114,17 @@ class AddHistogramsEndToEndTest(testing_common.TestCase):
     mock_process_test.assert_called_once_with([tests[1].key])
 
     rows = graph_data.Row.query().fetch()
-    mock_graph_revisions.assert_called_once_with(rows)
+    # We want to verify that the method was called with all rows that have
+    # been added, but the ordering will be different because we produce
+    # the rows by iterating over a dict.
+    self.assertEqual(len(mock_graph_revisions.mock_calls[0][1][0]), len(rows))
+
 
   @mock.patch.object(
       add_histograms_queue.graph_revisions, 'AddRowsToCacheAsync')
   @mock.patch.object(add_histograms_queue.find_anomalies, 'ProcessTestsAsync')
   @mock.patch.object(
-      add_histograms_queue, 'AddRow', mock.MagicMock(return_value=None))
+      add_histograms_queue, 'AddRows', mock.MagicMock(return_value=None))
   def testPost_EmptyHistogram_NotAdded(
       self, mock_process_test, mock_graph_revisions):
     data = json.dumps(_SAMPLE_HISTOGRAM_END_TO_END)
