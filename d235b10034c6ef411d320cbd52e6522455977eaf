@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "69ec492e_8e11a513",
+        "filename": "telemetry/telemetry/internal/util/webpagereplay_go_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-12T09:29:41Z",
+      "side": 1,
+      "message": "nit: return self.replay_process and self.replay_process.poll() is None",
+      "revId": "d235b10034c6ef411d320cbd52e6522455977eaf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9c804df_c62d81ab",
+        "filename": "telemetry/telemetry/internal/util/webpagereplay_go_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-12T09:29:41Z",
+      "side": 1,
+      "message": "This looks wrong, the self.replay_process.wait() on line 291 is going to fail. I think it should be fine to remove this line.",
+      "revId": "d235b10034c6ef411d320cbd52e6522455977eaf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
