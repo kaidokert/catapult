@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e546e274_8a355101",
+        "filename": "dashboard/dashboard/pinpoint/README-PERFTRY.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-01-12T21:21:29Z",
+      "side": 1,
+      "message": "how?",
+      "range": {
+        "startLine": 19,
+        "startChar": 77,
+        "endLine": 19,
+        "endChar": 0
+      },
+      "revId": "abffd1a2ce7610024fd3eb30e915b7d4efab7272",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
