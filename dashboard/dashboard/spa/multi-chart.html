@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<dom-module id="multi-chart">
+  <template>
+    <style>
+      :host {
+        display: flex;
+      }
+
+      #right {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+      }
+
+      #x_brush_handles {
+        position: relative;
+        height: 15px;
+      }
+
+      #y_brush_handles {
+        position: relative;
+        width: 15px;
+      }
+
+      .brush_handle {
+        position: absolute;
+        cursor: move;
+      }
+
+      .x_brush_handle {
+        top: 0;
+      }
+
+      .y_brush_handle {
+        right: 0;
+      }
+
+      .brush_handle path {
+        fill: rgba(0, 0, 0, 0.3);
+      }
+
+      path {
+        vector-effect: non-scaling-stroke;
+      }
+
+      rect {
+        opacity: 0.05;
+      }
+
+      #yaxis {
+        margin-right: 3px;
+        margin-top: 15px;
+      }
+
+      #xaxis {
+        margin-top: 3px;
+      }
+
+      #xaxis, #yaxis {
+        user-select: none;
+      }
+
+      line {
+        stroke-width: 1;
+        stroke: #ccc;
+      }
+
+      circle:hover {
+        opacity: 1;
+      }
+
+      #tooltip {
+        background-color: white;
+        border-style: solid;
+        border-width: 2px;
+        padding: 8px;
+        position: absolute;
+        z-index: 100;
+      }
+    </style>
+
+    <svg id="yaxis"
+         width$="[[yAxisWidth]]"
+         height$="[[height]]">
+      <template is="dom-repeat" items="[[yAxisTicks]]" as="tick">
+        <text x$="[[pct_(tick.x)]]"
+              y$="[[tick.y]]"
+              alignment-baseline="middle">
+          [[tick.text]]
+        </text>
+      </template>
+    </svg>
+
+    <div id="right">
+      <div id="x_brush_handles">
+        <template is="dom-repeat" items="[[xBrushes]]" as="brush" index-as="brushIndex">
+          <div class="brush_handle x_brush_handle"
+               on-track="onTrackBrushHandle_"
+               style$="left: calc([[pct_(brush.normalized)]] - 5px)">
+            <svg height="15" width="10" viewBox="0 0 2 3">
+              <path d="M0,0 L2,0 L2,2 L1,3 L0,2">
+              </path>
+            </svg>
+          </div>
+        </template>
+      </div>
+
+      <svg id="main"
+           width="100%"
+           height$="[[graphHeight]]"
+           preserveAspectRatio="none"
+           on-tap="onMainClick_">
+        <template is="dom-if" if="[[showYAxisTickLines]]">
+          <template is="dom-repeat" items="[[yAxisTicks]]" as="tick">
+            <line x1="0"
+                  x2="100%"
+                  y1$="[[pct_(tick.y)]]"
+                  y2$="[[pct_(tick.y)]]">
+            </line>
+          </template>
+        </template>
+
+        <template is="dom-if" if="[[showXAxisTickLines]]">
+          <template is="dom-repeat" items="[[xAxisTicks]]" as="tick">
+            <line x1$="[[pct_(tick.x)]]"
+                  x2$="[[pct_(tick.x)]]"
+                  y1="0"
+                  y2="100%">
+            </line>
+          </template>
+        </template>
+
+        <template is="dom-repeat" items="[[antiBrushes_(xBrushes)]]" as="antiBrush">
+          <rect x$="[[pct_(antiBrush.start)]]"
+                y="0"
+                width$="[[pct_(antiBrush.length)]]"
+                height="100%">
+          </rect>
+        </template>
+
+        <template is="dom-repeat" items="[[antiBrushes_(yBrushes)]]" as="antiBrush">
+          <rect x="0"
+                y$="[[pct_(antiBrush.start)]]"
+                width="100%"
+                height$="[[pct_(antiBrush.length)]]">
+          </rect>
+        </template>
+
+        <template is="dom-repeat" items="[[bars]]" as="bar" index-as="barIndex">
+          <svg viewBox="0 0 100 100"
+               x="0"
+               y="0"
+               width="100%"
+               height="100%"
+               preserveAspectRatio="none">
+            <template is="dom-repeat" items="[[bar.data]]" as="datum" index-as="datumIndex">
+              <rect x$="[[pct_(datum.x)]]"
+                    y$="[[pct_(datum.y)]]"
+                    width$="[[pct_(datum.width)]]"
+                    height$="[[pct_(datum.height)]]"
+                    on-tap="onBarClick_"
+                    on-mouseover="onBarMouseOver_"
+                    on-mouseout="onBarMouseOut_">
+              </rect>
+            </template>
+          </svg>
+        </template>
+
+        <template is="dom-repeat" items="[[columns]]" as="column" index-as="columnIndex">
+          <svg viewBox="0 0 100 100"
+               x="0"
+               y="0"
+               width="100%"
+               height="100%"
+               preserveAspectRatio="none">
+            <template is="dom-repeat" items="[[column.data]]" as="datum" index-as="datumIndex">
+              <rect x$="[[pct_(datum.x)]]"
+                    y$="[[pct_(datum.y)]]"
+                    width$="[[pct_(datum.width)]]"
+                    height$="[[pct_(datum.height)]]"
+                    on-tap="onColumnClick_"
+                    on-mouseover="onColumnMouseOver_"
+                    on-mouseout="onColumnMouseOut_">
+              </rect>
+            </template>
+          </svg>
+        </template>
+
+        <template is="dom-repeat" items="[[lines]]" as="line" index-as="lineIndex">
+          <svg viewBox="0 0 100 100"
+               x="0"
+               y="0"
+               width="100%"
+               height="100%"
+               preserveAspectRatio="none">
+            <path d$="[[path_(line)]]"
+                  stroke$="[[line.color]]"
+                  stroke-width$="[[line.strokeWidth]]"
+                  fill="none">
+            </path>
+          </svg>
+
+          <template is="dom-repeat" items="[[line.data]]" as="datum" index-as="datumIndex">
+            <circle cx$="[[pct_(datum.normalized.x)]]"
+                    cy$="[[pct_(datum.normalized.y)]]"
+                    r$="[[dotRadius]]"
+                    fill$="[[line.color]]"
+                    cursor$="[[dotCursor]]"
+                    opacity="0"
+                    on-tap="onDotClick_"
+                    on-mouseover="onDotMouseOver_"
+                    on-mouseout="onDotMouseOut_">
+            </circle>
+
+            <template is="dom-repeat" items="[[datum.icons]]" as="icon">
+              <!-- TODO All of the icons occupy the same space, so use
+                   animations to cycle between them?
+              -->
+              <foreignObject x$="[[pct_(datum.x)]]"
+                             y$="[[pct_(datum.y)]]"
+                             width="24"
+                             height="24">
+                <body xmlns="http://www.w3.org/1999/xhtml">
+                  <iron-icon icon="icon"></iron-icon>
+                </body>
+              </foreignObject>
+            </template>
+          </template>
+        </template>
+      </svg>
+
+      <svg id="xaxis"
+           width="100%"
+           height$="[[xAxisHeight]]">
+        <template is="dom-repeat" items="[[xAxisTicks]]" as="tick">
+          <text x$="[[pct_(tick.x)]]"
+                y="0"
+                text-anchor="middle"
+                alignment-baseline="hanging">
+            [[tick.text]]
+          </text>
+        </template>
+      </svg>
+    </div>
+
+    <div id="tooltip"
+         hidden$="[[hideTooltip_(tooltip)]]"
+         style$="left: [[tooltip.x]]px; top: [[tooltip.y]]px; border-color: [[tooltip.color]];">
+      <table>
+        <template is="dom-repeat" items="[[tooltip.rows]]" as="row" index-as="rowIndex">
+          <tr>
+            <td>[[row.name]]</td>
+            <td>[[row.value]]</td>
+          </tr>
+        </template>
+      </table>
+    </div>
+  </template>
+</dom-module>
+<script src="/dashboard/spa/multi-chart.js"></script>
