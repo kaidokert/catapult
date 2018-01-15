@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9e8f41c4_88866e9e",
+        "filename": "dashboard/dashboard/add_histograms_queue.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-01-15T19:59:48Z",
+      "side": 1,
+      "message": "nit: Do you still need this comment?",
+      "range": {
+        "startLine": 344,
+        "startChar": 7,
+        "endLine": 344,
+        "endChar": 8
+      },
+      "revId": "7ac08766bc3bdd27568c421b1259f3e62840ac52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b22be0b8_8c090b96",
+        "filename": "dashboard/dashboard/add_histograms_queue_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-01-15T19:59:48Z",
+      "side": 1,
+      "message": "nit: can you add 2 tests covering the ref names",
+      "range": {
+        "startLine": 283,
+        "startChar": 6,
+        "endLine": 283,
+        "endChar": 17
+      },
+      "revId": "7ac08766bc3bdd27568c421b1259f3e62840ac52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3328853_06817bec",
+        "filename": "dashboard/dashboard/add_histograms_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-01-15T19:59:48Z",
+      "side": 1,
+      "message": "nit: is there a test in here for find_anomalies? Can you make sure it also covers that find_anomalies runs on the legacy rows?",
+      "range": {
+        "startLine": 120,
+        "startChar": 9,
+        "endLine": 120,
+        "endChar": 20
+      },
+      "revId": "7ac08766bc3bdd27568c421b1259f3e62840ac52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
