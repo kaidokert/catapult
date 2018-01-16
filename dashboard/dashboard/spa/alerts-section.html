@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="/bower_components/paper-button/paper-button.html">
+<link rel="import" href="/bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="/bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="/bower_components/paper-item/paper-item.html">
+<link rel="import" href="/bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="/bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="/bower_components/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="/dashboard/spa/chart-placeholder.html">
+<link rel="import" href="/dashboard/spa/column-head.html">
+<link rel="import" href="/dashboard/spa/dropdown-input.html">
+<link rel="import" href="/dashboard/spa/expand-button.html">
+<link rel="import" href="/dashboard/spa/multi-chart.html">
+<link rel="import" href="/dashboard/static/group_alerts.html">
+<link rel="import" href="/tracing/value/legacy_unit_info.html">
+
+<dom-module id="alerts-section">
+  <template>
+    <style>
+      #controls {
+        align-items: center;
+        display: flex;
+        margin-bottom: 8px;
+      }
+
+      #source {
+        min-width: 350px;
+      }
+
+      paper-toggle-button {
+        display: inline-flex;
+      }
+
+      #triaged {
+        margin-left: 16px;
+      }
+
+      .sheriff-item {
+        white-space: nowrap;
+      }
+
+      paper-spinner {
+        flex-shrink: 0;
+        margin: 16px;
+        opacity: 0;
+        transition: opacity var(--transition-short);
+      }
+
+      paper-spinner[active] {
+        opacity: 1;
+      }
+
+      #summary {
+        flex-grow: 1;
+        text-align: center;
+      }
+
+      #table_container {
+        position: relative;
+      }
+
+      #preview {
+        height: 215px;
+        margin-bottom: 8px;
+      }
+
+      #table_container table[placeholder] {
+        color: var(--paper-grey-500);
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      th {
+        white-space: nowrap;
+      }
+
+      td {
+        padding: 4px;
+      }
+
+      tbody tr:hover {
+        background: #eee;
+      }
+
+      td:nth-of-type(1) {
+        color: black;
+        padding: 0;
+      }
+
+      td.checkbox {
+        text-align: center;
+      }
+
+      tbody {
+        border-color: white;
+        border-style: solid;
+        border-width: 0 8px;
+        transition: border-width var(--transition-short);
+      }
+
+      tbody[expandedGroup] {
+        border-color: var(--paper-indigo-50);
+        border-width: 8px;
+      }
+
+      expand-button {
+        --paper-button: {
+          margin: 0;
+          min-width: 0;
+          padding: 0;
+          height: 100%;
+        };
+        --iron-icon: {
+          height: 20px;
+          padding: 0;
+          width: 20px;
+        };
+      }
+
+      #close {
+        align-self: flex-start;
+        flex-shrink: 0;
+      }
+
+      #table_outer {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #main {
+        width: 100%;
+      }
+
+      #triage_controls {
+        align-items: center;
+        display: flex;
+        padding-left: 24px;
+        transition: background-color var(--transition-short), color var(--transition-short);
+      }
+
+      #triage_controls[anySelected] {
+        background-color: var(--paper-indigo-50);
+        color: var(--paper-indigo-500);
+      }
+
+      #triage_controls paper-button {
+        background-color: var(--paper-indigo-50);
+        color: var(--paper-indigo-500);
+        font-weight: bold;
+        transition: background-color var(--transition-short), color var(--transition-short);
+      }
+
+      #triage_controls paper-button[disabled] {
+        background-color: white;
+        color: var(--paper-grey-500);
+        font-weight: normal;
+      }
+
+      .recent_bug {
+        padding: 0;
+      }
+
+      #selected_alerts_count {
+        flex-grow: 1;
+      }
+
+      .dialog_container {
+        display: inline-block;
+      }
+
+      paper-dialog {
+        margin: 0;
+      }
+
+      paper-dialog paper-input,
+      paper-dialog paper-textarea,
+      paper-dialog table {
+        margin: 0 16px;
+        padding: 0;
+      }
+
+      #new_bug_dialog {
+        width: 600px;
+      }
+
+      #new_bug_dialog paper-checkbox {
+        display: block;
+      }
+
+      #submit_new_bug,
+      #submit_existing_bug {
+        display: flex;
+        margin: 16px;
+        padding: 8px;
+      }
+
+      #non_overlapping_recent_bugs {
+        margin-right: 16px;
+      }
+
+      #existing_bug_controls {
+        display: flex;
+        margin: 0;
+        padding: 0;
+      }
+
+      #existing_bug_table_container {
+        max-height: 500px;
+        overflow: auto;
+        margin: 0;
+        padding: 0;
+      }
+
+      #existing_bug_table_container table {
+        margin: 16px;
+      }
+
+      #existing_bug_table_container paper-button {
+        margin: 0;
+        background-color: unset;
+      }
+
+      #existing_bug_table_container td:nth-of-type(4) {
+        max-width: 500px;
+      }
+
+      #existing_bug_dialog table tbody {
+        border-width: 0;
+      }
+
+      #edit, #documentation {
+        color: var(--paper-indigo-500);
+      }
+    </style>
+
+    <div id="controls">
+      <dropdown-input id="source"
+                      state-path="[[statePath]].source"
+                      on-input-keydown="onSourceKeydown_"
+                      on-clear="onSourceClear_"
+                      on-option-select="onSourceSelect_">
+      </dropdown-input>
+
+      <template is="dom-if" if="[[alertGroups]]">
+        <template is="dom-if" if="[[isOwner]]">
+          <paper-icon-button id="edit"
+                             icon="editor:mode-edit">
+          </paper-icon-button>
+        </template>
+        <template is="dom-if" if="[[!isOwner]]">
+          <a id="documentation"
+             href="#"
+             target="_blank"
+             title="Documentation">
+            <paper-icon-button icon="help"></paper-icon-button>
+          </a>
+        </template>
+      </template>
+
+      <paper-spinner active$="[[isLoading]]">
+      </paper-spinner>
+
+      <paper-toggle-button id="improvements"
+                           checked$="[[showingImprovements]]"
+                           on-change="toggleShowingImprovements_">
+        Improvements
+      </paper-toggle-button>
+
+      <paper-toggle-button id="triaged"
+                           checked$="[[showingTriaged]]"
+                           on-change="toggleShowingTriaged_">
+        Triaged
+      </paper-toggle-button>
+
+      <span id="summary">
+        <template is="dom-if" if="[[!areAlertGroupsPlaceholders]]">
+          [[summary_(alertGroups)]]
+        </template>
+      </span>
+
+      <paper-icon-button id="close"
+                         icon="close"
+                         on-tap="closeSection_">
+      </paper-icon-button>
+    </div>
+
+    <iron-collapse opened="[[showPreview_(isPreviewing, alertGroups)]]">
+      <div id="preview">
+        <template is="dom-if" if="[[!previewLayout]]">
+          <chart-placeholder>
+            Select alerts using the checkboxes in the table below to preview their timeseries.
+          </chart-placeholder>
+        </template>
+
+        <template is="dom-if" if="[[previewLayout]]">
+          <multi-chart state-path="[[statePath]].previewLayout"
+                       on-dot-click="onDotClick_"
+                       on-dot-mouseover="onDotMouseOver_">
+          </multi-chart>
+        </template>
+      </div>
+    </iron-collapse>
+
+    <template is="dom-if" if="[[_empty(alertGroups)]]">
+      All alerts triaged!
+    </template>
+
+    <template is="dom-if" if="[[!_empty(alertGroups)]]">
+      <div id="table_outer">
+        <div id="triage_controls"
+             anySelected$="[[!_eq(0, selectedAlertsCount)]]">
+          <div id="selected_alerts_count">
+            [[selectedAlertsCount]] selected
+            alert[[_plural(selectedAlertsCount)]]
+          </div>
+
+          <span class="dialog_container">
+            <paper-button disabled$="[[_eq(0, selectedAlertsCount)]]"
+                          on-tap="openCharts_">
+              Chart[[_plural(selectedAlertsCount)]]
+            </paper-button>
+
+            <paper-button disabled$="[[_eq(0, selectedAlertsCount)]]"
+                          on-tap="fileNewBug_">
+              New Bug
+            </paper-button>
+
+            <paper-dialog id="new_bug_dialog"
+                          opened="[[newBug.isOpen]]"
+                          horizontal-align="right"
+                          vertical-align="top"
+                          no-overlap
+                          on-iron-overlay-canceled="onCancelNewBug_">
+              <paper-input label="Summary"
+                           value="[[newBug.summary]]"
+                           on-change="onNewBugSummary_">
+              </paper-input>
+              <paper-textarea autofocus
+                              label="Description"
+                              value="[[newBug.description]]"
+                              on-change="onNewBugDescription_">
+              </paper-textarea>
+              <template is="dom-repeat" items="[[newBug.labels]]" as="label" index-as="labelIndex">
+                <paper-checkbox checked="[[label.isEnabled]]"
+                                on-change="onNewBugLabel_">
+                  [[label.name]]
+                </paper-checkbox>
+              </template>
+              <template is="dom-repeat" items="[[newBug.components]]" as="component" index-as="componentIndex">
+                <paper-checkbox checked="[[component.isEnabled]]"
+                                on-change="onNewBugComponent_">
+                  [[component.name]]
+                </paper-checkbox>
+              </template>
+              <paper-input label="Owner"
+                           value="[[newBug.owner]]"
+                           on-change="onNewBugOwner_">
+              </paper-input>
+              <paper-input label="CC"
+                           value="[[newBug.cc]]"
+                           on-change="onNewBugCC_">
+              </paper-input>
+              <paper-button id="submit_new_bug"
+                            on-tap="submitNewBug_">
+                Submit
+              </paper-button>
+            </paper-dialog>
+          </span>
+
+          <span class="dialog_container">
+            <paper-button id="file_existing_bug"
+                          disabled$="[[_eq(0, selectedAlertsCount)]]"
+                          on-tap="fileExistingBug_">
+              Existing Bug
+            </paper-button>
+            <paper-dialog id="existing_bug_dialog"
+                          opened="[[existingBug.isOpen]]"
+                          horizontal-align="right"
+                          vertical-align="top"
+                          no-overlap
+                          on-iron-overlay-canceled="onCancelExistingBug_">
+              <div id="existing_bug_controls">
+                <paper-input autofocus
+                            label="Bug Number"
+                            value="[[existingBug.bugId]]"
+                            on-change="onExistingBugId_">
+                </paper-input>
+                <paper-button id="submit_existing_bug"
+                              on-tap="submitExistingBug_">
+                  Submit
+                </paper-button>
+                <paper-toggle-button id="non_overlapping_recent_bugs"
+                                     checked$="[[existingBug.nonOverlappingRecentBugs]]"
+                                     on-change="toggleNonOverlappingRecentBugs_">
+                  Non-overlapping
+                </paper-toggle-button>
+              </div>
+              <div id="existing_bug_table_container">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Bug #</th>
+                      <th>Status</th>
+                      <th>Owner</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <template is="dom-repeat" items="[[existingBug.recentBugs]]" as="bug" index-as="bugIndex">
+                      <tr>
+                        <td>
+                          <paper-button on-tap="onExistingRecentBug_"
+                                        class="recent_bug">
+                            [[bug.id]]
+                          </paper-button>
+                        </td>
+                        <td>[[bug.status]]</td>
+                        <td>[[bug.owner]]</td>
+                        <td>[[bug.description]]</td>
+                      </tr>
+                    </template>
+                  </tbody>
+                </table>
+              </div>
+            </paper-dialog>
+          </span>
+
+          <paper-button disabled$="[[_eq(0, selectedAlertsCount)]]"
+                        on-tap="ignore_">
+            Ignore
+          </paper-button>
+        </div>
+
+        <div id="table_container">
+          <table id="main"
+                 placeholder$=[[areAlertGroupsPlaceholders]]>
+            <thead>
+              <tr>
+                <th>&nbsp;</th>
+                <th>
+                  <paper-checkbox checked="[[!_eq(0, selectedAlertsCount)]]"
+                                  disabled="[[areAlertGroupsPlaceholders]]"
+                                  on-change="selectAllAlerts_">
+                  </paper-checkbox>
+                </th>
+                <template is="dom-if" if="[[showBugColumn]]">
+                  <th>
+                    <column-head on-tap="sort_"
+                                 name="bug"
+                                 sort-column="[[sortColumn]]"
+                                 sort-descending="[[sortDescending]]">
+                      Bug
+                    </column-head>
+                  </th>
+                </template>
+                <th>
+                  <column-head on-tap="sort_"
+                               name="revisions"
+                               sort-column="[[sortColumn]]"
+                               sort-descending="[[sortDescending]]">
+                    Revisions
+                  </column-head>
+                </th>
+                <th>
+                  <column-head on-tap="sort_"
+                               name="testSuite"
+                               sort-column="[[sortColumn]]"
+                               sort-descending="[[sortDescending]]">
+                    Test Suite
+                  </column-head>
+                </th>
+                <th>
+                  <column-head on-tap="sort_"
+                               name="measurement"
+                               sort-column="[[sortColumn]]"
+                               sort-descending="[[sortDescending]]">
+                    Measurement
+                  </column-head>
+                </th>
+                <template is="dom-if" if="[[showMasterColumn]]">
+                  <th>
+                    <column-head on-tap="sort_"
+                                name="master"
+                                sort-column="[[sortColumn]]"
+                                sort-descending="[[sortDescending]]">
+                      Master
+                    </column-head>
+                  </th>
+                </template>
+                <th>
+                  <column-head on-tap="sort_"
+                               name="bot"
+                               sort-column="[[sortColumn]]"
+                               sort-descending="[[sortDescending]]">
+                    Bot
+                  </column-head>
+                </th>
+                <template is="dom-if" if="[[showTestCaseColumn]]">
+                  <th>
+                    <column-head on-tap="sort_"
+                                name="testCase"
+                                sort-column="[[sortColumn]]"
+                                sort-descending="[[sortDescending]]">
+                      Test case
+                    </column-head>
+                  </th>
+                </template>
+                <th>
+                  <column-head on-tap="sort_"
+                               name="delta"
+                               sort-column="[[sortColumn]]"
+                               sort-descending="[[sortDescending]]">
+                    Delta
+                  </column-head>
+                </th>
+                <th>
+                  <column-head on-tap="sort_"
+                               name="deltaPct"
+                               sort-column="[[sortColumn]]"
+                               sort-descending="[[sortDescending]]">
+                    Delta %
+                  </column-head>
+                </th>
+              </tr>
+            </thead>
+
+            <template is="dom-repeat" items="[[alertGroups]]" as="alertGroup" index-as="alertGroupIndex">
+              <tbody expandedGroup$="[[alertGroup.isExpanded]]">
+                <template is="dom-repeat" items="[[alertGroup.alerts]]" as="alert" index-as="alertIndex">
+                  <template is="dom-if" if="[[shouldDisplayAlert_(alertGroup, alertIndex)]]">
+                    <tr style$="color: [[alert.color]];">
+                      <td>
+                        <template is="dom-if" if="[[shouldDisplayExpandGroupButton_(alertGroup, alertIndex)]]">
+                          <expand-button state-path="[[statePath]].alertGroups.[[alertGroupIndex]]">
+                            [[_len(alertGroup.alerts)]]
+                          </expand-button>
+                        </template>
+                      </td>
+
+                      <td class="checkbox">
+                        <paper-checkbox checked="[[alert.isSelected]]"
+                                        disabled="[[areAlertGroupsPlaceholders]]"
+                                        on-tap="selectAlert_">
+                        </paper-checkbox>
+                      </td>
+                      <template is="dom-if" if="[[showBugColumn]]">
+                        <td>[[alert.bugId]]</td>
+                      </template>
+                      <td>
+                        <a href="[[alertRevisionHref_(alert)]]">
+                          [[alertRevisionString_(alert)]]
+                        </a>
+                      </td>
+                      <td>[[breakWords_(alert.testSuite)]]</td>
+                      <td>[[breakWords_(alert.measurement)]]</td>
+                      <template is="dom-if" if="[[showMasterColumn]]">
+                        <td>[[alert.master]]</td>
+                      </template>
+                      <td>[[alert.bot]]</td>
+                      <template is="dom-if" if="[[showTestCaseColumn]]">
+                        <td>[[breakWords_(alert.testCase)]]</td>
+                      </template>
+
+                      <td>
+                        <tr-v-ui-scalar-span value="[[alert.deltaValue]]"
+                                             unit="[[alert.deltaUnit]]">
+                        </tr-v-ui-scalar-span>
+                      </td>
+
+                      <td>
+                        <tr-v-ui-scalar-span value="[[alert.percentDeltaValue]]"
+                                             unit="[[alert.percentDeltaUnit]]"
+                                             maximum-fraction-digits="1">
+                        </tr-v-ui-scalar-span>
+                      </td>
+                    </tr>
+                  </template>
+                </template>
+              </tbody>
+            </template>
+          </table>
+        </div>
+      </div>
+    </template>
+  </template>
+</dom-module>
+<script src="/dashboard/spa/alerts-section.js"></script>
