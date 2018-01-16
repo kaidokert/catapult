@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff6ebe7b_84d146ae",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-01-16T20:01:56Z",
+      "side": 1,
+      "message": "Sorry, could not determine whether a proper design is necessary here, and what would be more consistent with the rest. Advice/suggestions are welcome.",
+      "range": {
+        "startLine": 190,
+        "startChar": 6,
+        "endLine": 191,
+        "endChar": 33
+      },
+      "revId": "b925cabf8b15dcf05447f133d4dd936c115c1a46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
