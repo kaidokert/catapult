@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4d6a47b8_34ab8c1f",
+        "filename": "tracing/tracing/metrics/tabs_metric.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-01-16T17:50:58Z",
+      "side": 1,
+      "message": "When I first saw this, I couldn\u0027t imagine what \"tabsMetric\" would measure. (Number of tabs?)\nI think that adding another word to the metric name like \"tabSwitchingMetric\" would be clearer, but it\u0027s up to you.",
+      "revId": "7ca03a7defa573d91e7148e8f169b47672832835",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d504c798_f6636670",
+        "filename": "tracing/tracing/metrics/tabs_metric.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-01-16T17:50:58Z",
+      "side": 1,
+      "message": "Why not use the ModelHelper?\nmodel.getOrCreateHelper(tr.model.helpers.ChromeModelHelper).browserHelper.mainThread",
+      "revId": "7ca03a7defa573d91e7148e8f169b47672832835",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42a9a338_0704c044",
+        "filename": "tracing/tracing/metrics/tabs_metric.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-01-16T17:50:58Z",
+      "side": 1,
+      "message": "Are the default statistics ok or did you want to disable some of them?\nhttps://github.com/catapult-project/catapult/blob/master/tracing/tracing/value/histogram.html#L125",
+      "revId": "7ca03a7defa573d91e7148e8f169b47672832835",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fd17bf3_4df4b122",
+        "filename": "tracing/tracing/metrics/tabs_metric.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-01-16T17:50:58Z",
+      "side": 1,
+      "message": "This flag indicates that the metric uses opt_options.rangeOfInterest, and causes the metrics side panel to recompute the metric when the range of interest changes.\nCan you either set this to false or use opt_options.rangeOfInterest in the metric?",
+      "revId": "7ca03a7defa573d91e7148e8f169b47672832835",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dfc18e22_00fa3464",
+        "filename": "tracing/tracing/metrics/tabs_metric_test.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-01-16T17:50:58Z",
+      "side": 1,
+      "message": "Please move these constants and helper functions inside the callback passed to testSuite() in order to avoid cluttering the global namespace and conflicting with other tests.",
+      "revId": "7ca03a7defa573d91e7148e8f169b47672832835",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
