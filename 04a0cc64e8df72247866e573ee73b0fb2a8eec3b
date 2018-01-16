@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "831d3ad4_08a47520",
+        "filename": "telemetry/telemetry/internal/browser/extension_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-16T15:47:54Z",
+      "side": 1,
+      "message": "nits: rename this to CreateBrowserWithExtension",
+      "revId": "04a0cc64e8df72247866e573ee73b0fb2a8eec3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
