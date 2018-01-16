@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import contextlib
 import logging
 import os
 import shutil
@@ -16,13 +17,8 @@ from telemetry.testing import options_for_unittests
 
 
 class ExtensionTest(unittest.TestCase):
-  def setUp(self):
-    self._browser = None
-    self._platform = None
-    self._extension = None
-    self._extension_id = None
-
-  def CreateBrowserWithExtension(self, ext_path):
+  @contextlib.contextmanager
+  def BrowserWithExtension(self, ext_path):
     extension_path = os.path.join(util.GetUnittestDataDir(), ext_path)
     options = options_for_unittests.GetCopy()
     load_extension = extension_to_load.ExtensionToLoad(
@@ -31,60 +27,50 @@ class ExtensionTest(unittest.TestCase):
     browser_to_create = browser_finder.FindBrowser(options)
 
     if not browser_to_create:
-      # May not find a browser that supports extensions.
-      return False
-    self._platform = browser_to_create.platform
-    self._platform.network_controller.Open()
-    self._browser = browser_to_create.Create(options)
-    self._extension = self._browser.extensions[load_extension]
-    self._extension_id = load_extension.extension_id
-    self.assertTrue(self._extension)
-    return True
+      self.skipTest("Did not find a browser that supports extensions")
 
-  def tearDown(self):
-    if self._browser:
-      self._browser.Close()
-      self._platform.network_controller.Close()
+    platform = browser_to_create.platform
+    try:
+      platform.network_controller.Open()
+      with browser_to_create.BrowserSession(
+          options.browser_options) as browser:
+        extension = browser.extensions[load_extension]
+        self.assertTrue(extension)
+        self.assertEqual(extension.extension_id, load_extension.extension_id)
+        yield browser, extension
+    finally:
+      platform.network_controller.Close()
 
   def testExtensionBasic(self):
     """Test ExtensionPage's ExecuteJavaScript and EvaluateJavaScript."""
-    if not self.CreateBrowserWithExtension('simple_extension'):
-      logging.warning('Did not find a browser that supports extensions, '
-                      'skipping test.')
-      return
-    self.assertTrue(
-        self._extension.EvaluateJavaScript('chrome.runtime != null'))
-    self._extension.ExecuteJavaScript('setTestVar("abcdef")')
-    self.assertEquals('abcdef',
-                      self._extension.EvaluateJavaScript('_testVar'))
+    with self.BrowserWithExtension('simple_extension') as (_, extension):
+      self.assertTrue(
+          extension.EvaluateJavaScript('chrome.runtime != null'))
+      extension.ExecuteJavaScript('setTestVar("abcdef")')
+      self.assertEquals('abcdef',
+                        extension.EvaluateJavaScript('_testVar'))
 
   def testExtensionGetByExtensionId(self):
     """Test GetByExtensionId for a simple extension with a background page."""
-    if not self.CreateBrowserWithExtension('simple_extension'):
-      logging.warning('Did not find a browser that supports extensions, '
-                      'skipping test.')
-      return
-    ext = self._browser.extensions.GetByExtensionId(self._extension_id)
-    self.assertEqual(1, len(ext))
-    self.assertEqual(ext[0], self._extension)
-    self.assertTrue(
-        ext[0].EvaluateJavaScript('chrome.runtime != null'))
+    with self.BrowserWithExtension('simple_extension') as (browser, extension):
+      extensions = browser.extensions.GetByExtensionId(extension.extension_id)
+      self.assertEqual(1, len(extensions))
+      self.assertEqual(extensions[0], extension)
+      self.assertTrue(
+          extensions[0].EvaluateJavaScript('chrome.runtime != null'))
 
   @decorators.Disabled('mac')
   def testWebApp(self):
     """Tests GetByExtensionId for a web app with multiple pages."""
-    if not self.CreateBrowserWithExtension('simple_app'):
-      logging.warning('Did not find a browser that supports extensions, '
-                      'skipping test.')
-      return
-    extensions = self._browser.extensions.GetByExtensionId(self._extension_id)
-    extension_urls = set([ext.EvaluateJavaScript('location.href;')
-                          for ext in extensions])
-    expected_urls = set(['chrome-extension://' + self._extension_id + '/' + path
-                         for path in ['main.html', 'second.html',
-                                      '_generated_background_page.html']])
-
-    self.assertEqual(expected_urls, extension_urls)
+    with self.BrowserWithExtension('simple_app') as (browser, extension):
+      extensions = browser.extensions.GetByExtensionId(extension.extension_id)
+      extension_urls = set([ext.EvaluateJavaScript('location.href;')
+                            for ext in extensions])
+      expected_urls = set([
+          'chrome-extension://' + extension.extension_id + '/' + path
+          for path in ['main.html', 'second.html',
+                       '_generated_background_page.html']])
+      self.assertEqual(expected_urls, extension_urls)
 
 class NonExistentExtensionTest(unittest.TestCase):
   def testNonExistentExtensionPath(self):
@@ -172,23 +158,19 @@ class WebviewInExtensionTest(ExtensionTest):
   @decorators.Disabled('win', 'linux', 'mac', 'chromeos')
   def testWebviewInExtension(self):
     """Tests GetWebviewContext() for a web app containing <webview> element."""
-    if not self.CreateBrowserWithExtension('webview_app'):
-      logging.warning('Did not find a browser that supports extensions, '
-                      'skipping test.')
-      return
-
-    self._browser.extensions.GetByExtensionId(self._extension_id)
-    webview_contexts = self._extension.GetWebviewContexts()
-    self.assertEquals(1, len(webview_contexts))
-    webview_context = webview_contexts[0]
-    webview_context.WaitForDocumentReadyStateToBeComplete()
-    # Check that the context has the right url from the <webview> element.
-    self.assertTrue(webview_context.GetUrl().startswith('data:'))
-    # Check |test_input_id| element is accessible from the webview context.
-    self.assertTrue(
-        webview_context.EvaluateJavaScript(
-            'document.getElementById("test_input_id") != null'))
-    # Check that |test_input_id| is not accessible from outside webview context
-    self.assertFalse(
-        self._extension.EvaluateJavaScript(
-            'document.getElementById("test_input_id") != null'))
+    with self.BrowserWithExtension('webview_app') as (_, extension):
+      webview_contexts = extension.GetWebviewContexts()
+      self.assertEquals(1, len(webview_contexts))
+      webview_context = webview_contexts[0]
+      webview_context.WaitForDocumentReadyStateToBeComplete()
+      # Check that the context has the right url from the <webview> element.
+      self.assertTrue(webview_context.GetUrl().startswith('data:'))
+      # Check |test_input_id| element is accessible from the webview context.
+      self.assertTrue(
+          webview_context.EvaluateJavaScript(
+              'document.getElementById("test_input_id") != null'))
+      # Check that |test_input_id| is not accessible from outside of the
+      # webview context.
+      self.assertFalse(
+          extension.EvaluateJavaScript(
+              'document.getElementById("test_input_id") != null'))
