@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a928df39_999e8c80",
+        "filename": "dashboard/dashboard/static/pinpoint.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-01-16T22:36:12Z",
+      "side": 1,
+      "message": "Do we support webview? I think the dashboard has to pass \u0027telemetry_perf_webview_tests\u0027 as the target.",
+      "range": {
+        "startLine": 37,
+        "startChar": 5,
+        "endLine": 37,
+        "endChar": 43
+      },
+      "revId": "b22a84cfc4b01cfd153b2b3ac66ee0bf193e36d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
