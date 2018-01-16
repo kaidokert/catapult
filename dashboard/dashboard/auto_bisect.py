@@ -33,6 +33,13 @@ _PINPOINT_BOTS = [
     'chromium-rel-win7-gpu-nvidia',
     'win-high-dpi',
     'win-zenbook',
+    'android_nexus5X_perf_bisect',
+    'android_nexus5_perf_bisect',
+    'android_nexus6_perf_bisect',
+    'android_nexus7_perf_bisect',
+    'android_one_perf_bisect',
+    'android_webview_arm64_aosp_perf_bisect',
+    'android_webview_nexus6_aosp_perf_bisect',
 ]
 
 
