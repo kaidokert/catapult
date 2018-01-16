@@ -187,7 +187,31 @@ class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
 
   @property
   def browser_directory(self):
-    return None
+    # The logic below abuses the fact that this property is only used for
+    # flushing the OS page cache. Returns None in cases when flushing is not
+    # needed.
+    if self.device.build_version_sdk >= 24:
+      # On N+ Monochrome is the most widely used configuration. Since Webview is
+      # used often, the typical usage is closer to have the DEX and the native
+      # library be resident in memory. Skip the pagecache flushing.
+      return None
+    # On Android L+ the directory where base APK resides is also used for
+    # keeping extracted native libraries and .odex. Here is an example layout:
+    # /data/app/$package.apps.chrome-1/
+    #                                  base.apk
+    #                                  lib/arm/libchrome.so
+    #                                  oat/arm/base.odex
+    # Declaring this toplevel directory as 'browser_directory' allows the cold
+    # startup benchmarks to flush OS pagecache for the native library, .odex and
+    # the APK.
+    apks = self.device.GetApplicationPaths(self._backend_settings.package)
+    # A package can map to multiple APKs iff the package overrides the app on
+    # the system image. Such overrides should not happen on perf bots.
+    assert len(apks) == 1
+    base_apk = apks[0]
+    if not base_apk or not base_apk.endswith('/base.apk'):
+      return None
+    return base_apk[:-9]
 
   @property
   def profile_directory(self):
