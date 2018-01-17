@@ -94,10 +94,11 @@ class CrOSBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         vmodule
     ])
 
+    if self.browser_options.gaia_login:
+      args.append('--oobe-skip-to-login')
     # Disable GAIA services unless we're using GAIA login, or if there's an
     # explicit request for it.
-    if (self.browser_options.disable_gaia_services and
-        not self.browser_options.gaia_login):
+    elif self.browser_options.disable_gaia_services:
       args.append('--disable-gaia-services')
 
     trace_config_file = (self.platform_backend.tracing_controller_backend
