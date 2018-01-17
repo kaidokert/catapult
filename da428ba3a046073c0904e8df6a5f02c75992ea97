@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1d35d4eb_6969a65b",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-17T12:11:03Z",
+      "side": 1,
+      "message": "trying to type here:\n\n  self.browser_options.clear_sytem_cache_for_browser_and_profile_on_start \u003d True\n\ngoes over the line limit and there is no easy way to break it :-/\n\nso we just keep the local variable.",
+      "revId": "da428ba3a046073c0904e8df6a5f02c75992ea97",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
