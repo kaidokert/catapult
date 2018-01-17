@@ -3,7 +3,7 @@ service: pinpoint
 runtime: python27
 api_version: 1
 threadsafe: true
-instance_class: F1
+instance_class: F2
 
 libraries:
 - name: pycrypto
