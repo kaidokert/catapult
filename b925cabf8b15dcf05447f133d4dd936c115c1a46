@@ -22,6 +22,30 @@
       "revId": "b925cabf8b15dcf05447f133d4dd936c115c1a46",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8408660f_46ab6a32",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-17T09:00:00Z",
+      "side": 1,
+      "message": "Looking at where cache flushing happens [1], and how this logic may also get more complex in the future (e.g. maybe flush more directories other than the profile and browser?), how about letting this always return the computed browser_directory and additionally defining a browser_backend.GetSystemCachePathsToFlush() where each backend can encode the conditional logic (e.g. check if sdk \u003e\u003d 24) to figure out the set of paths that should be flushed?\n\n* Also note as the TODO on [1] says, I\u0027m hoping to move this logic out of the \"browser_backends\" and into the \"possible_browsers\". Your change looks safe, though, as it only depends on having access to the device and the backend_settings, which we also do on the possible_browser [2].\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py?rcl\u003db4826a52853c9c2778d496f6c6fa853f777f94df\u0026l\u003d280\n[2]: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/backends/chrome/android_browser_finder.py?rcl\u003db4826a52853c9c2778d496f6c6fa853f777f94df\u0026l\u003d72",
+      "parentUuid": "ff6ebe7b_84d146ae",
+      "range": {
+        "startLine": 190,
+        "startChar": 6,
+        "endLine": 191,
+        "endChar": 33
+      },
+      "revId": "b925cabf8b15dcf05447f133d4dd936c115c1a46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
