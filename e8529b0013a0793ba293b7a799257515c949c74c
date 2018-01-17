@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3dc3a5c0_d371f1c3",
+        "filename": "telemetry/telemetry/core/tracing_controller_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-17T16:20:46Z",
+      "side": 1,
+      "message": "Locally tested this on android, still fails. Also tested it on cros, and it passes.",
+      "revId": "e8529b0013a0793ba293b7a799257515c949c74c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
