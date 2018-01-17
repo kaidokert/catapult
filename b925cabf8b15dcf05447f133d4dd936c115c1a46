@@ -46,6 +46,30 @@
       "revId": "b925cabf8b15dcf05447f133d4dd936c115c1a46",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "118a4a2a_8bcae994",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-01-17T13:16:40Z",
+      "side": 1,
+      "message": "The approach with browser_backend.GetSystemCachePathsToFlush() looks reasonable. Please check my take at this, though I am naming it as GetDirectoryPathsToFlushOsPageCacheFor(), sounds less ambiguous, but may be inconsistent with other places in Telemetry that I may not be aware of.\n\nStill returning None for browser_directory property on K-, since it is less straightforward, and worried about having no coverage for it.",
+      "parentUuid": "8408660f_46ab6a32",
+      "range": {
+        "startLine": 190,
+        "startChar": 6,
+        "endLine": 191,
+        "endChar": 33
+      },
+      "revId": "b925cabf8b15dcf05447f133d4dd936c115c1a46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
