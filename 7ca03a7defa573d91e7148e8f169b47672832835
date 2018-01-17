@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e3d2725b_97cb56a4",
+        "filename": "tracing/tracing/metrics/tabs_metric.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-01-17T04:33:08Z",
+      "side": 1,
+      "message": "I would like to evolve this to process more tab-related measurements (see details in [1]). That\u0027s why I am starting this as just \u0027tabs\u0027. But I am happy to switch to \u0027tabSwitching\u0027 if you think that makes more sense.\n\nhttps://docs.google.com/document/d/1eqyuq4o_5ZUz3SfvPJWm0K0mkDOaXAkAcLmuL8_jb3U/edit",
+      "parentUuid": "4d6a47b8_34ab8c1f",
+      "revId": "7ca03a7defa573d91e7148e8f169b47672832835",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d504c798_f6636670",
         "filename": "tracing/tracing/metrics/tabs_metric.html",
         "patchSetId": 7
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "a08a1203_26a73cc1",
+        "filename": "tracing/tracing/metrics/tabs_metric.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-01-17T04:33:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d504c798_f6636670",
+      "revId": "7ca03a7defa573d91e7148e8f169b47672832835",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "42a9a338_0704c044",
         "filename": "tracing/tracing/metrics/tabs_metric.html",
         "patchSetId": 7
@@ -47,6 +83,24 @@
       "writtenOn": "2018-01-16T17:50:58Z",
       "side": 1,
       "message": "Are the default statistics ok or did you want to disable some of them?\nhttps://github.com/catapult-project/catapult/blob/master/tracing/tracing/value/histogram.html#L125",
+      "revId": "7ca03a7defa573d91e7148e8f169b47672832835",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "050d6a0d_6d6bc820",
+        "filename": "tracing/tracing/metrics/tabs_metric.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-01-17T04:33:08Z",
+      "side": 1,
+      "message": "I think the default set looks reasonable (\u0027sum\u0027 is probably not that useful though).",
+      "parentUuid": "42a9a338_0704c044",
       "revId": "7ca03a7defa573d91e7148e8f169b47672832835",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "e1eee87e_43a8a358",
+        "filename": "tracing/tracing/metrics/tabs_metric.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-01-17T04:33:08Z",
+      "side": 1,
+      "message": "Done (set to false).",
+      "parentUuid": "7fd17bf3_4df4b122",
+      "revId": "7ca03a7defa573d91e7148e8f169b47672832835",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dfc18e22_00fa3464",
         "filename": "tracing/tracing/metrics/tabs_metric_test.html",
         "patchSetId": 7
@@ -84,6 +156,24 @@
       "revId": "7ca03a7defa573d91e7148e8f169b47672832835",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e56d4ee5_9d465d87",
+        "filename": "tracing/tracing/metrics/tabs_metric_test.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-01-17T04:33:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfc18e22_00fa3464",
+      "revId": "7ca03a7defa573d91e7148e8f169b47672832835",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
