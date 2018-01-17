@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ab19d3e0_49b9b0eb",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-17T13:32:56Z",
+      "side": 1,
+      "message": "nit: maybe rewrite as:\n\nif self.device.build_version_sdk \u003c 24 and self.browser_directory:\n  paths_to_flush.append(...)\n\nso there is only a single return at the bottom.",
+      "revId": "5fb0bb2f8586aae03a4d0d49944778bc5f3d56e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02589b4b_ea16ed33",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-17T13:32:56Z",
+      "side": 1,
+      "message": "replace perezju with crbug.com/787834",
+      "revId": "5fb0bb2f8586aae03a4d0d49944778bc5f3d56e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
