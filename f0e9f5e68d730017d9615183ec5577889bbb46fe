@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e581e924_2d247b91",
+        "filename": "dashboard/dashboard/templates/edit_site_config.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-01-17T15:23:08Z",
+      "side": 1,
+      "message": "Is it bots or bot_configurations?",
+      "range": {
+        "startLine": 76,
+        "startChar": 24,
+        "endLine": 76,
+        "endChar": 28
+      },
+      "revId": "f0e9f5e68d730017d9615183ec5577889bbb46fe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
