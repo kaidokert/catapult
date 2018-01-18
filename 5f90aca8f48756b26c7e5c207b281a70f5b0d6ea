@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e86d5a36_1085cb53",
+        "filename": "telemetry/telemetry/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-18T10:43:59Z",
+      "side": 1,
+      "message": "should a test like this be safer/more robust?\nhttps://chromium.googlesource.com/chromium/tools/build/+/e5e872a092f3b5386f593dbe14425cb93f10f737/scripts/slave/unittests/test_env.py#21",
+      "revId": "5f90aca8f48756b26c7e5c207b281a70f5b0d6ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
