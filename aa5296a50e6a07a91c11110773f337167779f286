@@ -22,6 +22,30 @@
       "revId": "aa5296a50e6a07a91c11110773f337167779f286",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6c0af8f_64c85e16",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2018-01-18T19:06:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e9d17fa_1da8e6f0",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 30
+      },
+      "revId": "aa5296a50e6a07a91c11110773f337167779f286",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
