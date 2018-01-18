@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fe34ac53_b1813a4f",
+        "filename": "dashboard/dashboard/add_histograms_queue.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-01-18T21:00:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e8f41c4_88866e9e",
+      "range": {
+        "startLine": 344,
+        "startChar": 7,
+        "endLine": 344,
+        "endChar": 8
+      },
+      "revId": "7ac08766bc3bdd27568c421b1259f3e62840ac52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b22be0b8_8c090b96",
         "filename": "dashboard/dashboard/add_histograms_queue_test.py",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2018-01-15T19:59:48Z",
       "side": 1,
       "message": "nit: can you add 2 tests covering the ref names",
+      "range": {
+        "startLine": 283,
+        "startChar": 6,
+        "endLine": 283,
+        "endChar": 17
+      },
+      "revId": "7ac08766bc3bdd27568c421b1259f3e62840ac52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b248ffb3_a6bffcdd",
+        "filename": "dashboard/dashboard/add_histograms_queue_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-01-18T21:00:59Z",
+      "side": 1,
+      "message": "Done in one test that covers both _ref and /ref.",
+      "parentUuid": "b22be0b8_8c090b96",
       "range": {
         "startLine": 283,
         "startChar": 6,
@@ -68,6 +116,30 @@
       "revId": "7ac08766bc3bdd27568c421b1259f3e62840ac52",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7658dbdb_39806bff",
+        "filename": "dashboard/dashboard/add_histograms_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-01-18T21:00:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3328853_06817bec",
+      "range": {
+        "startLine": 120,
+        "startChar": 9,
+        "endLine": 120,
+        "endChar": 20
+      },
+      "revId": "7ac08766bc3bdd27568c421b1259f3e62840ac52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
