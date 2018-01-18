@@ -78,7 +78,7 @@ class BugCommentTest(testing_common.TestCase):
     self.testbed.deactivate()
 
   def testNoBug(self):
-    j = job.Job.New({}, [], False)
+    j = job.Job.New('', {}, [], False)
     j.put()
     j.Start()
     j.Run()
@@ -86,7 +86,7 @@ class BugCommentTest(testing_common.TestCase):
     self.assertFalse(self.add_bug_comment.called)
 
   def testStarted(self):
-    j = job.Job.New({}, [], False, bug_id=123456)
+    j = job.Job.New('', {}, [], False, bug_id=123456)
     j.put()
     j.Start()
 
@@ -94,7 +94,7 @@ class BugCommentTest(testing_common.TestCase):
         123456, _COMMENT_STARTED, send_email=False)
 
   def testCompletedNoDifference(self):
-    j = job.Job.New({}, [], False, bug_id=123456)
+    j = job.Job.New('', {}, [], False, bug_id=123456)
     j.put()
     j.Run()
 
@@ -114,7 +114,7 @@ class BugCommentTest(testing_common.TestCase):
                    'Reviewed-by: Reviewer Name <reviewer@chromium.org>',
     }
 
-    j = job.Job.New({}, [], False, bug_id=123456)
+    j = job.Job.New('', {}, [], False, bug_id=123456)
     j.put()
     j.Run()
 
@@ -147,7 +147,7 @@ class BugCommentTest(testing_common.TestCase):
         },
     )
 
-    j = job.Job.New({}, [], False, bug_id=123456)
+    j = job.Job.New('', {}, [], False, bug_id=123456)
     j.put()
     j.Run()
 
@@ -158,7 +158,7 @@ class BugCommentTest(testing_common.TestCase):
                  'reviewer1@chromium.org', 'reviewer2@chromium.org'])
 
   def testFailed(self):
-    j = job.Job.New({}, [], False, bug_id=123456)
+    j = job.Job.New('', {}, [], False, bug_id=123456)
     j.put()
     j.state = None  # No state object is an AttributeError.
     with self.assertRaises(AttributeError):

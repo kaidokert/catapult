@@ -36,6 +36,7 @@ class JobsTest(unittest.TestCase):
   def testPost_ValidRequest(self):
     # Create job.
     job = job_module.Job.New(
+        creator='',
         arguments={},
         quests=(),
         auto_explore=True)

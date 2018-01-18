@@ -27,8 +27,8 @@ class MigrateTest(testing_common.TestCase):
     self.addCleanup(patcher.stop)
     patcher.start()
 
-    job.Job.New({}, [], False).put()
-    job.Job.New({}, [], False).put()
+    job.Job.New('', {}, [], False).put()
+    job.Job.New('', {}, [], False).put()
 
   def testNoMigration(self):
     response = self.testapp.get('/migrate', status=200)

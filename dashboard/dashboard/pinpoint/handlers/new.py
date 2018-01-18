@@ -5,6 +5,8 @@
 import json
 import webapp2
 
+from google.appengine.api import users
+
 from dashboard.api import api_auth
 from dashboard.pinpoint.models import change
 from dashboard.pinpoint.models import job as job_module
@@ -56,6 +58,7 @@ class New(webapp2.RequestHandler):
 
     # Create job.
     job = job_module.Job.New(
+        users.get_current_user().email(),
         arguments=arguments,
         quests=quests,
         auto_explore=auto_explore,

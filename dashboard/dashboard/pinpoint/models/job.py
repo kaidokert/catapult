@@ -73,6 +73,9 @@ class Job(ndb.Model):
   # If it's present, the job failed.
   exception = ndb.TextProperty()
 
+  # Email of the job creator.
+  creator = ndb.StringProperty()
+
   # Request parameters.
   arguments = ndb.JsonProperty(required=True)
 
@@ -87,9 +90,10 @@ class Job(ndb.Model):
   state = ndb.PickleProperty(required=True, compressed=True)
 
   @classmethod
-  def New(cls, arguments, quests, auto_explore, bug_id=None):
+  def New(cls, creator, arguments, quests, auto_explore, bug_id=None):
     # Create job.
     return cls(
+        creator=creator,
         arguments=arguments,
         auto_explore=auto_explore,
         bug_id=bug_id,
