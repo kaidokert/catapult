@@ -16,6 +16,24 @@
       "revId": "5f90aca8f48756b26c7e5c207b281a70f5b0d6ea",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96f05f3f_d3e8c204",
+        "filename": "telemetry/telemetry/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1109829
+      },
+      "writtenOn": "2018-01-18T13:34:21Z",
+      "side": 1,
+      "message": "Yes, this is actually not a good method at all, since one plan infra\u0027s making is to run \"vpython-as-python\" (e.g., the interpreter will be named \"python\"). Testing if you\u0027re running in a VirtualEnv prior to linking in libraries manually is definitely a better method.\n\nThe best method is to just require vpython, identify third-party libraries that you can link as wheels (e.g., mock, modulegraph, png, websocket-client, etc.), and add them all to the same manifest. But if depending on vpython is premature, the test for VIRTUAL_ENV should be fine.",
+      "parentUuid": "e86d5a36_1085cb53",
+      "revId": "5f90aca8f48756b26c7e5c207b281a70f5b0d6ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
