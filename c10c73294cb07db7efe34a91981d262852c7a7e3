@@ -22,6 +22,23 @@
       "revId": "c10c73294cb07db7efe34a91981d262852c7a7e3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33f3bb0c_b19e74dc",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-18T10:33:57Z",
+      "side": 1,
+      "message": "should we have this as a kwarg creator\u003dNone instead?\n\nalso don\u0027t like a lot the idea of using an empty string to denote a missing creator.",
+      "revId": "c10c73294cb07db7efe34a91981d262852c7a7e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
