@@ -34,6 +34,24 @@
       "revId": "5f90aca8f48756b26c7e5c207b281a70f5b0d6ea",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0607395_83dde46d",
+        "filename": "telemetry/telemetry/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2018-01-18T22:19:44Z",
+      "side": 1,
+      "message": "Thank you both for pointing that out. Changed to use the better test. dnj@, we\u0027re trying to get to the point where we can use vpython everywhere but in the interim this is needed.",
+      "parentUuid": "96f05f3f_d3e8c204",
+      "revId": "5f90aca8f48756b26c7e5c207b281a70f5b0d6ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
