@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aae3cf3d_4bb28de4",
+        "filename": "dashboard/dashboard/services/request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-19T11:29:46Z",
+      "side": 1,
+      "message": "nit: docstring for use_cache",
+      "revId": "4e911900ae0721891cbf9db26b2a2f9a46be248a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fea46f30_915649fb",
+        "filename": "dashboard/dashboard/services/request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-19T11:29:46Z",
+      "side": 1,
+      "message": "nit: should this be \"if content is not None\"?",
+      "revId": "4e911900ae0721891cbf9db26b2a2f9a46be248a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
