@@ -16,6 +16,24 @@
       "revId": "031058b18eab12c71dd9a0122dd0d8a525d01f72",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ee3eaf8_66bdf72f",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/cpu_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-01-19T14:36:37Z",
+      "side": 1,
+      "message": "Thanks for catching this Juan! I\u0027ll have a CL out that reraises soon.",
+      "parentUuid": "93a51310_4ea7beb3",
+      "revId": "031058b18eab12c71dd9a0122dd0d8a525d01f72",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
