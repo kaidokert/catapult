@@ -29,7 +29,7 @@ def CommitInfo(repository_url, git_hash):
   """
   # TODO: Update the docstrings in this file.
   url = '%s/+/%s?format=JSON' % (repository_url, git_hash)
-  return request.RequestJson(url)
+  return request.RequestJson(url, use_cache=_IsHash(git_hash))
 
 
 def CommitRange(repository_url, first_git_hash, last_git_hash):
@@ -55,7 +55,8 @@ def CommitRange(repository_url, first_git_hash, last_git_hash):
   while last_git_hash:
     url = '%s/+log/%s..%s?format=JSON' % (
         repository_url, first_git_hash, last_git_hash)
-    response = request.RequestJson(url)
+    use_cache = _IsHash(first_git_hash) and _IsHash(last_git_hash)
+    response = request.RequestJson(url, use_cache=use_cache)
     commits += response['log']
     last_git_hash = response.get('next')
   return commits
@@ -77,4 +78,8 @@ def FileContents(repository_url, git_hash, path):
     httplib.HTTPException: A network or HTTP error occurred.
   """
   url = '%s/+/%s/%s?format=TEXT' % (repository_url, git_hash, path)
-  return base64.b64decode(request.Request(url))
+  return base64.b64decode(request.Request(url, use_cache=_IsHash(git_hash)))
+
+
+def _IsHash(git_hash):
+  return git_hash.isalnum() and len(git_hash) == 40
