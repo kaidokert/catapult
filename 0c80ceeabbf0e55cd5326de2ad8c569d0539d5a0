@@ -16,6 +16,24 @@
       "revId": "0c80ceeabbf0e55cd5326de2ad8c569d0539d5a0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd2b03bb_182901c9",
+        "filename": "dashboard/dashboard/services/gitiles_service.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-01-19T19:44:21Z",
+      "side": 1,
+      "message": "Done. Essentially, we want to skip caching \"HEAD\", \"master\", and tag names.",
+      "parentUuid": "07d6bc77_b74c06d1",
+      "revId": "0c80ceeabbf0e55cd5326de2ad8c569d0539d5a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
