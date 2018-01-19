@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "93a51310_4ea7beb3",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/cpu_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-19T09:39:58Z",
+      "side": 1,
+      "message": "I think you should also re-raise here (if you still want this to hard-fail); or `return []` if you want to keep the warning but dismiss the error.\n\nOtherwise we get the current confusing error message \"TypeError: \u0027NoneType\u0027 object is not iterable\" pointing at some other unrelated piece of code.",
+      "revId": "031058b18eab12c71dd9a0122dd0d8a525d01f72",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
