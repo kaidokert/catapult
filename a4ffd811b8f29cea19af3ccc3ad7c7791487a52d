@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "72088163_e0d2a6cd",
+        "filename": "dashboard/dashboard/services/request.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-22T09:53:06Z",
+      "side": 1,
+      "message": "wondering why we need both? Can we use httplib for everything? (can be follow up CL)",
+      "revId": "a4ffd811b8f29cea19af3ccc3ad7c7791487a52d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8e017c8_9edee25a",
+        "filename": "dashboard/dashboard/services/request.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-22T09:53:06Z",
+      "side": 1,
+      "message": "I actually think we don\u0027t need this comment here. The API you provided does not feel hacky at all. There might be good reasons in the future to make requests to other services which may not need credentials?\n\nIf anything, put a comment in gitile_service.py with a TODO to fix authorization for that service.",
+      "revId": "a4ffd811b8f29cea19af3ccc3ad7c7791487a52d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d70b420_87e7959a",
+        "filename": "dashboard/dashboard/services/request_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-22T09:53:06Z",
+      "side": 1,
+      "message": "ditto. Don\u0027t need this here.",
+      "revId": "a4ffd811b8f29cea19af3ccc3ad7c7791487a52d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
