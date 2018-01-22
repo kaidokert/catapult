@@ -22,12 +22,14 @@ class ListTimeseriesHandler(api_request_handler.ApiRequestHandler):
       JSON list of monitored timeseries for the benchmark, see README.md.
     """
     benchmark = args[0]
-    sheriff_name = self.request.get('sheriff', 'Chromium Perf Sheriff')
-    sheriff = ndb.Key('Sheriff', sheriff_name)
+    only_monitored = self.request.get('only_monitored') != '0'
     query = graph_data.TestMetadata.query()
     query = query.filter(graph_data.TestMetadata.suite_name == benchmark)
     query = query.filter(graph_data.TestMetadata.has_rows == True)
     query = query.filter(graph_data.TestMetadata.deprecated == False)
-    query = query.filter(graph_data.TestMetadata.sheriff == sheriff)
+    if only_monitored:
+      sheriff_name = self.request.get('sheriff', 'Chromium Perf Sheriff')
+      sheriff = ndb.Key('Sheriff', sheriff_name)
+      query = query.filter(graph_data.TestMetadata.sheriff == sheriff)
     keys = query.fetch(keys_only=True)
     return [utils.TestPath(key) for key in keys]
