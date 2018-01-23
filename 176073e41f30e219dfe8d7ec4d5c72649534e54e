@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "424dd795_510c4c35",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-23T18:24:31Z",
+      "side": 1,
+      "message": "I would move this mock_platform to telemetry/testing/fakes/__init__.py. The usual practice is to maintain the API with fake implementation for testing in paralllel with the actual one.\n\nPython mock is the lightweight to avoid that, but the cons of python mock is it\u0027s easy to get lost of the differences between testing APIs \u0026 actual APIs. Given the number of test cases we have here, I would considering create a fake class for testing.",
+      "revId": "176073e41f30e219dfe8d7ec4d5c72649534e54e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
