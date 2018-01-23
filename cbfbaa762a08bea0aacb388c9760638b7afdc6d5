@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5c45a193_f7cdce62",
+        "filename": "tracing/tracing/metrics/tabs_metric.html",
+        "patchSetId": 10
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-01-23T22:11:52Z",
+      "side": 1,
+      "message": "Feel free to disable the sum statistic:\nhistograms.createHistogram(\u0027tab_switching_latency\u0027,\n        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,\n        tabSwitchLatencies, {\ndescription: \u0027Tab switching time in ms\u0027,\nsummaryOptions: {sum: false},\n});",
+      "revId": "cbfbaa762a08bea0aacb388c9760638b7afdc6d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "526b7b11_7e4ec784",
+        "filename": "tracing/tracing/metrics/tabs_metric_test.html",
+        "patchSetId": 10
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-01-23T22:11:52Z",
+      "side": 1,
+      "message": "These functions are still being added to the global namespace, so they will conflict with any other tests that export the same names to the global namespace.\nPlease move them into the anonymous function that is passed to testSuite and that calls test().",
+      "revId": "cbfbaa762a08bea0aacb388c9760638b7afdc6d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

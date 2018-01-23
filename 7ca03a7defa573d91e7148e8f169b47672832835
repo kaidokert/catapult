@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "5bddca33_8113a52d",
+        "filename": "tracing/tracing/metrics/tabs_metric.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-01-23T22:11:52Z",
+      "side": 1,
+      "message": "Thanks! \"tabsMetric\" makes more sense now, so you can go with that if you want, but would \"chromeResponsivenessMetric\" be better?",
+      "parentUuid": "e3d2725b_97cb56a4",
+      "revId": "7ca03a7defa573d91e7148e8f169b47672832835",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d504c798_f6636670",
         "filename": "tracing/tracing/metrics/tabs_metric.html",
         "patchSetId": 7
