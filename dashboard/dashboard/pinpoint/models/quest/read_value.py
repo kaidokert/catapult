@@ -216,12 +216,15 @@ class _ReadHistogramsJsonValueExecution(execution.Execution):
     matching_histograms = histograms.GetHistogramsNamed(self._hist_name)
 
     # Get and cache any trace URLs.
+    unique_trace_urls = set()
     for hist in histograms:
       trace_urls = hist.diagnostics.get(reserved_infos.TRACE_URLS.name)
       if trace_urls:
-        for t in list(trace_urls):
-          self._trace_urls.append({'name': hist.name, 'url': t})
-    self._trace_urls = sorted(self._trace_urls, key=lambda x: x['name'])
+        unique_trace_urls.update(list(trace_urls))
+
+    sorted_urls = sorted(list(unique_trace_urls))
+    self._trace_urls = [
+        {'name': t.split('/')[-1], 'url': t} for t in sorted_urls]
 
     # Filter the histograms by tir_label and story. Getting either the
     # tir_label or the story from a histogram involves pulling out and

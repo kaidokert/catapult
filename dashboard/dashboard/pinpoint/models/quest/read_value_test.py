@@ -367,6 +367,7 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
     self.assertTrue(execution.completed)
     self.assertFalse(execution.failed)
     self.assertEqual(execution.result_values, (0,))
+    print execution.AsDict()
     self.assertEqual(
         {
             'result_values': (0,),
@@ -375,9 +376,9 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
             'result_arguments': {},
             'details': {
                 'traces': [
-                    {'url': 'trace_url1', 'name': 'hist'},
-                    {'url': 'trace_url2', 'name': 'hist'},
-                    {'url': 'trace_url3', 'name': 'hist2'}
+                    {'url': 'trace_url1', 'name': 'trace_url1'},
+                    {'url': 'trace_url2', 'name': 'trace_url2'},
+                    {'url': 'trace_url3', 'name': 'trace_url3'}
                 ]
             }
         },
