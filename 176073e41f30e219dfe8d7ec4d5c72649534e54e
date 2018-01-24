@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6c16a1b3_ec8afca4",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-24T10:12:48Z",
+      "side": 1,
+      "message": "I have to admit I\u0027m not a big fan of the fakes either. In a way they have the same cons as mocks, as it\u0027s easy to forget keeping in sync the APIs of both the fake and the actual (in mocks we at least have autospec, which I use in _PatchClass below so it complains if we call a method in the mock that does not exist in the actual class).\n\nAnother con of fakes is that it\u0027s harder to bake special behavior on them as needed for a test. On mocks, like done here in setUp, we can easily do that with a few lines of code.\n\nAnyway, I\u0027m willing to give it a go with the fakes for these tests, so we can compare and contrast.",
+      "parentUuid": "424dd795_510c4c35",
+      "revId": "176073e41f30e219dfe8d7ec4d5c72649534e54e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1d381233_962473dd",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder_unittest.py",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2018-01-23T19:23:21Z",
       "side": 1,
       "message": "cros-chrome-guest, right?",
+      "revId": "176073e41f30e219dfe8d7ec4d5c72649534e54e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0ba439c_a11b5efa",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-24T10:12:48Z",
+      "side": 1,
+      "message": "yep, I\u0027ll fix that.",
+      "parentUuid": "1d381233_962473dd",
       "revId": "176073e41f30e219dfe8d7ec4d5c72649534e54e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
