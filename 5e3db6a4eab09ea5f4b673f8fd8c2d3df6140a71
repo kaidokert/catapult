@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "67260fc5_4190dd83",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-24T16:53:25Z",
+      "side": 1,
+      "message": "compare with the older comment; we no longer need to do this on the \"else\" branch, since now that\u0027s only possible with a temp dir which we know should be empty.",
+      "revId": "5e3db6a4eab09ea5f4b673f8fd8c2d3df6140a71",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
