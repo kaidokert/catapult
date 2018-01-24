@@ -87,6 +87,24 @@
       "revId": "176073e41f30e219dfe8d7ec4d5c72649534e54e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb69396f_e5f6795e",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-24T12:46:24Z",
+      "side": 1,
+      "message": "I actually ended up doing a small refactor to keep the browser_type consistent with the one stored on the browser_options; this also helps to make is_guest always consistent.",
+      "parentUuid": "d0ba439c_a11b5efa",
+      "revId": "176073e41f30e219dfe8d7ec4d5c72649534e54e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
