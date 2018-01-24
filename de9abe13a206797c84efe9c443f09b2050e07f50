@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "34e135f5_658faa20",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-24T14:23:34Z",
+      "side": 1,
+      "message": "Note: this is keeping the same logic as before. Not sure if it\u0027s correct to override the profile directory unconditionally for content_shell?\n\nAlso looks like dont_override_profile is currently broken, doing:\n\n$ ./tools/perf/run_benchmark --browser\u003dreference system_health.memory_desktop --story-filter baidu --pageset-repeat 1 --profile-type default\n\nbreaks with:\n\n    return os.path.join(self.profile_directory, \u0027DevToolsActivePort\u0027)\n  join at /usr/lib/python2.7/posixpath.py:70\n    elif path \u003d\u003d \u0027\u0027 or path.endswith(\u0027/\u0027):\nAttributeError: \u0027NoneType\u0027 object has no attribute \u0027endswith\u0027\n\nI\u0027ll take a closer look at these when moving the profile directory out of the backend and into the possible-browser.",
+      "revId": "de9abe13a206797c84efe9c443f09b2050e07f50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
