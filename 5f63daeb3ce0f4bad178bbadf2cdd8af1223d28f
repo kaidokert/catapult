@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "55008c74_294e6882",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2018-01-24T18:39:12Z",
+      "side": 1,
+      "message": "Thanks for fixing this",
+      "revId": "5f63daeb3ce0f4bad178bbadf2cdd8af1223d28f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
