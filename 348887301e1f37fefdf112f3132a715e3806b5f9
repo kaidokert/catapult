@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "162541fc_247201be",
+        "filename": "telemetry/telemetry/internal/util/webpagereplay_go_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-24T15:05:26Z",
+      "side": 1,
+      "message": "nit: let\u0027s be explicit and say: \"timeout\u003d60\"",
+      "revId": "348887301e1f37fefdf112f3132a715e3806b5f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
