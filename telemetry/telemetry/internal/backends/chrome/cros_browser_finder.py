@@ -35,11 +35,15 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
   def _InitPlatformIfNeeded(self):
     pass
 
+  @property
+  def profile_directory(self):
+    return '/home/chronos/Default'
+
   def Create(self):
     startup_args = self.GetBrowserStartupArgs(self._browser_options)
 
     browser_backend = cros_browser_backend.CrOSBrowserBackend(
-        self._platform_backend, self._browser_options,
+        self._platform_backend, self._browser_options, self.profile_directory,
         self._platform_backend.cri, self._is_guest)
 
     browser_backend.ClearCaches()
