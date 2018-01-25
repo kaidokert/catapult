@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/bower_components/paper-dialog/paper-dialog.html">
+
+<dom-module id="triage-existing">
+  <template>
+    <style>
+      #opener {
+        font-weight: bold;
+        transition: background-color var(--transition-short), color var(--transition-short);
+      }
+
+      #opener[disabled] {
+        background-color: white;
+        color: var(--paper-grey-500);
+        font-weight: normal;
+      }
+    </style>
+
+    <paper-button
+        id="opener"
+        disabled="[[disabled]]"
+        on-tap="openDialog_">
+      Existing Bug
+    </paper-button>
+
+    <paper-dialog
+        id="existing_bug_dialog"
+        opened="[[isOpen]]"
+        horizontal-align="right"
+        vertical-align="top"
+        no-overlap
+        on-iron-overlay-canceled="onCancel_">
+      <div id="existing_bug_controls">
+        <paper-input
+            autofocus
+            label="Bug Number"
+            value="[[bugId]]"
+            on-keyup="onId_">
+        </paper-input>
+        <paper-button
+            id="submit"
+            disabled="[[!isIdValid_(bugId)]]"
+            on-tap="submit_">
+          Submit
+        </paper-button>
+        <span class="spacer">&nbsp;</span>
+        <paper-toggle-button
+            id="non_overlapping_recent_bugs"
+            checked$="[[nonOverlappingRecentBugs]]"
+            on-change="toggleNonOverlappingRecentBugs_">
+          Non-overlapping
+        </paper-toggle-button>
+      </div>
+
+      <div id="existing_bug_table_container">
+        <table>
+          <thead>
+            <tr>
+              <th>Bug #</th>
+              <th>Status</th>
+              <th>Owner</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template is="dom-repeat" items="[[recentBugs]]" as="bug" index-as="bugIndex">
+              <tr>
+                <td>
+                  <paper-button on-tap="onExistingRecentBug_"
+                                class="recent_bug">
+                    [[bug.id]]
+                  </paper-button>
+                </td>
+                <td>[[bug.status]]</td>
+                <td>[[bug.owner]]</td>
+                <td>[[bug.description]]</td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+      </div>
+    </paper-dialog>
+  </template>
+</dom-module>
+<script src="/dashboard/spa/triage-existing.js"></script>

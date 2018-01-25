@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/bower_components/paper-dialog/paper-dialog.html">
+
+<dom-module id="triage-new">
+  <template>
+    <style>
+      #opener {
+        font-weight: bold;
+        transition: background-color var(--transition-short), color var(--transition-short);
+      }
+
+      #opener[disabled] {
+        background-color: white;
+        color: var(--paper-grey-500);
+        font-weight: normal;
+      }
+    </style>
+
+    <paper-button
+        id="opener"
+        disabled="[[disabled]]"
+        on-tap="fileNewBug_">
+      New Bug
+    </paper-button>
+
+    <paper-dialog id="new_bug_dialog"
+                  opened="[[isOpen]]"
+                  horizontal-align="right"
+                  vertical-align="top"
+                  no-overlap
+                  on-iron-overlay-canceled="onCancelNewBug_">
+      <paper-input label="Summary"
+                    value="[[summary]]"
+                    on-change="onNewBugSummary_">
+      </paper-input>
+      <paper-textarea autofocus
+                      label="Description"
+                      value="[[description]]"
+                      on-change="onNewBugDescription_">
+      </paper-textarea>
+      <template is="dom-repeat" items="[[labels]]" as="label" index-as="labelIndex">
+        <paper-checkbox checked="[[label.isEnabled]]"
+                        on-change="onNewBugLabel_">
+          [[label.name]]
+        </paper-checkbox>
+      </template>
+      <template is="dom-repeat" items="[[components]]" as="component" index-as="componentIndex">
+        <paper-checkbox checked="[[component.isEnabled]]"
+                        on-change="onNewBugComponent_">
+          [[component.name]]
+        </paper-checkbox>
+      </template>
+      <paper-input label="Owner"
+                    value="[[owner]]"
+                    on-change="onNewBugOwner_">
+      </paper-input>
+      <paper-input label="CC"
+                    value="[[cc]]"
+                    on-change="onNewBugCC_">
+      </paper-input>
+      <paper-button id="submit_new_bug"
+                    on-tap="submitNewBug_">
+        Submit
+      </paper-button>
+    </paper-dialog>
+  </template>
+</dom-module>
+<script src="/dashboard/spa/triage-new.js"></script>
