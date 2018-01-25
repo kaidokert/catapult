@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "be22b9f4_fc5462f8",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2018-01-25T18:52:09Z",
+      "side": 1,
+      "message": "Thanks for the cleanup",
+      "revId": "95375eb975a08167fb1bf49f9d41819339149e00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ef3c62e_697751f8",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2018-01-25T18:52:09Z",
+      "side": 1,
+      "message": "Maybe also add \u0027pid\u0027: 3456, \u0027args\u0027: \u0027chrome --foo\u0027 for completeness?",
+      "revId": "95375eb975a08167fb1bf49f9d41819339149e00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
