@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/bower_components/paper-dialog/paper-dialog.html">
+
+<dom-module id="triage-new">
+  <template>
+    <style>
+      paper-dialog {
+        width: 600px;
+      }
+
+      paper-checkbox {
+        display: block;
+      }
+
+      #submit {
+        display: flex;
+        margin: 16px;
+        padding: 8px;
+      }
+    </style>
+
+    <paper-dialog
+        opened="[[isOpen]]"
+        horizontal-align="right"
+        vertical-align="top"
+        no-overlap
+        on-iron-overlay-canceled="onCancel_">
+      <paper-input
+          label="Summary"
+          value="[[summary]]"
+          on-change="onSummary_">
+      </paper-input>
+
+      <paper-textarea
+          autofocus
+          label="Description"
+          value="[[description]]"
+          on-change="onDescription_">
+      </paper-textarea>
+
+      <template is="dom-repeat" items="[[labels]]" as="label" index-as="labelIndex">
+        <paper-checkbox
+            checked="[[label.isEnabled]]"
+            on-change="onLabel_">
+          [[label.name]]
+        </paper-checkbox>
+      </template>
+
+      <template is="dom-repeat" items="[[components]]" as="component" index-as="componentIndex">
+        <paper-checkbox
+            checked="[[component.isEnabled]]"
+            on-change="onComponent_">
+          [[component.name]]
+        </paper-checkbox>
+      </template>
+
+      <paper-input
+          label="Owner"
+          value="[[owner]]"
+          on-change="onOwner_">
+      </paper-input>
+
+      <paper-input
+          label="CC"
+          value="[[cc]]"
+          on-change="onCC_">
+      </paper-input>
+
+      <paper-button
+          id="submit"
+          on-tap="submit_">
+        Submit
+      </paper-button>
+    </paper-dialog>
+  </template>
+</dom-module>
+<script src="/dashboard/spa/triage-new.js"></script>
