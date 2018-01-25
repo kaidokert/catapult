@@ -33,6 +33,8 @@ class CrOSBrowserMockCreationTest(unittest.TestCase):
     self.cri.GetChromePid.side_effect = itertools.count(123)
     # This value is used when reading the DevToolsActivePort file.
     self.cri.GetFileContents.return_value = '8888\n'
+    # This value is used to compute the browser_directory.
+    self.cri.GetChromeProcess.return_value = {'path': '/path/to/browser'}
 
     # Mock the DevToolsClientConfig class, so we don't actually try to connect
     # to a devtools agent.
