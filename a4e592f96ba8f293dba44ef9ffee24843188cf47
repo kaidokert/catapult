@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e49aff93_271e3ccd",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-01-25T17:52:49Z",
+      "side": 1,
+      "message": "or here",
+      "range": {
+        "startLine": 112,
+        "startChar": 18,
+        "endLine": 112,
+        "endChar": 24
+      },
+      "revId": "a4e592f96ba8f293dba44ef9ffee24843188cf47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd8173ac_ee4df0f1",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-01-25T17:52:49Z",
+      "side": 1,
+      "message": "nit: don\u0027t need list",
+      "range": {
+        "startLine": 227,
+        "startChar": 26,
+        "endLine": 227,
+        "endChar": 32
+      },
+      "revId": "a4e592f96ba8f293dba44ef9ffee24843188cf47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "799f43ab_55415a8c",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-01-25T17:52:49Z",
+      "side": 1,
+      "message": "don\u0027t need it here either",
+      "range": {
+        "startLine": 229,
+        "startChar": 30,
+        "endLine": 229,
+        "endChar": 47
+      },
+      "revId": "a4e592f96ba8f293dba44ef9ffee24843188cf47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
