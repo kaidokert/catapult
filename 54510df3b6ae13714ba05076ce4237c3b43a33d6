@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8010781f_83512fe9",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-25T13:55:47Z",
+      "side": 1,
+      "message": "nit: I think we can just remove the adj \"well-known\" in this sentence",
+      "revId": "54510df3b6ae13714ba05076ce4237c3b43a33d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6bdec5f1_d8dde0f6",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-25T13:55:47Z",
+      "side": 1,
+      "message": "Not directly related to this CL, how do we make sure that TearDownEnvironment is not invoked until the browsers launched by this possible_browser are all closed?",
+      "revId": "54510df3b6ae13714ba05076ce4237c3b43a33d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

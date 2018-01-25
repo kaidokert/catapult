@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "909a8493_1c5a3ebc",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-25T13:55:47Z",
+      "side": 0,
+      "message": "I remember we used to have API that allow user to get the copy of the profile. Did we cleaned that up?",
+      "revId": "1c809d20147efc486e926a948e5d8ad434ae516d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
