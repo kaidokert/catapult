@@ -112,7 +112,8 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         desktop_platform_backend,
         supports_tab_control=not is_content_shell,
         supports_extensions=not is_content_shell,
-        browser_options=browser_options)
+        browser_options=browser_options,
+        profile_directory=profile_directory)
 
     # Initialize fields so that an explosion during init doesn't break in Close.
     self._proc = None
@@ -138,7 +139,6 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
           'Content shell does not support extensions.')
 
     self._browser_directory = browser_directory
-    self._profile_directory = profile_directory
     self._tmp_minidump_dir = tempfile.mkdtemp()
     if self.is_logging_enabled:
       self._log_file_path = os.path.join(tempfile.mkdtemp(), 'chrome.log')
@@ -294,10 +294,6 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   @property
   def browser_directory(self):
     return self._browser_directory
-
-  @property
-  def profile_directory(self):
-    return self._profile_directory
 
   def IsBrowserRunning(self):
     return self._proc and self._proc.poll() == None

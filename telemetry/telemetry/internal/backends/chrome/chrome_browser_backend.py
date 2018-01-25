@@ -25,7 +25,7 @@ class ChromeBrowserBackend(browser_backend.BrowserBackend):
   # It is OK to have abstract methods. pylint: disable=abstract-method
 
   def __init__(self, platform_backend, supports_tab_control,
-               supports_extensions, browser_options):
+               supports_extensions, browser_options, profile_directory):
     super(ChromeBrowserBackend, self).__init__(
         platform_backend=platform_backend,
         supports_extensions=supports_extensions,
@@ -36,6 +36,7 @@ class ChromeBrowserBackend(browser_backend.BrowserBackend):
     # TODO(crbug.com/799415): Move forwarder into DevToolsClientBackend
     self._forwarder = None
 
+    self._profile_directory = profile_directory
     self._extensions_to_load = browser_options.extensions_to_load
 
     if (self.browser_options.dont_override_profile and
@@ -198,7 +199,7 @@ class ChromeBrowserBackend(browser_backend.BrowserBackend):
 
   @property
   def profile_directory(self):
-    raise NotImplementedError()
+    return self._profile_directory
 
   @property
   def supports_tab_control(self):

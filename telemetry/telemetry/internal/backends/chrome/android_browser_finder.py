@@ -132,7 +132,8 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
 
     self._InitPlatformIfNeeded()
     browser_backend = android_browser_backend.AndroidBrowserBackend(
-        self._platform_backend, self._browser_options, self._backend_settings)
+        self._platform_backend, self._browser_options, self._backend_settings,
+        self.profile_directory)
     browser_backend.ClearCaches()
     try:
       return browser.Browser(
