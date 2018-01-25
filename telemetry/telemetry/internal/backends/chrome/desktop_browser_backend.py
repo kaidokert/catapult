@@ -27,6 +27,9 @@ from telemetry.internal.backends.chrome import chrome_browser_backend
 from telemetry.internal.util import path
 
 
+DEVTOOLS_ACTIVE_PORT_FILE = 'DevToolsActivePort'
+
+
 def ParseCrashpadDateTime(date_time_str):
   # Python strptime does not support time zone parsing, strip it.
   date_time_parts = date_time_str.split()
@@ -103,16 +106,17 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   Mac or Windows.
   """
   def __init__(self, desktop_platform_backend, browser_options, executable,
-               flash_path, is_content_shell, browser_directory):
+               flash_path, is_content_shell, browser_directory,
+               profile_directory):
     super(DesktopBrowserBackend, self).__init__(
         desktop_platform_backend,
         supports_tab_control=not is_content_shell,
         supports_extensions=not is_content_shell,
-        browser_options=browser_options)
+        browser_options=browser_options,
+        profile_directory=profile_directory)
 
     # Initialize fields so that an explosion during init doesn't break in Close.
     self._proc = None
-    self._tmp_profile_dir = None
     self._tmp_output_file = None
     # pylint: disable=invalid-name
     self._most_recent_symbolized_minidump_paths = set([])
@@ -141,9 +145,6 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     else:
       self._log_file_path = None
 
-    # TODO(perezju): Consider whether this can be moved to the Start method.
-    self._SetupProfile()
-
   @property
   def is_logging_enabled(self):
     return self.browser_options.logging_verbosity in [
@@ -160,39 +161,8 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     return (self.browser_options.logs_cloud_bucket and self.log_file_path and
             os.path.isfile(self.log_file_path))
 
-  def _SetupProfile(self):
-    if self.browser_options.dont_override_profile:
-      self._tmp_profile_dir = None
-      return
-
-    self._tmp_profile_dir = tempfile.mkdtemp()
-    profile_dir = self.browser_options.profile_dir
-    if profile_dir:
-      if self._is_content_shell:
-        logging.critical('Profiles cannot be used with content shell')
-        sys.exit(1)
-      logging.info("Using profile directory:'%s'.", profile_dir)
-      shutil.rmtree(self._tmp_profile_dir)
-      shutil.copytree(profile_dir, self._tmp_profile_dir)
-
-      # As we're using an existing profile directory, we need to make sure to
-      # delete the well-known file containing the active DevTools port number.
-      devtools_file_path = self._GetDevToolsActivePortPath()
-      if os.path.isfile(devtools_file_path):
-        try:
-          os.remove(devtools_file_path)
-        except IOError as e:
-          logging.critical('Unable to remove DevToolsActivePort file: %s' % e)
-          sys.exit(1)
-
-  def _CollectProfile(self):
-    if self._tmp_profile_dir and os.path.exists(self._tmp_profile_dir):
-      # If we don't need the profile after the run then cleanup.
-      shutil.rmtree(self._tmp_profile_dir, ignore_errors=True)
-      self._tmp_profile_dir = None
-
   def _GetDevToolsActivePortPath(self):
-    return os.path.join(self.profile_directory, 'DevToolsActivePort')
+    return os.path.join(self.profile_directory, DEVTOOLS_ACTIVE_PORT_FILE)
 
   def _GetCdbPath(self):
     # cdb.exe might have been co-located with the browser's executable
@@ -324,10 +294,6 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   @property
   def browser_directory(self):
     return self._browser_directory
-
-  @property
-  def profile_directory(self):
-    return self._tmp_profile_dir
 
   def IsBrowserRunning(self):
     return self._proc and self._proc.poll() == None
@@ -632,8 +598,6 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       logging.warning('Proceed to kill the browser.')
       self._proc.kill()
     self._proc = None
-
-    self._CollectProfile()
 
     if self._tmp_output_file:
       self._tmp_output_file.close()

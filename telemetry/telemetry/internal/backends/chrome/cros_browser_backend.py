@@ -15,11 +15,13 @@ import py_utils
 
 
 class CrOSBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
-  def __init__(self, cros_platform_backend, browser_options, cri, is_guest):
+  def __init__(self, cros_platform_backend, browser_options, profile_directory,
+               cri, is_guest):
     super(CrOSBrowserBackend, self).__init__(
         cros_platform_backend, supports_tab_control=True,
         supports_extensions=not is_guest,
-        browser_options=browser_options)
+        browser_options=browser_options,
+        profile_directory=profile_directory)
     assert browser_options.IsCrosBrowserOptions()
     # Initialize fields so that an explosion during init doesn't break in Close.
     self._cri = cri
@@ -73,10 +75,6 @@ class CrOSBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     if result and 'path' in result:
       return os.path.dirname(result['path'])
     return None
-
-  @property
-  def profile_directory(self):
-    return '/home/chronos/Default'
 
   def __del__(self):
     self.Close()
