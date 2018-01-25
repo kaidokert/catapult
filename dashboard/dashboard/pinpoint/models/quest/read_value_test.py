@@ -99,6 +99,43 @@ class ReadChartJsonValueTest(_ReadValueExecutionTest):
     expected_calls = [mock.call('output hash'), mock.call('chartjson hash')]
     self.assertEqual(retrieve.mock_calls, expected_calls)
 
+  def testReadChartJsonTraceUrls(self, retrieve):
+    retrieve.side_effect = (
+        {'files': {'chartjson-output.json': {'h': 'chartjson hash'}}},
+        json.dumps({'charts': {
+            'tir_label@@chart_avg': {'trace name': {
+                'type': 'list_of_scalar_values',
+                'values': [0, 1, 2],
+            }},
+            'trace': {
+                'trace name 1': {'cloud_url': 'trace url', 'page_id': 1},
+                'trace name 2': {'cloud_url': 'trace url', 'page_id': 2}
+            },
+        }}),
+    )
+
+    quest = read_value.ReadChartJsonValue(
+        'chart', 'tir_label', 'trace name', 'avg')
+    execution = quest.Start(None, 'output hash')
+    execution.Poll()
+
+    self.assertTrue(execution.completed)
+    self.assertFalse(execution.failed)
+    self.assertEqual(execution.result_values, (0, 1, 2))
+    self.assertEqual(execution.result_arguments, {})
+
+    self.assertEqual(
+        {
+            'result_values': (0, 1, 2),
+            'completed': True,
+            'exception': None,
+            'result_arguments': {},
+            'details': {
+                'traces': [{'url': 'trace url', 'name': 'trace url'}]
+            }
+        },
+        execution.AsDict())
+
   def testReadChartJsonValueWithNoStatistic(self, retrieve):
     retrieve.side_effect = (
         {'files': {'chartjson-output.json': {'h': 'chartjson hash'}}},
@@ -354,7 +391,10 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
     hist2 = histogram_module.Histogram('hist2', 'count')
     hist2.diagnostics[reserved_infos.TRACE_URLS.name] = (
         generic_set.GenericSet(['trace_url3']))
-    histograms = histogram_set.HistogramSet([hist, hist2])
+    hist3 = histogram_module.Histogram('hist3', 'count')
+    hist3.diagnostics[reserved_infos.TRACE_URLS.name] = (
+        generic_set.GenericSet(['trace_url2']))
+    histograms = histogram_set.HistogramSet([hist, hist2, hist3])
     retrieve.side_effect = (
         {'files': {'chartjson-output.json': {'h': 'histograms hash'}}},
         json.dumps(histograms.AsDicts()),
@@ -375,9 +415,9 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
             'result_arguments': {},
             'details': {
                 'traces': [
-                    {'url': 'trace_url1', 'name': 'hist'},
-                    {'url': 'trace_url2', 'name': 'hist'},
-                    {'url': 'trace_url3', 'name': 'hist2'}
+                    {'url': 'trace_url1', 'name': 'trace_url1'},
+                    {'url': 'trace_url2', 'name': 'trace_url2'},
+                    {'url': 'trace_url3', 'name': 'trace_url3'}
                 ]
             }
         },
