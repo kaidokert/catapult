@@ -12,6 +12,7 @@ _CATAPULT_PATH = os.path.abspath(
 THIRD_PARTY_LIBRARIES = [
     'apiclient',
     'beautifulsoup4',
+    'd3',
     'graphy',
     'httplib2',
     'mapreduce',
@@ -23,6 +24,8 @@ THIRD_PARTY_LIBRARIES = [
     'flot',
     'jquery',
     'polymer',
+    'polymer2',
+    'redux',
     'six',
 ]
 
@@ -41,7 +44,8 @@ DASHBOARD_FILES = [
 TRACING_PATHS = [
     'tracing/tracing',
     'tracing/tracing_build',
-    'tracing/third_party/gl-matrix/dist/gl-matrix-min.js'
+    'tracing/third_party/gl-matrix/dist/gl-matrix-min.js',
+    'tracing/third_party/mannwhitneyu',
 ]
 
 
