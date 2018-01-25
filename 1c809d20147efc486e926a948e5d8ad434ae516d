@@ -16,6 +16,24 @@
       "revId": "1c809d20147efc486e926a948e5d8ad434ae516d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2edf8564_ca39e8f8",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-25T15:08:02Z",
+      "side": 0,
+      "message": "Yes: https://chromium-review.googlesource.com/c/catapult/+/883810",
+      "parentUuid": "909a8493_1c5a3ebc",
+      "revId": "1c809d20147efc486e926a948e5d8ad434ae516d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

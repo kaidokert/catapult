@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5c5731f8_c8e80cb9",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-25T15:08:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8010781f_83512fe9",
+      "revId": "54510df3b6ae13714ba05076ce4237c3b43a33d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6bdec5f1_d8dde0f6",
         "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder.py",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2018-01-25T13:55:47Z",
       "side": 1,
       "message": "Not directly related to this CL, how do we make sure that TearDownEnvironment is not invoked until the browsers launched by this possible_browser are all closed?",
+      "revId": "54510df3b6ae13714ba05076ce4237c3b43a33d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0abeb08e_9aa45c72",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-25T15:08:02Z",
+      "side": 1,
+      "message": "We could do something like that, but will require the possible_browser to hold a reference to the browsers it created. I\u0027m leaning towards making that a responsibility of the callers (they should not forget calling browser.Close and possible_browser.CleanUpEnvironment, in the right order!), but I\u0027ll keep in mind the possibility to implement a safeguard.",
+      "parentUuid": "6bdec5f1_d8dde0f6",
       "revId": "54510df3b6ae13714ba05076ce4237c3b43a33d6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
