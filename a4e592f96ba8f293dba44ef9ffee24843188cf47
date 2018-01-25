@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ea0d158f_abeee15f",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-01-25T18:02:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e49aff93_271e3ccd",
+      "range": {
+        "startLine": 112,
+        "startChar": 18,
+        "endLine": 112,
+        "endChar": 24
+      },
+      "revId": "a4e592f96ba8f293dba44ef9ffee24843188cf47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd8173ac_ee4df0f1",
         "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "ccfe7fc9_efe74707",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-01-25T18:02:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd8173ac_ee4df0f1",
+      "range": {
+        "startLine": 227,
+        "startChar": 26,
+        "endLine": 227,
+        "endChar": 32
+      },
+      "revId": "a4e592f96ba8f293dba44ef9ffee24843188cf47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "799f43ab_55415a8c",
         "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
         "patchSetId": 4
@@ -68,6 +116,30 @@
       "revId": "a4e592f96ba8f293dba44ef9ffee24843188cf47",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fde09eb_4e0a931c",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-01-25T18:02:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "799f43ab_55415a8c",
+      "range": {
+        "startLine": 229,
+        "startChar": 30,
+        "endLine": 229,
+        "endChar": 47
+      },
+      "revId": "a4e592f96ba8f293dba44ef9ffee24843188cf47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
