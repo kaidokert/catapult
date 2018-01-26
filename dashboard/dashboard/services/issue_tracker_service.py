@@ -115,8 +115,11 @@ class IssueTrackerService(object):
     except errors.HttpError as e:
       reason = _GetErrorReason(e)
       # Retry without owner if we cannot set owner to this issue.
-      if retry and 'The user does not exist' in reason:
-        _RemoveOwnerAndCC(body)
+      valid_failures = [
+          'The user does not exist',
+          'Issue owner must be a project member']
+      if retry and any(v in reason for v in valid_failures):
+        _MoveOwnerToCC(body)
         return self._MakeCommentRequest(bug_id, body, retry=False)
       # This error reason is received when issue is deleted.
       elif 'User is not allowed to view this issue' in reason:
@@ -255,13 +258,20 @@ class IssueTrackerService(object):
       raise e
 
 
-def _RemoveOwnerAndCC(request_body):
-  if 'updates' not in request_body:
+def _MoveOwnerToCC(request_body):
+  updates = request_body.get('updates')
+  if not updates:
     return
-  if 'owner' in request_body['updates']:
-    del request_body['updates']['owner']
-  if 'cc' in request_body['updates']:
-    del request_body['updates']['cc']
+
+  owner = updates.get('owner')
+  if not owner:
+    return
+
+  if 'cc' not in updates:
+    updates['cc'] = []
+
+  updates['cc'].append(owner)
+  del updates['owner']
 
 
 def _GetErrorReason(request_error):
