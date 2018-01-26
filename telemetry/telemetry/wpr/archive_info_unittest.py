@@ -2,15 +2,16 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 import json
+import mock
 import os
 import shutil
 import tempfile
 import unittest
 
+
 from py_utils import cloud_storage  # pylint: disable=import-error
 
 from telemetry.page import page
-from telemetry.testing import system_stub
 from telemetry.wpr import archive_info
 
 
@@ -69,11 +70,11 @@ class WprArchiveInfoTest(unittest.TestCase):
     # Set file for the metadata.
     self.story_set_archive_info_file = os.path.join(
         self.tmp_dir, 'info.json')
-    self.overrides = system_stub.Override(archive_info, ['cloud_storage'])
+
 
   def tearDown(self):
     shutil.rmtree(self.tmp_dir)
-    self.overrides.Restore()
+
 
   def createArchiveInfo(
       self, archive_data=default_archive_info_contents,
@@ -94,6 +95,7 @@ class WprArchiveInfoTest(unittest.TestCase):
     return archive_info.WprArchiveInfo.FromFile(
         self.story_set_archive_info_file, cloud_storage_bucket)
 
+
   def testInitNotPlatformSpecific(self):
     with open(self.story_set_archive_info_file, 'w') as f:
       f.write('{}')
@@ -101,44 +103,23 @@ class WprArchiveInfoTest(unittest.TestCase):
       self.createArchiveInfo(archive_data='{}')
 
 
-  def testDownloadArchivesIfNeededAllNeeded(self):
+  @mock.patch('telemetry.wpr.archive_info.cloud_storage.GetIfChanged')
+  def testDownloadArchivesIfNeededAllOrOneNeeded(self, get_mock):
+
     test_archive_info = self.createArchiveInfo()
-    cloud_storage_stub = self.overrides.cloud_storage
-    # Second hash doesn't match, need to fetch it.
-    cloud_storage_stub.SetRemotePathsForTesting(
-        {cloud_storage.PUBLIC_BUCKET: {recording1: "dummyhash1_old",
-                                       recording2: "dummyhash2_old",
-                                       recording3: "dummyhash3_old",
-                                       recording4: "dummyhash4_old"}})
-    cloud_storage_stub.SetCalculatedHashesForTesting(
-        {os.path.join(self.tmp_dir, recording1): "dummyhash1",
-         os.path.join(self.tmp_dir, recording2): "dummyhash2",
-         os.path.join(self.tmp_dir, recording3): "dummyhash3",
-         os.path.join(self.tmp_dir, recording4): "dummyhash4",})
 
     test_archive_info.DownloadArchivesIfNeeded()
-    self.assertItemsEqual(cloud_storage_stub.downloaded_files,
-                          [recording1, recording2, recording3, recording4])
+
+    self.assertItemsEqual(
+        get_mock.call_args_list,
+        [(recording1, cloud_storage.PUBLIC_BUCKET),
+         (recording2, cloud_storage.PUBLIC_BUCKET),
+         (recording3, cloud_storage.PUBLIC_BUCKET),
+         (recording4, cloud_storage.PUBLIC_BUCKET)])
 
 
-  def testDownloadArchivesIfNeededOneNeeded(self):
-    test_archive_info = self.createArchiveInfo()
-    cloud_storage_stub = self.overrides.cloud_storage
-    # Second hash doesn't match, need to fetch it.
-    cloud_storage_stub.SetRemotePathsForTesting(
-        {cloud_storage.PUBLIC_BUCKET: {recording1: "dummyhash1_old",
-                                       recording2: "dummyhash2",
-                                       recording3: "dummyhash3",
-                                       recording4: "dummyhash4"}})
-    cloud_storage_stub.SetCalculatedHashesForTesting(
-        {os.path.join(self.tmp_dir, recording1): "dummyhash1",
-         os.path.join(self.tmp_dir, recording2): "dummyhash2",
-         os.path.join(self.tmp_dir, recording3): "dummyhash3",
-         os.path.join(self.tmp_dir, recording4): "dummyhash4",})
-    test_archive_info.DownloadArchivesIfNeeded()
-    self.assertItemsEqual(cloud_storage_stub.downloaded_files, [recording1])
-
-  def testDownloadArchivesIfNeededNonDefault(self):
+  @mock.patch('telemetry.wpr.archive_info.cloud_storage.GetIfChanged')
+  def testDownloadArchivesIfNeededNonDefault(self, get_mock):
     data = {
         'platform_specific': True,
         'archives': {
@@ -154,38 +135,20 @@ class WprArchiveInfoTest(unittest.TestCase):
     }
     test_archive_info = self.createArchiveInfo(
         archive_data=json.dumps(data, separators=(',', ': ')))
-    cloud_storage_stub = self.overrides.cloud_storage
-    # Second hash doesn't match, need to fetch it.
-    cloud_storage_stub.SetRemotePathsForTesting(
-        {cloud_storage.PUBLIC_BUCKET: {recording1: "dummyhash1_old",
-                                       recording2: "dummyhash2",
-                                       recording3: "dummyhash3",
-                                       recording4: "dummyhash4_old"}})
-    cloud_storage_stub.SetCalculatedHashesForTesting(
-        {os.path.join(self.tmp_dir, recording1): "dummyhash1",
-         os.path.join(self.tmp_dir, recording2): "dummyhash2",
-         os.path.join(self.tmp_dir, recording3): "dummyhash3",
-         os.path.join(self.tmp_dir, recording4): "dummyhash4",})
-    test_archive_info.DownloadArchivesIfNeeded(target_platforms=['linux'])
-    self.assertItemsEqual(cloud_storage_stub.downloaded_files,
-                          [recording1, recording4])
 
-  def testDownloadArchivesIfNeededNoBucket(self):
+    test_archive_info.DownloadArchivesIfNeeded(target_platforms=['linux'])
+    self.assertItemsEqual(get_mock.call_args_list,
+                          [(recording1, cloud_storage.PUBLIC_BUCKET),
+                           (recording4, cloud_storage.PUBLIC_BUCKET)])
+
+
+  @mock.patch('telemetry.wpr.archive_info.cloud_storage.GetIfChanged')
+  def testDownloadArchivesIfNeededNoBucket(self, get_mock):
     test_archive_info = self.createArchiveInfo(cloud_storage_bucket=None)
-    cloud_storage_stub = self.overrides.cloud_storage
-    # Second hash doesn't match, need to fetch it.
-    cloud_storage_stub.SetRemotePathsForTesting(
-        {cloud_storage.PUBLIC_BUCKET: {recording1: "dummyhash1",
-                                       recording2: "dummyhash2",
-                                       recording3: "dummyhash3",
-                                       recording4: "dummyhash4_old"}})
-    cloud_storage_stub.SetCalculatedHashesForTesting(
-        {os.path.join(self.tmp_dir, recording1): "dummyhash1",
-         os.path.join(self.tmp_dir, recording2): "dummyhash2",
-         os.path.join(self.tmp_dir, recording3): "dummyhash3",
-         os.path.join(self.tmp_dir, recording4): "dummyhash4",})
+
     test_archive_info.DownloadArchivesIfNeeded()
-    self.assertItemsEqual(cloud_storage_stub.downloaded_files, [])
+    self.assertEqual(get_mock.call_count, 0)
+
 
   def testWprFilePathForStoryDefault(self):
     test_archive_info = self.createArchiveInfo()
@@ -199,6 +162,7 @@ class WprArchiveInfoTest(unittest.TestCase):
         test_archive_info.WprFilePathForStory(page3),
         os.path.join(self.tmp_dir, recording1))
 
+
   def testWprFilePathForStoryMac(self):
     test_archive_info = self.createArchiveInfo()
     self.assertEqual(test_archive_info.WprFilePathForStory(page1, 'mac'),
@@ -207,6 +171,7 @@ class WprArchiveInfoTest(unittest.TestCase):
                      os.path.join(self.tmp_dir, recording2))
     self.assertEqual(test_archive_info.WprFilePathForStory(page3, 'mac'),
                      os.path.join(self.tmp_dir, recording3))
+
 
   def testWprFilePathForStoryWin(self):
     test_archive_info = self.createArchiveInfo()
@@ -217,6 +182,7 @@ class WprArchiveInfoTest(unittest.TestCase):
     self.assertEqual(test_archive_info.WprFilePathForStory(page3, 'win'),
                      os.path.join(self.tmp_dir, recording2))
 
+
   def testWprFilePathForStoryAndroid(self):
     test_archive_info = self.createArchiveInfo()
     self.assertEqual(test_archive_info.WprFilePathForStory(page1, 'android'),
@@ -226,6 +192,7 @@ class WprArchiveInfoTest(unittest.TestCase):
     self.assertEqual(test_archive_info.WprFilePathForStory(page3, 'android'),
                      os.path.join(self.tmp_dir, recording5))
 
+
   def testWprFilePathForStoryLinux(self):
     test_archive_info = self.createArchiveInfo()
     self.assertEqual(test_archive_info.WprFilePathForStory(page1, 'linux'),
@@ -234,6 +201,7 @@ class WprArchiveInfoTest(unittest.TestCase):
                      os.path.join(self.tmp_dir, recording2))
     self.assertEqual(test_archive_info.WprFilePathForStory(page3, 'linux'),
                      os.path.join(self.tmp_dir, recording4))
+
 
   def testWprFilePathForStoryBadStory(self):
     test_archive_info = self.createArchiveInfo()
@@ -247,25 +215,29 @@ class WprArchiveInfoTest(unittest.TestCase):
     test_archive_info.AddRecordedStories(None)
     self.assertDictEqual(old_data, test_archive_info._data)
 
+
   def assertWprFileDoesNotExist(self, file_name):
     sha_file = file_name + '.sha1'
     self.assertFalse(os.path.isfile(os.path.join(self.tmp_dir, sha_file)))
     self.assertFalse(os.path.isfile(os.path.join(self.tmp_dir, file_name)))
+
 
   def assertWprFileDoesExist(self, file_name):
     sha_file = file_name + '.sha1'
     self.assertTrue(os.path.isfile(os.path.join(self.tmp_dir, sha_file)))
     self.assertTrue(os.path.isfile(os.path.join(self.tmp_dir, file_name)))
 
-  def testAddRecordedStoriesDefault(self):
+
+  @mock.patch(
+      'telemetry.wpr.archive_info.cloud_storage.CalculateHash',
+      return_value='filehash')
+  def testAddRecordedStoriesDefault(self, hash_mock):
     test_archive_info = self.createArchiveInfo()
     self.assertWprFileDoesNotExist('data_006.wprgo')
 
     new_temp_recording = os.path.join(self.tmp_dir, 'recording.wprgo')
     expected_archive_file_path = os.path.join(self.tmp_dir, 'data_006.wprgo')
-    hash_dictionary = {expected_archive_file_path: 'filehash'}
-    cloud_storage_stub = self.overrides.cloud_storage
-    cloud_storage_stub.SetCalculatedHashesForTesting(hash_dictionary)
+
 
     with open(new_temp_recording, 'w') as f:
       f.write('wpr data')
@@ -299,15 +271,18 @@ class WprArchiveInfoTest(unittest.TestCase):
       for line in f:
         self.assertFalse(line.rstrip('\n').endswith(' '))
     self.assertWprFileDoesExist('data_006.wprgo')
+    self.assertEquals(hash_mock.call_count, 1)
+    hash_mock.assert_called_with(expected_archive_file_path)
 
-  def testAddRecordedStoriesNotDefault(self):
+
+  @mock.patch(
+      'telemetry.wpr.archive_info.cloud_storage.CalculateHash',
+      return_value='filehash')
+  def testAddRecordedStoriesNotDefault(self, hash_mock):
     test_archive_info = self.createArchiveInfo()
     self.assertWprFileDoesNotExist('data_006.wprgo')
     new_temp_recording = os.path.join(self.tmp_dir, 'recording.wprgo')
     expected_archive_file_path = os.path.join(self.tmp_dir, 'data_006.wprgo')
-    hash_dictionary = {expected_archive_file_path: 'filehash'}
-    cloud_storage_stub = self.overrides.cloud_storage
-    cloud_storage_stub.SetCalculatedHashesForTesting(hash_dictionary)
 
     with open(new_temp_recording, 'w') as f:
       f.write('wpr data')
@@ -342,10 +317,11 @@ class WprArchiveInfoTest(unittest.TestCase):
       for line in f:
         self.assertFalse(line.rstrip('\n').endswith(' '))
     self.assertWprFileDoesExist('data_006.wprgo')
+    self.assertEqual(hash_mock.call_count, 1)
+    hash_mock.assert_called_with(expected_archive_file_path)
 
 
-
-  def testAddRecordedStoriesNewPage(self):
+  def testAddRecordedStoriesNewPage(self, hash_mock):
     test_archive_info = self.createArchiveInfo()
     self.assertWprFileDoesNotExist('data_006.wprgo')
     self.assertWprFileDoesNotExist('data_007.wprgo')
@@ -356,52 +332,59 @@ class WprArchiveInfoTest(unittest.TestCase):
         expected_archive_file_path1: 'filehash',
         expected_archive_file_path2: 'filehash2'
     }
-    cloud_storage_stub = self.overrides.cloud_storage
-    cloud_storage_stub.SetCalculatedHashesForTesting(hash_dictionary)
-
-    with open(new_temp_recording, 'w') as f:
-      f.write('wpr data')
-    test_archive_info.AddNewTemporaryRecording(new_temp_recording)
-    test_archive_info.AddRecordedStories([pageNew1])
-
-    with open(new_temp_recording, 'w') as f:
-      f.write('wpr data2')
-
-    test_archive_info.AddNewTemporaryRecording(new_temp_recording)
-    test_archive_info.AddRecordedStories([pageNew2], target_platform='android')
-
-    with open(self.story_set_archive_info_file, 'r') as f:
-      archive_file_contents = json.load(f)
 
 
-    expected_archive_contents = _BASE_ARCHIVE.copy()
-    expected_archive_contents['archives'] = {
-        page1.name: {
-            _DEFAULT_PLATFORM: recording1
-        },
-        page2.name: {
-            _DEFAULT_PLATFORM: recording2,
-        },
-        page3.name: {
-            _DEFAULT_PLATFORM: recording1,
-            'linux': recording4,
-            'mac': recording3,
-            'win': recording2,
-            'android': recording5
-        },
-        pageNew1.name: {
-            _DEFAULT_PLATFORM: 'data_006.wprgo'
-        },
-        pageNew2.name: {
-            _DEFAULT_PLATFORM: 'data_007.wprgo',
-            'android': 'data_007.wprgo'
-        }
-    }
+    def hash_side_effect(file_path):
+      return hash_dictionary[file_path]
 
-    self.assertDictEqual(expected_archive_contents, archive_file_contents)
-    # Ensure the saved JSON does not contain trailing spaces.
-    with open(self.story_set_archive_info_file, 'rU') as f:
-      for line in f:
-        self.assertFalse(line.rstrip('\n').endswith(' '))
-    self.assertWprFileDoesExist('data_006.wprgo')
-    self.assertWprFileDoesExist('data_007.wprgo')
+    with mock.patch('telemetry.wpr.archive_info.cloud_storage.CalculateHash',
+                    side_effect=hash_side_effect) as hash_mock:
+
+      with open(new_temp_recording, 'w') as f:
+        f.write('wpr data')
+      test_archive_info.AddNewTemporaryRecording(new_temp_recording)
+      test_archive_info.AddRecordedStories([pageNew1])
+
+      with open(new_temp_recording, 'w') as f:
+        f.write('wpr data2')
+      test_archive_info.AddNewTemporaryRecording(new_temp_recording)
+      test_archive_info.AddRecordedStories([pageNew2],
+                                           target_platform='android')
+
+      with open(self.story_set_archive_info_file, 'r') as f:
+        archive_file_contents = json.load(f)
+
+      expected_archive_contents = _BASE_ARCHIVE.copy()
+      expected_archive_contents['archives'] = {
+          page1.name: {
+              _DEFAULT_PLATFORM: recording1
+          },
+          page2.name: {
+              _DEFAULT_PLATFORM: recording2,
+          },
+          page3.name: {
+              _DEFAULT_PLATFORM: recording1,
+              'linux': recording4,
+              'mac': recording3,
+              'win': recording2,
+              'android': recording5
+          },
+          pageNew1.name: {
+              _DEFAULT_PLATFORM: 'data_006.wprgo'
+          },
+          pageNew2.name: {
+              _DEFAULT_PLATFORM: 'data_007.wprgo',
+              'android': 'data_007.wprgo'
+          }
+      }
+
+      self.assertDictEqual(expected_archive_contents, archive_file_contents)
+      # Ensure the saved JSON does not contain trailing spaces.
+      with open(self.story_set_archive_info_file, 'rU') as f:
+        for line in f:
+          self.assertFalse(line.rstrip('\n').endswith(' '))
+      self.assertWprFileDoesExist('data_006.wprgo')
+      self.assertWprFileDoesExist('data_007.wprgo')
+      self.assertEqual(hash_mock.call_count, 2)
+      hash_mock.assert_any_call(expected_archive_file_path1)
+      hash_mock.assert_any_call(expected_archive_file_path2)
