@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da321c3d_7ebcac17",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-26T10:31:58Z",
+      "side": 1,
+      "message": "Do we have now (or will we have eventually) the possibility of doing some analysis from historical data on and try to guess the impact of changes such as this? E.g. how many bisect jobs could potentially benefit from this? vs. how much extra time could be wasted on runs for cases where really there was \"no change\" to detect in the first place?",
+      "revId": "bc3c1cc8e99559c61a4bc93678d8ebf153b51eda",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
