@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="/dashboard/spa/column-head.html">
+<link rel="import" href="/dashboard/spa/expand-button.html">
+
+<dom-module id="alerts-table">
+  <template>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      table[placeholder] {
+        color: var(--paper-grey-500);
+      }
+
+      th {
+        white-space: nowrap;
+      }
+
+      td {
+        padding: 4px;
+      }
+
+      tbody tr:hover {
+        background: #eee;
+      }
+
+      td:nth-of-type(1) {
+        color: black;
+        padding: 0;
+      }
+
+      td.checkbox {
+        text-align: center;
+      }
+
+      tbody {
+        border-color: white;
+        border-style: solid;
+        border-width: 0 8px;
+        transition: border-width var(--transition-short);
+      }
+
+      tbody[expandedGroup] {
+        border-color: var(--paper-indigo-50);
+        border-width: 8px;
+      }
+
+      expand-button {
+        --paper-button: {
+          margin: 0;
+          min-width: 0;
+          padding: 0;
+          height: 100%;
+        };
+        --iron-icon: {
+          height: 20px;
+          padding: 0;
+          width: 20px;
+        };
+      }
+    </style>
+
+    <template is="dom-if" if="[[!_empty(alertGroups)]]">
+      <table placeholder$=[[areAlertGroupsPlaceholders]]>
+        <thead>
+          <tr>
+            <th>&nbsp;</th>
+            <th>
+              <paper-checkbox
+                  checked="[[anySelectedAlerts_(alertGroups)]]"
+                  disabled="[[areAlertGroupsPlaceholders]]"
+                  on-change="onSelectAll_">
+              </paper-checkbox>
+            </th>
+
+            <template is="dom-if" if="[[showBugColumn]]">
+              <th>
+                <column-head
+                    on-tap="onSort_"
+                    name="bug"
+                    sort-column="[[sortColumn]]"
+                    sort-descending="[[sortDescending]]">
+                  Bug
+                </column-head>
+              </th>
+            </template>
+
+            <th>
+              <column-head
+                  on-tap="onSort_"
+                  name="revisions"
+                  sort-column="[[sortColumn]]"
+                  sort-descending="[[sortDescending]]">
+                Revisions
+              </column-head>
+            </th>
+
+            <th>
+              <column-head
+                  on-tap="onSort_"
+                  name="testSuite"
+                  sort-column="[[sortColumn]]"
+                  sort-descending="[[sortDescending]]">
+                Test Suite
+              </column-head>
+            </th>
+
+            <th>
+              <column-head
+                  on-tap="onSort_"
+                  name="measurement"
+                  sort-column="[[sortColumn]]"
+                  sort-descending="[[sortDescending]]">
+                Measurement
+              </column-head>
+            </th>
+
+            <template is="dom-if" if="[[showMasterColumn]]">
+              <th>
+                <column-head
+                    on-tap="onSort_"
+                    name="master"
+                    sort-column="[[sortColumn]]"
+                    sort-descending="[[sortDescending]]">
+                  Master
+                </column-head>
+              </th>
+            </template>
+
+            <th>
+              <column-head
+                  on-tap="onSort_"
+                  name="bot"
+                  sort-column="[[sortColumn]]"
+                  sort-descending="[[sortDescending]]">
+                Bot
+              </column-head>
+            </th>
+
+            <template is="dom-if" if="[[showTestCaseColumn]]">
+              <th>
+                <column-head
+                    on-tap="onSort_"
+                    name="testCase"
+                    sort-column="[[sortColumn]]"
+                    sort-descending="[[sortDescending]]">
+                  Test case
+                </column-head>
+              </th>
+            </template>
+
+            <th>
+              <column-head
+                  on-tap="onSort_"
+                  name="delta"
+                  sort-column="[[sortColumn]]"
+                  sort-descending="[[sortDescending]]">
+                Delta
+              </column-head>
+            </th>
+
+            <th>
+              <column-head
+                  on-tap="onSort_"
+                  name="deltaPct"
+                  sort-column="[[sortColumn]]"
+                  sort-descending="[[sortDescending]]">
+                Delta %
+              </column-head>
+            </th>
+          </tr>
+        </thead>
+
+        <template is="dom-repeat" items="[[alertGroups]]" as="alertGroup" index-as="alertGroupIndex">
+          <tbody expandedGroup$="[[alertGroup.isExpanded]]">
+            <template is="dom-repeat" items="[[alertGroup.alerts]]" as="alert" index-as="alertIndex">
+              <template is="dom-if" if="[[shouldDisplayAlert_(alertGroup, alertIndex)]]">
+                <tr style$="color: [[alert.color]];">
+                  <td>
+                    <template is="dom-if" if="[[shouldDisplayExpandGroupButton_(alertGroup, alertIndex)]]">
+                      <expand-button state-path="[[statePath]].alertGroups.[[alertGroupIndex]]">
+                        [[_len(alertGroup.alerts)]]
+                      </expand-button>
+                    </template>
+                  </td>
+
+                  <td class="checkbox">
+                    <paper-checkbox
+                        checked="[[alert.isSelected]]"
+                        disabled="[[areAlertGroupsPlaceholders]]"
+                        on-tap="onSelect_">
+                    </paper-checkbox>
+                  </td>
+
+                  <template is="dom-if" if="[[showBugColumn]]">
+                    <td>
+                      <template is="dom-if" if="[[!_eq(alert.bugId, '')]]">
+                        <template is="dom-if" if="[[areAlertGroupsPlaceholders]]">
+                          [[alert.bugId]]
+                        </template>
+                        <template is="dom-if" if="[[!areAlertGroupsPlaceholders]]">
+                          <template is="dom-if" if="[[isAlertIgnored_(alert.bugId)]]">
+                            ignored
+                          </template>
+                          <template is="dom-if" if="[[!isAlertIgnored_(alert.bugId)]]">
+                            <a href="https://crbug.com/[[alert.bugId]]" target="_blank">
+                              [[alert.bugId]]
+                            </a>
+                          </template>
+                        </template>
+                      </template>
+                    </td>
+                  </template>
+
+                  <td>
+                    <a href="[[alertRevisionHref_(alert)]]" target="_blank">
+                      [[alertRevisionString_(alert)]]
+                    </a>
+                  </td>
+
+                  <td>[[breakWords_(alert.testSuite)]]</td>
+                  <td>[[breakWords_(alert.measurement)]]</td>
+
+                  <template is="dom-if" if="[[showMasterColumn]]">
+                    <td>[[alert.master]]</td>
+                  </template>
+
+                  <td>[[alert.bot]]</td>
+
+                  <template is="dom-if" if="[[showTestCaseColumn]]">
+                    <td>[[breakWords_(alert.testCase)]]</td>
+                  </template>
+
+                  <td>
+                    <tr-v-ui-scalar-span
+                        value="[[alert.deltaValue]]"
+                        unit="[[alert.deltaUnit]]">
+                    </tr-v-ui-scalar-span>
+                  </td>
+
+                  <td>
+                    <tr-v-ui-scalar-span
+                        value="[[alert.percentDeltaValue]]"
+                        unit="[[alert.percentDeltaUnit]]"
+                        maximum-fraction-digits="1">
+                    </tr-v-ui-scalar-span>
+                  </td>
+                </tr>
+              </template>
+            </template>
+          </tbody>
+        </template>
+      </table>
+    </template>
+  </template>
+</dom-module>
+<script src="/dashboard/spa/alerts-table.js"></script>
