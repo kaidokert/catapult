@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "24b5186e_550a4c52",
+        "filename": "telemetry/telemetry/wpr/archive_info_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-01-26T22:40:27Z",
+      "side": 1,
+      "message": "can you remove this newline?",
+      "revId": "664b138f9bb2040acf5c0b474de71c7f46945778",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bec2343_2ed4c66d",
+        "filename": "telemetry/telemetry/wpr/archive_info_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-01-26T22:40:27Z",
+      "side": 1,
+      "message": "this one too",
+      "revId": "664b138f9bb2040acf5c0b474de71c7f46945778",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bad2b886_f22d53cc",
+        "filename": "telemetry/telemetry/wpr/archive_info_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-01-26T22:40:27Z",
+      "side": 1,
+      "message": "and this one",
+      "revId": "664b138f9bb2040acf5c0b474de71c7f46945778",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac76e713_9c33204d",
+        "filename": "telemetry/telemetry/wpr/archive_info_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-01-26T22:40:27Z",
+      "side": 1,
+      "message": "and this one",
+      "revId": "664b138f9bb2040acf5c0b474de71c7f46945778",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a71a878_89287551",
+        "filename": "telemetry/telemetry/wpr/archive_info_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-01-26T22:40:27Z",
+      "side": 1,
+      "message": "and this one",
+      "revId": "664b138f9bb2040acf5c0b474de71c7f46945778",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
