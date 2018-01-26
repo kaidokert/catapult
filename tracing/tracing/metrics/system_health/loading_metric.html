@@ -29,6 +29,14 @@ tr.exportTo('tr.metrics.sh', function() {
   const hasCategoryAndName = tr.metrics.sh.hasCategoryAndName;
   const EventFinderUtils = tr.metrics.sh.EventFinderUtils;
 
+  function allCombinations() {
+    const combinations = [];
+    for (let b of [true, false]) {
+      combinations.push({ enableLongPollingFiltering: b });
+    }
+    return combinations;
+  }
+
   /**
    * @param  {!tr.model.Process} process
    * @param  {!tr.b.math.Range} range
@@ -310,6 +318,15 @@ tr.exportTo('tr.metrics.sh', function() {
     };
   }
 
+  function filterLongPolling(networkRequests) {
+    return networkRequests.filter((request)=>{
+      if (!request.args || !request.args.resourceInfo || !request.args.resourceInfo['ResponseStart'])
+        return true;
+      const type = request.args.resourceInfo['ResponseStart'];
+      return type < 8;
+    });
+  }
+
   /**
    * Returns MetricSample for Time to Interactive and First CPU Idle for the
    * given parameters. See the time_to_interactive.html module for detailed
@@ -394,18 +411,30 @@ tr.exportTo('tr.metrics.sh', function() {
         tr.metrics.sh.findFirstCpuIdleTime(
             firstMeaningfulPaintTime, searchWindowEnd, domContentLoadedEndTime,
             longTasksInWindow);
-    const interactiveTime =
+
+    let interactiveSampleList = [];
+    allCombinations().forEach((combination, index)=>{
+      let networkEvents;
+      if (combination.enableLongPollingFiltering === true) {
+        networkEvents = filterLongPolling(resourceLoadEvents);
+      } else {
+        networkEvents = resourceLoadEvents;
+      }
+
+      const interactiveTime =
         tr.metrics.sh.findInteractiveTime(
             firstMeaningfulPaintTime, searchWindowEnd, domContentLoadedEndTime,
-            longTasksInWindow, resourceLoadEvents);
+            longTasksInWindow, networkEvents);
+      interactiveSampleList[index] = decorateInteractivitySampleWithDiagnostics_(
+          rendererHelper, interactiveTime, navigationStart,
+          firstMeaningfulPaintTime, domContentLoadedEndTime, url)
+    });
 
     return {
       firstCpuIdleSample: decorateInteractivitySampleWithDiagnostics_(
           rendererHelper, firstCpuIdleTime, navigationStart,
           firstMeaningfulPaintTime, domContentLoadedEndTime, url),
-      interactiveSample: decorateInteractivitySampleWithDiagnostics_(
-          rendererHelper, interactiveTime, navigationStart,
-          firstMeaningfulPaintTime, domContentLoadedEndTime, url),
+      interactiveSampleList,
     };
   }
 
@@ -434,6 +463,9 @@ tr.exportTo('tr.metrics.sh', function() {
     const firstMeaningfulPaintCpuTimeSamples = [];
     const firstCpuIdleSamples = [];
     const interactiveSamples = [];
+    allCombinations().forEach((combination, index)=>{
+      interactiveSamples[index] = [];
+    });
 
     function addSamples(frameIdRef, navigationStart, fmpMarkerEvent) {
       const data = addFirstMeaningfulPaintSample(
@@ -443,12 +475,15 @@ tr.exportTo('tr.metrics.sh', function() {
           firstMeaningfulPaintCpuTimeSamples, rendererHelper,
           frameIdRef, navigationStart, fmpMarkerEvent);
       if (data !== undefined) {
-        const {interactiveSample, firstCpuIdleSample} =
+
+        const {interactiveSampleList, firstCpuIdleSample} =
             computeInteractivityMetricSample_(
                 rendererHelper, frameToNavStartEvents,
                 frameToDomContentLoadedEndEvents, navigationStart,
                 data.firstMeaningfulPaint, data.url);
-        if (interactiveSample) interactiveSamples.push(interactiveSample);
+        allCombinations().forEach((combination, index)=>{
+          if (interactiveSampleList[index]) interactiveSamples[index].push(interactiveSampleList[index]);
+        });
         if (firstCpuIdleSample) firstCpuIdleSamples.push(firstCpuIdleSample);
       }
     }
@@ -597,12 +632,16 @@ tr.exportTo('tr.metrics.sh', function() {
           description: 'CPU time to first meaningful paint',
           summaryOptions: SUMMARY_OPTIONS,
         });
-    const timeToInteractiveHistogram = histograms.createHistogram(
-        'timeToInteractive', timeDurationInMs_smallerIsBetter, [], {
+    const timeToInteractiveHistograms = [];
+    allCombinations().forEach((combination, index)=>{
+      const longPollSt = combination.enableLongPollingFiltering? "lpfE" : "lpfDE";
+      timeToInteractiveHistograms[index] = histograms.createHistogram(
+        'timeToInteractive_' + longPollSt, timeDurationInMs_smallerIsBetter, [], {
           binBoundaries: TIME_TO_INTERACTIVE_BOUNDARIES,
-          description: 'Time to Interactive',
+          description: 'Time to Interactive: ' + longPollSt,
           summaryOptions: SUMMARY_OPTIONS,
         });
+    });
     const timeToFirstCpuIdleHistogram = histograms.createHistogram(
         'timeToFirstCpuIdle', timeDurationInMs_smallerIsBetter, [], {
           binBoundaries: TIME_TO_INTERACTIVE_BOUNDARIES,
@@ -635,10 +674,12 @@ tr.exportTo('tr.metrics.sh', function() {
           samplesSet.firstMeaningfulPaintCpuTimeSamples,
           firstMeaningfulPaintCpuTimeHistogram,
           histograms);
-      addSamplesToHistogram(
-          samplesSet.interactiveSamples,
-          timeToInteractiveHistogram,
+      allCombinations().forEach((combination, index)=>{
+        addSamplesToHistogram(
+          samplesSet.interactiveSamples[index],
+          timeToInteractiveHistograms[index],
           histograms);
+      });
       addSamplesToHistogram(
           samplesSet.firstCpuIdleSamples,
           timeToFirstCpuIdleHistogram,

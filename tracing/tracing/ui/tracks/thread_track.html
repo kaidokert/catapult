@@ -8,6 +8,7 @@ found in the LICENSE file.
 <link rel="stylesheet" href="/tracing/ui/tracks/thread_track.css">
 
 <link rel="import" href="/tracing/base/utils.html">
+<link rel="import" href="/tracing/metrics/system_health/utils.html">
 <link rel="import" href="/tracing/core/filter.html">
 <link rel="import" href="/tracing/model/event_set.html">
 <link rel="import" href="/tracing/ui/base/ui.html">
@@ -95,6 +96,11 @@ tr.exportTo('tr.ui.tracks', function() {
       }
 
       if (this.thread_.sliceGroup.length) {
+        if (this.thread_.name === "CrRendererMain") {
+          this.thread_.sliceGroup.slices =
+             this.thread_.sliceGroup.slices.filter((e)=>{
+               return e.duration>=10 || this.isReservedEvent(e)});
+        }
         const track = new tr.ui.tracks.SliceGroupTrack(this.viewport);
         track.heading = this.thread_.userFriendlyName;
         track.tooltip = this.thread_.userFriendlyDetails;
@@ -110,6 +116,23 @@ tr.exportTo('tr.ui.tracks', function() {
       }
     },
 
+    isReservedEvent(e) {
+      const list = [
+        ['navigationStart', 'blink.user_timing'],
+        ['domContentLoadedEventEnd', 'blink.user_timing'],
+        ['firstPaint','loading'],
+        ['firstContentfulPaint', 'loading'],
+        ['firstMeaningfulPaintCandidate', 'loading'],
+        ['loadEventStart', 'blink.user_timing'],
+      ];
+      for (let each of list) {
+        if (tr.metrics.sh.hasCategoryAndName(e, each[1], each[0])) {
+          return true;
+        }
+      }
+      return false;
+    },
+
     appendAsyncSliceTracks_() {
       const subGroups = this.thread_.asyncSliceGroup.viewSubGroups;
       // TODO(kraynov): Support nested sub-groups.
@@ -120,7 +143,140 @@ tr.exportTo('tr.ui.tracks', function() {
         if (asyncTrack.hasVisibleContent) {
           Polymer.dom(this).appendChild(asyncTrack);
         }
+        if (subGroup.title_ === 'ResourceLoad') {
+          let newSubGroup;
+          let title;
+          let newAsyncTrack;
+          // Group 5
+          newSubGroup = this.shallow_clone(subGroup);
+          newAsyncTrack = new tr.ui.tracks.AsyncSliceGroupTrack(this.viewport);
+          title = newSubGroup.slices[0].viewSubGroupTitle;
+          newSubGroup.slices = newSubGroup.slices.filter((slice)=>{
+            if (!slice.args || !slice.args.resourceInfo ||
+                !slice.args.resourceInfo['resourceType']) {
+              return false;
+            }
+            const resourceType = slice.args.resourceInfo['resourceType'];
+            return !(resourceType === 'Script' ||
+                resourceType === 'Image' ||
+                resourceType === 'XMLHttpRequest' ||
+                resourceType === 'CSS stylesheet' ||
+                resourceType === 'Font');
+          })
+          newAsyncTrack.group = newSubGroup;
+          newAsyncTrack.heading = title + " All others";
+          if (newAsyncTrack.hasVisibleContent) {
+            Polymer.dom(this).appendChild(newAsyncTrack);
+          }
+
+          // Group 1
+          newSubGroup = this.shallow_clone(subGroup);
+          newAsyncTrack = new tr.ui.tracks.AsyncSliceGroupTrack(this.viewport);
+          title = newSubGroup.slices[0].viewSubGroupTitle;
+          newSubGroup.slices = newSubGroup.slices.filter((slice)=>{
+            if (!slice.args || !slice.args.resourceInfo ||
+                !slice.args.resourceInfo['resourceType']) {
+              return false;
+            }
+            const resourceType = slice.args.resourceInfo['resourceType'];
+            return resourceType === 'CSS stylesheet' || resourceType === 'Font';
+          })
+          newAsyncTrack.group = newSubGroup;
+          newAsyncTrack.heading = title + " CSS or Font only";
+          if (newAsyncTrack.hasVisibleContent) {
+            Polymer.dom(this).appendChild(newAsyncTrack);
+          }
+
+          // Group 2
+          newSubGroup = this.shallow_clone(subGroup);
+          newAsyncTrack = new tr.ui.tracks.AsyncSliceGroupTrack(this.viewport);
+          title = newSubGroup.slices[0].viewSubGroupTitle;
+          newSubGroup.slices = newSubGroup.slices.filter((slice)=>{
+            if (!slice.args || !slice.args.resourceInfo ||
+                !slice.args.resourceInfo['resourceType']) {
+              return false;
+            }
+            const resourceType = slice.args.resourceInfo['resourceType'];
+            return resourceType === 'Script';
+          })
+          newAsyncTrack.group = newSubGroup;
+          newAsyncTrack.heading = title + " Script only";
+          if (newAsyncTrack.hasVisibleContent) {
+            Polymer.dom(this).appendChild(newAsyncTrack);
+          }
+
+          // Group 3
+          newSubGroup = this.shallow_clone(subGroup);
+          newAsyncTrack = new tr.ui.tracks.AsyncSliceGroupTrack(this.viewport);
+          title = newSubGroup.slices[0].viewSubGroupTitle;
+          newSubGroup.slices = newSubGroup.slices.filter((slice)=>{
+            if (!slice.args || !slice.args.resourceInfo ||
+                !slice.args.resourceInfo['resourceType']) {
+              return false;
+            }
+            const resourceType = slice.args.resourceInfo['resourceType'];
+            return resourceType === 'Image';
+          })
+          newAsyncTrack.group = newSubGroup;
+          newAsyncTrack.heading = title + " Image only";
+          if (newAsyncTrack.hasVisibleContent) {
+            Polymer.dom(this).appendChild(newAsyncTrack);
+          }
+
+          // Group 4
+          newSubGroup = this.shallow_clone(subGroup);
+          newAsyncTrack = new tr.ui.tracks.AsyncSliceGroupTrack(this.viewport);
+          title = newSubGroup.slices[0].viewSubGroupTitle;
+          newSubGroup.slices = newSubGroup.slices.filter((slice)=>{
+            if (!slice.args || !slice.args.resourceInfo ||
+                !slice.args.resourceInfo['resourceType']) {
+              return false;
+            }
+            const resourceType = slice.args.resourceInfo['resourceType'];
+            return resourceType === 'XMLHttpRequest';
+          })
+          newAsyncTrack.group = newSubGroup;
+          newAsyncTrack.heading = title + " XMLHttpRequest only";
+          if (newAsyncTrack.hasVisibleContent) {
+            Polymer.dom(this).appendChild(newAsyncTrack);
+          }
+        }
       }, this);
+    },
+
+    shallow_clone(obj) {
+      var copy;
+
+      // Handle the 3 simple types, and null or undefined
+      if (null == obj || "object" != typeof obj) return obj;
+
+      // Handle Date
+      if (obj instanceof Date) {
+          copy = new Date();
+          copy.setTime(obj.getTime());
+          return copy;
+      }
+
+      // Handle Array
+      if (obj instanceof Array) {
+          copy = [];
+          for (var i = 0, len = obj.length; i < len; i++) {
+              copy[i] = obj[i];
+          }
+          return copy;
+      }
+
+      // Handle Object
+      if (obj instanceof Object) {
+          copy = {};
+          for (var attr in obj) {
+              if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+          }
+          copy.__proto__ = obj.__proto__;
+          return copy;
+      }
+
+      throw new Error("Unable to copy obj! Its type isn't supported.");
     },
 
     appendThreadSamplesTracks_() {
