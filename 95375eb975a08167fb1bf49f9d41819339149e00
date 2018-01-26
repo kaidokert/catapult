@@ -33,6 +33,24 @@
       "revId": "95375eb975a08167fb1bf49f9d41819339149e00",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e362144_baf41c07",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-26T09:35:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ef3c62e_697751f8",
+      "revId": "95375eb975a08167fb1bf49f9d41819339149e00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
