@@ -157,12 +157,13 @@ class RunTest(quest.Quest):
       used_arguments['extra_test_args'] = json.dumps(extra_test_args)
       swarming_extra_args += extra_test_args
 
-    # TODO: Remove `=` in 2018. It was fixed on the chromium side in r496979,
-    # but any bisects on commit ranges older than August 25 will still fail.
     swarming_extra_args += (
-        '-v', '--upload-results', '--output-format=histograms',
+        '-v', '--upload-results', '--output-format', 'histograms',
         '--results-label', '')
     swarming_extra_args += _SWARMING_EXTRA_ARGS
+    if browser == 'android-webview':
+      swarming_extra_args += ('--webview-embedder-apk',
+                              '../../out/Release/apks/SystemWebViewShell.apk')
 
     return used_arguments, cls(dimensions, swarming_extra_args)
 
