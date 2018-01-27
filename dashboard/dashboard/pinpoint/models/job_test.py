@@ -15,17 +15,17 @@ _CHROMIUM_URL = 'https://chromium.googlesource.com/chromium/src'
 
 _COMMENT_STARTED = (
     u"""\U0001f4cd Pinpoint job started.
-https://testbed.example.com/job/1""")
+https://None/job/1""")
 
 
 _COMMENT_COMPLETED_NO_DIFFERENCES = (
     u"""<b>\U0001f4cd Couldn't reproduce a difference.</b>
-https://testbed.example.com/job/1""")
+https://None/job/1""")
 
 
 _COMMENT_COMPLETED_ONE_DIFFERENCE = (
     u"""<b>\U0001f4cd Found a significant difference after 1 commit.</b>
-https://testbed.example.com/job/1
+https://None/job/1
 
 <b>Subject.</b>
 By author@chromium.org \xb7 Fri Jan 01 00:01:00 2016
@@ -37,7 +37,7 @@ Understanding performance regressions:
 
 _COMMENT_COMPLETED_TWO_DIFFERENCES = (
     u"""<b>\U0001f4cd Found significant differences after each of 2 commits.</b>
-https://testbed.example.com/job/1
+https://None/job/1
 
 <b>Subject.</b>
 By author1@chromium.org \xb7 Fri Jan 01 00:01:00 2016
@@ -53,7 +53,7 @@ Understanding performance regressions:
 
 _COMMENT_FAILED = (
     u"""\U0001f63f Pinpoint job stopped with an error.
-https://testbed.example.com/job/1""")
+https://None/job/1""")
 
 
 @mock.patch('dashboard.common.utils.ServiceAccountHttp', mock.MagicMock())
