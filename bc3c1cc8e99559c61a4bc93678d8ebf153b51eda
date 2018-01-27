@@ -16,6 +16,24 @@
       "revId": "bc3c1cc8e99559c61a4bc93678d8ebf153b51eda",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fa060bb_6f945c0f",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-01-27T00:09:36Z",
+      "side": 1,
+      "message": "We don\u0027t have that analyzed now, but it is possible to do retroactively. We would query jobs for changes with 50 attempts, and check their p-values.",
+      "parentUuid": "da321c3d_7ebcac17",
+      "revId": "bc3c1cc8e99559c61a4bc93678d8ebf153b51eda",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
