@@ -70,7 +70,7 @@ class ReplayStartupArgsTest(unittest.TestCase):
     expected_args = [
         '--proxy-server=socks://localhost:789',
         '--ignore-certificate-errors-spki-list='
-        'PhrPvGIaAMmd29hj8BCZOq096yj7uMpRNHpn5PDxI6I=']
+        'WK591IP1QCppTnP98XRdfiRYSLrrNXu1Llim+lTvkb0=']
     self.assertItemsEqual(
         expected_args,
         chrome_startup_args.GetReplayArgs(network_backend))
