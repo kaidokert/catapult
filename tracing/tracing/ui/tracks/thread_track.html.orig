@@ -96,11 +96,20 @@ tr.exportTo('tr.ui.tracks', function() {
       }
 
       if (this.thread_.sliceGroup.length) {
+<<<<<<< HEAD
+        if (this.thread_.name === "CrRendererMain") {
+          this.thread_.sliceGroup.slices =
+             this.thread_.sliceGroup.slices.filter((e)=>{
+               return e.duration>=10 || this.isReservedEvent(e)});
+        }
+||||||| parent of 7d87650e1... [NetworkIdleness] Experiment new definition
+=======
         // if (this.thread_.name === "CrRendererMain") {
         //   this.thread_.sliceGroup.slices =
         //      this.thread_.sliceGroup.slices.filter((e)=>{
         //        return e.duration>=10 || this.isReservedEvent(e)});
         // }
+>>>>>>> 7d87650e1... [NetworkIdleness] Experiment new definition
         const track = new tr.ui.tracks.SliceGroupTrack(this.viewport);
         track.heading = this.thread_.userFriendlyName;
         track.tooltip = this.thread_.userFriendlyDetails;

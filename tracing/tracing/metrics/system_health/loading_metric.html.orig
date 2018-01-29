@@ -29,27 +29,30 @@ tr.exportTo('tr.metrics.sh', function() {
   const hasCategoryAndName = tr.metrics.sh.hasCategoryAndName;
   const EventFinderUtils = tr.metrics.sh.EventFinderUtils;
 
+<<<<<<< HEAD
   function allCombinations() {
     const combinations = [];
-    for (let a of [true, false]) {
-      for (let b of [true, false]) {
-        for (let c of [true, false]) {
-          for (let n = 0; n <= 2; n++) {
-            for (let t = 5; t >= 0; t-=0.25) {
-              combinations.push({ 
-                enableLongPollingFiltering: b,
-                enableNameAugmenting: a,
-                enableTypeAugmenting: c,
-                tolerance: n, 
-                ws: t });
-            }
-          }
+    for (let b of [true, false]) {
+      combinations.push({ enableLongPollingFiltering: b });
+    }
+    return combinations;
+  }
+
+||||||| parent of 6f2a11562... [NetworkIdleness] Experiment new definition
+=======
+  function allCombinations() {
+    const combinations = [];
+    for (let b of [true, false]) {
+      for (let n = 0; n <= 2; n++) {
+        for (let t = 5; t >= 0; t-=0.25) {
+          combinations.push({ enableLongPollingFiltering: b, tolerance: n, ws: t });
         }
       }
     }
     return combinations;
   }
 
+>>>>>>> 6f2a11562... [NetworkIdleness] Experiment new definition
   /**
    * @param  {!tr.model.Process} process
    * @param  {!tr.b.math.Range} range
@@ -342,27 +345,6 @@ tr.exportTo('tr.metrics.sh', function() {
     });
   }
 
-  function augmentName(networkRequests) {
-    const nameEvents = networkRequests.filter((request)=>{
-      if (!request.args || !request.args.beginData || !request.args.beginData['url'])
-        return false;
-      const url = request.args.beginData['url'];
-      const re = /\/((jquery)|(core)|(app)|(main)|(react))[-\d\.]*\.(min\.)?js/i;
-      return url.match(re);
-    });
-    return networkRequests.concat(nameEvents).concat(nameEvents);
-  }
-
-  function augmentCSSFont(networkRequests) {
-    const typeEvents = networkRequests.filter((request)=>{
-      if (!request.args || !request.args.resourceInfo || !request.args.resourceInfo['resourceType'])
-        return false;
-      const type = request.args.resourceInfo['resourceType'];
-      return type === 'CSS stylesheet' || type === 'Font';
-    });
-    return networkRequests.concat(typeEvents).concat(typeEvents);
-  }
-
   /**
    * Returns MetricSample for Time to Interactive and First CPU Idle for the
    * given parameters. See the time_to_interactive.html module for detailed
@@ -447,22 +429,45 @@ tr.exportTo('tr.metrics.sh', function() {
         tr.metrics.sh.findFirstCpuIdleTime(
             firstMeaningfulPaintTime, searchWindowEnd, domContentLoadedEndTime,
             longTasksInWindow);
+<<<<<<< HEAD
 
     let interactiveSampleList = [];
     allCombinations().forEach((combination, index)=>{
-      let networkEvents = resourceLoadEvents;
-      if (combination.enableLongPollingFiltering) {
-        networkEvents = filterLongPolling(networkEvents);
+      let networkEvents;
+      if (combination.enableLongPollingFiltering === true) {
+        networkEvents = filterLongPolling(resourceLoadEvents);
+      } else {
+        networkEvents = resourceLoadEvents;
       }
-      if (combination.enableNameAugmenting) {
-        networkEvents = augmentName(networkEvents);
-      }
-      if (combination.enableTypeAugmenting) {
-        networkEvents = augmentCSSFont(networkEvents);
+
+      const interactiveTime =
+        tr.metrics.sh.findInteractiveTime(
+||||||| parent of 6f2a11562... [NetworkIdleness] Experiment new definition
+    const interactiveTime =
+        tr.metrics.sh.findInteractiveTime(
+=======
+
+    let interactiveSampleList = [];
+    allCombinations().forEach((combination, index)=>{
+      let networkEvents;
+      if (combination.enableLongPollingFiltering === true) {
+        networkEvents = filterLongPolling(resourceLoadEvents);
+      } else {
+        networkEvents = resourceLoadEvents;
       }
 
       const obj = tr.metrics.sh.findInteractiveTime(
+>>>>>>> 6f2a11562... [NetworkIdleness] Experiment new definition
             firstMeaningfulPaintTime, searchWindowEnd, domContentLoadedEndTime,
+<<<<<<< HEAD
+            longTasksInWindow, networkEvents);
+      interactiveSampleList[index] = decorateInteractivitySampleWithDiagnostics_(
+          rendererHelper, interactiveTime, navigationStart,
+          firstMeaningfulPaintTime, domContentLoadedEndTime, url)
+    });
+||||||| parent of 6f2a11562... [NetworkIdleness] Experiment new definition
+            longTasksInWindow, resourceLoadEvents);
+=======
             longTasksInWindow, networkEvents, url, combination.ws * 1000,
             combination.tolerance);
       let interactiveTime = undefined;
@@ -476,6 +481,7 @@ tr.exportTo('tr.metrics.sh', function() {
           firstMeaningfulPaintTime, domContentLoadedEndTime, url,
           detectionTime, traceEndTime)
     });
+>>>>>>> 6f2a11562... [NetworkIdleness] Experiment new definition
 
     return {
       firstCpuIdleSample: decorateInteractivitySampleWithDiagnostics_(
@@ -522,7 +528,14 @@ tr.exportTo('tr.metrics.sh', function() {
           firstMeaningfulPaintCpuTimeSamples, rendererHelper,
           frameIdRef, navigationStart, fmpMarkerEvent);
       if (data !== undefined) {
+<<<<<<< HEAD
+
         const {interactiveSampleList, firstCpuIdleSample} =
+||||||| parent of 6f2a11562... [NetworkIdleness] Experiment new definition
+        const {interactiveSample, firstCpuIdleSample} =
+=======
+        const {interactiveSampleList, firstCpuIdleSample} =
+>>>>>>> 6f2a11562... [NetworkIdleness] Experiment new definition
             computeInteractivityMetricSample_(
                 rendererHelper, frameToNavStartEvents,
                 frameToDomContentLoadedEndEvents, navigationStart,
@@ -572,6 +585,16 @@ tr.exportTo('tr.metrics.sh', function() {
       firstCpuIdleSamples,
       interactiveSamples,
     };
+  }
+
+  function getLast(samples) {
+    let longestSample = undefined;
+    for (const sample of samples) {
+      if (!longestSample || sample.value > longestSample) {
+        longestSample = sample;
+      }
+    }
+    return longestSample;
   }
 
   function collectLoadingMetricsForRenderer(rendererHelper) {
@@ -678,19 +701,30 @@ tr.exportTo('tr.metrics.sh', function() {
           description: 'CPU time to first meaningful paint',
           summaryOptions: SUMMARY_OPTIONS,
         });
+<<<<<<< HEAD
     const timeToInteractiveHistograms = [];
     allCombinations().forEach((combination, index)=>{
       const longPollSt = combination.enableLongPollingFiltering? "lpfE" : "lpfDE";
-      const augmentNameSt = combination.enableNameAugmenting? "naE" : "naDE";
-      const augmentTypeSt = combination.enableTypeAugmenting? "taE" : "taDE";
       timeToInteractiveHistograms[index] = histograms.createHistogram(
-        'timeToInteractive_' + longPollSt + '_' + augmentNameSt + '_' + augmentTypeSt + '_' +
-            combination.ws + '_' + combination.tolerance,
-        timeDurationInMs_smallerIsBetter, [], {
+        'timeToInteractive_' + longPollSt, timeDurationInMs_smallerIsBetter, [], {
+||||||| parent of 6f2a11562... [NetworkIdleness] Experiment new definition
+    const timeToInteractiveHistogram = histograms.createHistogram(
+        'timeToInteractive', timeDurationInMs_smallerIsBetter, [], {
+=======
+    const timeToInteractiveHistograms = [];
+    allCombinations().forEach((combination, index)=>{
+      const longPollSt = combination.enableLongPollingFiltering? "lpfE" : "lpfDE";
+      timeToInteractiveHistograms[index] = histograms.createHistogram(
+        'timeToInteractive_' + longPollSt + '_' + combination.ws + '_' + combination.tolerance, timeDurationInMs_smallerIsBetter, [], {
+>>>>>>> 6f2a11562... [NetworkIdleness] Experiment new definition
           binBoundaries: TIME_TO_INTERACTIVE_BOUNDARIES,
-          description: 'Time to Interactive: ' + longPollSt + ',' +
-              augmentNameSt + ',' + augmentTypeSt + ',' + combination.ws +
-              ',' + combination.tolerance,
+<<<<<<< HEAD
+          description: 'Time to Interactive: ' + longPollSt,
+||||||| parent of 6f2a11562... [NetworkIdleness] Experiment new definition
+          description: 'Time to Interactive',
+=======
+          description: 'Time to Interactive: ' + longPollSt + ',' + combination.ws + ',' + combination.tolerance,
+>>>>>>> 6f2a11562... [NetworkIdleness] Experiment new definition
           summaryOptions: SUMMARY_OPTIONS,
         });
     });
