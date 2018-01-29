@@ -82,6 +82,7 @@ _PERMISSIONS_BLACKLIST_RE = re.compile('|'.join(fnmatch.translate(p) for p in [
     'android.permission.BLUETOOTH',
     'android.permission.BLUETOOTH_ADMIN',
     'android.permission.BROADCAST_STICKY',
+    'android.permission.CAPTURE_VIDEO_OUTPUT',
     'android.permission.CHANGE_NETWORK_STATE',
     'android.permission.CHANGE_WIFI_MULTICAST_STATE',
     'android.permission.CHANGE_WIFI_STATE',
