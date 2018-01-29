@@ -44,6 +44,75 @@ DIAGNOSTIC_NAMES_TO_ANNOTATION_NAMES = {
 }
 
 
+# List of non-TBMv2 chromium.perf Telemetry benchmarks
+LEGACY_BENCHMARKS = [
+    'blink_perf.bindings',
+    'blink_perf.canvas',
+    'blink_perf.css',
+    'blink_perf.dom',
+    'blink_perf.events',
+    'blink_perf.image_decoder',
+    'blink_perf.layout',
+    'blink_perf.owp_storage',
+    'blink_perf.paint',
+    'blink_perf.parser',
+    'blink_perf.shadow_dom',
+    'blink_perf.svg',
+    'dromaeo',
+    'dummy_benchmark.noisy_benchmark_1',
+    'dummy_benchmark.stable_benchmark_1',
+    'jetstream',
+    'kraken',
+    'octane',
+    'rasterize_and_record_micro.partial_invalidation',
+    'rasterize_and_record_micro.top_25',
+    'scheduler.tough_scheduling_cases',
+    'smoothness.desktop_tough_pinch_zoom_cases',
+    'smoothness.gpu_rasterization.polymer',
+    'smoothness.gpu_rasterization.top_25_smooth',
+    'smoothness.gpu_rasterization.tough_filters_cases',
+    'smoothness.gpu_rasterization.tough_path_rendering_cases',
+    'smoothness.gpu_rasterization.tough_pinch_zoom_cases',
+    'smoothness.gpu_rasterization.tough_scrolling_cases',
+    'smoothness.gpu_rasterization_and_decoding.image_decoding_cases',
+    'smoothness.image_decoding_cases',
+    'smoothness.key_desktop_move_cases',
+    'smoothness.key_mobile_sites_smooth',
+    'smoothness.key_silk_cases',
+    'smoothness.maps',
+    'smoothness.pathological_mobile_sites',
+    'smoothness.simple_mobile_sites',
+    'smoothness.sync_scroll.key_mobile_sites_smooth',
+    'smoothness.top_25_smooth',
+    'smoothness.tough_ad_cases',
+    'smoothness.tough_animation_cases',
+    'smoothness.tough_canvas_cases',
+    'smoothness.tough_filters_cases',
+    'smoothness.tough_image_decode_cases',
+    'smoothness.tough_path_rendering_cases',
+    'smoothness.tough_pinch_zoom_cases',
+    'smoothness.tough_scrolling_cases',
+    'smoothness.tough_texture_upload_cases',
+    'smoothness.tough_webgl_ad_cases',
+    'smoothness.tough_webgl_cases',
+    'speedometer',
+    'speedometer-future',
+    'speedometer2',
+    'speedometer2-future',
+    'start_with_url.cold.startup_pages',
+    'start_with_url.warm.startup_pages',
+    'thread_times.key_hit_test_cases',
+    'thread_times.key_idle_power_cases',
+    'thread_times.key_mobile_sites_smooth',
+    'thread_times.key_noop_cases',
+    'thread_times.key_silk_cases',
+    'thread_times.simple_mobile_sites',
+    'thread_times.tough_compositor_cases',
+    'thread_times.tough_scrolling_cases',
+    'v8.detached_context_age_in_gc'
+]
+
+
 class BadRequestError(Exception):
   pass
 
@@ -102,19 +171,19 @@ class AddHistogramsQueueHandler(request_handler.RequestHandler):
     ndb.Future.wait_all(futures)
 
 
-def _GetStoryFromDiagnosticsDict(diagnostics):
+def _GetValueFromDiagnosticsDict(diagnostics, name):
   if not diagnostics:
     return None
 
-  story_name = diagnostics.get(reserved_infos.STORIES.name)
-  if not story_name:
+  value = diagnostics.get(name)
+  if not value:
     return None
 
   # TODO(simonhatch): Use GenericSetGetOnlyElement when it's available
   # https://github.com/catapult-project/catapult/issues/4110
-  story_name = diagnostic.Diagnostic.FromDict(story_name)
-  if story_name and len(story_name) == 1:
-    return list(story_name)[0]
+  value = diagnostic.Diagnostic.FromDict(value)
+  if value and len(value) == 1:
+    return list(value)[0]
   return None
 
 
@@ -151,8 +220,10 @@ def _ProcessRowAndHistogram(params, bot_whitelist):
   test_name = '/'.join(test_path_parts[2:])
   internal_only = add_point_queue.BotInternalOnly(bot, bot_whitelist)
   extra_args = GetUnitArgs(hist.unit)
+  diagnostics = params.get('diagnostics')
 
-  unescaped_story_name = _GetStoryFromDiagnosticsDict(params.get('diagnostics'))
+  unescaped_story_name = _GetValueFromDiagnosticsDict(
+      diagnostics, reserved_infos.STORIES.name)
 
   # TDOO(eakuefner): Populate benchmark_description once it appears in
   # diagnostics.
@@ -162,6 +233,9 @@ def _ProcessRowAndHistogram(params, bot_whitelist):
       unescaped_story_name=unescaped_story_name, **extra_args)
   test_key = parent_test.key
 
+  benchmark_name = _GetValueFromDiagnosticsDict(
+      diagnostics, reserved_infos.BENCHMARKS.name)
+  statistics_scalars = hist.statistics_scalars
   legacy_parent_tests = {}
 
   if test_name.endswith('_ref'):
@@ -172,7 +246,13 @@ def _ProcessRowAndHistogram(params, bot_whitelist):
     ref_suffix = '/ref'
   else:
     ref_suffix = ''
-  for stat_name, scalar in hist.statistics_scalars.iteritems():
+
+  if _ShouldFilter(test_name, benchmark_name):
+    statistics_scalars = {'avg': statistics_scalars['avg']}
+  elif benchmark_name in LEGACY_BENCHMARKS:
+    statistics_scalars = {}
+
+  for stat_name, scalar in statistics_scalars.iteritems():
     extra_args = GetUnitArgs(scalar.unit)
     suffixed_name = '%s_%s%s' % (test_name, stat_name, ref_suffix)
     legacy_parent_tests[stat_name] = add_point_queue.GetOrCreateAncestors(
@@ -183,6 +263,13 @@ def _ProcessRowAndHistogram(params, bot_whitelist):
       _AddRowsFromData(params, revision, parent_test, legacy_parent_tests,
                        internal_only),
       _AddHistogramFromData(params, revision, test_key, internal_only)]
+
+
+def _ShouldFilter(test_name, benchmark_name):
+  if benchmark_name.startswith('memory') or benchmark_name.startswith('media'):
+    return 'memory:' in test_name
+  if benchmark_name.startswith('system_health'):
+    return True
 
 
 @ndb.tasklet
