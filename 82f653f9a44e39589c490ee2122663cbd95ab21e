@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "73bbea70_eaaf6a2f",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-29T14:36:09Z",
+      "side": 0,
+      "message": "All of these seem to be testing the sort of guarantees that GetApplicationPids(.., at_most_one\u003dTrue) and WaitFor already provide (and are each individually unittested). No need for them any more.",
+      "revId": "82f653f9a44e39589c490ee2122663cbd95ab21e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
