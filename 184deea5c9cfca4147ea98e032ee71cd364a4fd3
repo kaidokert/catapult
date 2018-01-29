@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "523202ab_e7d1fe76",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-01-29T17:32:15Z",
+      "side": 1,
+      "message": "Note that you would able to skip this update if you\u0027re seen the diagnostic in question before (because it is shared). So you could maintain a set of guids you\u0027ve seen before, as an optimization, but to do that now is probably premature.",
+      "revId": "184deea5c9cfca4147ea98e032ee71cd364a4fd3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
