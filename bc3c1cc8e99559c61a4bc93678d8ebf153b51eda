@@ -34,6 +34,24 @@
       "revId": "bc3c1cc8e99559c61a4bc93678d8ebf153b51eda",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e85f3bee_e92d5abb",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-29T09:51:31Z",
+      "side": 1,
+      "message": "Yup, that\u0027s the sort of thing I would love for us to be able to do. Not so much worried about this particular decision, but having the sort of infrastructure that will allow us to ask these kinds of questions in the future. Maybe expose some pinpoint API\u0027s to be able to do some soundwave-like analyses.\n\nAgain, nothing in particular to do now, but something to keep in our minds as the project develops. :)",
+      "parentUuid": "6fa060bb_6f945c0f",
+      "revId": "bc3c1cc8e99559c61a4bc93678d8ebf153b51eda",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
