@@ -115,8 +115,7 @@ class SymbolizeTraceEndToEndTest(unittest.TestCase):
       return
 
     # The corresponding macOS Chrome symbols must be uploaded to
-    # "gs://chrome-partner-telemetry/desktop-symbolizer-test/61.0.3135.4/mac64/"
-    # "Google Chrome.dSYM.tar.bz2"
+    # "gs://chrome-partner-telemetry/desktop-symbolizer-test/61.0.3135.4/mac64/Google Chrome.dSYM.tar.bz2"
     # since the waterfall bots do not have access to the chrome-unsigned bucket.
     self._RunSymbolizationOnTrace('mac_trace_v1_presymbolization.json.gz',
                                   'mac_trace_v1_postsymbolization.json.gz',
@@ -131,6 +130,14 @@ class SymbolizeTraceEndToEndTest(unittest.TestCase):
         'mac_trace_v1_presymbolization.json.gz',
         'mac_trace_v1_breakpad_postsymbolisation.json.gz',
         ['--use-breakpad-symbols'])
+
+  def testMacv2(self):
+    # The corresponding macOS Chrome symbols must be uploaded to
+    # "gs://chrome-partner-telemetry/desktop-symbolizer-test/66.0.3334.0/mac64/Google Chrome.dSYM.tar.bz2"
+    # since the waterfall bots do not have access to the chrome-unsigned bucket.
+    self._RunSymbolizationOnTrace(
+        'mac_trace_v2_presymbolization.json.gz',
+        'mac_trace_v2_postsymbolization.json.gz', [])
 
   def testWin64v1(self):
     if sys.platform != 'win32':

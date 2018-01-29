@@ -478,11 +478,21 @@ class StringMap(NodeWrapper):
     """Clears all string mappings."""
     if self._string_by_id:
       self._modified = True
+
+      # TODO(erikchen): I believe this logic is useless, and should just be
+      # removed and all the tests updated. I believe no other code makes the
+      # assumption that there's a 'no entry" string at position 0.
+
       # ID #0 means 'no entry' and must always be present. Carry it over.
-      null_string = self._string_by_id[0]
+      null_string = None
+      if 0 in self._string_by_id:
+        null_string = self._string_by_id[0]
+
       self._string_by_id = {}
       self._id_by_string = {}
-      self._Insert(0, null_string)
+
+      if null_string:
+        self._Insert(0, null_string)
       self._max_string_id = 0
 
   def AddString(self, string):
