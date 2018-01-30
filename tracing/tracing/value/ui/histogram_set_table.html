@@ -212,6 +212,12 @@ tr.exportTo('tr.v.ui', function() {
             filteredHistograms = new tr.v.HistogramSet(
                 [...filteredHistograms].filter(
                     hist => hist.name.match(query)));
+            if (filteredHistograms.length === 0 &&
+                !this.viewState.showAll) {
+              setTimeout(() => {
+                this.viewState.showAll = true;
+              }, 0);
+            }
           }
         }
 
