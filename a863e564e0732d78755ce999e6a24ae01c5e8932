@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4787c00a_63c9b414",
+        "filename": "dashboard/dashboard/pinpoint/handlers/stats.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-01-30T02:28:20Z",
+      "side": 1,
+      "message": "2 things I\u0027d love to be able to do with this API from perf sheriffing and noise analysis use cases:\n\n1) Map back to the bug that was bisected on. Is it okay to add job.bug_id here for that?\n2) Map back to the original alert that fired and the timeseries it fired on. Looking at the Job data model, I think it might be possible if you did a raw dump of the arguments, but I can understand why you wouldn\u0027t want to create an API that allowed people to rely on the current form of the arguments. So if it\u0027s too hacky, it\u0027s fine to leave this for a future CL.",
+      "range": {
+        "startLine": 36,
+        "startChar": 29,
+        "endLine": 36,
+        "endChar": 0
+      },
+      "revId": "a863e564e0732d78755ce999e6a24ae01c5e8932",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
