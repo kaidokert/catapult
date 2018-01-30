@@ -85,7 +85,10 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     params = [{
         'data': TEST_HISTOGRAM,
         'test_path': test_path,
-        'revision': 123
+        'revision': 123,
+        'diagnostics': {
+            'benchmarks': TEST_BENCHMARKS
+        }
     }]
     self.testapp.post('/add_histograms_queue', json.dumps(params))
 
@@ -127,7 +130,10 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     params = [{
         'data': TEST_HISTOGRAM,
         'test_path': test_path,
-        'revision': 123
+        'revision': 123,
+        'diagnostics': {
+            'benchmarks': TEST_BENCHMARKS,
+        },
     }]
     self.testapp.post('/add_histograms_queue', json.dumps(params))
 
@@ -259,6 +265,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
         'test_path': test_path,
         'revision': 123,
         'diagnostics': {
+            'benchmarks': TEST_BENCHMARKS,
             'stories': hists[0].diagnostics.get('stories').AsDict(),
         }
     }]
@@ -267,6 +274,41 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     t = utils.TestKey(test_path).get()
 
     self.assertEqual('http://unescaped_story', t.unescaped_story_name)
+
+  def testPostHistogram_OnlyCreatesAvgRowForMemoryBenchmark(self):
+    test_path = 'Chromium/win7/memory_desktop/memory:chrome'
+    benchmarks = copy.deepcopy(TEST_BENCHMARKS)
+    benchmarks['values'] = ['memory.desktop']
+    params = [{
+        'data': TEST_HISTOGRAM,
+        'test_path': test_path,
+        'revision': 123,
+        'diagnostics': {
+            'benchmarks': benchmarks
+        }
+    }]
+    self.testapp.post('/add_histograms_queue', json.dumps(params))
+
+    rows = graph_data.Row.query().fetch()
+    self.assertEqual(len(rows), 2)
+    self.assertTrue(rows[1].key.parent().id().endswith('_avg'))
+
+  def testPostHistogram_CreatesNoLegacyRowsForLegacyTest(self):
+    test_path = 'Chromium/win7/blink_perf.dom/foo'
+    benchmarks = copy.deepcopy(TEST_BENCHMARKS)
+    benchmarks['values'] = ['blink_perf.dom']
+    params = [{
+        'data': TEST_HISTOGRAM,
+        'test_path': test_path,
+        'revision': 123,
+        'diagnostics': {
+            'benchmarks': benchmarks
+        }
+    }]
+    self.testapp.post('/add_histograms_queue', json.dumps(params))
+
+    rows = graph_data.Row.query().fetch()
+    self.assertEqual(len(rows), 1)
 
   def testGetUnitArgs_Up(self):
     unit_args = add_histograms_queue.GetUnitArgs('count_biggerIsBetter')
@@ -438,7 +480,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     hist = histogram_module.Histogram('foo', 'count').AsDict()
     test_path = 'Chromium/win7/suite/metric'
     test_key = utils.TestKey(test_path)
-    row = add_histograms_queue.AddRows(hist, test_key, 123, test_path, True)
+    row = add_histograms_queue.AddRows(hist, test_key, {}, 123, True)
 
     rows = graph_data.Row.query().fetch()
     self.assertEqual(0, len(rows))
@@ -452,4 +494,4 @@ class AddHistogramsQueueTest(testing_common.TestCase):
         'type': 'GenericSet', 'values': [123, 456]}
 
     with self.assertRaises(add_histograms_queue.BadRequestError):
-      add_histograms_queue.AddRows(hist, test_key, 123, test_path, False).put()
+      add_histograms_queue.AddRows(hist, test_key, {}, 123, False).put()
