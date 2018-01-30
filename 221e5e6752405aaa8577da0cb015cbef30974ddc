@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fc8ee8ca_88d0a1e0",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-30T16:54:04Z",
+      "side": 1,
+      "message": "Can you add documentation for this method saying that element in |columns| must be any of \u0027pid\u0027, \n\u0027ppid\u0027, \u0027name\u0027?",
+      "revId": "221e5e6752405aaa8577da0cb015cbef30974ddc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
