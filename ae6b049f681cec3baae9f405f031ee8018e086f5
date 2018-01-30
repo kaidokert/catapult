@@ -22,6 +22,30 @@
       "revId": "ae6b049f681cec3baae9f405f031ee8018e086f5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8de8ba86_d5474c82",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1115906
+      },
+      "writtenOn": "2018-01-30T14:35:28Z",
+      "side": 1,
+      "message": "\u003e Due to the fact that data is serialized in rows, we need to have something that means \"no value\". This is also important if we want to modify traces by a script - in which case it\u0027s convenient to know (and rely on) that 0 means \"don\u0027t know\". Note that 0 automatically works for sizes and counts too.\n\nI think we might be talking past each other. Are you available to chat?",
+      "parentUuid": "b07254ee_bbd59775",
+      "range": {
+        "startLine": 482,
+        "startChar": 26,
+        "endLine": 482,
+        "endChar": 33
+      },
+      "revId": "ae6b049f681cec3baae9f405f031ee8018e086f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
