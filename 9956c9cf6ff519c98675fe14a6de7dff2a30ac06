@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8a66b32a_e1061727",
+        "filename": "telemetry/telemetry/internal/platform/tracing_controller_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-01-31T16:00:34Z",
+      "side": 1,
+      "message": "Note that I considered doing the logging in the actual functions themselves, similar to how to raised_exception_messages works in a few of those functions.\n\nIt turned out to require a lot more code, and it also complicated the way that the exceptions needed to be captured a bit. The contract with StopTracing requires that we return the actual nonfatal exceptions, not just the messages associated with them. That means that we can\u0027t just capture the messages.\n\nHowever, we can\u0027t just capture the exceptions because the stack trace is only stored in sys.exc_info() for the context of the exception handler. Because of that, we needed to have a data structure that contained both the exception and the corresponding stack trace to be logged later in the function. This wasn\u0027t difficult, but it did end up complicating the code more than I liked and it made this change a lot more intrusive than it is now. Because of that, I decided to just log the error in the context manager, even if it\u0027s a little bit weird that we pass in a context_description string IMO.",
+      "revId": "9956c9cf6ff519c98675fe14a6de7dff2a30ac06",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
