@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a882a7a4_e0690388",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2018-01-31T20:10:16Z",
+      "side": 1,
+      "message": "cri.GetChromePid() is not None is probably better?",
+      "revId": "a992f186191a834288f2442052b477c4f43410d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "504a5164_c841376f",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2018-01-31T20:10:16Z",
+      "side": 1,
+      "message": "Why not lambda here?",
+      "revId": "a992f186191a834288f2442052b477c4f43410d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
