@@ -96,11 +96,20 @@ tr.exportTo('tr.ui.tracks', function() {
       }
 
       if (this.thread_.sliceGroup.length) {
+<<<<<<< HEAD
+        if (this.thread_.name === "CrRendererMain") {
+          this.thread_.sliceGroup.slices =
+             this.thread_.sliceGroup.slices.filter((e)=>{
+               return e.duration>=10 || this.isReservedEvent(e)});
+        }
+||||||| parent of 7d87650e1... [NetworkIdleness] Experiment new definition
+=======
         // if (this.thread_.name === "CrRendererMain") {
         //   this.thread_.sliceGroup.slices =
         //      this.thread_.sliceGroup.slices.filter((e)=>{
         //        return e.duration>=10 || this.isReservedEvent(e)});
         // }
+>>>>>>> 7d87650e1... [NetworkIdleness] Experiment new definition
         const track = new tr.ui.tracks.SliceGroupTrack(this.viewport);
         track.heading = this.thread_.userFriendlyName;
         track.tooltip = this.thread_.userFriendlyDetails;
@@ -237,62 +246,6 @@ tr.exportTo('tr.ui.tracks', function() {
           })
           newAsyncTrack.group = newSubGroup;
           newAsyncTrack.heading = title + " XMLHttpRequest only";
-          if (newAsyncTrack.hasVisibleContent) {
-            Polymer.dom(this).appendChild(newAsyncTrack);
-          }
-
-          // Group 4
-          newSubGroup = this.shallow_clone(subGroup);
-          newAsyncTrack = new tr.ui.tracks.AsyncSliceGroupTrack(this.viewport);
-          title = newSubGroup.slices[0].viewSubGroupTitle;
-          newSubGroup.slices = newSubGroup.slices.filter((slice)=>{
-            if (!slice.args || !slice.args.resourceInfo ||
-                !slice.args.resourceInfo['request.HttpMethod']) {
-              return false;
-            }
-            const resourceType = slice.args.resourceInfo['request.HttpMethod'];
-            return resourceType !== 'GET';
-          })
-          newAsyncTrack.group = newSubGroup;
-          newAsyncTrack.heading = title + " non-GET only";
-          if (newAsyncTrack.hasVisibleContent) {
-            Polymer.dom(this).appendChild(newAsyncTrack);
-          }
-
-          // Group 4
-          newSubGroup = this.shallow_clone(subGroup);
-          newAsyncTrack = new tr.ui.tracks.AsyncSliceGroupTrack(this.viewport);
-          title = newSubGroup.slices[0].viewSubGroupTitle;
-          newSubGroup.slices = newSubGroup.slices.filter((slice)=>{
-            return !slice.duration || slice.duration < 20;
-          })
-          newAsyncTrack.group = newSubGroup;
-          newAsyncTrack.heading = title + " Short events only";
-          if (newAsyncTrack.hasVisibleContent) {
-            Polymer.dom(this).appendChild(newAsyncTrack);
-          }
-
-          // Group 4
-          newSubGroup = this.shallow_clone(subGroup);
-          newAsyncTrack = new tr.ui.tracks.AsyncSliceGroupTrack(this.viewport);
-          title = newSubGroup.slices[0].viewSubGroupTitle;
-          newSubGroup.slices = newSubGroup.slices.filter((slice)=>{
-            return slice.args && slice.args.endData && slice.args.endData.outcome === 'Fail';
-          })
-          newAsyncTrack.group = newSubGroup;
-          newAsyncTrack.heading = title + " Fail only";
-          if (newAsyncTrack.hasVisibleContent) {
-            Polymer.dom(this).appendChild(newAsyncTrack);
-          }
-          // Group 4
-          newSubGroup = this.shallow_clone(subGroup);
-          newAsyncTrack = new tr.ui.tracks.AsyncSliceGroupTrack(this.viewport);
-          title = newSubGroup.slices[0].viewSubGroupTitle;
-          newSubGroup.slices = newSubGroup.slices.filter((slice)=>{
-            return !(slice.args && slice.args.endData && slice.args.endData.outcome === 'Fail');
-          })
-          newAsyncTrack.group = newSubGroup;
-          newAsyncTrack.heading = title + " non-fail only";
           if (newAsyncTrack.hasVisibleContent) {
             Polymer.dom(this).appendChild(newAsyncTrack);
           }
