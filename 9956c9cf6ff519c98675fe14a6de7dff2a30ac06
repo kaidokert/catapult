@@ -51,6 +51,24 @@
       "revId": "9956c9cf6ff519c98675fe14a6de7dff2a30ac06",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1de5c7c2_1a173c52",
+        "filename": "telemetry/telemetry/internal/platform/tracing_controller_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-01-31T18:04:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ca21b29_733544e0",
+      "revId": "9956c9cf6ff519c98675fe14a6de7dff2a30ac06",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
