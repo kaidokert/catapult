@@ -22,6 +22,30 @@
       "revId": "777f916f81ddf6f9ae25e2c54b7f3e8ca0f9180e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6aab346f_23d036bf",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1115906
+      },
+      "writtenOn": "2018-01-31T19:29:23Z",
+      "side": 1,
+      "message": "max_string_id is used on line 490, which always uses _max_string_id + 1. _max_string_id is then updated on line 515. So 0 should be fine here.",
+      "parentUuid": "beb0686b_d53518a1",
+      "range": {
+        "startLine": 484,
+        "startChar": 28,
+        "endLine": 484,
+        "endChar": 29
+      },
+      "revId": "777f916f81ddf6f9ae25e2c54b7f3e8ca0f9180e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
