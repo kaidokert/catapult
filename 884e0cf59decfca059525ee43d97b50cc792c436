@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "fd7c0f72_38d1c696",
+        "filename": "telemetry/telemetry/internal/backends/browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-31T13:15:54Z",
+      "side": 1,
+      "message": "this file contains purely formatting change?",
+      "revId": "884e0cf59decfca059525ee43d97b50cc792c436",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8eef2e89_671ad419",
         "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
         "patchSetId": 2
