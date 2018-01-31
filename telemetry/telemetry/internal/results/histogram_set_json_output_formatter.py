@@ -8,6 +8,11 @@ import logging
 from telemetry.internal.results import output_formatter
 
 
+class DummyValue(object):
+  def __init__(self, name):
+    self.name = name
+
+
 class HistogramSetJsonOutputFormatter(output_formatter.OutputFormatter):
   def __init__(self, output_stream, metadata, reset_results):
     super(HistogramSetJsonOutputFormatter, self).__init__(output_stream)
@@ -16,6 +21,11 @@ class HistogramSetJsonOutputFormatter(output_formatter.OutputFormatter):
 
   def Format(self, page_test_results):
     histograms = page_test_results.AsHistogramDicts()
+    for histogram in histograms:
+      if not page_test_results.value_can_be_added_predicate(
+          DummyValue(histogram.name)):
+        del histogram
+
     self._output_stream.seek(0)
     if not self._reset_results:
       existing = self._output_stream.read()
