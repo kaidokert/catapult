@@ -33,6 +33,24 @@
       "revId": "9956c9cf6ff519c98675fe14a6de7dff2a30ac06",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ca21b29_733544e0",
+        "filename": "telemetry/telemetry/internal/platform/tracing_controller_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-01-31T18:04:25Z",
+      "side": 1,
+      "message": "\u003e Second, this is the first time I know that you can do two with statement in the same line this way. I think this new syntax while more succinct, is not very popular :-/\n\nFWIW, I think that the reason for this is that, for a long time, this was missing from the language and the only way to do it was with contextlib.nested (https://docs.python.org/2/library/contextlib.html#contextlib.nested), which had some weird behavior: it wasn\u0027t guaranteed that all context manager\u0027s __exit__ blocks would run if an exception was thrown, essentially making it useless.\n\nBecause of this, Python 2.7 added the support for multiple context managers in a single with statement (https://docs.python.org/dev/whatsnew/2.7.html#other-language-changes)\n\nAnyhow, happy to split it - in this case, it only really adds a few extra characters. I will say that I think that avoiding a language feature because it\u0027s syntax is foreign is a little strange, and in general would preclude _any_ new language features from being adopted. (Avoiding something because it\u0027s \"clever\", and uses a language feature in an unexpected or non-idiomatic way, however, makes complete sense to me).\n\nDone.",
+      "parentUuid": "55f759e8_c18c2544",
+      "revId": "9956c9cf6ff519c98675fe14a6de7dff2a30ac06",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
