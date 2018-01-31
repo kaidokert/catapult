@@ -16,6 +16,23 @@
       "revId": "9956c9cf6ff519c98675fe14a6de7dff2a30ac06",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "55f759e8_c18c2544",
+        "filename": "telemetry/telemetry/internal/platform/tracing_controller_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-01-31T16:24:04Z",
+      "side": 1,
+      "message": "First: style nit: we don\u0027t use \u0027\\\u0027 for breaking continuous line, instead using hanging parentheses:\ne.g:\nwith (trace_event.trace(\u0027StartAgentTracing\u0027,\n          ....)\n\nSecond, this is the first time I know that you can do two with statement in the same line this way. I think this new syntax while more succinct, is not very popular :-/\n\nCan you split this to:\n\nwith trace_event...:\n  with self._CollectNonFatalException(...): \n     ...\n\n?",
+      "revId": "9956c9cf6ff519c98675fe14a6de7dff2a30ac06",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
