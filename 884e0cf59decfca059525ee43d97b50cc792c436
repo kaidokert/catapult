@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8eef2e89_671ad419",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-01-31T12:47:01Z",
+      "side": 1,
+      "message": "Achuith, please double check that this makes sense for CrOS too. We didn\u0027t use to have this check for the cros_browser_backend, but now it will apply to all backends.\n\nI\u0027ve tested locally testBrowserCreation with cros-chrome and cros-chrome-guest, also ssh-ing and running within the VM using cros-chrome-guest. Not sure if I might be missing some other case?",
+      "revId": "884e0cf59decfca059525ee43d97b50cc792c436",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
