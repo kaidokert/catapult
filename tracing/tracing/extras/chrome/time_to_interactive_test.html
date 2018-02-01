@@ -13,12 +13,12 @@ found in the LICENSE file.
 
 tr.b.unittest.testSuite(function() {
   const findInteractiveTime =
-      tr.metrics.sh.findInteractiveTime;
+      tr.e.chrome.findInteractiveTime;
   const findFirstCpuIdleTime =
-      tr.metrics.sh.findFirstCpuIdleTime;
+      tr.e.chrome.findFirstCpuIdleTime;
   const requiredFCIWindowSizeMs =
-        tr.metrics.sh.requiredFCIWindowSizeMs;
-  const findFCITaskClusters = tr.metrics.sh.findFCITaskClusters;
+        tr.e.chrome.requiredFCIWindowSizeMs;
+  const findFCITaskClusters = tr.e.chrome.findFCITaskClusters;
 
   test('findInteractiveTime_' +
        'doesNotWaitForTasksFarAwayWithoutNetworkRequests', () => {

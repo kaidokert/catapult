@@ -11,12 +11,25 @@ found in the LICENSE file.
 <script>
 'use strict';
 
-tr.exportTo('tr.metrics.sh', function() {
+tr.exportTo('tr.e.chrome', function() {
   /**
    * Utility class providing methods to efficiently find events.
    * TODO(4023) This should be merged with thread/process helper.
    */
   class EventFinderUtils {
+
+    /**
+     * Returns true if |category| is one of the categories of |event|, and
+     * |event| has title |title|.
+     *
+     * TODO(dproy): Make this a method on a suitable parent class of the
+     * event/slice classes that are used with this function.
+     */
+    static hasCategoryAndName(event, category, title) {
+      return event.title === title && event.category &&
+        tr.b.getCategoryParts(event.category).includes(category);
+    }
+
     /**
      * Returns a map of frame id to main thread slices of |rendererHelper| with
      * title |eventTitle| and categry |eventCategory|, sorted by start
@@ -34,7 +47,7 @@ tr.exportTo('tr.metrics.sh', function() {
       // Events yielded by childEvents() are sorted by start time.
       for (const ev of rendererHelper.mainThread.sliceGroup.childEvents()) {
         if (rendererHelper.isTelemetryInternalEvent(ev)) continue;
-        if (!tr.metrics.sh.hasCategoryAndName(ev, eventCategory, eventTitle)) {
+        if (!this.hasCategoryAndName(ev, eventCategory, eventTitle)) {
           continue;
         }
 

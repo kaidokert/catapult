@@ -42,7 +42,7 @@ tr.exportTo('tr.e.chrome', function() {
     for (const rendererHelper of Object.values(chromeHelper.rendererHelpers)) {
       const timestamps = [];
       interactiveTimestampsMap.set(rendererHelper.pid, timestamps);
-      const samples = tr.metrics.sh.collectLoadingMetricsForRenderer(
+      const samples = tr.metrics.sh.collectLoadingMetricsForRenderer(model,
           rendererHelper).interactiveSamples;
       for (const sample of samples) {
         timestamps.push(tr.b.getOnlyElement(
