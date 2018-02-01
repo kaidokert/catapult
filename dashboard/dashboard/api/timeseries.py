@@ -26,15 +26,37 @@ class TimeseriesHandler(api_request_handler.ApiRequestHandler):
     Outputs:
       JSON timeseries data for the test_path, see README.md.
     """
-    try:
-      days = int(self.request.get('num_days', 30))
-    except ValueError:
-      raise api_request_handler.BadRequestError(
-          'Invalid num_days parameter %s' % self.request.get('num_days'))
-    if days <= 0:
-      raise api_request_handler.BadRequestError(
-          'num_days cannot be negative (%s)' % days)
-    before = datetime.datetime.now() - datetime.timedelta(days=days)
+    before = None
+    start_rev = self.request.get('start_rev')
+    end_rev = self.request.get('end_rev')
+    if start_rev and end_rev:
+      try:
+        start_rev = int(start_rev)
+      except ValueError:
+        raise api_request_handler.BadRequestError(
+            'Invalid start_rev parameter %s' % start_rev)
+      if start_rev <= 0:
+        raise api_request_handler.BadRequestError(
+            'num_days cannot be negative (%s)' % start_rev)
+      if end_rev != 'inf':
+        try:
+          end_rev = int(end_rev)
+        except ValueError:
+          raise api_request_handler.BadRequestError(
+              'Invalid end_rev parameter %s' % end_rev)
+        if end_rev <= 0:
+          raise api_request_handler.BadRequestError(
+              'num_days cannot be negative (%s)' % end_rev)
+    else:
+      try:
+        days = int(self.request.get('num_days', 30))
+      except ValueError:
+        raise api_request_handler.BadRequestError(
+            'Invalid num_days parameter %s' % self.request.get('num_days'))
+      if days <= 0:
+        raise api_request_handler.BadRequestError(
+            'num_days cannot be negative (%s)' % days)
+      before = datetime.datetime.now() - datetime.timedelta(days=days)
 
     test_path = args[0]
     test_key = utils.TestKey(test_path)
@@ -49,22 +71,24 @@ class TimeseriesHandler(api_request_handler.ApiRequestHandler):
 
     q = graph_data.Row.query()
     q = q.filter(graph_data.Row.parent_test == utils.OldStyleTestKey(test_key))
-    q = q.filter(graph_data.Row.timestamp > before)
+    if before:
+      q = q.filter(graph_data.Row.timestamp > before)
+    elif start_rev:
+      q = q.filter(graph_data.Row.revision > start_rev)
 
     rows = q.fetch()
+    result = {'test_path': test_path}
     if not rows:
-      return []
+      return result
     revisions = [rev for rev in rows[0].to_dict() if rev.startswith('r_')]
     header = ['revision', 'value', 'timestamp'] + revisions
     timeseries = [header]
     for row in sorted(rows, key=lambda r: r.revision):
       timeseries.append([self._GetValue(row, a) for a in header])
 
-    return {
-        'timeseries': timeseries,
-        'test_path': test_path,
-        'revision_logs': namespaced_stored_object.Get('revision_info'),
-    }
+    result['timeseries'] = timeseries
+    result['revision_logs'] = namespaced_stored_object.Get('revision_info')
+    return result
 
   def _GetValue(self, row, attr):
     value = getattr(row, attr, None)
