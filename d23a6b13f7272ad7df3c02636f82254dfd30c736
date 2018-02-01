@@ -19,6 +19,41 @@
     },
     {
       "key": {
+        "uuid": "15910eea_ff3937b1",
+        "filename": "tracing/tracing/importer/find_load_expectations.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2018-02-01T21:59:18Z",
+      "side": 1,
+      "message": "Looking at this trace point[0], it looks like navigationStart events will have a null/undefined frame only if there is no associated document loader. This[1] comments makes me think that is very unlikely, so I\u0027d say this is fine.\n\n[0] https://cs.chromium.org/chromium/src/third_party/WebKit/Source/core/loader/DocumentLoadTiming.cpp?l\u003d113\u0026rcl\u003dadd89c261260aa4c2b196f6ee0fdd60d6fd91c7f\n[1] https://cs.chromium.org/chromium/src/third_party/WebKit/Source/core/loader/DocumentLoadTiming.cpp?l\u003d46\u0026rcl\u003dadd89c261260aa4c2b196f6ee0fdd60d6fd91c7f",
+      "parentUuid": "e6dedd18_3d805593",
+      "revId": "d23a6b13f7272ad7df3c02636f82254dfd30c736",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f071e2ec_5dc32f36",
+        "filename": "tracing/tracing/importer/find_load_expectations.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2018-02-01T21:59:18Z",
+      "side": 1,
+      "message": "It took me some time to realize that FMP still gets recorded if TTI is not detected. What do you think about this: \n* keep computeInteractivityMetricSample returning only the two interactivity metrics (TTI and FirstCpuIdle) \n* create a new function constructLoadingMetricSample_, and make that function call computeInteractivityMetricSample.",
+      "revId": "d23a6b13f7272ad7df3c02636f82254dfd30c736",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c1455e87_400ff99c",
         "filename": "tracing/tracing/importer/find_load_expectations.html",
         "patchSetId": 1
@@ -30,6 +65,24 @@
       "writtenOn": "2018-02-01T12:46:40Z",
       "side": 1,
       "message": "Currently, if there are no fmpCandidates or no Frame associated with the events then in the current implementation we don\u0027t create a load expectation. Should we instead create a load expectation that starts with the navigationStart and ends at the end of the trace?",
+      "revId": "d23a6b13f7272ad7df3c02636f82254dfd30c736",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb749723_3099bcff",
+        "filename": "tracing/tracing/importer/find_load_expectations.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2018-02-01T21:59:18Z",
+      "side": 1,
+      "message": "We should still create a load expectation. A page can reach FCP but not FMP, and it\u0027s worth recording that data in a Load Expectation. I see that if a page does not reach TTI, you\u0027re using searchWindowEnd as the end of the LoadExpectation, which is either the next navigation start for the same from or traceEnd. You should do the same thing if there is no FMP candidate.\n\nThere is also a notion of \"Failed Load\" (as opposed to Successful Load) - this is specified by the initiator type. @benjhayden: When should we call a load failed vs successful?",
+      "parentUuid": "c1455e87_400ff99c",
       "revId": "d23a6b13f7272ad7df3c02636f82254dfd30c736",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
