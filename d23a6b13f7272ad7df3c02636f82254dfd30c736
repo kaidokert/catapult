@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e6dedd18_3d805593",
+        "filename": "tracing/tracing/importer/find_load_expectations.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-02-01T12:46:40Z",
+      "side": 1,
+      "message": "Is it possible to have navigationStart events without an associated frame. We ignore such navigation starts. So there won\u0027t be a corresponding loading expectation for such events. Would that be Ok?",
+      "revId": "d23a6b13f7272ad7df3c02636f82254dfd30c736",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1455e87_400ff99c",
+        "filename": "tracing/tracing/importer/find_load_expectations.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-02-01T12:46:40Z",
+      "side": 1,
+      "message": "Currently, if there are no fmpCandidates or no Frame associated with the events then in the current implementation we don\u0027t create a load expectation. Should we instead create a load expectation that starts with the navigationStart and ends at the end of the trace?",
+      "revId": "d23a6b13f7272ad7df3c02636f82254dfd30c736",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a55ea6a5_dae9bb85",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric_test.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 765,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-02-01T12:46:40Z",
+      "side": 1,
+      "message": "Is this Ok? or should I be using something else for webView.",
+      "revId": "d23a6b13f7272ad7df3c02636f82254dfd30c736",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
