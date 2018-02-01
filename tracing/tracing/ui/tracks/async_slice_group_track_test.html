@@ -29,7 +29,7 @@ tr.b.unittest.testSuite(function() {
     const g = new AsyncSliceGroup(t1);
     g.push(newAsyncSlice(0, 1, t1, t1));
     const track = new AsyncSliceGroupTrack(new tr.ui.TimelineViewport());
-    track.group = g;
+    track.group = g.viewSubGroups[0];
 
     assert.strictEqual(track.children.length, 1);
     assert.isTrue(track.hasVisibleContent);

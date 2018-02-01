@@ -164,13 +164,29 @@ tr.exportTo('tr.ui.tracks', function() {
         this.currentSubRows_ = [];
         return;
       }
-      const subRows = this.buildSubRows_(this.itemsToGroup_);
+
+      const subRowHeadings = [];
+      const subRows = this.buildSubRows_(this.itemsToGroup_, subRowHeadings);
       this.currentSubRows_ = subRows;
+
+      if (subRowHeadings.length !== 0) {
+        // Create an empty row to render the group's title there.
+        const track = this.addSubTrack_([]);
+        track.addEventListener(
+            'heading-clicked', this.onHeadingClicked_.bind(this));
+      }
+
       for (let srI = 0; srI < subRows.length; srI++) {
         const subRow = subRows[srI];
-        if (!subRow.length) continue;
+        if (subRow.length === 0) {
+          continue;
+        }
+        let heading = '';
+        if (subRowHeadings.length !== 0) {
+          heading = subRowHeadings[srI];
+        }
 
-        const track = this.addSubTrack_(subRow);
+        const track = this.addSubTrack_(subRow, heading);
         track.addEventListener(
             'heading-clicked', this.onHeadingClicked_.bind(this));
       }
@@ -189,11 +205,11 @@ tr.exportTo('tr.ui.tracks', function() {
      * Breaks up the list of slices into N rows, each of which is a list of
      * slices that are non overlapping.
      */
-    buildSubRows_(itemsToGroup) {
+    buildSubRows_(itemsToGroup, opt_headings) {
       throw new Error('Not implemented');
     },
 
-    addSubTrack_(subRowItems) {
+    addSubTrack_(subRowItems, opt_heading) {
       throw new Error('Not implemented');
     },
 
