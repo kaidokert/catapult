@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "28820dd9_5ce0a19a",
+        "filename": "dashboard/dashboard/pinpoint/models/kolmogorov_smirnov_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-02-01T01:44:07Z",
+      "side": 1,
+      "message": "nit: name",
+      "range": {
+        "startLine": 10,
+        "startChar": 6,
+        "endLine": 10,
+        "endChar": 22
+      },
+      "revId": "e120deaaeab50023ea5366e532f1fb3965e14bbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
