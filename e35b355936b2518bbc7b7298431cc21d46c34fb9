@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0607090d_f2c881d8",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-02T16:24:05Z",
+      "side": 1,
+      "message": "Also not strictly needed, but maybe make it: \u003c(.+?)\u003e",
+      "parentUuid": "c32b8ed1_f837fcf4",
+      "revId": "e35b355936b2518bbc7b7298431cc21d46c34fb9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bb880ca0_76d2995a",
         "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
         "patchSetId": 3
@@ -30,6 +48,23 @@
       "writtenOn": "2018-02-02T16:22:29Z",
       "side": 1,
       "message": "let\u0027s factor these out maybe as ParseCommitPosition(message)\nand ParseReviewers(message)",
+      "revId": "e35b355936b2518bbc7b7298431cc21d46c34fb9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06cd59bf_c280bbc3",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-02T16:24:05Z",
+      "side": 1,
+      "message": "Can you add a couple of reviewers?",
       "revId": "e35b355936b2518bbc7b7298431cc21d46c34fb9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
