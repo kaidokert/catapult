@@ -2,6 +2,57 @@
   "comments": [
     {
       "key": {
+        "uuid": "d5950b03_ac14dd40",
+        "filename": "tracing/tracing/extras/chrome/estimated_input_latency_test.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-02-02T18:20:28Z",
+      "side": 1,
+      "message": "I know this is just testing code, bug globals smell funny.\nIt looks like these two globals are used to find the renderer process and main thread in the model, but newChromeModel makes them easy to find at model.rendererProcess and rendererMain. Can you remove these two globals by changing callers to look in model.rendererProcess and rendererMain instead?",
+      "revId": "19c77e2746b47c6bc6866b65b996c50bf01a8741",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f64230f5_f206e7fa",
+        "filename": "tracing/tracing/extras/chrome/time_to_interactive_test.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-02-02T18:20:28Z",
+      "side": 1,
+      "message": "It looks like each of these next 3 constants can fit on a single line.",
+      "revId": "19c77e2746b47c6bc6866b65b996c50bf01a8741",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0498142_d05f5cef",
+        "filename": "tracing/tracing/importer/find_load_expectations.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-02-02T18:20:28Z",
+      "side": 1,
+      "message": "UserModelBuilder should be as generally useful as possible, and I can imagine applications that would want to measure loading for these urls.\nWhy should the UserModelBuilder filter out these urls instead of tr.metrics.sh.collectLoadingMetricsForRenderer?",
+      "revId": "19c77e2746b47c6bc6866b65b996c50bf01a8741",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c8dcfb37_43b57598",
         "filename": "tracing/tracing/importer/find_load_expectations.html",
         "patchSetId": 4
@@ -13,6 +64,74 @@
       "writtenOn": "2018-02-02T16:46:41Z",
       "side": 1,
       "message": "@benjhayden When there is no corresponding fmpEvent should we mark the load as failed? currently I mark everything as successful.",
+      "revId": "19c77e2746b47c6bc6866b65b996c50bf01a8741",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f923f480_10c36fd4",
+        "filename": "tracing/tracing/importer/find_load_expectations.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-02-02T18:20:28Z",
+      "side": 1,
+      "message": "Why define a large \u0027sample\u0027 data structure instead of allowing collectLoadExpectationsForRenderer to return LoadExpectations as the name implies?",
+      "revId": "19c77e2746b47c6bc6866b65b996c50bf01a8741",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34728a8a_76db4bb5",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-02-02T18:20:28Z",
+      "side": 1,
+      "message": "Please use instanceof instead of testing the stageTitle.",
+      "revId": "19c77e2746b47c6bc6866b65b996c50bf01a8741",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30d1da3b_767ad478",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-02-02T18:20:28Z",
+      "side": 1,
+      "message": "It seems like this line is necessary because loadingMetric iterates over renderers, and calls collectLoadingMetricsForRenderer for each renderer. If there are many renderers and many UserExpectations in a trace, then loadingMetric would iterate over all UserExpectations as many times as there are renderers, which seems inefficient. It seems like it might be more efficient if loadingMetric iterated over expectations instead of renderers. Then collectLoadingMetricsForLoadExpectation could efficiently look up the rendererHelper from the load expectation, turning a O(N*M) algorithm into O(N).\n\nThe numbers of expectations and renderers are usually small enough that this is probably a very minor performance issue, so if I\u0027m understanding things correctly, then a TODO would be fine for now.",
+      "revId": "19c77e2746b47c6bc6866b65b996c50bf01a8741",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44086f55_067f874e",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-02-02T18:20:28Z",
+      "side": 1,
+      "message": "Please keep the dangling comma.",
       "revId": "19c77e2746b47c6bc6866b65b996c50bf01a8741",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
