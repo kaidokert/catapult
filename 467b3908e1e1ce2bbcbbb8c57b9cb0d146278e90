@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a1713e7_7943be7f",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-02-02T20:56:23Z",
+      "side": 1,
+      "message": "Can you add comment that once one is done with with adding Histogram, they should call ResolveHistograms?",
+      "revId": "467b3908e1e1ce2bbcbbb8c57b9cb0d146278e90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "386bdc1d_834b0452",
+        "filename": "telemetry/telemetry/web_perf/timeline_based_measurement.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-02-02T20:56:23Z",
+      "side": 1,
+      "message": "nits: \"for h in histograms\" instead. I would try to avoid variable names that are only different by a single character.",
+      "revId": "467b3908e1e1ce2bbcbbb8c57b9cb0d146278e90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25b6314c_ef7d40e5",
+        "filename": "telemetry/telemetry/web_perf/timeline_based_measurement.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-02-02T20:56:23Z",
+      "side": 1,
+      "message": "I find it a bit weird that you call \"results.AddHistogram\", then results.histograms.ResolveRelatedHistograms.\n\nIs it possible to just create a wrapper results.ResolveRelatedHistograms(..)?",
+      "revId": "467b3908e1e1ce2bbcbbb8c57b9cb0d146278e90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
