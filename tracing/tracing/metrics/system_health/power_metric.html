@@ -102,7 +102,7 @@ tr.exportTo('tr.metrics.sh', function() {
     const intervals = [];
     for (const rendererHelper of Object.values(chromeHelper.rendererHelpers)) {
       const samples = tr.metrics.sh.collectLoadingMetricsForRenderer(
-          rendererHelper).interactiveSamples;
+          model, rendererHelper).interactiveSamples;
       for (const sample of samples) {
         const info = tr.b.getOnlyElement(
             sample.diagnostics.get('Navigation infos'));
