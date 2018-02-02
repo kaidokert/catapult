@@ -19,6 +19,40 @@
     },
     {
       "key": {
+        "uuid": "b60038f5_638cc9e0",
+        "filename": "tracing/tracing/extras/chrome/estimated_input_latency_test.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2018-02-02T18:40:58Z",
+      "side": 1,
+      "message": "nit. Period at after \u0027here\u0027.",
+      "revId": "19c77e2746b47c6bc6866b65b996c50bf01a8741",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c42c91a0_2fd87e2d",
+        "filename": "tracing/tracing/extras/chrome/estimated_input_latency_test.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2018-02-02T18:40:58Z",
+      "side": 1,
+      "message": "Since pid is not the actual process id anymore, let\u0027s change pid to i or something generic like that to avoid misleading readers.",
+      "revId": "19c77e2746b47c6bc6866b65b996c50bf01a8741",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f64230f5_f206e7fa",
         "filename": "tracing/tracing/extras/chrome/time_to_interactive_test.html",
         "patchSetId": 4
@@ -30,6 +64,23 @@
       "writtenOn": "2018-02-02T18:20:28Z",
       "side": 1,
       "message": "It looks like each of these next 3 constants can fit on a single line.",
+      "revId": "19c77e2746b47c6bc6866b65b996c50bf01a8741",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8602f8a2_fa3f42a7",
+        "filename": "tracing/tracing/importer/find_load_expectations.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2018-02-02T18:40:58Z",
+      "side": 1,
+      "message": "Heads up here: We recently added another another element to this array [1], so watch out for it when rebasing. \n\n[1]: https://chromium-review.googlesource.com/c/catapult/+/894842",
       "revId": "19c77e2746b47c6bc6866b65b996c50bf01a8741",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -81,6 +132,23 @@
       "writtenOn": "2018-02-02T18:20:28Z",
       "side": 1,
       "message": "Why define a large \u0027sample\u0027 data structure instead of allowing collectLoadExpectationsForRenderer to return LoadExpectations as the name implies?",
+      "revId": "19c77e2746b47c6bc6866b65b996c50bf01a8741",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9b77010_cf039e31",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2018-02-02T18:40:58Z",
+      "side": 1,
+      "message": "Can we access the model using rendererHelper.modelHelper.model instead of taking model as an extra argument?",
       "revId": "19c77e2746b47c6bc6866b65b996c50bf01a8741",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
