@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "4c83aa74_60f73425",
+        "filename": "tracing/tracing/importer/find_load_expectations.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-02-02T16:46:41Z",
+      "side": 1,
+      "message": "Yes, it was a bit confusing. Thanks, I refactored it according to your comments. Done.",
+      "parentUuid": "f071e2ec_5dc32f36",
+      "revId": "d23a6b13f7272ad7df3c02636f82254dfd30c736",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c1455e87_400ff99c",
         "filename": "tracing/tracing/importer/find_load_expectations.html",
         "patchSetId": 1
@@ -86,6 +104,24 @@
       "revId": "d23a6b13f7272ad7df3c02636f82254dfd30c736",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7cafc5c_3bdc0e73",
+        "filename": "tracing/tracing/importer/find_load_expectations.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-02-02T16:46:41Z",
+      "side": 1,
+      "message": "I changed this part a bit to actually add load expectations for navigation events even when there is no corresponding fmpEvent. I still mark it successful but will change it if it should be failed. Done.",
+      "parentUuid": "cb749723_3099bcff",
+      "revId": "d23a6b13f7272ad7df3c02636f82254dfd30c736",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
