@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "20a5a50e_02aa3d6e",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-02-02T20:59:27Z",
+      "side": 1,
+      "message": "I noticed that too. But generally the sheriff doesn\u0027t know much about the context of the CL, so it would still make sense to CC the original reviewers. I\u0027m not sure what the right thing to do is here.\n\nDo you mean \u003c(.*)\u003e  ? What situation is that intended for?",
+      "parentUuid": "0607090d_f2c881d8",
+      "revId": "e35b355936b2518bbc7b7298431cc21d46c34fb9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bb880ca0_76d2995a",
         "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
         "patchSetId": 3
@@ -51,6 +69,24 @@
       "revId": "e35b355936b2518bbc7b7298431cc21d46c34fb9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7f695f1_2f532852",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-02-02T20:59:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb880ca0_76d2995a",
+      "revId": "e35b355936b2518bbc7b7298431cc21d46c34fb9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "deff3ad3_e0a6895b",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-02-02T20:59:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06cd59bf_c280bbc3",
+      "revId": "e35b355936b2518bbc7b7298431cc21d46c34fb9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9fd470ad_2a3d48a0",
         "filename": "dashboard/dashboard/pinpoint/models/job_test.py",
         "patchSetId": 3
@@ -82,6 +136,24 @@
       "writtenOn": "2018-02-02T16:22:29Z",
       "side": 1,
       "message": "I think I liked the older format better. Is there a reason for the change?",
+      "revId": "e35b355936b2518bbc7b7298431cc21d46c34fb9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6305f061_0bcc90f5",
+        "filename": "dashboard/dashboard/pinpoint/models/job_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-02-02T20:59:27Z",
+      "side": 1,
+      "message": "* The time didn\u0027t seem very useful. Not sure if others use it, but I don\u0027t when triaging job results.\n* Consistent with the way it shows on the Pinpoint job page.\n* The big screens devs use have more horizontal space than vertical space, and this uses one fewer line. The title in bold and email in blue link color/underline provide visual contrast.\n\nI\u0027m not particularly attached to this format. If you still prefer the older format, I can change it back.",
+      "parentUuid": "9fd470ad_2a3d48a0",
       "revId": "e35b355936b2518bbc7b7298431cc21d46c34fb9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
