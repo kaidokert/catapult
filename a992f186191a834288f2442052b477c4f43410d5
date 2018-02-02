@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "73e8e970_c5d6a119",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-02T17:02:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a882a7a4_e0690388",
+      "revId": "a992f186191a834288f2442052b477c4f43410d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "504a5164_c841376f",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2018-01-31T20:10:16Z",
       "side": 1,
       "message": "Why not lambda here?",
+      "revId": "a992f186191a834288f2442052b477c4f43410d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "582f70ae_2437e996",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-02T17:02:46Z",
+      "side": 1,
+      "message": "WaitFor uses the name of the function for prettier printing in the logs.",
+      "parentUuid": "504a5164_c841376f",
       "revId": "a992f186191a834288f2442052b477c4f43410d5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
