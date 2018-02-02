@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "06c23f1a_8056cca3",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-02-02T21:07:24Z",
+      "side": 1,
+      "message": "Removed the call so no need for this comment.",
+      "parentUuid": "1a1713e7_7943be7f",
+      "revId": "467b3908e1e1ce2bbcbbb8c57b9cb0d146278e90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "386bdc1d_834b0452",
         "filename": "telemetry/telemetry/web_perf/timeline_based_measurement.py",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "98a62971_cb3fdf1b",
+        "filename": "telemetry/telemetry/web_perf/timeline_based_measurement.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-02-02T21:07:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "386bdc1d_834b0452",
+      "revId": "467b3908e1e1ce2bbcbbb8c57b9cb0d146278e90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "25b6314c_ef7d40e5",
         "filename": "telemetry/telemetry/web_perf/timeline_based_measurement.py",
         "patchSetId": 1
@@ -50,6 +86,24 @@
       "revId": "467b3908e1e1ce2bbcbbb8c57b9cb0d146278e90",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3801c9d3_868f72b1",
+        "filename": "telemetry/telemetry/web_perf/timeline_based_measurement.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-02-02T21:07:24Z",
+      "side": 1,
+      "message": "This was just an oops. It\u0027s fine to call histograms.ResolveRelatedHistograms() above after we ImportDicts, so I\u0027ve just done that instead of making calls on results.histograms.",
+      "parentUuid": "25b6314c_ef7d40e5",
+      "revId": "467b3908e1e1ce2bbcbbb8c57b9cb0d146278e90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
