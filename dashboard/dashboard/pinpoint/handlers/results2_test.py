@@ -143,7 +143,7 @@ class Results2Test(unittest.TestCase):
       results2, '_GetJobData', mock.MagicMock(return_value=_JOB_DATA))
   @mock.patch.object(
       results2.read_value, '_RetrieveOutputJson',
-      mock.MagicMock(return_value=None))
+      mock.MagicMock(side_effect=('a', 'b', 'c', 'd')))
   @mock.patch.object(
       results2, '_ReadVulcanizedHistogramsViewer',
       mock.MagicMock(return_value='fake_viewer'))
@@ -154,7 +154,7 @@ class Results2Test(unittest.TestCase):
     self.testapp.get('/results2/123')
 
     mock_render.assert_called_with(
-        [], mock.ANY, vulcanized_html='fake_viewer')
+        ['a', 'b', 'c', 'd'], mock.ANY, vulcanized_html='fake_viewer')
 
   def testPost_InvalidJob(self):
     response = self.testapp.get('/results2/123', status=400)
@@ -165,4 +165,3 @@ class Results2Test(unittest.TestCase):
   def testPost_JobHasNoTestQuest(self):
     response = self.testapp.get('/results2/123', status=400)
     self.assertIn('No Test quest', response.body)
-
