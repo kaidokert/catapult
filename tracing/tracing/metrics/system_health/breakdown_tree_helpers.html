@@ -17,6 +17,17 @@ found in the LICENSE file.
 'use strict';
 
 tr.exportTo('tr.metrics.sh', function() {
+  function getSelfTimeRanges(event) {
+    const selfTimeRanges = [event.range];
+    for (const subSlice of event.subSlices) {
+      if (selfTimeRanges.length === 0) return [];
+      const lastRange = selfTimeRanges.pop();
+      selfTimeRanges.push.apply(selfTimeRanges,
+          tr.b.math.Range.findDifference(lastRange, subSlice.range));
+    }
+    return selfTimeRanges;
+  }
+
   /**
   * @callback getEventAttributeCallback
   * @param {!tr.b.Event} event The event to read an attribute from.
@@ -70,12 +81,6 @@ tr.exportTo('tr.metrics.sh', function() {
       if (eventSelfTime === undefined) continue;
       const title =
           tr.e.chrome.ChromeUserFriendlyCategoryDriver.fromEvent(event);
-      let timeIntersectionRatio = 0;
-      if (eventDuration > 0) {
-        timeIntersectionRatio =
-            rangeOfInterest.findExplicitIntersectionDuration(
-                eventStart, eventEnd) / eventDuration;
-      }
 
       const v8Runtime = event.args['runtime-call-stat'];
       if (v8Runtime !== undefined) {
@@ -109,14 +114,18 @@ tr.exportTo('tr.metrics.sh', function() {
       // this should rarely happen, and when it does, the overlapped range
       // is relative small so that using approximation here should be good
       // enough.
-      const approximatedSelfTimeContribution =
-          eventSelfTime * timeIntersectionRatio;
-      breakdownTree[title].total += approximatedSelfTimeContribution;
+      const selfTimeRanges = getSelfTimeRanges(event);
+      const selfTimesInRangeOfInterest = selfTimeRanges.map(
+          range => rangeOfInterest.findExplicitIntersectionDuration(
+              range.min, range.max));
+      const selfTimeContribution =
+          tr.b.math.Statistics.sum(selfTimesInRangeOfInterest);
+      breakdownTree[title].total += selfTimeContribution;
       if (breakdownTree[title].events[event.title] === undefined) {
         breakdownTree[title].events[event.title] = 0;
       }
       breakdownTree[title].events[event.title] +=
-          approximatedSelfTimeContribution;
+          selfTimeContribution;
     }
     return breakdownTree;
   }
