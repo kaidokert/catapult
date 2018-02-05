@@ -11,6 +11,7 @@ from telemetry.util import wpr_modes
 from telemetry.web_perf import timeline_based_measurement as tbm_module
 from telemetry.web_perf.metrics import smoothness
 from tracing.value import histogram
+from tracing.value import histogram_set
 from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import reserved_infos
 
@@ -138,8 +139,11 @@ class TimelineBasedPageTestTest(page_test_test_case.PageTestTestCase):
 
     self.assertEquals(0, len(results.failures))
 
-    self.assertEquals(1, len(results.histograms))
-    foos = results.histograms.GetHistogramsNamed('foo')
+    histogram_dicts = results.AsHistogramDicts()
+    self.assertEquals(1, len(histogram_dicts))
+    hs = histogram_set.HistogramSet()
+    hs.ImportDicts(histogram_dicts)
+    foos = hs.GetHistogramsNamed('foo')
     self.assertEquals(1, len(foos))
     hist = foos[0]
     benchmarks = hist.diagnostics.get(reserved_infos.BENCHMARKS.name)
@@ -154,7 +158,7 @@ class TimelineBasedPageTestTest(page_test_test_case.PageTestTestCase):
     self.assertIsInstance(repeats, generic_set.GenericSet)
     self.assertEquals(1, len(repeats))
     self.assertEquals(0, list(repeats)[0])
-    hist = list(results.histograms)[0]
+    hist = hs.GetFirstHistogram()
     trace_start = hist.diagnostics.get(reserved_infos.TRACE_START.name)
     self.assertIsInstance(trace_start, histogram.DateRange)
 
