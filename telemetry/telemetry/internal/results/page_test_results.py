@@ -231,15 +231,11 @@ class PageTestResults(object):
   def telemetry_info(self):
     return self._telemetry_info
 
-  @property
-  def histograms(self):
-    return self._histograms
-
   def AsHistogramDicts(self):
-    return self.histograms.AsDicts()
+    return self._histograms.AsDicts()
 
   def PopulateHistogramSet(self, benchmark_metadata):
-    if len(self.histograms):
+    if len(self._histograms):
       return
 
     chart_json = chart_json_output_formatter.ResultsAsChartDict(
@@ -261,8 +257,8 @@ class PageTestResults(object):
       logging.error('Error converting chart json to Histograms:\n' +
                     vinn_result.stdout)
       return []
-    self.histograms.ImportDicts(json.loads(vinn_result.stdout))
-    self.histograms.ResolveRelatedHistograms()
+    self._histograms.ImportDicts(json.loads(vinn_result.stdout))
+    self._histograms.ResolveRelatedHistograms()
 
   def __copy__(self):
     cls = self.__class__

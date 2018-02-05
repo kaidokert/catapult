@@ -390,7 +390,7 @@ def RunBenchmark(benchmark, finder_options):
       hist = histogram.Histogram(
           'benchmark_total_duration', 'ms_smallerIsBetter')
       hist.AddSample(duration * 1000.0)
-      results.histograms.AddHistogram(hist)
+      results.AddHistogram(hist)
       memory_debug.LogHostMemoryUsage()
       results.PrintSummary()
   return return_code
