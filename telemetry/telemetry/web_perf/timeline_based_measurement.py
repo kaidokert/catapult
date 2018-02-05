@@ -311,10 +311,8 @@ class TimelineBasedMeasurement(story_test.StoryTest):
         time.time() - start))
     page = results.current_page
 
-    failure_dicts = mre_result.failures
-    for d in failure_dicts:
-      results.AddValue(
-          common_value_helpers.TranslateMreFailure(d, page))
+    for f in mre_result.failures:
+      results.Fail(f.stack)
 
     histograms = histogram_set.HistogramSet()
     histograms.ImportDicts(mre_result.pairs.get('histograms', []))
