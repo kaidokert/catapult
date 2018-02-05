@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "fee23448_51ed486e",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-05T10:08:14Z",
+      "side": 1,
+      "message": "Agree on your comment on CC\u0027ing the original reviewers, let\u0027s match them all.\n\nOn the regex, I really meant +? which makes the + non-greedy.\nc.f. https://docs.python.org/2/library/re.html#regular-expression-syntax\n\nIn this case it basically means that the dot will match anything except for a closing \u003e. In most cases this probably won\u0027t matter, but if a commit message is somehow badly formatted this will probably work as the best guess.",
+      "parentUuid": "20a5a50e_02aa3d6e",
+      "revId": "e35b355936b2518bbc7b7298431cc21d46c34fb9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bb880ca0_76d2995a",
         "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
         "patchSetId": 3
@@ -172,6 +190,24 @@
       "side": 1,
       "message": "Third format possibility might be to put the author and repo @ git_hash on the same line.",
       "parentUuid": "6305f061_0bcc90f5",
+      "revId": "e35b355936b2518bbc7b7298431cc21d46c34fb9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37d0e593_32b611a4",
+        "filename": "dashboard/dashboard/pinpoint/models/job_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-05T10:08:14Z",
+      "side": 1,
+      "message": "I don\u0027t have too strong feelings either way. The argument of saving one line sounds good to me.\n\nLooking at this again carefully, what I would replace is the \"chromium @ git_hash\" for the gitiles url to the change. That contains the same information and does not rely on monorail having to guess the correct repository to turn the git hash into a clickable link.\n\nAnyway, it already seems like we\u0027re making two independent changes on this CL. So I\u0027m happy to leave this part as is and do further formatting changes as a follow up.",
+      "parentUuid": "47f6d2a5_562730a9",
       "revId": "e35b355936b2518bbc7b7298431cc21d46c34fb9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
