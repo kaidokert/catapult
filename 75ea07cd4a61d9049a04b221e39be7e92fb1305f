@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3bfa92e2_74165931",
+        "filename": "dashboard/dashboard/file_bug_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-02-06T17:18:48Z",
+      "side": 1,
+      "message": "Is this right? I thought it won\u0027t comment if the master isn\u0027t ClankInternal or ChromiumPerf.",
+      "range": {
+        "startLine": 319,
+        "startChar": 4,
+        "endLine": 319,
+        "endChar": 11
+      },
+      "revId": "75ea07cd4a61d9049a04b221e39be7e92fb1305f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
