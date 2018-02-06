@@ -63,6 +63,9 @@ _CRYING_CAT_FACE = u'\U0001f63f'
 _MIDDLE_DOT = u'\xb7'
 _ROUND_PUSHPIN = u'\U0001f4cd'
 
+OPTION_STATE = 'STATE'
+OPTION_DIFFERENCES = 'DIFFERENCES'
+OPTION_TAGS = 'TAGS'
 
 def JobFromId(job_id):
   """Get a Job object from its ID. Its ID is just its key as a hex string.
@@ -103,13 +106,16 @@ class Job(ndb.Model):
 
   state = ndb.PickleProperty(required=True, compressed=True)
 
+  tags = ndb.JsonProperty()
+
   @classmethod
-  def New(cls, arguments, quests, auto_explore, bug_id=None):
+  def New(cls, arguments, quests, auto_explore, bug_id=None, tags=None):
     # Create job.
     return cls(
         arguments=arguments,
         auto_explore=auto_explore,
         bug_id=bug_id,
+        tags=tags,
         state=_JobState(quests))
 
   @property
@@ -232,7 +238,7 @@ class Job(ndb.Model):
       # to be able to modify the Job without changing the Job's completion time.
       self.updated = datetime.datetime.now()
 
-  def AsDict(self, include_state=True):
+  def AsDict(self, options=None):
     d = {
         'job_id': self.job_id,
 
@@ -245,8 +251,15 @@ class Job(ndb.Model):
         'exception': self.exception,
         'status': self.status,
     }
-    if include_state:
+    if not options:
+      return d
+
+    if OPTION_STATE in options:
       d.update(self.state.AsDict())
+    if OPTION_DIFFERENCES in options:
+      d.update({'differences': self.state.Differences()})
+    if OPTION_TAGS in options:
+      d.update({'tags': self.tags})
     return d
 
   def _PostBugComment(self, *args, **kwargs):
