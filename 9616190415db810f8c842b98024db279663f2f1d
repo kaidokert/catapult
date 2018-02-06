@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ea9465b_4bbf820e",
+        "filename": "telemetry/telemetry/internal/results/page_test_results_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-06T14:09:49Z",
+      "side": 1,
+      "message": "nit: to make it a bit easier to read swap the order of these args, so it\u0027s always:\n\n  self.assertFoo(results.all_page_specific_values[i], something)",
+      "revId": "9616190415db810f8c842b98024db279663f2f1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
