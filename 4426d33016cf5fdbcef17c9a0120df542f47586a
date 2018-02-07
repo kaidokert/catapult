@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dc0baaac_1177b195",
+        "filename": "devil/devil/android/flag_changer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-02-07T20:43:37Z",
+      "side": 1,
+      "message": "Can these two functions be private? I don\u0027t think clients should be worrying about the SELinux state.",
+      "revId": "4426d33016cf5fdbcef17c9a0120df542f47586a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
