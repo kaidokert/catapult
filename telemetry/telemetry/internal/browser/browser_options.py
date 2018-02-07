@@ -496,6 +496,8 @@ class CrosBrowserOptions(ChromeBrowserOptions):
     self.create_browser_with_oobe = False
     # Clear enterprise policy before logging in.
     self.clear_enterprise_policy = True
+    # Expect working enterprise policy. Don't allow policy fetches to fail.
+    self.expect_working_enterprise_policy = False
     # Disable GAIA/enterprise services.
     self.disable_gaia_services = True
 
