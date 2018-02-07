@@ -40,8 +40,8 @@ tr.exportTo('tr.v.ui', function() {
 
     let numericValue;
     if (value instanceof tr.b.Scalar) {
-      span.value = value;
       numericValue = value.value;
+      span.setValueAndUnit(numericValue, value.unit);
     } else if (value instanceof tr.v.Histogram) {
       numericValue = value.average;
       if (numericValue === undefined) return '';
@@ -239,13 +239,20 @@ Polymer({
       type: String,
       reflectToAttribute: true,
       observer: 'contextGroupChanged_'
-    }
+    },
+    value: {
+      type: Number,
+      observer: 'updateContents_',
+    },
+    unit: {
+      type: Object,
+      observer: 'updateContents_',
+    },
+    minimumFractionDigits: {type: Number},
+    maximumFractionDigits: {type: Number},
   },
 
   created() {
-    this.value_ = undefined;
-    this.unit_ = undefined;
-
     // TODO(petrcermak): Merge this into the context controller.
     this.context_ = undefined;
 
@@ -275,25 +282,6 @@ Polymer({
 
   set contentTextDecoration(deco) {
     this.$.content.style.textDecoration = deco;
-  },
-
-  get value() {
-    return this.value_;
-  },
-
-  set value(value) {
-    if (value instanceof tr.b.Scalar) {
-      this.value_ = value.value;
-      this.unit_ = value.unit;
-    } else {
-      this.value_ = value;
-    }
-    this.updateContents_();
-    if (this.hasContext_(this.contextGroup)) {
-      this.contextController_.onScalarSpanUpdated(this.contextGroup, this);
-    } else {
-      this.updateSparkline_();
-    }
   },
 
   get contextController_() {
@@ -338,6 +326,7 @@ Polymer({
   },
 
   attached() {
+    this.updateContents_();
     tr.b.Unit.addEventListener(
         'display-mode-changed', this.updateContents_);
     this.shouldSearchForContextController_ = true;
@@ -357,7 +346,13 @@ Polymer({
   },
 
   get context() {
-    return this.context_;
+    return {
+      ...this.context_,
+      minimumFractionDigits: this.minimumFractionDigits ||
+        (this.context_ || {}).minimumFractionDigits,
+      maximumFractionDigits: this.maximumFractionDigits ||
+        (this.context_ || {}).maximumFractionDigits,
+    };
   },
 
   set context(context) {
@@ -365,19 +360,9 @@ Polymer({
     this.updateContents_();
   },
 
-  get unit() {
-    return this.unit_;
-  },
-
-  set unit(unit) {
-    this.unit_ = unit;
-    this.updateContents_();
-    this.updateSparkline_();
-  },
-
   setValueAndUnit(value, unit) {
-    this.value_ = value;
-    this.unit_ = unit;
+    this.value = value;
+    this.unit = unit;
     this.updateContents_();
   },
 
@@ -487,6 +472,7 @@ Polymer({
   },
 
   updateContents_() {
+    if (!this.isAttached) return;
     Polymer.dom(this.$.content).textContent = '';
     Polymer.dom(this.$.content).classList.remove('better');
     Polymer.dom(this.$.content).classList.remove('worse');
@@ -495,11 +481,11 @@ Polymer({
     this.$.significantly_better.style.display = '';
     this.$.significantly_worse.style.display = '';
 
-    if (this.unit_ === undefined) return;
+    if (this.unit === undefined) return;
 
     this.$.content.title = '';
     Polymer.dom(this.$.content).textContent =
-        this.unit_.format(this.value, this.context);
+        this.unit.format(this.value, this.context);
     this.updateDelta_();
   },
 
@@ -561,9 +547,9 @@ Polymer({
   },
 
   get changeClassName_() {
-    if (!this.unit_ || !this.unit_.isDelta) return undefined;
+    if (!this.unit || !this.unit.isDelta) return undefined;
 
-    switch (this.unit_.improvementDirection) {
+    switch (this.unit.improvementDirection) {
       case tr.b.ImprovementDirection.DONT_CARE:
         return undefined;
 
@@ -577,7 +563,7 @@ Polymer({
 
       default:
         throw new Error('Unknown improvement direction: ' +
-            this.unit_.improvementDirection);
+            this.unit.improvementDirection);
     }
   },
 
