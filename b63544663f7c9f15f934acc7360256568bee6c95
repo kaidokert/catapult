@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ab3b33d_cd65714b",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-02-07T23:24:43Z",
+      "side": 1,
+      "message": "nit: if not isinstance(tags_dict, dict):",
+      "range": {
+        "startLine": 90,
+        "startChar": 5,
+        "endLine": 90,
+        "endChar": 28
+      },
+      "revId": "b63544663f7c9f15f934acc7360256568bee6c95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c91c3967_d076f17d",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-02-07T23:24:43Z",
+      "side": 1,
+      "message": "Differences is already included in STATE under \u0027comparisons\u0027, and it doesn\u0027t have an AsDict() method either.",
+      "range": {
+        "startLine": 253,
+        "startChar": 0,
+        "endLine": 253,
+        "endChar": 32
+      },
+      "revId": "b63544663f7c9f15f934acc7360256568bee6c95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "437d4356_e184eecb",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-02-07T23:24:43Z",
+      "side": 1,
+      "message": "nit: d[\u0027tags\u0027] \u003d self.tags",
+      "range": {
+        "startLine": 256,
+        "startChar": 8,
+        "endLine": 256,
+        "endChar": 14
+      },
+      "revId": "b63544663f7c9f15f934acc7360256568bee6c95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
