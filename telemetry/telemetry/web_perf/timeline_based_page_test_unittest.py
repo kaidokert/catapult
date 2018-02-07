@@ -139,10 +139,11 @@ class TimelineBasedPageTestTest(page_test_test_case.PageTestTestCase):
 
     self.assertEquals(0, len(results.failures))
 
-    self.assertEquals(1, len(results.histograms))
-    foos = results.histograms.GetHistogramsNamed('foo')
-    self.assertEquals(1, len(foos))
-    hist = foos[0]
+    histogram_dicts = results.AsHistogramDicts()
+    hs = histogram_set.HistogramSet()
+    hs.ImportDicts(histogram_dicts)
+    self.assertEquals(1, len(hs))
+    hist = hs.GetFirstHistogram()
     benchmarks = hist.diagnostics.get(reserved_infos.BENCHMARKS.name)
     self.assertIsInstance(benchmarks, generic_set.GenericSet)
     self.assertEquals(1, len(benchmarks))
@@ -155,7 +156,7 @@ class TimelineBasedPageTestTest(page_test_test_case.PageTestTestCase):
     self.assertIsInstance(repeats, generic_set.GenericSet)
     self.assertEquals(1, len(repeats))
     self.assertEquals(0, list(repeats)[0])
-    hist = list(results.histograms)[0]
+    hist = hs.GetFirstHistogram()
     trace_start = hist.diagnostics.get(reserved_infos.TRACE_START.name)
     self.assertIsInstance(trace_start, histogram.DateRange)
 
