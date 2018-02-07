@@ -112,7 +112,8 @@ _CATAPULT_TESTS = [
             '--browser=reference',
         ],
         'uses_sandbox_env': True,
-        'disabled': ['android'],
+        # https://github.com/catapult-project/catapult/issues/4233
+        'disabled': ['android', 'mac'],
     },
     {
         'name': 'Telemetry Tests with Stable Browser (Desktop)',
