@@ -22,6 +22,30 @@
       "revId": "75ea07cd4a61d9049a04b221e39be7e92fb1305f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f54057f_cacf0c85",
+        "filename": "dashboard/dashboard/file_bug_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-02-07T22:16:11Z",
+      "side": 1,
+      "message": "Whoops, sorry, doing too many things at once! Thanks for catching this. It shouldn\u0027t comment. The problem was that I didn\u0027t update all the test paths to have the right master name, and then I blindly copy/pasted the test.",
+      "parentUuid": "3bfa92e2_74165931",
+      "range": {
+        "startLine": 319,
+        "startChar": 4,
+        "endLine": 319,
+        "endChar": 11
+      },
+      "revId": "75ea07cd4a61d9049a04b221e39be7e92fb1305f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
