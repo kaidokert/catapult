@@ -110,6 +110,7 @@ _CATAPULT_TESTS = [
         'path': 'telemetry/bin/run_snap_it_unittest',
         'additional_args': [
             '--browser=reference',
+            '--enable-benchmarking'
         ],
         'uses_sandbox_env': True,
         'disabled': ['android'],
