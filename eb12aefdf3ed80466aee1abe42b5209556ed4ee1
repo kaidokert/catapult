@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6c6b7ed2_d03943b4",
+        "filename": "telemetry/telemetry/timeline/chrome_trace_config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-02-07T20:33:29Z",
+      "side": 1,
+      "message": "The flag variable is awkward. Since this is only called to set flag to True, can you change this signature to def SetEnableSystrace(self)?\n\nAlso can you add test coverage for this?",
+      "revId": "eb12aefdf3ed80466aee1abe42b5209556ed4ee1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
