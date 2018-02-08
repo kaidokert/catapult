@@ -292,6 +292,22 @@ class BenchmarkTest(unittest.TestCase):
         ['string', 'foo', 'stuff', 'bar'],
         tbm._tbm_options.config.atrace_config.categories)
 
+  def testEnableSystrace(self):
+    class TbmBenchmark(benchmark.Benchmark):
+      def CreateCoreTimelineBasedMeasurementOptions(self):
+        return timeline_based_measurement.Options()
+
+    options = options_for_unittests.GetCopy()
+    options.enable_systrace = True
+    parser = optparse.OptionParser()
+    benchmark.AddCommandLineArgs(parser)
+    options.MergeDefaultValues(parser.get_default_values())
+
+    b = TbmBenchmark(None)
+    tbm = b.CreatePageTest(options)
+    self.assertTrue(
+        tbm._tbm_options.config.chrome_trace_config._enable_systrace)
+
   def testCanRunOnPlatformReturnTrue(self):
     b = TestBenchmark(story_module.Story(
         name='test name',
