@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e13dc7c2_e91608f2",
+        "filename": "telemetry/telemetry/benchmark_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-02-08T17:46:03Z",
+      "side": 1,
+      "message": "this test is accessing private member of TimelineBasedMeasurement. I think we either should move this to timeline_based_measurement_unittest, or making these fields public by adding @property.getter(..)",
+      "revId": "6417952ccf5b40343a1de196fd9935c1759fe600",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
