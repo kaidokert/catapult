@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a7b2dba_55b0a303",
+        "filename": "tracing/tracing/metrics/vr/frame_cycle_duration_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2018-02-08T21:11:48Z",
+      "side": 1,
+      "message": "The trace event side change is in review, too. What should be landed first?",
+      "range": {
+        "startLine": 39,
+        "startChar": 31,
+        "endLine": 39,
+        "endChar": 57
+      },
+      "revId": "c98a31c5b1522c87b3f7d70b09b9dba076b276b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
