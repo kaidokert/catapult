@@ -36,6 +36,7 @@ from devil.android import device_utils
 from devil.android.perf import cache_control
 from devil.android.perf import perf_control
 from devil.android.perf import thermal_throttle
+from devil.android.sdk import intent
 from devil.android.sdk import shared_prefs
 from devil.android.sdk import version_codes
 from devil.android.tools import video_recorder
@@ -355,7 +356,10 @@ class AndroidPlatformBackend(
     cmd = ['am', 'start']
     if parameters:
       cmd.extend(parameters)
-    cmd.append(application)
+    if isinstance(application, intent.Intent):
+      cmd.extend(application.am_args)
+    else:
+      cmd.append(application)
     result_lines = self._device.RunShellCommand(cmd, check_return=True)
     for line in result_lines:
       if line.startswith('Error: '):

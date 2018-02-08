@@ -5,16 +5,23 @@
 import os
 import sys
 
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+TOP_LEVEL_DIR = os.path.realpath(os.path.dirname(__file__))
+TELEMETRY_DIR = os.path.realpath(os.path.join(TOP_LEVEL_DIR, '..'))
+CHROMIUM_SRC = os.path.realpath(os.path.join(TELEMETRY_DIR, '..', '..', '..'))
+
+sys.path.append(TELEMETRY_DIR)
 from telemetry import benchmark_runner
 from telemetry import project_config
 
+
 def main():
-  top_level_dir = os.path.dirname(__file__)
+  default_chrome_root = CHROMIUM_SRC if os.path.isdir(CHROMIUM_SRC) else None
   config = project_config.ProjectConfig(
-      top_level_dir=top_level_dir,
-      benchmark_dirs=[os.path.join(top_level_dir, 'benchmarks')])
+      top_level_dir=TOP_LEVEL_DIR,
+      benchmark_dirs=[os.path.join(TOP_LEVEL_DIR, 'benchmarks')],
+      default_chrome_root=default_chrome_root)
   return benchmark_runner.main(config)
+
 
 if __name__ == '__main__':
   sys.exit(main())
