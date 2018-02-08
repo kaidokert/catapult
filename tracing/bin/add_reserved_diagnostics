@@ -16,6 +16,7 @@ tracing_project.UpdateSysPathIfNeeded()
 from py_utils import camel_case
 from tracing.value import histogram_set
 from tracing.value import merge_histograms
+from tracing.value.diagnostics import breakdown
 from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import reserved_infos
 
@@ -75,6 +76,16 @@ def main():
   histograms = histogram_set.HistogramSet()
   histograms.ImportDicts(dicts_across_repeats)
   histograms.ImportDicts(dicts_across_stories)
+
+  for histogram in histograms:
+    for b in histogram.bins:
+      for dm in b.diagnostic_maps:
+        keys_to_delete = []
+        for k, v in dm.iteritems():
+          if isinstance(v, breakdown.Breakdown):
+            keys_to_delete.append(k)
+        for k in keys_to_delete:
+          del dm[k]
 
   for name, value in names_to_values.iteritems():
     histograms.AddSharedDiagnostic(name, generic_set.GenericSet([value]))
