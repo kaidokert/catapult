@@ -16,6 +16,24 @@
       "revId": "6417952ccf5b40343a1de196fd9935c1759fe600",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10709543_a418a4fc",
+        "filename": "telemetry/telemetry/benchmark_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1190714
+      },
+      "writtenOn": "2018-02-08T18:50:37Z",
+      "side": 1,
+      "message": "That\u0027s fine, I can do that. In that case the similar tests above (testAdditionalAtraceCategories etc) should also be changed, as my test was based on those ones. Shall I add the @property.getter to TimelineBasedMeasurement, and modify all the tests that are using _tbm_options? (Should I also add a @property.getter for ChromeTraceConfig._enable_systrace?)",
+      "parentUuid": "e13dc7c2_e91608f2",
+      "revId": "6417952ccf5b40343a1de196fd9935c1759fe600",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
