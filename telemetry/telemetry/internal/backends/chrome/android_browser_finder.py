@@ -185,7 +185,8 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
     finally:
       self._flag_changer = None
 
-  def Create(self):
+  # TODO: Fix interface for other platforms.
+  def Create(self, find_existing=False):  # pylint: disable=arguments-differ
     browser_backend = android_browser_backend.AndroidBrowserBackend(
         self._platform_backend, self._browser_options,
         self.browser_directory, self.profile_directory,
@@ -193,7 +194,8 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
     browser_backend.ClearCaches()
     try:
       return browser.Browser(
-          browser_backend, self._platform_backend, startup_args=())
+          browser_backend, self._platform_backend, startup_args=(),
+          find_existing=find_existing)
     except Exception:
       exc_info = sys.exc_info()
       logging.error(
