@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cc0c12f0_d3cd65a9",
+        "filename": "telemetry/foo_perf/benchmarks/android_go_benchmark.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-08T15:26:21Z",
+      "side": 1,
+      "message": "As you will see below, we still need to hold a reference to the browser in order to: (1) close it in DidRunStory and (2) be able to dump state on DumpStateUponFailure.\n\nUnfortunately the browser cannot be closed e.g. by the story during RunStory because it must remain open when story_runner calls test.Measure after RunStory and before DidRunStory.",
+      "revId": "16851f5e150d84caa9cf2af823055e55e4b33de0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

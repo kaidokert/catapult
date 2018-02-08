@@ -16,6 +16,24 @@
       "revId": "bb8d46448f8c43df44c985823a97feae4945ae67",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ef94358_8f4ccb4f",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-08T15:26:21Z",
+      "side": 1,
+      "message": "No matter how the public API ends up looking like, the problem is:\n\n1. At some point we\u0027ll need to call the Browser(..) constructor with a browser_backend argument.\n\n2. The Browser constructor has a \"browser_backend.Start\" in it. We need in some way or another to tell the constructor that, in some cases, we don\u0027t want it to call that Start method.\n\nNow on the particular API that we expose:\n\n3. We don\u0027t want to retrieve any random browser on the device, we want to retrieve *the* browser that corresponds to *this* particular possible_browser. So this seems like the easiest and most appropriate.\n\n4. If we insist it could be possible to implement a RetrieveExistingBrowsers but, in order to instantiate the needed browser_backend objects, we would probably need to: (1) move profile and browser directory to the browser_backend (doable in Android) and (2) somehow get the browser_options (maybe should be passed to RetrieveExistingBrowsers?).\n\nShould I give 4 a try?",
+      "parentUuid": "b6cdb805_c9b2d063",
+      "revId": "bb8d46448f8c43df44c985823a97feae4945ae67",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
