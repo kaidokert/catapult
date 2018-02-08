@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "92df46e8_f7b42c59",
+        "filename": "telemetry/examples/benchmarks/android_go_benchmark.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-08T17:33:03Z",
+      "side": 1,
+      "message": "+pasko PTAL\n\nThis is an example of how one of the new benchmarks would be written. Can already be test by building e.g. Chrome.apk and then running:\n\n$ ./telemetry/examples/run_benchmark --browser android-chrome android_go.example",
+      "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5546eabc_795abced",
+        "filename": "telemetry/examples/run_benchmark",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-08T17:33:03Z",
+      "side": 1,
+      "message": "Had to add this, so it\u0027s easier to run_benchmark without having to provide the chrome root path (otherwise it wouldn\u0027t accept --browser\u003dandroid-chrome).\n\nHope it is ok?",
+      "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0916d86a_329b9a99",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-08T17:33:03Z",
+      "side": 1,
+      "message": "I resisted adding this, but the shared state needs to know the package/activity in order to launch the browser.",
+      "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f8cb2d0_6b95b405",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-08T17:33:03Z",
+      "side": 1,
+      "message": "Ned, hope you don\u0027t find this too terrible? Should allow to also launch other applications (e.g. chrome_custom_tabs helper app) by building a suitable intent and (from the shared state point of view) without needed low level access all the way down to the device.",
+      "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
