@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "573af755_bc7cb501",
+        "filename": "telemetry/examples/run_benchmark",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-02-08T19:23:59Z",
+      "side": 1,
+      "message": "Can you document why we need this here in the code?\n\nAlso you can use https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/core/util.py?rcl\u003daa41a69e728232222f4c696dab70af09eb2213e0\u0026l\u003d46",
+      "parentUuid": "5546eabc_795abced",
+      "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0916d86a_329b9a99",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
         "patchSetId": 4
@@ -53,6 +71,23 @@
     },
     {
       "key": {
+        "uuid": "baf9e8d2_ff1506f6",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-02-08T19:23:59Z",
+      "side": 1,
+      "message": "Hmhh, actually how does this work if we have more than one alive browser instances?",
+      "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4f8cb2d0_6b95b405",
         "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
         "patchSetId": 4
@@ -64,6 +99,24 @@
       "writtenOn": "2018-02-08T17:33:03Z",
       "side": 1,
       "message": "Ned, hope you don\u0027t find this too terrible? Should allow to also launch other applications (e.g. chrome_custom_tabs helper app) by building a suitable intent and (from the shared state point of view) without needed low level access all the way down to the device.",
+      "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20da3d67_8938a937",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-02-08T19:23:59Z",
+      "side": 1,
+      "message": "Hmhh, I would make another API instead of making application having multiple types. How about:\ndef LaunchIntent(...)?",
+      "parentUuid": "4f8cb2d0_6b95b405",
       "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
