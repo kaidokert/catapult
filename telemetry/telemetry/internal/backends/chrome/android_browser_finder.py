@@ -180,12 +180,17 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
     self._SetupProfile()
 
   def _TearDownEnvironment(self):
-    try:
-      self._flag_changer.Restore()
-    finally:
-      self._flag_changer = None
+    self._RestoreCommandLineFlags()
 
-  def Create(self):
+  def _RestoreCommandLineFlags(self):
+    if self._flag_changer is not None:
+      try:
+        self._flag_changer.Restore()
+      finally:
+        self._flag_changer = None
+
+  # TODO: Fix interface for other platforms.
+  def Create(self, find_existing=False):  # pylint: disable=arguments-differ
     browser_backend = android_browser_backend.AndroidBrowserBackend(
         self._platform_backend, self._browser_options,
         self.browser_directory, self.profile_directory,
@@ -193,7 +198,8 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
     browser_backend.ClearCaches()
     try:
       return browser.Browser(
-          browser_backend, self._platform_backend, startup_args=())
+          browser_backend, self._platform_backend, startup_args=(),
+          find_existing=find_existing)
     except Exception:
       exc_info = sys.exc_info()
       logging.error(
@@ -205,6 +211,10 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
         logging.exception('Secondary failure while closing browser backend.')
 
       raise exc_info[0], exc_info[1], exc_info[2]
+    finally:
+      # After the browser has been launched (or not) it's fine to restore the
+      # command line flags.
+      self._RestoreCommandLineFlags()
 
   def GetBrowserStartupArgs(self, browser_options):
     startup_args = chrome_startup_args.GetFromBrowserOptions(browser_options)
