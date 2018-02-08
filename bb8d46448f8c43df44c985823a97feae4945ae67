@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b6cdb805_c9b2d063",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-02-08T14:52:51Z",
+      "side": 1,
+      "message": "drive by comment.\nI think instead of making Create(self, find_existing), we should make another separate method for retrieving the existing browser, s.t like:\n\ndef AndroidBrowserFinder.RetrieveExistingBrowsers(self):\n ...",
+      "revId": "bb8d46448f8c43df44c985823a97feae4945ae67",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
