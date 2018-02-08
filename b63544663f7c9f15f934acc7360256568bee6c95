@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3382dc72_86e1f5bd",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-02-08T15:55:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ab3b33d_cd65714b",
+      "range": {
+        "startLine": 90,
+        "startChar": 5,
+        "endLine": 90,
+        "endChar": 28
+      },
+      "revId": "b63544663f7c9f15f934acc7360256568bee6c95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c91c3967_d076f17d",
         "filename": "dashboard/dashboard/pinpoint/models/job.py",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2018-02-07T23:24:43Z",
       "side": 1,
       "message": "Differences is already included in STATE under \u0027comparisons\u0027, and it doesn\u0027t have an AsDict() method either.",
+      "range": {
+        "startLine": 253,
+        "startChar": 0,
+        "endLine": 253,
+        "endChar": 32
+      },
+      "revId": "b63544663f7c9f15f934acc7360256568bee6c95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e8f971a_8d18ce5e",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-02-08T15:55:11Z",
+      "side": 1,
+      "message": "I\u0027ll just remove the option for now.",
+      "parentUuid": "c91c3967_d076f17d",
       "range": {
         "startLine": 253,
         "startChar": 0,
@@ -68,6 +116,30 @@
       "revId": "b63544663f7c9f15f934acc7360256568bee6c95",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "090eb0e7_6a34de5a",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-02-08T15:55:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "437d4356_e184eecb",
+      "range": {
+        "startLine": 256,
+        "startChar": 8,
+        "endLine": 256,
+        "endChar": 14
+      },
+      "revId": "b63544663f7c9f15f934acc7360256568bee6c95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
