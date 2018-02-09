@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "ab8e8c1b_556295d1",
+        "filename": "telemetry/examples/benchmarks/android_go_benchmark.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-09T17:23:00Z",
+      "side": 1,
+      "message": "I believe screenshot grabbing is done all the time, but they are not uploaded anywhere unless you also pass --upload-results (or something like that).",
+      "parentUuid": "5e4e9a7e_2eaf9c44",
+      "range": {
+        "startLine": 89,
+        "startChar": 12,
+        "endLine": 89,
+        "endChar": 42
+      },
+      "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "be6d1d74_317bd4dd",
         "filename": "telemetry/examples/benchmarks/android_go_benchmark.py",
         "patchSetId": 4
@@ -76,6 +100,30 @@
       "writtenOn": "2018-02-09T15:26:15Z",
       "side": 1,
       "message": "nit nit: in other places I saw usage of os.pardir instead of \u0027..\u0027, which is probably only a matter of consistency (both Windows and all POSIX systems have the same value for the constant)",
+      "range": {
+        "startLine": 9,
+        "startChar": 62,
+        "endLine": 9,
+        "endChar": 64
+      },
+      "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72681a00_b233401f",
+        "filename": "telemetry/examples/run_benchmark",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-09T17:23:00Z",
+      "side": 1,
+      "message": "I\u0027ve mentioned this too in the past. :)\n\nBut others think that \u0027..\u0027 is more readable, and we keep it like this now for consistency.",
+      "parentUuid": "929a0684_a0999d7c",
       "range": {
         "startLine": 9,
         "startChar": 62,
@@ -123,6 +171,24 @@
     },
     {
       "key": {
+        "uuid": "87a7d217_2c007c51",
+        "filename": "telemetry/examples/run_benchmark",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-09T17:23:00Z",
+      "side": 1,
+      "message": "Presubmit tells me not to and points to crbug.com/511332 :(\n\nMaybe it\u0027s also fine to discard these changes? One can still do --chrome-root $SRC to run these examples.",
+      "parentUuid": "573af755_bc7cb501",
+      "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0916d86a_329b9a99",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
         "patchSetId": 4
@@ -151,6 +217,24 @@
       "writtenOn": "2018-02-08T19:23:59Z",
       "side": 1,
       "message": "Hmhh, actually how does this work if we have more than one alive browser instances?",
+      "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06c8c05f_52d2aca6",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-09T17:23:00Z",
+      "side": 1,
+      "message": "Hmmm... looking into this. I thought this would work, but it fails to connect to the browser if there is another one running.",
+      "parentUuid": "baf9e8d2_ff1506f6",
       "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -209,6 +293,24 @@
       "side": 1,
       "message": "Hmhh, I would make another API instead of making application having multiple types. How about:\ndef LaunchIntent(...)?",
       "parentUuid": "4f8cb2d0_6b95b405",
+      "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b515974f_3c12bc63",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-09T17:23:00Z",
+      "side": 1,
+      "message": "Ok. I\u0027ll then expose a StartActivity similar to device_utils.StartActivity.",
+      "parentUuid": "20da3d67_8938a937",
       "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
