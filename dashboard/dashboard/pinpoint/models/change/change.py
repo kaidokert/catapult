@@ -68,7 +68,7 @@ class Change(collections.namedtuple('Change', ('commits', 'patch'))):
   def FromDict(cls, data):
     commits = tuple(commit_module.Commit.FromDict(commit)
                     for commit in data['commits'])
-    if 'patch' in data:
+    if 'patch' in data and data['patch']:
       patch = patch_module.FromDict(data['patch'])
     else:
       patch = None
