@@ -241,6 +241,24 @@
     },
     {
       "key": {
+        "uuid": "79d08ed9_1edb83f6",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-02-09T17:47:36Z",
+      "side": 1,
+      "message": "I thought our plan was this would be FindExistingBrowsers which return a list of browser instances? \n\nSorry that I wasn\u0027t track how this would turn out very carefully.",
+      "parentUuid": "06c8c05f_52d2aca6",
+      "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "84b0a001_7b6ec7b7",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
         "patchSetId": 4
