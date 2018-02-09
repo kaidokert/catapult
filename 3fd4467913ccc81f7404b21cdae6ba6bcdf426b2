@@ -19,6 +19,75 @@
     },
     {
       "key": {
+        "uuid": "5e4e9a7e_2eaf9c44",
+        "filename": "telemetry/examples/benchmarks/android_go_benchmark.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-02-09T15:26:15Z",
+      "side": 1,
+      "message": "wow, are the bots actually uploading the screenshots to cloud storage on failures? For local testing this is not necessary, since in 99.9% cases I can see what happened on the device at the desk",
+      "range": {
+        "startLine": 89,
+        "startChar": 12,
+        "endLine": 89,
+        "endChar": 42
+      },
+      "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be6d1d74_317bd4dd",
+        "filename": "telemetry/examples/benchmarks/android_go_benchmark.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-02-09T15:26:15Z",
+      "side": 1,
+      "message": "such stories look very nice!",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 63
+      },
+      "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "929a0684_a0999d7c",
+        "filename": "telemetry/examples/run_benchmark",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-02-09T15:26:15Z",
+      "side": 1,
+      "message": "nit nit: in other places I saw usage of os.pardir instead of \u0027..\u0027, which is probably only a matter of consistency (both Windows and all POSIX systems have the same value for the constant)",
+      "range": {
+        "startLine": 9,
+        "startChar": 62,
+        "endLine": 9,
+        "endChar": 64
+      },
+      "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5546eabc_795abced",
         "filename": "telemetry/examples/run_benchmark",
         "patchSetId": 4
@@ -82,6 +151,29 @@
       "writtenOn": "2018-02-08T19:23:59Z",
       "side": 1,
       "message": "Hmhh, actually how does this work if we have more than one alive browser instances?",
+      "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84b0a001_7b6ec7b7",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-02-09T15:26:15Z",
+      "side": 1,
+      "message": "+1, otherwise this would make individual browser starts all be cold(ish). I think we will need a few stories with cold/warm starts mixed.\n\nAnother feature request: be able to perform actions on the browser from within a story (given that we know the browser is running) like:\n* stop an clear OS pagecache for it\n* stop and remove HTTPcache from under it\n\nIs this realistic to ask for? :)",
+      "range": {
+        "startLine": 211,
+        "startChar": 4,
+        "endLine": 211,
+        "endChar": 72
+      },
       "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
