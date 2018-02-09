@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6519d04a_27d83dcc",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/rerun-job-fab.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-02-09T17:34:20Z",
+      "side": 1,
+      "message": "Changed this to just take the changes directly, since it would also allow try jobs to be re-run, wdyt?",
+      "range": {
+        "startLine": 74,
+        "startChar": 8,
+        "endLine": 74,
+        "endChar": 14
+      },
+      "revId": "5d2aebbc2279e86dafc1311d2380f49e9c71729e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8824db2_d0997305",
+        "filename": "dashboard/dashboard/pinpoint/models/change/change.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-02-09T17:34:20Z",
+      "side": 1,
+      "message": "Sending the change dicts from the frontend, you get patch: None since AsDict() above always sets the \u0027patch\u0027 field.",
+      "range": {
+        "startLine": 71,
+        "startChar": 27,
+        "endLine": 71,
+        "endChar": 31
+      },
+      "revId": "5d2aebbc2279e86dafc1311d2380f49e9c71729e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
