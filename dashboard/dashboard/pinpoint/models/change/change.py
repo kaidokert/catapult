@@ -59,10 +59,12 @@ class Change(collections.namedtuple('Change', ('commits', 'patch'))):
     return tuple(self.commits[1:])
 
   def AsDict(self):
-    return {
+    result = {
         'commits': [commit.AsDict() for commit in self.commits],
-        'patch': self.patch.AsDict() if self.patch else None,
     }
+
+    if self.patch:
+      result['patch'] = self.patch.AsDict()
 
   @classmethod
   def FromDict(cls, data):
