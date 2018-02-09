@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa3e04f2_ad52e35d",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/job-plus-button.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-02-09T21:01:15Z",
+      "side": 1,
+      "message": "Maybe call it new-job-fab for consistency?",
+      "range": {
+        "startLine": 12,
+        "startChar": 16,
+        "endLine": 12,
+        "endChar": 31
+      },
+      "revId": "17f74b6d5e14ed774eb74411e7a126b521e9c180",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06b4e6c5_402719f0",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/patch-job-fab.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-02-09T21:01:15Z",
+      "side": 1,
+      "message": "Sorry, I meant dark grey on white, not white on grey. I think grey buttons look like they\u0027re disabled.",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 54
+      },
+      "revId": "17f74b6d5e14ed774eb74411e7a126b521e9c180",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

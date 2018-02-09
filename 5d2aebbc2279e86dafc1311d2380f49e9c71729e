@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "1722b522_77189c4b",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/rerun-job-fab.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-02-09T21:01:15Z",
+      "side": 1,
+      "message": "Future work: we\u0027ll have to figure out how to share code across all these fab dialog things.",
+      "revId": "5d2aebbc2279e86dafc1311d2380f49e9c71729e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6519d04a_27d83dcc",
         "filename": "dashboard/dashboard/pinpoint/elements/job-page/rerun-job-fab.html",
         "patchSetId": 2
@@ -25,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "f300d3eb_25ecd3c8",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/rerun-job-fab.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-02-09T21:01:15Z",
+      "side": 1,
+      "message": "Yes, I always preferred it to just take a list of changes.",
+      "parentUuid": "6519d04a_27d83dcc",
+      "range": {
+        "startLine": 74,
+        "startChar": 8,
+        "endLine": 74,
+        "endChar": 14
+      },
+      "revId": "5d2aebbc2279e86dafc1311d2380f49e9c71729e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f8824db2_d0997305",
         "filename": "dashboard/dashboard/pinpoint/models/change/change.py",
         "patchSetId": 2
@@ -36,6 +77,30 @@
       "writtenOn": "2018-02-09T17:34:20Z",
       "side": 1,
       "message": "Sending the change dicts from the frontend, you get patch: None since AsDict() above always sets the \u0027patch\u0027 field.",
+      "range": {
+        "startLine": 71,
+        "startChar": 27,
+        "endLine": 71,
+        "endChar": 31
+      },
+      "revId": "5d2aebbc2279e86dafc1311d2380f49e9c71729e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2345afad_87623a5f",
+        "filename": "dashboard/dashboard/pinpoint/models/change/change.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-02-09T21:01:15Z",
+      "side": 1,
+      "message": "AsDict() shouldn\u0027t set the patch field.",
+      "parentUuid": "f8824db2_d0997305",
       "range": {
         "startLine": 71,
         "startChar": 27,
