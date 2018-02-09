@@ -116,5 +116,6 @@ class _JobStub(object):
   def __init__(self, job_dict):
     self._job_dict = job_dict
 
-  def AsDict(self):
+  def AsDict(self, options=None):
+    del options
     return self._job_dict

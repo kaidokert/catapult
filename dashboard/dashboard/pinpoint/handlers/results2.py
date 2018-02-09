@@ -47,7 +47,7 @@ def _GetJobData(job_id):
   if not job:
     raise Results2Error('Error: Job %s missing' % job_id)
 
-  return job.AsDict()
+  return job.AsDict(options=(job_module.OPTION_STATE,))
 
 
 def _ReadVulcanizedHistogramsViewer():
