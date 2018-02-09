@@ -113,7 +113,9 @@ class WprArchiveInfo(object):
     if self.temp_target_wpr_file_path:
       return self.temp_target_wpr_file_path
 
+    print self._story_name_to_wpr_file
     wpr_file = self._story_name_to_wpr_file.get(story.name, None)
+    print wpr_file
     if wpr_file is None and hasattr(story, 'url'):
       # Some old pages always use the URL to identify a page rather than the
       # name, so try to look for that.
