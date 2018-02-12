@@ -16,6 +16,24 @@
       "revId": "47a760f092dfb983a653af2d3c603e883baa9928",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0aa16a1_b6a2c64b",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-02-12T20:55:02Z",
+      "side": 1,
+      "message": "In the comment[0] where I originally described the plan for this CL, I pointed out that it is currently possible to add multiple FailureValues per story run. In truth, though, your comment has made me realize that we never actually do anything with these failures. We only really care about two things that Failures would have been used for:\n\n1. The DidFail hook in GTestProgressReporter, which doesn\u0027t do anything with the Failure object anyway. It just takes the exc_info or string and formats it.\n2. Whether the story run failed or not, like you said.\n\nSo I think even the Failure class is unnecessary. Stay tuned, I\u0027ll get rid of the class and simplify the logic.\n\n[0] https://github.com/catapult-project/catapult/issues/4229#issuecomment-363943396",
+      "parentUuid": "15c9a6fa_f3663e1e",
+      "revId": "47a760f092dfb983a653af2d3c603e883baa9928",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
