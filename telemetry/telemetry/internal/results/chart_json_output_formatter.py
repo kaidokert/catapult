@@ -10,7 +10,7 @@ from telemetry.internal.results import output_formatter
 from telemetry.value import trace
 
 def ResultsAsChartDict(benchmark_metadata, page_specific_values,
-                       summary_values):
+                       summary_values, had_failures=False):
   """Produces a dict for serialization to Chart JSON format from raw values.
 
   Chart JSON is a transformation of the basic Telemetry JSON format that
@@ -31,7 +31,8 @@ def ResultsAsChartDict(benchmark_metadata, page_specific_values,
     A Chart JSON dict corresponding to the given data.
   """
   values = itertools.chain(
-      output_formatter.SummarizePageSpecificValues(page_specific_values),
+      output_formatter.SummarizePageSpecificValues(page_specific_values,
+                                                   had_failures),
       summary_values)
   charts = collections.defaultdict(dict)
 
@@ -106,7 +107,8 @@ class ChartJsonOutputFormatter(output_formatter.OutputFormatter):
     self._Dump(ResultsAsChartDict(
         self._benchmark_metadata,
         page_test_results.all_page_specific_values,
-        page_test_results.all_summary_values))
+        page_test_results.all_summary_values,
+        page_test_results.had_failures))
 
   def _Dump(self, results):
     json.dump(results, self.output_stream, indent=2,
