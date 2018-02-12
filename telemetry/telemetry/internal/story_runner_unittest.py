@@ -426,7 +426,7 @@ class StoryRunnerTest(unittest.TestCase):
     calls_in_order = GetCallsInOrder() # pylint: disable=no-value-for-parameter
     self.assertEquals(EXPECTED_CALLS_IN_ORDER, calls_in_order)
 
-  def testAppCrashExceptionCausesFailureValue(self):
+  def testAppCrashExceptionCausesFailure(self):
     self.SuppressExceptionFormatting()
     story_set = story_module.StorySet()
     class SharedStoryThatCausesAppCrash(TestSharedPageState):
