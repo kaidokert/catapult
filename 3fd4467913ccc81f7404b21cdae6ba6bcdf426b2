@@ -331,6 +331,24 @@
     },
     {
       "key": {
+        "uuid": "23f7c9a0_29772be2",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-12T17:06:49Z",
+      "side": 1,
+      "message": "I\u0027ve clarified this on the docstring.\n\nRegarding FindExistingBrowsers, I don\u0027t think it makes sense to implement it as a method for the possible_browser because (given that package name clarification) there is only ever one browser instance that we should be able to find.\n\nOne could still implement a FindExistingBrowsers at the plaform level, e.g. iterating over all known browser package names, building their respective backend_settings, checking which ones are alive and try to build Browser objects for them. That, however, would:\n\n(1) be expensive, as it requires sniping up two forwarders for each browser found (one for replay, one for devtools); and\n\n(2) not work if there are two Chrome browsers (with two different package names) running, because of the technical limitation I noted above.\n\nIn any case, we should probably not implement that unless it\u0027s really needed by some benchmark.",
+      "parentUuid": "c2e146a9_eb18c8f7",
+      "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "84b0a001_7b6ec7b7",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
         "patchSetId": 4
