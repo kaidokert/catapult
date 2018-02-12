@@ -295,6 +295,24 @@
     },
     {
       "key": {
+        "uuid": "a6f8e568_f001be67",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-12T13:54:55Z",
+      "side": 1,
+      "message": "In the latest patchset (#6) I\u0027ve implemented this check and verified locally that this catches the problem of having multiple (Chrome) browser instances running at once.",
+      "parentUuid": "3c57a6de_e02c5f58",
+      "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "84b0a001_7b6ec7b7",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
         "patchSetId": 4
