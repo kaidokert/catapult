@@ -313,6 +313,24 @@
     },
     {
       "key": {
+        "uuid": "c2e146a9_eb18c8f7",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-02-12T15:26:06Z",
+      "side": 1,
+      "message": "I see. How about still making the API FindExistingBrowsers() and have it return a list of 0 or 1 element for now?\n\nCan you also document that \"bound to\" means browsers whose package name that corresponds to this possible browser?",
+      "parentUuid": "a6f8e568_f001be67",
+      "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "84b0a001_7b6ec7b7",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
         "patchSetId": 4
