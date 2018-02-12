@@ -414,6 +414,30 @@
     },
     {
       "key": {
+        "uuid": "5773b9a5_18c26499",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-02-12T17:24:22Z",
+      "side": 1,
+      "message": "Thank you, Juan, the issue description SGTM!",
+      "parentUuid": "6e41dce8_21da15ea",
+      "range": {
+        "startLine": 211,
+        "startChar": 4,
+        "endLine": 211,
+        "endChar": 72
+      },
+      "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4f8cb2d0_6b95b405",
         "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
         "patchSetId": 4
