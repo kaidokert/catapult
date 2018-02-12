@@ -385,6 +385,24 @@
     },
     {
       "key": {
+        "uuid": "730c0ec5_9059c034",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-02-12T18:19:46Z",
+      "side": 1,
+      "message": "The assumption [1] is a limitation of the current implementation, right? I the webview case, I can totally see we extend it to return multiple browser instances, all shared the same package name, and they are only different by PIDs.\n\nIs there any restriction on Android that prevent an app from embedding more than 1 webview? If no, then I still believe the correct API should be plural (the implementation can be fixed later for TODO)\n\nAnother problem with the singular API I am seeing is it\u0027s not clear from the API what would happen if there is no existing browser to return.",
+      "parentUuid": "5428c86a_9c18c217",
+      "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "84b0a001_7b6ec7b7",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
         "patchSetId": 4
