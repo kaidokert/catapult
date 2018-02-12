@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d42c8bd_0ce6327b",
+        "filename": "telemetry/telemetry/internal/forwarders/do_nothing_forwarder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-12T10:04:03Z",
+      "side": 0,
+      "message": "nit: this last comment line is no longer relevant.",
+      "revId": "616f89c6e4eabd7a9fffaf0914e5bd5806d83a48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
