@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "15c9a6fa_f3663e1e",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-02-12T20:24:18Z",
+      "side": 1,
+      "message": "Hmhh, why is this a list instead of just a boolean describing whether the current story run is passed or failed?",
+      "revId": "47a760f092dfb983a653af2d3c603e883baa9928",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
