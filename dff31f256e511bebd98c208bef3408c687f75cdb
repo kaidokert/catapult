@@ -16,6 +16,24 @@
       "revId": "dff31f256e511bebd98c208bef3408c687f75cdb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e505135f_8c2df602",
+        "filename": "devil/devil/android/tools/device_status.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2018-02-12T18:56:38Z",
+      "side": 1,
+      "message": "\u003e nit: no need to create the intermediate dict, you can update from a sequence of pairs, namely:\n\u003e \n\u003e port_mapping.update((device, str(port)) for ... in ...)\n\nDone.\n\n\u003e also maybe s/device/serial/? (not quite sure what these are? are they strings?)\n\nDone.\n\n\u003e and does this make usb_devices redundant? i.e. could you now define in L108: usb_status \u003d bool(serial in port_mapping) ?\n\nMaybe? There\u0027s some funky hub-related logic in GetAllPhysicalPortToSerialMaps() that\u0027s hard to trace and I\u0027m not sure what it would return for an unknown hub. I think it\u0027s probably safer to rely on lsusb.get_android_devices() for the usb status.",
+      "parentUuid": "3590ee13_1b4bbc75",
+      "revId": "dff31f256e511bebd98c208bef3408c687f75cdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
