@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 import itertools
+import logging
 
 from operator import attrgetter
 
@@ -166,6 +167,7 @@ class RenderingStats(object):
     self.main_thread_scroll_latency = []
     # Latency for a GestureScrollUpdate input event.
     self.gesture_scroll_update_latency = []
+    self.skiarenderer_threadtimes = []
 
     for record in interaction_records:
       timeline_range = record.GetBounds()
@@ -178,6 +180,7 @@ class RenderingStats(object):
       self.input_event_latency.append([])
       self.main_thread_scroll_latency.append([])
       self.gesture_scroll_update_latency.append([])
+      self.skiarenderer_threadtimes.append([])
 
       if timeline_range.is_empty:
         continue
@@ -188,6 +191,8 @@ class RenderingStats(object):
         self._InitUIFrameTimestampsFromTimeline(browser_process, timeline_range)
       self._InitImplThreadRenderingStatsFromTimeline(
           renderer_process, timeline_range)
+      self._InitSkiaRendererStatsFromTimeline(
+          browser_process, timeline_range)
       self._InitInputLatencyStatsFromTimeline(
           browser_process, renderer_process, timeline_range)
       self._InitFrameQueueingDurationsFromTimeline(
@@ -256,6 +261,15 @@ class RenderingStats(object):
       if len(self.ui_frame_timestamps[-1]) >= 2:
         self.ui_frame_times[-1].append(
             self.ui_frame_timestamps[-1][-1] - self.ui_frame_timestamps[-1][-2])
+
+  def _InitSkiaRendererStatsFromTimeline(self, process, timeline_range):
+    event_name = 'DirectRenderer::DrawFrame'
+    logger = logging.getLogger()
+    logger.info("_InitSkiaRendererStatsFromTimeline process %s timeline_range %s", process, timeline_range)
+    for event in self._GatherEvents(event_name, process, timeline_range, False):
+      # logger.info("_InitSkiaRendererStatsFromTimeline event %s", event)
+      logger.info("_InitSkiaRendererStatsFromTimeline event %s", event.thread_duration)
+      self.skiarenderer_threadtimes[-1].append(event.thread_duration)
 
   def _InitImplThreadRenderingStatsFromTimeline(self, process, timeline_range):
     event_name = 'BenchmarkInstrumentation::ImplThreadRenderingStats'

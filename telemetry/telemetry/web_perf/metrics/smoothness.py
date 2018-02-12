@@ -76,6 +76,7 @@ class SmoothnessMetric(timeline_based_metric.TimelineBasedMetric):
     values += self._ComputeLatencyMetric(page, stats,
                                          'main_thread_scroll_latency',
                                          stats.main_thread_scroll_latency)
+    values += self._ComputeSkiaRendererThreadTimes(page, stats)
     values.append(self._ComputeFirstGestureScrollUpdateLatencies(page, stats))
     values += self._ComputeDisplayFrameTimeMetric(page, stats)
     if has_ui_interactions:
@@ -301,6 +302,37 @@ class SmoothnessMetric(timeline_based_metric.TimelineBasedMetric):
   def _ComputeUIFrameTimeMetric(self, page, stats):
     return self._ComputeFrameTimeMetric(
         'ui_', page, stats.ui_frame_timestamps, stats.ui_frame_times)
+
+  def _ComputeSkiaRendererThreadTimes(self, page, stats):
+    # """thread timings for SkiaRenderer"""
+    # return self._ComputeLatencyMetric(page, stats, ,
+    #    stats.skiarenderer_threadtimes)
+    """Computes thread timings for SkiaRenderer"""
+    list_of_latency_lists = stats.skiarenderer_threadtimes
+    name = 'skia_renderer_runningtimes'
+    mean_latency = None
+    none_value_reason = None
+    latency_list = None
+    if self._HasEnoughFrames(stats.frame_timestamps):
+      latency_list = perf_tests_helper.FlattenList(list_of_latency_lists)
+      if len(latency_list) == 0:
+        return ()
+      mean_latency = round(statistics.ArithmeticMean(latency_list), 3)
+    else:
+      none_value_reason = NOT_ENOUGH_FRAMES_MESSAGE
+    return (
+        list_of_scalar_values.ListOfScalarValues(
+            page, name, 'ms', latency_list,
+            description='Raw %s values' % name,
+            none_value_reason=none_value_reason,
+            improvement_direction=improvement_direction.DOWN),
+        scalar.ScalarValue(
+            page, 'mean_%s' % name, 'ms', mean_latency,
+            description='Arithmetic mean of the raw %s values' % name,
+            none_value_reason=none_value_reason,
+            improvement_direction=improvement_direction.DOWN),
+    )
+
 
   def _ComputeFrameTimeDiscrepancy(self, page, stats):
     """Returns a Value for the absolute discrepancy of frame time stamps."""
