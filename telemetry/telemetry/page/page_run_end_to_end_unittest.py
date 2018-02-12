@@ -488,7 +488,7 @@ class ActualPageRunEndToEndTests(unittest.TestCase):
                      metadata=EmptyMetadataForTest())
     return results
 
-  def testSingleTabMeansCrashWillCauseFailureValue(self):
+  def testSingleTabMeansCrashWillCauseFailure(self):
     self.CaptureFormattedException()
 
     class SingleTabTest(legacy_page_test.LegacyPageTest):

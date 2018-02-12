@@ -2,7 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-from telemetry.value import failure
+from telemetry.internal.results import failure
 from telemetry.value import skip
 
 
@@ -10,16 +10,17 @@ class StoryRun(object):
   def __init__(self, story):
     self._story = story
     self._values = []
+    self._failures = []
 
   def AddValue(self, value):
     self._values.append(value)
 
-  def Fail(self, exc_info_or_message):
+  def Fail(self, exc_info_or_message, handleable=True):
     if isinstance(exc_info_or_message, basestring):
-      self.AddValue(failure.FailureValue.FromMessage(
-          self.story, exc_info_or_message))
+      f = failure.Failure.FromMessage(exc_info_or_message, handleable)
     else:
-      self.AddValue(failure.FailureValue(self.story, exc_info_or_message))
+      f = failure.Failure(exc_info_or_message, handleable)
+    self._failures.append(f)
 
   def Skip(self, reason):
     self.AddValue(skip.SkipValue(self.story, reason))
@@ -34,12 +35,11 @@ class StoryRun(object):
     return self._values
 
   @property
-  def ok(self):
-    """Whether the current run is still ok.
+  def failures(self):
+    return self._failures
 
-    To be precise: returns true if there is neither FailureValue nor
-    SkipValue in self.values.
-    """
+  @property
+  def ok(self):
     return not self.skipped and not self.failed
 
   @property
@@ -52,10 +52,4 @@ class StoryRun(object):
 
   @property
   def failed(self):
-    """Whether the current run failed.
-
-    To be precise: returns true if there is a FailureValue but not
-    SkipValue in self.values.
-    """
-    return not self.skipped and any(
-        isinstance(v, failure.FailureValue) for v in self.values)
+    return not self.skipped and len(self._failures) > 0

@@ -22,7 +22,6 @@ from telemetry.internal.results import chart_json_output_formatter
 from telemetry.internal.results import html_output_formatter
 from telemetry.internal.results import progress_reporter as reporter_module
 from telemetry.internal.results import story_run
-from telemetry.value import failure
 from telemetry.value import skip
 from telemetry.value import trace
 
@@ -241,7 +240,7 @@ class PageTestResults(object):
 
     chart_json = chart_json_output_formatter.ResultsAsChartDict(
         benchmark_metadata, self.all_page_specific_values,
-        self.all_summary_values)
+        self.all_summary_values, len(self.failures) > 0)
     info = self.telemetry_info
     chart_json['label'] = info.label
     chart_json['benchmarkStartMs'] = info.benchmark_start_epoch * 1000.0
@@ -340,8 +339,10 @@ class PageTestResults(object):
 
   @property
   def failures(self):
-    values = self.all_page_specific_values
-    return [v for v in values if isinstance(v, failure.FailureValue)]
+    fs = []
+    for page_run in self.all_page_runs:
+      fs += page_run.failures
+    return fs
 
   @property
   def skipped_values(self):
@@ -441,7 +442,6 @@ class PageTestResults(object):
         value.tir_label = story_keys_label
 
     if not (isinstance(value, skip.SkipValue) or
-            isinstance(value, failure.FailureValue) or
             isinstance(value, trace.TraceValue) or
             self._should_add_value(value.name, is_first_result)):
       return
@@ -454,16 +454,8 @@ class PageTestResults(object):
 
   def Fail(self, exc_info_or_message, handleable=True):
     assert self._current_page_run, 'Not currently running test.'
-    if not handleable:
-      description = 'Unhandleable exception raised.'
-    else:
-      description = None
-    if isinstance(exc_info_or_message, basestring):
-      self.AddValue(failure.FailureValue.FromMessage(
-          self.current_page, exc_info_or_message))
-    else:
-      self.AddValue(failure.FailureValue(
-          self.current_page, exc_info_or_message, description))
+    self.current_page_run.Fail(exc_info_or_message, handleable)
+    self._progress_reporter.DidFail(exc_info_or_message)
 
   def Skip(self, reason):
     assert self._current_page_run, 'Not currently running test.'
