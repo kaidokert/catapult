@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3590ee13_1b4bbc75",
+        "filename": "devil/devil/android/tools/device_status.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-12T10:12:59Z",
+      "side": 1,
+      "message": "nit: no need to create the intermediate dict, you can update from a sequence of pairs, namely:\n\nport_mapping.update((device, str(port)) for ... in ...)\n\nalso maybe s/device/serial/? (not quite sure what these are? are they strings?)\n\nand does this make usb_devices redundant? i.e. could you now define in L108: usb_status \u003d bool(serial in port_mapping) ?",
+      "revId": "dff31f256e511bebd98c208bef3408c687f75cdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
