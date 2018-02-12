@@ -349,6 +349,24 @@
     },
     {
       "key": {
+        "uuid": "c7128213_eeab7bc8",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-02-12T17:11:53Z",
+      "side": 1,
+      "message": "If the possible browser is webview, seems like we could have more than one browser instances as you mentioned?\n\nAnother reason why I would want to make the API more general is to account for future use cases. IMO, the fact that we can\u0027t control two browsers instances is a current implementation limitation. This seems like it may change in the future, so making the API a bit more general would make the future change simpler. I also think this API is not making it harder for callsistes to use*, so there is not a clear disadvantage to make it plural-like.",
+      "parentUuid": "23f7c9a0_29772be2",
+      "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "84b0a001_7b6ec7b7",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
         "patchSetId": 4
