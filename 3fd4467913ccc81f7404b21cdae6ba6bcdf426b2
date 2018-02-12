@@ -367,6 +367,24 @@
     },
     {
       "key": {
+        "uuid": "5428c86a_9c18c217",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-12T17:30:56Z",
+      "side": 1,
+      "message": "\u003e If the possible browser is webview, seems like we could have more than one browser instances as you mentioned?\n\nNo. There is still only one. When we create the browser_backend we try to find the PID for its corresponding package name (which we assume there is only one [1]) and then use that as part of the DevTools address we connect to [2].\n\n\u003e IMO, the fact that we can\u0027t control two browsers instances [...]\n\nWe *can* control two browser instances. Assuming they have different package names, you create two different possible_browsers, one for each of them, and then call FindBrowser on each of the two. That would work e.g. between a webview based browser and a chrome browser (or two webview browsers with different package names).\n\nGiven the assumption 1 package name \u003d\u003d 1 main browser PID \u003d\u003d 1 browser instance (which I don\u0027t believe is going away any time soon) I don\u0027t believe there is any reason to implement a FindExistingBrowsers method at the possible_browser level.\n\nOne could still implement a FindExistingBrowsers on the platform level (as I already described), but I believe getting a list of browsers, and then trying to figure out which are the ones you expected to see, is a poorer API experience than what I propose: creating first the possible_browsers you expect to see and then finding each of them.\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/backends/chrome/android_browser_backend.py?rcl\u003dd38379370433d04a7f1dd4641fdefb16c4e4d975\u0026l\u003d148\n[2]: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/backends/android_browser_backend_settings.py?rcl\u003dd38379370433d04a7f1dd4641fdefb16c4e4d975\u0026l\u003d94",
+      "parentUuid": "c7128213_eeab7bc8",
+      "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "84b0a001_7b6ec7b7",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
         "patchSetId": 4
