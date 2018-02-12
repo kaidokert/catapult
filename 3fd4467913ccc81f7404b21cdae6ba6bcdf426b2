@@ -189,6 +189,24 @@
     },
     {
       "key": {
+        "uuid": "2df11847_cedd14ab",
+        "filename": "telemetry/examples/run_benchmark",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-12T12:40:44Z",
+      "side": 1,
+      "message": "I\u0027ve discarded changes to this file.\n\nOne can still run the benchmark with:\n\n$ ./examples/run_benchmark --browser android-chrome --chrome-root $SRC android_go.example",
+      "parentUuid": "87a7d217_2c007c51",
+      "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0916d86a_329b9a99",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
         "patchSetId": 4
@@ -259,6 +277,24 @@
     },
     {
       "key": {
+        "uuid": "3c57a6de_e02c5f58",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-12T12:40:44Z",
+      "side": 1,
+      "message": "I had a chat with Primiano, this is not possible with the current implementation of Chrome, because all alive instances use the same fixed address, \"localabstract:chrome_devtools_remote\", for devtools connections.\n\nIf two instances of Chrome (with different package names) are running on the device, only the first one will be able connect and listen to connections on that address; there is no way we can connect to the second instance without mayor changes to Chrome. [This is a non-issue for webview, because its devtools address includes the PID to distinguish them.]\n\nNow, even if there are multiple browser instances alive, we know which one we want to connect to: the browser instance with the package name that corresponds to *this* possible browser. There is no need to find \"all\" existing browsers.\n\nWhat we can probably do is: connect to \"localabstract:chrome_devtools_remote\" and, through the DevTools API, try to get the package name of the browser we connected to and complain if it doesn\u0027t match the package name of the possible_browser we were expecting.",
+      "parentUuid": "79d08ed9_1edb83f6",
+      "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "84b0a001_7b6ec7b7",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
         "patchSetId": 4
@@ -270,6 +306,30 @@
       "writtenOn": "2018-02-09T15:26:15Z",
       "side": 1,
       "message": "+1, otherwise this would make individual browser starts all be cold(ish). I think we will need a few stories with cold/warm starts mixed.\n\nAnother feature request: be able to perform actions on the browser from within a story (given that we know the browser is running) like:\n* stop an clear OS pagecache for it\n* stop and remove HTTPcache from under it\n\nIs this realistic to ask for? :)",
+      "range": {
+        "startLine": 211,
+        "startChar": 4,
+        "endLine": 211,
+        "endChar": 72
+      },
+      "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e41dce8_21da15ea",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-12T12:40:44Z",
+      "side": 1,
+      "message": "Sure, filed crbug.com/811244 to track this.",
+      "parentUuid": "84b0a001_7b6ec7b7",
       "range": {
         "startLine": 211,
         "startChar": 4,
