@@ -164,15 +164,42 @@ tr.exportTo('tr.ui.tracks', function() {
         this.currentSubRows_ = [];
         return;
       }
-      const subRows = this.buildSubRows_(this.itemsToGroup_);
+      let subRows = this.buildSubRows_(this.itemsToGroup_);
+      let subRowHeadings;
+      if (subRows.rows !== undefined) {
+        // Alternative results format for buildSubRows_.
+        subRowHeadings = subRows.headings;
+        subRows = subRows.rows;
+      }
       this.currentSubRows_ = subRows;
-      for (let srI = 0; srI < subRows.length; srI++) {
-        const subRow = subRows[srI];
-        if (!subRow.length) continue;
+      if (subRows.length === 0) {
+        return;
+      }
 
-        const track = this.addSubTrack_(subRow);
+      const addSubTrackEx = (items, opt_heading) => {
+        const track = this.addSubTrack_(items);
+        if (opt_heading !== undefined) {
+          track.heading = opt_heading;
+        }
         track.addEventListener(
             'heading-clicked', this.onHeadingClicked_.bind(this));
+      };
+
+      if (subRowHeadings !== undefined && subRowHeadings[0] !== this.heading_) {
+        // Create an empty row to render the group's title there.
+        addSubTrackEx([]);
+      }
+
+      for (let srI = 0; srI < subRows.length; srI++) {
+        const subRow = subRows[srI];
+        if (subRow.length === 0) {
+          continue;
+        }
+        let heading;
+        if (subRowHeadings !== undefined) {
+          heading = subRowHeadings[srI];
+        }
+        addSubTrackEx(subRow, heading);
       }
       this.updateHeadingAndTooltip_();
       this.expandedStateChanged_();
@@ -188,6 +215,9 @@ tr.exportTo('tr.ui.tracks', function() {
     /**
      * Breaks up the list of slices into N rows, each of which is a list of
      * slices that are non overlapping.
+     * Two return formats are accepted:
+     * - Array of rows (where each row is an array of items).
+     * - {rows: [], headings: []} where both arrays have equal length.
      */
     buildSubRows_(itemsToGroup) {
       throw new Error('Not implemented');
