@@ -403,6 +403,24 @@
     },
     {
       "key": {
+        "uuid": "530ca587_f38b0659",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-13T15:08:07Z",
+      "side": 1,
+      "message": "For clarifying what happens if no browser is found I wrote:\nhttps://chromium-review.googlesource.com/#/c/catapult/+/916222\n\nOn the multiple webviews, I asked around about this.\n\nUsually most WebView apps, even if they embed multiple webviews, they have a single WebView process and (from its single DevTools server) each individual embedded \"view\" shows up as a separate browser \"tab\". A use case that makes a lot of sense and we already support. This is e.g. what Gmail app does, so I believe we\u0027re covered there.\n\nTechnically it *is* possible to have a multiprocess app, with multiple separate WebView processes (and separate DevTools servers), all under a single \"app\". But I don\u0027t think that\u0027s a use case we have to worry about now. If later we encounter an app fitting that use case, the details of how exactly those processes are organized, how their devtools addresses are determined, whether existing browser methods (like Close) may or may not be applied to the individual sub-browsers and not the entire app, are completely unknown to us at this point.\n\nAll the use cases we want to support really just want to do:\n\n  browser \u003d possible_browser.FindExistingBrowser()\n\nI don\u0027t think it\u0027s worth to force them to write instead:\n\n  browsers \u003d possible_browser.FindExistingBrowsers()\n  assert len(browsers) \u003d\u003d 1, \u0027Too many or too few browsers found!\u0027\n  browser \u003d browsers[0]\n\nJust for that hypothetical 1% or less of apps whom, anyway, will probably need a more specialized API when we encounter them.",
+      "parentUuid": "730c0ec5_9059c034",
+      "revId": "3fd4467913ccc81f7404b21cdae6ba6bcdf426b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "84b0a001_7b6ec7b7",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
         "patchSetId": 4
