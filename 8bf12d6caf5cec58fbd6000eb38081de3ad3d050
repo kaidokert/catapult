@@ -16,6 +16,24 @@
       "revId": "8bf12d6caf5cec58fbd6000eb38081de3ad3d050",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46cefc53_6605a396",
+        "filename": "telemetry/bin/update_wpr_go_binary",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1256356
+      },
+      "writtenOn": "2018-02-13T10:50:07Z",
+      "side": 1,
+      "message": "Not typing error, mipsle is used as architecture name for little endian mips in go compiler.",
+      "parentUuid": "dc4a8c53_e07e2ee1",
+      "revId": "8bf12d6caf5cec58fbd6000eb38081de3ad3d050",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
