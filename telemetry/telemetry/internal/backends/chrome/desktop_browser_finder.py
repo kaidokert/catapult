@@ -15,15 +15,15 @@ from telemetry.core import exceptions
 from telemetry.core import platform as platform_module
 from telemetry.internal.backends.chrome import chrome_startup_args
 from telemetry.internal.backends.chrome import desktop_browser_backend
+from telemetry.internal.backends.chrome import possible_chrome_browser
 from telemetry.internal.browser import browser
-from telemetry.internal.browser import possible_browser
 from telemetry.internal.platform import desktop_device
 from telemetry.internal.util import binary_manager
 # This is a workaround for https://goo.gl/1tGNgd
 from telemetry.internal.util import path as path_module
 
 
-class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
+class PossibleDesktopBrowser(possible_chrome_browser.PossibleChromeBrowser):
   """A desktop browser that can be controlled."""
 
   def __init__(self, browser_type, finder_options, executable, flash_path,
@@ -110,7 +110,7 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
             self._browser_directory, self._profile_directory,
             self._local_executable, self._flash_path, self._is_content_shell)
 
-        browser_backend.ClearCaches()
+        self._ClearCachesOnStart()
 
         returned_browser = browser.Browser(
             browser_backend, self._platform_backend, startup_args)

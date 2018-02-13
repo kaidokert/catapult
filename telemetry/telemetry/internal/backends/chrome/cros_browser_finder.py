@@ -12,15 +12,15 @@ from telemetry.core import platform as platform_module
 from telemetry.internal.backends.chrome import chrome_startup_args
 from telemetry.internal.backends.chrome import cros_browser_backend
 from telemetry.internal.backends.chrome import cros_browser_with_oobe
+from telemetry.internal.backends.chrome import possible_chrome_browser
 from telemetry.internal.browser import browser
 from telemetry.internal.browser import browser_finder_exceptions
-from telemetry.internal.browser import possible_browser
 from telemetry.internal.platform import cros_device
 
 import py_utils
 
 
-class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
+class PossibleCrOSBrowser(possible_chrome_browser.PossibleChromeBrowser):
   """A launchable CrOS browser instance."""
 
   def __init__(self, browser_type, finder_options, cros_platform, is_guest):
@@ -90,7 +90,7 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
         self.browser_directory, self.profile_directory,
         self._is_guest)
 
-    browser_backend.ClearCaches()
+    self._ClearCachesOnStart()
 
     if self._browser_options.create_browser_with_oobe:
       return cros_browser_with_oobe.CrOSBrowserWithOOBE(
