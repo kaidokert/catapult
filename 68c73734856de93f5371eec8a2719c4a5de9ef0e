@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "38fce4f7_5284cd9d",
+        "filename": "telemetry/telemetry/internal/results/chart_json_output_formatter.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-13T13:03:26Z",
+      "side": 1,
+      "message": "Maybe change this to receive just the benchmark_metadata and the full page_test_results object instead?",
+      "revId": "68c73734856de93f5371eec8a2719c4a5de9ef0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f48ffe1c_7fb548cc",
+        "filename": "telemetry/telemetry/internal/results/chart_json_output_formatter.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-13T13:03:26Z",
+      "side": 1,
+      "message": "ditto: pass here the full page_test_results object.",
+      "revId": "68c73734856de93f5371eec8a2719c4a5de9ef0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0959a7fe_9146343d",
+        "filename": "telemetry/telemetry/internal/results/gtest_progress_reporter.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-13T13:03:26Z",
+      "side": 1,
+      "message": "I think it should be clearer to have this \"exc_info_or_reason\" to string conversion to happen on the caller. Also see my comment on page_test_results.py on (when using a string) whether we \nstill want to provide a traceback.",
+      "revId": "68c73734856de93f5371eec8a2719c4a5de9ef0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f5ce182_ee8e7e33",
+        "filename": "telemetry/telemetry/internal/results/output_formatter.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-13T13:03:26Z",
+      "side": 1,
+      "message": "as noted above: change this to receive the full page_test_results?",
+      "revId": "68c73734856de93f5371eec8a2719c4a5de9ef0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13797e3e_0479bf6a",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-13T13:03:26Z",
+      "side": 1,
+      "message": "nit: either expand sr to \"sotry_run\" (?) or \"run\" or even just \"r\".\n\n(otherwise you leave me trying to guess what \"sr\" is!)",
+      "revId": "68c73734856de93f5371eec8a2719c4a5de9ef0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2618dcea_16b0c7e6",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-13T13:03:26Z",
+      "side": 1,
+      "message": "I would just make this `Fail(self, failure)` and add a docstring explaining that the \"failure\" args should be either an exc_info or a string.",
+      "revId": "68c73734856de93f5371eec8a2719c4a5de9ef0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32053cc3_d766de89",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-13T13:03:26Z",
+      "side": 1,
+      "message": "I would rename this to \"SetFailed\"; the name confused me for a bit because this doesn\u0027t \"cause a story to fail\" but, rather, \"records the fact that the story failed\".",
+      "revId": "68c73734856de93f5371eec8a2719c4a5de9ef0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55227991_b2b2dc07",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-13T13:03:26Z",
+      "side": 1,
+      "message": "looks like left-over?",
+      "revId": "68c73734856de93f5371eec8a2719c4a5de9ef0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "809f37b9_85cb3fee",
+        "filename": "telemetry/telemetry/page/legacy_page_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-13T13:03:26Z",
+      "side": 1,
+      "message": "nit: failure.Failure is not a thing anymore",
+      "revId": "68c73734856de93f5371eec8a2719c4a5de9ef0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59611a35_ce25cc17",
+        "filename": "telemetry/telemetry/value/summary.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-13T13:03:26Z",
+      "side": 1,
+      "message": "make this receive the full test_page_results instead",
+      "revId": "68c73734856de93f5371eec8a2719c4a5de9ef0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f6c46cc_7054870f",
+        "filename": "telemetry/telemetry/value/summary.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-13T13:03:26Z",
+      "side": 1,
+      "message": "looks like there is no need for this to be public, can you make it private?",
+      "revId": "68c73734856de93f5371eec8a2719c4a5de9ef0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
