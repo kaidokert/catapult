@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d4453c48_8e442619",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-02-13T23:53:01Z",
+      "side": 0,
+      "message": "Yes, I added this handleable boolean but then (only partially, whoops) removed it when I removed the Failure class in response to Ned\u0027s comment. It turns out that this boolean is not used. Here you can see we set the FailureValue\u0027s description, but that was never surfaced anywhere.",
+      "parentUuid": "f138fde6_bb7d38eb",
+      "revId": "52a5696241413e27b836f8e73967630920191e98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "30439768_06882801",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "96dd438f_0ce7a40c",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-02-13T23:53:01Z",
+      "side": 0,
+      "message": "I did not intend to remove this so have reinstated the functionality and added a unit test for it. However, as you will see in the test, it only prints the one frame. Any idea what\u0027s up with that or whether it matters?",
+      "parentUuid": "30439768_06882801",
+      "revId": "52a5696241413e27b836f8e73967630920191e98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e28c5583_d0f08501",
         "filename": "telemetry/telemetry/internal/results/story_run.py",
         "patchSetId": 3
@@ -47,6 +83,24 @@
       "writtenOn": "2018-02-13T13:03:26Z",
       "side": 0,
       "message": "Keep some of the docstring. I think we should also, in a follow up CL, make it an error to make a story both skipped and failed?",
+      "revId": "52a5696241413e27b836f8e73967630920191e98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3a64e12_fb2be69b",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-02-13T23:53:01Z",
+      "side": 0,
+      "message": "I deleted the docstring because:\n\n1. That this getter describes whether the current run failed seems evident from its name, and\n2. The sentence about FailureValues and SkipValues is becoming false: the FailureValue part in this CL, the SkipValue part in the next.\n\nAny thoughts on what a would-be docstring should say instead?\n\nFiled bug about implementing the error you describe: https://github.com/catapult-project/catapult/issues/4254 and added TODO about simplifying these getters once we can assume that that\u0027s an early error.",
+      "parentUuid": "e28c5583_d0f08501",
       "revId": "52a5696241413e27b836f8e73967630920191e98",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
