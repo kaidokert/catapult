@@ -36,9 +36,8 @@ tr.exportTo('tr.ui.tracks', function() {
 
       this.defaultToCollapsedWhenSubRowCountMoreThan = 1;
 
-      this.itemsGroupedOnLastUpdateContents_ = undefined;
-
-      this.currentSubRows_ = [];
+      this.currentSubRows_ = undefined;
+      this.currentSubRowHeadings_ = undefined;
       this.expanded_ = true;
     },
 
@@ -49,6 +48,21 @@ tr.exportTo('tr.ui.tracks', function() {
     setItemsToGroup(itemsToGroup, opt_groupingSource) {
       this.itemsToGroup_ = itemsToGroup;
       this.groupingSource_ = opt_groupingSource;
+      this.currentSubRows_ = undefined;
+      this.currentSubRowHeadings_ = undefined;
+      this.updateContents_();
+      this.updateExpandedStateFromGroupingSource_();
+    },
+
+    /**
+     * Opt-out from using buildSubRows_() and provide prebuilt rows.
+     * Rows and headings arrays should have the equal length.
+     */
+    setPrebuiltSubRows(groupingSource, subRows, opt_subRowHeadings) {
+      this.itemsToGroup_ = undefined;
+      this.groupingSource_ = groupingSource;
+      this.currentSubRows_ = subRows;
+      this.currentSubRowHeadings_ = opt_subRowHeadings;
       this.updateContents_();
       this.updateExpandedStateFromGroupingSource_();
     },
@@ -59,7 +73,7 @@ tr.exportTo('tr.ui.tracks', function() {
 
     set heading(h) {
       this.heading_ = h;
-      this.updateContents_();
+      this.updateHeadingAndTooltip_();
     },
 
     get tooltip() {
@@ -68,7 +82,7 @@ tr.exportTo('tr.ui.tracks', function() {
 
     set tooltip(t) {
       this.tooltip_ = t;
-      this.updateContents_();
+      this.updateHeadingAndTooltip_();
     },
 
     get subRows() {
@@ -145,35 +159,46 @@ tr.exportTo('tr.ui.tracks', function() {
 
     updateContents_() {
       tr.ui.tracks.ContainerTrack.prototype.updateContents_.call(this);
-      if (!this.itemsToGroup_) {
-        this.updateHeadingAndTooltip_();
-        this.currentSubRows_ = [];
+      this.detach();  // Clear sub-tracks.
+
+      if (this.currentSubRows_ === undefined) {
+        // No prebuilt rows, build it.
+        if (this.itemsToGroup_ === undefined) {
+          return;
+        }
+        this.currentSubRows_ = this.buildSubRows_(this.itemsToGroup_);
+      }
+      if (this.currentSubRows_ === undefined) {
         return;
       }
 
-      if (this.areArrayContentsSame_(this.itemsGroupedOnLastUpdateContents_,
-          this.itemsToGroup_)) {
-        this.updateHeadingAndTooltip_();
-        return;
-      }
-
-      this.itemsGroupedOnLastUpdateContents_ = this.itemsToGroup_;
-
-      this.detach();
-      if (!this.itemsToGroup_.length) {
-        this.currentSubRows_ = [];
-        return;
-      }
-      const subRows = this.buildSubRows_(this.itemsToGroup_);
-      this.currentSubRows_ = subRows;
-      for (let srI = 0; srI < subRows.length; srI++) {
-        const subRow = subRows[srI];
-        if (!subRow.length) continue;
-
-        const track = this.addSubTrack_(subRow);
+      const addSubTrackEx = (items, opt_heading) => {
+        const track = this.addSubTrack_(items);
+        if (opt_heading !== undefined) {
+          track.heading = opt_heading;
+        }
         track.addEventListener(
             'heading-clicked', this.onHeadingClicked_.bind(this));
+      };
+
+      if (this.currentSubRowHeadings_ !== undefined &&
+          this.currentSubRowHeadings_[0] !== this.heading_) {
+        // Create an empty row to render the group's title there.
+        addSubTrackEx([]);
       }
+
+      for (let i = 0; i < this.currentSubRows_.length; i++) {
+        const subRow = this.currentSubRows_[i];
+        if (subRow.length === 0) {
+          continue;
+        }
+        let subRowHeading = undefined;
+        if (this.currentSubRowHeadings_ !== undefined) {
+          subRowHeading = this.currentSubRowHeadings_[i];
+        }
+        addSubTrackEx(subRow, subRowHeading);
+      }
+
       this.updateHeadingAndTooltip_();
       this.expandedStateChanged_();
     },
