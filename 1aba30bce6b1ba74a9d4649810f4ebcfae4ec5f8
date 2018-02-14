@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "42d78a8e_e9aca556",
+        "filename": "telemetry/telemetry/internal/binary_dependencies.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1256356
+      },
+      "writtenOn": "2018-02-14T13:29:02Z",
+      "side": 1,
+      "message": "I suppose this was a typo, it should probably be mips as a directory name. Otherwise, it solves the issue for us, and thank you for upload.",
+      "range": {
+        "startLine": 370,
+        "startChar": 38,
+        "endLine": 370,
+        "endChar": 44
+      },
+      "revId": "1aba30bce6b1ba74a9d4649810f4ebcfae4ec5f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
