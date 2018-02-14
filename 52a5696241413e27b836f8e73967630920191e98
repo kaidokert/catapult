@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "c39d78a4_a8fc6a4f",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-14T12:04:26Z",
+      "side": 0,
+      "message": "Ack. I\u0027m happy with this change. Left other related comments on the call site.",
+      "parentUuid": "d4453c48_8e442619",
+      "revId": "52a5696241413e27b836f8e73967630920191e98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "30439768_06882801",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 3
@@ -66,6 +84,24 @@
       "side": 0,
       "message": "I did not intend to remove this so have reinstated the functionality and added a unit test for it. However, as you will see in the test, it only prints the one frame. Any idea what\u0027s up with that or whether it matters?",
       "parentUuid": "30439768_06882801",
+      "revId": "52a5696241413e27b836f8e73967630920191e98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b006d4e5_b74830ea",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-14T12:04:26Z",
+      "side": 0,
+      "message": "Yes, I noted that. Looking at the documentation of sys.exc_info() it sounds like this has always been the case (the trace stops at the calling stack \"handling\" the exception, so our try-raise-except has always just one frame).\n\nLooking at clients, other than unittests, there are only two places where we call this with a string:\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/web_perf/timeline_based_measurement.py?rcl\u003de7298f36f7912f2caa122086cfbe71734d04b73f\u0026l\u003d314\n[2]: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/story_runner.py?rcl\u003de7298f36f7912f2caa122086cfbe71734d04b73f\u0026l\u003d225\n\nFor [1] it seems that just printing the string is what we really want; for [2] I\u0027m not even sure if doing that instead of raising an exception there is the right thing.\n\nUnless Ned has any other thoughts, my vote would be to remove the useless 1-frame traceback when converting from a string, and just decorate it with something like e.g. \"Failure recorded: {message}\".",
+      "parentUuid": "96dd438f_0ce7a40c",
       "revId": "52a5696241413e27b836f8e73967630920191e98",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -104,6 +140,24 @@
       "revId": "52a5696241413e27b836f8e73967630920191e98",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6de61026_7427d488",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-14T12:04:26Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "b3a64e12_fb2be69b",
+      "revId": "52a5696241413e27b836f8e73967630920191e98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

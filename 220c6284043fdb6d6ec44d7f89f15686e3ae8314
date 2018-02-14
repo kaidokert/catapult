@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "27324ac2_d201b13c",
+        "filename": "telemetry/telemetry/internal/results/chart_json_output_formatter.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-14T12:04:26Z",
+      "side": 1,
+      "message": "nit: just inline results.all_summary_values here (?)",
+      "revId": "220c6284043fdb6d6ec44d7f89f15686e3ae8314",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2362e0a_10ba493a",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-14T12:04:26Z",
+      "side": 1,
+      "message": "Thinking a bit more about this, I think this is a mistake. It should be fine to call results.Fail after finishing with one story and before getting to the next. Ok to leave for a follow up CL. (I\u0027m not even sure yet what the right behavior should be in that case.)",
+      "revId": "220c6284043fdb6d6ec44d7f89f15686e3ae8314",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf8535c7_ba65f849",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-14T12:04:26Z",
+      "side": 1,
+      "message": "This sgtm, just jotting down my thoughts: It does seem like we\u0027re loosing a bit of information by not distinguishing between \"handleable\" and \"unhandleable\" exceptions in the output. However, this also seems like the wrong place where to make the distinction between the two. A fatal (\"unhandleable\") exception is one that reaches L363 in RunBenchmark below.",
+      "revId": "220c6284043fdb6d6ec44d7f89f15686e3ae8314",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee29e57d_9caa4ecb",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-14T12:04:26Z",
+      "side": 1,
+      "message": "nit: this should be slightly more efficient as:\n\n  sum(1 for run in results.all_page_runs if run.failed)\n\nalso wondering whether we should expose this as a property, e.g., results.num_failed?",
+      "revId": "220c6284043fdb6d6ec44d7f89f15686e3ae8314",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23a70c4a_f8460f94",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-14T12:04:26Z",
+      "side": 1,
+      "message": "can you please add here something like logging.fatal(\u0027Benchmark execution interrupted by a fatal exception.\u0027)",
+      "revId": "220c6284043fdb6d6ec44d7f89f15686e3ae8314",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
