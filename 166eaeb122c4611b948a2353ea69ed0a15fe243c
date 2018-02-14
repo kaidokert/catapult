@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "358ca335_7b397fca",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-02-14T20:18:30Z",
+      "side": 1,
+      "message": "Not really sure if we need to split it like this, made it more consistent with the json list version though.",
+      "range": {
+        "startLine": 160,
+        "startChar": 26,
+        "endLine": 160,
+        "endChar": 31
+      },
+      "revId": "166eaeb122c4611b948a2353ea69ed0a15fe243c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
