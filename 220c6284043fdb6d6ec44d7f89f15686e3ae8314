@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "34caf47b_e1775114",
+        "filename": "telemetry/telemetry/internal/results/chart_json_output_formatter.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-02-14T18:57:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27324ac2_d201b13c",
+      "revId": "220c6284043fdb6d6ec44d7f89f15686e3ae8314",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e2362e0a_10ba493a",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 4
@@ -33,6 +51,24 @@
       "revId": "220c6284043fdb6d6ec44d7f89f15686e3ae8314",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d79ea34_d8026be3",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-02-14T18:57:37Z",
+      "side": 1,
+      "message": "This is a good point. Of course, it _is_ possible for Telemetry to encounter an error condition going from one story to the next. Because the current behavior depends on self.current_page_run being populated so that it can call SetFailed on it, this assertion is currently necessary, but I do agree that it would be saner to allow Fail to record failures that also occur outside of stories.\n\nFiled https://github.com/catapult-project/catapult/issues/4258 and added TODO here.",
+      "parentUuid": "e2362e0a_10ba493a",
+      "revId": "220c6284043fdb6d6ec44d7f89f15686e3ae8314",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "9ed7f177_a154398d",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-02-14T18:57:37Z",
+      "side": 1,
+      "message": "Agreed, I think you are very right to point out that the primary benefit to be gained by reasoning about whether a failure is handleable or not is so that it can be logged as such (which, mind you, we weren\u0027t even doing previously). From the point of view of PageTestResults, it doesn\u0027t seem to matter to the semantics of story runs or summarization whether a failure was handled by Telemetry or not.",
+      "parentUuid": "bf8535c7_ba65f849",
+      "revId": "220c6284043fdb6d6ec44d7f89f15686e3ae8314",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee29e57d_9caa4ecb",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 4
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "a8891031_b4b71516",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-02-14T18:57:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee29e57d_9caa4ecb",
+      "revId": "220c6284043fdb6d6ec44d7f89f15686e3ae8314",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "23a70c4a_f8460f94",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 4
@@ -84,6 +156,24 @@
       "revId": "220c6284043fdb6d6ec44d7f89f15686e3ae8314",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4d47ec6_19b60f88",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-02-14T18:57:37Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "23a70c4a_f8460f94",
+      "revId": "220c6284043fdb6d6ec44d7f89f15686e3ae8314",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

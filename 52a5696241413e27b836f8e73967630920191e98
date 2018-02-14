@@ -126,6 +126,24 @@
     },
     {
       "key": {
+        "uuid": "4d807033_d73d8ebf",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-02-14T18:57:37Z",
+      "side": 0,
+      "message": "Done. I also just removed the simple test that I had written for this, because it turns out that it can be flaky (sometimes the clock will show 0 ms, sometimes it will show 1).\n\nFiled https://github.com/catapult-project/catapult/issues/4259 and added a TODO to that spot in story_runner that you linked, about getting rid of this ability altogether.",
+      "parentUuid": "97f3b621_3192de23",
+      "revId": "52a5696241413e27b836f8e73967630920191e98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e28c5583_d0f08501",
         "filename": "telemetry/telemetry/internal/results/story_run.py",
         "patchSetId": 3
