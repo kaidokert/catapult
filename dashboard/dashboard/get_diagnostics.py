@@ -68,11 +68,11 @@ class GetDiagnosticsHandler(post_data_handler.PostDataHandler):
     except AssertionError:
       # Thrown if accessing internal_only as an external user.
       self.ReportError('Diagnostic not found', status=400)
-      return []
+      return
 
     if not diagnostic:
       self.ReportError('Diagnostic not found', status=400)
-      return []
+      return
 
     return [diagnostic]
 
@@ -93,7 +93,7 @@ class GetDiagnosticsHandler(post_data_handler.PostDataHandler):
 
     else:
       self.ReportError('Missing parameter', status=400)
-      return []
+      return
 
     query = query.order(-histogram.SparseDiagnostic.end_revision)
 
@@ -109,6 +109,6 @@ class GetDiagnosticsHandler(post_data_handler.PostDataHandler):
 
     if not results:
       self.ReportError('Diagnostic(s) not found', status=400)
-      return []
+      return
 
     return results
