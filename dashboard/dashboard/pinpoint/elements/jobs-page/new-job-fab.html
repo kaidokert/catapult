@@ -106,6 +106,14 @@ found in the LICENSE file.
         error: Object,
       },
 
+      ready() {
+        this.$.try_form.addEventListener('iron-form-presubmit', function(e) {
+          // The endpoint expects this param as a list of strings.
+          this.request.body.extra_test_args = JSON.stringify(
+              [this.request.body.extra_test_args]);
+        });
+      },
+
       openDialog() {
         this.$.try_dialog.open();
       },
