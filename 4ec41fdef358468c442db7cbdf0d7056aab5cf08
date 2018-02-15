@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d3c513c1_7f55d141",
+        "filename": "experimental/alert_configs/memory.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1115906
+      },
+      "writtenOn": "2018-02-15T16:10:00Z",
+      "side": 1,
+      "message": "In general, effective_size of malloc and other allocators [e.g. v8] is going to be pseudo-deterministically noisy, due to discretized allocation chunks.\n\nI think we want to move to a model where:\n\nimplementors of allocators [e.g. v8 team] gets alerts based on v8:effective_size.\n\nEveryone else gets alerts based on v8:sum of size of allocated objects.\n\nSee https://bugs.chromium.org/p/chromium/issues/detail?id\u003d736506#c6.",
+      "range": {
+        "startLine": 53,
+        "startChar": 17,
+        "endLine": 53,
+        "endChar": 48
+      },
+      "revId": "4ec41fdef358468c442db7cbdf0d7056aab5cf08",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
