@@ -438,10 +438,29 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
     results.PopulateHistogramSet(benchmark_metadata)
 
     histogram_dicts = results.AsHistogramDicts()
-    self.assertEquals(1, len(histogram_dicts))
+    self.assertEquals(2, len(histogram_dicts))
 
     diag = diagnostic.Diagnostic.FromDict(histogram_dicts[0])
     self.assertIsInstance(diag, generic_set.GenericSet)
+
+  def testPopulateHistogramSet_AddsBenchmarkDescription(self):
+    results = page_test_results.PageTestResults()
+    results.telemetry_info.benchmark_start_epoch = 1501773200
+    results.WillRunPage(self.pages[0])
+    results.AddValue(scalar.ScalarValue(
+        self.pages[0], 'a', 'seconds', 3,
+        improvement_direction=improvement_direction.UP))
+    results.DidRunPage(self.pages[0])
+    results.CleanUp()
+
+    benchmark_metadata = benchmark.BenchmarkMetadata(
+        'benchmark_name', 'benchmark_description')
+    results.PopulateHistogramSet(benchmark_metadata)
+
+    d = results.histograms.GetFirstHistogram().diagnostics.get(
+        reserved_infos.BENCHMARK_DESCRIPTIONS.name)
+    self.assertEquals(
+        benchmark_metadata.description, list(d)[0])
 
   def testPopulateHistogramSet_UsesScalarValueData(self):
     results = page_test_results.PageTestResults()
@@ -477,7 +496,7 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
     results.PopulateHistogramSet(benchmark_metadata)
 
     histogram_dicts = results.AsHistogramDicts()
-    self.assertEquals(2, len(histogram_dicts))
+    self.assertEquals(3, len(histogram_dicts))
 
     hs = histogram_set.HistogramSet()
     hs.ImportDicts(histogram_dicts)
