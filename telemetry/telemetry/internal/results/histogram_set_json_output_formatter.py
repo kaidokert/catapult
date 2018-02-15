@@ -25,4 +25,4 @@ class HistogramSetJsonOutputFormatter(output_formatter.OutputFormatter):
           histograms += json.loads(existing)
         except ValueError:
           logging.warn('Found existing histograms json but failed to parse it.')
-    json.dump(histograms, self._output_stream)
+    json.dump(histograms, self._output_stream, indent=2)

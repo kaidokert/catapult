@@ -28,6 +28,7 @@ from telemetry.value import trace
 
 from tracing.value import convert_chart_json
 from tracing.value import histogram_set
+from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import reserved_infos
 
 class TelemetryInfo(object):
@@ -240,9 +241,14 @@ class PageTestResults(object):
     return self.histograms.AsDicts()
 
   def PopulateHistogramSet(self, benchmark_metadata):
-    if len(self.histograms):
-      return
+    if not len(self.histograms):
+      self.PopulateHistogramSetFromChartjson(benchmark_metadata)
 
+    self.histograms.AddSharedDiagnostic(
+        reserved_infos.BENCHMARK_DESCRIPTIONS.name,
+        generic_set.GenericSet([benchmark_metadata.description]))
+
+  def PopulateHistogramSetFromChartjson(self, benchmark_metadata):
     chart_json = chart_json_output_formatter.ResultsAsChartDict(
         benchmark_metadata, self.all_page_specific_values,
         self.all_summary_values)
