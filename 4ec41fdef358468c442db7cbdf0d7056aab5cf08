@@ -22,6 +22,30 @@
       "revId": "4ec41fdef358468c442db7cbdf0d7056aab5cf08",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ca67152_11fffb9b",
+        "filename": "experimental/alert_configs/memory.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-15T17:17:06Z",
+      "side": 1,
+      "message": "PTAL, I\u0027ve switched alerts to allocated_objects_size for everything by default, but also kept v8 on effective_size.\n\nShould we add something like that for other allocators too? or just v8?\n\nAlso double checking: for system health purposes we\u0027re asked to report the metrics below in ANDROID_ALERTS. Would that be sufficient? Or should we also alert on effective_size (in addition to allocated_objects_size) for mobile?",
+      "parentUuid": "d3c513c1_7f55d141",
+      "range": {
+        "startLine": 53,
+        "startChar": 17,
+        "endLine": 53,
+        "endChar": 48
+      },
+      "revId": "4ec41fdef358468c442db7cbdf0d7056aab5cf08",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
