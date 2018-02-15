@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bd94122c_c48829f2",
+        "filename": "telemetry/telemetry/internal/util/webpagereplay_go_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-15T16:28:21Z",
+      "side": 1,
+      "message": "nit: probably no need to add the new bug? Work to fix this can be tracked in the existing one (and add a comment there why the timeout got bumped to 120)?",
+      "revId": "11c016dd876645df53c18128d13d83084330092b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
