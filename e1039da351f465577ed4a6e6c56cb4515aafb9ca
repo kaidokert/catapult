@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "77649dea_b360b133",
+        "filename": "experimental/alert_configs/memory.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1115906
+      },
+      "writtenOn": "2018-02-15T17:36:44Z",
+      "side": 1,
+      "message": "thanks, this looks good to me. let\u0027s also keep malloc on effective_size - I\u0027ve got some CLs in progress that will enable us to use allocated_objects_size, but they\u0027re not ready yet.",
+      "range": {
+        "startLine": 62,
+        "startChar": 35,
+        "endLine": 62,
+        "endChar": 41
+      },
+      "revId": "e1039da351f465577ed4a6e6c56cb4515aafb9ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
