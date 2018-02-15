@@ -121,6 +121,11 @@ def ProcessHistogramSet(histogram_dicts):
   _LogDebugInfo(histograms)
 
   InlineDenseSharedDiagnostics(histograms)
+
+  # TODO(eakuefner): Get rid of this.
+  # https://github.com/catapult-project/catapult/issues/4242
+  _PurgeHistogramBinData(histograms)
+
   revision = ComputeRevision(histograms)
   master, bot, benchmark = _GetMasterBotBenchmarkFromHistogram(
       histograms.GetFirstHistogram())
@@ -385,7 +390,11 @@ def ComputeRevision(histograms):
   # TODO(eakuefner): Allow users to specify other types of revisions to be used
   # for computing revisions of dashboard points. See
   # https://github.com/catapult-project/catapult/issues/3623.
-  return chromium_commit_position[0]
+  commit_position = chromium_commit_position[0]
+  if not isinstance(commit_position, int):
+    raise api_request_handler.BadRequestError(
+        'Commit Position must be an integer.')
+  return commit_position
 
 
 def InlineDenseSharedDiagnostics(histograms):
@@ -395,3 +404,14 @@ def InlineDenseSharedDiagnostics(histograms):
     for name, diag in diagnostics.iteritems():
       if name not in SPARSE_DIAGNOSTIC_NAMES:
         diag.Inline()
+
+
+def _PurgeHistogramBinData(histograms):
+  # We do this because RelatedEventSet and Breakdown data in bins is
+  # enormous in their current implementation.
+  for cur_hist in histograms:
+    for cur_bin in cur_hist.bins:
+      for dm in cur_bin.diagnostic_maps:
+        keys = dm.keys()
+        for k in keys:
+          del dm[k]

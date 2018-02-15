@@ -305,6 +305,7 @@ tr.exportTo('tr.metrics.sh', function() {
     // code by collecting all samples at once instead of once per renderer.
     // Add FMP, firstCpuIdle and interactive samples from load UE
     const interactiveSamples = [];
+    const fcpInteractiveSamples = [];
     const firstCpuIdleSamples = [];
     const firstMeaningfulPaintSamples = [];
     const firstMeaningfulPaintCpuTimeSamples = [];
@@ -334,6 +335,13 @@ tr.exportTo('tr.metrics.sh', function() {
             expectation.fmpEvent.start,
             expectation.domContentLoadedEndEvent.start, expectation.url));
       }
+      if (expectation.fcpInteractiveTime !== undefined) {
+        fcpInteractiveSamples.push(decorateInteractivitySampleWithDiagnostics_(
+          rendererHelper, expectation.fcpInteractiveTime,
+          expectation.navigationStart,
+          expectation.fmpEvent.start,
+          expectation.domContentLoadedEndEvent.start, expectation.url));
+      }
     }
 
     return {
@@ -344,6 +352,7 @@ tr.exportTo('tr.metrics.sh', function() {
       firstMeaningfulPaintCpuTimeSamples,
       firstCpuIdleSamples,
       interactiveSamples,
+      fcpInteractiveSamples,
     };
   }
 
@@ -425,6 +434,12 @@ tr.exportTo('tr.metrics.sh', function() {
           description: 'Time to Interactive',
           summaryOptions: SUMMARY_OPTIONS,
         });
+    const timeToFCPInteractiveHistogram = histograms.createHistogram(
+      'timeToFCPInteractive', timeDurationInMs_smallerIsBetter, [], {
+        binBoundaries: TIME_TO_INTERACTIVE_BOUNDARIES,
+        description: 'Time to Interactive with lower bound FCP.',
+        summaryOptions: SUMMARY_OPTIONS,
+      });
     const timeToFirstCpuIdleHistogram = histograms.createHistogram(
         'timeToFirstCpuIdle', timeDurationInMs_smallerIsBetter, [], {
           binBoundaries: TIME_TO_INTERACTIVE_BOUNDARIES,
@@ -465,6 +480,10 @@ tr.exportTo('tr.metrics.sh', function() {
           samplesSet.firstCpuIdleSamples,
           timeToFirstCpuIdleHistogram,
           histograms);
+      addSamplesToHistogram(
+        samplesSet.fcpInteractiveSamples,
+        timeToFCPInteractiveHistogram,
+        histograms);
     }
   }
 

@@ -15,6 +15,18 @@ found in the LICENSE file.
 tr.exportTo('tr.importer', function() {
   const LONG_TASK_THRESHOLD_MS = 50;
 
+  // Titles for top level tasks in the scheduler. Any input event queued during
+  // a top level task cannot be handled until the end of that task.
+  const TOP_LEVEL_TASK_TITLES = [
+    // Old name of scheduler top level tasks. Preserved for backwards
+    // compatibility with old traces.
+    'TaskQueueManager::ProcessTaskFromWorkQueue',
+    // This is the name of top level scheduler tasks as of
+    // https://crrev.com/c/883346.
+    'ThreadControllerImpl::DoWork',
+  ];
+
+
   /**
    * @param  {!tr.model.Process} process
    * @param  {!tr.b.math.Range} range
@@ -92,7 +104,7 @@ tr.exportTo('tr.importer', function() {
    *           firstCpuIdleTime: {number}|undefined}
    */
   function computeInteractivityMetricSample_(rendererHelper, navigationStart,
-      fmpEvent, domContentLoadedEndEvent, searchWindowEnd) {
+      fmpEvent, fcpEvent, domContentLoadedEndEvent, searchWindowEnd) {
     // Cannot determine TTI if DomContentLoadedEnd was never reached or if
     // there is no corresponding fmpEvent.
     if (domContentLoadedEndEvent === undefined || fmpEvent === undefined) {
@@ -100,9 +112,13 @@ tr.exportTo('tr.importer', function() {
     }
 
     const firstMeaningfulPaintTime = fmpEvent.start;
-    const mainThreadTasks =
-        [...rendererHelper.mainThread.findTopmostSlicesNamed(
-            'TaskQueueManager::ProcessTaskFromWorkQueue')];
+    const firstContentfulPaintTime = fcpEvent.start;
+    const mainThreadTasks = [];
+    for (const title of TOP_LEVEL_TASK_TITLES) {
+      mainThreadTasks.push(
+          ...rendererHelper.mainThread.findTopmostSlicesNamed(title));
+    }
+
     const longTasks = mainThreadTasks.filter(
         task => task.duration >= LONG_TASK_THRESHOLD_MS);
     const longTasksInWindow = longTasks.filter(
@@ -122,7 +138,12 @@ tr.exportTo('tr.importer', function() {
             firstMeaningfulPaintTime, searchWindowEnd,
             domContentLoadedEndEvent.start, longTasksInWindow,
             resourceLoadEvents);
-    return {interactiveTime, firstCpuIdleTime};
+    const fcpInteractiveTime =
+          tr.e.chrome.findInteractiveTime(
+            firstContentfulPaintTime, searchWindowEnd,
+            domContentLoadedEndEvent.start, longTasksInWindow,
+            resourceLoadEvents);
+    return {interactiveTime, firstCpuIdleTime, fcpInteractiveTime};
   }
 
   /* Constructs a loading metrics for the specified navigation start event and
@@ -166,6 +187,8 @@ tr.exportTo('tr.importer', function() {
     const dclTimesInWindow =
         dclSearchRange.filterArray(dclTimesForFrame, event => event.start);
     let domContentLoadedEndEvent = undefined;
+
+
     if (dclTimesInWindow.length !== 0) {
       // TODO(catapult:#3796): Ideally a frame should reach DomContentLoadedEnd
       // at most once within two navigationStarts, but sometimes there is a
@@ -177,9 +200,23 @@ tr.exportTo('tr.importer', function() {
         dclTimesInWindow[dclTimesInWindow.length - 1];
     }
 
-    const {interactiveTime, firstCpuIdleTime} =
+    const frameToFCPEvents =
+          tr.e.chrome.EventFinderUtils.getSortedMainThreadEventsByFrame(
+            rendererHelper, 'firstContentfulPaint', 'loading');
+    const fcpEventsForFrame = frameToFCPEvents.get(frameId) || [];
+    // Reuse the dclSearchRange.
+    const fcpEventsInWindow =
+          dclSearchRange.filterArray(fcpEventsForFrame, event => event.start);
+    let fcpEvent = undefined;
+    if (fcpEventsInWindow.length !== 0) {
+      // There really shouldn't be more than one FCP event, but if there is one,
+      // pick the last one.
+      fcpEvent = fcpEventsInWindow[fcpEventsInWindow.length - 1];
+    }
+
+    const {interactiveTime, firstCpuIdleTime, fcpInteractiveTime} =
       computeInteractivityMetricSample_(
-          rendererHelper, navigationStart, fmpEvent,
+          rendererHelper, navigationStart, fmpEvent, fcpEvent,
           domContentLoadedEndEvent, searchWindowEnd);
 
     const duration = (interactiveTime === undefined) ?
@@ -190,8 +227,8 @@ tr.exportTo('tr.importer', function() {
               rendererHelper.modelHelper.model,
               tr.model.um.LOAD_SUBTYPE_NAMES.SUCCESSFUL, navigationStart.start,
               duration, rendererHelper.process, navigationStart, fmpEvent,
-              domContentLoadedEndEvent, firstCpuIdleTime, interactiveTime, url,
-              frameId);
+              domContentLoadedEndEvent, firstCpuIdleTime, interactiveTime, fcpInteractiveTime,
+              url, frameId);
   }
 
   /**
