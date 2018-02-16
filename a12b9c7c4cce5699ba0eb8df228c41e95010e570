@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f915cec5_a349970f",
+        "filename": "experimental/alert_configs/memory.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-16T14:34:14Z",
+      "side": 1,
+      "message": "Discussed with Primiano offline, many of these (cc, gpu, skia) do not yet report anything as allocated_objects_size.",
+      "revId": "a12b9c7c4cce5699ba0eb8df228c41e95010e570",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8191780d_81aef2ea",
+        "filename": "experimental/alert_configs/memory.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-16T14:34:14Z",
+      "side": 1,
+      "message": "Sorted these to match the order on https://chrome-health.googleplex.com/health-plan/android-chrome/memory/nexus5/",
+      "revId": "a12b9c7c4cce5699ba0eb8df228c41e95010e570",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ebd8b81_c3fa04d8",
+        "filename": "experimental/alert_configs/memory.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-16T14:34:14Z",
+      "side": 1,
+      "message": "We\u0027ll also report the extra android metrics for system_health.memory_mobile.",
+      "revId": "a12b9c7c4cce5699ba0eb8df228c41e95010e570",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
