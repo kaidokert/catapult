@@ -70,6 +70,12 @@ class LinuxPlatformBackend(
   def GetOSVersionDetailString(self):
     return ''  # TODO(kbr): Implement this.
 
+  def CanTakeScreenshot(self):
+    return True
+
+  def TakeScreenshot(self, file_path):
+    return subprocess.check_output(['import', '-window', 'root', file_path])
+
   def CanFlushIndividualFilesFromSystemCache(self):
     return True
 
