@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fe4fdf9e_6d47ff93",
+        "filename": "telemetry/telemetry/internal/results/page_test_results_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-02-16T00:07:41Z",
+      "side": 1,
+      "message": "do you mean \"return not name.endswith(\u0027avg\u0027)\"? Since the param name is \"should_add_value\" \u0026 you want to test the case of users not wanting metrics with name ends with \"avg\"?",
+      "revId": "e996d019d38efb1dd1d52ccf9d9c9df489170960",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
