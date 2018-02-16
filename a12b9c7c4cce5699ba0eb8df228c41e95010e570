@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "0c20183b_91525f63",
+        "filename": "experimental/alert_configs/memory.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1002871
+      },
+      "writtenOn": "2018-02-16T14:44:15Z",
+      "side": 1,
+      "message": "I don\u0027t think it\u0027s a matter of readiness. Is more that \"allocated objects\" is something that makes sense only in allocator-like subsystems (I know, the fact that we call everythig \"allocator\"  makes it more confusing)",
+      "range": {
+        "startLine": 66,
+        "startChar": 14,
+        "endLine": 66,
+        "endChar": 27
+      },
+      "revId": "a12b9c7c4cce5699ba0eb8df228c41e95010e570",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f915cec5_a349970f",
         "filename": "experimental/alert_configs/memory.py",
         "patchSetId": 6
@@ -13,6 +36,29 @@
       "writtenOn": "2018-02-16T14:34:14Z",
       "side": 1,
       "message": "Discussed with Primiano offline, many of these (cc, gpu, skia) do not yet report anything as allocated_objects_size.",
+      "revId": "a12b9c7c4cce5699ba0eb8df228c41e95010e570",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecc10fbb_75e77b55",
+        "filename": "experimental/alert_configs/memory.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1002871
+      },
+      "writtenOn": "2018-02-16T14:44:15Z",
+      "side": 1,
+      "message": "do we have shared_footprint also plumbed in telemetry (it\u0027s there in UMA).\nIf no, let\u0027s discuss that separately from this CL\nIf yes, let\u0027s just add it.",
+      "range": {
+        "startLine": 73,
+        "startChar": 53,
+        "endLine": 73,
+        "endChar": 70
+      },
       "revId": "a12b9c7c4cce5699ba0eb8df228c41e95010e570",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
