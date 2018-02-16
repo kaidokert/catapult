@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "372082cc_afc89909",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-02-16T16:38:49Z",
+      "side": 1,
+      "message": "I think the right thing is enforce all stories must have length \u003c 75 characters regardless of whether they use urls or html link.\n\nIf this fixes an immediate problem feel free to land it",
+      "revId": "49551870268b9b220bd317cb81a1598480da79cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
