@@ -80,7 +80,7 @@ class NewTest(testing_common.TestCase):
     self.assertIn('jobId', result)
     self.assertEqual(
         result['jobUrl'],
-        'https://testbed.example.com/job/%s' % result['jobId'])
+        'https://None/job/%s' % result['jobId'])
 
   @mock.patch.object(api_auth, '_AuthorizeOauthUser', mock.MagicMock())
   @mock.patch(
@@ -105,6 +105,7 @@ class NewTest(testing_common.TestCase):
     job = job_module.JobFromId(result['jobId'])
     self.assertTrue(job.auto_explore)
 
+  @mock.patch.object(new.job_module.Job, 'url', 'https://example.com/job/foo')
   @mock.patch.object(api_auth, '_AuthorizeOauthUser', mock.MagicMock())
   @mock.patch(
       'dashboard.services.issue_tracker_service.IssueTrackerService',
@@ -132,9 +133,7 @@ class NewTest(testing_common.TestCase):
     response = self.testapp.post('/api/new', base_request, status=200)
     result = json.loads(response.body)
     self.assertIn('jobId', result)
-    self.assertEqual(
-        result['jobUrl'],
-        'https://testbed.example.com/job/%s' % result['jobId'])
+    self.assertEqual(result['jobUrl'], 'https://example.com/job/foo')
 
   @mock.patch.object(api_auth, '_AuthorizeOauthUser', mock.MagicMock())
   @mock.patch(
@@ -161,7 +160,7 @@ class NewTest(testing_common.TestCase):
     self.assertIn('jobId', result)
     self.assertEqual(
         result['jobUrl'],
-        'https://testbed.example.com/job/%s' % result['jobId'])
+        'https://None/job/%s' % result['jobId'])
     mock_patch.assert_called_with(params['patch'])
 
   @mock.patch.object(api_auth, '_AuthorizeOauthUser', mock.MagicMock())
@@ -216,7 +215,7 @@ class NewTest(testing_common.TestCase):
     self.assertIn('jobId', result)
     self.assertEqual(
         result['jobUrl'],
-        'https://testbed.example.com/job/%s' % result['jobId'])
+        'https://None/job/%s' % result['jobId'])
     job = job_module.Job.query().get()
     self.assertEqual(None, job.bug_id)
 
