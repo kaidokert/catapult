@@ -161,6 +161,24 @@
       "revId": "a12b9c7c4cce5699ba0eb8df228c41e95010e570",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c4e6906_93539b90",
+        "filename": "experimental/alert_configs/memory.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-02-20T18:21:11Z",
+      "side": 1,
+      "message": "Not particularly, we break this up into tasks on the backend so request timeouts aren\u0027t much of an issue, and since these are going to your own configs that probably won\u0027t be manually edited then I don\u0027t see much of an issue either way.",
+      "parentUuid": "d2abb497_9b2c1416",
+      "revId": "a12b9c7c4cce5699ba0eb8df228c41e95010e570",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
