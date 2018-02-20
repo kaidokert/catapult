@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c9379fe7_84f7582f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-20T17:03:21Z",
+      "side": 1,
+      "message": "I\u0027ll file and add a bug to this before landing.",
+      "revId": "36b51abb7accc5f704b0a0e3729c562f68f11e2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
