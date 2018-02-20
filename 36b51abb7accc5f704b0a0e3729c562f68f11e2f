@@ -16,6 +16,98 @@
       "revId": "36b51abb7accc5f704b0a0e3729c562f68f11e2f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd7dd8df_ad35da50",
+        "filename": "experimental/soundwave/soundwave/utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-02-20T19:47:37Z",
+      "side": 1,
+      "message": "nednguyen@google.com, does it make sense to put this function in py_utils?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 42
+      },
+      "revId": "36b51abb7accc5f704b0a0e3729c562f68f11e2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab4c0a8d_ad30c80d",
+        "filename": "experimental/soundwave/soundwave/utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-02-20T19:47:37Z",
+      "side": 1,
+      "message": "Probably want to specify the first delay in the function doc (1 second)",
+      "range": {
+        "startLine": 12,
+        "startChar": 2,
+        "endLine": 12,
+        "endChar": 57
+      },
+      "revId": "36b51abb7accc5f704b0a0e3729c562f68f11e2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc079684_36717b1b",
+        "filename": "experimental/soundwave/soundwave/utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-02-20T19:47:37Z",
+      "side": 1,
+      "message": "Without too much knowledge, it seems like a list might make more sense than a tuple here",
+      "range": {
+        "startLine": 15,
+        "startChar": 14,
+        "endLine": 15,
+        "endChar": 52
+      },
+      "revId": "36b51abb7accc5f704b0a0e3729c562f68f11e2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5256681c_4864ab9f",
+        "filename": "experimental/soundwave/soundwave/utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-02-20T19:47:37Z",
+      "side": 1,
+      "message": "I may be in over my head python-wise here, but it seems like we could just use the \u0027retries\u0027 that\u0027s still available from the original outer function scope?",
+      "range": {
+        "startLine": 23,
+        "startChar": 6,
+        "endLine": 23,
+        "endChar": 54
+      },
+      "revId": "36b51abb7accc5f704b0a0e3729c562f68f11e2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
