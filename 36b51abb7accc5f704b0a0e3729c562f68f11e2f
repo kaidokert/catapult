@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e4c885d_d9ae1689",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-21T15:27:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9379fe7_84f7582f",
+      "revId": "36b51abb7accc5f704b0a0e3729c562f68f11e2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dd7dd8df_ad35da50",
         "filename": "experimental/soundwave/soundwave/utils.py",
         "patchSetId": 1
@@ -114,6 +132,30 @@
     },
     {
       "key": {
+        "uuid": "c598fd6e_1bb8f3ee",
+        "filename": "experimental/soundwave/soundwave/utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-21T15:27:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e38b1c1_2b097354",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 42
+      },
+      "revId": "36b51abb7accc5f704b0a0e3729c562f68f11e2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ab4c0a8d_ad30c80d",
         "filename": "experimental/soundwave/soundwave/utils.py",
         "patchSetId": 1
@@ -134,6 +176,30 @@
       "revId": "36b51abb7accc5f704b0a0e3729c562f68f11e2f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "203a2fe5_8b897436",
+        "filename": "experimental/soundwave/soundwave/utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-21T15:27:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab4c0a8d_ad30c80d",
+      "range": {
+        "startLine": 12,
+        "startChar": 2,
+        "endLine": 12,
+        "endChar": 57
+      },
+      "revId": "36b51abb7accc5f704b0a0e3729c562f68f11e2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -160,6 +226,30 @@
     },
     {
       "key": {
+        "uuid": "cff1b542_4b60859e",
+        "filename": "experimental/soundwave/soundwave/utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-21T15:27:08Z",
+      "side": 1,
+      "message": "The fact that this must be a tuple follows from the way try-except blocks work in python, specifically: \"For an except clause with an expression, that expression is evaluated, and the clause matches the exception if the resulting object is “compatible” with the exception. An object is compatible with an exception if it is the class or a base class of the exception object, or a tuple containing an item compatible with the exception.\"\n\nhttps://docs.python.org/2/reference/compound_stmts.html#the-try-statement",
+      "parentUuid": "cc079684_36717b1b",
+      "range": {
+        "startLine": 15,
+        "startChar": 14,
+        "endLine": 15,
+        "endChar": 52
+      },
+      "revId": "36b51abb7accc5f704b0a0e3729c562f68f11e2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5256681c_4864ab9f",
         "filename": "experimental/soundwave/soundwave/utils.py",
         "patchSetId": 1
@@ -171,6 +261,30 @@
       "writtenOn": "2018-02-20T19:47:37Z",
       "side": 1,
       "message": "I may be in over my head python-wise here, but it seems like we could just use the \u0027retries\u0027 that\u0027s still available from the original outer function scope?",
+      "range": {
+        "startLine": 23,
+        "startChar": 6,
+        "endLine": 23,
+        "endChar": 54
+      },
+      "revId": "36b51abb7accc5f704b0a0e3729c562f68f11e2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ec6f2c6_61ba7278",
+        "filename": "experimental/soundwave/soundwave/utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-21T15:27:08Z",
+      "side": 1,
+      "message": "This allows callers of the decorated function to override (from kwargs) the default number of retries (from the outer scope). I\u0027ve extended the documentation on this, added an example, and had to change the API slightly to make pylint happy.\n\nAlso added a bunch of unittests/examples which further help to clarify the usage.",
+      "parentUuid": "5256681c_4864ab9f",
       "range": {
         "startLine": 23,
         "startChar": 6,
