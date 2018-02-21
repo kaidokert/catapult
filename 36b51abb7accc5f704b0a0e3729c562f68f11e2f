@@ -90,6 +90,30 @@
     },
     {
       "key": {
+        "uuid": "0e38b1c1_2b097354",
+        "filename": "experimental/soundwave/soundwave/utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-21T12:03:40Z",
+      "side": 1,
+      "message": "sgtm\n\nbut importing from py_utils means adding it to the sys.path; to avoid again having to make the change twice on the two fetch_* scripts, I\u0027m going to first write a CL to merge them into a single top-level \"soundwave\" script, and then come back to this CL.",
+      "parentUuid": "eb9e3868_3459b6ce",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 42
+      },
+      "revId": "36b51abb7accc5f704b0a0e3729c562f68f11e2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ab4c0a8d_ad30c80d",
         "filename": "experimental/soundwave/soundwave/utils.py",
         "patchSetId": 1
