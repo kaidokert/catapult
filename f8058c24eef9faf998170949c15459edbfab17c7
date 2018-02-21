@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d7c0417_c2497ce2",
+        "filename": "experimental/soundwave/bin/soundwave",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-02-21T16:04:42Z",
+      "side": 1,
+      "message": "I might change this to 2018 given that this new merged file is new",
+      "range": {
+        "startLine": 2,
+        "startChar": 12,
+        "endLine": 2,
+        "endChar": 16
+      },
+      "revId": "f8058c24eef9faf998170949c15459edbfab17c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
