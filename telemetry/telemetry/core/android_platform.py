@@ -48,6 +48,21 @@ class AndroidPlatform(platform.Platform):
     """
     return self._platform_backend.GetSharedPrefs(package, filename)
 
+  def InstallComponent(self, host_path, component_name, version):
+    """Installs component updater files onto the test device.
+
+    Copies all the files from host_path to the test device in the correct
+    location and with the correct permissions to have them be recognized as
+    a component.
+
+    Args:
+      host_path: The path to the directory on the host containing the files to
+          be copied.
+      component_name: The name of the component being copied.
+      version: The version of the component being copied.
+    """
+    self._platform_backend.InstallComponent(host_path, component_name, version)
+
   def IsSvelte(self):
     return self._platform_backend.IsSvelte()
 
@@ -79,3 +94,14 @@ class AndroidPlatform(platform.Platform):
         self._platform_backend, start_intent, is_app_ready_predicate,
         app_has_webviews)
     return android_app.AndroidApp(app_backend, self._platform_backend)
+
+  def PushFileOrDirectory(self, host_path, device_path):
+    """Pushes the file or directory from the host to the device.
+
+    Args:
+      host_path: The absolute path to the file or directory on the host that
+          will be pushed to the device.
+      device_path: The path on the device where the file or directory will be
+          pushed to.
+    """
+    self._platform_backend.PushFileOrDirectory(host_path, device_path)

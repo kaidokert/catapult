@@ -151,6 +151,96 @@ class AndroidPlatformBackend(
     """
     return shared_prefs.SharedPrefs(self._device, package, filename)
 
+  def InstallComponent(self, host_path, component_name, version):
+    """Installs component updater files onto the test device.
+
+    Copies all the files from host_path to the test device in the correct
+    location and with the correct permissions to have them be recognized as
+    a component.
+
+    Args:
+      host_path: The path to the directory on the host containing the files to
+          be copied.
+      component_name: The name of the component being copied.
+      version: The version of the component being copied.
+    """
+    package = 'org.chromium.chrome'
+
+    # Component updater files are installed in
+    # /data/data/<package>/app_chrome/<component>/<version>. Additionally, there
+    # is a very specific set of permissions that must be set in order for
+    # Chrome/Chromium to actually use the component files:
+    # 1. All files and directories must use the package's security context and
+    #    have their owner set to the package's owner.
+    # 2. app_chrome/ must have its mode set to 700.
+    # 3. The component's directory must have its mode set to 700, and its group
+    #    set to the package's owner.
+    # 4. The version directory must have its mode set to 2700 (700 + setGID bit
+    #    set). Its group must be set to the package's owner with _cache appended
+    #    to it.
+    # 5. All files within the directory must have their mode set to 600
+
+    # Get the package's security context and owner
+    security_context = self._device.GetSecurityContextForPackage(package)
+    if not security_context:
+      raise RuntimeError('Could not get security context for %s' % package)
+    owner = None
+    for line in self._device.RunShellCommand(['ls', '-l', '/data/data/'],
+                                             as_root=True, check_return=True):
+      split_line = line.split()
+      # The last column should always be the directory (package) name and the
+      # third column should always be its owner
+      if split_line[-1] == package:
+        owner = split_line[2]
+    if not owner:
+      raise RuntimeError('Could not get owner for %s' % package)
+
+    package_dir = '/data/data/%s' % package
+
+    # Check if app_chrome exists, and create it if it does not
+    app_chrome_dir = '%s/app_chrome' % package_dir
+    if not self._device.PathExists(app_chrome_dir, as_root=True):
+      self._device.RunShellCommand(['mkdir', app_chrome_dir], as_root=True,
+                                   check_return=True)
+      self._device.RunShellCommand(['chmod', '700', app_chrome_dir],
+                                   as_root=True, check_return=True)
+
+    # Check if the component directory exists, and create it if it does not
+    component_dir = '%s/%s' % (app_chrome_dir, component_name)
+    if not self._device.PathExists(component_dir, as_root=True):
+      self._device.RunShellCommand(['mkdir', component_dir], as_root=True,
+                                   check_return=True)
+      self._device.RunShellCommand(['chmod', '700', component_dir],
+                                   as_root=True, check_return=True)
+      self._device.RunShellCommand(['chgrp', owner, component_dir],
+                                   as_root=True, check_return=True)
+
+    # Remove any pre-existing copies of the same version
+    version_dir = '%s/%s' % (component_dir, version)
+    if self._device.PathExists(version_dir, as_root=True):
+      self._device.RemovePath(version_dir, force=True, recursive=True,
+                              as_root=True)
+
+    # Push the files from the host to device and set their permissions
+    self._device.PushChangedFiles([(host_path, version_dir)])
+    self._device.RunShellCommand(['chmod', '2700', version_dir], as_root=True,
+                                 check_return=True)
+    self._device.RunShellCommand(['chgrp', '-R', '%s_cache' % owner,
+                                  version_dir],
+                                 as_root=True, check_return=True)
+    component_files = self._device.ListDirectory(version_dir, as_root=True)
+    command = ['chmod', '600']
+    for f in component_files:
+      command.append('%s/%s' % (version_dir, f))
+    self._device.RunShellCommand(command, as_root=True, check_return=True)
+
+    # Set common permissions
+    self._device.RunShellCommand(['chown', '-R', owner, app_chrome_dir],
+                                 as_root=True, check_return=True)
+    self._device.RunShellCommand(['chcon', '-R', security_context,
+                                  app_chrome_dir], as_root=True,
+                                 check_return=True)
+
   def IsSvelte(self):
     description = self._device.GetProp('ro.build.description', cache=True)
     if description is not None:
@@ -361,6 +451,17 @@ class AndroidPlatformBackend(
       if line.startswith('Error: '):
         raise ValueError('Failed to start "%s" with error\n  %s' %
                          (application, line))
+
+  def PushFileOrDirectory(self, host_path, device_path):
+    """Pushes the file or directory from the host to the device.
+
+    Args:
+      host_path: The absolute path to the file or directory on the host that
+          will be pushed to the device.
+      device_path: The path on the device where the file or directory will be
+          pushed to.
+    """
+    self._device.PushChangedFiles([(host_path, device_path)])
 
   def StartActivity(self, intent, blocking):
     """Starts an activity for the given intent on the device."""
