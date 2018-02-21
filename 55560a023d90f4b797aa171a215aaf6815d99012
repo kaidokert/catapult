@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2c853aa4_4de40ae4",
+        "filename": "common/py_utils/py_utils/retry_util_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-02-21T16:02:01Z",
+      "side": 1,
+      "message": "nit: s/suceeds/succeeds",
+      "range": {
+        "startLine": 112,
+        "startChar": 22,
+        "endLine": 112,
+        "endChar": 29
+      },
+      "revId": "55560a023d90f4b797aa171a215aaf6815d99012",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
