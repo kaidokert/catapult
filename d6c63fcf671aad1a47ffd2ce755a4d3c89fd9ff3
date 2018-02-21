@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a15def2_82ab6d4f",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-02-21T18:49:10Z",
+      "side": 1,
+      "message": "Update this once you\u0027ve changed the name of the diagnostic to be plural.",
+      "revId": "d6c63fcf671aad1a47ffd2ce755a4d3c89fd9ff3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2347035c_58ff450b",
+        "filename": "tracing/tracing/value/diagnostics/reserved_infos.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-02-21T18:49:10Z",
+      "side": 1,
+      "message": "probably want to make this plural: BENCHMARK_DESCRIPTION/benchmarkDescriptions.",
+      "revId": "d6c63fcf671aad1a47ffd2ce755a4d3c89fd9ff3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3b2f221_662f6cea",
+        "filename": "tracing/tracing/value/diagnostics/reserved_names.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-02-21T18:49:10Z",
+      "side": 1,
+      "message": "Same here.",
+      "revId": "d6c63fcf671aad1a47ffd2ce755a4d3c89fd9ff3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
