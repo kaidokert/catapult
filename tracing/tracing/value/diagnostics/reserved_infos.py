@@ -28,6 +28,7 @@ class _Info(object):
 ANGLE_REVISIONS = _Info('angleRevisions', 'GenericSet', str)
 ARCHITECTURES = _Info('architectures', 'GenericSet', str)
 BENCHMARKS = _Info('benchmarks', 'GenericSet', str)
+BENCHMARK_DESCRIPTION = _Info('benchmarkDescription', 'GenericSet', str)
 BENCHMARK_START = _Info('benchmarkStart', 'DateRange')
 BOTS = _Info('bots', 'GenericSet', str)
 BUG_COMPONENTS = _Info('bugComponents', 'GenericSet', str)
