@@ -34,6 +34,24 @@
       "revId": "dd482532f3a0416d8e7deaed0f23ee348b45f8bf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f81774f_e1c129d9",
+        "filename": "tracing/tracing/value/diagnostics/reserved_infos.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-02-21T20:08:01Z",
+      "side": 1,
+      "message": "Sorry, my point was just that this hunk should not be part of this CL.",
+      "parentUuid": "f0f93913_d5109120",
+      "revId": "dd482532f3a0416d8e7deaed0f23ee348b45f8bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
