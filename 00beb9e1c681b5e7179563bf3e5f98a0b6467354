@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fbfdcb47_3a5653b0",
+        "filename": "experimental/soundwave/soundwave/alert_model.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-22T14:19:53Z",
+      "side": 1,
+      "message": "For these I\u0027m trying to follow the V2 SPA conventions where:\n- we break the old \"test\" path into, at least, measurement and test_case (aka story) components\n- bot now combines the \"master\" (a concept which might go away in the future) and the builder name.",
+      "revId": "00beb9e1c681b5e7179563bf3e5f98a0b6467354",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
