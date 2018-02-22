@@ -16,6 +16,24 @@
       "revId": "a0819a8ba98260d34924fb4a5429b9b7935200e8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d16b7f4_c76404c2",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_startup_args_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-02-22T20:42:37Z",
+      "side": 1,
+      "message": "The difference is in the 2nd param of chrome_startup_args.GetReplayArgs(...) call :-)\n\nI will make it clearer by explicitly specifying the param name.",
+      "parentUuid": "2ff07e9f_a6f72e13",
+      "revId": "a0819a8ba98260d34924fb4a5429b9b7935200e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
