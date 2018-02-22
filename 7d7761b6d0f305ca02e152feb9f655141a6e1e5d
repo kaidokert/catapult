@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b1b697b6_90215084",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-22T17:04:29Z",
+      "side": 1,
+      "message": "there was no need to have this public.",
+      "revId": "7d7761b6d0f305ca02e152feb9f655141a6e1e5d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

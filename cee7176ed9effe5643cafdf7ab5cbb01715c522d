@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a16a187d_d6d07e00",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-22T17:04:29Z",
+      "side": 0,
+      "message": "no need for expanduser, this is done by the shell (and if it wasn\u0027t done, it would have failed the file existence test earlier).",
+      "revId": "cee7176ed9effe5643cafdf7ab5cbb01715c522d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0c534ce_318007bb",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-22T17:04:29Z",
+      "side": 0,
+      "message": "it\u0027s not possible for exact_package to be missing, GetPackageName already raises an exception when it cannot find the package name.",
+      "revId": "cee7176ed9effe5643cafdf7ab5cbb01715c522d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
