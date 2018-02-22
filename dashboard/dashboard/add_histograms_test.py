@@ -211,11 +211,16 @@ class AddHistogramsEndToEndTest(testing_common.TestCase):
     self.assertFalse(mock_process_test.called)
     self.assertFalse(mock_graph_revisions.called)
 
-  def _SetupRefTest(self, ref_name):
+  def _SetupRefTest(self, ref_name, story_name=None):
     sheriff.Sheriff(
         id='ref_sheriff', email='a@chromium.org', patterns=['*/*/*/*']).put()
     data = copy.deepcopy(_SAMPLE_HISTOGRAM_END_TO_END)
     data[4]['name'] = ref_name
+    if story_name is not None:
+      data[4]['diagnostics'][reserved_infos.STORIES.name] = {
+          'type': 'GenericSet',
+          'values': [story_name]
+      }
     data = json.dumps(data)
     self.testapp.post('/add_histograms', {'data': data})
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
@@ -225,14 +230,22 @@ class AddHistogramsEndToEndTest(testing_common.TestCase):
   def testPost_TestNameEndsWithUnderscoreRef_ProcessTestIsNotCalled(
       self, mock_process_test):
     """Tests that Tests ending with "_ref" aren't analyzed for Anomalies."""
-    self._SetupRefTest('abcd_ref')
-    mock_process_test.assert_called_once_with([])
+    sheriff.Sheriff(
+        id='ref_sheriff', email='a@chromium.org', patterns=['*/*/*/*']).put()
+    hs = self._CreateHistogram(
+        master='master', bot='bot', benchmark='benchmark',
+        commit_position=424242, stories=['abcd_ref'])
+    data = json.dumps(hs.AsDicts())
+    self.testapp.post('/add_histograms', {'data': data})
+    self.ExecuteTaskQueueTasks('/add_histograms_queue',
+                               add_histograms.TASK_QUEUE_NAME)
+    mock_process_test.assert_not_called()
 
   @mock.patch.object(add_histograms_queue.find_anomalies, 'ProcessTestsAsync')
   def testPost_TestNameEndsWithSlashRef_ProcessTestIsNotCalled(
       self, mock_process_test):
     """Tests that leaf tests named ref aren't added to the task queue."""
-    self._SetupRefTest('ref')
+    self._SetupRefTest('foo', 'ref')
     mock_process_test.assert_called_once_with([])
 
   @mock.patch.object(add_histograms_queue.find_anomalies, 'ProcessTestsAsync')
