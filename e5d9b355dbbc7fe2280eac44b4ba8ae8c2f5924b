@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a5744732_57a9d292",
+        "filename": "dashboard/dashboard/add_histograms_queue.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-02-22T23:22:13Z",
+      "side": 1,
+      "message": "No, you\u0027re right, and this is bogus. Fixed the wrong end-to-end tests that required this logic and removed it in the latest patch set.",
+      "parentUuid": "f22484a5_4a28bf52",
+      "range": {
+        "startLine": 264,
+        "startChar": 5,
+        "endLine": 264,
+        "endChar": 19
+      },
+      "revId": "e5d9b355dbbc7fe2280eac44b4ba8ae8c2f5924b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "05ebd622_6905fe0f",
         "filename": "dashboard/dashboard/add_histograms_test.py",
         "patchSetId": 6
@@ -45,6 +69,30 @@
       "revId": "e5d9b355dbbc7fe2280eac44b4ba8ae8c2f5924b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebb47fd8_74dfbd9a",
+        "filename": "dashboard/dashboard/add_histograms_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-02-22T23:22:13Z",
+      "side": 1,
+      "message": "Done. Removed the _SetupRefTest helper and changed all of the tests that used it to modify the stories diagnostic directly, rather than mutating the histogram name at all (because that caused me to introduce wrong logic in /add_histograms_queue).",
+      "parentUuid": "05ebd622_6905fe0f",
+      "range": {
+        "startLine": 219,
+        "startChar": 7,
+        "endLine": 219,
+        "endChar": 17
+      },
+      "revId": "e5d9b355dbbc7fe2280eac44b4ba8ae8c2f5924b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
