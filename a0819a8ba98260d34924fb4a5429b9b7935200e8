@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ff07e9f_a6f72e13",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_startup_args_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1120845
+      },
+      "writtenOn": "2018-02-22T20:41:10Z",
+      "side": 1,
+      "message": "The contents of these two tests are the same. Duplicate?",
+      "revId": "a0819a8ba98260d34924fb4a5429b9b7935200e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
