@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f22484a5_4a28bf52",
+        "filename": "dashboard/dashboard/add_histograms_queue.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-02-22T22:43:44Z",
+      "side": 1,
+      "message": "Is this right? I thought ref would always show up at the end of the test name.",
+      "range": {
+        "startLine": 264,
+        "startChar": 5,
+        "endLine": 264,
+        "endChar": 19
+      },
+      "revId": "e5d9b355dbbc7fe2280eac44b4ba8ae8c2f5924b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05ebd622_6905fe0f",
+        "filename": "dashboard/dashboard/add_histograms_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-02-22T22:43:44Z",
+      "side": 1,
+      "message": "Been slowly changing things in here to use that _CreateHistogram function above, might be a bit cleaner than indexing into this json.",
+      "range": {
+        "startLine": 219,
+        "startChar": 7,
+        "endLine": 219,
+        "endChar": 17
+      },
+      "revId": "e5d9b355dbbc7fe2280eac44b4ba8ae8c2f5924b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
