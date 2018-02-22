@@ -14,6 +14,7 @@ import urllib
 from apiclient import discovery
 from apiclient import errors
 from google.appengine.api import memcache
+from google.appengine.api import oauth
 from google.appengine.api import urlfetch
 from google.appengine.api import urlfetch_errors
 from google.appengine.api import users
@@ -335,9 +336,20 @@ def MinimumRange(ranges):
   return start, end
 
 
+OAUTH_SCOPES = (
+    'https://www.googleapis.com/auth/userinfo.email',
+)
+
 def IsInternalUser():
   """Checks whether the user should be able to see internal-only data."""
   username = users.get_current_user()
+  if not username:
+    try:
+      user = oauth.get_current_user(OAUTH_SCOPES)
+      if user:
+        username = user.email()
+    except (oauth.InvalidOAuthTokenError, oauth.InvalidOAuthParametersError):
+      pass
   if not username:
     return False
   cached = GetCachedIsInternalUser(username)
@@ -383,6 +395,7 @@ def IsGroupMember(identity, group):
     response = request.execute()
     is_member = response['is_member']
     SetCachedIsGroupMember(identity, group, is_member)
+    logging.info('IsGroupMember %r %r %s', identity, group, is_member)
     return is_member
   except (errors.HttpError, KeyError, AttributeError) as e:
     logging.error('Failed to check membership of %s: %s', identity, e)
