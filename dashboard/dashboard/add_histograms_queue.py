@@ -233,7 +233,13 @@ def _ProcessRowAndHistogram(params, bot_whitelist):
   test_path_parts = test_path.split('/')
   master = test_path_parts[0]
   bot = test_path_parts[1]
-  test_name = '/'.join(test_path_parts[2:])
+  benchmark_name = test_path_parts[2]
+  histogram_name = test_path_parts[3]
+  if len(test_path_parts) > 4:
+    rest = test_path_parts[4:]
+  else:
+    rest = []
+  full_test_name = '/'.join(test_path_parts[2:])
   internal_only = add_point_queue.BotInternalOnly(bot, bot_whitelist)
   extra_args = GetUnitArgs(hist.unit)
 
@@ -243,25 +249,25 @@ def _ProcessRowAndHistogram(params, bot_whitelist):
   # diagnostics.
   # https://github.com/catapult-project/catapult/issues/4096
   parent_test = add_point_queue.GetOrCreateAncestors(
-      master, bot, test_name, internal_only=internal_only,
+      master, bot, full_test_name, internal_only=internal_only,
       unescaped_story_name=unescaped_story_name,
       benchmark_description=benchmark_description, **extra_args)
   test_key = parent_test.key
 
-  benchmark_name = test_path_parts[2]
   statistics_scalars = hist.statistics_scalars
   legacy_parent_tests = {}
 
-  if test_name.endswith('_ref'):
-    test_name = test_name[:-4]
+  if full_test_name.endswith('_ref'):
+    full_test_name = test_name[:-4]
     ref_suffix = '_ref'
-  elif test_name.endswith('/ref'):
-    test_name = test_name[:-4]
+  elif full_test_name.endswith('/ref'):
+    full_test_name = test_name[:-4]
     ref_suffix = '/ref'
   else:
     ref_suffix = ''
 
   # TODO(#4213): Stop doing this.
+<<<<<<< HEAD
   if benchmark_name in LEGACY_BENCHMARKS:
     statistics_scalars = {}
 
