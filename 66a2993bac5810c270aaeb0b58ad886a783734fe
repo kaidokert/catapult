@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d9032a3b_3e781f1d",
+        "filename": "tracing/tracing/ui/tracks/multi_row_track.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-02-22T20:02:18Z",
+      "side": 1,
+      "message": "A single array of dictionaries like {row, heading} would be clearer, less fragile, and easier to extend than Parallel Arrays.",
+      "revId": "66a2993bac5810c270aaeb0b58ad886a783734fe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
