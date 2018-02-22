@@ -38,6 +38,7 @@ class ApiAuthException(Exception):
 class OAuthError(ApiAuthException):
   def __init__(self):
     super(OAuthError, self).__init__('User authentication error')
+    print 'got that dreaded oauth error'
 
 
 class NotLoggedInError(ApiAuthException):
@@ -51,18 +52,25 @@ class InternalOnlyError(ApiAuthException):
 
 
 def _AuthorizeOauthUser():
+  print 'trying to authorize user'
   try:
     user = oauth.get_current_user(OAUTH_SCOPES)
+    print 'user is:'
+    print user
     if user and not user.email().endswith('.gserviceaccount.com'):
       # For non-service account, need to verify that the OAuth client ID
       # is in our whitelist.
+      print 'verifying client id'
       client_id = oauth.get_client_id(OAUTH_SCOPES)
+      print client_id
       if client_id not in OAUTH_CLIENT_ID_WHITELIST:
         logging.info('OAuth client id %s for user %s not in whitelist',
                      client_id, user.email())
         user = None
+        print 'client id not in whitelist'
         raise OAuthError
   except oauth.Error:
+    print 'got an exception'
     raise OAuthError
 
   if not user:
