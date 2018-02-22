@@ -233,7 +233,13 @@ def _ProcessRowAndHistogram(params, bot_whitelist):
   test_path_parts = test_path.split('/')
   master = test_path_parts[0]
   bot = test_path_parts[1]
-  test_name = '/'.join(test_path_parts[2:])
+  benchmark_name = test_path_parts[2]
+  histogram_name = test_path_parts[3]
+  if len(test_path_parts) > 4:
+    rest = '/'.join(test_path_parts[4:])
+  else:
+    rest = None
+  full_test_name = '/'.join(test_path_parts[2:])
   internal_only = add_point_queue.BotInternalOnly(bot, bot_whitelist)
   extra_args = GetUnitArgs(hist.unit)
 
@@ -243,33 +249,32 @@ def _ProcessRowAndHistogram(params, bot_whitelist):
   # diagnostics.
   # https://github.com/catapult-project/catapult/issues/4096
   parent_test = add_point_queue.GetOrCreateAncestors(
-      master, bot, test_name, internal_only=internal_only,
+      master, bot, full_test_name, internal_only=internal_only,
       unescaped_story_name=unescaped_story_name,
       benchmark_description=benchmark_description, **extra_args)
   test_key = parent_test.key
 
-  benchmark_name = test_path_parts[2]
   statistics_scalars = hist.statistics_scalars
   legacy_parent_tests = {}
-
-  if test_name.endswith('_ref'):
-    test_name = test_name[:-4]
-    ref_suffix = '_ref'
-  elif test_name.endswith('/ref'):
-    test_name = test_name[:-4]
-    ref_suffix = '/ref'
-  else:
-    ref_suffix = ''
 
   # TODO(#4213): Stop doing this.
   if benchmark_name in LEGACY_BENCHMARKS:
     statistics_scalars = {}
 
+  if histogram_name.endswith('_ref'):
+    histogram_name = histogram_name[:-4]
+    ref_suffix = '_ref'
+  else:
+    ref_suffix = ''
+
   for stat_name, scalar in statistics_scalars.iteritems():
-    if _ShouldFilter(test_name, benchmark_name, stat_name):
+    if _ShouldFilter(histogram_name, benchmark_name, stat_name):
       continue
     extra_args = GetUnitArgs(scalar.unit)
-    suffixed_name = '%s_%s%s' % (test_name, stat_name, ref_suffix)
+    suffixed_name = '%s/%s_%s%s' % (
+        benchmark_name, histogram_name, stat_name, ref_suffix)
+    if rest is not None:
+      suffixed_name += '/' + rest
     legacy_parent_tests[stat_name] = add_point_queue.GetOrCreateAncestors(
         master, bot, suffixed_name, internal_only=internal_only,
         unescaped_story_name=unescaped_story_name, **extra_args)
