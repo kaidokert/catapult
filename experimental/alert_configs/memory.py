@@ -70,12 +70,22 @@ CHROME_ALLOCATED = MemoryAlert(reported_by='chrome', size='allocated_objects')
 CHROME_EFFECTIVE = MemoryAlert(reported_by='chrome', size='effective')
 OS_METRIC = MemoryAlert(reported_by='os', size='proportional_resident')
 
+# When the allocator shim exists and is enabled, its reported values have lower
+# noise than CHROME_ALLOCATED.
+SHIM_ALLOCATED = MemoryAlert(reported_by='chrome', size='shim_allocated_objects')
+
 # Common metrics to alert on for all desktop and mobile configurations.
 DEFAULT_ALERTS = (
     # Metrics reporting allocated_objects.
     CHROME_ALLOCATED.Clone(allocator='java_heap', config='memory_above_1m'),
     CHROME_ALLOCATED.Clone(allocator='malloc'),
     CHROME_ALLOCATED.Clone(allocator='v8', rotation='v8-memory'),
+
+    # Metrics that come from the allocator shim.
+    SHIM_ALLOCATED.Clone(allocator='malloc'),
+    SHIM_ALLOCATED.Clone(allocator='partition_alloc'),
+    SHIM_ALLOCATED.Clone(allocator='blink_gc'),
+
     # Metrics with no allocated_objects or where we also want effective_size.
     CHROME_EFFECTIVE.Clone(allocator='cc'),
     CHROME_EFFECTIVE.Clone(allocator='gpu'),
