@@ -11,6 +11,7 @@ _CATAPULT_PATH = os.path.abspath(
 # Directories in catapult/third_party required by dashboard.
 THIRD_PARTY_LIBRARIES = [
     'apiclient',
+    'cloudstorage',
     'beautifulsoup4',
     'graphy',
     'html5lib-python',
