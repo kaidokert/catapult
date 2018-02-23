@@ -4,11 +4,12 @@
 
 """Provides the web interface for displaying a results2 file."""
 
-import cStringIO
+import cloudstorage as gcs
+import json
 import os
-import Queue
-import threading
 import webapp2
+
+from google.appengine.api import taskqueue
 
 from dashboard.pinpoint.models import job as job_module
 from dashboard.pinpoint.models.quest import read_value
@@ -20,26 +21,80 @@ class Results2Error(Exception):
   pass
 
 
+# pylint: disable=invalid-name
+
+class _GcsFileStream(object):
+  def __init__(self, filename, params):
+    self.gcs_file = gcs.open(
+        filename, 'w', content_type='text/html', retry_params=params)
+
+  def seek(self, _):
+    pass
+
+  def truncate(self):
+    pass
+
+  def write(self, data):
+    self.gcs_file.write(data)
+
+  def close(self):
+    self.gcs_file.close()
+
+# pylint: enable=invalid-name
+
+
 class Results2(webapp2.RequestHandler):
   """Shows an overview of recent anomalies for perf sheriffing."""
 
   def get(self, job_id):
     try:
-      job_data = _GetJobData(job_id)
+      filename = '/chromeperf.appspot.com/results2/%s.html' % job_id
+      results = gcs.listbucket(filename)
 
-      histogram_dicts = _FetchHistogramsDataFromJobData(job_data)
-      vulcanized_html = _ReadVulcanizedHistogramsViewer()
-      output_stream = cStringIO.StringIO()
+      for r in results:
+        self.response.out.write(json.dumps(
+            {
+                'status': 'complete',
+                'url': 'https://storage.cloud.google.com' + r.filename
+            }))
+        return
 
-      render_histograms_viewer.RenderHistogramsViewer(
-          histogram_dicts, output_stream,
-          vulcanized_html=vulcanized_html)
-      self.response.out.write(output_stream.getvalue())
+      try:
+        task_name = 'results2-%s' % job_id
+        taskqueue.add(
+            queue_name='default', url='/api/results2/' + job_id, name=task_name)
+      except taskqueue.TombstonedTaskError:
+        self.response.out.write(json.dumps({'status': 'failed'}))
+        return
+      except taskqueue.TaskAlreadyExistsError:
+        pass
+
+      self.response.out.write(json.dumps({'status': 'pending'}))
 
     except Results2Error as e:
       self.response.set_status(400)
       self.response.out.write(e.message)
       return
+
+  def post(self, job_id):
+    filename = '/chromeperf.appspot.com/results2/%s.html' % job_id
+    results = gcs.listbucket(filename)
+
+    # If there are any results for that call, there's a file there. Don't do
+    # any work.
+    for _ in results:
+      return
+
+    histogram_dicts = _FetchHistogramsDataFromJobData(job_id)
+    vulcanized_html = _ReadVulcanizedHistogramsViewer()
+
+    gcs_file = _GcsFileStream(filename, gcs.RetryParams(backoff_factor=1.1))
+
+    render_histograms_viewer.RenderHistogramsViewer(
+        histogram_dicts, gcs_file,
+        reset_results=True, vulcanized_html=vulcanized_html)
+
+    gcs_file.close()
 
 
 def _GetJobData(job_id):
@@ -58,45 +113,43 @@ def _ReadVulcanizedHistogramsViewer():
     return f.read()
 
 
-def _FetchHistogramsDataFromJobData(job_data):
-  quest_index = None
-  for quest_index in xrange(len(job_data['quests'])):
-    if job_data['quests'][quest_index] == 'Test':
-      break
-  else:
-    raise Results2Error('No Test quest.')
+class  _FetchHistogramsDataFromJobData(object):
+  def __init__(self, job_id):
+    self.isolate_hashes = self._GetAllIsolateHashesForJob(job_id)
 
-  isolate_hashes = []
+  def _GetAllIsolateHashesForJob(self, job_id):
+    job_data = _GetJobData(job_id)
 
-  # If there are differences, only include Changes with differences.
-  for change_index in xrange(len(job_data['changes'])):
-    if not _IsChangeDifferent(job_data, change_index):
-      continue
-    isolate_hashes += _GetIsolateHashesForChange(
-        job_data, change_index, quest_index)
+    quest_index = None
+    for quest_index in xrange(len(job_data['quests'])):
+      if job_data['quests'][quest_index] == 'Test':
+        break
+    else:
+      raise Results2Error('No Test quest.')
 
-  # Otherwise, just include all Changes.
-  if not isolate_hashes:
+    isolate_hashes = []
+
+    # If there are differences, only include Changes with differences.
     for change_index in xrange(len(job_data['changes'])):
+      if not _IsChangeDifferent(job_data, change_index):
+        continue
       isolate_hashes += _GetIsolateHashesForChange(
           job_data, change_index, quest_index)
 
-  # Fetch the histograms in separate threads.
-  threads = []
-  histogram_queue = Queue.Queue()
-  for isolate_hash in isolate_hashes:
-    thread = threading.Thread(target=_FetchHistogramFromIsolate,
-                              args=(isolate_hash, histogram_queue))
-    thread.start()
-    threads.append(thread)
+    # Otherwise, just include all Changes.
+    if not isolate_hashes:
+      for change_index in xrange(len(job_data['changes'])):
+        isolate_hashes += _GetIsolateHashesForChange(
+            job_data, change_index, quest_index)
 
-  for thread in threads:
-    thread.join()
+    return isolate_hashes
 
-  histograms = []
-  while not histogram_queue.empty():
-    histograms += histogram_queue.get()
-  return histograms
+  def __iter__(self):
+    for isolate_hash in self.isolate_hashes:
+      hs = _FetchHistogramFromIsolate(isolate_hash)
+      for h in hs:
+        yield h
+      del hs
 
 
 def _IsChangeDifferent(job_data, change_index):
@@ -128,6 +181,6 @@ def _GetIsolateHashesForChange(job_data, change_index, quest_index):
   return isolate_hashes
 
 
-def _FetchHistogramFromIsolate(isolate_hash, output_queue):
-  output_queue.put(read_value._RetrieveOutputJson(
-      isolate_hash, 'chartjson-output.json'))
+def _FetchHistogramFromIsolate(isolate_hash):
+  return read_value._RetrieveOutputJson(
+      isolate_hash, 'chartjson-output.json')
