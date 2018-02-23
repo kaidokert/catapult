@@ -22,6 +22,30 @@
       "revId": "2a39b921d24cbcbb6382932a9b8e59920529672d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c9aeccc_723a5188",
+        "filename": "tracing/tracing/extras/importer/linux_perf/clock_parser.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1267170
+      },
+      "writtenOn": "2018-02-23T03:44:43Z",
+      "side": 1,
+      "message": "cpu_id\u003d(\\d+) is everywhere and not used, I am okay to remove it so I don\u0027t have strong opinion of that\n\nWe can reuse traceMarkWriteClockEvent and generalize the regex\nto something like:\n      const event \u003d /(\\S+) (?:state\u003d)?(\\d+)/.exec(eventBase.details);         \nbut in any chance we need add a callback for clk_set_rate,  and by doing this it will make regex more complicated and add runtime cost.\n\nI just have perf concern about generalizing regex\n    importer.registerEventHandler(\u0027clock_set_rate\u0027,\n        ClockParser.prototype.traceMarkWriteClockEvent.bind(this));\n    importer.registerEventHandler(\u0027clk_set_rate\u0027,\n        ClockParser.prototype.traceMarkWriteClockEvent.bind(this));",
+      "parentUuid": "e3b21ceb_811ee0fd",
+      "range": {
+        "startLine": 57,
+        "startChar": 39,
+        "endLine": 57,
+        "endChar": 52
+      },
+      "revId": "2a39b921d24cbcbb6382932a9b8e59920529672d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
