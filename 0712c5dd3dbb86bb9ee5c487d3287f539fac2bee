@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4bcc65f9_723b8088",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-23T15:09:25Z",
+      "side": 1,
+      "message": "Some of these are a bit awkward. It doesn\u0027t seem that e.g. WebviewShellBackendSettings is a \"more specific\" kind of WebviewBackendSettings; rather, they just want to share some code (GetDevtoolsRemotePort in this case).\n\nOn follow ups I\u0027ll try to untangle this a bit more.",
+      "revId": "0712c5dd3dbb86bb9ee5c487d3287f539fac2bee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5da4e2b8_b6643aa0",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-23T15:09:25Z",
+      "side": 1,
+      "message": "Fail early, instead of very late until building the possible_browser",
+      "revId": "0712c5dd3dbb86bb9ee5c487d3287f539fac2bee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
