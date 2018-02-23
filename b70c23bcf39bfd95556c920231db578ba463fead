@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8466c46b_348f924c",
+        "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-02-23T19:41:02Z",
+      "side": 1,
+      "message": "So I created this fake stream object to wrap the gcs file object, since it only supplies write() and close() but render_histograms_viewer expects a few more operations.",
+      "range": {
+        "startLine": 26,
+        "startChar": 6,
+        "endLine": 26,
+        "endChar": 20
+      },
+      "revId": "b70c23bcf39bfd95556c920231db578ba463fead",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d93472c0_4d900039",
+        "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-02-23T19:41:02Z",
+      "side": 1,
+      "message": "So made this because I wanted to stream the histogram sets in, one-by-one, as the histogram viewer is streaming out to cloud storage. Overrode __iter__ to stream in data.",
+      "range": {
+        "startLine": 116,
+        "startChar": 7,
+        "endLine": 116,
+        "endChar": 38
+      },
+      "revId": "b70c23bcf39bfd95556c920231db578ba463fead",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
