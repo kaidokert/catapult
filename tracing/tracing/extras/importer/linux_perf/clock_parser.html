@@ -28,6 +28,8 @@ tr.exportTo('tr.e.importer.linux_perf', function() {
 
     importer.registerEventHandler('clock_set_rate',
         ClockParser.prototype.traceMarkWriteClockEvent.bind(this));
+    importer.registerEventHandler('clk_set_rate',
+        ClockParser.prototype.traceMarkWriteClkEvent.bind(this));
 
     this.model_ = importer.model_;
     this.ppids_ = {};
@@ -39,6 +41,29 @@ tr.exportTo('tr.e.importer.linux_perf', function() {
     traceMarkWriteClockEvent(eventName, cpuNumber, pid, ts,
         eventBase, threadName) {
       const event = /(\S+) state=(\d+) cpu_id=(\d+)/.exec(eventBase.details);
+
+
+      const name = event[1];
+      const rate = parseInt(event[2]);
+
+      const ctr = this.model_.kernel
+              .getOrCreateCounter(null, name);
+      // Initialize the counter's series fields if needed.
+      if (ctr.numSeries === 0) {
+        ctr.addSeries(new tr.model.CounterSeries('value',
+            ColorScheme.getColorIdForGeneralPurposeString(
+                ctr.name + '.' + 'value')));
+      }
+      ctr.series.forEach(function(series) {
+        series.addCounterSample(ts, rate);
+      });
+
+      return true;
+    },
+
+    traceMarkWriteClkEvent(eventName, cpuNumber, pid, ts,
+        eventBase, threadName) {
+      const event = /(\S+) (\d+)/.exec(eventBase.details);
 
 
       const name = event[1];
