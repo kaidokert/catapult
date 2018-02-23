@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e3b21ceb_811ee0fd",
+        "filename": "tracing/tracing/extras/importer/linux_perf/clock_parser.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1211219
+      },
+      "writtenOn": "2018-02-23T03:24:35Z",
+      "side": 1,
+      "message": "It looks like cpu_id is not used, is it possible to merge this two methods?",
+      "range": {
+        "startLine": 57,
+        "startChar": 39,
+        "endLine": 57,
+        "endChar": 52
+      },
+      "revId": "2a39b921d24cbcbb6382932a9b8e59920529672d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
