@@ -2,6 +2,46 @@
   "comments": [
     {
       "key": {
+        "uuid": "f3496881_91ebbffa",
+        "filename": "experimental/soundwave/bin/soundwave",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-02-23T15:34:37Z",
+      "side": 1,
+      "message": "I think that if we end up sticking with this sqllite method of storing the data, we should pretty quickly add tests around this method.\n\nIt seems like it wouldn\u0027t be too hard to write a short integration test with that uses a mock dashboard communicator to return some fake alerts, then make sure that we write them out to the database correctly (probably be reading them back in in the test and seeing that they make sense). Would you mind adding a TODO that we should do this if this code sticks around?",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 53,
+        "endChar": 19
+      },
+      "revId": "00beb9e1c681b5e7179563bf3e5f98a0b6467354",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38c3cef1_b5243506",
+        "filename": "experimental/soundwave/soundwave/alert_model.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-02-23T15:34:37Z",
+      "side": 1,
+      "message": "It seems like at some point we might want to put this in something like soundwave/models, but that\u0027s probably not necessary for now",
+      "revId": "00beb9e1c681b5e7179563bf3e5f98a0b6467354",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fbfdcb47_3a5653b0",
         "filename": "experimental/soundwave/soundwave/alert_model.py",
         "patchSetId": 1
@@ -13,6 +53,47 @@
       "writtenOn": "2018-02-22T14:19:53Z",
       "side": 1,
       "message": "For these I\u0027m trying to follow the V2 SPA conventions where:\n- we break the old \"test\" path into, at least, measurement and test_case (aka story) components\n- bot now combines the \"master\" (a concept which might go away in the future) and the builder name.",
+      "revId": "00beb9e1c681b5e7179563bf3e5f98a0b6467354",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4009b92_ff5d90a0",
+        "filename": "experimental/soundwave/soundwave/alert_model.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-02-23T15:34:37Z",
+      "side": 1,
+      "message": "Makes sense.",
+      "parentUuid": "fbfdcb47_3a5653b0",
+      "revId": "00beb9e1c681b5e7179563bf3e5f98a0b6467354",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a3433a0_c2b696c0",
+        "filename": "experimental/soundwave/soundwave/schema.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-02-23T15:34:37Z",
+      "side": 1,
+      "message": "It seems like we probably want this as some sort of timestamp rather than TEXT, no?",
+      "range": {
+        "startLine": 9,
+        "startChar": 2,
+        "endLine": 9,
+        "endChar": 26
+      },
       "revId": "00beb9e1c681b5e7179563bf3e5f98a0b6467354",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
