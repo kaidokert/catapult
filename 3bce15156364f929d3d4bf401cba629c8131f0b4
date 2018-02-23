@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba7c896a_544e7505",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-23T12:21:17Z",
+      "side": 0,
+      "message": "pseudo_exec_name is dead code now, no longer used.",
+      "revId": "3bce15156364f929d3d4bf401cba629c8131f0b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "252b71fd_1d21b8ef",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-23T12:21:17Z",
+      "side": 0,
+      "message": "also dead code, does not seem to be used anymore",
+      "revId": "3bce15156364f929d3d4bf401cba629c8131f0b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
