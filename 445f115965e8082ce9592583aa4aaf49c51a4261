@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "f27dc0a2_8b37c4ef",
+        "filename": "tracing/tracing/extras/chrome/event_finder_utils.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2018-02-26T17:54:57Z",
+      "side": 1,
+      "message": "We\u0027re initializing the URL_BLACKLIST array every time the function is called. Let\u0027s pull the URL_BLACKLIST out of the function. We can remove the shouldIgnoreURL function all together, and just call URL_BLACKLIST.includes(url) directly where needed. \n\nAlso, after removing it from loading_metrics, the context of this \"blacklist\" has become unclear. How about we rename it to CHROME_INTERNAL_URLS, with a comment like \"We sometimes ignore objects associated with these chrome internal URLs, e.g. for metrics calculations\".",
+      "revId": "445f115965e8082ce9592583aa4aaf49c51a4261",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4329189_4c25b35c",
+        "filename": "tracing/tracing/importer/find_load_expectations.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2018-02-26T17:54:57Z",
+      "side": 1,
+      "message": "s/i-frames/initial empty loads",
+      "revId": "445f115965e8082ce9592583aa4aaf49c51a4261",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "806e98e8_de155481",
         "filename": "tracing/tracing/importer/find_load_expectations.html",
         "patchSetId": 3
@@ -13,6 +47,58 @@
       "writtenOn": "2018-02-26T16:27:35Z",
       "side": 1,
       "message": "I think it is not required to check if it is loading a main frame here since we filter out such navigation start events already. I retained this just to be safer, since we usually fetch the snapshot corresponding to the fmpEvent. In my understanding if navigationStart is reported as a main frame event (snapshot.args.isLoadingMainFrame is true and the url !\u003d\u003d \u0027\u0027) then fmpEvent also should have the same property. I am happy to remove this check if you also think it is unnecessary.",
+      "revId": "445f115965e8082ce9592583aa4aaf49c51a4261",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "053776cd_a5ddf442",
+        "filename": "tracing/tracing/importer/find_load_expectations.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2018-02-26T17:54:57Z",
+      "side": 1,
+      "message": "Yes I don\u0027t think this check is necessary, and if we pass in the url to addSamples we could probably make this very clear. See the next comment below.",
+      "parentUuid": "806e98e8_de155481",
+      "revId": "445f115965e8082ce9592583aa4aaf49c51a4261",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b485b78_27078fb6",
+        "filename": "tracing/tracing/importer/find_load_expectations.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2018-02-26T17:54:57Z",
+      "side": 1,
+      "message": "We\u0027re computing the url for the same navigation twice - once here and once in addSamples above. Also, if a frame has a navigation for example.com at 10s, and a navigation for about:blank at 13s, the loading expectation for example.com should end at 13s because we know the page navigated away from example.com.\n\nCan we do the filtering for empty URL inline in the next for loop? Find the url for currNavigation, and continue the loop if we should ignore the url. If the url should not be ignore, you can pass it onto addSamples so we don\u0027t have to recompute it there.",
+      "revId": "445f115965e8082ce9592583aa4aaf49c51a4261",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd32ed0e_c1d95b41",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2018-02-26T17:54:57Z",
+      "side": 1,
+      "message": "collectInteractiveMetrics is a misnomer here - FMP is not an interactive metric. Interactive metric is not really a well defined term, but I\u0027ve used it before to collectively refer to first cpu idle and TTI. \n\nHow about \u0027collectMetricsFromLoadExpectations\u0027?",
       "revId": "445f115965e8082ce9592583aa4aaf49c51a4261",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
