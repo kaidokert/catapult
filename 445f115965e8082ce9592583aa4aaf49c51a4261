@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "806e98e8_de155481",
+        "filename": "tracing/tracing/importer/find_load_expectations.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-02-26T16:27:35Z",
+      "side": 1,
+      "message": "I think it is not required to check if it is loading a main frame here since we filter out such navigation start events already. I retained this just to be safer, since we usually fetch the snapshot corresponding to the fmpEvent. In my understanding if navigationStart is reported as a main frame event (snapshot.args.isLoadingMainFrame is true and the url !\u003d\u003d \u0027\u0027) then fmpEvent also should have the same property. I am happy to remove this check if you also think it is unnecessary.",
+      "revId": "445f115965e8082ce9592583aa4aaf49c51a4261",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
