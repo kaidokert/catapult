@@ -18,6 +18,19 @@ tr.exportTo('tr.e.chrome', function() {
    */
   class EventFinderUtils {
 
+    static shouldIgnoreURL(url) {
+      const URL_BLACKLIST = [
+        // Blank URLs are usually initial empty document.
+        '',
+        'about:blank',
+        // Chrome on Android creates main frames with the below URL for plugins.
+        'data:text/html,pluginplaceholderdata',
+        // Special URL used to start a navigation to an unreachable error page.
+        'chrome-error://chromewebdata/'
+      ];
+      return URL_BLACKLIST.includes(url);
+    }
+
     /**
      * Returns true if |category| is one of the categories of |event|, and
      * |event| has title |title|.

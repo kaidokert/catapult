@@ -26,6 +26,13 @@ tr.exportTo('tr.importer', function() {
     'ThreadControllerImpl::DoWork',
   ];
 
+  const IGNORE_URL_LIST = [
+    // Blank URLs correspond to i-frames and we want to ignore
+    // them.
+    '',
+    'about:blank',
+  ];
+
 
   /**
    * @param  {!tr.model.Process} process
@@ -252,6 +259,7 @@ tr.exportTo('tr.importer', function() {
           rendererHelper, frameIdRef, timestamp);
       if (!snapshot || !snapshot.args.isLoadingMainFrame) return;
       const url = snapshot.args.documentLoaderURL;
+      if (IGNORE_URL_LIST.includes(url)) return;
 
       samples.push(constructLoadingExpectation_(
           rendererHelper, frameToDomContentLoadedEndEvents, navigationStart,
@@ -260,6 +268,24 @@ tr.exportTo('tr.importer', function() {
 
     const candidatesForFrameId =
         findFirstMeaningfulPaintCandidates(rendererHelper);
+
+    // Filter navigationStartEvents that do not correspond to a loading main
+    // page. Sometimes we get the navigationStartEvents corresponding to
+    // i-frames with snapshot.args.isLoadingMainFrame set to true and the
+    // url is set to ''. We should ignore these navigationStart events.
+    for (const [frameIdRef, navStartEvents] of frameToNavStartEvents) {
+      const filteredNavStartEvents = [];
+      for (let index = 0; index < navStartEvents.length; index++) {
+        const currNavigation = navStartEvents[index];
+        const snapshot = findFrameLoaderSnapshotAt(
+            rendererHelper, frameIdRef, currNavigation.start);
+        if (!snapshot || !snapshot.args.isLoadingMainFrame) return;
+        const url = snapshot.args.documentLoaderURL;
+        if (IGNORE_URL_LIST.includes(url)) return;
+        filteredNavStartEvents.push(currNavigation);
+      }
+      frameToNavStartEvents.set(frameIdRef, filteredNavStartEvents);
+    }
 
     for (const [frameIdRef, navStartEvents] of frameToNavStartEvents) {
       const fmpCandidateList = candidatesForFrameId[frameIdRef] || [];
