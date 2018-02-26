@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 import collections
 import logging
+import os
 import time
 from collections import defaultdict
 
@@ -301,6 +302,12 @@ class TimelineBasedMeasurement(story_test.StoryTest):
     extra_import_options = {
         'trackDetailedModelStats': True
     }
+    trace_size_in_mb = os.path.getsize(trace_value.filename) / (2 ** 20)
+    # Bails out on trace that are too big. See crbug.com/812631 for more
+    # details.
+    if trace_size_in_mb > 200:
+      results.Fail('Trace size is too big: %s mb' % trace_size_in_mb)
+      return
 
     logging.warning('Starting to compute metrics on trace')
     start = time.time()
