@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f260fda7_367d9b30",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-02-26T15:30:36Z",
+      "side": 1,
+      "message": "mb -\u003e MB\n\ncapitalization is important here, because 200Mb is different than 200MB",
+      "range": {
+        "startLine": 7,
+        "startChar": 75,
+        "endLine": 7,
+        "endChar": 77
+      },
+      "revId": "89da9521397036262785bb3f4f395335e8aa60d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7783f74a_733096b1",
+        "filename": "telemetry/telemetry/web_perf/timeline_based_measurement.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-02-26T15:30:36Z",
+      "side": 1,
+      "message": "Once again, I think correct capitalization is really important here",
+      "range": {
+        "startLine": 309,
+        "startChar": 46,
+        "endLine": 309,
+        "endChar": 48
+      },
+      "revId": "89da9521397036262785bb3f4f395335e8aa60d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
