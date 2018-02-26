@@ -9,6 +9,8 @@ import sys
 import time
 import unittest
 
+import py_utils
+
 if __name__ == '__main__':
   sys.path.append(
       os.path.join(os.path.dirname(__file__), '..'))
@@ -23,16 +25,12 @@ _SUPPORTED_CQ_PLATFORMS = ['win', 'linux', 'mac']
 
 class BattOrWrapperDeviceTest(unittest.TestCase):
   def setUp(self):
-    test_platform = platform.system()
+    self._platform = py_utils.GetHostOsName()
     self._battor_list = None
-    if 'Win' in test_platform:
-      self._platform = 'win'
-    elif 'Linux' in test_platform:
-      self._platform = 'linux'
+
+    if self._platform == 'linux':
       device_tree  = find_usb_devices.GetBusNumberToDeviceTreeMap()
       self._battor_list = battor_device_mapping.GetBattOrList(device_tree)
-    elif 'Darwin' in test_platform:
-      self._platform = 'mac'
 
     if not battor_wrapper.IsBattOrConnected(self._platform):
       self._battor_list = []
