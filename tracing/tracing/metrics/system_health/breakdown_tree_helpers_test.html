@@ -332,5 +332,68 @@ tr.b.unittest.testSuite(function() {
     assert.strictEqual(breakdownTree.blocked_on_network.total, 0);
     assert.strictEqual(breakdownTree.idle.total, 0);
   });
+
+  // TODO: Figure out if you need this test.
+  test('testClippedSelfTime', () => {
+    // Our main thread looks like:
+    //
+    //      [      parseHTML     ]
+    //      |        [  V8.Exec  ]
+    //      |        |           |
+    //      |        |           |
+    //      v        v           v
+    // Ts : 0        50         100
+    //                      [    ]
+    // Range of interest:  80   100
+    const model = tr.c.TestUtils.newModel(model => {
+      const mainThread = model.getOrCreateProcess(0)
+            .getOrCreateThread(0);
+      mainThread.name = 'CrRendererMain';
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink',
+        title: 'HTMLDocumentParser::didReceiveParsedChunkFromBackgroundParser',
+        start: 0,
+        duration: 100,
+      }));
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'v8',
+        title: 'V8.Execute',
+        start: 50,
+        duration: 50,
+      }));
+    });
+
+    const rendererHelper = model.getOrCreateHelper(
+      tr.model.helpers.ChromeModelHelper)
+          .rendererHelpers[0];
+    const rangeOfInterest = tr.b.math.Range.fromExplicitRange(80, 100);
+    const networkEvents = tr.metrics.sh.getNetworkEventsInRange(
+      rendererHelper.process, rangeOfInterest);
+    const breakdownTree = tr.metrics.sh.generateWallClockTimeBreakdownTree(
+      rendererHelper.mainThread, networkEvents, rangeOfInterest);
+    console.log(breakdownTree);
+    assert.deepEqual({
+      total: 0,
+      events: {
+        'HTMLDocumentParser::didReceiveParsedChunkFromBackgroundParser': 0
+      }
+    }, breakdownTree.parseHTML);
+    assert.deepEqual({
+      total: 20,
+      events: {
+        'V8.Execute': 20
+      },
+    }, breakdownTree.script_execute);
+    assert.deepEqual({
+      total: 0,
+      events: {},
+    }, breakdownTree.idle);
+    assert.deepEqual({
+      total: 0,
+      events: {},
+    }, breakdownTree.blocked_on_network);
+  })
+
+
 });
 </script>

@@ -18,6 +18,43 @@ found in the LICENSE file.
 'use strict';
 
 tr.exportTo('tr.metrics.sh', function() {
+
+  /**
+   * Returns the ratio of self time within |rangeOfInterest| to the total wall
+   * clock duration of |event|. If wall clock duration is 0, return 0.
+   *
+   * Total self time to |rangeOfInterest| is computed by finding time ranges
+   * that do not contain a descendant slice. Example:
+   *
+   *       [                      A                     ]
+   *       |        [     B    ]           [   C    ]   |
+   *       |        |   [ D  ] |           |        |   |
+   *       |        |          |           |        |   |
+   *       v        v          v           v        v   v
+   *  Ts : 0        50         80   100   150      180  200
+   * RoI :                           [                  ]
+   *
+   * Total self time for A within |rangeOfInterest| is 100 - 30 = 70, and
+   * selfTimeRatio is 70/200 = 0.35.
+   *
+   * @param {!tr.b.Event} event
+   * @return {Array.<!tr.b.math.Range>}
+   */
+  function getSelfTimeRatio_(event, rangeOfInterest) {
+    if (event.duration == 0) return 0;
+    const selfTimeRanges = [rangeOfInterest.findIntersection(event.range)];
+    for (const subSlice of event.subSlices) {
+      if (selfTimeRanges.length === 0) return [];
+      const lastRange = selfTimeRanges.pop();
+      selfTimeRanges.push(
+          ...tr.b.math.Range.findDifference(lastRange, subSlice.range));
+    }
+    const totalSelfTime =
+          tr.b.math.Statistics.sum(selfTimeRanges, r => r.duration);
+    const selfTimeRatio = totalSelfTime / event.duration;
+    return selfTimeRatio;
+  }
+
   /**
   * @callback getEventAttributeCallback
   * @param {!tr.b.Event} event The event to read an attribute from.
@@ -71,6 +108,7 @@ tr.exportTo('tr.metrics.sh', function() {
       if (eventSelfTime === undefined) continue;
       const title =
           tr.e.chrome.ChromeUserFriendlyCategoryDriver.fromEvent(event);
+
       let timeIntersectionRatio = 0;
       if (eventDuration > 0) {
         timeIntersectionRatio =
@@ -95,29 +133,24 @@ tr.exportTo('tr.metrics.sh', function() {
           }
         }
       }
-      //        [     Slice 1       ]   [      Slice  2   ]   [    Slice 3   ]
-      //            [  Slice 4    ]                             [ Slice 5 ]
-      //              [ Slice 6 ]                                  |
-      //                 |                                         |
-      //                 |                                         |
-      //                 v                                         v
-      //                start                                     end
+
+      // We use the contribution ratio to calculate what the self time
+      // contribution of this event should be. For wall time calculation, the
+      // calculation is precise:
+      // selfTimeRatio * wall time duration = actual time contribution.
       //
-      // For the case where the |start| or |end| overlapped with some existing
-      // slice (see above diagram), we approximate the overlapped self-time
-      // by multiplying the ratio of overlapped wall time to the self-time.
-      // There should be way to compute the exact number, but in practice,
-      // this should rarely happen, and when it does, the overlapped range
-      // is relative small so that using approximation here should be good
-      // enough.
-      const approximatedSelfTimeContribution =
-          eventSelfTime * timeIntersectionRatio;
-      breakdownTree[title].total += approximatedSelfTimeContribution;
+      // For CPU time, we do not have data of exactly when we were scheduled or
+      // descheduled, so (selfTimeRatio * cpu duration) gives us the best
+      // approximation.
+      const selfTimeRatio = getSelfTimeRatio_(event, rangeOfInterest);
+      const selfTimeContribution = selfTimeRatio * getEventDuration(event);
+
+      breakdownTree[title].total += selfTimeContribution;
       if (breakdownTree[title].events[event.title] === undefined) {
         breakdownTree[title].events[event.title] = 0;
       }
       breakdownTree[title].events[event.title] +=
-          approximatedSelfTimeContribution;
+          selfTimeContribution;
     }
     return breakdownTree;
   }
