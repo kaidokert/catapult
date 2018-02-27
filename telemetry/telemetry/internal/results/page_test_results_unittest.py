@@ -5,6 +5,7 @@
 import os
 import unittest
 import mock
+from StringIO import StringIO
 
 from py_utils import tempfile_ext
 
@@ -16,7 +17,6 @@ from telemetry.internal.results import chart_json_output_formatter
 from telemetry.internal.results import html_output_formatter
 from telemetry.internal.results import page_test_results
 from telemetry import page as page_module
-from telemetry.testing import stream
 from telemetry.value import histogram
 from telemetry.value import improvement_direction
 from telemetry.value import scalar
@@ -380,7 +380,7 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
     self.assertFalse(results.FindAllTraceValues())
 
   def testPrintSummaryDisabledResults(self):
-    output_stream = stream.TestOutputStream()
+    output_stream = StringIO()
     output_formatters = []
     benchmark_metadata = benchmark.BenchmarkMetadata(
         'benchmark_name', 'benchmark_description')
