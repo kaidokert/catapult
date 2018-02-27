@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "67205e64_7ffa73ff",
+        "filename": "tracing/tracing/metrics/system_health/breakdown_tree_helpers.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2018-02-27T15:28:05Z",
+      "side": 1,
+      "message": "maxlg@: I\u0027m not sure if this is right. For example, assume a slice has\nwall start: 0\nwall duration: 200\ncpu start: 0\ncpuDuration: 100\n\nIf range of interest is [100, 200] here, we will say cpu time contribution here for the slice is 0. But since we don\u0027t have cpu schedule/deschedule data, this may not be right. The cpustart could be 0, then cpu could be descheduled at 50, and rescheduled at 150, and finish at 200, giving us a cpu duration of 200.\n\nI think it\u0027s best to assume cpu duration is uniformly distributed over the slice, and so we should interest the range of interest with wall time here, not cpu time. WDYT?",
+      "revId": "949fc37009fd68639b6205203395e2f7e6f361b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
