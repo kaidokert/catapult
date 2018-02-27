@@ -5,10 +5,10 @@
 import os
 import tempfile
 import unittest
+from StringIO import StringIO
 
 from telemetry import benchmark
 from telemetry import benchmark_runner
-from telemetry.testing import stream
 import mock
 
 
@@ -31,7 +31,7 @@ class BenchmarkBar(benchmark.Benchmark):
 class BenchmarkRunnerUnittest(unittest.TestCase):
 
   def setUp(self):
-    self._stream = stream.TestOutputStream()
+    self._stream = StringIO()
     self._mock_possible_browser = mock.MagicMock()
     self._mock_possible_browser.browser_type = 'TestBrowser'
 
