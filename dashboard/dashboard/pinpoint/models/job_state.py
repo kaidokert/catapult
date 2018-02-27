@@ -8,6 +8,7 @@ import logging
 
 from dashboard.pinpoint.models import attempt as attempt_module
 from dashboard.pinpoint.models import change as change_module
+from dashboard.pinpoint.models import fixes
 from dashboard.pinpoint.models import kolmogorov_smirnov
 from dashboard.pinpoint.models import mann_whitney_u
 
@@ -67,6 +68,14 @@ class JobState(object):
 
   def AddAttempts(self, change):
     assert change in self._attempts
+
+    patch = fixes.Get(change)
+    if patch:
+      if change.patch:
+        raise NotImplementedError(
+            'Unable to apply a patch to a failing commit.')
+      change = change_module.Change(change.commits, patch)
+
     for _ in xrange(_REPEAT_COUNT_INCREASE):
       self._attempts[change].append(
           attempt_module.Attempt(self._quests, change))

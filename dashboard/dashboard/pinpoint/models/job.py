@@ -73,7 +73,6 @@ class Job(ndb.Model):
 
   @classmethod
   def New(cls, arguments, quests, auto_explore, bug_id=None, tags=None):
-    # Create job.
     return cls(
         arguments=arguments,
         auto_explore=auto_explore,
