@@ -8,6 +8,7 @@ import logging
 
 from dashboard.pinpoint.models import attempt as attempt_module
 from dashboard.pinpoint.models import change as change_module
+from dashboard.pinpoint.models import fixes
 from dashboard.pinpoint.models import kolmogorov_smirnov
 from dashboard.pinpoint.models import mann_whitney_u
 
@@ -67,9 +68,10 @@ class JobState(object):
 
   def AddAttempts(self, change):
     assert change in self._attempts
+    fixed_change = fixes.Get(change)
     for _ in xrange(_REPEAT_COUNT_INCREASE):
       self._attempts[change].append(
-          attempt_module.Attempt(self._quests, change))
+          attempt_module.Attempt(self._quests, fixed_change))
 
   def AddChange(self, change, index=None):
     if index:
