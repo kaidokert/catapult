@@ -16,6 +16,24 @@
       "revId": "949fc37009fd68639b6205203395e2f7e6f361b7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "863c785f_886df32e",
+        "filename": "tracing/tracing/metrics/system_health/breakdown_tree_helpers.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1215729
+      },
+      "writtenOn": "2018-02-27T16:42:55Z",
+      "side": 1,
+      "message": "As discussed offline, we should use wall clock times of two slices to calculate the ratio of intersection. Assuming the cpu time is evenly distributed on the slices, we get the cpu duration of the intersection as the \"ratio * cpuDurationOfSlice\".\n\nIn other words, the cpu time should be\n100 * (100/(200-0)) \u003d 50",
+      "parentUuid": "67205e64_7ffa73ff",
+      "revId": "949fc37009fd68639b6205203395e2f7e6f361b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
