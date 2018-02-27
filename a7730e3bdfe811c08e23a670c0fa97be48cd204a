@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "573d1f5b_7025d389",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2018-02-27T02:35:01Z",
+      "side": 1,
+      "message": "Done here instead of type\u003dos.path.abspath in the parser since optparse (as opposed to argparse) doesn\u0027t support it as a type.",
+      "range": {
+        "startLine": 434,
+        "startChar": 6,
+        "endLine": 434,
+        "endChar": 58
+      },
+      "revId": "a7730e3bdfe811c08e23a670c0fa97be48cd204a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
