@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "65279616_bb94bedf",
+        "filename": "telemetry/telemetry/benchmark_runner_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-02-27T20:30:24Z",
+      "side": 1,
+      "message": "As per the style guide[0] please \"import StringIO\" here and then refer to the class as StringIO.StringIO.\n\n[0] https://google.github.io/styleguide/pyguide.html",
+      "revId": "9f1aca081cb97d4be70a98bda74ce21c232f9b8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40f0573f_1ee5d46d",
+        "filename": "telemetry/telemetry/benchmark_runner_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-02-27T20:30:24Z",
+      "side": 1,
+      "message": "As above, please change this to StringIO.StringIO.",
+      "revId": "9f1aca081cb97d4be70a98bda74ce21c232f9b8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7dbb91b_c9ce804a",
+        "filename": "telemetry/telemetry/benchmark_runner_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-02-27T20:30:24Z",
+      "side": 1,
+      "message": "StringIO does not have an .output_data getter. Instead, you must use the getvalue() method[0].\n\n[0] https://docs.python.org/2/library/stringio.html#StringIO.StringIO.getvalue",
+      "revId": "9f1aca081cb97d4be70a98bda74ce21c232f9b8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
