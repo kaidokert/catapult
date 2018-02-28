@@ -5,6 +5,7 @@
 
 import os
 import shutil
+import subprocess
 import sys
 import tempfile
 
@@ -13,6 +14,9 @@ def _AddToPathIfNeeded(path):
   if path not in sys.path:
     sys.path.insert(0, path)
 
+NODE_VULCANIZE = os.path.abspath(os.path.join(
+  os.path.dirname(__file__), '..', '..',
+  'common/node_runner/node_runner/node_modules/vulcanize/bin/vulcanize'))
 
 def Main():
   dashboard_path = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
@@ -34,7 +38,14 @@ def Main():
     s = vulcanize_histograms_viewer.VulcanizeHistogramsViewer()
     f.write(s.encode('utf-8'))
 
-  deployment_paths = dashboard.PathsForDeployment() + [viewer_dir_path]
+  spa_dir = os.path.join(temp_dir, 'vulcanized')
+  os.mkdir(spa_dir)
+  spa_html = os.path.join(spa_dir, 'spa.html')
+  with open(spa_html, 'w') as f:
+    subprocess.call([NODE_VULCANIZE, '--strip-comments', '--inline-scripts',
+                     '-p', 'dashboard/', 'dashboard/spa/index.html'], stdout=f)
+
+  deployment_paths = dashboard.PathsForDeployment() + [viewer_dir_path, spa_dir]
   from catapult_build import appengine_deploy
   appengine_deploy.Deploy(deployment_paths, sys.argv[1:])
 
