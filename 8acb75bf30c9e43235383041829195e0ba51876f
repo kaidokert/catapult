@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "281952d0_29785b0c",
+        "filename": "third_party/cloudstorage/cloudstorage/README.chromium",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-02-28T20:48:31Z",
+      "side": 1,
+      "message": "This README.chromium looks incomplete. What version is this library?",
+      "revId": "8acb75bf30c9e43235383041829195e0ba51876f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
