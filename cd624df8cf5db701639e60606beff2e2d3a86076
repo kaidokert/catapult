@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b13cbcf_d0fc4c85",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-28T10:40:12Z",
+      "side": 1,
+      "message": "nit: if not linking to a bug at least write a small sentence with rationale for removing these? (e.g. not supported any more? do not work any more?)",
+      "revId": "cd624df8cf5db701639e60606beff2e2d3a86076",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
