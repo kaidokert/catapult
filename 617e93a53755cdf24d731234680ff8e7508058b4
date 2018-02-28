@@ -16,6 +16,24 @@
       "revId": "617e93a53755cdf24d731234680ff8e7508058b4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7be40111_1823d995",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-28T10:39:55Z",
+      "side": 1,
+      "message": "I\u0027ve just seen https://chromium-review.googlesource.com/c/catapult/+/940361\n\nSo indeed looks like your two patches got merged here.",
+      "parentUuid": "6be6ac10_fa31120f",
+      "revId": "617e93a53755cdf24d731234680ff8e7508058b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
