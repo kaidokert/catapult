@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "97896424_8d105f98",
+        "filename": "experimental/soundwave/bin/soundwave",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-28T16:19:00Z",
+      "side": 1,
+      "message": "Sure, done.",
+      "parentUuid": "f3496881_91ebbffa",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 53,
+        "endChar": 19
+      },
+      "revId": "00beb9e1c681b5e7179563bf3e5f98a0b6467354",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "38c3cef1_b5243506",
         "filename": "experimental/soundwave/soundwave/alert_model.py",
         "patchSetId": 1
@@ -36,6 +60,24 @@
       "writtenOn": "2018-02-23T15:34:37Z",
       "side": 1,
       "message": "It seems like at some point we might want to put this in something like soundwave/models, but that\u0027s probably not necessary for now",
+      "revId": "00beb9e1c681b5e7179563bf3e5f98a0b6467354",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90f2dc86_494b1746",
+        "filename": "experimental/soundwave/soundwave/alert_model.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-28T16:19:00Z",
+      "side": 1,
+      "message": "Agree. Will do that when adding a second model.",
+      "parentUuid": "38c3cef1_b5243506",
       "revId": "00beb9e1c681b5e7179563bf3e5f98a0b6467354",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -88,6 +130,30 @@
       "writtenOn": "2018-02-23T15:34:37Z",
       "side": 1,
       "message": "It seems like we probably want this as some sort of timestamp rather than TEXT, no?",
+      "range": {
+        "startLine": 9,
+        "startChar": 2,
+        "endLine": 9,
+        "endChar": 26
+      },
+      "revId": "00beb9e1c681b5e7179563bf3e5f98a0b6467354",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e55d413_beefa974",
+        "filename": "experimental/soundwave/soundwave/schema.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-02-28T16:19:00Z",
+      "side": 1,
+      "message": "Definitely a good idea. Done.",
+      "parentUuid": "6a3433a0_c2b696c0",
       "range": {
         "startLine": 9,
         "startChar": 2,
