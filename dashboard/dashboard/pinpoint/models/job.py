@@ -40,6 +40,12 @@ def JobFromId(job_id):
   return job_key.get()
 
 
+class JobCachedResults2(ndb.Model):
+
+  updated = ndb.DateTimeProperty(required=True, auto_now_add=True)
+  job_id = ndb.StringProperty()
+
+
 class Job(ndb.Model):
   """A Pinpoint job."""
 
@@ -156,6 +162,21 @@ class Job(ndb.Model):
     comment = '\n\n'.join((header, body, footer))
     self._PostBugComment(comment, status='Assigned',
                          cc_list=sorted(cc_list), owner=owner)
+
+  def ScheduleResults2Generation(self):
+    if self.status == 'Running':
+      return 'job-incomplete'
+
+    try:
+      task_name = 'results2-%s' % self.job_id
+      taskqueue.add(
+          queue_name='job-queue', url='/api/results2/' + self.job_id,
+          name=task_name)
+    except taskqueue.TombstonedTaskError:
+      return 'failed'
+    except taskqueue.TaskAlreadyExistsError:
+      pass
+    return 'pending'
 
   def Fail(self):
     self.exception = traceback.format_exc()
