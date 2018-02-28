@@ -52,6 +52,8 @@ def _FindScriptInPath(script_name):
 
 
 def _VersionName():
+  if 'DASHBOARD_STAGING' in os.environ:
+    return os.environ['DASHBOARD_STAGING']
   is_synced = not _Run(
       ['git', 'diff', 'origin/master', '--no-ext-diff']).strip()
   deployment_type = 'clean' if is_synced else 'dev'
