@@ -70,6 +70,7 @@ def RenderHistogramsViewer(histogram_dicts, output_stream, reset_results=False,
   json_tag_newline = '\n%s' % _JSON_TAG
   for histogram in histogram_dicts:
     hist_json = json.dumps(histogram, separators=(',', ':'))
+    print output_stream.write
     output_stream.write(json_tag_newline % hist_json)
   output_stream.write('\n</div>\n')
 
