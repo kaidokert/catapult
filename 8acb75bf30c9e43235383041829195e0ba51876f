@@ -16,6 +16,24 @@
       "revId": "8acb75bf30c9e43235383041829195e0ba51876f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50386312_b708159a",
+        "filename": "third_party/cloudstorage/cloudstorage/README.chromium",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-03-01T18:12:26Z",
+      "side": 1,
+      "message": "No idea, would have been whatever was available trace_processor spun up in late 2015. Just went and grabbed latest and updated this.",
+      "parentUuid": "281952d0_29785b0c",
+      "revId": "8acb75bf30c9e43235383041829195e0ba51876f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
