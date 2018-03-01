@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+<link rel="import" href="/components/app-route/app-route.html">
+<link rel="import" href="/components/iron-ajax/iron-ajax.html">
+<link rel="import" href="/components/paper-spinner/paper-spinner.html">
+
+<link rel="import" href="/elements/base-style.html">
+
+<dom-module id="results2-page">
+  <template>
+    <style include="base-style">
+      h1 {
+        margin-bottom: 0.1em;
+      }
+
+      paper-button {
+        background-color: var(--paper-pink-a200);
+        color: white;
+        margin: 1em 0;
+      }
+
+      paper-progress {
+        --paper-progress-active-color: var(--paper-pink-a200);
+        width: 50%;
+      }
+
+      .paragraph {
+        margin: 1em 0 0.5em 0;
+      }
+
+      .emphasis {
+        color: var(--paper-indigo-500);
+        font-weight: bold;
+      }
+    </style>
+
+    <app-route route="{{route}}" pattern="/:jobId" data="{{routeData}}"></app-route>
+
+    <iron-ajax id="ajax" url="/api/results2/[[routeData.jobId]]" last-response="{{status}}"></iron-ajax>
+    <h1>Results2 Loader</h1>
+    <template is="dom-if" if="[[getStarted(status)]]">
+      <p>Generating Results2. Hang on, might take a minute or 2 if this is the first time.</p>
+      <paper-spinner></paper-spinner>
+    </template>
+
+    <template is="dom-if" if="[[getJobIncomplete(status)]]">
+      <p>Cannot generate results2 for a job that's still running.</p>
+    </template>
+
+    <template is="dom-if" if="[[getFailed(status)]]">
+      <p>Generating the Results2 file failed.</p>
+    </template>
+  </template>
+
+  <script>
+    'use strict';
+    Polymer({
+      is: 'results2-page',
+
+      properties: {
+        status: {
+          type: Object,
+          observer: '_statusChanged',
+        },
+      },
+
+      selected() {
+        this.status = {
+          status: 'pending'
+        };
+      },
+
+      getStarted(status) {
+        return this.status.status == 'pending';
+      },
+
+      getFailed(status) {
+        return this.status.status == 'failed';
+      },
+
+      getJobIncomplete(status) {
+        return this.status.status == 'job-incomplete';
+      },
+
+      getComplete(status) {
+        return this.status.status == 'complete';
+      },
+
+      _statusChanged() {
+        if (!this.getComplete(this.status)) {
+          this.async(() => this.$.ajax.generateRequest(), 1000);
+        } else {
+          window.location = this.status.url;
+        }
+      },
+    });
+  </script>
+</dom-module>

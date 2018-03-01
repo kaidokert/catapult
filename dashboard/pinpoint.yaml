@@ -52,10 +52,6 @@ handlers:
   secure: always
   application_readable: true
 
-- url: /results2/.*
-  script: dashboard.pinpoint.dispatcher.APP
-  secure: always
-
 - url: /flot/(.*\.js)$
   static_files: flot/\1
   upload: flot/.*\.js$
