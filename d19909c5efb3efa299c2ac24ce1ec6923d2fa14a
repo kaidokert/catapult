@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4809b8e6_7a343e42",
+        "filename": "experimental/soundwave/soundwave/alert_model.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-03-01T21:56:00Z",
+      "side": 1,
+      "message": "Maybe add a comment below \u0027None\u0027 that indicates that anything above 1 is equivalent to \u0027triaged\u0027, just so that we have all of the mapping logic documented in one place",
+      "revId": "d19909c5efb3efa299c2ac24ce1ec6923d2fa14a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
