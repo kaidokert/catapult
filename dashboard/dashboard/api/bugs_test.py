@@ -131,6 +131,7 @@ class BugsTest(testing_common.TestCase):
     self.assertEqual('Fixed', bug.get('status'))
     self.assertEqual('closed', bug.get('state'))
     self.assertEqual('author@chromium.org', bug.get('author'))
+    self.assertEqual('owner@chromium.org', bug.get('owner'))
     self.assertEqual(2, len(bug.get('comments')))
     self.assertEqual('Comment two', bug.get('comments')[1].get('content'))
     self.assertEqual(
