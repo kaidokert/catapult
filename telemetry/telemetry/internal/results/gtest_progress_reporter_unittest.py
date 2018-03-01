@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 
 import os
+import StringIO
 import traceback
 
 from telemetry import story
@@ -11,7 +12,6 @@ from telemetry.internal.results import gtest_progress_reporter
 from telemetry.internal.results import page_test_results
 from telemetry import page as page_module
 from telemetry.testing import fakes
-from telemetry.testing import stream
 
 
 _GROUPING_KEY_DEFAULT = {'1': '2'}
@@ -49,7 +49,7 @@ class GTestProgressReporterTest(
     super(GTestProgressReporterTest, self).setUp()
     self._fake_timer = fakes.FakeTimer(gtest_progress_reporter)
 
-    self._output_stream = stream.TestOutputStream()
+    self._output_stream = StringIO.StringIO()
     self._reporter = gtest_progress_reporter.GTestProgressReporter(
         self._output_stream)
 
