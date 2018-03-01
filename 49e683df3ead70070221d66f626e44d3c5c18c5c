@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "842584dc_9085ec32",
+        "filename": "dashboard/dashboard/api/bugs_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-03-01T15:50:29Z",
+      "side": 1,
+      "message": "updated too",
+      "range": {
+        "startLine": 134,
+        "startChar": 22,
+        "endLine": 134,
+        "endChar": 27
+      },
+      "revId": "49e683df3ead70070221d66f626e44d3c5c18c5c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
