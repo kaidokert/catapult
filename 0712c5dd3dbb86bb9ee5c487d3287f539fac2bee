@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "85c481ef_a8b54208",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-02T13:26:33Z",
+      "side": 1,
+      "message": "As the comment below states, e.g. for --browser\u003dsystem-webview, the correct apk (or apks) to install may depend on the Android OS version, and whether it is e.g. AOSP.",
+      "parentUuid": "1367a422_b5543267",
+      "revId": "0712c5dd3dbb86bb9ee5c487d3287f539fac2bee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4bcc65f9_723b8088",
         "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
         "patchSetId": 2
@@ -50,6 +68,24 @@
       "revId": "0712c5dd3dbb86bb9ee5c487d3287f539fac2bee",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a673116e_63fa8c5d",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-02T13:26:33Z",
+      "side": 1,
+      "message": "Done. I had also made a similar decision for my follow up CL, with no default values for any of these on the base class.",
+      "parentUuid": "61014218_35c9b3a3",
+      "revId": "0712c5dd3dbb86bb9ee5c487d3287f539fac2bee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
