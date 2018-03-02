@@ -2018,6 +2018,7 @@ triaging functionality in the chart.
          * @param {Object} item An object of the item clicked, null otherwise.
          */
         onPlotClick(event, pos, item) {
+          this.selecting = false;
           if (this.lastSelectedDelta) {
             const from = this.lastSelectedDelta.yaxis.from;
             const to = this.lastSelectedDelta.yaxis.to;
