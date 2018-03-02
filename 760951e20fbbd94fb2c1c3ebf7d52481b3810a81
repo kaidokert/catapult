@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "77f84b4e_34e6978f",
+        "filename": "tracing/tracing/metrics/system_health/breakdown_tree_helpers.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1215729
+      },
+      "writtenOn": "2018-03-02T04:37:07Z",
+      "side": 1,
+      "message": "Is it more precise if we use a similar approach to getWallClockSelfTime, i.e., find out all self-time ranges and approximate the cpu-self-time on these specific ranges?\nAssuming the cpu time is evenly distributed across wall-clock time, we can define:\ncpu_wall_ratio \u003d event.cpuDuration/event.duration.\n\nFor example:\n\nfunction getCPUSelfTime_(event, rangeOfInterest) {\n    if (event.duration \u003d\u003d\u003d 0) return 0;\n\n    const selfTimeRanges \u003d [rangeOfInterest.findIntersection(event.range)];\n    for (const subSlice of event.subSlices) {\n      if (selfTimeRanges.length \u003d\u003d\u003d 0) return [];\n\n      const lastRange \u003d selfTimeRanges.pop();\n      selfTimeRanges.push(\n          ...tr.b.math.Range.findDifference(lastRange, subSlice.range));\n    }\n\n    const cpu_wall_ratio \u003d event.cpuDuration / event.duration; // EDITED\n    return tr.b.math.Statistics.sum(selfTimeRanges, r \u003d\u003e r.duration) * cpu_wall_ratio; // EDITED\n\nWDYT?",
+      "revId": "760951e20fbbd94fb2c1c3ebf7d52481b3810a81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
