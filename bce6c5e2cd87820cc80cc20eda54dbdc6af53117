@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "752ffa38_2cf84ba5",
+        "filename": "experimental/soundwave/soundwave/commands.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-02T16:38:41Z",
+      "side": 1,
+      "message": "virtually no changes here, just moving code from bin/soundwave",
+      "revId": "bce6c5e2cd87820cc80cc20eda54dbdc6af53117",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f440167c_df5c9ad2",
+        "filename": "experimental/soundwave/soundwave/commands_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-02T16:38:41Z",
+      "side": 1,
+      "message": "started with one for now, maybe I\u0027ll add a couple more before landing",
+      "revId": "bce6c5e2cd87820cc80cc20eda54dbdc6af53117",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
