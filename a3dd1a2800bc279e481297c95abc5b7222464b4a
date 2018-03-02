@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e5bc5d61_b9ba3052",
+        "filename": "tracing/tracing/importer/find_load_expectations.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-03-02T12:26:37Z",
+      "side": 1,
+      "message": "I changed this to findLastEventStartingOnOrBeforeTimestamp instead of findLastEventStartingBeforeTimestamp for cases where the last event at the end of the trace is fmpEvent. I don\u0027t think it should matter in any real cases, but there is a test which fails otherwise. If this isn\u0027t right then I will fix the test instead.",
+      "revId": "a3dd1a2800bc279e481297c95abc5b7222464b4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9552edc4_3132231a",
+        "filename": "tracing/tracing/metrics/system_health/expected_queueing_time_metric_test.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-03-02T12:26:37Z",
+      "side": 1,
+      "message": "I changed this, because of my comment in find_load_expectations.",
+      "revId": "a3dd1a2800bc279e481297c95abc5b7222464b4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
