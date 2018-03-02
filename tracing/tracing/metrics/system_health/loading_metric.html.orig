@@ -29,55 +29,30 @@ tr.exportTo('tr.metrics.sh', function() {
   const hasCategoryAndName = tr.metrics.sh.hasCategoryAndName;
   const EventFinderUtils = tr.metrics.sh.EventFinderUtils;
 
+<<<<<<< HEAD
   function allCombinations() {
     const combinations = [];
-    for (let a of [false]) {
-      for (let b of [false]) {
-        for (let c of [false]) {
-          for (let d of [false]) {
-            for (let e of [false]) {
-              for (let f of [false]) {
-                for (let g of [false]) {
-                  for (let n = 2; n <= 2; n++) {
-                    for (let t = 5; t >= 5; t-=0.5) {
-                      for (let s of [0]) {
-                        for (let l of [50]) {
-                          for (let fcp of [false, true]) {
-                            for (let markStrangeFCP of [false, true]) {
-                              for (let p of [1000]) {
-                                combinations.push({
-                                  enableLongPollingFiltering: a,
-                                  enableNameAugmenting: b,
-                                  enableTypeAugmenting: c,
-                                  enableXMLTypeFiltering: d,
-                                  enableShortEventFiltering: e,
-                                  enableNonGetFiltering: f,
-                                  enablefailedFiltering: g,
-                                  tolerance: n,
-                                  ws: t,
-                                  size: s,
-                                  longtaskLength: l,
-                                  longpollinglength: p,
-                                  enableStartFromFCP: fcp,
-                                  markStrangeFCP: markStrangeFCP,
-                                });
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
+    for (let b of [true, false]) {
+      combinations.push({ enableLongPollingFiltering: b });
+    }
+    return combinations;
+  }
+
+||||||| parent of 6f2a11562... [NetworkIdleness] Experiment new definition
+=======
+  function allCombinations() {
+    const combinations = [];
+    for (let b of [true, false]) {
+      for (let n = 0; n <= 2; n++) {
+        for (let t = 5; t >= 0; t-=0.25) {
+          combinations.push({ enableLongPollingFiltering: b, tolerance: n, ws: t });
         }
       }
     }
     return combinations;
   }
 
+>>>>>>> 6f2a11562... [NetworkIdleness] Experiment new definition
   /**
    * @param  {!tr.model.Process} process
    * @param  {!tr.b.math.Range} range
@@ -180,8 +155,6 @@ tr.exportTo('tr.metrics.sh', function() {
   }
 
   const URL_BLACKLIST = [
-    // Blank URLs are usually initial empty document.
-    '',
     'about:blank',
     // Chrome on Android creates main frames with the below URL for plugins.
     'data:text/html,pluginplaceholderdata',
@@ -330,7 +303,7 @@ tr.exportTo('tr.metrics.sh', function() {
    */
   function decorateInteractivitySampleWithDiagnostics_(rendererHelper,
       eventTimestamp, navigationStartEvent, firstMeaningfulPaintTime,
-      domContentLoadedEndTime, url, detectionTime, traceEndTime, searchStart) {
+      domContentLoadedEndTime, url, detectionTime, traceEndTime) {
     if (eventTimestamp === undefined) return undefined;
     const navigationStartTime = navigationStartEvent.start;
     const navStartToEventTimeRange =
@@ -357,108 +330,19 @@ tr.exportTo('tr.metrics.sh', function() {
           eventTimestamp,
           detectionTime,
           traceEndTime,
-          searchStart,
         }]),
         'Breakdown of [navStart, eventTimestamp]': breakdownDiagnostic,
       }),
     };
   }
 
-  function filterLongPolling(networkRequests, longpollingThreshold) {
+  function filterLongPolling(networkRequests) {
     return networkRequests.filter((request)=>{
       if (!request.args || !request.args.resourceInfo || !request.args.resourceInfo['ResponseStart'])
         return true;
       const type = request.args.resourceInfo['ResponseStart'];
-      return type < longpollingThreshold;
+      return type < 8;
     });
-  }
-
-  function augmentName(networkRequests) {
-    const nameEvents = networkRequests.filter((request)=>{
-      if (!request.args || !request.args.beginData || !request.args.beginData['url'])
-        return false;
-      const url = request.args.beginData['url'];
-      const re = /\/((jquery)|(core)|(app)|(main)|(react))[-\d\.]*\.(min\.)?js/i;
-      return url.match(re);
-    });
-    return networkRequests.concat(nameEvents).concat(nameEvents);
-  }
-
-  function augmentCSSFont(networkRequests) {
-    const typeEvents = networkRequests.filter((request)=>{
-      if (!request.args || !request.args.resourceInfo || !request.args.resourceInfo['resourceType'])
-        return false;
-      const type = request.args.resourceInfo['resourceType'];
-      return type === 'CSS stylesheet' || type === 'Font';
-    });
-    return networkRequests.concat(typeEvents).concat(typeEvents);
-  }
-
-  function filterXMLType(networkRequests) {
-    return networkRequests.filter((request)=>{
-      if (!request.args || !request.args.resourceInfo || !request.args.resourceInfo['resourceType'])
-        return true;
-      const type = request.args.resourceInfo['resourceType'];
-      return type !== 'XMLHttpRequest';
-    });
-  }
-
-  function filterShortEvent(networkRequests) {
-    return networkRequests.filter((request)=>{
-      return request.duration && request.duration >= 20;
-    });
-  }
-
-  function filterFailed(networkRequests) {
-    return networkRequests.filter((request)=>{
-      if (request.args && request.args.endData && request.args.endData.outcome === 'Fail') {
-        return false;
-      }
-      return true;
-    });
-  }
-
-  function filterNonGet(networkRequests) {
-    return networkRequests.filter((request)=>{
-      if (!request.args || !request.args.resourceInfo || !request.args.resourceInfo['request.HttpMethod'])
-        return true;
-      return request.args.resourceInfo['request.HttpMethod'] === "GET";
-    });
-  }
-
-  function filterBySize(networkRequests, size) {
-    return networkRequests.filter((request)=>{
-      if (!request.args || !request.args.resourceInfo || !request.args.resourceInfo['resource.size']) {
-        return true;
-      }
-      return request.args.resourceInfo['resource.size'] >= size;
-    });
-  }
-
-  function findLatestOneBefore(samples, time) {
-    samples.sort((a, b)=> {
-      const valueA = a.diagnostics['End'].asDict().events[0].start;
-      const valueB = b.diagnostics['End'].asDict().events[0].start;
-      return valueA - valueB;
-    }); // from small to large.
-    for (let i = samples.length - 1; i >=0; i--) {
-      if (samples[i].diagnostics['End'].asDict().events[0].start < time)
-        return samples[i].diagnostics['End'].asDict().events[0].start;
-    }
-    return samples[0].diagnostics['End'].asDict().events[0].start;
-  }
-
-  function fcpIsStrange(samples, time) {
-    samples.sort((a, b)=> {
-      const valueA = a.diagnostics['End'].asDict().events[0].start;
-      const valueB = b.diagnostics['End'].asDict().events[0].start;
-      return valueA - valueB;
-    }); // from small to large.
-    for (let i = samples.length - 1; i >=0; i--) {
-      if (samples[i].diagnostics['End'].asDict().events[0].start < time)
-        return false;
-    }
-    return true;
   }
 
   /**
@@ -486,7 +370,7 @@ tr.exportTo('tr.metrics.sh', function() {
    */
   function computeInteractivityMetricSample_(rendererHelper,
       frameToNavStartEvents, frameToDomContentLoadedEndEvents, navigationStart,
-      firstMeaningfulPaintTime, url, firstContentfulPaintSamples) {
+      firstMeaningfulPaintTime, url) {
     if (shouldIgnoreURL(url)) return;
     const traceEndTime = rendererHelper.mainThread.bounds.max;
     const frameIdRef = navigationStart.args.frame;
@@ -545,57 +429,45 @@ tr.exportTo('tr.metrics.sh', function() {
         tr.metrics.sh.findFirstCpuIdleTime(
             firstMeaningfulPaintTime, searchWindowEnd, domContentLoadedEndTime,
             longTasksInWindow);
+<<<<<<< HEAD
 
     let interactiveSampleList = [];
     allCombinations().forEach((combination, index)=>{
-      let searchWindowStart;
-      if (combination.enableStartFromFCP) {
-        searchWindowStart = findLatestOneBefore(
-          firstContentfulPaintSamples, firstMeaningfulPaintTime);
+      let networkEvents;
+      if (combination.enableLongPollingFiltering === true) {
+        networkEvents = filterLongPolling(resourceLoadEvents);
       } else {
-        searchWindowStart = firstMeaningfulPaintTime;
+        networkEvents = resourceLoadEvents;
       }
 
-      let longTasks = mainThreadTasks.filter(
-        task => task.duration >= combination.longtaskLength);
-      let longTasksInWindow = longTasks.filter(
-        task => task.range.intersectsExplicitRangeInclusive(
-            searchWindowStart, searchWindowEnd));
-      // if (combination.tolerance === 2 && combination.ws === 5 &&
-      //     combination.enableLongPollingFiltering === false &&
-      //     combination.enableNameAugmenting === false &&
-      //     combination.enableXMLTypeFiltering === false) {
-      //   console.log(JSON.stringify(combination));
-      // }
-      let networkEvents = resourceLoadEvents;
+      const interactiveTime =
+        tr.metrics.sh.findInteractiveTime(
+||||||| parent of 6f2a11562... [NetworkIdleness] Experiment new definition
+    const interactiveTime =
+        tr.metrics.sh.findInteractiveTime(
+=======
 
-      if (combination.enablefailedFiltering) {
-        networkEvents = filterFailed(networkEvents);
+    let interactiveSampleList = [];
+    allCombinations().forEach((combination, index)=>{
+      let networkEvents;
+      if (combination.enableLongPollingFiltering === true) {
+        networkEvents = filterLongPolling(resourceLoadEvents);
+      } else {
+        networkEvents = resourceLoadEvents;
       }
-      if (combination.enableLongPollingFiltering) {
-        networkEvents = filterLongPolling(networkEvents, 10);
-      }
-      if (combination.enableNameAugmenting) {
-        networkEvents = augmentName(networkEvents);
-      }
-      if (combination.enableTypeAugmenting) {
-        networkEvents = augmentCSSFont(networkEvents);
-      }
-      if (combination.enableXMLTypeFiltering) {
-        networkEvents = filterXMLType(networkEvents);
-      }
-      if (combination.enableShortEventFiltering) {
-        networkEvents = filterShortEvent(networkEvents);
-      }
-      if (combination.enableNonGetFiltering) {
-        networkEvents = filterNonGet(networkEvents);
-      }
-      networkEvents = filterLongPolling(networkEvents, combination.longpollinglength);
-
-      networkEvents = filterBySize(networkEvents, combination.size);
 
       const obj = tr.metrics.sh.findInteractiveTime(
-            searchWindowStart, searchWindowEnd, domContentLoadedEndTime,
+>>>>>>> 6f2a11562... [NetworkIdleness] Experiment new definition
+            firstMeaningfulPaintTime, searchWindowEnd, domContentLoadedEndTime,
+<<<<<<< HEAD
+            longTasksInWindow, networkEvents);
+      interactiveSampleList[index] = decorateInteractivitySampleWithDiagnostics_(
+          rendererHelper, interactiveTime, navigationStart,
+          firstMeaningfulPaintTime, domContentLoadedEndTime, url)
+    });
+||||||| parent of 6f2a11562... [NetworkIdleness] Experiment new definition
+            longTasksInWindow, resourceLoadEvents);
+=======
             longTasksInWindow, networkEvents, url, combination.ws * 1000,
             combination.tolerance);
       let interactiveTime = undefined;
@@ -604,17 +476,12 @@ tr.exportTo('tr.metrics.sh', function() {
         interactiveTime = obj.tti;
         detectionTime = obj.detectionTime;
       }
-      if (combination.markStrangeFCP) {
-        if (fcpIsStrange(firstContentfulPaintSamples, firstMeaningfulPaintTime)) {
-          interactiveTime = 999999;
-          detectionTime = 999999;
-        }
-      }
       interactiveSampleList[index] = decorateInteractivitySampleWithDiagnostics_(
           rendererHelper, interactiveTime, navigationStart,
           firstMeaningfulPaintTime, domContentLoadedEndTime, url,
-          detectionTime, traceEndTime, searchWindowStart)
+          detectionTime, traceEndTime)
     });
+>>>>>>> 6f2a11562... [NetworkIdleness] Experiment new definition
 
     return {
       firstCpuIdleSample: decorateInteractivitySampleWithDiagnostics_(
@@ -644,8 +511,7 @@ tr.exportTo('tr.metrics.sh', function() {
    * for detailed description and implementation of these two metrics.
    */
   function collectFirstMeaningfulPaintAndInteractivityMetricsForRenderer(
-      rendererHelper, frameToNavStartEvents, frameToDomContentLoadedEndEvents,
-      firstContentfulPaintSamples) {
+      rendererHelper, frameToNavStartEvents, frameToDomContentLoadedEndEvents) {
     const firstMeaningfulPaintSamples = [];
     const firstMeaningfulPaintCpuTimeSamples = [];
     const firstCpuIdleSamples = [];
@@ -662,12 +528,18 @@ tr.exportTo('tr.metrics.sh', function() {
           firstMeaningfulPaintCpuTimeSamples, rendererHelper,
           frameIdRef, navigationStart, fmpMarkerEvent);
       if (data !== undefined) {
+<<<<<<< HEAD
+
         const {interactiveSampleList, firstCpuIdleSample} =
+||||||| parent of 6f2a11562... [NetworkIdleness] Experiment new definition
+        const {interactiveSample, firstCpuIdleSample} =
+=======
+        const {interactiveSampleList, firstCpuIdleSample} =
+>>>>>>> 6f2a11562... [NetworkIdleness] Experiment new definition
             computeInteractivityMetricSample_(
                 rendererHelper, frameToNavStartEvents,
                 frameToDomContentLoadedEndEvents, navigationStart,
-                data.firstMeaningfulPaint, data.url,
-                firstContentfulPaintSamples);
+                data.firstMeaningfulPaint, data.url);
         allCombinations().forEach((combination, index)=>{
           if (interactiveSampleList[index]) interactiveSamples[index].push(interactiveSampleList[index]);
         });
@@ -715,6 +587,16 @@ tr.exportTo('tr.metrics.sh', function() {
     };
   }
 
+  function getLast(samples) {
+    let longestSample = undefined;
+    for (const sample of samples) {
+      if (!longestSample || sample.value > longestSample) {
+        longestSample = sample;
+      }
+    }
+    return longestSample;
+  }
+
   function collectLoadingMetricsForRenderer(rendererHelper) {
     const frameToNavStartEvents =
         EventFinderUtils.getSortedMainThreadEventsByFrame(
@@ -735,7 +617,7 @@ tr.exportTo('tr.metrics.sh', function() {
         firstCpuIdleSamples, interactiveSamples} =
         collectFirstMeaningfulPaintAndInteractivityMetricsForRenderer(
             rendererHelper, frameToNavStartEvents,
-            frameToDomContentLoadedEndEvents, firstContentfulPaintSamples);
+            frameToDomContentLoadedEndEvents);
     return {
       firstPaintSamples,
       firstContentfulPaintSamples,
@@ -774,10 +656,10 @@ tr.exportTo('tr.metrics.sh', function() {
 
           let relatedNames = histogram.diagnostics.get('breakdown');
           if (!relatedNames) {
-            relatedNames = new tr.v.d.RelatedNameMap();
+            relatedNames = new tr.v.d.RelatedHistogramBreakdown();
             histogram.diagnostics.set('breakdown', relatedNames);
           }
-          relatedNames.set(category, relatedName);
+          relatedNames.set(category, relatedHist);
         }
         relatedHist.addSample(breakdown.total, {
           breakdown: tr.v.d.Breakdown.fromEntries(
@@ -819,31 +701,30 @@ tr.exportTo('tr.metrics.sh', function() {
           description: 'CPU time to first meaningful paint',
           summaryOptions: SUMMARY_OPTIONS,
         });
+<<<<<<< HEAD
     const timeToInteractiveHistograms = [];
     allCombinations().forEach((combination, index)=>{
       const longPollSt = combination.enableLongPollingFiltering? "lpfE" : "lpfDE";
-      const augmentNameSt = combination.enableNameAugmenting? "naE" : "naDE";
-      const augmentTypeSt = combination.enableTypeAugmenting? "taE" : "taDE";
-      const xmlSt = combination.enableXMLTypeFiltering? "xmlfE" : "xmlfDE";
-      const shortEventSt = combination.enableShortEventFiltering? "sefE" : "sefDE";
-      const nonGetSt = combination.enableNonGetFiltering? "ngfE" : "ngfDE";
-      const failSt = combination.enablefailedFiltering? 'ffE' : 'ffDE';
-      const fcpSt = combination.enableStartFromFCP? 'fcpE' : 'fcpDE';
-      const markStrangeFCPSt = combination.markStrangeFCP? 'msfE' : 'msfDE';
       timeToInteractiveHistograms[index] = histograms.createHistogram(
-        'timeToInteractive_' +
-            longPollSt + '_' + augmentNameSt + '_' + augmentTypeSt + '_' +
-            xmlSt + '_' + shortEventSt + '_' + nonGetSt + '_' + failSt + '_' + fcpSt + '_' + markStrangeFCPSt + '_' +
-            combination.ws + '_' + combination.tolerance + '_' +
-            combination.size + '_' + combination.longtaskLength + '_' +
-            combination.longpollinglength,
-        timeDurationInMs_smallerIsBetter, [], {
+        'timeToInteractive_' + longPollSt, timeDurationInMs_smallerIsBetter, [], {
+||||||| parent of 6f2a11562... [NetworkIdleness] Experiment new definition
+    const timeToInteractiveHistogram = histograms.createHistogram(
+        'timeToInteractive', timeDurationInMs_smallerIsBetter, [], {
+=======
+    const timeToInteractiveHistograms = [];
+    allCombinations().forEach((combination, index)=>{
+      const longPollSt = combination.enableLongPollingFiltering? "lpfE" : "lpfDE";
+      timeToInteractiveHistograms[index] = histograms.createHistogram(
+        'timeToInteractive_' + longPollSt + '_' + combination.ws + '_' + combination.tolerance, timeDurationInMs_smallerIsBetter, [], {
+>>>>>>> 6f2a11562... [NetworkIdleness] Experiment new definition
           binBoundaries: TIME_TO_INTERACTIVE_BOUNDARIES,
-          description: 'Time to Interactive: ' + longPollSt + ',' +
-              augmentNameSt + ',' + augmentTypeSt + ',' + xmlSt + ',' + fcpSt + ',' + markStrangeFCPSt +
-              combination.ws + ',' + combination.tolerance + ',' +
-              combination.size + ',' + combination.longtaskLength + ',' +
-              combination.longpollinglength,
+<<<<<<< HEAD
+          description: 'Time to Interactive: ' + longPollSt,
+||||||| parent of 6f2a11562... [NetworkIdleness] Experiment new definition
+          description: 'Time to Interactive',
+=======
+          description: 'Time to Interactive: ' + longPollSt + ',' + combination.ws + ',' + combination.tolerance,
+>>>>>>> 6f2a11562... [NetworkIdleness] Experiment new definition
           summaryOptions: SUMMARY_OPTIONS,
         });
     });

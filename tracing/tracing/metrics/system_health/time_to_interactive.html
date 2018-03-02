@@ -80,7 +80,7 @@ tr.exportTo('tr.metrics.sh', function() {
    * @returns {boolean}
    */
   function reachedTTIQuiscence_(timestamp,
-      networkQuietWindowStart, mainThreadQuietWindowStart) {
+      networkQuietWindowStart, mainThreadQuietWindowStart, windowSize) {
     if (networkQuietWindowStart === undefined ||
         mainThreadQuietWindowStart === undefined) {
       return false;
@@ -88,11 +88,11 @@ tr.exportTo('tr.metrics.sh', function() {
 
     const mainThreadQuietForLongEnough =
           timestamp - mainThreadQuietWindowStart >=
-          TIME_TO_INTERACTIVE_WINDOW_SIZE_MS;
+          windowSize;
 
     const networkQuietForLongEnough =
           timestamp - networkQuietWindowStart >=
-          TIME_TO_INTERACTIVE_WINDOW_SIZE_MS;
+          windowSize;
 
     return mainThreadQuietForLongEnough && networkQuietForLongEnough;
   }
@@ -130,7 +130,8 @@ tr.exportTo('tr.metrics.sh', function() {
    * @returns {number|undefined}
    */
   function findInteractiveTime(searchBegin, searchEnd,
-      domContentLoadedEnd, longTasksInWindow, networkRequests) {
+      domContentLoadedEnd, longTasksInWindow, networkRequests, url, windowSize,
+      activeRequestTolerance) {
     // It is sufficient to only look at the end points of long tasks and network
     // requests. These are the points where any meaningful changes happen.
     const longTaskEndpoints = getEndpoints_(longTasksInWindow,
@@ -144,11 +145,15 @@ tr.exportTo('tr.metrics.sh', function() {
     let mainThreadQuietWindowStart = searchBegin;
     let interactiveCandidate = undefined;
     let activeRequests = 0;
+    let detectionTime = undefined;
 
     for (const endpoint of endpoints) {
       if (reachedTTIQuiscence_(endpoint.time,
-          networkQuietWindowStart, mainThreadQuietWindowStart)) {
+          networkQuietWindowStart, mainThreadQuietWindowStart, windowSize)) {
         interactiveCandidate = mainThreadQuietWindowStart;
+        detectionTime =
+            Math.max(networkQuietWindowStart, mainThreadQuietWindowStart) +
+            windowSize;
         break;
       }
 
@@ -161,13 +166,13 @@ tr.exportTo('tr.metrics.sh', function() {
           break;
         case ENDPOINT_TYPES.REQUEST_START:
           activeRequests++;
-          if (activeRequests > ACTIVE_REQUEST_TOLERANCE) {
+          if (activeRequests > activeRequestTolerance) {
             networkQuietWindowStart = undefined;
           }
           break;
         case ENDPOINT_TYPES.REQUEST_END:
           activeRequests--;
-          if (activeRequests === ACTIVE_REQUEST_TOLERANCE) {
+          if (activeRequests === activeRequestTolerance) {
             // Just became network 2-quiet.
             networkQuietWindowStart = endpoint.time;
           }
@@ -180,13 +185,20 @@ tr.exportTo('tr.metrics.sh', function() {
 
     if (interactiveCandidate === undefined &&
         reachedTTIQuiscence_(searchEnd,
-            networkQuietWindowStart, mainThreadQuietWindowStart)) {
+            networkQuietWindowStart, mainThreadQuietWindowStart, windowSize)) {
       interactiveCandidate = mainThreadQuietWindowStart;
+      detectionTime =
+          Math.max(networkQuietWindowStart, mainThreadQuietWindowStart) +
+          windowSize;
     }
 
     if (interactiveCandidate === undefined) return undefined;
 
-    return Math.max(interactiveCandidate, domContentLoadedEnd);
+    if (interactiveCandidate > domContentLoadedEnd) {
+      return {tti: interactiveCandidate, detectionTime};
+    } else {
+      return {tti: domContentLoadedEnd, detectionTime: domContentLoadedEnd};
+    }
   }
 
   /**
