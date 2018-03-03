@@ -1,0 +1,276 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9c782326_7b666c8d",
+        "filename": "dashboard/dashboard/pinpoint/dispatcher.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-03T03:36:49Z",
+      "side": 1,
+      "message": "nit: put in above section.",
+      "revId": "48c972ed0063c239f9e2f834feff26c429adc61a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2197cb0d_5b2102d0",
+        "filename": "dashboard/dashboard/pinpoint/elements/results2-page.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-03T03:36:49Z",
+      "side": 1,
+      "message": "nit: unused",
+      "revId": "48c972ed0063c239f9e2f834feff26c429adc61a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d78ac1be_8e434465",
+        "filename": "dashboard/dashboard/pinpoint/elements/results2-page.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-03T03:36:49Z",
+      "side": 1,
+      "message": "Why this color and size?",
+      "revId": "48c972ed0063c239f9e2f834feff26c429adc61a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ba674ab_5a20d122",
+        "filename": "dashboard/dashboard/pinpoint/elements/results2-page.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-03T03:36:49Z",
+      "side": 1,
+      "message": "nit: unused",
+      "revId": "48c972ed0063c239f9e2f834feff26c429adc61a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0cab907_a2b1b5c6",
+        "filename": "dashboard/dashboard/pinpoint/elements/results2-page.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-03T03:36:49Z",
+      "side": 1,
+      "message": "Maybe \"Benchmark results\"?",
+      "revId": "48c972ed0063c239f9e2f834feff26c429adc61a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e43b7fbb_a0273d64",
+        "filename": "dashboard/dashboard/pinpoint/elements/results2-page.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-03T03:36:49Z",
+      "side": 1,
+      "message": "Maybe \"Generating results2...\" The message is a little weird because most of the time would be spent waiting for the job to finish, not for the results2 to generate.",
+      "revId": "48c972ed0063c239f9e2f834feff26c429adc61a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a322825_edf8b38c",
+        "filename": "dashboard/dashboard/pinpoint/elements/results2-page.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-03T03:36:49Z",
+      "side": 1,
+      "message": "Maybe something more like \"Waiting for job to complete...\"\nIt doesn\u0027t seem like it would make much of a difference to the user whether the results2 is waiting for the job to complete, or the results2 to generate.",
+      "revId": "48c972ed0063c239f9e2f834feff26c429adc61a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e8cb916_c8e61929",
+        "filename": "dashboard/dashboard/pinpoint/elements/results2-page.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-03T03:36:49Z",
+      "side": 1,
+      "message": "Maybe you don\u0027t need this if you set \"auto\" on the \u003ciron-ajax\u003e? Then it will automatically update when the Job changes.",
+      "revId": "48c972ed0063c239f9e2f834feff26c429adc61a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c73b53ab_59de8361",
+        "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-03T03:36:49Z",
+      "side": 1,
+      "message": "What invalid name?",
+      "revId": "48c972ed0063c239f9e2f834feff26c429adc61a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f445fe6d_853e78e1",
+        "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-03T03:36:49Z",
+      "side": 1,
+      "message": "If the results2 is generated when the job is completed, do you still need to do it here? It doesn\u0027t look like we handle results2 generation for incomplete jobs anyway.",
+      "revId": "48c972ed0063c239f9e2f834feff26c429adc61a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f396e3e_642b1b36",
+        "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-03T03:36:49Z",
+      "side": 1,
+      "message": "Does this need to be a class? Would it work as a function that returns a generator?",
+      "revId": "48c972ed0063c239f9e2f834feff26c429adc61a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0412df58_60ff078f",
+        "filename": "dashboard/dashboard/pinpoint/index/index.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-03T03:36:49Z",
+      "side": 1,
+      "message": "nit: alphabetize",
+      "revId": "48c972ed0063c239f9e2f834feff26c429adc61a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34233e29_a2f622a0",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-03T03:36:49Z",
+      "side": 1,
+      "message": "nit: This is defined here but not used here. Put in results2.py.",
+      "revId": "48c972ed0063c239f9e2f834feff26c429adc61a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a569784d_cea7c430",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-03T03:36:49Z",
+      "side": 1,
+      "message": "Did you forget to call it on job completion?",
+      "revId": "48c972ed0063c239f9e2f834feff26c429adc61a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "407e8c37_100077fd",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-03T03:36:49Z",
+      "side": 1,
+      "message": "nit: Use self.task or create a helper property",
+      "revId": "48c972ed0063c239f9e2f834feff26c429adc61a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a691027_8957aca9",
+        "filename": "tracing/tracing_build/render_histograms_viewer.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-03T03:36:49Z",
+      "side": 1,
+      "message": "whoops",
+      "revId": "48c972ed0063c239f9e2f834feff26c429adc61a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
