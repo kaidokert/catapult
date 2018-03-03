@@ -155,6 +155,24 @@
     },
     {
       "key": {
+        "uuid": "cab7cfe1_ebf940e5",
+        "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-03T03:38:43Z",
+      "side": 1,
+      "message": "Oh, I got it. It should work for just the class if you put it in the scope of the class.",
+      "parentUuid": "c73b53ab_59de8361",
+      "revId": "48c972ed0063c239f9e2f834feff26c429adc61a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f445fe6d_853e78e1",
         "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
         "patchSetId": 7
