@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/bower_components/app-route/app-location.html">
+<link rel="import" href="/bower_components/app-route/app-route.html">
+<link rel="import" href="/bower_components/google-signin/google-signin.html">
+<link rel="import" href="/bower_components/iron-icons/communication-icons.html">
+<link rel="import" href="/bower_components/iron-icons/editor-icons.html">
+<link rel="import" href="/bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="/bower_components/paper-input/paper-textarea.html">
+<link rel="import" href="/bower_components/paper-progress/paper-progress.html">
+<link rel="import" href="/bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="/bower_components/paper-tooltip/paper-tooltip.html">
+<link rel="import" href="/dashboard/spa/alerts-section.html">
+<link rel="import" href="/dashboard/spa/chart-section.html">
+<link rel="import" href="/dashboard/spa/create-element.html">
+<link rel="import" href="/dashboard/spa/element-base.html">
+<link rel="import" href="/dashboard/spa/pivot-section.html">
+<link rel="import" href="/dashboard/spa/releasing-section.html">
+<link rel="import" href="/tracing/base/guid.html">
+
+<dom-module id="chromeperf-app">
+  <template>
+    <style>
+      :host {
+        /* https://material.io/guidelines/motion/material-motion.html#material-motion-how-does-material-move */
+        --transition-long: 0.4s;
+        --transition-short: 0.2s;
+      }
+
+      #nav {
+        align-items: center;
+        background-color: var(--paper-indigo-500);
+        color: white;
+        display: flex;
+        font-weight: bold;
+        width: 100%;
+      }
+
+      #title {
+        font-size: large;
+        line-height: 27px; /* match height of google-signin */
+        padding: 8px;
+      }
+
+      iron-icon {
+        margin: 0 4px;
+      }
+
+      #spacer {
+        margin: auto;
+      }
+
+      #nav a {
+        color: var(--paper-indigo-50);
+      }
+
+      google-signin {
+        margin: 0;
+        padding: 8px;
+      }
+
+      paper-progress {
+        --paper-progress-active-color: var(--paper-indigo-500);
+        --paper-progress-container-color: white;
+        width: 100%;
+      }
+
+      releasing-section, alerts-section, chart-section {
+        display: block;
+        margin: 0;
+        padding: 16px;
+      }
+
+      releasing-section,
+      alerts-section,
+      chart-section,
+      #top_buttons {
+        /* Use full-bleed dividers between sections.
+           https://material.io/guidelines/components/dividers.html
+         */
+        border-bottom: 1px solid black;
+      }
+
+      .buttons paper-button {
+        background-color: var(--paper-indigo-500);
+        color: white;
+        display: block;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 4px;
+        text-align: center;
+        width: 50%;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: space-evenly;
+      }
+
+      .buttons[multiple] paper-button {
+        width: 30%;
+        margin-left: 0;
+        margin-right: 0;
+      }
+    </style>
+
+    <app-location route="{{route}}">
+    </app-location>
+    <app-route id="route"
+               route="{{route}}"
+               pattern="/spa/:routeMode"
+               data="{{appRouteData}}"
+               query-params="{{appRouteQueryParams}}">
+    </app-route>
+
+    <div id="nav">
+      <span id="title">Chromeperf Dashboard</span>
+      <span id="spacer"></span>
+
+      <span id="spacer"></span>
+      <a href="https://github.com/catapult-project/catapult/tree/master/dashboard/dashboard/pinpoint"
+         target="_blank"
+         title="Documentation">
+        <paper-icon-button icon="help"></paper-icon-button>
+      </a>
+
+      <a href="https://github.com/catapult-project/catapult/issues/new?assignees=benshayden&labels=Perf+Dashboard"
+         target="_blank"
+         title="File a bug">
+        <paper-icon-button icon="feedback"></paper-icon-button>
+      </a>
+
+      [[userEmail]]
+      <google-signin
+          id="signin"
+          client-id="62121018386-rhk28ad5lbqheinh05fgau3shotl2t6c.apps.googleusercontent.com"
+          height="short"
+          theme="dark"
+          scopes="email"
+          on-google-signin-success="onSignin_"
+          on-google-signed-out="onSignout_">
+      </google-signin>
+    </div>
+
+    <paper-progress indeterminate="[[isLoading]]">
+    </paper-progress>
+
+    <template is="dom-if" if="[[releasingSection]]">
+      <iron-collapse opened="[[showingReleasingSection]]">
+        <releasing-section
+            state-path="[[statePath]].releasingSection"
+            on-require-sign-in="requireSignIn_"
+            on-close-section="hideReleasingSection_"
+            on-alerts="onAlerts_"
+            on-new-chart="onNewChart_">
+        </releasing-section>
+      </iron-collapse>
+    </template>
+
+    <template is="dom-if" if="[[showTopButtons_(showingReleasingSection, showingAlertsSection, chartSectionIds)]]">
+      <div id="top_buttons"
+           class="buttons"
+           multiple$="[[showMultipleTopButtons_(showingReleasingSection, showingAlertsSection)]]">
+        <template is="dom-if" if="[[!showingReleasingSection]]">
+          <paper-button
+              raised
+              on-tap="showReleasingSection_">
+            <iron-icon icon="communication:business">
+            </iron-icon>
+            Report
+          </paper-button>
+        </template>
+
+        <template is="dom-if" if="[[!showingAlertsSection]]">
+          <paper-button
+              raised
+              on-tap="showAlertsSection_">
+            <iron-icon icon="add-alert">
+            </iron-icon>
+            Alerts
+          </paper-button>
+        </template>
+      </div>
+    </template>
+
+    <template is="dom-if" if="[[alertsSection]]">
+      <iron-collapse opened="[[showingAlertsSection]]">
+        <alerts-section
+            state-path="[[statePath]].alertsSection"
+            on-require-sign-in="requireSignIn_"
+            on-close-section="hideAlertsSection_"
+            on-new-chart="onNewChart_">
+        </alerts-section>
+      </iron-collapse>
+    </template>
+
+    <template is="dom-repeat" items="[[chartSectionIds]]" as="id" index-as="idIndex">
+      <chart-section
+          state-path="[[statePath]].chartSectionsById.[[id]]"
+          on-require-sign-in="requireSignIn_"
+          on-close-section="closeChart_">
+      </chart-section>
+    </template>
+
+    <div class="buttons"
+         multiple$="[[showMultipleBottomButtons_(showingReleasingSection, showingAlertsSection, chartSectionIds)]]">
+      <template is="dom-if" if="[[showBottomReleasingButton_(showingReleasingSection, showingAlertsSection, chartSectionIds)]]">
+        <paper-button
+            raised
+            on-tap="showReleasingSection_">
+          <iron-icon icon="communication:business">
+          </iron-icon>
+          Report
+        </paper-button>
+      </template>
+
+      <template is="dom-if" if="[[showBottomAlertsButton_(showingReleasingSection, showingAlertsSection, chartSectionIds)]]">
+        <paper-button
+            raised
+            on-tap="showAlertsSection_">
+          <iron-icon icon="add-alert">
+          </iron-icon>
+          Alerts
+        </paper-button>
+      </template>
+
+      <paper-button
+          raised
+          on-tap="onNewChart_">
+        <iron-icon icon="editor:show-chart">
+        </iron-icon>
+        New Chart
+      </paper-button>
+    </div>
+
+    <paper-toast opened="[[hasClosedChart]]">
+      <paper-button on-tap="reopenClosedChart_">
+        Reopen Chart
+      </paper-button>
+    </paper-toast>
+  </template>
+</dom-module>
+<script src="/dashboard/spa/chromeperf-app.js"></script>
