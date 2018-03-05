@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c3671ae3_50ec78f9",
+        "filename": "tracing/tracing/model/thread.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-03-05T23:40:44Z",
+      "side": 1,
+      "message": "This method name is so similar to getCpuTimeForRange that I thought it was a bug.\nIt\u0027s very simple and only called in one place, so can you remove this method and change the caller to call getCpuTimeForRange directly?",
+      "revId": "911106ab4228d4985d3315d0be953dd5f6c37fa3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
