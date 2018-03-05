@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "82595060_eb0723f2",
+        "filename": "devil/devil/utils/lazy/weak_constant_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-03-05T17:33:58Z",
+      "side": 1,
+      "message": "This fails without the change to weak_constant in a manner similar to https://bugs.chromium.org/p/chromium/issues/detail?id\u003d816469#c1",
+      "revId": "a77db83c9349045a7bc3549774a7a4f2baa2ded9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
