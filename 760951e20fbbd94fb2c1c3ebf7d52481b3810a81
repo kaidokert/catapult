@@ -16,6 +16,24 @@
       "revId": "760951e20fbbd94fb2c1c3ebf7d52481b3810a81",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cafaa233_1bdf3ff3",
+        "filename": "tracing/tracing/metrics/system_health/breakdown_tree_helpers.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2018-03-05T14:19:32Z",
+      "side": 1,
+      "message": "Good idea. I thought it would be even more precise if we used event.cpuSelfTime / event.selfTime as cpu_wall_ratio, so I did that.",
+      "parentUuid": "77f84b4e_34e6978f",
+      "revId": "760951e20fbbd94fb2c1c3ebf7d52481b3810a81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
