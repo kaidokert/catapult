@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bd7baad2_8a1f4496",
+        "filename": "dashboard/dashboard/pinpoint/dispatcher.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-06T01:53:30Z",
+      "side": 1,
+      "message": "results2\u0027s GET is part of the public API and open to users, but POST is only to be used internally. They will have to be separate endpoints, so we can set `login: admin` in pinpoint.yaml.\n\nAlternatively, we can run the POST part as part of the job\u0027s execution, as mentioned in the comment on job.py. Then we\u0027d only have the public endpoint.",
+      "revId": "370448e76659dec0722a70b5f724d957d522ac74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f4aed44_8bf8c4f7",
+        "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-06T01:53:30Z",
+      "side": 1,
+      "message": "What\u0027s the purpose of this model? Just to track when the results2 was generated?",
+      "revId": "370448e76659dec0722a70b5f724d957d522ac74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a43b36e_19a0febb",
+        "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-06T01:53:30Z",
+      "side": 1,
+      "message": "nit: self._gcs_file",
+      "revId": "370448e76659dec0722a70b5f724d957d522ac74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c83419d6_78074df6",
+        "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-06T01:53:30Z",
+      "side": 1,
+      "message": "It still looks like this doesn\u0027t need to be a class.",
+      "revId": "370448e76659dec0722a70b5f724d957d522ac74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9934b92a_7cdae0e9",
+        "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-06T01:53:30Z",
+      "side": 1,
+      "message": "nit: Can you add a comment about memory usage?",
+      "revId": "370448e76659dec0722a70b5f724d957d522ac74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f61e136a_cf28bbe8",
+        "filename": "dashboard/dashboard/pinpoint/handlers/results2_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-06T01:53:30Z",
+      "side": 1,
+      "message": "nit: unused.",
+      "revId": "370448e76659dec0722a70b5f724d957d522ac74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1e8a834_dc71e5c0",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-06T01:53:30Z",
+      "side": 1,
+      "message": "nit: would you mind putting it at the beginning of the method? I feel like we should handle all the internal affairs before external communication.",
+      "revId": "370448e76659dec0722a70b5f724d957d522ac74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a9b9827_26094ba4",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-06T01:53:30Z",
+      "side": 1,
+      "message": "Since we\u0027re already running on a task queue, do we need to queue up another task to do it? Maybe we should just do it as part of the Job run.",
+      "revId": "370448e76659dec0722a70b5f724d957d522ac74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
