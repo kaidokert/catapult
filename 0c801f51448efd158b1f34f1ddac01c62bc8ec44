@@ -16,6 +16,24 @@
       "revId": "0c801f51448efd158b1f34f1ddac01c62bc8ec44",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2f13e3c_e7465b71",
+        "filename": "tracing/tracing/metrics/v8/runtime_stats_metric_test.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1175471
+      },
+      "writtenOn": "2018-03-06T13:24:15Z",
+      "side": 1,
+      "message": "Ah I see, this was my mistake initially, I didn\u0027t account for the previous \u0027toplevel\u0027 slice overlapping.\n\ndproy@: Can you change this slice to have a start time of 13552 and duration of 1000 and the next one to have a start time of 13555 and a duration of 990? I think that should fix the existing overlap issue and make the slices resemble what real slices would look like.",
+      "parentUuid": "00fb2eb8_b81db1ca",
+      "revId": "0c801f51448efd158b1f34f1ddac01c62bc8ec44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
