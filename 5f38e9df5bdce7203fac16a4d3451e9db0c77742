@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2c970bc2_993c421d",
+        "filename": "devil/devil/utils/lazy/weak_constant_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-06T09:30:46Z",
+      "side": 1,
+      "message": "nit: I haven\u0027t tested this fully, but since side_effect can be an iterable, I think the following should have the same effect without having to create an extra class:\n\ndef side_effects():\n  yield time.sleep(10)\n  yield \u0027second try worked!\u0027\n\ninitializer \u003d mock.Mock(side_effect\u003dside_effects())",
+      "revId": "5f38e9df5bdce7203fac16a4d3451e9db0c77742",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
