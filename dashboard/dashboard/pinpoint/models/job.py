@@ -110,6 +110,8 @@ class Job(ndb.Model):
     self._PostBugComment(comment, send_email=False)
 
   def _Complete(self):
+    self.ScheduleResults2Generation()
+
     # Format bug comment.
     differences = tuple(self.state.Differences())
 
@@ -156,6 +158,21 @@ class Job(ndb.Model):
     comment = '\n\n'.join((header, body, footer))
     self._PostBugComment(comment, status='Assigned',
                          cc_list=sorted(cc_list), owner=owner)
+
+  def ScheduleResults2Generation(self):
+    if self.task:
+      return 'job-incomplete'
+
+    try:
+      task_name = 'results2-%s' % self.job_id
+      taskqueue.add(
+          queue_name='job-queue', url='/api/results2/' + self.job_id,
+          name=task_name)
+    except taskqueue.TombstonedTaskError:
+      return 'failed'
+    except taskqueue.TaskAlreadyExistsError:
+      pass
+    return 'pending'
 
   def Fail(self):
     self.exception = traceback.format_exc()
