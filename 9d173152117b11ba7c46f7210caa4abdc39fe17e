@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "be1902b2_8bc68c0e",
+        "filename": "tracing/tracing_build/merge_traces_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-06T15:54:08Z",
+      "side": 1,
+      "message": "Verified that this test was broken before applying the fix, and it no longer is.",
+      "revId": "9d173152117b11ba7c46f7210caa4abdc39fe17e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
