@@ -38,7 +38,7 @@ class New(webapp2.RequestHandler):
     quests = _GenerateQuests(self.request.params)
     bug_id = _ValidateBugId(bug_id)
     changes = _ValidateChanges(self.request.params)
-    user = self.request.get('user')
+    user = _ValidateUser(self.request.params)
     tags = _ValidateTags(self.request.get('tags'))
 
     # Create job.
@@ -46,7 +46,7 @@ class New(webapp2.RequestHandler):
         arguments=self.request.params.mixed(),
         quests=quests,
         auto_explore=auto_explore,
-        user=user or users.get_current_user().email(),
+        user=user,
         bug_id=bug_id,
         tags=tags)
 
@@ -120,6 +120,18 @@ def _ValidateChanges(arguments):
     change_2['patch'] = arguments.get('patch')
 
   return (change.Change.FromDict(change_1), change.Change.FromDict(change_2))
+
+
+def _ValidateUser(arguments):
+  user_email = arguments.get('user')
+  if user_email:
+    return user_email
+
+  user = users.get_current_user()
+  if user:
+    return user.email()
+
+  return None
 
 
 def _GenerateQuests(arguments):

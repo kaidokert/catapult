@@ -186,7 +186,7 @@ class NewTest(testing_common.TestCase):
 
   @mock.patch.object(gitiles_service, 'CommitInfo', mock.MagicMock(
       return_value={'commit': 'abc'}))
-  def testPost_WithUser(self):
+  def testPost_UserFromParams(self):
     request = dict(_BASE_REQUEST)
     request['user'] = 'foo@example.org'
     response = self.testapp.post('/api/new', request, status=200)
@@ -196,8 +196,18 @@ class NewTest(testing_common.TestCase):
 
   @mock.patch.object(gitiles_service, 'CommitInfo', mock.MagicMock(
       return_value={'commit': 'abc'}))
-  def testPost_NoUser(self):
+  def testPost_UserFromAuth(self):
     response = self.testapp.post('/api/new', _BASE_REQUEST, status=200)
     result = json.loads(response.body)
     job = job_module.JobFromId(result['jobId'])
     self.assertEqual(job.user, 'internal@chromium.org')
+
+  @mock.patch.object(gitiles_service, 'CommitInfo', mock.MagicMock(
+      return_value={'commit': 'abc'}))
+  def testPost_NoUser(self):
+    # This is not the same as having no user, but will exercise the code path.
+    self.SetCurrentUser('', is_admin=True)
+    response = self.testapp.post('/api/new', _BASE_REQUEST, status=200)
+    result = json.loads(response.body)
+    job = job_module.JobFromId(result['jobId'])
+    self.assertIsNone(job.user)
