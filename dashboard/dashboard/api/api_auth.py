@@ -22,9 +22,12 @@ OAUTH_CLIENT_ID_WHITELIST = [
     # This oauth client id is used to upload histograms from the perf waterfall.
     '113172445342431053212',
     'chromeperf@webrtc-perf-test.google.com.iam.gserviceaccount.com',
+    # This oauth client id is used for testing uploads of Fuchsia data.
     'catapult-uploader@fuchsia-infra.iam.gserviceaccount.com',
     # This oauth client id used to upload histograms from cronet bots.
-    '113172445342431053212'
+    '113172445342431053212',
+    # This oauth client id is used to upload histograms from Fuchsia CI.
+    'infra-ci-builder@fuchsia-infra.iam.gserviceaccount.com'
 ]
 OAUTH_SCOPES = (
     'https://www.googleapis.com/auth/userinfo.email',
