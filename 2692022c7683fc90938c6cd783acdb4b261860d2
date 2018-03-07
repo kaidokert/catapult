@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "b7c350e2_5b3a79cd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1116061
+      },
+      "writtenOn": "2018-03-07T23:01:47Z",
+      "side": 1,
+      "message": "I definitely prefer sum.\n\nThe average of some number of threads doesn\u0027t seem very intuitive for one, it\u0027s hard for me to tell % of what is being measured.\n\nIf I have 1 busy worker thread vs 4 busy worker threads I expect the latter to show 4 times more work somewhere, but I think the current implementation actually hides that.\n\nI don\u0027t think it would be too weird to go over 100% (if it is, maybe % is not the right unit?).\n OS X Activity Monitor uses this scheme (apps using multiple cores will use \u003e 100%).  Windows Task Manager is measured out of 100%, but that\u0027s by dividing by the number of CPU cores as opposed to active threads.",
+      "parentUuid": "3b3e28dc_71c3eea0",
+      "revId": "2692022c7683fc90938c6cd783acdb4b261860d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0eab4388_9a65fa8c",
         "filename": "tracing/tracing/metrics/rendering_metric.html",
         "patchSetId": 3
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "I understand that logic. But, isn\u0027t it better that in such changes we look at both frame rate improvement and CPU time regression and make a decision each time weather the improvement worth the regression? CPU time / frame rate seems a little bit arbitrary to me, specially since not all threads are alike. For example, it\u0027s probably not OK to make the browser main thread 100% busy from 50% busy to double the frame rate.",
       "parentUuid": "0eab4388_9a65fa8c",
+      "revId": "2692022c7683fc90938c6cd783acdb4b261860d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9dca4f5e_af5ea1e3",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1116061
+      },
+      "writtenOn": "2018-03-07T23:01:47Z",
+      "side": 1,
+      "message": "\u003e I understand that logic. But, isn\u0027t it better that in such changes we look at both frame rate\n\u003e improvement and CPU time regression and make a decision each time weather the improvement\n\u003e worth the regression?\n\nYeah I think we need to do that in practice either way.  IMO we often have to figure out X/frames, we just need to know which frame rate matters.\n\n\u003e CPU time / frame rate seems a little bit arbitrary to me, specially since not all threads are alike.\n\nPreviously we mainly benchmarked render frame rate under constant animation, so it made sense to normalize by that rate.  Actually on Android we use the display frame rates from SurfaceFlinger, but generally they reflect the renderer\u0027s invalidation rate.\n\nThe benchmarks were controlled to minimize other variation, for example avoiding history updates and browser index updates while measuring scrolling or an animation.  Ideally we wanted work that\u0027s not per-frame to be relatively constant, and then run the animation for 100s of frames, so we could get a less noisy result of the work done for each frame.\n\nWould using the display frame rate make it less arbitrary?\n\n\u003e For example, it\u0027s probably not OK to make the browser main thread 100% busy from 50% busy to\n\u003e double the frame rate.\n\nRight, it seems difficult to be perfect here.  I think we would say that\u0027s OK in that sort of example as long as we could reason that the browser increase came from the increased frame rate.",
+      "parentUuid": "b7902155_360ded4a",
       "revId": "2692022c7683fc90938c6cd783acdb4b261860d2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
