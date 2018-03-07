@@ -67,6 +67,24 @@
       "revId": "2692022c7683fc90938c6cd783acdb4b261860d2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a648b61_da42711c",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-03-07T20:55:41Z",
+      "side": 1,
+      "message": "Apparently they can :) Thanks.",
+      "parentUuid": "faf67335_2ba478eb",
+      "revId": "2692022c7683fc90938c6cd783acdb4b261860d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
