@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d5bc6c12_bfa19ffc",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-07T11:56:28Z",
+      "side": 1,
+      "message": "This was creating a plaform_backend with the spec of the module, not the class itself.",
+      "revId": "366587d4195b10e2833636a0e3cb8afabd275b4f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
