@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/base/math/range.html">
+<link rel="import" href="/tracing/base/math/range_utils.html">
+<link rel="import" href="/tracing/metrics/metric_registry.html">
+
+<script>
+'use strict';
+
+/**
+ * @fileoverview This file contains implementations of rendering metrics.
+ *
+ * cpu_percent_{thread group}_thread
+ * =================================
+ * This set of metrics show how much a thread group was busy during animation.
+ * More precisely, it shows the percentage of wall clock time during animation
+ * when the thread group was consuming CPU.
+ *
+ * These metrics replace old thread_{thread group}_cpu_time_per_frame metrics.
+ * Per frame CPU times are problematic because, different animations may have
+ * different frame rates, intentionally, and dividing CPU time by the number of
+ * frames will be meaningless when we have a combination of animations with
+ * different rates.
+ *
+ * Secondly, we (will) have metrics for measuring throughput/FPS. So, instead of
+ * measuring CPU per frame which is a combination of CPU time and FPS, it is
+ * less confusing to measure just CPU time.
+ */
+tr.exportTo('tr.metrics.rendering', function() {
+  const CATEGORY_THREAD_MAP = new Map();
+  CATEGORY_THREAD_MAP.set('all', [/.*/]);
+  CATEGORY_THREAD_MAP.set(
+      'browser', [/^Browser Compositor$/, /^CrBrowserMain$/]);
+  CATEGORY_THREAD_MAP.set('display_compositor', [/^VizCompositorThread$/]);
+  CATEGORY_THREAD_MAP.set(
+      'fast_path', [
+        /^Browser Compositor$/, /^Chrome_InProcGpuThread$/, /^Compositor$/,
+        /^CrBrowserMain$/, /^CrGpuMain$/, /IOThread/, /^VizCompositorThread$/]);
+  CATEGORY_THREAD_MAP.set('gpu', [/^Chrome_InProcGpuThread$/, /^CrGpuMain$/]);
+  CATEGORY_THREAD_MAP.set('io', [/IOThread/]);
+  CATEGORY_THREAD_MAP.set('raster', [/CompositorTileWorker/]);
+  CATEGORY_THREAD_MAP.set('renderer_compositor', [/^Compositor$/]);
+  CATEGORY_THREAD_MAP.set('renderer_main', [/^CrRendererMain$/]);
+
+  function* findAnimationRanges_(model) {
+    for (const exp of model.userModel.expectations) {
+      if (exp.title.toLowerCase().includes('animation')) {
+        yield tr.b.math.Range.fromExplicitRange(exp.start, exp.end);
+      }
+    }
+  }
+
+  function getThreadCpuTimeForRanges_(thread, ranges) {
+    let cpuTime = 0;
+    for (const range of ranges) {
+      cpuTime += thread.getCpuTimeForRange(range);
+    }
+    return cpuTime;
+  }
+
+  function addValuesToMap_(map, category, cpuTime, totalDuration) {
+    const value = map.has(category) ?
+        map.get(category) : {cpuTime: 0, totalDuration: 0};
+    map.set(category, {
+      cpuTime: value.cpuTime + cpuTime,
+      totalDuration: value.totalDuration + totalDuration});
+  }
+
+  function renderingMetric(histograms, model) {
+    // Find animation ranges and their total duration.
+    const animationRanges = tr.b.math.mergeRanges(
+        [...findAnimationRanges_(model)], 1e-6,
+        function(ranges) {
+          return tr.b.math.Range.fromExplicitRange(
+              ranges[0].min,
+              ranges.reduce((acc, x) => Math.max(acc, x.max), ranges[0].max));
+        });
+    let totalDuration = 0;
+    for (const range of findAnimationRanges_(model)) {
+      totalDuration += range.duration;
+    }
+
+    // Compute and store CPU times per categories.
+    const cpuTimeMap = new Map();
+    for (const thread of model.getAllThreads()) {
+      const cpuTime = getThreadCpuTimeForRanges_(thread, animationRanges);
+      let isOther = true;
+      for (const category of CATEGORY_THREAD_MAP.keys()) {
+        for (const regexp of CATEGORY_THREAD_MAP.get(category)) {
+          if (regexp.test(thread.name)) {
+            isOther = category === 'all' ? isOther : false;
+            addValuesToMap_(cpuTimeMap, category, cpuTime, totalDuration);
+            break;
+          }
+        }
+      }
+      if (isOther) {
+        addValuesToMap_(cpuTimeMap, 'other', cpuTime, totalDuration);
+      }
+    }
+
+    // Build histograms.
+    for (const kv of cpuTimeMap.entries()) {
+      histograms.createHistogram(
+          `cpu_percent_${kv[0]}_thread`,
+          tr.b.Unit.byName.normalizedPercentage_smallerIsBetter,
+          kv[1].cpuTime / kv[1].totalDuration,
+          { description: 'CPU usage of threads during animation' });
+    }
+  }
+
+  tr.metrics.MetricRegistry.register(renderingMetric);
+
+  return {
+    renderingMetric,
+  };
+});
+</script>
