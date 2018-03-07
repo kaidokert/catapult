@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "68db2906_8f128c6e",
+        "filename": "dashboard/dashboard/pinpoint/dispatcher.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-07T07:45:22Z",
+      "side": 1,
+      "message": "Oh, that\u0027s true... Okay, seems fine as-is. We don\u0027t really know yet what the plan is for expiration, maybe we\u0027d even expire the Job and the results2 together.",
+      "parentUuid": "8b0b6753_bc4746ea",
+      "revId": "370448e76659dec0722a70b5f724d957d522ac74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2f4aed44_8bf8c4f7",
         "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
         "patchSetId": 9

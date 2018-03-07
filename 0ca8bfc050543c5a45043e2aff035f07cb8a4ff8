@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b5796a6c_b69f66a4",
+        "filename": "dashboard/dashboard/pinpoint/dispatcher.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-07T07:45:22Z",
+      "side": 1,
+      "message": "We still need to divide this into public and private endpoints.",
+      "revId": "0ca8bfc050543c5a45043e2aff035f07cb8a4ff8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "368232b8_7b0c19c1",
+        "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-07T07:45:22Z",
+      "side": 1,
+      "message": "I think of the handlers as mostly managing the API, dealing with parameter validation and that kind of stuff. Can we move most of the logic here into models.results2?",
+      "revId": "0ca8bfc050543c5a45043e2aff035f07cb8a4ff8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5d3a4e8_429e3697",
+        "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-07T07:45:22Z",
+      "side": 1,
+      "message": "nit: maybe just CachedResults2?",
+      "revId": "0ca8bfc050543c5a45043e2aff035f07cb8a4ff8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7afb522_ca6f8685",
+        "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-07T07:45:22Z",
+      "side": 1,
+      "message": "nit: maybe *args, **kwargs that are passed to open()?\nTo make it more like a wrapper around cloudstorage.",
+      "revId": "0ca8bfc050543c5a45043e2aff035f07cb8a4ff8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81dbe0d6_d5a3a786",
+        "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-07T07:45:22Z",
+      "side": 1,
+      "message": "nit: The implication of this wording is that we lost the job.\nMaybe \"Unknown job %s\"?",
+      "revId": "0ca8bfc050543c5a45043e2aff035f07cb8a4ff8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93f98a1c_d9e02c86",
+        "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-07T07:45:22Z",
+      "side": 1,
+      "message": "nit: this should go lower in the file than the function it\u0027s used in.",
+      "revId": "0ca8bfc050543c5a45043e2aff035f07cb8a4ff8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d56ecf5d_88feae38",
+        "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-07T07:45:22Z",
+      "side": 1,
+      "message": "Do we still want to trim the histograms?",
+      "revId": "0ca8bfc050543c5a45043e2aff035f07cb8a4ff8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f6a0eef_6ecefb57",
+        "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-07T07:45:22Z",
+      "side": 1,
+      "message": "nit: inline this function. Seems like it doesn\u0027t need to be separate anymore.",
+      "revId": "0ca8bfc050543c5a45043e2aff035f07cb8a4ff8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01c3429a_613a7c0c",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-07T07:45:22Z",
+      "side": 1,
+      "message": "This mutator shouldn\u0027t be responsible for producing the status, especially since it\u0027s not used by the caller in this class. Can we make Results2.get() figure out the status strings?\n\nCan we also move this method to models.results2?",
+      "revId": "0ca8bfc050543c5a45043e2aff035f07cb8a4ff8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b4537fd_92257353",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-07T07:45:22Z",
+      "side": 1,
+      "message": "nit: Add a comment that this stuff is for deduplicating tasks, since this function can be called asynchronously from visiting the results2 page.",
+      "revId": "0ca8bfc050543c5a45043e2aff035f07cb8a4ff8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1a28311_4a28e3bc",
+        "filename": "dashboard/pinpoint.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-07T07:45:22Z",
+      "side": 1,
+      "message": "We would set the internal endpoint to be `login: admin` here.",
+      "revId": "0ca8bfc050543c5a45043e2aff035f07cb8a4ff8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
