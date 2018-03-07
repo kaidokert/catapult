@@ -2,6 +2,57 @@
   "comments": [
     {
       "key": {
+        "uuid": "5e326967_2020f283",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1116061
+      },
+      "writtenOn": "2018-03-07T20:51:33Z",
+      "side": 1,
+      "message": "Is this OK, shouldn\u0027t it be the sum of all thread %-s?",
+      "revId": "2692022c7683fc90938c6cd783acdb4b261860d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0eab4388_9a65fa8c",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1116061
+      },
+      "writtenOn": "2018-03-07T20:51:33Z",
+      "side": 1,
+      "message": "This is a tricky one.\n\nWe normalized to time time-per-frame is it can be somewhat easier to reason about when frame rates change.  For example if there\u0027s an improvement in some code, say some scheduling that increases frame rate (an improvement), then many thread wall % times likely increase with it (a regression).  In such a case to understand if it\u0027s a net win overall we would have to reason about time-per-frame manually.\n\nNormalizing per-frame automatically is desirable IMO, however you\u0027re right that it\u0027s hard to measure with different animation rates.  I\u0027m happy to try how this works in practice.",
+      "revId": "2692022c7683fc90938c6cd783acdb4b261860d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e344e6c_816ff4ef",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1116061
+      },
+      "writtenOn": "2018-03-07T20:51:33Z",
+      "side": 1,
+      "message": "AsyncTransferThread is obsolete (code was removed), so no need to add this.",
+      "revId": "2692022c7683fc90938c6cd783acdb4b261860d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "faf67335_2ba478eb",
         "filename": "tracing/tracing/metrics/rendering_metric.html",
         "patchSetId": 3
