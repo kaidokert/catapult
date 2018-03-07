@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "faf67335_2ba478eb",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2018-03-07T19:56:22Z",
+      "side": 1,
+      "message": "Can the animation ranges overlap? For example, can we have a CSS Animation and Video Animation simultaneously?",
+      "revId": "2692022c7683fc90938c6cd783acdb4b261860d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
