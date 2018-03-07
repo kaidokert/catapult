@@ -142,6 +142,24 @@
     },
     {
       "key": {
+        "uuid": "9ecd75d8_5f070d63",
+        "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-07T00:21:39Z",
+      "side": 1,
+      "message": "Essentially using the __iter__ method as the entire function:\n\ndef _FetchHistogramsDataFromJobData(job_id):\n  for isolate_hash in _GetAllIsolateHashesForJob(job_id):\n    hs \u003d _FetchHistogramFromIsolate(isolate_hash)\n    for h in hs:\n      yield h\n    del hs",
+      "parentUuid": "7c161279_361e533a",
+      "revId": "370448e76659dec0722a70b5f724d957d522ac74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9934b92a_7cdae0e9",
         "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
         "patchSetId": 9
