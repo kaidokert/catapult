@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cfbf5d95_aa5f7eb0",
+        "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-03-08T19:08:14Z",
+      "side": 1,
+      "message": "What\u0027s ZX?",
+      "revId": "962fca494af687c89e84ea1a41244100e3429653",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95c32e4d_88b0c249",
+        "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-03-08T19:08:14Z",
+      "side": 1,
+      "message": "Sorry, I know you just moved this code from below, but what happens if this heuristic is wrong or the behavior changes? What are we putting at risk? Specific questions below.",
+      "revId": "962fca494af687c89e84ea1a41244100e3429653",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0450b8f0_a8850496",
+        "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-03-08T19:08:14Z",
+      "side": 1,
+      "message": "re: above, why bother returning early here?",
+      "revId": "962fca494af687c89e84ea1a41244100e3429653",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fe00e33_8345b27b",
+        "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-03-08T19:08:14Z",
+      "side": 1,
+      "message": "Similarly, why mutate the tid here?",
+      "revId": "962fca494af687c89e84ea1a41244100e3429653",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22dd17b3_3544ab96",
+        "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-03-08T19:08:14Z",
+      "side": 1,
+      "message": "I don\u0027t understand this comment, could you expand a bit?",
+      "revId": "962fca494af687c89e84ea1a41244100e3429653",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec183de4_96f5a5cd",
+        "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-03-08T19:08:14Z",
+      "side": 1,
+      "message": "Sorry, this indentation is bad and we know that eslint is currently not so great at checking it. Can you please split on the first paren instead and indent 4 spaces from the c instead of how ever many this is?",
+      "revId": "962fca494af687c89e84ea1a41244100e3429653",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c898dfa4_052ce8b7",
+        "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-03-08T19:08:14Z",
+      "side": 1,
+      "message": "Can you write this as a for..of loop?",
+      "revId": "962fca494af687c89e84ea1a41244100e3429653",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
