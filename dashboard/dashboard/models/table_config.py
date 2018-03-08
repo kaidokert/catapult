@@ -39,6 +39,12 @@ class BadRequestError(Exception):
   """An error indicating that a 400 response status should be returned."""
   pass
 
+class ReportTemplate(internal_only_model.InternalOnlyModel):
+  owners = ndb.StringProperty(repeated=True)
+  name = ndb.StringProperty()
+  rows = ndb.JsonProperty()
+  internal_only = ndb.BooleanProperty(indexed=True)
+
 class TableConfig(internal_only_model.InternalOnlyModel):
 
   # A list of bots the speed releasing report will contain.
