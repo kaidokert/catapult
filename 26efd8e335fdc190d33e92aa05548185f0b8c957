@@ -16,6 +16,92 @@
       "revId": "26efd8e335fdc190d33e92aa05548185f0b8c957",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0895278d_21bb46b7",
+        "filename": "web_page_replay_go/src/httparchive.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1247140
+      },
+      "writtenOn": "2018-03-08T17:56:22Z",
+      "side": 1,
+      "message": "+1\n\nOr maybe --decode_response_body?",
+      "parentUuid": "b434e052_c82e4b3a",
+      "revId": "26efd8e335fdc190d33e92aa05548185f0b8c957",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6339fd08_a365379f",
+        "filename": "web_page_replay_go/src/httparchive.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1247140
+      },
+      "writtenOn": "2018-03-08T17:56:22Z",
+      "side": 1,
+      "message": "nit:\n\nif err :\u003d webpagereplay.DecomressResponse(resp); err !\u003d nil {",
+      "revId": "26efd8e335fdc190d33e92aa05548185f0b8c957",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04851018_f91251d1",
+        "filename": "web_page_replay_go/src/httparchive.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1247140
+      },
+      "writtenOn": "2018-03-08T17:56:22Z",
+      "side": 1,
+      "message": "I don\u0027t think I would export this function. See comment in transformers.go.",
+      "revId": "26efd8e335fdc190d33e92aa05548185f0b8c957",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85572ea2_42229fd8",
+        "filename": "web_page_replay_go/src/webpagereplay/transformers.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1247140
+      },
+      "writtenOn": "2018-03-08T17:56:22Z",
+      "side": 1,
+      "message": "This should not be necessary based on how this is called from httparchive -- see below.",
+      "revId": "26efd8e335fdc190d33e92aa05548185f0b8c957",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6bc76b9_ee69bb2e",
+        "filename": "web_page_replay_go/src/webpagereplay/transformers.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1247140
+      },
+      "writtenOn": "2018-03-08T17:56:22Z",
+      "side": 1,
+      "message": "It makes me uneasy to export this function, since this function actually assumes that resp is a (temporarily) malformed HTTP response, since resp.Body is never encoded even though Content-Encoding may be non-empty. I would export CompressBody (below) and move the above code to httparchive.go, with a few small changes:\n\nce :\u003d strings.ToLower(...)\nif ce \u003d\u003d \"\" {\n  return nil\n}\nbody, err :\u003d ioutil.ReadAll(resp.Body)\nif err !\u003d nil {\n  ...\n}\nresp.Body.Close()\nbody, newCE, err :\u003d webpagereplay.CompressBody(ce, body)\nif err !\u003d nil {\n  ...\n}\nif ce !\u003d newCE {\n  ... error ...\n}\nresp.Body \u003d ioutil.NopCloser(bytes.NewReady(body))",
+      "revId": "26efd8e335fdc190d33e92aa05548185f0b8c957",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
