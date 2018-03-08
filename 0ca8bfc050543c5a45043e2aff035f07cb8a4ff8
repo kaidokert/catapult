@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "79ea1738_1cd04ba7",
+        "filename": "dashboard/dashboard/pinpoint/dispatcher.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-03-08T21:39:06Z",
+      "side": 1,
+      "message": "Yeah I was just waiting to see how we wanted to go with the regenerate.",
+      "parentUuid": "b5796a6c_b69f66a4",
+      "revId": "0ca8bfc050543c5a45043e2aff035f07cb8a4ff8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "368232b8_7b0c19c1",
         "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
         "patchSetId": 13
@@ -33,6 +51,24 @@
       "revId": "0ca8bfc050543c5a45043e2aff035f07cb8a4ff8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f78f251_e239df1a",
+        "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-03-08T21:39:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "368232b8_7b0c19c1",
+      "revId": "0ca8bfc050543c5a45043e2aff035f07cb8a4ff8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "ede1a5b9_022a52b1",
+        "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-03-08T21:39:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5d3a4e8_429e3697",
+      "revId": "0ca8bfc050543c5a45043e2aff035f07cb8a4ff8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e7afb522_ca6f8685",
         "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
         "patchSetId": 13
@@ -67,6 +121,24 @@
       "revId": "0ca8bfc050543c5a45043e2aff035f07cb8a4ff8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb643675_7a26055f",
+        "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-03-08T21:39:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7afb522_ca6f8685",
+      "revId": "0ca8bfc050543c5a45043e2aff035f07cb8a4ff8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "f4dccaa0_492124cb",
+        "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-03-08T21:39:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81dbe0d6_d5a3a786",
+      "revId": "0ca8bfc050543c5a45043e2aff035f07cb8a4ff8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "93f98a1c_d9e02c86",
         "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
         "patchSetId": 13
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "ff3c67d0_1d20382d",
+        "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-03-08T21:39:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93f98a1c_d9e02c86",
+      "revId": "0ca8bfc050543c5a45043e2aff035f07cb8a4ff8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d56ecf5d_88feae38",
         "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
         "patchSetId": 13
@@ -115,6 +223,24 @@
       "writtenOn": "2018-03-07T07:45:22Z",
       "side": 1,
       "message": "Do we still want to trim the histograms?",
+      "revId": "0ca8bfc050543c5a45043e2aff035f07cb8a4ff8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e969a6e_83f795d0",
+        "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-03-08T21:39:06Z",
+      "side": 1,
+      "message": "I think the conclusion of talking offline was not if there\u0027s a way to use all the data, and this lets us use all the data. We can bolt on trimming later if necessary.",
+      "parentUuid": "d56ecf5d_88feae38",
       "revId": "0ca8bfc050543c5a45043e2aff035f07cb8a4ff8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -138,6 +264,24 @@
     },
     {
       "key": {
+        "uuid": "6908f2b6_ed01febb",
+        "filename": "dashboard/dashboard/pinpoint/handlers/results2.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-03-08T21:39:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f6a0eef_6ecefb57",
+      "revId": "0ca8bfc050543c5a45043e2aff035f07cb8a4ff8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "01c3429a_613a7c0c",
         "filename": "dashboard/dashboard/pinpoint/models/job.py",
         "patchSetId": 13
@@ -152,6 +296,24 @@
       "revId": "0ca8bfc050543c5a45043e2aff035f07cb8a4ff8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7c7d977_941dcf21",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-03-08T21:39:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01c3429a_613a7c0c",
+      "revId": "0ca8bfc050543c5a45043e2aff035f07cb8a4ff8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -172,6 +334,24 @@
     },
     {
       "key": {
+        "uuid": "47b4a9cc_faaa5c5b",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-03-08T21:39:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b4537fd_92257353",
+      "revId": "0ca8bfc050543c5a45043e2aff035f07cb8a4ff8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f1a28311_4a28e3bc",
         "filename": "dashboard/pinpoint.yaml",
         "patchSetId": 13
@@ -186,6 +366,24 @@
       "revId": "0ca8bfc050543c5a45043e2aff035f07cb8a4ff8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3601efc_f6aa6666",
+        "filename": "dashboard/pinpoint.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-03-08T21:39:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1a28311_4a28e3bc",
+      "revId": "0ca8bfc050543c5a45043e2aff035f07cb8a4ff8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
