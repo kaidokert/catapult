@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "17b641e9_180a23a7",
+        "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1187160
+      },
+      "writtenOn": "2018-03-08T21:21:12Z",
+      "side": 1,
+      "message": "Nominally stands for Zircon (the name of the kernel).  These are constants from the syscall API: https://fuchsia.googlesource.com/zircon/+/master/docs/syscalls/object_get_info.md#zx_info_process_threads.  I\u0027ll leave a comment noting that and a link to the docs.",
+      "parentUuid": "cfbf5d95_aa5f7eb0",
+      "revId": "962fca494af687c89e84ea1a41244100e3429653",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "53fcb30e_a2cfc914",
         "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
         "patchSetId": 1
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "2d014027_42a06bd0",
+        "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1187160
+      },
+      "writtenOn": "2018-03-08T21:21:12Z",
+      "side": 1,
+      "message": "see above.",
+      "parentUuid": "53fcb30e_a2cfc914",
+      "range": {
+        "startLine": 20,
+        "startChar": 8,
+        "endLine": 20,
+        "endChar": 10
+      },
+      "revId": "962fca494af687c89e84ea1a41244100e3429653",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "95c32e4d_88b0c249",
         "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
         "patchSetId": 1
@@ -53,6 +95,24 @@
       "writtenOn": "2018-03-08T19:08:14Z",
       "side": 1,
       "message": "Sorry, I know you just moved this code from below, but what happens if this heuristic is wrong or the behavior changes? What are we putting at risk? Specific questions below.",
+      "revId": "962fca494af687c89e84ea1a41244100e3429653",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b14400a_d96d3c82",
+        "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1187160
+      },
+      "writtenOn": "2018-03-08T21:21:12Z",
+      "side": 1,
+      "message": "If this is wrong, we end up either\n  * displaying the idle thread in the CPU scheduling graph instead of no bar or\n  * Not displaying a thread in the CPU scheduling graph.\n\nWe\u0027re working on refactoring a bunch of our tracing internals.  I\u0027ll make sure that we have the right data for a non-heuristic apporach as part of that.",
+      "parentUuid": "95c32e4d_88b0c249",
       "revId": "962fca494af687c89e84ea1a41244100e3429653",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -76,6 +136,24 @@
     },
     {
       "key": {
+        "uuid": "0722f980_fc6df563",
+        "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1187160
+      },
+      "writtenOn": "2018-03-08T21:21:12Z",
+      "side": 1,
+      "message": "To avoid wasting space on accounting for the idle thread.  We\u0027d end up pushing a timestamp, state pair every time a CPU core entered and exited idle.",
+      "parentUuid": "0450b8f0_a8850496",
+      "revId": "962fca494af687c89e84ea1a41244100e3429653",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2fe00e33_8345b27b",
         "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
         "patchSetId": 1
@@ -87,6 +165,24 @@
       "writtenOn": "2018-03-08T19:08:14Z",
       "side": 1,
       "message": "Similarly, why mutate the tid here?",
+      "revId": "962fca494af687c89e84ea1a41244100e3429653",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2868e171_a25fd676",
+        "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1187160
+      },
+      "writtenOn": "2018-03-08T21:21:12Z",
+      "side": 1,
+      "message": "Passing undefined as the tid to cpu.switchActiveThread() signals that the CPU is idle.",
+      "parentUuid": "2fe00e33_8345b27b",
       "revId": "962fca494af687c89e84ea1a41244100e3429653",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -127,6 +223,24 @@
     },
     {
       "key": {
+        "uuid": "78e8962f_7b06f8c1",
+        "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1187160
+      },
+      "writtenOn": "2018-03-08T21:21:12Z",
+      "side": 1,
+      "message": "do you mean:\n\n  const thread \u003d this.model_.getOrCreateProcess(\n      pid).getOrCreateThread(tid);\n\nor:\n\n  const thread \u003d this.model_.getOrCreateProcess(pid)\n      .getOrCreateThread(tid);\n\nor something else?",
+      "parentUuid": "ec183de4_96f5a5cd",
+      "revId": "962fca494af687c89e84ea1a41244100e3429653",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c898dfa4_052ce8b7",
         "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
         "patchSetId": 1
@@ -138,6 +252,24 @@
       "writtenOn": "2018-03-08T19:08:14Z",
       "side": 1,
       "message": "Can you write this as a for..of loop?",
+      "revId": "962fca494af687c89e84ea1a41244100e3429653",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "229cc43b_74ca7c6c",
+        "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1187160
+      },
+      "writtenOn": "2018-03-08T21:21:12Z",
+      "side": 1,
+      "message": "I though about that but, since the loop access states[i] and states[i+1] in skips the last element, I thought it was clearer this way.  If there\u0027s some clever way to use for...of and keep the code clear, I\u0027m happy to use that.",
+      "parentUuid": "c898dfa4_052ce8b7",
       "revId": "962fca494af687c89e84ea1a41244100e3429653",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
