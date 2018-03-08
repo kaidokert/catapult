@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "6b72c4a2_5ab2ef3f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-03-08T20:11:28Z",
+      "side": 1,
+      "message": "Thanks for the explanation. I agree. I had wrongly assumed that there are constant number of threads in each group. What do you think about cores_per_second as the name, then?\n\nI updated the number is the CL description.",
+      "parentUuid": "b7c350e2_5b3a79cd",
+      "revId": "2692022c7683fc90938c6cd783acdb4b261860d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0eab4388_9a65fa8c",
         "filename": "tracing/tracing/metrics/rendering_metric.html",
         "patchSetId": 3
@@ -102,6 +120,24 @@
       "side": 1,
       "message": "\u003e I understand that logic. But, isn\u0027t it better that in such changes we look at both frame rate\n\u003e improvement and CPU time regression and make a decision each time weather the improvement\n\u003e worth the regression?\n\nYeah I think we need to do that in practice either way.  IMO we often have to figure out X/frames, we just need to know which frame rate matters.\n\n\u003e CPU time / frame rate seems a little bit arbitrary to me, specially since not all threads are alike.\n\nPreviously we mainly benchmarked render frame rate under constant animation, so it made sense to normalize by that rate.  Actually on Android we use the display frame rates from SurfaceFlinger, but generally they reflect the renderer\u0027s invalidation rate.\n\nThe benchmarks were controlled to minimize other variation, for example avoiding history updates and browser index updates while measuring scrolling or an animation.  Ideally we wanted work that\u0027s not per-frame to be relatively constant, and then run the animation for 100s of frames, so we could get a less noisy result of the work done for each frame.\n\nWould using the display frame rate make it less arbitrary?\n\n\u003e For example, it\u0027s probably not OK to make the browser main thread 100% busy from 50% busy to\n\u003e double the frame rate.\n\nRight, it seems difficult to be perfect here.  I think we would say that\u0027s OK in that sort of example as long as we could reason that the browser increase came from the increased frame rate.",
       "parentUuid": "b7902155_360ded4a",
+      "revId": "2692022c7683fc90938c6cd783acdb4b261860d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4be857b8_9c286519",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-03-08T20:11:28Z",
+      "side": 1,
+      "message": "\u003e Right, it seems difficult to be perfect here.  I think we would say that\u0027s OK in that sort of example as long as we could reason that the browser increase came from the increased frame rate.\n\nI meant it\u0027s probably not OK to make the browser unresponsive during an animation for a better frame rate.\n\nSince it looks like there is no close-to-perfect metric here, are you OK with experimenting with this version (i.e. cores_per_sec)?",
+      "parentUuid": "9dca4f5e_af5ea1e3",
       "revId": "2692022c7683fc90938c6cd783acdb4b261860d2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
