@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b434e052_c82e4b3a",
+        "filename": "web_page_replay_go/src/httparchive.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1120845
+      },
+      "writtenOn": "2018-03-08T15:28:56Z",
+      "side": 1,
+      "message": "nit: Maybe rename this flag to \"use_encoding\". \"encoding\" doesn\u0027t quite sound like a bool flag.  \n\nShould we also make the default value to True?",
+      "revId": "26efd8e335fdc190d33e92aa05548185f0b8c957",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
