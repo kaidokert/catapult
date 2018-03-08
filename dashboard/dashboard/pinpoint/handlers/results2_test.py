@@ -3,61 +3,24 @@
 # found in the LICENSE file.
 
 import mock
-import unittest
 
 import webapp2
 import webtest
 
+from dashboard.common import testing_common
 from dashboard.pinpoint.handlers import results2
+from dashboard.pinpoint.models.results2 import Results2Error
 
 
-_ATTEMPT_DATA = {
-    "executions": [{"result_arguments": {"isolate_hash": "e26a40a0d4"}}]
-}
-
-
-_JOB_NO_DIFFERENCES = {
-    "changes": [{}, {}, {}, {}],
-    "quests": ["Test"],
-    "comparisons": ["same", "same", "same"],
-    "attempts": [
-        [_ATTEMPT_DATA],
-        [_ATTEMPT_DATA],
-        [_ATTEMPT_DATA],
-        [_ATTEMPT_DATA],
-    ],
-}
-
-
-_JOB_WITH_DIFFERENCES = {
-    "changes": [{}, {}, {}, {}],
-    "quests": ["Test"],
-    "comparisons": ["same", "different", "different"],
-    "attempts": [
-        [_ATTEMPT_DATA],
-        [_ATTEMPT_DATA],
-        [_ATTEMPT_DATA],
-        [_ATTEMPT_DATA],
-    ],
-}
-
-
-_JOB_MISSING_EXECUTIONS = {
-    "changes": [{}, {}],
-    "quests": ["Test"],
-    "comparisons": ["same"],
-    "attempts": [
-        [_ATTEMPT_DATA, {"executions": []}],
-        [{"executions": []}, _ATTEMPT_DATA],
-    ],
-}
-
-
-class _Results2Test(unittest.TestCase):
+class _Results2Test(testing_common.TestCase):
 
   def setUp(self):
+    super(_Results2Test, self).setUp()
+
     app = webapp2.WSGIApplication([
         webapp2.Route(r'/results2/<job_id>', results2.Results2),
+        webapp2.Route(
+            r'/generate-results2/<job_id>', results2.Results2Generator),
     ])
     self.testapp = webtest.TestApp(app)
     self.testapp.extra_environ.update({'REMOTE_ADDR': 'remote_ip'})
@@ -72,50 +35,34 @@ class _Results2Test(unittest.TestCase):
     self._job_from_id.return_value = job
 
 
-class FailureTest(_Results2Test):
+@mock.patch.object(results2.results2, 'GetOrScheduleResults2')
+class Results2GetTest(_Results2Test):
 
-  def testGet_InvalidJob(self):
-    self._SetJob(None)
-    response = self.testapp.get('/results2/123', status=400)
-    self.assertIn('Error', response.body)
+  def testGet_CallsGetOrScheduleResults2(self, mock_schedule):
+    mock_schedule.return_value = ('', '')
+    self._SetJob(_JobStub('456'))
 
-  def testGet_JobHasNoTestQuest(self):
-    self._SetJob(_JobStub({'quests': []}))
-    response = self.testapp.get('/results2/123', status=400)
-    self.assertIn('No Test quest', response.body)
+    self.testapp.get('/results2/456')
+    self.assertTrue(mock_schedule.called)
 
 
-@mock.patch.object(results2.read_value, '_RetrieveOutputJson',
-                   mock.MagicMock(return_value=['a']))
-@mock.patch.object(results2, 'open', mock.mock_open(read_data='fake_viewer'),
-                   create=True)
-@mock.patch.object(results2.render_histograms_viewer, 'RenderHistogramsViewer')
-class SuccessTest(_Results2Test):
+@mock.patch.object(results2.results2, 'GenerateResults2')
+class Results2GeneratorPostTest(_Results2Test):
 
-  def testGet_NoDifferences(self, mock_render):
-    self._SetJob(_JobStub(_JOB_NO_DIFFERENCES))
-    self.testapp.get('/results2/123')
-    mock_render.assert_called_with(
-        ['a', 'a', 'a', 'a'], mock.ANY, vulcanized_html='fake_viewer')
+  def testGet_CallsGenerate(self, mock_generate):
+    self._SetJob(_JobStub('789'))
+    self.testapp.post('/generate-results2/789')
+    self.assertTrue(mock_generate.called)
 
-  def testGet_WithDifferences(self, mock_render):
-    self._SetJob(_JobStub(_JOB_WITH_DIFFERENCES))
-    self.testapp.get('/results2/123')
-    mock_render.assert_called_with(
-        ['a', 'a', 'a'], mock.ANY, vulcanized_html='fake_viewer')
+  def testGet_ReturnsError(self, mock_generate):
+    mock_generate.side_effect = Results2Error('foo')
+    self._SetJob(_JobStub('101112'))
 
-  def testGet_MissingExecutions(self, mock_render):
-    self._SetJob(_JobStub(_JOB_MISSING_EXECUTIONS))
-    self.testapp.get('/results2/123')
-    mock_render.assert_called_with(
-        ['a', 'a'], mock.ANY, vulcanized_html='fake_viewer')
+    response = self.testapp.post('/generate-results2/101112')
+    self.assertIn('foo', response.body)
 
 
 class _JobStub(object):
 
-  def __init__(self, job_dict):
-    self._job_dict = job_dict
-
-  def AsDict(self, options=None):
-    del options
-    return self._job_dict
+  def __init__(self, job_id):
+    self.job_id = job_id
