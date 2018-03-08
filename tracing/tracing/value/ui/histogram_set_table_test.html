@@ -327,7 +327,7 @@ tr.b.unittest.testSuite(function() {
     await table.viewState.update({constrainNameColumn: true});
     assert.isTrue(nameCell.isOverflowing);
     assert.isAbove(350, nameCell.getBoundingClientRect().width);
-  });
+  }, {skipped: true});
 
   test('controlConstrainNameColumn', async function() {
     const histograms = new tr.v.HistogramSet();
@@ -354,7 +354,7 @@ tr.b.unittest.testSuite(function() {
     await tr.b.animationFrame();
     assert.isTrue(nameCell.isOverflowing);
     assert.isAbove(350, nameCell.getBoundingClientRect().width);
-  });
+  }, {skipped: true});
 
   test('viewRowExpanded', async function() {
     const histograms = new tr.v.HistogramSet();
@@ -798,7 +798,7 @@ tr.b.unittest.testSuite(function() {
     await tr.b.animationFrame();
     assert.isFalse(nameCell.isOverflowing);
     assert.isBelow(350, nameCell.getBoundingClientRect().width);
-  });
+  }, {skipped: true});
 
   test('nameCellOverflowOnExpand', async function() {
     const histograms = new tr.v.HistogramSet();
@@ -836,7 +836,7 @@ tr.b.unittest.testSuite(function() {
     await tr.b.animationFrame();
     assert.isFalse(nameCell.isOverflowing);
     assert.isBelow(350, nameCell.getBoundingClientRect().width);
-  });
+  }, {skipped: true});
 
   test('overviewCharts', async function() {
     const binBoundaries = tr.v.HistogramBinBoundaries.createLinear(0, 150, 10);
