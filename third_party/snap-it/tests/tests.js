@@ -823,7 +823,8 @@ QUnit.test('processTree: head tag', function(assert) {
   assert.equal(serializer.pseudoElementPlaceHolderIndex, 5);
 });
 
-QUnit.test('minimizeStyles: root html tag', function(assert) {
+// https://crbug.com/819978
+QUnit.skip('minimizeStyles: root html tag', function(assert) {
   var message = {
     'html': [
         '<html id="myId" ',
