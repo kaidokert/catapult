@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "298d2814_d2cadbb5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1116061
+      },
+      "writtenOn": "2018-03-08T20:40:28Z",
+      "side": 1,
+      "message": "SGTM.",
+      "parentUuid": "6b72c4a2_5ab2ef3f",
+      "revId": "2692022c7683fc90938c6cd783acdb4b261860d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0eab4388_9a65fa8c",
         "filename": "tracing/tracing/metrics/rendering_metric.html",
         "patchSetId": 3
@@ -138,6 +156,24 @@
       "side": 1,
       "message": "\u003e Right, it seems difficult to be perfect here.  I think we would say that\u0027s OK in that sort of example as long as we could reason that the browser increase came from the increased frame rate.\n\nI meant it\u0027s probably not OK to make the browser unresponsive during an animation for a better frame rate.\n\nSince it looks like there is no close-to-perfect metric here, are you OK with experimenting with this version (i.e. cores_per_sec)?",
       "parentUuid": "9dca4f5e_af5ea1e3",
+      "revId": "2692022c7683fc90938c6cd783acdb4b261860d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed787a1a_a10e94df",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1116061
+      },
+      "writtenOn": "2018-03-08T20:40:28Z",
+      "side": 1,
+      "message": "For sure, OK with experimenting with this.",
+      "parentUuid": "4be857b8_9c286519",
       "revId": "2692022c7683fc90938c6cd783acdb4b261860d2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
