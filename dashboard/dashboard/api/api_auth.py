@@ -22,7 +22,9 @@ OAUTH_CLIENT_ID_WHITELIST = [
     # This oauth client id is used to upload histograms from the perf waterfall.
     '113172445342431053212',
     'chromeperf@webrtc-perf-test.google.com.iam.gserviceaccount.com',
+    # These client ids are used to upload histograms from Fuchsia dev builders.
     'catapult-uploader@fuchsia-infra.iam.gserviceaccount.com',
+    'garnet-ci-builder-dev@fuchsia-infra.iam.gserviceaccount.com'
     # This oauth client id used to upload histograms from cronet bots.
     '113172445342431053212'
 ]
