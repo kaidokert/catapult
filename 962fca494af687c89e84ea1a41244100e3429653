@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "ee5dd318_03594f2b",
+        "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-03-09T18:25:26Z",
+      "side": 1,
+      "message": "Got it. I think a comment explaining that here would be absolutely fine.",
+      "parentUuid": "17b641e9_180a23a7",
+      "revId": "962fca494af687c89e84ea1a41244100e3429653",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "53fcb30e_a2cfc914",
         "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
         "patchSetId": 1
@@ -119,6 +137,24 @@
     },
     {
       "key": {
+        "uuid": "c433e1a6_77cf0ccf",
+        "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-03-09T18:25:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5b14400a_d96d3c82",
+      "revId": "962fca494af687c89e84ea1a41244100e3429653",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0450b8f0_a8850496",
         "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
         "patchSetId": 1
@@ -151,6 +187,24 @@
       "revId": "962fca494af687c89e84ea1a41244100e3429653",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5f67b5b_fff3e889",
+        "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-03-09T18:25:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0722f980_fc6df563",
+      "revId": "962fca494af687c89e84ea1a41244100e3429653",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -241,6 +295,24 @@
     },
     {
       "key": {
+        "uuid": "42911a13_4e73ff78",
+        "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-03-09T18:25:26Z",
+      "side": 1,
+      "message": "The former. Sorry, I should have just written it out :)",
+      "parentUuid": "78e8962f_7b06f8c1",
+      "revId": "962fca494af687c89e84ea1a41244100e3429653",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c898dfa4_052ce8b7",
         "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
         "patchSetId": 1
@@ -273,6 +345,24 @@
       "revId": "962fca494af687c89e84ea1a41244100e3429653",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d8254aa_b8546f61",
+        "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-03-09T18:25:26Z",
+      "side": 1,
+      "message": "Oops, missed that. I think this is fine.",
+      "parentUuid": "229cc43b_74ca7c6c",
+      "revId": "962fca494af687c89e84ea1a41244100e3429653",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
