@@ -50,6 +50,10 @@ class AndroidBrowserBackendSettings(_BackendSettingsTuple):
     # Don't delete lib, since it is created by the installer.
     return ('lib', )
 
+  @property
+  def requires_embedder(self):
+    return hasattr(self, 'FindEmbedderApk')
+
   def GetDevtoolsRemotePort(self, device):
     del device
     # By default return the devtools_port defined in the constructor.
@@ -122,6 +126,19 @@ class WebViewBackendSettings(WebViewBasedBackendSettings):
       return 'Monochrome.apk'
     else:
       return 'SystemWebViewGoogle.apk'
+
+  def FindEmbedderApk(self, apk_path, chrome_root):
+    if apk_path is not None:
+      # Try to find the embedder next to the local apk found.
+      embedder_apk_path = os.path.join(
+          os.path.dirname(apk_path), 'SystemWebViewShell.apk')
+      if os.path.exists(embedder_apk_path):
+        return embedder_apk_path
+    if chrome_root is not None:
+      # Otherwise fall back to an APK found on chrome_root
+      return _FindLocalApk(chrome_root, 'SystemWebViewShell.apk')
+    else:
+      return None
 
 
 ANDROID_CONTENT_SHELL = AndroidBrowserBackendSettings(
