@@ -22,6 +22,30 @@
       "revId": "c53875150d1efebe12d5d65a8577264795d6c8b5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c218e57_946b93a1",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-09T16:21:12Z",
+      "side": 1,
+      "message": "Yes, that should be fine. Telemetry will also go ahead and install/update Monochrome.apk on the device if needed and (soon) also run \"cmd webviewupdate set-webview-implementation\" to make sure it is selected. [Today this is done in some bots before running Telemetry by some provisioning scripts.]",
+      "parentUuid": "c70f1586_c865dc1f",
+      "range": {
+        "startLine": 122,
+        "startChar": 5,
+        "endLine": 122,
+        "endChar": 29
+      },
+      "revId": "c53875150d1efebe12d5d65a8577264795d6c8b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
