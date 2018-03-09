@@ -80,3 +80,10 @@ def Authorize(function_to_wrap):
 
     return function_to_wrap(*args, **kwargs)
   return Wrapper
+
+
+def Email():
+  try:
+    return oauth.get_current_user(OAUTH_SCOPES).email()
+  except oauth.InvalidOAuthParametersError:
+    return None
