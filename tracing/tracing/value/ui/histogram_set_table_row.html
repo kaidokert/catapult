@@ -257,6 +257,7 @@ tr.exportTo('tr.v.ui', function() {
     async restoreState(vs) {
       // Don't use updateFromViewState() because it would overwrite cells and
       // subRows, but we just want to restore them.
+      await tr.b.animationFrame();
       await this.viewState.update({
         isExpanded: vs.isExpanded,
         isOverviewed: vs.isOverviewed,
