@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c24f4f7a_cf9cc250",
+        "filename": "tracing/tracing/extras/chrome/event_finder_utils.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-03-10T05:06:35Z",
+      "side": 1,
+      "message": "Why not export CHROME_INTERNAL_URLS to the tr.e.chrome namespace?",
+      "revId": "8e9adf1bf1fa55483e9d4d5c3f48e361e3300824",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f84bdc94_2b31581d",
+        "filename": "tracing/tracing/importer/find_load_expectations.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-03-10T05:06:35Z",
+      "side": 1,
+      "message": "No Hungarian notation, please. \"IGNORE_URLS\" is fine.",
+      "revId": "8e9adf1bf1fa55483e9d4d5c3f48e361e3300824",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f0758da_4719150f",
+        "filename": "tracing/tracing/importer/find_load_expectations.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-03-10T05:06:35Z",
+      "side": 1,
+      "message": "No Hungarian notation. \"fmpCandidates\" is fine, \"fmpCandidateEvents\" (if they are events) would be better.",
+      "revId": "8e9adf1bf1fa55483e9d4d5c3f48e361e3300824",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
