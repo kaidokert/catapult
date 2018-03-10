@@ -42,7 +42,7 @@ tr.exportTo('tr.metrics.sh', function() {
 
     const selfTimeRanges = [rangeOfInterest.findIntersection(event.range)];
     for (const subSlice of event.subSlices) {
-      if (selfTimeRanges.length === 0) return [];
+      if (selfTimeRanges.length === 0) return 0;
 
       const lastRange = selfTimeRanges.pop();
       selfTimeRanges.push(
