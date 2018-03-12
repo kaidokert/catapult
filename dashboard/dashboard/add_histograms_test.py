@@ -425,6 +425,41 @@ class AddHistogramsEndToEndTest(testing_common.TestCase):
     for d in diagnostics:
       self.assertTrue(d.internal_only)
 
+  def testPost_SetsCorrectTestPathForSummary(self):
+    hists = [histogram_module.Histogram('hist', 'count')]
+    histograms = histogram_set.HistogramSet(hists)
+    histograms.AddSharedDiagnostic(
+        reserved_infos.MASTERS.name,
+        generic_set.GenericSet(['master']))
+    histograms.AddSharedDiagnostic(
+        reserved_infos.BOTS.name,
+        generic_set.GenericSet(['bot']))
+    histograms.AddSharedDiagnostic(
+        reserved_infos.CHROMIUM_COMMIT_POSITIONS.name,
+        generic_set.GenericSet([12345]))
+    histograms.AddSharedDiagnostic(
+        reserved_infos.BENCHMARKS.name,
+        generic_set.GenericSet(['benchmark']))
+    histograms.AddSharedDiagnostic(
+        reserved_infos.DEVICE_IDS.name,
+        generic_set.GenericSet(['devie_foo']))
+    histograms.AddSharedDiagnostic(
+        reserved_infos.IS_SUMMARY.name,
+        generic_set.GenericSet([True]))
+    histograms.AddSharedDiagnostic(
+        reserved_infos.STORIES.name,
+        generic_set.GenericSet(['story']))
+
+    self.testapp.post(
+        '/add_histograms', {'data': json.dumps(histograms.AsDicts())})
+    self.ExecuteTaskQueueTasks('/add_histograms_queue',
+                               add_histograms.TASK_QUEUE_NAME)
+
+    tests = graph_data.TestMetadata.query().fetch()
+    self.assertEqual(6, len(tests))  # suite + hist + stats
+    for test in tests:
+      self.assertNotEqual(test.key.id(), 'master/bot/benchmark/hist/story')
+
 
 class AddHistogramsTest(testing_common.TestCase):
 
