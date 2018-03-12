@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ff10bac_fe4ef276",
+        "filename": "telemetry/telemetry/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-12T09:15:43Z",
+      "side": 0,
+      "message": "We should probably look at getting rid of most of these too. Thanks to Kenneth\u0027s work crbug.com/777865 should be reasonably unblocked too.",
+      "revId": "21ff400bb4884e9a601168e7fa08559a76e06a75",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
