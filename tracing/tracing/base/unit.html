@@ -426,6 +426,16 @@ tr.exportTo('tr.b', function() {
     }
   });
 
+  Unit.define({
+    baseUnitName: 'coresPerSecond',
+    baseJsonName: 'coresPerSecond',
+    formatSpec: {
+      baseSymbol: 'cores/s',
+      minimumFractionDigits: 3,
+      maximumFractionDigits: 3
+    }
+  });
+
   return {
     ImprovementDirection,
     Unit,

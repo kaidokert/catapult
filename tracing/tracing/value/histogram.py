@@ -784,6 +784,7 @@ UNIT_NAMES = [
     'unitless',
     'count',
     'sigma',
+    'coresPerSecond',
 ]
 
 def ExtendUnitNames():
