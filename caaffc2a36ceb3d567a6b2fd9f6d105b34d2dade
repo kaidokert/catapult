@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ebd89082_dfa2a1cc",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-03-12T14:15:53Z",
+      "side": 1,
+      "message": "done, but curious why it is more readable this way",
+      "parentUuid": "c0b48fd1_3bf24fce",
+      "revId": "caaffc2a36ceb3d567a6b2fd9f6d105b34d2dade",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "98bf5759_777f7a69",
         "filename": "tracing/tracing/metrics/android_startup_metric.html",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "caaffc2a36ceb3d567a6b2fd9f6d105b34d2dade",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f52548ff_fdf0abc4",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-03-12T14:15:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98bf5759_777f7a69",
+      "revId": "caaffc2a36ceb3d567a6b2fd9f6d105b34d2dade",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
