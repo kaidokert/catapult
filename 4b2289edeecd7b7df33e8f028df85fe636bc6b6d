@@ -16,6 +16,24 @@
       "revId": "4b2289edeecd7b7df33e8f028df85fe636bc6b6d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6c31fdf_262bbdb8",
+        "filename": "dashboard/dashboard/pinpoint/models/results2.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-03-13T00:57:24Z",
+      "side": 1,
+      "message": "I did it in case there were clashes with names from jobs from the past few days. If you were to visit one of those, we wouldn\u0027t find it in the cache anymore since we moved buckets, so we\u0027d try to regenerate it but with the same name but names take 10 days to expire.",
+      "parentUuid": "d33b5436_138caa89",
+      "revId": "4b2289edeecd7b7df33e8f028df85fe636bc6b6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
