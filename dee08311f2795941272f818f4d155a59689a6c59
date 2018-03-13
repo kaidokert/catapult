@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3941e5d0_5b70833f",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-13T15:05:53Z",
+      "side": 1,
+      "message": "I think a BadRequestError raised by the second attempt wont be caught by the following except clause (but we would like to), right?\n\nMaybe also this could be a good use for https://cs.chromium.org/chromium/src/third_party/catapult/common/py_utils/py_utils/retry_util.py?rcl\u003dc6434b02c577499932bf7ec31a9d6872c481dca2\u0026l\u003d9 ?",
+      "revId": "dee08311f2795941272f818f4d155a59689a6c59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
