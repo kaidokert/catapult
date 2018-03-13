@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d777d63_0cfec1b2",
+        "filename": "experimental/soundwave/soundwave/commands.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-03-13T18:13:28Z",
+      "side": 1,
+      "message": "This seems pretty difficult to do: for open bugs, what if those bugs are closed after they\u0027re cached in the DB? For closed bugs, what if they\u0027re updated? I understand that it may not always be the most meaningful to work on stale data, but it seems very confusing to potentially work on a database that doesn\u0027t represent any particular snapshot of the truth, but rather a hodgepodge of things that were all true at different points in time.",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 64
+      },
+      "revId": "652031d3bb70e541c97edf9a1ffddf433e4ef606",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c906e6d_2400744d",
+        "filename": "experimental/soundwave/soundwave/commands_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-03-13T18:13:28Z",
+      "side": 1,
+      "message": "Can you break this test apart by entity? It seems like there\u0027s a potential that the number of types that we store in the database will keep growing, which will mean that this test will as well",
+      "revId": "652031d3bb70e541c97edf9a1ffddf433e4ef606",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a75bd1af_e3d1cd27",
+        "filename": "experimental/soundwave/soundwave/models/__init__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-03-13T18:13:28Z",
+      "side": 1,
+      "message": "nit: Think there should be a new line before the imports",
+      "revId": "652031d3bb70e541c97edf9a1ffddf433e4ef606",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd37c823_504aead4",
+        "filename": "experimental/soundwave/soundwave/models/bug_model.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-03-13T18:13:28Z",
+      "side": 1,
+      "message": "nit: based on this being a function, my vote is for \"_CommaSeparate\" (verb) instead of \"_CommaSeparated\" (adjective)",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 15,
+        "endChar": 19
+      },
+      "revId": "652031d3bb70e541c97edf9a1ffddf433e4ef606",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
