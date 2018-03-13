@@ -28,6 +28,7 @@ from telemetry.value import trace
 from tracing.value import convert_chart_json
 from tracing.value import histogram
 from tracing.value import histogram_set
+from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import reserved_infos
 
 class TelemetryInfo(object):
@@ -415,6 +416,8 @@ class PageTestResults(object):
     hist = histogram.Histogram(
         'benchmark_total_duration', 'ms_smallerIsBetter')
     hist.AddSample(duration_in_milliseconds)
+    hist.diagnostics[reserved_infos.LABELS.name] = generic_set.GenericSet(
+        [self.telemetry_info.label])
     self._histograms.AddHistogram(hist)
 
   def AddHistogram(self, hist):
