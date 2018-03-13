@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "98393de3_281c4180",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-13T12:00:39Z",
+      "side": 1,
+      "message": "This will already show up as a warning \"Installing {path/to/Foo.apk} on device if needed\". I\u0027m in fact thinking to make that message more prominent and clear in the output on follow up CLs.",
+      "parentUuid": "fe98da09_d5f9770b",
+      "revId": "d6c09965ed92885cc0091b99afe9cd8088472e76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b416e074_39baffd8",
         "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2018-03-13T01:52:47Z",
       "side": 1,
       "message": "Can you add comment explain that SystemWebViewShell.apk is hosted in chromium/src/ project?",
+      "revId": "d6c09965ed92885cc0091b99afe9cd8088472e76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "903ec1ea_fd92145d",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-13T12:00:39Z",
+      "side": 1,
+      "message": "The same holds True for plain apk_name. I\u0027ve added this to the doctring explaining all args on the base class.",
+      "parentUuid": "b416e074_39baffd8",
       "revId": "d6c09965ed92885cc0091b99afe9cd8088472e76",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
