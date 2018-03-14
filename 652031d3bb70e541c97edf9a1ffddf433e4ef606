@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3bdfa710_702132b3",
+        "filename": "experimental/soundwave/soundwave/commands.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-14T13:28:53Z",
+      "side": 1,
+      "message": "The use case I\u0027m thinking is when I started downloading a large batch of bugs, there is an error going half way through them. I want to continue where we left off (maybe after fixing some error in the code) without necessarily having to redo all the previous work. From my past experience when trying to gather data for a quarter-long report, this is pretty common and leads to lots of wasted time when we don\u0027t make use of cached data.\n\nFor the cases you are thinking about, when we want fresh information, I was also planning to have some --force option which will fetch all the bug data regardless.\n\nA happy automated middle ground could be to skip fetching data for bugs if the data we already have is, say, less than a day old.",
+      "parentUuid": "6d777d63_0cfec1b2",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 64
+      },
+      "revId": "652031d3bb70e541c97edf9a1ffddf433e4ef606",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8c906e6d_2400744d",
         "filename": "experimental/soundwave/soundwave/commands_test.py",
         "patchSetId": 1
@@ -36,6 +60,24 @@
       "writtenOn": "2018-03-13T18:13:28Z",
       "side": 1,
       "message": "Can you break this test apart by entity? It seems like there\u0027s a potential that the number of types that we store in the database will keep growing, which will mean that this test will as well",
+      "revId": "652031d3bb70e541c97edf9a1ffddf433e4ef606",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c28c9a1b_708ff298",
+        "filename": "experimental/soundwave/soundwave/commands_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-14T13:28:53Z",
+      "side": 1,
+      "message": "Yes. But then it won\u0027t be an integration test for `FetchAlertsData` any more. And maybe that\u0027s fine. Maybe we prefer unit-tests for GetBugData/GetAlertData + db round-trip for each?",
+      "parentUuid": "8c906e6d_2400744d",
       "revId": "652031d3bb70e541c97edf9a1ffddf433e4ef606",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "2637175b_80ad1853",
+        "filename": "experimental/soundwave/soundwave/models/__init__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-14T13:28:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a75bd1af_e3d1cd27",
+      "revId": "652031d3bb70e541c97edf9a1ffddf433e4ef606",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd37c823_504aead4",
         "filename": "experimental/soundwave/soundwave/models/bug_model.py",
         "patchSetId": 1
@@ -79,6 +139,30 @@
       "revId": "652031d3bb70e541c97edf9a1ffddf433e4ef606",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a976a94_6ff2c866",
+        "filename": "experimental/soundwave/soundwave/models/bug_model.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-14T13:28:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd37c823_504aead4",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 15,
+        "endChar": 19
+      },
+      "revId": "652031d3bb70e541c97edf9a1ffddf433e4ef606",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
