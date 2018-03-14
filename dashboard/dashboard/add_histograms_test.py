@@ -96,7 +96,7 @@ class AddHistogramsEndToEndTest(testing_common.TestCase):
   def _CreateHistogram(
       self, master=None, bot=None, benchmark=None, commit_position=None,
       device=None, owner=None, stories=None, benchmark_description=None,
-      samples=None, max_samples=None, is_ref=False):
+      samples=None, max_samples=None, is_ref=False, is_summary=False):
     hists = [histogram_module.Histogram('hist', 'count')]
     if max_samples:
       hists[0].max_num_sample_values = max_samples
@@ -140,6 +140,10 @@ class AddHistogramsEndToEndTest(testing_common.TestCase):
     if is_ref:
       histograms.AddSharedDiagnostic(
           reserved_infos.IS_REFERENCE_BUILD.name,
+          generic_set.GenericSet([True]))
+    if is_summary:
+      histograms.AddSharedDiagnostic(
+          reserved_infos.IS_SUMMARY.name,
           generic_set.GenericSet([True]))
     return histograms
 
@@ -424,6 +428,21 @@ class AddHistogramsEndToEndTest(testing_common.TestCase):
     diagnostics = histogram.SparseDiagnostic.query().fetch()
     for d in diagnostics:
       self.assertTrue(d.internal_only)
+
+  def testPost_SetsCorrectTestPathForSummary(self):
+    histograms = self._CreateHistogram(
+        'master', 'bot', 'benchmark', 12345, 'device_foo', stories=['story'],
+        is_summary=True)
+
+    self.testapp.post(
+        '/add_histograms', {'data': json.dumps(histograms.AsDicts())})
+    self.ExecuteTaskQueueTasks('/add_histograms_queue',
+                               add_histograms.TASK_QUEUE_NAME)
+
+    tests = graph_data.TestMetadata.query().fetch()
+    self.assertEqual(6, len(tests))  # suite + hist + stats
+    for test in tests:
+      self.assertNotEqual(test.key.id(), 'master/bot/benchmark/hist/story')
 
 
 class AddHistogramsTest(testing_common.TestCase):
