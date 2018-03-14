@@ -45,6 +45,30 @@
       "revId": "d5eb5c313ae1c3af74533a514030fc9d186f24ef",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84f0bbab_5f24440c",
+        "filename": "tracing/bin/add_reserved_diagnostics",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-03-14T20:29:21Z",
+      "side": 1,
+      "message": "Spoke offline, just remove the dead code.",
+      "parentUuid": "7dd148fd_e7e457c8",
+      "range": {
+        "startLine": 66,
+        "startChar": 4,
+        "endLine": 66,
+        "endChar": 13
+      },
+      "revId": "d5eb5c313ae1c3af74533a514030fc9d186f24ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
