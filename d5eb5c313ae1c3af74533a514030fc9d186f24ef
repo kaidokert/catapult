@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d203dde8_65e2ed98",
+        "filename": "dashboard/dashboard/add_histograms_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-03-14T20:26:42Z",
+      "side": 1,
+      "message": "nit: since IS_SUMMARY can either be set to true or false or not existing at all, you should cover those cases as tests.",
+      "range": {
+        "startLine": 432,
+        "startChar": 6,
+        "endLine": 432,
+        "endChar": 44
+      },
+      "revId": "d5eb5c313ae1c3af74533a514030fc9d186f24ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7dd148fd_e7e457c8",
+        "filename": "tracing/bin/add_reserved_diagnostics",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-03-14T20:26:42Z",
+      "side": 1,
+      "message": "Why do you retrieve the stories diagnostic if you don\u0027t use it?\n\nShould this be\n\nif stories:\n  ...\n\n?",
+      "range": {
+        "startLine": 66,
+        "startChar": 4,
+        "endLine": 66,
+        "endChar": 13
+      },
+      "revId": "d5eb5c313ae1c3af74533a514030fc9d186f24ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
