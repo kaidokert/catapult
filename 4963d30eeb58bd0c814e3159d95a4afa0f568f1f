@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4688d3bf_e9df6df3",
+        "filename": "dashboard/dashboard/add_histograms_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-03-14T20:17:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f76f434_37593d09",
+      "range": {
+        "startLine": 430,
+        "startChar": 31,
+        "endLine": 430,
+        "endChar": 43
+      },
+      "revId": "4963d30eeb58bd0c814e3159d95a4afa0f568f1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "db09a972_b9f7f035",
         "filename": "tracing/bin/add_reserved_diagnostics",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "4963d30eeb58bd0c814e3159d95a4afa0f568f1f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18c3d42c_814ad002",
+        "filename": "tracing/bin/add_reserved_diagnostics",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-03-14T20:17:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db09a972_b9f7f035",
+      "range": {
+        "startLine": 66,
+        "startChar": 33,
+        "endLine": 66,
+        "endChar": 34
+      },
+      "revId": "4963d30eeb58bd0c814e3159d95a4afa0f568f1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
