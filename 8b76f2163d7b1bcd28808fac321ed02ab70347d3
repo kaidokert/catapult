@@ -16,6 +16,24 @@
       "revId": "8b76f2163d7b1bcd28808fac321ed02ab70347d3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f70fc99_f9cf31a5",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-03-14T16:14:43Z",
+      "side": 1,
+      "message": "I agree. Please note that LABELS is one of the diagnostics typically added by TelemetryInfo, and the general problem of making sure that histograms added by Telemetry have all TelemetryInfo diagnostics is tracked in https://github.com/catapult-project/catapult/issues/4244, which I plan to fix at some point.\n\nFor context, we currently plumb TelemetryInfo through trace metadata, and associated diagnostics are then added by metric_map_function. This has the upside that metrics can be recomputed on any Telemetry trace and the information about the associated benchmark run will remain, but the downside that if you bypass TBMv2, we currently don\u0027t do anything with TelemetryInfo on the Telemetry side.\n\nDave, if you like, you can add a TODO against 4244 here.",
+      "parentUuid": "83a05448_be499619",
+      "revId": "8b76f2163d7b1bcd28808fac321ed02ab70347d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
