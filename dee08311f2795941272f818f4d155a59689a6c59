@@ -16,6 +16,24 @@
       "revId": "dee08311f2795941272f818f4d155a59689a6c59",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48a24554_6d8305d5",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-14T01:00:25Z",
+      "side": 1,
+      "message": "I think it\u0027s okay. I just want something quick and simple for now. We\u0027ve only seen this failure once so far.",
+      "parentUuid": "3941e5d0_5b70833f",
+      "revId": "dee08311f2795941272f818f4d155a59689a6c59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
