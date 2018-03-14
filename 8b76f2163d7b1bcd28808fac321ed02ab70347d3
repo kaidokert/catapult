@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "83a05448_be499619",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-03-14T13:19:00Z",
+      "side": 1,
+      "message": "this seems like a quite an obscure API to address the problem of forgetting to set the telemetry_info. Having said that, fixing this should be done in a different effort",
+      "revId": "8b76f2163d7b1bcd28808fac321ed02ab70347d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
