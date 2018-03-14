@@ -99,7 +99,8 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
       return cros_browser_with_oobe.CrOSBrowserWithOOBE(
           browser_backend, self._platform_backend, startup_args)
     return browser.Browser(
-        browser_backend, self._platform_backend, startup_args)
+        browser_backend, self._platform_backend, startup_args,
+        assert_gpu_rendering=self._browser_options.assert_gpu_rendering)
 
   def GetBrowserStartupArgs(self, browser_options):
     startup_args = chrome_startup_args.GetFromBrowserOptions(browser_options)

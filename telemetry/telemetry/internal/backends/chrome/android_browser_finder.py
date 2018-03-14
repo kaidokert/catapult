@@ -174,6 +174,7 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
     try:
       return browser.Browser(
           browser_backend, self._platform_backend, startup_args=(),
+          assert_gpu_rendering=self._browser_options.assert_gpu_rendering,
           find_existing=existing)
     except Exception:
       exc_info = sys.exc_info()
