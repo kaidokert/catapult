@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8564f273_64c86790",
+        "filename": "tracing/tracing/metrics/system_health/breakdown_tree_helpers.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1215729
+      },
+      "writtenOn": "2018-03-14T22:42:18Z",
+      "side": 1,
+      "message": "Not sure whether event.selfTime is possible to be 0. It might worth adding protection for this case?",
+      "revId": "114c5621551cc64e534f4db67fa9513a48c11ed4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
