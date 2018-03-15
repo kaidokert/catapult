@@ -37,6 +37,10 @@ tr.exportTo('tr.model', function() {
       return this.start + this.duration;
     },
 
+    get boundsRange() {
+      return tr.b.math.Range.fromExplicitRange(this.start, this.end);
+    },
+
     addBoundsToRange(range) {
       range.addValue(this.start);
       range.addValue(this.end);
