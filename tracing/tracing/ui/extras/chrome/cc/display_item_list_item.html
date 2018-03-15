@@ -37,6 +37,11 @@ An element displaying basic information about a display item in a list view.
         padding: 2px 4px;
       }
 
+      .visual-rect {
+        margin-left: 10px;
+        color: #777;
+      }
+
       .raw-details {
         white-space: pre-wrap;
       }
@@ -54,23 +59,17 @@ An element displaying basic information about a display item in a list view.
       <template is="dom-if" if="{{_computeIf(richDetails)}}">
         <a class="extra" href$="{{_computeHref(richDetails)}}"
            download="drawing.skp" on-click="{{stopPropagation}}">SKP</a>
+        <template is="dom-if" if={{richDetails.visualRect}}">
+          <span class="visual-rect">
+            {{richDetails.visualRect.x}},{{richDetails.visualRect.y}}
+            {{richDetails.visualRect.width}}&times;{{richDetails.visualRect.height}}
+          </span>
+        </template>
       </template>
     </div>
     <div class="details">
       <template if="{{rawDetails}}">
         <div class="raw-details">{{rawDetails}}</div>
-      </template>
-      <template is="dom-if" if="{{richDetails}}" bind="{{richDetails}}">
-        <dl>
-          <template is="dom-if" if="{{cullRect}}" bind="{{cullRect}}">
-            <dt>Cull rect</dt>
-            <dd>{{x}},{{y}} {{width}}&times;{{height}}</dd>
-          </template>
-          <template is="dom-if" if="{{visualRect}}" bind="{{visualRect}}">
-            <dt>Visual rect</dt>
-            <dd>{{x}},{{y}} {{width}}&times;{{height}}</dd>
-          </template>
-        </dl>
       </template>
     </div>
   </template>
