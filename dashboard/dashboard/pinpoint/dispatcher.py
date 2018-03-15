@@ -26,6 +26,7 @@ _URL_MAPPING = [
 
     # Used internally by Pinpoint. Not accessible from the public API.
     webapp2.Route(r'/api/run/<job_id>', handlers.Run),
+    webapp2.Route(r'/api/monitor', handlers.Monitor),
 ]
 
 APP = webapp2.WSGIApplication(_URL_MAPPING, debug=False)
