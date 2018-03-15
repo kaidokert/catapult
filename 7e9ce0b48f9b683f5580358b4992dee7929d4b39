@@ -1,0 +1,208 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e398c1d6_fa207a83",
+        "filename": "tracing/tracing/base/unit.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-03-15T04:34:20Z",
+      "side": 1,
+      "message": "Please use unitlessNumber or normalizedPercentage instead of creating a new unit, especially since your metric puts \"cores_per_second\" in the histogram names.\nI understand that it\u0027s nice to have \"cores/s\" in the results table and on the y-axis in charts, but we\u0027re trying to see if we can have fewer semantic units. Maybe in the future we\u0027ll try to address this use case.",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52c60d48_cd22e3a1",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-03-15T04:34:20Z",
+      "side": 1,
+      "message": "One of the two callers collects this iterator into an array, and the other caller could re-use that array, so it looks like this should return an array instead of generating the ranges.",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "078be767_d1ba9718",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-03-15T04:34:20Z",
+      "side": 1,
+      "message": "Please use `exp instanceof tr.model.um.AnimationExpectation` instead of parsing the title, which could change.\n\nAlso, note that there are some types of animations that are not yet implemented such as requestAnimationFrame. Let me know if you would be interested in adding them to UserModelBuilder.",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b497cd9_75be9625",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-03-15T04:34:20Z",
+      "side": 1,
+      "message": "I would support adding a getter like \"boundsRange\" to TimedEvent (which UserExpectation subclasses) to return a new Range using addBoundsToRange().",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "caeb66b8_75723c51",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-03-15T04:34:20Z",
+      "side": 1,
+      "message": "Why not map.get(key) || 0?",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f02fcebe_4c78cc47",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-03-15T04:34:20Z",
+      "side": 1,
+      "message": "If you\u0027re only going to iterate over this Map without really looking up values by key, then maybe it should be straight-line code instead of a Map.\n\nif (threadName.includes(\u0027IOThread\u0027)) yield \u0027io\u0027;\n\nIs it possible for a thread to match \u0027all\u0027 plus more than one other category? If not, then this might not need to be a generator, either.\n\nif (threadName.includes(\u0027IOThread\u0027)) return \u0027io\u0027;\n\nIf you keep it a Map, why not iterate over entries like this?\nfor (const [category, regexes] of CATEGORY_THREAD_MAP) {\n  for (const regex of regexes) {...\n  }\n}",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e6c43d9_0e0080ad",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-03-15T04:34:20Z",
+      "side": 1,
+      "message": "Alternatively, you could iterate over userModel.segments, and filter out segments whose `expectations` don\u0027t include an AnimationExpectation.",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6ffbdb2_349cd581",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-03-15T04:34:20Z",
+      "side": 1,
+      "message": "Why not thread.name || UNKNOWN_THREAD_NAME?",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f44f1dbe_d4e37e6d",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-03-15T04:34:20Z",
+      "side": 1,
+      "message": "Please destructure kv with more descriptive names, and iterating over Maps already yields entries:\nfor (const [category, sample] of threadValues)",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce49ea24_646c6495",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-03-15T04:34:20Z",
+      "side": 1,
+      "message": "I would also encourage investigating whether it would be useful to break down by AnimationExpectation.initiatorType. See newCpuTimeMetric.",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7f887cf_57dc5518",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-03-15T04:34:20Z",
+      "side": 1,
+      "message": "Please destructure kv with more descriptive names, and iterating over Maps already yields entries:\nfor (const [category, sample] of threadValues)",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79d005b6_5fb272b5",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-03-15T04:34:20Z",
+      "side": 1,
+      "message": "There should be few enough AnimationExpectations in traces that you can link to them all (or the longest 10) using RelatedEventSet diagnostics, if you want.",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
