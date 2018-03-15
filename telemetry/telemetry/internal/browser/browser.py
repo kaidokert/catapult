@@ -32,7 +32,7 @@ class Browser(app.App):
   cases.
   """
   def __init__(self, backend, platform_backend, startup_args,
-               find_existing=False):
+               assert_gpu_rendering, find_existing=False):
     super(Browser, self).__init__(app_backend=backend,
                                   platform_backend=platform_backend)
     try:
@@ -48,6 +48,8 @@ class Browser(app.App):
         startup_url = self._browser_backend.GetBrowserStartupUrl()
         self._browser_backend.Start(startup_args, startup_url=startup_url)
       self._LogBrowserInfo()
+      if assert_gpu_rendering:
+        self._AssertGPURendering()
       self._profiling_controller = profiling_controller.ProfilingController(
           self._browser_backend.profiling_controller_backend)
     except Exception:
@@ -135,6 +137,16 @@ class Browser(app.App):
         logging.info('No GPU devices')
     else:
       logging.warning('System info not supported')
+
+  def _AssertGPURendering(self):
+    if not self.supports_system_info:
+      raise exceptions.Error(
+          'This browser does not support system info. Validating '
+          'gpu rendering info cannot be done.')
+
+    system_info = self.GetSystemInfo()
+    if not system_info.gpu.feature_status['gpu_compositing'] == 'enabled':
+      raise exceptions.Error('GPU Compositing is not activated')
 
   def _GetStatsCommon(self, pid_stats_function):
     browser_pid = self._browser_backend.pid

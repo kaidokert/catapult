@@ -126,7 +126,8 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
         self._ClearCachesOnStart()
 
         returned_browser = browser.Browser(
-            browser_backend, self._platform_backend, startup_args)
+            browser_backend, self._platform_backend, startup_args,
+            self._browser_options.assert_gpu_rendering)
 
         return returned_browser
       except Exception: # pylint: disable=broad-except

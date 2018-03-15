@@ -198,13 +198,37 @@ class BrowserCreationTest(unittest.TestCase):
     self.mock_platform_backend = mock.MagicMock()
     self.fake_startup_args = ['--foo', '--bar=2']
 
+  def testFailingGPURenderingAssertionSystemInfoNotSupported(self):
+    self.mock_browser_backend.supports_system_info.return_value = False
+    with self.assertRaises(exceptions.Error):
+      browser_module.Browser(
+          self.mock_browser_backend, self.mock_platform_backend,
+          self.fake_startup_args, True)
+    self.assertTrue(self.mock_browser_backend.Close.called)
+
+  def testFailingGPURenderingAssertionSystemInfoGpuRenderingNotEnabled(self):
+    self.mock_browser_backend.GetSystemInfo.return_value = (
+        system_info.SystemInfo.FromDict(
+            {'model_name': 'MacBookPro 10.1',
+             'gpu': {
+                 'devices': [
+                     {'vendor_id': 1000, 'device_id': 2000,
+                      'vendor_string': 'a', 'device_string': 'b'}
+                 ],
+                 'feature_status': {'gpu_compositing': 'disabled'}}}))
+    with self.assertRaises(exceptions.Error):
+      browser_module.Browser(
+          self.mock_browser_backend, self.mock_platform_backend,
+          self.fake_startup_args, True)
+    self.assertTrue(self.mock_browser_backend.Close.called)
+
   def testCleanedUpCalledWhenExceptionRaisedInBrowserCreation(self):
     self.mock_browser_backend.SetBrowser.side_effect = (
         IntentionalException('Boom!'))
     with self.assertRaises(IntentionalException):
       browser_module.Browser(
           self.mock_browser_backend, self.mock_platform_backend,
-          self.fake_startup_args)
+          self.fake_startup_args, False)
     self.assertTrue(self.mock_browser_backend.Close.called)
 
   def testOriginalExceptionNotSwallow(self):
@@ -215,7 +239,7 @@ class BrowserCreationTest(unittest.TestCase):
     with self.assertRaises(IntentionalException) as context:
       browser_module.Browser(
           self.mock_browser_backend, self.mock_platform_backend,
-          self.fake_startup_args)
+          self.fake_startup_args, False)
     self.assertIn('Boom!', context.exception.message)
 
 
