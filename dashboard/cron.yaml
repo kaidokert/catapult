@@ -35,6 +35,11 @@ cron:
   url: /update_test_suites
   schedule: every 20 minutes
 
+- description: Kickstart any Pinpoint jobs where the taskqueue task has gone missing.
+  url: /api/monitor
+  target: pinpoint
+  schedule: every 10 minutes
+
 # The backup cron job is disabled temporarily in order to check whether
 # it is responsible for increased cost on the weekends.
 # See: https://github.com/catapult-project/catapult/issues/1944
