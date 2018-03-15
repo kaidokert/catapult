@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "6bc03117_a4a7589f",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-03-15T17:50:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52c60d48_cd22e3a1",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "078be767_d1ba9718",
         "filename": "tracing/tracing/metrics/rendering_metric.html",
         "patchSetId": 9
@@ -47,6 +65,24 @@
       "writtenOn": "2018-03-15T04:34:20Z",
       "side": 1,
       "message": "Please use `exp instanceof tr.model.um.AnimationExpectation` instead of parsing the title, which could change.\n\nAlso, note that there are some types of animations that are not yet implemented such as requestAnimationFrame. Let me know if you would be interested in adding them to UserModelBuilder.",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d427045_16299216",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-03-15T17:50:47Z",
+      "side": 1,
+      "message": "Done.\n\nAbout RAF animations, we definitely have some stories that need them. However, we can use this metrics for other stories, that use supported animations, like scroll, for now. I\u0027m definitely interested in adding unsupported animations to UserModelBuilder. Please let me know how I should start :)",
+      "parentUuid": "078be767_d1ba9718",
       "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -70,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "b0669888_623a95a9",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-03-15T17:50:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b497cd9_75be9625",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "caeb66b8_75723c51",
         "filename": "tracing/tracing/metrics/rendering_metric.html",
         "patchSetId": 9
@@ -81,6 +135,24 @@
       "writtenOn": "2018-03-15T04:34:20Z",
       "side": 1,
       "message": "Why not map.get(key) || 0?",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84b031cb_0e62d88a",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-03-15T17:50:47Z",
+      "side": 1,
+      "message": "Because my JS coding is getting rusty :) Done.",
+      "parentUuid": "caeb66b8_75723c51",
       "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -104,6 +176,24 @@
     },
     {
       "key": {
+        "uuid": "eb31582b_bb9f7a44",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-03-15T17:50:47Z",
+      "side": 1,
+      "message": "\u003e If you\u0027re only going to iterate over this Map without really looking up values by key, then maybe it should be straight-line code instead of a Map.\n\nI look up values in the next line. I should iterate over entries, not keys, as you suggested. Fixed.\n\n\u003e Is it possible for a thread to match \u0027all\u0027 plus more than one other category? If not, then this might not need to be a generator, either.\n\nYes; for example, \u0027Chrome_ChildIOThread\u0027 is in \u0027io\u0027, \u0027fast_path\u0027, and \u0027all\u0027.",
+      "parentUuid": "f02fcebe_4c78cc47",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4e6c43d9_0e0080ad",
         "filename": "tracing/tracing/metrics/rendering_metric.html",
         "patchSetId": 9
@@ -115,6 +205,24 @@
       "writtenOn": "2018-03-15T04:34:20Z",
       "side": 1,
       "message": "Alternatively, you could iterate over userModel.segments, and filter out segments whose `expectations` don\u0027t include an AnimationExpectation.",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "196e0f22_699c2675",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-03-15T17:50:47Z",
+      "side": 1,
+      "message": "Sorry for the naive questions, but can\u0027t we have expectations like this?\n\n[\u003c--- load expectation ---\u003e]\n                 [\u003c--- animation expectation ---\u003e]\n\nIf we can, doesn\u0027t the UserModelBuilder.findSegments() merge the above two, which is not what we want?",
+      "parentUuid": "4e6c43d9_0e0080ad",
       "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -138,6 +246,24 @@
     },
     {
       "key": {
+        "uuid": "10cb4855_a4153457",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-03-15T17:50:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6ffbdb2_349cd581",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f44f1dbe_d4e37e6d",
         "filename": "tracing/tracing/metrics/rendering_metric.html",
         "patchSetId": 9
@@ -152,6 +278,24 @@
       "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0b200c6_38bfb6bb",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-03-15T17:50:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f44f1dbe_d4e37e6d",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -172,6 +316,24 @@
     },
     {
       "key": {
+        "uuid": "4599d434_0a28d89c",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-03-15T17:50:47Z",
+      "side": 1,
+      "message": "Sure; I added it to the TODO. I suspect that in most traces that are generated by telemetry we probably have only one animation and so breaking down by initiator may not be very informative. But, I should double check.",
+      "parentUuid": "ce49ea24_646c6495",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a7f887cf_57dc5518",
         "filename": "tracing/tracing/metrics/rendering_metric.html",
         "patchSetId": 9
@@ -189,6 +351,24 @@
     },
     {
       "key": {
+        "uuid": "e6b16c19_4d87d96a",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-03-15T17:50:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7f887cf_57dc5518",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "79d005b6_5fb272b5",
         "filename": "tracing/tracing/metrics/rendering_metric.html",
         "patchSetId": 9
@@ -200,6 +380,24 @@
       "writtenOn": "2018-03-15T04:34:20Z",
       "side": 1,
       "message": "There should be few enough AnimationExpectations in traces that you can link to them all (or the longest 10) using RelatedEventSet diagnostics, if you want.",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "764eb45f_9e6b15db",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-03-15T17:50:47Z",
+      "side": 1,
+      "message": "What is the benefit of linking to all animation expectations from all of these metrics? Aren\u0027t the expectations clearly marked in traces?",
+      "parentUuid": "79d005b6_5fb272b5",
       "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
