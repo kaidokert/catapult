@@ -24,6 +24,11 @@ handlers:
   login: admin
   secure: always
 
+- url: /api/monitor
+  script: dashboard.pinpoint.dispatcher.APP
+  login: admin
+  secure: always
+
 - url: /api/run/.*
   script: dashboard.pinpoint.dispatcher.APP
   login: admin

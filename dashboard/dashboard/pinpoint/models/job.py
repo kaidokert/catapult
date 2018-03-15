@@ -109,7 +109,7 @@ class Job(ndb.Model):
     self.state.AddChange(change)
 
   def Start(self):
-    self._Schedule()
+    self.Schedule()
 
     title = _ROUND_PUSHPIN + ' Pinpoint job started.'
     comment = '\n'.join((title, self.url))
@@ -175,7 +175,7 @@ class Job(ndb.Model):
     comment = '\n'.join((title, self.url))
     self._PostBugComment(comment)
 
-  def _Schedule(self):
+  def Schedule(self):
     # Set a task name to deduplicate retries. This adds some latency, but we're
     # not latency-sensitive. If Job.Run() works asynchronously in the future,
     # we don't need to worry about duplicate tasks.
@@ -202,7 +202,7 @@ class Job(ndb.Model):
 
       # Schedule moar task.
       if work_left:
-        self._Schedule()
+        self.Schedule()
       else:
         self._Complete()
     except BaseException:
@@ -220,9 +220,8 @@ class Job(ndb.Model):
         self.put()
       except datastore_errors.BadRequestError:
         if self.task:
-          queue = taskqueue.Queue('job-queue')
-          queue.delete_tasks(taskqueue.Task(name=self.task))
-        self.task = None
+          taskqueue.Queue('job-queue').delete_tasks_by_name(self.task)
+          self.task = None
 
         # The _JobState is too large to fit in an ndb property.
         # Load the Job from before we updated it, and fail it.
