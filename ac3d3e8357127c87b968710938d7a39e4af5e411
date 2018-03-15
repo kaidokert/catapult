@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f07e08c2_85f703a3",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-15T09:33:49Z",
+      "side": 1,
+      "message": "nit: maybe keep this as arguments.get(\u0027bug_id\u0027)? Doesn\u0027t seem like there is a reason for _ValidateBugId to get all of the arguments.",
+      "revId": "ac3d3e8357127c87b968710938d7a39e4af5e411",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
