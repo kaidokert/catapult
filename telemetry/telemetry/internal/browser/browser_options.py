@@ -41,6 +41,7 @@ class BrowserFinderOptions(optparse.Values):
     self.cros_remote = None
 
     self.profiler = None
+    self.profile_interactions = False
     self.verbosity = 0
 
     self.browser_options = BrowserOptions()
@@ -117,6 +118,21 @@ class BrowserFinderOptions(optparse.Values):
         help='Record profiling data using this tool. Supported values: %s. '
              '(Notice: this flag cannot be used for Timeline Based Measurement '
              'benchmarks.)' % ', '.join(profiler_choices))
+    group.add_option(
+        '--profile-interactions', action='store_true',
+        help='Collect profiling samples only during page interactions, '
+        'not during startup, page load, or shutdown.')
+    group.add_option(
+        '--profile-process', default='browser', type='choice',
+        choices=('browser', 'renderer'),
+        help='Process to profile')
+    group.add_option(
+        '--profile-thread', default=None, type='choice',
+        choices=('main', 'compositor'),
+        help='Thread to profile')
+    group.add_option(
+        '--profile-frequency', default=1000, type=int,
+        help='Frequency of profiling samples, in samples per second.')
     group.add_option(
         '-v', '--verbose', action='count', dest='verbosity',
         help='Increase verbosity level (repeat as needed)')

@@ -58,7 +58,8 @@ class _SingleProcessSampleProfiler(object):
 
 class SampleProfiler(profiler.Profiler):
 
-  def __init__(self, browser_backend, platform_backend, output_path, state):
+  def __init__(self, browser_backend, platform_backend, output_path, state,
+               **_):
     super(SampleProfiler, self).__init__(
         browser_backend, platform_backend, output_path, state)
     process_output_file_map = self._GetProcessOutputFileMap()

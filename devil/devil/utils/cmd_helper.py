@@ -187,6 +187,12 @@ def GetCmdStatusAndOutput(args, cwd=None, shell=False, env=None):
   return (status, stdout)
 
 
+def StartCmd(args, cwd=None, shell=False, env=None):
+  _ValidateAndLogCommand(args, cwd, shell)
+  return Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+               shell=shell, cwd=cwd, env=env)
+
+
 def GetCmdStatusOutputAndError(args, cwd=None, shell=False, env=None):
   """Executes a subprocess and returns its exit code, output, and errors.
 
