@@ -28,6 +28,10 @@ An element displaying basic information about a display item in a list view.
         margin: 2px 0;
       }
 
+      .header > .visual-rect {
+        color: #777;
+      }
+
       .header > .extra {
         background-color: #777;
         border-radius: 4px;
@@ -51,7 +55,8 @@ An element displaying basic information about a display item in a list view.
     </style>
     <div class="header">
       {{name}}
-      <template is="dom-if" if="{{_computeIf(richDetails)}}">
+      <span class="visual-rect">{{_computeVisualRect(richDetails)}}</span>
+      <template is="dom-if" if="{{_computeIfSKP(richDetails)}}">
         <a class="extra" href$="{{_computeHref(richDetails)}}"
            download="drawing.skp" on-click="{{stopPropagation}}">SKP</a>
       </template>
@@ -59,18 +64,6 @@ An element displaying basic information about a display item in a list view.
     <div class="details">
       <template if="{{rawDetails}}">
         <div class="raw-details">{{rawDetails}}</div>
-      </template>
-      <template is="dom-if" if="{{richDetails}}" bind="{{richDetails}}">
-        <dl>
-          <template is="dom-if" if="{{cullRect}}" bind="{{cullRect}}">
-            <dt>Cull rect</dt>
-            <dd>{{x}},{{y}} {{width}}&times;{{height}}</dd>
-          </template>
-          <template is="dom-if" if="{{visualRect}}" bind="{{visualRect}}">
-            <dt>Visual rect</dt>
-            <dd>{{x}},{{y}} {{width}}&times;{{height}}</dd>
-          </template>
-        </dl>
       </template>
     </div>
   </template>
@@ -124,7 +117,15 @@ An element displaying basic information about a display item in a list view.
       e.stopPropagation();
     },
 
-    _computeIf(richDetails) {
+    _computeVisualRect(richDetails) {
+      if (!richDetails || !richDetails.visualRect) {
+        return '';
+      }
+      const r = richDetails.visualRect;
+      return r.x + ',' + r.y + ' ' + r.width + 'x' + r.height;
+    },
+
+    _computeIfSKP(richDetails) {
       return richDetails && richDetails.skp64;
     },
 
