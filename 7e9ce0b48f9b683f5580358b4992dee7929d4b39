@@ -89,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "d5af28c9_46fe2bfe",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-03-16T05:51:24Z",
+      "side": 1,
+      "message": "Sent email with subject \"RequestAnimationFrame AnimationExpectations\".",
+      "parentUuid": "7d427045_16299216",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6b497cd9_75be9625",
         "filename": "tracing/tracing/metrics/rendering_metric.html",
         "patchSetId": 9
@@ -159,6 +177,24 @@
     },
     {
       "key": {
+        "uuid": "fb719eee_b06045ca",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-03-16T05:51:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "84b031cb_0e62d88a",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f02fcebe_4c78cc47",
         "filename": "tracing/tracing/metrics/rendering_metric.html",
         "patchSetId": 9
@@ -194,6 +230,24 @@
     },
     {
       "key": {
+        "uuid": "76cdcbeb_b83c5291",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-03-16T05:51:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "eb31582b_bb9f7a44",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e6c43d9_0e0080ad",
         "filename": "tracing/tracing/metrics/rendering_metric.html",
         "patchSetId": 9
@@ -223,6 +277,24 @@
       "side": 1,
       "message": "Sorry for the naive questions, but can\u0027t we have expectations like this?\n\n[\u003c--- load expectation ---\u003e]\n                 [\u003c--- animation expectation ---\u003e]\n\nIf we can, doesn\u0027t the UserModelBuilder.findSegments() merge the above two, which is not what we want?",
       "parentUuid": "4e6c43d9_0e0080ad",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b5882e3_16df89b0",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-03-16T05:51:24Z",
+      "side": 1,
+      "message": "That situation would produce 3 segments: [ Load ][ Load,Animation ][ Animation ]\nHere\u0027s a test with overlapping expectations: https://github.com/catapult-project/catapult/blob/master/tracing/tracing/importer/user_model_builder_test.html#L143\n\nUserModel.resegment() will filter and merge segments for you. I think your getKeyForSegment callback might look like this:\nconst animationSegments \u003d model.userModel.resegment(segment \u003d\u003e (segment.expectations.find(ue \u003d\u003e ue instanceof tr.model.um.AnimationExpectation) ? \u0027animation\u0027 : \u0027notAnimation\u0027));",
+      "parentUuid": "196e0f22_699c2675",
       "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -401,6 +473,24 @@
       "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02685c8f_568ae81b",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-03-16T05:51:24Z",
+      "side": 1,
+      "message": "Ah, nevermind, I forgot that you\u0027re doing single-sample Histograms.\n\nIf you were adding one sample per Animation, then users could brush individual bins or groups of bins to see the Animations in those bins. If there\u0027s an outlier sample, for example, users can select the bin to get a link directly to the particular animation that corresponds to that sample.\n\nBut, you\u0027re right, you\u0027re aggregating all Animations together, so the RelatedEventSet would just contain all of the animations in the trace, which would not be useful.",
+      "parentUuid": "764eb45f_9e6b15db",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
