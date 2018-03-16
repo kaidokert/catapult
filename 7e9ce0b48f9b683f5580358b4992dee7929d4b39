@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "02b4e2f9_fc39544a",
+        "filename": "tracing/tracing/base/unit.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-03-16T16:14:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e398c1d6_fa207a83",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "52c60d48_cd22e3a1",
         "filename": "tracing/tracing/metrics/rendering_metric.html",
         "patchSetId": 9
@@ -298,6 +316,24 @@
       "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "801b8e71_de7706e3",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-03-16T16:14:50Z",
+      "side": 1,
+      "message": "To be clear, model.userModel.resegment() does not filter out anything, it merges consecutive animation segments. I have to filter out non-animations segments myself. So, since I don\u0027t really need the merging part, as long as segments are disjoint, I don\u0027t need to model.userModel.resegment(). I just directly filter out non-animation segments from model.userModel.segments, as per your first suggestion.\n\nDone.",
+      "parentUuid": "7b5882e3_16df89b0",
+      "revId": "7e9ce0b48f9b683f5580358b4992dee7929d4b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
