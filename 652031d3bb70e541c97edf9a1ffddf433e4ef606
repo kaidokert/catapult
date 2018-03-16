@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "89c7b069_e3bfcb53",
+        "filename": "experimental/soundwave/soundwave/commands.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-03-16T01:00:25Z",
+      "side": 1,
+      "message": "Makes sense. My vote is to have the default do a fetch fresh, and have the --resume or --continue option be a sort of \"expert\" option so that only people who understand the tradeoffs will use it, given that it can definitely be used wrong.",
+      "parentUuid": "3bdfa710_702132b3",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 64
+      },
+      "revId": "652031d3bb70e541c97edf9a1ffddf433e4ef606",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8c906e6d_2400744d",
         "filename": "experimental/soundwave/soundwave/commands_test.py",
         "patchSetId": 1
@@ -81,6 +105,24 @@
       "revId": "652031d3bb70e541c97edf9a1ffddf433e4ef606",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a77b6a20_81f41f96",
+        "filename": "experimental/soundwave/soundwave/commands_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-03-16T01:00:25Z",
+      "side": 1,
+      "message": "Ack, sorry about that. I didn\u0027t realize that the two methods were combined now: I just knew that they were separated at some point in the past. I think leaving these combined for now is fine: if this grows unwieldy, we can split it apart at a later date.",
+      "parentUuid": "c28c9a1b_708ff298",
+      "revId": "652031d3bb70e541c97edf9a1ffddf433e4ef606",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
