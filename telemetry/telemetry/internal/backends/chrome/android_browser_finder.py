@@ -208,6 +208,9 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
     startup_args.append('--enable-remote-debugging')
     startup_args.append('--disable-fre')
     startup_args.append('--disable-external-intent-requests')
+    # Not to show a warning of "stability and security will suffer" for
+    # performance testing.
+    startup_args.append('--no-bad-flags-warning-for-testing')
 
     # Need to specify the user profile directory for
     # --ignore-certificate-errors-spki-list to work.
