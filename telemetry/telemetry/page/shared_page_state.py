@@ -71,6 +71,7 @@ class SharedPageState(story_module.SharedState):
     self._previous_page = None
     self._current_page = None
     self._current_tab = None
+    self._profiler_files = []
 
     self._test.SetOptions(self._finder_options)
 
@@ -139,7 +140,8 @@ class SharedPageState(story_module.SharedState):
 
   def DidRunStory(self, results):
     if self._finder_options.profiler:
-      self._StopProfiling(results)
+      self._StopProfiling()
+      self._AddProfilingFilesToResults(results)
     self._AllowInteractionForStage('after-run-story')
     try:
       self._previous_page = None
@@ -265,7 +267,8 @@ class SharedPageState(story_module.SharedState):
 
     self._AllowInteractionForStage('before-run-story')
     # Start profiling if needed.
-    if self._finder_options.profiler:
+    if (self._finder_options.profiler and
+        not self._finder_options.profile_interactions):
       self._StartProfiling(self._current_page)
 
   def CanRunStory(self, page):
@@ -318,6 +321,16 @@ class SharedPageState(story_module.SharedState):
     self.platform.network_controller.Close()
     self.platform.SetFullPerformanceModeEnabled(False)
 
+  def StartProfilingInteractions(self):
+    if (self._finder_options.profiler and
+        self._finder_options.profile_interactions):
+      self._StartProfiling(self._current_page)
+
+  def StopProfilingInteractions(self):
+    if (self._finder_options.profiler and
+        self._finder_options.profile_interactions):
+      self.browser.profiling_controller.StopCollecting()
+
   def _StopBrowser(self):
     if self._browser:
       self._browser.Close()
@@ -331,15 +344,21 @@ class SharedPageState(story_module.SharedState):
     if self._finder_options.pageset_repeat != 1:
       output_file = util.GetSequentialFileName(output_file)
     self.browser.profiling_controller.Start(
-        self._finder_options.profiler, output_file)
+        self._finder_options.profiler, output_file,
+        process=self._finder_options.profile_process,
+        thread=self._finder_options.profile_thread,
+        frequency=self._finder_options.profile_frequency)
 
-  def _StopProfiling(self, results):
+  def _StopProfiling(self):
     if self.browser:
-      profiler_files = self.browser.profiling_controller.Stop()
-      for f in profiler_files:
-        if os.path.isfile(f):
-          results.AddProfilingFile(self._current_page,
-                                   file_handle.FromFilePath(f))
+      self._profiler_files.extend(self.browser.profiling_controller.Stop())
+
+  def _AddProfilingFilesToResults(self, results):
+    for f in self._profiler_files:
+      if os.path.isfile(f):
+        results.AddProfilingFile(self._current_page,
+                                 file_handle.FromFilePath(f))
+    self._profiler_files = []
 
 
 class SharedMobilePageState(SharedPageState):

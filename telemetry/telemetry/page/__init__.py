@@ -97,7 +97,9 @@ class Page(story.Story):
     shared_state.page_test.DidNavigateToPage(self, current_tab)
     action_runner = action_runner_module.ActionRunner(
         current_tab, skip_waits=self.skip_waits)
+    shared_state.StartProfilingInteractions()
     self.RunPageInteractions(action_runner)
+    shared_state.StopProfilingInteractions()
 
   def RunNavigateSteps(self, action_runner):
     url = self.file_path_url_with_scheme if self.is_file else self.url

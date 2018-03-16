@@ -18,7 +18,8 @@ _VIDEO_MEGABITS_PER_SECOND = 4
 class AndroidScreenRecordingProfiler(profiler.Profiler):
   """Captures a screen recording on Android."""
 
-  def __init__(self, browser_backend, platform_backend, output_path, state):
+  def __init__(self, browser_backend, platform_backend, output_path, state,
+               **_):
     super(AndroidScreenRecordingProfiler, self).__init__(
         browser_backend, platform_backend, output_path, state)
     self._output_path = output_path + '.mp4'
