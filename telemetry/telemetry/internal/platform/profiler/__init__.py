@@ -63,6 +63,10 @@ class Profiler(object):
         continue
     return process_output_file_map
 
+  def StopCollecting(self):
+    """Stop collecting samples."""
+    pass
+
   def CollectProfile(self):
     """Collect the profile from the profiler."""
     raise NotImplementedError()
