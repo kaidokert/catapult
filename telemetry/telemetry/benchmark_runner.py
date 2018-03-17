@@ -7,7 +7,9 @@ Handles benchmark configuration, but all the logic for
 actually running the benchmark is in Benchmark and StoryRunner."""
 
 import argparse
+import json
 import logging
+import optparse
 import os
 import sys
 
@@ -47,9 +49,27 @@ def _IsBenchmarkEnabled(bench, possible_browser, expectations_file):
 
 
 def PrintBenchmarkList(
-    benchmarks, possible_browser, expectations_file, output_pipe=sys.stdout):
+    benchmarks, possible_browser, expectations_file, output_pipe=sys.stdout,
+    out_format='text'):
   """ Print benchmarks that are not filtered in the same order of benchmarks in
   the |benchmarks| list.
+
+  If out_format is 'text', it prints benchmarks in a human readable way.
+
+  If out_format is 'json', the output looks like this:
+  [
+    {
+      "enabled": <boolean>,
+      "name": <string>,
+      "description": <string>,
+      "story_tags": [
+        <string>,
+        ...
+      ]
+      ...
+    },
+    ...
+  ]
 
   Args:
     benchmarks: the list of benchmarks to be printed (in the same order of the
@@ -57,9 +77,11 @@ def PrintBenchmarkList(
     possible_browser: the possible_browser instance that's used for checking
       which benchmarks are enabled.
     output_pipe: the stream in which benchmarks are printed on.
+    out_format: either 'text' or 'json'
   """
   if not benchmarks:
-    print >> output_pipe, 'No benchmarks found!'
+    if out_format == 'text':
+      print >> output_pipe, 'No benchmarks found!'
     return
 
   bad_benchmark = next((b for b in benchmarks
@@ -67,30 +89,44 @@ def PrintBenchmarkList(
   assert bad_benchmark is None, (
       '|benchmarks| param contains non benchmark class: %s' % bad_benchmark)
 
-  # Align the benchmark names to the longest one.
-  format_string = '  %%-%ds %%s' % max(len(b.Name()) for b in benchmarks)
-  disabled_benchmarks = []
-
-  print >> output_pipe, 'Available benchmarks %sare:' % (
-      'for %s ' % possible_browser.browser_type if possible_browser else '')
-
-  # Sort the benchmarks by benchmark name.
-  benchmarks = sorted(benchmarks, key=lambda b: b.Name())
+  dumpables = []
   for b in benchmarks:
+    dumpable = {'name': b.Name(), 'description': b.Description(),
+                'enabled': False}
     if not possible_browser or _IsBenchmarkEnabled(b, possible_browser,
                                                    expectations_file):
-      print >> output_pipe, format_string % (b.Name(), b.Description())
-    else:
-      disabled_benchmarks.append(b)
+      dumpable['enabled'] = True
+    dumpables.append(dumpable)
 
-  if disabled_benchmarks:
+  if out_format == 'text':
+    # Align the benchmark names to the longest one.
+    format_string = '  %%-%ds %%s' % max(len(b.Name()) for b in benchmarks)
+
+    # Sort the benchmarks by benchmark name.
+    dumpables = sorted(dumpables, key=lambda b: b['name'])
+
+    enabled = [b for b in dumpables if b['enabled']]
+    if enabled:
+      print >> output_pipe, 'Available benchmarks %sare:' % (
+          'for %s ' % possible_browser.browser_type if possible_browser else '')
+      for b in enabled:
+        print >> output_pipe, format_string % (b['name'], b['description'])
+
+    disabled = [b for b in dumpables if not b['enabled']]
+    if disabled:
+      print >> output_pipe, (
+          '\nDisabled benchmarks for %s are (force run with -d):' %
+          possible_browser.browser_type)
+      for b in disabled:
+        print >> output_pipe, format_string % (b['name'], b['description'])
+
     print >> output_pipe, (
-        '\nDisabled benchmarks for %s are (force run with -d):' %
-        possible_browser.browser_type)
-    for b in disabled_benchmarks:
-      print >> output_pipe, format_string % (b.Name(), b.Description())
-  print >> output_pipe, (
-      'Pass --browser to list benchmarks for another browser.\n')
+        'Pass --browser to list benchmarks for another browser.\n')
+
+  elif out_format == 'json':
+    print >> output_pipe, json.dumps(dumpables, indent=2),
+  else:
+    raise optparse.OptionValueError('format must be one of {text, json}.')
 
 
 class Help(command_line.OptparseCommand):
@@ -127,6 +163,10 @@ class List(command_line.OptparseCommand):
   usage = '[benchmark_name] [<options>]'
 
   @classmethod
+  def AddCommandLineArgs(cls, parser, _):
+    parser.add_option('-f', '--format', default='text')
+
+  @classmethod
   def CreateParser(cls):
     options = browser_options.BrowserFinderOptions()
     parser = options.CreateParser('%%prog %s %s' % (cls.Name(), cls.usage))
@@ -150,7 +190,8 @@ class List(command_line.OptparseCommand):
     logging.getLogger().setLevel(logging.INFO)
     possible_browser = browser_finder.FindBrowser(args)
     PrintBenchmarkList(
-        args.benchmarks, possible_browser, self._expectations_file)
+        args.benchmarks, possible_browser, self._expectations_file,
+        out_format=args.format)
     return 0
 
 
