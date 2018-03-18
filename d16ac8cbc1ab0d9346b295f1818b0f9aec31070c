@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fca6cfae_8c39996d",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1110,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-03-18T18:56:47Z",
+      "side": 1,
+      "message": "- This should be done in AdbWrapper, not DeviceUtils. I\u0027m thinking about whether it should be part of Shell() or a separate function (something like StartShell())\n- This should use AdbWrapper._BuildAdbCmd to create the command rather than hand-buildling a list.\n- I think it\u0027d be good if we could provide the kind of exit code checking on calls to the returned object\u0027s communicate() or wait() methods; doing so would likely involve subclassing Popen, though.",
+      "revId": "d16ac8cbc1ab0d9346b295f1818b0f9aec31070c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffd144de_87df190f",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 2366,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-03-18T18:56:47Z",
+      "side": 1,
+      "message": "Thinking about a few things here:\n- should we support pattern at all?\n- if so, should it be optional?\n\nI would strongly prefer a single execution path here for running the command; doing so would also simplify the logic below.",
+      "revId": "d16ac8cbc1ab0d9346b295f1818b0f9aec31070c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "355433d1_c9ee7218",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 2368,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-03-18T18:56:47Z",
+      "side": 1,
+      "message": "Which version(s) of Android have you tried this on? Shell commands like to change frequently.",
+      "revId": "d16ac8cbc1ab0d9346b295f1818b0f9aec31070c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0c75046_3b8d8424",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 2381,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-03-18T18:56:47Z",
+      "side": 1,
+      "message": "This should have tests.",
+      "revId": "d16ac8cbc1ab0d9346b295f1818b0f9aec31070c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b03d118_16a7d1f5",
+        "filename": "devil/devil/utils/cmd_helper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-03-18T18:56:47Z",
+      "side": 1,
+      "message": "Please add a docstring.",
+      "revId": "d16ac8cbc1ab0d9346b295f1818b0f9aec31070c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
