@@ -17,18 +17,19 @@ def FetchAlertsData(args):
 
   bug_ids = set()
   with database.Database(args.database_file) as db:
-    for alert in alerts:
-      alert = models.Alert.FromJson(alert)
-      db.Put(alert)
-      if alert.bug_id is not None:
-        bug_ids.add(alert.bug_id)
+    with db.Transaction():
+      for alert in alerts:
+        alert = models.Alert.FromJson(alert)
+        db.Put(alert)
+        if alert.bug_id is not None:
+          bug_ids.add(alert.bug_id)
 
-    # TODO(#4281): Do not fetch data for bugs already in the db.
+    # TODO(#4281): Provide a --continue option to skip bugs already in the db.
     print 'Collecting data for %d bugs.' % len(bug_ids)
     for bug_id in bug_ids:
       data = dashboard_communicator.GetBugData(bug_id)
       bug = models.Bug.FromJson(data['bug'])
-      db.Put(bug)
+      db.Put(bug, commit=True)
 
 
 def FetchTimeseriesData(args):
