@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6fdb876a_0cbbcc74",
+        "filename": "web_page_replay_go/src/httparchive.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1247140
+      },
+      "writtenOn": "2018-03-19T19:55:37Z",
+      "side": 1,
+      "message": "Please make sure you\u0027ve run gofmt on this file.",
+      "revId": "98ca9f015132449970ac17c8208ccc64045a8304",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "358a91ce_84d35140",
+        "filename": "web_page_replay_go/src/httparchive.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1247140
+      },
+      "writtenOn": "2018-03-19T19:55:37Z",
+      "side": 1,
+      "message": "nit:\n\n// compressResponse compresses resp.Body in place according to resp\u0027s Content-Encoding header.",
+      "revId": "98ca9f015132449970ac17c8208ccc64045a8304",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
