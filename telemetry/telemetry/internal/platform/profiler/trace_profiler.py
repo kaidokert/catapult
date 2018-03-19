@@ -13,14 +13,14 @@ from tracing.trace_data import trace_data as trace_data_module
 class TraceProfiler(profiler.Profiler):
 
   def __init__(self, browser_backend, platform_backend, output_path, state,
-               categories=None):
+               **kwargs):
     super(TraceProfiler, self).__init__(
         browser_backend, platform_backend, output_path, state)
     assert self._browser_backend.supports_tracing
     # We always want flow events when tracing via telemetry.
     categories_with_flow = 'disabled-by-default-toplevel.flow'
-    if categories:
-      categories_with_flow += ',%s' % categories
+    if 'categories' in kwargs:
+      categories_with_flow += ',%s' % kwargs['categories']
     config = tracing_config.TracingConfig()
     config.enable_chrome_trace = True
     config.chrome_trace_config.SetCategoryFilter(
@@ -57,7 +57,8 @@ class TraceProfiler(profiler.Profiler):
 
 class TraceDetailedProfiler(TraceProfiler):
 
-  def __init__(self, browser_backend, platform_backend, output_path, state):
+  def __init__(self, browser_backend, platform_backend, output_path, state,
+               **kwargs):
     super(TraceDetailedProfiler, self).__init__(
         browser_backend, platform_backend, output_path, state,
         categories='disabled-by-default-cc.debug*')
@@ -69,7 +70,8 @@ class TraceDetailedProfiler(TraceProfiler):
 
 class TraceAllProfiler(TraceProfiler):
 
-  def __init__(self, browser_backend, platform_backend, output_path, state):
+  def __init__(self, browser_backend, platform_backend, output_path, state,
+               **kwargs):
     super(TraceAllProfiler, self).__init__(
         browser_backend, platform_backend, output_path, state,
         categories='disabled-by-default-*')
