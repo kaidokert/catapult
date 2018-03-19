@@ -74,6 +74,26 @@ class Database(object):
     if commit:
       self._conn.commit()
 
+  def Find(self, table, **kwargs):
+    """Find an item given an exact specification.
+
+    For example:
+      alert = db.Find(models.Alert, key='key_of_some_alert')
+
+    Args:
+      table: A class for the kind of item to find.
+      **kwargs: Key-value pairs where keys correspond to column names.
+
+    Returns:
+      An item (instance of table) if found, or None otherwise.
+    """
+    assert kwargs, 'Missing specification for the item to find.'
+    keys, values = zip(*kwargs.iteritems())
+    query = 'SELECT * FROM %s WHERE %s' % (
+        table.name, ' AND '.join('%s=?' % k for k in keys))
+    row = self._conn.execute(query, values).fetchone()
+    return table.FromTuple(row) if row is not None else None
+
   def IterItems(self, table):
     """Iterate over all items of a given table."""
     for row in self._conn.execute('SELECT * FROM %s' % table.name):

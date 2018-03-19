@@ -53,6 +53,10 @@ def Main():
   subparser.add_argument(
       '--database-file', default=DEFAULT_DATABASE_PATH,
       help='File path for database where to store data.')
+  subparser.add_argument(
+      '--continue', action='store_true', dest='reuse_cached_items',
+      help=('Reuse data from items already stored in the db, and continue to '
+            'fetch new ones only.'))
   # Subparser args for fetching timeseries data.
   subparser = subparsers.add_parser('timeseries')
   subparser.add_argument(

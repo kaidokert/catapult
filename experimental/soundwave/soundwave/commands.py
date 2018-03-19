@@ -24,8 +24,14 @@ def FetchAlertsData(args):
         if alert.bug_id is not None:
           bug_ids.add(alert.bug_id)
 
-    # TODO(#4281): Provide a --continue option to skip bugs already in the db.
-    print 'Collecting data for %d bugs.' % len(bug_ids)
+    total_bugs = len(bug_ids)
+    if args.reuse_cached_items:
+      bug_ids = [i for i in bug_ids if not db.Find(models.Bug, id=i)]
+      print 'Collecting data for %d remaining out of %d bugs.' % (
+          len(bug_ids), total_bugs)
+    else:
+      print 'Collecting and updating data for %d bugs.' % total_bugs
+
     for bug_id in bug_ids:
       data = dashboard_communicator.GetBugData(bug_id)
       bug = models.Bug.FromJson(data['bug'])
