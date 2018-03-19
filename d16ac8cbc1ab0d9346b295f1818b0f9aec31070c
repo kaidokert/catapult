@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d45cf26b_c7ff1245",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1110,
+      "author": {
+        "id": 1001706
+      },
+      "writtenOn": "2018-03-19T06:07:52Z",
+      "side": 1,
+      "message": "I added StartCmd and FinishCmd to AdbWrapper, as you suggest.",
+      "parentUuid": "fca6cfae_8c39996d",
+      "revId": "d16ac8cbc1ab0d9346b295f1818b0f9aec31070c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ffd144de_87df190f",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2018-03-18T18:56:47Z",
       "side": 1,
       "message": "Thinking about a few things here:\n- should we support pattern at all?\n- if so, should it be optional?\n\nI would strongly prefer a single execution path here for running the command; doing so would also simplify the logic below.",
+      "revId": "d16ac8cbc1ab0d9346b295f1818b0f9aec31070c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "225ad6fd_642a2749",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 2366,
+      "author": {
+        "id": 1001706
+      },
+      "writtenOn": "2018-03-19T06:07:52Z",
+      "side": 1,
+      "message": "I followed the example of ListProcesses(), which has a process_name filter to avoid send lots of output from device to host.  dumpsys() has similarly verbose output.\n\nLet me know what you prefer.",
+      "parentUuid": "ffd144de_87df190f",
       "revId": "d16ac8cbc1ab0d9346b295f1818b0f9aec31070c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "d7d604c2_a05e4c86",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 2368,
+      "author": {
+        "id": 1001706
+      },
+      "writtenOn": "2018-03-19T06:07:52Z",
+      "side": 1,
+      "message": "I only tested on N, but again I followed the example of _GetPsOutput, which uses \u0027grep -F\u0027 without any version checking.",
+      "parentUuid": "355433d1_c9ee7218",
+      "revId": "d16ac8cbc1ab0d9346b295f1818b0f9aec31070c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c0c75046_3b8d8424",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 4
@@ -64,6 +118,24 @@
       "writtenOn": "2018-03-18T18:56:47Z",
       "side": 1,
       "message": "This should have tests.",
+      "revId": "d16ac8cbc1ab0d9346b295f1818b0f9aec31070c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fad5bef_ae763775",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 2381,
+      "author": {
+        "id": 1001706
+      },
+      "writtenOn": "2018-03-19T06:07:52Z",
+      "side": 1,
+      "message": "Ack, I will work on tests.",
+      "parentUuid": "c0c75046_3b8d8424",
       "revId": "d16ac8cbc1ab0d9346b295f1818b0f9aec31070c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
