@@ -273,7 +273,7 @@ tr.exportTo('tr.importer', function() {
         const snapshot = findFrameLoaderSnapshotAt(
             rendererHelper, frameIdRef, currNavigation.start);
         if (!snapshot || !snapshot.args.isLoadingMainFrame) continue;
-        const url = snapshot.args.documentLoaderURL;
+        const url = currNavigation.args.url;
 
         // Filter navigationStartEvents that do not correspond to a loading main
         // page. Sometimes we get the navigationStartEvents corresponding to
