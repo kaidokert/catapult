@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "1a26fc32_1436c066",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-03-19T12:18:58Z",
+      "side": 1,
+      "message": "My two cents is that this CL would benefit from being split up and submitted in smaller chunks. The actual delta isn\u0027t huge, but the number of meaty lines of code is really high for a single CL. At least in Telemetry (I defer to jbudorick@ for the devil stuff), all of the stuff that isn\u0027t just boilerplate plumbing needs tests, too, especially the android_simpleperf_profiler. (As someone who maintains the CPU profiler, I can tell you how valuable the tests have been in understanding what can go wrong when running a profiler.)\n\nFor an example of what these tests might look like for a tracing agent, see https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/platform/tracing_agent/cpu_tracing_agent_unittest.py?type\u003dcs\u0026q\u003dcpu_tracing_\u0026sq\u003dpackage:chromium\u0026l\u003d1",
+      "revId": "04b6fa48eb27f3482073f5c6851531a3fdc6561d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "400a6801_023825b7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-03-19T12:18:58Z",
+      "side": 1,
+      "message": "My vote for the subject line of this CL is \"Add simpleperf tracing agent to Telemetry\" instead of \"Profiling enhancements\"",
+      "revId": "04b6fa48eb27f3482073f5c6851531a3fdc6561d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4834b5f7_f8cf636d",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 5
