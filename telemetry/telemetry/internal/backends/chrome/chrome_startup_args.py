@@ -36,6 +36,7 @@ def GetFromBrowserOptions(browser_options):
   if enable_features:
     args.append('--enable-features=%s' % ','.join(enable_features))
 
+  args.append('--enable-automation')
   args.append('--enable-net-benchmarking')
   args.append('--metrics-recording-only')
   args.append('--no-default-browser-check')
