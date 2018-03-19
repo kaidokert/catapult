@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4834b5f7_f8cf636d",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1109,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-19T12:14:52Z",
+      "side": 1,
+      "message": "Also not super sure whether we want to expose this method at the device_utils level. Since the method here is really just a pass-through, and since I would consider this an \"advanced\" option, maybe clients should really do, e.g.:\n\np \u003d device.adb.StartShell(...)",
+      "revId": "04b6fa48eb27f3482073f5c6851531a3fdc6561d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6afb2e45_d6e98db5",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1112,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-19T12:14:52Z",
+      "side": 1,
+      "message": "I\u0027m still not sure about this method  (see previous comment and also below). But, if we decide to keep it, let\u0027s remove that check_return option. If clients really want to ignore (or do something special) with the error, they should catch the exception themselves.",
+      "revId": "04b6fa48eb27f3482073f5c6851531a3fdc6561d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7534e065_77d39c7b",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 2378,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-19T12:14:52Z",
+      "side": 1,
+      "message": "Just wondering, since we\u0027re doing something like this for _GetPsOutput and now here; could it be possible to factor out and generalize the common code, e.g. a \"_GrepRunShellCommandOutput\" ?",
+      "revId": "04b6fa48eb27f3482073f5c6851531a3fdc6561d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "064e7d8f_f224bd84",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 2391,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-19T12:14:52Z",
+      "side": 1,
+      "message": "I don\u0027t think we should provide this method. See my comments below in android_simpleperf_profiler.py",
+      "revId": "04b6fa48eb27f3482073f5c6851531a3fdc6561d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aec285b9_3b3e2fbc",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-19T12:14:52Z",
+      "side": 1,
+      "message": "Add a docstring here. In particular document the fact that this returns a Popen object for the adb process (on the host) which is running the command (on the device).",
+      "revId": "04b6fa48eb27f3482073f5c6851531a3fdc6561d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "326ea2b9_3d03a6ff",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-19T12:14:52Z",
+      "side": 1,
+      "message": "As I hinted earlier, I don\u0027t know if this belongs here. To start, note the implementation of \nthis method only barely depends on \"self\".\n\nI saw John\u0027s comment on having code for checking the exit status on communicate(). I believe however I would rather declare this an \"advanced feature\", just let the StartShell method return the Popen object, and pass the responsibility of properly dealing with that object to the callers.\n\nWe could try to create some DevicePopen object, but I believe that will just increase the complexity with very little pay off.\n\nBut I\u0027m not sure. What are your thoughts?",
+      "revId": "04b6fa48eb27f3482073f5c6851531a3fdc6561d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dca4ff4f_fb35664e",
+        "filename": "telemetry/telemetry/internal/platform/profiler/android_simpleperf_profiler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-19T12:14:52Z",
+      "side": 1,
+      "message": "Sounds like you don\u0027t want a GetDumpsys method, but a GetPackageArch (?) or something?\n\nIdeally methods in device_utils should not return things which clients then need to parse. Let\u0027s do all the parsing work there.",
+      "revId": "04b6fa48eb27f3482073f5c6851531a3fdc6561d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
