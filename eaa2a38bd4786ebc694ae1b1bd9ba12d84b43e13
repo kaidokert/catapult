@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "06d8ec70_6d210ad5",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 11
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-03-19T17:47:50Z",
+      "side": 1,
+      "message": "Is this function likely to become more complex?\nIf not, there\u0027s a method that can simplify it. You might even be able to inline this into the caller and remove getThreadCpuTimeForSegments_.\ntr.b.math.Statistics.sum(segments, segment \u003d\u003e thread.getCpuTimeForRange(segment.boundsRange))",
+      "revId": "eaa2a38bd4786ebc694ae1b1bd9ba12d84b43e13",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09564443_948d870b",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 11
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-03-19T17:47:50Z",
+      "side": 1,
+      "message": "Maybe it\u0027s just Monday, but I\u0027m having trouble parsing this.\nWould this have the same effect? I think it might be clearer.\nif (category !\u003d\u003d \u0027all\u0027) isOther \u003d false;",
+      "revId": "eaa2a38bd4786ebc694ae1b1bd9ba12d84b43e13",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
