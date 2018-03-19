@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cb1d6c56_6b3e23ae",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-19T10:17:03Z",
+      "side": 1,
+      "message": "I would make this as_json\u003dFalse; so we return \"text\" when the option is false or \"json\" when the option is true.",
+      "revId": "d505febe908aae0d6e54fc71e4705a7b984151de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e9915b1_5e38d779",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-19T10:17:03Z",
+      "side": 1,
+      "message": "super nit: reorder this to put the most important info first, maybe: name, description, enabled, story_tags.",
+      "revId": "d505febe908aae0d6e54fc71e4705a7b984151de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56580441_0ad3cf55",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-19T10:17:03Z",
+      "side": 1,
+      "message": "nit: output an empty list in the else case.",
+      "revId": "d505febe908aae0d6e54fc71e4705a7b984151de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69b09d31_c567f555",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-19T10:17:03Z",
+      "side": 1,
+      "message": "super nit: I\u0027m not thrilled about the \"dumpables/dumpable\" names (doesn\u0027t sound very informative); my suggestion is not much better but maybe \"benchmark_infos/benchmark_info\"? (the container could also be \"all_benchmarks\"?)",
+      "revId": "d505febe908aae0d6e54fc71e4705a7b984151de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf6fa027_b77a910d",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-19T10:17:03Z",
+      "side": 1,
+      "message": "nit: rewrite as:\n\n  dumpable[\u0027enabled\u0027] \u003d not possible_browser or _IsBenchmarkEnabled(...)\n\n\n(then also no need to pre-set as False)",
+      "revId": "d505febe908aae0d6e54fc71e4705a7b984151de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d3a47e3_e3ddaa02",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-19T10:17:03Z",
+      "side": 1,
+      "message": "this is still missing the story_tags ?",
+      "revId": "d505febe908aae0d6e54fc71e4705a7b984151de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20f617f9_753e844f",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-19T10:17:03Z",
+      "side": 1,
+      "message": "nit: let\u0027s get the info from the \"dumpables\" now, e.g.:\n\n  max(len(b[\u0027name\u0027] for b in dumpables)",
+      "revId": "d505febe908aae0d6e54fc71e4705a7b984151de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca35771c_c226ee0a",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-19T10:17:03Z",
+      "side": 1,
+      "message": "nit: probably better to sort the list in place here, i.e.: dumpables.sort(key\u003d..)",
+      "revId": "d505febe908aae0d6e54fc71e4705a7b984151de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c4e983b_e0dfb24b",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-19T10:17:03Z",
+      "side": 1,
+      "message": "I don\u0027t think should be providing too many formats, so I would define this instead as:\n\n  parser.add(\u0027--json\u0027, action\u003d\u0027store_true\u0027, dest\u003d\u0027as_json\u0027, help\u003d\u0027...\u0027)",
+      "revId": "d505febe908aae0d6e54fc71e4705a7b984151de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5ea358d_38ebbb1f",
+        "filename": "telemetry/telemetry/benchmark_runner_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-19T10:17:03Z",
+      "side": 1,
+      "message": "please do include all the \"pretty printing\" options from the python docs:\n\n\u003e\u003e\u003e import json\n\u003e\u003e\u003e print json.dumps({\u00274\u0027: 5, \u00276\u0027: 7}, sort_keys\u003dTrue,\n...                  indent\u003d4, separators\u003d(\u0027,\u0027, \u0027: \u0027))\nhttps://docs.python.org/2/library/json.html\n\nThe sort_keys is important for tests to make sure your output is stable, and separators are needed too to avoid trailing whitespace on the produced output.",
+      "revId": "d505febe908aae0d6e54fc71e4705a7b984151de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
