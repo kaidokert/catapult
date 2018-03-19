@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "43c3fe77_23475f00",
+        "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-03-19T18:15:09Z",
+      "side": 1,
+      "message": "Should this be a Map?",
+      "revId": "b3d01529c06b695b32501a0b25dbac5761a12ff6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
