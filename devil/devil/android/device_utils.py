@@ -1106,6 +1106,19 @@ class DeviceUtils(object):
     else:
       return output
 
+  def StartShellCommand(self, cmd):
+    return self.adb.StartShellCommand(cmd)
+
+  def FinishShellCommand(self, handle, check_return=False):
+    try:
+      return self.adb.FinishShellCommand(handle)
+    except device_errors.AdbCommandFailedError as exc:
+      if check_return:
+        raise
+      else:
+        return exc.output
+
+
   def _RunPipedShellCommand(self, script, **kwargs):
     PIPESTATUS_LEADER = 'PIPESTATUS: '
 
@@ -2351,6 +2364,43 @@ class DeviceUtils(object):
         continue
       processes.append(ProcessInfo(**row))
     return processes
+
+  def _GetDumpsysOutput(self, package, pattern=None):
+    """Runs |dumpsys| command on the device and returns its output,
+
+    This private method implements support for filtering the output by a given
+    |pattern|, but does not do any output parsing.
+    """
+    try:
+      cmd = 'dumpsys package %s' % package
+      if pattern:
+        return self._RunPipedShellCommand(
+            '%s | grep -F %s' % (cmd, cmd_helper.SingleQuote(pattern)))
+      else:
+        return self.RunShellCommand(
+            cmd.split(), check_return=True, large_output=True)
+    except device_errors.AdbShellCommandFailedError as e:
+      if e.status and isinstance(e.status, list) and not e.status[0]:
+        # If dumpsys succeeded but grep failed, there were no lines matching
+        # the given pattern.
+        return []
+      else:
+        raise
+
+  @decorators.WithTimeoutAndRetriesFromInstance()
+  def GetDumpsys(self, package_name, pattern=None, timeout=None, retries=None):
+    """Returns lines from the output of 'dumpsys package' on the device.
+
+    Args:
+      package_name: The name of the package to pass to dumpsys.
+      pattern: A fixed-string pattern for filtering output lines.
+      timeout: timeout in seconds.
+      retries: number of retries.
+
+    Returns:
+      A list of raw dumpsys output lines.
+    """
+    return self._GetDumpsysOutput(package_name, pattern)
 
   # TODO(#4103): Remove after migrating clients to ListProcesses.
   @decorators.WithTimeoutAndRetriesFromInstance()

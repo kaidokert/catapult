@@ -25,7 +25,8 @@ class JavaHeapProfiler(profiler.Profiler):
   _DEFAULT_DEVICE_DIR = '/data/local/tmp/javaheap'
   # TODO(bulach): expose this as a command line option somehow.
   _DEFAULT_INTERVAL = 20
-  def __init__(self, browser_backend, platform_backend, output_path, state):
+  def __init__(self, browser_backend, platform_backend, output_path, state,
+               **_):
     super(JavaHeapProfiler, self).__init__(
         browser_backend, platform_backend, output_path, state)
     self._run_count = 1

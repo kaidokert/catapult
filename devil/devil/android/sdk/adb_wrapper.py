@@ -480,6 +480,17 @@ class AdbWrapper(object):
           'File pulled from the device did not arrive on the host: %s' % local,
           device_serial=str(self))
 
+  def StartShellCommand(self, cmd):
+    return cmd_helper.StartCmd(
+        self._BuildAdbCmd(['shell'] + cmd, self._device_serial))
+
+  def FinishShellCommand(self, handle, expect_status=0):
+    (status, stdout, _) = cmd_helper.FinishCmd(handle)
+    if status != expect_status:
+      raise device_errors.AdbShellCommandFailedError(
+          [], stdout, status=status, device_serial=self._device_serial)
+    return stdout
+
   def Shell(self, command, expect_status=0, timeout=DEFAULT_TIMEOUT,
             retries=DEFAULT_RETRIES):
     """Runs a shell command on the device.

@@ -265,7 +265,8 @@ class SharedPageState(story_module.SharedState):
 
     self._AllowInteractionForStage('before-run-story')
     # Start profiling if needed.
-    if self._finder_options.profiler:
+    if (self._finder_options.profiler and
+        not self._finder_options.profile_interactions):
       self._StartProfiling(self._current_page)
 
   def CanRunStory(self, page):
@@ -318,6 +319,16 @@ class SharedPageState(story_module.SharedState):
     self.platform.network_controller.Close()
     self.platform.SetFullPerformanceModeEnabled(False)
 
+  def StartProfilingInteractions(self):
+    if (self._finder_options.profiler and
+        self._finder_options.profile_interactions):
+      self._StartProfiling(self._current_page)
+
+  def StopProfilingInteractions(self):
+    if (self._finder_options.profiler and
+        self._finder_options.profile_interactions):
+      self.browser.profiling_controller.StopCollecting()
+
   def _StopBrowser(self):
     if self._browser:
       self._browser.Close()
@@ -331,7 +342,10 @@ class SharedPageState(story_module.SharedState):
     if self._finder_options.pageset_repeat != 1:
       output_file = util.GetSequentialFileName(output_file)
     self.browser.profiling_controller.Start(
-        self._finder_options.profiler, output_file)
+        self._finder_options.profiler, output_file,
+        process=self._finder_options.profile_process,
+        thread=self._finder_options.profile_thread,
+        frequency=self._finder_options.profile_frequency)
 
   def _StopProfiling(self, results):
     if self.browser:

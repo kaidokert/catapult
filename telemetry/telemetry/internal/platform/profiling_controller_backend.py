@@ -11,7 +11,7 @@ class ProfilingControllerBackend(object):
     self._active_profilers = []
     self._profilers_states = {}
 
-  def Start(self, profiler_name, base_output_file):
+  def Start(self, profiler_name, base_output_file, **kwargs):
     """Starts profiling using |profiler_name|. Results are saved to
     |base_output_file|.<process_name>."""
     assert not self._active_profilers, 'Already profiling. Must stop first.'
@@ -28,7 +28,7 @@ class ProfilingControllerBackend(object):
     self._active_profilers.append(
         profiler_class(
             self._browser_backend, self._platform_backend,
-            base_output_file, self._profilers_states[profiler_class]))
+            base_output_file, self._profilers_states[profiler_class], **kwargs))
 
   def Stop(self):
     """Stops all active profilers and saves their results.
@@ -41,6 +41,10 @@ class ProfilingControllerBackend(object):
       output_files.extend(profiler.CollectProfile())
     self._active_profilers = []
     return output_files
+
+  def StopCollecting(self):
+    for profiler in self._active_profilers:
+      profiler.StopCollecting()
 
   def WillCloseBrowser(self):
     for profiler_class in self._profilers_states:
