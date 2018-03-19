@@ -290,11 +290,9 @@ class AddHistogramsEndToEndTest(testing_common.TestCase):
       add_histograms_queue.find_anomalies, 'ProcessTestsAsync',
       mock.MagicMock())
   def testPost_DeduplicateByName(self):
-
-
     hs = self._CreateHistogram(
         master='m', bot='b', benchmark='s', stories=['s1', 's2'],
-        commit_position=1111, device='device1', owner='owner1')
+        commit_position=1111, device='device1', owner='owner1', samples=[42])
     self.testapp.post(
         '/add_histograms', {'data': json.dumps(hs.AsDicts())})
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
@@ -306,7 +304,7 @@ class AddHistogramsEndToEndTest(testing_common.TestCase):
 
     hs = self._CreateHistogram(
         master='m', bot='b', benchmark='s', stories=['s1', 's2'],
-        commit_position=1112, device='device1', owner='owner1')
+        commit_position=1112, device='device1', owner='owner1', samples=[42])
     self.testapp.post(
         '/add_histograms', {'data': json.dumps(hs.AsDicts())})
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
@@ -318,7 +316,7 @@ class AddHistogramsEndToEndTest(testing_common.TestCase):
 
     hs = self._CreateHistogram(
         master='m', bot='b', benchmark='s', stories=['s1', 's2'],
-        commit_position=1113, device='device2', owner='owner1')
+        commit_position=1113, device='device2', owner='owner1', samples=[42])
     self.testapp.post(
         '/add_histograms', {'data': json.dumps(hs.AsDicts())})
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
@@ -342,7 +340,7 @@ class AddHistogramsEndToEndTest(testing_common.TestCase):
 
     hs = self._CreateHistogram(
         master='m', bot='b', benchmark='s', stories=['s1', 's2'],
-        commit_position=1115, device='device2', owner='owner2')
+        commit_position=1115, device='device2', owner='owner2', samples=[42])
     self.testapp.post(
         '/add_histograms', {'data': json.dumps(hs.AsDicts())})
     self.ExecuteTaskQueueTasks('/add_histograms_queue',
@@ -359,8 +357,9 @@ class AddHistogramsEndToEndTest(testing_common.TestCase):
       add_histograms_queue.find_anomalies, 'ProcessTestsAsync',
       mock.MagicMock())
   def testPost_NamesAreSet(self):
-    hists = [histogram_module.Histogram('hist', 'count')]
-    histograms = histogram_set.HistogramSet(hists)
+    hist = histogram_module.Histogram('hist', 'count')
+    hist.AddSample(42)
+    histograms = histogram_set.HistogramSet([hist])
     histograms.AddSharedDiagnostic(
         reserved_infos.MASTERS.name,
         generic_set.GenericSet(['master']))
