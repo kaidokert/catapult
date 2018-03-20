@@ -53,6 +53,24 @@
     },
     {
       "key": {
+        "uuid": "10b707e2_cf2feb32",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1109,
+      "author": {
+        "id": 1001706
+      },
+      "writtenOn": "2018-03-20T18:14:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4834b5f7_f8cf636d",
+      "revId": "04b6fa48eb27f3482073f5c6851531a3fdc6561d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6afb2e45_d6e98db5",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 5
@@ -70,6 +88,24 @@
     },
     {
       "key": {
+        "uuid": "b29617f7_cd01b375",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1112,
+      "author": {
+        "id": 1001706
+      },
+      "writtenOn": "2018-03-20T18:14:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6afb2e45_d6e98db5",
+      "revId": "04b6fa48eb27f3482073f5c6851531a3fdc6561d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7534e065_77d39c7b",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 5
@@ -81,6 +117,24 @@
       "writtenOn": "2018-03-19T12:14:52Z",
       "side": 1,
       "message": "Just wondering, since we\u0027re doing something like this for _GetPsOutput and now here; could it be possible to factor out and generalize the common code, e.g. a \"_GrepRunShellCommandOutput\" ?",
+      "revId": "04b6fa48eb27f3482073f5c6851531a3fdc6561d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1041f39_15c085a6",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 2378,
+      "author": {
+        "id": 1001706
+      },
+      "writtenOn": "2018-03-20T18:14:21Z",
+      "side": 1,
+      "message": "In my opinion, there\u0027s not enough code duplication to merit factoring this out, but I\u0027ll defer to your judgement.",
+      "parentUuid": "7534e065_77d39c7b",
       "revId": "04b6fa48eb27f3482073f5c6851531a3fdc6561d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -121,6 +175,24 @@
     },
     {
       "key": {
+        "uuid": "bc0c98ac_014f8a60",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1001706
+      },
+      "writtenOn": "2018-03-20T18:14:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aec285b9_3b3e2fbc",
+      "revId": "04b6fa48eb27f3482073f5c6851531a3fdc6561d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "326ea2b9_3d03a6ff",
         "filename": "devil/devil/android/sdk/adb_wrapper.py",
         "patchSetId": 5
@@ -138,6 +210,24 @@
     },
     {
       "key": {
+        "uuid": "07284177_d70cfaa4",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1001706
+      },
+      "writtenOn": "2018-03-20T18:14:21Z",
+      "side": 1,
+      "message": "I tend to agree with you; subprocess is a well-known python standard library module, and consumers of adb_wrapper should be able to use it without unnecessary intermediate layers of cheese.\n\nRemoved.",
+      "parentUuid": "326ea2b9_3d03a6ff",
+      "revId": "04b6fa48eb27f3482073f5c6851531a3fdc6561d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dca4ff4f_fb35664e",
         "filename": "telemetry/telemetry/internal/platform/profiler/android_simpleperf_profiler.py",
         "patchSetId": 5
@@ -149,6 +239,24 @@
       "writtenOn": "2018-03-19T12:14:52Z",
       "side": 1,
       "message": "Sounds like you don\u0027t want a GetDumpsys method, but a GetPackageArch (?) or something?\n\nIdeally methods in device_utils should not return things which clients then need to parse. Let\u0027s do all the parsing work there.",
+      "revId": "04b6fa48eb27f3482073f5c6851531a3fdc6561d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c01690f_3ab8170b",
+        "filename": "telemetry/telemetry/internal/platform/profiler/android_simpleperf_profiler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1001706
+      },
+      "writtenOn": "2018-03-20T18:14:21Z",
+      "side": 1,
+      "message": "I added GetPackageArchitecture, but I left _GetDumpsysOutput intact.  Seems like a useful method, which should be used in a few more places in device_utils.",
+      "parentUuid": "dca4ff4f_fb35664e",
       "revId": "04b6fa48eb27f3482073f5c6851531a3fdc6561d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
