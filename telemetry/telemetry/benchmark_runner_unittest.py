@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import json
 import os
 import tempfile
 import unittest
@@ -69,6 +70,38 @@ class BenchmarkRunnerUnittest(unittest.TestCase):
                                           expectations_file.name,
                                           self._stream)
 
+      self.assertEquals(expected_printed_stream, self._stream.output_data)
+
+    finally:
+      os.remove(expectations_file.name)
+
+  def testPrintBenchmarkListInJSON(self):
+    expected_printed_stream = json.dumps([
+        {'name': BenchmarkFoo.Name(),
+         'description': BenchmarkFoo.Description(),
+         'enabled': True},
+        {'name': BenchmarkBar.Name(),
+         'description': BenchmarkBar.Description(),
+         'enabled': False}], indent=4, sort_keys=True, separators=(',', ': '))
+
+    expectations_file_contents = (
+        '# tags: All\n'
+        'crbug.com/123 [ All ] BenchmarkBar/* [ Skip ]\n'
+    )
+
+    expectations_file = tempfile.NamedTemporaryFile(bufsize=0, delete=False)
+    try:
+      expectations_file.write(expectations_file_contents)
+      expectations_file.close()
+      print '@@@', dir(self._stream), '@@@'
+      print '@@@', self._stream.__class__, '@@@'
+      benchmark_runner.PrintBenchmarkList([BenchmarkFoo, BenchmarkBar],
+                                          self._mock_possible_browser,
+                                          expectations_file.name,
+                                          self._stream, as_json=True)
+
+      print '@@@', dir(self._stream), '@@@'
+      print '@@@', self._stream.__class__, '@@@'
       self.assertEquals(expected_printed_stream, self._stream.output_data)
 
     finally:
