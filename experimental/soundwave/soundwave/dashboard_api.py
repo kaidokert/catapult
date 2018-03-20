@@ -169,30 +169,24 @@ class PerfDashboardCommunicator(object):
     return self._MakeApiRequest('alerts/history/%d?%s' % (days, options))
 
   def GetAllTimeseriesForBenchmark(self, benchmark, days=30, filters=None):
-    """ Generator function returning timeseries entries for a benchmark.
+    """Generator function returning timeseries entries for a benchmark.
 
     args:
       benchmark: benchmark you want data for.
       days: number of days to return data for.
-      filter: A list of strings. The metric must contain all of the strings
+      filter: A list of strings. The test path must contain all of the strings.
 
     yields:
-      Timeseries data point.
+      One by one, a dictionary with data for each point in all matching
+      timeseries.
     """
-    header = ['bot', 'benchmark', 'metric', 'story']
     test_paths = self.ListTestPaths(benchmark)
-    for tp in test_paths:
-      if not filters or all(f in tp for f in filters):
-        ts = self.GetTimeseries(tp, days=days)
-        if header:
-          # First entry in the timeseries is a header. We only need this once.
-          full_header = header + ts['timeseries'][0]
-          header = None
-          yield full_header
-        for point in ts['timeseries'][1:]:
-          # Splits the test path into [bot, benchmark, metric, story] and
-          # appends the data from a timeseries entry. Current data returned:
-          # 'revision', 'value', 'timestamp', 'r_commit_pos', 'r_webrtc_rev',
-          # 'r_chromium', 'r_webkit_rev', 'r_v8_rev'
-          test_data = tp.split('/', 4)[1:] + [data for data in point]
-          yield test_data
+    for test_path in test_paths:
+      if not filters or all(f in test_path for f in filters):
+        timeseries = self.GetTimeseries(test_path, days=days)['timeseries']
+        # First entry in the timeseries is a header.
+        header = timeseries[0]
+        for point in timeseries[1:]:
+          data = dict(zip(header, point))
+          data['test_path'] = test_path
+          yield data

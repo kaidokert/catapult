@@ -4,3 +4,4 @@
 
 from soundwave.models.alert_model import Alert
 from soundwave.models.bug_model import Bug
+from soundwave.models.timeseries_model import Timeseries

@@ -2,8 +2,6 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-import csv
-
 from soundwave import models
 from soundwave import dashboard_api
 from soundwave import database
@@ -40,8 +38,10 @@ def FetchAlertsData(args):
 
 def FetchTimeseriesData(args):
   dashboard_communicator = dashboard_api.PerfDashboardCommunicator(args)
-  with open(args.output_path, 'wb') as fp:
-    csv_writer = csv.writer(fp)
-    for row in dashboard_communicator.GetAllTimeseriesForBenchmark(
-        args.benchmark, args.days, args.filters):
-      csv_writer.writerow(row)
+  with database.Database(args.database_file) as db:
+    # TODO(#4349): Fetch timeseries in parallel and with shorter tansactions.
+    with db.Transaction():
+      for point_data in dashboard_communicator.GetAllTimeseriesForBenchmark(
+          args.benchmark, args.days, args.filters):
+        point = models.Timeseries.FromJson(point_data)
+        db.Put(point)

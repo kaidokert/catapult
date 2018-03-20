@@ -34,4 +34,15 @@ CREATE TABLE IF NOT EXISTS bugs (
   cc TEXT,
   components TEXT,
   labels TEXT
-)
+);
+
+CREATE TABLE IF NOT EXISTS timeseries (
+  test_path TEXT NOT NULL,
+  point_id INTEGER NOT NULL,
+  value REAL NOT NULL,
+  timestamp INTEGER NOT NULL,
+  commit_pos INTEGER NOT NULL,
+  chromium_rev TEXT NOT NULL,
+  clank_rev TEXT,
+  PRIMARY KEY (test_path, point_id)
+);

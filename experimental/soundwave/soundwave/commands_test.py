@@ -115,5 +115,58 @@ class TestCommands(unittest.TestCase):
     self.assertItemsEqual(bugs, expected_bugs)
 
 
+  def testFetchTimeseriesData(self):
+    self.communicator.GetAllTimeseriesForBenchmark.return_value = [
+        {
+            'test_path': 'perf_bot/benchmark/metric/story',
+            'revision': 11111,
+            'value': 1.23,
+            'timestamp': '2009-02-13T23:31:30.000',
+            'r_commit_pos': '11111',
+            'r_chromium': 'src_hash_1',
+        },
+        {
+            'test_path': 'clank_bot/benchmark/metric/story',
+            'revision': 1234567890,
+            'value': 2.46,
+            'timestamp': '2009-02-13T23:31:30.000',
+            'r_commit_pos': '11222',
+            'r_chromium': 'src_hash_2',
+            'r_clank': 'clank_hash_2',
+        },
+    ]
+
+    expected_timeseries = [
+        models.Timeseries(
+            test_path='perf_bot/benchmark/metric/story',
+            point_id=11111,
+            value=1.23,
+            timestamp=1234567890,
+            commit_pos=11111,
+            chromium_rev='src_hash_1',
+            clank_rev=None
+        ),
+        models.Timeseries(
+            test_path='clank_bot/benchmark/metric/story',
+            point_id=1234567890,
+            value=2.46,
+            timestamp=1234567890,
+            commit_pos=11222,
+            chromium_rev='src_hash_2',
+            clank_rev='clank_hash_2'
+        ),
+    ]
+
+    # Run command to fetch alerts and store in database.
+    commands.FetchTimeseriesData(self.args)
+
+    # Read back from database.
+    with database.Database(self.args.database_file) as db:
+      timeseries = list(db.IterItems(models.Timeseries))
+
+    # Check we find all expected timeseries data points.
+    self.assertItemsEqual(timeseries, expected_timeseries)
+
+
 if __name__ == '__main__':
   unittest.main()
