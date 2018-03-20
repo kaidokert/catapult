@@ -264,6 +264,24 @@
     },
     {
       "key": {
+        "uuid": "542ad30a_d551fcf5",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-03-20T19:10:28Z",
+      "side": 1,
+      "message": "Ah, ok. I read it as referring to the idea; just a misunderstanding, then.\n\nIn any event, I\u0027m ok with StartShell returning the Popen object.",
+      "parentUuid": "10a0f8d8_4f894b5e",
+      "revId": "04b6fa48eb27f3482073f5c6851531a3fdc6561d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dca4ff4f_fb35664e",
         "filename": "telemetry/telemetry/internal/platform/profiler/android_simpleperf_profiler.py",
         "patchSetId": 5
