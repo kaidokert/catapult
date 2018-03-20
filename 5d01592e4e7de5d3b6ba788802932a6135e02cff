@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "edd10c36_b152fce1",
+        "filename": "experimental/soundwave/soundwave/database.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-03-20T15:20:21Z",
+      "side": 1,
+      "message": "As mentioned offline, might be worth taking a look at https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_sql.html to see if it meets our needs. I don\u0027t have much experience in this area, though, and it seems like any decision we make right now should be pretty easy to reevaluate down the road.",
+      "revId": "5d01592e4e7de5d3b6ba788802932a6135e02cff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9b5632ee_815c483b",
+        "filename": "experimental/soundwave/soundwave/database.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-03-20T15:20:21Z",
+      "side": 1,
+      "message": "It\u0027s probably worth putting in the description that we automatically replace any existing rows.",
+      "revId": "5d01592e4e7de5d3b6ba788802932a6135e02cff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
