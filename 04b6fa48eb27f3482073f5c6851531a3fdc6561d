@@ -228,6 +228,24 @@
     },
     {
       "key": {
+        "uuid": "1759ae86_c287a8fa",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-03-20T18:38:17Z",
+      "side": 1,
+      "message": "I think there\u0027s room to disagree with an idea without resorting to calling it \"unnecessary intermediate layers of cheese.\"",
+      "parentUuid": "07284177_d70cfaa4",
+      "revId": "04b6fa48eb27f3482073f5c6851531a3fdc6561d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dca4ff4f_fb35664e",
         "filename": "telemetry/telemetry/internal/platform/profiler/android_simpleperf_profiler.py",
         "patchSetId": 5
