@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8cd9ac5c_566298ab",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-20T10:41:06Z",
+      "side": 1,
+      "message": "nit: maybe break the line after the first (, it will then probably give you enough extra space to put the entire _IsBenchmarkEnabled in a single line.",
+      "revId": "6ef1ca868a69c341996b3bff51d571ea0fb72e1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
