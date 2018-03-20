@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d012b5ba_eacb26db",
+        "filename": "experimental/soundwave/soundwave/commands.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-03-20T15:05:58Z",
+      "side": 1,
+      "message": "Just want to point out that this may need optimization in the future. No action necessary.",
+      "range": {
+        "startLine": 29,
+        "startChar": 6,
+        "endLine": 29,
+        "endChar": 69
+      },
+      "revId": "c3f985e0f5c60e72065ca1ee8b8040374f65e887",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0efbadd9_d6c7da73",
+        "filename": "experimental/soundwave/soundwave/commands.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-03-20T15:05:58Z",
+      "side": 1,
+      "message": "nit: swapping %d and remaining makes this more readable IMO",
+      "range": {
+        "startLine": 30,
+        "startChar": 33,
+        "endLine": 30,
+        "endChar": 45
+      },
+      "revId": "c3f985e0f5c60e72065ca1ee8b8040374f65e887",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
