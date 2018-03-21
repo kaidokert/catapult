@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4d70d245_4f4557ca",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/patch-job-fab.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-21T10:33:12Z",
+      "side": 1,
+      "message": "Should there be a \"TODO\" somewhere to give this \"auto_explore\" a better name? As discussed in the bugs this is more like distinguishing between functional/performance jobs.\n\nThis reads like: \"please explore between HEAD and HEAD+patch\", which sounds really strange.\n\nSemi-related me wondering: are both of those \"HEAD\"s turned somewhere into a git hash atomically? Or could there be a race where each resolves to a different nearby hash?",
+      "revId": "1fdfcf9262214deb4fbc608c3b92d1b7ee2b3dc6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
