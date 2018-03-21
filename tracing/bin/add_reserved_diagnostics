@@ -55,19 +55,47 @@ def main():
   # TODO(#3987): Refactor recipes to call merge_histograms separately.
   dicts_across_repeats = merge_histograms.MergeHistograms(args.input_path, (
     'name', 'stories'))
-  dicts_across_stories = merge_histograms.MergeHistograms(args.input_path, (
-    'name',))
 
-  histograms = histogram_set.HistogramSet()
-  histograms.ImportDicts(dicts_across_stories)
-  histograms.ResolveRelatedHistograms()
-  for histogram in histograms:
-    histogram.diagnostics[
+  # We need to generate summary statistics for anything that had a story, so
+  # filter out every histogram with no stories, then merge. If you keep the
+  # histograms with no story, you end up with duplicates.
+  def _LoadHistogramset(dicts):
+    hs = histogram_set.HistogramSet()
+    hs.ImportDicts(dicts)
+    hs.ResolveRelatedHistograms()
+    return hs
+
+  def _ShouldDiscard(hist):
+    s = hist.diagnostics.get(reserved_infos.STORIES.name, [])
+    return len(s) == 0
+
+  with open(args.input_path, 'r') as f:
+    dicts_across_stories = json.loads(f.read())
+
+  hs = _LoadHistogramset(dicts_across_stories)
+
+  discard = [h.guid for h in hs if _ShouldDiscard(h)]
+  dicts_across_stories = [
+      d for d in dicts_across_stories if d['guid'] not in discard]
+
+  hs = _LoadHistogramset(dicts_across_stories)
+  for h in hs:
+    h.diagnostics[
         reserved_infos.IS_SUMMARY.name] = generic_set.GenericSet([True])
 
+  with tempfile.NamedTemporaryFile() as temp:
+    temp.write(json.dumps(hs.AsDicts()))
+    temp.flush()
+    dicts_across_stories = merge_histograms.MergeHistograms(temp.name, (
+      'name',))
+
+  # Now load everything into one histogram set
+  histograms = histogram_set.HistogramSet()
+  histograms.ImportDicts(dicts_across_stories)
   histograms.ImportDicts(dicts_across_repeats)
   histograms.DeduplicateDiagnostics()
 
+  # Apply all the requested diagnostics to every histogram
   for name, value in names_to_values.iteritems():
     histograms.AddSharedDiagnostic(name, generic_set.GenericSet([value]))
 
