@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8e1f5521_2628baf5",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-21T10:52:30Z",
+      "side": 1,
+      "message": "Instead of this I think we should factor out and reuse the code from here:\nhttps://cs.chromium.org/chromium/src/tools/perf/core/story_expectation_validator.py?rcl\u003d52f6eb4221430b6248fd5a59bec53bfef9fdd9a7\u0026l\u003d38",
+      "parentUuid": "1730335c_db55ed0d",
+      "revId": "4d488ee54b3a05dccc9a686bb01ff37cc0ec0749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1af4fbb5_9eb845ba",
         "filename": "telemetry/telemetry/benchmark_runner.py",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2018-03-21T02:07:36Z",
       "side": 1,
       "message": "This is another nice utility that you created. Though this general method should go in common/py_utils/py_utils/logging_util.py",
+      "revId": "4d488ee54b3a05dccc9a686bb01ff37cc0ec0749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0408a7fb_8beced50",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-21T10:52:30Z",
+      "side": 1,
+      "message": "I also agree this is a nifty utility. But I wonder if it\u0027s the wrong solution for our problem. Instead, maybe the --json option should take a FILENAME argument, so we aren brittle when benchmarks (or other third party code) litter the stdout. Instead we just dump the json to the given file?",
+      "parentUuid": "1af4fbb5_9eb845ba",
       "revId": "4d488ee54b3a05dccc9a686bb01ff37cc0ec0749",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -64,6 +100,23 @@
       "writtenOn": "2018-03-21T02:07:36Z",
       "side": 1,
       "message": "you want to do \"except Exception\". The bare except also catches things like \"ctrl+c\" which isn\u0027t great.",
+      "revId": "4d488ee54b3a05dccc9a686bb01ff37cc0ec0749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0c95ce5_61ce4875",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-21T10:52:30Z",
+      "side": 1,
+      "message": "As much as I love generators and comprehensions, this will probably be more efficient and more readable if you expand into a for loop and do story_tags.update() on each iteration.",
       "revId": "4d488ee54b3a05dccc9a686bb01ff37cc0ec0749",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
