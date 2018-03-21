@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f0b34bd3_e0dec603",
+        "filename": "telemetry/telemetry/internal/testing/test_page_sets/data/.gitignore",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-21T14:21:48Z",
+      "side": 1,
+      "message": "Is it fetchs or fetchts (?) inconsistent with the CL title.",
+      "revId": "4ae488a610eb2506134d5ba46b5dc04759557774",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
