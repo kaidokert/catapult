@@ -492,6 +492,29 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
     diag = hs.LookupDiagnostic(original_diagnostic.guid)
     self.assertIsInstance(diag, generic_set.GenericSet)
 
+  def testAddDurationHistogram(self):
+    results = page_test_results.PageTestResults()
+    results.telemetry_info.benchmark_start_epoch = 1234
+    results.telemetry_info.label = 'foo'
+    results.telemetry_info.benchmark_name = 'bar'
+    results.AddDurationHistogram(42)
+
+    histograms = histogram_set.HistogramSet()
+    histograms.ImportDicts(results.AsHistogramDicts())
+    self.assertEqual(len(histograms), 1)
+    hist = histograms.GetFirstHistogram()
+    self.assertEqual(hist.name, 'benchmark_total_duration')
+    # TODO(#4110): Use GenericSet.GetOnlyElement.
+    self.assertIn(reserved_infos.LABELS.name, hist.diagnostics)
+    self.assertEqual(
+        len(hist.diagnostics[reserved_infos.LABELS.name]), 1)
+    self.assertEqual(
+        list(hist.diagnostics[reserved_infos.LABELS.name])[0], 'foo')
+    self.assertIn(reserved_infos.BENCHMARKS.name, hist.diagnostics)
+    self.assertEqual(
+        len(hist.diagnostics[reserved_infos.BENCHMARKS.name]), 1)
+    self.assertEqual(
+        list(hist.diagnostics[reserved_infos.BENCHMARKS.name])[0], 'bar')
 
 class PageTestResultsFilterTest(unittest.TestCase):
   def setUp(self):
