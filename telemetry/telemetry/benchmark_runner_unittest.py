@@ -10,11 +10,20 @@ import unittest
 
 from telemetry import benchmark
 from telemetry import benchmark_runner
+from telemetry import story as story_module
+from telemetry import page as page_module
 import mock
 
 
 class BenchmarkFoo(benchmark.Benchmark):
   """Benchmark foo for testing."""
+
+  def page_set(self):
+    page = page_module.Page('http://example.com', name='dummy_page',
+                            tags=['foo', 'bar'])
+    story_set = story_module.StorySet()
+    story_set.AddStory(page)
+    return story_set
 
   @classmethod
   def Name(cls):
@@ -23,6 +32,9 @@ class BenchmarkFoo(benchmark.Benchmark):
 
 class BenchmarkBar(benchmark.Benchmark):
   """Benchmark bar for testing."""
+
+  def page_set(self):
+    return story_module.StorySet()
 
   @classmethod
   def Name(cls):
@@ -79,10 +91,12 @@ class BenchmarkRunnerUnittest(unittest.TestCase):
     expected_printed_stream = json.dumps([
         {'name': BenchmarkFoo.Name(),
          'description': BenchmarkFoo.Description(),
-         'enabled': True},
+         'enabled': True,
+         'story_tags': ['bar', 'foo']},
         {'name': BenchmarkBar.Name(),
          'description': BenchmarkBar.Description(),
-         'enabled': False}], indent=4, sort_keys=True, separators=(',', ': '))
+         'enabled': False,
+         'story_tags': []}], indent=4, sort_keys=True, separators=(',', ': '))
 
     expectations_file_contents = (
         '# tags: All\n'

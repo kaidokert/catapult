@@ -9,6 +9,7 @@ actually running the benchmark is in Benchmark and StoryRunner."""
 import argparse
 import json
 import logging
+import optparse
 import os
 import sys
 
@@ -45,6 +46,56 @@ def _IsBenchmarkEnabled(bench, possible_browser, expectations_file):
       # Test that expectations say it is enabled.
       not expectations.IsBenchmarkDisabled(possible_browser.platform,
                                            possible_browser))
+
+
+# Override OptionParser.error, which calls sys.exit() by default, so as to
+# have a second chance.
+class ForgivingOptionParser(optparse.OptionParser):
+  def error(self, msg):
+    raise optparse.OptionError(msg, None)
+
+
+# Some benchmarks print to stdout while being initialized.
+class MuteStdout(object):
+  stdout = None
+
+  def __enter__(self):
+    self.stdout = sys.stdout
+    sys.stdout = open(os.devnull, 'w')
+
+  def __exit__(self, *args):
+    sys.stdout.close()
+    sys.stdout = self.stdout
+
+
+def _GetStoryTags(b):
+  """Finds story tags given a benchmark.
+
+  Args:
+    b: a subclass of benchmark.Benchmark
+  Returns:
+    A list of story tags as strings.
+  """
+  # Create a options object which hold default values that are expected
+  # by Benchmark.CreateStorySet(options) method.
+  parser = ForgivingOptionParser()
+  parser.set_defaults(cros_remote='1.1.1.1')
+  b.AddBenchmarkCommandLineArgs(parser)
+  options, _ = parser.parse_args([])
+
+  # Mute benchmarks.
+  with MuteStdout():
+    # Some benchmarks require special options, such as *.cluster_telemetry.
+    # Just ignore them for now.
+    try:
+      b.ProcessCommandLineArgs(parser, options)
+      story_set = b().CreateStorySet(options)
+    # pylint: disable=bare-except
+    except:
+      print >> sys.stderr, 'Failed to get story tags for:', b.Name()
+      story_set = {}
+
+  return sorted(set().union(*(s.tags for s in story_set)))
 
 
 def PrintBenchmarkList(
@@ -96,6 +147,7 @@ def PrintBenchmarkList(
     benchmark_info['enabled'] = (
         not possible_browser or
         _IsBenchmarkEnabled(b, possible_browser, expectations_file))
+    benchmark_info['story_tags'] = _GetStoryTags(b)
     all_benchmark_info.append(benchmark_info)
 
   if as_json:
