@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "9b2925e9_b34c109e",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1168184
+      },
+      "writtenOn": "2018-03-21T20:06:12Z",
+      "side": 1,
+      "message": "Ned: optparse says it should not return -- it should either exit or raise an exception.\nhttps://github.com/python/cpython/blob/2.7/Lib/optparse.py#L1576\n\nJuan: There is a b.AddBenchmarkCommandLineArgs(parser) in _GetStorayTags. I have to override it because some benchmarks explicitly call optparse.error:\nhttps://cs.chromium.org/chromium/src/tools/perf/contrib/cluster_telemetry/ct_benchmarks_util.py?l\u003d20\n\nOr probably they should not do it; It\u0027s not an parsing error IMHO, is it?",
+      "parentUuid": "8e1f5521_2628baf5",
+      "revId": "4d488ee54b3a05dccc9a686bb01ff37cc0ec0749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1af4fbb5_9eb845ba",
         "filename": "telemetry/telemetry/benchmark_runner.py",
         "patchSetId": 1
@@ -72,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "18358724_95dc2fdd",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1168184
+      },
+      "writtenOn": "2018-03-21T20:06:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0408a7fb_8beced50",
+      "revId": "4d488ee54b3a05dccc9a686bb01ff37cc0ec0749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d2413620_057543b7",
         "filename": "telemetry/telemetry/benchmark_runner.py",
         "patchSetId": 1
@@ -86,6 +122,24 @@
       "revId": "4d488ee54b3a05dccc9a686bb01ff37cc0ec0749",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff27e8fb_09963920",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1168184
+      },
+      "writtenOn": "2018-03-21T20:06:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2413620_057543b7",
+      "revId": "4d488ee54b3a05dccc9a686bb01ff37cc0ec0749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -106,6 +160,24 @@
     },
     {
       "key": {
+        "uuid": "4d0c7d9b_ac9d8dae",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1168184
+      },
+      "writtenOn": "2018-03-21T20:06:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48d13e8a_f4b421a6",
+      "revId": "4d488ee54b3a05dccc9a686bb01ff37cc0ec0749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e0c95ce5_61ce4875",
         "filename": "telemetry/telemetry/benchmark_runner.py",
         "patchSetId": 1
@@ -120,6 +192,24 @@
       "revId": "4d488ee54b3a05dccc9a686bb01ff37cc0ec0749",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2026705a_6f0a4501",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1168184
+      },
+      "writtenOn": "2018-03-21T20:06:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0c95ce5_61ce4875",
+      "revId": "4d488ee54b3a05dccc9a686bb01ff37cc0ec0749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
