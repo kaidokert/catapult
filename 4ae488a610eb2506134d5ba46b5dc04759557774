@@ -16,6 +16,24 @@
       "revId": "4ae488a610eb2506134d5ba46b5dc04759557774",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6cef950b_d005f6c7",
+        "filename": "telemetry/telemetry/internal/testing/test_page_sets/data/.gitignore",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-03-21T14:22:33Z",
+      "side": 1,
+      "message": "It\u0027s fetchts :-P",
+      "parentUuid": "f0b34bd3_e0dec603",
+      "revId": "4ae488a610eb2506134d5ba46b5dc04759557774",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
