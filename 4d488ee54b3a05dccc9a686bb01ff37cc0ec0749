@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "856b2d46_c658576c",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1168184
+      },
+      "writtenOn": "2018-03-21T20:20:30Z",
+      "side": 1,
+      "message": "Specifically, it\u0027s the benchmarks complaining that the required options are not specified, rather than those options are the defined in the parser. In other words, the benchmarks found the option to be None, rather than \"no such attribute in options\".",
+      "parentUuid": "9b2925e9_b34c109e",
+      "revId": "4d488ee54b3a05dccc9a686bb01ff37cc0ec0749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1af4fbb5_9eb845ba",
         "filename": "telemetry/telemetry/benchmark_runner.py",
         "patchSetId": 1
