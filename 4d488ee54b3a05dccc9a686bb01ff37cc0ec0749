@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1730335c_db55ed0d",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-03-21T02:07:36Z",
+      "side": 1,
+      "message": "I like the idea, though why not just make this ignore any error entirely?",
+      "revId": "4d488ee54b3a05dccc9a686bb01ff37cc0ec0749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1af4fbb5_9eb845ba",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-03-21T02:07:36Z",
+      "side": 1,
+      "message": "This is another nice utility that you created. Though this general method should go in common/py_utils/py_utils/logging_util.py",
+      "revId": "4d488ee54b3a05dccc9a686bb01ff37cc0ec0749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2413620_057543b7",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-03-21T02:07:36Z",
+      "side": 1,
+      "message": "I don\u0027t think setting cros_remote to be default is right.",
+      "revId": "4d488ee54b3a05dccc9a686bb01ff37cc0ec0749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48d13e8a_f4b421a6",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-03-21T02:07:36Z",
+      "side": 1,
+      "message": "you want to do \"except Exception\". The bare except also catches things like \"ctrl+c\" which isn\u0027t great.",
+      "revId": "4d488ee54b3a05dccc9a686bb01ff37cc0ec0749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
