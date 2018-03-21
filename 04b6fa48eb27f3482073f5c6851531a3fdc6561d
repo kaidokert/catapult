@@ -314,6 +314,24 @@
       "revId": "04b6fa48eb27f3482073f5c6851531a3fdc6561d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a46d9d4_39dc03be",
+        "filename": "telemetry/telemetry/internal/platform/profiler/android_simpleperf_profiler.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-21T09:37:36Z",
+      "side": 1,
+      "message": "Yup. That sounds very reasonable.",
+      "parentUuid": "4c01690f_3ab8170b",
+      "revId": "04b6fa48eb27f3482073f5c6851531a3fdc6561d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
