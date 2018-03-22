@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b88df7fd_13bfa7bd",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-22T16:48:39Z",
+      "side": 1,
+      "message": "nit: can you also log the exception? e.g.\n\nexcept Exception as exc:\n  logging.warning(\u0027Unable to get story tags for %s due to %s\u0027, b.Name(), exc)\n\n(also note 2nd nit: use commas rather than % to interpolate in logging messages)",
+      "revId": "ed1da3987ee360617ddc83ec6aa26164bb84dc99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f3dffca_d415bd62",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-03-22T16:48:39Z",
+      "side": 1,
+      "message": "tiny nit: make this an empty list or empty tuple (not an empty dict).",
+      "revId": "ed1da3987ee360617ddc83ec6aa26164bb84dc99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
