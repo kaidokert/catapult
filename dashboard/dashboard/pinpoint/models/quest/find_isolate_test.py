@@ -9,7 +9,7 @@ import mock
 from google.appengine.ext import ndb
 from google.appengine.ext import testbed
 
-from dashboard.common import namespaced_stored_object
+from dashboard.common import stored_object
 from dashboard.pinpoint.models import change as change_module
 from dashboard.pinpoint.models import isolate
 from dashboard.pinpoint.models.quest import find_isolate
@@ -50,7 +50,7 @@ class _FindIsolateExecutionTest(unittest.TestCase):
         ('Mac Builder', change, 'telemetry_perf_tests', '7c7e90be'),
     ))
 
-    namespaced_stored_object.Set('repositories', {
+    stored_object.Set('repositories', {
         'src': {
             'repository_url': 'https://chromium.googlesource.com/chromium/src'
         },

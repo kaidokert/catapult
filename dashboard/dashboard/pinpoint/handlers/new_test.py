@@ -9,6 +9,7 @@ import webapp2
 import webtest
 
 from dashboard.api import api_auth
+from dashboard.common import stored_object
 from dashboard.common import namespaced_stored_object
 from dashboard.common import testing_common
 from dashboard.common import utils
@@ -48,7 +49,7 @@ class _NewTest(testing_common.TestCase):
             'repository': 'src',
         },
     })
-    namespaced_stored_object.Set('repositories', {
+    stored_object.Set('repositories', {
         'catapult': {'repository_url': 'http://catapult'},
         'src': {'repository_url': 'http://src'},
     })

@@ -8,7 +8,7 @@ import mock
 import webapp2
 import webtest
 
-from dashboard.common import namespaced_stored_object
+from dashboard.common import stored_object
 from dashboard.common import testing_common
 from dashboard.pinpoint.handlers import isolate
 
@@ -30,7 +30,7 @@ class _IsolateTest(testing_common.TestCase):
 
     self.SetCurrentUser('internal@chromium.org', is_admin=True)
 
-    namespaced_stored_object.Set('repositories', {
+    stored_object.Set('repositories', {
         'src': {
             'repository_url': 'https://chromium.googlesource.com/chromium/src'
         }

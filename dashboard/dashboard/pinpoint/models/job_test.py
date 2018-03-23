@@ -4,7 +4,7 @@
 
 import mock
 
-from dashboard.common import namespaced_stored_object
+from dashboard.common import stored_object
 from dashboard.common import testing_common
 from dashboard.pinpoint.models import change
 from dashboard.pinpoint.models import job
@@ -78,7 +78,7 @@ class BugCommentTest(testing_common.TestCase):
         AddBugComment=self.add_bug_comment)
     self.addCleanup(patcher.stop)
 
-    namespaced_stored_object.Set('repositories', {
+    stored_object.Set('repositories', {
         'chromium': {'repository_url': _CHROMIUM_URL},
     })
 

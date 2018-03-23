@@ -4,7 +4,7 @@
 
 import mock
 
-from dashboard.common import namespaced_stored_object
+from dashboard.common import stored_object
 from dashboard.common import testing_common
 from dashboard.pinpoint.models.change import change
 from dashboard.pinpoint.models.change import commit
@@ -23,12 +23,12 @@ class _ChangeTest(testing_common.TestCase):
 
     self.SetCurrentUser('internal@chromium.org', is_admin=True)
 
-    namespaced_stored_object.Set('repositories', {
+    stored_object.Set('repositories', {
         'catapult': {'repository_url': _CATAPULT_URL},
         'chromium': {'repository_url': _CHROMIUM_URL},
         'another_repo': {'repository_url': 'https://another/url'},
     })
-    namespaced_stored_object.Set('repository_urls_to_names', {
+    stored_object.Set('repository_urls_to_names', {
         _CATAPULT_URL: 'catapult',
         _CHROMIUM_URL: 'chromium',
     })
