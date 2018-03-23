@@ -16,6 +16,24 @@
       "revId": "1fdfcf9262214deb4fbc608c3b92d1b7ee2b3dc6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50b70fb9_59e6183d",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/patch-job-fab.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-23T00:36:05Z",
+      "side": 1,
+      "message": "Since it\u0027s covered in the bugs, I think we\u0027re okay without a TODO.\n\nFiled a bug for HEAD. I don\u0027t think we\u0027ve seen any instances, but it\u0027s worth having a trackign bug.\nhttps://github.com/catapult-project/catapult/issues/4354",
+      "parentUuid": "4d70d245_4f4557ca",
+      "revId": "1fdfcf9262214deb4fbc608c3b92d1b7ee2b3dc6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
