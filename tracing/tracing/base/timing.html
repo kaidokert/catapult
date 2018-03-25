@@ -12,14 +12,18 @@ found in the LICENSE file.
 'use strict';
 tr.exportTo('tr.b', function() {
   class Mark {
-    constructor(groupName, functionName) {
+    constructor(groupName, functionName, opt_timestamp) {
       if (tr.isHeadless) return;
 
       this.groupName_ = groupName;
       this.functionName_ = functionName;
       const guid = tr.b.GUID.allocateSimple();
       this.measureName_ = `${groupName} ${functionName}`;
-      this.startMarkName_ = `${this.measureName} ${guid} start`;
+      if (opt_timestamp) {
+        this.startMark_ = {startTime: opt_timestamp};
+      } else {
+        this.startMarkName_ = `${this.measureName} ${guid} start`;
+      }
       this.endMarkName_ = `${this.measureName} ${guid} end`;
 
       window.performance.mark(this.startMarkName_);
@@ -38,8 +42,8 @@ tr.exportTo('tr.b', function() {
     }
 
     get startMark() {
-      return tr.b.getOnlyElement(window.performance.getEntriesByName(
-          this.startMarkName_));
+      return this.startMark_ || tr.b.getOnlyElement(
+          window.performance.getEntriesByName(this.startMarkName_));
     }
 
     get endMark() {
@@ -57,8 +61,10 @@ tr.exportTo('tr.b', function() {
       if (tr.isHeadless) return;
 
       window.performance.mark(this.endMarkName_);
-      window.performance.measure(
-          this.measureName_, this.startMarkName_, this.endMarkName_);
+      if (!this.startMark_) {
+        window.performance.measure(
+            this.measureName_, this.startMarkName_, this.endMarkName_);
+      }
 
       if (!(window.ga instanceof Function)) return;
       // Google Analytics
@@ -72,8 +78,8 @@ tr.exportTo('tr.b', function() {
   }
 
   class Timing {
-    static mark(groupName, functionName) {
-      return new Mark(groupName, functionName);
+    static mark(groupName, functionName, opt_timestamp) {
+      return new Mark(groupName, functionName, opt_timestamp);
     }
 
     static instant(groupName, functionName, opt_value) {
