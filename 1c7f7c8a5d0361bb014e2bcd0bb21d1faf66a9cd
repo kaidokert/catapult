@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8638157d_ee8cb315",
+        "filename": "dashboard/dashboard/pinpoint_request.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-03-26T21:22:59Z",
+      "side": 1,
+      "message": "Note that the code still assumes Chromium when looking up the commit position here.",
+      "revId": "1c7f7c8a5d0361bb014e2bcd0bb21d1faf66a9cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
