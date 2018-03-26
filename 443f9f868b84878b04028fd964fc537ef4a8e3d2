@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "93cbf7dc_75b48e51",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-03-26T14:27:57Z",
+      "side": 1,
+      "message": "Please add a tracking bug for the change w/\n\nBUG\u003dchromium:\u003cmonorail_bug_number\u003e",
+      "revId": "443f9f868b84878b04028fd964fc537ef4a8e3d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "283b096e_ab964ba2",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-03-26T14:27:57Z",
+      "side": 1,
+      "message": "These are pretty substantial changes to the way that tracing agents work and I think that, realistically, we should have a VC and a will need a design sketch for any changes to the tracing agent API that are more substantial than just adding a new tracing agent.",
+      "range": {
+        "startLine": 145,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 34
+      },
+      "revId": "443f9f868b84878b04028fd964fc537ef4a8e3d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85089125_1150fc2a",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/simpleperf_tracing_agent.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-03-26T14:27:57Z",
+      "side": 1,
+      "message": "Is the problem that the simpleperf tracing agent can\u0027t be implemented in terms of the tracing agent API that\u0027s currently available? If that\u0027s the case, I think it makes sense for us to have a VC to learn more about the challenges of implementing the new API. If that\u0027s not the case, but rather then tracing agent API features are required to make the simpleperf tracing agent more useful, it probably makes sense for us to start with what can be done in the existing tracing agent API and build up from there, if you think that initial version will still be useful for you.\n\nOverall, I\u0027m really concerned that this CL makes a number of substantial changes to some pretty central Telemetry objects. There are places in Telemetry where we try to maintain a strict separation of concerns and, if we decided that these new features are worth implementing, we\u0027re going to make sure that we can do so without violating those separations.",
+      "revId": "443f9f868b84878b04028fd964fc537ef4a8e3d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7c1dcf4_0e411cc3",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/simpleperf_tracing_agent.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-03-26T14:27:57Z",
+      "side": 1,
+      "message": "Note that the correct Python style for internal methods in Catapult is _StartTracing, not _start_tracing",
+      "range": {
+        "startLine": 101,
+        "startChar": 6,
+        "endLine": 101,
+        "endChar": 20
+      },
+      "revId": "443f9f868b84878b04028fd964fc537ef4a8e3d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
