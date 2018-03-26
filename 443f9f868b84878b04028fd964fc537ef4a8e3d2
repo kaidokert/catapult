@@ -59,6 +59,24 @@
     },
     {
       "key": {
+        "uuid": "9f736d94_e3c0eaef",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/simpleperf_tracing_agent.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001706
+      },
+      "writtenOn": "2018-03-26T16:54:37Z",
+      "side": 1,
+      "message": "This is an important and useful feature that has led to uncomfortable levels of excitement among my coworkers and me.  The renderer process is frequently cpu-bound and full of hot paths, recursion, and deep call stacks.  It is nearly impossible to do performance work on this code without profiling data.  Regular chrome tracing data is not granular enough for this work.\n\nCurrently, we generate profiling data in a ad-hoc manner, using manual interactions with a live browser.  However, we often find that our profiling data doesn\u0027t match up at all with perf test regressions, leaving us groping around in the dark trying to root-cause the regression.\n\nAlso, performance on Android can be very different from performance on desktop; so cpu profiles generated on desktop don\u0027t always help us find the source of a mobile-only perf regression.  Over the years, blink engineers have made many attempts to generate profiling data of the renderer process on Android, with limited success.  Currently, there is no official or sanctioned tool or flow to profile Android.  This patch produces what is mostly likely the highest-quality profiling data on the renderer process we have ever seen on Android.  In particular, because it focuses the sampling period on page navigation and/or interactions, the resulting profile has very little noise.  And because it runs on an actual non-interactive perf test, it correlates very well with perf benchmark results.\n\nOne way or another, for the benefit of humanity, I am determined to land this feature.  I\u0027ll schedule a VC.",
+      "parentUuid": "85089125_1150fc2a",
+      "revId": "443f9f868b84878b04028fd964fc537ef4a8e3d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c7c1dcf4_0e411cc3",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/simpleperf_tracing_agent.py",
         "patchSetId": 2
