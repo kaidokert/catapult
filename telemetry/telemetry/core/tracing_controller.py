@@ -21,6 +21,10 @@ class TracingController(tracing_agent.TracingAgent):
   def telemetry_info(self, ii):
     self._tracing_controller_backend.telemetry_info = ii
 
+  def DidStartApp(self, app):
+    """Called when the target app process has started."""
+    self._tracing_controller_backend.DidStartApp(app)
+
   def StartTracing(self, tracing_config, timeout=10):
     """Starts tracing.
 
@@ -51,6 +55,23 @@ class TracingController(tracing_agent.TracingAgent):
       nonfatal_exceptions_list: a list of exceptions (type Exception)
     """
     return self._tracing_controller_backend.StopTracing()
+
+  def StartTracingNavigation(self, tracing_config, timeout=10):
+    self._tracing_controller_backend.StartTracingNavigation(tracing_config,
+                                                            timeout)
+
+  def StopTracingNavigation(self, tracing_config):
+    self._tracing_controller_backend.StopTracingNavigation(tracing_config)
+
+  def StartTracingInteractions(self, tracing_config, timeout=10):
+    self._tracing_controller_backend.StartTracingInteractions(tracing_config,
+                                                              timeout)
+
+  def StopTracingInteractions(self, tracing_config):
+    self._tracing_controller_backend.StopTracingInteractions(tracing_config)
+
+  def StopIntervalTracing(self, artifact_gen):
+    self._tracing_controller_backend.StopIntervalTracing(artifact_gen)
 
   def FlushTracing(self):
     """Flush tracing buffer and continue tracing.

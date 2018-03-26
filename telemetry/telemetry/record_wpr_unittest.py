@@ -63,7 +63,7 @@ class MockPageTest(legacy_page_test.LegacyPageTest):
   def WillStartBrowser(self, platform):
     self.func_calls.append('WillStartBrowser')
 
-  def DidStartBrowser(self, browser):
+  def DidStartBrowser(self, browser, tracing_controller):
     self.func_calls.append('DidStartBrowser')
 
 class MockBenchmark(benchmark.Benchmark):

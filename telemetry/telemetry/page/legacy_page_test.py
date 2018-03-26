@@ -54,6 +54,7 @@ class LegacyPageTest(object):
     super(LegacyPageTest, self).__init__()
 
     self.options = None
+    self._tracing_options = None
     self._clear_cache_before_each_run = clear_cache_before_each_run
     self._close_tabs_before_run = True
 
@@ -73,18 +74,27 @@ class LegacyPageTest(object):
   def close_tabs_before_run(self, close_tabs):
     self._close_tabs_before_run = close_tabs
 
+  @property
+  def tbm_options(self):
+    return self._tracing_options
+
   def CustomizeBrowserOptions(self, options):
     """Override to add test-specific options to the BrowserOptions object"""
 
   def WillStartBrowser(self, platform):
     """Override to manipulate the browser environment before it launches."""
 
-  def DidStartBrowser(self, browser):
+  def DidStartBrowser(self, browser, tracing_controller):
     """Override to customize the browser right after it has launched."""
+    tracing_controller.DidStartApp(browser)
 
   def SetOptions(self, options):
     """Sets the BrowserFinderOptions instance to use."""
     self.options = options
+
+  def SetTracingOptions(self, tracing_options):
+    """Sets the TracingOptions instance to use."""
+    self._tracing_options = tracing_options
 
   def WillNavigateToPage(self, page, tab):
     """Override to do operations before the page is navigated, notably Telemetry
@@ -138,8 +148,12 @@ class LegacyPageTest(object):
       page: A telemetry.page.Page instance.
       tab: A telemetry.core.Tab instance.
       results: A telemetry.results.PageTestResults instance.
+      tracing_controller: A telemetry.core.tracing_controller.TracingController
+          instance.
     """
-    raise NotImplementedError
+
+  def Measure(self, platform, _, artifact_gen):
+    platform.tracing_controller.StopIntervalTracing(artifact_gen)
 
   # Deprecated: do not use this hook. (crbug.com/470147)
   def RunNavigateSteps(self, page, tab):

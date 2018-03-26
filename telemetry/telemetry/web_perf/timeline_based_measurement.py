@@ -237,9 +237,13 @@ class TimelineBasedMeasurement(story_test.StoryTest):
         class follows the ResultsWrapperInterface. Note: this class is not
         supported long term and to be removed when crbug.com/453109 is resolved.
   """
-  def __init__(self, options, results_wrapper=None):
-    self._tbm_options = options
+  def __init__(self, results_wrapper=None):
     self._results_wrapper = results_wrapper or _TBMResultWrapper()
+    self._tbm_options = None
+
+  def SetTracingOptions(self, tracing_options):
+    """Sets the TracingOptions instance to use."""
+    self._tbm_options = tracing_options
 
   def WillRunStory(self, platform):
     """Configure and start tracing."""

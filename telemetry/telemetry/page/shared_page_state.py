@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import functools
 import logging
 import os
 import sys
@@ -196,7 +197,7 @@ class SharedPageState(story_module.SharedState):
     browser_options.AppendExtraBrowserArgs(page.extra_browser_args)
     self._possible_browser.SetUpEnvironment(browser_options)
     self._browser = self._possible_browser.Create()
-    self._test.DidStartBrowser(self.browser)
+    self._test.DidStartBrowser(self.browser, self.platform.tracing_controller)
 
     if self._first_browser:
       self._first_browser = False
@@ -309,6 +310,7 @@ class SharedPageState(story_module.SharedState):
   def RunStory(self, results):
     self._PreparePage()
     self._current_page.Run(self)
+    self._CollectIntervalTracingArtifacts(results)
     self._test.ValidateAndMeasurePage(
         self._current_page, self._current_tab, results)
 
@@ -324,6 +326,14 @@ class SharedPageState(story_module.SharedState):
       self._browser = None
     if self._possible_browser:
       self._possible_browser.CleanUpEnvironment()
+
+  def _CollectIntervalTracingArtifacts(self, results):
+    story = self._current_page
+    tracing_controller = self.platform.tracing_controller
+    artifact_gen = functools.partial(results.CreateArtifact,
+                                     story.name,
+                                     prefix=story.file_safe_name)
+    tracing_controller.StopIntervalTracing(artifact_gen)
 
   def _StartProfiling(self, page):
     output_file = os.path.join(self._finder_options.output_dir,

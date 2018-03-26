@@ -4,6 +4,7 @@
 
 from telemetry.timeline import atrace_config
 from telemetry.timeline import chrome_trace_config
+from telemetry.timeline import simpleperf_config
 
 
 class TracingConfig(object):
@@ -28,11 +29,18 @@ class TracingConfig(object):
           Android (see goo.gl/4Y30p9). Doesn't have any effects on other OSs.
       enable_battor_trace: a boolean that specifies whether to enable BattOr
           tracing.
+      enable_simpleperf: a boolean that specifies whether to enable simpleperf
+          profiling.
+      trace_navigation: a boolean that specifies whether to enable tracing
+          during page navigation.
+      trace_interactions: a boolean that specifies whether to enable tracing
+          during page interactions.
 
   Detailed configurations:
       atrace_config: Stores configuration options specific to Atrace.
       chrome_trace_config: Stores configuration options specific to
           Chrome trace.
+      simpleperf_config: Stores configuration options specific to simpleperf.
   """
 
   def __init__(self):
@@ -42,9 +50,13 @@ class TracingConfig(object):
     self._enable_battor_trace = False
     self._enable_cpu_trace = False
     self._enable_chrome_trace = False
+    self._enable_simpleperf = False
+    self._trace_navigation = False
+    self._trace_interactions = False
 
     self._atrace_config = atrace_config.AtraceConfig()
     self._chrome_trace_config = chrome_trace_config.ChromeTraceConfig()
+    self._simpleperf_config = simpleperf_config.SimpleperfConfig()
 
   @property
   def enable_atrace_trace(self):
@@ -95,9 +107,37 @@ class TracingConfig(object):
     self._enable_chrome_trace = value
 
   @property
+  def enable_simpleperf(self):
+    return self._enable_simpleperf
+
+  @enable_simpleperf.setter
+  def enable_simpleperf(self, value):
+    self._enable_simpleperf = value
+
+  @property
+  def trace_navigation(self):
+    return self._trace_navigation
+
+  @trace_navigation.setter
+  def trace_navigation(self, value):
+    self._trace_navigation = value
+
+  @property
+  def trace_interactions(self):
+    return self._trace_interactions
+
+  @trace_interactions.setter
+  def trace_interactions(self, value):
+    self._trace_interactions = value
+
+  @property
   def atrace_config(self):
     return self._atrace_config
 
   @property
   def chrome_trace_config(self):
     return self._chrome_trace_config
+
+  @property
+  def simpleperf_config(self):
+    return self._simpleperf_config

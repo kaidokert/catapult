@@ -131,7 +131,7 @@ class ActualPageRunEndToEndTests(unittest.TestCase):
         self.browser_starts = 0
         self.platform_name = None
 
-      def DidStartBrowser(self, browser):
+      def DidStartBrowser(self, browser, tracing_controller):
         super(Test, self).DidStartBrowser(browser)
         self.browser_starts += 1
         self.platform_name = browser.platform.GetOSName()
@@ -206,7 +206,7 @@ class ActualPageRunEndToEndTests(unittest.TestCase):
 
     class TestOneTab(legacy_page_test.LegacyPageTest):
 
-      def DidStartBrowser(self, browser):
+      def DidStartBrowser(self, browser, tracing_controller):
         browser.tabs.New()
 
       def ValidateAndMeasurePage(self, page, tab, results):
@@ -299,7 +299,7 @@ class ActualPageRunEndToEndTests(unittest.TestCase):
         self._did_call_will_start = True
         # TODO(simonjam): Test that the profile is available.
 
-      def DidStartBrowser(self, browser):
+      def DidStartBrowser(self, browser, tracing_controller):
         assert self._did_call_will_start
         self._did_call_did_start = True
 
