@@ -92,12 +92,18 @@ class Page(story.Story):
     if self._collect_garbage_before_run:
       for _ in xrange(0, 5):
         current_tab.CollectGarbage()
+    tracing_controller = shared_state.platform.tracing_controller
+    tracing_config = shared_state.page_test.tbm_options.config
     shared_state.page_test.WillNavigateToPage(self, current_tab)
+    tracing_controller.StartTracingNavigation(tracing_config)
     shared_state.page_test.RunNavigateSteps(self, current_tab)
+    tracing_controller.StopTracingNavigation(tracing_config)
     shared_state.page_test.DidNavigateToPage(self, current_tab)
     action_runner = action_runner_module.ActionRunner(
         current_tab, skip_waits=self.skip_waits)
+    tracing_controller.StartTracingInteractions(tracing_config)
     self.RunPageInteractions(action_runner)
+    tracing_controller.StopTracingInteractions(tracing_config)
 
   def RunNavigateSteps(self, action_runner):
     url = self.file_path_url_with_scheme if self.is_file else self.url

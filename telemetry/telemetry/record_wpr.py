@@ -43,9 +43,9 @@ class RecorderPageTest(legacy_page_test.LegacyPageTest):
     if self.page_test:
       self.page_test.WillStartBrowser(browser)
 
-  def DidStartBrowser(self, browser):
+  def DidStartBrowser(self, browser, profiling_controller):
     if self.page_test:
-      self.page_test.DidStartBrowser(browser)
+      self.page_test.DidStartBrowser(browser, profiling_controller)
 
   def WillNavigateToPage(self, page, tab):
     """Override to ensure all resources are fetched from network."""

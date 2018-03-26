@@ -53,6 +53,21 @@ class TracingAgent(object):
     """
     raise NotImplementedError
 
+  def StartAgentNavigationTracing(self, app, config, timeout):
+    pass
+
+  def StopAgentNavigationTracing(self, config):
+    pass
+
+  def StartAgentInteractionTracing(self, app, config, timeout):
+    pass
+
+  def StopAgentInteractionTracing(self, config):
+    pass
+
+  def CollectIntervalTracingArtifacts(self, artifact_gen):
+    pass
+
   def SupportsFlushingAgentTracing(self):
     """ Override to indicate support of flushing tracing. """
     return False

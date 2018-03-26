@@ -34,10 +34,11 @@ def _IterAllTracingAgentClasses():
 
 class _TracingState(object):
 
-  def __init__(self, config, timeout):
+  def __init__(self, config, timeout, quit_after_interval_tracing):
     self._builder = trace_data_module.TraceDataBuilder()
     self._config = config
     self._timeout = timeout
+    self._quit_after_interval_tracing = quit_after_interval_tracing
 
   @property
   def builder(self):
@@ -50,6 +51,10 @@ class _TracingState(object):
   @property
   def timeout(self):
     return self._timeout
+
+  @property
+  def quit_after_interval_tracing(self):
+    return self._quit_after_interval_tracing
 
 
 class TracingControllerBackend(object):
@@ -64,6 +69,7 @@ class TracingControllerBackend(object):
     self._is_tracing_controllable = True
     self._telemetry_info = None
     self._nonfatal_exceptions = []
+    self._app = None
 
   @contextlib.contextmanager
   def _CollectNonfatalException(self, context_description):
@@ -84,6 +90,9 @@ class TracingControllerBackend(object):
       else:
         raise
 
+  def DidStartApp(self, app):
+    self._app = app
+
   def StartTracing(self, config, timeout):
     if self.is_tracing_running:
       return False
@@ -91,7 +100,7 @@ class TracingControllerBackend(object):
     assert isinstance(config, tracing_config.TracingConfig)
     assert len(self._active_agents_instances) == 0
 
-    self._current_state = _TracingState(config, timeout)
+    self._current_state = _TracingState(config, timeout, False)
     # Hack: chrome tracing agent may only depend on the number of alive chrome
     # devtools processes, rather platform (when startup tracing is not
     # supported), hence we add it to the list of supported agents here if it was
@@ -161,6 +170,65 @@ class TracingControllerBackend(object):
           '\n'.join(raised_exception_messages))
 
     return (builder.AsData(), self._nonfatal_exceptions)
+
+  def _StartIntervalTracing(self, config, timeout=10):
+    if self.is_tracing_running:
+      return
+    self._current_state = _TracingState(config, timeout, True)
+    self.StartAgentTracing(config, timeout)
+    for agent_class in self._supported_agents_classes:
+      agent = agent_class(self._platform_backend)
+      self._active_agents_instances.append(agent)
+
+  def StartTracingNavigation(self, config, timeout):
+    if not config.trace_navigation:
+      return
+    self._StartIntervalTracing(config)
+    for agent in self._active_agents_instances:
+      with trace_event.trace('StartAgentNavigationTracing',
+                             agent=str(agent.__class__.__name__)):
+        with self._CollectNonfatalException('StartAgentNavigationTracing'):
+          agent.StartAgentNavigationTracing(self._app, config, timeout)
+
+  def StopTracingNavigation(self, config):
+    if config.trace_navigation:
+      for agent in self._active_agents_instances:
+        with trace_event.trace('StopAgentNavigationTracing',
+                               agent=str(agent.__class__.__name__)):
+          with self._CollectNonfatalException('StopAgentNavigationTracing'):
+            agent.StopAgentNavigationTracing(config)
+
+  def StartTracingInteractions(self, config, timeout):
+    if not config.trace_interactions:
+      return
+    self._StartIntervalTracing(config)
+    for agent in self._active_agents_instances:
+      with trace_event.trace('StartAgentInteractionTracing',
+                             agent=str(agent.__class__.__name__)):
+        with self._CollectNonfatalException('StartAgentInteractionTracing'):
+          agent.StartAgentInteractionTracing(self._app, config, timeout)
+
+  def StopTracingInteractions(self, config):
+    if config.trace_navigation:
+      for agent in self._active_agents_instances:
+        with trace_event.trace('StopAgentNavigationTracing',
+                               agent=str(agent.__class__.__name__)):
+          with self._CollectNonfatalException('StopAgentNavigationTracing'):
+            agent.StopAgentNavigationTracing(config)
+
+  def StopIntervalTracing(self, artifact_gen):
+    if not self.is_tracing_running:
+      return
+    try:
+      for agent in self._active_agents_instances:
+        with trace_event.trace('CollectIntervalTracingArtifacts',
+                               agent=str(agent.__class__.__name__)):
+          with self._CollectNonfatalException(
+              'CollectIntervalTracingArtifacts'):
+            agent.CollectIntervalTracingArtifacts(artifact_gen)
+    finally:
+      if self._current_state.quit_after_interval_tracing:
+        self.StopTracing()
 
   def FlushTracing(self):
     assert self.is_tracing_running, 'Can only flush tracing when tracing is on.'

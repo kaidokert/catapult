@@ -137,6 +137,31 @@ class BrowserFinderOptions(optparse.Values):
         '--enable-systrace', dest='enable_systrace', action='store_true',
         help='Enable collection of systrace. (Useful on ChromeOS where'
              ' atrace is not supported; collects scheduling information.)')
+    group.add_option(
+        '--enable-simpleperf', dest='enable_simpleperf',
+        action='store_true',
+        help='Enable generation of profiling data with simpleperf '
+             '(Android only).')
+    group.add_option(
+        '--trace-navigation', dest='trace_navigation',
+        action='store_true',
+        help='For trace agents that support it, generate trace data during '
+             'page navigation.')
+    group.add_option(
+        '--trace-interactions', dest='trace_interactions',
+        action='store_true',
+        help='For trace agents that support it, generate trace data during '
+             'page interactions.')
+    group.add_option(
+        '--profile-process', dest='profile_process', type=str,
+        default='browser',
+        help='Process to profile (defaults to "browser")')
+    group.add_option(
+        '--profile-thread', dest='profile_thread', type=str, default='',
+        help='Thread to profile')
+    group.add_option(
+        '--profile-frequency', default=1000, type=int,
+        help='Frequence of profiling samples, in samples per second.')
     parser.add_option_group(group)
 
     # Platform options

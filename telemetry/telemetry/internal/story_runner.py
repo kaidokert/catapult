@@ -330,6 +330,8 @@ def RunBenchmark(benchmark, finder_options):
       return 0
 
   pt = benchmark.CreatePageTest(finder_options)
+  tbm_options = benchmark.GetTimelineBasedMeasurementOptions(finder_options)
+  pt.SetTracingOptions(tbm_options)
   pt.__name__ = benchmark.__class__.__name__
 
   disabled_attr_name = decorators.DisabledAttributeName(benchmark)

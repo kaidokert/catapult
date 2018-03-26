@@ -357,3 +357,9 @@ class Browser(app.App):
     except Exception: # pylint: disable=broad-except
       logging.exception('Failed to get browser log:')
     logging.info('***************** END OF BROWSER LOG ******************')
+
+  @property
+  def package(self):
+    if hasattr(self._browser_backend, 'package'):
+      return self._browser_backend.package
+    return None

@@ -226,7 +226,7 @@ class Benchmark(command_line.Command):
     """
     return timeline_based_measurement.Options()
 
-  def _GetTimelineBasedMeasurementOptions(self, options):
+  def GetTimelineBasedMeasurementOptions(self, options):
     """Return all timeline based measurements for the curren benchmark run.
 
     This includes the benchmark-configured measurements in
@@ -279,8 +279,21 @@ class Benchmark(command_line.Command):
         if category not in categories:
           categories.append(category)
       tbm_options.config.atrace_config.categories = categories
+
+    tbm_options.config.trace_navigation = options.trace_navigation
+    tbm_options.config.trace_interactions = options.trace_interactions
+
     if options and options.enable_systrace:
       tbm_options.config.chrome_trace_config.SetEnableSystrace()
+
+    if options and options.enable_simpleperf:
+      tbm_options.config.enable_simpleperf = True
+      simpleperf_config = tbm_options.config.simpleperf_config
+      simpleperf_config.profile_process = options.profile_process
+      simpleperf_config.profile_thread = options.profile_thread
+      simpleperf_config.sample_frequency = options.profile_frequency
+
+    self.SetupTraceRerunOptions(options, tbm_options)
     return tbm_options
 
 
@@ -307,10 +320,7 @@ class Benchmark(command_line.Command):
       # defined. That's incorrect for a page test. See
       # https://github.com/catapult-project/catapult/issues/3708
       return self.test()  # pylint: disable=no-value-for-parameter
-
-    opts = self._GetTimelineBasedMeasurementOptions(options)
-    self.SetupTraceRerunOptions(options, opts)
-    return timeline_based_measurement.TimelineBasedMeasurement(opts)
+    return timeline_based_measurement.TimelineBasedMeasurement()
 
   def CreateStorySet(self, options):
     """Creates the instance of StorySet used to run the benchmark.
