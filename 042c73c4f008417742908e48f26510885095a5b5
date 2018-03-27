@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cca994eb_c7a6031f",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-03-27T17:25:09Z",
+      "side": 1,
+      "message": "Please use for..of instead\nfor (const rendererHelper of Object.values(chromeHelper.rendererHelpers))\nor\nfor (const [pid, rendererHelper] of Object.entries(chromeHelper.rendererHelpers))",
+      "revId": "042c73c4f008417742908e48f26510885095a5b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
