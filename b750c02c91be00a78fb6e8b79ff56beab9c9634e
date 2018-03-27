@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fe233ab0_f5ce4bd1",
+        "filename": "tracing/tracing/value/diagnostics/add_reserved_diagnostics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-03-27T18:28:14Z",
+      "side": 1,
+      "message": "Why not just os.remove?",
+      "revId": "b750c02c91be00a78fb6e8b79ff56beab9c9634e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97c98a76_c68902e5",
+        "filename": "tracing/tracing/value/diagnostics/add_reserved_diagnostics.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-03-27T18:28:14Z",
+      "side": 1,
+      "message": "for a given story",
+      "revId": "b750c02c91be00a78fb6e8b79ff56beab9c9634e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
