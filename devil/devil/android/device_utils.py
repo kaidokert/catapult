@@ -649,6 +649,22 @@ class DeviceUtils(object):
         'Version name for %s not found on dumpsys output' % package, str(self))
 
   @decorators.WithTimeoutAndRetriesFromInstance()
+  def GetPackageArchitecture(self, package, timeout=None, retries=None):
+    """Get the architecture of a package installed on the device.
+
+    Args:
+      package: Name of the package.
+
+    Returns:
+      A string with the architecture, or None if the package is missing.
+    """
+    lines = self._GetDumpsysOutput('package %s' % package, 'primaryCpuAbi')
+    if lines:
+      _, _, package_arch = lines[-1].partition('=')
+      return package_arch.strip()
+    return None
+
+  @decorators.WithTimeoutAndRetriesFromInstance()
   def GetApplicationDataDirectory(self, package, timeout=None, retries=None):
     """Get the data directory on the device for the given package.
 
@@ -1105,6 +1121,7 @@ class DeviceUtils(object):
         raise device_errors.CommandFailedError(msg % output, str(self))
     else:
       return output
+
 
   def _RunPipedShellCommand(self, script, **kwargs):
     PIPESTATUS_LEADER = 'PIPESTATUS: '
@@ -2291,25 +2308,42 @@ class DeviceUtils(object):
     """
     return self.GetProp('ro.product.cpu.abi', cache=True)
 
-  def _GetPsOutput(self, pattern):
+  def _GetPsOutput(self, pattern=None, *ps_args):
     """Runs |ps| command on the device and returns its output,
 
     This private method abstracts away differences between Android verions for
     calling |ps|, and implements support for filtering the output by a given
     |pattern|, but does not do any output parsing.
     """
+    pattern = pattern or ''
     try:
       ps_cmd = 'ps'
       # ps behavior was changed in Android above N, http://crbug.com/686716
       if (self.build_version_sdk >= version_codes.NOUGAT_MR1
           and self.build_id[0] > 'N'):
         ps_cmd = 'ps -e'
+      ps_cmd = ' '.join([ps_cmd] + list(ps_args))
       if pattern:
-        return self._RunPipedShellCommand(
+        output = self._RunPipedShellCommand(
             '%s | grep -F %s' % (ps_cmd, cmd_helper.SingleQuote(pattern)))
       else:
-        return self.RunShellCommand(
+        output = self.RunShellCommand(
             ps_cmd.split(), check_return=True, large_output=True)
+      processes = []
+      for line in output:
+        row = line.split()
+        try:
+          row = {k: row[i] for k, i in _PS_COLUMNS.iteritems()}
+          if row['pid'] == 'PID' or pattern not in row['name']:
+            # Skip over header and non-matching processes.
+            continue
+          row['pid'] = int(row['pid'])
+          row['ppid'] = int(row['ppid'])
+        except StandardError as e:  # e.g. IndexError, TypeError, ValueError.
+          logging.warning('failed to parse ps line: %r', line)
+          continue
+        processes.append(ProcessInfo(**row))
+      return processes
     except device_errors.AdbShellCommandFailedError as e:
       if e.status and isinstance(e.status, list) and not e.status[0]:
         # If ps succeeded but grep failed, there were no processes with the
@@ -2336,21 +2370,43 @@ class DeviceUtils(object):
       A list of ProcessInfo tuples with |name|, |pid|, and |ppid| fields.
     """
     process_name = process_name or ''
-    processes = []
-    for line in self._GetPsOutput(process_name):
-      row = line.split()
-      try:
-        row = {k: row[i] for k, i in _PS_COLUMNS.iteritems()}
-        if row['pid'] == 'PID' or process_name not in row['name']:
-          # Skip over header and non-matching processes.
-          continue
-        row['pid'] = int(row['pid'])
-        row['ppid'] = int(row['ppid'])
-      except StandardError:  # e.g. IndexError, TypeError, ValueError.
-        logging.warning('failed to parse ps line: %r', line)
-        continue
-      processes.append(ProcessInfo(**row))
-    return processes
+    return self._GetPsOutput(pattern=process_name)
+
+  @decorators.WithTimeoutAndRetriesFromInstance()
+  def ListThreadsForProcess(self, pid, timeout=None, retries=None):
+    """Get a list of threads associated with a process on the device.
+
+    Args:
+      pid: process id of a running process on the device.
+
+    Returns:
+      A list of ProcessInfo instances.
+    """
+    pid = str(pid)
+    result = self._GetPsOutput(None, '-p', pid, '-t')
+    return [p for p in result if str(p.ppid) == pid]
+
+  def _GetDumpsysOutput(self, category, pattern=None):
+    """Runs |dumpsys| command on the device and returns its output,
+
+    This private method implements support for filtering the output by a given
+    |pattern|, but does not do any output parsing.
+    """
+    try:
+      cmd = 'dumpsys %s' % category
+      if pattern:
+        return self._RunPipedShellCommand(
+            '%s | grep -F %s' % (cmd, cmd_helper.SingleQuote(pattern)))
+      else:
+        return self.RunShellCommand(
+            cmd.split(), check_return=True, large_output=True)
+    except device_errors.AdbShellCommandFailedError as e:
+      if e.status and isinstance(e.status, list) and not e.status[0]:
+        # If dumpsys succeeded but grep failed, there were no lines matching
+        # the given pattern.
+        return []
+      else:
+        raise
 
   # TODO(#4103): Remove after migrating clients to ListProcesses.
   @decorators.WithTimeoutAndRetriesFromInstance()
