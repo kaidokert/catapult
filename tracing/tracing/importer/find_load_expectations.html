@@ -139,11 +139,15 @@ tr.exportTo('tr.importer', function() {
         tr.e.chrome.findFirstCpuIdleTime(
             firstMeaningfulPaintTime, searchWindowEnd,
             domContentLoadedEndEvent.start, longTasksInWindow);
-    const interactiveTime =
+
+    // If we did not find any resource load events, interactiveTime should not
+    // be computed to avoid reporting misleading values.
+    const interactiveTime = resourceLoadEvents.length > 0 ?
         tr.e.chrome.findInteractiveTime(
             firstMeaningfulPaintTime, searchWindowEnd,
             domContentLoadedEndEvent.start, longTasksInWindow,
-            resourceLoadEvents);
+            resourceLoadEvents) : undefined;
+
     return {interactiveTime, firstCpuIdleTime};
   }
 
