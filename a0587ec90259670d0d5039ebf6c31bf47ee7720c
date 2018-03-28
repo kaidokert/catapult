@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5708e5c2_16563d14",
+        "filename": "telemetry/telemetry/internal/actions/repeatable_scroll_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1125479
+      },
+      "writtenOn": "2018-03-28T17:28:15Z",
+      "side": 1,
+      "message": "It\u0027s actually flaky on chromeos: (linux-chromeos-rel): https://ci.chromium.org/buildbot/chromium.chromiumos/linux-chromeos-rel/6363\n\n@decorators.Disabled(\u0027android\u0027, \u0027chromeos\u0027)\n\nAlso for the bug link, it is recommended that you include https://\n\nhttps://crbug.com/826527",
+      "range": {
+        "startLine": 35,
+        "startChar": 35,
+        "endLine": 35,
+        "endChar": 40
+      },
+      "revId": "a0587ec90259670d0d5039ebf6c31bf47ee7720c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
