@@ -183,10 +183,16 @@ class PerfDashboardCommunicator(object):
       Timeseries data point.
     """
     header = ['bot', 'benchmark', 'metric', 'story']
-    test_paths = self.ListTestPaths(benchmark, sheriff=sheriff)
+    with open('ref_paths_true3.json') as f:
+       test_paths = json.load(f)
+    #test_paths = self.ListTestPaths(benchmark, sheriff=sheriff)
     for tp in test_paths:
       if not filters or all(f in tp for f in filters):
-        ts = self.GetTimeseries(tp, days=days)
+        try:
+          ts = self.GetTimeseries(tp, days=days)
+        except RequestError:
+          logging.warn('Failed to retrieve %s', tp)
+          continue
         if header:
           # First entry in the timeseries is a header. We only need this once.
           full_header = header + ts['timeseries'][0]
