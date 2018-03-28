@@ -104,6 +104,36 @@ class ListTimeseriesTest(testing_common.TestCase):
     ]), set(paths))
 
   @mock.patch.object(api_auth, 'oauth')
+  def testPost_NotOnlyMonitored_ListsAllChromiumPerf(self, mock_oauth):
+    mock_oauth.get_current_user.return_value = GOOGLER_USER
+    mock_oauth.get_client_id.return_value = (
+        api_auth.OAUTH_CLIENT_ID_WHITELIST[0])
+    self._AddData()
+
+    response = self.testapp.post('/api/list_timeseries/page_cycler')
+    paths = json.loads(response.body)
+    self.assertEqual(set([
+        'ChromiumPerf/mac/page_cycler/warm/cnn',
+        'ChromiumPerf/mac/page_cycler/warm/facebook',
+        'ChromiumPerf/mac/page_cycler/warm/yahoo',
+        'ChromiumPerf/mac/page_cycler/cold/nytimes',
+        'ChromiumPerf/mac/page_cycler/cold/cnn',
+        'ChromiumPerf/mac/page_cycler/cold/yahoo',
+        'ChromiumPerf/linux/page_cycler/warm/cnn',
+        'ChromiumPerf/linux/page_cycler/warm/facebook',
+        'ChromiumPerf/linux/page_cycler/warm/yahoo',
+        'ChromiumPerf/linux/page_cycler/cold/cnn',
+        'ChromiumPerf/linux/page_cycler/cold/facebook',
+        'ChromiumPerf/linux/page_cycler/cold/yahoo',
+        'ChromiumPerf/win/page_cycler/warm/cnn',
+        'ChromiumPerf/win/page_cycler/warm/facebook',
+        'ChromiumPerf/win/page_cycler/warm/yahoo',
+        'ChromiumPerf/win/page_cycler/cold/cnn',
+        'ChromiumPerf/win/page_cycler/cold/facebook',
+        'ChromiumPerf/win/page_cycler/cold/yahoo',
+    ]), set(paths))
+
+  @mock.patch.object(api_auth, 'oauth')
   def testPost_V8Sheriff_ListsV8Perf(self, mock_oauth):
     mock_oauth.get_current_user.return_value = GOOGLER_USER
     mock_oauth.get_client_id.return_value = (
