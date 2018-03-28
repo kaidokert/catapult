@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3852591c_1e281bd0",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2386,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-03-28T22:05:55Z",
+      "side": 1,
+      "message": "I think these flags should be handled by _GetPsOutput rather than passed here, with something like:\n\n  _GetPsOutput(None, pids\u003d[pid], threads\u003dTrue)\n\nIt looks like the ps interface varies across version (yay). In toolbox (\u003cM, iirc) -t shows thread info and -T does nothing. In toybox (\u003e\u003dM), -t selects by TTY and -T shows thread info. I\u0027d prefer the logic for handling the difference be done in exactly one place.",
+      "revId": "670849fcdde0151526f3541f39831fe5ce24e591",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
