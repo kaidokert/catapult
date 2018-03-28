@@ -222,9 +222,11 @@ class PageTestResults(object):
     self._trace_tag = trace_tag
     self._output_dir = output_dir
     self._should_add_value = should_add_value
+    self._timestamp = None
 
     self._current_page_run = None
     self._all_page_runs = []
+    self._all_page_durations = {}
     self._all_stories = set()
     self._representative_value_for_each_value_name = {}
     self._all_summary_values = []
@@ -400,6 +402,7 @@ class PageTestResults(object):
     self._progress_reporter.WillRunPage(self)
     self.telemetry_info.WillRunStory(
         page, storyset_repeat_counter)
+    self._timestamp = time.time()
 
   def DidRunPage(self, page):  # pylint: disable=unused-argument
     """
@@ -409,8 +412,13 @@ class PageTestResults(object):
     assert self._current_page_run, 'Did not call WillRunPage.'
     self._progress_reporter.DidRunPage(self)
     self._all_page_runs.append(self._current_page_run)
+    duration = time.time() - self._timestamp
+    self._all_page_durations[self._current_page_run] = duration
     self._all_stories.add(self._current_page_run.story)
     self._current_page_run = None
+
+  def GetPageDuration(self, page):
+    return self._all_page_durations[page]
 
   def AddDurationHistogram(self, duration_in_milliseconds):
     hist = histogram.Histogram(
