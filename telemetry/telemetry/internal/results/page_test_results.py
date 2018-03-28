@@ -22,6 +22,7 @@ from telemetry.internal.results import chart_json_output_formatter
 from telemetry.internal.results import html_output_formatter
 from telemetry.internal.results import progress_reporter as reporter_module
 from telemetry.internal.results import story_run
+from telemetry.value import scalar
 from telemetry.value import skip
 from telemetry.value import trace
 
@@ -222,6 +223,7 @@ class PageTestResults(object):
     self._trace_tag = trace_tag
     self._output_dir = output_dir
     self._should_add_value = should_add_value
+    self._timestamp = None
 
     self._current_page_run = None
     self._all_page_runs = []
@@ -400,6 +402,7 @@ class PageTestResults(object):
     self._progress_reporter.WillRunPage(self)
     self.telemetry_info.WillRunStory(
         page, storyset_repeat_counter)
+    self._timestamp = time.time()
 
   def DidRunPage(self, page):  # pylint: disable=unused-argument
     """
@@ -407,10 +410,23 @@ class PageTestResults(object):
       page: The current page under test.
     """
     assert self._current_page_run, 'Did not call WillRunPage.'
+    self._RecordPageDuration(page)
+
     self._progress_reporter.DidRunPage(self)
     self._all_page_runs.append(self._current_page_run)
     self._all_stories.add(self._current_page_run.story)
     self._current_page_run = None
+
+  def _RecordPageDuration(self, page):
+    assert self._timestamp is not None, 'Did not call WillRunPage.'
+    duration = time.time() - self._timestamp
+    duration_name = page.name + '_duration'
+    self.AddValue(scalar.ScalarValue(
+        None, duration_name, 'seconds', duration))
+    hist = histogram.Histogram(
+        'benchmark_total_duration', 'ms_smallerIsBetter')
+    hist.AddSample(duration * 1000.0)
+    self._histograms.AddHistogram(hist)
 
   def AddDurationHistogram(self, duration_in_milliseconds):
     hist = histogram.Histogram(
