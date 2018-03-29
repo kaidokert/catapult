@@ -16,6 +16,24 @@
       "revId": "670849fcdde0151526f3541f39831fe5ce24e591",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6bd8e42d_8b4db5a8",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2386,
+      "author": {
+        "id": 1001706
+      },
+      "writtenOn": "2018-03-29T18:39:17Z",
+      "side": 1,
+      "message": "Where did you get that version info?  I\u0027m testing on 7.1.2 (N), and \u0027-t\u0027 shows thread info (-T is not recognized).",
+      "parentUuid": "3852591c_1e281bd0",
+      "revId": "670849fcdde0151526f3541f39831fe5ce24e591",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
