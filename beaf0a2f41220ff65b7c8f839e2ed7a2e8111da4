@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e9d1f04f_d8d86ec8",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-03-29T16:06:46Z",
+      "side": 1,
+      "message": "Rather than adding a dict, I feel like it might be more appropriate to plumb this through StoryRun instead. How about adding two fields begin_timestamp and end_timestamp to StoryRun and then adding a duration getter?",
+      "revId": "beaf0a2f41220ff65b7c8f839e2ed7a2e8111da4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
