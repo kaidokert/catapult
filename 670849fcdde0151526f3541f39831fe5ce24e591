@@ -34,6 +34,24 @@
       "revId": "670849fcdde0151526f3541f39831fe5ce24e591",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a98d31f9_8b46d8ad",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2386,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-03-29T19:22:47Z",
+      "side": 1,
+      "message": "Reading through toybox source (e.g. https://android.googlesource.com/platform/external/toybox/+/nougat-release/toys/posix/ps.c#72); that\u0027s interesting that you\u0027re seeing different results. Perhaps ps moved to toybox in a different version than most of the other toys...\n\nWhat do you see if you do\n\n  $ ls -l /system/bin/ps\n\nMaybe\n\n  ... ps -\u003e toolbox\n\n?",
+      "parentUuid": "6bd8e42d_8b4db5a8",
+      "revId": "670849fcdde0151526f3541f39831fe5ce24e591",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
