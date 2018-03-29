@@ -34,6 +34,24 @@
       "revId": "c5a366d1ded64122b604648546cfa95174178729",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86c572b6_6d0f5d28",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2018-03-29T23:53:24Z",
+      "side": 1,
+      "message": "Well that was a quick response. Looks like my assumption was correct, and it\u0027s not safe to assume all apps will find the file in the encrypted directory. Direct comment:\n\n\"It\u0027s not standard for most apps. The app has to opt in and explicitly use SharedPreferences from device-encrypted storage (as VrCore does).\"",
+      "parentUuid": "3695b93b_7ea045b6",
+      "revId": "c5a366d1ded64122b604648546cfa95174178729",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
