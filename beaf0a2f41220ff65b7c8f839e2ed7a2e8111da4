@@ -16,6 +16,24 @@
       "revId": "beaf0a2f41220ff65b7c8f839e2ed7a2e8111da4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "161b49a5_4fb8c34d",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1189781
+      },
+      "writtenOn": "2018-03-29T20:24:09Z",
+      "side": 1,
+      "message": "Great idea! I made those changes so PTAL :)",
+      "parentUuid": "e9d1f04f_d8d86ec8",
+      "revId": "beaf0a2f41220ff65b7c8f839e2ed7a2e8111da4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
