@@ -16,6 +16,24 @@
       "revId": "c5a366d1ded64122b604648546cfa95174178729",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3695b93b_7ea045b6",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2018-03-29T23:36:57Z",
+      "side": 1,
+      "message": "While the presence of the device-encrypted data directory is based on OS version, I don\u0027t know if support for shared preference files there necessarily is. For example, VrCore has only recently switched to reading/writing the shared preference file in the encrypted directory despite having the option to do so since the beginning. It\u0027s possible that while the option is always available to apps on N+, it\u0027s not the default behavior, so always writing the file in the encrypted directory could cause an app to miss the file. I\u0027ll clarify with someone on the VrCore team who\u0027s more familiar with this.",
+      "parentUuid": "7d99cf21_719e835c",
+      "revId": "c5a366d1ded64122b604648546cfa95174178729",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
