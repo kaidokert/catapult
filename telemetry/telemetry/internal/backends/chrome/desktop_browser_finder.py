@@ -15,6 +15,7 @@ from telemetry.core import exceptions
 from telemetry.core import platform as platform_module
 from telemetry.internal.backends.chrome import chrome_startup_args
 from telemetry.internal.backends.chrome import desktop_browser_backend
+from telemetry.internal.backends.chrome import gpu_rendering_checker
 from telemetry.internal.browser import browser
 from telemetry.internal.browser import possible_browser
 from telemetry.internal.platform import desktop_device
@@ -127,8 +128,13 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
 
         returned_browser = browser.Browser(
             browser_backend, self._platform_backend, startup_args)
-
+        if self._browser_options.assert_gpu_rendering:
+          gpu_rendering_checker.AssertGpuRenderingEnabled(
+              returned_browser.GetSystemInfo())
         return returned_browser
+      # Do not retry if gpu assertion failure is raised.
+      except gpu_rendering_checker.GpuRenderingAssertionFailure:
+        raise
       except Exception: # pylint: disable=broad-except
         report = 'Browser creation failed (attempt %d of %d)' % (
             (x + 1), num_retries)

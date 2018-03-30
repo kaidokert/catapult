@@ -181,9 +181,14 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
         self._backend_settings)
     self._ClearCachesOnStart()
     try:
-      return browser.Browser(
+      returned_browser = browser.Browser(
           browser_backend, self._platform_backend, startup_args=(),
+          assert_gpu_rendering=self._browser_options.assert_gpu_rendering,
           find_existing=existing)
+      if self._browser_options.assert_gpu_rendering:
+        gpu_rendering_checker.AssertGpuRenderingEnabled(
+            returned_browser.GetSystemInfo())
+      return returned_browser
     except Exception:
       exc_info = sys.exc_info()
       logging.error(
