@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "cddfc759_b45451b6",
+        "filename": "devil/devil/android/sdk/shared_prefs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2018-03-30T00:05:41Z",
+      "side": 1,
+      "message": "How often will this trigger? Let\u0027s add a log line here to see when we remove the other copy.",
+      "revId": "c5a366d1ded64122b604648546cfa95174178729",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7d99cf21_719e835c",
         "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
         "patchSetId": 1
