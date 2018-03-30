@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f9f26f70_a5aaed16",
+        "filename": "devil/devil/android/sdk/shared_prefs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2018-03-30T00:30:57Z",
+      "side": 1,
+      "message": "Done. This *should* only happen the first time any of our tests are run on a device, after which all future runs will only find the newer, encrypted file.",
+      "parentUuid": "cddfc759_b45451b6",
+      "revId": "c5a366d1ded64122b604648546cfa95174178729",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7d99cf21_719e835c",
         "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
         "patchSetId": 1
