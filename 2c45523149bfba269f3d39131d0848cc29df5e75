@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ce56c87_5989e476",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-04-02T15:06:32Z",
+      "side": 1,
+      "message": "hmhh. How accurate is this? there is no guarantee that the time this object is created matches the time the story actually run. I can imagine the main story_runner loop do s.t like:\n\nfailed \u003d False\ntry:\n  runActualTest()\nexcept Exception:\n  failed \u003d True\n\ns \u003d story_run.StoryRun()\nif failed:\n  s.SetFailed(...)\nelse:\n  s.SetSucceeded()\n\nWith the implementation above, the runtime of story will almost be zero",
+      "revId": "2c45523149bfba269f3d39131d0848cc29df5e75",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
