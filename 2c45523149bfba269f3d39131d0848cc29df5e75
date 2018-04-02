@@ -16,6 +16,24 @@
       "revId": "2c45523149bfba269f3d39131d0848cc29df5e75",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b1b6858_f083b4f8",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1189781
+      },
+      "writtenOn": "2018-04-02T15:24:33Z",
+      "side": 1,
+      "message": "It looks like the main story_runner loop calls WillRunStory before _RunStoryAndProcessErrorIfNeeded\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/story_runner.py?l\u003d207\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/story_runner.py?l\u003d220\n\nWillRunStory creates the actual StoryRun object\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/results/page_test_results.py?l\u003d397\n\nYou can see the output for system_health.common_mobile here:\nhttps://logs.chromium.org/v/?s\u003dchrome%2Fbb%2Fchromium.perf%2FAndroid_Nexus7v2_Perf%2F1553%2F%2B%2Frecipes%2Fsteps%2Fsystem_health.common_mobile_on_Android%2F0%2Flogs%2Fjson.output%2F0\n\nIs there another story_runner loop that I should take a look at?\nThanks!",
+      "parentUuid": "3ce56c87_5989e476",
+      "revId": "2c45523149bfba269f3d39131d0848cc29df5e75",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
