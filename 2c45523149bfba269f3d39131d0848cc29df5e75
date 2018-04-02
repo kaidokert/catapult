@@ -34,6 +34,24 @@
       "revId": "2c45523149bfba269f3d39131d0848cc29df5e75",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5d9f091_06f40416",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-04-02T18:20:30Z",
+      "side": 1,
+      "message": "Discussed offline, this is a level 3 bug. \n\nThe current implementation is correct, yet it create an *implicit* program contract, i.e: StoryRun\u0027s __init__ must be invoked right before the story actually run, and StoryRun\u0027s SetFailed \u0026 SetSucceeded must be invoked right after the story run finished.\n\nSuch contract is brittle because it\u0027s implicit. To fix this, we can add documentation stating this contract (not my favorite solution because code documentation can be easily missed), or changing the code to make the dependency how the timing is set for this \u0026 life cycle in story_runner more obvious.",
+      "parentUuid": "6b1b6858_f083b4f8",
+      "revId": "2c45523149bfba269f3d39131d0848cc29df5e75",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
