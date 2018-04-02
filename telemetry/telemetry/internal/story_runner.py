@@ -109,6 +109,7 @@ def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
     # progress_reporter to log it in the output.
     results.Fail(sys.exc_info())
 
+  start_timestamp = time.time()
   with CaptureLogsAsArtifacts(results, story.name):
     try:
       if isinstance(test, story_test.StoryTest):
@@ -137,6 +138,7 @@ def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
       raise
     finally:
       has_existing_exception = (sys.exc_info() != (None, None, None))
+      results.current_page.SetDuration(time.time() - start_timestamp)
       try:
         # We attempt to stop tracing and/or metric collecting before possibly
         # closing the browser. Closing the browser first and stopping tracing
