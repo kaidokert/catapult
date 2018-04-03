@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2f89e74f_b9c3184e",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2371,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-03T12:06:07Z",
+      "side": 1,
+      "message": "This looks a bit brittle to me. I think category should instead be passed as a list of args for dumpsys (e.g. [\u0027package\u0027, \u0027com.foo.bar\u0027]), then ...",
+      "revId": "13c6e1ca7b5ae8d86300f90cb7b0425a148c6965",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f566807f_57328b8a",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2381,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-03T12:06:07Z",
+      "side": 1,
+      "message": "when turning the cmd from list of args to string, pass each arg through cmd_helper.SingleQuote (as we do e.g. in [1]), and ...\n\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/devil/devil/android/device_utils.py?rcl\u003d29a751ceced16f3de204feb23a5ead6d8236dddb\u0026l\u003d1083",
+      "revId": "13c6e1ca7b5ae8d86300f90cb7b0425a148c6965",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fc81314_094dbdad",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2384,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-03T12:06:07Z",
+      "side": 1,
+      "message": "... here pass the list untouched.",
+      "revId": "13c6e1ca7b5ae8d86300f90cb7b0425a148c6965",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
