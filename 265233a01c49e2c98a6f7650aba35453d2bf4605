@@ -119,6 +119,24 @@
       "revId": "265233a01c49e2c98a6f7650aba35453d2bf4605",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0be439b6_5c1ea054",
+        "filename": "telemetry/telemetry/internal/backends/chrome/gpu_rendering_checker.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2018-04-03T20:37:42Z",
+      "side": 1,
+      "message": "I suggest only checking for GPU compositing. We\u0027ve had to blacklist GPU rasterization on some devices due to driver bugs. GPU compositing however is required everywhere for good performance nowadays.",
+      "parentUuid": "2f9080f7_c2d8d0b4",
+      "revId": "265233a01c49e2c98a6f7650aba35453d2bf4605",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
