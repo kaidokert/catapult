@@ -101,6 +101,24 @@
       "revId": "265233a01c49e2c98a6f7650aba35453d2bf4605",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f9080f7_c2d8d0b4",
+        "filename": "telemetry/telemetry/internal/backends/chrome/gpu_rendering_checker.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-04-03T20:36:31Z",
+      "side": 1,
+      "message": "This is a good point. Ken, what do you think about extending this check to ensure both GPUCompositing \u0026 GpuRasterization?",
+      "parentUuid": "a9777243_7afe9ecd",
+      "revId": "265233a01c49e2c98a6f7650aba35453d2bf4605",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
