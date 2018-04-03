@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dbf056cd_5af0c9b5",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-03T14:37:09Z",
+      "side": 1,
+      "message": "nit: it\u0027s probably fine to just call this \"browser\"",
+      "revId": "265233a01c49e2c98a6f7650aba35453d2bf4605",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c3aa7d9_0d6f5f89",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-03T14:37:09Z",
+      "side": 1,
+      "message": "this should not be needed anymore, right?",
+      "revId": "265233a01c49e2c98a6f7650aba35453d2bf4605",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c376f98a_32a601f2",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-03T14:37:09Z",
+      "side": 1,
+      "message": "missing import gpu_rendering_checker",
+      "revId": "265233a01c49e2c98a6f7650aba35453d2bf4605",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec69d473_770367aa",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-03T14:37:09Z",
+      "side": 1,
+      "message": "ditto: this line should not be needed.",
+      "revId": "265233a01c49e2c98a6f7650aba35453d2bf4605",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04bf27fd_6b9ad0c3",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-03T14:37:09Z",
+      "side": 1,
+      "message": "missing import gpu_rendering_checker",
+      "revId": "265233a01c49e2c98a6f7650aba35453d2bf4605",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
