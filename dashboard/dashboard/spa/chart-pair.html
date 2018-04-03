@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="/bower_components/neon-animation/neon-animations.html">
+<link rel="import" href="/bower_components/neon-animation/web-animations.html">
+<link rel="import" href="/bower_components/paper-button/paper-button.html">
+<link rel="import" href="/bower_components/paper-progress/paper-progress.html">
+<link rel="import" href="/bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="/dashboard/spa/chart-parameter.html">
+<link rel="import" href="/dashboard/spa/chart-timeseries.html">
+<link rel="import" href="/dashboard/spa/element-base.html">
+<link rel="import" href="/dashboard/spa/expand-button.html">
+<link rel="import" href="/dashboard/spa/test-suite-descriptors.html">
+<link rel="import" href="/dashboard/spa/test-suites.html">
+<link rel="import" href="/dashboard/static/memory_related_names.html">
+
+<dom-module id="chart-pair">
+  <template>
+    <style>
+      #minimap,
+      #chart {
+        width: 100%;
+      }
+
+      #minimap {
+        max-height: 75px;
+        --chart-placeholder: {
+          max-height: 0;
+        };
+      }
+
+      :host {
+        flex-grow: 1;
+        margin-right: 8px;
+        min-width: 500px;
+      }
+
+      #chart {
+        height: 290px;
+      }
+
+      #options {
+        background: var(--paper-indigo-500);
+        border-radius: 3px;
+        color: white;
+        height: 30px;
+        max-height: 30px;
+        padding: 0;
+      }
+
+      #options_container {
+        position: absolute;
+        margin-top: 15px;
+      }
+
+      paper-dialog {
+        margin: 0;
+      }
+    </style>
+
+    <iron-collapse opened="[[isExpanded]]">
+      <span
+          id="options_container"
+          hidden$="[[hideOptions_(minimapLayout)]]">
+        <!-- TODO show when isLoading || !_empty(lines) -->
+        <paper-icon-button
+            id="options"
+            icon="more-vert"
+            style$="width: calc([[chartLayout.yAxisWidth]]px - 8px);"
+            on-tap="onOptionsToggle_">
+        </paper-icon-button>
+
+        <paper-dialog
+            opened="[[isShowingOptions]]"
+            horizontal-align="left"
+            vertical-align="top"
+            entry-animation="slide-from-left-animation"
+            exit-animation="slide-left-animation"
+            on-iron-overlay-canceled="onOptionsToggle_">
+          <paper-toggle-button
+              checked$="[[normalize]]"
+              on-change="onToggleNormalize_">
+            Normalize
+          </paper-toggle-button>
+          <paper-toggle-button
+              checked$="[[center]]"
+              on-change="onToggleCenter_">
+            Center
+          </paper-toggle-button>
+          <paper-toggle-button
+              checked$="[[zeroYAxis]]"
+              on-change="onToggleZeroYAxis_">
+            Zero Y-Axis
+          </paper-toggle-button>
+          <paper-toggle-button
+              checked$="[[fixedXAxis]]"
+              on-change="onToggleFixedXAxis_">
+            Fixed X-Axis
+          </paper-toggle-button>
+        </paper-dialog>
+      </span>
+
+      <chart-timeseries
+          id="minimap"
+          state-path="[[statePath]].minimapLayout"
+          on-brush="onMinimapBrush_">
+      </chart-timeseries>
+    </iron-collapse>
+
+    <chart-timeseries
+        id="chart"
+        state-path="[[statePath]].chartLayout"
+        on-chart-click="onChartClick_"
+        on-dot-click="onDotClick_"
+        on-dot-mouseover="onDotMouseOver_"
+        on-dot-mouseout="onDotMouseOut_"
+        on-brush="onBrush_">
+      Select at least one Test suite and Measurement above.
+    </chart-timeseries>
+  </template>
+</dom-module>
+<script src="/dashboard/spa/chart-pair.js"></script>
