@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aa88f7a0_00ec8ecb",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-04-03T19:27:19Z",
+      "side": 1,
+      "message": "Looks like this is in the wrong indentation level. This story_run object will end up being the last story_run object of all the ones in the for loop. I think this should go to the finally block in line 242, probably after \"results.DidRunPage(story)\"\n\nHow do we add test to prevent this bug? Maybe a smoke test that create 3 stories, each repeat 2 times which paired with a dummy test that just wait for 100 ms, then the smoke test ensure that we get 6 story duration, each greater than 100ms?",
+      "revId": "7d01dc84b9d66968e946ab2358f45007c5c16263",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
