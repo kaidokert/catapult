@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "182e2a7f_203da1ed",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-04-03T16:29:06Z",
+      "side": 1,
+      "message": "this implementation expose the nuance of where we need to start the timer. I think we would want to start the timer right here below the \"for story in stories\" loop",
+      "revId": "69a026a87bb16e9b9dbe65d862306cb8e6bc806d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
