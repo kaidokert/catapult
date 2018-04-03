@@ -137,6 +137,24 @@
       "revId": "265233a01c49e2c98a6f7650aba35453d2bf4605",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b31aebc5_e00348f9",
+        "filename": "telemetry/telemetry/internal/backends/chrome/gpu_rendering_checker.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-04-03T20:39:14Z",
+      "side": 1,
+      "message": "Thanks Ken. I will update the naming correspondingly.",
+      "parentUuid": "0be439b6_5c1ea054",
+      "revId": "265233a01c49e2c98a6f7650aba35453d2bf4605",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
