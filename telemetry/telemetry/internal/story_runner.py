@@ -196,6 +196,7 @@ def Run(test, story_set, finder_options, results, max_failures=None,
   try:
     for storyset_repeat_counter in xrange(finder_options.pageset_repeat):
       for story in stories:
+        start_timestamp = time.time()
         if not state:
           # Construct shared state by using a copy of finder_options. Shared
           # state may update the finder_options. If we tear down the shared
@@ -205,6 +206,7 @@ def Run(test, story_set, finder_options, results, max_failures=None,
               test, finder_options.Copy(), story_set)
 
         results.WillRunPage(story, storyset_repeat_counter)
+        story_run = results.current_page_run
 
         if expectations:
           disabled = expectations.IsStoryDisabled(
@@ -238,6 +240,7 @@ def Run(test, story_set, finder_options, results, max_failures=None,
             # Later finally-blocks use state, so ensure it is cleared.
             state = None
         finally:
+          story_run.SetDuration(time.time() - start_timestamp)
           has_existing_exception = sys.exc_info() != (None, None, None)
           try:
             if state:
