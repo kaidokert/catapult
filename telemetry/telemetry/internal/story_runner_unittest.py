@@ -1054,6 +1054,7 @@ class StoryRunnerTest(unittest.TestCase):
         mock.call.state.CanRunStory(root_mock.story),
         mock.call.state.RunStory(root_mock.results),
         mock.call.test.Measure(root_mock.state.platform, root_mock.results),
+        mock.call.results.current_page_run.SetDuration(mock.ANY),
         mock.call.test.DidRunStory(root_mock.state.platform, root_mock.results),
         mock.call.state.DidRunStory(root_mock.results),
     ])
@@ -1069,6 +1070,7 @@ class StoryRunnerTest(unittest.TestCase):
         mock.call.state.WillRunStory(root_mock.story),
         mock.call.state.CanRunStory(root_mock.story),
         mock.call.state.RunStory(root_mock.results),
+        mock.call.results.current_page_run.SetDuration(mock.ANY),
         mock.call.test.DidRunPage(root_mock.state.platform),
         mock.call.state.DidRunStory(root_mock.results),
     ])
@@ -1088,6 +1090,7 @@ class StoryRunnerTest(unittest.TestCase):
         mock.call.state.DumpStateUponFailure(
             root_mock.story, root_mock.results),
         mock.call.results.Fail(ExcInfoMatcher('foo')),
+        mock.call.results.current_page_run.SetDuration(mock.ANY),
         mock.call.test.DidRunStory(root_mock.state.platform, root_mock.results),
         mock.call.state.DidRunStory(root_mock.results),
     ])
@@ -1122,6 +1125,7 @@ class StoryRunnerTest(unittest.TestCase):
           mock.call.results.AddArtifact(
               root_mock.story.name, 'minidump', temp_file_path),
           mock.call.results.Fail(ExcInfoMatcher('foo')),
+          mock.call.results.current_page_run.SetDuration(mock.ANY),
           mock.call.test.DidRunStory(
               root_mock.state.platform, root_mock.results),
           mock.call.state.DidRunStory(root_mock.results),
@@ -1146,6 +1150,7 @@ class StoryRunnerTest(unittest.TestCase):
         mock.call.state.DumpStateUponFailure(
             root_mock.story, root_mock.results),
         mock.call.results.Fail(ExcInfoMatcher('foo')),
+        mock.call.results.current_page_run.SetDuration(mock.ANY),
         mock.call.test.DidRunStory(root_mock.state.platform, root_mock.results),
         mock.call.state.DidRunStory(root_mock.results),
     ])
@@ -1164,6 +1169,7 @@ class StoryRunnerTest(unittest.TestCase):
         mock.call.state.CanRunStory(root_mock.story),
         mock.call.state.RunStory(root_mock.results),
         mock.call.results.Skip('Unsupported page action: foo'),
+        mock.call.results.current_page_run.SetDuration(mock.ANY),
         mock.call.test.DidRunStory(root_mock.state.platform, root_mock.results),
         mock.call.state.DidRunStory(root_mock.results),
     ])
@@ -1183,6 +1189,7 @@ class StoryRunnerTest(unittest.TestCase):
         mock.call.state.DumpStateUponFailure(
             root_mock.story, root_mock.results),
         mock.call.results.Fail(ExcInfoMatcher('foo')),
+        mock.call.results.current_page_run.SetDuration(mock.ANY),
         mock.call.test.DidRunStory(root_mock.state.platform, root_mock.results),
         mock.call.state.DidRunStory(root_mock.results),
     ])
@@ -1204,6 +1211,7 @@ class StoryRunnerTest(unittest.TestCase):
         mock.call.state.CanRunStory(root_mock.story),
         mock.call.state.RunStory(root_mock.results),
         mock.call.test.Measure(root_mock.state.platform, root_mock.results),
+        mock.call.results.current_page_run.SetDuration(mock.ANY),
         mock.call.test.DidRunStory(root_mock.state.platform, root_mock.results),
         mock.call.state.DidRunStory(root_mock.results),
         mock.call.state.DumpStateUponFailure(
@@ -1228,6 +1236,7 @@ class StoryRunnerTest(unittest.TestCase):
         mock.call.state.DumpStateUponFailure(
             root_mock.story, root_mock.results),
         mock.call.results.Fail(ExcInfoMatcher('foo')),
+        mock.call.results.current_page_run.SetDuration(mock.ANY),
         mock.call.test.DidRunStory(root_mock.state.platform, root_mock.results),
         mock.call.state.DidRunStory(root_mock.results),
     ])
@@ -1249,6 +1258,7 @@ class StoryRunnerTest(unittest.TestCase):
         mock.call.state.DumpStateUponFailure(
             root_mock.story, root_mock.results),
         mock.call.results.Fail(ExcInfoMatcher('foo')),
+        mock.call.results.current_page_run.SetDuration(mock.ANY),
         mock.call.test.DidRunStory(root_mock.state.platform, root_mock.results),
     ])
 
@@ -1266,6 +1276,7 @@ class StoryRunnerTest(unittest.TestCase):
         mock.call.results.CreateArtifact(root_mock.story.name, 'logs'),
         mock.call.test.WillRunStory(root_mock.state.platform),
         mock.call.results.Skip('Unsupported page action: foo'),
+        mock.call.results.current_page_run.SetDuration(mock.ANY),
         mock.call.test.DidRunStory(
             root_mock.state.platform, root_mock.results),
         mock.call.state.DidRunStory(root_mock.results),
@@ -1291,6 +1302,7 @@ class StoryRunnerTest(unittest.TestCase):
         mock.call.state.DumpStateUponFailure(
             root_mock.story, root_mock.results),
         mock.call.results.Fail(ExcInfoMatcher('foo')),
+        mock.call.results.current_page_run.SetDuration(mock.ANY),
         mock.call.test.DidRunStory(root_mock.state.platform, root_mock.results),
     ])
 
