@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6678955a_184a645a",
+        "filename": "telemetry/telemetry/internal/backends/chrome/gpu_compositing_checker.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2018-04-03T21:53:11Z",
+      "side": 1,
+      "message": "rendering -\u003e compositing",
+      "range": {
+        "startLine": 17,
+        "startChar": 28,
+        "endLine": 17,
+        "endChar": 37
+      },
+      "revId": "9d77c1099fc08b0ba61c40c639e8db7a506c4196",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a0fd908_72d4e9bb",
+        "filename": "telemetry/telemetry/internal/backends/chrome/gpu_compositing_checker.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2018-04-03T21:53:11Z",
+      "side": 1,
+      "message": "rendering -\u003e compositing",
+      "revId": "9d77c1099fc08b0ba61c40c639e8db7a506c4196",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
