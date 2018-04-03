@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "636aec4c_d6ab746e",
+        "filename": "telemetry/telemetry/internal/results/page_test_results_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 724,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-04-03T19:28:01Z",
+      "side": 1,
+      "message": "nits: remove the extra blank line here",
+      "revId": "63127e4eb39cd6c3c528738d5ac5caa0eaf54afa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
