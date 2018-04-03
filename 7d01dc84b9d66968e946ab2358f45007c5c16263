@@ -16,6 +16,24 @@
       "revId": "7d01dc84b9d66968e946ab2358f45007c5c16263",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffa6dd7a_7bfb21ca",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1189781
+      },
+      "writtenOn": "2018-04-03T20:13:50Z",
+      "side": 1,
+      "message": "Great catch! I\u0027ll implement that smoke test, make sure it fails, make the code change, then make sure it passes",
+      "parentUuid": "aa88f7a0_00ec8ecb",
+      "revId": "7d01dc84b9d66968e946ab2358f45007c5c16263",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
