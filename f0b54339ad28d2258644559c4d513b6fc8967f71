@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9fe8091a_93327c59",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1494,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-04T08:28:50Z",
+      "side": 1,
+      "message": "nit: Instead of adding the time.sleep in RunPageInteractions above, maybe you can @mock.patch(\u0027time.time\u0027) and then set mock_time.side_effect \u003d itertools.count(), so it will return each time is called 1, 2, 3, ... (and thus we don\u0027t depend on the actual clock which may be flaky).",
+      "revId": "f0b54339ad28d2258644559c4d513b6fc8967f71",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
