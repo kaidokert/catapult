@@ -16,6 +16,24 @@
       "revId": "a36cdd784a71a186b9b873ece22d521354291372",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6eb06872_f97012a8",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1189781
+      },
+      "writtenOn": "2018-04-04T13:59:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9bddc7dc_f29e93af",
+      "revId": "a36cdd784a71a186b9b873ece22d521354291372",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
