@@ -1,0 +1,6 @@
+Name: Catapault
+Upstream git: https://github.com/catapult-project/catapult
+Description:
+
+Catapult is the home for several performance tools that span from gathering,
+displaying and analyzing performance data.
