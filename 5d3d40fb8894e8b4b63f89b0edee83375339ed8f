@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c19acfca_9c02ab5f",
+        "filename": "experimental/soundwave/soundwave/commands_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-05T12:34:03Z",
+      "side": 0,
+      "message": "This integration test does not work really well with the new approach, also it feels like it would be testing the to_sql/from_sql roundtrip (which should be a pandas issue) more than the chromeperf API -\u003e DataFrame translation which is really what we care about.\n\nSo added a more relevant unit test for that part below.",
+      "revId": "5d3d40fb8894e8b4b63f89b0edee83375339ed8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
