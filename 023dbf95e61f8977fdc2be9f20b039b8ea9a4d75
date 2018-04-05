@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "8a1d41d6_dd6ce38c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-04-05T14:36:06Z",
+      "side": 1,
+      "message": "nit: spelling",
+      "range": {
+        "startLine": 9,
+        "startChar": 34,
+        "endLine": 9,
+        "endChar": 45
+      },
+      "revId": "023dbf95e61f8977fdc2be9f20b039b8ea9a4d75",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "21cbb296_995cfb44",
         "filename": "experimental/benchmark_health_report/drive_api.py",
         "patchSetId": 1
@@ -13,6 +36,70 @@
       "writtenOn": "2018-04-05T12:34:03Z",
       "side": 1,
       "message": "something is causing presubmit to complain about all this unrelated files now, so just ignoring for the moment.",
+      "revId": "023dbf95e61f8977fdc2be9f20b039b8ea9a4d75",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bbb73dde_7a467de8",
+        "filename": "experimental/benchmark_health_report/drive_api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-04-05T14:36:06Z",
+      "side": 1,
+      "message": "My guess it has something to do with the transition to virtualenv",
+      "parentUuid": "21cbb296_995cfb44",
+      "revId": "023dbf95e61f8977fdc2be9f20b039b8ea9a4d75",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "49b11ba3_ea4cf72a",
+        "filename": "experimental/soundwave/soundwave/commands.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-04-05T14:36:06Z",
+      "side": 1,
+      "message": "I might expand on this a little bi adding context about how there\u0027s no way to specify a primary key when calling to_sql, and therefore to_sql doesn\u0027t understand what field it should be using to determine uniqueness with \u0027append\u0027.",
+      "range": {
+        "startLine": 19,
+        "startChar": 4,
+        "endLine": 21,
+        "endChar": 23
+      },
+      "revId": "023dbf95e61f8977fdc2be9f20b039b8ea9a4d75",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e152bc8c_63c99d56",
+        "filename": "experimental/soundwave/soundwave/tables/alerts.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-04-05T14:36:06Z",
+      "side": 1,
+      "message": "It seems like it\u0027s worthwhile to use this as an opportunity to document the dataframe, e.g.\n\nCOLUMNS \u003d (\n  \u0027key\u0027, # String: Unique datastore key (\u0027123awef-aewf123\u0027)\n  \u0027timestamp\u0027, # Long: Unix milliseconds since epoch (123123123)\n  \u0027test_suite\u0027, # String: Benchmark name (\u0027media.desktop\u0027),\n  ...\n)\n\n(Those probably aren\u0027t right, just giving an example)",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 7
+      },
       "revId": "023dbf95e61f8977fdc2be9f20b039b8ea9a4d75",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
