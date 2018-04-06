@@ -16,6 +16,24 @@
       "revId": "03238f84bc9f706b55d2567175e0dc637a7ee9d4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "022cebb7_2981bb82",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-04-06T22:34:33Z",
+      "side": 1,
+      "message": "Oh whoops, that\u0027s not implemented yet. Right now it uses `auto_explore \u003d\u003d False`. It\u0027ll be safe to switch over once all running jobs have the comparison_mode flag set, which will be ~a week after this change is deployed.",
+      "parentUuid": "c09af799_b326a791",
+      "revId": "03238f84bc9f706b55d2567175e0dc637a7ee9d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
