@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c09af799_b326a791",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-06T08:32:48Z",
+      "side": 1,
+      "message": "Q: where is that logic implemented? Did I miss it?",
+      "revId": "03238f84bc9f706b55d2567175e0dc637a7ee9d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
