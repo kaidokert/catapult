@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4d38e06c_4d31849c",
+        "filename": "telemetry/telemetry/internal/actions/action_runner_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1163594
+      },
+      "writtenOn": "2018-04-06T16:56:55Z",
+      "side": 1,
+      "message": "What does guarantee this 75 number? Is it just copy paste from other tests in the same file?",
+      "revId": "e6b6f6eb3a199b10c45a321df34c372312d6c75d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
