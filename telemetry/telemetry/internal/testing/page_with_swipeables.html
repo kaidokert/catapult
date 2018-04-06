@@ -7,6 +7,9 @@
   height: 200px;
   width: 200px;
 }
+.ta-panx {
+  touch-action: pan-x;
+}
 .left-right-item,
 .top-bottom-item {
   height: 100px;
@@ -40,6 +43,19 @@
 </div>
 
 <div id="top-bottom" class="swipeable">
+  <div class="top-bottom-item red-bg">Test</div>
+  <div class="top-bottom-item blue-bg">Test</div>
+  <div class="top-bottom-item red-bg">Test</div>
+  <div class="top-bottom-item blue-bg">Test</div>
+</div>
+
+<div id="left-right-panx" class="swipeable ta-panx">
+  <div style="width: 1000px;">
+    <div class="left-right-item red-bg">Test</div>
+    <div class="left-right-item blue-bg">Test</div>
+    <div class="left-right-item red-bg">Test</div>
+    <div class="left-right-item blue-bg">Test</div>
+  </div>
   <div class="top-bottom-item red-bg">Test</div>
   <div class="top-bottom-item blue-bg">Test</div>
   <div class="top-bottom-item red-bg">Test</div>
