@@ -417,6 +417,32 @@ class ActionRunnerTest(tab_test_case.TabTestCase):
         action_runner.EvaluateJavaScript(
             '(document.scrollingElement || document.body).scrollLeft') > 75)
 
+  @decorators.Disabled(
+      'android',  # crbug.com/437065.
+      'chromeos')  # crbug.com/483212.
+  # Regression test for crbug.com/828436
+  # When there is a in-flight touchscreen fling gesture, a new fling gesture
+  # should be sent to Renderer.
+  def testPanXSwipe(self):
+    if not page_action.IsGestureSourceTypeSupported(self._tab, 'touch'):
+      return
+
+    self.Navigate('page_with_swipeables.html')
+    action_runner = action_runner_module.ActionRunner(
+        self._tab, skip_waits=True)
+
+    action_runner.SwipeElement(
+        selector='#left-right-panx', direction='left', left_start_ratio=0.5,
+        distance=100, speed_in_pixels_per_second=100)
+    action_runner.SwipeElement(
+        selector='#top-bottom', direction='up', top_start_ratio=0.9)
+    self.assertTrue(
+        action_runner.EvaluateJavaScript(
+            'document.querySelector("#left-right-panx").scrollLeft') > 75)
+    self.assertTrue(
+        action_runner.EvaluateJavaScript(
+            'document.querySelector("#top-bottom").scrollTop') == 0)
+
   def testWaitForNetworkQuiescenceSmoke(self):
     self.Navigate('blank.html')
     action_runner = action_runner_module.ActionRunner(self._tab)
