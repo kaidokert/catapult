@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ad9f0343_015365df",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-06T11:30:39Z",
+      "side": 1,
+      "message": "last_changed is always not None (or an error would have been raised) so the first part was always True; this worked anyway because on the second part e.g. 123 \u003e None returns True. But that was only a happy accident.\n\nSo I could remove the first part of the condition, but fixed it and left it there to make the intent more explicit: \"either we haven\u0027t found anything, or the thing we just found is more recent\".",
+      "revId": "179d9e6e1f9076f857cb30c9e4dd257dfbb3ceef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
