@@ -14,48 +14,60 @@ from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import reserved_infos
 
 
+_BASE_ARGUMENTS_GRAPH_JSON = {
+    'isolate_server': 'server',
+    'chart': 'chart_name',
+    'trace': 'trace_name',
+}
+
+
 class ReadHistogramsJsonValueQuestTest(unittest.TestCase):
 
   def testMinimumArguments(self):
-    expected = read_value.ReadHistogramsJsonValue(None, None, None)
-    self.assertEqual(read_value.ReadHistogramsJsonValue.FromDict({}), expected)
+    arguments = {'isolate_server': 'server'}
+    quest = read_value.ReadHistogramsJsonValue.FromDict(arguments)
+    expected = read_value.ReadHistogramsJsonValue('server')
+    self.assertEqual(quest, expected)
 
   def testAllArguments(self):
     arguments = {
+        'isolate_server': 'server',
         'chart': 'timeToFirst',
         'tir_label': 'pcv1-cold',
         'trace': 'trace_name',
         'statistic': 'avg',
     }
-
+    quest = read_value.ReadHistogramsJsonValue.FromDict(arguments)
     expected = read_value.ReadHistogramsJsonValue(
-        'timeToFirst', 'pcv1-cold', 'trace_name', 'avg')
-    self.assertEqual(read_value.ReadHistogramsJsonValue.FromDict(arguments),
-                     expected)
+        'server', 'timeToFirst', 'pcv1-cold', 'trace_name', 'avg')
+    self.assertEqual(quest, expected)
 
 
 class ReadGraphJsonValueQuestTest(unittest.TestCase):
 
-  def testMissingArguments(self):
-    arguments = {'trace': 'trace_name'}
-
-    with self.assertRaises(TypeError):
-      read_value.ReadGraphJsonValue.FromDict(arguments)
-
-    arguments = {'chart': 'chart_name'}
-
-    with self.assertRaises(TypeError):
-      read_value.ReadGraphJsonValue.FromDict(arguments)
-
   def testAllArguments(self):
-    arguments = {
-        'chart': 'chart_name',
-        'trace': 'trace_name',
-    }
+    quest = read_value.ReadGraphJsonValue.FromDict(_BASE_ARGUMENTS_GRAPH_JSON)
+    expected = read_value.ReadGraphJsonValue(
+        'server', 'chart_name', 'trace_name')
+    self.assertEqual(quest, expected)
 
-    expected = read_value.ReadGraphJsonValue('chart_name', 'trace_name')
-    self.assertEqual(read_value.ReadGraphJsonValue.FromDict(arguments),
-                     expected)
+  def testMissingIsolateServer(self):
+    arguments = dict(_BASE_ARGUMENTS_GRAPH_JSON)
+    del arguments['isolate_server']
+    quest = read_value.ReadGraphJsonValue.FromDict(arguments)
+    self.assertIsNone(quest)
+
+  def testMissingChart(self):
+    arguments = dict(_BASE_ARGUMENTS_GRAPH_JSON)
+    del arguments['chart']
+    with self.assertRaises(TypeError):
+      read_value.ReadGraphJsonValue.FromDict(arguments)
+
+  def testMissingTrace(self):
+    arguments = dict(_BASE_ARGUMENTS_GRAPH_JSON)
+    del arguments['trace']
+    with self.assertRaises(TypeError):
+      read_value.ReadGraphJsonValue.FromDict(arguments)
 
 
 class _ReadValueExecutionTest(unittest.TestCase):
@@ -85,8 +97,8 @@ class _ReadValueExecutionTest(unittest.TestCase):
 
   def assertRetrievedOutputJson(self):
     expected_calls = [
-        mock.call('https://isolateserver.appspot.com', 'output hash'),
-        mock.call('https://isolateserver.appspot.com', 'output json hash'),
+        mock.call('server', 'output hash'),
+        mock.call('server', 'output json hash'),
     ]
     self.assertEqual(self._retrieve.mock_calls, expected_calls)
 
@@ -107,7 +119,8 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
         generic_set.GenericSet(['story']))
     self.SetOutputFileContents(histograms.AsDicts())
 
-    quest = read_value.ReadHistogramsJsonValue(hist.name, 'tir_label', 'story')
+    quest = read_value.ReadHistogramsJsonValue(
+        'server', hist.name, 'tir_label', 'story')
     execution = quest.Start(None, 'output hash')
     execution.Poll()
 
@@ -130,7 +143,7 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
     self.SetOutputFileContents(histograms.AsDicts())
 
     quest = read_value.ReadHistogramsJsonValue(
-        hist.name, 'tir_label', 'story', statistic='avg')
+        'server', hist.name, 'tir_label', 'story', statistic='avg')
     execution = quest.Start(None, 'output hash')
     execution.Poll()
 
@@ -150,7 +163,7 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
     self.SetOutputFileContents(histograms.AsDicts())
 
     quest = read_value.ReadHistogramsJsonValue(
-        hist.name, 'tir_label', 'story', statistic='avg')
+        'server', hist.name, 'tir_label', 'story', statistic='avg')
     execution = quest.Start(None, 'output hash')
     execution.Poll()
 
@@ -178,7 +191,8 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
         generic_set.GenericSet(['story']))
     self.SetOutputFileContents(histograms.AsDicts())
 
-    quest = read_value.ReadHistogramsJsonValue(hist.name, 'tir_label', 'story')
+    quest = read_value.ReadHistogramsJsonValue(
+        'server', hist.name, 'tir_label', 'story')
     execution = quest.Start(None, 'output hash')
     execution.Poll()
 
@@ -200,7 +214,7 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
     histograms = histogram_set.HistogramSet([hist, hist2, hist3])
     self.SetOutputFileContents(histograms.AsDicts())
 
-    quest = read_value.ReadHistogramsJsonValue(hist.name, None, None)
+    quest = read_value.ReadHistogramsJsonValue('server', hist.name, None, None)
     execution = quest.Start(None, 'output hash')
     execution.Poll()
 
@@ -213,6 +227,7 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
             'exception': None,
             'result_arguments': {},
             'details': {
+                'server': 'server',
                 'traces': [
                     {'url': 'trace_url1', 'name': 'trace_url1'},
                     {'url': 'trace_url2', 'name': 'trace_url2'},
@@ -235,7 +250,7 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
     histograms = histogram_set.HistogramSet([hist, hist2])
     self.SetOutputFileContents(histograms.AsDicts())
 
-    quest = read_value.ReadHistogramsJsonValue(hist.name, None, None)
+    quest = read_value.ReadHistogramsJsonValue('server', hist_name=hist.name)
     execution = quest.Start(None, 'output hash')
     execution.Poll()
 
@@ -248,6 +263,7 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
             'exception': None,
             'result_arguments': {},
             'details': {
+                'server': 'server',
                 'traces': [
                     {'url': 'trace_url1', 'name': 'trace_url1'},
                     {'url': 'trace_url2', 'name': 'trace_url2'},
@@ -269,7 +285,8 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
 
     self.SetOutputFileContents(histograms.AsDicts())
 
-    quest = read_value.ReadHistogramsJsonValue(hist.name, 'tir_label', None)
+    quest = read_value.ReadHistogramsJsonValue(
+        'server', hist_name=hist.name, tir_label='tir_label')
     execution = quest.Start(None, 'output hash')
     execution.Poll()
 
@@ -289,7 +306,8 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
 
     self.SetOutputFileContents(histograms.AsDicts())
 
-    quest = read_value.ReadHistogramsJsonValue(hist.name, None, 'story')
+    quest = read_value.ReadHistogramsJsonValue(
+        'server', hist_name=hist.name, story='story')
     execution = quest.Start(None, 'output hash')
     execution.Poll()
 
@@ -318,7 +336,7 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
     self.SetOutputFileContents(histograms.AsDicts())
 
     quest = read_value.ReadHistogramsJsonValue(
-        hists[0].name, 'tir_label', None)
+        'server', hist_name=hists[0].name, tir_label='tir_label')
     execution = quest.Start(None, 'output hash')
     execution.Poll()
 
@@ -329,7 +347,7 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
   def testReadHistogramsJsonValueWithMissingFile(self):
     self._retrieve.return_value = '{"files": {}}'
 
-    quest = read_value.ReadHistogramsJsonValue('metric', 'test')
+    quest = read_value.ReadHistogramsJsonValue('server', 'metric', 'test')
     execution = quest.Start(None, 'output hash')
     execution.Poll()
 
@@ -338,7 +356,7 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
   def testReadHistogramsJsonValueEmptyHistogramSet(self):
     self.SetOutputFileContents([])
 
-    quest = read_value.ReadHistogramsJsonValue('metric', 'test')
+    quest = read_value.ReadHistogramsJsonValue('server', 'metric', 'test')
     execution = quest.Start(None, 'output hash')
     execution.Poll()
 
@@ -349,7 +367,8 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
     histograms = histogram_set.HistogramSet([hist])
     self.SetOutputFileContents(histograms.AsDicts())
 
-    quest = read_value.ReadHistogramsJsonValue('does_not_exist', None, None)
+    quest = read_value.ReadHistogramsJsonValue(
+        'server', hist_name='does_not_exist')
     execution = quest.Start(None, 'output hash')
     execution.Poll()
 
@@ -360,7 +379,7 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
     histograms = histogram_set.HistogramSet([hist])
     self.SetOutputFileContents(histograms.AsDicts())
 
-    quest = read_value.ReadHistogramsJsonValue('chart', None, None)
+    quest = read_value.ReadHistogramsJsonValue('server', hist_name='chart')
     execution = quest.Start(None, 'output hash')
     execution.Poll()
 
@@ -371,7 +390,8 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
     histograms = histogram_set.HistogramSet([hist])
     self.SetOutputFileContents(histograms.AsDicts())
 
-    quest = read_value.ReadHistogramsJsonValue('chart', 'tir_label', None)
+    quest = read_value.ReadHistogramsJsonValue(
+        'server', hist_name='chart', tir_label='tir_label')
     execution = quest.Start(None, 'output hash')
     execution.Poll()
 
@@ -382,7 +402,8 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
     histograms = histogram_set.HistogramSet([hist])
     self.SetOutputFileContents(histograms.AsDicts())
 
-    quest = read_value.ReadHistogramsJsonValue('chart', None, 'story')
+    quest = read_value.ReadHistogramsJsonValue(
+        'server', hist_name='chart', story='story')
     execution = quest.Start(None, 'output hash')
     execution.Poll()
 
@@ -395,7 +416,7 @@ class ReadGraphJsonValueTest(_ReadValueExecutionTest):
     self.SetOutputFileContents(
         {'chart': {'traces': {'trace': ['126444.869721', '0.0']}}})
 
-    quest = read_value.ReadGraphJsonValue('chart', 'trace')
+    quest = read_value.ReadGraphJsonValue('server', 'chart', 'trace')
     execution = quest.Start(None, 'output hash')
     execution.Poll()
 
@@ -406,7 +427,7 @@ class ReadGraphJsonValueTest(_ReadValueExecutionTest):
   def testReadGraphJsonValueWithMissingFile(self):
     self._retrieve.return_value = '{"files": {}}'
 
-    quest = read_value.ReadGraphJsonValue('metric', 'test')
+    quest = read_value.ReadGraphJsonValue('server', 'metric', 'test')
     execution = quest.Start(None, 'output hash')
     execution.Poll()
 
@@ -415,7 +436,7 @@ class ReadGraphJsonValueTest(_ReadValueExecutionTest):
   def testReadGraphJsonValueWithMissingChart(self):
     self.SetOutputFileContents({})
 
-    quest = read_value.ReadGraphJsonValue('metric', 'test')
+    quest = read_value.ReadGraphJsonValue('server', 'metric', 'test')
     execution = quest.Start(None, 'output hash')
     execution.Poll()
 
@@ -424,7 +445,7 @@ class ReadGraphJsonValueTest(_ReadValueExecutionTest):
   def testReadGraphJsonValueWithMissingTrace(self):
     self.SetOutputFileContents({'chart': {'traces': {}}})
 
-    quest = read_value.ReadGraphJsonValue('metric', 'test')
+    quest = read_value.ReadGraphJsonValue('server', 'metric', 'test')
     execution = quest.Start(None, 'output hash')
     execution.Poll()
 
