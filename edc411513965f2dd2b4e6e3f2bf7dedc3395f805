@@ -16,6 +16,24 @@
       "revId": "edc411513965f2dd2b4e6e3f2bf7dedc3395f805",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f434b5a_6f7f94a4",
+        "filename": "telemetry/telemetry/internal/actions/action_runner_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1148154
+      },
+      "writtenOn": "2018-04-09T14:32:51Z",
+      "side": 1,
+      "message": "This is taken from the test at line 393. This newly added test is modified from the \"testSwipe\". If the \"testSwipe\" is disabled on android and chromeos, this one should be disabled for the same reason. Does that make sense?",
+      "parentUuid": "a71ffebd_8d2a298b",
+      "revId": "edc411513965f2dd2b4e6e3f2bf7dedc3395f805",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
