@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "89e5a9f2_f434c7fd",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2321,
+      "author": {
+        "id": 1001706
+      },
+      "writtenOn": "2018-04-09T22:18:50Z",
+      "side": 1,
+      "message": "Yeah, I\u0027m still digging into this.  If you can point me towards the correct logic here, I\u0027d appreciate it.",
+      "parentUuid": "8cd5b770_02c7f0e4",
+      "revId": "7c408cd95fadc8c19a497ada1bd49b333dfcf797",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "098a9d7b_25365bb0",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "70acbcce_0c3280ab",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2336,
+      "author": {
+        "id": 1001706
+      },
+      "writtenOn": "2018-04-09T22:18:50Z",
+      "side": 1,
+      "message": "I think it makes sense to put the parsing and creation of ProcessInfo objects in one place.\n\nShall I create a new internal method to do that?  So ListProcesses would look like this:\n\ndef ListProcesses(...):\n  return _ParsePsOutput(self._GetPsOutput(...))\n\n?",
+      "parentUuid": "098a9d7b_25365bb0",
+      "revId": "7c408cd95fadc8c19a497ada1bd49b333dfcf797",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a263115c_40e6b619",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 3
@@ -47,6 +83,24 @@
       "writtenOn": "2018-04-03T12:37:33Z",
       "side": 1,
       "message": "Instead of creating this new method, would it be enough to add a pid and list_threads optional args to ListProcesses?",
+      "revId": "7c408cd95fadc8c19a497ada1bd49b333dfcf797",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5255c2a9_fbf96558",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2379,
+      "author": {
+        "id": 1001706
+      },
+      "writtenOn": "2018-04-09T22:18:50Z",
+      "side": 1,
+      "message": "My only concern is that that new parameters might be confusing to the caller; ListThreadsForProcess is nicely descriptive.  But what ever you prefer is fine.",
+      "parentUuid": "a263115c_40e6b619",
       "revId": "7c408cd95fadc8c19a497ada1bd49b333dfcf797",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
