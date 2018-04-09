@@ -12,7 +12,12 @@ from dashboard.pinpoint.models import results2
 
 
 _ATTEMPT_DATA = {
-    "executions": [{"result_arguments": {"isolate_hash": "e26a40a0d4"}}]
+    "executions": [
+        {
+            "server": "https://isolateserver.appspot.com",
+            "result_arguments": {"isolate_hash": "e26a40a0d4"},
+        }
+    ]
 }
 
 
