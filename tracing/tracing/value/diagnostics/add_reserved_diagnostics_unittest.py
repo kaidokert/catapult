@@ -13,7 +13,7 @@ from tracing.value.diagnostics import reserved_infos
 
 class AddReservedDiagnosticsUnittest(unittest.TestCase):
 
-  def _CreateHistogram(self, name, stories=None, tags=None):
+  def _CreateHistogram(self, name, stories=None, tags=None, had_failures=False):
     h = histogram.Histogram(name, 'count')
     if stories:
       h.diagnostics[reserved_infos.STORIES.name] = generic_set.GenericSet(
@@ -21,6 +21,9 @@ class AddReservedDiagnosticsUnittest(unittest.TestCase):
     if tags:
       h.diagnostics[reserved_infos.STORY_TAGS.name] = generic_set.GenericSet(
           tags)
+    if had_failures:
+      h.diagnostics[reserved_infos.HAD_FAILURES.name] = generic_set.GenericSet(
+          [True])
     return h
 
   def testAddReservedDiagnostics_InvalidDiagnostic_Raises(self):
