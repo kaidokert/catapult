@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8446205c_5d8bf6bd",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-10T08:25:52Z",
+      "side": 1,
+      "message": "let\u0027s be explicit and call this swarming_server",
+      "revId": "980c9fd36dc40f0f8e024e8012cebf44db11a8c9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
