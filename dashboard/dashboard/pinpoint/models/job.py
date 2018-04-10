@@ -4,6 +4,7 @@
 
 import datetime
 import os
+import sys
 import traceback
 import uuid
 
@@ -192,7 +193,7 @@ class Job(ndb.Model):
     self.exception = traceback.format_exc()
 
     title = _CRYING_CAT_FACE + ' Pinpoint job stopped with an error.'
-    comment = '\n'.join((title, self.url))
+    comment = '\n'.join((title, self.url, '', sys.exc_value.message))
     self._PostBugComment(comment)
 
   def _Schedule(self):
