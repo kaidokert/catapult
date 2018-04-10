@@ -16,6 +16,24 @@
       "revId": "f71660d878a3841ffc032e890a683c828b3abb1b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c75d9614_6cc61b92",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2351,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-04-10T15:37:02Z",
+      "side": 1,
+      "message": "I think we want OREO",
+      "parentUuid": "22711587_ae651f69",
+      "revId": "f71660d878a3841ffc032e890a683c828b3abb1b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
