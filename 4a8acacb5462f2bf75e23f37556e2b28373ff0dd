@@ -46,6 +46,30 @@
       "revId": "4a8acacb5462f2bf75e23f37556e2b28373ff0dd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5be75b39_27fa5888",
+        "filename": "dashboard/dashboard/api/list_timeseries.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-04-10T19:19:50Z",
+      "side": 1,
+      "message": "Think I\u0027d have just said make it that if no sheriff is specified, default to all, but there\u0027s already a default of the chromium perf sheriff. Barring that, all seems fine.\n\nDocument it in the README as well.\n\nAdd tests.",
+      "parentUuid": "c57fdc2e_9185cda4",
+      "range": {
+        "startLine": 30,
+        "startChar": 24,
+        "endLine": 30,
+        "endChar": 38
+      },
+      "revId": "4a8acacb5462f2bf75e23f37556e2b28373ff0dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
