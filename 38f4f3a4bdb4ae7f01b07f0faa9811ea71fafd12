@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "66057839_281fb64b",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1556,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-04-10T23:20:18Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem like it\u0027d be generally true... are there more specific conditions under which it happens?",
+      "revId": "38f4f3a4bdb4ae7f01b07f0faa9811ea71fafd12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
