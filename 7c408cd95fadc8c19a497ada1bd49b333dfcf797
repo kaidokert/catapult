@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "0a116922_c70a515d",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2321,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-10T09:10:58Z",
+      "side": 1,
+      "message": "I think it should be something like:\n\nif version_sdk \u003e\u003d O:\n  need to add -e\n  need to add -T if list_threads\nelse:\n  need to add -t if list_threads\n\nI also seem to remember that -p was not supported pre-O. If that\u0027s the case, well, we just skip adding that option (where not supported) and let the caller filter by PID instead. \n\nRelated, see crbug.com/686716#c15 for some more context.\n\nBut please double check this logic and try with some devices on at least a couple Android versions. Also please extend the compatibility tests in https://cs.chromium.org/chromium/src/third_party/catapult/devil/devil/android/device_utils_devicetest.py?rcl\u003d1bae362e77893f0fe040098b1c4694e8c5bcb4d3\u0026l\u003d235 which do run on real devices.",
+      "parentUuid": "89e5a9f2_f434c7fd",
+      "revId": "7c408cd95fadc8c19a497ada1bd49b333dfcf797",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "098a9d7b_25365bb0",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 3
@@ -72,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "70401cd1_4d7795f2",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2336,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-10T09:10:58Z",
+      "side": 1,
+      "message": "\u003e I think it makes sense to put the parsing and creation of ProcessInfo objects in one place.\n\nYes, I agree with that bit.\n\n\u003e Shall I create a new internal method to do that?\n\nIf you want to keep both ListProcesses and ListThreadsForProcess (see below) then I guess yes. Otherwise the let\u0027s just keep the code of the hypothetical _ParsePsOutput in the body of ListProcesses (as it already was).",
+      "parentUuid": "70acbcce_0c3280ab",
+      "revId": "7c408cd95fadc8c19a497ada1bd49b333dfcf797",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a263115c_40e6b619",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 3
@@ -101,6 +137,24 @@
       "side": 1,
       "message": "My only concern is that that new parameters might be confusing to the caller; ListThreadsForProcess is nicely descriptive.  But what ever you prefer is fine.",
       "parentUuid": "a263115c_40e6b619",
+      "revId": "7c408cd95fadc8c19a497ada1bd49b333dfcf797",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0ef73d1_081289cb",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2379,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-10T09:10:58Z",
+      "side": 1,
+      "message": "I like the other approach since it\u0027s more general (e.g. maybe you want to get threads for several processes, not just one; and my proposed interface would allow that). It also fits with my mental model of \"ListProcesses\" being just a wrapper around the \"ps\" command and offering similar functionalities.\n\nBut no stronger objections to having the method you propose either. John, any thoughts?",
+      "parentUuid": "5255c2a9_fbf96558",
       "revId": "7c408cd95fadc8c19a497ada1bd49b333dfcf797",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
