@@ -22,6 +22,30 @@
       "revId": "4a8acacb5462f2bf75e23f37556e2b28373ff0dd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c57fdc2e_9185cda4",
+        "filename": "dashboard/dashboard/api/list_timeseries.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1153089
+      },
+      "writtenOn": "2018-04-10T18:41:27Z",
+      "side": 1,
+      "message": "\u0027\u003call\u003e\u0027 or simply \u0027all\u0027? I\u0027ve added angular brackets \u003c...\u003e to reduce likelihood that some sheriff rotation will choose to be named in the same way.",
+      "parentUuid": "43eee6e1_2d048784",
+      "range": {
+        "startLine": 30,
+        "startChar": 24,
+        "endLine": 30,
+        "endChar": 38
+      },
+      "revId": "4a8acacb5462f2bf75e23f37556e2b28373ff0dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
