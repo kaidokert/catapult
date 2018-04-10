@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "43eee6e1_2d048784",
+        "filename": "dashboard/dashboard/api/list_timeseries.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-04-10T18:06:05Z",
+      "side": 1,
+      "message": "I think my vote is for the keyword to be \u0027all\u0027",
+      "range": {
+        "startLine": 30,
+        "startChar": 24,
+        "endLine": 30,
+        "endChar": 38
+      },
+      "revId": "4a8acacb5462f2bf75e23f37556e2b28373ff0dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
