@@ -34,6 +34,24 @@
       "revId": "edc411513965f2dd2b4e6e3f2bf7dedc3395f805",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f9718f9_2503f14c",
+        "filename": "telemetry/telemetry/internal/actions/action_runner_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-04-10T19:10:36Z",
+      "side": 1,
+      "message": "Even though this share the test case from testSwipe, the test logic is vastly different, so it\u0027s unclear to me whether we need these disabling. Overall, I think we should strive to make this work on all platforms (even if what it takes is not sharing any logic testSwipe in the first place).",
+      "parentUuid": "4f434b5a_6f7f94a4",
+      "revId": "edc411513965f2dd2b4e6e3f2bf7dedc3395f805",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
