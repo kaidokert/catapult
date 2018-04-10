@@ -28,6 +28,7 @@ class ListTimeseriesHandler(api_request_handler.ApiRequestHandler):
     query = query.filter(graph_data.TestMetadata.suite_name == benchmark)
     query = query.filter(graph_data.TestMetadata.has_rows == True)
     query = query.filter(graph_data.TestMetadata.deprecated == False)
-    query = query.filter(graph_data.TestMetadata.sheriff == sheriff)
+    if sheriff != '<all_sheriffs>':
+      query = query.filter(graph_data.TestMetadata.sheriff == sheriff)
     keys = query.fetch(keys_only=True)
     return [utils.TestPath(key) for key in keys]
