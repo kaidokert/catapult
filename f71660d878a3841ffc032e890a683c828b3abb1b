@@ -34,6 +34,24 @@
       "revId": "f71660d878a3841ffc032e890a683c828b3abb1b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40ea3f1d_bc38877d",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2351,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-10T16:05:49Z",
+      "side": 1,
+      "message": "Yeah, agree. If you don\u0027t mind I\u0027ll land this as-is to unblock the bug and rename on a follow up CL.",
+      "parentUuid": "c75d9614_6cc61b92",
+      "revId": "f71660d878a3841ffc032e890a683c828b3abb1b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
