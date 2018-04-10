@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "22711587_ae651f69",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2351,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-10T15:28:00Z",
+      "side": 1,
+      "message": "semi-related question: wondering whether we want to add \"OREO\" as constant name? Or keep single letters in the future?",
+      "revId": "f71660d878a3841ffc032e890a683c828b3abb1b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
