@@ -34,6 +34,90 @@ tr.exportTo('tr.importer', function() {
   ];
 
 
+  /* BEGIN eFID CALCULATION FUNCTIONS */
+
+  // SEE https://docs.google.com/document/d/1w61RapIN6OAQhIXTh2O6D57NZYiQhiF-o0AmbyK2B9s/edit
+
+  // Approximate the curve by sampling every 5ms
+  const INTEGRAL_ESTIMATION_INTERVAL = 5;
+  // Model the probability of user input at a given time with a
+  // log-normal distribution fit to UMA data.
+  const INPUT_DISTRIBUTION = Statistics.LogNormalDistribution
+      .fromMedianAndDiminishingReturns(3412, 160);
+
+  /**
+   * Returns true if the slice contains a forced GC event. Some stories force
+   * garbage collection before sampling memory usage. Since a forced GC takes
+   * long time we need to ignore it to avoid biasing the input latency results.
+   */
+  function containsForcedGC_(slice) {
+    return slice.findTopmostSlicesRelativeToThisSlice(
+        tr.metrics.v8.utils.isForcedGarbageCollectionEvent).length > 0;
+  }
+
+  function convertTasksToInterpolatedDelays(tasks, interval) {
+    const delays = [];
+    for (const task of tasks) {
+      for (let t = task.start; t <= task.end; t += interval) {
+        delays.push({start: t, duration: task.end - t});
+      }
+      delays.push({start: task.end, duration: 0});
+    }
+
+    return delays;
+  }
+
+  /**
+   * Extracts tasks for EFID computation from the given renderer.
+   * A task is a pair of {start, end} times.
+   */
+  function getTasks(rendererHelper) {
+    const tasks = [];
+    for (const slice of rendererHelper.mainThread.sliceGroup.topLevelSlices) {
+      if (slice.duration > 0 && !containsForcedGC_(slice)) {
+        tasks.push({
+          start: slice.start,
+          end: slice.start + slice.duration,
+          duration: slice.duration
+        });
+      }
+    }
+
+    return tasks;
+  }
+
+  function computeExpectedFID(rendererHelper, fcpEvent) {
+    if (!fcpEvent) return undefined;
+
+    const tasks = getTasks(rendererHelper);
+    const tasksWithFCPTimeOrigin = tasks
+      .filter(task => task.end > fcpEvent.start)
+      .map(task => {
+        return {
+          start: Math.max(task.start - fcpEvent.start, 0),
+          end: task.end - fcpEvent.start,
+          duration: task.end - Math.max(task.start, fcpEvent.start),
+        };
+      });
+
+    const inputDelays = convertTasksToInterpolatedDelays(
+        tasksWithFCPTimeOrigin, INTEGRAL_ESTIMATION_INTERVAL);
+
+    let eFID = 0;
+    for (let i = 0; i < inputDelays.length; i++) {
+      const currentTime = inputDelays[i].start;
+      const nextTime = i === inputDelays.length - 1 ?
+          1e10 : inputDelays[i + 1].start;
+      const probability = INPUT_DISTRIBUTION.computePercentile(nextTime) -
+          INPUT_DISTRIBUTION.computePercentile(currentTime);
+      eFID += probability * inputDelays[i].duration;
+    }
+
+    return eFID;
+  }
+
+  /* END eFID CALCULATION FUNCTIONS */
+
   /**
    * @param  {!tr.model.Process} process
    * @param  {!tr.b.math.Range} range
@@ -193,10 +277,27 @@ tr.exportTo('tr.importer', function() {
         dclTimesInWindow[dclTimesInWindow.length - 1];
     }
 
+    // FROM https://chromium-review.googlesource.com/c/catapult/+/921483/3/tracing/tracing/importer/find_load_expectations.html#203
+    const frameToFCPEvents =
+        tr.e.chrome.EventFinderUtils.getSortedMainThreadEventsByFrame(
+            rendererHelper, 'firstContentfulPaint', 'loading');
+    const fcpEventsForFrame = frameToFCPEvents.get(frameId) || [];
+    // Reuse the dclSearchRange.
+    const fcpEventsInWindow =
+          dclSearchRange.filterArray(fcpEventsForFrame, event => event.start);
+    let fcpEvent = undefined;
+    if (fcpEventsInWindow.length !== 0) {
+      // There really shouldn't be more than one FCP event, but if there is,
+      // pick the last one.
+      fcpEvent = fcpEventsInWindow[fcpEventsInWindow.length - 1];
+    }
+
     const {interactiveTime, firstCpuIdleTime} =
       computeInteractivityMetricSample_(
           rendererHelper, navigationStart, fmpEvent,
           domContentLoadedEndEvent, searchWindowEnd);
+
+    const expectedFIDTime = computeExpectedFID(rendererHelper, fcpEvent);
 
     const duration = (interactiveTime === undefined) ?
      searchWindowEnd - navigationStart.start :
@@ -206,8 +307,8 @@ tr.exportTo('tr.importer', function() {
               rendererHelper.modelHelper.model,
               tr.model.um.LOAD_SUBTYPE_NAMES.SUCCESSFUL, navigationStart.start,
               duration, rendererHelper.process, navigationStart, fmpEvent,
-              domContentLoadedEndEvent, firstCpuIdleTime, interactiveTime, url,
-              frameId);
+              domContentLoadedEndEvent, firstCpuIdleTime, interactiveTime,
+              expectedFIDTime, url, frameId);
   }
 
   /**
