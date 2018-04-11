@@ -16,6 +16,24 @@
       "revId": "38f4f3a4bdb4ae7f01b07f0faa9811ea71fafd12",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e19f7667_996cd4ae",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1556,
+      "author": {
+        "id": 1126674
+      },
+      "writtenOn": "2018-04-11T09:39:44Z",
+      "side": 1,
+      "message": "Rewrote the comment to be much less terrible.",
+      "parentUuid": "66057839_281fb64b",
+      "revId": "38f4f3a4bdb4ae7f01b07f0faa9811ea71fafd12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
