@@ -70,6 +70,30 @@
       "revId": "4a8acacb5462f2bf75e23f37556e2b28373ff0dd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13610fb8_0f10e2ad",
+        "filename": "dashboard/dashboard/api/list_timeseries.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1116954
+      },
+      "writtenOn": "2018-04-11T18:00:21Z",
+      "side": 1,
+      "message": "Done, although I am not sure how to run tests to verify if I\u0027ve updated them correctly. When I try to run list_timeseries_test.py locally, it fails to import webapp2, so I guess they need to be run in the devserver environment somehow.",
+      "parentUuid": "5be75b39_27fa5888",
+      "range": {
+        "startLine": 30,
+        "startChar": 24,
+        "endLine": 30,
+        "endChar": 38
+      },
+      "revId": "4a8acacb5462f2bf75e23f37556e2b28373ff0dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
