@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/base/math/statistics.html">
+<link rel="import" href="/tracing/base/utils.html">
+<link rel="import" href="/tracing/extras/chrome/estimated_input_latency.html">
+<link rel="import" href="/tracing/extras/v8/runtime_stats_entry.html">
+<link rel="import" href="/tracing/metrics/v8/utils.html">
+<link rel="import" href="/tracing/model/helpers/chrome_model_helper.html">
+<link rel="import" href="/tracing/value/histogram.html">
+
+<script>
+'use strict';
+
+tr.exportTo('tr.metrics.sh', function() {
+  const MAXIMUM_EXPECTED_FID = 1000;
+  const EFID_BOUNDARIES = tr.v.HistogramBinBoundaries
+      .createExponential(0.01, MAXIMUM_EXPECTED_FID, 50);
+
+  // SEE https://docs.google.com/document/d/1w61RapIN6OAQhIXTh2O6D57NZYiQhiF-o0AmbyK2B9s/edit
+
+  // Approximate the curve by sampling every 5ms
+  const INTEGRAL_ESTIMATION_INTERVAL = 5;
+  // Model the probability of user input at a given time with a
+  // log-normal distribution fit to UMA data.
+  const INPUT_DISTRIBUTION = tr.b.math.Statistics.LogNormalDistribution
+      .fromMedianAndDiminishingReturns(3412, 160);
+
+
+  function convertTasksToInterpolatedDelays(tasks, interval) {
+    const delays = [];
+    for (const task of tasks) {
+      for (let t = task.start; t <= task.end; t += interval) {
+        delays.push({start: t, duration: task.end - t});
+      }
+      delays.push({start: task.end, duration: 0});
+    }
+
+    return delays;
+  }
+
+  /**
+   * Extracts tasks for EFID computation from the given renderer.
+   * A task is a pair of {start, end} times.
+   */
+  function getTasks(rendererHelper) {
+    const tasks = [];
+    for (const slice of rendererHelper.mainThread.sliceGroup.topLevelSlices) {
+      if (slice.duration >= 5 && !containsForcedGC_(slice)) {
+        tasks.push({
+          start: slice.start,
+          end: slice.start + slice.duration,
+          duration: slice.duration
+        });
+      }
+    }
+
+    return tasks;
+  }
+
+  function computeExpectedFID(rendererHelper, fcpEvent) {
+    if (!fcpEvent) return undefined;
+
+    const tasks = getTasks(rendererHelper);
+    const tasksWithFCPTimeOrigin = tasks
+      .filter(task => task.end > fcpEvent.start)
+      .map(task => {
+        return {
+          start: Math.max(task.start - fcpEvent.start, 0),
+          end: task.end - fcpEvent.start,
+          duration: task.end - Math.max(task.start, fcpEvent.start),
+        };
+      });
+
+    const inputDelays = convertTasksToInterpolatedDelays(
+        tasksWithFCPTimeOrigin, INTEGRAL_ESTIMATION_INTERVAL);
+
+    let eFID = 0;
+    for (let i = 0; i < inputDelays.length; i++) {
+      const currentTime = inputDelays[i].start;
+      const nextTime = i === inputDelays.length - 1 ?
+          1e10 : inputDelays[i + 1].start;
+      const probability = INPUT_DISTRIBUTION.computePercentile(nextTime) -
+          INPUT_DISTRIBUTION.computePercentile(currentTime);
+      eFID += probability * inputDelays[i].duration;
+    }
+
+    return eFID;
+  }
+
+
+  /**
+   * Returns true if the slice contains a forced GC event. Some stories force
+   * garbage collection before sampling memory usage. Since a forced GC takes
+   * long time we need to ignore it to avoid biasing the input latency results.
+   */
+  function containsForcedGC_(slice) {
+    return slice.findTopmostSlicesRelativeToThisSlice(
+        tr.metrics.v8.utils.isForcedGarbageCollectionEvent).length > 0;
+  }
+
+  /**
+   * @param {!string} name Name of the histogram.
+   * @param {!string} description Description of the histogram.
+   * @returns {!tr.v.Histogram}
+   */
+  function createHistogramForEFID_(name, description) {
+    const histogram = new tr.v.Histogram(name,
+        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter, EFID_BOUNDARIES);
+    histogram.customizeSummaryOptions({
+      avg: false,
+      count: false,
+      max: true,
+      min: false,
+      std: false,
+      sum: false,
+    });
+    histogram.description = description;
+    return histogram;
+  }
+
+  function expectedFirstInputDelayMetric(histograms, model) {
+    const chromeHelper = model.getOrCreateHelper(
+        tr.model.helpers.ChromeModelHelper);
+    const rendererHelpers = Object.values(chromeHelper.rendererHelpers);
+    addExpectedFirstInputDelayMetric_(
+        'renderer_efid', rendererHelpers, histograms,
+        model);
+  }
+
+  function getMainFrameNavStart(rendererHelper) {
+    const frameToNavStartEvents =
+        tr.e.chrome.EventFinderUtils.getSortedMainThreadEventsByFrame(
+            rendererHelper, 'navigationStart', 'blink.user_timing');
+
+    // Probably totally wrong
+    for (const [frameId, navStartEvents] of frameToNavStartEvents) {
+      const navStart = navStartEvents
+          .find(evt => evt.args.data.isLoadingMainFrame);
+      if (navStart) return {frameId, navStart};
+    }
+
+    return undefined;
+  }
+
+  /**
+  * @callback EventTimesCallback
+  * @param {!tr.b.Event} event
+  * @return {{start: !number, duration: !number}} event start time and duration.
+  */
+
+  /**
+   * The actual implementation of the EFID metric.
+   * @param {!string} efidName the metric name part of the histogram name.
+   * @param {!Array.<tr.model.helpers.ChromeRendererHelper>} rendererHelpers.
+   */
+  function addExpectedFirstInputDelayMetric_(efidName,
+      rendererHelpers, histograms, model) {
+    const totalHistogram = createHistogramForEFID_(
+        `total:${efidName}`,
+        'The expected value of FID for a given renderer');
+    for (const rendererHelper of rendererHelpers) {
+      if (rendererHelper.isChromeTracingUI) continue;
+
+      const frameIdAndNavStart = getMainFrameNavStart(rendererHelper);
+      if (!frameIdAndNavStart) continue;
+
+      const {frameId, navStart} = frameIdAndNavStart;
+      const dclSearchRange = tr.b.math.Range.fromExplicitRange(
+          navStart.start, rendererHelper.modelHelper.chromeBounds.max);
+      const frameToFCPEvents =
+            tr.e.chrome.EventFinderUtils.getSortedMainThreadEventsByFrame(
+                rendererHelper, 'firstContentfulPaint', 'loading');
+      const fcpEventsForFrame = frameToFCPEvents.get(frameId) || [];
+      // Reuse the dclSearchRange.
+      const fcpEventsInWindow =
+            dclSearchRange.filterArray(fcpEventsForFrame, event => event.start);
+      let fcpEvent = undefined;
+      if (fcpEventsInWindow.length !== 0) {
+        // There really shouldn't be more than one FCP event, but if there is,
+        // pick the last one.
+        fcpEvent = fcpEventsInWindow[fcpEventsInWindow.length - 1];
+      }
+
+      const fid = computeExpectedFID(rendererHelper, fcpEvent);
+      if (fid === undefined) continue;
+      totalHistogram.addSample(fid);
+    }
+
+    histograms.addHistogram(totalHistogram);
+  }
+
+  tr.metrics.MetricRegistry.register(expectedFirstInputDelayMetric);
+
+  return {
+    expectedFirstInputDelayMetric,
+  };
+});
+</script>
