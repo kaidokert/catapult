@@ -144,7 +144,10 @@ class RunTestFullTest(_RunTestExecutionTest):
         'bot_id': 'bot id',
         'exit_code': 0,
         'failure': False,
-        'outputs_ref': {'isolated': 'output isolate hash'},
+        'outputs_ref': {
+            'isolatedserver': 'output isolate server',
+            'isolated': 'output isolate hash',
+        },
         'state': 'COMPLETED',
     }
     execution.Poll()
@@ -152,20 +155,23 @@ class RunTestFullTest(_RunTestExecutionTest):
     self.assertTrue(execution.completed)
     self.assertFalse(execution.failed)
     self.assertEqual(execution.result_values, ())
-    self.assertEqual(execution.result_arguments,
-                     {'isolate_hash': 'output isolate hash'})
-    self.assertEqual(
-        {
-            'completed': True,
-            'exception': None,
-            'details': {
-                'bot_id': 'bot id',
-                'task_id': 'task id',
-            },
-            'result_arguments': {'isolate_hash': 'output isolate hash'},
-            'result_values': (),
+    self.assertEqual(execution.result_arguments, {
+        'isolate_server': 'output isolate server',
+        'isolate_hash': 'output isolate hash',
+    })
+    self.assertEqual(execution.AsDict(), {
+        'completed': True,
+        'exception': None,
+        'details': {
+            'bot_id': 'bot id',
+            'task_id': 'task id',
         },
-        execution.AsDict())
+        'result_arguments': {
+            'isolate_server': 'output isolate server',
+            'isolate_hash': 'output isolate hash',
+        },
+        'result_values': (),
+    })
 
     # Start a second Execution on another Change. It should use the bot_id
     # from the first execution.
@@ -254,7 +260,10 @@ class BotIdHandlingTest(_RunTestExecutionTest):
         'bot_id': 'bot id',
         'exit_code': 0,
         'failure': False,
-        'outputs_ref': {'isolated': 'output isolate hash'},
+        'outputs_ref': {
+            'isolatedserver': 'output isolate server',
+            'isolated': 'output isolate hash',
+        },
         'state': 'COMPLETED',
     }
     execution = quest.Start('change_2', 'input isolate hash')
@@ -284,7 +293,10 @@ class BotIdHandlingTest(_RunTestExecutionTest):
         'bot_id': 'bot id',
         'exit_code': 0,
         'failure': False,
-        'outputs_ref': {'isolated': 'output isolate hash'},
+        'outputs_ref': {
+            'isolatedserver': 'output isolate server',
+            'isolated': 'output isolate hash',
+        },
         'state': 'COMPLETED',
     }
     execution_1.Poll()
