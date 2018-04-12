@@ -23,6 +23,11 @@ _SHERIFF_EMAIL = 'perf-sheriff-group@google.com'
 
 class EmailSheriffTest(testing_common.TestCase):
 
+  def setUp(self):
+    super(EmailSheriffTest, self).setUp()
+    testing_common.SetIsInternalUser('foo@bar.com', True)
+    self.SetCurrentUser('foo@bar.com', is_admin=True)
+
   def _AddTestToStubDataStore(self):
     """Adds a test which will be used in the methods below."""
     bug_label_patterns.AddBugLabelPattern('label1', '*/*/dromaeo/dom')
@@ -66,7 +71,8 @@ class EmailSheriffTest(testing_common.TestCase):
     self.assertEqual(1, len(messages))
     self.assertEqual('gasper-alerts@google.com', messages[0].sender)
     self.assertEqual(
-        'perf-sheriff-group@google.com,sullivan@google.com', messages[0].to)
+        set(['perf-sheriff-group@google.com', 'sullivan@google.com']),
+        set([s.strip() for s in messages[0].to.split(',')]))
 
     name = 'dromaeo/dom on Win7'
     expected_subject = '100.0%% regression in %s at 10002:10004' % name
@@ -99,8 +105,9 @@ class EmailSheriffTest(testing_common.TestCase):
     self.assertEqual(1, len(messages))
     self.assertEqual('gasper-alerts@google.com', messages[0].sender)
     self.assertEqual(
-        'perf-sheriff-group@google.com,sonnyrao@google.com,digit@google.com',
-        messages[0].to)
+        set(['perf-sheriff-group@google.com',
+             'sonnyrao@google.com', 'digit@google.com']),
+        set([s.strip() for s in messages[0].to.split(',')]))
 
   def testEmail_NoSheriffUrl_EmailSentToSheriffRotationEmailAddress(self):
     args = self._GetDefaultMailArgs()
