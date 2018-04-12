@@ -215,7 +215,7 @@ def BotInternalOnly(bot_name, bot_whitelist):
 def GetOrCreateAncestors(
     master_name, bot_name, test_name, internal_only=True,
     benchmark_description='', units=None, improvement_direction=None,
-    unescaped_story_name=None):
+    unescaped_story_name=None, from_histograms=False):
   """Gets or creates all parent Master, Bot, TestMetadata entities for a Row."""
 
   master_entity = _GetOrCreateMaster(master_name)
@@ -238,6 +238,8 @@ def GetOrCreateAncestors(
       test_properties['improvement_direction'] = improvement_direction
     if is_leaf_test and unescaped_story_name is not None:
       test_properties['unescaped_story_name'] = unescaped_story_name
+
+    test_properties['from_histograms'] = from_histograms
     ancestor_test = _GetOrCreateTest(
         ancestor_test_name, test_path, test_properties)
     if index == 0:
