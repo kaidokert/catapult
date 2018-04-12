@@ -76,6 +76,10 @@ tr.exportTo('tr.metrics.sh', function() {
     .createExponential(1, 40e3, 35)
     .addExponentialBins(80e3, 15);
 
+  const EFID_BOUNDARIES = tr.v.HistogramBinBoundaries
+    .createExponential(1, 1e3, 20)
+    .addExponentialBins(10e3, 15);
+
   const SUMMARY_OPTIONS = {
     avg: true,
     count: false,
@@ -257,6 +261,36 @@ tr.exportTo('tr.metrics.sh', function() {
     };
   }
 
+  function decorateEFIDSampleWithDiagnostics_(rendererHelper,
+      efid, navigationStartEvent, firstContentfulPaintTime, interactiveTime,
+      url) {
+    if (efid === undefined) return undefined;
+    const navigationStartTime = navigationStartEvent.start;
+    const navStartToEventTimeRange =
+        tr.b.math.Range.fromExplicitRange(
+            navigationStartTime, rendererHelper.modelHelper.chromeBounds.max);
+    const networkEvents = getNetworkEventsInRange(
+        rendererHelper.process, navStartToEventTimeRange);
+    const breakdownTree = tr.metrics.sh.generateWallClockTimeBreakdownTree(
+        rendererHelper.mainThread, networkEvents,
+        navStartToEventTimeRange);
+    const breakdownDiagnostic = createBreakdownDiagnostic(breakdownTree);
+    return {
+      value: efid,
+      diagnostics: tr.v.d.DiagnosticMap.fromObject({
+        'Start': new RelatedEventSet(navigationStartEvent),
+        'Navigation infos': new tr.v.d.GenericSet([{
+          url,
+          pid: rendererHelper.pid,
+          navigationStartTime,
+          firstContentfulPaintTime,
+          interactiveTime,
+        }]),
+        'Breakdown of [navStart, eventTimestamp]': breakdownDiagnostic,
+      }),
+    };
+  }
+
   function collectLoadingMetricsForRenderer(rendererHelper) {
     const frameToNavStartEvents =
         EventFinderUtils.getSortedMainThreadEventsByFrame(
@@ -285,6 +319,7 @@ tr.exportTo('tr.metrics.sh', function() {
     const firstCpuIdleSamples = [];
     const firstMeaningfulPaintSamples = [];
     const firstMeaningfulPaintCpuTimeSamples = [];
+    const efidSamples = [];
     for (const expectation of model.userModel.expectations) {
       if (!(expectation instanceof tr.model.um.LoadExpectation)) continue;
       if (tr.e.chrome.CHROME_INTERNAL_URLS.includes(expectation.url)) {
@@ -314,6 +349,14 @@ tr.exportTo('tr.metrics.sh', function() {
             expectation.fmpEvent.start,
             expectation.domContentLoadedEndEvent.start, expectation.url));
       }
+      if (expectation.expectedFirstInputDelay !== undefined) {
+        efidSamples.push(decorateEFIDSampleWithDiagnostics_(
+            rendererHelper, expectation.expectedFirstInputDelay,
+            expectation.navigationStart,
+            expectation.fcpEvent.start,
+            expectation.timeToInteractive,
+            expectation.url));
+      }
     }
 
     return {
@@ -321,6 +364,7 @@ tr.exportTo('tr.metrics.sh', function() {
       firstMeaningfulPaintCpuTimeSamples,
       firstCpuIdleSamples,
       interactiveSamples,
+      efidSamples,
     };
   }
 
@@ -408,6 +452,12 @@ tr.exportTo('tr.metrics.sh', function() {
           description: 'Time to First CPU Idle',
           summaryOptions: SUMMARY_OPTIONS,
         });
+    const expectedFirstInputDelayHistogram = histograms.createHistogram(
+        'expectedFirstInputDelay', timeDurationInMs_smallerIsBetter, [], {
+          binBoundaries: EFID_BOUNDARIES,
+          description: 'Expected First Input Delay',
+          summaryOptions: SUMMARY_OPTIONS,
+        });
 
     const chromeHelper = model.getOrCreateHelper(
         tr.model.helpers.ChromeModelHelper);
@@ -444,6 +494,10 @@ tr.exportTo('tr.metrics.sh', function() {
     addSamplesToHistogram(
         samplesSet.firstCpuIdleSamples,
         timeToFirstCpuIdleHistogram,
+        histograms);
+    addSamplesToHistogram(
+        samplesSet.efidSamples,
+        expectedFirstInputDelayHistogram,
         histograms);
   }
 

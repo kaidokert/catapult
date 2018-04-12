@@ -5,7 +5,9 @@ Use of this source code is governed by a BSD-style license that can be
 found in the LICENSE file.
 -->
 
+<link rel="import" href="/tracing/base/math/statistics.html">
 <link rel="import" href="/tracing/extras/chrome/event_finder_utils.html">
+<link rel="import" href="/tracing/metrics/v8/utils.html">
 <link rel="import" href="/tracing/value/histogram_set.html">
 
 <script>
@@ -19,6 +21,88 @@ tr.exportTo('tr.e.chrome', function() {
   function hasTitleAndCategory(event, title, category) {
     return event.title === title && event.category &&
       tr.b.getCategoryParts(event.category).includes(category);
+  }
+
+  // SEE https://docs.google.com/document/d/1w61RapIN6OAQhIXTh2O6D57NZYiQhiF-o0AmbyK2B9s/edit
+
+  // Approximate the curve by sampling every 5ms
+  const INTEGRAL_ESTIMATION_INTERVAL = 5;
+  // Model the probability of user input at a given time with a
+  // log-normal distribution fit to UMA data.
+  const INPUT_DISTRIBUTION = tr.b.math.Statistics.LogNormalDistribution
+      .fromMedianAndDiminishingReturns(3412, 160);
+
+
+  function convertTasksToInterpolatedDelays(tasks, interval) {
+    const delays = [];
+    for (const task of tasks) {
+      for (let t = task.start; t <= task.end; t += interval) {
+        delays.push({start: t, duration: task.end - t});
+      }
+      delays.push({start: task.end, duration: 0});
+    }
+
+    return delays;
+  }
+
+  /**
+   * Extracts tasks for EFID computation from the given renderer.
+   * A task is a pair of {start, end} times.
+   */
+  function getTasks(rendererHelper) {
+    const tasks = [];
+    for (const slice of rendererHelper.mainThread.sliceGroup.topLevelSlices) {
+      if (slice.duration >= 5 && !containsForcedGC_(slice)) {
+        tasks.push({
+          start: slice.start,
+          end: slice.start + slice.duration,
+          duration: slice.duration
+        });
+      }
+    }
+
+    return tasks;
+  }
+
+  function computeExpectedFID(rendererHelper, fcpEvent) {
+    if (!fcpEvent) return undefined;
+
+    const tasks = getTasks(rendererHelper);
+    const tasksWithFCPTimeOrigin = tasks
+      .filter(task => task.end > fcpEvent.start)
+      .map(task => {
+        return {
+          start: Math.max(task.start - fcpEvent.start, 0),
+          end: task.end - fcpEvent.start,
+          duration: task.end - Math.max(task.start, fcpEvent.start),
+        };
+      });
+
+    const inputDelays = convertTasksToInterpolatedDelays(
+        tasksWithFCPTimeOrigin, INTEGRAL_ESTIMATION_INTERVAL);
+
+    let eFID = 0;
+    for (let i = 0; i < inputDelays.length; i++) {
+      const currentTime = inputDelays[i].start;
+      const nextTime = i === inputDelays.length - 1 ?
+          1e10 : inputDelays[i + 1].start;
+      const probability = INPUT_DISTRIBUTION.computePercentile(nextTime) -
+          INPUT_DISTRIBUTION.computePercentile(currentTime);
+      eFID += probability * inputDelays[i].duration;
+    }
+
+    return eFID;
+  }
+
+
+  /**
+   * Returns true if the slice contains a forced GC event. Some stories force
+   * garbage collection before sampling memory usage. Since a forced GC takes
+   * long time we need to ignore it to avoid biasing the input latency results.
+   */
+  function containsForcedGC_(slice) {
+    return slice.findTopmostSlicesRelativeToThisSlice(
+        tr.metrics.v8.utils.isForcedGarbageCollectionEvent).length > 0;
   }
 
   function getNavStartTimestamps(rendererHelper) {
@@ -365,6 +449,7 @@ tr.exportTo('tr.e.chrome', function() {
   }
 
   return {
+    computeExpectedFID,
     getPostInteractiveTaskWindows,
     getNavStartTimestamps,
     getInteractiveTimestamps,
