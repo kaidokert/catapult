@@ -104,6 +104,8 @@ class AddHistogramsQueueTest(testing_common.TestCase):
 
     tests = graph_data.TestMetadata.query().fetch()
     self.assertEqual(8, len(tests))
+    for t in tests:
+      self.assertTrue(t.from_histograms)
 
     histograms = histogram.Histogram.query().fetch()
     self.assertEqual(1, len(histograms))

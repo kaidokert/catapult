@@ -243,7 +243,8 @@ def _ProcessRowAndHistogram(params, bot_whitelist):
   parent_test = add_point_queue.GetOrCreateAncestors(
       master, bot, full_test_name, internal_only=internal_only,
       unescaped_story_name=unescaped_story_name,
-      benchmark_description=benchmark_description, **extra_args)
+      benchmark_description=benchmark_description,
+      from_histograms=True, **extra_args)
   test_key = parent_test.key
 
   statistics_scalars = hist.statistics_scalars
@@ -263,7 +264,8 @@ def _ProcessRowAndHistogram(params, bot_whitelist):
       suffixed_name += '/' + rest
     legacy_parent_tests[stat_name] = add_point_queue.GetOrCreateAncestors(
         master, bot, suffixed_name, internal_only=internal_only,
-        unescaped_story_name=unescaped_story_name, **extra_args)
+        unescaped_story_name=unescaped_story_name, from_histograms=True,
+        **extra_args)
 
   return [
       _AddRowsFromData(params, revision, parent_test, legacy_parent_tests,
