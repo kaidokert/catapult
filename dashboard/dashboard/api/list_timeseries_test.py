@@ -49,18 +49,18 @@ class ListTimeseriesTest(testing_common.TestCase):
             '*/*/v8/sunspider/*',
             '*/*/v8/octane/*',
             '*/*/v8/octane'
-        ]).put()
+        ], internal_only=False).put()
 
     sheriff.Sheriff(
         id='V8 Memory Sheriff', email='v8-memory@v8.com', patterns=[
             '*/*/v8/memory/*',
-        ]).put()
+        ], internal_only=False).put()
 
     sheriff.Sheriff(
         id='Chromium Perf Sheriff', email='loadin@Loading.org', patterns=[
             '*/mac/page_cycler/*/*',
             '*/*/page_cycler/warm/*'
-        ]).put()
+        ], internal_only=False).put()
     for bot in ['linux', 'win', 'mac']:
       for path in ['sunspider/Total', 'octane/Total', 'octane', 'memory/Total']:
         testing_common.AddRows(
