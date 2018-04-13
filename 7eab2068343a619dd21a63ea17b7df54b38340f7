@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dc3c746c_24303ae4",
+        "filename": "dashboard/dashboard/pinpoint/models/job_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-04-13T15:10:43Z",
+      "side": 1,
+      "message": "All the tests in this fail because pinpoint commit_info somehow has {\u0027author\u0027: \u0027emailaddress\u0027} and dashboard commit_info has {\u0027author\u0027: {\u0027email\u0027: \u0027emailaddress\u0027}}\n\nAny idea why the pinpoint one is different?? The dashboard one comes from gitiles_service.CommitInfo(). Not sure what the right place in the code to handle the difference is; the pinpoint one seems massaged? gitiles doesn\u0027t provide a \u0027subject\u0027, for example.",
+      "range": {
+        "startLine": 266,
+        "startChar": 75,
+        "endLine": 266,
+        "endChar": 0
+      },
+      "revId": "7eab2068343a619dd21a63ea17b7df54b38340f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
