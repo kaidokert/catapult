@@ -14,7 +14,6 @@ from telemetry.page import shared_page_state
 from telemetry.page import traffic_setting as traffic_setting_module
 from telemetry.internal.actions import action_runner as action_runner_module
 
-
 class Page(story.Story):
 
   def __init__(self, url, page_set=None, base_dir=None, name='',
@@ -88,11 +87,15 @@ class Page(story.Story):
     for _ in xrange(0, 5):
       current_tab.CollectGarbage()
     shared_state.page_test.WillNavigateToPage(self, current_tab)
+    shared_state.simpleperf_controller.WillNavigate()
     shared_state.page_test.RunNavigateSteps(self, current_tab)
+    shared_state.simpleperf_controller.DidNavigate()
     shared_state.page_test.DidNavigateToPage(self, current_tab)
     action_runner = action_runner_module.ActionRunner(
         current_tab, skip_waits=self.skip_waits)
+    shared_state.simpleperf_controller.WillRunPageInteractions()
     self.RunPageInteractions(action_runner)
+    shared_state.simpleperf_controller.DidRunPageInteractions()
 
   def RunNavigateSteps(self, action_runner):
     url = self.file_path_url_with_scheme if self.is_file else self.url
