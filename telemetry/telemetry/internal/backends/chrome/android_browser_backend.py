@@ -13,6 +13,7 @@ from telemetry.internal.browser import user_agent
 from devil.android import app_ui
 from devil.android import device_signal
 from devil.android.sdk import intent
+from devil.android.sdk import version_codes
 
 
 class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
@@ -48,6 +49,11 @@ class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   @property
   def supports_app_ui_interactions(self):
     return True
+
+  @property
+  def supports_simpleperf(self):
+    return (self.platform_backend.device.build_version_sdk >=
+            version_codes.NOUGAT)
 
   def GetAppUi(self):
     if self._app_ui is None:
@@ -144,30 +150,27 @@ class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         signum=device_signal.SIGUSR1)
 
   @property
-  def pid(self):
+  def processes(self):
     try:
-      # Although there might be multiple processes sharing the same name as
-      # the browser app, the browser process is the only one being a direct
-      # descendant of an Android zygote. (See crbug.com/785446)
       zygotes = self.device.ListProcesses('zygote')
       zygote_pids = set(p.pid for p in zygotes)
       assert zygote_pids, 'No Android zygote found'
-
       processes = self.device.ListProcesses(self._backend_settings.package)
-      pids = []
-      for process in processes:
-        if (process.name == self._backend_settings.package and
-            process.ppid in zygote_pids):
-          pids.append(process.pid)
-      assert len(pids) <= 1, 'Found too many browsers: %r' % pids
+      return [p for p in processes if p.ppid in zygote_pids]
     except Exception as exc:
       # Re-raise as an AppCrashException to get further diagnostic information.
       # In particular we also get the values of all local variables above.
       raise exceptions.AppCrashException(
-          self.browser, 'Error getting browser PID: %s' % exc)
-    if not pids:
+          self.browser, 'Error getting browser PIDs: %s' % exc)
+
+  @property
+  def pid(self):
+    package = self._backend_settings.package
+    processes = [p for p in self.processes if p.name == package]
+    assert len(processes) <= 1, 'Found too many browsers: %r' % processes
+    if not processes:
       raise exceptions.BrowserGoneException(self.browser)
-    return pids[0]
+    return processes[0].pid
 
   @property
   def package(self):

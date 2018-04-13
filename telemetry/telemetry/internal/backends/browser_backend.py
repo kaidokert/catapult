@@ -66,6 +66,18 @@ class BrowserBackend(app_backend.AppBackend):
     return self.app
 
   @property
+  def package(self):
+    raise NotImplementedError
+
+  @property
+  def processes(self):
+    raise NotImplementedError
+
+  @property
+  def pid(self):
+    raise NotImplementedError
+
+  @property
   def profiling_controller_backend(self):
     return self._profiling_controller_backend
 
@@ -145,6 +157,12 @@ class BrowserBackend(app_backend.AppBackend):
   def GetSystemInfo(self):
     raise NotImplementedError()
 
+  def GetProcessName(self, cmd_line):
+    raise NotImplementedError()
+
+  def GetThreadType(self, thread_name):
+    raise NotImplementedError()
+
   @property
   def supports_memory_dumping(self):
     return False
@@ -179,6 +197,10 @@ class BrowserBackend(app_backend.AppBackend):
 
   @property
   def supports_overview_mode(self): # pylint: disable=invalid-name
+    return False
+
+  @property
+  def supports_simpleperf(self):
     return False
 
   def EnterOverviewMode(self, timeout): # pylint: disable=unused-argument
