@@ -5,12 +5,25 @@ Use of this source code is governed by a BSD-style license that can be
 found in the LICENSE file.
 -->
 
+<link rel="import" href="/tracing/base/math/statistics.html">
 <link rel="import" href="/tracing/extras/chrome/event_finder_utils.html">
+<link rel="import" href="/tracing/metrics/v8/utils.html">
 <link rel="import" href="/tracing/value/histogram_set.html">
 
 <script>
 'use strict';
 tr.exportTo('tr.e.chrome', function() {
+  // Titles for top level tasks in the scheduler. Any input event queued during
+  // a top level task cannot be handled until the end of that task.
+  const TOP_LEVEL_TASK_TITLES = [
+    // Old name of scheduler top level tasks. Preserved for backwards
+    // compatibility with old traces.
+    'TaskQueueManager::ProcessTaskFromWorkQueue',
+    // This is the name of top level scheduler tasks as of
+    // https://crrev.com/c/883346.
+    'ThreadControllerImpl::DoWork',
+  ];
+
   // TODO(dproy): Because title and category are properties of TimedEvent
   // subclasses and not TimedEvent itself, we have to write our own "has title
   // and category" function rather than having it provided by TimedEvent.
@@ -19,6 +32,108 @@ tr.exportTo('tr.e.chrome', function() {
   function hasTitleAndCategory(event, title, category) {
     return event.title === title && event.category &&
       tr.b.getCategoryParts(event.category).includes(category);
+  }
+
+  // SEE https://docs.google.com/document/d/1w61RapIN6OAQhIXTh2O6D57NZYiQhiF-o0AmbyK2B9s/edit
+
+  // Approximate the curve by sampling every 1ms
+  const INTEGRAL_ESTIMATION_INTERVAL = 1;
+  // Model the probability of user input at a given time with a
+  // log-normal distribution fit to UMA data.
+  const INPUT_DISTRIBUTION = tr.b.math.Statistics.LogNormalDistribution
+      .fromMedianAndDiminishingReturns(3412, 160);
+
+
+  function convertTasksToInterpolatedDelays(tasks, interval) {
+    const delays = [];
+    for (const task of tasks) {
+      for (let t = task.start; t <= task.end; t += interval) {
+        delays.push({start: t, duration: task.end - t,
+          taskIndex: task.taskIndex});
+      }
+      delays.push({start: task.end, duration: 0});
+    }
+
+    return delays;
+  }
+
+  /**
+   * Extracts tasks for EFID computation from the given renderer.
+   * A task is a pair of {start, end} times.
+   */
+  function getTasks(rendererHelper) {
+    const tasks = [];
+
+    for (const title of TOP_LEVEL_TASK_TITLES) {
+      for (const slice of rendererHelper.mainThread
+          .findTopmostSlicesNamed(title)) {
+        if (slice.duration > 0) {
+          tasks.push({
+            start: slice.start,
+            end: slice.start + slice.duration,
+            duration: slice.duration,
+          });
+        }
+      }
+    }
+
+    return tasks;
+  }
+
+  function computeExpectedFIDFromTasks(tasks, fcpEvent) {
+    const tasksWithFCPTimeOrigin = tasks
+      .filter(task => task.end > fcpEvent.start)
+      .map((task, taskIndex) => {
+        return {
+          taskIndex,
+          start: Math.max(task.start - fcpEvent.start, 0),
+          end: task.end - fcpEvent.start,
+          duration: task.end - Math.max(task.start, fcpEvent.start),
+        };
+      });
+
+    const inputDelays = convertTasksToInterpolatedDelays(
+        tasksWithFCPTimeOrigin, INTEGRAL_ESTIMATION_INTERVAL);
+
+    const probabilityByTaskIndex = new Map();
+    let eFID = 0;
+    for (let i = 0; i < inputDelays.length; i++) {
+      const currentTime = inputDelays[i].start;
+      const nextTime = i === inputDelays.length - 1 ?
+          1e10 : inputDelays[i + 1].start;
+      const probability = INPUT_DISTRIBUTION.computePercentile(nextTime) -
+          INPUT_DISTRIBUTION.computePercentile(currentTime);
+      const contribution = probability * inputDelays[i].duration;
+      probabilityByTaskIndex.set(inputDelays[i].taskIndex,
+          probabilityByTaskIndex.get(inputDelays[i].taskIndex) || 0 +
+          probability);
+      eFID += contribution;
+    }
+
+    const top5Tasks = Array.from(probabilityByTaskIndex.entries())
+        .map(([taskIndex, probability]) => Object.assign(
+            {probability}, tasksWithFCPTimeOrigin[taskIndex]))
+        .sort((a, b) => b.probability * b.duration -
+            a.probability * a.duration)
+        .slice(0, 5);
+    return {eFID, top5Tasks};
+  }
+
+  function computeExpectedFID(rendererHelper, fcpEvent) {
+    if (!fcpEvent) return undefined;
+    const tasks = getTasks(rendererHelper);
+    return computeExpectedFIDFromTasks(tasks, fcpEvent);
+  }
+
+
+  /**
+   * Returns true if the slice contains a forced GC event. Some stories force
+   * garbage collection before sampling memory usage. Since a forced GC takes
+   * long time we need to ignore it to avoid biasing the input latency results.
+   */
+  function containsForcedGC_(slice) {
+    return slice.findTopmostSlicesRelativeToThisSlice(
+        tr.metrics.v8.utils.isForcedGarbageCollectionEvent).length > 0;
   }
 
   function getNavStartTimestamps(rendererHelper) {
@@ -365,6 +480,8 @@ tr.exportTo('tr.e.chrome', function() {
   }
 
   return {
+    computeExpectedFID,
+    computeExpectedFIDFromTasks,
     getPostInteractiveTaskWindows,
     getNavStartTimestamps,
     getInteractiveTimestamps,

@@ -204,6 +204,7 @@
       'tracing/metrics/system_health/clock_sync_latency_metric.html',
       'tracing/metrics/system_health/cpu_time_metric.html',
       'tracing/metrics/system_health/cpu_time_tree_data_reporter.html',
+      'tracing/metrics/system_health/expected_first_input_delay_metric.html',
       'tracing/metrics/system_health/expected_queueing_time_metric.html',
       'tracing/metrics/system_health/limited_cpu_time_metric.html',
       'tracing/metrics/system_health/loading_metric.html',

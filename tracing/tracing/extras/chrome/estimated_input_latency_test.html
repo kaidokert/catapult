@@ -18,6 +18,7 @@ found in the LICENSE file.
 'use strict';
 
 tr.b.unittest.testSuite(function() {
+  const computeExpectedFIDFromTasks = tr.e.chrome.computeExpectedFIDFromTasks;
   const getInteractiveTimestamps = tr.e.chrome.getInteractiveTimestamps;
   const getPostInteractiveTaskWindows =
     tr.e.chrome.getPostInteractiveTaskWindows;
@@ -211,6 +212,111 @@ tr.b.unittest.testSuite(function() {
     const traceEndTimestamp = [100];
     assert.throws(() => getPostInteractiveTaskWindows(
         interactiveTimestamps, navStartTimestamps, traceEndTimestamp));
+  });
+
+  test('expectedFID_empty', () => {
+    const fcp = {start: 1000};
+    const tasks = [
+      {start: 0, end: 1000},
+    ];
+
+    assert.closeTo(computeExpectedFIDFromTasks(tasks, fcp).eFID, 0, 1e-6);
+  });
+
+  test('expectedFID_early', () => {
+    let fcp = {start: 0};
+    let tasks = [{start: 0, end: 1000}];
+    assert.closeTo(computeExpectedFIDFromTasks(tasks, fcp).eFID, 49, 1);
+
+    fcp = {start: 171234};
+    tasks = [{start: fcp.start, end: fcp.start + 1000}];
+    assert.closeTo(computeExpectedFIDFromTasks(tasks, fcp).eFID, 49, 1);
+  });
+
+  test('expectedFID_middle', () => {
+    const fcp = {start: 0};
+    const tasks = [
+      {start: 3000, end: 4000},
+    ];
+
+    // should be higher than early
+    assert.closeTo(computeExpectedFIDFromTasks(tasks, fcp).eFID, 55, 1);
+  });
+
+  test('expectedFID_late', () => {
+    const fcp = {start: 0};
+    const tasks = [
+      {start: 15000, end: 16000},
+    ];
+
+    // should be very small
+    assert.closeTo(computeExpectedFIDFromTasks(tasks, fcp).eFID, 5, 1);
+  });
+
+  test('expectedFID_continuous', () => {
+    const fcp = {start: 0};
+    const tasks = [];
+    // 50ms tasks "forever"
+    for (let i = 0; i < 1000; i++) {
+      const start = i * 50;
+      tasks.push({start, end: start + 50});
+    }
+
+    // should be 50 / 2
+    assert.closeTo(computeExpectedFIDFromTasks(tasks, fcp).eFID, 25, 1);
+  });
+
+  test('expectedFID_continuous_long', () => {
+    const fcp = {start: 0};
+    const tasks = [];
+    // 1000ms tasks "forever"
+    for (let i = 0; i < 1000; i++) {
+      const start = i * 1000;
+      tasks.push({start, end: start + 1000});
+    }
+
+    // should be 1000 / 2
+    assert.closeTo(computeExpectedFIDFromTasks(tasks, fcp).eFID, 500, 1);
+  });
+
+  test('expectedFID_continuous_heavy_early', () => {
+    const fcp = {start: 0};
+    const tasks = [];
+    let time = 0;
+    // 100ms tasks for 5 seconds straight
+    for (let i = 0; i < 50; i++) {
+      tasks.push({start: time, end: time + 100});
+      time += 100;
+    }
+
+    // 10ms tasks for 5 seconds straight
+    for (let i = 0; i < 500; i++) {
+      tasks.push({start: time, end: time + 10});
+      time += 10;
+    }
+
+    // should be closer to 50 than 5
+    assert.closeTo(computeExpectedFIDFromTasks(tasks, fcp).eFID, 33, 1);
+  });
+
+  test('expectedFID_continuous_heavy_late', () => {
+    const fcp = {start: 0};
+    const tasks = [];
+    let time = 0;
+    // 10ms tasks for 5 seconds straight
+    for (let i = 0; i < 500; i++) {
+      tasks.push({start: time, end: time + 10});
+      time += 10;
+    }
+
+    // 100ms tasks for 5 seconds straight
+    for (let i = 0; i < 50; i++) {
+      tasks.push({start: time, end: time + 100});
+      time += 100;
+    }
+
+    // should be closer to 5 than 50
+    assert.closeTo(computeExpectedFIDFromTasks(tasks, fcp).eFID, 14, 1);
   });
 
   test('expectedQueueingTime_noTasks', () => {
