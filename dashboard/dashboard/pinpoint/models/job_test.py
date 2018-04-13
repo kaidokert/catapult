@@ -255,6 +255,32 @@ class BugCommentTest(testing_common.TestCase):
         cc_list=['author1@chromium.org', 'author2@chromium.org',
                  'reviewer1@chromium.org', 'reviewer2@chromium.org'])
 
+  @mock.patch('dashboard.pinpoint.models.change.commit.Commit.AsDict')
+  @mock.patch.object(job.job_state.JobState, 'Differences')
+  def testCompletedWithAutoroll(self, differences, commit_as_dict):
+    c = change.Change((change.Commit('chromium', 'git_hash'),))
+    differences.return_value = [(1, c)]
+    commit_as_dict.return_value = {
+        'repository': 'chromium',
+        'git_hash': 'git_hash',
+        'author': 'roll@skia-buildbots.google.com.iam.gserviceaccount.com',
+        'subject': 'Subject.',
+        'reviewers': ['reviewer@chromium.org'],
+        'url': 'https://example.com/repository/+/git_hash',
+        'message': 'Subject.\n\nTBR=sheriff@bar.com\n\nblah'
+    }
+
+    self.get_issue.return_value = {'status': 'Untriaged'}
+
+    j = job.Job.New({}, [], True, bug_id=123456)
+    j.put()
+    j.Run()
+
+    self.add_bug_comment.assert_called_once_with(
+        123456, _COMMENT_COMPLETED_WITH_COMMIT,
+        status='Assigned', owner='sheriff@bar.com',
+        cc_list=['author@chromium.org', 'reviewer@chromium.org'])
+
   @mock.patch.object(job.job_state.JobState, 'ScheduleWork',
                      mock.MagicMock(side_effect=AssertionError))
   def testFailed(self):
