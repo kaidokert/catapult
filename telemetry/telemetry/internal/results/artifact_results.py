@@ -25,8 +25,9 @@ class NoopArtifactResults(object):
     del test_name
     return {}
 
-  def CreateArtifact(self, story, name, run_number=None):
-    del story, name, run_number
+  def CreateArtifact(self, story, name, run_number=None, prefix='',
+                     suffix=''):
+    del story, name, run_number, prefix, suffix
     return open(os.devnull, 'w')
 
   def IterTestAndArtifacts(self):
@@ -81,7 +82,8 @@ class ArtifactResults(object):
     return self._artifact_dir
 
   @contextlib.contextmanager
-  def CreateArtifact(self, story, name, run_number=None):
+  def CreateArtifact(self, story, name, run_number=None, prefix='',
+                     suffix=''):
     """Create an artifact.
 
     Args:
@@ -92,12 +94,15 @@ class ArtifactResults(object):
           new `None` artifacts will be inserted, with the assumption that
           other runs of this test did not produce the same set of artifacts.
           NOT CURRENTLY IMPLEMENTED.
+      * prefix: A string to appear at the beginning of the file name.
+      * suffix: A string to appear at the end of the file name.
     Returns:
       A generator yielding a file object.
     """
     del run_number
+    prefix = prefix or 'telemetry_test'
     with tempfile.NamedTemporaryFile(
-        prefix='telemetry_test', dir=self._artifact_dir,
+        prefix=prefix, suffix=suffix, dir=self._artifact_dir,
         delete=False) as file_obj:
       self.AddArtifact(story, name, file_obj.name)
       yield file_obj

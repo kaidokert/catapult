@@ -166,6 +166,27 @@ class BrowserFinderOptions(optparse.Values):
         'used.')
     parser.add_option_group(group)
 
+    # CPU profiling on Android.
+    group = optparse.OptionGroup(parser, 'CPU profiling on Android')
+    group.add_option(
+        '--simpleperf-process', dest='simpleperf_process',
+        default='renderer:main', metavar='PROCESS_NAME[:THREAD_NAME]',
+        help='Run the simpleperf profiler on this process/thread '
+        '(default=%default).')
+    group.add_option(
+        '--simpleperf-period', dest='simpleperf_periods', type='choice',
+        choices=('navigation', 'interactions'), action='append',
+        default=[], metavar='PERIOD',
+        help='Run the simpleperf profiler during this test period. '
+        'May be specified multiple times; available choices '
+        'are ["navigation", "interactions"].')
+    group.add_option(
+        '--simpleperf-frequency', default=1000, metavar='FREQUENCY',
+        type=int,
+        help='Frequency of simpleperf samples, in samples per second '
+        '(default=%default).')
+    parser.add_option_group(group)
+
     # Browser options.
     self.browser_options.AddCommandLineArgs(parser)
 
