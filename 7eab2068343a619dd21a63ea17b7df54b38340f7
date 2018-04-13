@@ -22,6 +22,30 @@
       "revId": "7eab2068343a619dd21a63ea17b7df54b38340f7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "118922b1_4396e9fe",
+        "filename": "dashboard/dashboard/pinpoint/models/job_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-04-13T15:28:10Z",
+      "side": 1,
+      "message": "Yeah, Pinpoint\u0027s \u0027commit\u0027 wraps the call to gitiles_service.CommitInfo() and massages it for the fields Pinpoint is interested in. You should be able to mock out gitiles_service.CommitInfo instead, and that should work for both the dashboard side and Pinpoint.",
+      "parentUuid": "dc3c746c_24303ae4",
+      "range": {
+        "startLine": 266,
+        "startChar": 75,
+        "endLine": 266,
+        "endChar": 0
+      },
+      "revId": "7eab2068343a619dd21a63ea17b7df54b38340f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
