@@ -94,6 +94,7 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
         'author': commit_info['author']['email'],
         'reviewers': _ParseReviewers(commit_info['message']),
         'time': commit_info['committer']['time'],
+        'message': commit_info['message'],
     }
     commit_position = _ParseCommitPosition(commit_info['message'])
     if commit_position:
