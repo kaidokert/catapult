@@ -166,7 +166,6 @@ def _DeleteTestData(test_key, notify):
       _SendNotificationEmail(descendant, notify)
       futures.append(descendant.key.delete_async())
 
-
   ndb.Future.wait_all(futures)
   return finished
 
