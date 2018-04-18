@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6dbf940d_48d50327",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1163624
+      },
+      "writtenOn": "2018-04-18T18:59:44Z",
+      "side": 1,
+      "message": "This check was failing when I did not subclass TimelineBasedMeasurement and this seemed like a reasonable fix.",
+      "revId": "f4a7c40459ac46fe2d5c1a77424a438b023ca980",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92fd8634_98beebe0",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1163624
+      },
+      "writtenOn": "2018-04-18T18:59:44Z",
+      "side": 1,
+      "message": "This (and other parts of this file) failed when a platform was not specified in SharedBrowserlessStory. I put conditionals around all the places that failed.",
+      "revId": "f4a7c40459ac46fe2d5c1a77424a438b023ca980",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b05d8f9d_de279252",
+        "filename": "telemetry/telemetry/web_perf/local_trace_measurement.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163624
+      },
+      "writtenOn": "2018-04-18T18:59:44Z",
+      "side": 1,
+      "message": "After thinking about it: CT should be the one that downloads the specified trace files to the machines, it will do it using parallel goroutines and the Storage API and will be very fast. That is why I named this local_trace_measurement (vs cloud_trace_measurement).",
+      "revId": "f4a7c40459ac46fe2d5c1a77424a438b023ca980",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2316a4f4_9c887789",
+        "filename": "telemetry/telemetry/web_perf/local_trace_measurement.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1163624
+      },
+      "writtenOn": "2018-04-18T18:59:44Z",
+      "side": 1,
+      "message": "What is the best way to pass a flag value all the way here?",
+      "revId": "f4a7c40459ac46fe2d5c1a77424a438b023ca980",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
