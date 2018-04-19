@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "adff39cc_e5fef4c3",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-04-19T21:23:23Z",
+      "side": 1,
+      "message": "We shouldn\u0027t need this if? I think you can modify _MakeDeviceInfoDiagnostic to return an empty dict",
+      "revId": "879d672903e48f54ef739b80b8658bd7f8a3cc54",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
