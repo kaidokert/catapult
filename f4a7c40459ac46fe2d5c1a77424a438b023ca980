@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "7f688982_28b134e5",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-04-19T12:48:20Z",
+      "side": 1,
+      "message": "Yeah, these code was a bit hacky in the first place..",
+      "parentUuid": "92fd8634_98beebe0",
+      "revId": "f4a7c40459ac46fe2d5c1a77424a438b023ca980",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b05d8f9d_de279252",
         "filename": "telemetry/telemetry/web_perf/local_trace_measurement.py",
         "patchSetId": 2
@@ -53,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "6baf37b1_e361f6fe",
+        "filename": "telemetry/telemetry/web_perf/local_trace_measurement.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-04-19T12:48:20Z",
+      "side": 1,
+      "message": "+1 great idea",
+      "parentUuid": "b05d8f9d_de279252",
+      "revId": "f4a7c40459ac46fe2d5c1a77424a438b023ca980",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2316a4f4_9c887789",
         "filename": "telemetry/telemetry/web_perf/local_trace_measurement.py",
         "patchSetId": 2
@@ -64,6 +100,24 @@
       "writtenOn": "2018-04-18T18:59:44Z",
       "side": 1,
       "message": "What is the best way to pass a flag value all the way here?",
+      "revId": "f4a7c40459ac46fe2d5c1a77424a438b023ca980",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f19e3be_fa6247ff",
+        "filename": "telemetry/telemetry/web_perf/local_trace_measurement.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-04-19T12:48:20Z",
+      "side": 1,
+      "message": "We can \"cheat\" a bit by making these file name the url of the \"page\". So at this place, we can use results.current_page",
+      "parentUuid": "2316a4f4_9c887789",
       "revId": "f4a7c40459ac46fe2d5c1a77424a438b023ca980",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
