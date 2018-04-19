@@ -1,0 +1,348 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e0c3b57_b51b844e",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-04-19T19:11:52Z",
+      "side": 1,
+      "message": "nit: It seems like this is specifically looking for the browser processes, right? In that case, I\u0027d vote to rename this variable browser_processes for clarity",
+      "range": {
+        "startLine": 169,
+        "startChar": 4,
+        "endLine": 169,
+        "endChar": 13
+      },
+      "revId": "bd4d530f973e4eb09c848f96f48b09a5a3b91f86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "797f4817_4c8b5d23",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-04-19T19:11:52Z",
+      "side": 1,
+      "message": "nit: should this be ChildProcessMain?",
+      "range": {
+        "startLine": 252,
+        "startChar": 32,
+        "endLine": 252,
+        "endChar": 47
+      },
+      "revId": "bd4d530f973e4eb09c848f96f48b09a5a3b91f86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c58b225_a9e3eeb2",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-04-19T19:11:52Z",
+      "side": 1,
+      "message": "Can you move all of these methods from browser to the Android browser backend? Some of these are Android-specific concepts, and we don\u0027t want to put things that are specific to Android in the general Browser base class. In an effort to constrain the API that we expose (this is the API that everyone that writes a benchmark story has access to), you can just put pid and processes in that same class, even though they\u0027re more cross-platform ideas. That way, we can make sure that people don\u0027t use this stuff in weird, unsupported ways",
+      "range": {
+        "startLine": 66,
+        "startChar": 6,
+        "endLine": 66,
+        "endChar": 13
+      },
+      "revId": "bd4d530f973e4eb09c848f96f48b09a5a3b91f86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "737ec710_2414d078",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-04-19T19:11:52Z",
+      "side": 1,
+      "message": "Maybe simpleperf-target? It seems like, given the fact that we may in fact be targeting a thread and not a process here, --simpleperf-process is a somewhat misleading flag name",
+      "range": {
+        "startLine": 172,
+        "startChar": 9,
+        "endLine": 172,
+        "endChar": 29
+      },
+      "revId": "bd4d530f973e4eb09c848f96f48b09a5a3b91f86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "357f5ab5_e506befd",
+        "filename": "telemetry/telemetry/internal/platform/simpleperf_controller.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-04-19T19:11:52Z",
+      "side": 1,
+      "message": "As discussed offline, I think we want this to have more of an interface where the SimpleperfController knows what target to profile (in terms of process ID and thread ID), but doesn\u0027t know any information about the contents of the time span it\u0027s profiling. I think this interface would look something like the SimpleperfController accepting only a Browser object and frequency in its constructor, and it has methods like:\n\n# Starts sampling into a file named trace_name\nStartSampling(trace_name)\n\n# Stops sampling\nStopSampling()\n\n# Returns a dictionary where each key is the string name of a trace name (in our case, the period) and each value is\n# a file handle to a simpleperf trace collected during that period.\nGetResults()\n\n# Clears the list of trace files that have been created\nClearResults()\n\nAlso, Ned and I think that this should probably be called a BrowserSimpleperfController if it\u0027s going to accept a Browser object in the constructor",
+      "revId": "bd4d530f973e4eb09c848f96f48b09a5a3b91f86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "483e4f79_b3cbd2c6",
+        "filename": "telemetry/telemetry/internal/platform/simpleperf_controller.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-04-19T19:11:52Z",
+      "side": 1,
+      "message": "I think that name these types of constants like:\n\nDEVICE_PROFILERS_DIR \u003d \u0027...\u0027\n\ne.g. https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/image_processing/screen_finder.py?l\u003d67",
+      "range": {
+        "startLine": 11,
+        "startChar": 3,
+        "endLine": 11,
+        "endChar": 23
+      },
+      "revId": "bd4d530f973e4eb09c848f96f48b09a5a3b91f86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f41bcd2_0603e010",
+        "filename": "telemetry/telemetry/internal/platform/simpleperf_controller.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-04-19T19:11:52Z",
+      "side": 1,
+      "message": "This should only accept a browser and it should be able to get all the process and thread info that it needs from that browser",
+      "range": {
+        "startLine": 14,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 55
+      },
+      "revId": "bd4d530f973e4eb09c848f96f48b09a5a3b91f86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37eb7322_6a52454a",
+        "filename": "telemetry/telemetry/internal/platform/simpleperf_controller.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-04-19T19:11:52Z",
+      "side": 1,
+      "message": "nit: use statistics.Clamp(int(frequency), 1, 4000)\n\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/util/statistics.py?type\u003dcs\u0026q\u003df:telemetry+clamp\u0026sq\u003dpackage:chromium\u0026l\u003d10",
+      "revId": "bd4d530f973e4eb09c848f96f48b09a5a3b91f86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "411e0c8c_23fa320f",
+        "filename": "telemetry/telemetry/internal/platform/simpleperf_controller.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-04-19T19:11:52Z",
+      "side": 1,
+      "message": "This is a little bit weird because it adds a circular dependency between the browser (which knows whether it can run SimplePerf) and the SimplePerf controller (which knows about the browser). In order to break this circular dependency, we\u0027d rather you eliminated the browser.supports_simpleperf attribute and just did a direct test of:\n\nif browser.platform.GetOSName() !\u003d \u0027android\u0027:\n  return\n\n# StartSampling() logic here",
+      "range": {
+        "startLine": 42,
+        "startChar": 25,
+        "endLine": 42,
+        "endChar": 44
+      },
+      "revId": "bd4d530f973e4eb09c848f96f48b09a5a3b91f86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f276aa3_6d2ac44f",
+        "filename": "telemetry/telemetry/internal/platform/simpleperf_controller.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-04-19T19:11:52Z",
+      "side": 1,
+      "message": "Could you add a comment about why this is necessary?",
+      "revId": "bd4d530f973e4eb09c848f96f48b09a5a3b91f86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14f9a944_ee8aa650",
+        "filename": "telemetry/telemetry/internal/platform/simpleperf_controller.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-04-19T19:11:52Z",
+      "side": 1,
+      "message": "Could you add a comment about what the -g flag does? e.g.\n\n\u0027record\u0027,\n\u0027-g\u0027,  # Enables flux capacitor.\n\u0027-f\u0027, str(self._frequency)\n...\n\n(I think that frequency and -o are self explanatory, given that they\u0027re both directly followed by their respective variables)",
+      "range": {
+        "startLine": 59,
+        "startChar": 61,
+        "endLine": 59,
+        "endChar": 62
+      },
+      "revId": "bd4d530f973e4eb09c848f96f48b09a5a3b91f86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eacff0ef_546900a1",
+        "filename": "telemetry/telemetry/internal/platform/simpleperf_controller.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-04-19T19:11:52Z",
+      "side": 1,
+      "message": "(here and elsewhere): All private functions should lookl ike _StopSampling, not _stop_sampling\n\nsee https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/PRESUBMIT.py?type\u003dcs\u0026q\u003df:third_party/catapult/telemetry+def%5C+_\u0026sq\u003dpackage:chromium\u0026l\u003d18",
+      "range": {
+        "startLine": 75,
+        "startChar": 6,
+        "endLine": 75,
+        "endChar": 20
+      },
+      "revId": "bd4d530f973e4eb09c848f96f48b09a5a3b91f86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fed22062_a12a0d7e",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-04-19T19:11:52Z",
+      "side": 1,
+      "message": "As mentioned above, I think Ned feels strongly that we don\u0027t want to add prefix and suffix parameters unless absolutely necessary, as the same thing can be achieved by just modifying the \u0027name\u0027 parameter",
+      "range": {
+        "startLine": 85,
+        "startChar": 6,
+        "endLine": 85,
+        "endChar": 20
+      },
+      "revId": "bd4d530f973e4eb09c848f96f48b09a5a3b91f86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66b0aaae_a9793db8",
+        "filename": "telemetry/telemetry/internal/results/results_options.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-04-19T19:11:52Z",
+      "side": 1,
+      "message": "This might have some tricky interactions with how other folks use Telemetry, so can you put this change in a separate CL and send it to ned?",
+      "range": {
+        "startLine": 149,
+        "startChar": 2,
+        "endLine": 149,
+        "endChar": 66
+      },
+      "revId": "bd4d530f973e4eb09c848f96f48b09a5a3b91f86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "021f3e51_8f94aa7f",
+        "filename": "telemetry/telemetry/page/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-04-19T19:11:52Z",
+      "side": 1,
+      "message": "As discussed above in the SimpleperfController file, we really feel it\u0027s important that the simpleperf controller basically just be told when to start and stop tracing rather than being told about what part of the page lifecycle we\u0027re in.\n\nI think that makes this look like:\n\nwith shared_state.simpleperf_controller.Trace(\u0027navigation\u0027):\n  shared_state.page_test.RunNavigateSteps(self, current_tab)\n\nand then the SharedPageState can just pull that trace later on in DidRunStory and add it to the results.",
+      "revId": "bd4d530f973e4eb09c848f96f48b09a5a3b91f86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a63c54a_680633e3",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-04-19T19:11:52Z",
+      "side": 1,
+      "message": "Can you move the \"add the artifact\" logic into DidRunStory()? It also has access to the results object, but is where we prefer to keep page-specific tear-down logic\n\nAssuming that you implement the interface suggested above for the SimpleperfController, the logic would look something like:\n\nfor period, trace_fh in self._simpleperf_controller.GetResults().iteritems(): \n  results.AddArtifact(\n      self._current_page.name,\n      \u0027%s_simpleperf_trace\u0027 % period,\n      trace_fh)\n\nself._simpleperf_controller.ClearResults()\n\nThis also makes it unnecessary to expose the prefix and suffix parameters for CreateArtifact. I think we\u0027re hesitant to add these parameters because we feel that the caller can just modify the \"name\" parameter already to achieve the same thing. (I think Ned feels more strongly about this than I do, though.)",
+      "range": {
+        "startLine": 329,
+        "startChar": 4,
+        "endLine": 329,
+        "endChar": 56
+      },
+      "revId": "bd4d530f973e4eb09c848f96f48b09a5a3b91f86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
