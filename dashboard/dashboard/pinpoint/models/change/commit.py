@@ -68,6 +68,8 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
           # We don't support DEPS that are CIPD packages.
           continue
         dep_string = dep_value['url']
+        if 'revision' in dep_value:
+          dep_string += '@' + dep_value['revision']
 
       dep_string_parts = dep_string.split('@')
       if len(dep_string_parts) < 2:
