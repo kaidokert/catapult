@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!--
+Copyright 2016 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/components/iron-icons/social-icons.html">
+<link rel="import" href="/components/paper-button/paper-button.html">
+<link rel="import" href="/components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="/components/paper-input/paper-textarea.html">
+
+<dom-module id="user-happiness">
+  <template>
+    <style>
+      :host {
+        border: 1px solid black;
+        background: white;
+        padding: 8px;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
+
+      paper-icon-button {
+        height: 56px;
+        width: 56px;
+      }
+    </style>
+
+    <div>
+      How well does this page work for you?
+    </div>
+
+    <paper-icon-button
+        icon="social:sentiment-very-dissatisfied"
+        style="color: #ff0000"
+        on-tap="onSentimentSelected_">
+    </paper-icon-button>
+    <paper-icon-button
+        icon="social:sentiment-dissatisfied"
+        style="color: #bf3f00"
+        on-tap="onSentimentSelected_">
+    </paper-icon-button>
+    <paper-icon-button
+        icon="social:sentiment-neutral"
+        style="color: #7f7f00"
+        on-tap="onSentimentSelected_">
+    </paper-icon-button>
+    <paper-icon-button
+        icon="social:sentiment-satisfied"
+        style="color: #3fbf00"
+        on-tap="onSentimentSelected_">
+    </paper-icon-button>
+    <paper-icon-button
+        icon="social:sentiment-very-satisfied"
+        style="color: #00ff00"
+        on-tap="onSentimentSelected_">
+    </paper-icon-button>
+
+    <template is="dom-if" if="[[isFormShowing_]]">
+      <div>
+        Do you have any feedback?
+        <paper-textarea>
+        </paper-textarea>
+        <paper-button
+            raised
+            on-click="onSubmit"
+            style="width: 100%;">
+          Submit
+        </paper-button>
+      </div>
+    </template>
+  </template>
+</dom-module>
+
+<script>
+'use strict';
+Polymer({
+  is: 'user-happiness',
+  properties: {
+    selectedSentiment_: {
+      type: String,
+      value: '',
+    },
+    isFormShowing_: {
+      type: Boolean,
+      value: false,
+    },
+  },
+
+  onSentimentSelected_(event) {
+    this.selectedSentiment_ = event.target.icon.slice(
+        event.target.icon.indexOf('-') + 1);
+    event.target.style.backgroundColor = getComputedStyle(event.target).color;
+    event.target.style.color = 'white';
+    this.isFormShowing_ = true;
+    requestAnimationFrame(() => {
+      this.querySelector('paper-textarea').focus();
+    });
+  },
+});
+</script>
