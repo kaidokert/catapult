@@ -44,6 +44,7 @@ from typ.pool import make_pool
 from typ.stats import Stats
 from typ.printer import Printer
 from typ.test_case import TestCase as TypTestCase
+from typ.test_list import Parser as TestListParser
 from typ.version import VERSION
 
 
@@ -84,6 +85,42 @@ class TestSet(object):
         self.tests_to_skip = promote(tests_to_skip)
 
 
+class TestExpectations(object):
+    def __init__(self):
+        self.tests = {}
+        self.globs = {}
+        self.tag_sets = []
+        self.tags = set()
+
+    def add(self, expectations):
+        for line in expectations:
+            if line == 'blank' or line[0] == 'comment':
+                continue
+            if line[0] == 't_tag':
+                self.tag_sets.append(line[1])
+            if line[0] == 't_duplicates':
+                # TODO(dpranke): Implement me.
+                raise NotImplementedError()
+            if line[0] == 'rule':
+                rule_tags = set(line[2])
+                glob = line[3]
+                expected_results = line[4]
+                if rule_tags.intersect(self.tags) == rule_tags:
+                    if glob.endswith('*'):
+                        self.globs[glob] = expected_results
+                    else:
+                        self.tests[glob] = expected_results
+            assert false, 'not reached'
+
+    def expected_results_for(self, test):
+        if test in self.tests:
+            return self.tests
+        for glob, results in self.globs.items():
+            if fnmatch(glob, test):
+                return results
+        return ['Pass']
+
+
 class WinMultiprocessing(object):
     ignore = 'ignore'
     importable = 'importable'
@@ -114,6 +151,7 @@ class Runner(object):
         self.top_level_dirs = []
         self.win_multiprocessing = WinMultiprocessing.spawn
         self.final_responses = []
+        self.expectations = TestExpectations()
 
         # initialize self.args to the defaults.
         parser = ArgumentParser(self.host)
@@ -174,6 +212,14 @@ class Runner(object):
         if not test_set:
             ret, test_set = self.find_tests(self.args)
         find_end = h.time()
+
+        self.expectations.tags = set(self.args.expectation_tags)
+        for path in self.args.expectation_files:
+            contents = self.host.read_text_file(path)
+            res, err, _ = Parser(contents, path).parse()
+            if err:
+                return err
+            self.expectations.add_file(path)
 
         if not ret:
             ret, full_results = self._run_tests(result_set, test_set)
@@ -788,6 +834,7 @@ class _Child(object):
         self.top_level_dirs = parent.top_level_dirs
         self.loaded_suites = {}
         self.cov = None
+        self.expectations = parent.expectations
 
 
 def _setup_process(host, worker_num, child):
@@ -841,6 +888,7 @@ def _run_one_test(child, test_input):
     # but could come up when testing non-typ code as well.
     h.capture_output(divert=not child.passthrough)
 
+    expected_results = self.expectations.expected_results_for(test_name)
     ex_str = ''
     try:
         orig_skip = unittest.skip
@@ -848,6 +896,10 @@ def _run_one_test(child, test_input):
         if child.all:
             unittest.skip = lambda reason: lambda x: x
             unittest.skipIf = lambda condition, reason: lambda x: x
+        elif 'Skip' in expected_results:
+            return Result(test_name, ResultTypeSkip, start, 0,
+                          child.worker_num, unexpected=False, code=0,
+                          err='', pid=pid)
 
         try:
             suite = child.loader.loadTestsFromName(test_name)
@@ -897,7 +949,8 @@ def _run_one_test(child, test_input):
 
     took = h.time() - start
     return _result_from_test_result(test_result, test_name, start, took, out,
-                                    err, child.worker_num, pid)
+                                    err, child.worker_num, pid,
+                                    expected_results)
 
 
 def _run_under_debugger(host, test_case, suite,
@@ -912,42 +965,32 @@ def _run_under_debugger(host, test_case, suite,
 
 
 def _result_from_test_result(test_result, test_name, start, took, out, err,
-                             worker_num, pid):
+                             worker_num, pid, expected_results):
     flaky = False
+    expected = expected_results
+    unexpected = actual not in expected
     if test_result.failures:
-        expected = [ResultType.Pass]
         actual = ResultType.Failure
         code = 1
-        unexpected = True
         err = err + test_result.failures[0][1]
     elif test_result.errors:
-        expected = [ResultType.Pass]
         actual = ResultType.Failure
         code = 1
-        unexpected = True
         err = err + test_result.errors[0][1]
     elif test_result.skipped:
-        expected = [ResultType.Skip]
         actual = ResultType.Skip
         err = err + test_result.skipped[0][1]
         code = 0
-        unexpected = False
     elif test_result.expectedFailures:
-        expected = [ResultType.Failure]
         actual = ResultType.Failure
         code = 1
         err = err + test_result.expectedFailures[0][1]
-        unexpected = False
     elif test_result.unexpectedSuccesses:
-        expected = [ResultType.Failure]
         actual = ResultType.Pass
         code = 0
-        unexpected = True
     else:
-        expected = [ResultType.Pass]
         actual = ResultType.Pass
         code = 0
-        unexpected = False
 
     return Result(test_name, actual, start, took, worker_num,
                   expected, unexpected, flaky, code, out, err, pid)
