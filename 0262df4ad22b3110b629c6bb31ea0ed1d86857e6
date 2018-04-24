@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "612d3ad8_10f2c0a0",
+        "filename": "telemetry/telemetry/internal/actions/repeatable_scroll_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-04-24T12:59:02Z",
+      "side": 1,
+      "message": "We need to add linux-chromeos-rel. Disabling this on linux make us lose coverage on linux platform unnecessarily",
+      "revId": "0262df4ad22b3110b629c6bb31ea0ed1d86857e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
