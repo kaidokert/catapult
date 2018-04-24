@@ -31,8 +31,8 @@ class RepeatableScrollActionTest(tab_test_case.TabTestCase):
         self._tab.EvaluateJavaScript('__GestureCommon_GetWindowHeight()'))
 
   # https://github.com/catapult-project/catapult/issues/3099
-  # Test flaky on chromeos: https://crbug.com/826527.
-  @decorators.Disabled('android', 'chromeos')
+  # Test flaky on linux-chromeos-rel: https://crbug.com/826527.
+  @decorators.Disabled('android', 'linux')
   def testRepeatableScrollActionNoRepeats(self):
     if not self._browser_info.HasRepeatableSynthesizeScrollGesture():
       return
