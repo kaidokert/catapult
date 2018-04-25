@@ -150,6 +150,85 @@ class AddHistogramsEndToEndTest(testing_common.TestCase):
     mock_graph_revisions.assert_called_once()
     self.assertEqual(len(mock_graph_revisions.mock_calls[0][1][0]), len(rows))
 
+  def _AddAtCommit(self, commit_position, device, owner):
+    opts = {
+        'avg': True,
+        'std': False,
+        'count': False,
+        'max': False,
+        'min': False,
+        'sum': False
+    }
+    hs = self._CreateHistogram(
+        master='master', bot='bot', benchmark='benchmark',
+        commit_position=commit_position, summary_options=opts,
+        device=device, owner=owner, samples=[1])
+
+    self.testapp.post('/add_histograms', {'data': json.dumps(hs.AsDicts())})
+    self.ExecuteTaskQueueTasks('/add_histograms_queue',
+                               add_histograms.TASK_QUEUE_NAME)
+
+  def testPost_OutOfOrder_Between_Succeeds(self):
+    self._AddAtCommit(1, 'device1', 'owner1')
+    self._AddAtCommit(10, 'device2', 'owner1')
+    self._AddAtCommit(20, 'device2', 'owner1')
+    self._AddAtCommit(5, 'device3', 'owner1')
+
+    expected = {
+        'deviceIds': [
+            (1, 4, [u'device1']),
+            (5, 5, [u'device3']),
+            (6, 9, [u'device1']),
+            (10, sys.maxint, [u'device2'])
+        ],
+        'owners': [
+            (1, sys.maxint, [u'owner1'])
+        ]
+    }
+    diags = histogram.SparseDiagnostic.query().fetch()
+    for d in diags:
+      if d.name not in expected:
+        continue
+
+      self.assertIn(
+          (d.start_revision, d.end_revision, d.data['values']),
+          expected[d.name])
+      expected[d.name].remove(
+          (d.start_revision, d.end_revision, d.data['values']))
+
+    for k in expected.iterkeys():
+      self.assertFalse(expected[k])
+
+  def testPost_OutOfOrder_Before_Succeeds(self):
+    # TODO CHECK HISTOGRAM REFERENCES
+    # TODO TEST MIGRATE
+    self._AddAtCommit(10, 'device1', 'owner1')
+    self._AddAtCommit(20, 'device1', 'owner1')
+    self._AddAtCommit(1, 'device3', 'owner1')
+
+    expected = {
+        'deviceIds': [
+            (1, 9, [u'device3']),
+            (10, sys.maxint, [u'device1'])
+        ],
+        'owners': [
+            (1, sys.maxint, [u'owner1'])
+        ]
+    }
+    diags = histogram.SparseDiagnostic.query().fetch()
+    for d in diags:
+      if d.name not in expected:
+        continue
+
+      self.assertIn(
+          (d.start_revision, d.end_revision, d.data['values']),
+          expected[d.name])
+      expected[d.name].remove(
+          (d.start_revision, d.end_revision, d.data['values']))
+
+    for k in expected.iterkeys():
+      self.assertFalse(expected[k])
+
   @mock.patch.object(
       add_histograms_queue.graph_revisions, 'AddRowsToCacheAsync',
       mock.MagicMock())
