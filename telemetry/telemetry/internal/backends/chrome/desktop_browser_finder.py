@@ -85,6 +85,7 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
     self._profile_directory = tempfile.mkdtemp()
     if source_profile:
       logging.info('Seeding profile directory from: %s', source_profile)
+      os.rmdir(self._profile_directory)
       shutil.copytree(source_profile, self._profile_directory)
 
       # When using an existing profile directory, we need to make sure to
