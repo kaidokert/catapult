@@ -471,8 +471,10 @@ def _MakeRowDict(revision, test_path, tracing_histogram, stat_name=None):
   # histogram and all its diagnostics including the full set of trace urls.
   trace_url_set = tracing_histogram.diagnostics.get(
       reserved_infos.TRACE_URLS.name)
-  if trace_url_set and len(trace_url_set) == 1:
-    d['supplemental_columns']['a_tracing_uri'] = trace_url_set.GetOnlyElement()
+  # We don't show trace URLs for summary values in the legacy pipeline
+  has_story = reserved_infos.STORIES.name in tracing_histogram.diagnostics
+  if trace_url_set and has_story:
+    d['supplemental_columns']['a_tracing_uri'] = list(trace_url_set)[-1]
 
   for diag_name, annotation in DIAGNOSTIC_NAMES_TO_ANNOTATION_NAMES.iteritems():
     revision_info = tracing_histogram.diagnostics.get(diag_name)
