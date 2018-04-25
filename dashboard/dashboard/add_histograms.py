@@ -4,6 +4,7 @@
 
 """URL endpoint for adding new histograms to the dashboard."""
 
+import collections
 import json
 import logging
 import sys
@@ -19,6 +20,7 @@ from dashboard.common import histogram_helpers
 from dashboard.common import stored_object
 from dashboard.common import utils
 from dashboard.models import histogram
+from dashboard.models import graph_data
 from tracing.value import histogram_set
 from tracing.value.diagnostics import diagnostic
 from tracing.value.diagnostics import reserved_infos
@@ -131,6 +133,12 @@ def ProcessHistogramSet(histogram_dicts):
   bot_whitelist = bot_whitelist_future.get_result()
   internal_only = add_point_queue.BotInternalOnly(bot, bot_whitelist)
 
+  last_added = ndb.Key('LastAddedRevision', suite_key.id()).get()
+  if not last_added:
+    last_added = graph_data.LastAddedRevision(id=suite_key.id())
+    last_added.revision = revision
+    last_added.put()
+
   # We'll skip the histogram-level sparse diagnostics because we need to
   # handle those with the histograms, below, so that we can properly assign
   # test paths.
@@ -149,6 +157,10 @@ def ProcessHistogramSet(histogram_dicts):
       suite_key.id(), histograms, revision, benchmark_description)
 
   _QueueHistogramTasks(tasks)
+
+  if revision > last_added.revision:
+    last_added.revision = revision
+    last_added.put()
 
 
 def _ValidateMasterBotBenchmarkName(master, bot, benchmark):
@@ -257,17 +269,87 @@ def DeduplicateAndPut(new_entities, test, rev):
 
 @ndb.tasklet
 def DeduplicateAndPutAsync(new_entities, test, rev):
+  test_parts = test.id().split('/')
+  suite_path = '/'.join(test_parts[:3])
+  last_added = yield ndb.Key('LastAddedRevision', suite_path).get_async()
+  assert last_added
+  last_rev = last_added.revision
+
+  if rev >= last_rev:
+    # If this is the latest commit, we can go through usual path of checking if
+    # the diagnostic changed and updating the previous one.
+    results = yield DoLastRev(new_entities, test, rev)
+  else:
+    # This came in out of order, so add the diagnostic as a singular point and
+    # then fixup all diagnostics.
+    results = yield InsertOutOfOrder(new_entities, test, rev)
+  raise ndb.Return(results)
+
+
+@ndb.tasklet
+def InsertOutOfOrder(new_entities, test, rev):
+  query = histogram.SparseDiagnostic.query(
+      ndb.AND(
+          histogram.SparseDiagnostic.end_revision >= rev,
+          histogram.SparseDiagnostic.test == test))
+  query = query.order(-histogram.SparseDiagnostic.end_revision)
+  diagnostic_entities = yield query.fetch_async()
+
+  new_entities_by_name = dict((d.name, d) for d in new_entities)
+  diagnostics_by_name = collections.defaultdict(list)
+
+  for d in diagnostic_entities:
+    diagnostics_by_name[d.name].append(d)
+
+  futures = []
+
+  for name, diags in diagnostics_by_name.iteritems():
+    if not name in new_entities_by_name:
+      continue
+
+    for i in xrange(len(diags)):
+      if d.start_revision < rev and d.end_revision >= rev:
+        if not d.IsDifferent(new_entities_by_name[name]):
+          # fill in guids thing
+          continue
+        new_entities_by_name[name].start_revision = rev
+        new_entities_by_name[name].end_revision = rev
+
+        s = histogram.SparseDiagnostic(
+            data=d.data, test=test,
+            start_revision=rev + 1, end_revision=d.end_revision, name=name,
+            internal_only=d.internal_only)
+        d.end_revision = rev - 1
+        futures.extend([
+            s.put_async(),
+            d.put_async(),
+            new_entities_by_name[name].put_async()])
+
+        del new_entities_by_name[name]
+
+  yield futures
+
+  # This was before any existing diagnostic, so just run a full cleanup pass.
+  if new_entities_by_name:
+    yield ndb.put_multi_async(new_entities_by_name.itervalues())
+    yield histogram.SparseDiagnostic.FixDiagnostics(test)
+
+  raise ndb.Return({})
+
+
+@ndb.tasklet
+def DoLastRev(new_entities, test, rev):
   query = histogram.SparseDiagnostic.query(
       ndb.AND(
           histogram.SparseDiagnostic.end_revision == sys.maxint,
           histogram.SparseDiagnostic.test == test))
   diagnostic_entities = yield query.fetch_async()
+  diagnostic_entities = dict((d.name, d) for d in diagnostic_entities)
   entity_futures = []
   new_guids_to_existing_diagnostics = {}
 
   for new_entity in new_entities:
-    old_entity = _GetDiagnosticEntityMatchingName(
-        new_entity.name, diagnostic_entities)
+    old_entity = diagnostic_entities.get(new_entity.name)
     if old_entity is not None:
       # Case 1: One in datastore, different from new one.
       if old_entity.IsDifferent(new_entity):
@@ -282,15 +364,9 @@ def DeduplicateAndPutAsync(new_entities, test, rev):
       continue
     # Case 3: Nothing in datastore.
     entity_futures.append(new_entity.put_async())
+
   yield entity_futures
   raise ndb.Return(new_guids_to_existing_diagnostics)
-
-
-def _GetDiagnosticEntityMatchingName(name, diagnostic_entities):
-  for entity in diagnostic_entities:
-    if entity.name == name:
-      return entity
-  return None
 
 
 def FindSuiteLevelSparseDiagnostics(
