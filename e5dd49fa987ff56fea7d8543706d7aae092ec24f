@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a819a833_359e7479",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-04-25T21:51:18Z",
+      "side": 1,
+      "message": "can you add a startup test with \"--profile-dir\" set in https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/browser/browser_unittest.py?rcl\u003d55650fadabf7af12ce6c594c83d29b520cfb14d3\u0026l\u003d235\n\ne.g: testBrowserCreationWithSeedProfileDirectory",
+      "revId": "e5dd49fa987ff56fea7d8543706d7aae092ec24f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
