@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0dd23b94_9f9ad13a",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 2361,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-04-25T22:54:20Z",
+      "side": 1,
+      "message": "It does look like this has been some activity around -T lately (https://github.com/landley/toybox/commits/master/toys/posix/ps.c), so we\u0027ll likely be able to put an upper bound on this sooner or later.\n\nGiven that, my inclination would be to keep the current interface -- i.e., not split ListThreadsForProcess() back out -- and do the piped shell command + regex logic to avoid pulling 100KB. It\u0027d likely be best to pull that logic into a separate helper function (_GetPsOutputForO?) just to keep the rest of GetPsOutput readable.\n\nI do think that this is something that devil should know how to do as opposed to telemetry. I strongly prefer that we have devil handle android version-specific quirks.",
+      "revId": "a2e3d87503320897362279fa1450483896212e14",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
