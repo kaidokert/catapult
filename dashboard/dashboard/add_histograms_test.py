@@ -43,11 +43,13 @@ def SetGooglerOAuth(mock_oauth):
 def _CreateHistogram(
     name='hist', master=None, bot=None, benchmark=None,
     device=None, owner=None, stories=None, story_tags=None,
-    benchmark_description=None, commit_position=None,
+    benchmark_description=None, commit_position=None, summary_options=None,
     samples=None, max_samples=None, is_ref=False, is_summary=None):
   hists = [histogram_module.Histogram(name, 'count')]
   if max_samples:
     hists[0].max_num_sample_values = max_samples
+  if summary_options:
+    hists[0].CustomizeSummaryOptions(summary_options)
   if samples:
     for s in samples:
       hists[0].AddSample(s)
@@ -149,6 +151,226 @@ class AddHistogramsEndToEndTest(testing_common.TestCase):
     # the rows by iterating over a dict.
     mock_graph_revisions.assert_called_once()
     self.assertEqual(len(mock_graph_revisions.mock_calls[0][1][0]), len(rows))
+
+  def _AddAtCommit(self, commit_position, device, owner):
+    opts = {
+        'avg': True,
+        'std': False,
+        'count': False,
+        'max': False,
+        'min': False,
+        'sum': False
+    }
+    hs = _CreateHistogram(
+        master='master', bot='bot', benchmark='benchmark',
+        commit_position=commit_position, summary_options=opts,
+        device=device, owner=owner, samples=[1])
+
+    self.testapp.post('/add_histograms', {'data': json.dumps(hs.AsDicts())})
+    self.ExecuteTaskQueueTasks('/add_histograms_queue',
+                               add_histograms.TASK_QUEUE_NAME)
+
+  def testPost_OutOfOrder_Between_NoCommitsAfter_Different(self):
+    self._AddAtCommit(1, 'device1', 'owner1')
+    self._AddAtCommit(10, 'device2', 'owner1')
+    self._AddAtCommit(20, 'device2', 'owner1')
+    self._AddAtCommit(5, 'device3', 'owner1')
+
+    expected = {
+        'deviceIds': [
+            (1, 4, [u'device1']),
+            (5, 9, [u'device3']),
+            (10, sys.maxint, [u'device2'])
+        ],
+        'owners': [
+            (1, sys.maxint, [u'owner1'])
+        ]
+    }
+    diags = histogram.SparseDiagnostic.query().fetch()
+    for d in diags:
+      if d.name not in expected:
+        continue
+      self.assertIn(
+          (d.start_revision, d.end_revision, d.data['values']),
+          expected[d.name])
+      expected[d.name].remove(
+          (d.start_revision, d.end_revision, d.data['values']))
+
+    for k in expected.iterkeys():
+      self.assertFalse(expected[k])
+
+  def testPost_OutOfOrder_Between_NoCommitsAfter_Same(self):
+    self._AddAtCommit(1, 'device1', 'owner1')
+    self._AddAtCommit(10, 'device2', 'owner1')
+    self._AddAtCommit(5, 'device2', 'owner1')
+
+    expected = {
+        'deviceIds': [
+            (1, 4, [u'device1']),
+            (5, sys.maxint, [u'device2'])
+        ],
+        'owners': [
+            (1, sys.maxint, [u'owner1'])
+        ]
+    }
+    diags = histogram.SparseDiagnostic.query().fetch()
+    for d in diags:
+      if d.name not in expected:
+        continue
+      self.assertIn(
+          (d.start_revision, d.end_revision, d.data['values']),
+          expected[d.name])
+      expected[d.name].remove(
+          (d.start_revision, d.end_revision, d.data['values']))
+
+    for k in expected.iterkeys():
+      self.assertFalse(expected[k])
+
+  def testPost_OutOfOrder_Between_CommitsAfter_Different_Splits(self):
+    self._AddAtCommit(1, 'device1', 'owner1')
+    self._AddAtCommit(8, 'device1', 'owner1')
+    self._AddAtCommit(10, 'device2', 'owner1')
+    self._AddAtCommit(20, 'device2', 'owner1')
+    self._AddAtCommit(5, 'device3', 'owner1')
+
+    expected = {
+        'deviceIds': [
+            (1, 4, [u'device1']),
+            (5, 7, [u'device3']),
+            (8, 9, [u'device1']),
+            (10, sys.maxint, [u'device2'])
+        ],
+        'owners': [
+            (1, sys.maxint, [u'owner1'])
+        ]
+    }
+    diags = histogram.SparseDiagnostic.query().fetch()
+    for d in diags:
+      if d.name not in expected:
+        continue
+      self.assertIn(
+          (d.start_revision, d.end_revision, d.data['values']),
+          expected[d.name])
+      expected[d.name].remove(
+          (d.start_revision, d.end_revision, d.data['values']))
+
+    for k in expected.iterkeys():
+      self.assertFalse(expected[k])
+
+  def testPost_OutOfOrder_Clobber_NoCommitsAfter(self):
+    self._AddAtCommit(1, 'device1', 'owner1')
+    self._AddAtCommit(10, 'device2', 'owner1')
+    self._AddAtCommit(20, 'device2', 'owner1')
+    self._AddAtCommit(1, 'device3', 'owner1')
+
+    expected = {
+        'deviceIds': [
+            (1, 9, [u'device3']),
+            (10, sys.maxint, [u'device2'])
+        ],
+        'owners': [
+            (1, sys.maxint, [u'owner1'])
+        ]
+    }
+    diags = histogram.SparseDiagnostic.query().fetch()
+    for d in diags:
+      if d.name not in expected:
+        continue
+      self.assertIn(
+          (d.start_revision, d.end_revision, d.data['values']),
+          expected[d.name])
+      expected[d.name].remove(
+          (d.start_revision, d.end_revision, d.data['values']))
+
+    for k in expected.iterkeys():
+      self.assertFalse(expected[k])
+
+  def testPost_OutOfOrder_Clobber_CommitsAfter_Splits(self):
+    self._AddAtCommit(1, 'device1', 'owner1')
+    self._AddAtCommit(5, 'device1', 'owner1')
+    self._AddAtCommit(10, 'device2', 'owner1')
+    self._AddAtCommit(1, 'device3', 'owner1')
+
+    expected = {
+        'deviceIds': [
+            (1, 4, [u'device3']),
+            (5, 9, [u'device1']),
+            (10, sys.maxint, [u'device2'])
+        ],
+        'owners': [
+            (1, sys.maxint, [u'owner1'])
+        ]
+    }
+    diags = histogram.SparseDiagnostic.query().fetch()
+    for d in diags:
+      if d.name not in expected:
+        continue
+      self.assertIn(
+          (d.start_revision, d.end_revision, d.data['values']),
+          expected[d.name])
+      expected[d.name].remove(
+          (d.start_revision, d.end_revision, d.data['values']))
+
+    for k in expected.iterkeys():
+      self.assertFalse(expected[k])
+
+  def testPost_OutOfOrder_Clobber_Last_CommitsAfter_Splits(self):
+    self._AddAtCommit(1, 'device1', 'owner1')
+    self._AddAtCommit(10, 'device2', 'owner1')
+    self._AddAtCommit(20, 'device2', 'owner1')
+    self._AddAtCommit(10, 'device3', 'owner1')
+
+    expected = {
+        'deviceIds': [
+            (1, 9, [u'device1']),
+            (10, 19, [u'device3']),
+            (20, sys.maxint, [u'device2'])
+        ],
+        'owners': [
+            (1, sys.maxint, [u'owner1'])
+        ]
+    }
+    diags = histogram.SparseDiagnostic.query().fetch()
+    for d in diags:
+      if d.name not in expected:
+        continue
+      self.assertIn(
+          (d.start_revision, d.end_revision, d.data['values']),
+          expected[d.name])
+      expected[d.name].remove(
+          (d.start_revision, d.end_revision, d.data['values']))
+
+    for k in expected.iterkeys():
+      self.assertFalse(expected[k])
+
+  def testPost_OutOfOrder_Clobber_Last_NoCommitsAfter(self):
+    self._AddAtCommit(1, 'device1', 'owner1')
+    self._AddAtCommit(10, 'device2', 'owner1')
+    self._AddAtCommit(20, 'device2', 'owner1')
+    self._AddAtCommit(20, 'device3', 'owner1')
+
+    expected = {
+        'deviceIds': [
+            (1, 9, [u'device1']),
+            (10, 19, [u'device2']),
+            (20, sys.maxint, [u'device3'])
+        ],
+        'owners': [
+            (1, sys.maxint, [u'owner1'])
+        ]
+    }
+    diags = histogram.SparseDiagnostic.query().fetch()
+    for d in diags:
+      if d.name not in expected:
+        continue
+      self.assertIn(
+          (d.start_revision, d.end_revision, d.data['values']),
+          expected[d.name])
+      expected[d.name].remove(
+          (d.start_revision, d.end_revision, d.data['values']))
+
+    for k in expected.iterkeys():
+      self.assertFalse(expected[k])
 
   @mock.patch.object(
       add_histograms_queue.graph_revisions, 'AddRowsToCacheAsync',
@@ -1389,6 +1611,7 @@ class AddHistogramsTest(testing_common.TestCase):
         data=d, name='masters', test=test_key, start_revision=1,
         end_revision=sys.maxint, id='abc')
     entity.put()
+    graph_data.LastAddedRevision(id='Chromium/win7/foo', revision=1).put()
     d2 = d.copy()
     d2['guid'] = 'def'
     entity2 = histogram.SparseDiagnostic(
@@ -1409,6 +1632,7 @@ class AddHistogramsTest(testing_common.TestCase):
         data=d, name='masters', test=test_key, start_revision=1,
         end_revision=sys.maxint, id='abc')
     entity.put()
+    graph_data.LastAddedRevision(id='Chromium/win7/foo', revision=1).put()
     d2 = d.copy()
     d2['guid'] = 'def'
     d2['displayBotName'] = 'mac'
@@ -1430,6 +1654,7 @@ class AddHistogramsTest(testing_common.TestCase):
         data=d, test=test_key, start_revision=1,
         end_revision=sys.maxint, id='abc')
     entity.put()
+    graph_data.LastAddedRevision(id='Chromium/win7/foo', revision=1).put()
     add_histograms.DeduplicateAndPut([entity], test_key, 1)
     sparse = histogram.SparseDiagnostic.query().fetch()
     self.assertEqual(1, len(sparse))
