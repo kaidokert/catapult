@@ -499,6 +499,11 @@ def _MakeRowDict(revision, test_path, tracing_histogram, stat_name=None):
     _PopulateNumericalFields(d, tracing_histogram)
   return d
 
+
+def _MakeMarkdownLink(name, uri):
+  return '[%s](%s)' % (name, uri)
+
+
 def _PopulateNumericalFields(row_dict, tracing_histogram):
   statistics_scalars = tracing_histogram.statistics_scalars
   for name, scalar in statistics_scalars.iteritems():
