@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ca4907a4_ab56050d",
+        "filename": "tracing/tracing_build/render_histograms_viewer.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-04-26T18:14:30Z",
+      "side": 1,
+      "message": "Can you use cgi.escape or does that do something different?",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 14
+      },
+      "revId": "35953a2be8f85822275bf639c253f78a0ee307be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
