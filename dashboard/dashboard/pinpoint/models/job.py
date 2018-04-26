@@ -88,17 +88,21 @@ class Job(ndb.Model):
   tags = ndb.JsonProperty()
 
   @classmethod
-  def New(cls, arguments, quests, auto_explore, comparison_mode=None,
-          user=None, bug_id=None, tags=None):
-    # Create job.
-    return cls(
-        arguments=arguments,
-        auto_explore=auto_explore,
-        comparison_mode=comparison_mode,
-        user=user,
-        bug_id=bug_id,
-        tags=tags,
-        state=job_state.JobState(quests))
+  def New(cls, quests, changes, arguments=None, auto_explore=False,
+          bug_id=None, comparison_mode=None, tags=None, user=None):
+    job = cls(state=job_state.JobState(quests),
+              arguments=arguments or {},
+              auto_explore=auto_explore,
+              bug_id=bug_id,
+              comparison_mode=comparison_mode,
+              tags=tags,
+              user=user)
+
+    for c in changes:
+      job.AddChange(c)
+
+    job.put()
+    return job
 
   @property
   def job_id(self):
@@ -127,6 +131,8 @@ class Job(ndb.Model):
     title = _ROUND_PUSHPIN + ' Pinpoint job started.'
     comment = '\n'.join((title, self.url))
     self._PostBugComment(comment, send_email=False)
+
+    self.put()
 
   def _Complete(self):
     try:
