@@ -7,7 +7,9 @@ import sys
 
 from dashboard.common import testing_common
 from dashboard.common import utils
+from dashboard.models import graph_data
 from dashboard.models import histogram
+from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import reserved_infos
 
 
@@ -301,3 +303,133 @@ class SparseDiagnosticTest(testing_common.TestCase):
         histogram.SparseDiagnostic.GetMostRecentValuesByNames,
         test_key,
         set([reserved_infos.OWNERS.name, reserved_infos.BUG_COMPONENTS.name]))
+
+  def _CreateGenericDiagnostic(
+      self, name, values, test_key, start_revision, end_revision=sys.maxint):
+    d = generic_set.GenericSet([values])
+    e = histogram.SparseDiagnostic(
+        data=d.AsDict(), name=name, test=test_key,
+        start_revision=start_revision, end_revision=end_revision,
+        id=d.guid)
+    return e
+
+  def _AddGenericDiagnostic(
+      self, name, values, test_key, start_revision, end_revision=sys.maxint):
+    e = self._CreateGenericDiagnostic(
+        name, values, test_key, start_revision, end_revision)
+    e.put()
+    row_key = utils.GetTestContainerKey(test_key)
+    graph_data.Row(id=start_revision, parent=row_key).put()
+
+  def testFindOrInsertDiagnostics_Latest_Same(self):
+    test_key = utils.TestKey('M/B/S')
+
+    self._AddGenericDiagnostic('foo', 'm1', test_key, 1)
+    e = self._CreateGenericDiagnostic('foo', 'm1', test_key, 10)
+
+    histogram.SparseDiagnostic.FindOrInsertDiagnostics(
+        [e], test_key, e.start_revision, e.start_revision).get_result()
+
+    sparse = histogram.SparseDiagnostic.query().fetch()
+    self.assertEqual(1, len(sparse))
+
+  def testFindOrInsertDiagnostics_Latest_Different(self):
+    test_key = utils.TestKey('M/B/S')
+
+    self._AddGenericDiagnostic('foo', 'm1', test_key, 1)
+    e = self._CreateGenericDiagnostic('foo', 'm2', test_key, 10)
+
+    histogram.SparseDiagnostic.FindOrInsertDiagnostics(
+        [e], test_key, e.start_revision, e.start_revision).get_result()
+
+    sparse = histogram.SparseDiagnostic.query().fetch()
+    self.assertEqual(2, len(sparse))
+
+  def testFindOrInsertDiagnostics_Latest_New(self):
+    test_key = utils.TestKey('M/B/S')
+
+    e = self._CreateGenericDiagnostic('foo', 'm1', test_key, 10)
+
+    histogram.SparseDiagnostic.FindOrInsertDiagnostics(
+        [e], test_key, e.start_revision, e.start_revision).get_result()
+
+    sparse = histogram.SparseDiagnostic.query().fetch()
+    self.assertEqual(1, len(sparse))
+
+  def testFindOrInsertDiagnostics_OutOfOrder_Same(self):
+    test_key = utils.TestKey('M/B/S')
+
+    self._AddGenericDiagnostic('foo', 'm1', test_key, 1)
+    self._AddGenericDiagnostic('foo', 'm1', test_key, 10)
+    e = self._CreateGenericDiagnostic('foo', 'm1', test_key, 5)
+
+    histogram.SparseDiagnostic.FindOrInsertDiagnostics(
+        [e], test_key, e.start_revision, 10).get_result()
+
+    sparse = histogram.SparseDiagnostic.query().fetch()
+    self.assertEqual(1, len(sparse))
+
+  def testFindOrInsertDiagnostics_OutOfOrder_Before_Same(self):
+    test_key = utils.TestKey('M/B/S')
+
+    self._AddGenericDiagnostic('foo', 'm1', test_key, 5)
+    self._AddGenericDiagnostic('foo', 'm1', test_key, 10)
+    e = self._CreateGenericDiagnostic('foo', 'm1', test_key, 1)
+
+    histogram.SparseDiagnostic.FindOrInsertDiagnostics(
+        [e], test_key, e.start_revision, 10).get_result()
+
+    sparse = histogram.SparseDiagnostic.query().fetch()
+    self.assertEqual(1, len(sparse))
+
+  def testFindOrInsertDiagnostics_OutOfOrder_Before_Diff(self):
+    test_key = utils.TestKey('M/B/S')
+
+    self._AddGenericDiagnostic('foo', 'm1', test_key, 5)
+    self._AddGenericDiagnostic('foo', 'm1', test_key, 10)
+    e = self._CreateGenericDiagnostic('foo', 'm2', test_key, 1)
+
+    histogram.SparseDiagnostic.FindOrInsertDiagnostics(
+        [e], test_key, e.start_revision, 10).get_result()
+
+    sparse = histogram.SparseDiagnostic.query().fetch()
+    self.assertEqual(2, len(sparse))
+
+  def testFindOrInsertDiagnostics_OutOfOrder_Splits_CurSame_NextDiff(self):
+    test_key = utils.TestKey('M/B/S')
+
+    self._AddGenericDiagnostic('foo', 'm1', test_key, 1)
+    self._AddGenericDiagnostic('foo', 'm1', test_key, 10)
+    e = self._CreateGenericDiagnostic('foo', 'm2', test_key, 5)
+
+    histogram.SparseDiagnostic.FindOrInsertDiagnostics(
+        [e], test_key, e.start_revision, 10).get_result()
+
+    sparse = histogram.SparseDiagnostic.query().fetch()
+    self.assertEqual(3, len(sparse))
+
+  def testFindOrInsertDiagnostics_OutOfOrder_Splits_CurDiff_NextSame(self):
+    test_key = utils.TestKey('M/B/S')
+
+    self._AddGenericDiagnostic('foo', 'm1', test_key, 1)
+    self._AddGenericDiagnostic('foo', 'm1', test_key, 10)
+    e = self._CreateGenericDiagnostic('foo', 'm2', test_key, 5)
+
+    histogram.SparseDiagnostic.FindOrInsertDiagnostics(
+        [e], test_key, e.start_revision, 10).get_result()
+
+    sparse = histogram.SparseDiagnostic.query().fetch()
+    self.assertEqual(3, len(sparse))
+
+  def testFindOrInsertDiagnostics_OutOfOrder_Splits_CurDiff_NextDiff(self):
+    test_key = utils.TestKey('M/B/S')
+
+    self._AddGenericDiagnostic('foo', 'm1', test_key, 1)
+    self._AddGenericDiagnostic('foo', 'm3', test_key, 10)
+    e = self._CreateGenericDiagnostic('foo', 'm2', test_key, 5)
+
+    histogram.SparseDiagnostic.FindOrInsertDiagnostics(
+        [e], test_key, e.start_revision, 10).get_result()
+
+    sparse = histogram.SparseDiagnostic.query().fetch()
+    self.assertEqual(3, len(sparse))
