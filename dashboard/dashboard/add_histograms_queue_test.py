@@ -158,6 +158,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     stored_object.Set(
         add_point_queue.BOT_WHITELIST_KEY, ['win7'])
     test_path = 'Chromium/win7/suite/metric'
+    graph_data.LastAddedRevision(id='Chromium/win7/suite', revision=1).put()
     params = [{
         'data': TEST_HISTOGRAM,
         'test_path': test_path,
@@ -196,6 +197,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
         data=diag_dict, start_revision=1, end_revision=sys.maxint,
         test=utils.TestKey('Chromium/win7/suite/metric'))
     diag.put()
+    graph_data.LastAddedRevision(id='Chromium/win7/suite', revision=1).put()
     stored_object.Set(
         add_point_queue.BOT_WHITELIST_KEY, ['win7'])
     test_path = 'Chromium/win7/suite/metric'
@@ -229,6 +231,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
         start_revision=1, end_revision=sys.maxint,
         test=utils.TestKey('Chromium/win7/suite/metric'))
     diag.put()
+    graph_data.LastAddedRevision(id='Chromium/win7/suite', revision=1).put()
     stored_object.Set(
         add_point_queue.BOT_WHITELIST_KEY, ['win7'])
     test_path = 'Chromium/win7/suite/metric'
