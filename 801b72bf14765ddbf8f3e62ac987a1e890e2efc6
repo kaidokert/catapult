@@ -16,6 +16,24 @@
       "revId": "801b72bf14765ddbf8f3e62ac987a1e890e2efc6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5fc0c040_1addb0a9",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1001706
+      },
+      "writtenOn": "2018-04-26T22:58:30Z",
+      "side": 1,
+      "message": "No, it is defined on PossibleDesktopBrowser.",
+      "parentUuid": "775ff14c_a03412c4",
+      "revId": "801b72bf14765ddbf8f3e62ac987a1e890e2efc6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
