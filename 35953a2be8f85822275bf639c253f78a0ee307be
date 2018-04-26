@@ -22,6 +22,30 @@
       "revId": "35953a2be8f85822275bf639c253f78a0ee307be",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ab26d4a_d7086964",
+        "filename": "tracing/tracing_build/render_histograms_viewer.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-04-26T18:42:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca4907a4_ab56050d",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 14
+      },
+      "revId": "35953a2be8f85822275bf639c253f78a0ee307be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
