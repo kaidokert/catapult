@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a194f184_734c81db",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-26T10:09:24Z",
+      "side": 1,
+      "message": "nit: this doesn\u0027t start the job anymore",
+      "revId": "adb1504a5d278f99640a3952268d421fa0bee308",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b4e8451_198811fb",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-26T10:09:24Z",
+      "side": 1,
+      "message": "to avoid calling params.mixed() twice, and make things a bit more uniform, I would suggest:\n\n- do original_argumets \u003d request.params.mixed() at the top,\n- then make _Arguments (or maybe call it \"_LoadConfiguration\" ?) receive the original_arguments dict instead of the request.",
+      "revId": "adb1504a5d278f99640a3952268d421fa0bee308",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25ee7395_ae101a23",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-26T10:09:24Z",
+      "side": 1,
+      "message": "nit: add docstring, document the fact that this also put\u0027s the job in the db.",
+      "revId": "adb1504a5d278f99640a3952268d421fa0bee308",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "123fe019_b636e854",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-26T10:09:24Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "adb1504a5d278f99640a3952268d421fa0bee308",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "806c183f_6367195f",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-26T10:09:24Z",
+      "side": 1,
+      "message": "we should probably put immediately after _Schedule?",
+      "revId": "adb1504a5d278f99640a3952268d421fa0bee308",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
