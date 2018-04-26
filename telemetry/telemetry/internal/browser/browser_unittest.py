@@ -5,6 +5,8 @@
 import logging
 import os
 import re
+import shutil
+import stat
 import tempfile
 import unittest
 
@@ -266,3 +268,18 @@ class TestBrowserCreation(unittest.TestCase):
       tab = browser.tabs.New()
       tab.Navigate('about:blank')
       self.assertEquals(2, tab.EvaluateJavaScript('1 + 1'))
+
+  def testBrowserCreationWithSeedProfileDirectory(self):
+    possible_browser = self.browser_to_create
+    if hasattr(possible_browser, 'profile_directory'):
+      profile_dir = tempfile.mkdtemp()
+      os.mknod(os.path.join(profile_dir, 'testfile'),
+               stat.S_IFREG | stat.S_IWUSR | stat.S_IRUSR)
+      try:
+        browser_options = self.browser_options
+        browser_options.profile_dir = profile_dir
+        possible_browser.SetUpEnvironment(browser_options)
+        self.assertTrue(os.path.isfile(os.path.join(
+            possible_browser.profile_directory, 'testfile')))
+      finally:
+        shutil.rmtree(profile_dir, ignore_errors=True)
