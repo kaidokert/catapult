@@ -44,6 +44,10 @@ def ReadExistingResults(results_html):
   return histogram_dicts
 
 
+def HtmlEscape(s):
+  return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+
+
 def RenderHistogramsViewer(histogram_dicts, output_stream, reset_results=False,
                            vulcanized_html=''):
   """Renders a Histograms viewer to output_stream containing histogram_dicts.
@@ -70,7 +74,7 @@ def RenderHistogramsViewer(histogram_dicts, output_stream, reset_results=False,
   json_tag_newline = '\n%s' % _JSON_TAG
   for histogram in histogram_dicts:
     hist_json = json.dumps(histogram, separators=(',', ':'))
-    output_stream.write(json_tag_newline % hist_json)
+    output_stream.write(json_tag_newline % HtmlEscape(hist_json))
   output_stream.write('\n</div>\n')
 
   # If the output file already existed and was longer than the new contents,
