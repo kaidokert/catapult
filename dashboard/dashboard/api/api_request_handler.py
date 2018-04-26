@@ -32,21 +32,22 @@ class ApiRequestHandler(request_handler.RequestHandler):
     """
     self._SetCorsHeadersIfAppropriate()
     try:
-      results = self._TryAuthorizePost(*args)
+      api_auth.Authorize()
+    except api_auth.NotLoggedInError:
+      self.WriteErrorMessage('User not authenticated', 401)
+      return
+    except api_auth.OAuthError:
+      self.WriteErrorMessage('User authentication error', 403)
+      return
+
+    try:
+      results = self.AuthorizedPost(*args)
       self.response.out.write(json.dumps(results))
     except BadRequestError as e:
       self.WriteErrorMessage(e.message, 400)
-    except api_auth.NotLoggedInError:
-      self.WriteErrorMessage('User not authenticated', 403)
-    except api_auth.OAuthError:
-      self.WriteErrorMessage('User authentication error', 403)
 
   def options(self, *_):  # pylint: disable=invalid-name
     self._SetCorsHeadersIfAppropriate()
-
-  @api_auth.Authorize
-  def _TryAuthorizePost(self, *args):
-    return self.AuthorizedPost(*args)
 
   def AuthorizedPost(self, *_):
     raise BadRequestError('Override this')

@@ -24,12 +24,22 @@ class New(webapp2.RequestHandler):
 
   def post(self):
     try:
+      api_auth.Authorize()
+    except api_auth.NotLoggedInError as e:
+      self.response.set_status(401)
+      self.response.out.write(json.dumps({'error': e.message}))
+      return
+    except api_auth.ApiAuthException as e:
+      self.response.set_status(403)
+      self.response.out.write(json.dumps({'error': e.message}))
+      return
+
+    try:
       self._CreateJob()
-    except (api_auth.ApiAuthException, KeyError, TypeError, ValueError) as e:
+    except (KeyError, TypeError, ValueError) as e:
       self.response.set_status(400)
       self.response.out.write(json.dumps({'error': e.message}))
 
-  @api_auth.Authorize
   def _CreateJob(self):
     """Start a new Pinpoint job."""
     # "configuration" is a special argument that maps to a list of preset
