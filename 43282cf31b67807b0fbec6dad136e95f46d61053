@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "909deade_b948f535",
+        "filename": "dashboard/dashboard/add_histograms_queue.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-04-26T15:48:50Z",
+      "side": 1,
+      "message": "Isn\u0027t there a SUMMARY_KEYS diagnostic you can check?",
+      "range": {
+        "startLine": 475,
+        "startChar": 2,
+        "endLine": 475,
+        "endChar": 11
+      },
+      "revId": "43282cf31b67807b0fbec6dad136e95f46d61053",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
