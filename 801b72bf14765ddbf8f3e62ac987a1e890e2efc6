@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "775ff14c_a03412c4",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-04-26T22:02:40Z",
+      "side": 1,
+      "message": "do we need this? I recall that all possible_browser should have this attribute",
+      "revId": "801b72bf14765ddbf8f3e62ac987a1e890e2efc6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
