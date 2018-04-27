@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import functools
 import logging
 import os
 import sys
@@ -12,6 +13,7 @@ from telemetry import decorators
 from telemetry.internal.browser import browser_finder
 from telemetry.internal.browser import browser_finder_exceptions
 from telemetry.internal.browser import browser_info as browser_info_module
+from telemetry.internal.browser import browser_simpleperf_controller
 from telemetry.internal.platform.profiler import profiler_finder
 from telemetry.internal.util import file_handle
 from telemetry.page import cache_temperature
@@ -85,10 +87,20 @@ class SharedPageState(story_module.SharedState):
       wpr_mode = wpr_modes.WPR_REPLAY
     self._extra_wpr_args = browser_options.extra_wpr_args
 
+    self._simpleperf_controller = (
+        browser_simpleperf_controller.BrowserSimpleperfController(
+            process_name=finder_options.simpleperf_target,
+            periods=finder_options.simpleperf_periods,
+            frequency=finder_options.simpleperf_frequency))
+
     self.platform.SetFullPerformanceModeEnabled(
         finder_options.full_performance_mode)
     self.platform.network_controller.Open(wpr_mode)
     self.platform.Initialize()
+
+  @property
+  def simpleperf_controller(self):
+    return self._simpleperf_controller
 
   @property
   def possible_browser(self):
@@ -158,6 +170,11 @@ class SharedPageState(story_module.SharedState):
               '%s raised while closing tab connections; tab will be closed.',
               type(exc).__name__)
           self._current_tab.Close()
+      artifact_gen = functools.partial(results.CreateArtifact,
+                                       self._current_page.name,
+                                       prefix=self._current_page.file_safe_name)
+      self._simpleperf_controller.GetResults(
+          artifact_gen, self._current_page.file_safe_name)
     finally:
       self._current_page = None
       self._current_tab = None
@@ -196,6 +213,7 @@ class SharedPageState(story_module.SharedState):
     browser_options.AppendExtraBrowserArgs(page.extra_browser_args)
     self._possible_browser.SetUpEnvironment(browser_options)
     self._browser = self._possible_browser.Create()
+    self._simpleperf_controller.DidStartBrowser(self.browser)
     self._test.DidStartBrowser(self.browser)
 
     if self._first_browser:
@@ -321,6 +339,7 @@ class SharedPageState(story_module.SharedState):
   def _StopBrowser(self):
     if self._browser:
       self._browser.Close()
+      self._simpleperf_controller.DidStopBrowser()
       self._browser = None
     if self._possible_browser:
       self._possible_browser.CleanUpEnvironment()

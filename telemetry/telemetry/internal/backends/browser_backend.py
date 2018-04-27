@@ -66,6 +66,22 @@ class BrowserBackend(app_backend.AppBackend):
     return self.app
 
   @property
+  def package(self):
+    raise NotImplementedError
+
+  @property
+  def device(self):
+    raise NotImplementedError
+
+  @property
+  def processes(self):
+    raise NotImplementedError
+
+  @property
+  def pid(self):
+    raise NotImplementedError
+
+  @property
   def profiling_controller_backend(self):
     return self._profiling_controller_backend
 
@@ -143,6 +159,12 @@ class BrowserBackend(app_backend.AppBackend):
     raise NotImplementedError()
 
   def GetSystemInfo(self):
+    raise NotImplementedError()
+
+  def GetProcessName(self, cmd_line):
+    raise NotImplementedError()
+
+  def GetThreadType(self, thread_name):
     raise NotImplementedError()
 
   @property
