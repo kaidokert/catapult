@@ -2346,24 +2346,29 @@ class DeviceUtils(object):
     """
     return self.GetProp('ro.product.cpu.abi', cache=True)
 
-  def _GetPsOutput(self, pattern):
+  def _GetPsOutput(self, pattern, pid=None, list_threads=False):
     """Runs |ps| command on the device and returns its output,
 
     This private method abstracts away differences between Android verions for
     calling |ps|, and implements support for filtering the output by a given
     |pattern|, but does not do any output parsing.
     """
+    ps_cmd = ['ps']
+    if pid:
+      ps_cmd.extend(['-p', cmd_helper.SingleQuote(str(pid))])
+    if list_threads:
+      ps_cmd.append('-t')
+    # ps behavior was changed in Android O and above, http://crbug.com/686716
+    if self.build_version_sdk >= version_codes.OREO:
+      ps_cmd.append('-e')
     try:
-      ps_cmd = 'ps'
-      # ps behavior was changed in Android O and above, http://crbug.com/686716
-      if self.build_version_sdk >= version_codes.OREO:
-        ps_cmd = 'ps -e'
       if pattern:
         return self._RunPipedShellCommand(
-            '%s | grep -F %s' % (ps_cmd, cmd_helper.SingleQuote(pattern)))
+            '%s | grep -F %s' % (' '.join(ps_cmd),
+                                 cmd_helper.SingleQuote(pattern)))
       else:
         return self.RunShellCommand(
-            ps_cmd.split(), check_return=True, large_output=True)
+            ps_cmd, check_return=True, large_output=True)
     except device_errors.AdbShellCommandFailedError as e:
       if e.status and isinstance(e.status, list) and not e.status[0]:
         # If ps succeeded but grep failed, there were no processes with the
@@ -2373,7 +2378,8 @@ class DeviceUtils(object):
         raise
 
   @decorators.WithTimeoutAndRetriesFromInstance()
-  def ListProcesses(self, process_name=None, timeout=None, retries=None):
+  def ListProcesses(self, process_name=None, pid=None, list_threads=False,
+                    timeout=None, retries=None):
     """Returns a list of tuples with info about processes on the device.
 
     This essentially parses the output of the |ps| command into convenient
@@ -2383,6 +2389,8 @@ class DeviceUtils(object):
       process_name: A string used to filter the returned processes. If given,
                     only processes whose name have this value as a substring
                     will be returned.
+      pid: An integer process id to limit output to a single process.
+      list_threads: Also list threads associated with each listed process.
       timeout: timeout in seconds
       retries: number of retries
 
@@ -2391,7 +2399,8 @@ class DeviceUtils(object):
     """
     process_name = process_name or ''
     processes = []
-    for line in self._GetPsOutput(process_name):
+    for line in self._GetPsOutput(pattern=process_name, pid=pid,
+                                  list_threads=list_threads):
       row = line.split()
       try:
         row = {k: row[i] for k, i in _PS_COLUMNS.iteritems()}

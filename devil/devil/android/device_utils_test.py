@@ -2552,6 +2552,38 @@ class DeviceUtilsListProcessesTest(DeviceUtilsTest):
             self._grepOutput('foo')):
           self.device.GetApplicationPids('foo', at_most_one=True)
 
+  def testListThreads_twoMatches(self):
+    sample_output = [
+        'USER  PID     PPID  VSIZE RSS   WCHAN          PC  NAME',
+        'user  1001    100   1024  1024  ffffffff 00000000 parent',
+        'user  1002    1001  1024  1024  ffffffff 00000000 thread1',
+        'user  1003    1001  1024  1024  ffffffff 00000000 thread2',
+    ]
+    with self.patch_call(self.call.device.build_version_sdk,
+                         return_value=version_codes.LOLLIPOP):
+      with self.assertCall(
+          self.call.device.RunShellCommand(['ps', '-p', '1001', '-t'],
+                                           check_return=True,
+                                           large_output=True),
+          sample_output):
+        self.assertEqual(
+            Processes(('parent', 1001, 100),
+                      ('thread1', 1002, 1001),
+                      ('thread2', 1003, 1001)),
+            self.device.ListProcesses(pid=1001, list_threads=True))
+
+  def testListThreads_noMatches(self):
+    sample_output = ['USER  PID     PPID  VSIZE RSS   WCHAN          PC  NAME']
+    with self.patch_call(self.call.device.build_version_sdk,
+                         return_value=version_codes.LOLLIPOP):
+      with self.assertCall(
+          self.call.device.RunShellCommand(['ps', '-p', '1234', '-t'],
+                                           check_return=True,
+                                           large_output=True),
+          sample_output):
+        self.assertEqual([],
+                         self.device.ListProcesses(pid=1234, list_threads=True))
+
 
 class DeviceUtilsGetSetEnforce(DeviceUtilsTest):
 
