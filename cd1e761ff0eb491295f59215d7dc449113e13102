@@ -16,6 +16,24 @@
       "revId": "cd1e761ff0eb491295f59215d7dc449113e13102",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8168b47e_1a9ece14",
+        "filename": "devil/devil/android/sdk/version_codes.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-04-27T14:39:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e517d462_195292cc",
+      "revId": "cd1e761ff0eb491295f59215d7dc449113e13102",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
