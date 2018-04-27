@@ -34,6 +34,24 @@
       "revId": "e5dd49fa987ff56fea7d8543706d7aae092ec24f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "397d9563_a7a0d007",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-27T09:12:13Z",
+      "side": 1,
+      "message": "Also, can you add here a small comment on why the directory needs to be removed? (i.e. your CL description basically).",
+      "parentUuid": "a819a833_359e7479",
+      "revId": "e5dd49fa987ff56fea7d8543706d7aae092ec24f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

@@ -52,6 +52,58 @@
       "revId": "801b72bf14765ddbf8f3e62ac987a1e890e2efc6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df79675d_4f8ee2f2",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-27T09:12:13Z",
+      "side": 1,
+      "message": "If you really need to keep something like this, I would instead do:\n\nif not hasattr(...):\n  self.skipTest(\u0027Possible browser does not support profile_directory\u0027)",
+      "parentUuid": "ffeca4f8_b4fdedad",
+      "revId": "801b72bf14765ddbf8f3e62ac987a1e890e2efc6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c71b041e_7e6bfe66",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-27T09:12:13Z",
+      "side": 1,
+      "message": "On Android the file is pushed to the device, and doesn\u0027t seem to be happy with it. And on other platforms this is failing too with permission errors. Maybe just create the file by writing some dummy data to it?\n\nwith open(os.path.join(profile_dir, \u0027testfile\u0027), \u0027w\u0027) as f:\n    f.write(\u0027dummy\u0027)",
+      "revId": "801b72bf14765ddbf8f3e62ac987a1e890e2efc6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39ceb449_cf126b24",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-27T09:12:13Z",
+      "side": 1,
+      "message": "You should also TearDownEnvironment() in the finally block",
+      "revId": "801b72bf14765ddbf8f3e62ac987a1e890e2efc6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
