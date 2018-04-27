@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "0853bb90_70292fe4",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-27T09:42:50Z",
+      "side": 1,
+      "message": "Yes. I meant you should update the docstring. :)",
+      "parentUuid": "3a5101c3_7fd2117f",
+      "revId": "adb1504a5d278f99640a3952268d421fa0bee308",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9b4e8451_198811fb",
         "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
         "patchSetId": 1
