@@ -10,6 +10,7 @@ import sys
 
 from google.appengine.ext import ndb
 
+from dashboard.common import utils
 from dashboard.models import graph_data
 from dashboard.models import internal_only_model
 from tracing.value.diagnostics import diagnostic as diagnostic_module
@@ -115,3 +116,301 @@ class SparseDiagnostic(JsonModel):
       futures.extend(ndb.put_multi_async(unique_diagnostics))
 
     yield futures
+
+  @staticmethod
+  @ndb.tasklet
+  def FindOrInsertDiagnostics(new_entities, test, rev, last_rev):
+    """Takes a list of diagnostic entities, test path, revision, and known
+    last revision, and inserts the diagnostics into datastore. If they're
+    duplicates of existing diagnostics in the same range, a mapping of guids
+    from the new ones to the ones in datastore is return.
+
+    Returns:
+      dict: A dict of new guids to existing diagnostics.
+    """
+
+    if rev >= last_rev:
+      print '_FindOrInsertDiagnosticsLast'
+      # If this is the latest commit, we can go through usual path of checking
+      # if the diagnostic changed and updating the previous one.
+      results = yield _FindOrInsertDiagnosticsLast(new_entities, test, rev)
+    else:
+      # This came in out of order, so add the diagnostic as a singular point and
+      # then fixup all diagnostics.
+      print '_FindOrInsertDiagnosticsOutOfOrder'
+      results = yield _FindOrInsertDiagnosticsOutOfOrder(
+          new_entities, test, rev)
+    raise ndb.Return(results)
+
+
+@ndb.tasklet
+def _FindOrInsertDiagnosticsLast(new_entities, test, rev):
+  query = SparseDiagnostic.query(
+      ndb.AND(
+          SparseDiagnostic.end_revision == sys.maxint,
+          SparseDiagnostic.test == test))
+  diagnostic_entities = yield query.fetch_async()
+  diagnostic_entities = dict((d.name, d) for d in diagnostic_entities)
+  entity_futures = []
+  new_guids_to_existing_diagnostics = {}
+
+  for new_entity in new_entities:
+    old_entity = diagnostic_entities.get(new_entity.name)
+    if old_entity is not None:
+      # Case 1: One in datastore, different from new one.
+      if old_entity.IsDifferent(new_entity):
+        # Special case, they're overwriting the head value.
+        if old_entity.start_revision == new_entity.start_revision:
+          old_entity.data = new_entity.data
+        else:
+          old_entity.end_revision = rev - 1
+          entity_futures.append(old_entity.put_async())
+          new_entity.start_revision = rev
+          new_entity.end_revision = sys.maxint
+          entity_futures.append(new_entity.put_async())
+      # Case 2: One in datastore, same as new one.
+      else:
+        new_guids_to_existing_diagnostics[new_entity.key.id()] = old_entity.data
+      continue
+    # Case 3: Nothing in datastore.
+    entity_futures.append(new_entity.put_async())
+
+  yield entity_futures
+  raise ndb.Return(new_guids_to_existing_diagnostics)
+
+
+@ndb.tasklet
+def _FindNextRevision(test_key, rev):
+  test_key = utils.OldStyleTestKey(test_key)
+  q = graph_data.Row.query(
+      graph_data.Row.parent_test == test_key, graph_data.Row.revision > rev)
+  q = q.order(graph_data.Row.revision)
+  rows = yield q.fetch_async(limit=1)
+  if rows:
+    raise ndb.Return(rows[0].revision - 1)
+  raise ndb.Return(sys.maxint)
+
+
+@ndb.tasklet
+def _FindOrInsertNamedDiagnosticsOutOfOrder(
+    new_diagnostic, old_diagnostics, rev):
+  modified_ranges = []
+  guid_mapping = {}
+
+  for i in xrange(len(old_diagnostics)):
+    cur = old_diagnostics[i]
+
+    # Overall there are 2 major cases to handle. Either you're clobbering an
+    # existing diagnostic by uploading right to the start of that diagnostic's
+    # range, or you're splitting the range.
+    #
+    # We treat insertions by assuming that the new diagnostic is valid until the
+    # next uploaded commit, since that commit will have had a diagnostic on it
+    # which will have been diffed and inserted appropriately at the time.
+
+    # Case 1, clobber the existing diagnostic.
+    if rev == cur.start_revision:
+      if not cur.IsDifferent(new_diagnostic):
+        raise ndb.Return((guid_mapping, modified_ranges))
+
+      next_revision = yield _FindNextRevision(cur.test, rev)
+
+      next_diagnostic = None if i == 0 else old_diagnostics[i-1]
+      next_diagnostic_revision = sys.maxint if not next_diagnostic else next_diagnostic.start_revision
+
+      futures = []
+
+      # There's either a next diagnostic or there isn't, check each separately.
+      if not next_diagnostic:
+        # If this is the last diagnostic in the range, there are only 2 cases
+        # to consider.
+        #  1. There are no commits after this diagnostic.
+        #  2. There are commits, in which case we need to split the range.
+
+        # 1. There are no commits.
+        if next_revision == sys.maxint:
+          cur.data = new_diagnostic.data
+          new_diagnostic = None
+
+        # 2. There are commits, in which case we need to split the range.
+        else:
+          new_diagnostic.start_revision = cur.start_revision
+          new_diagnostic.end_revision = next_revision
+
+          # Nudge the old diagnostic range forward, that way you don't have to
+          # resave the histograms.
+          cur.start_revision = next_revision + 1
+
+      # There is another diagnostic range after this one.
+      else:
+        # If there is another diagnostic range after this, we need to check:
+        #  1. Are there any commits between this revision and the next diagnostic
+        #   a. If there are, we need to split the range
+        #   b. If there aren't, we just overwrite the diagnostic.
+
+        # 1a. There are commits after this revision before the start of the next
+        #     diagnostic.
+        if next_revision != next_diagnostic.start_revision - 1:
+          new_diagnostic.start_revision = cur.start_revision
+          new_diagnostic.end_revision = next_revision
+
+          # Nudge the old diagnostic range forward, that way you don't have to
+          # resave the histograms.
+          cur.start_revision = next_revision + 1
+
+        # No commits after before next diagnostic, just straight up overwrite.
+        else:
+          # A. They're not the same.
+          if new_diagnostic.IsDifferent(next_diagnostic):
+            cur.data = new_diagnostic.data
+            new_diagnostic = None
+
+          # B. They're the same, in which case we just want to extend the next
+          #    diagnostic's range backwards.
+          else:
+            next_diagnostic.start_revision = cur.start_revision
+            new_diagnostic = None
+            futures.append(cur.key.delete_async())
+            cur = next_diagnostic
+
+      # Finally, check if there was a diagnostic range before this, and wheter
+      # it's different than the new one.
+      prev_diagnostic = None if i + 1 == len(old_diagnostics) else old_diagnostics[i+1]
+
+      cur_diagnostic = cur
+      if new_diagnostic:
+        cur_diagnostic = new_diagnostic
+
+      if not prev_diagnostic or cur_diagnostic.IsDifferent(prev_diagnostic):
+        futures.append(cur.put_async())
+        if new_diagnostic:
+          futures.append(new_diagnostic.put_async())
+      else:
+        prev_diagnostic.end_revision = cur_diagnostic.end_revision
+
+        futures.append(prev_diagnostic.put_async())
+        if new_diagnostic:
+          new_diagnostic = None
+          futures.append(cur.put_async)
+        else:
+          futures.append(cur.key.delete_async())
+
+      yield futures
+      raise ndb.Return((guid_mapping, modified_ranges))
+
+    # Case 2, split the range.
+    elif rev > cur.start_revision and rev <= cur.end_revision:
+      if not cur.IsDifferent(new_diagnostic):
+        raise ndb.Return((guid_mapping, modified_ranges))
+
+      next_revision = yield _FindNextRevision(cur.test, rev)
+
+      cur.end_revision = rev - 1
+      new_diagnostic.start_revision = rev
+      new_diagnostic.end_revision = next_revision
+
+      next_diagnostic = None if i == 0 else old_diagnostics[i-1]
+      next_diagnostic_revision = sys.maxint if not next_diagnostic else next_diagnostic.start_revision
+
+      futures = [cur.put_async()]
+
+      # There's either a next diagnostic or there isn't, check each separately.
+      if not next_diagnostic:
+        # There's no commit after this revision, which means we can extend this
+        # diagnostic range to infinity.
+        if next_revision == sys.maxint:
+          new_diagnostic.end_revision = next_revision
+        else:
+          new_diagnostic.end_revision = next_revision
+
+          clone_of_cur = SparseDiagnostic(
+              data=cur.data, test=cur.test,
+              start_revision=next_revision + 1, end_revision=sys.maxint,
+              name=cur.name, internal_only=cur.internal_only)
+          futures.append(clone_of_cur.put_async())
+        futures.append(new_diagnostic.put_async())
+      else:
+        # If there is another diagnostic range after this, we need to check:
+        #  1. Are there any commits between this revision and the next diagnostic
+        #   a. If there are, we need to split the range
+        #   b. If there aren't, we need to check if the next diagnostic is
+        #      any different than the current one, because we may just merge
+        #      them together.
+
+        # 1a. There are commits after this revision before the start of the next
+        #     diagnostic.
+        if next_revision != next_diagnostic.start_revision - 1:
+          new_diagnostic.end_revision = next_revision
+
+          clone_of_cur = SparseDiagnostic(
+              data=cur.data, test=cur.test,
+              start_revision=next_revision + 1,
+              end_revision=next_diagnostic.start_revision - 1,
+              name=cur.name, internal_only=cur.internal_only)
+          futures.append(clone_of_cur.put_async())
+          futures.append(new_diagnostic.put_async())
+
+        # 1b. There aren't commits between this revision and the start of the
+        #     next diagnostic range. In this case there are 2 possible outcomes.
+        #   A. They're not the same, so just split the range as normal.
+        #   B. That the new diagnostic we're inserting and the next one are the
+        #      same, in which case they can be merged.
+        else:
+          # A. They're not the same.
+          if new_diagnostic.IsDifferent(next_diagnostic):
+            new_diagnostic.end_revision = next_diagnostic.start_revision - 1
+            futures.append(new_diagnostic.put_async())
+
+          # B. They're the same, in which case we just want to extend the next
+          #    diagnostic's range backwards.
+          else:
+            next_diagnostic.start_revision = new_diagnostic.start_revision
+            new_diagnostic = None
+            futures.append(next_diagnostic.put_async())
+
+      yield futures
+      raise ndb.Return((guid_mapping, modified_ranges))
+
+  # Can't find a spot to put it, which indicates that it should go before any
+  # existing diagnostic.
+  next_diagnostic = old_diagnostics[-1]
+
+  if not next_diagnostic.IsDifferent(new_diagnostic):
+    next_diagnostic.start_revision = rev
+    yield next_diagnostic.put_async()
+    raise ndb.Return((guid_mapping, modified_ranges))
+
+  new_diagnostic.start_revision = rev
+  new_diagnostic.end_revision = next_diagnostic.start_revision - 1
+  yield new_diagnostic.put_async()
+  raise ndb.Return((guid_mapping, modified_ranges))
+
+
+@ndb.tasklet
+def _FindOrInsertDiagnosticsOutOfOrder(new_entities, test, rev):
+  query = SparseDiagnostic.query(
+      ndb.AND(
+          SparseDiagnostic.end_revision >= rev - 1,
+          SparseDiagnostic.test == test))
+  query = query.order(-SparseDiagnostic.end_revision)
+  diagnostic_entities = yield query.fetch_async()
+
+  new_entities_by_name = dict((d.name, d) for d in new_entities)
+  diagnostics_by_name = collections.defaultdict(list)
+
+  for d in diagnostic_entities:
+    diagnostics_by_name[d.name].append(d)
+
+  futures = []
+
+  for name in diagnostics_by_name.iterkeys():
+    if not name in new_entities_by_name:
+      continue
+
+    futures.append(
+        _FindOrInsertNamedDiagnosticsOutOfOrder(
+            new_entities_by_name[name], diagnostics_by_name[name], rev))
+
+  new_guids_to_existing_diagnostics = yield futures
+
+  raise ndb.Return({})
