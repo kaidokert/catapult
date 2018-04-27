@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e517d462_195292cc",
+        "filename": "devil/devil/android/sdk/version_codes.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-04-27T14:37:05Z",
+      "side": 1,
+      "message": "Still used here:\nhttps://cs.chromium.org/chromium/src/build/android/pylib/constants/__init__.py?rcl\u003d85dffcbf7c2ce7d9207c5489ac4d0d01f9326e3b\u0026l\u003d98",
+      "revId": "cd1e761ff0eb491295f59215d7dc449113e13102",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
