@@ -62,22 +62,20 @@ class NewAuthTest(_NewTest):
 
   @mock.patch.object(api_auth, '_AuthorizeOauthUser',
                      mock.MagicMock(side_effect=api_auth.OAuthError()))
-  @mock.patch.object(gitiles_service, 'CommitInfo', mock.MagicMock(
-      return_value={'commit': 'abc'}))
-  def testPost_FailsOauth(self):
+  def testFailsOauth(self):
     response = self.testapp.post('/api/new', _BASE_REQUEST, status=400)
     result = json.loads(response.body)
-    self.assertEqual({'error': 'User authentication error'}, result)
+    self.assertEqual(result, {'error': 'User authentication error'})
 
 
+@mock.patch.object(gitiles_service, 'CommitInfo',
+                   mock.MagicMock(return_value={'commit': 'abc'}))
 @mock.patch('dashboard.services.issue_tracker_service.IssueTrackerService',
             mock.MagicMock())
 @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
 @mock.patch.object(api_auth, '_AuthorizeOauthUser', mock.MagicMock())
 class NewTest(_NewTest):
 
-  @mock.patch.object(gitiles_service, 'CommitInfo', mock.MagicMock(
-      return_value={'commit': 'abc'}))
   def testPost(self):
     response = self.testapp.post('/api/new', _BASE_REQUEST, status=200)
     result = json.loads(response.body)
@@ -86,9 +84,7 @@ class NewTest(_NewTest):
         result['jobUrl'],
         'https://testbed.example.com/job/%s' % result['jobId'])
 
-  @mock.patch.object(gitiles_service, 'CommitInfo', mock.MagicMock(
-      return_value={'commit': 'abc'}))
-  def testPost_NoConfiguration(self):
+  def testNoConfiguration(self):
     request = dict(_BASE_REQUEST)
     request.update(_CONFIGURATION_ARGUMENTS)
     del request['configuration']
@@ -99,21 +95,16 @@ class NewTest(_NewTest):
         result['jobUrl'],
         'https://testbed.example.com/job/%s' % result['jobId'])
 
-  @mock.patch.object(gitiles_service, 'CommitInfo', mock.MagicMock(
-      return_value={'commit': 'abc'}))
-  def testPost_AutoExploreTrue(self):
-    params = {}
-    params.update(_BASE_REQUEST)
-    params['auto_explore'] = True
-    response = self.testapp.post('/api/new', params, status=200)
+  def testAutoExploreTrue(self):
+    request = dict(_BASE_REQUEST)
+    request['auto_explore'] = True
+    response = self.testapp.post('/api/new', request, status=200)
     result = json.loads(response.body)
     self.assertIn('jobId', result)
     job = job_module.JobFromId(result['jobId'])
     self.assertTrue(job.auto_explore)
 
-  @mock.patch.object(gitiles_service, 'CommitInfo', mock.MagicMock(
-      return_value={'commit': 'abc'}))
-  def testPost_ComparisonModeFunctional(self):
+  def testComparisonModeFunctional(self):
     request = dict(_BASE_REQUEST)
     request['comparison_mode'] = 'functional'
     response = self.testapp.post('/api/new', request, status=200)
@@ -122,9 +113,7 @@ class NewTest(_NewTest):
     job = job_module.JobFromId(result['jobId'])
     self.assertEqual(job.comparison_mode, job_module.ComparisonMode.FUNCTIONAL)
 
-  @mock.patch.object(gitiles_service, 'CommitInfo', mock.MagicMock(
-      return_value={'commit': 'abc'}))
-  def testPost_ComparisonModePerformance(self):
+  def testComparisonModePerformance(self):
     request = dict(_BASE_REQUEST)
     request['comparison_mode'] = 'performance'
     response = self.testapp.post('/api/new', request, status=200)
@@ -133,17 +122,13 @@ class NewTest(_NewTest):
     job = job_module.JobFromId(result['jobId'])
     self.assertEqual(job.comparison_mode, job_module.ComparisonMode.PERFORMANCE)
 
-  @mock.patch.object(gitiles_service, 'CommitInfo', mock.MagicMock(
-      return_value={'commit': 'abc'}))
-  def testPost_ComparisonModeUnknown(self):
+  def testComparisonModeUnknown(self):
     request = dict(_BASE_REQUEST)
     request['comparison_mode'] = 'invalid comparison mode'
     response = self.testapp.post('/api/new', request, status=400)
     self.assertIn('error', json.loads(response.body))
 
-  @mock.patch.object(gitiles_service, 'CommitInfo', mock.MagicMock(
-      return_value={'commit': 'abc'}))
-  def testPost_WithChanges(self):
+  def testWithChanges(self):
     base_request = {}
     base_request.update(_BASE_REQUEST)
     del base_request['start_git_hash']
@@ -159,10 +144,8 @@ class NewTest(_NewTest):
         result['jobUrl'],
         'https://testbed.example.com/job/%s' % result['jobId'])
 
-  @mock.patch.object(gitiles_service, 'CommitInfo', mock.MagicMock(
-      return_value={'commit': 'abc'}))
   @mock.patch('dashboard.pinpoint.models.change.patch.FromDict')
-  def testPost_WithPatch(self, mock_patch):
+  def testWithPatch(self, mock_patch):
     mock_patch.return_value = None
     params = {
         'patch': 'https://lalala/c/foo/bar/+/123'
@@ -176,37 +159,26 @@ class NewTest(_NewTest):
         'https://testbed.example.com/job/%s' % result['jobId'])
     mock_patch.assert_called_with(params['patch'])
 
-  def testPost_MissingTarget(self):
+  def testMissingTarget(self):
     request = dict(_BASE_REQUEST)
     del request['target']
     response = self.testapp.post('/api/new', request, status=400)
     self.assertIn('error', json.loads(response.body))
 
-  @mock.patch.object(gitiles_service, 'CommitInfo', mock.MagicMock(
-      return_value={'commit': 'abc'}))
-  def testPost_InvalidTestConfig(self):
+  def testInvalidTestConfig(self):
     request = dict(_BASE_REQUEST)
     del request['configuration']
     response = self.testapp.post('/api/new', request, status=400)
     self.assertIn('error', json.loads(response.body))
 
-  @mock.patch.object(
-      gitiles_service, 'CommitInfo',
-      mock.MagicMock(side_effect=gitiles_service.NotFoundError('message')))
-  def testPost_InvalidChange(self):
-    response = self.testapp.post('/api/new', _BASE_REQUEST, status=400)
-    self.assertEqual({'error': 'message'}, json.loads(response.body))
-
-  def testPost_InvalidBug(self):
+  def testInvalidBug(self):
     request = dict(_BASE_REQUEST)
     request['bug_id'] = 'not_an_int'
     response = self.testapp.post('/api/new', request, status=400)
     self.assertEqual({'error': new._ERROR_BUG_ID},
                      json.loads(response.body))
 
-  @mock.patch.object(gitiles_service, 'CommitInfo', mock.MagicMock(
-      return_value={'commit': 'abc'}))
-  def testPost_EmptyBug(self):
+  def testEmptyBug(self):
     request = dict(_BASE_REQUEST)
     request['bug_id'] = ''
     response = self.testapp.post('/api/new', request, status=200)
@@ -218,34 +190,26 @@ class NewTest(_NewTest):
     job = job_module.JobFromId(result['jobId'])
     self.assertIsNone(job.bug_id)
 
-  @mock.patch.object(gitiles_service, 'CommitInfo', mock.MagicMock(
-      return_value={'commit': 'abc'}))
-  def testPost_ValidTags(self):
+  def testValidTags(self):
     request = dict(_BASE_REQUEST)
     request['tags'] = json.dumps({'key': 'value'})
     response = self.testapp.post('/api/new', request, status=200)
     result = json.loads(response.body)
     self.assertIn('jobId', result)
 
-  @mock.patch.object(gitiles_service, 'CommitInfo', mock.MagicMock(
-      return_value={'commit': 'abc'}))
-  def testPost_InvalidTags(self):
+  def testInvalidTags(self):
     request = dict(_BASE_REQUEST)
     request['tags'] = json.dumps(['abc'])
     response = self.testapp.post('/api/new', request, status=400)
     self.assertIn('error', json.loads(response.body))
 
-  @mock.patch.object(gitiles_service, 'CommitInfo', mock.MagicMock(
-      return_value={'commit': 'abc'}))
-  def testPost_InvalidTagType(self):
+  def testInvalidTagType(self):
     request = dict(_BASE_REQUEST)
     request['tags'] = json.dumps({'abc': 123})
     response = self.testapp.post('/api/new', request, status=400)
     self.assertIn('error', json.loads(response.body))
 
-  @mock.patch.object(gitiles_service, 'CommitInfo', mock.MagicMock(
-      return_value={'commit': 'abc'}))
-  def testPost_UserFromParams(self):
+  def testUserFromParams(self):
     request = dict(_BASE_REQUEST)
     request['user'] = 'foo@example.org'
     response = self.testapp.post('/api/new', request, status=200)
@@ -253,9 +217,7 @@ class NewTest(_NewTest):
     job = job_module.JobFromId(result['jobId'])
     self.assertEqual(job.user, 'foo@example.org')
 
-  @mock.patch.object(gitiles_service, 'CommitInfo', mock.MagicMock(
-      return_value={'commit': 'abc'}))
-  def testPost_UserFromAuth(self):
+  def testUserFromAuth(self):
     response = self.testapp.post('/api/new', _BASE_REQUEST, status=200)
     result = json.loads(response.body)
     job = job_module.JobFromId(result['jobId'])
