@@ -16,6 +16,24 @@
       "revId": "a2e3d87503320897362279fa1450483896212e14",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fd6e0e9_31852e5c",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 2361,
+      "author": {
+        "id": 1001706
+      },
+      "writtenOn": "2018-04-30T18:01:19Z",
+      "side": 1,
+      "message": "To be honest with you, this proposal is gross to implement and doesn\u0027t match my use case, so my inclination right now is to drop this CL entirely and push the logic into my telemetry patch.",
+      "parentUuid": "0dd23b94_9f9ad13a",
+      "revId": "a2e3d87503320897362279fa1450483896212e14",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
