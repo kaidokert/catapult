@@ -34,6 +34,24 @@
       "revId": "a2e3d87503320897362279fa1450483896212e14",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c12c6107_f3034be1",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 2361,
+      "author": {
+        "id": 1001706
+      },
+      "writtenOn": "2018-04-30T18:18:25Z",
+      "side": 1,
+      "message": "To be clear: the gross part is supporting both a pattern argument as well as list_threads\u003dTrue.  In my use case, I only ever use list_threads\u003dTrue when passing a single pid argument, and that\u0027s much simpler to implement.",
+      "parentUuid": "2fd6e0e9_31852e5c",
+      "revId": "a2e3d87503320897362279fa1450483896212e14",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
