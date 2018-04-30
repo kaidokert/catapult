@@ -89,7 +89,7 @@ class Job(ndb.Model):
 
   @classmethod
   def New(cls, arguments, quests, auto_explore, comparison_mode=None,
-          user=None, bug_id=None, tags=None):
+          user=None, bug_id=None, pin=None, tags=None):
     # Create job.
     return cls(
         arguments=arguments,
@@ -98,7 +98,7 @@ class Job(ndb.Model):
         user=user,
         bug_id=bug_id,
         tags=tags,
-        state=job_state.JobState(quests))
+        state=job_state.JobState(quests, pin=pin))
 
   @property
   def job_id(self):
