@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3483030f_d68f7c9e",
+        "filename": "experimental/soundwave/soundwave/pandas_sqlite.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-04-30T20:24:33Z",
+      "side": 1,
+      "message": "Could you write a small test for this? It doesn\u0027t seem like it should be super difficult given that you already have some tests that write to databases (I think?)\n\nIt seems like two test cases, one where the data doesn\u0027t exist and one where it does, would probably be sufficient",
+      "revId": "024de85aa590ede0fc63abfe3232e55260b35439",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
