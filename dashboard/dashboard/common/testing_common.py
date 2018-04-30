@@ -62,6 +62,16 @@ class TestCase(unittest.TestCase):
   def tearDown(self):
     self.testbed.deactivate()
 
+  def DrainTaskQueue(self, task_queue_name):
+    """Executes all of the tasks on the queue until there are none left."""
+    tasks = self.GetTaskQueueTasks(task_queue_name)
+    task_queue = self.testbed.get_stub(testbed.TASKQUEUE_SERVICE_NAME)
+    task_queue.FlushQueue(task_queue_name)
+    for task in tasks:
+      self.testapp.post(
+          task['url'], urllib.unquote_plus(base64.b64decode(task['body'])))
+      self.DrainTaskQueue(task_queue_name)
+
   def ExecuteTaskQueueTasks(self, handler_name, task_queue_name):
     """Executes all of the tasks on the queue until there are none left."""
     tasks = self.GetTaskQueueTasks(task_queue_name)

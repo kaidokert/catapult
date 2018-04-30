@@ -19,6 +19,7 @@ from dashboard.common import histogram_helpers
 from dashboard.common import stored_object
 from dashboard.common import utils
 from dashboard.models import histogram
+from dashboard.models import graph_data
 from tracing.value import histogram_set
 from tracing.value.diagnostics import diagnostic
 from tracing.value.diagnostics import reserved_infos
@@ -131,6 +132,12 @@ def ProcessHistogramSet(histogram_dicts):
   bot_whitelist = bot_whitelist_future.get_result()
   internal_only = add_point_queue.BotInternalOnly(bot, bot_whitelist)
 
+  last_added = ndb.Key('LastAddedRevision', suite_key.id()).get()
+  if not last_added:
+    last_added = graph_data.LastAddedRevision(id=suite_key.id())
+    last_added.revision = revision
+    last_added.put()
+
   # We'll skip the histogram-level sparse diagnostics because we need to
   # handle those with the histograms, below, so that we can properly assign
   # test paths.
@@ -139,8 +146,11 @@ def ProcessHistogramSet(histogram_dicts):
 
   # TODO(eakuefner): Refactor master/bot computation to happen above this line
   # so that we can replace with a DiagnosticRef rather than a full diagnostic.
-  new_guids_to_old_diagnostics = DeduplicateAndPut(
-      suite_level_sparse_diagnostic_entities, suite_key, revision)
+  new_guids_to_old_diagnostics, modified_ranges = (
+      histogram.SparseDiagnostic.FindOrInsertDiagnostics(
+          suite_level_sparse_diagnostic_entities, suite_key,
+          revision, last_added.revision).get_result())
+
   for new_guid, old_diagnostic in new_guids_to_old_diagnostics.iteritems():
     histograms.ReplaceSharedDiagnostic(
         new_guid, diagnostic.Diagnostic.FromDict(old_diagnostic))
@@ -149,12 +159,41 @@ def ProcessHistogramSet(histogram_dicts):
       suite_key.id(), histograms, revision, benchmark_description)
 
   _QueueHistogramTasks(tasks)
+  _QueueModificationTask(modified_ranges, suite_key)
+
+  if revision > last_added.revision:
+    last_added.revision = revision
+    last_added.put()
 
 
 def _ValidateMasterBotBenchmarkName(master, bot, benchmark):
   for n in (master, bot, benchmark):
     if '/' in n:
       raise api_request_handler.BadRequestError('Illegal slash in %s' % n)
+
+
+def _QueueModificationTask(modified_ranges, test_key):
+  if not modified_ranges:
+    return
+  return taskqueue.Task(
+      url='/add_histograms_queue/modified_ranges',
+      payload=json.dumps({
+          'modified_ranges': modified_ranges,
+          'test_key_urlsafe': test_key.urlsafe(),
+          'recursive': True}))
+
+  queue = taskqueue.Queue(TASK_QUEUE_NAME)
+  queue.add(t)
+
+
+def _QueueHistogramTasks(tasks):
+  queue = taskqueue.Queue(TASK_QUEUE_NAME)
+  futures = []
+  for i in xrange(0, len(tasks), taskqueue.MAX_TASKS_PER_ADD):
+    f = queue.add_async(tasks[i:i + taskqueue.MAX_TASKS_PER_ADD])
+    futures.append(f)
+  for f in futures:
+    f.get_result()
 
 
 def _MakeTask(params):
@@ -211,16 +250,6 @@ def _BatchHistogramsIntoTasks(
   return tasks
 
 
-def _QueueHistogramTasks(tasks):
-  queue = taskqueue.Queue(TASK_QUEUE_NAME)
-  futures = []
-  for i in xrange(0, len(tasks), taskqueue.MAX_TASKS_PER_ADD):
-    f = queue.add_async(tasks[i:i + taskqueue.MAX_TASKS_PER_ADD])
-    futures.append(f)
-  for f in futures:
-    f.get_result()
-
-
 def _MakeTaskDict(
     hist, test_path, revision, benchmark_description, diagnostics):
   # TODO(simonhatch): "revision" is common to all tasks, as is the majority of
@@ -245,52 +274,6 @@ def _MakeTaskDict(
   params['data'] = hist.AsDict()
 
   return params
-
-
-# TODO(eakuefner): Clean this up by making it accept raw diagnostics.
-# TODO(eakuefner): Move this helper along with others to a common place.
-@ndb.synctasklet
-def DeduplicateAndPut(new_entities, test, rev):
-  result = yield DeduplicateAndPutAsync(new_entities, test, rev)
-  raise ndb.Return(result)
-
-
-@ndb.tasklet
-def DeduplicateAndPutAsync(new_entities, test, rev):
-  query = histogram.SparseDiagnostic.query(
-      ndb.AND(
-          histogram.SparseDiagnostic.end_revision == sys.maxint,
-          histogram.SparseDiagnostic.test == test))
-  diagnostic_entities = yield query.fetch_async()
-  entity_futures = []
-  new_guids_to_existing_diagnostics = {}
-
-  for new_entity in new_entities:
-    old_entity = _GetDiagnosticEntityMatchingName(
-        new_entity.name, diagnostic_entities)
-    if old_entity is not None:
-      # Case 1: One in datastore, different from new one.
-      if old_entity.IsDifferent(new_entity):
-        old_entity.end_revision = rev - 1
-        entity_futures.append(old_entity.put_async())
-        new_entity.start_revision = rev
-        new_entity.end_revision = sys.maxint
-        entity_futures.append(new_entity.put_async())
-      # Case 2: One in datastore, same as new one.
-      else:
-        new_guids_to_existing_diagnostics[new_entity.key.id()] = old_entity.data
-      continue
-    # Case 3: Nothing in datastore.
-    entity_futures.append(new_entity.put_async())
-  yield entity_futures
-  raise ndb.Return(new_guids_to_existing_diagnostics)
-
-
-def _GetDiagnosticEntityMatchingName(name, diagnostic_entities):
-  for entity in diagnostic_entities:
-    if entity.name == name:
-      return entity
-  return None
 
 
 def FindSuiteLevelSparseDiagnostics(

@@ -43,11 +43,13 @@ def SetGooglerOAuth(mock_oauth):
 def _CreateHistogram(
     name='hist', master=None, bot=None, benchmark=None,
     device=None, owner=None, stories=None, story_tags=None,
-    benchmark_description=None, commit_position=None,
+    benchmark_description=None, commit_position=None, summary_options=None,
     samples=None, max_samples=None, is_ref=False, is_summary=None):
   hists = [histogram_module.Histogram(name, 'count')]
   if max_samples:
     hists[0].max_num_sample_values = max_samples
+  if summary_options:
+    hists[0].CustomizeSummaryOptions(summary_options)
   if samples:
     for s in samples:
       hists[0].AddSample(s)
@@ -107,7 +109,9 @@ class AddHistogramsEndToEndTest(testing_common.TestCase):
     app = webapp2.WSGIApplication([
         ('/add_histograms', add_histograms.AddHistogramsHandler),
         ('/add_histograms_queue',
-         add_histograms_queue.AddHistogramsQueueHandler)])
+         add_histograms_queue.AddHistogramsQueueHandler),
+        ('/add_histograms_queue/modified_ranges',
+         add_histograms_queue.ModifiedRangesHandler)])
     self.testapp = webtest.TestApp(app)
     testing_common.SetIsInternalUser('foo@bar.com', True)
     self.SetCurrentUser('foo@bar.com', is_admin=True)
@@ -149,6 +153,68 @@ class AddHistogramsEndToEndTest(testing_common.TestCase):
     # the rows by iterating over a dict.
     mock_graph_revisions.assert_called_once()
     self.assertEqual(len(mock_graph_revisions.mock_calls[0][1][0]), len(rows))
+
+  def _AddAtCommit(self, commit_position, device, owner):
+    opts = {
+        'avg': True,
+        'std': False,
+        'count': False,
+        'max': False,
+        'min': False,
+        'sum': False
+    }
+    hs = _CreateHistogram(
+        master='master', bot='bot', benchmark='benchmark',
+        commit_position=commit_position, summary_options=opts,
+        device=device, owner=owner, samples=[1])
+
+    self.testapp.post('/add_histograms', {'data': json.dumps(hs.AsDicts())})
+    self.DrainTaskQueue(add_histograms.TASK_QUEUE_NAME)
+
+  def _CheckOutOfOrderExpectations(self, expected):
+    diags = histogram.SparseDiagnostic.query().fetch()
+
+    for s in diags:
+      print '%s  %s %s   -- %s' % (s.name, s.start_revision, s.end_revision, s.data)
+    print
+
+    for d in diags:
+      if d.name not in expected:
+        continue
+      self.assertIn(
+          (d.start_revision, d.end_revision, d.data['values']),
+          expected[d.name])
+      expected[d.name].remove(
+          (d.start_revision, d.end_revision, d.data['values']))
+
+    for k in expected.iterkeys():
+      self.assertFalse(expected[k])
+
+  def testPost_OutOfOrder_ResavesHistograms(self):
+    self._AddAtCommit(1, 'd1', 'o1')
+    self._AddAtCommit(10, 'd1', 'o1')
+    self._AddAtCommit(20, 'd1', 'o2')
+    self._AddAtCommit(30, 'd1', 'o2')
+    self._AddAtCommit(15, 'd2', 'o1')
+
+    expected = {
+        'deviceIds': [
+            (1, 9, [u'device1']),
+            (10, 19, [u'device2']),
+            (20, sys.maxint, [u'device3'])
+        ],
+        'owners': [
+            (1, sys.maxint, [u'owner1'])
+        ]
+    }
+    self._CheckOutOfOrderExpectations(expected)
+
+  def testPost_OutOfOrder_ResavesHistograms_MultipleRanges(self):
+    self._AddAtCommit(1, 'd1', 'o1')
+    self._AddAtCommit(10, 'd1', 'o1')
+    self._AddAtCommit(20, 'd1', 'o1')
+    self._AddAtCommit(30, 'd1', 'o2')
+    self._AddAtCommit(15, 'd2', 'o2')
 
   @mock.patch.object(
       add_histograms_queue.graph_revisions, 'AddRowsToCacheAsync',
@@ -1377,59 +1443,3 @@ class AddHistogramsTest(testing_common.TestCase):
     histograms = histogram_set.HistogramSet([hist])
     add_histograms._LogDebugInfo(histograms)
     mock_log.assert_called_once_with('No LOG_URLS in data.')
-
-  def testDeduplicateAndPut_Same(self):
-    d = {
-        'values': ['master'],
-        'guid': 'e9c2891d-2b04-413f-8cf4-099827e67626',
-        'type': 'GenericSet'
-    }
-    test_key = utils.TestKey('Chromium/win7/foo')
-    entity = histogram.SparseDiagnostic(
-        data=d, name='masters', test=test_key, start_revision=1,
-        end_revision=sys.maxint, id='abc')
-    entity.put()
-    d2 = d.copy()
-    d2['guid'] = 'def'
-    entity2 = histogram.SparseDiagnostic(
-        data=d2, test=test_key,
-        start_revision=2, end_revision=sys.maxint, id='def')
-    add_histograms.DeduplicateAndPut([entity2], test_key, 2)
-    sparse = histogram.SparseDiagnostic.query().fetch()
-    self.assertEqual(2, len(sparse))
-
-  def testDeduplicateAndPut_Different(self):
-    d = {
-        'values': ['master'],
-        'guid': 'e9c2891d-2b04-413f-8cf4-099827e67626',
-        'type': 'GenericSet'
-    }
-    test_key = utils.TestKey('Chromium/win7/foo')
-    entity = histogram.SparseDiagnostic(
-        data=d, name='masters', test=test_key, start_revision=1,
-        end_revision=sys.maxint, id='abc')
-    entity.put()
-    d2 = d.copy()
-    d2['guid'] = 'def'
-    d2['displayBotName'] = 'mac'
-    entity2 = histogram.SparseDiagnostic(
-        data=d2, test=test_key,
-        start_revision=1, end_revision=sys.maxint, id='def')
-    add_histograms.DeduplicateAndPut([entity2], test_key, 2)
-    sparse = histogram.SparseDiagnostic.query().fetch()
-    self.assertEqual(2, len(sparse))
-
-  def testDeduplicateAndPut_New(self):
-    d = {
-        'values': ['master'],
-        'guid': 'e9c2891d-2b04-413f-8cf4-099827e67626',
-        'type': 'GenericSet'
-    }
-    test_key = utils.TestKey('Chromium/win7/foo')
-    entity = histogram.SparseDiagnostic(
-        data=d, test=test_key, start_revision=1,
-        end_revision=sys.maxint, id='abc')
-    entity.put()
-    add_histograms.DeduplicateAndPut([entity], test_key, 1)
-    sparse = histogram.SparseDiagnostic.query().fetch()
-    self.assertEqual(1, len(sparse))

@@ -4,20 +4,22 @@
 
 """URL endpoint to add new histograms to the datastore."""
 
+import collections
 import json
 import logging
 import re
 import sys
 
+from google.appengine.api import taskqueue
 from google.appengine.ext import ndb
 
 # TODO(eakuefner): Move these helpers so we don't have to import add_point or
 # add_point_queue directly.
-from dashboard import add_histograms
 from dashboard import add_point
 from dashboard import add_point_queue
 from dashboard import find_anomalies
 from dashboard import graph_revisions
+from dashboard import list_tests
 from dashboard.common import datastore_hooks
 from dashboard.common import request_handler
 from dashboard.common import stored_object
@@ -117,6 +119,8 @@ LEGACY_BENCHMARKS = [
 
 STATS_BLACKLIST = ['std', 'count', 'max', 'min', 'sum']
 
+TASK_QUEUE_NAME = 'histograms-queue'
+
 
 class BadRequestError(Exception):
   pass
@@ -125,6 +129,103 @@ class BadRequestError(Exception):
 def _CheckRequest(condition, msg):
   if not condition:
     raise BadRequestError(msg)
+
+
+class ModifiedRangesHandler(request_handler.RequestHandler):
+
+  def post(self):
+    datastore_hooks.SetPrivilegedRequest()
+
+    params = json.loads(self.request.body)
+
+    print
+    print 'MODIFIED'
+    print params
+    print
+
+    modified_ranges = params['modified_ranges']
+    test_key = ndb.Key(urlsafe=params['test_key_urlsafe'])
+    recursive = params.get('recursive')
+
+    if recursive:
+      _ResaveSuiteModifiedRanges(modified_ranges, test_key)
+
+    _ResaveModifiedRanges(modified_ranges, test_key)
+
+
+@ndb.synctasklet
+def _ResaveSuiteModifiedRanges(modified_ranges, test_key):
+  pattern = test_key.id() + '/*'
+  tests = yield list_tests.GetTestsMatchingPatternAsync(
+      pattern, only_with_rows=True, list_entities=False, use_cache=False)
+  for t in tests:
+    _QueueModificationTask(modified_ranges, test_key)
+
+
+@ndb.synctasklet
+def _ResaveModifiedRanges(modified_ranges, test_key):
+    min_rev = min([m[0] for m in modified_ranges])
+
+    query = histogram.SparseDiagnostic.query(
+        ndb.AND(
+            histogram.SparseDiagnostic.end_revision >= min_rev - 1,
+            histogram.SparseDiagnostic.test == test_key))
+
+    diagnostics_by_name = collections.defaultdict(list)
+    diagnostic_entities = yield query.fetch_async()
+
+    for d in diagnostic_entities:
+      diagnostics_by_name[d.name].append(d)
+
+    start_range, end_range = modified_ranges.pop()
+
+    rows_in_range = graph_data.GetRowsForTestInRange(
+        test_key, start_range, end_range)
+
+    yield [_ResaveHistogramForRevision(
+        diagnostics_by_name, r.revision, test_key) for r in rows_in_range]
+
+    if modified_ranges:
+      _QueueModificationTask(modified_ranges, test_key)
+
+
+@ndb.tasklet
+def _ResaveHistogramForRevision(diagnostics_by_name, revision, test_key):
+  q = histogram.Histogram.query()
+  q = q.filter(histogram.Histogram.test == test_key)
+  q = q.filter(histogram.Histogram.revision == revision)
+  hist_entity = yield q.fetch_async(
+      use_cache=False, use_memcache=False, limit=1)
+  if not hist_entity:
+    raise ndb.Return()
+
+  hist_entity = hist_entity[0]
+  hist = histogram_module.Histogram.FromDict(hist_entity.data)
+
+  # Look up all the diagnostics and replace them
+  diagnostics_for_histogram = _FindDiagnosticsAtRevision(
+      diagnostics_by_name, hist.diagnostics.keys(), revision)
+
+  for name, diag in diagnostics_for_histogram.iteritems():
+    hist.diagnostics[name] = diag
+
+  print 'WRITE HIST: %s %s' % (test_key.id(), revision)
+
+  hist_entity.data = hist.AsDict()
+  yield hist_entity.put_async(use_cache=False, use_memcache=False)
+
+
+def _FindDiagnosticsAtRevision(diagnostics_by_name, names, revision):
+  diagnostics = {}
+
+  for name, diagnostic_list in diagnostics_by_name.iteritems():
+    if not name in names:
+      continue
+    for d in diagnostic_list:
+      if d.start_revision <= revision and d.end_revision >= revision:
+        diagnostics[name] = diagnostic.Diagnostic.FromDict(d.data)
+        break
+  return diagnostics
 
 
 class AddHistogramsQueueHandler(request_handler.RequestHandler):
@@ -408,11 +509,31 @@ def ProcessDiagnostics(diagnostic_data, revision, test_key, internal_only):
         id=guid, name=name, data=diagnostic_datum, test=test_key,
         start_revision=revision, end_revision=sys.maxint,
         internal_only=internal_only))
-  new_guids_to_existing_diagnostics = yield (
-      add_histograms.DeduplicateAndPutAsync(
-          diagnostic_entities, test_key, revision))
+
+  suite_path = '/'.join(test_key.id().split('/')[:3])
+  last_added = yield ndb.Key('LastAddedRevision', suite_path).get_async()
+  assert last_added
+
+  new_guids_to_existing_diagnostics, modified_ranges = yield (
+      histogram.SparseDiagnostic.FindOrInsertDiagnostics(
+          diagnostic_entities, test_key, revision, last_added.revision))
+
+  _QueueModificationTask(modified_ranges, test_key)
 
   raise ndb.Return(new_guids_to_existing_diagnostics)
+
+
+def _QueueModificationTask(modified_ranges, test_key):
+  if not modified_ranges:
+    return
+  t = taskqueue.Task(
+      url='/add_histograms_queue/modified_ranges',
+      payload=json.dumps({
+          'modified_ranges': modified_ranges,
+          'test_key_urlsafe': test_key.urlsafe()}))
+
+  queue = taskqueue.Queue(TASK_QUEUE_NAME)
+  queue.add(t)
 
 
 def GetUnitArgs(unit):
