@@ -52,6 +52,24 @@
       "revId": "a2e3d87503320897362279fa1450483896212e14",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7f149c9_1563c2b9",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 2361,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-04-30T19:13:34Z",
+      "side": 1,
+      "message": "Ack.\n\n_RunPipedShellCommand isn\u0027t part of our public interface, mostly because I\u0027ve never been happy enough with it to make it public. You\u0027re welcome to use it over in telemetry as-is, but be advised that we\u0027re liable to be a bit more free with reworking it since it\u0027s private.",
+      "parentUuid": "c12c6107_f3034be1",
+      "revId": "a2e3d87503320897362279fa1450483896212e14",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
