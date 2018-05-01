@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6a773d25_ee3037f0",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1342,
+      "author": {
+        "id": 1129011
+      },
+      "writtenOn": "2018-05-01T05:32:08Z",
+      "side": 1,
+      "message": "There is no need to have separate matcher - you can fold this into ANDROID_PATH_MATCHER and later check that \u0027name\u0027 ends with \u0027base.apk\u0027.",
+      "range": {
+        "startLine": 1342,
+        "startChar": 0,
+        "endLine": 1342,
+        "endChar": 27
+      },
+      "revId": "3c35b4c2780a601c39c0fa6c74613c4d380097a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "379f16b4_6e4d1bab",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1360,
+      "author": {
+        "id": 1129011
+      },
+      "writtenOn": "2018-05-01T05:32:08Z",
+      "side": 1,
+      "message": "We need to handle case (log a warning?) where path is from base.apk, but chrome_soname is empty.",
+      "range": {
+        "startLine": 1360,
+        "startChar": 61,
+        "endLine": 1360,
+        "endChar": 74
+      },
+      "revId": "3c35b4c2780a601c39c0fa6c74613c4d380097a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
