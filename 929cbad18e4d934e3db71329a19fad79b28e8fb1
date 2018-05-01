@@ -39,6 +39,30 @@
       "revId": "929cbad18e4d934e3db71329a19fad79b28e8fb1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0290ae7c_74824277",
+        "filename": "experimental/soundwave/soundwave/pandas_sqlite_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-01T15:12:50Z",
+      "side": 1,
+      "message": "Really good point! Thanks for pointing that out. Done.",
+      "parentUuid": "85b580aa_05bf7ae1",
+      "range": {
+        "startLine": 38,
+        "startChar": 15,
+        "endLine": 38,
+        "endChar": 26
+      },
+      "revId": "929cbad18e4d934e3db71329a19fad79b28e8fb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
