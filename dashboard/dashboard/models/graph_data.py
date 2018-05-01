@@ -358,7 +358,7 @@ class LastAddedRevision(ndb.Model):
   revision = ndb.IntegerProperty(indexed=False)
 
 
-class Row(internal_only_model.InternalOnlyModel, ndb.Expando):
+class Row(ndb.Expando):
   """A Row represents one data point.
 
   A Row has a revision and a value, which are the X and Y values, respectively.
