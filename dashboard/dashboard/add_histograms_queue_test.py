@@ -28,7 +28,7 @@ TEST_HISTOGRAM = {
     'binBoundaries': [1, [1, 1000, 20]],
     'diagnostics': {
         reserved_infos.LOG_URLS.name: {
-            'values': ['http://log.url/'],
+            'values': [['Buildbot stdio', 'http://log.url/']],
             'type': 'GenericSet',
         },
         reserved_infos.CHROMIUM_COMMIT_POSITIONS.name: {
