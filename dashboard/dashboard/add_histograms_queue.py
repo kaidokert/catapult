@@ -32,7 +32,6 @@ from tracing.value.diagnostics import diagnostic_ref
 from tracing.value.diagnostics import reserved_infos
 
 DIAGNOSTIC_NAMES_TO_ANNOTATION_NAMES = {
-    reserved_infos.LOG_URLS.name: 'a_stdio_uri',
     reserved_infos.CHROMIUM_COMMIT_POSITIONS.name: 'r_commit_pos',
     reserved_infos.V8_COMMIT_POSITIONS.name: 'r_v8_commit_pos',
     reserved_infos.CHROMIUM_REVISIONS.name: 'r_chromium',
@@ -490,6 +489,8 @@ def _MakeRowDict(revision, test_path, tracing_histogram, stat_name=None):
 
     d['supplemental_columns'][annotation] = value[0]
 
+  _AddStdioUris(tracing_histogram, d)
+
   if stat_name is not None:
     d['value'] = tracing_histogram.statistics_scalars[stat_name].value
     d['error'] = 0.0
@@ -498,6 +499,22 @@ def _MakeRowDict(revision, test_path, tracing_histogram, stat_name=None):
   else:
     _PopulateNumericalFields(d, tracing_histogram)
   return d
+
+
+def _AddStdioUris(tracing_histogram, row_dict):
+  log_urls = tracing_histogram.diagnostics.get(reserved_infos.LOG_URLS.name)
+  if not log_urls:
+    return
+
+  if len(log_urls) == 1:
+    _AddStdioUri('a_stdio_uri', log_urls.GetOnlyElement(), row_dict)
+
+
+def _AddStdioUri(name, link_list, row_dict):
+  _CheckRequest(isinstance(link_list, list),
+                'Log URLs must be provided as link tuples')
+  row_dict[name] = '[%s](%s)' % tuple(link_list)
+
 
 def _PopulateNumericalFields(row_dict, tracing_histogram):
   statistics_scalars = tracing_histogram.statistics_scalars
