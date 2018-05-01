@@ -22,6 +22,30 @@
       "revId": "477d0418f04fecf7241ec1553bc7cb84809dceb9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70e38f8c_1e92c8b1",
+        "filename": "experimental/soundwave/soundwave/tables/bugs_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-01T15:02:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa9cbe62_c85d97c1",
+      "range": {
+        "startLine": 37,
+        "startChar": 27,
+        "endLine": 37,
+        "endChar": 43
+      },
+      "revId": "477d0418f04fecf7241ec1553bc7cb84809dceb9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
