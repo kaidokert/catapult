@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "7ede6efe_f721d767",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1342,
+      "author": {
+        "id": 1129011
+      },
+      "writtenOn": "2018-05-01T17:54:35Z",
+      "side": 1,
+      "message": "My comment was more about not having two matchers. They are regexp, so it\u0027s a waste to have two, especially since we have to match both of them.\n\nThe reason why ANDROID_PATH_MATCHER is strict is because it\u0027s also used to detect Android traces. I.e. back then there was no other indication that the trace is from Android, hence HaveFilesFromAndroid() function.\n\nIf there is a simpler way to check for Android traces, then we don\u0027t actually need matchers at all - we can just get file name from path, and operate on it.",
+      "parentUuid": "a33b02b2_d0224ede",
+      "range": {
+        "startLine": 1342,
+        "startChar": 0,
+        "endLine": 1342,
+        "endChar": 27
+      },
+      "revId": "3c35b4c2780a601c39c0fa6c74613c4d380097a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9482cd9a_e2dd2b7c",
         "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
         "patchSetId": 1
