@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4c57d557_11f94d29",
+        "filename": "experimental/soundwave/soundwave/tables/bugs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-01T15:47:04Z",
+      "side": 1,
+      "message": "After writing timeseries.DataFrameFromJson I thought:\n- That was a lot cleaner.\n- There was really no reason for \"RowFromJson\" or something like that to be public.\n\nSo I wrote this CL which I think simplifies things quite a bit. :)",
+      "revId": "1d7b6f26483a4a81d93b722e41199121474db088",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
