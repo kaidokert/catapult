@@ -16,6 +16,29 @@
       "revId": "929cbad18e4d934e3db71329a19fad79b28e8fb1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85b580aa_05bf7ae1",
+        "filename": "experimental/soundwave/soundwave/pandas_sqlite_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-01T14:49:33Z",
+      "side": 1,
+      "message": "I\u0027d recommend against the use of factory methods that reduce code in the unit test but force the reader to look outside of the unit test in order to verify that what it\u0027s doing makes sense. (See the Python example in http://shortn/_cW9Vz3mYoo)\n\nAt the core, it\u0027s basically the difference between:\n\ndef testOne(self):\n  lst \u003d [1, 2, 3]\n  self.assertTrue(1 in lst)\n\nversus:\n\ndef createList():\n   return [1, 2, 3]\n\ndef testTwo(self):\n  lst \u003d createList()\n  self.assertTrue(1 in lst)\n\nYou can tell that testOne should obviously pass (assuming that all methods that it calls out to work as intended), whereas for testTwo you\u0027re missing some key information to tell whether the test should in fact pass (specifically, the list on which the assertions are acting).\n\nIn this example, it\u0027s pretty trivial to just look up at createList() to make sure that it is in fact creating a list that contains 1 in it. In practice, there can often be tens or hundreds of lines of code separating createList() and testTwo() and the logic can be much more complex, so putting them together guarantees that the tests remain obviously true and make test logic errors stick out much more.\n\n(I understand that this means there\u0027ll be some code duplication between the two test cases, but I feel strongly that duplication is preferable here.)",
+      "range": {
+        "startLine": 38,
+        "startChar": 15,
+        "endLine": 38,
+        "endChar": 26
+      },
+      "revId": "929cbad18e4d934e3db71329a19fad79b28e8fb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
