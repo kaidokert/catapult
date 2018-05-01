@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a33b02b2_d0224ede",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1342,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2018-05-01T17:37:52Z",
+      "side": 1,
+      "message": "It feels unnecessary to match for exact string here accounting for all versions. All we really need to check is if it has chrome.so or chrome.apk. Also the chrome installed from app store does not match any of the patterns, it has /system/app/chrome.apk. So, it is sufficient to check if we have chrome apk or so.",
+      "parentUuid": "6a773d25_ee3037f0",
+      "range": {
+        "startLine": 1342,
+        "startChar": 0,
+        "endLine": 1342,
+        "endChar": 27
+      },
+      "revId": "3c35b4c2780a601c39c0fa6c74613c4d380097a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9482cd9a_e2dd2b7c",
         "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2018-05-01T14:16:25Z",
       "side": 1,
       "message": "can you add a sample trace to the end to end tests?",
+      "range": {
+        "startLine": 1353,
+        "startChar": 22,
+        "endLine": 1353,
+        "endChar": 30
+      },
+      "revId": "3c35b4c2780a601c39c0fa6c74613c4d380097a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8594feeb_52a87f9a",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1353,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2018-05-01T17:37:52Z",
+      "side": 1,
+      "message": "um all those tests are trying to download symbols from gcs. But that does not work for android. This cl only fixes local builds.",
+      "parentUuid": "9482cd9a_e2dd2b7c",
       "range": {
         "startLine": 1353,
         "startChar": 22,
@@ -68,6 +116,30 @@
       "revId": "3c35b4c2780a601c39c0fa6c74613c4d380097a4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "280e2091_d97983a8",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1360,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2018-05-01T17:37:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "379f16b4_6e4d1bab",
+      "range": {
+        "startLine": 1360,
+        "startChar": 61,
+        "endLine": 1360,
+        "endChar": 74
+      },
+      "revId": "3c35b4c2780a601c39c0fa6c74613c4d380097a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
