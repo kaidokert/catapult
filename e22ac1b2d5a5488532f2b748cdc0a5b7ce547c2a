@@ -1,0 +1,244 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fdbe89d9_48e2e40f",
+        "filename": "telemetry/telemetry/internal/backends/browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-01T22:20:58Z",
+      "side": 1,
+      "message": "(as suggested later on in the comment in browser_simpleperf_controller, we should be able to delete the package and device properties here)",
+      "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "745a48e2_2bb8dd95",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-01T22:20:58Z",
+      "side": 1,
+      "message": "nit: given that this doesn\u0027t actually use the object and I don\u0027t foresee it doing so in the future, it might make sense to make it static (get rid of the self parameter)",
+      "range": {
+        "startLine": 242,
+        "startChar": 6,
+        "endLine": 242,
+        "endChar": 19
+      },
+      "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3cdd4ec5_af0d83bc",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-01T22:20:58Z",
+      "side": 1,
+      "message": "It seems like these two are fine to expose, though",
+      "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "988a5900_6dedb477",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-01T22:20:58Z",
+      "side": 1,
+      "message": "Don\u0027t we need some sort of global on/off flag for simpleperf? Otherwise, it\u0027s going to immediately be enabled on all Android benchmarks, including those that are currently on the CQ. This seems very risky.\n\nIt seems like our options are either:\n\n1) Create a new flag\n2) Co-opt one of the other flags. We could set it to a falsy value (e.g. --simpleperf-target\u003dNone or \"\" by default) and only enable simpleperf when that flag has a non-null value.\n\nMy vote is for the latter so that users don\u0027t have to play with more flags than necessary to enable it.\n\nAs for how we use this flag, my vote is that we make the SimplePerfController return False in IsSimpleperfSupported() when the flag has its falsy value. This seems easier than piping the flag to the Page class, where we\u0027d be forced to do something like:\n\nif not simpleperf_enabled:\n  RunInteractions()\n\nelse if simpleperf_enabled:\n  with shared_page_state.SimpleperfController.Period(\u0027interactions\u0027):\n    RunInteractions()\n\nwhich is pretty gross and unreadable IMO.",
+      "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fdf3e0d_5058f2f9",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-01T22:20:58Z",
+      "side": 1,
+      "message": "It seems like we\u0027re not actually using this flag anymore, right? Previously, this was consumed by the simpleperf controller and it used its hooks to determine if a given sampling period should be started or stopped depending on the command line flag and the hook. Now that it no longer has access to those hooks, it\u0027s harder to figure out any elegant, central, architectural way to integrate the notion of periods. We could do something where we pass this option to the page, but... \n\nDo you have any strong objection to just always recording all periods if simpleperf is enabled? It doesn\u0027t seem like there\u0027s much disadvantage to this.",
+      "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2b084cb_e3f81fcb",
+        "filename": "telemetry/telemetry/internal/browser/browser_simpleperf_controller.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-01T22:20:58Z",
+      "side": 1,
+      "message": "Given that 1) this whole thing only works on Android and 2) we\u0027re only ever calling this method once we\u0027re sure that we\u0027re on Android, we can just access the browser that we need through self._browser._platform_backend.device. This eliminates the need to expose \"device\" and \"package\" properties on the browser and browser_backend objects, which is awkward because the properties don\u0027t make any sense for non-Android devices. (For the record, I also agree with you that the distinction between the browser frontend and backends seems to just add unnecessary frustration and plumbing).\n\nUsing a private \"_platform_backend\" field to get the device is definitely kind of a code smell, but we do it elsewhere too (https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/core/tracing_controller.py?type\u003dcs\u0026q\u003d%22._platform_backend%22+-%22self._platform_backend%22+-f:unittest\u0026sq\u003dpackage:chromium\u0026l\u003d13) when absolutely necessary. Basically, we do it in cases where in C++ we would use the \"friend\" keyword to limit access of private methods to a single other class, but Python doesn\u0027t have that, so we\u0027re forced to access private fields. We also only do it within Telemetry and never from tools/perf. I think it\u0027s fine to do here.",
+      "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43a2a8f6_e788b0a4",
+        "filename": "telemetry/telemetry/internal/browser/browser_simpleperf_controller.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-01T22:20:58Z",
+      "side": 1,
+      "message": "Instead of doing this, you can do self._browser.platform.GetArchName() to get the architecture. Browser is an instance of app.App (https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/app/__init__.py?q\u003dapp+telemetry\u0026sq\u003dpackage:chromium\u0026dr\u003dCSs\u0026l\u003d6), which has access to the Platform object, which in turn knows what architecture it is. This is definitely preferable to going backwards from the browser, which feels a little weird to me.",
+      "range": {
+        "startLine": 31,
+        "startChar": 63,
+        "endLine": 31,
+        "endChar": 76
+      },
+      "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d747b069_80086b1c",
+        "filename": "telemetry/telemetry/internal/browser/browser_simpleperf_controller.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-01T22:20:58Z",
+      "side": 1,
+      "message": "I reached out to Ned offline to see if he had any strong objections to having this hook here. I think it\u0027s fine (in contrast with the old page lifecycle hooks), but want to make sure he doesn\u0027t have any objections to it before I +1 anything",
+      "range": {
+        "startLine": 67,
+        "startChar": 2,
+        "endLine": 67,
+        "endChar": 37
+      },
+      "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cf7e947f_db70861a",
+        "filename": "telemetry/telemetry/internal/browser/browser_simpleperf_controller.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-01T22:20:58Z",
+      "side": 1,
+      "message": "nit: I think we usually capitalize the first letter of an end-of-line comment",
+      "range": {
+        "startLine": 97,
+        "startChar": 29,
+        "endLine": 97,
+        "endChar": 35
+      },
+      "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7453c4e4_b345996e",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-01T22:20:58Z",
+      "side": 1,
+      "message": "Could you add a comment to the effect of \"Note that this isn\u0027t used as part of the filename.\"",
+      "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d21289d6_7363be26",
+        "filename": "telemetry/telemetry/page/__init__.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-01T22:20:58Z",
+      "side": 1,
+      "message": "Much better!",
+      "range": {
+        "startLine": 91,
+        "startChar": 4,
+        "endLine": 91,
+        "endChar": 71
+      },
+      "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5d2d639e_7364a54d",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-01T22:20:58Z",
+      "side": 1,
+      "message": "Assuming that you can add prefix and suffix to the CreateArtifact API (which we\u0027re okay with now), can you just iterate through the return values of GetResults() and add them as artifacts via CreateArtifact? I\u0027d like to avoid adding the artifacts via partial function application, which is kind of indirect and confusing, if at all possible.",
+      "range": {
+        "startLine": 173,
+        "startChar": 6,
+        "endLine": 175,
+        "endChar": 80
+      },
+      "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
