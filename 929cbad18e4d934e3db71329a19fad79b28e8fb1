@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a4e5e650_00439b66",
+        "filename": "experimental/soundwave/soundwave/pandas_sqlite.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-01T13:41:54Z",
+      "side": 1,
+      "message": "Sneaking in a last minute change to support data frames with multi column index. This will come handy for time series data where the index is (\u0027test_path\u0027, \u0027point_id\u0027)",
+      "revId": "929cbad18e4d934e3db71329a19fad79b28e8fb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
