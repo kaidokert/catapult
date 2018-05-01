@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "0ba20846_8fb4daf4",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1342,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2018-05-01T17:57:38Z",
+      "side": 1,
+      "message": "okay I will try to remove the matchers.\n\nos-name: \"Android\" metadata in the traces. Were they not available in older traces or something?\nit seems to have existed for long time.",
+      "parentUuid": "7ede6efe_f721d767",
+      "range": {
+        "startLine": 1342,
+        "startChar": 0,
+        "endLine": 1342,
+        "endChar": 27
+      },
+      "revId": "3c35b4c2780a601c39c0fa6c74613c4d380097a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9482cd9a_e2dd2b7c",
         "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
         "patchSetId": 1
