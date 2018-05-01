@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f46f53d3_fff01068",
+        "filename": "dashboard/dashboard/add_point_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-05-01T20:53:23Z",
+      "side": 0,
+      "message": "Why was this removed? Isn\u0027t it still important to have internal_only tests?",
+      "revId": "4e78157a8a474a7ee3f42e3b3b9387af35534aa2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
