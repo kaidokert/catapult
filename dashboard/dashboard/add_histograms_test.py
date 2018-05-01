@@ -107,7 +107,8 @@ class AddHistogramsEndToEndTest(testing_common.TestCase):
     app = webapp2.WSGIApplication([
         ('/add_histograms', add_histograms.AddHistogramsHandler),
         ('/add_histograms_queue',
-         add_histograms_queue.AddHistogramsQueueHandler)])
+         add_histograms_queue.AddHistogramsQueueHandler)
+    ])
     self.testapp = webtest.TestApp(app)
     testing_common.SetIsInternalUser('foo@bar.com', True)
     self.SetCurrentUser('foo@bar.com', is_admin=True)
@@ -1377,59 +1378,3 @@ class AddHistogramsTest(testing_common.TestCase):
     histograms = histogram_set.HistogramSet([hist])
     add_histograms._LogDebugInfo(histograms)
     mock_log.assert_called_once_with('No LOG_URLS in data.')
-
-  def testDeduplicateAndPut_Same(self):
-    d = {
-        'values': ['master'],
-        'guid': 'e9c2891d-2b04-413f-8cf4-099827e67626',
-        'type': 'GenericSet'
-    }
-    test_key = utils.TestKey('Chromium/win7/foo')
-    entity = histogram.SparseDiagnostic(
-        data=d, name='masters', test=test_key, start_revision=1,
-        end_revision=sys.maxint, id='abc')
-    entity.put()
-    d2 = d.copy()
-    d2['guid'] = 'def'
-    entity2 = histogram.SparseDiagnostic(
-        data=d2, test=test_key,
-        start_revision=2, end_revision=sys.maxint, id='def')
-    add_histograms.DeduplicateAndPut([entity2], test_key, 2)
-    sparse = histogram.SparseDiagnostic.query().fetch()
-    self.assertEqual(2, len(sparse))
-
-  def testDeduplicateAndPut_Different(self):
-    d = {
-        'values': ['master'],
-        'guid': 'e9c2891d-2b04-413f-8cf4-099827e67626',
-        'type': 'GenericSet'
-    }
-    test_key = utils.TestKey('Chromium/win7/foo')
-    entity = histogram.SparseDiagnostic(
-        data=d, name='masters', test=test_key, start_revision=1,
-        end_revision=sys.maxint, id='abc')
-    entity.put()
-    d2 = d.copy()
-    d2['guid'] = 'def'
-    d2['displayBotName'] = 'mac'
-    entity2 = histogram.SparseDiagnostic(
-        data=d2, test=test_key,
-        start_revision=1, end_revision=sys.maxint, id='def')
-    add_histograms.DeduplicateAndPut([entity2], test_key, 2)
-    sparse = histogram.SparseDiagnostic.query().fetch()
-    self.assertEqual(2, len(sparse))
-
-  def testDeduplicateAndPut_New(self):
-    d = {
-        'values': ['master'],
-        'guid': 'e9c2891d-2b04-413f-8cf4-099827e67626',
-        'type': 'GenericSet'
-    }
-    test_key = utils.TestKey('Chromium/win7/foo')
-    entity = histogram.SparseDiagnostic(
-        data=d, test=test_key, start_revision=1,
-        end_revision=sys.maxint, id='abc')
-    entity.put()
-    add_histograms.DeduplicateAndPut([entity], test_key, 1)
-    sparse = histogram.SparseDiagnostic.query().fetch()
-    self.assertEqual(1, len(sparse))
