@@ -154,6 +154,24 @@
     },
     {
       "key": {
+        "uuid": "b64cd0a0_a66a910b",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-02T13:10:12Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9cd5aab7_c710094b",
+      "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7fdf3e0d_5058f2f9",
         "filename": "telemetry/telemetry/internal/browser/browser_options.py",
         "patchSetId": 5
@@ -189,6 +207,24 @@
     },
     {
       "key": {
+        "uuid": "7c56aeaa_5886f11f",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-02T13:10:12Z",
+      "side": 1,
+      "message": "Up to you. The way you have it now works for me.",
+      "parentUuid": "883043e1_a63bdedd",
+      "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d2b084cb_e3f81fcb",
         "filename": "telemetry/telemetry/internal/browser/browser_simpleperf_controller.py",
         "patchSetId": 5
@@ -218,6 +254,24 @@
       "side": 1,
       "message": "I made the change you suggest for device, but package is different.  It comes from self._browser._browser_backend._backend_settings.package.\n\nI do find it strange that AndroidBrowserBackend already defines a \u0027device\u0027 property. How would that ever be used?  Is it somehow preferable to access browser._platform_backend.device rather than browser._browser_backend.device?",
       "parentUuid": "d2b084cb_e3f81fcb",
+      "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d778bec3_6c79fc06",
+        "filename": "telemetry/telemetry/internal/browser/browser_simpleperf_controller.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-02T13:10:12Z",
+      "side": 1,
+      "message": "I\u0027m confused: why can\u0027t you just do self._browser._platform_backend.package?\n\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/backends/chrome/android_browser_backend.py?type\u003dcs\u0026q\u003dpackage+android_browser_backend\u0026sq\u003dpackage:chromium\u0026l\u003d173",
+      "parentUuid": "70f9fd98_e0c217c4",
       "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -259,6 +313,30 @@
       "side": 1,
       "message": "platform_backend.GetArchName will give you the architecture of the device OS, but what I need here is the architecture of the package being profiled, which may be different (e.g., 32-bit chrome on 64-bit android).",
       "parentUuid": "43a2a8f6_e788b0a4",
+      "range": {
+        "startLine": 31,
+        "startChar": 63,
+        "endLine": 31,
+        "endChar": 76
+      },
+      "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1138abca_c579815f",
+        "filename": "telemetry/telemetry/internal/browser/browser_simpleperf_controller.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-02T13:10:12Z",
+      "side": 1,
+      "message": "Ah, ok. Can you add a comment to that effect above this line?",
+      "parentUuid": "9b8ea7f7_347d2d02",
       "range": {
         "startLine": 31,
         "startChar": 63,
@@ -458,6 +536,30 @@
       "side": 1,
       "message": "I think your suggestion is worse, because it exposes browser._platform_backend.device -- see the implementation of BrowserSimpleperfController.GetResults).  It would mean putting android-specific code in shared_page_state.py, where there is none right now.\n\nIf you feel strongly about this, I will change it, but for now I have left it as-is.",
       "parentUuid": "5d2d639e_7364a54d",
+      "range": {
+        "startLine": 173,
+        "startChar": 6,
+        "endLine": 175,
+        "endChar": 80
+      },
+      "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a68b11cc_1f5052fe",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-02T13:10:12Z",
+      "side": 1,
+      "message": "I see your point, but I do feel like we might be able to make it better somehow. I think that your point is that we don\u0027t want to have the PullFile logic in this file, which I agree with because it\u0027s pretty specific to Android and simpleperf. \n\nMy main problem with the current API is that the artifact_gen parameter is of a weird type that can\u0027t be described in any sensible way - it\u0027s the CreateArtifact method with the story name and prefix parameters bound, but without the name, run_number, or suffix parameters bound. \n\nMaybe we should just change GetResults() to AddResults() and pass it the results object? I don\u0027t really have any objection to that, and it seems to get around all of the partial function application. Right now, we\u0027re only partially applying two parameters - page name, which we\u0027re already passing to GetResults() anyway and we could continue to pass, and prefix, which is being overridden in GetResults() anyhow. If we just pass the results object, then we could call CreateArtifact directly from AddResults().\n\nGetResults() isn\u0027t really a \"standard\" within Telemetry anyhow (https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/platform/tracing_agent/atrace_tracing_agent.py?type\u003dcs\u0026q\u003dgetresults+f:telemetry\u0026sq\u003dpackage:chromium\u0026l\u003d54), so I think we have a little more leeway",
+      "parentUuid": "a38ee4cd_bfb590c7",
       "range": {
         "startLine": 173,
         "startChar": 6,

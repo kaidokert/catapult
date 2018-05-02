@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "08525950_18feb3de",
+        "filename": "telemetry/telemetry/internal/browser/browser_simpleperf_controller.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-02T13:10:12Z",
+      "side": 1,
+      "message": "high level comment here: I think that a few high-level tests are necessary in a browser_simpleperf_controller_test file in order to give us confidence that this isn\u0027t going to blow stuff up:\n\n- On Android, make sure that this class does nothing if an empty `periods` parameter is passed in\n- On Android, make sure that the right traces are recorded if a non-empty `periods` parameter is passed in\n- On Windows, Mac, and Linux, make sure that the test still runs successfully if no `periods` parameter is used\n- On Windows, Mac, and Linux, make sure that the test still runs successfully if a `periods` parameter is used\n\nIt seems like, with these tests, we can be confident that submitting this CL won\u0027t blow up the CQ and the world.\n\nWriting these tests could potentially be a pain in the butt, but will likely go really quickly (\u003c1h) assuming that you have the right example to work from. I\u0027m going to talk w/ Ned to find out what a good example of this type of test would be.",
+      "revId": "69e70570c67f7509457cff4b06cfa706f42cb677",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "383d86f8_07d91dde",
+        "filename": "telemetry/telemetry/internal/browser/browser_simpleperf_controller.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-02T13:10:12Z",
+      "side": 1,
+      "message": "Just a thought that it might be easier to just access self._browser._platform_backend.device once and store it as a field on self, but up to you",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 49
+      },
+      "revId": "69e70570c67f7509457cff4b06cfa706f42cb677",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
