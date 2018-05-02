@@ -22,6 +22,30 @@
       "revId": "8dd9c2c0ee853edf454ff6526a11be73b7ccda46",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30db9ff4_b5da0e05",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1356,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2018-05-02T23:38:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb5bc861_a7b7e2e8",
+      "range": {
+        "startLine": 1356,
+        "startChar": 8,
+        "endLine": 1356,
+        "endChar": 13
+      },
+      "revId": "8dd9c2c0ee853edf454ff6526a11be73b7ccda46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
