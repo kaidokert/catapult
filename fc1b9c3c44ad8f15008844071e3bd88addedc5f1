@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1fd4daeb_69a9a646",
+        "filename": "experimental/soundwave/soundwave/tables/timeseries.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-02T20:44:23Z",
+      "side": 1,
+      "message": "Ooooh, cute.",
+      "revId": "fc1b9c3c44ad8f15008844071e3bd88addedc5f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae8e03a1_8491531b",
+        "filename": "experimental/soundwave/soundwave/tables/timeseries.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-02T20:44:23Z",
+      "side": 1,
+      "message": "IMO\n\n\u0027%s/%s\u0027 % (config.pop(\u0027master\u0027), config.pop(\u0027builder\u0027))\n\nis slightly clearer, but both are fine IMO",
+      "revId": "fc1b9c3c44ad8f15008844071e3bd88addedc5f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bcb5dffd_2658f874",
+        "filename": "experimental/soundwave/soundwave/tables/timeseries.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-02T20:44:23Z",
+      "side": 1,
+      "message": "I\u0027m not sure I understand this line. Maybe add a comment?\n\nAlso, I think this line, along with the below loop, might be slightly clearer with:\n\nheader \u003d timeseries.pop(0)\n\nrows \u003d []\nfor values in timeseries:\n  ...",
+      "revId": "fc1b9c3c44ad8f15008844071e3bd88addedc5f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
