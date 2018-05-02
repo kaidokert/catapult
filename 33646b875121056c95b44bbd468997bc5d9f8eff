@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a7314a62_00bb73a5",
+        "filename": "tracing/bin/add_reserved_diagnostics",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-05-02T01:51:50Z",
+      "side": 1,
+      "message": "is this used?",
+      "range": {
+        "startLine": 18,
+        "startChar": 38,
+        "endLine": 18,
+        "endChar": 49
+      },
+      "revId": "33646b875121056c95b44bbd468997bc5d9f8eff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
