@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eb5bc861_a7b7e2e8",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1356,
+      "author": {
+        "id": 1129011
+      },
+      "writtenOn": "2018-05-02T17:19:43Z",
+      "side": 1,
+      "message": "This print shouldn\u0027t be here, errors (\"problems\") are printed later, and are consistent with other prints that happen before.\n\nSo one last request: remove \"if filename\" check (basename() never returns None), remove \"print \u0027Problem with...\" and simply make else branch to do \"Clobber file path to trigger\" block.",
+      "range": {
+        "startLine": 1356,
+        "startChar": 8,
+        "endLine": 1356,
+        "endChar": 13
+      },
+      "revId": "8dd9c2c0ee853edf454ff6526a11be73b7ccda46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
