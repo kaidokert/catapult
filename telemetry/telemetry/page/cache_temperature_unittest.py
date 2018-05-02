@@ -8,6 +8,7 @@ from telemetry import decorators
 from telemetry import page as page_module
 from telemetry import story
 from telemetry.page import cache_temperature
+from telemetry.internal.testing.test_page_sets import example_domain
 from telemetry.testing import browser_test_case
 from telemetry.timeline import tracing_config
 from tracing.trace_data import trace_data
@@ -17,9 +18,14 @@ class CacheTemperatureTests(browser_test_case.BrowserTestCase):
   def __init__(self, *args, **kwargs):
     super(CacheTemperatureTests, self).__init__(*args, **kwargs)
     self._full_trace = None
+    self._story_set = example_domain.ExampleDomainPageSet()
+    self._page = self._story_set.stories[0]
 
   @contextlib.contextmanager
-  def captureTrace(self):
+  def CreateReplayNetworkAndCatpureTrace(self):
+    archive_path = self._story_set.WprFilePathForStory(
+        self._page, self._browser.platform.GetOSName())
+    self._browser.platform.network_controller.StartReplay(archive_path)
     tracing_controller = self._browser.platform.tracing_controller
     options = tracing_config.TracingConfig()
     options.enable_chrome_trace = True
@@ -27,7 +33,11 @@ class CacheTemperatureTests(browser_test_case.BrowserTestCase):
     try:
       yield
     finally:
-      self._full_trace = tracing_controller.StopTracing()[0]
+       self._browser.platform.network_controller.StopReplay()
+       self._full_trace = tracing_controller.StopTracing()[0]
+    self._full_trace.Serialize(
+        '/Users/nednguyen/projects/chromium/src/tools/swarming_client/foo/trace.html')
+
 
   def traceMarkers(self):
     if not self._full_trace:
@@ -41,11 +51,9 @@ class CacheTemperatureTests(browser_test_case.BrowserTestCase):
 
   @decorators.Enabled('has tabs')
   def testEnsureAny(self):
-    with self.captureTrace():
-      story_set = story.StorySet()
-      page = page_module.Page(
-          'http://google.com', page_set=story_set,
-          cache_temperature=cache_temperature.ANY, name='http://google.com')
+    with self.CreateReplayNetworkAndCatpureTrace():
+      story_set = example_domain.ExampleDomainPageSet()
+      page = story_set.stories[0]
       cache_temperature.EnsurePageCacheTemperature(page, self._browser)
 
     markers = self.traceMarkers()
@@ -58,11 +66,8 @@ class CacheTemperatureTests(browser_test_case.BrowserTestCase):
   @decorators.Enabled('has tabs')
   @decorators.Disabled('chromeos')
   def testEnsureCold(self):
-    with self.captureTrace():
-      story_set = story.StorySet()
-      page = page_module.Page(
-          'http://google.com', page_set=story_set,
-          cache_temperature=cache_temperature.COLD, name='http://google.com')
+    with self.CreateReplayNetworkAndCatpureTrace():
+      story_set = example_domain.ExampleDomainPageSet()
       cache_temperature.EnsurePageCacheTemperature(page, self._browser)
 
     markers = self.traceMarkers()
@@ -72,8 +77,8 @@ class CacheTemperatureTests(browser_test_case.BrowserTestCase):
   @decorators.Disabled('reference')
   @decorators.Enabled('has tabs')
   def testEnsureWarmAfterColdRun(self):
-    with self.captureTrace():
-      story_set = story.StorySet()
+    with self.CreateReplayNetworkAndCatpureTrace():
+      story_set = example_domain.ExampleDomainPageSet()
       page = page_module.Page(
           'http://google.com', page_set=story_set,
           cache_temperature=cache_temperature.COLD, name='http://google.com')
@@ -96,8 +101,8 @@ class CacheTemperatureTests(browser_test_case.BrowserTestCase):
   @decorators.Enabled('has tabs')
   @decorators.Disabled('chromeos')
   def testEnsureWarmFromScratch(self):
-    with self.captureTrace():
-      story_set = story.StorySet()
+    with self.CreateReplayNetworkAndCatpureTrace():
+      story_set = example_domain.ExampleDomainPageSet()
       page = page_module.Page(
           'http://google.com', page_set=story_set,
           cache_temperature=cache_temperature.WARM, name='http://google.com')
@@ -110,8 +115,8 @@ class CacheTemperatureTests(browser_test_case.BrowserTestCase):
   @decorators.Disabled('reference')
   @decorators.Enabled('has tabs')
   def testEnsureHotAfterColdAndWarmRun(self):
-    with self.captureTrace():
-      story_set = story.StorySet()
+    with self.CreateReplayNetworkAndCatpureTrace():
+      story_set = example_domain.ExampleDomainPageSet()
       page = page_module.Page(
           'http://google.com', page_set=story_set,
           cache_temperature=cache_temperature.COLD, name='http://google.com')
@@ -139,8 +144,8 @@ class CacheTemperatureTests(browser_test_case.BrowserTestCase):
 
   @decorators.Disabled('reference')
   def testEnsureHotAfterColdRun(self):
-    with self.captureTrace():
-      story_set = story.StorySet()
+    with self.CreateReplayNetworkAndCatpureTrace():
+      story_set = example_domain.ExampleDomainPageSet()
       page = page_module.Page(
           'http://google.com', page_set=story_set,
           cache_temperature=cache_temperature.COLD, name='http://google.com')
@@ -164,12 +169,8 @@ class CacheTemperatureTests(browser_test_case.BrowserTestCase):
   @decorators.Enabled('has tabs')
   @decorators.Disabled('chromeos')
   def testEnsureHotFromScratch(self):
-    with self.captureTrace():
-      story_set = story.StorySet()
-      page = page_module.Page(
-          'http://google.com', page_set=story_set,
-          cache_temperature=cache_temperature.HOT, name='http://google.com')
-      cache_temperature.EnsurePageCacheTemperature(page, self._browser)
+    with self.CreateReplayNetworkAndCatpureTrace():
+      cache_temperature.EnsurePageCacheTemperature(self._page, self._browser)
 
     markers = self.traceMarkers()
     self.assertIn('telemetry.internal.warm_cache.warm.start', markers)
@@ -180,8 +181,8 @@ class CacheTemperatureTests(browser_test_case.BrowserTestCase):
   @decorators.Disabled('reference')
   @decorators.Enabled('has tabs')
   def testEnsureWarmBrowser(self):
-    with self.captureTrace():
-      story_set = story.StorySet()
+    with self.CreateReplayNetworkAndCatpureTrace():
+      story_set = example_domain.ExampleDomainPageSet()
       page = page_module.Page(
           'http://google.com', page_set=story_set,
           cache_temperature=cache_temperature.WARM_BROWSER,
@@ -200,8 +201,8 @@ class CacheTemperatureTests(browser_test_case.BrowserTestCase):
   @decorators.Disabled('reference')
   @decorators.Enabled('has tabs')
   def testEnsureHotBrowser(self):
-    with self.captureTrace():
-      story_set = story.StorySet()
+    with self.CreateReplayNetworkAndCatpureTrace():
+      story_set = example_domain.ExampleDomainPageSet()
       page = page_module.Page(
           'http://google.com', page_set=story_set,
           cache_temperature=cache_temperature.HOT_BROWSER,
