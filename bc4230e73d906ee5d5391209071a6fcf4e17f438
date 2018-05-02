@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "beb078f9_9789d29f",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1346,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2018-05-02T00:17:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "921def1f_06e40194",
+      "range": {
+        "startLine": 1346,
+        "startChar": 11,
+        "endLine": 1346,
+        "endChar": 13
+      },
+      "revId": "bc4230e73d906ee5d5391209071a6fcf4e17f438",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ca9deaf7_1f252bf0",
         "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "bc4230e73d906ee5d5391209071a6fcf4e17f438",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed254bfc_3bc2e570",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1349,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2018-05-02T00:17:38Z",
+      "side": 1,
+      "message": "yeah I have seen the names as chrome.apk and chromeCanary.apk etc.",
+      "parentUuid": "ca9deaf7_1f252bf0",
+      "range": {
+        "startLine": 1349,
+        "startChar": 11,
+        "endLine": 1349,
+        "endChar": 12
+      },
+      "revId": "bc4230e73d906ee5d5391209071a6fcf4e17f438",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
