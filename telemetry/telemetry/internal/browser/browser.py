@@ -63,6 +63,18 @@ class Browser(app.App):
       raise exc_info[0], exc_info[1], exc_info[2]
 
   @property
+  def package(self):
+    return self._browser_backend.package
+
+  @property
+  def pid(self):
+    return self._browser_backend.pid
+
+  @property
+  def processes(self):
+    return self._browser_backend.processes
+
+  @property
   def profiling_controller(self):
     return self._profiling_controller
 
@@ -206,6 +218,12 @@ class Browser(app.App):
         continue
       result[process_type].update(cpu_timestamp)
     return result
+
+  def GetProcessName(self, cmd_line):
+    return self._browser_backend.GetProcessName(cmd_line)
+
+  def GetThreadType(self, thread_name):
+    return self._browser_backend.GetThreadType(thread_name)
 
   def Close(self):
     """Closes this browser."""
