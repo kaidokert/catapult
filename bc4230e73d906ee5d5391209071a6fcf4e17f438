@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "921def1f_06e40194",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1346,
+      "author": {
+        "id": 1129011
+      },
+      "writtenOn": "2018-05-02T00:10:15Z",
+      "side": 1,
+      "message": "Please use os.path.splitext(filename)[1] \u003d\u003d \u0027.so\u0027. As ugly as splitext()[1] is, it\u0027s the python way of getting an extension.",
+      "range": {
+        "startLine": 1346,
+        "startChar": 11,
+        "endLine": 1346,
+        "endChar": 13
+      },
+      "revId": "bc4230e73d906ee5d5391209071a6fcf4e17f438",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca9deaf7_1f252bf0",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1349,
+      "author": {
+        "id": 1129011
+      },
+      "writtenOn": "2018-05-02T00:10:15Z",
+      "side": 1,
+      "message": "Why not just filename \u003d\u003d \u0027base.apk\u0027? Do we know about cases where apk is now \u0027base.apk\u0027?",
+      "range": {
+        "startLine": 1349,
+        "startChar": 11,
+        "endLine": 1349,
+        "endChar": 12
+      },
+      "revId": "bc4230e73d906ee5d5391209071a6fcf4e17f438",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
