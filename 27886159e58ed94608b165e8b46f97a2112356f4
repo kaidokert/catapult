@@ -39,6 +39,48 @@
       "revId": "27886159e58ed94608b165e8b46f97a2112356f4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12ad4545_bd2c2efc",
+        "filename": "tracing/tracing/model/vm_region.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1154589
+      },
+      "writtenOn": "2018-05-02T08:20:44Z",
+      "side": 1,
+      "message": "Not that I\u0027ve seen; at least in the experiments I\u0027ve run looking at base.apk produces consistent numbers. I\u0027ll look into that more closely, though.",
+      "parentUuid": "2785687c_56809004",
+      "range": {
+        "startLine": 388,
+        "startChar": 38,
+        "endLine": 388,
+        "endChar": 46
+      },
+      "revId": "27886159e58ed94608b165e8b46f97a2112356f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "605ad166_b5e81a0c",
+        "filename": "tracing/tracing/model/vm_region.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1154589
+      },
+      "writtenOn": "2018-05-02T08:20:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc228b01_6a0e0dea",
+      "revId": "27886159e58ed94608b165e8b46f97a2112356f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
