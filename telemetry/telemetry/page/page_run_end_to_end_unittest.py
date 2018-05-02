@@ -460,7 +460,7 @@ class ActualPageRunEndToEndTests(unittest.TestCase):
     options.upload_results = None
     options.results_label = None
     options.output_dir = tempfile.mkdtemp()
-    options.profiler = 'trace'
+    options.profiler = 'netlog'
     try:
       SetUpStoryRunnerArguments(options)
       results = results_options.CreateResults(EmptyMetadataForTest(), options)
@@ -470,8 +470,7 @@ class ActualPageRunEndToEndTests(unittest.TestCase):
       self.assertEquals(1, len(GetSuccessfulPageRuns(results)))
       self.assertFalse(results.had_failures)
       self.assertEquals(0, len(results.all_page_specific_values))
-      self.assertTrue(os.path.isfile(
-          os.path.join(options.output_dir, 'blank_html.html')))
+      self.assertTrue(results.pages_to_profiling_files)
     finally:
       shutil.rmtree(options.output_dir)
 
