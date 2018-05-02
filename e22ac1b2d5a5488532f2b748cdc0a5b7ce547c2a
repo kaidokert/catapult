@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e61e66af_be73897a",
+        "filename": "telemetry/telemetry/internal/backends/browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1001289
+      },
+      "writtenOn": "2018-05-02T00:11:43Z",
+      "side": 1,
+      "message": "As explained below, I have taken your suggestion for device, but package is different.",
+      "parentUuid": "fdbe89d9_48e2e40f",
+      "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "745a48e2_2bb8dd95",
         "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
         "patchSetId": 5
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "683a2e2e_43f4cfdf",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1001289
+      },
+      "writtenOn": "2018-05-02T00:11:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "745a48e2_2bb8dd95",
+      "range": {
+        "startLine": 242,
+        "startChar": 6,
+        "endLine": 242,
+        "endChar": 19
+      },
+      "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3cdd4ec5_af0d83bc",
         "filename": "telemetry/telemetry/internal/browser/browser.py",
         "patchSetId": 5
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "1b5653f7_7c845ac3",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1001289
+      },
+      "writtenOn": "2018-05-02T00:11:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3cdd4ec5_af0d83bc",
+      "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "988a5900_6dedb477",
         "filename": "telemetry/telemetry/internal/browser/browser_options.py",
         "patchSetId": 5
@@ -70,6 +130,24 @@
       "writtenOn": "2018-05-01T22:20:58Z",
       "side": 1,
       "message": "Don\u0027t we need some sort of global on/off flag for simpleperf? Otherwise, it\u0027s going to immediately be enabled on all Android benchmarks, including those that are currently on the CQ. This seems very risky.\n\nIt seems like our options are either:\n\n1) Create a new flag\n2) Co-opt one of the other flags. We could set it to a falsy value (e.g. --simpleperf-target\u003dNone or \"\" by default) and only enable simpleperf when that flag has a non-null value.\n\nMy vote is for the latter so that users don\u0027t have to play with more flags than necessary to enable it.\n\nAs for how we use this flag, my vote is that we make the SimplePerfController return False in IsSimpleperfSupported() when the flag has its falsy value. This seems easier than piping the flag to the Page class, where we\u0027d be forced to do something like:\n\nif not simpleperf_enabled:\n  RunInteractions()\n\nelse if simpleperf_enabled:\n  with shared_page_state.SimpleperfController.Period(\u0027interactions\u0027):\n    RunInteractions()\n\nwhich is pretty gross and unreadable IMO.",
+      "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9cd5aab7_c710094b",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1001289
+      },
+      "writtenOn": "2018-05-02T00:11:43Z",
+      "side": 1,
+      "message": "I designed the code so that it does nothing unless the --simpleperf-period flag is used.  I actually screwed that up in this version of the patch, but I have now fixed it.",
+      "parentUuid": "988a5900_6dedb477",
       "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -93,6 +171,24 @@
     },
     {
       "key": {
+        "uuid": "883043e1_a63bdedd",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1001289
+      },
+      "writtenOn": "2018-05-02T00:11:43Z",
+      "side": 1,
+      "message": "This flag is being used, it determines the \u0027periods\u0027 argument to the BrowserSimpleperfController constructor.  I can remove the \u0027choices\u0027 part of the parameter if you wish, although my preference is to keep it, because it prevents the code from silently failing to profile if the user makes a typo.",
+      "parentUuid": "7fdf3e0d_5058f2f9",
+      "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d2b084cb_e3f81fcb",
         "filename": "telemetry/telemetry/internal/browser/browser_simpleperf_controller.py",
         "patchSetId": 5
@@ -110,6 +206,24 @@
     },
     {
       "key": {
+        "uuid": "70f9fd98_e0c217c4",
+        "filename": "telemetry/telemetry/internal/browser/browser_simpleperf_controller.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001289
+      },
+      "writtenOn": "2018-05-02T00:11:43Z",
+      "side": 1,
+      "message": "I made the change you suggest for device, but package is different.  It comes from self._browser._browser_backend._backend_settings.package.\n\nI do find it strange that AndroidBrowserBackend already defines a \u0027device\u0027 property. How would that ever be used?  Is it somehow preferable to access browser._platform_backend.device rather than browser._browser_backend.device?",
+      "parentUuid": "d2b084cb_e3f81fcb",
+      "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "43a2a8f6_e788b0a4",
         "filename": "telemetry/telemetry/internal/browser/browser_simpleperf_controller.py",
         "patchSetId": 5
@@ -121,6 +235,30 @@
       "writtenOn": "2018-05-01T22:20:58Z",
       "side": 1,
       "message": "Instead of doing this, you can do self._browser.platform.GetArchName() to get the architecture. Browser is an instance of app.App (https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/app/__init__.py?q\u003dapp+telemetry\u0026sq\u003dpackage:chromium\u0026dr\u003dCSs\u0026l\u003d6), which has access to the Platform object, which in turn knows what architecture it is. This is definitely preferable to going backwards from the browser, which feels a little weird to me.",
+      "range": {
+        "startLine": 31,
+        "startChar": 63,
+        "endLine": 31,
+        "endChar": 76
+      },
+      "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b8ea7f7_347d2d02",
+        "filename": "telemetry/telemetry/internal/browser/browser_simpleperf_controller.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001289
+      },
+      "writtenOn": "2018-05-02T00:11:43Z",
+      "side": 1,
+      "message": "platform_backend.GetArchName will give you the architecture of the device OS, but what I need here is the architecture of the package being profiled, which may be different (e.g., 32-bit chrome on 64-bit android).",
+      "parentUuid": "43a2a8f6_e788b0a4",
       "range": {
         "startLine": 31,
         "startChar": 63,
@@ -179,6 +317,30 @@
     },
     {
       "key": {
+        "uuid": "5f98ca78_2374aa43",
+        "filename": "telemetry/telemetry/internal/browser/browser_simpleperf_controller.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1001289
+      },
+      "writtenOn": "2018-05-02T00:11:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf7e947f_db70861a",
+      "range": {
+        "startLine": 97,
+        "startChar": 29,
+        "endLine": 97,
+        "endChar": 35
+      },
+      "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7453c4e4_b345996e",
         "filename": "telemetry/telemetry/internal/results/artifact_results.py",
         "patchSetId": 5
@@ -193,6 +355,24 @@
       "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "108f559c_92ecc295",
+        "filename": "telemetry/telemetry/internal/results/artifact_results.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1001289
+      },
+      "writtenOn": "2018-05-02T00:11:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7453c4e4_b345996e",
+      "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -219,6 +399,30 @@
     },
     {
       "key": {
+        "uuid": "433d08d5_cebf9251",
+        "filename": "telemetry/telemetry/page/__init__.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1001289
+      },
+      "writtenOn": "2018-05-02T00:11:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d21289d6_7363be26",
+      "range": {
+        "startLine": 91,
+        "startChar": 4,
+        "endLine": 91,
+        "endChar": 71
+      },
+      "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5d2d639e_7364a54d",
         "filename": "telemetry/telemetry/page/shared_page_state.py",
         "patchSetId": 5
@@ -230,6 +434,30 @@
       "writtenOn": "2018-05-01T22:20:58Z",
       "side": 1,
       "message": "Assuming that you can add prefix and suffix to the CreateArtifact API (which we\u0027re okay with now), can you just iterate through the return values of GetResults() and add them as artifacts via CreateArtifact? I\u0027d like to avoid adding the artifacts via partial function application, which is kind of indirect and confusing, if at all possible.",
+      "range": {
+        "startLine": 173,
+        "startChar": 6,
+        "endLine": 175,
+        "endChar": 80
+      },
+      "revId": "e22ac1b2d5a5488532f2b748cdc0a5b7ce547c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a38ee4cd_bfb590c7",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1001289
+      },
+      "writtenOn": "2018-05-02T00:11:43Z",
+      "side": 1,
+      "message": "I think your suggestion is worse, because it exposes browser._platform_backend.device -- see the implementation of BrowserSimpleperfController.GetResults).  It would mean putting android-specific code in shared_page_state.py, where there is none right now.\n\nIf you feel strongly about this, I will change it, but for now I have left it as-is.",
+      "parentUuid": "5d2d639e_7364a54d",
       "range": {
         "startLine": 173,
         "startChar": 6,
