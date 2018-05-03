@@ -127,7 +127,17 @@ class DependencyManager(object):
         FileNotFoundError: If an attempted download was otherwise unsuccessful.
 
     """
-    path, _ = self.FetchPathWithVersion(dependency, platform)
+
+    """set the "third_party/catapult" to the beginning, Mainly consider catapult
+    used in chromium, and solved clear_system_cache not found when running telemetry
+    on mips64 platform.
+    """
+
+    if os.uname()[4] == 'mips64':
+      path, _ = 'third_party/catapult/telemetry/bin/linux/mips64/clear_system_cache'
+    else:
+      path, _ = self.FetchPathWithVersion(dependency, platform)
+
     return path
 
   def LocalPath(self, dependency, platform):
