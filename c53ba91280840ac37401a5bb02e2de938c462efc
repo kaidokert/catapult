@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5520cdbc_00e3a53b",
+        "filename": "web_page_replay_go/src/wpr.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1247140
+      },
+      "writtenOn": "2018-05-03T22:06:50Z",
+      "side": 1,
+      "message": "This deserves a comment ... I\u0027m guessing this is for backwards compatibility?",
+      "range": {
+        "startLine": 375,
+        "startChar": 4,
+        "endLine": 375,
+        "endChar": 14
+      },
+      "revId": "c53ba91280840ac37401a5bb02e2de938c462efc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
