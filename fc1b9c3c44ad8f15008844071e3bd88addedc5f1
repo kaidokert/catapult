@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "b6da4bbb_9d753c87",
+        "filename": "experimental/soundwave/soundwave/tables/timeseries.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-03T11:38:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae8e03a1_8491531b",
+      "revId": "fc1b9c3c44ad8f15008844071e3bd88addedc5f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bcb5dffd_2658f874",
         "filename": "experimental/soundwave/soundwave/tables/timeseries.py",
         "patchSetId": 4
@@ -50,6 +68,24 @@
       "revId": "fc1b9c3c44ad8f15008844071e3bd88addedc5f1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "015312f5_715d01f4",
+        "filename": "experimental/soundwave/soundwave/tables/timeseries.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-03T11:38:09Z",
+      "side": 1,
+      "message": "I don\u0027t want to pop because, following the principle of least surprise, I don\u0027t want to mutate the |data| input arg. Also by not mutating this is slightly faster.\n\nAdded a comment to better explain the rationale, though.",
+      "parentUuid": "bcb5dffd_2658f874",
+      "revId": "fc1b9c3c44ad8f15008844071e3bd88addedc5f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
