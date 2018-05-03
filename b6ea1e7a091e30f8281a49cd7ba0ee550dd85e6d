@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d161794f_9f03f265",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-05-03T19:54:42Z",
+      "side": 1,
+      "message": "Hmhh, strange. I think you shouldn\u0027t need to do this but we can look at why this is in a follow-up",
+      "revId": "b6ea1e7a091e30f8281a49cd7ba0ee550dd85e6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
