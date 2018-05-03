@@ -46,6 +46,30 @@
       "revId": "7eab2068343a619dd21a63ea17b7df54b38340f7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc696460_ec0b839a",
+        "filename": "dashboard/dashboard/pinpoint/models/job_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-05-03T18:21:45Z",
+      "side": 1,
+      "message": "+Dave: any idea how to deal with this in a consistent way across pinpoint and perf dashboard? I can adjust pinpoint\u0027s wrapper to CommitInfo but not sure if that\u0027s the best thing? And not sure if this will always be a \"Commit\" and not a \"Patch\" or other class?",
+      "parentUuid": "118922b1_4396e9fe",
+      "range": {
+        "startLine": 266,
+        "startChar": 75,
+        "endLine": 266,
+        "endChar": 0
+      },
+      "revId": "7eab2068343a619dd21a63ea17b7df54b38340f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
