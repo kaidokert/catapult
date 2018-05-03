@@ -48,11 +48,9 @@ from dashboard import pinpoint_request
 from dashboard import post_bisect_results
 from dashboard import put_entities_task
 from dashboard import report
-from dashboard import set_warning_message
 from dashboard import short_uri
 from dashboard import speed_releasing
 from dashboard import start_try_job
-from dashboard import test_buildbucket
 from dashboard import update_bug_with_results
 from dashboard import update_test_suites
 from dashboard.api import alerts as api_alerts
@@ -113,13 +111,11 @@ _URL_MAPPING = [
     ('/post_bisect_results', post_bisect_results.PostBisectResultsHandler),
     ('/put_entities_task', put_entities_task.PutEntitiesTaskHandler),
     ('/report', report.ReportHandler),
-    ('/set_warning_message', set_warning_message.SetWarningMessageHandler),
     ('/short_uri', short_uri.ShortUriHandler),
     (r'/speed_releasing/(.*)',
      speed_releasing.SpeedReleasingHandler),
     ('/speed_releasing', speed_releasing.SpeedReleasingHandler),
     ('/start_try_job', start_try_job.StartBisectHandler),
-    ('/test_buildbucket', test_buildbucket.TestBuildbucketHandler),
     ('/update_bug_with_results',
      update_bug_with_results.UpdateBugWithResultsHandler),
     ('/update_test_suites', update_test_suites.UpdateTestSuitesHandler),

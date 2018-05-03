@@ -2,36 +2,45 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-import csv
 import sqlite3
 
 from soundwave import dashboard_api
+from soundwave import pandas_sqlite
 from soundwave import tables
 
 
 def FetchAlertsData(args):
-  dashboard_communicator = dashboard_api.PerfDashboardCommunicator(args)
+  api = dashboard_api.PerfDashboardCommunicator(args)
   conn = sqlite3.connect(args.database_file)
   try:
     alerts = tables.alerts.DataFrameFromJson(
-        dashboard_communicator.GetAlertData(args.benchmark, args.days))
-    print '%s alerts found!' % len(alerts)
-    # TODO: Make this update rather than replace the existing table.
-    # Note that if_exists='append' does not work since there is no way to
-    # specify in pandas' |to_sql| a primary key or, more generally, uniqueness
-    # constraints on columns. So this would lead to duplicate entries for
-    # alerts with the same |key|.
-    alerts.to_sql('alerts', conn, if_exists='replace')
+        api.GetAlertData(args.benchmark, args.days))
+    print '%d alerts found!' % len(alerts)
+    pandas_sqlite.InsertOrReplaceRecords(alerts, 'alerts', conn)
+
+    bug_ids = set(alerts['bug_id'].unique())
+    bug_ids.discard(0)  # A bug_id of 0 means untriaged.
+    print '%d bugs found!' % len(bug_ids)
+    bugs = tables.bugs.DataFrameFromApi(api, bug_ids)
+    pandas_sqlite.InsertOrReplaceRecords(bugs, 'bugs', conn)
   finally:
     conn.close()
 
-  # TODO: Add back code to collect bug data.
-
 
 def FetchTimeseriesData(args):
-  dashboard_communicator = dashboard_api.PerfDashboardCommunicator(args)
-  with open(args.output_path, 'wb') as fp:
-    csv_writer = csv.writer(fp)
-    for row in dashboard_communicator.GetAllTimeseriesForBenchmark(
-        args.benchmark, args.days, args.filters, args.sheriff):
-      csv_writer.writerow(row)
+  def _MatchesAllFilters(test_path):
+    return all(f in test_path for f in args.filters)
+
+  api = dashboard_api.PerfDashboardCommunicator(args)
+  conn = sqlite3.connect(args.database_file)
+  try:
+    test_paths = api.ListTestPaths(args.benchmark, sheriff=args.sheriff)
+    if args.filters:
+      test_paths = filter(_MatchesAllFilters, test_paths)
+    print '%d test paths found!' % len(test_paths)
+    for test_path in test_paths:
+      data = api.GetTimeseries(test_path, days=args.days)
+      timeseries = tables.timeseries.DataFrameFromJson(data)
+      pandas_sqlite.InsertOrReplaceRecords(timeseries, 'timeseries', conn)
+  finally:
+    conn.close()
