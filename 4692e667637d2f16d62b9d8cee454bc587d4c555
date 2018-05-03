@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "58e4bbab_27f98d2a",
+        "filename": "experimental/soundwave/soundwave/commands.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-03T15:35:55Z",
+      "side": 1,
+      "message": "Following the pandas.io.sql convention, replacing \"conn\" with just \"con\".",
+      "revId": "4692e667637d2f16d62b9d8cee454bc587d4c555",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
