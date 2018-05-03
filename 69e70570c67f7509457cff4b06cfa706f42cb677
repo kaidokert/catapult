@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "300f8fed_4208bb65",
+        "filename": "telemetry/telemetry/internal/browser/browser_simpleperf_controller.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001706
+      },
+      "writtenOn": "2018-05-03T01:00:21Z",
+      "side": 1,
+      "message": "Added a test, PTAL. And before you ask: I tried to use *all* of the classes in telemetry/testing/fakes/__init__.py.  They did not work for my purposes.",
+      "parentUuid": "08525950_18feb3de",
+      "revId": "69e70570c67f7509457cff4b06cfa706f42cb677",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "383d86f8_07d91dde",
         "filename": "telemetry/telemetry/internal/browser/browser_simpleperf_controller.py",
         "patchSetId": 6
@@ -39,6 +57,30 @@
       "revId": "69e70570c67f7509457cff4b06cfa706f42cb677",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "634b7740_ab6362c6",
+        "filename": "telemetry/telemetry/internal/browser/browser_simpleperf_controller.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1001706
+      },
+      "writtenOn": "2018-05-03T01:00:21Z",
+      "side": 1,
+      "message": "self._browser is used in a few different ways elsewhere in the code, so I\u0027d rather not keep a redundant self._device field.",
+      "parentUuid": "383d86f8_07d91dde",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 49
+      },
+      "revId": "69e70570c67f7509457cff4b06cfa706f42cb677",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
