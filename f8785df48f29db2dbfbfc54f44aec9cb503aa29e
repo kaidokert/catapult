@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ec17b36_8bc86d97",
+        "filename": "telemetry/telemetry/internal/browser/browser_simpleperf_controller_unittest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-03T15:45:09Z",
+      "side": 1,
+      "message": "nit (here and elsewhere): one blank line between the end of one method and the start of the next",
+      "revId": "f8785df48f29db2dbfbfc54f44aec9cb503aa29e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3753bf7c_dabd2609",
+        "filename": "telemetry/telemetry/internal/browser/browser_simpleperf_controller_unittest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-03T15:45:09Z",
+      "side": 1,
+      "message": "nit (here and elsewhere): two blank lines between the end of one class and the start of the next",
+      "revId": "f8785df48f29db2dbfbfc54f44aec9cb503aa29e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4c3454d_83155931",
+        "filename": "telemetry/telemetry/internal/browser/browser_simpleperf_controller_unittest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-03T15:45:09Z",
+      "side": 1,
+      "message": "I think that these test the things that we care about most (i.e. that the BrowserSimpleperfController does and does not trigger in the right situations), but the way in which it tests these are a little funky. Even though this is a unit test and the unit being tested is the BrowserSimpleperfController, we rely on code outside of the unit (in this case the Page) in order to test our stuff, like what happens in an integration test.\n\nIMO, given that we can\u0027t be sure that we have all of the hardware (Android \u003e\u003d Oreo, Android \u003c Oreo) necessary to test these conditions on the CQ, I think we\u0027re better off writing it as a unit test using mocks like you did. However, I think we can test the same stuff without going through the Page harness that\u0027s used in production by doing:\n\nbrowser \u003d FakeBrowser(FakeAndroidPlatformBackend(version_codes.OREO))\ncontroller \u003d BrowserSimpleperfController(\n  browser_name\u003d\u0027chrome\u0027, periods\u003d[\u0027interactions\u0027], frequency\u003d1000)\ncontroller.DidStartBrowser(browser)\n\nwith mock.patch.object(\n    shared_state._simpleperf_controller, \u0027_StartSimpleperf\u0027,\n    new\u003dmock.Mock(return_value\u003dNone)) as start_simpleperf_mock:\n  with shared_state.simpleperf_controller.SamplePeriod(\u0027interactions\u0027):\n    pass\n\n  self.assertEqual(start_simpleperf_mock.call_count, 1)\n\nIn other words, make this a true unit test that just tests the inputs and outputs of the units rather than command line parsing, whether the Page properly calls BrowserSimpleperfController, etc.\n\nThis may make us lose coverage of whether Page initiates the \u0027navigation\u0027 and \u0027interactions\u0027 periods correctly, but a unit test for the BrowserSimpleperfController probably isn\u0027t the right place to test that anyhow.\n\nThis definitely isn\u0027t optimal - I\u0027d prefer that we have some great way to integration test all o f this stuff - but given our uncertainty about whether the hardware is available, I think that having focused unit tests that cover whether the controller tries to start sampling in the right circumstances (like you\u0027ve done below) and to just have you manually check that the controller produces real traces on Oreo should be sufficient for now.\n\nCan you write these unit tests so that they don\u0027t rely on Page, SharedPageState, command line args, etc using the method suggested above? (My hope is that this is \u003c30m of work.)\n\nThis test is the last thing I see in the way of us submitting this.",
+      "revId": "f8785df48f29db2dbfbfc54f44aec9cb503aa29e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
