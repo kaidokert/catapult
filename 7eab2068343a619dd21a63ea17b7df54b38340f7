@@ -94,6 +94,30 @@
       "revId": "7eab2068343a619dd21a63ea17b7df54b38340f7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7d2ec12_9b29a114",
+        "filename": "dashboard/dashboard/pinpoint/models/job_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-05-04T01:54:28Z",
+      "side": 1,
+      "message": "I can do that, but will I always be passed a Commit here? Or could it be another class like Patch?",
+      "parentUuid": "4d0c15ab_3109115e",
+      "range": {
+        "startLine": 266,
+        "startChar": 75,
+        "endLine": 266,
+        "endChar": 0
+      },
+      "revId": "7eab2068343a619dd21a63ea17b7df54b38340f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
