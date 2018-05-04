@@ -104,7 +104,8 @@ class CrOSInterface(object):
       return
 
     self._ssh_identity = None
-    self._ssh_args = ['-o ConnectTimeout=5', '-o StrictHostKeyChecking=no',
+    self._ssh_default_connect_timeout = 5
+    self._ssh_args = ['-o StrictHostKeyChecking=no',
                       '-o KbdInteractiveAuthentication=no',
                       '-o PreferredAuthentications=publickey',
                       '-o UserKnownHostsFile=/dev/null', '-o ControlMaster=no']
@@ -142,7 +143,8 @@ class CrOSInterface(object):
   def ssh_port(self):
     return self._ssh_port
 
-  def FormSSHCommandLine(self, args, extra_ssh_args=None, port_forward=False):
+  def FormSSHCommandLine(self, args, extra_ssh_args=None, port_forward=False,
+                         connect_timeout=None):
     """Constructs a subprocess-suitable command line for `ssh'.
     """
     if self.local:
@@ -155,6 +157,10 @@ class CrOSInterface(object):
     full_args = ['ssh', '-o ForwardX11=no', '-o ForwardX11Trusted=no', '-n']
     # As remote port forwarding might conflict with the control socket
     # sharing, skip the control socket args if it is for remote port forwarding.
+    if connect_timeout:
+      full_args += ['-o ConnectTimeout=%d' % connect_timeout]
+    else:
+      full_args += ['-o ConnectTimeout=%d' % self._ssh_default_connect_timeout]
     if not port_forward:
       full_args += ['-S', self._ssh_control_file]
     full_args += self._ssh_args
@@ -218,9 +224,9 @@ class CrOSInterface(object):
         r'Warning: Permanently added [^\n]* to the list of known hosts.\s\n',
         '', to_clean)
 
-  def RunCmdOnDevice(self, args, cwd=None, quiet=False):
+  def RunCmdOnDevice(self, args, cwd=None, quiet=False, connect_timeout=None):
     stdout, stderr = GetAllCmdOutput(
-        self.FormSSHCommandLine(args),
+        self.FormSSHCommandLine(args, connect_timeout=connect_timeout),
         cwd,
         quiet=quiet)
     # The initial login will add the host to the hosts file but will also print
@@ -231,7 +237,10 @@ class CrOSInterface(object):
   def TryLogin(self):
     logging.debug('TryLogin()')
     assert not self.local
-    stdout, stderr = self.RunCmdOnDevice(['echo', '$USER'], quiet=True)
+    # Initial connection may take a bit to establish (especially if the
+    # VM/device just booted up). So bump the default timeout a bit.
+    stdout, stderr = self.RunCmdOnDevice(
+        ['echo', '$USER'], quiet=True, connect_timeout=60)
     if stderr != '':
       if 'Host key verification failed' in stderr:
         raise LoginException(('%s host key verification failed. ' +
