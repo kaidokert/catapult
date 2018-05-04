@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "edc4d9ff_9d139033",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-04T00:46:51Z",
+      "side": 1,
+      "message": "Not sure how much value this comment adds (the prefixes for the fields seem to indicate as much)",
+      "revId": "1183e0a6b1cf5538cad507004466452437cfaa4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
