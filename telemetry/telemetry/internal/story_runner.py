@@ -391,6 +391,7 @@ def RunBenchmark(benchmark, finder_options):
       results.AddSummaryValue(scalar.ScalarValue(
           None, 'benchmark_duration', 'minutes', duration / 60.0))
       results.AddDurationHistogram(duration * 1000.0)
+      results.AddTelemetryInfo()
       memory_debug.LogHostMemoryUsage()
       results.PrintSummary()
   return return_code

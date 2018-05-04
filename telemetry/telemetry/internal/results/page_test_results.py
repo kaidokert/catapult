@@ -268,10 +268,6 @@ class PageTestResults(object):
 
     chart_json = chart_json_output_formatter.ResultsAsChartDict(
         benchmark_metadata, self)
-    info = self.telemetry_info
-    chart_json['label'] = info.label
-    chart_json['benchmarkStartMs'] = info.benchmark_start_epoch * 1000.0
-
     file_descriptor, chart_json_path = tempfile.mkstemp()
     os.close(file_descriptor)
     json.dump(chart_json, file(chart_json_path, 'w'))
@@ -429,18 +425,23 @@ class PageTestResults(object):
     hist = histogram.Histogram(
         'benchmark_total_duration', 'ms_smallerIsBetter')
     hist.AddSample(duration_in_milliseconds)
-    # TODO(#4244): Do this generally.
-    hist.diagnostics[reserved_infos.LABELS.name] = generic_set.GenericSet(
-        [self.telemetry_info.label])
-    hist.diagnostics[reserved_infos.BENCHMARKS.name] = generic_set.GenericSet(
-        [self.telemetry_info.benchmark_name])
-    hist.diagnostics[reserved_infos.BENCHMARK_START.name] = histogram.DateRange(
-        self.telemetry_info.benchmark_start_epoch)
-    if self.telemetry_info.benchmark_descriptions:
-      hist.diagnostics[
-          reserved_infos.BENCHMARK_DESCRIPTIONS.name] = generic_set.GenericSet([
-              self.telemetry_info.benchmark_descriptions])
     self._histograms.AddHistogram(hist)
+
+  def AddTelemetryInfo(self):
+    info = self.telemetry_info
+    self.AddSharedDiagnostic(
+        reserved_infos.BENCHMARKS.name,
+        generic_set.GenericSet([info.benchmark_name]))
+    self.AddSharedDiagnostic(
+        reserved_infos.BENCHMARK_START.name,
+        histogram.DateRange(info.benchmark_start_epoch * 1000))
+    if info.label:
+      self.AddSharedDiagnostic(
+          reserved_infos.LABELS.name, generic_set.GenericSet([info.label]))
+    if info.benchmark_descriptions:
+      self.AddSharedDiagnostic(
+          reserved_infos.BENCHMARK_DESCRIPTIONS.name,
+          generic_set.GenericSet([info.benchmark_descriptions]))
 
   def AddHistogram(self, hist):
     if self._ShouldAddHistogram(hist):

@@ -499,6 +499,7 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
     results.telemetry_info.benchmark_name = 'bar'
     results.telemetry_info.benchmark_descriptions = 'desc'
     results.AddDurationHistogram(42)
+    results.AddTelemetryInfo()
 
     histograms = histogram_set.HistogramSet()
     histograms.ImportDicts(results.AsHistogramDicts())
