@@ -11,6 +11,9 @@ from dashboard.common import utils
 
 
 OAUTH_CLIENT_ID_WHITELIST = [
+    # This oauth client id is for V2SPA.
+    # TODO(benjhayden) Remove this before launching.
+    '62121018386-rhk28ad5lbqheinh05fgau3shotl2t6c.apps.googleusercontent.com',
     # This oauth client id is from Pinpoint.
     '62121018386-aqdfougp0ddn93knqj6g79vvn42ajmrg.apps.googleusercontent.com',
     # This oauth client id is from the 'chromeperf' API console.
@@ -50,9 +53,13 @@ class InternalOnlyError(ApiAuthException):
     super(InternalOnlyError, self).__init__('User does not have access')
 
 
-def _AuthorizeOauthUser():
+def GetCurrentUser():
+  return oauth.get_current_user(OAUTH_SCOPES)
+
+
+def AuthorizeOauthUser():
   try:
-    user = oauth.get_current_user(OAUTH_SCOPES)
+    user = GetCurrentUser()
     if user and not user.email().endswith('.gserviceaccount.com'):
       # For non-service account, need to verify that the OAuth client ID
       # is in our whitelist.
@@ -76,7 +83,7 @@ def _AuthorizeOauthUser():
 def Authorize(function_to_wrap):
   @functools.wraps(function_to_wrap)
   def Wrapper(*args, **kwargs):
-    _AuthorizeOauthUser()
+    AuthorizeOauthUser()
 
     return function_to_wrap(*args, **kwargs)
   return Wrapper
