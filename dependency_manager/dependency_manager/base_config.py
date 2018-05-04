@@ -293,6 +293,14 @@ class BaseConfig(object):
     return self._GetPlatformData(
         dependency, platform, data_type='version_in_cs')
 
+  def __contains__(self, dependency):
+    """ Returns whether this config contains |dependency|
+
+    Args:
+      dependency: the string name of dependency
+    """
+    return dependency in self._config_data
+
   def _IsDirty(self):
     with open(self._config_path, 'r') as fstream:
       curr_config_data = json.load(fstream)
