@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d4a12b62_11165cda",
+        "filename": "dashboard/dashboard/pinpoint_request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1170907
+      },
+      "writtenOn": "2018-05-04T14:08:57Z",
+      "side": 1,
+      "message": "Note that also mac-10_12_laptop_low_end-perf uses performance_test_suite.  Maybe you have a list of migrated configurations?  You can reference the bug crbug.com/757933",
+      "revId": "4f42243e85c8ff1829a76127c039f67623f50e5b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
