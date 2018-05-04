@@ -6,7 +6,7 @@ from telemetry.internal.actions import action_runner
 from telemetry.internal.browser import web_contents
 from telemetry.internal.image_processing import video
 
-DEFAULT_TAB_TIMEOUT = 60
+DEFAULT_TAB_TIMEOUT = 120
 
 
 class Tab(web_contents.WebContents):
