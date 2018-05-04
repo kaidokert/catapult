@@ -70,6 +70,30 @@
       "revId": "7eab2068343a619dd21a63ea17b7df54b38340f7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d0c15ab_3109115e",
+        "filename": "dashboard/dashboard/pinpoint/models/job_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-05-04T01:43:12Z",
+      "side": 1,
+      "message": "AsDict() isn\u0027t meant to be the same thing as CommitInfo(). You should modify Commit.AsDict() instead to parse CommitInfo and return the field you want.",
+      "parentUuid": "cc696460_ec0b839a",
+      "range": {
+        "startLine": 266,
+        "startChar": 75,
+        "endLine": 266,
+        "endChar": 0
+      },
+      "revId": "7eab2068343a619dd21a63ea17b7df54b38340f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
