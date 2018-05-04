@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ca7a867c_a5993f0b",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-05-04T05:50:04Z",
+      "side": 1,
+      "message": "Maybe this should be a set(), since there could be multiple blamed autorolls.",
+      "revId": "032856c7e4a61c7e20bc56f5ad375a5ca81e52b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
