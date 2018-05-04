@@ -1,0 +1,61 @@
+#!/usr/bin/env python
+# Copyright 2018 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+
+import os
+import sys
+import argparse
+
+TELEMETRY_DIR = os.path.join(os.path.abspath(os.path.dirname(__file__)), '..')
+sys.path.insert(1, TELEMETRY_DIR)
+
+from telemetry.internal.util import binary_manager
+
+from dependency_manager import base_config
+
+
+def AddBinaryDepdendency(binary_local_path, dependency_name, platform):
+  config = base_config.BaseConfig(
+      binary_manager.TELEMETRY_PROJECT_CONFIG, writable=True)
+
+  if not dependency_name in config:
+    print ('%s is a new dependency. '
+           'Do you want to add it to Telemetry binary dependencies?')
+    answer = raw_input("Enter 'y' to answer yes: ")
+    if answer == 'y':
+      base_config.AddNewDependency(dependency,
+      cloud_storage_base_folder=binary_manager.TELEMETRY_BINARY_BASE_CS_FOLDER,
+      cloud_storage_bucket=binary_manager.TELEMETRY_BINARY_BUCKET)
+    else:
+      print 'Did not update binary for %s' % dependency_name
+      return
+
+  config.AddCloudStorageDependencyUpdateJob(
+      dependency_name, platform, binary_local_path, execute_job=True)
+
+
+def main(args):
+  parser = argparse.ArgumentParser(
+      description='Add binary to Telemetry dependencies to store on cloud'
+      ' storage.')
+  parser.add_argument('binary_path', type=str,
+      help='Path to binary to be added to dependencies')
+  parser.add_argument('dependency_name', type=str, help='Dependency name')
+  parser.add_argument('platform',
+      choices=binary_manager.SUPPORTED_DEP_PLATFORMS,
+      help='Platform which this binary dep belong to')
+
+  options = parser.parse_args(args)
+
+  binary_local_path = os.path.abspath(options.binary_path)
+  if not os.path.exists(binary_local_path):
+    raise ValueError('Path %s does not exist' % binary_local_path)
+
+  AddBinaryDepdendency(
+      binary_local_path, options.dependency_name, options.platform)
+
+
+if __name__ == "__main__":
+  main(sys.argv[1:])
