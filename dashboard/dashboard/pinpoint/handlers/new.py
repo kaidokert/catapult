@@ -43,7 +43,6 @@ def _CreateJob(request):
   # Validate arguments and convert them to canonical internal representation.
   quests = _GenerateQuests(arguments)
   changes = _ValidateChanges(arguments)
-  auto_explore = _ParseBool(arguments.get('auto_explore'))
   bug_id = _ValidateBugId(arguments.get('bug_id'))
   comparison_mode = _ValidateComparisonMode(arguments.get('comparison_mode'))
   tags = _ValidateTags(arguments.get('tags'))
@@ -54,7 +53,6 @@ def _CreateJob(request):
       quests,
       changes,
       arguments=original_arguments,
-      auto_explore=auto_explore,
       bug_id=bug_id,
       comparison_mode=comparison_mode,
       tags=tags,
@@ -75,10 +73,6 @@ def _ArgumentsWithConfiguration(original_arguments):
   new_arguments.update(original_arguments)
 
   return new_arguments
-
-
-def _ParseBool(value):
-  return value == '1' or value.lower() == 'true'
 
 
 def _ValidateBugId(bug_id):
