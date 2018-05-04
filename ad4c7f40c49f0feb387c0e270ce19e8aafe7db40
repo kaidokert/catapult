@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e4bfc658_cd2b2356",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2018-05-04T15:37:03Z",
+      "side": 1,
+      "message": "Maybe make this a class constant?",
+      "revId": "ad4c7f40c49f0feb387c0e270ce19e8aafe7db40",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
