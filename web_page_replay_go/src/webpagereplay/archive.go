@@ -216,7 +216,8 @@ func (a *Archive) FindRequest(req *http.Request, scheme string) (*http.Request, 
 			}
 		}
 		ratio := 2 * float64(m) / float64(t)
-		if ratio > bestRatio {
+		if ratio > bestRatio ||
+			(ratio == bestRatio && ustr < bestURL) { // break a tie
 			bestURL = ustr
 			bestRatio = ratio
 		}
