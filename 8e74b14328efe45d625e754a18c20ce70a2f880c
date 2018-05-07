@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dce31be1_9779ff0c",
+        "filename": "telemetry/telemetry/internal/actions/action_runner.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 830,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-05-07T14:09:29Z",
+      "side": 1,
+      "message": "Hmhh, shouldn\u0027t we use this to replace the simpleperf?",
+      "revId": "8e74b14328efe45d625e754a18c20ce70a2f880c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
