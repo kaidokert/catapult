@@ -342,7 +342,8 @@ class SharedPageState(story_module.SharedState):
   def _StartProfiling(self, page):
     output_file = os.path.join(self._finder_options.output_dir,
                                page.file_safe_name)
-    if self._finder_options.pageset_repeat != 1:
+    if (self._finder_options.pageset_repeat != 1
+        and not self._finder_options.smoke_test_mode):
       output_file = util.GetSequentialFileName(output_file)
     self.browser.profiling_controller.Start(
         self._finder_options.profiler, output_file)
