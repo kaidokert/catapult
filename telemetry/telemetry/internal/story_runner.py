@@ -16,7 +16,6 @@ from py_utils import logging_util  # pylint: disable=import-error
 
 from telemetry.core import exceptions
 from telemetry.internal.actions import page_action
-from telemetry.internal.browser import browser_finder
 from telemetry.internal.results import results_options
 from telemetry.internal.util import exception_formatter
 from telemetry import page
@@ -158,7 +157,8 @@ def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
 
 
 def Run(test, story_set, finder_options, results, max_failures=None,
-        expectations=None, metadata=None, max_num_values=sys.maxint):
+        expectations=None, metadata=None, max_num_values=sys.maxint,
+        state=None):
   """Runs a given test against a given page_set with the given options.
 
   Stop execution for unexpected exceptions such as KeyboardInterrupt.
@@ -167,6 +167,12 @@ def Run(test, story_set, finder_options, results, max_failures=None,
   """
   for s in story_set:
     ValidateStory(s)
+
+  if state and not isinstance(state, story_set.shared_state_class):
+    raise ValueError(
+        "Shared state object's class (%s) doesn't match with"
+        'shared_state_class specified in story_set (%s)' %
+        (state.__class__.__name__, story_set.shared_state_class.__name__))
 
   # Filter page set based on options.
   stories = story_module.StoryFilter.FilterStorySet(story_set)
@@ -190,7 +196,6 @@ def Run(test, story_set, finder_options, results, max_failures=None,
   if effective_max_failures is None:
     effective_max_failures = max_failures
 
-  state = None
   device_info_diags = {}
   try:
     for storyset_repeat_counter in xrange(finder_options.pageset_repeat):
@@ -293,22 +298,23 @@ def RunBenchmark(benchmark, finder_options):
     1 if there is failure or 2 if there is an uncaught exception.
   """
   start = time.time()
+
   benchmark.CustomizeBrowserOptions(finder_options.browser_options)
 
-  benchmark_metadata = benchmark.GetMetadata()
-  possible_browser = browser_finder.FindBrowser(finder_options)
-  expectations = benchmark.expectations
-  if not possible_browser:
-    print ('Cannot find browser of type %s. To list out all '
-           'available browsers, rerun your command with '
-           '--browser=list' %  finder_options.browser_options.browser_type)
-    return 1
+  pt = benchmark.CreatePageTest(finder_options)
+  pt.__name__ = benchmark.__class__.__name__
 
-  can_run_on_platform = benchmark._CanRunOnPlatform(possible_browser.platform,
+  stories = benchmark.CreateStorySet(finder_options)
+  state = stories.shared_state_class(pt, finder_options.Copy(), stories)
+
+  benchmark_metadata = benchmark.GetMetadata()
+  expectations = benchmark.expectations
+
+  can_run_on_platform = benchmark._CanRunOnPlatform(state.platform,
                                                     finder_options)
 
   expectations_disabled = expectations.IsBenchmarkDisabled(
-      possible_browser.platform, finder_options)
+      state.platform, finder_options)
 
   if expectations_disabled or not can_run_on_platform:
     print '%s is disabled on the selected browser' % benchmark.Name()
@@ -332,10 +338,6 @@ def RunBenchmark(benchmark, finder_options):
       # we are no longer filtering these out in the buildbot recipes.
       return 0
 
-  pt = benchmark.CreatePageTest(finder_options)
-  pt.__name__ = benchmark.__class__.__name__
-
-  stories = benchmark.CreateStorySet(finder_options)
 
   if isinstance(pt, legacy_page_test.LegacyPageTest):
     if any(not isinstance(p, page.Page) for p in stories.stories):
@@ -350,7 +352,7 @@ def RunBenchmark(benchmark, finder_options):
     try:
       Run(pt, stories, finder_options, results, benchmark.max_failures,
           expectations=expectations, metadata=benchmark.GetMetadata(),
-          max_num_values=benchmark.MAX_NUM_VALUES)
+          max_num_values=benchmark.MAX_NUM_VALUES, state=state)
       return_code = 1 if results.had_failures else 0
       # We want to make sure that all expectations are linked to real stories,
       # this will log error messages if names do not match what is in the set.
