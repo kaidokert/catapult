@@ -16,6 +16,24 @@
       "revId": "8e74b14328efe45d625e754a18c20ce70a2f880c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a1cf0c5_1a8fc423",
+        "filename": "telemetry/telemetry/internal/actions/action_runner.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 830,
+      "author": {
+        "id": 1001706
+      },
+      "writtenOn": "2018-05-07T16:34:49Z",
+      "side": 1,
+      "message": "This doesn\u0027t work on Android; simpleperf *only* works on Android. So, they\u0027re disjoint.\n\nUltimately, it may make sense to define one set of command-line arguments that will control \"interval profiling\" for all supported platforms. But I\u0027m hesitant to venture into that, because it would seem to overlap with the current quasi-deprecated --profiler code.",
+      "parentUuid": "dce31be1_9779ff0c",
+      "revId": "8e74b14328efe45d625e754a18c20ce70a2f880c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
