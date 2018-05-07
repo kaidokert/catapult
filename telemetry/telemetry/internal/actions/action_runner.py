@@ -2,7 +2,9 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import contextlib
 import logging
+import textwrap
 import time
 import urlparse
 
@@ -806,6 +808,32 @@ class ActionRunner(object):
     self._RunAction(RepaintContinuouslyAction(
         seconds=0 if self._skip_waits else seconds))
 
+  @contextlib.contextmanager
+  def ProfilingInterval(self, filename):
+    """Generate a CPU profile covering a specific action or sequence.
+
+    Note that this requires the browser to be launched with the --no-sandbox
+    flag, to permit the renderer process to write to disk. Without the
+    --no-sandbox flag, it will cause the renderer process to crash.
+
+    Example usage:
+      with action_runner_instance.ProfilingInterval("profile.pb"):
+        action_runner_instance.ReloadPage()
+        action_runner_instance.ScrollPage()
+
+    Args:
+      filename: The ouptut file, relative to the `pwd` of the browser process,
+          to which data will be written.
+    """
+    self.ExecuteJavaScript(textwrap.dedent("""
+        if (typeof chrome.gpuBenchmarking.startProfiling !== "undefined") {
+          chrome.gpuBenchmarking.startProfiling("%s");
+        }""" % filename))
+    yield
+    self.ExecuteJavaScript(textwrap.dedent("""
+        if (typeof chrome.gpuBenchmarking.stopProfiling !== "undefined") {
+          chrome.gpuBenchmarking.stopProfiling();
+        }"""))
 
 class Interaction(object):
 
