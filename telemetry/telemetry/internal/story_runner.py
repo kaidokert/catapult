@@ -303,35 +303,36 @@ def RunBenchmark(benchmark, finder_options):
     print ('Cannot find browser of type %s. To list out all '
            'available browsers, rerun your command with '
            '--browser=list' %  finder_options.browser_options.browser_type)
-    return 1
+    # return 1
 
-  can_run_on_platform = benchmark._CanRunOnPlatform(possible_browser.platform,
-                                                    finder_options)
+  if possible_browser:
+    can_run_on_platform = benchmark._CanRunOnPlatform(possible_browser.platform,
+                                                      finder_options)
 
-  expectations_disabled = expectations.IsBenchmarkDisabled(
-      possible_browser.platform, finder_options)
+    expectations_disabled = expectations.IsBenchmarkDisabled(
+        possible_browser.platform, finder_options)
 
-  if expectations_disabled or not can_run_on_platform:
-    print '%s is disabled on the selected browser' % benchmark.Name()
-    if finder_options.run_disabled_tests and can_run_on_platform:
-      print 'Running benchmark anyway due to: --also-run-disabled-tests'
-    else:
-      if can_run_on_platform:
-        print 'Try --also-run-disabled-tests to force the benchmark to run.'
+    if expectations_disabled or not can_run_on_platform:
+      print '%s is disabled on the selected browser' % benchmark.Name()
+      if finder_options.run_disabled_tests and can_run_on_platform:
+        print 'Running benchmark anyway due to: --also-run-disabled-tests'
       else:
-        print ("This platform is not supported for this benchmark. If this is "
-               "in error please add it to the benchmark's supported platforms.")
-      # If chartjson is specified, this will print a dict indicating the
-      # benchmark name and disabled state.
-      with results_options.CreateResults(
-          benchmark_metadata, finder_options,
-          should_add_value=benchmark.ShouldAddValue,
-          benchmark_enabled=False
-          ) as results:
-        results.PrintSummary()
-      # When a disabled benchmark is run we now want to return success since
-      # we are no longer filtering these out in the buildbot recipes.
-      return 0
+        if can_run_on_platform:
+          print 'Try --also-run-disabled-tests to force the benchmark to run.'
+        else:
+          print ("This platform is not supported for this benchmark. If this is "
+                 "in error please add it to the benchmark's supported platforms.")
+        # If chartjson is specified, this will print a dict indicating the
+        # benchmark name and disabled state.
+        with results_options.CreateResults(
+            benchmark_metadata, finder_options,
+            should_add_value=benchmark.ShouldAddValue,
+            benchmark_enabled=False
+            ) as results:
+          results.PrintSummary()
+        # When a disabled benchmark is run we now want to return success since
+        # we are no longer filtering these out in the buildbot recipes.
+        return 0
 
   pt = benchmark.CreatePageTest(finder_options)
   pt.__name__ = benchmark.__class__.__name__
