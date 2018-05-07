@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1ef98891_10b64718",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-05-07T21:00:47Z",
+      "side": 0,
+      "message": "It seems like your label problem would be solved just by writing \n\nif self.telemetry_info.label:\n\nhere.\n\nWould you mind simply breaking that out into a separate CL? I agree that that\u0027s a bug. We\u0027d be ready to stamp that right away.",
+      "revId": "f0ae6bb58a452c1c129858c17359e56539d3da76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
