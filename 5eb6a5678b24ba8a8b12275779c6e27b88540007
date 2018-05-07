@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "73f2c6a7_19d64d28",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2018-05-07T17:15:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc7e02f7_64c4b58f",
+      "revId": "5eb6a5678b24ba8a8b12275779c6e27b88540007",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2a507f78_748ad06b",
         "filename": "devil/devil/android/sdk/adb_wrapper.py",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "5eb6a5678b24ba8a8b12275779c6e27b88540007",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "755c2397_c249ea3d",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2018-05-07T17:15:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a507f78_748ad06b",
+      "revId": "5eb6a5678b24ba8a8b12275779c6e27b88540007",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
