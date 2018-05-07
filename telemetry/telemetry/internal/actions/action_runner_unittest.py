@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 import mock
+import textwrap
 import unittest
 
 from telemetry.core import exceptions
@@ -469,6 +470,23 @@ class ActionRunnerTest(tab_test_case.TabTestCase):
 
     action_runner.EnterOverviewMode()
     action_runner.ExitOverviewMode()
+
+  def testProfileInterval(self):
+    action_runner = action_runner_module.ActionRunner(
+        self._tab, skip_waits=True)
+    expected = [
+        mock.call(textwrap.dedent("""
+            if (typeof chrome.gpuBenchmarking.startProfiling !== "undefined") {
+              chrome.gpuBenchmarking.startProfiling("test.pb");
+            }""")),
+        mock.call(textwrap.dedent("""
+            if (typeof chrome.gpuBenchmarking.stopProfiling !== "undefined") {
+              chrome.gpuBenchmarking.stopProfiling();
+            }"""))]
+    with mock.patch.object(action_runner, 'ExecuteJavaScript') as mock_method:
+      with action_runner.ProfilingInterval('test.pb'):
+        pass
+      self.assertEqual(expected, mock_method.call_args_list)
 
 
 class InteractionTest(unittest.TestCase):
