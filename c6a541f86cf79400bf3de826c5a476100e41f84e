@@ -80,6 +80,30 @@
       "revId": "c6a541f86cf79400bf3de826c5a476100e41f84e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74867c49_45578fed",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-05-08T14:29:29Z",
+      "side": 1,
+      "message": "I agree that this is bad. Maybe I should move the test expectation handling logic to much later, instead of moving the state creation to much earlier.\n\nLemme try another patch.",
+      "parentUuid": "20799323_6d00539f",
+      "range": {
+        "startLine": 204,
+        "startChar": 8,
+        "endLine": 204,
+        "endChar": 21
+      },
+      "revId": "c6a541f86cf79400bf3de826c5a476100e41f84e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
