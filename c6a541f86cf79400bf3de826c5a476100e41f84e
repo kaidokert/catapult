@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ceb6bbeb_be175173",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-08T01:36:34Z",
+      "side": 1,
+      "message": "This class seems like it could be named better, but I\u0027m not 100% sure what it does. It\u0027s called a StoryRunner, which would cause me to believe that it\u0027s something that knows how to run a story. However, there\u0027s a method in this file with the signature:\n\ndef Run(test, story_set, finder_options, results, max_failures\u003dNone,\n        expectations\u003dNone, metadata\u003dNone, max_num_values\u003dsys.maxint):\n\nwhich would definitely indicate that this is something that knows how to run an entire story set, which I would think would make this a StorySetRunner. All of this is outside the scope of this CL, but it definitely seems like the boundaries between classes could be cleaned up here, or at least the classes themselves could have better names.",
+      "revId": "c6a541f86cf79400bf3de826c5a476100e41f84e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e271d24_7e49e986",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-08T01:36:34Z",
+      "side": 1,
+      "message": "This API where we optionally allow callers to pass in a state but construct it if it\u0027s not passed in seems really confusing to me. I\u0027d much rather prefer a model where it\u0027s clear who\u0027s responsible for constructing the shared state. Going to take a harder look at this tomorrow.",
+      "range": {
+        "startLine": 204,
+        "startChar": 8,
+        "endLine": 204,
+        "endChar": 21
+      },
+      "revId": "c6a541f86cf79400bf3de826c5a476100e41f84e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
