@@ -16,6 +16,24 @@
       "revId": "f0ae6bb58a452c1c129858c17359e56539d3da76",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b21f86c_b98cb733",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-05-08T14:16:07Z",
+      "side": 0,
+      "message": "Sure: crrev.com/c/1049830",
+      "parentUuid": "1ef98891_10b64718",
+      "revId": "f0ae6bb58a452c1c129858c17359e56539d3da76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
