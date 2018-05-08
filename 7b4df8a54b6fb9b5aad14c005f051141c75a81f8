@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fe737522_6f36bbef",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-08T09:31:23Z",
+      "side": 1,
+      "message": "What will happen if one tries to do that? Do they get an error message? Button is disabled? New job starts but doesn\u0027t actually do anything?",
+      "revId": "7b4df8a54b6fb9b5aad14c005f051141c75a81f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
