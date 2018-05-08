@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b8f0a7b9_ed55c7cc",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-08T15:43:49Z",
+      "side": 1,
+      "message": "nit: I would factor out the call to \"_CanRunOnPlatform\", e.g.:\n\nif possible_browser:\n  target_platform \u003d possible_browser.platform\nelse:\n  target_platform \u003d platform_module.GetHostPlatform()\ncan_run_on_platform \u003d benchmark._CanRunOnPlatform(target_platform, finder_options)",
+      "revId": "47778e8c532c3aa8d7bc9d0a1f0d4274a8a596e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b48537cb_f9b1ff3f",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-08T15:43:49Z",
+      "side": 1,
+      "message": "nit: rephrase:\n\nFor now, test expectations are only applicable in the cases where the testing target involves a browser.",
+      "revId": "47778e8c532c3aa8d7bc9d0a1f0d4274a8a596e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74882416_46a708ec",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-08T15:43:49Z",
+      "side": 1,
+      "message": "I think it\u0027s weird that the shared state raises an exception to send a comment back to the user with command line help. However, I\u0027m still not sure where this should belong. I guess it\u0027s part of that \"we need to figure out a better API surface\".\n\nAnyway, I think it\u0027s fine for this CL, but something to keep in this mind for a better design in the future.",
+      "revId": "47778e8c532c3aa8d7bc9d0a1f0d4274a8a596e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
