@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/base/base.html">
+<link rel="import" href="/tracing/tracing/extras/v8/runtime_stats_entry.html">
+
+<script>
+'use strict';
+tr.exportTo('d', function() {
+  // TODO(#3651): The Histogram Pipeline should provide this information
+  // automatically.
+  // Total
+  // - Total V8
+  //   - duration / count
+  //   - IC
+  //     - duration / count
+  //   ...
+  // - Blink C++
+  //   - duration / count
+  //   - Blink ...
+  //     - duration  count
+  //   - ...
+  const VARIANTS = ['duration', 'count'];
+  const TOTAL_GROUPS = ['Blink C++', 'V8-Only'];
+  const GROUPS = [
+    'IC',
+    'API',
+    'IC',
+    'Optimize',
+    'GC-Background',
+    'Compile-Background',
+    'Compile',
+    'Parse-Background',
+    'Parse',
+    'GC',
+    'JavaScript',
+    'V8 C++'
+  ];
+  const GC_BACKGROUND_GROUPS = [
+    'GC-Background-Marking',
+    'GC-Background-Sweeping',
+    'GC-Background-Scavenger',
+    'GC-Background-MinorMC',
+    'GC-Background-MajorMC',
+    'GC-Background-Other',
+  ];
+  const ALL_GROUPS = [
+    'Total',
+    ...TOTAL_GROUPS,
+    ...GROUPS,
+    ...GC_BACKGROUND_GROUPS
+  ];
+  const RCS_RELATED_NAMES = new Map();
+  // Map Group => Group:duration, Group:count
+  for (const group of ALL_GROUPS) {
+    const related = VARIANTS.map(each => group + ':' + each);
+    RCS_RELATED_NAMES .set(group, new Set(related));
+  }
+  // Top-level hierarchy
+  RCS_RELATED_NAMES.set('Total', new Set(['Blink C++', 'V8-Only']));
+
+  // V8-Only relation.
+  RCS_RELATED_NAMES.set('V8-Only', new Set(GROUPS));
+
+  // GC relation
+  RCS_RELATED_NAMES.set('GC-Background', new Set(GC_BACKGROUND_GROUPS));
+
+  return {
+    RCS_RELATED_NAMES
+  };
+});
+</script>
