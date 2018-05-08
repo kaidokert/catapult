@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "74dceda0_04584f31",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-08T13:11:57Z",
+      "side": 1,
+      "message": "If anything I would like to push things the other way around; finding a browser (and getting hold of the possible_browser) should be part of core Telemetry\u0027s job. The shared_state is supposed to be a \"throw away\" object to hold some state we can discard in case of failures during stories; and mapping Telemetry --browser flags to a specific possible_browser is not something we should be re-doing every time we need to re-create the shared state.\n\nThe fact that we need information about the possible_browser (and it\u0027s platform) *before* starting the story runner loop (to which the shared_state lifetime is bound to) further supports this idea.\n\nFor fixing the issue with browserless benchmarks, maybe a NoOp browser as I suggested on the bug could work?",
+      "revId": "c6a541f86cf79400bf3de826c5a476100e41f84e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ceb6bbeb_be175173",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 2
@@ -30,6 +47,30 @@
       "writtenOn": "2018-05-08T01:36:34Z",
       "side": 1,
       "message": "This API where we optionally allow callers to pass in a state but construct it if it\u0027s not passed in seems really confusing to me. I\u0027d much rather prefer a model where it\u0027s clear who\u0027s responsible for constructing the shared state. Going to take a harder look at this tomorrow.",
+      "range": {
+        "startLine": 204,
+        "startChar": 8,
+        "endLine": 204,
+        "endChar": 21
+      },
+      "revId": "c6a541f86cf79400bf3de826c5a476100e41f84e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20799323_6d00539f",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-08T13:11:57Z",
+      "side": 1,
+      "message": "+1, this seems confusing and error prone.",
+      "parentUuid": "0e271d24_7e49e986",
       "range": {
         "startLine": 204,
         "startChar": 8,
