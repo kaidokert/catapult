@@ -16,6 +16,24 @@
       "revId": "032856c7e4a61c7e20bc56f5ad375a5ca81e52b0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04181b7f_911a72c8",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-05-09T19:21:58Z",
+      "side": 1,
+      "message": "It\u0027s true that there can be multiple blamed changes, but only one owner is chosen, so I think there should be one sheriff as well. I know the logic will need to be updated when \"# TODO: Assign the largest difference, not the last one.\" is implemented, but I think changing sheriffs/owners to a set would be best done at that point.",
+      "parentUuid": "ca7a867c_a5993f0b",
+      "revId": "032856c7e4a61c7e20bc56f5ad375a5ca81e52b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
