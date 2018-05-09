@@ -7,6 +7,7 @@
 import json
 import logging
 import sys
+import zlib
 
 from google.appengine.api import taskqueue
 from google.appengine.ext import ndb
@@ -64,7 +65,10 @@ class AddHistogramsHandler(api_request_handler.ApiRequestHandler):
   def AuthorizedPost(self):
     datastore_hooks.SetPrivilegedRequest()
 
-    data_str = self.request.get('data')
+    if self.request.headers.get('Content-Encoding') == 'deflate':
+      data_str = zlib.decompress(self.request.body)
+    else:
+      data_str = self.request.get('data')
     if not data_str:
       raise api_request_handler.BadRequestError('Missing "data" parameter')
 
