@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d80cc29_278f4235",
+        "filename": "experimental/soundwave/soundwave/pandas_sqlite.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-09T17:21:25Z",
+      "side": 1,
+      "message": "Took the chance to re-order args and move to the pandas \"con\" naming convention. I think it makes a bit more sense this way (also compare with the new method below).",
+      "revId": "2a9b90afcc9f32b9e2b28acfa3658171f1844656",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
