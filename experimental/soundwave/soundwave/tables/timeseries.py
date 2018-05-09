@@ -4,19 +4,22 @@
 
 import pandas  # pylint: disable=import-error
 
+from soundwave import pandas_sqlite
 
-COLUMNS = (
-    'test_suite',  # string: benchmark name ('loading.mobile')
-    'measurement',  # string: metric name ('timeToFirstContentfulPaint')
-    'bot',  # string: master/builder name ('ChromiumPerf.android-nexus5')
-    'test_case',  # string: story name ('Wikipedia')
-    'point_id',  # int: monotonically increasing value for time series axis
-    'value',  # float: value recorded for test_path at given point_id
-    'timestamp',  # np.datetime64: when the value got stored on dashboard
-    'commit_pos',  # int: chromium commit position
-    'chromium_rev',  # string: git hash of chromium revision
-    'clank_rev',  # string: git hash of clank revision
+
+COLUMN_TYPES = (
+    ('test_suite', str),  # benchmark name ('loading.mobile')
+    ('measurement', str),  # metric name ('timeToFirstContentfulPaint')
+    ('bot', str),  # master/builder name ('ChromiumPerf.android-nexus5')
+    ('test_case', str),  # story name ('Wikipedia')
+    ('point_id', int),  # monotonically increasing value for time series axis
+    ('value', float),  # value recorded for test_path at given point_id
+    ('timestamp', 'datetime64[ns]'),  # when the value got stored on dashboard
+    ('commit_pos', int),  # chromium commit position
+    ('chromium_rev', str),  # git hash of chromium revision
+    ('clank_rev', str)  # git hash of clank revision
 )
+COLUMNS = tuple(c for c, _ in COLUMN_TYPES)
 INDEX = COLUMNS[:5]
 
 TEST_PATH_PARTS = (
@@ -32,6 +35,10 @@ def _ParseConfigFromTestPath(test_path):
   config = dict(zip(TEST_PATH_PARTS, values))
   config['bot'] = '%s/%s' % (config.pop('master'), config.pop('builder'))
   return config
+
+
+def CreateTableIfNotExists(con):
+  pandas_sqlite.CreateTableIfNotExists(con, 'timeseries', COLUMN_TYPES, INDEX)
 
 
 def DataFrameFromJson(data):
@@ -54,10 +61,6 @@ def DataFrameFromJson(data):
   df = pandas.DataFrame.from_records(rows, index=INDEX, columns=COLUMNS)
   df['timestamp'] = pandas.to_datetime(df['timestamp'])
   return df
-
-
-def HasTable(con):
-  return pandas.io.sql.has_table('timeseries', con)
 
 
 def GetMostRecentPoint(con, test_path):
