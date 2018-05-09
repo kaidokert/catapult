@@ -19,9 +19,6 @@ found in the LICENSE file.
       min-height: 0px;
       overflow: auto;
     }
-    #table {
-      margin-top: 5px;
-    }
     </style>
 
     <tr-ui-b-table id="table"/>
@@ -58,7 +55,6 @@ tr.exportTo('tr.v.ui', function() {
     },
 
     ready() {
-      this.$.table.zebra = true;
       this.addEventListener('sort-column-changed',
           this.sortColumnChangedListener_);
       this.addEventListener('requestSelectionChange',
@@ -113,6 +109,35 @@ tr.exportTo('tr.v.ui', function() {
         }
       ].concat(displayLabels.map(l => this.buildColumn_(l)));
 
+      this.$.table.headRows = [
+        {
+          nameCell: tr.ui.b.createSpan({
+            textContent: 'chromium revisions',
+            color: '#9e9e9e',
+          }),
+          getCell(displayLabel) {
+            return tr.ui.b.createLink({
+              textContent: '123456-234567',
+              href: '#',
+            });
+          },
+          compareNames() { return 0; },
+        },
+        {
+          nameCell: tr.ui.b.createSpan({
+            textContent: 'v8 revisions',
+            color: '#9e9e9e',
+          }),
+          getCell(displayLabel) {
+            return tr.ui.b.createLink({
+              textContent: '123456-234567',
+              href: '#',
+            });
+          },
+          compareNames() { return 0; },
+        },
+      ];
+
       tr.b.Timing.instant('histogram-set-table', 'columnCount',
           this.$.table.tableColumns.length);
 
@@ -164,7 +189,7 @@ tr.exportTo('tr.v.ui', function() {
         opt_event.preventDefault();
         tr.b.Timing.instant('histogram-set-table', 'nameColumn' +
             (this.viewState.constrainNameColumn ? 'Constrained' :
-             'Unconstrained'));
+              'Unconstrained'));
       }
     },
 
@@ -201,7 +226,7 @@ tr.exportTo('tr.v.ui', function() {
         await this.progress_('Filtering rows...');
 
         let filteredHistograms = this.viewState.showAll ?
-            this.histograms : this.sourceHistograms_;
+          this.histograms : this.sourceHistograms_;
         if (this.viewState.searchQuery) {
           let query = undefined;
           try {
@@ -223,7 +248,7 @@ tr.exportTo('tr.v.ui', function() {
         // setTimeout(..., 0) to schedule rebuild for the next interpreter tick,
         // but that can happen in between the next await, which is too early.
         this.tableRows_ = filteredHierarchies.map(hierarchy =>
-            new tr.v.ui.HistogramSetTableRow(
+          new tr.v.ui.HistogramSetTableRow(
               hierarchy, this.$.table, this.viewState));
 
         tr.b.Timing.instant('histogram-set-table', 'rootRowCount',
@@ -243,7 +268,7 @@ tr.exportTo('tr.v.ui', function() {
       const referenceDisplayLabelIndex = this.displayLabels_.indexOf(
           this.viewState.referenceDisplayLabel);
       this.$.table.selectedTableColumnIndex = (referenceDisplayLabelIndex < 0) ?
-          undefined : (1 + referenceDisplayLabelIndex);
+        undefined : (1 + referenceDisplayLabelIndex);
 
       // Temporarily stop listening for this event in order to prevent the
       // listener from updating viewState unnecessarily.
@@ -431,7 +456,7 @@ tr.exportTo('tr.v.ui', function() {
     get leafHistograms() {
       const histograms = new tr.v.HistogramSet();
       for (const row of
-          tr.v.ui.HistogramSetTableRow.walkAll(this.$.table.tableRows)) {
+        tr.v.ui.HistogramSetTableRow.walkAll(this.$.table.tableRows)) {
         if (row.subRows.length) continue;
         for (const hist of row.columns.values()) {
           if (!(hist instanceof tr.v.Histogram)) continue;
