@@ -5,11 +5,26 @@
 import os
 
 from telemetry import story
+from telemetry.core import platform
 from telemetry.page import page
+from telemetry.internal.util import binary_manager
 
 
 HTTP_EXAMPLE = 'http://www.example.com'
 HTTPS_EXAMPLE = 'https://www.example.com'
+
+
+def FetchExampleDomainArchive():
+  ''' Return the path to wpr go archive of example.com page.
+
+  This may involve fetching the archives from cloud storage if it doesn't
+  exist on local file system.
+  '''
+  p = platform.GetHostPlatform()
+  return binary_manager.FetchPath(
+      'example_domain_wpr_go_archive', p.GetArchName(), p.GetOSName())
+
+
 EXAMPLE_PAGE_ARCHIVE_PATH = os.path.join(os.path.dirname(__file__), 'data',
                                          'example_domain_001.wprgo')
 
