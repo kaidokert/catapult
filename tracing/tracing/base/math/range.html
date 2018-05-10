@@ -249,6 +249,32 @@ tr.exportTo('tr.b.math', function() {
     return 0;
   };
 
+  Range.subtractRangesFromRange = function(subtrahendRange, minuendRanges) {
+    let remainingRanges = [subtrahendRange];
+    minuendRanges.sort((a, b) => a.min - b.min);
+    for (const minuendRange of minuendRanges) {
+      if (!minuendRange || minuendRange.isEmpty ||
+          minuendRange.duration < 0) {
+        throw new Error('Range is invalid');
+      }
+      // Every minuendRange does not intersect with any remainingRanges prior to
+      // the last remainingRanges, because:
+      //
+      // remainingRanges[last-1].max <= minuendRange[i-1].min <=
+      // minuendRange[i].min
+      //             (due to subtraction)      (due to sorting)
+      //
+      // where 'i' is the current index of minuendRange.
+      const newLastRemainingRanges =
+          tr.b.math.Range.findDifference(
+              remainingRanges[remainingRanges.length - 1], minuendRange);
+      remainingRanges.pop();
+      remainingRanges = remainingRanges.concat(newLastRemainingRanges);
+      if (remainingRanges.length === 0) break;
+    }
+    return remainingRanges;
+  };
+
   /**
   * Subtracts the intersection of |rangeA| and |rangeB| from |rangeA| and
   * returns the remaining ranges as return. |rangeA| and |rangeB| are
