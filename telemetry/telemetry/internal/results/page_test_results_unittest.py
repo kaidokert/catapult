@@ -2,9 +2,10 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-import os
-import mock
 import StringIO
+import datetime
+import mock
+import os
 import unittest
 
 from py_utils import tempfile_ext
@@ -544,6 +545,24 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
         'bar')
     self.assertNotIn(
         reserved_infos.BENCHMARK_DESCRIPTIONS.name, hist.diagnostics)
+
+  def testAddDurationHistogram_BenchmarkStart(self):
+    results = page_test_results.PageTestResults()
+    results.telemetry_info.benchmark_start_epoch = 1525978345
+    results.AddDurationHistogram(42)
+
+    histograms = histogram_set.HistogramSet()
+    histograms.ImportDicts(results.AsHistogramDicts())
+    self.assertEqual(len(histograms), 1)
+    hist = histograms.GetFirstHistogram()
+    self.assertEqual(hist.name, 'benchmark_total_duration')
+    self.assertIn(reserved_infos.BENCHMARK_START.name, hist.diagnostics)
+    self.assertEqual(
+        hist.diagnostics[reserved_infos.BENCHMARK_START.name].min_date,
+        datetime.datetime(2018, 5, 10, 14, 52, 25))
+    self.assertEqual(
+        hist.diagnostics[reserved_infos.BENCHMARK_START.name].max_date,
+        datetime.datetime(2018, 5, 10, 14, 52, 25))
 
 
 class PageTestResultsFilterTest(unittest.TestCase):
