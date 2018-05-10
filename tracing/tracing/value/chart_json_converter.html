@@ -69,22 +69,14 @@ tr.exportTo('tr.v', function() {
                 description: value.description || '',
               });
 
-          if (traceValues) {
-            const traceValue = traceValues[storyName] || {};
-            let traceUrl = traceValue.cloud_url;
-            if (!traceUrl && traceValue.file_path) {
-              traceUrl = 'file://' + traceValue.file_path;
-            }
-            if (traceUrl) {
-              addSharedDiagnostic(hist, tr.v.d.RESERVED_NAMES.TRACE_URLS,
-                  new tr.v.d.GenericSet([traceUrl]));
-            }
+          if (value.cloud_url) {
+            addSharedDiagnostic(hist, tr.v.d.RESERVED_NAMES.TRACE_URLS,
+                new tr.v.d.GenericSet([value.cloud_url]));
           }
 
-          if (pageValuesCount > 1) {
-            addSharedDiagnostic(hist, tr.v.d.RESERVED_NAMES.STORIES,
-                new tr.v.d.GenericSet([storyName]));
-          }
+          addSharedDiagnostic(hist, tr.v.d.RESERVED_NAMES.STORIES,
+              new tr.v.d.GenericSet([storyName]));
+
 
           if (value.tir_label) {
             addSharedDiagnostic(hist, tr.v.d.RESERVED_NAMES.STORY_TAGS,

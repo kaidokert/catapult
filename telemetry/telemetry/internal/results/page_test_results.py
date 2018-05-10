@@ -252,6 +252,17 @@ class PageTestResults(object):
 
     file_descriptor, chart_json_path = tempfile.mkstemp()
     os.close(file_descriptor)
+
+    i = 1
+    for value in self.FindAllTraceValues():
+      clonedTraceJSonObject = copy.deepcopy(chart_json['charts']['trace'])
+      for k, v in clonedTraceJSonObject.items():
+        pageUrl = k
+      clonedTraceJSonObject[pageUrl]['cloud_url'] = value._cloud_url
+      chart_json['charts']["hack_"+str(i)] = clonedTraceJSonObject
+      chart_json['charts']["hack_"+str(i)] = clonedTraceJSonObject
+      i = i + 1
+
     json.dump(chart_json, file(chart_json_path, 'w'))
 
     vinn_result = convert_chart_json.ConvertChartJson(chart_json_path)
