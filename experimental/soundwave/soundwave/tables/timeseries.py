@@ -5,26 +5,28 @@
 import pandas  # pylint: disable=import-error
 
 
-COLUMNS = (
-    'test_suite',  # string: benchmark name ('loading.mobile')
-    'measurement',  # string: metric name ('timeToFirstContentfulPaint')
-    'bot',  # string: master/builder name ('ChromiumPerf.android-nexus5')
-    'test_case',  # string: story name ('Wikipedia')
-    'point_id',  # int: monotonically increasing value for time series axis
-    'value',  # float: value recorded for test_path at given point_id
-    'timestamp',  # np.datetime64: when the value got stored on dashboard
-    'commit_pos',  # int: chromium commit position
-    'chromium_rev',  # string: git hash of chromium revision
-    'clank_rev',  # string: git hash of clank revision
+TABLE_NAME = 'timeseries'
+COLUMN_TYPES = (
+    ('test_suite', str),  # benchmark name ('loading.mobile')
+    ('measurement', str),  # metric name ('timeToFirstContentfulPaint')
+    ('bot', str),  # master/builder name ('ChromiumPerf.android-nexus5')
+    ('test_case', str),  # story name ('Wikipedia')
+    ('point_id', int),  # monotonically increasing value for time series axis
+    ('value', float),  # value recorded for test_path at given point_id
+    ('timestamp', 'datetime64[ns]'),  # when the value got stored on dashboard
+    ('commit_pos', int),  # chromium commit position
+    ('chromium_rev', str),  # git hash of chromium revision
+    ('clank_rev', str)  # git hash of clank revision
 )
+COLUMNS = tuple(c for c, _ in COLUMN_TYPES)
 INDEX = COLUMNS[:5]
 
 TEST_PATH_PARTS = (
     'master', 'builder', 'test_suite', 'measurement', 'test_case')
 
 _GET_MOST_RECENT_QUERY = (
-    'SELECT * FROM timeseries WHERE %s ORDER BY timestamp DESC LIMIT 1'
-    % ' AND '.join('%s=?' % c for c in INDEX[:-1]))
+    'SELECT * FROM %s WHERE %s ORDER BY timestamp DESC LIMIT 1'
+    % (TABLE_NAME, ' AND '.join('%s=?' % c for c in INDEX[:-1])))
 
 
 def _ParseConfigFromTestPath(test_path):
@@ -54,10 +56,6 @@ def DataFrameFromJson(data):
   df = pandas.DataFrame.from_records(rows, index=INDEX, columns=COLUMNS)
   df['timestamp'] = pandas.to_datetime(df['timestamp'])
   return df
-
-
-def HasTable(con):
-  return pandas.io.sql.has_table('timeseries', con)
 
 
 def GetMostRecentPoint(con, test_path):
