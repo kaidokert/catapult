@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7dec622c_f8efd6b6",
+        "filename": "tracing/tracing/metrics/vr/frame_cycle_duration_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2018-05-10T14:14:24Z",
+      "side": 1,
+      "message": "Nit: spent",
+      "range": {
+        "startLine": 45,
+        "startChar": 58,
+        "endLine": 45,
+        "endChar": 66
+      },
+      "revId": "6541124090c23ccf51f069535af8e93ecb8e4d0f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29b5394c_901dc58e",
+        "filename": "tracing/tracing/metrics/vr/frame_cycle_duration_metric_test.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2018-05-10T14:14:24Z",
+      "side": 1,
+      "message": "Good idea!",
+      "range": {
+        "startLine": 178,
+        "startChar": 11,
+        "endLine": 178,
+        "endChar": 22
+      },
+      "revId": "6541124090c23ccf51f069535af8e93ecb8e4d0f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
