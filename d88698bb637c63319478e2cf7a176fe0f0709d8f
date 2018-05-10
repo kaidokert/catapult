@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "4e79a7bb_29c746f1",
+        "filename": "systrace/profile_chrome/chrome_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-05-10T17:10:40Z",
+      "side": 1,
+      "message": "This is not set by any benchmark (https://cs.chromium.org/search/?q\u003dtrace_scheduler+f:tools/perf\u0026type\u003dcs) so I think it\u0027s safe",
+      "revId": "d88698bb637c63319478e2cf7a176fe0f0709d8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a5a17788_61bcc715",
         "filename": "systrace/profile_chrome/perf_tracing_agent.py",
         "patchSetId": 3
