@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ede41912_906f8e3a",
+        "filename": "telemetry/telemetry/internal/results/page_test_results_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-05-10T21:16:08Z",
+      "side": 1,
+      "message": "I think this should work?\nself.assertEqual(results.telemetry_info.benchmark_start_epoch, time.mktime(hist.diagnostics[reserved_infos.BENCHMARK_START.name].min_date.timetuple()))\nhttp://blog.jmoz.co.uk/python-convert-datetime-to-timestamp/",
+      "revId": "324036c02863761d435236452328ac7bfc626cf9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
