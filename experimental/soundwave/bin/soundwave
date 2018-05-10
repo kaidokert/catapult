@@ -29,7 +29,7 @@ DEFAULT_DATABASE_PATH = os.path.join(
 
 
 def Main():
-  logging.basicConfig(level=logging.INFO)
+  logging.basicConfig(level=logging.WARNING)
 
   # Args for API access.
   parser = argparse.ArgumentParser(parents=[oauth2client.tools.argparser])
