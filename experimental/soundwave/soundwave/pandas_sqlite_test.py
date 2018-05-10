@@ -11,14 +11,16 @@ from soundwave import pandas_sqlite
 
 class TestPandasSQLite(unittest.TestCase):
   def testInsertOrReplaceRecords_newTable(self):
-    # TODO(#4442): Rewrite to explicitly create table when we remove support
-    # for implicitly creating it during InsertOrReplaceRecords.
-    columns = ('bug_id', 'summary', 'status')
+    column_types = (('bug_id', int), ('summary', str), ('status', str))
+    columns = tuple(c for c, _ in column_types)
+    index = columns[0]
     df1 = pandas.DataFrame.from_records(
         [(123, 'Some bug', 'Started'), (456, 'Another bug', 'Assigned')],
-        columns=columns, index=columns[0])
+        columns=columns, index=index)
     con = sqlite3.connect(':memory:')
     try:
+      pandas_sqlite.CreateTableIfNotExists(con, 'bugs', column_types, index)
+
       # Write new table to database, read back and check they are equal.
       pandas_sqlite.InsertOrReplaceRecords(con, 'bugs', df1)
       df = pandas.read_sql('SELECT * FROM bugs', con, index_col=columns[0])
@@ -52,6 +54,20 @@ class TestPandasSQLite(unittest.TestCase):
       self.assertEqual(len(df), 3)  # Only one extra record added.
       self.assertEqual(df.loc[123]['status'], 'Fixed')  # Bug is now fixed.
       self.assertItemsEqual(df.index, (123, 456, 789))
+    finally:
+      con.close()
+
+  def testInsertOrReplaceRecords_tableNotExistsRaises(self):
+    column_types = (('bug_id', int), ('summary', str), ('status', str))
+    columns = tuple(c for c, _ in column_types)
+    index = columns[0]
+    df1 = pandas.DataFrame.from_records(
+        [(123, 'Some bug', 'Started'), (456, 'Another bug', 'Assigned')],
+        columns=columns, index=index)
+    con = sqlite3.connect(':memory:')
+    try:
+      with self.assertRaises(AssertionError):
+        pandas_sqlite.InsertOrReplaceRecords(con, 'bugs', df1)
     finally:
       con.close()
 
