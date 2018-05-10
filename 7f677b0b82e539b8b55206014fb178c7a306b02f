@@ -22,6 +22,30 @@
       "revId": "7f677b0b82e539b8b55206014fb178c7a306b02f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ab0b592_a693dd42",
+        "filename": "tracing/tracing/metrics/vr/frame_cycle_duration_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002161
+      },
+      "writtenOn": "2018-05-10T12:22:12Z",
+      "side": 1,
+      "message": "good suggestion. With the help of default parameter, it is actually less code.",
+      "parentUuid": "be38d0c5_bc447bcf",
+      "range": {
+        "startLine": 15,
+        "startChar": 8,
+        "endLine": 15,
+        "endChar": 30
+      },
+      "revId": "7f677b0b82e539b8b55206014fb178c7a306b02f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
