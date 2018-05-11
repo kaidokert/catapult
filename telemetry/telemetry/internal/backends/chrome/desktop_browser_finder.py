@@ -95,6 +95,24 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
       if os.path.isfile(devtools_file_path):
         os.remove(devtools_file_path)
 
+    # Ensures a directory structure for a |dest| file to be created in, relative
+    # to the profile directory. Returns the fully qualified path to |dest|.
+    def ensure_path(dest):
+      full_dest_path = os.path.join(self._profile_directory, dest)
+      dirname = os.path.dirname(full_dest_path)
+      if not os.path.exists(dirname):
+        os.makedirs(dirname)
+      return full_dest_path
+
+    for source, dest in self._browser_options.profile_files_to_move:
+      full_dest_path = ensure_path(dest)
+      shutil.copy(source, full_dest_path)
+
+    for data, dest in self._browser_options.profile_data_to_copy:
+      full_dest_path = ensure_path(dest)
+      with open(full_dest_path, 'w') as f:
+        f.write(data)
+
   def _TearDownEnvironment(self):
     if self._profile_directory and os.path.exists(self._profile_directory):
       # Remove the profile directory, which was hosted on a temp dir.
