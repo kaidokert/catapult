@@ -250,6 +250,49 @@ tr.exportTo('tr.b.math', function() {
   };
 
   /**
+  * For each range in |minuendRanges|, subtracts the intersection of the range
+  * and |subtrahendRange| from |subtrahendRange| and returns the remaining
+  * ranges as return. |subtrahendRange| and |minuendRanges| are not changed
+  * during the subtraction.
+  *
+  * subtrahendRange:       |==============|
+  * minuendRanges:            |===|   |=|
+  * result:                |==|   |===| |=|
+  *
+  * @param {tr.b.math.Range} subtrahendRange The range to be subtracted from
+  * @param {Array.<tr.b.math.Range>} minuendRanges An array of ranges to
+  *       subtract subtrahendRange.
+  * @return {Array.<tr.b.math.Range>} An array of ranges which is the result of
+  *       the subtraction.
+  */
+  Range.subtractRangesFromRange = function(subtrahendRange, minuendRanges) {
+    let remainingRanges = [subtrahendRange];
+    const clonedMinuendRanges =
+        minuendRanges.concat().sort((a, b) => a.min - b.min);
+    for (const minuendRange of clonedMinuendRanges) {
+      if (!minuendRange || minuendRange.isEmpty ||
+          minuendRange.duration < 0) {
+        throw new Error('Range is invalid');
+      }
+      // Every minuendRange does not intersect with any remainingRanges prior to
+      // the last remainingRanges, because:
+      //
+      // remainingRanges[last-1].max <= minuendRange[i-1].min <=
+      // minuendRange[i].min
+      //             (due to subtraction)      (due to sorting)
+      //
+      // where 'i' is the current index of minuendRange.
+      const newLastRemainingRanges =
+          tr.b.math.Range.findDifference(
+              remainingRanges[remainingRanges.length - 1], minuendRange);
+      remainingRanges.pop();
+      remainingRanges = remainingRanges.concat(newLastRemainingRanges);
+      if (remainingRanges.length === 0) break;
+    }
+    return remainingRanges;
+  };
+
+  /**
   * Subtracts the intersection of |rangeA| and |rangeB| from |rangeA| and
   * returns the remaining ranges as return. |rangeA| and |rangeB| are
   * not changed during the subtraction.

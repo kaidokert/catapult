@@ -587,5 +587,59 @@ tr.b.unittest.testSuite(function() {
     const result = Range.findDifference(rangeA, rangeB);
     assert.deepEqual(result, []);
   });
+
+  test('subtractRangesFromRange_noOverlapping', function() {
+    const rangeA = Range.fromExplicitRange(0, 10);
+    const rangesB =
+        [Range.fromExplicitRange(1, 3), Range.fromExplicitRange(7, 9)];
+    const result = Range.subtractRangesFromRange(rangeA, rangesB);
+    assert.deepEqual(result, [Range.fromExplicitRange(0, 1),
+      Range.fromExplicitRange(3, 7), Range.fromExplicitRange(9, 10)]);
+  });
+
+  test('subtractRangesFromRange_0length', function() {
+    const rangeA = Range.fromExplicitRange(0, 10);
+    const rangesB =
+        [Range.fromExplicitRange(1, 1), Range.fromExplicitRange(7, 7)];
+    const result = Range.subtractRangesFromRange(rangeA, rangesB);
+    assert.deepEqual(result, [Range.fromExplicitRange(0, 1),
+      Range.fromExplicitRange(1, 7), Range.fromExplicitRange(7, 10)]);
+  });
+
+  test('subtractRangesFromRange_overlapping', function() {
+    const rangeA = Range.fromExplicitRange(0, 10);
+    const rangesB =
+        [Range.fromExplicitRange(1, 5), Range.fromExplicitRange(3, 7)];
+    const result = Range.subtractRangesFromRange(rangeA, rangesB);
+    assert.deepEqual(result,
+        [Range.fromExplicitRange(0, 1), Range.fromExplicitRange(7, 10)]);
+  });
+
+  test('subtractRangesFromRange_outOfRange', function() {
+    const rangeA = Range.fromExplicitRange(0, 10);
+    const rangesB = [Range.fromExplicitRange(-5, 3),
+      Range.fromExplicitRange(4, 5), Range.fromExplicitRange(8, 11)];
+    const result = Range.subtractRangesFromRange(rangeA, rangesB);
+    assert.deepEqual(result,
+        [Range.fromExplicitRange(3, 4), Range.fromExplicitRange(5, 8)]);
+  });
+
+  test('subtractRangesFromRange_outOfOrder', function() {
+    const rangeA = Range.fromExplicitRange(0, 10);
+    const rangesB =
+        [Range.fromExplicitRange(5, 6), Range.fromExplicitRange(1, 2)];
+    const result = Range.subtractRangesFromRange(rangeA, rangesB);
+    assert.deepEqual(result, [Range.fromExplicitRange(0, 1),
+      Range.fromExplicitRange(2, 5), Range.fromExplicitRange(6, 10)]);
+  });
+
+  test('subtractRangesFromRange_immutable', function() {
+    const rangeA = Range.fromExplicitRange(0, 10);
+    const rangesB = [Range.fromExplicitRange(5, 6),
+      Range.fromExplicitRange(1, 2), Range.fromExplicitRange(7, 10)];
+    const clonedRangesB = rangesB.concat();
+    const result = Range.subtractRangesFromRange(rangeA, rangesB);
+    assert.deepEqual(rangesB, clonedRangesB);
+  });
 });
 </script>
