@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "51180667_8d0b1051",
+        "filename": "tracing/tracing/metrics/vr/frame_cycle_duration_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-05-11T19:15:34Z",
+      "side": 1,
+      "message": "The style guide hasn\u0027t yet approved default arguments. Can you add the trues to the other callers?\nhttps://github.com/catapult-project/catapult/blob/master/docs/style-guide.md",
+      "revId": "5cd49318dce082883629163a64a6f0284ea258b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58af8ad2_66ec7e35",
+        "filename": "tracing/tracing/metrics/vr/frame_cycle_duration_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-05-11T19:15:34Z",
+      "side": 1,
+      "message": "Why does this event not have cpuDuration when all the others do? Or is it that you don\u0027t care about its cpuDuration even if it\u0027s there?",
+      "revId": "5cd49318dce082883629163a64a6f0284ea258b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
