@@ -29,7 +29,7 @@ DEFAULT_DATABASE_PATH = os.path.join(
 
 
 def Main():
-  logging.basicConfig(level=logging.INFO)
+  logging.basicConfig(level=logging.WARNING)
 
   # Args for API access.
   parser = argparse.ArgumentParser(parents=[oauth2client.tools.argparser])
@@ -49,6 +49,9 @@ def Main():
   parser.add_argument(
       '--continue', action='store_true', dest='use_cache',
       help='Skip refreshing some data for elements already in local db.')
+  parser.add_argument(
+      '--processes', type=int, default=40,
+      help='Number of concurrent processes to use for fetching data.')
   parser.add_argument(
       '--database-file', default=DEFAULT_DATABASE_PATH,
       help='File path for database where to store data.')
