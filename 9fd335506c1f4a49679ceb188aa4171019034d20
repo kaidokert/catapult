@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9aa77a5e_dd4b8ed6",
+        "filename": "experimental/soundwave/bin/soundwave",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-11T10:19:01Z",
+      "side": 1,
+      "message": "+simonhatch - FYI\n\nI figured out a reasonable default with SCIENCE! Well, sort of. That\u0027s what worked well on my workstation:\n\nhttps://docs.google.com/spreadsheets/d/1CsozVg8G5dMYilfyZHoJX2lHIUZfP-QYnz4fDZSwY5s/edit?usp\u003dsharing\n\nBut wanted to check if that sounds reasonable to you from the dashboard side of things. This seems to be doing some 40-70 requests per second to the dashboard API\u0027s. Note from [1] this already does retries and exponential back-offs if the dashboard responds with a server error.\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/experimental/soundwave/soundwave/dashboard_api.py?rcl\u003da75468d15a3ea750b8b47a5304ba8b1b13f1f6e4\u0026l\u003d100",
+      "revId": "9fd335506c1f4a49679ceb188aa4171019034d20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3edb296_c8612175",
+        "filename": "experimental/soundwave/bin/soundwave",
+        "patchSetId": 6
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-11T10:19:01Z",
+      "side": 1,
+      "message": "Switching the default log level to WARNING, otherwise we get a ton of interleaved output being spewed from all subprocesses.",
+      "revId": "9fd335506c1f4a49679ceb188aa4171019034d20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a75b062_33da8df6",
+        "filename": "experimental/soundwave/soundwave/commands.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-11T10:19:01Z",
+      "side": 1,
+      "message": "A very simple one for now. We may replace with something more fancy later if we want to.",
+      "revId": "9fd335506c1f4a49679ceb188aa4171019034d20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
