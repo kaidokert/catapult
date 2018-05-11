@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "315bd3c9_9b44562c",
+        "filename": "dashboard/dashboard/pinpoint/models/results2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-05-11T17:13:09Z",
+      "side": 1,
+      "message": "optional nit: it may be better to pass change_state rather than job_data and change_index.",
+      "revId": "1d229349dc0f47ad87ed8b0919abbe0672524539",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a08fb035_d2af80a8",
+        "filename": "dashboard/dashboard/pinpoint/models/results2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-05-11T17:13:09Z",
+      "side": 1,
+      "message": "nit: change_state, maybe?",
+      "revId": "1d229349dc0f47ad87ed8b0919abbe0672524539",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd838f8c_f993ab4c",
+        "filename": "dashboard/dashboard/pinpoint/models/results2.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-05-11T17:13:09Z",
+      "side": 1,
+      "message": "optional nit: it may be better to pass change_state rather than job_data and change_index.",
+      "revId": "1d229349dc0f47ad87ed8b0919abbe0672524539",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2df95e1f_22d9bcd3",
+        "filename": "dashboard/dashboard/pinpoint/models/results2_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-05-11T17:13:09Z",
+      "side": 1,
+      "message": "prev should be \u0027same\u0027",
+      "range": {
+        "startLine": 59,
+        "startChar": 58,
+        "endLine": 59,
+        "endChar": 67
+      },
+      "revId": "1d229349dc0f47ad87ed8b0919abbe0672524539",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d8a798f_9af4d0eb",
+        "filename": "dashboard/dashboard/pinpoint/models/results2_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-05-11T17:13:09Z",
+      "side": 1,
+      "message": "nit: would you mind putting \u0027prev\u0027 before \u0027next\u0027?",
+      "revId": "1d229349dc0f47ad87ed8b0919abbe0672524539",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
