@@ -40,6 +40,7 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
     self._is_content_shell = is_content_shell
     self._browser_directory = browser_directory
     self._profile_directory = None
+    self._no_sandbox = False
     self.is_local_build = is_local_build
 
   def __repr__(self):
@@ -59,6 +60,14 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
     if os.path.exists(self._local_executable):
       return os.path.getmtime(self._local_executable)
     return -1
+
+  @property
+  def no_sandbox(self):
+    return self._no_sandbox
+
+  @no_sandbox.setter
+  def no_sandbox(self, value):
+    self._no_sandbox = value
 
   def _InitPlatformIfNeeded(self):
     if self._platform:
@@ -179,6 +188,9 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
                          .GetChromeTraceConfigFile())
     if trace_config_file:
       startup_args.append('--trace-config-file=%s' % trace_config_file)
+
+    if self.no_sandbox:
+      startup_args.append('--no-sandbox')
 
     return startup_args
 
