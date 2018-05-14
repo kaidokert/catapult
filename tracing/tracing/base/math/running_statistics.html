@@ -42,6 +42,10 @@ tr.exportTo('tr.b.math', function() {
       return Math.exp(this.meanlogs_);
     }
 
+    get avg() { return this.mean; }
+
+    get std() { return this.stddev; }
+
     get mean() {
       if (this.count_ === 0) return undefined;
       return this.mean_;
