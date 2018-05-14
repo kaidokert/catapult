@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d69e8a95_77e88f4c",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-05-14T15:23:10Z",
+      "side": 1,
+      "message": "I think this is a generically useful method which can be moved to catapult/common/py_utils/",
+      "revId": "27c08ea2977b6a90fa94d8a79277d76d44a7e4af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
