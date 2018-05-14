@@ -16,6 +16,24 @@
       "revId": "6ccd021839d27fa466f94bea3a773744ee48a238",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e52bf8b3_1b8377cb",
+        "filename": "telemetry/telemetry/internal/backends/android_backend_settings_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-14T14:35:14Z",
+      "side": 0,
+      "message": "By the way, this is only relevant for --browser exact [1]; when you want to to find the browser backend based on the package name. This already doesn\u0027t work well for the webview case; and will continue to \"not work\" after this change.\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/backends/chrome/android_browser_finder.py?rcl\u003d8f2f785df9c92f1601e47aaf448c03581ebf86ea\u0026l\u003d294",
+      "parentUuid": "f08f744c_1269bc37",
+      "revId": "6ccd021839d27fa466f94bea3a773744ee48a238",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
