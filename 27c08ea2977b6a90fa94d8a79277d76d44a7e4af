@@ -34,6 +34,24 @@
       "revId": "27c08ea2977b6a90fa94d8a79277d76d44a7e4af",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e558441_efdaf4a5",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-05-14T21:37:18Z",
+      "side": 1,
+      "message": "This logic got simplified now that we removed profile_data_to_copy. LMK if you still want me to abstract it away, but I don\u0027t think it\u0027s worth it.",
+      "parentUuid": "18dc2a98_49964d90",
+      "revId": "27c08ea2977b6a90fa94d8a79277d76d44a7e4af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
