@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b63c2cf6_de5f100b",
+        "filename": "telemetry/bin/update_telemetry_dependency",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-14T09:45:58Z",
+      "side": 1,
+      "message": "nits:\n- \"Use default ...\" -\u003e \"Using default ...\"\n- Change the outer to double-quotes, so it\u0027s easy to type the single-quote in the text, i.e.: \"Download path was\u0027t specified. ...\"",
+      "revId": "fc0e9f0d5c41ab8fc7503a1ff820436170937617",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
