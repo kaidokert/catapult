@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5fb321a2_e558ff40",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-05-14T20:21:08Z",
+      "side": 1,
+      "message": "Instead of this API, I suggest add a method called: AddExtraBrowserArgs( to PossibleBrowser API. The callsite then would do:\n\npossible_browser.AddExtraBrowserArgs([\u0027--no-sandbox\u0027])\n\nThe implementation of AddExtraBrowserArgs would look s.t like:\ndef AddExtraBrowserArgs(self, extra_args):\n   self._finder_options.brower_options.extra_browser_args.add(extra_args)",
+      "revId": "477336bb905c77d7d7d31e3b75763c094a9cd1c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
