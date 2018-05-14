@@ -16,6 +16,24 @@
       "revId": "82ce1fac140f9a5fea6d8c679c1696bb943a2e53",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3499d39c_bb0a68b1",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-14T15:03:35Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "53a96027_3f4f81bc",
+      "revId": "82ce1fac140f9a5fea6d8c679c1696bb943a2e53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
