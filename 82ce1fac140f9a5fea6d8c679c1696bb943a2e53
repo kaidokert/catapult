@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "53a96027_3f4f81bc",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-05-14T14:53:48Z",
+      "side": 1,
+      "message": "I still find this part a bit weird since it creates an implicit dependency of Telemetry on system_webview_shell, which is a testing app, but this is probably ok for now.\n\nTo make the dependency more explicit, can you add some comment that explain the SystemWebViewShell.apk source code is in https://cs.chromium.org/chromium/src/android_webview/tools/system_webview_shell/?q\u003dSystemWebViewShell\u0026dr\u003dC",
+      "revId": "82ce1fac140f9a5fea6d8c679c1696bb943a2e53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
