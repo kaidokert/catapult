@@ -99,7 +99,7 @@ class Job(ndb.Model):
       auto_explore: If True, the Job should automatically add additional
           Attempts and Changes based on comparison of results values.
       bug_id: A monorail issue id number to post Job updates to.
-      comparison_mode: A member of the ComparisonMode enum, which the Job uses
+      comparison_mode: Either 'functional' or 'performance', which the Job uses
           to figure out whether to perform a functional or performance bisect.
           If None, the Job will not automatically add any Attempts or Changes.
       pin: A Change (Commits + Patch) to apply to every Change in this Job.
@@ -109,13 +109,17 @@ class Job(ndb.Model):
     Returns:
       A Job object.
     """
-    job = cls(state=job_state.JobState(quests, pin=pin),
-              arguments=arguments or {},
-              auto_explore=auto_explore,
-              bug_id=bug_id,
-              comparison_mode=comparison_mode,
-              tags=tags,
-              user=user)
+    if not comparison_mode:
+      comparison_mode_enum = None
+    elif comparison_mode == 'functional':
+      comparison_mode_enum = ComparisonMode.FUNCTIONAL
+    elif comparison_mode == 'performance':
+      comparison_mode_enum = ComparisonMode.PERFORMANCE
+
+    state = job_state.JobState(quests, comparison_mode=comparison_mode, pin=pin)
+    job = cls(state=state, arguments=arguments or {},
+              auto_explore=auto_explore, bug_id=bug_id,
+              comparison_mode=comparison_mode_enum, tags=tags, user=user)
 
     for c in changes:
       job.AddChange(c)
