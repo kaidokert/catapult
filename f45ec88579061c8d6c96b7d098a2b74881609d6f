@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ca01bf80_97e66331",
+        "filename": "tracing/tracing/base/math/range.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-05-14T20:36:43Z",
+      "side": 1,
+      "message": "I think these terms are reversed.\nhttps://www.mathsisfun.com/definitions/subtrahend.html",
+      "revId": "f45ec88579061c8d6c96b7d098a2b74881609d6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80e96733_57c662da",
+        "filename": "tracing/tracing/base/math/range.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-05-14T20:36:43Z",
+      "side": 1,
+      "message": "How is this different from findEmptyRangesBetweenRanges?\nhttps://github.com/catapult-project/catapult/blob/344aee7e135aefe8ed8312dea6191873e00a1931/tracing/tracing/base/math/range_utils.html#L81",
+      "revId": "f45ec88579061c8d6c96b7d098a2b74881609d6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
