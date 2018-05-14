@@ -16,6 +16,24 @@
       "revId": "fc0e9f0d5c41ab8fc7503a1ff820436170937617",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19c8c36f_81b3f7fb",
+        "filename": "telemetry/bin/update_telemetry_dependency",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-05-14T14:39:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b63c2cf6_de5f100b",
+      "revId": "fc0e9f0d5c41ab8fc7503a1ff820436170937617",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
