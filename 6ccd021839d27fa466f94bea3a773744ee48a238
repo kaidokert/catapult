@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f08f744c_1269bc37",
+        "filename": "telemetry/telemetry/internal/backends/android_backend_settings_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-14T14:31:29Z",
+      "side": 0,
+      "message": "Thought of leaving a comment to later fix this test after sorting things out with the browser selection mechanism. But decided to remove the test instead because this invariant will no longer hold true anyway.\n\nWhat this test is saying is that \"android package name\" uniquely determines the \"browser backend\"; but this will never be true anymore for the webview case (specially when you think about monochrome).\n\nFiled instead crbug.com/842685",
+      "revId": "6ccd021839d27fa466f94bea3a773744ee48a238",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
