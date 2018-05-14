@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df5254ec_790fb0af",
+        "filename": "experimental/soundwave/soundwave/dashboard_api.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-14T15:08:00Z",
+      "side": 1,
+      "message": "This should probably be \"bug id or sequence of bug ids.\"",
+      "range": {
+        "startLine": 163,
+        "startChar": 32,
+        "endLine": 163,
+        "endChar": 40
+      },
+      "revId": "c3b3e7ca44fc9339a22889bcf212f2eedd41c864",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
