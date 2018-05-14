@@ -30,36 +30,50 @@ class FakeLinuxPlatformBackend(object):
     return 'linux'
 
 
-class FakeBrowser(object):
+class FakePossibleBrowser(object):
   def __init__(self, platform_backend):
     self._platform_backend = platform_backend
 
 
 class BrowserIntervalProfilingControllerTest(unittest.TestCase):
-  def _RunTest(self, browser, periods, expected_call_count):
-    profiling_mod = browser_interval_profiling_controller
-    controller = profiling_mod.BrowserIntervalProfilingController(
-        '', periods, 1)
-    controller.DidStartBrowser(browser)
-    with mock.patch.object(
-        controller,
-        '_StartSimpleperf',
-        new=mock.Mock(return_value=None)) as start_simpleperf_mock:
-      with controller.SamplePeriod('test'):
+  def _RunTest(
+      self, possible_browser, periods, constructor_count, sample_count):
+    with mock.patch(
+        'telemetry.internal.browser.browser_interval_profiling_controller'
+        '._AndroidController') as android_controller_mock:
+      # 80 characters FTW
+      profiling_mod = browser_interval_profiling_controller
+      controller = profiling_mod.BrowserIntervalProfilingController(
+          possible_browser, '', periods, 1)
+      with controller.SamplePeriod('period1', None):
         pass
-      self.assertEqual(start_simpleperf_mock.call_count, expected_call_count)
+      with controller.SamplePeriod('period2', None):
+        pass
+
+      # Verify that the appropriate platform controller was instantiated.
+      self.assertEqual(android_controller_mock.call_count, constructor_count)
+
+      # Verify that samples were collected the expected number of times.
+      if controller._platform_controller:
+        self.assertEqual(
+            controller._platform_controller.SamplePeriod.call_count,
+            sample_count)
+      else:
+        self.assertEqual(0, sample_count)
 
   def testSupportedAndroid(self):
-    browser = FakeBrowser(FakeAndroidPlatformBackend(version_codes.OREO))
-    self._RunTest(browser, [], expected_call_count=0)
-    self._RunTest(browser, ['test'], expected_call_count=1)
+    possible_browser = FakePossibleBrowser(
+        FakeAndroidPlatformBackend(version_codes.OREO))
+    self._RunTest(possible_browser, ['period1'], 1, 1)
+    self._RunTest(possible_browser, [], 0, 0)
 
   def testUnsupportedAndroid(self):
-    browser = FakeBrowser(FakeAndroidPlatformBackend(version_codes.KITKAT))
-    self._RunTest(browser, [], expected_call_count=0)
-    self._RunTest(browser, ['test'], expected_call_count=0)
+    possible_browser = FakePossibleBrowser(
+        FakeAndroidPlatformBackend(version_codes.KITKAT))
+    self._RunTest(possible_browser, ['period1'], 0, 0)
+    self._RunTest(possible_browser, [], 0, 0)
 
-  def testDesktop(self):
-    browser = FakeBrowser(FakeLinuxPlatformBackend())
-    self._RunTest(browser, [], expected_call_count=0)
-    self._RunTest(browser, ['test'], expected_call_count=0)
+  def testUnsupportedDesktop(self):
+    possible_browser = FakePossibleBrowser(FakeLinuxPlatformBackend())
+    self._RunTest(possible_browser, ['period1', 'period2'], 0, 0)
+    self._RunTest(possible_browser, [], 0, 0)
