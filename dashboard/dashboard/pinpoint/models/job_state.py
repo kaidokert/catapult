@@ -36,6 +36,10 @@ _SAME = 'same'
 _UNKNOWN = 'unknown'
 
 
+_FUNCTIONAL = 'functional'
+_PERFORMANCE = 'performance'
+
+
 class JobState(object):
   """The internal state of a Job.
 
@@ -46,7 +50,7 @@ class JobState(object):
   anyway. Everything queryable should be on the Job object.
   """
 
-  def __init__(self, quests, pin=None):
+  def __init__(self, quests, comparison_mode=None, pin=None):
     """Create a JobState.
 
     Args:
@@ -57,6 +61,8 @@ class JobState(object):
     # in-place rather than assign a new list, because every Attempt references
     # this object and will be updated automatically if it's mutated.
     self._quests = list(quests)
+
+    self._comparison_mode = comparison_mode
 
     self._pin = pin
 
