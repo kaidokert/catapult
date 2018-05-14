@@ -51,14 +51,8 @@ def _CreateJob(request):
 
   # Create job.
   return job_module.Job.New(
-      quests,
-      changes,
-      arguments=original_arguments,
-      auto_explore=auto_explore,
-      bug_id=bug_id,
-      comparison_mode=comparison_mode,
-      tags=tags,
-      user=user)
+      quests, changes, arguments=original_arguments, auto_explore=auto_explore,
+      bug_id=bug_id, comparison_mode=comparison_mode, tags=tags, user=user)
 
 
 def _ArgumentsWithConfiguration(original_arguments):
@@ -117,14 +111,10 @@ def _ValidateChanges(arguments):
 
 
 def _ValidateComparisonMode(comparison_mode):
-  if not comparison_mode:
-    return None
-  if comparison_mode == 'functional':
-    return job_module.ComparisonMode.FUNCTIONAL
-  if comparison_mode == 'performance':
-    return job_module.ComparisonMode.PERFORMANCE
-  raise ValueError('`comparison_mode` should be "functional", '
-                   '"performance", or None. Got "%s".' % comparison_mode)
+  if comparison_mode and comparison_mode not in ('functional', 'performance'):
+    raise ValueError('`comparison_mode` should be "functional", '
+                     '"performance", or None. Got "%s".' % comparison_mode)
+  return comparison_mode
 
 
 def _GenerateQuests(arguments):
