@@ -46,6 +46,7 @@ def _CreateJob(request):
   auto_explore = _ParseBool(arguments.get('auto_explore'))
   bug_id = _ValidateBugId(arguments.get('bug_id'))
   comparison_mode = _ValidateComparisonMode(arguments.get('comparison_mode'))
+  pin = _ValidatePin(arguments.get('pin'))
   tags = _ValidateTags(arguments.get('tags'))
   user = _ValidateUser(arguments.get('user'))
 
@@ -57,6 +58,7 @@ def _CreateJob(request):
       auto_explore=auto_explore,
       bug_id=bug_id,
       comparison_mode=comparison_mode,
+      pin=pin,
       tags=tags,
       user=user)
 
@@ -157,6 +159,12 @@ def _GenerateQuests(arguments):
     quests.append(quest)
 
   return quests
+
+
+def _ValidatePin(pin):
+  if not pin:
+    return None
+  return change.Change.FromDict({'commits': [], 'patch': pin})
 
 
 def _ValidateTags(tags):
