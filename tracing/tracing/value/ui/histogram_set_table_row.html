@@ -87,7 +87,7 @@ tr.exportTo('tr.v.ui', function() {
         this.overviewDataRange_ = new tr.b.math.Range();
 
         const displayStatisticName =
-          this.rootViewState.displayStatisticName;
+          this.rootViewState.closedCellStatisticNames[0];
         const referenceDisplayLabel =
           this.rootViewState.referenceDisplayLabel;
 
@@ -123,10 +123,9 @@ tr.exportTo('tr.v.ui', function() {
     /**
      * overviewDataRange is used by histogram-set-table-cell (hstc) and
      * histogram-set-table-name-cell (hstnc) to display overview line charts
-     * with consistent y-axes.
-     * overviewDataRange depends on HistogramSetViewState.displayStatisticName
-     * and referenceDisplayLabel, so it must be recomputed when either of those
-     * changes.
+     * with consistent y-axes. overviewDataRange depends on
+     * HistogramSetViewState.closedCellStatisticNames and referenceDisplayLabel,
+     * so it must be recomputed when either of those changes.
      * overviewDataRange should not be recomputed for each hstc in the row; it
      * should only be computed once when necessary, and cached.
      * HistogramSetTableRow (HSTR) cannot listen to HistogramSetViewState
@@ -134,10 +133,10 @@ tr.exportTo('tr.v.ui', function() {
      * However, Polymer has detached callbacks, so dom-modules can listen to
      * HSVS updates without leaking memory.
      * overviewDataRange should be recomputed only once whenever
-     * displayStatisticName or referenceDisplayLabel changes.
+     * closedCellStatisticNames or referenceDisplayLabel changes.
      * There is exactly one hstnc per row.
      * histogram-set-table-name-cell resets overviewDataRange when
-     * displayStatisticName or referenceDisplayLabel changes.
+     * closedCellStatisticNames or referenceDisplayLabel changes.
      */
     resetOverviewDataRange() {
       this.overviewDataRange_ = undefined;
@@ -217,7 +216,7 @@ tr.exportTo('tr.v.ui', function() {
       let valueA = 0;
       if (cellA instanceof tr.v.Histogram) {
         const statisticA = cellA.getAvailableStatisticName(
-            this.rootViewState.displayStatisticName, referenceCellA);
+            this.rootViewState.closedCellStatisticNames[0], referenceCellA);
         const scalarA = cellA.getStatisticScalar(statisticA, referenceCellA);
         if (scalarA) {
           valueA = scalarA.value;
@@ -228,7 +227,7 @@ tr.exportTo('tr.v.ui', function() {
       let valueB = 0;
       if (cellB instanceof tr.v.Histogram) {
         const statisticB = cellB.getAvailableStatisticName(
-            this.rootViewState.displayStatisticName, referenceCellB);
+            this.rootViewState.closedCellStatisticNames[0], referenceCellB);
         const scalarB = cellB.getStatisticScalar(statisticB, referenceCellB);
         if (scalarB) {
           valueB = scalarB.value;

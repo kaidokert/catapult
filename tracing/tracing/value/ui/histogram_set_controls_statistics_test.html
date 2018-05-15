@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/base/assert_utils.html">
+<link rel="import" href="/tracing/base/utils.html">
+<link rel="import" href="/tracing/ui/base/deep_utils.html">
+<link rel="import" href="/tracing/value/ui/histogram_set_controls_statistics.html">
+
+<script>
+'use strict';
+tr.b.unittest.testSuite(function() {
+  test('statistics', async function() {
+    const buttons = document.createElement(
+        'tr-v-ui-histogram-set-controls-statistics-button-group');
+    buttons.set('stateProperty', 'closedCellStatisticNames');
+    this.addHTMLOutput(buttons);
+    buttons.viewState = new tr.v.ui.HistogramSetViewState();
+
+    assert.isTrue(tr.ui.b.findDeepElementMatchingPredicate(
+        buttons, e => e.statisticName === `%${tr.v.DELTA}avg`).isChecked);
+
+    assert.isFalse(tr.ui.b.findDeepElementMatchingPredicate(
+        buttons, e => e.statisticName === 'avg').isChecked);
+    tr.ui.b.findDeepElementMatchingPredicate(
+        buttons, e => e.statisticName === 'avg').$.button.click();
+    await tr.b.animationFrame();
+    assert.isTrue(tr.ui.b.findDeepElementMatchingPredicate(
+        buttons, e => e.statisticName === 'avg').isChecked);
+    assert.sameMembers(buttons.viewState.closedCellStatisticNames,
+        ['avg', `%${tr.v.DELTA}avg`]);
+
+    tr.ui.b.findDeepElementMatchingPredicate(
+        buttons, e => e.statisticName === `%${tr.v.DELTA}avg`).$.button.click();
+    await tr.b.animationFrame();
+    assert.isFalse(tr.ui.b.findDeepElementMatchingPredicate(
+        buttons, e => e.statisticName === `%${tr.v.DELTA}avg`).isChecked);
+    assert.sameMembers(buttons.viewState.closedCellStatisticNames,
+        ['avg']);
+
+    tr.ui.b.findDeepElementMatchingPredicate(
+        buttons, e => e.statisticName === 'avg').$.button.click();
+    await tr.b.animationFrame();
+    assert.isFalse(tr.ui.b.findDeepElementMatchingPredicate(
+        buttons, e => e.statisticName === 'avg').isChecked);
+    assert.isTrue(tr.ui.b.findDeepElementMatchingPredicate(
+        buttons, e => e.statisticName === `%${tr.v.DELTA}avg`).isChecked);
+    assert.sameMembers(buttons.viewState.closedCellStatisticNames,
+        [`%${tr.v.DELTA}avg`]);
+  });
+});
+</script>

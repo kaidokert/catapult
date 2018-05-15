@@ -123,7 +123,6 @@ tr.exportTo('tr.v.ui', function() {
           'histogram-set-view', 'collectParameters');
       const parameterCollector = new tr.v.HistogramParameterCollector();
       parameterCollector.process(histograms);
-      this.$.controls.baseStatisticNames = parameterCollector.statisticNames;
       this.$.controls.possibleGroupings = parameterCollector.possibleGroupings;
       const displayLabels = parameterCollector.labels;
       this.$.controls.displayLabels = displayLabels;

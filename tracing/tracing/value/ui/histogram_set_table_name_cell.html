@@ -251,7 +251,7 @@ tr.exportTo('tr.v.ui', function() {
 
       if (this.overviewChart_ === undefined) {
         const displayStatisticName =
-          this.row.rootViewState.displayStatisticName;
+          this.row.rootViewState.closedCellStatisticNames[0];
         const data = [];
         let unit;
 
@@ -317,7 +317,7 @@ tr.exportTo('tr.v.ui', function() {
         this.constrainWidth = this.row.rootViewState.constrainNameColumn;
       }
       if (this.row.viewState.isOverviewed &&
-          event.delta.displayStatisticName) {
+          event.delta.closedCellStatisticNames) {
         this.row.resetOverviewDataRange();
         if (this.overviewChart_ !== undefined) {
           this.$.overview_container.removeChild(this.overviewChart_);

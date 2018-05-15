@@ -6,6 +6,7 @@ found in the LICENSE file.
 -->
 
 <link rel="import" href="/tracing/base/view_state.html">
+<link rel="import" href="/tracing/value/histogram.html">
 
 <script>
 'use strict';
@@ -15,8 +16,10 @@ tr.exportTo('tr.v.ui', function() {
       super();
       this.define('searchQuery', '');
       this.define('referenceDisplayLabel', '');
-      this.define('displayStatisticName', '');
-      this.define('showAll', true);
+      this.define('openCellStatisticNames', [
+        'avg', `%${tr.v.DELTA}avg`, 'count', 'p-value', 'z-score',
+      ]);
+      this.define('closedCellStatisticNames', [`%${tr.v.DELTA}avg`]);
       this.define('groupings', []);
       this.define('sortColumnIndex', 0);
       this.define('sortDescending', false);

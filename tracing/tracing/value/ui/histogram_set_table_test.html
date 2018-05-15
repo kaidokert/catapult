@@ -24,7 +24,6 @@ tr.b.unittest.testSuite(function() {
 
     table.viewState = new tr.v.ui.HistogramSetViewState();
     await table.viewState.update({
-      displayStatisticName: 'avg',
       groupings: [tr.v.HistogramGrouping.HISTOGRAM_NAME],
     });
 
@@ -131,7 +130,7 @@ tr.b.unittest.testSuite(function() {
     assert.strictEqual(2, baseTable.selectedTableColumnIndex);
   });
 
-  test('viewDisplayStatisticName', async function() {
+  test('viewClosedCellStatisticNames', async function() {
     const histograms = new tr.v.HistogramSet();
     histograms.createHistogram('a', tr.b.Unit.byName.count, range(0, 10), {
       diagnostics: new Map([[
@@ -150,7 +149,7 @@ tr.b.unittest.testSuite(function() {
     assert.strictEqual('5', scalarSpans[0].unit.format(scalarSpans[0].value));
     assert.strictEqual('15', scalarSpans[1].unit.format(scalarSpans[1].value));
 
-    await table.viewState.update({displayStatisticName: 'std'});
+    await table.viewState.update({closedCellStatisticNames: ['std']});
     scalarSpans = tr.ui.b.findDeepElementsMatchingPredicate(table, e =>
         e.tagName === 'TR-V-UI-SCALAR-SPAN');
     assert.lengthOf(scalarSpans, 2);
@@ -298,7 +297,7 @@ tr.b.unittest.testSuite(function() {
     const table = await buildTable(this, new tr.v.HistogramSet(
         Array.from(histograms0).concat(Array.from(histograms1))));
     await table.viewState.update({
-      displayStatisticName: tr.v.DELTA + 'avg',
+      closedCellStatisticNames: [tr.v.DELTA + 'avg'],
       referenceDisplayLabel: 'L0',
       sortColumnIndex: 2,
     });
@@ -622,7 +621,7 @@ tr.b.unittest.testSuite(function() {
     });
     const table = await buildTable(this, histograms);
     await table.viewState.update({
-      displayStatisticName: 'count',
+      closedCellStatisticNames: ['count'],
       groupings: [
         tr.v.HistogramGrouping.HISTOGRAM_NAME,
         tr.v.HistogramGrouping.BY_KEY.get(tr.v.d.RESERVED_NAMES.STORIES),
@@ -644,7 +643,7 @@ tr.b.unittest.testSuite(function() {
     assert.strictEqual(charts[2].data[1].y, 4);
 
     await table.viewState.update({
-      displayStatisticName: tr.v.DELTA + 'count',
+      closedCellStatisticNames: [tr.v.DELTA + 'count'],
       referenceDisplayLabel: 'A',
     });
     charts = tr.ui.b.findDeepElementsMatchingPredicate(table, e =>
@@ -690,7 +689,7 @@ tr.b.unittest.testSuite(function() {
         });
     const table = await buildTable(this, histograms);
     await table.viewState.update({
-      displayStatisticName: 'count',
+      closedCellStatisticNames: ['count'],
       groupings: [
         tr.v.HistogramGrouping.HISTOGRAM_NAME,
         tr.v.HistogramGrouping.BY_KEY.get(tr.v.d.RESERVED_NAMES.STORIES),
@@ -1103,7 +1102,7 @@ tr.b.unittest.testSuite(function() {
     await table.viewState.update({
       sortColumnIndex: 1,
       sortDescending: false,
-      displayStatisticName: 'min',
+      closedCellStatisticNames: ['min'],
     });
 
     let nameCells = getNameCells(table);
@@ -1116,7 +1115,7 @@ tr.b.unittest.testSuite(function() {
     assert.strictEqual(nameCells[0].row.name, 'foo');
     assert.strictEqual(nameCells[1].row.name, 'bar');
 
-    await table.viewState.update({displayStatisticName: 'max'});
+    await table.viewState.update({closedCellStatisticNames: ['max']});
 
     nameCells = getNameCells(table);
     assert.strictEqual(nameCells[0].row.name, 'bar');
@@ -1189,7 +1188,6 @@ tr.b.unittest.testSuite(function() {
         barCell, elem => elem.id === 'content');
     assert.isDefined(barContent);
 
-    assert.strictEqual(table.viewState.displayStatisticName, 'avg');
     assert.strictEqual('20.000 ms', fooContent.textContent);
     assert.strictEqual('2.000 ms', barContent.textContent);
 
@@ -1215,11 +1213,15 @@ tr.b.unittest.testSuite(function() {
         barCell, elem => elem.id === 'content');
     assert.isDefined(barContent);
 
-    await table.viewState.update({displayStatisticName: `${tr.v.DELTA}avg`});
+    await table.viewState.update({
+      closedCellStatisticNames: [`${tr.v.DELTA}avg`],
+    });
     assert.strictEqual('20.000 ms', fooContent.textContent);
     assert.strictEqual('-18.000 ms', barContent.textContent);
 
-    await table.viewState.update({displayStatisticName: `%${tr.v.DELTA}avg`});
+    await table.viewState.update({
+      closedCellStatisticNames: [`%${tr.v.DELTA}avg`],
+    });
 
     fooCell = tr.ui.b.findDeepElementMatchingPredicate(table, elem => (
       (elem.tagName === 'TR-V-UI-HISTOGRAM-SET-TABLE-CELL') &&
@@ -1241,8 +1243,6 @@ tr.b.unittest.testSuite(function() {
         barCell, elem => elem.id === 'content');
     assert.isDefined(barContent);
 
-    assert.strictEqual(table.viewState.displayStatisticName,
-        `%${tr.v.DELTA}avg`);
     assert.strictEqual('20.000 ms', fooContent.textContent);
     assert.strictEqual('-90.000%', barContent.textContent);
   });

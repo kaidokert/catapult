@@ -144,8 +144,9 @@ tr.exportTo('tr.v.ui', function() {
       if (this.viewState.referenceDisplayLabel) {
         params.set('r', this.viewState.referenceDisplayLabel);
       }
-      params.set('s', this.viewState.displayStatisticName);
       if (!this.viewState.showAll) params.set('m', '');
+      params.set('o', this.viewState.openCellStatisticNames.join('.'));
+      params.set('l', this.viewState.closedCellStatisticNames.join('.'));
       params.set('g', this.viewState.groupings.map(g => g.key).join('.'));
       if (this.viewState.sortColumnIndex !== undefined) {
         params.set('c', '' + this.viewState.sortColumnIndex);
@@ -200,8 +201,16 @@ tr.exportTo('tr.v.ui', function() {
       const delta = new Map();
       if (params.has('q')) delta.set('searchQuery', params.get('q'));
       if (params.has('r')) delta.set('referenceDisplayLabel', params.get('r'));
-      if (params.has('s')) delta.set('displayStatisticName', params.get('s'));
       delta.set('showAll', !params.has('m'));
+      if (params.has('s')) {
+        delta.set('closedCellStatisticNames', [params.get('s')]);
+      }
+      if (params.has('o')) {
+        delta.set('openCellStatisticNames', params.get('o').split('.'));
+      }
+      if (params.has('l')) {
+        delta.set('closedCellStatisticNames', params.get('l').split('.'));
+      }
       if (params.has('g')) {
         delta.set('groupings', params.get('g').split('.').map(
             k => tr.v.HistogramGrouping.BY_KEY.get(k)));

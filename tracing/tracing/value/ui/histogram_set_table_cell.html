@@ -19,7 +19,7 @@ found in the LICENSE file.
       flex-direction: row;
     }
 
-    #missing, #empty, #unmergeable, #scalar {
+    #missing, #empty, #unmergeable, #scalar, #scalars {
       flex-grow: 1;
     }
 
@@ -40,8 +40,13 @@ found in the LICENSE file.
     }
 
     #scalar {
-      flex-grow: 1;
       white-space: nowrap;
+    }
+
+    #scalars {
+      --table-table: {
+        width: 100%;
+      }
     }
 
     #histogram {
@@ -69,9 +74,10 @@ found in the LICENSE file.
       <span id="empty">(empty)</span>
       <span id="unmergeable">(unmergeable)</span>
 
-      <tr-v-ui-scalar-span id="scalar" on-click="openHistogram_"></tr-v-ui-scalar-span>
+      <tr-v-ui-scalar-span id="scalar" on-tap="openHistogram_"></tr-v-ui-scalar-span>
+      <tr-v-ui-scalar-map-table id="scalars" on-tap="openHistogram_"></tr-v-ui-scalar-map-table>
 
-      <span id="open_histogram" on-click="openHistogram_">
+      <span id="open_histogram" on-tap="openHistogram_">
         <svg viewbox="0 0 128 128">
           <rect x="16" y="24" width="32" height="16"/>
           <rect x="16" y="56" width="96" height="16"/>
@@ -81,7 +87,7 @@ found in the LICENSE file.
 
       <span id="histogram"></span>
 
-      <span id="close_histogram" on-click="closeHistogram_">
+      <span id="close_histogram" on-tap="closeHistogram_">
         <svg viewbox="0 0 128 128">
           <line x1="28" y1="28" x2="100" y2="100"/>
           <line x1="28" y1="100" x2="100" y2="28"/>
@@ -164,6 +170,12 @@ tr.exportTo('tr.v.ui', function() {
 
     updateSignificance_() {
       if (!this.mwuResult_) return;
+      if (this.$.scalars.scalarMap && this.$.scalars.scalarMap.size) {
+        this.$.scalars.setSignificanceForKey(
+            tr.b.getFirstElement(this.$.scalars.scalarMap.keys()),
+            significance);
+        return;
+      }
       this.$.scalar.significance = this.mwuResult_.significance;
     },
 
@@ -202,7 +214,15 @@ tr.exportTo('tr.v.ui', function() {
       // is tied up in all the possible states of this.histogram. See
       // updateContents_().
 
-      this.$.scalar.style.display = open ? 'none' : 'flex';
+      this.$.scalar.style.display = 'none';
+      this.$.scalars.style.display = 'none';
+      if (!open) {
+        if (this.$.scalars.scalarMap.size > 1) {
+          this.$.scalars.style.display = 'flex';
+        } else {
+          this.$.scalar.style.display = 'flex';
+        }
+      }
       this.$.open_histogram.style.display = open ? 'none' : 'block';
 
       this.$.close_histogram.style.display = open ? 'block' : 'none';
@@ -242,21 +262,21 @@ tr.exportTo('tr.v.ui', function() {
       if (event.delta.referenceDisplayLabel &&
           this.histogramSpan_) {
         this.histogramSpan_.build(this.histogram, this.referenceHistogram);
-      }
-
-      if (event.delta.displayStatisticName ||
-          event.delta.referenceDisplayLabel) {
         this.updateMwu_();
-        this.updateContents_();
       } else if (event.delta.alpha && this.mwuResult_) {
         this.mwuResult_.compare(this.row.rootViewState.alpha);
         this.updateSignificance_();
       }
 
+      if (event.delta.closedCellStatisticNames ||
+          event.delta.referenceDisplayLabel) {
+        this.updateContents_();
+      }
+
       if (this.row.viewState.isOverviewed &&
           (event.delta.sortColumnIndex ||
            event.delta.sortDescending ||
-           event.delta.displayStatisticName ||
+           event.delta.closedCellStatisticNames ||
            event.delta.referenceDisplayLabel)) {
         if (this.overviewChart_ !== undefined) {
           this.$.overview_container.removeChild(this.overviewChart_);
@@ -291,6 +311,7 @@ tr.exportTo('tr.v.ui', function() {
       this.$.empty.style.display = 'none';
       this.$.unmergeable.style.display = 'none';
       this.$.scalar.style.display = 'none';
+      this.$.scalars.style.display = 'none';
       this.$.histogram.style.display = 'none';
       this.$.close_histogram.style.display = 'none';
       this.$.open_histogram.style.visibility = 'hidden';
@@ -318,17 +339,31 @@ tr.exportTo('tr.v.ui', function() {
 
       this.$.open_histogram.style.display = 'block';
       this.$.open_histogram.style.visibility = 'visible';
-      this.$.scalar.style.display = 'flex';
 
       this.updateSignificance_();
 
       const referenceHistogram = this.referenceHistogram;
-      const statName = this.histogram.getAvailableStatisticName(
-          this.row.rootViewState.displayStatisticName, referenceHistogram);
-      const statisticScalar = this.histogram.getStatisticScalar(
-          statName, referenceHistogram);
-      this.$.scalar.setValueAndUnit(
-          statisticScalar.value, statisticScalar.unit);
+
+      const scalarMap = new Map();
+      for (const statName of this.row.rootViewState.closedCellStatisticNames) {
+        const availableStatName = this.histogram.getAvailableStatisticName(
+            statName, referenceHistogram);
+        if (scalarMap.has(availableStatName)) continue;
+        const scalar = this.histogram.getStatisticScalar(
+            availableStatName, referenceHistogram);
+        scalarMap.set(availableStatName, scalar);
+      }
+
+      if (scalarMap.size === 1) {
+        const scalar = tr.b.getOnlyElement(scalarMap.values());
+        this.$.scalar.setValueAndUnit(scalar.value, scalar.unit);
+        this.$.scalars.scalarMap = new Map();
+        this.$.scalar.style.display = 'flex';
+      } else {
+        this.$.scalars.scalarMap = scalarMap;
+        this.$.scalars.style.display = 'flex';
+      }
+      this.updateSignificance_();
 
       this.isHistogramOpen = isOpen;
     },
@@ -343,7 +378,8 @@ tr.exportTo('tr.v.ui', function() {
       if (referenceDisplayLabel === this.displayLabel_) {
         referenceDisplayLabel = undefined;
       }
-      const displayStatisticName = this.row.rootViewState.displayStatisticName;
+      const displayStatisticName =
+        this.row.rootViewState.closedCellStatisticNames[0];
       const data = [];
       let unit;
 

@@ -11,6 +11,8 @@ This document outlines the MVC architecture of the implementation of the UI.
  * Model: [HistogramSetViewState](/tracing/tracing/value/ui/histogram_set_view_state.html)
     * searchQuery: regex filters Histogram names
     * referenceDisplayLabel selects the reference column in the table
+    * closedCellStatisticNames: array of statistic names to display when cells are closed
+    * openCellStatisticNames: array of statistic names to display when cells are open
     * showAll: when false, only sourceHistograms are shown in the table
     * groupings: array of HistogramGroupings configures how the hierarchy is constructed
     * sortColumnIndex
@@ -35,7 +37,6 @@ This document outlines the MVC architecture of the implementation of the UI.
        * Collects possible configurations of the HistogramSet and passes them to the child elements directly (not through the HistogramSetViewState!):
           * Possible groupings
           * displayLabels
-          * baseStatisticNames
        * Contains child elements:
           * [histogram-set-controls](/tracing/tracing/value/ui/histogram_set_controls.html)
              * visualizes and controls the top half of HistogramSetViewState:
@@ -58,7 +59,7 @@ This document outlines the MVC architecture of the implementation of the UI.
                    * Overview [NameLineChart](/tracing/tracing/ui/base/name_line_chart.html)
                 * [histogram-set-table-cell](/tracing/tracing/value/ui/histogram_set_table_cell.html)
                    * (missing) / (empty) / (unmergeable)
-                   * when closed, [scalar-span](/tracing/tracing/value/ui/scalar_span.html) displays a single summary statistic
+                   * when closed, [scalar-span](/tracing/tracing/value/ui/scalar_span.html) displays 1 or more summary statistics
                    * when open, [histogram-span](/tracing/tracing/value/ui/histogram_span.html) contains:
                       * [NameBarChart](/tracing/tracing/ui/base/name_bar_chart.html) visualizes and controls HistogramSetTableCellState.brushedBinRange
                       * [scalar-map-table](/tracing/tracing/value/ui/scalar_map_table.html) of statistics

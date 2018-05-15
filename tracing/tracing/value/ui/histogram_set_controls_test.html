@@ -68,41 +68,6 @@ tr.b.unittest.testSuite(function() {
     assert.strictEqual('none', getComputedStyle(selector).display);
   });
 
-  test('baseStatisticNames', function() {
-    const controls = buildControls(this);
-    controls.baseStatisticNames = ['avg', 'std'];
-    const selector = tr.ui.b.findDeepElementMatchingPredicate(controls, e =>
-        e.id === 'statistic');
-    assert.strictEqual('inline-block', getComputedStyle(selector).display);
-    assert.lengthOf(selector.children, 2);
-    assert.strictEqual('avg', selector.children[0].value);
-    assert.strictEqual('avg', selector.children[0].textContent);
-    assert.strictEqual('std', selector.children[1].value);
-    assert.strictEqual('std', selector.children[1].textContent);
-    assert.strictEqual('avg', selector.value);
-  });
-
-  test('viewDisplayStatisticName', function() {
-    const controls = buildControls(this);
-    controls.baseStatisticNames = ['avg', 'std'];
-    const selector = tr.ui.b.findDeepElementMatchingPredicate(controls, e =>
-        e.id === 'statistic');
-    controls.viewState.displayStatisticName = 'std';
-    assert.strictEqual('std', selector.value);
-  });
-
-  test('controlDisplayStatisticName', function() {
-    const controls = buildControls(this);
-    controls.baseStatisticNames = ['avg', 'std'];
-    const selector = tr.ui.b.findDeepElementMatchingPredicate(controls, e =>
-        e.id === 'statistic');
-    selector.value = 'std';
-    const changeEvent = document.createEvent('HTMLEvents');
-    changeEvent.initEvent('change', false, true);
-    selector.dispatchEvent(changeEvent);
-    assert.strictEqual('std', controls.viewState.displayStatisticName);
-  });
-
   test('viewSearchQuery', function() {
     const controls = buildControls(this);
     controls.viewState.searchQuery = 'foo';
