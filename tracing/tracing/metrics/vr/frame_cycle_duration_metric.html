@@ -21,9 +21,11 @@ tr.exportTo('tr.metrics.vr', function() {
     };
   }
 
+  const DRAW_FRAME_TITLE = 'VrShellGl::DrawFrame';
+
   function frameCycleDurationMetric(histograms, model, opt_options) {
     const histogramsByEventTitle = new Map();
-    histogramsByEventTitle.set('VrShellGl::DrawFrame',
+    histogramsByEventTitle.set(DRAW_FRAME_TITLE,
         createHistograms(histograms, 'draw_frame',
           {description: 'Duration to render one frame'}));
     histogramsByEventTitle.set('VrShellGl::AcquireFrame',
@@ -66,6 +68,19 @@ tr.exportTo('tr.metrics.vr', function() {
         createHistograms(histograms, 'update_world_space_transforms', {
           description: 'Duration to calculate element transforms in world space'
         }));
+
+    const drawFrameHists = histogramsByEventTitle.get(DRAW_FRAME_TITLE);
+    const relatedNames = {
+      wall: new tr.v.d.RelatedNameMap(),
+      cpu: new tr.v.d.RelatedNameMap(),
+    };
+    drawFrameHists.wall.diagnostics.set('breakdown', relatedNames.wall);
+    drawFrameHists.cpu.diagnostics.set('breakdown', relatedNames.cpu);
+    for (const [title, hists] of histogramsByEventTitle) {
+      if (title === DRAW_FRAME_TITLE) continue;
+      relatedNames.wall.set(title.split('.')[1], hists.wall.name);
+      relatedNames.cpu.set(title.split('.')[1], hists.cpu.name);
+    }
 
     const chromeHelper = model.getOrCreateHelper(
         tr.model.helpers.ChromeModelHelper);
@@ -119,8 +134,21 @@ tr.exportTo('tr.metrics.vr', function() {
 
             const {wall: wallHist, cpu: cpuHist} =
               histogramsByEventTitle.get(event.title);
-            wallHist.addSample(event.duration);
-            cpuHist.addSample(event.cpuDuration);
+            const sampleDiagnostics = {wall: {}, cpu: {}};
+            if (event.title === DRAW_FRAME_TITLE) {
+              sampleDiagnostics.wall.breakdown = new tr.v.d.Breakdown();
+              sampleDiagnostics.cpu.breakdown = new tr.v.d.Breakdown();
+              // TODO find subslices with Update* titles and
+              // sampleDiagnostics.wall.set(
+              //   subslice.title.split('.')[1], subslice.duration);
+              // sampleDiagnostics.cpu.set(
+              //   subslice.title.split('.')[1], subslice.cpuDuration);
+              // Maybe also sampleDiagnostics.cpu.set(
+              //   'other', event.cpuDuration - sum of other entries in the
+              //   Breakdown?
+            }
+            wallHist.addSample(event.duration, sampleDiagnostics.wall);
+            cpuHist.addSample(event.cpuDuration, sampleDiagnostics.cpu);
           }
         }
       }
