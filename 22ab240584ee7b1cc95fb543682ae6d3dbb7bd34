@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fd4bceba_07b8f8ad",
+        "filename": "dashboard/dashboard/mark_recovered_alerts.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-05-15T01:37:10Z",
+      "side": 1,
+      "message": "nit: is this supposed to be 2018?",
+      "range": {
+        "startLine": 1,
+        "startChar": 12,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "22ab240584ee7b1cc95fb543682ae6d3dbb7bd34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a07531de_165b9113",
+        "filename": "dashboard/dashboard/mark_recovered_alerts.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-05-15T01:37:10Z",
+      "side": 1,
+      "message": "nit: think we settled on using \u00270\u0027/\u00271\u0027 for bool params in general a while back, https://github.com/catapult-project/catapult/issues/3269",
+      "range": {
+        "startLine": 64,
+        "startChar": 33,
+        "endLine": 64,
+        "endChar": 37
+      },
+      "revId": "22ab240584ee7b1cc95fb543682ae6d3dbb7bd34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0dcc92cd_a3d1f99f",
+        "filename": "dashboard/dashboard/mark_recovered_alerts.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-05-15T01:37:10Z",
+      "side": 1,
+      "message": "does this need to be put()\u0027d",
+      "range": {
+        "startLine": 121,
+        "startChar": 4,
+        "endLine": 121,
+        "endChar": 16
+      },
+      "revId": "22ab240584ee7b1cc95fb543682ae6d3dbb7bd34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
