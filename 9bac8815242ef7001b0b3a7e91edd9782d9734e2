@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ab2fc330_4e2e6b2d",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-15T09:24:38Z",
+      "side": 1,
+      "message": "Should we apply some very basic validation here? e.g. that pin can be parsed as a url and has http(s) scheme?",
+      "revId": "9bac8815242ef7001b0b3a7e91edd9782d9734e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f79553b_c14963a8",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-15T09:24:38Z",
+      "side": 1,
+      "message": "maybe also add negative test case with bad pin data.",
+      "revId": "9bac8815242ef7001b0b3a7e91edd9782d9734e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
