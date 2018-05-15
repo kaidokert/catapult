@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ce730a1_fc8047d8",
+        "filename": "third_party/polymer2/bower.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-05-15T22:12:48Z",
+      "side": 1,
+      "message": "nit: alphabetize",
+      "revId": "90ad680394756bdf9c080b7da5ca2edb8194e764",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
