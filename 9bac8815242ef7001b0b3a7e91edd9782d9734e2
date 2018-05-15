@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a290301f_843f8c68",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-05-15T19:13:19Z",
+      "side": 1,
+      "message": "Change.FromDict() performs input validation. The call will raise a ValueError if it\u0027s not a valid Gerrit URL.",
+      "parentUuid": "ab2fc330_4e2e6b2d",
+      "revId": "9bac8815242ef7001b0b3a7e91edd9782d9734e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2f79553b_c14963a8",
         "filename": "dashboard/dashboard/pinpoint/handlers/new_test.py",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2018-05-15T09:24:38Z",
       "side": 1,
       "message": "maybe also add negative test case with bad pin data.",
+      "revId": "9bac8815242ef7001b0b3a7e91edd9782d9734e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0bfd365d_be234a78",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-05-15T19:13:19Z",
+      "side": 1,
+      "message": "I\u0027ve opted not to include it here because the validation is done in change.patch.Patch.FromDict(), so it\u0027s covered by change/patch_test.py",
+      "parentUuid": "2f79553b_c14963a8",
       "revId": "9bac8815242ef7001b0b3a7e91edd9782d9734e2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
