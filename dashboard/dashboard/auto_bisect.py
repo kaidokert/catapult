@@ -81,6 +81,7 @@ def _StartPinpointBisect(bug_id, test_anomaly, test):
   # For compatibility with existing bisect, switch these to issueId/url
   if 'jobId' in results:
     results['issue_id'] = results['jobId']
+    test_anomaly.pinpoint_bisects.append(results['jobId'])
     del results['jobId']
 
   if 'jobUrl' in results:
