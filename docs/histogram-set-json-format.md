@@ -61,8 +61,7 @@ dictionary represents either a Histogram or a Diagnostic.
 ### Required fields
 
  * `name`: any string
- * `guid`: string UUID, allows Histograms to reference other Histograms via
-   RelatedHistogram Diagnostics
+ * `guid`: string UUID
  * `unit`: underscore-separated string of 1 or 2 parts:
     * The required unit base name must be one of
        * ms
@@ -125,8 +124,6 @@ The only field that is required for all Diagnostics, `type`, must be one of
  * `DateRange`
  * `GenericSet`
  * `RelatedEventSet`
- * `RelatedHistogramBreakdown`
- * `RelatedHistogramMap`
  * `RelatedNameMap`
  * `Scalar`
 
@@ -168,22 +165,12 @@ specific event or set of events in a trace.
  * `events`: array of dictionaries containing `stableId`, `title`, `start`,
    `duration` fields of Events
 
-### RelatedHistogramMap
 
-This allows metrics to annotate which Histograms are related to other
-Histograms, and annotate the nature of the relationship with a custom string
-name.
+### RelatedNameMap
 
- * `values`: dictionary mapping from custom string name to the related
-   Histogram's string guid
+This is a Map from short descriptive names to full Histogram names.
 
-### RelatedHistogramBreakdown
-
-This allows metrics to explain the magnitudes of the samples in a Histogram
-collectively as composed of various categories.
-
- * `values`: dictionary mapping from custom string name to the related
-   Histogram's string guid
+ * `names`: a dictionary mapping strings to strings containing Histogram names.
 
 ### RelatedNameMap
 

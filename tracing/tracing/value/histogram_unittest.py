@@ -736,20 +736,6 @@ class RelatedNameMapUnittest(unittest.TestCase):
     self.assertEqual(a_names, b_names)
 
 
-class RelatedHistogramBreakdownUnittest(unittest.TestCase):
-  def testRoundtrip(self):
-    breakdown = histogram.RelatedHistogramBreakdown()
-    hista = histogram.Histogram('a', 'unitless')
-    histb = histogram.Histogram('b', 'unitless')
-    breakdown.Add(hista)
-    breakdown.Add(histb)
-    d = breakdown.AsDict()
-    clone = diagnostic.Diagnostic.FromDict(d)
-    self.assertEqual(ToJSON(d), ToJSON(clone.AsDict()))
-    self.assertEqual(hista.guid, clone.Get('a').guid)
-    self.assertEqual(histb.guid, clone.Get('b').guid)
-
-
 class DateRangeUnittest(unittest.TestCase):
   def testRoundtrip(self):
     dr = histogram.DateRange(1496693745000)
@@ -820,10 +806,9 @@ class DiagnosticMapUnittest(unittest.TestCase):
         'start': 0,
         'duration': 1,
     })
-    generic = generic_set.GenericSet(['generic diagnostic'])
-    generic2 = generic_set.GenericSet(['generic diagnostic 2'])
-    related_map = histogram.RelatedHistogramMap()
-    related_map.Set('a', histogram.Histogram('histogram', 'count'))
+    generic = histogram.GenericSet(['generic diagnostic'])
+    generic2 = histogram.GenericSet(['generic diagnostic 2'])
+    date_range = histogram.DateRange(15e11)
 
     hist = histogram.Histogram('', 'count')
 
@@ -844,13 +829,13 @@ class DiagnosticMapUnittest(unittest.TestCase):
     # Merging unmergeable diagnostics should produce an
     # UnmergeableDiagnosticSet.
     hist4 = histogram.Histogram('', 'count')
-    hist4.diagnostics['a'] = related_map
-    hist.diagnostics.Merge(hist4.diagnostics)
+    hist4.diagnostics['a'] = date_range
+    hist.diagnostics.Merge(hist4.diagnostics, hist, hist4)
     self.assertIsInstance(
         hist.diagnostics['a'], histogram.UnmergeableDiagnosticSet)
     diagnostics = list(hist.diagnostics['a'])
     self.assertIs(generic, diagnostics[0])
-    self.assertIs(related_map, diagnostics[1])
+    self.assertIs(date_range, diagnostics[1])
 
     # UnmergeableDiagnosticSets are mergeable.
     hist5 = histogram.Histogram('', 'count')
@@ -861,6 +846,6 @@ class DiagnosticMapUnittest(unittest.TestCase):
         hist.diagnostics['a'], histogram.UnmergeableDiagnosticSet)
     diagnostics = list(hist.diagnostics['a'])
     self.assertIs(generic, diagnostics[0])
-    self.assertIs(related_map, diagnostics[1])
+    self.assertIs(date_range, diagnostics[1])
     self.assertIs(events, diagnostics[2])
     self.assertIs(generic2, diagnostics[3])

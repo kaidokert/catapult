@@ -18,13 +18,14 @@ found in the LICENSE file.
 'use strict';
 
 tr.exportTo('tr.v.ui', function() {
-  function makeColumn(title, histogram) {
+  function makeColumn(title, histogram, histograms) {
     return {
       title,
       value(map) {
         const diagnostic = map.get(title);
         if (!diagnostic) return '';
-        return tr.v.ui.createDiagnosticSpan(diagnostic, title, histogram);
+        return tr.v.ui.createDiagnosticSpan(
+            diagnostic, title, histogram, histograms);
       }
     };
   }
@@ -34,37 +35,30 @@ tr.exportTo('tr.v.ui', function() {
 
     created() {
       this.diagnosticMaps_ = undefined;
-      this.histogram_ = undefined;
       this.isMetadata_ = false;
-    },
-
-    set histogram(h) {
-      this.histogram_ = h;
-    },
-
-    set isMetadata(m) {
-      this.isMetadata_ = m;
-      this.$.table.showHeader = !this.isMetadata_;
-    },
-
-    /**
-     * The |title| will be used as the heading for the column containing
-     * diagnostic-spans for |diagnosticMap|'s Diagnostics.
-     *
-     * @param {!Array.<!Object>} maps
-     * @param {!string} maps[].title
-     * @param {!tr.v.d.DiagnosticMap} maps[].diagnosticMap
-     */
-    set diagnosticMaps(maps) {
-      this.diagnosticMaps_ = maps;
-      this.updateContents_();
+      this.histogram_ = undefined;
+      this.histograms_ = undefined;
     },
 
     get diagnosticMaps() {
       return this.diagnosticMaps_;
     },
 
-    updateContents_() {
+    /**
+     * The |title| will be used as the heading for the column containing
+     * diagnostic-spans for |diagnosticMap|'s Diagnostics.
+     *
+     * @param {!Array.<!Object>} diagnosticMaps
+     * @param {!string} diagnosticMaps[].title
+     * @param {!tr.v.d.DiagnosticMap} diagnosticMaps[].diagnosticMap
+     */
+    build(diagnosticMaps, isMetadata, histogram, histograms) {
+      this.diagnosticMaps_ = diagnosticMaps;
+      this.isMetadata_ = isMetadata;
+      this.$.table.showHeader = !this.isMetadata_;
+      this.histogram_ = histogram;
+      this.histograms_ = histograms;
+
       if (this.isMetadata_ && this.diagnosticMaps_.length !== 1) {
         throw new Error(
             'Metadata diagnostic-map-tables require exactly 1 DiagnosticMap');
@@ -83,13 +77,13 @@ tr.exportTo('tr.v.ui', function() {
           if (diagnostic instanceof tr.v.d.UnmergeableDiagnosticSet) continue;
           if (diagnostic instanceof tr.v.d.CollectedRelatedEventSet) continue;
           if (diagnostic instanceof tr.v.d.GroupingPath) continue;
+          if (diagnostic instanceof tr.v.d.RelatedNameMap) continue;
 
           names.add(name);
         }
       }
       names = Array.from(names).sort();
 
-      const histogram = this.histogram_;
       if (this.isMetadata_) {
         const diagnosticMap = this.diagnosticMaps_[0];
         this.$.table.tableColumns = [
@@ -103,7 +97,7 @@ tr.exportTo('tr.v.ui', function() {
               const diagnostic = diagnosticMap.get(name.name);
               if (!diagnostic) return '';
               return tr.v.ui.createDiagnosticSpan(
-                  diagnostic, name.name, histogram);
+                  diagnostic, name.name, histogram, histograms);
             }
           },
         ];
@@ -113,7 +107,7 @@ tr.exportTo('tr.v.ui', function() {
         });
       } else {
         this.$.table.tableColumns = names.map(
-            name => makeColumn(name, histogram));
+            name => makeColumn(name, histogram, histograms));
         this.$.table.tableRows = this.diagnosticMaps_;
       }
 

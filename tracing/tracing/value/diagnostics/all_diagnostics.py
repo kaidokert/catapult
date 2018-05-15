@@ -14,8 +14,6 @@ _MODULES_BY_DIAGNOSTIC_NAME = {
     'RelatedEventSet': 'histogram',
     'DateRange': 'histogram',
     'TagMap': 'histogram',
-    'RelatedHistogramBreakdown': 'histogram',
-    'RelatedHistogramMap': 'histogram',
     'RelatedNameMap': 'histogram',
 }
 

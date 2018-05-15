@@ -92,15 +92,16 @@ tr.exportTo('tr.v.ui', function() {
       this.rootStateListener_ = this.onRootStateUpdate_.bind(this);
       this.rootState = new tr.v.ui.HistogramSetViewState();
 
-      this.histogram_ = undefined;
-      this.referenceHistogram_ = undefined;
-      this.graphWidth_ = undefined;
-      this.graphHeight_ = undefined;
-      this.mouseDownBin_ = undefined;
-      this.prevBrushedBinRange_ = new tr.b.math.Range();
+      this.alpha_ = undefined;
       this.anySampleDiagnostics_ = false;
       this.canMergeSampleDiagnostics_ = true;
-      this.mwuResult_ = undefined;
+      this.graphHeight_ = undefined;
+      this.graphWidth_ = undefined;
+      this.histogram_ = undefined;
+      this.histograms_ = undefined;
+      this.mouseDownBin_ = undefined;
+      this.prevBrushedBinRange_ = new tr.b.math.Range();
+      this.referenceHistogram_ = undefined;
     },
 
     get rowState() {
@@ -217,7 +218,7 @@ tr.exportTo('tr.v.ui', function() {
       this.$.metric_diagnostics.tabLabel = 'histogram diagnostics';
       this.$.sample_diagnostics_container.tabLabel = 'sample diagnostics';
       this.$.metadata_diagnostics.tabLabel = 'metadata';
-      this.$.metadata_diagnostics.isMetadata = true;
+
       this.$.diagnostics.addEventListener(
           'selected-tab-change', this.onSelectedDiagnosticsChanged_.bind(this));
       this.$.drag_handle.target = this.$.container;
@@ -407,13 +408,15 @@ tr.exportTo('tr.v.ui', function() {
         }
       }
 
+      this.$.merge_sample_diagnostics.disabled = maps.length === 1;
+
       if (this.$.merge_sample_diagnostics.checked !==
           this.viewState.mergeSampleDiagnostics) {
         this.viewState.update({
           mergeSampleDiagnostics: this.$.merge_sample_diagnostics.checked});
       }
 
-      if (this.viewState.mergeSampleDiagnostics) {
+      if (this.viewState.mergeSampleDiagnostics && maps.length > 1) {
         const merged = new tr.v.d.DiagnosticMap();
         for (const map of maps) {
           merged.addDiagnostics(map);
@@ -424,7 +427,8 @@ tr.exportTo('tr.v.ui', function() {
       const mark = tr.b.Timing.mark('histogram-span',
           (this.viewState.mergeSampleDiagnostics ? 'merge' : 'split') +
            'SampleDiagnostics');
-      this.$.sample_diagnostics.diagnosticMaps = maps;
+      this.$.sample_diagnostics.build(
+          maps, false, this.histogram_, this.histograms_);
       mark.end();
 
       if (this.anySampleDiagnostics_) {
@@ -435,6 +439,22 @@ tr.exportTo('tr.v.ui', function() {
 
     get histogram() {
       return this.histogram_;
+    },
+
+    build(histogram, referenceHistogram, histograms) {
+      this.histogram_ = histogram;
+      this.referenceHistogram_ = referenceHistogram;
+      this.histograms_ = histograms;
+
+      this.anySampleDiagnostics_ = false;
+      for (const bin of this.histogram.allBins) {
+        if (bin.diagnosticMaps.length > 0) {
+          this.anySampleDiagnostics_ = true;
+          break;
+        }
+      }
+
+      if (this.isAttached) this.updateContents_();
     },
 
     get referenceHistogram() {
@@ -482,13 +502,10 @@ tr.exportTo('tr.v.ui', function() {
       const metricDiagnosticMap = new tr.v.d.DiagnosticMap();
       const metadataDiagnosticMap = new tr.v.d.DiagnosticMap();
       for (const [key, diagnostic] of this.histogram.diagnostics) {
-        // Hide the 'mergedFrom' and 'mergedTo' diagnostics, which are
-        // implementation details.
-        if (key === tr.v.d.RESERVED_NAMES.MERGED_FROM) continue;
-        if (key === tr.v.d.RESERVED_NAMES.MERGED_TO) continue;
-
         // Hide GroupingPaths and RelatedNameMaps, which are implementation
         // details.
+        if (diagnostic instanceof tr.v.d.UnmergeableDiagnosticSet) continue;
+        if (diagnostic instanceof tr.v.d.CollectedRelatedEventSet) continue;
         if (diagnostic instanceof tr.v.d.GroupingPath) continue;
         if (diagnostic instanceof tr.v.d.RelatedNameMap) continue;
 
@@ -501,14 +518,16 @@ tr.exportTo('tr.v.ui', function() {
 
       const diagnosticTabs = [];
       if (metricDiagnosticMap.size) {
-        this.$.metric_diagnostics.diagnosticMaps = [metricDiagnosticMap];
+        this.$.metric_diagnostics.build(
+            [metricDiagnosticMap], false, this.histogram_, this.histograms_);
         diagnosticTabs.push(this.$.metric_diagnostics);
       }
       if (this.anySampleDiagnostics_) {
         diagnosticTabs.push(this.$.sample_diagnostics_container);
       }
       if (metadataDiagnosticMap.size) {
-        this.$.metadata_diagnostics.diagnosticMaps = [metadataDiagnosticMap];
+        this.$.metadata_diagnostics.build(
+            [metadataDiagnosticMap], true, this.histogram_, this.histograms_);
         diagnosticTabs.push(this.$.metadata_diagnostics);
       }
       this.$.diagnostics.resetSubViews(diagnosticTabs);

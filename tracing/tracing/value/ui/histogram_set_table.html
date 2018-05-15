@@ -200,28 +200,24 @@ tr.exportTo('tr.v.ui', function() {
       if (tableRowsDirty) {
         await this.progress_('Filtering rows...');
 
-        let filteredHistograms = this.viewState.showAll ?
-            this.histograms : this.sourceHistograms_;
+        const filteredHistogramNames = new Set();
+        let query;
         if (this.viewState.searchQuery) {
-          let query = undefined;
           try {
             query = new RegExp(this.viewState.searchQuery);
           } catch (e) {
           }
-          if (query !== undefined) {
-            filteredHistograms = new tr.v.HistogramSet(
-                [...filteredHistograms].filter(
-                    hist => hist.name.match(query)));
-            if (filteredHistograms.length === 0 &&
-                !this.viewState.showAll) {
-              await this.viewState.update({showAll: true});
-              return;
-            }
+        }
+        for (const hist of this.viewState.showAll ?
+            this.histograms : this.sourceHistograms_) {
+          if (query === undefined ||
+              hist.name.match(query)) {
+            filteredHistogramNames.add(hist.name);
           }
         }
 
         const filteredHierarchies = tr.v.HistogramSetHierarchy.filter(
-            this.hierarchies_, filteredHistograms);
+            this.hierarchies_, filteredHistogramNames);
 
         // Wait to set this.$.table.tableRows until we're ready for it to build
         // DOM. When tableRows are set on it, tr-ui-b-table calls
@@ -229,7 +225,7 @@ tr.exportTo('tr.v.ui', function() {
         // but that can happen in between the next await, which is too early.
         this.tableRows_ = filteredHierarchies.map(hierarchy =>
             new tr.v.ui.HistogramSetTableRow(
-              hierarchy, this.$.table, this.viewState));
+              hierarchy, this.$.table, this.histograms, this.viewState));
 
         tr.b.Timing.instant('histogram-set-table', 'rootRowCount',
             this.tableRows_.length);

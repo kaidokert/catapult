@@ -68,19 +68,8 @@ class HistogramSet(object):
     return self._shared_diagnostics_by_guid.get(guid)
 
   def ResolveRelatedHistograms(self):
-    histograms = self
-    def HandleDiagnosticMap(dm):
-      for diag in dm.itervalues():
-        if isinstance(diag, histogram_module.RelatedHistogramMap):
-          diag.Resolve(histograms)
-
     for hist in self:
-      HandleDiagnosticMap(hist.diagnostics)
-      for dm in hist.nan_diagnostic_maps:
-        HandleDiagnosticMap(dm)
-      for hbin in hist.bins:
-        for dm in hbin.diagnostic_maps:
-          HandleDiagnosticMap(dm)
+      hist.diagnostics.ResolveSharedDiagnostics(self)
 
   def __len__(self):
     return len(self._histograms_by_guid)

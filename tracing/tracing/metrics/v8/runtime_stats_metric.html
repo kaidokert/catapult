@@ -170,7 +170,6 @@ tr.exportTo('tr.metrics.v8', function() {
           summaryOptions: SUMMARY_OPTIONS,
         });
 
-    // Record this histogram in RelatedHistogramMap.
     if (durationRelatedHistsByGroupName.get(runtimeGroupName) ===
       undefined) {
       const durationHistogramMap = new tr.v.d.RelatedHistogramMap();
@@ -192,7 +191,6 @@ tr.exportTo('tr.metrics.v8', function() {
           summaryOptions: SUMMARY_OPTIONS,
         });
 
-    // Record this histogram in RelatedHistogramMap.
     if (countRelatedHistsByGroupName.get(runtimeGroupName) === undefined) {
       const countHistogramMap = new tr.v.d.RelatedHistogramMap();
       countHistogramMap.set(railStageName, countHistogram);
@@ -248,10 +246,9 @@ tr.exportTo('tr.metrics.v8', function() {
     const durationRelatedHistsByGroupName = new Map();
     const countRelatedHistsByGroupName = new Map();
 
-    // Compute runtimeStats in each of the UE buckets. Also record the
-    // histograms in RelatedHistogramMap. These histograms are added to the
-    // corresponding histograms in the total bucket as a diagnostic. This keeps
-    // the data grouped.
+    // Compute runtimeStats in each of the UE buckets. These histograms are
+    // added to the corresponding histograms in the total bucket as a
+    // diagnostic. This keeps the data grouped.
     for (const [name, slicesUE] of v8SlicesBucketOnUEMap) {
       const runtimeGroupCollection = new tr.e.v8.RuntimeStatsGroupCollection();
       runtimeGroupCollection.addSlices(slicesUE);
