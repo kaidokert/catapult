@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba3d9da1_3b3a757e",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-05-15T16:24:51Z",
+      "side": 1,
+      "message": "can you create an abstract class of PlatformController and have this one implements it?",
+      "revId": "3f0e4d1b39dda5f23abc8a6e0346c943d9feaea1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb300736_9346beea",
+        "filename": "telemetry/telemetry/page/__init__.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-05-15T16:24:51Z",
+      "side": 1,
+      "message": "now I think about this, I think we should turn these navigation, interactions into \"enum\" python strings in brower_interval_profiling_controller module. Probably \n\nNAVIGATION_PERIOD \u003d \u0027navigation\u0027\nINTERACTIONS_PERIOD \u003d \u0027intereactions\u0027\n\nBUt this is probably for different CL",
+      "revId": "3f0e4d1b39dda5f23abc8a6e0346c943d9feaea1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
