@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "42ddefde_7b6f8b48",
+        "filename": "dashboard/dashboard/auto_bisect.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-05-15T21:41:26Z",
+      "side": 1,
+      "message": "put()?",
+      "range": {
+        "startLine": 84,
+        "startChar": 4,
+        "endLine": 84,
+        "endChar": 16
+      },
+      "revId": "faa708622ba53ab731801e6715711463675696fe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
