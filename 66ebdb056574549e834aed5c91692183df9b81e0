@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "88d42149_091275c5",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-05-15T12:31:18Z",
+      "side": 1,
+      "message": "In adding tests I found this issue. I\u0027m not quite sure how it works in the wild, but maybe I\u0027m missing something?",
+      "revId": "66ebdb056574549e834aed5c91692183df9b81e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
