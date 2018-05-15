@@ -445,6 +445,9 @@ class RelatedNameMap(diagnostic.Diagnostic):
     for key, name in self._map.iteritems():
       yield key, name
 
+  def __len__(self):
+    return len(self._map)
+
   def Values(self):
     return self._map.values()
 
