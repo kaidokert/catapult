@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeb7547f_7d07354d",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-15T11:28:31Z",
+      "side": 1,
+      "message": "I think it\u0027s fine to use these as strings in the code (rather than the FUNCTIONAL, PERFORMANCE constants). Still, we should probably define somewhere a constant listing all the valid modes, e.g.\n\n    COMPARISON_MODES \u003d (\u0027functional\u0027, \u0027performance\u0027)\n\nand use that constant here.",
+      "revId": "2b299f1553856437898556efedf5d0186fb8ea35",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
