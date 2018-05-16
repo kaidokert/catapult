@@ -22,6 +22,30 @@
       "revId": "faa708622ba53ab731801e6715711463675696fe",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e957c34d_ee94f21f",
+        "filename": "dashboard/dashboard/auto_bisect.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-05-16T00:32:03Z",
+      "side": 1,
+      "message": "facepalm.",
+      "parentUuid": "42ddefde_7b6f8b48",
+      "range": {
+        "startLine": 84,
+        "startChar": 4,
+        "endLine": 84,
+        "endChar": 16
+      },
+      "revId": "faa708622ba53ab731801e6715711463675696fe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
