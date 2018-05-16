@@ -256,11 +256,14 @@ class PageTestResults(object):
     self._artifact_results = artifact_results
     self._benchmark_metadata = benchmark_metadata
 
+    self._histogram_dicts_to_add = []
+
   @property
   def telemetry_info(self):
     return self._telemetry_info
 
   def AsHistogramDicts(self):
+    self.PopulateHistogramSet()
     return self._histograms.AsDicts()
 
   def PopulateHistogramSet(self):
@@ -286,6 +289,7 @@ class PageTestResults(object):
                     vinn_result.stdout)
       return []
     self._histograms.ImportDicts(json.loads(vinn_result.stdout))
+    self._histograms.ImportDicts(self._histogram_dicts_to_add)
     self._histograms.ResolveRelatedHistograms()
 
   def __copy__(self):
@@ -441,16 +445,14 @@ class PageTestResults(object):
       self._histograms.AddHistogram(hist)
 
   def ImportHistogramDicts(self, histogram_dicts):
-    dicts_to_add = []
     for d in histogram_dicts:
       # If there's a type field, it's a diagnostic.
       if 'type' in d:
-        dicts_to_add.append(d)
+        self._histogram_dicts_to_add.append(d)
       else:
         hist = histogram.Histogram.FromDict(d)
         if self._ShouldAddHistogram(hist):
-          dicts_to_add.append(d)
-    self._histograms.ImportDicts(dicts_to_add)
+          self._histogram_dicts_to_add.append(d)
 
   def _ShouldAddHistogram(self, hist):
     assert self._current_page_run, 'Not currently running test.'
