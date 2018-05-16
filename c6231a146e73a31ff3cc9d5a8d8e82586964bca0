@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "31d9a5c1_74abad8e",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001706
+      },
+      "writtenOn": "2018-05-16T21:32:04Z",
+      "side": 1,
+      "message": "Your proposed import line is \u003e80 characters, which pylint dislikes just as much as a non-import line.",
+      "parentUuid": "3e1f9cd9_c745b5f7",
+      "revId": "c6231a146e73a31ff3cc9d5a8d8e82586964bca0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "80cd6519_47c218ea",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller_unittest.py",
         "patchSetId": 6
@@ -33,6 +51,24 @@
       "revId": "c6231a146e73a31ff3cc9d5a8d8e82586964bca0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33b34d4a_d8a1673e",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1001706
+      },
+      "writtenOn": "2018-05-16T21:32:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80cd6519_47c218ea",
+      "revId": "c6231a146e73a31ff3cc9d5a8d8e82586964bca0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "0b52cf8b_65dbc52c",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1001706
+      },
+      "writtenOn": "2018-05-16T21:32:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "226888d6_27cc6b22",
+      "range": {
+        "startLine": 67,
+        "startChar": 4,
+        "endLine": 67,
+        "endChar": 54
+      },
+      "revId": "c6231a146e73a31ff3cc9d5a8d8e82586964bca0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ad2e5d1_4a509f18",
         "filename": "telemetry/telemetry/page/shared_page_state.py",
         "patchSetId": 6
@@ -73,6 +133,24 @@
       "revId": "c6231a146e73a31ff3cc9d5a8d8e82586964bca0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24deb7bd_3cc9b741",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1001706
+      },
+      "writtenOn": "2018-05-16T21:32:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ad2e5d1_4a509f18",
+      "revId": "c6231a146e73a31ff3cc9d5a8d8e82586964bca0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
