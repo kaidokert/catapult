@@ -155,6 +155,24 @@ class InspectorPage(object):
         return image_util.FromBase64Png(res['result']['data'])
     return None
 
+  def _EmptyCallBack(self, response):
+    print(["Callback: print response: ", response])
+
+  # According to
+  # third_party/blink/renderer/devtools/front_end/sdk/ScreenCaptureModel.js
+  def StartScreencast(self, params):
+    request = {
+        'method': 'Page.startScreencast',
+        'params': params
+        }
+    self._inspector_websocket.AsyncRequest(request, self._EmptyCallBack)
+
+  def StopScreencast(self):
+    request = {
+        'method': 'Page.stopScreencast',
+        }
+    self._inspector_websocket.AsyncRequest(request, self._EmptyCallBack)
+
   def CollectGarbage(self, timeout=60):
     request = {
         'method': 'HeapProfiler.collectGarbage'

@@ -49,6 +49,31 @@ def TryCaptureScreenShot(platform, tab=None):
     logging.warning('Exception when trying to capture screenshot: %s', repr(e))
     return None
 
+def StartScreencast(tab, params):
+  try:
+    if tab and tab.IsAlive() and tab.screenshot_supported:
+      tab.StartScreencast(params)
+    else:
+      logging.warning(
+          'Screencast: Either tab has crashed or browser does not support '
+          'taking tab screenshot. Skip taking screenshot on failure.')
+      return None
+  except Exception as e: # pylint: disable=broad-except
+    logging.warning('Exception when trying to start screencast: %s', repr(e))
+    return None
+
+def StopScreencast(tab):
+  try:
+    if tab and tab.IsAlive() and tab.screenshot_supported:
+      tab.StopScreencast()
+    else:
+      logging.warning(
+          'Screencast: Either tab has crashed or browser does not support '
+          'taking tab screenshot. Skip taking screenshot on failure.')
+      return None
+  except Exception as e: # pylint: disable=broad-except
+    logging.warning('Exception when trying to stop screencast: %s', repr(e))
+    return None
 
 def TryCaptureScreenShotAndUploadToCloudStorage(platform, tab=None):
   """ If the platform or tab supports screenshot, attempt to take a screenshot

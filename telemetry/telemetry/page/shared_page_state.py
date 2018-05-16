@@ -142,6 +142,24 @@ class SharedPageState(story_module.SharedState):
     else:
       logging.warning('Taking screenshots upon failures disabled.')
 
+  def CaptureScreenShot(self, page, results):
+    fh = screenshot.TryCaptureScreenShot(self.platform, self._current_tab)
+    if fh is not None:
+      results.AddArtifact(page.name, 'screenshot', fh)
+
+  def StartScreencast(self):
+    # Similar to
+    # third_party/blink/renderer/devtools/front_end/screencast/ScreencastView.js
+    params = {
+        'format': 'jpeg',
+        'quality': 80,
+        'everyNthFrame': 10
+    }
+    screenshot.StartScreencast(self._current_tab, params)
+
+  def StopScreencast(self):
+    screenshot.StopScreencast(self._current_tab)
+
   def DidRunStory(self, results):
     self._AllowInteractionForStage('after-run-story')
     try:
@@ -311,7 +329,7 @@ class SharedPageState(story_module.SharedState):
 
   def RunStory(self, results):
     self._PreparePage()
-    self._current_page.Run(self)
+    self._current_page.Run(self, results)
     self._test.ValidateAndMeasurePage(
         self._current_page, self._current_tab, results)
 

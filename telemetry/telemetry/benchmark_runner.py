@@ -12,6 +12,7 @@ import logging
 import optparse
 import os
 import sys
+import pdb
 
 from telemetry import benchmark
 from telemetry import decorators
@@ -429,6 +430,7 @@ def main(environment, extra_commands=None, **log_config_kwargs):
     if commands:
       args = args[1:]
     options.positional_args = args
+    pdb.set_trace()
     command.ProcessCommandLineArgs(parser, options, environment)
 
   if command == Help:

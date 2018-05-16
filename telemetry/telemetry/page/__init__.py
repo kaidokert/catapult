@@ -81,15 +81,18 @@ class Page(story.Story):
       if startup_url_scheme == 'file':
         raise ValueError('startup_url with local file scheme is not supported')
 
-  def Run(self, shared_state):
+  def Run(self, shared_state, results):
     current_tab = shared_state.current_tab
     # Collect garbage from previous run several times to make the results more
     # stable if needed.
     for _ in xrange(0, 5):
       current_tab.CollectGarbage()
     shared_state.page_test.WillNavigateToPage(self, current_tab)
+    shared_state.StartScreencast()
     with shared_state.interval_profiling_controller.SamplePeriod('navigation'):
       shared_state.page_test.RunNavigateSteps(self, current_tab)
+    shared_state.CaptureScreenShot(self, results)
+    shared_state.StopScreencast()
     shared_state.page_test.DidNavigateToPage(self, current_tab)
     action_runner = action_runner_module.ActionRunner(
         current_tab, skip_waits=self.skip_waits)

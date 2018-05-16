@@ -120,6 +120,12 @@ class Tab(web_contents.WebContents):
     """
     return self._inspector_backend.Screenshot(timeout)
 
+  def StartScreencast(self, params):
+    return self._inspector_backend.StartScreencast(params)
+
+  def StopScreencast(self):
+    return self._inspector_backend.StopScreencast()
+
   @property
   def video_capture_supported(self):
     """True if the browser instance is capable of capturing video."""
