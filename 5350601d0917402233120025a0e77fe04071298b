@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3c80cbfc_ddbf93c0",
+        "filename": "experimental/soundwave/soundwave/tables/timeseries_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-16T17:14:45Z",
+      "side": 1,
+      "message": "With this change the test failed without the fix, and now passes with the fix.",
+      "revId": "5350601d0917402233120025a0e77fe04071298b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
