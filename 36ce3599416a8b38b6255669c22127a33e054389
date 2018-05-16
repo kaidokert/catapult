@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c06e5d24_9376aa6f",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-05-16T12:18:21Z",
+      "side": 1,
+      "message": "this would already raise exception if there is no browser to be found",
+      "revId": "36ce3599416a8b38b6255669c22127a33e054389",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
