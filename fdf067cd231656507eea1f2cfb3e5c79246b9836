@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4eb65c4f_51e4f84f",
+        "filename": "dashboard/dashboard/services/gerrit_service_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-05-16T22:03:39Z",
+      "side": 1,
+      "message": "This is a pretty dumb \"it does what it does\" test, but i can\u0027t think of a better one.",
+      "range": {
+        "startLine": 53,
+        "startChar": 17,
+        "endLine": 53,
+        "endChar": 21
+      },
+      "revId": "fdf067cd231656507eea1f2cfb3e5c79246b9836",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
