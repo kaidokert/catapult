@@ -22,6 +22,30 @@
       "revId": "fdf067cd231656507eea1f2cfb3e5c79246b9836",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab89bceb_c1637991",
+        "filename": "dashboard/dashboard/services/gerrit_service_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-05-16T22:13:35Z",
+      "side": 1,
+      "message": "Yeah I draw a blank a bit on these basically passthrough type functions.",
+      "parentUuid": "4eb65c4f_51e4f84f",
+      "range": {
+        "startLine": 53,
+        "startChar": 17,
+        "endLine": 53,
+        "endChar": 21
+      },
+      "revId": "fdf067cd231656507eea1f2cfb3e5c79246b9836",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
