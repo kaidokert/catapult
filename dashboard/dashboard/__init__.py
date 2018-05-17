@@ -13,6 +13,7 @@ THIRD_PARTY_LIBRARIES = [
     'apiclient',
     'beautifulsoup4',
     'cloudstorage',
+    'd3',
     'graphy',
     'html5lib-python',
     'httplib2',
@@ -25,6 +26,8 @@ THIRD_PARTY_LIBRARIES = [
     'flot',
     'jquery',
     'polymer',
+    'polymer2',
+    'redux',
     'six',
 ]
 
@@ -32,6 +35,7 @@ THIRD_PARTY_LIBRARIES = [
 DASHBOARD_FILES = [
     'appengine_config.py',
     'app.yaml',
+    'include.yaml',
     'cron.yaml',
     'dashboard',
     'index.yaml',
@@ -42,7 +46,8 @@ DASHBOARD_FILES = [
 TRACING_PATHS = [
     'tracing/tracing',
     'tracing/tracing_build',
-    'tracing/third_party/gl-matrix/dist/gl-matrix-min.js'
+    'tracing/third_party/gl-matrix/dist/gl-matrix-min.js',
+    'tracing/third_party/mannwhitneyu',
 ]
 
 
