@@ -17,14 +17,10 @@ found in the LICENSE file.
 tr.exportTo('tr.b', function() {
   // Basic constants...
   const numGeneralPurposeColorIds = 23;
-  const generalPurposeColors = new Array(numGeneralPurposeColorIds);
-  const sinebowAlpha = 1.0;
-  const sinebowBrightness = 1.5;
-  const sinebowColorGenerator =
-    new tr.b.SinebowColorGenerator(sinebowAlpha, sinebowBrightness);
-  for (let i = 0; i < numGeneralPurposeColorIds; i++) {
-    generalPurposeColors[i] = sinebowColorGenerator.nextColor();
-  }
+  const generalPurposeColors = tr.b.generateFixedColorScheme(
+      numGeneralPurposeColorIds, {
+        brightnessPct: 0.75,
+      });
 
   const reservedColorsByName = {
     thread_state_uninterruptible: new tr.b.Color(182, 125, 143),
