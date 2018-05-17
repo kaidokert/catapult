@@ -1,0 +1,94 @@
+build  scripts/ slave/ chromium/ sizes.py/ chrome/                                 
+build  scripts/ slave/ chromium/ sizes.py/ chrome-bss/                             bss/                          
+build  scripts/ slave/ chromium/ sizes.py/ chrome-data/                            data/                         
+build  scripts/ slave/ chromium/ sizes.py/ chrome-si/                              initializers/                 
+build  scripts/ slave/ chromium/ sizes.py/ chrome-text/                            text/                         
+build  scripts/ slave/ chromium/ sizes.py/ chrome-textrel/                         textrel/                      
+build  scripts/ slave/ chromium/ sizes.py/ libffmpegsumo.so/                       
+build  scripts/ slave/ chromium/ sizes.py/ libffmpegsumo.so-bss/                   bss/                          
+build  scripts/ slave/ chromium/ sizes.py/ libffmpegsumo.so-data/                  data/                         
+build  scripts/ slave/ chromium/ sizes.py/ libffmpegsumo.so-si/                    initializers/                 
+build  scripts/ slave/ chromium/ sizes.py/ libffmpegsumo.so-text/                  text/                         
+build  scripts/ slave/ chromium/ sizes.py/ libffmpegsumo.so-textrel/               textrel/                      
+build  scripts/ slave/ chromium/ sizes.py/ libpdf.so/                              
+build  scripts/ slave/ chromium/ sizes.py/ libpdf.so-bss/                          bss/                          
+build  scripts/ slave/ chromium/ sizes.py/ libpdf.so-data/                         data/                         
+build  scripts/ slave/ chromium/ sizes.py/ libpdf.so-si/                           initializers/                 
+build  scripts/ slave/ chromium/ sizes.py/ libpdf.so-text/                         text/                         
+build  scripts/ slave/ chromium/ sizes.py/ libpdf.so-textrel/                      textrel/                      
+build  scripts/ slave/ chromium/ sizes.py/ libppGoogleNaClPluginChrome.so/         
+build  scripts/ slave/ chromium/ sizes.py/ libppGoogleNaClPluginChrome.so-bss/     bss/                          
+build  scripts/ slave/ chromium/ sizes.py/ libppGoogleNaClPluginChrome.so-data/    data/                         
+build  scripts/ slave/ chromium/ sizes.py/ libppGoogleNaClPluginChrome.so-si/      initializers/                 
+build  scripts/ slave/ chromium/ sizes.py/ libppGoogleNaClPluginChrome.so-text/    text/                         
+build  scripts/ slave/ chromium/ sizes.py/ libppGoogleNaClPluginChrome.so-textrel/ textrel/                      
+build  scripts/ slave/ chromium/ sizes.py/ nacl_helper/                            
+build  scripts/ slave/ chromium/ sizes.py/ nacl_helper-bss/                        bss/                          
+build  scripts/ slave/ chromium/ sizes.py/ nacl_helper-data/                       data/                         
+build  scripts/ slave/ chromium/ sizes.py/ nacl_helper-si/                         initializers/                 
+build  scripts/ slave/ chromium/ sizes.py/ nacl_helper-text/                       text/                         
+build  scripts/ slave/ chromium/ sizes.py/ nacl_helper-textrel/                    textrel/                      
+build  scripts/ slave/ chromium/ sizes.py/ nacl_helper_bootstrap/                  
+build  scripts/ slave/ chromium/ sizes.py/ nacl_helper_bootstrap-bss/              bss/                          
+build  scripts/ slave/ chromium/ sizes.py/ nacl_helper_bootstrap-data/             data/                         
+build  scripts/ slave/ chromium/ sizes.py/ nacl_helper_bootstrap-si/               initializers/                 
+build  scripts/ slave/ chromium/ sizes.py/ nacl_helper_bootstrap-text/             text/                         
+build  scripts/ slave/ chromium/ sizes.py/ nacl_helper_bootstrap-textrel/          textrel/                      
+build  scripts/ slave/ chromium/ sizes.py/ nacl_irt_x86_64.nexe/                   
+build  scripts/ slave/ chromium/ sizes.py/ resources.pak/                          
+build  scripts/ slave/ chromium/ sizes.py/ totals-bss/                             bss/                          
+build  scripts/ slave/ chromium/ sizes.py/ totals-data/                            data/                         
+build  scripts/ slave/ chromium/ sizes.py/ totals-initializers/                    initializers/                 
+build  scripts/ slave/ chromium/ sizes.py/ totals-size/                            size/                         
+build  scripts/ slave/ chromium/ sizes.py/ totals-text/                            text/                         
+build  scripts/ slave/ chromium/ sizes.py/ totals-textrel/                         textrel/                      
+build  scripts/ slave/ chromium/ sizes.py/ chrome/                                 
+build  scripts/ slave/ chromium/ sizes.py/ chrome-bss/                             bss/                          
+build  scripts/ slave/ chromium/ sizes.py/ chrome-data/                            data/                         
+build  scripts/ slave/ chromium/ sizes.py/ chrome-si/                              initializers/                 
+build  scripts/ slave/ chromium/ sizes.py/ chrome-text/                            text/                         
+build  scripts/ slave/ chromium/ sizes.py/ chrome-textrel/                         textrel/                      
+build  scripts/ slave/ chromium/ sizes.py/ lib/                                    libpeerconnection.so-bss/     bss/                      
+build  scripts/ slave/ chromium/ sizes.py/ lib/                                    libpeerconnection.so-data/    data/                     
+build  scripts/ slave/ chromium/ sizes.py/ lib/                                    libpeerconnection.so-si/      initializers/             
+build  scripts/ slave/ chromium/ sizes.py/ lib/                                    libpeerconnection.so-text/    text/                     
+build  scripts/ slave/ chromium/ sizes.py/ lib/                                    libpeerconnection.so-textrel/ textrel/                  
+build  scripts/ slave/ chromium/ sizes.py/ lib/                                    libpeerconnection.so/         lib_libpeerconnection.so/ 
+build  scripts/ slave/ chromium/ sizes.py/ libffmpegsumo.so/                       
+build  scripts/ slave/ chromium/ sizes.py/ libffmpegsumo.so-bss/                   bss/                          
+build  scripts/ slave/ chromium/ sizes.py/ libffmpegsumo.so-data/                  data/                         
+build  scripts/ slave/ chromium/ sizes.py/ libffmpegsumo.so-si/                    initializers/                 
+build  scripts/ slave/ chromium/ sizes.py/ libffmpegsumo.so-text/                  text/                         
+build  scripts/ slave/ chromium/ sizes.py/ libffmpegsumo.so-textrel/               textrel/                      
+build  scripts/ slave/ chromium/ sizes.py/ libpdf.so/                              
+build  scripts/ slave/ chromium/ sizes.py/ libpdf.so-bss/                          bss/                          
+build  scripts/ slave/ chromium/ sizes.py/ libpdf.so-data/                         data/                         
+build  scripts/ slave/ chromium/ sizes.py/ libpdf.so-si/                           initializers/                 
+build  scripts/ slave/ chromium/ sizes.py/ libpdf.so-text/                         text/                         
+build  scripts/ slave/ chromium/ sizes.py/ libpdf.so-textrel/                      textrel/                      
+build  scripts/ slave/ chromium/ sizes.py/ libppGoogleNaClPluginChrome.so/         
+build  scripts/ slave/ chromium/ sizes.py/ libppGoogleNaClPluginChrome.so-bss/     bss/                          
+build  scripts/ slave/ chromium/ sizes.py/ libppGoogleNaClPluginChrome.so-data/    data/                         
+build  scripts/ slave/ chromium/ sizes.py/ libppGoogleNaClPluginChrome.so-si/      initializers/                 
+build  scripts/ slave/ chromium/ sizes.py/ libppGoogleNaClPluginChrome.so-text/    text/                         
+build  scripts/ slave/ chromium/ sizes.py/ libppGoogleNaClPluginChrome.so-textrel/ textrel/                      
+build  scripts/ slave/ chromium/ sizes.py/ nacl_helper/                            
+build  scripts/ slave/ chromium/ sizes.py/ nacl_helper-bss/                        bss/                          
+build  scripts/ slave/ chromium/ sizes.py/ nacl_helper-data/                       data/                         
+build  scripts/ slave/ chromium/ sizes.py/ nacl_helper-si/                         initializers/                 
+build  scripts/ slave/ chromium/ sizes.py/ nacl_helper-text/                       text/                         
+build  scripts/ slave/ chromium/ sizes.py/ nacl_helper-textrel/                    textrel/                      
+build  scripts/ slave/ chromium/ sizes.py/ nacl_helper_bootstrap/                  
+build  scripts/ slave/ chromium/ sizes.py/ nacl_helper_bootstrap-bss/              bss/                          
+build  scripts/ slave/ chromium/ sizes.py/ nacl_helper_bootstrap-data/             data/                         
+build  scripts/ slave/ chromium/ sizes.py/ nacl_helper_bootstrap-si/               initializers/                 
+build  scripts/ slave/ chromium/ sizes.py/ nacl_helper_bootstrap-text/             text/                         
+build  scripts/ slave/ chromium/ sizes.py/ nacl_helper_bootstrap-textrel/          textrel/                      
+build  scripts/ slave/ chromium/ sizes.py/ nacl_irt_x86_64.nexe/                   
+build  scripts/ slave/ chromium/ sizes.py/ resources.pak/                          
+build  scripts/ slave/ chromium/ sizes.py/ totals-bss/                             bss/                          
+build  scripts/ slave/ chromium/ sizes.py/ totals-data/                            data/                         
+build  scripts/ slave/ chromium/ sizes.py/ totals-initializers/                    initializers/                 
+build  scripts/ slave/ chromium/ sizes.py/ totals-size/                            size/                         
+build  scripts/ slave/ chromium/ sizes.py/ totals-text/                            text/                         
+build  scripts/ slave/ chromium/ sizes.py/ totals-textrel/                         textrel/                      
