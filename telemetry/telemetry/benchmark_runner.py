@@ -24,6 +24,9 @@ from telemetry.util import matching
 
 from py_utils import discover
 
+# Intentional syntax error for testing that catapult patches get applied.
+asdf
+
 
 DEFAULT_LOG_FORMAT = (
     '(%(levelname)s) %(asctime)s %(module)s.%(funcName)s:%(lineno)d  '
