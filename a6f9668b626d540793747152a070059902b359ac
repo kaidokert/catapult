@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ad417e5_a3357e1d",
+        "filename": "tracing/tracing/ui/extras/chrome/cc/layer_picker.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1002481
+      },
+      "writtenOn": "2018-05-18T20:48:18Z",
+      "side": 0,
+      "message": "The logic is removed because drawsContent is enough for the purpose. Also in the future we\u0027ll remove \"pure-transform\" layers and use paint property tree instead.",
+      "revId": "a6f9668b626d540793747152a070059902b359ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
