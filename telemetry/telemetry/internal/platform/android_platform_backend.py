@@ -546,12 +546,13 @@ class AndroidPlatformBackend(
     paths = [posixpath.join(profile_dir, f) for f in files if f != 'lib']
     security_context = self._device.GetSecurityContextForPackage(package)
     for path in paths:
-      # TODO(crbug.com/628617): Implement without ignoring shell errors.
-      # Note: need to pass command as a string for the shell to expand the *'s.
-      extended_path = '%s %s/* %s/*/* %s/*/*/*' % (path, path, path, path)
+      # Could alternatively use chown -R, but earlier version of Android do not
+      # support it. Instead, use find to recursively chown |path| and all
+      # sub-directories.
       self._device.RunShellCommand(
-          'chown %s.%s %s' % (uid, uid, extended_path),
-          check_return=False, shell=True)
+          ['find', path, '-exec', 'chown', '%s.%s' % (uid, uid), '{}', '+'],
+          check_return=True)
+
       # Not having the correct SELinux security context can prevent Chrome from
       # loading files even though the mode/group/owner combination should allow
       # it.
