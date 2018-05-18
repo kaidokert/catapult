@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b26b67ef_dfc86aa7",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1215729
+      },
+      "writtenOn": "2018-05-18T22:04:45Z",
+      "side": 1,
+      "message": "There are two %s here.",
+      "revId": "72b67fe2e3ac9be8ba2f05611dcc12fb9268a8cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
