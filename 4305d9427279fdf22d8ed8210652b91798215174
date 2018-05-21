@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2077e710_e42ea9a8",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-05-21T13:42:56Z",
+      "side": 1,
+      "message": "This makes me realize that this \"browser_options\" probably should be renamed to finder_options. But that\u0027s probably story for another CL",
+      "revId": "4305d9427279fdf22d8ed8210652b91798215174",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
