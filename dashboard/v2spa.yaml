@@ -1,0 +1,54 @@
+# https://github.com/catapult-project/catapult/issues/4461
+# While V2SPA is under development, this configuration is deployed to
+# v2spa-dot-chromeperf.appspot.com/
+# This configuration serves a vulcanized HTML file at / and some of the same
+# request handlers as V1.
+# The V1 dashboard described in app.yaml continues to be deployed to
+# chromeperf.appspot.com
+# When V2SPA launches fully, app.yaml can be removed, and this configuration can
+# be deployed to chromeperf.appspot.com
+# See also v2spa_dev.yaml.
+#
+# https://developers.google.com/appengine/docs/python/config/appconfig
+
+runtime: python27
+api_version: 1
+threadsafe: true
+instance_class: F4_1G
+skip_files:
+- ^(.*/)?#.*#$
+- ^(.*/)?.*~$
+- ^(.*/)?.*\.py[co]$
+- ^(.*/)?.*/RCS/.*$
+- ^(.*/)?\..*$
+- ^py_utils/bin
+
+libraries:
+- name: pycrypto
+  version: "2.6"
+- name: webapp2
+  version: "2.5.1"
+
+builtins:
+- remote_api: on
+- appstats: on
+- deferred: on
+
+inbound_services:
+- warmup
+
+handlers:
+- url: /favicon.ico
+  static_files: dashboard/static/favicon.ico
+  upload: dashboard/static/favicon.ico
+  secure: always
+
+- url: /
+  static_files: dashboard/spa/index.html
+  upload: dashboard/spa/index.html
+  secure: always
+
+- url: /.+
+  script: dashboard.dispatcher.APP
+  secure: always
+
