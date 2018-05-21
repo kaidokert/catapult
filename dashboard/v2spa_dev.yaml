@@ -1,0 +1,43 @@
+# https://github.com/catapult-project/catapult/issues/4461
+# This configuration is meant to be run with dev_appserver.py locally, and not
+# deployed even to a dev instance. It serves source files that would normally be
+# vulcanized to allow developers to load changes by refreshing the page.
+#
+# Setup:
+# $ ln -sf ../third_party/polymer2
+# $ ln -sf ../third_party/redux
+# $ ln -sf ../tracing/tracing
+
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /favicon.ico
+  static_files: dashboard/static/favicon.ico
+  upload: dashboard/static/favicon.ico
+
+- url: /
+  static_files: dashboard/spa/index.html
+  upload: dashboard/spa/index.html
+
+- url: /dashboard/static/
+  static_dir: dashboard/static/
+
+- url: /bower_components/(.*)/(.*\.(html|js|css))$
+  static_files: polymer2/bower_components/\1/\2
+  upload: polymer2/bower_components/.*/.*\.(html|js|css)$
+
+- url: /redux.min.js
+  static_files: redux/redux.min.js
+  upload: redux/redux\.min\.js
+
+- url: /tracing/(.*)/(.*\.(html|js|css))$
+  static_files: tracing/\1/\2
+  upload: tracing/.*/.*\.(html|js|css)$
+
+- url: /tracing/(.*)/(.*)/(.*\.(html|js|css))$
+  static_files: tracing/\1/\2/\3
+  upload: tracing/.*/.*/.*\.(html|js|css)$
+
+# On localhost, V2SPA does not send requests to the backend.
