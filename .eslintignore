@@ -1,3 +1,5 @@
+/third_party/**
+
 # Ignore files containing Jinja templates (which eslint can't parse)
 
 /dashboard/dashboard/templates/edit_anomaly_configs.html
