@@ -687,8 +687,8 @@ class DeviceUtils(object):
         'Could not find data directory for %s', package)
 
   @decorators.WithTimeoutAndRetriesFromInstance()
-  def GetSecurityContextForPackage(self, package, encrypted=False, timeout=None,
-      retries=None):
+  def _GetSecurityContextForPackage(self, package, encrypted=False,
+                                    timeout=None, retries=None):
     """Gets the SELinux security context for the given package.
 
     Args:
@@ -2928,3 +2928,47 @@ class DeviceUtils(object):
       return
     self.SendKeyEvent(keyevent.KEYCODE_POWER)
     timeout_retry.WaitFor(screen_test, wait_period=1)
+
+  @decorators.WithTimeoutAndRetriesFromInstance()
+  def ChangeOwner(self, paths, owner, recursive=True):
+    """Changes file system ownership for permissions.
+
+    Args:
+      paths: List of paths to change ownership of.
+      owner: New owner to assign. This method assigns ownership to both the user
+        and group named |owner|.
+      recursive: Whether to recursively change ownership in |paths|.
+    """
+    owner_group = '%s.%s' % (owner, owner)
+    for path in paths:
+      if recursive:
+        # Could alternatively use chown -R, but earlier version of Android do
+        # not support it. Instead, use find to recursively chown |path| and all
+        # sub-directories.
+        self.RunShellCommand(
+            ['find', path, '-exec', 'chown', owner_group, '{}', '+'],
+            check_return=True)
+      else:
+        self.RunShellCommand(['chown', path, owner_group], check_return=True)
+
+  @decorators.WithTimeoutAndRetriesFromInstance()
+  def ChangeToPackageSecurityContext(self, paths, package, encrypted=False,
+                                     recursive=True):
+    """Changes file SELinux security contexts to match a package's.
+
+    Args:
+      paths: List of paths to change the security context of.
+      package: Name of the package.
+      encrypted: Whether to check in the encrypted data directory
+          (/data/user_de/0/) or the unencrypted data directory (/data/data/).
+      recursive: Whether to recursively change the security contexts.
+    """
+    context = self._GetSecurityContextForPackage(package, encrypted)
+    if context is None:
+      raise device_errors.CommandFailedError(
+          'Failed to get security context for %s' % package)
+
+    for path in paths:
+      flag = ['-R'] if recursive else []
+      command = ['chcon'] + flag + [context, path]
+      self.RunShellCommand(command, as_root=True, check_return=True)

@@ -11,7 +11,6 @@ See e.g.:
 import logging
 import posixpath
 
-from devil.android import device_errors
 from devil.android.sdk import version_codes
 from xml.etree import ElementTree
 
@@ -294,15 +293,9 @@ class SharedPrefs(object):
     # to the shared_prefs directory, which mimics the behavior of a file
     # created by the app itself
     if self._device.build_version_sdk >= version_codes.MARSHMALLOW:
-      security_context = self._device.GetSecurityContextForPackage(self.package,
-          encrypted=self._encrypted)
-      if security_context == None:
-        raise device_errors.CommandFailedError(
-            'Failed to get security context for %s' % self.package)
       shared_prefs_directory = self.path.split(self.filename)[0]
-      self._device.RunShellCommand(
-          ['chcon', '-R', security_context, shared_prefs_directory],
-          as_root=True, check_return=True)
+      self._device.ChangeToPackageSecurityContext(
+          [shared_prefs_directory], self.package, encrypted=self._encrypted)
 
     # Ensure that there isn't both an encrypted and unencrypted version of the
     # file on the device at the same time.
