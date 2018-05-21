@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "d0fc68e9_de2e5eaf",
+        "filename": "experimental/soundwave/soundwave/tables/alerts.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-21T16:44:57Z",
+      "side": 1,
+      "message": "I\u0027d add a comment saying that this indicates that the measurement is a summary metric across multiple test cases and therefore has no test case associated with it",
+      "revId": "73414caee5cd469a5b7740042f289adbb1e7d9d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3f7f8059_5d3fa4ef",
         "filename": "experimental/soundwave/soundwave/tables/alerts_test.py",
         "patchSetId": 1
@@ -13,6 +30,24 @@
       "writtenOn": "2018-05-21T15:48:49Z",
       "side": 1,
       "message": "This triggered an error on the test; which now passes after applying the fix above.",
+      "revId": "73414caee5cd469a5b7740042f289adbb1e7d9d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50edb173_686ecce7",
+        "filename": "experimental/soundwave/soundwave/tables/alerts_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-21T16:44:57Z",
+      "side": 1,
+      "message": "Please add a second test case for this, given that it\u0027s a separate behavior (e.g. testDataFromJson_summaryMetric or something)",
+      "parentUuid": "3f7f8059_5d3fa4ef",
       "revId": "73414caee5cd469a5b7740042f289adbb1e7d9d7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
