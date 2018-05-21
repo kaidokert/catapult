@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5acd9b1b_6c62cae5",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-21T08:42:56Z",
+      "side": 1,
+      "message": "Awesome! Thanks for doing this. I think it would be great to implement this (including the entire for-loop) as a new device_utils method [1], e.g.: device.ChangeOwner(paths, owner, recursive\u003dTrue)\n\nWhat do you think? If so you can also add some test to [2] that will run in real devices on a few places.\n\n+jbudorick FYI\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/devil/devil/android/device_utils.py\n[2]: https://cs.chromium.org/chromium/src/third_party/catapult/devil/devil/android/device_utils_devicetest.py",
+      "revId": "26ae6e39f135c159d7b647eca0886621b806e174",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
