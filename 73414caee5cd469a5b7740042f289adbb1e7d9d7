@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f7f8059_5d3fa4ef",
+        "filename": "experimental/soundwave/soundwave/tables/alerts_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-21T15:48:49Z",
+      "side": 1,
+      "message": "This triggered an error on the test; which now passes after applying the fix above.",
+      "revId": "73414caee5cd469a5b7740042f289adbb1e7d9d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
