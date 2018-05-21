@@ -153,7 +153,7 @@ tr.exportTo('tr.b', function() {
       let signString = '';
       if (value < 0) {
         signString = '-';
-        value = -value;  // Treat positive and negative values symmetrically.
+        value = -value; // Treat positive and negative values symmetrically.
       } else if (this.isDelta) {
         signString = value === 0 ? PLUS_MINUS_SIGN : '+';
       }
