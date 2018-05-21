@@ -1,0 +1,63 @@
+# https://github.com/catapult-project/catapult/issues/4461
+# This configuration is meant to be run with dev_appserver.py locally, and not
+# deployed even to a dev instance.
+# Setup:
+# $ ln -sf ../third_party/polymer2
+# $ ln -sf ../third_party/redux
+# $ ln -sf ../tracing/tracing
+
+runtime: python27
+api_version: 1
+threadsafe: true
+instance_class: F4_1G
+skip_files:
+- ^(.*/)?#.*#$
+- ^(.*/)?.*~$
+- ^(.*/)?.*\.py[co]$
+- ^(.*/)?.*/RCS/.*$
+- ^(.*/)?\..*$
+- ^py_utils/bin
+
+libraries:
+- name: pycrypto
+  version: "2.6"
+- name: webapp2
+  version: "2.5.1"
+
+builtins:
+- remote_api: on
+- appstats: on
+- deferred: on
+
+handlers:
+- url: /favicon.ico
+  static_files: dashboard/static/favicon.ico
+  upload: dashboard/static/favicon.ico
+  secure: always
+
+- url: /
+  static_files: dashboard/spa/index.html
+  upload: dashboard/spa/index.html
+  secure: always
+
+- url: /bower_components/(.*)/(.*\.(html|js|css))$
+  static_files: polymer2/bower_components/\1/\2
+  upload: polymer2/bower_components/.*/.*\.(html|js|css)$
+  secure: always
+
+- url: /redux.min.js
+  static_files: redux/redux.min.js
+  upload: redux/redux\.min\.js
+  secure: always
+
+- url: /tracing/(.*)/(.*\.(html|js|css))$
+  static_files: tracing/\1/\2
+  upload: tracing/.*/.*\.(html|js|css)$
+  secure: always
+
+- url: /tracing/(.*)/(.*)/(.*\.(html|js|css))$
+  static_files: tracing/\1/\2/\3
+  upload: tracing/.*/.*/.*\.(html|js|css)$
+  secure: always
+
+# On localhost, V2SPA does not bother trying to talk to the backend.
