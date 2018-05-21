@@ -1044,37 +1044,7 @@ class SymbolizableFile(object):
     self.frames_by_address = collections.defaultdict(list)
     self.skip_symbolization = False
     self.has_breakpad_symbols = False
-
-
-def ResolveSymbolizableFiles(processes):
-  """Resolves and groups PCs into list of SymbolizableFiles.
-
-  As part of the grouping process, this function resolves PC from each stack
-  frame to the corresponding mmap region. Stack frames that failed to resolve
-  are symbolized with '<unresolved>'.
-  """
-  symfile_by_path = {}
-  for process in processes:
-    if not process.memory_map:
-      continue
-    for frame in process.stack_frame_map.frame_by_id.itervalues():
-      if frame.pc is None:
-        continue
-      region = process.memory_map.FindRegion(frame.pc)
-      if region is None:
-        frame.name = '<unresolved>'
-        continue
-
-      symfile = symfile_by_path.get(region.file_path)
-      if symfile is None:
-        file_path = region.file_path
-        symfile = SymbolizableFile(file_path, region.code_id)
-        symfile_by_path[symfile.path] = symfile
-
-      relative_pc = frame.pc - region.start_address + region.file_offset
-      symfile.frames_by_address[relative_pc].append(frame)
-
-  return symfile_by_path.values()
+    self.text_offset = None
 
 
 def FindInSystemPath(binary_name):
@@ -1339,87 +1309,123 @@ def SymbolizeFiles(symfiles, symbolizer):
 ANDROID_UNSTRIPPED_SUBPATH = 'lib.unstripped'
 
 
-def RemapAndroidFiles(symfiles, output_path, chrome_soname):
-  for symfile in symfiles:
-    filename = os.path.basename(symfile.path)
-    if os.path.splitext(filename)[1] == '.so':
-      symfile.symbolizable_path = os.path.join(
-          output_path, ANDROID_UNSTRIPPED_SUBPATH, filename)
-    elif os.path.splitext(filename)[1] == '.apk' and chrome_soname:
-      # If there is any pc in .apk memory map, then just assume it is from
-      # chroms.so since we memory map libraries from apk directly. This does
-      # not work for component builds.
-      symfile.symbolizable_path = os.path.join(
-          output_path, ANDROID_UNSTRIPPED_SUBPATH, chrome_soname)
-    else:
-      # Clobber file path to trigger "not a file" problem in SymbolizeFiles().
-      # Without this, files won't be symbolized with "file not found" problem,
-      # which is not accurate.
-      symfile.symbolizable_path = 'android://{}'.format(symfile.path)
+def RemapAndroidFile(symfile, output_path, chrome_soname):
+  filename = os.path.basename(symfile.path)
+  if os.path.splitext(filename)[1] == '.so':
+    symfile.symbolizable_path = os.path.join(
+        output_path, ANDROID_UNSTRIPPED_SUBPATH, filename)
+  elif os.path.splitext(filename)[1] == '.apk' and chrome_soname:
+    # If there is any pc in .apk memory map, then just assume it is from
+    # chroms.so since we memory map libraries from apk directly. This does
+    # not work for component builds.
+    symfile.symbolizable_path = os.path.join(
+        output_path, ANDROID_UNSTRIPPED_SUBPATH, chrome_soname)
+
+    # Find the offset of ".text" segment to get the right offset in so.
+    out = subprocess.check_output(['objdump', '-h', symfile.symbolizable_path])
+    for line in out.split('\n'):
+      if '.text' in line:
+        symfile.text_offset = int(line.split()[5], 16)
+        break
+  else:
+    # Clobber file path to trigger "not a file" problem in SymbolizeFiles().
+    # Without this, files won't be symbolized with "file not found" problem,
+    # which is not accurate.
+    symfile.symbolizable_path = 'android://{}'.format(symfile.path)
 
 
-def RemapMacFiles(symfiles, symbol_base_directory, version,
-                  only_symbolize_chrome_symbols):
+def RemapMacFile(symfile, symbol_base_directory, version,
+                 only_symbolize_chrome_symbols):
   suffix = ("Google Chrome Framework.dSYM/Contents/Resources/DWARF/"
             "Google Chrome Framework")
   symbol_sub_dir = os.path.join(symbol_base_directory, version)
   symbolizable_path = os.path.join(symbol_sub_dir, suffix)
 
-  for symfile in symfiles:
-    if symfile.path.endswith("Google Chrome Framework"):
-      symfile.symbolizable_path = symbolizable_path
-    elif only_symbolize_chrome_symbols:
-      symfile.skip_symbolization = True
+  if symfile.path.endswith("Google Chrome Framework"):
+    symfile.symbolizable_path = symbolizable_path
+  elif only_symbolize_chrome_symbols:
+    symfile.skip_symbolization = True
 
 
-def RemapWinFiles(symfiles, symbol_base_directory, version, is64bit,
-                  only_symbolize_chrome_symbols):
+def RemapWinFile(symfile, symbol_base_directory, version, is64bit,
+                 only_symbolize_chrome_symbols):
   folder = "win64" if is64bit else "win"
   symbol_sub_dir = os.path.join(symbol_base_directory,
                                 "chrome-" + folder + "-" + version)
-  for symfile in symfiles:
-    image = os.path.join(symbol_sub_dir, os.path.basename(symfile.path))
-    symbols = image + ".pdb"
-    if os.path.isfile(image) and os.path.isfile(symbols):
-      symfile.symbolizable_path = image
-    elif only_symbolize_chrome_symbols:
-      symfile.skip_symbolization = True
+
+  image = os.path.join(symbol_sub_dir, os.path.basename(symfile.path))
+  symbols = image + ".pdb"
+  if os.path.isfile(image) and os.path.isfile(symbols):
+    symfile.symbolizable_path = image
+  elif only_symbolize_chrome_symbols:
+    symfile.skip_symbolization = True
 
 
-def RemapBreakpadModules(symfiles, symbolizer, only_symbolize_chrome_symbols):
-  for symfile in symfiles:
-    image = os.path.basename(symfile.path).lower()
-    # Looked if the image has Breakpad symbols. Breakpad symbols are generated
-    # for Chrome modules for official builds.
-    if image in symbolizer.breakpad_modules:
-      symfile.symbolizable_path = symbolizer.breakpad_modules[image]
-      symfile.has_breakpad_symbols = True
-    elif only_symbolize_chrome_symbols:
-      symfile.skip_symbolization = True
+def RemapBreakpadModule(symfile, symbolizer, only_symbolize_chrome_symbols):
+  image = os.path.basename(symfile.path).lower()
+  # Looked if the image has Breakpad symbols. Breakpad symbols are generated
+  # for Chrome modules for official builds.
+  if image in symbolizer.breakpad_modules:
+    symfile.symbolizable_path = symbolizer.breakpad_modules[image]
+    symfile.has_breakpad_symbols = True
+  elif only_symbolize_chrome_symbols:
+    symfile.skip_symbolization = True
 
 
-def SymbolizeTrace(options, trace, symbolizer):
-  symfiles = ResolveSymbolizableFiles(trace.processes)
-
+def RemapSymfile(symfile, options, trace, symbolizer):
   if options.use_breakpad_symbols:
-    RemapBreakpadModules(symfiles, symbolizer,
-                         options.only_symbolize_chrome_symbols)
+    RemapBreakpadModule(symfile, symbolizer,
+                        options.only_symbolize_chrome_symbols)
   else:
     if trace.is_android:
       if not options.output_directory:
         sys.exit('The trace file appears to be from Android. Please '
                  'specify output directory to properly symbolize it.')
-      RemapAndroidFiles(symfiles, os.path.abspath(options.output_directory),
-                        trace.library_name)
+      RemapAndroidFile(symfile, os.path.abspath(options.output_directory),
+                       trace.library_name)
 
     if not trace.is_chromium:
       if symbolizer.is_mac:
-        RemapMacFiles(symfiles, options.symbol_base_directory, trace.version,
-                      options.only_symbolize_chrome_symbols)
+        RemapMacFile(symfile, options.symbol_base_directory, trace.version,
+                     options.only_symbolize_chrome_symbols)
       if symbolizer.is_win:
-        RemapWinFiles(symfiles, options.symbol_base_directory, trace.version,
-                      trace.is_64bit, options.only_symbolize_chrome_symbols)
+        RemapWinFile(symfile, options.symbol_base_directory, trace.version,
+                     trace.is_64bit, options.only_symbolize_chrome_symbols)
+  return symfile
 
+
+def SymbolizeTrace(options, trace, symbolizer):
+  """Symbolize trace file.
+
+  Resolves and groups PCs into list of SymbolizableFiles and then symbolizes.
+  As part of the grouping process, this function resolves PC from each stack
+  frame to the corresponding mmap region. Stack frames that failed to resolve
+  are symbolized with '<unresolved>'.
+  """
+  symfile_by_path = {}
+  for process in trace.processes:
+    if not process.memory_map:
+      continue
+    for frame in process.stack_frame_map.frame_by_id.itervalues():
+      if frame.pc is None:
+        continue
+      region = process.memory_map.FindRegion(frame.pc)
+      if region is None:
+        frame.name = '<unresolved>'
+        continue
+
+      symfile = symfile_by_path.get(region.file_path)
+      if symfile is None:
+        file_path = region.file_path
+        raw_symfile = SymbolizableFile(file_path, region.code_id)
+        symfile = RemapSymfile(raw_symfile, options, trace, symbolizer)
+        symfile_by_path[symfile.path] = symfile
+
+      relative_pc = frame.pc - region.start_address + (
+          symfile.text_offset if symfile.text_offset else region.file_offset)
+      symfile.frames_by_address[relative_pc].append(frame)
+
+  symfiles = symfile_by_path.values()
   SymbolizeFiles(symfiles, symbolizer)
 
 
