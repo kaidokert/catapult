@@ -3,15 +3,41 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import re
 import os
 import shutil
+import subprocess
 import sys
 import tempfile
+import time
 
 
 def _AddToPathIfNeeded(path):
   if path not in sys.path:
     sys.path.insert(0, path)
+
+NODE_VULCANIZE = os.path.abspath(os.path.join(
+  os.path.dirname(__file__), '..', '..',
+  'common/node_runner/node_runner/node_modules/vulcanize/bin/vulcanize'))
+
+
+def VulcanizeIndex(temp_dir):
+  vulcanized_html = os.path.join(temp_dir, 'index.vulcanized.html')
+  vulcanized = subprocess.check_output([
+    NODE_VULCANIZE, '--strip-comments', '--inline-scripts', '-p', 'dashboard/',
+    'dashboard/spa/index.html',
+  ])
+  #vulcanized = re.sub(r'(\s*\/\/[^\n]*?(?=\n))', '', vulcanized, flags=re.DOTALL)
+  #vulcanized = re.sub(r'(\/\*.*?\*\/\n?)', '', vulcanized, flags=re.DOTALL)
+  vulcanized = re.sub(r'(\<!--.*?--\>)', '', vulcanized, flags=re.DOTALL)
+  vulcanized = re.sub(r'\n +', '\n', vulcanized)
+  vulcanized = re.sub(r'\n+', '\n', vulcanized)
+  now = time.time() * 1000
+  vulcanized += '<script>VULCANIZED_TIMESTAMP = new Date(%d);</script>' % now
+  open(vulcanized_html, 'w').write(vulcanized)
+  print 'vulcanized', time.strftime(
+      '%Y-%m-%d %H:%M:%S', time.gmtime((now / 1000) - (60 * 60 * 7)))
+  return vulcanized_html
 
 
 def Main():
@@ -34,7 +60,11 @@ def Main():
     s = vulcanize_histograms_viewer.VulcanizeHistogramsViewer()
     f.write(s.encode('utf-8'))
 
-  deployment_paths = dashboard.PathsForDeployment() + [viewer_dir_path]
+  vulcanized_html = VulcanizeIndex(temp_dir)
+
+  deployment_paths = dashboard.PathsForDeployment() + [
+    viewer_dir_path, vulcanized_html,
+  ]
   from catapult_build import appengine_deploy
   appengine_deploy.Deploy(deployment_paths, sys.argv[1:])
 
