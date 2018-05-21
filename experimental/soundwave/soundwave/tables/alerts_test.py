@@ -32,7 +32,7 @@ class TestAlerts(unittest.TestCase):
                 'key': 'xyz567',
                 'timestamp': '2009-02-13T23:31:30.000',
                 'testsuite': 'loading.mobile',
-                'test': 'timeToFirstInteractive/Wikipedia',
+                'test': 'timeToFirstInteractive',  # Alert on summary metric.
                 'master': 'ChromiumPerf',
                 'bot': 'android-nexus5',
                 'start_revision': 12345,

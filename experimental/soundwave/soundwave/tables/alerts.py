@@ -41,7 +41,11 @@ def _RowFromJson(data):
 
   # Name fields using newer dashboard nomenclature.
   data['test_suite'] = data.pop('testsuite')
-  data['measurement'], data['test_case'] = data.pop('test').split('/', 1)
+  raw_test = data.pop('test')
+  if '/' in raw_test:
+    data['measurement'], data['test_case'] = raw_test.split('/', 1)
+  else:
+    data['measurement'], data['test_case'] = raw_test, None
   data['bot'] = '/'.join([data.pop('master'), data.pop('bot')])
 
   # Separate bug_id from alert status.
