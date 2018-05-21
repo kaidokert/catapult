@@ -1,0 +1,152 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad453a8_e7b719b5",
+        "filename": "dashboard/bin/deploy_v2spa",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-05-21T20:21:58Z",
+      "side": 1,
+      "message": "Why are these commented out? Can we fix or remove them?",
+      "range": {
+        "startLine": 31,
+        "startChar": 76,
+        "endLine": 31,
+        "endChar": 0
+      },
+      "revId": "925f1ec15e7f805f34a9111d35b5d1fc72e0f4b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e005f8c_470e7f55",
+        "filename": "dashboard/bin/deploy_v2spa",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-05-21T20:21:58Z",
+      "side": 1,
+      "message": "Can we put these lines in a method called something like \"_StripUnneededContentFromVulcanizedHtml\"? With a comment about why we\u0027re doing this? Is it just to save a few bytes? It seems dangerous to run regexps on random HTML just to save a few bytes pre-gzip. What is the savings?",
+      "revId": "925f1ec15e7f805f34a9111d35b5d1fc72e0f4b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7da200fe_2f445470",
+        "filename": "dashboard/bin/deploy_v2spa",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-05-21T20:21:58Z",
+      "side": 1,
+      "message": "Similarly, can this be added to a method called something like \"_AddVulcanizedTimestampToHtml\"? With a comment in the method description about why we do this?",
+      "revId": "925f1ec15e7f805f34a9111d35b5d1fc72e0f4b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51766061_b24f5686",
+        "filename": "dashboard/dashboard/spa/index.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-05-21T20:21:58Z",
+      "side": 1,
+      "message": "This line should have a comment explaining why it\u0027s here.",
+      "range": {
+        "startLine": 16,
+        "startChar": 33,
+        "endLine": 16,
+        "endChar": 0
+      },
+      "revId": "925f1ec15e7f805f34a9111d35b5d1fc72e0f4b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b346e4d5_b9f256a4",
+        "filename": "dashboard/v2spa.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-05-21T20:21:58Z",
+      "side": 1,
+      "message": "After adding documentation to the docs dir, link it here!",
+      "revId": "925f1ec15e7f805f34a9111d35b5d1fc72e0f4b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a3d0dcd_048eeaf5",
+        "filename": "dashboard/v2spa.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-05-21T20:21:58Z",
+      "side": 1,
+      "message": "So app.yaml has a bunch of endpoints that are login restricted, or restricted to admin-only. Does v2spa-dot-chromeperf.appspot.com serve those same endpoints? If so, shouldn\u0027t something be included here to make them restricted?",
+      "revId": "925f1ec15e7f805f34a9111d35b5d1fc72e0f4b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71d86832_7f550605",
+        "filename": "dashboard/v2spa_dev.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-05-21T20:21:58Z",
+      "side": 1,
+      "message": "When a doc is written and added to /doc directory, link it here!",
+      "revId": "925f1ec15e7f805f34a9111d35b5d1fc72e0f4b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2dda546e_e3c2ae1c",
+        "filename": "dashboard/v2spa_dev.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-05-21T20:21:58Z",
+      "side": 1,
+      "message": "Why do you need all the above for a local dev_appserver? I understand the need for url routing below of course :)",
+      "revId": "925f1ec15e7f805f34a9111d35b5d1fc72e0f4b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
