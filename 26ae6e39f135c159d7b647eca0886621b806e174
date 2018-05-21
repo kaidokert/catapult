@@ -16,6 +16,24 @@
       "revId": "26ae6e39f135c159d7b647eca0886621b806e174",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e8f5808_1c316072",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-05-21T16:40:50Z",
+      "side": 1,
+      "message": "Done, would you take a look at how I abstracted it? I separated out the `chown` and the `chcon` commands into separate methods on DeviceUtils.\n\nTests incoming...",
+      "parentUuid": "5acd9b1b_6c62cae5",
+      "revId": "26ae6e39f135c159d7b647eca0886621b806e174",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
