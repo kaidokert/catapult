@@ -231,6 +231,125 @@ class DeviceUtilsPushDeleteFilesTest(device_test_case.DeviceTestCase):
     self.assertTrue(self.device.HasRoot())
     self.assertEquals(self.device.GetProp('service.adb.root'), '1')
 
+  def testChangeOwner(self):
+    host_tmp_dir = tempfile.mkdtemp()
+    host_sub_dir1 = "%s/%s" % (host_tmp_dir, _SUB_DIR1)
+    host_sub_dir2 = "%s/%s/%s" % (host_tmp_dir, _SUB_DIR, _SUB_DIR2)
+    cmd_helper.RunCmd(['mkdir', '-p', host_sub_dir1])
+    cmd_helper.RunCmd(['mkdir', '-p', host_sub_dir2])
+
+    (host_file_path1, file_name1) = self._MakeTempFileGivenDir(
+        host_tmp_dir, _OLD_CONTENTS)
+    (host_file_path2, file_name2) = self._MakeTempFileGivenDir(
+        host_tmp_dir, _OLD_CONTENTS)
+    (host_file_path3, file_name3) = self._MakeTempFileGivenDir(
+        host_sub_dir1, _OLD_CONTENTS)
+    (host_file_path4, file_name4) = self._MakeTempFileGivenDir(
+        host_sub_dir2, _OLD_CONTENTS)
+
+    device_file_path1 = "%s/%s" % (_DEVICE_DIR, file_name1)
+    device_file_path2 = "%s/%s" % (_DEVICE_DIR, file_name2)
+    device_file_path3 = "%s/%s/%s" % (_DEVICE_DIR, _SUB_DIR1, file_name3)
+    device_file_path4 = "%s/%s/%s/%s" % (_DEVICE_DIR, _SUB_DIR,
+                                         _SUB_DIR2, file_name4)
+    device_paths = [device_file_path1, device_file_path2, device_file_path3,
+                    device_file_path4]
+
+    self.adb.Push(host_file_path1, device_file_path1)
+    self.adb.Push(host_file_path2, device_file_path2)
+    self.adb.Push(host_file_path3, device_file_path3)
+    self.adb.Push(host_file_path4, device_file_path4)
+
+    self.device.PushChangedFiles([(host_tmp_dir, _DEVICE_DIR)],
+                                   delete_device_stale=True)
+
+    def get_owner(device_path):
+      """Returns a tuple (user, group) for the file at |device_path|."""
+      stat = self.device.StatPath(device_path)
+      return (stat['st_owner'], stat['st_group'])
+
+    # Change the ownership of all the files to shell.
+    self.device.ChangeOwner([_DEVICE_DIR], "shell")
+    for path in device_paths:
+      user, group = get_owner(path)
+      self.assertEqual("shell", user)
+      self.assertEqual("shell", group)
+
+    # Now just change some leaf files back to root.
+    self.device.ChangeOwner([device_file_path3, device_file_path4],
+                            "root", recursive=False)
+    self.assertEqual(("shell", "shell"), get_owner(device_file_path1))
+    self.assertEqual(("shell", "shell"), get_owner(device_file_path2))
+    self.assertEqual(("root", "root"), get_owner(device_file_path3))
+    self.assertEqual(("root", "root"), get_owner(device_file_path4))
+
+    cmd_helper.RunCmd(['rm', '-rf', host_tmp_dir])
+    self.device.RemovePath(_DEVICE_DIR, recursive=True, force=True,
+                           as_root=True)
+
+  def testChangeSecurityContext(self):
+    host_tmp_dir = tempfile.mkdtemp()
+    host_sub_dir1 = "%s/%s" % (host_tmp_dir, _SUB_DIR1)
+    host_sub_dir2 = "%s/%s/%s" % (host_tmp_dir, _SUB_DIR, _SUB_DIR2)
+    cmd_helper.RunCmd(['mkdir', '-p', host_sub_dir1])
+    cmd_helper.RunCmd(['mkdir', '-p', host_sub_dir2])
+
+    (host_file_path1, file_name1) = self._MakeTempFileGivenDir(
+        host_tmp_dir, _OLD_CONTENTS)
+    (host_file_path2, file_name2) = self._MakeTempFileGivenDir(
+        host_tmp_dir, _OLD_CONTENTS)
+    (host_file_path3, file_name3) = self._MakeTempFileGivenDir(
+        host_sub_dir1, _OLD_CONTENTS)
+    (host_file_path4, file_name4) = self._MakeTempFileGivenDir(
+        host_sub_dir2, _OLD_CONTENTS)
+
+    device_file_path1 = "%s/%s" % (_DEVICE_DIR, file_name1)
+    device_file_path2 = "%s/%s" % (_DEVICE_DIR, file_name2)
+    device_file_path3 = "%s/%s/%s" % (_DEVICE_DIR, _SUB_DIR1, file_name3)
+    device_file_path4 = "%s/%s/%s/%s" % (_DEVICE_DIR, _SUB_DIR,
+                                         _SUB_DIR2, file_name4)
+    device_paths = [device_file_path1, device_file_path2, device_file_path3,
+                    device_file_path4]
+
+    self.adb.Push(host_file_path1, device_file_path1)
+    self.adb.Push(host_file_path2, device_file_path2)
+    self.adb.Push(host_file_path3, device_file_path3)
+    self.adb.Push(host_file_path4, device_file_path4)
+
+    self.device.PushChangedFiles([(host_tmp_dir, _DEVICE_DIR)],
+                                   delete_device_stale=True)
+
+    android_context = self.device.GetSecurityContextForPackage("android")
+    shell_context = self.device.GetSecurityContextForPackage(
+        "com.android.shell")
+
+    # Change the context of all the files to android's context.
+    self.device.ChangeToPackageSecurityContext([_DEVICE_DIR], "android")
+    for path in device_paths:
+      context, _ = self.device.GetSecurityContextAndPackage(path)[0]
+      self.assertEqual(android_context, context)
+
+    # Now just change some leaf files to the shell context.
+    self.device.ChangeToPackageSecurityContext(
+        [device_file_path3, device_file_path4], "com.android.shell",
+        recursive=False)
+
+    self.assertEqual(
+        android_context,
+        self.device.GetSecurityContextAndPackage(device_file_path1)[0][0])
+    self.assertEqual(
+        android_context,
+        self.device.GetSecurityContextAndPackage(device_file_path2)[0][0])
+    self.assertEqual(
+        shell_context,
+        self.device.GetSecurityContextAndPackage(device_file_path3)[0][0])
+    self.assertEqual(
+        shell_context,
+        self.device.GetSecurityContextAndPackage(device_file_path4)[0][0])
+
+    cmd_helper.RunCmd(['rm', '-rf', host_tmp_dir])
+    self.device.RemovePath(_DEVICE_DIR, recursive=True, force=True,
+                           as_root=True)
 
 class PsOutputCompatibilityTests(device_test_case.DeviceTestCase):
 
