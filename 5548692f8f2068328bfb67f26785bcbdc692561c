@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f48ac633_4265992f",
+        "filename": "dashboard/app.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-05-22T21:25:14Z",
+      "side": 1,
+      "message": "I\u0027m a bit panicky about subtle differences from:\n1) moving this essentially from the bottom to the top\n2) changing it from \"/.*\" to \"/\"\n\nAny reason for the changes here? How did you test?",
+      "revId": "5548692f8f2068328bfb67f26785bcbdc692561c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80ba809c_55cfe7a7",
+        "filename": "dashboard/docs/v2spa.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-05-22T21:25:14Z",
+      "side": 1,
+      "message": "Nit: Since it\u0027ll be intern season soon, would be good to quickly link the url this will show up on (localhost:8080?)",
+      "revId": "5548692f8f2068328bfb67f26785bcbdc692561c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97c15190_0bbe5070",
+        "filename": "dashboard/scripts.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-05-22T21:25:14Z",
+      "side": 1,
+      "message": "Nit: A quick comment at the top of this file explaining why we had to split this out to be included by multiple backends would be helpful!",
+      "revId": "5548692f8f2068328bfb67f26785bcbdc692561c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
