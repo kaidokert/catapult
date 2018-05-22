@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "23c972c4_25a91710",
+        "filename": "experimental/soundwave/soundwave/tables/bugs_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-22T18:20:22Z",
+      "side": 1,
+      "message": "Seemed like this test name made sense to match the alerts test",
+      "range": {
+        "startLine": 12,
+        "startChar": 6,
+        "endLine": 12,
+        "endChar": 27
+      },
+      "revId": "fb9f267bff37fba0b01735f57c136c7bd7e745dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
