@@ -16,6 +16,24 @@
       "revId": "7b4df8a54b6fb9b5aad14c005f051141c75a81f8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b06bc196_7a682170",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-05-22T22:46:18Z",
+      "side": 1,
+      "message": "I\u0027ve done a migration on all the Jobs, so old Jobs should work as expected now. I added comparison_mode to both their arguments and their JobStates.",
+      "parentUuid": "fe737522_6f36bbef",
+      "revId": "7b4df8a54b6fb9b5aad14c005f051141c75a81f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
