@@ -78,7 +78,18 @@ class JobState(object):
 
   @property
   def comparison_mode(self):
-    return self._comparison_mode
+    if hasattr(self, '_comparison_mode'):
+      return self._comparison_mode
+
+    # Old Jobs don't have a _comparison_mode, so guess what it should be.
+    # TODO: Remove this shim after data migration.
+    quest_index = len(self._quests) - 1
+    for change in self._changes:
+      for attempt in self._attempts[change]:
+        if (quest_index < len(attempt.executions) and
+            attempt.executions[quest_index].result_values):
+          return 'performance'
+    return 'functional'
 
   def AddAttempts(self, change):
     if not hasattr(self, '_pin'):
@@ -210,7 +221,7 @@ class JobState(object):
       state[index]['comparisons']['prev'] = comparison
 
     return {
-        'comparison_mode': self._comparison_mode,
+        'comparison_mode': self.comparison_mode,
         'quests': map(str, self._quests),
         'state': state,
     }
