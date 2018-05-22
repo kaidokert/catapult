@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "908875d4_a466e027",
+        "filename": "dashboard/bin/deploy_v2spa",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-05-22T21:10:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ad453a8_e7b719b5",
+      "range": {
+        "startLine": 31,
+        "startChar": 76,
+        "endLine": 31,
+        "endChar": 0
+      },
+      "revId": "925f1ec15e7f805f34a9111d35b5d1fc72e0f4b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1e005f8c_470e7f55",
         "filename": "dashboard/bin/deploy_v2spa",
         "patchSetId": 5
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "a3076032_abdd07ed",
+        "filename": "dashboard/bin/deploy_v2spa",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-05-22T21:10:17Z",
+      "side": 1,
+      "message": "I\u0027ll split minification to a separate CL and measure the impact there.",
+      "parentUuid": "1e005f8c_470e7f55",
+      "revId": "925f1ec15e7f805f34a9111d35b5d1fc72e0f4b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7da200fe_2f445470",
         "filename": "dashboard/bin/deploy_v2spa",
         "patchSetId": 5
@@ -56,6 +98,24 @@
       "revId": "925f1ec15e7f805f34a9111d35b5d1fc72e0f4b5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91d1bddf_11d0ef4b",
+        "filename": "dashboard/bin/deploy_v2spa",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-05-22T21:10:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7da200fe_2f445470",
+      "revId": "925f1ec15e7f805f34a9111d35b5d1fc72e0f4b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -82,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "f3a580bd_eaec2079",
+        "filename": "dashboard/dashboard/spa/index.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-05-22T21:10:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51766061_b24f5686",
+      "range": {
+        "startLine": 16,
+        "startChar": 33,
+        "endLine": 16,
+        "endChar": 0
+      },
+      "revId": "925f1ec15e7f805f34a9111d35b5d1fc72e0f4b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b346e4d5_b9f256a4",
         "filename": "dashboard/v2spa.yaml",
         "patchSetId": 5
@@ -96,6 +180,24 @@
       "revId": "925f1ec15e7f805f34a9111d35b5d1fc72e0f4b5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55ad2b26_571671bf",
+        "filename": "dashboard/v2spa.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-05-22T21:10:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b346e4d5_b9f256a4",
+      "revId": "925f1ec15e7f805f34a9111d35b5d1fc72e0f4b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -116,6 +218,24 @@
     },
     {
       "key": {
+        "uuid": "56b2da72_f7048f0d",
+        "filename": "dashboard/v2spa.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-05-22T21:10:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a3d0dcd_048eeaf5",
+      "revId": "925f1ec15e7f805f34a9111d35b5d1fc72e0f4b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "71d86832_7f550605",
         "filename": "dashboard/v2spa_dev.yaml",
         "patchSetId": 5
@@ -133,6 +253,24 @@
     },
     {
       "key": {
+        "uuid": "aaf88ab2_1408f005",
+        "filename": "dashboard/v2spa_dev.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-05-22T21:10:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71d86832_7f550605",
+      "revId": "925f1ec15e7f805f34a9111d35b5d1fc72e0f4b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2dda546e_e3c2ae1c",
         "filename": "dashboard/v2spa_dev.yaml",
         "patchSetId": 5
@@ -147,6 +285,24 @@
       "revId": "925f1ec15e7f805f34a9111d35b5d1fc72e0f4b5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7f92d37_9988fd91",
+        "filename": "dashboard/v2spa_dev.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-05-22T21:10:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2dda546e_e3c2ae1c",
+      "revId": "925f1ec15e7f805f34a9111d35b5d1fc72e0f4b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
