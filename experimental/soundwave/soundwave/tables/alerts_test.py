@@ -65,6 +65,11 @@ class TestAlerts(unittest.TestCase):
     # Missing bug_id's become 0.
     self.assertEqual(alerts.loc['xyz567']['bug_id'], 0)
 
+  def testDataFrameFromJson_noAlerts(self):
+    data = {'anomalies': []}
+    alerts = tables.alerts.DataFrameFromJson(data)
+    self.assertEqual(len(alerts), 0)
+
 
 if __name__ == '__main__':
   unittest.main()
