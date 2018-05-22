@@ -49,6 +49,10 @@ def Main():
       help='Path to file where to store user credentials')
   # Default args for all actions.
   parser.add_argument(
+      '-s', '--sheriff', default='Chromium Perf Sheriff',
+      help='Only get data this sheriff rotation. For timeseries, you can use a '
+           'special value "all" to disable filtering by sheriff rotation.')
+  parser.add_argument(
       '-d', '--days', default=30, type=int,
       help='Number of days to collect data for (default: %(default)s)')
   parser.add_argument(
@@ -83,11 +87,6 @@ def Main():
       '-f', '--filters', action='append',
       help=('Only get data for timeseries whose path contains all the given '
             'substrings.'))
-  subparser.add_argument(
-      '-s', '--sheriff', default='Chromium Perf Sheriff',
-      help='Only get data for timeseries for this sheriff rotation. You can '
-           'use a special value "all" to disable filtering by sheriff '
-           'rotation.')
 
   args = parser.parse_args()
 
