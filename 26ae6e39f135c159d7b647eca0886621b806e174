@@ -34,6 +34,24 @@
       "revId": "26ae6e39f135c159d7b647eca0886621b806e174",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "035e2a0c_a909104d",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-22T08:57:52Z",
+      "side": 1,
+      "message": "Oh, yes, I didn\u0027t notice the \"chcon\" was in the for-loop too.\n\nI would dial down my original suggestion a bit and say that each of the \"chwon\" and \"chcon\" methods should then handle a single path instead. So the for-loop stays here and each call to RunShellCommand becomes a call to one of the new methods.",
+      "parentUuid": "4e8f5808_1c316072",
+      "revId": "26ae6e39f135c159d7b647eca0886621b806e174",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
