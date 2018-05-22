@@ -2928,3 +2928,29 @@ class DeviceUtils(object):
       return
     self.SendKeyEvent(keyevent.KEYCODE_POWER)
     timeout_retry.WaitFor(screen_test, wait_period=1)
+
+  @decorators.WithTimeoutAndRetriesFromInstance()
+  def ChangeOwner(self, paths, owner, timeout=None, retries=None):
+    """Changes file system ownership for permissions.
+
+    Args:
+      paths: Paths to change ownership of.
+      owner: New owner to assign. This method assigns ownership to both the user
+        and group named |owner|.
+    """
+    owner_group = '%s.%s' % (owner, owner)
+    self.RunShellCommand(['chown', owner_group] + paths, check_return=True)
+
+  @decorators.WithTimeoutAndRetriesFromInstance()
+  def ChangeSecurityContext(self, paths, security_context, encrypted=False,
+                            recursive=True, timeout=None, retries=None):
+    """Changes a file's SELinux security context.
+
+    Args:
+      path: List of paths to change the security context of.
+      security_context: The new security context as a string
+      recursive: Whether to recursively change the security contexts.
+    """
+    flag = ['-R'] if recursive else []
+    command = ['chcon'] + flag + [security_context] + paths
+    self.RunShellCommand(command, as_root=True, check_return=True)
