@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "38505f2a_2c181e7c",
+        "filename": "experimental/soundwave/soundwave/dashboard_api.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-22T19:32:28Z",
+      "side": 1,
+      "message": "While copying this implementation for the implementation of alerts, I noticed that `sheriff` was always being set in this codepath. I cleaned this up and removed the default parameter so that it looks more like the new alerts implementation. LMK if you\u0027d like me to do this in a separate CL, but it seemed confined and similar enough that I put it in this one for now.",
+      "revId": "c73671b35236040fa889d42a50f450a6e22c23fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
