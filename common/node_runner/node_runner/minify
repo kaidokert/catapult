@@ -1,0 +1,50 @@
+#!/usr/bin/env node
+'use strict';
+const dom5 = require('dom5');
+const escodegen = require('escodegen');
+const espree = require('espree');
+const fs = require('fs');
+const nopt = require('nopt');
+
+const ESPREE_OPTIONS = {
+  ecmaVersion: 2018,
+  attachComment: false,
+  comments: false
+};
+
+const args = nopt();
+const filename = args.argv.remain[0];
+
+let html = fs.readFileSync(filename).toString('utf8');
+let parsedHtml = dom5.parse(html);
+// First, collapse text nodes around comments (by removing comment nodes,
+// re-serializing, and re-parsing) in order to prevent multiple extraneous
+// newlines.
+for (const node of dom5.nodeWalkAll(parsedHtml, () => true)) {
+  if (dom5.isCommentNode(node)) {
+    dom5.remove(node);
+  }
+}
+html = dom5.serialize(parsedHtml);
+parsedHtml = dom5.parse(html);
+for (const node of dom5.nodeWalkAll(parsedHtml, () => true)) {
+  if (dom5.isTextNode(node)) {
+    dom5.setTextContent(node, dom5.getTextContent(node)
+      .replace(/ *\n+ */g, '\n')
+      .replace(/\n+/g, '\n'));
+  } else if (dom5.predicates.hasTagName('script')(node) &&
+             !dom5.predicates.hasAttr('src')(node)) {
+    dom5.setTextContent(node, escodegen.generate(
+      espree.parse(dom5.getTextContent(node), ESPREE_OPTIONS),
+      {format: {indent: {style: ''}}}));
+  } else if (dom5.predicates.hasTagName('style')(node)) {
+    // reduce 2 or more spaces to one
+    // remove all leading and trailing spaces
+    dom5.setTextContent(node, dom5.getTextContent(node)
+      .replace(/[\r\n]/g, '')
+      .replace(/ {2,}/g, ' ')
+      .replace(/(^|[;,\:\{\}]) /g, '$1')
+      .replace(/ ($|[;,\{\}])/g, '$1'));
+  }
+}
+fs.writeFileSync(filename, dom5.serialize(parsedHtml));
