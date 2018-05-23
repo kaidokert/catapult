@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c095a5ca_f40bda8f",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-23T11:55:55Z",
+      "side": 1,
+      "message": "I\u0027m having trouble understanding when would None be in counter?",
+      "revId": "f050cf5defc88b8a44e43682e9e81b1900101176",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "189d7a02_08749267",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-23T11:55:55Z",
+      "side": 1,
+      "message": "This needs some positive/negative tests.",
+      "revId": "f050cf5defc88b8a44e43682e9e81b1900101176",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ba3b593_c934bd23",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-23T11:55:55Z",
+      "side": 1,
+      "message": "nit: I think this can still be\n\nfor line in log_iterator:\n   ...",
+      "revId": "f050cf5defc88b8a44e43682e9e81b1900101176",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60f9368c_59db9192",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-23T11:55:55Z",
+      "side": 1,
+      "message": "I\u0027m confused, shouldn\u0027t this be \"if match1 or match2\"?",
+      "revId": "f050cf5defc88b8a44e43682e9e81b1900101176",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6986cdd_0080eaf9",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-23T11:55:55Z",
+      "side": 1,
+      "message": "nit: add a comment before this line, stating you\u0027re skipping one line from the log.",
+      "revId": "f050cf5defc88b8a44e43682e9e81b1900101176",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
