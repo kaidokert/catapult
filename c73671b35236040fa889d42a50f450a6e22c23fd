@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5255a265_22879de8",
+        "filename": "experimental/soundwave/bin/soundwave",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-05-23T14:29:14Z",
+      "side": 1,
+      "message": "Omitting a default value doesn\u0027t make it so that we don\u0027t filter by rotation, but rather uses the default value of the \"Chromium Perf Sheriff\" rotation (https://cs.chromium.org/chromium/src/third_party/catapult/dashboard/dashboard/api/alerts.py?q\u003dalert+f:dashboard+f:api\u0026sq\u003dpackage:chromium\u0026dr\u003dCSs\u0026l\u003d47). I filed a bug (https://github.com/catapult-project/catapult/issues/4479) to make it possible to query alerts regardless of the rotation by using the \"all\" keyword as the sheriff parameter, but we\u0027ll likely have to wait for Simon to come back to implement this. This functionality was recently added by sergiyb@ for timeseries queries.\n\nOnce that bug is fixed, we can come back and make the default \"all\" and it should work as you suggested.",
+      "parentUuid": "46292c7b_ee4cf514",
+      "revId": "c73671b35236040fa889d42a50f450a6e22c23fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "38505f2a_2c181e7c",
         "filename": "experimental/soundwave/soundwave/dashboard_api.py",
         "patchSetId": 4
