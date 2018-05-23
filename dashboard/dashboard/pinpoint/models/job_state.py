@@ -152,10 +152,18 @@ class JobState(object):
         work_left = True
 
     # TODO: Skip this for functional jobs.
-    if not work_left and self._attempts and all(
-        a.failed for attempts in self._attempts.itervalues() for a in attempts):
-      raise Exception('All of the attempts failed. See the individual '
-                      'attempts for details on each error.')
+    if not work_left and self._attempts:
+      counter = collections.Counter()
+      for attempts in self._attempts.itervalues():
+        counter.update(attempt.exception.splitlines()[-1]
+                       for attempt in attempts)
+
+      if None not in counter:
+        exception, exception_count = counter.most_common(1)[0]
+        attempt_count = sum(counter.itervalues())
+        raise Exception(
+            'All of the runs failed. The most common error (%d/%d runs) '
+            'was:\n%s' % (exception_count, attempt_count, exception))
 
     return work_left
 
