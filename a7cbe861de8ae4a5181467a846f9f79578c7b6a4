@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "629c5283_ada709d1",
+        "filename": "tracing/tracing/ui/extras/chrome/cc/display_item_debugger.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1002481
+      },
+      "writtenOn": "2018-05-23T19:06:58Z",
+      "side": 1,
+      "message": "I should add flex:0 0 auto here to ensure correct drag handle resizing. Will add it in the next patch set so that you can see all my comments in this patch set.",
+      "revId": "a7cbe861de8ae4a5181467a846f9f79578c7b6a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
