@@ -97,7 +97,8 @@ def CaptureLogsAsArtifacts(results, test_name):
 
 
 def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
-  def ProcessError(exc=None):
+  def ProcessError(exc):
+    logging.exception(exc)
     state.DumpStateUponFailure(story, results)
 
     # Dump app crash, if present
@@ -133,8 +134,8 @@ def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
       raise
     except page_action.PageActionNotSupported as exc:
       results.Skip('Unsupported page action: %s' % exc)
-    except Exception:
-      ProcessError()
+    except Exception as exc:
+      ProcessError(exc)
       raise
     finally:
       has_existing_exception = (sys.exc_info() != (None, None, None))

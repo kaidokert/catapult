@@ -280,6 +280,7 @@ class StoryRunnerTest(unittest.TestCase):
     story_runner.exception_formatter = FakeExceptionFormatterModule
     self._story_runner_logging_stub = system_stub.Override(
         story_runner, ['logging'])
+    self._story_runner_logging_stub.stdout_stream = sys.stdout
 
   def RestoreExceptionFormatter(self):
     story_runner.exception_formatter = ex_formatter_module

@@ -513,7 +513,6 @@ class PageTestResults(object):
     else:
       failure_str = ''.join(traceback.format_exception(*failure))
     self._current_page_run.SetFailed(failure_str)
-    self._progress_reporter.DidFail(failure_str)
 
   def Skip(self, reason):
     assert self._current_page_run, 'Not currently running test.'
