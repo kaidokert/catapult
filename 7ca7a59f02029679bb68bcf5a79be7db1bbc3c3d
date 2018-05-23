@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d367135b_8c363cd8",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-23T09:47:05Z",
+      "side": 0,
+      "message": "This version used to skip \"lib\"; do we still need to do that?",
+      "revId": "7ca7a59f02029679bb68bcf5a79be7db1bbc3c3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

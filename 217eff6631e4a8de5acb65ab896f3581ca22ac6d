@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4c395cb1_351085e4",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 2933,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-23T09:47:05Z",
+      "side": 1,
+      "message": "super nit: I think the order \"owner, paths, ..\" is a but more natural (and matches the order of the chown shell command itself).",
+      "revId": "217eff6631e4a8de5acb65ab896f3581ca22ac6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a04f058e_fcf40534",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 2941,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-23T09:47:05Z",
+      "side": 1,
+      "message": "Not sure about the details of \"chown\" command; but I think the caller should be the one doing that string interpolation; this method should receive the owner_group string already computed as input.",
+      "revId": "217eff6631e4a8de5acb65ab896f3581ca22ac6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ef0a895_6642f0f5",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 2945,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-23T09:47:05Z",
+      "side": 1,
+      "message": "same nit: I think \"security_context, paths, ...\" reads better.\n\nAlso encrypted option is not used?",
+      "revId": "217eff6631e4a8de5acb65ab896f3581ca22ac6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20c831ec_5363ac4f",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 2954,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-23T09:47:05Z",
+      "side": 1,
+      "message": "nit: call this \"flags\" (we might add more in the future, and makes the line below read more natural)",
+      "revId": "217eff6631e4a8de5acb65ab896f3581ca22ac6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36a0c652_62aa68a1",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-23T09:47:05Z",
+      "side": 1,
+      "message": "Would it be possible to chown/chcon paths on the \"saved_profile_location\" first; and then copy them to the profile_dir afterwards? Somehow that feels safer to me. [e.g. otherwise a stray running Chrome on the device can mess up with the profile between us pushing the files, and then trying to chow/chcon the files in it].",
+      "revId": "217eff6631e4a8de5acb65ab896f3581ca22ac6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d463bb90_9d2cd94c",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-23T09:47:05Z",
+      "side": 1,
+      "message": "nit: well supported by older Android versions",
+      "revId": "217eff6631e4a8de5acb65ab896f3581ca22ac6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5202b59_a1d97c91",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-23T09:47:05Z",
+      "side": 1,
+      "message": "use posixpath.join for paths on the device",
+      "revId": "217eff6631e4a8de5acb65ab896f3581ca22ac6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d57f394_651c5037",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-23T09:47:05Z",
+      "side": 1,
+      "message": "nit: you can rewrite this as:\n\n    device_paths.extend(\n        posixpath.join(device_root, name) for name in files + dirs)\n\nno need for the intermediate list",
+      "revId": "217eff6631e4a8de5acb65ab896f3581ca22ac6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95568600_3c71d4ab",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-23T09:47:05Z",
+      "side": 1,
+      "message": "I assume \"chcon -R\" does work here. Could this be more efficient by doing ChangeSecurityContext([profile_dir], security_context) ??",
+      "revId": "217eff6631e4a8de5acb65ab896f3581ca22ac6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
