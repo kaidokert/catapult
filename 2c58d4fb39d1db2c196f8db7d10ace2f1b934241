@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5e40919a_4fb4659e",
+        "filename": "tracing/tracing/ui/base/quad_stack_view.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1002481
+      },
+      "writtenOn": "2018-05-23T18:03:49Z",
+      "side": 1,
+      "message": "It is display:flex so that the canvas scroller needs to be automatically resized and independently scrolled, while keeping the header, slider and mouse-mode-selector be at absolute locations.",
+      "revId": "2c58d4fb39d1db2c196f8db7d10ace2f1b934241",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fef57b1_822d914c",
+        "filename": "tracing/tracing/ui/extras/chrome/cc/layer_tree_host_impl_view.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1002481
+      },
+      "writtenOn": "2018-05-23T18:03:49Z",
+      "side": 1,
+      "message": "Let the drag handle control the smaller sub-view instead of the larger/main sub-view so that when the container resizes the larger/main sub-view will be automatically resized. As the width of the smaller sub-view is controlled by the drag handle, it should be flex:0 0, and the larger/main sub-view should be flex:1 1.",
+      "revId": "2c58d4fb39d1db2c196f8db7d10ace2f1b934241",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

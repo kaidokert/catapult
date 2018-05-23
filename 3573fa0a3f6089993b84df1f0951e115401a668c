@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c3a53595_26dc871f",
+        "filename": "tracing/tracing/ui/base/quad_stack_view.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1002481
+      },
+      "writtenOn": "2018-05-23T18:03:49Z",
+      "side": 0,
+      "message": "This was the main reason of the weird old canvas resize behavior. We should just resize the canvas but not the container.",
+      "revId": "3573fa0a3f6089993b84df1f0951e115401a668c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
