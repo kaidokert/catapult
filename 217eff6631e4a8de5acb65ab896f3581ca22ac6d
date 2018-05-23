@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b552fbf8_18b2d6ea",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 2933,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-05-23T18:03:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c395cb1_351085e4",
+      "revId": "217eff6631e4a8de5acb65ab896f3581ca22ac6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a04f058e_fcf40534",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 6
@@ -33,6 +51,24 @@
       "revId": "217eff6631e4a8de5acb65ab896f3581ca22ac6d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b047e5aa_807e17df",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 2941,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-05-23T18:03:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a04f058e_fcf40534",
+      "revId": "217eff6631e4a8de5acb65ab896f3581ca22ac6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "00e408fe_9fd051eb",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 2945,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-05-23T18:03:59Z",
+      "side": 1,
+      "message": "Done. Removed the encrypted param.",
+      "parentUuid": "3ef0a895_6642f0f5",
+      "revId": "217eff6631e4a8de5acb65ab896f3581ca22ac6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "20c831ec_5363ac4f",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 6
@@ -67,6 +121,24 @@
       "revId": "217eff6631e4a8de5acb65ab896f3581ca22ac6d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21256db9_9a9c3c65",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 2954,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-05-23T18:03:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20c831ec_5363ac4f",
+      "revId": "217eff6631e4a8de5acb65ab896f3581ca22ac6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "148d877c_0d48c958",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-05-23T18:03:59Z",
+      "side": 1,
+      "message": "Unfortunately I think chcon does not work properly on the saved_profile_location. I was getting errors like \"operation not supported\", potentially due to differences in how /sdcard is mounted. I kept this as-is for now, to avoid changing too much behavior.",
+      "parentUuid": "36a0c652_62aa68a1",
+      "revId": "217eff6631e4a8de5acb65ab896f3581ca22ac6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d463bb90_9d2cd94c",
         "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
         "patchSetId": 6
@@ -101,6 +191,24 @@
       "revId": "217eff6631e4a8de5acb65ab896f3581ca22ac6d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d60f05d_24371e62",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-05-23T18:03:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d463bb90_9d2cd94c",
+      "revId": "217eff6631e4a8de5acb65ab896f3581ca22ac6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "e1cdb6de_5e6336b8",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-05-23T18:03:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5202b59_a1d97c91",
+      "revId": "217eff6631e4a8de5acb65ab896f3581ca22ac6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6d57f394_651c5037",
         "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
         "patchSetId": 6
@@ -138,6 +264,24 @@
     },
     {
       "key": {
+        "uuid": "a8d93176_b27d10dc",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-05-23T18:03:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d57f394_651c5037",
+      "revId": "217eff6631e4a8de5acb65ab896f3581ca22ac6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "95568600_3c71d4ab",
         "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
         "patchSetId": 6
@@ -152,6 +296,24 @@
       "revId": "217eff6631e4a8de5acb65ab896f3581ca22ac6d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66be3dfa_0da6522d",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-05-23T18:03:59Z",
+      "side": 1,
+      "message": "Yes, done.",
+      "parentUuid": "95568600_3c71d4ab",
+      "revId": "217eff6631e4a8de5acb65ab896f3581ca22ac6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

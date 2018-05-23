@@ -16,6 +16,24 @@
       "revId": "7ca7a59f02029679bb68bcf5a79be7db1bbc3c3d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb579961_c975492e",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-05-23T18:03:59Z",
+      "side": 0,
+      "message": "Hm.. Originally I didn\u0027t think so since we wouldn\u0027t be copying over lib. However, I guess someone could input a profile with \"lib\" in it and:\n- We wouldn\u0027t copy it due to logic in efficient_android_directory_copy.sh\n- We would still change ownership of it.\n\nSo to be defensive, I\u0027ll add this back.",
+      "parentUuid": "d367135b_8c363cd8",
+      "revId": "7ca7a59f02029679bb68bcf5a79be7db1bbc3c3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
