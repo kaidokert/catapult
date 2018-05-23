@@ -8,6 +8,7 @@ import json
 import logging
 import sys
 import zlib
+import time
 
 from google.appengine.api import taskqueue
 from google.appengine.ext import ndb
@@ -65,9 +66,15 @@ class AddHistogramsHandler(api_request_handler.ApiRequestHandler):
   def AuthorizedPost(self):
     datastore_hooks.SetPrivilegedRequest()
 
+    logging.info('OLD VERSION')
+
     try:
+      t0 = time.clock()
       data_str = zlib.decompress(self.request.body)
       logging.info('Recieved compressed data.')
+      t1 = time.clock()
+      logging.info('decompress: %s' % ((t1 - t0) * 1000))
+
     except zlib.error:
       data_str = self.request.get('data')
       logging.info('Recieved uncompressed data.')
@@ -76,7 +83,11 @@ class AddHistogramsHandler(api_request_handler.ApiRequestHandler):
 
     logging.info('Received data: %s', data_str[:200])
 
+    t0 = time.clock()
     histogram_dicts = json.loads(data_str)
+    t1 = time.clock()
+    logging.info('json.loads: %s' % ((t1 - t0) * 1000))
+
     ProcessHistogramSet(histogram_dicts)
 
 
@@ -102,10 +113,20 @@ def ProcessHistogramSet(histogram_dicts):
   bot_whitelist_future = stored_object.GetAsync(
       add_point_queue.BOT_WHITELIST_KEY)
 
+  t0 = time.clock()
+  t0_0 = time.clock()
+
   histograms = histogram_set.HistogramSet()
   histograms.ImportDicts(histogram_dicts)
+  t1 = time.clock()
+  logging.info('ImportDicts: %s' % ((t1 - t0) * 1000))
+
+
   histograms.ResolveRelatedHistograms()
   histograms.DeduplicateDiagnostics()
+
+  t2 = time.clock()
+  logging.info('DeduplicateDiagnostics: %s' % ((t2 - t1) * 1000))
 
   if len(histograms) == 0:
     raise api_request_handler.BadRequestError(
@@ -113,12 +134,20 @@ def ProcessHistogramSet(histogram_dicts):
 
   _LogDebugInfo(histograms)
 
+  t0 = time.clock()
   InlineDenseSharedDiagnostics(histograms)
+  t1 = time.clock()
+  logging.info('InlineDenseSharedDiagnostics: %s' % ((t1 - t0) * 1000))
+
 
   # TODO(eakuefner): Get rid of this.
   # https://github.com/catapult-project/catapult/issues/4242
+  t0 = time.clock()
   _PurgeHistogramBinData(histograms)
+  t1 = time.clock()
+  logging.info('_PurgeHistogramBinData: %s' % ((t1 - t0) * 1000))
 
+  t0 = time.clock()
   master = _GetDiagnosticValue(
       reserved_infos.MASTERS.name, histograms.GetFirstHistogram())
   bot = _GetDiagnosticValue(
@@ -128,6 +157,8 @@ def ProcessHistogramSet(histogram_dicts):
   benchmark_description = _GetDiagnosticValue(
       reserved_infos.BENCHMARK_DESCRIPTIONS.name,
       histograms.GetFirstHistogram(), optional=True)
+  t1 = time.clock()
+  logging.info('MISC CRAP: %s' % ((t1 - t0) * 1000))
 
   _ValidateMasterBotBenchmarkName(master, bot, benchmark)
 
@@ -140,24 +171,44 @@ def ProcessHistogramSet(histogram_dicts):
   bot_whitelist = bot_whitelist_future.get_result()
   internal_only = add_point_queue.BotInternalOnly(bot, bot_whitelist)
 
+  t0 = time.clock()
+
   # We'll skip the histogram-level sparse diagnostics because we need to
   # handle those with the histograms, below, so that we can properly assign
   # test paths.
   suite_level_sparse_diagnostic_entities = FindSuiteLevelSparseDiagnostics(
       histograms, suite_key, revision, internal_only)
+  t1 = time.clock()
+  logging.info('FindSuiteLevelSparseDiagnostics: %s' % ((t1 - t0) * 1000))
 
   # TODO(eakuefner): Refactor master/bot computation to happen above this line
   # so that we can replace with a DiagnosticRef rather than a full diagnostic.
+  t0 = time.clock()
   new_guids_to_old_diagnostics = DeduplicateAndPut(
       suite_level_sparse_diagnostic_entities, suite_key, revision)
+  t1 = time.clock()
+  logging.info('DeduplicateAndPut: %s' % ((t1 - t0) * 1000))
+
+  t0 = time.clock()
   for new_guid, old_diagnostic in new_guids_to_old_diagnostics.iteritems():
     histograms.ReplaceSharedDiagnostic(
         new_guid, diagnostic.Diagnostic.FromDict(old_diagnostic))
+  t1 = time.clock()
+  logging.info('ReplaceSharedDiagnostic: %s' % ((t1 - t0) * 1000))
 
+  t0 = time.clock()
   tasks = _BatchHistogramsIntoTasks(
       suite_key.id(), histograms, revision, benchmark_description)
+  t1 = time.clock()
+  logging.info('_BatchHistogramsIntoTasks: %s' % ((t1 - t0) * 1000))
 
+  t0 = time.clock()
   _QueueHistogramTasks(tasks)
+  t1 = time.clock()
+  logging.info('_QueueHistogramTasks: %s' % ((t1 - t0) * 1000))
+
+  t1 = time.clock()
+  logging.info('TOTAL PROCESS: %s' % ((t1 - t0_0) * 1000))
 
 
 def _ValidateMasterBotBenchmarkName(master, bot, benchmark):

@@ -205,9 +205,9 @@ def BotInternalOnly(bot_name, bot_whitelist):
   as internal-only.
   """
   if not bot_whitelist:
-    logging.warning(
-        'No bot whitelist available. All data will be internal-only. If this '
-        'is not intended, please add a bot whitelist using /edit_site_config.')
+    # logging.warning(
+    #     'No bot whitelist available. All data will be internal-only. If this '
+    #     'is not intended, please add a bot whitelist using /edit_site_config.')
     return True
   return bot_name not in bot_whitelist
 

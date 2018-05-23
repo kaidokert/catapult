@@ -69,23 +69,24 @@ V8_COMMIT_POSITIONS = _Info('v8CommitPositions', 'DateRange')
 V8_REVISIONS = _Info('v8Revisions', 'GenericSet', str)
 WEBRTC_REVISIONS = _Info('webrtcRevisions', 'GenericSet', str)
 
+_CACHED_INFO_TYPES = {}
+def _GetOrCreateCachedInfoTypes():
+  global _CACHED_INFO_TYPES
+  if _CACHED_INFO_TYPES:
+    return _CACHED_INFO_TYPES
 
-def _CreateCachedInfoTypes():
-  info_types = {}
   for info in globals().itervalues():
     if isinstance(info, _Info):
-      info_types[info.name] = info
-  return info_types
-
-_CACHED_INFO_TYPES = _CreateCachedInfoTypes()
+      _CACHED_INFO_TYPES[info.name] = info
+  return _CACHED_INFO_TYPES
 
 def GetTypeForName(name):
-  info = _CACHED_INFO_TYPES.get(name)
+  info = _GetOrCreateCachedInfoTypes().get(name)
   if info:
     return info.type
 
 def AllInfos():
-  for info in _CACHED_INFO_TYPES.itervalues():
+  for info in _GetOrCreateCachedInfoTypes().itervalues():
     yield info
 
 def AllNames():

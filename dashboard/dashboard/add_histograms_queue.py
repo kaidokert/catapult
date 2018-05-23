@@ -145,7 +145,7 @@ def _ProcessRowAndHistogram(params, bot_whitelist):
   benchmark_description = params['benchmark_description']
   data_dict = params['data']
 
-  logging.info('Processing: %s', test_path)
+  #logging.info('Processing: %s', test_path)
 
   hist = histogram_module.Histogram.FromDict(data_dict)
 
