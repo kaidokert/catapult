@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "a9a28a1c_ef8f69cd",
+        "filename": "experimental/soundwave/soundwave/tables/alerts.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-23T09:52:18Z",
+      "side": 1,
+      "message": "weird, maybe this is due to some pandas version thing?\n\nLooking at the source this was supposed to do the right thing when passing an iterator:\nhttps://github.com/pandas-dev/pandas/blob/v0.23.0/pandas/core/frame.py#L1189-L1313\n\nAnyway, fix lgtm :)",
+      "revId": "fb9f267bff37fba0b01735f57c136c7bd7e745dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "23c972c4_25a91710",
         "filename": "experimental/soundwave/soundwave/tables/bugs_test.py",
         "patchSetId": 3
@@ -13,6 +30,30 @@
       "writtenOn": "2018-05-22T18:20:22Z",
       "side": 1,
       "message": "Seemed like this test name made sense to match the alerts test",
+      "range": {
+        "startLine": 12,
+        "startChar": 6,
+        "endLine": 12,
+        "endChar": 27
+      },
+      "revId": "fb9f267bff37fba0b01735f57c136c7bd7e745dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "55d84937_702f6a37",
+        "filename": "experimental/soundwave/soundwave/tables/bugs_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-23T09:52:18Z",
+      "side": 1,
+      "message": "Yes! Name was legacy from an older implementation we had here.",
+      "parentUuid": "23c972c4_25a91710",
       "range": {
         "startLine": 12,
         "startChar": 6,
