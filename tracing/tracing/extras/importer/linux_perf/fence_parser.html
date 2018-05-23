@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/extras/importer/linux_perf/parser.html">
+
+<script>
+'use strict';
+
+/**
+ * @fileoverview Parses fence events in the Linux event trace format.
+ */
+tr.exportTo('tr.e.importer.linux_perf', function() {
+  const ColorScheme = tr.b.ColorScheme;
+  const Parser = tr.e.importer.linux_perf.Parser;
+
+  /**
+   * Parses linux fence trace events.
+   * @constructor
+   */
+  function FenceParser(importer) {
+    Parser.call(this, importer);
+
+    importer.registerEventHandler(
+        'fence_init',
+        FenceParser.prototype.initEvent.bind(this));
+    importer.registerEventHandler(
+        'fence_destroy',
+        FenceParser.prototype.fenceDestroyEvent.bind(this));
+    importer.registerEventHandler(
+        'fence_enable_signal',
+        FenceParser.prototype.fenceEnableSignalEvent.bind(this));
+    importer.registerEventHandler(
+        'fence_signaled',
+        FenceParser.prototype.fenceSignaledEvent.bind(this));
+    this.model_ = importer.model_;
+  }
+
+  const fenceRE = /driver=(\S+) timeline=(\S+) context=(\d+) seqno=(\d+)/;
+
+  FenceParser.prototype = {
+    __proto__: Parser.prototype,
+
+    /**
+     * Parses fence events and sets up state in the importer.
+     */
+    initEvent(eventName, cpuNumber, pid,
+        ts, eventBase) {
+      const event = fenceRE.exec(eventBase.details);
+      if (!event) return false;
+
+      const thread = this.importer.getOrCreatePseudoThread(event[1]);
+
+      if (thread.lastActiveTs !== undefined) {
+        const duration = ts - thread.lastActiveTs;
+        let value = thread.lastActiveValue;
+        if (value === undefined) value = ' ';
+        const slice = new tr.model.ThreadSlice(
+            '', value,
+            ColorScheme.getColorIdForGeneralPurposeString(value),
+            thread.lastActiveTs, {},
+            duration);
+        thread.thread.sliceGroup.pushSlice(slice);
+      }
+      thread.lastActiveTs = ts;
+      thread.lastActiveValue = event[2];
+      return true;
+    },
+
+    fenceDestroyEvent(eventName, cpuNumber, pid, ts,
+        eventBase) {
+      const event = fenceRE.exec(eventBase.details);
+      if (!event) return false;
+
+      const thread = this.importer.getOrCreatePseudoThread(event[1]);
+
+      if (thread.lastActiveTs !== undefined) {
+        const duration = ts - thread.lastActiveTs;
+        let value = thread.lastActiveValue;
+        if (value === undefined) value = ' ';
+        const slice = new tr.model.ThreadSlice(
+            '', value,
+            ColorScheme.getColorIdForGeneralPurposeString(value),
+            thread.lastActiveTs, {},
+            duration);
+        thread.thread.sliceGroup.pushSlice(slice);
+      }
+      thread.lastActiveTs = ts;
+      thread.lastActiveValue = event[2];
+      return true;
+    },
+
+    fenceEnableSignalEvent(eventName, cpuNumber, pid, ts,
+        eventBase) {
+      const event = fenceRE.exec(eventBase.details);
+      if (!event) return false;
+
+      const thread = this.importer.getOrCreatePseudoThread(event[1]);
+
+      if (thread.lastActiveTs !== undefined) {
+        const duration = ts - thread.lastActiveTs;
+        let value = thread.lastActiveValue;
+        if (value === undefined) value = ' ';
+        const slice = new tr.model.ThreadSlice(
+            '', value,
+            ColorScheme.getColorIdForGeneralPurposeString(value),
+            thread.lastActiveTs, {},
+            duration);
+        thread.thread.sliceGroup.pushSlice(slice);
+      }
+      thread.lastActiveTs = ts;
+      thread.lastActiveValue = event[2];
+      return true;
+    },
+
+    fenceSignaledEvent(eventName, cpuNumber, pid, ts, eventBase) {
+      const event = fenceRE.exec(eventBase.details);
+      if (!event) return false;
+
+      const thread = this.importer.getOrCreatePseudoThread(event[1]);
+
+      if (thread.lastActiveTs !== undefined) {
+        const duration = ts - thread.lastActiveTs;
+        let value = thread.lastActiveValue;
+        if (value === undefined) value = ' ';
+        const slice = new tr.model.ThreadSlice(
+            '', value,
+            ColorScheme.getColorIdForGeneralPurposeString(value),
+            thread.lastActiveTs, {},
+            duration);
+        thread.thread.sliceGroup.pushSlice(slice);
+      }
+      thread.lastActiveTs = ts;
+      thread.lastActiveValue = event[2];
+      return true;
+    },
+
+  };
+
+  Parser.register(FenceParser);
+
+  return {
+    FenceParser,
+  };
+});
+</script>
