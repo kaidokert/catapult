@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa2587d6_ef3249d1",
+        "filename": "telemetry/telemetry/internal/results/gtest_progress_reporter_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-24T10:57:49Z",
+      "side": 1,
+      "message": "nice! a lot cleaner!",
+      "revId": "cc242273325a942bb483a626503aef715236ca4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb8eaf43_ecb08872",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-24T10:57:49Z",
+      "side": 1,
+      "message": "This always confuses me. Could you please:\n\n- rewrite log_message: \u0027Handleable error. Will try to restart shared state\u0027\n- add a comment (next to raise) explaining that the caller (the |Run| function) will catch this exception, destroy and create a new shared state.",
+      "revId": "cc242273325a942bb483a626503aef715236ca4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45920d81_82052d5b",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-24T10:57:49Z",
+      "side": 1,
+      "message": "Rephrase log_message: \u0027Unhandleable error. Benchmark run will be interrupted.\u0027",
+      "revId": "cc242273325a942bb483a626503aef715236ca4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
