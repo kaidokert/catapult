@@ -84,16 +84,21 @@ class DependencyManager(object):
         FileNotFoundError: If an attempted download was otherwise unsuccessful.
 
     """
+    print 'platform: ' + platform
     dependency_info = self._GetDependencyInfo(dependency, platform)
     if not dependency_info:
       raise exceptions.NoPathFoundError(dependency, platform)
     path = dependency_info.GetLocalPath()
+    print 'local path: ' + str(path)
     version = None
     if not path or not os.path.exists(path):
       path = dependency_info.GetRemotePath()
+      print 'remote path: ' + str(path)
       if not path or not os.path.exists(path):
+        print 'NoPathFound: ' + str(path)
         raise exceptions.NoPathFoundError(dependency, platform)
       version = dependency_info.GetRemotePathVersion()
+      print 'version: ' + str(version)
     return path, version
 
   def FetchPath(self, dependency, platform):
