@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d3a65b60_5a85adf7",
+        "filename": "common/node_runner/node_runner/minify",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-05-24T20:32:23Z",
+      "side": 1,
+      "message": "Would be good to have a short comment description at the top of the file explaining what it does. Can just copy/paste from the CL description:\n\nThis script wraps common HTML transformations:\n- stripping whitespace from CSS,\n- stripping whitespace and comments from JS,\n- stripping comments from HTML.\nThis script also allows explicit control over the JS parsing options such as\necmaVersion. It\u0027s based on polyclean:\nhttps://github.com/googlearchive/polyclean",
+      "revId": "5e3d8fbd366f5ccc023e45e0be342c60e2b1eef3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
