@@ -3,7 +3,7 @@
 
 runtime: python27
 api_version: 1
-threadsafe: false
+threadsafe: true
 instance_class: F4_1G
 
 libraries:
