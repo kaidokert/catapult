@@ -16,6 +16,24 @@
       "revId": "fcbe360512b49f81116a96e3a9ecae346336e506",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "135d0fc2_d5303766",
+        "filename": "common/py_utils/py_utils/chrome_binaries.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-05-24T10:14:17Z",
+      "side": 1,
+      "message": "Yeah, the same for me last time :P",
+      "parentUuid": "25013ddb_53ea847e",
+      "revId": "fcbe360512b49f81116a96e3a9ecae346336e506",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
