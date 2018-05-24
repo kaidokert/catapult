@@ -177,6 +177,24 @@
     },
     {
       "key": {
+        "uuid": "bc65e19a_25258eee",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-05-24T08:39:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "148d877c_0d48c958",
+      "revId": "217eff6631e4a8de5acb65ab896f3581ca22ac6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d463bb90_9d2cd94c",
         "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
         "patchSetId": 6
