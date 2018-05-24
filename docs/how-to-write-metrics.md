@@ -2,7 +2,7 @@
      Use of this source code is governed by a BSD-style license that can be
      found in the LICENSE file.
 -->
-
+ 
 # How to Write Metrics
 
 Timeline-Based Measurement v2 is a system for computing metrics from traces.
