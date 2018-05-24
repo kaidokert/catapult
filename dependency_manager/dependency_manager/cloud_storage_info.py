@@ -64,6 +64,7 @@ class CloudStorageInfo(object):
     if not self._has_minimum_data:
       return None
 
+    print 'download path: ' + str(self._download_path)
     download_dir = os.path.dirname(self._download_path)
     if not os.path.exists(download_dir):
       try:
@@ -78,14 +79,17 @@ class CloudStorageInfo(object):
     cloud_storage.GetIfHashChanged(
         self._cs_remote_path, self._download_path, self._cs_bucket,
         self._cs_hash)
+    print 'after GetIfHashChanged: ' + str(dependency_path)
     if not os.path.exists(dependency_path):
       raise exceptions.FileNotFoundError(dependency_path)
 
     if self.has_archive_info:
+      print 'has_archive_info'
       dependency_path = self._archive_info.GetUnzippedPath()
     else:
       mode = os.stat(dependency_path).st_mode
       os.chmod(dependency_path, mode | stat.S_IXUSR)
+    print 'result: ' + str(dependency_path)
     return os.path.abspath(dependency_path)
 
   @property

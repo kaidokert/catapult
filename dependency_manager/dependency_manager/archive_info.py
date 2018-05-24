@@ -5,6 +5,7 @@
 import glob
 import os
 import shutil
+import subprocess
 
 from dependency_manager import exceptions
 from dependency_manager import dependency_manager_util
@@ -44,15 +45,19 @@ class ArchiveInfo(object):
           ' %s' % self)
 
   def GetUnzippedPath(self):
-    if self.ShouldUnzipArchive():
+    if True or self.ShouldUnzipArchive():
+      print 'ShouldUnzipArchive'
       # Remove stale unzip results
       if self._stale_unzip_path_glob:
         for path in glob.glob(self._stale_unzip_path_glob):
           shutil.rmtree(path)
       # TODO(aiolos): Replace UnzipFile with zipfile.extractall once python
       # version 2.7.4 or later can safely be assumed.
+      print 'UnzipArchive: ' + str(self._archive_file) + ' to ' + str(
+          self._unzip_path)
       dependency_manager_util.UnzipArchive(
           self._archive_file, self._unzip_path)
+      subprocess.call(['ls', '-lR', self._unzip_path])
       if self.ShouldUnzipArchive():
         raise exceptions.ArchiveError(
             "Expected path '%s' was not extracted from archive '%s'." %
