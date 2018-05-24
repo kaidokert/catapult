@@ -577,25 +577,6 @@ class AndroidPlatformBackend(
     self._device.RunShellCommand(
         ['sh', self._device_copy_script, source, dest], check_return=True)
 
-  def RemoveProfile(self, package, ignore_list):
-    """Delete application profile on device.
-
-    Args:
-      package: The full package name string of the application for which the
-        profile is to be deleted.
-      ignore_list: List of files to keep.
-    """
-    profile_dir = self.GetProfileDir(package)
-    if not self._device.PathExists(profile_dir):
-      return
-    files = [
-        posixpath.join(profile_dir, f)
-        for f in self._device.ListDirectory(profile_dir, as_root=True)
-        if f not in ignore_list]
-    if not files:
-      return
-    self._device.RemovePath(files, force=True, recursive=True, as_root=True)
-
   def GetProfileDir(self, package):
     """Returns the on-device location where the application profile is stored
     based on Android convention.
