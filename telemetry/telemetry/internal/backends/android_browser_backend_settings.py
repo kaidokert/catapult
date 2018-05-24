@@ -51,11 +51,6 @@ class AndroidBrowserBackendSettings(_BackendSettingsTuple):
     return '%s (%s)' % (self.browser_type, self.package)
 
   @property
-  def profile_ignore_list(self):
-    # Don't delete lib, since it is created by the installer.
-    return ('lib', )
-
-  @property
   def requires_embedder(self):
     return self.embedder_apk_name is not None
 

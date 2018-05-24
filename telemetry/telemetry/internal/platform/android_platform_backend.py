@@ -559,14 +559,15 @@ class AndroidPlatformBackend(
       device_paths.extend(posixpath.join(device_root, n) for n in files + dirs)
 
     owner_group = '%s.%s' % (uid, uid)
-    self._device.ChangeOwner(owner_group, device_paths)
+    if len(device_paths) > 0:
+      self._device.ChangeOwner(owner_group, device_paths)
 
-    # Not having the correct SELinux security context can prevent Chrome from
-    # loading files even though the mode/group/owner combination should allow
-    # it.
-    security_context = self._device.GetSecurityContextForPackage(package)
-    self._device.ChangeSecurityContext(security_context, profile_dir,
-                                       recursive=True)
+      # Not having the correct SELinux security context can prevent Chrome from
+      # loading files even though the mode/group/owner combination should allow
+      # it.
+      security_context = self._device.GetSecurityContextForPackage(package)
+      self._device.ChangeSecurityContext(security_context, profile_dir,
+                                         recursive=True)
 
   def _EfficientDeviceDirectoryCopy(self, source, dest):
     if not self._device_copy_script:
@@ -576,25 +577,6 @@ class AndroidPlatformBackend(
       self._device_copy_script = _DEVICE_COPY_SCRIPT_LOCATION
     self._device.RunShellCommand(
         ['sh', self._device_copy_script, source, dest], check_return=True)
-
-  def RemoveProfile(self, package, ignore_list):
-    """Delete application profile on device.
-
-    Args:
-      package: The full package name string of the application for which the
-        profile is to be deleted.
-      ignore_list: List of files to keep.
-    """
-    profile_dir = self.GetProfileDir(package)
-    if not self._device.PathExists(profile_dir):
-      return
-    files = [
-        posixpath.join(profile_dir, f)
-        for f in self._device.ListDirectory(profile_dir, as_root=True)
-        if f not in ignore_list]
-    if not files:
-      return
-    self._device.RemovePath(files, force=True, recursive=True, as_root=True)
 
   def GetProfileDir(self, package):
     """Returns the on-device location where the application profile is stored
