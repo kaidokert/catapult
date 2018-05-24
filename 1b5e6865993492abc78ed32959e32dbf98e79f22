@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "dbf655cb_1e46a9c9",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 2944,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-05-24T14:10:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2aa8c6f_48427f46",
+      "revId": "1b5e6865993492abc78ed32959e32dbf98e79f22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7422627a_7a8dc752",
         "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
         "patchSetId": 8
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "0a6484ed_c2fcb8f9",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 553,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-05-24T14:10:33Z",
+      "side": 1,
+      "message": "Ah yep, done.",
+      "parentUuid": "7422627a_7a8dc752",
+      "revId": "1b5e6865993492abc78ed32959e32dbf98e79f22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f80b046b_52869cbc",
         "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
         "patchSetId": 8
@@ -50,6 +86,24 @@
       "revId": "1b5e6865993492abc78ed32959e32dbf98e79f22",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bae004f8_fd8e8bf0",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-05-24T14:10:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f80b046b_52869cbc",
+      "revId": "1b5e6865993492abc78ed32959e32dbf98e79f22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
