@@ -16,6 +16,24 @@
       "revId": "5e3d8fbd366f5ccc023e45e0be342c60e2b1eef3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed3b6f54_0c464560",
+        "filename": "common/node_runner/node_runner/minify",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-05-24T21:21:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3a65b60_5a85adf7",
+      "revId": "5e3d8fbd366f5ccc023e45e0be342c60e2b1eef3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
