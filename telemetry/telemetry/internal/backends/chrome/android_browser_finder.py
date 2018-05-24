@@ -6,10 +6,13 @@
 
 import logging
 import os
+import shutil
 import subprocess
 import sys
+import tempfile
 
 from py_utils import dependency_util
+from py_utils import file_util
 from devil import base_error
 from devil.android import apk_helper
 from devil.android import flag_changer
@@ -124,15 +127,25 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
   def _SetupProfile(self):
     if self._browser_options.dont_override_profile:
       return
+
+    # Set up the profile before copying it over to the device. This will either
+    # be a new temp directory, or the profile_dir from BrowserOptions.
+    temp_profile = tempfile.mkdtemp()
+    profile_path = temp_profile
     if self._browser_options.profile_dir:
-      # Push profile_dir path on the host to the device.
-      self._platform_backend.PushProfile(
-          self._backend_settings.package,
-          self._browser_options.profile_dir)
-    else:
-      self._platform_backend.RemoveProfile(
-          self._backend_settings.package,
-          self._backend_settings.profile_ignore_list)
+      profile_path = self._browser_options.profile_dir
+    assert os.path.exists(profile_path)
+
+    # Add files from |profile_files_to_copy| into the host profile directory,
+    # before copying it to the device. Don't copy files if they already exist.
+    for source, dest in self._browser_options.profile_files_to_copy:
+      full_dest_path = os.path.join(profile_path, dest)
+      if not os.path.exists(full_dest_path):
+        file_util.CopyFileWithIntermediateDirectories(source, full_dest_path)
+
+    self._platform_backend.PushProfile(
+        self._backend_settings.package, profile_path)
+    shutil.rmtree(temp_profile)
 
   def SetUpEnvironment(self, browser_options):
     super(PossibleAndroidBrowser, self).SetUpEnvironment(browser_options)
