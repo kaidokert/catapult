@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "25013ddb_53ea847e",
+        "filename": "common/py_utils/py_utils/chrome_binaries.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1002481
+      },
+      "writtenOn": "2018-05-24T05:50:35Z",
+      "side": 1,
+      "message": "This took me a long time debugging what failed the bot :(",
+      "revId": "fcbe360512b49f81116a96e3a9ecae346336e506",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
