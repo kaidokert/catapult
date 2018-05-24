@@ -2938,6 +2938,7 @@ class DeviceUtils(object):
         string in the form user[.group] where the group is option.
       paths: Paths to change ownership of.
     """
+    assert len(paths) > 0
     self.RunShellCommand(['chown', owner_group] + paths, check_return=True)
 
   @decorators.WithTimeoutAndRetriesFromInstance()
