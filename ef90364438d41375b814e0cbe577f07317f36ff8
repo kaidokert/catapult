@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e558fc22_7731b4f7",
+        "filename": "tracing/tracing/extras/chrome/cc/picture.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-05-25T21:15:12Z",
+      "side": 1,
+      "message": "Please use a const instead of copy-pasting the string.",
+      "revId": "ef90364438d41375b814e0cbe577f07317f36ff8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f61f4160_f24fca2b",
+        "filename": "tracing/tracing/ui/extras/chrome/cc/layer_view.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-05-25T21:15:12Z",
+      "side": 1,
+      "message": "Please split each condition to a separate line for readability.",
+      "revId": "ef90364438d41375b814e0cbe577f07317f36ff8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
