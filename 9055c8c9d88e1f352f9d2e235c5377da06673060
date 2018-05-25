@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ec2f6be8_c585b79d",
+        "filename": "common/py_utils/py_utils/file_util.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-05-25T21:01:06Z",
+      "side": 1,
+      "message": "nits: add another blank line here",
+      "revId": "9055c8c9d88e1f352f9d2e235c5377da06673060",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9948a4b4_e6b1e047",
+        "filename": "common/py_utils/py_utils/file_util_unittest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-05-25T21:01:06Z",
+      "side": 1,
+      "message": "remove debug print?",
+      "revId": "9055c8c9d88e1f352f9d2e235c5377da06673060",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "144efcf0_5ddf24ee",
+        "filename": "common/py_utils/py_utils/file_util_unittest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-05-25T21:01:06Z",
+      "side": 1,
+      "message": "you don\u0027t need this. I also think this should be removed for consistency with other unittest files",
+      "revId": "9055c8c9d88e1f352f9d2e235c5377da06673060",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
