@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f22600e6_6087c88f",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-05-25T21:08:15Z",
+      "side": 0,
+      "message": "can you also add test to ensure that the profile is empty in the default case profile_dir is set to None?",
+      "revId": "c785d94f10500ef2842bf5cdf14585487b1c13e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
