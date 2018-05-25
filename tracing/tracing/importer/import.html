@@ -195,7 +195,10 @@ tr.exportTo('tr.importer', function() {
       addStageForEachImporter('Importing clock sync markers',
           importer => importer.importClockSyncMarkers());
 
-      addStageForEachImporter('Importing', importer => importer.importEvents());
+      addStageForEachImporter('Importing', importer => {
+        importer.importEvents();
+        this.model_.autoCloseOpenSlices();
+      });
 
       // Run the cusomizeModelCallback if needed.
       if (this.importOptions_.customizeModelCallback) {
