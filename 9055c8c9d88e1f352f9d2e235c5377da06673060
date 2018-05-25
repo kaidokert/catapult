@@ -50,6 +50,23 @@
       "revId": "9055c8c9d88e1f352f9d2e235c5377da06673060",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66da6a54_40f7525a",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-05-25T21:03:03Z",
+      "side": 1,
+      "message": "Would be great to also add a test that assert that the new profile is always created in /sdcard/_default_profile",
+      "revId": "9055c8c9d88e1f352f9d2e235c5377da06673060",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
