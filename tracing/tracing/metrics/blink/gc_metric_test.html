@@ -47,9 +47,9 @@ tr.b.unittest.testSuite(function() {
 
   test('topEvents', function() {
     const events = {
-      'BlinkGCMarking': 'blink-gc-marking',
-      'ThreadState::completeSweep': 'blink-gc-complete-sweep',
-      'ThreadState::performIdleLazySweep': 'blink-gc-idle-lazy-sweep'
+      'BlinkGC.AtomicPhaseMarking': 'blink-gc-marking',
+      'BlinkGC.CompleteSweep': 'blink-gc-complete-sweep',
+      'BlinkGC.LazySweepInIdle': 'blink-gc-idle-lazy-sweep'
     };
     for (const [timelineName, telemetryName] of Object.entries(events)) {
       const slices = [
