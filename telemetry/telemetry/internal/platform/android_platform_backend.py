@@ -559,14 +559,15 @@ class AndroidPlatformBackend(
       device_paths.extend(posixpath.join(device_root, n) for n in files + dirs)
 
     owner_group = '%s.%s' % (uid, uid)
-    self._device.ChangeOwner(owner_group, device_paths)
+    if len(device_paths) > 0:
+      self._device.ChangeOwner(owner_group, device_paths)
 
-    # Not having the correct SELinux security context can prevent Chrome from
-    # loading files even though the mode/group/owner combination should allow
-    # it.
-    security_context = self._device.GetSecurityContextForPackage(package)
-    self._device.ChangeSecurityContext(security_context, profile_dir,
-                                       recursive=True)
+      # Not having the correct SELinux security context can prevent Chrome from
+      # loading files even though the mode/group/owner combination should allow
+      # it.
+      security_context = self._device.GetSecurityContextForPackage(package)
+      self._device.ChangeSecurityContext(security_context, profile_dir,
+                                         recursive=True)
 
   def _EfficientDeviceDirectoryCopy(self, source, dest):
     if not self._device_copy_script:
