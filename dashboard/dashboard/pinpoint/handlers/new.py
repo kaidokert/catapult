@@ -45,6 +45,7 @@ def _CreateJob(request):
   changes = _ValidateChanges(arguments)
   bug_id = _ValidateBugId(arguments.get('bug_id'))
   comparison_mode = _ValidateComparisonMode(arguments.get('comparison_mode'))
+  patch_url = arguments.get('patch')
   pin = _ValidatePin(arguments.get('pin'))
   tags = _ValidateTags(arguments.get('tags'))
   user = _ValidateUser(arguments.get('user'))
@@ -52,7 +53,8 @@ def _CreateJob(request):
   # Create job.
   return job_module.Job.New(
       quests, changes, arguments=original_arguments, bug_id=bug_id,
-      comparison_mode=comparison_mode, pin=pin, tags=tags, user=user)
+      comparison_mode=comparison_mode, patch_url=patch_url, pin=pin, tags=tags,
+      user=user)
 
 
 def _ArgumentsWithConfiguration(original_arguments):

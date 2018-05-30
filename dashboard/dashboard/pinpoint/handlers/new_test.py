@@ -145,7 +145,7 @@ class NewTest(_NewTest):
 
   @mock.patch('dashboard.pinpoint.models.change.patch.FromDict')
   def testWithPatch(self, mock_patch):
-    mock_patch.return_value = None
+    mock_patch.return_value = ('https://lalala', '123')
     request = dict(_BASE_REQUEST)
     request['patch'] = 'https://lalala/c/foo/bar/+/123'
 

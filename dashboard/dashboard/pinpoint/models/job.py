@@ -15,7 +15,9 @@ from google.appengine.runtime import apiproxy_errors
 
 from dashboard.common import utils
 from dashboard.pinpoint.models import job_state
+from dashboard.pinpoint.models.change import patch
 from dashboard.pinpoint.models import results2
+from dashboard.services import gerrit_service
 from dashboard.services import issue_tracker_service
 
 
@@ -71,13 +73,18 @@ class Job(ndb.Model):
   # Email of the job creator.
   user = ndb.StringProperty()
 
+  # For perf try jobs, the server url and change id of the patch being applied.
+  # This is used to update the patch upon completion.
+  patch_server = ndb.StringProperty()
+  patch_change_id = ndb.StringProperty()
+
   state = ndb.PickleProperty(required=True, compressed=True)
 
   tags = ndb.JsonProperty()
 
   @classmethod
   def New(cls, quests, changes, arguments=None, bug_id=None,
-          comparison_mode=None, pin=None, tags=None, user=None):
+          comparison_mode=None, patch_url=None, pin=None, tags=None, user=None):
     """Creates a new Job, adds Changes to it, and puts it in the Datstore.
 
     Args:
@@ -88,6 +95,8 @@ class Job(ndb.Model):
       comparison_mode: Either 'functional' or 'performance', which the Job uses
           to figure out whether to perform a functional or performance bisect.
           If None, the Job will not automatically add any Attempts or Changes.
+      patch_url: The url of the patch to be applied to the last Change to run
+          on. Only present for try jobs.
       pin: A Change (Commits + Patch) to apply to every Change in this Job.
       tags: A dict of key-value pairs used to filter the Jobs listings.
       user: The email of the Job creator.
@@ -96,14 +105,24 @@ class Job(ndb.Model):
       A Job object.
     """
     state = job_state.JobState(quests, comparison_mode=comparison_mode, pin=pin)
+    (patch_server, patch_change_id) = cls._GetPatchServerAndChangeId(patch_url)
     job = cls(state=state, arguments=arguments or {},
-              bug_id=bug_id, tags=tags, user=user)
+              bug_id=bug_id, patch_change_id=patch_change_id,
+              patch_server=patch_server, tags=tags, user=user)
 
     for c in changes:
       job.AddChange(c)
 
     job.put()
     return job
+
+  @classmethod
+  def _GetPatchServerAndChangeId(cls, patch_url):
+    """Parses patch url and returns (server, change_id)."""
+    if patch_url:
+      patch_details = patch.FromDict(patch_url)
+      return (patch_details[0], patch_details[1])
+    return None, None
 
   @property
   def job_id(self):
@@ -153,6 +172,12 @@ class Job(ndb.Model):
       title = "<b>%s Job complete. See results below.</b>" % _ROUND_PUSHPIN
       self._PostBugComment('\n'.join((title, self.url)))
       return
+
+    if self.patch_server and self.patch_change_id:
+      gerrit_service.PostChangeComment(
+          self.patch_server,
+          self.patch_change_id,
+          '%s Job complete.\n\nSee results at: %s' % (_ROUND_PUSHPIN, self.url))
 
     # There is a comparison metric.
     differences = tuple(self.state.Differences())

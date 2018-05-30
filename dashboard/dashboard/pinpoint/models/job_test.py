@@ -62,6 +62,11 @@ https://codereview.com/c/672011/2f0d5c7
 Understanding performance regressions:
   http://g.co/ChromePerformanceRegressions""")
 
+_COMMENT_CODE_REVIEW_WITH_PATCH = (
+    u"""\U0001f4cd Job complete.
+
+See results at: https://testbed.example.com/job/1""")
+
 
 _COMMENT_COMPLETED_TWO_DIFFERENCES = (
     u"""<b>\U0001f4cd Found significant differences after each of 2 commits.</b>
@@ -157,11 +162,14 @@ class BugCommentTest(testing_common.TestCase):
         status='Assigned', owner='author@chromium.org',
         cc_list=['author@chromium.org'])
 
+  @mock.patch('dashboard.services.gerrit_service.PostChangeComment')
   @mock.patch('dashboard.pinpoint.models.change.patch.GerritPatch.AsDict')
+  @mock.patch('dashboard.pinpoint.models.change.patch.GerritPatch.FromDict')
   @mock.patch.object(job.job_state.JobState, 'Differences')
-  def testCompletedWithPatch(self, differences, patch_as_dict):
+  def testCompletedWithPatch(
+      self, differences, patch_from_dict, patch_as_dict, post_change_comment):
     commits = (change.Commit('chromium', 'git_hash'),)
-    patch = change.GerritPatch('https://codereview.com', 672011, '2f0d5c7')
+    patch = change.GerritPatch('https://codereview.com', '672011', '2f0d5c7')
     c = change.Change(commits, patch)
     differences.return_value = [(1, c)]
     patch_as_dict.return_value = {
@@ -169,16 +177,21 @@ class BugCommentTest(testing_common.TestCase):
         'subject': 'Subject.',
         'url': 'https://codereview.com/c/672011/2f0d5c7',
     }
+    patch_from_dict.return_value = (
+        'https://codereview.com', '672011', '2f0d5c7')
 
     self.get_issue.return_value = {'status': 'Untriaged'}
 
-    j = job.Job.New((), (), bug_id=123456, comparison_mode='performance')
+    j = job.Job.New((), (), bug_id=123456, comparison_mode='performance',
+                    patch_url=patch.AsDict()['url'])
     j.Run()
 
     self.add_bug_comment.assert_called_once_with(
         123456, _COMMENT_COMPLETED_WITH_PATCH,
         status='Assigned', owner='author@chromium.org',
         cc_list=['author@chromium.org'])
+    post_change_comment.assert_called_once_with(
+        'https://codereview.com', '672011', _COMMENT_CODE_REVIEW_WITH_PATCH)
 
   @mock.patch('dashboard.pinpoint.models.change.patch.GerritPatch.AsDict')
   @mock.patch.object(job.job_state.JobState, 'Differences')
