@@ -2938,18 +2938,17 @@ class DeviceUtils(object):
         string in the form user[.group] where the group is option.
       paths: Paths to change ownership of.
     """
+    assert len(paths) > 0
     self.RunShellCommand(['chown', owner_group] + paths, check_return=True)
 
   @decorators.WithTimeoutAndRetriesFromInstance()
-  def ChangeSecurityContext(self, security_context, path, recursive=False,
-                            timeout=None, retries=None):
-    """Changes a file's SELinux security context.
+  def ChangeSecurityContext(self, security_context, paths, timeout=None,
+                            retries=None):
+    """Changes the SELinux security context for files.
 
     Args:
       security_context: The new security context as a string
-      path: Path to change the security context of.
-      recursive: Whether to recursively change the security contexts.
+      paths: Paths to change the security context of.
     """
-    flags = ['-R'] if recursive else []
-    command = ['chcon'] + flags + [security_context, path]
+    command = ['chcon', security_context] + paths
     self.RunShellCommand(command, as_root=True, check_return=True)
