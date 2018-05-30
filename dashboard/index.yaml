@@ -153,6 +153,26 @@ indexes:
   - name: timestamp
     direction: desc
 
+# Index over all Anomaly properties to replace all partial indexes above.
+# See Anomaly.GetAll()
+- kind: Anomaly
+  properties:
+  - name: internal_only
+  - name: bug_id
+  - name: sheriff
+  - name: is_improvement
+  - name: recovered
+  - name: test
+  - name: master_name
+  - name: bot_name
+  - name: benchmark_name
+  - name: start_revision
+    direction: desc
+  - name: end_revision
+    direction: desc
+  - name: timestamp
+    direction: desc
+
 # Used to query for "My Jobs".
 - kind: Job
   properties:
