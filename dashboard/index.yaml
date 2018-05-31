@@ -18,138 +18,111 @@
 
 indexes:
 
-# Used in main.py when fetching top improvements/regressions in past N days.
-- kind: Anomaly
-  properties:
-  - name: sheriff
-  - name: timestamp
-- kind: Anomaly
-  properties:
-  - name: internal_only
-  - name: sheriff
-  - name: timestamp
-
-# Used in alerts.py for fetching recent un-triaged regressions for one sheriff.
-- kind: Anomaly
-  properties:
-  - name: bug_id
-  - name: is_improvement
-  - name: recovered
-  - name: sheriff
-  - name: timestamp
-    direction: desc
-- kind: Anomaly
-  properties:
-  - name: internal_only
-  - name: bug_id
-  - name: is_improvement
-  - name: recovered
-  - name: sheriff
-  - name: timestamp
-    direction: desc
-
-# Used in alerts.py for fetching recent un-triaged anomalies, both regressions
-# and improvements, for one sheriff, i.e. when the improvements button is on.
-- kind: Anomaly
-  properties:
-  - name: bug_id
-  - name: recovered
-  - name: sheriff
-  - name: timestamp
-    direction: desc
-- kind: Anomaly
-  properties:
-  - name: internal_only
-  - name: bug_id
-  - name: recovered
-  - name: sheriff
-  - name: timestamp
-    direction: desc
-
-# Used in alerts.py for fetching recent regressions for one sheriff, regardless
-# of triaged vs un-triaged status, i.e. when the triaged button is on.
-- kind: Anomaly
-  properties:
-  - name: is_improvement
-  - name: sheriff
-  - name: timestamp
-    direction: desc
-- kind: Anomaly
-  properties:
-  - name: internal_only
-  - name: is_improvement
-  - name: sheriff
-  - name: timestamp
-    direction: desc
-
-# Used in alerts.py for fetching recent anomalies for one sheriff, including
-# improvements and triaged, i.e. both improvements and triaged buttons are on.
-- kind: Anomaly
-  properties:
-  - name: sheriff
-  - name: timestamp
-    direction: desc
-- kind: Anomaly
-  properties:
-  - name: internal_only
-  - name: sheriff
-  - name: timestamp
-    direction: desc
-
-# Used in group_report.py when querying for anomalies around a revision.
-# No composite index is required without internal_only because then the
-# query uses only one (indexed) property, end_revision.
+# Use the zigzag merge join algorithm:
+# https://cloud.google.com/appengine/articles/indexselection
+# This set of indexes is the cross product of (internal_only, bug_id, sheriff,
+# is_improvement, recovered, test, master_name, bot_name, benchmark_name,
+# -start_revision) * (-end_revision, -timestamp).
 - kind: Anomaly
   properties:
   - name: internal_only
   - name: end_revision
-
-# Used in speed_releasing.py to find anomalies that match a specific master
-# and benchmark and are between a specified range (usually a milestone).
-- kind: Anomaly
-  properties:
-  - name: benchmark_name
-  - name: master_name
-  - name: end_revision
+    direction: desc
 - kind: Anomaly
   properties:
   - name: internal_only
-  - name: benchmark_name
-  - name: master_name
+  - name: timestamp
+    direction: desc
+- kind: Anomaly
+  properties:
+  - name: bug_id
   - name: end_revision
-
-# Used in benchmark_health_report for querying benchmark by name
-# and master.
+    direction: desc
 - kind: Anomaly
   properties:
-  - name: benchmark_name
-  - name: is_improvement
-  - name: master_name
+  - name: bug_id
   - name: timestamp
     direction: desc
-
 - kind: Anomaly
   properties:
-  - name: benchmark_name
-  - name: internal_only
-  - name: is_improvement
-  - name: master_name
-  - name: timestamp
+  - name: sheriff
+  - name: end_revision
     direction: desc
-
-# Used in API to query for named benchmarks.
 - kind: Anomaly
   properties:
-  - name: benchmark_name
   - name: sheriff
   - name: timestamp
     direction: desc
-
+- kind: Anomaly
+  properties:
+  - name: is_improvement
+  - name: end_revision
+    direction: desc
+- kind: Anomaly
+  properties:
+  - name: is_improvement
+  - name: timestamp
+    direction: desc
+- kind: Anomaly
+  properties:
+  - name: recovered
+  - name: end_revision
+    direction: desc
+- kind: Anomaly
+  properties:
+  - name: recovered
+  - name: timestamp
+    direction: desc
+- kind: Anomaly
+  properties:
+  - name: test
+  - name: end_revision
+    direction: desc
+- kind: Anomaly
+  properties:
+  - name: test
+  - name: timestamp
+    direction: desc
+- kind: Anomaly
+  properties:
+  - name: master_name
+  - name: end_revision
+    direction: desc
+- kind: Anomaly
+  properties:
+  - name: master_name
+  - name: timestamp
+    direction: desc
+- kind: Anomaly
+  properties:
+  - name: bot_name
+  - name: end_revision
+    direction: desc
+- kind: Anomaly
+  properties:
+  - name: bot_name
+  - name: timestamp
+    direction: desc
 - kind: Anomaly
   properties:
   - name: benchmark_name
-  - name: internal_only
-  - name: sheriff
+  - name: end_revision
+    direction: desc
+- kind: Anomaly
+  properties:
+  - name: benchmark_name
+  - name: timestamp
+    direction: desc
+- kind: Anomaly
+  properties:
+  - name: start_revision
+    direction: desc
+  - name: end_revision
+    direction: desc
+- kind: Anomaly
+  properties:
+  - name: start_revision
+    direction: desc
   - name: timestamp
     direction: desc
 
