@@ -11,14 +11,6 @@ import sys
 from telemetry.core import exceptions
 
 
-class DevToolsClientConnectionError(exceptions.Error):
-  pass
-
-
-class DevToolsClientUrlError(DevToolsClientConnectionError):
-  pass
-
-
 class DevToolsHttp(object):
   """A helper class to send and parse DevTools HTTP requests.
 
@@ -42,7 +34,7 @@ class DevToolsHttp(object):
       host_port = '127.0.0.1:%i' % self._devtools_port
       self._conn = httplib.HTTPConnection(host_port, timeout=timeout)
     except (socket.error, httplib.HTTPException) as e:
-      raise DevToolsClientConnectionError, (e,), sys.exc_info()[2]
+      raise exceptions.DevToolsClientConnectionError, (e,), sys.exc_info()[2]
 
   def Disconnect(self):
     """Closes the HTTP connection."""
@@ -52,7 +44,7 @@ class DevToolsHttp(object):
     try:
       self._conn.close()
     except (socket.error, httplib.HTTPException) as e:
-      raise DevToolsClientConnectionError, (e,), sys.exc_info()[2]
+      raise exceptions.DevToolsClientConnectionError, (e,), sys.exc_info()[2]
     finally:
       self._conn = None
 
@@ -67,7 +59,7 @@ class DevToolsHttp(object):
       timeout: Timeout defaults to 30 seconds.
 
     Raises:
-      DevToolsClientConnectionError: If the connection fails.
+      exceptions.DevToolsClientConnectionError: If the connection fails.
     """
     assert timeout
 
@@ -90,8 +82,8 @@ class DevToolsHttp(object):
     except (socket.error, httplib.HTTPException) as e:
       self.Disconnect()
       if isinstance(e, socket.error) and e.errno == errno.ECONNREFUSED:
-        raise DevToolsClientUrlError, (e,), sys.exc_info()[2]
-      raise DevToolsClientConnectionError, (e,), sys.exc_info()[2]
+        raise exceptions.DevToolsClientUrlError, (e,), sys.exc_info()[2]
+      raise exceptions.DevToolsClientConnectionError, (e,), sys.exc_info()[2]
 
   def RequestJson(self, path, timeout=30):
     """Sends a request and parse the response as JSON.
@@ -101,7 +93,7 @@ class DevToolsHttp(object):
       timeout: Timeout defaults to 30 seconds.
 
     Raises:
-      DevToolsClientConnectionError: If the connection fails.
+      exceptions.DevToolsClientConnectionError: If the connection fails.
       ValueError: If the response is not a valid JSON.
     """
     return json.loads(self.Request(path, timeout))

@@ -28,7 +28,7 @@ class TabListBackend(inspector_backend_list.InspectorBackendList):
       A Tab object.
 
     Raises:
-      devtools_http.DevToolsClientConnectionError
+      exceptions.DevToolsClientConnectionError
     """
     if not self._browser_backend.supports_tab_control:
       raise NotImplementedError("Browser doesn't support tab control.")
@@ -46,7 +46,7 @@ class TabListBackend(inspector_backend_list.InspectorBackendList):
     """Closes the tab with the given debugger_url.
 
     Raises:
-      devtools_http.DevToolsClientConnectionError
+      exceptions.DevToolsClientConnectionError
       devtools_client_backend.TabNotFoundError
       TabUnexpectedResponseException
       py_utils.TimeoutException
@@ -70,7 +70,7 @@ class TabListBackend(inspector_backend_list.InspectorBackendList):
     """Activates the tab with the given debugger_url.
 
     Raises:
-      devtools_http.DevToolsClientConnectionError
+      exceptions.DevToolsClientConnectionError
       devtools_client_backend.TabNotFoundError
       TabUnexpectedResponseException
     """

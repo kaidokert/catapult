@@ -11,7 +11,6 @@ from py_trace_event import trace_event
 
 from telemetry.core import exceptions
 from telemetry import decorators
-from telemetry.internal.backends.chrome_inspector import devtools_http
 from telemetry.internal.backends.chrome_inspector import inspector_console
 from telemetry.internal.backends.chrome_inspector import inspector_memory
 from telemetry.internal.backends.chrome_inspector import inspector_page
@@ -101,7 +100,7 @@ class InspectorBackend(object):
     """Returns the URL of the tab, as reported by devtools.
 
     Raises:
-      devtools_http.DevToolsClientConnectionError
+      exceptions.DevToolsClientConnectionError
     """
     return self._devtools_client.GetUrl(self.id)
 
@@ -123,7 +122,7 @@ class InspectorBackend(object):
     """Returns a list of InspectorBackend instances associated with webviews.
 
     Raises:
-      devtools_http.DevToolsClientConnectionError
+      exceptions.DevToolsClientConnectionError
     """
     inspector_backends = []
     devtools_context_map = self._devtools_client.GetUpdatedInspectableContexts()
@@ -137,7 +136,7 @@ class InspectorBackend(object):
     """Whether the tab is inspectable, as reported by devtools."""
     try:
       return self._devtools_client.IsInspectable(self.id)
-    except devtools_http.DevToolsClientConnectionError:
+    except exceptions.DevToolsClientConnectionError:
       return False
 
   # Public methods implemented in JavaScript.

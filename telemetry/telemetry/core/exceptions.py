@@ -192,3 +192,10 @@ class PackageDetectionError(Error):
 
 class AndroidDeviceParsingError(Error):
   """Represents an error when parsing output from an android device."""
+
+class DevToolsClientConnectionError(Error):
+  """Represents a DevTools client connection error."""
+
+class DevToolsClientUrlError(DevToolsClientConnectionError):
+  """Represents a DevTools client url error."""
+

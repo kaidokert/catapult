@@ -141,7 +141,7 @@ class DevToolsClientConfig(object):
 def _IsDevToolsAgentAvailable(devtools_http_instance):
   try:
     devtools_http_instance.Request('')
-  except devtools_http.DevToolsClientConnectionError as exc:
+  except exceptions.DevToolsClientConnectionError as exc:
     logging.info('Devtools client not yet ready: %s', exc)
     return False
   else:
@@ -317,7 +317,7 @@ class DevToolsClientBackend(object):
       }
 
     Raises:
-      devtools_http.DevToolsClientConnectionError
+      exceptions.DevToolsClientConnectionError
     """
     return self._devtools_http.Request('new', timeout=timeout)
 
@@ -325,13 +325,13 @@ class DevToolsClientBackend(object):
     """Closes the tab with the given id.
 
     Raises:
-      devtools_http.DevToolsClientConnectionError
+      exceptions.DevToolsClientConnectionError
       TabNotFoundError
     """
     try:
       return self._devtools_http.Request('close/%s' % tab_id,
                                          timeout=timeout)
-    except devtools_http.DevToolsClientUrlError:
+    except exceptions.DevToolsClientUrlError:
       error = TabNotFoundError(
           'Unable to close tab, tab id not found: %s' % tab_id)
       raise error, None, sys.exc_info()[2]
@@ -340,13 +340,13 @@ class DevToolsClientBackend(object):
     """Activates the tab with the given id.
 
     Raises:
-      devtools_http.DevToolsClientConnectionError
+      exceptions.DevToolsClientConnectionError
       TabNotFoundError
     """
     try:
       return self._devtools_http.Request('activate/%s' % tab_id,
                                          timeout=timeout)
-    except devtools_http.DevToolsClientUrlError:
+    except exceptions.DevToolsClientUrlError:
       error = TabNotFoundError(
           'Unable to activate tab, tab id not found: %s' % tab_id)
       raise error, None, sys.exc_info()[2]
@@ -355,7 +355,7 @@ class DevToolsClientBackend(object):
     """Returns the URL of the tab with |tab_id|, as reported by devtools.
 
     Raises:
-      devtools_http.DevToolsClientConnectionError
+      exceptions.DevToolsClientConnectionError
     """
     for c in self._ListInspectableContexts():
       if c['id'] == tab_id:
@@ -366,7 +366,7 @@ class DevToolsClientBackend(object):
     """Whether the tab with |tab_id| is inspectable, as reported by devtools.
 
     Raises:
-      devtools_http.DevToolsClientConnectionError
+      exceptions.DevToolsClientConnectionError
     """
     contexts = self._ListInspectableContexts()
     return tab_id in [c['id'] for c in contexts]

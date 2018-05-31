@@ -4,16 +4,17 @@
 
 import unittest
 
+from telemetry.core import exceptions
 from telemetry.internal.backends.chrome_inspector import devtools_http
 
 
 class DevToolsHttpTest(unittest.TestCase):
 
   def testUrlError(self):
-    with self.assertRaises(devtools_http.DevToolsClientUrlError):
+    with self.assertRaises(exceptions.DevToolsClientUrlError):
       devtools_http.DevToolsHttp(1000).Request('')
 
   def testSocketError(self):
-    with self.assertRaises(devtools_http.DevToolsClientConnectionError) as e:
+    with self.assertRaises(exceptions.DevToolsClientConnectionError) as e:
       devtools_http.DevToolsHttp(1000).Request('')
-      self.assertnotisinstance(e, devtools_http.devtoolsclienturlerror)
+      self.assertnotisinstance(e, exceptions.DevToolsClientUrlError)

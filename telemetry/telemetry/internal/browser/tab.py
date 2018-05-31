@@ -40,7 +40,7 @@ class Tab(web_contents.WebContents):
     """Returns the URL of the tab, as reported by devtools.
 
     Raises:
-      devtools_http.DevToolsClientConnectionError
+      exceptions.DevToolsClientConnectionError
     """
     return self._inspector_backend.url
 
@@ -83,7 +83,7 @@ class Tab(web_contents.WebContents):
     are included in this call.
 
     Raises:
-      devtools_http.DevToolsClientConnectionError
+      exceptions.DevToolsClientConnectionError
       devtools_client_backend.TabNotFoundError
       tab_list_backend.TabUnexpectedResponseException
     """
@@ -96,7 +96,7 @@ class Tab(web_contents.WebContents):
     Be sure to check browser.supports_tab_control.
 
     Raises:
-      devtools_http.DevToolsClientConnectionError
+      exceptions.DevToolsClientConnectionError
       devtools_client_backend.TabNotFoundError
       tab_list_backend.TabUnexpectedResponseException
       exceptions.TimeoutException
