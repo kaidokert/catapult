@@ -56,6 +56,9 @@ class InternalOnlyError(ApiAuthException):
   def __init__(self):
     super(InternalOnlyError, self).__init__('User does not have access')
 
+def GetCurrentUser():
+  return oauth.get_current_user(OAUTH_SCOPES)
+
 
 def Authorize():
   try:
