@@ -145,7 +145,7 @@ class NewTest(_NewTest):
 
   @mock.patch('dashboard.pinpoint.models.change.patch.FromDict')
   def testWithPatch(self, mock_patch):
-    mock_patch.return_value = None
+    mock_patch.return_value = ('https://lalala', '123')
     request = dict(_BASE_REQUEST)
     request['patch'] = 'https://lalala/c/foo/bar/+/123'
 
@@ -156,6 +156,9 @@ class NewTest(_NewTest):
         result['jobUrl'],
         'https://testbed.example.com/job/%s' % result['jobId'])
     mock_patch.assert_called_with(request['patch'])
+    job = job_module.JobFromId(result['jobId'])
+    self.assertEqual('123', job.gerrit_change_id)
+    self.assertEqual('https://lalala', job.gerrit_server)
 
   def testMissingTarget(self):
     request = dict(_BASE_REQUEST)
