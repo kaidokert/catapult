@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a87e6766_c4fd5c0a",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-06-01T19:10:15Z",
+      "side": 1,
+      "message": "nit: patch_details.server, patch_details.change",
+      "revId": "fe152b83c9df5d4fc8eeaccc87e03b92c566413d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
