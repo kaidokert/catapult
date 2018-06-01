@@ -122,6 +122,24 @@
     },
     {
       "key": {
+        "uuid": "29b1f436_7e98d3e8",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-06-01T18:52:29Z",
+      "side": 1,
+      "message": "Yeah, I totally went back and forth on this! Swapped.",
+      "parentUuid": "5bd57013_ccb5b97d",
+      "revId": "e7da5827b95e7874b9bee7c14eef9bd0002e129b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e91c5e19_dc9efaa4",
         "filename": "dashboard/dashboard/pinpoint/models/job.py",
         "patchSetId": 2
@@ -136,6 +154,24 @@
       "revId": "e7da5827b95e7874b9bee7c14eef9bd0002e129b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81380857_bc41662d",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-06-01T18:52:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e91c5e19_dc9efaa4",
+      "revId": "e7da5827b95e7874b9bee7c14eef9bd0002e129b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
