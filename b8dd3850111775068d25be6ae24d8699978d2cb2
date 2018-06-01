@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a812aa1c_bec327a4",
+        "filename": "tracing/tracing/importer/import.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-06-01T21:57:15Z",
+      "side": 1,
+      "message": "Can we rename this to \u0027Creating sub-slices...\u0027...",
+      "revId": "b8dd3850111775068d25be6ae24d8699978d2cb2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90e8aae9_9749c233",
+        "filename": "tracing/tracing/importer/import.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-06-01T21:57:15Z",
+      "side": 1,
+      "message": "...and remove this?",
+      "revId": "b8dd3850111775068d25be6ae24d8699978d2cb2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
