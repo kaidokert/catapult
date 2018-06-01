@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f1e34d4e_1c0efa41",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-06-01T19:16:09Z",
+      "side": 1,
+      "message": "Done, except for it looks like quests needs to come first or unit tests break.",
+      "parentUuid": "b1d61708_9f7f707b",
+      "revId": "e7da5827b95e7874b9bee7c14eef9bd0002e129b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3b5e8bd5_4dfbb120",
         "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2018-06-01T18:36:21Z",
       "side": 1,
       "message": "nit: not necessarily a URL, can also take a dict with the patch info.",
+      "revId": "e7da5827b95e7874b9bee7c14eef9bd0002e129b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c879004d_3955e813",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-06-01T19:16:09Z",
+      "side": 1,
+      "message": "Changed to patch_data to match FromDict() argument.",
+      "parentUuid": "3b5e8bd5_4dfbb120",
       "revId": "e7da5827b95e7874b9bee7c14eef9bd0002e129b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "a410821f_87eafbaa",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-06-01T19:16:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11bb2ed3_275f7a14",
+      "revId": "e7da5827b95e7874b9bee7c14eef9bd0002e129b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6a6abb40_32a8d62a",
         "filename": "dashboard/dashboard/pinpoint/handlers/new_test.py",
         "patchSetId": 2
@@ -67,6 +121,24 @@
       "revId": "e7da5827b95e7874b9bee7c14eef9bd0002e129b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "612256cf_2271a38a",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-06-01T19:16:09Z",
+      "side": 1,
+      "message": "Ended up needing to change this to creating a GerritPatch.",
+      "parentUuid": "6a6abb40_32a8d62a",
+      "revId": "e7da5827b95e7874b9bee7c14eef9bd0002e129b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
