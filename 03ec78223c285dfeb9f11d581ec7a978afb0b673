@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "70af5bd8_fd674b69",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-06-01T15:27:09Z",
+      "side": 1,
+      "message": "Thanks for documenting this! I think just adding on without changing the existing url parameters is pretty confusing. Two main issues:\n\n1) Three of the four other alerts queries are subsumed by the new API:\n\n* /api/alerts/bug_id/id is equivalent to /api/alerts?bug_id\u003did\n* It\u0027s not clear if /api/alerts/rev/revision is equivalent to /api/alerts?max_end_revision\u003drevison\u0026min_start_revision\u003drevision or if there\u0027s an off-by-one error in the second\n* /api/alerts/history/ is similar to alerts?min_timestamp\u003d but min_timestamp is much clearer\n\nBut there\u0027s no equivalent to /api/alerts/keys. I wonder if maybe /api/alerts/keys should be moved to /api/alert?key\u003dk (just singular, but requests can be parallelized on the client).\n\n2) The old url patterns don\u0027t have the same flexibility as the new ones. So I think if we leave this as-is, we\u0027ll end up with more feature requests that add complexity, like \"Can I have /api/alerts/bug_id/id?is_improvement\u003d0\"?\n\n\nI think the overlap here adds complexity, which leads to user confusion. We can look at the logs to see how many of these endpoints are actually being used, I think it\u0027s few enough (and most of the sources are in catapult) that we could make a change.",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 0
+      },
+      "revId": "03ec78223c285dfeb9f11d581ec7a978afb0b673",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
