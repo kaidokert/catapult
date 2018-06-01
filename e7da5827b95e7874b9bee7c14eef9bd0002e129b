@@ -2,6 +2,74 @@
   "comments": [
     {
       "key": {
+        "uuid": "b1d61708_9f7f707b",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-06-01T18:36:21Z",
+      "side": 1,
+      "message": "nit: alphabetize",
+      "revId": "e7da5827b95e7874b9bee7c14eef9bd0002e129b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b5e8bd5_4dfbb120",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-06-01T18:36:21Z",
+      "side": 1,
+      "message": "nit: not necessarily a URL, can also take a dict with the patch info.",
+      "revId": "e7da5827b95e7874b9bee7c14eef9bd0002e129b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11bb2ed3_275f7a14",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-06-01T18:36:21Z",
+      "side": 1,
+      "message": "nit: use the field names rather than indices. patch.server, patch.change",
+      "revId": "e7da5827b95e7874b9bee7c14eef9bd0002e129b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a6abb40_32a8d62a",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-06-01T18:36:21Z",
+      "side": 1,
+      "message": "style nit: no parentheses",
+      "revId": "e7da5827b95e7874b9bee7c14eef9bd0002e129b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "09224bf5_3df6dee7",
         "filename": "dashboard/dashboard/pinpoint/handlers/new_test.py",
         "patchSetId": 2
@@ -13,6 +81,58 @@
       "writtenOn": "2018-06-01T16:14:29Z",
       "side": 1,
       "message": "This is still tied together here (\u0027patch\u0027 argument -\u003e gerrit change id+server). Is that okay?",
+      "revId": "e7da5827b95e7874b9bee7c14eef9bd0002e129b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46b9495d_2dc2b3ec",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-06-01T18:36:21Z",
+      "side": 1,
+      "message": "Yeah, it\u0027s okay.",
+      "parentUuid": "09224bf5_3df6dee7",
+      "revId": "e7da5827b95e7874b9bee7c14eef9bd0002e129b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bd57013_ccb5b97d",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-06-01T18:36:21Z",
+      "side": 1,
+      "message": "nit: Would you mind swapping gerrit_server and gerrit_change_id? Usually I would say to alphabetize this, but in this case they are like a tuple where the server is the big end and the change_id is the little end.",
+      "revId": "e7da5827b95e7874b9bee7c14eef9bd0002e129b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e91c5e19_dc9efaa4",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-06-01T18:36:21Z",
+      "side": 1,
+      "message": "nit: This name is ambiguous since there are also comments at job start and job failure, and this is only for job completion with success.",
       "revId": "e7da5827b95e7874b9bee7c14eef9bd0002e129b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true

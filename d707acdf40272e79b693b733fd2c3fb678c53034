@@ -209,6 +209,24 @@
       "revId": "d707acdf40272e79b693b733fd2c3fb678c53034",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91f7a6d8_88bbb8bb",
+        "filename": "dashboard/dashboard/pinpoint/models/job_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-06-01T18:36:21Z",
+      "side": 1,
+      "message": "sgtm. What I really want is to have an API with proper, robust support for JSON objects, and pass in a list of Changes rather than a \"patch\" field for tryjobs.",
+      "parentUuid": "76d52a35_3594c60a",
+      "revId": "d707acdf40272e79b693b733fd2c3fb678c53034",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
