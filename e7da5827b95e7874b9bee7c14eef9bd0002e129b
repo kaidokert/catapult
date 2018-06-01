@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "09224bf5_3df6dee7",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-06-01T16:14:29Z",
+      "side": 1,
+      "message": "This is still tied together here (\u0027patch\u0027 argument -\u003e gerrit change id+server). Is that okay?",
+      "revId": "e7da5827b95e7874b9bee7c14eef9bd0002e129b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

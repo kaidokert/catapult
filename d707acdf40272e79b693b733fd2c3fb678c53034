@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5eb400fe_ab427c0c",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-06-01T16:14:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "802ed680_3cab17f9",
+      "revId": "d707acdf40272e79b693b733fd2c3fb678c53034",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "44f1cd61_00c51df7",
         "filename": "dashboard/dashboard/pinpoint/models/job.py",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "d707acdf40272e79b693b733fd2c3fb678c53034",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42633ddd_8c66c53d",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-06-01T16:14:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44f1cd61_00c51df7",
+      "revId": "d707acdf40272e79b693b733fd2c3fb678c53034",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "c95cf8fd_d2ce2b2e",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-06-01T16:14:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a4a5b96_6999f916",
+      "revId": "d707acdf40272e79b693b733fd2c3fb678c53034",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ca6f8ca6_f8deb1bd",
         "filename": "dashboard/dashboard/pinpoint/models/job.py",
         "patchSetId": 1
@@ -67,6 +121,24 @@
       "revId": "d707acdf40272e79b693b733fd2c3fb678c53034",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "258f4bf5_69a1605e",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-06-01T16:14:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca6f8ca6_f8deb1bd",
+      "revId": "d707acdf40272e79b693b733fd2c3fb678c53034",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "b98c3364_488843e9",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-06-01T16:14:29Z",
+      "side": 1,
+      "message": "I did this. I think we\u0027ll end up needing to refactor more when we update this to also post to the largest gerrit CL, but pushing that back until it\u0027s needed.",
+      "parentUuid": "eee3a168_fb6e612e",
+      "revId": "d707acdf40272e79b693b733fd2c3fb678c53034",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "209cbae4_cf789a6c",
         "filename": "dashboard/dashboard/pinpoint/models/job_test.py",
         "patchSetId": 1
@@ -98,6 +188,24 @@
       "writtenOn": "2018-06-01T08:02:37Z",
       "side": 1,
       "message": "If we think of the Gerrit stuff as being divested from the perf try job / patch stuff, then it would deserve a separate test case / test class. The mocking would be duplicated for now, but it\u0027ll become easier once we have some kind of global mocking solution.",
+      "revId": "d707acdf40272e79b693b733fd2c3fb678c53034",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76d52a35_3594c60a",
+        "filename": "dashboard/dashboard/pinpoint/models/job_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-06-01T16:14:29Z",
+      "side": 1,
+      "message": "Done here, but the test in /new is still intertwined. I think that\u0027s okay since for the current use case it\u0027s generated from the \u0027patch\u0027 arg, and other use cases wouldn\u0027t be tested in new_test.py.",
+      "parentUuid": "209cbae4_cf789a6c",
       "revId": "d707acdf40272e79b693b733fd2c3fb678c53034",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
