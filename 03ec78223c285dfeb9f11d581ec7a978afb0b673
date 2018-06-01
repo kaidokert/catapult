@@ -46,6 +46,30 @@
       "revId": "03ec78223c285dfeb9f11d581ec7a978afb0b673",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1de74526_d29d7451",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-06-01T19:52:17Z",
+      "side": 1,
+      "message": "It looks like soundwave just has one API usage: https://github.com/catapult-project/catapult/blob/master/experimental/soundwave/soundwave/dashboard_api.py#L170\n\nSo it should be pretty simple to update.\n\nNote that I do have another apps script that sends an email to benchmark owners using the alerts API so it\u0027d need to be updated too. Those are the only usages I know of.",
+      "parentUuid": "21399612_8372f8b6",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 0
+      },
+      "revId": "03ec78223c285dfeb9f11d581ec7a978afb0b673",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
