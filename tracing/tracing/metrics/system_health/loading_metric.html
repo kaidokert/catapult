@@ -76,6 +76,9 @@ tr.exportTo('tr.metrics.sh', function() {
       .createExponential(1, 40e3, 35)
       .addExponentialBins(80e3, 15);
 
+  const EFID_BOUNDARIES = tr.v.HistogramBinBoundaries
+    .createExponential(1, 2e3, 40);
+
   const SUMMARY_OPTIONS = {
     avg: true,
     count: false,
@@ -257,6 +260,35 @@ tr.exportTo('tr.metrics.sh', function() {
     };
   }
 
+  function decorateEFIDSampleWithDiagnostics_(rendererHelper,
+      efid, navigationStartEvent, firstContentfulPaintTime, interactiveTime,
+      url) {
+    if (efid === undefined) return undefined;
+    const navigationStartTime = navigationStartEvent.start;
+    const tasks = efid.top5Tasks.map(task => {
+      return ({
+        url,
+        probability: task.probability,
+        start: task.start,
+        duration: task.duration,
+      });
+    });
+    return {
+      value: efid.eFID,
+      diagnostics: tr.v.d.DiagnosticMap.fromObject({
+        'Navigation infos': new tr.v.d.GenericSet([{
+          url,
+          pid: rendererHelper.pid,
+          navigationStartTime,
+          firstContentfulPaintTime,
+          interactiveTime,
+          expectedFirstInputDelay: efid.eFID,
+        }]),
+        'Top Tasks': new tr.v.d.GenericSet(tasks),
+      }),
+    };
+  }
+
   function collectLoadingMetricsForRenderer(rendererHelper) {
     const frameToNavStartEvents =
         EventFinderUtils.getSortedMainThreadEventsByFrame(
@@ -285,6 +317,8 @@ tr.exportTo('tr.metrics.sh', function() {
     const firstCpuIdleSamples = [];
     const firstMeaningfulPaintSamples = [];
     const firstMeaningfulPaintCpuTimeSamples = [];
+    const efidSamples = [];
+    const longestFCPTTITaskSamples = [];
     for (const expectation of model.userModel.expectations) {
       if (!(expectation instanceof tr.model.um.LoadExpectation)) continue;
       if (tr.e.chrome.CHROME_INTERNAL_URLS.includes(expectation.url)) {
@@ -314,6 +348,16 @@ tr.exportTo('tr.metrics.sh', function() {
             expectation.fmpEvent.start,
             expectation.domContentLoadedEndEvent.start, expectation.url));
       }
+      if (expectation.expectedFirstInputDelay !== undefined) {
+        efidSamples.push(decorateEFIDSampleWithDiagnostics_(
+            rendererHelper, expectation.expectedFirstInputDelay,
+            expectation.navigationStart,
+            expectation.fcpEvent.start,
+            expectation.timeToInteractive,
+            expectation.url));
+      }
+
+      longestFCPTTITaskSamples.push({value: expectation.FCPTTILongestTaskLength});
     }
 
     return {
@@ -321,6 +365,8 @@ tr.exportTo('tr.metrics.sh', function() {
       firstMeaningfulPaintCpuTimeSamples,
       firstCpuIdleSamples,
       interactiveSamples,
+      efidSamples,
+      longestFCPTTITaskSamples
     };
   }
 
@@ -408,6 +454,19 @@ tr.exportTo('tr.metrics.sh', function() {
           description: 'Time to First CPU Idle',
           summaryOptions: SUMMARY_OPTIONS,
         });
+    const expectedFirstInputDelayHistogram = histograms.createHistogram(
+        'expectedFirstInputDelay', timeDurationInMs_smallerIsBetter, [], {
+          binBoundaries: EFID_BOUNDARIES,
+          description: 'Expected First Input Delay',
+          summaryOptions: SUMMARY_OPTIONS,
+        });
+
+    const longestFCPTTITaskHistogram = histograms.createHistogram(
+        'longestFCPTTITask', timeDurationInMs_smallerIsBetter, [], {
+          binBoundaries: LOADING_METRIC_BOUNDARIES,
+          description: 'Length of Longest task between FCP and TTI',
+          summaryOptions: SUMMARY_OPTIONS,
+        });
 
     const chromeHelper = model.getOrCreateHelper(
         tr.model.helpers.ChromeModelHelper);
@@ -444,6 +503,14 @@ tr.exportTo('tr.metrics.sh', function() {
     addSamplesToHistogram(
         samplesSet.firstCpuIdleSamples,
         timeToFirstCpuIdleHistogram,
+        histograms);
+    addSamplesToHistogram(
+        samplesSet.efidSamples,
+        expectedFirstInputDelayHistogram,
+        histograms);
+    addSamplesToHistogram(
+        samplesSet.longestFCPTTITaskSamples,
+        longestFCPTTITaskHistogram,
         histograms);
   }
 
