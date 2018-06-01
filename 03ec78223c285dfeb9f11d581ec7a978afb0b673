@@ -22,6 +22,30 @@
       "revId": "03ec78223c285dfeb9f11d581ec7a978afb0b673",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21399612_8372f8b6",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-01T19:42:19Z",
+      "side": 1,
+      "message": "I added a \u0027key\u0027 query parameter and deprecation warnings to the other patterns.\nI was hoping to eventually remove the other patterns. I can do that in this CL if you want, but I thought it would be nice to give clients like soundwave a chance to migrate to the new request pattern before breaking the old ones.",
+      "parentUuid": "70af5bd8_fd674b69",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 0
+      },
+      "revId": "03ec78223c285dfeb9f11d581ec7a978afb0b673",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
