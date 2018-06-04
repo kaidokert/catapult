@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "350e5367_ea860fef",
+        "filename": "tracing/tracing/metrics/tabs_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-04T17:25:25Z",
+      "side": 1,
+      "message": "Please use for..of instead:\nfor (const helper of helpers)\nrendererHelpers is an object, but browserHelpers is an array, so the caller can use Object.values():\n    extractLatencyFromHelpers(chromeHelper.browserHelpers);\n    extractLatencyFromHelpers(Object.values(chromeHelper.rendererHelpers));",
+      "revId": "7e66666fa724b8c119801bd59fa64f1ad55a26e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2a83864_3b06683c",
+        "filename": "tracing/tracing/metrics/tabs_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-04T17:25:25Z",
+      "side": 1,
+      "message": "Please define a constant for this string.",
+      "revId": "7e66666fa724b8c119801bd59fa64f1ad55a26e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5818c47_51d8c8d5",
+        "filename": "tracing/tracing/metrics/tabs_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-04T17:25:25Z",
+      "side": 1,
+      "message": "This loop looks a lot like the one in extractLatencyFromHelpers. Can you refactor to reduce repetition?",
+      "revId": "7e66666fa724b8c119801bd59fa64f1ad55a26e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
