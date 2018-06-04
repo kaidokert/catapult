@@ -8,7 +8,7 @@ import unittest
 from google.appengine.ext import ndb
 from google.appengine.ext import testbed
 
-from dashboard.common import namespaced_stored_object
+from dashboard.pinpoint.models.change import repository
 
 
 CATAPULT_URL = 'https://chromium.googlesource.com/catapult'
@@ -27,21 +27,9 @@ class TestCase(unittest.TestCase):
     root_path = os.path.join(os.path.dirname(__file__), '..', '..')
     self.testbed.init_taskqueue_stub(root_path=root_path)
 
-    self.testbed.setup_env(
-        user_is_admin='1',
-        user_email='internal@chromium.org',
-        user_id='123456',
-        overwrite=True)
-
-    namespaced_stored_object.Set('repositories', {
-        'catapult': {'repository_url': CATAPULT_URL},
-        'chromium': {'repository_url': CHROMIUM_URL},
-        'another_repo': {'repository_url': 'https://another/url'},
-    })
-    namespaced_stored_object.Set('repository_urls_to_names', {
-        CATAPULT_URL: 'catapult',
-        CHROMIUM_URL: 'chromium',
-    })
+    repository.Repository(id='catapult', urls=[CATAPULT_URL]).put()
+    repository.Repository(id='chromium', urls=[CHROMIUM_URL]).put()
+    repository.Repository(id='another_repo', urls=['https://another/url']).put()
 
   def tearDown(self):
     self.testbed.deactivate()
