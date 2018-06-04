@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cb5fd3f5_9f4bfbc2",
+        "filename": "tracing/tracing/metrics/tabs_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-04T19:30:55Z",
+      "side": 1,
+      "message": "Nit: sometimes we like to use `continue` to manage indentation:\nif (!helper.mainThread) continue;",
+      "revId": "359db5d34cc6bbf05485c47a5308263870b6890a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
