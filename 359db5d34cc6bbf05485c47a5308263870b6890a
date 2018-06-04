@@ -16,6 +16,24 @@
       "revId": "359db5d34cc6bbf05485c47a5308263870b6890a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03b8e719_a46738b4",
+        "filename": "tracing/tracing/metrics/tabs_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-06-04T19:54:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb5fd3f5_9f4bfbc2",
+      "revId": "359db5d34cc6bbf05485c47a5308263870b6890a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
