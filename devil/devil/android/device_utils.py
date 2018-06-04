@@ -981,7 +981,7 @@ class DeviceUtils(object):
   def RunShellCommand(self, cmd, shell=False, check_return=False, cwd=None,
                       env=None, run_as=None, as_root=False, single_line=False,
                       large_output=False, raw_output=False, timeout=None,
-                      retries=None):
+                      retries=None, really_needs_su=False):
     """Run an ADB shell command.
 
     The command to run |cmd| should be a sequence of program arguments
@@ -1105,7 +1105,7 @@ class DeviceUtils(object):
     if run_as:
       cmd = 'run-as %s sh -c %s' % (cmd_helper.SingleQuote(run_as),
                                     cmd_helper.SingleQuote(cmd))
-    if as_root and self.NeedsSU():
+    if as_root and (really_needs_su or self.NeedsSU()):
       # "su -c sh -c" allows using shell features in |cmd|
       cmd = self._Su('sh -c %s' % cmd_helper.SingleQuote(cmd))
 
@@ -2937,19 +2937,26 @@ class DeviceUtils(object):
       owner_group: New owner and group to assign. Note that this should be a
         string in the form user[.group] where the group is option.
       paths: Paths to change ownership of.
+
+      Note that the -R recursive option is not supported by all Android
+      versions.
     """
+    assert len(paths) > 0
     self.RunShellCommand(['chown', owner_group] + paths, check_return=True)
 
   @decorators.WithTimeoutAndRetriesFromInstance()
-  def ChangeSecurityContext(self, security_context, path, recursive=False,
-                            timeout=None, retries=None):
-    """Changes a file's SELinux security context.
+  def ChangeSecurityContext(self, security_context, paths, timeout=None,
+                            retries=None):
+    """Changes the SELinux security context for files.
 
     Args:
       security_context: The new security context as a string
-      path: Path to change the security context of.
-      recursive: Whether to recursively change the security contexts.
+      paths: Paths to change the security context of.
+
+      Note that the -R recursive option is not supported by all Android
+      versions.
     """
-    flags = ['-R'] if recursive else []
-    command = ['chcon'] + flags + [security_context, path]
-    self.RunShellCommand(command, as_root=True, check_return=True)
+    assert len(paths) > 0
+    command = ['chcon', security_context] + paths
+    self.RunShellCommand(command, as_root=True, check_return=True,
+                         really_needs_su=True)
