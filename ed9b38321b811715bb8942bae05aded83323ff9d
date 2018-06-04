@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8d5dae05_b8e9f65b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-06-04T18:03:09Z",
+      "side": 1,
+      "message": "is it a typo or a valid variant of your name?",
+      "range": {
+        "startLine": 2,
+        "startChar": 12,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "ed9b38321b811715bb8942bae05aded83323ff9d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af19c007_a1d939a1",
+        "filename": "tracing/tracing/trace_data/trace_data.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-06-04T18:03:09Z",
+      "side": 1,
+      "message": "in the department of \"did you know that\" .. this can produce negative values, timezone spikes and other \u0027fun\u0027 problems. Any reason not to use time.clock_gettime(CLOCK_MONOTONIC)? I guess the answer is because it has to run on Windows?\n\nup to you, seems not super important for this specific measurement, and can be changed later.",
+      "range": {
+        "startLine": 200,
+        "startChar": 21,
+        "endLine": 200,
+        "endChar": 45
+      },
+      "revId": "ed9b38321b811715bb8942bae05aded83323ff9d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
