@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "379ab370_26fedb88",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 2953,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2018-06-04T16:56:33Z",
+      "side": 1,
+      "message": "Could you add a comment here that -R isn\u0027t supported on certain versions of android",
+      "revId": "54d73fb731f534d7314a655fc37238f82a238172",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
