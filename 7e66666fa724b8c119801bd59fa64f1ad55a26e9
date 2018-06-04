@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f40fde03_96d772cb",
+        "filename": "tracing/tracing/metrics/tabs_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-06-04T17:35:42Z",
+      "side": 1,
+      "message": "Done. Thank you! I actually tried this first, but did not know about Object.values().",
+      "parentUuid": "350e5367_ea860fef",
+      "revId": "7e66666fa724b8c119801bd59fa64f1ad55a26e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d2a83864_3b06683c",
         "filename": "tracing/tracing/metrics/tabs_metric.html",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "b1e77cf8_0bb5a9b7",
+        "filename": "tracing/tracing/metrics/tabs_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-06-04T17:35:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2a83864_3b06683c",
+      "revId": "7e66666fa724b8c119801bd59fa64f1ad55a26e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e5818c47_51d8c8d5",
         "filename": "tracing/tracing/metrics/tabs_metric.html",
         "patchSetId": 3
@@ -47,6 +83,24 @@
       "writtenOn": "2018-06-04T17:25:25Z",
       "side": 1,
       "message": "This loop looks a lot like the one in extractLatencyFromHelpers. Can you refactor to reduce repetition?",
+      "revId": "7e66666fa724b8c119801bd59fa64f1ad55a26e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e2e1837_428bfd93",
+        "filename": "tracing/tracing/metrics/tabs_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-06-04T17:35:42Z",
+      "side": 1,
+      "message": "There are some subtle differences (asyncSliceGroup vs sliceGroup, slice.args.latency vs. slice.duration). I started doing this with callbacks, but since this fallback will be removed once the presentation-time measurements hit stable, perhaps keeping them separate would be OK?",
+      "parentUuid": "e5818c47_51d8c8d5",
       "revId": "7e66666fa724b8c119801bd59fa64f1ad55a26e9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
