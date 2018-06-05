@@ -99,15 +99,25 @@ class _ReadHistogramsJsonValueExecution(execution.Execution):
       self._isolate_server = 'https://isolateserver.appspot.com'
     if not hasattr(self, '_results_filename'):
       self._results_filename = 'chartjson-output.json'
+
+    histograms = self._RetrieveHistogramSet()
+
+    self._FetchTraceUrls(histograms)
+    if not self._hist_name:
+      self._Complete()
+
+    result_values = self._FilterResultValues(histograms)
+    self._Complete(result_values=tuple(result_values))
+
+  def _RetrieveHistogramSet(self):
     histogram_dicts = _RetrieveOutputJson(
         self._isolate_server, self._isolate_hash, self._results_filename)
     histograms = histogram_set.HistogramSet()
     histograms.ImportDicts(histogram_dicts)
     histograms.ResolveRelatedHistograms()
+    return histograms
 
-    matching_histograms = histograms.GetHistogramsNamed(self._hist_name)
-
-    # Get and cache any trace URLs.
+  def _FetchTraceUrls(self, histograms):
     unique_trace_urls = set()
     for hist in histograms:
       trace_urls = hist.diagnostics.get(reserved_infos.TRACE_URLS.name)
@@ -124,15 +134,16 @@ class _ReadHistogramsJsonValueExecution(execution.Execution):
     self._trace_urls = [
         {'name': t.split('/')[-1], 'url': t} for t in sorted_urls]
 
+  def _FilterResultValues(self, histograms):
+    matching_histograms = histograms.GetHistogramsNamed(self._hist_name)
+
     # Filter the histograms by tir_label and story. Getting either the
     # tir_label or the story from a histogram involves pulling out and
     # examining various diagnostics associated with the histogram.
-    tir_label = self._tir_label or ''
-
-    matching_histograms = [
-        h for h in matching_histograms
-        if tir_label == histogram_helpers.GetTIRLabelFromHistogram(h)]
-
+    if self._tir_label:
+      matching_histograms = [
+          h for h in matching_histograms
+          if self._tir_label == histogram_helpers.GetTIRLabelFromHistogram(h)]
 
     # If no story is supplied, we're looking for a summary metric so just match
     # on name and tir_label. This is equivalent to the chartjson condition that
@@ -147,15 +158,15 @@ class _ReadHistogramsJsonValueExecution(execution.Execution):
     for h in matching_histograms:
       result_values.extend(self._GetValuesOrStatistic(h))
 
-    if not result_values and self._hist_name:
+    if not result_values:
       conditions = {'histogram': self._hist_name}
-      if tir_label:
-        conditions['tir_label'] = tir_label
+      if self._tir_label:
+        conditions['tir_label'] = self._tir_label
       if self._story:
         conditions['story'] = self._story
       raise ReadValueError('Could not find values matching: %s' % conditions)
 
-    self._Complete(result_values=tuple(result_values))
+    return result_values
 
   def _GetValuesOrStatistic(self, hist):
     if not self._statistic:
