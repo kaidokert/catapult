@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7b3b99bf_f6518852",
+        "filename": "tracing/tracing/metrics/tabs_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-05T21:20:31Z",
+      "side": 1,
+      "message": "Can you update the comments?",
+      "revId": "8f542440050345ecfe91239c05ff1e7fff8f68d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6aa6f3d2_fc5c4c0f",
+        "filename": "tracing/tracing/metrics/tabs_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-05T21:20:31Z",
+      "side": 1,
+      "message": "No parentheses necessary for arrow functions with a single parameter.",
+      "revId": "8f542440050345ecfe91239c05ff1e7fff8f68d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4a22944_100affe0",
+        "filename": "tracing/tracing/metrics/tabs_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-05T21:20:31Z",
+      "side": 1,
+      "message": "Do you want to merge this call with the other call for browserHelpers using something like this?\nslice \u003d\u003e slice.args.latency || slice.duration",
+      "revId": "8f542440050345ecfe91239c05ff1e7fff8f68d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
