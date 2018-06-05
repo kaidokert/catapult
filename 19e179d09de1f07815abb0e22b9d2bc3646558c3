@@ -46,6 +46,30 @@
       "revId": "19e179d09de1f07815abb0e22b9d2bc3646558c3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecfd8f3a_352dfe05",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-05T19:36:33Z",
+      "side": 1,
+      "message": "This looks like it\u0027s a summary metric, no? https://chromeperf.appspot.com/group_report?bug_id\u003d846864\n\nMy guess is this is just a byproduct of the differences in how histograms do summarization. Looking at https://chromeperf.appspot.com/report?sid\u003dbfecd6a30c8691a8d0c7a1ec048e309681a6776bfbb5d8a1fbbfcd36be543607\u0026start_rev\u003d551859\u0026end_rev\u003d563958, no individual pages move but the summary as a whole does (histograms summarizes slightly differently, this is known and was announced a while back).\n\nEthan, is that correct?",
+      "parentUuid": "63d53af9_4114496a",
+      "range": {
+        "startLine": 143,
+        "startChar": 12,
+        "endLine": 143,
+        "endChar": 22
+      },
+      "revId": "19e179d09de1f07815abb0e22b9d2bc3646558c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
