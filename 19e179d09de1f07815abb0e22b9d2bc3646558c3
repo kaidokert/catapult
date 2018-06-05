@@ -22,6 +22,30 @@
       "revId": "19e179d09de1f07815abb0e22b9d2bc3646558c3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63d53af9_4114496a",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-06-05T19:17:49Z",
+      "side": 1,
+      "message": "Does that mean the failed job is working as intended?\nhttps://pinpoint-dot-chromeperf.appspot.com/job/159f3952240000",
+      "parentUuid": "26156c7d_38cd19b7",
+      "range": {
+        "startLine": 143,
+        "startChar": 12,
+        "endLine": 143,
+        "endChar": 22
+      },
+      "revId": "19e179d09de1f07815abb0e22b9d2bc3646558c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
