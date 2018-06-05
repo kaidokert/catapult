@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d6ff069e_121ec4fe",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-06-05T23:08:48Z",
+      "side": 1,
+      "message": "Done. It would be when an attempt passes, its exception is None. But I ended up refactoring out this code anyway.",
+      "parentUuid": "c095a5ca_f40bda8f",
+      "revId": "f050cf5defc88b8a44e43682e9e81b1900101176",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "189d7a02_08749267",
         "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "f050cf5defc88b8a44e43682e9e81b1900101176",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa807f88_605a5c8a",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-06-05T23:08:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "189d7a02_08749267",
+      "revId": "f050cf5defc88b8a44e43682e9e81b1900101176",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "b357ac60_d1277adf",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-06-05T23:08:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ba3b593_c934bd23",
+      "revId": "f050cf5defc88b8a44e43682e9e81b1900101176",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "60f9368c_59db9192",
         "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
         "patchSetId": 1
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "1ed33013_7c0f55f7",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-06-05T23:08:48Z",
+      "side": 1,
+      "message": "No, I\u0027ve added comments to hopefully clarify this function.",
+      "parentUuid": "60f9368c_59db9192",
+      "revId": "f050cf5defc88b8a44e43682e9e81b1900101176",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d6986cdd_0080eaf9",
         "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
         "patchSetId": 1
@@ -84,6 +156,24 @@
       "revId": "f050cf5defc88b8a44e43682e9e81b1900101176",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8bd12799_a117761d",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-06-05T23:08:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6986cdd_0080eaf9",
+      "revId": "f050cf5defc88b8a44e43682e9e81b1900101176",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
