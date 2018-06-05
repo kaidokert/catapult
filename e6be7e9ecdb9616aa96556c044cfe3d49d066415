@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "24e44b75_9de7d6b4",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-05T16:33:55Z",
+      "side": 1,
+      "message": "+1 to specifying the default behaviour (for this and any other relevant parameters) if the value isn\u0027t supplied.\n\nMight want to write a quick thing for each, type expected, format expected, etc. ex: timestamp, what\u0027s a valid value to supply there?",
+      "parentUuid": "ed376f63_ddaa615a",
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1eb1400e_f4c6b7d8",
         "filename": "dashboard/dashboard/api/README.md",
         "patchSetId": 20
@@ -98,6 +116,121 @@
       "writtenOn": "2018-06-05T15:27:19Z",
       "side": 1,
       "message": "can we switch to v2spa terminology? I guess these are test_case and test_suite?",
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a590431c_2591c726",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-05T16:33:55Z",
+      "side": 1,
+      "message": "This looks like there\u0027s no test coverage?",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 11
+      },
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f1dec36_6d68d9d8",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-05T16:33:55Z",
+      "side": 1,
+      "message": "Isn\u0027t this handled by the datastore_hooks?",
+      "range": {
+        "startLine": 122,
+        "startChar": 15,
+        "endLine": 122,
+        "endChar": 29
+      },
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a04a09b_0e9e0e02",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-05T16:33:55Z",
+      "side": 1,
+      "message": "I assume the other logging statements are for log-based metrics, is this and \"start_cursor\" used?",
+      "range": {
+        "startLine": 186,
+        "startChar": 18,
+        "endLine": 186,
+        "endChar": 22
+      },
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0bc7f654_51514617",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-05T16:33:55Z",
+      "side": 1,
+      "message": "Should we do some sanity checking on some of these params, like bounds for the limit, that the booleans are valid values, etc.",
+      "range": {
+        "startLine": 210,
+        "startChar": 8,
+        "endLine": 210,
+        "endChar": 18
+      },
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c622af9a_ed0205db",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-05T16:33:55Z",
+      "side": 1,
+      "message": "Can we replace these with group_report.* calls to QueryAnomalies?\n\nAnd I guess going down that path more, can we move QueryAnomalies to anomaly.py and then get rid of those group_report functions entirely? could be separate cl",
+      "range": {
+        "startLine": 237,
+        "startChar": 36,
+        "endLine": 237,
+        "endChar": 54
+      },
       "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
