@@ -4,7 +4,9 @@
 
 import logging
 import os
+import posixpath
 import re
+import shutil
 import tempfile
 import unittest
 
@@ -157,6 +159,88 @@ class BrowserTest(browser_test_case.BrowserTestCase):
     self.assertIsNotNone(ui.WaitForUiNode(resource_id='action_bar_root'))
 
 
+class DefaultProfileBrowserTest(browser_test_case.BrowserTestCase):
+  _profile_files_to_copy = None
+  _device_profile_paths = None
+  _device_sdcard_paths = None
+  _tempdir = None
+
+  @classmethod
+  def setUpClass(cls):
+    cls._tempdir = tempfile.mkdtemp()
+    # Add a few files and directories.
+    foo_path = os.path.join(cls._tempdir, 'foo')
+    with open(foo_path, 'w') as f:
+      f.write('foo_data')
+
+    bar_path = os.path.join(cls._tempdir, 'path', 'to', 'bar')
+    os.makedirs(os.path.dirname(bar_path))
+    with open(bar_path, 'w') as f:
+      f.write('bar_data')
+
+    cls._profile_files_to_copy = [
+        (foo_path, 'foo'),
+        (bar_path, posixpath.join('path', 'to', 'bar'))]
+
+    super(cls, DefaultProfileBrowserTest).setUpClass()
+
+  @classmethod
+  def tearDownClass(cls):
+    if cls._tempdir is not None:
+      shutil.rmtree(cls._tempdir)
+    super(cls, DefaultProfileBrowserTest).tearDownClass()
+
+  @classmethod
+  def CustomizeBrowserOptions(cls, options):
+    options.profile_dir = cls._tempdir
+
+    # Enable root before PossibleBrowser.SetUpEnvironment is called (test). Need
+    # to find the browser before calling EnableRoot on the device...
+    possible_browser = browser_finder.FindBrowser(
+        options_for_unittests.GetCopy())
+    device = possible_browser._platform_backend.device
+    device.EnableRoot()
+
+  @decorators.Enabled('android')
+  def testPushDefaultProfile(self):
+    profile_dir = self._possible_browser.profile_directory
+
+    # PushProfile copies to the sdcard first as an optimization.
+    temp_profile_path = posixpath.join(
+        posixpath.sep, 'sdcard', 'profile', os.path.basename(self._tempdir))
+
+    device_profile_paths = [
+        posixpath.join(profile_dir, path)
+        for _, path in self._profile_files_to_copy]
+    device_sdcard_paths = [
+        posixpath.join(temp_profile_path, path)
+        for _, path in self._profile_files_to_copy]
+    device = self._possible_browser._platform_backend.device
+    self.assertTrue(device.PathExists(device_profile_paths),
+                    device_profile_paths)
+    self.assertTrue(device.PathExists(device_sdcard_paths),
+                    device_sdcard_paths)
+
+
+class EmptyProfileBrowserTest(browser_test_case.BrowserTestCase):
+  _profile_paths = None
+
+  @classmethod
+  def CustomizeBrowserOptions(cls, options):
+    options.profile_dir = None
+
+  @classmethod
+  def willCreateBrowser(cls):
+    profile_dir = cls._possible_browser.profile_directory
+    device = cls._possible_browser._platform_backend.device
+    cls._profile_paths = device.ListDirectory(profile_dir)
+
+  @decorators.Enabled('android')
+  def testPushEmptyProfile(self):
+    self.assertEqual(1, len(self._profile_paths))
+    lib_path = self._profile_paths[0]
+    self.assertEqual("lib", posixpath.basename(lib_path))
+
 class CommandLineBrowserTest(browser_test_case.BrowserTestCase):
   @classmethod
   def CustomizeBrowserOptions(cls, options):
@@ -170,6 +254,7 @@ class CommandLineBrowserTest(browser_test_case.BrowserTestCase):
     t.WaitForDocumentReadyStateToBeInteractiveOrBetter()
     self.assertEquals(t.EvaluateJavaScript('navigator.userAgent'),
                       'telemetry')
+
 
 class DirtyProfileBrowserTest(browser_test_case.BrowserTestCase):
   @classmethod
