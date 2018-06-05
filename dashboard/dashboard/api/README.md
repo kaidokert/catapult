@@ -9,6 +9,29 @@ for examples of how to access the API.
 ## Alerts
 URL patterns for accessing alerts:
 
+ * `/api/alerts?<params>`: Get matching alerts. Supported query parameters:
+    * `bot_name`
+    * `bug_id`: Set to `''` in order to select untriaged alerts.
+    * `inequality_property`: One of `start_revision`, `end_revision`, or
+      `timestamp`. If more than one of those query parameters is specified, you
+      can optionally set `inequality_property` to control which property is
+      filtered in the query; the other properties will be filtered post-hoc.
+    * `is_improvement`: One of `true` or `false`.
+    * `key`
+    * `limit`
+    * `master_name`
+    * `max_end_revision`
+    * `max_start_revision`
+    * `max_timestamp`
+    * `min_end_revision`
+    * `min_start_revision`
+    * `min_timestamp`
+    * `recovered`: One of `true` or `false`.
+    * `sheriff`
+    * `cursor`: Can be used to page through large queries.
+    * `test`
+    * `test_suite_name`
+
  * `/api/alerts/bug_id/id`: Get all the alerts associated with bug `id`.
  * `/api/alerts/keys/comma_sep_list`: Get the alerts with the given list of
    keys, separated by commas.

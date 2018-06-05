@@ -28,6 +28,135 @@ GOOGLER_USER = users.User(email='sullivan@chromium.org',
 NON_GOOGLE_USER = users.User(email='foo@bar.com', _auth_domain='bar.com')
 
 
+class AlertsGeneralTest(testing_common.TestCase):
+
+  def setUp(self):
+    super(AlertsGeneralTest, self).setUp()
+    app = webapp2.WSGIApplication([('/api/alerts', alerts.AlertsHandler)])
+    self._testapp = webtest.TestApp(app)
+    self._mock_oauth = None
+    self._mock_internal = None
+    self._MockUser(NON_GOOGLE_USER)
+
+  def _MockUser(self, user):
+    if self._mock_oauth:
+      self._mock_oauth.stop()
+      self._mock_oauth = None
+    if self._mock_internal:
+      self._mock_internal.stop()
+      self._mock_internal = None
+    if user is None:
+      return
+    self._mock_oauth = mock.patch('dashboard.api.api_auth.oauth')
+    self._mock_oauth.start()
+    api_auth.oauth.get_current_user.return_value = user
+    api_auth.oauth.get_client_id.return_value = (
+        api_auth.OAUTH_CLIENT_ID_WHITELIST[0])
+    self._mock_internal = mock.patch(
+        'dashboard.common.utils.GetCachedIsInternalUser')
+    self._mock_internal.start()
+    utils.GetCachedIsInternalUser.return_value = user == GOOGLER_USER
+
+  def tearDown(self):
+    self._MockUser(None)
+
+  def _Post(self, **params):
+    return json.loads(self._testapp.post('/api/alerts', params).body)
+
+  def _CreateAnomaly(self,
+                     internal_only=False,
+                     timestamp=None,
+                     bug_id=None,
+                     sheriff_name=None,
+                     test='master/bot/test_suite/measurement/test_case',
+                     start_revision=0,
+                     end_revision=100,
+                     display_start=0,
+                     display_end=100,
+                     median_before_anomaly=100,
+                     median_after_anomaly=200,
+                     is_improvement=False,
+                     recovered=False):
+    entity = anomaly.Anomaly()
+    entity.internal_only = internal_only
+    if timestamp:
+      entity.timestamp = timestamp
+    entity.bug_id = bug_id
+    if sheriff_name:
+      entity.sheriff = ndb.Key('Sheriff', sheriff_name)
+      sheriff.Sheriff(id=sheriff_name, email='sullivan@google.com').put()
+    if test:
+      entity.test = utils.TestKey(test)
+    entity.start_revision = start_revision
+    entity.end_revision = end_revision
+    entity.display_start = display_start
+    entity.display_end = display_end
+    entity.median_before_anomaly = median_before_anomaly
+    entity.median_after_anomaly = median_after_anomaly
+    entity.is_improvement = is_improvement
+    entity.recovered = recovered
+    return entity.put().urlsafe()
+
+  def testAllExternal(self):
+    self._CreateAnomaly()
+    self._CreateAnomaly(internal_only=True)
+    response = self._Post()
+    self.assertEqual(1, len(response['anomalies']))
+
+  def testKey(self):
+    response = self._Post(key=self._CreateAnomaly())
+    self.assertEqual(1, len(response['anomalies']))
+
+  def testKeyInternal_Internal(self):
+    self._MockUser(GOOGLER_USER)
+    response = self._Post(key=self._CreateAnomaly(internal_only=True))
+    self.assertEqual(1, len(response['anomalies']))
+
+  def testKeyInternal_External(self):
+    response = self._Post(key=self._CreateAnomaly(internal_only=True))
+    self.assertEqual(0, len(response['anomalies']))
+
+  def testBot(self):
+    self._CreateAnomaly()
+    self._CreateAnomaly(test='adept/android/lodging/assessment/story')
+    response = self._Post(bot='android')
+    self.assertEqual(1, len(response['anomalies']))
+
+  def testMaster(self):
+    self._CreateAnomaly()
+    self._CreateAnomaly(test='adept/android/lodging/assessment/story')
+    response = self._Post(master='adept')
+    self.assertEqual(1, len(response['anomalies']))
+
+  def testBugId(self):
+    self._CreateAnomaly()
+    self._CreateAnomaly(bug_id=42)
+    response = self._Post(bug_id=42)
+    self.assertEqual(1, len(response['anomalies']))
+    response = self._Post(bug_id='')
+    self.assertEqual(1, len(response['anomalies']))
+
+  def testIsImprovement(self):
+    self._CreateAnomaly()
+    self._CreateAnomaly(is_improvement=True)
+    response = self._Post(is_improvement='true')
+    self.assertEqual(1, len(response['anomalies']))
+    response = self._Post(is_improvement='false')
+    self.assertEqual(1, len(response['anomalies']))
+
+  def testLimit(self):
+    self._CreateAnomaly()
+    self._CreateAnomaly()
+    response = self._Post(limit=1)
+    self.assertEqual(1, len(response['anomalies']))
+
+  def testSheriff(self):
+    self._CreateAnomaly(sheriff_name='Chromium Perf Sheriff')
+    self._CreateAnomaly(sheriff_name='WebRTC Perf Sheriff')
+    response = self._Post(sheriff='Chromium Perf Sheriff')
+    self.assertEqual(1, len(response['anomalies']))
+
+
 class AlertsTest(testing_common.TestCase):
 
   def setUp(self):
