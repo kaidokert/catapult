@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "835bc175_3bb78706",
+        "filename": "dashboard/dashboard/pinpoint/models/change/repository.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-05T14:48:20Z",
+      "side": 1,
+      "message": "Wondering if we should call these \"historical_urls\" or something along those lines; then expose a simple read-only \"url\" property which is just a shorthand for \"historical_urls[0]\".\n\nOriginally I was going to suggest just adding a comment (maybe we can do that too), but these names will make it more explicit why we store repeated urls and not just a single one.",
+      "revId": "206d076772843a713b9f40f0d7cbf928b9a37c24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
