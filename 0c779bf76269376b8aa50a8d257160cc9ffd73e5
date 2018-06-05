@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "11ccb357_1cf9356b",
+        "filename": "dashboard/dashboard/pinpoint/handlers/isolate_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-06-05T18:15:21Z",
+      "side": 1,
+      "message": "Yes, config_test will be updated in https://chromium-review.googlesource.com/c/catapult/+/1084435\nresults2_test will have to be rewritten completely in a follow-up.",
+      "parentUuid": "7cd99986_6fb5d228",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 11
+      },
+      "revId": "0c779bf76269376b8aa50a8d257160cc9ffd73e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "05f2311f_c31a6f2e",
         "filename": "dashboard/dashboard/pinpoint/handlers/new_test.py",
         "patchSetId": 2
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "1ed97395_e13d9174",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-06-05T18:15:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05f2311f_c31a6f2e",
+      "revId": "0c779bf76269376b8aa50a8d257160cc9ffd73e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1f78fcf1_dcd833f0",
         "filename": "dashboard/dashboard/pinpoint/test.py",
         "patchSetId": 2
@@ -53,6 +95,30 @@
       "writtenOn": "2018-06-05T15:37:22Z",
       "side": 1,
       "message": "A lot of this is largely a copy/paste of testing_common with a hardcoded internal user, is there an advantage to doing it this way vs deriving from the original and doing Pinpoint specific setup?\n\nTest will probably want to set privileged vs unprivileged users eventually (I think config_test already does), and also flush and execute task queues, which is all implemented in testing_common.TestCase already.",
+      "range": {
+        "startLine": 20,
+        "startChar": 6,
+        "endLine": 20,
+        "endChar": 11
+      },
+      "revId": "0c779bf76269376b8aa50a8d257160cc9ffd73e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "024b59ba_824fea47",
+        "filename": "dashboard/dashboard/pinpoint/test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-06-05T18:15:21Z",
+      "side": 1,
+      "message": "Done. Modified this to inherit from testing_common.",
+      "parentUuid": "1f78fcf1_dcd833f0",
       "range": {
         "startLine": 20,
         "startChar": 6,
