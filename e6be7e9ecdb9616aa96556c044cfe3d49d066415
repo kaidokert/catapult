@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bf62ef51_a7666ca9",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-05T15:27:19Z",
+      "side": 1,
+      "message": "This sounds like an implementation detail. Is there really a reason why this should be exposed through the API?",
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed376f63_ddaa615a",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-05T15:27:19Z",
+      "side": 1,
+      "message": "what is the default?",
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1eb1400e_f4c6b7d8",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-05T15:27:19Z",
+      "side": 1,
+      "message": "not sure if we want this much generality? Maybe it\u0027s enough to have max_revision (compared against end_revision) and min_revision (compared against start_revision) ?\n\nWill keep the API simpler and easier to understand.",
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b682ab9_03ebcfc1",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-05T15:27:19Z",
+      "side": 1,
+      "message": "what is the default?",
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b0e8ede_012d82f5",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-05T15:27:19Z",
+      "side": 1,
+      "message": "What is the default if sheriff is missing? Do we get for \"all\" sheriffs or is there some pre-defined one?",
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d718bcb7_e8d78dcf",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-05T15:27:19Z",
+      "side": 1,
+      "message": "can we switch to v2spa terminology? I guess these are test_case and test_suite?",
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
