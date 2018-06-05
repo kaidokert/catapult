@@ -75,6 +75,7 @@ class BrowserTestCase(unittest.TestCase):
       cls._platform = cls._possible_browser.platform
       cls._platform.network_controller.Open()
       cls._possible_browser.SetUpEnvironment(options.browser_options)
+      cls.willCreateBrowser()
       cls._browser = cls._possible_browser.Create()
       cls._device = options.remote_platform_options.device
     except:
@@ -106,3 +107,8 @@ class BrowserTestCase(unittest.TestCase):
     cls._platform.SetHTTPServerDirectories(path.GetUnittestDataDir())
     file_path = os.path.join(path.GetUnittestDataDir(), filename)
     return cls._platform.http_server.UrlOf(file_path)
+
+  @classmethod
+  def willCreateBrowser(cls):
+    """Override for setup code after environment setup but before creation"""
+    pass
