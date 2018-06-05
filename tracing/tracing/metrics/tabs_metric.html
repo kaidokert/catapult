@@ -21,15 +21,19 @@ tr.exportTo('tr.metrics.tabs', function() {
     const tabSwitchLatencies = [];
     const TAB_SWITCHING_SLICE_TITLE = 'TabSwitching::Latency';
 
-    function extractLatencyFromHelpers(helpers) {
+    function extractLatencyFromHelpers(helpers, extractLatencyFromSlice) {
       for (const helper of helpers) {
         if (!helper.mainThread) {
           continue;
         }
         const thread = helper.mainThread;
-        for (const slice of thread.sliceGroup.slices) {
-          if (slice.title === TAB_SWITCHING_SLICE_TITLE) {
-            tabSwitchLatencies.push(slice.args.latency);
+        for (const slice of thread.asyncSliceGroup.slices) {
+          if (slice.title !== TAB_SWITCHING_SLICE_TITLE) {
+            continue;
+          }
+          const latency = extractLatencyFromSlice(slice);
+          if (latency !== undefined) {
+            tabSwitchLatencies.push(latency);
           }
         }
       }
@@ -37,22 +41,15 @@ tr.exportTo('tr.metrics.tabs', function() {
 
     // First, get the latency metrics from the sync slices in the browser and
     // the renderer processes.
-    extractLatencyFromHelpers(chromeHelper.browserHelpers);
-    extractLatencyFromHelpers(Object.values(chromeHelper.rendererHelpers));
+    extractLatencyFromHelpers(chromeHelper.browserHelpers,
+        (slice) => slice.args.latency);
+    extractLatencyFromHelpers(Object.values(chromeHelper.rendererHelpers),
+        (slice) => slice.args.latency);
 
     // Fallback to the async slices for legacy measurements.
     if (tabSwitchLatencies.length === 0) {
-      for (const helper of chromeHelper.browserHelpers) {
-        if (!helper.mainThread) {
-          continue;
-        }
-        const thread = helper.mainThread;
-        for (const slice of thread.asyncSliceGroup.slices) {
-          if (slice.title === TAB_SWITCHING_SLICE_TITLE) {
-            tabSwitchLatencies.push(slice.duration);
-          }
-        }
-      }
+      extractLatencyFromHelpers(chromeHelper.browserHelpers,
+          (slice) => slice.duration);
     }
 
     histograms.createHistogram('tab_switching_latency',
