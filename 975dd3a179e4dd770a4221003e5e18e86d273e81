@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a13fa00_fbbbc860",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2944,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-05T09:29:09Z",
+      "side": 1,
+      "message": "nit: let\u0027s just make this return early, e.g.:\n\nif not paths:\n  return",
+      "revId": "975dd3a179e4dd770a4221003e5e18e86d273e81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9dd7a76_f89c487b",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-05T09:29:09Z",
+      "side": 1,
+      "message": "I\u0027m not exactly sure why we need this \"willCreateBrowser\"; can\u0027t we access the profile_directory within the test* methods themselves?",
+      "revId": "975dd3a179e4dd770a4221003e5e18e86d273e81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efb96aeb_334276fd",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-05T09:29:09Z",
+      "side": 1,
+      "message": "Is this testing an internal implementation detail? Should we just care that the device files end up in the profile_dir path?",
+      "revId": "975dd3a179e4dd770a4221003e5e18e86d273e81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d41f4cbc_9098062a",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-05T09:29:09Z",
+      "side": 1,
+      "message": "nit: extra blank line here.",
+      "revId": "975dd3a179e4dd770a4221003e5e18e86d273e81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
