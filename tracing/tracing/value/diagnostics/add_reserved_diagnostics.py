@@ -79,6 +79,7 @@ def _MergeHistogramSetByPath(hs):
     return merge_histograms.MergeHistograms(temp.name, (
         reserved_infos.TEST_PATH.name,))
 
+
 def _GetAndDeleteHadFailures(hs):
   had_failures = False
   for h in hs:
@@ -87,6 +88,27 @@ def _GetAndDeleteHadFailures(hs):
       del h.diagnostics[reserved_infos.HAD_FAILURES.name]
       had_failures = True
   return had_failures
+
+
+def _MergeAndReplaceSharedDiagnostics(diagnostic_name, hs):
+  diagnostics = {}
+
+  for h in hs:
+    if diagnostic_name in h.diagnostics:
+      d = h.diagnostics[diagnostic_name]
+      diagnostics[d.guid] = d
+
+  merged_diagnostic = None
+  for d in diagnostics.itervalues():
+    if not merged_diagnostic:
+      merged_diagnostic = d
+    else:
+      merged_diagnostic.AddDiagnostic(d)
+
+  if merged_diagnostic:
+    for h in hs:
+      h.diagnostics[diagnostic_name] = merged_diagnostic
+
 
 def AddReservedDiagnostics(histogram_dicts, names_to_values):
   # We need to generate summary statistics for anything that had a story, so
@@ -154,6 +176,11 @@ def AddReservedDiagnostics(histogram_dicts, names_to_values):
   histograms.ImportDicts(dicts_across_stories)
   histograms.ImportDicts(dicts_across_repeats)
   histograms.ImportDicts(hs_with_no_stories.AsDicts())
+
+  # Merge tagmaps since we OBBS may produce several for shared runs
+  _MergeAndReplaceSharedDiagnostics(
+      reserved_infos.TAG_MAP.name, histograms)
+
   histograms.DeduplicateDiagnostics()
   for name, value in names_to_values.iteritems():
     assert name in ALL_NAMES
