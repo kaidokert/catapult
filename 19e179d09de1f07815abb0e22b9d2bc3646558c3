@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "26156c7d_38cd19b7",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-05T18:56:37Z",
+      "side": 1,
+      "message": "I\u0027m not sure if this is the same as the old code, adding Ben/Ethan to chime in here.\n\nMy understanding is that if there\u0027s no tir_label specified, this will skip the filtering step and basically match against every histogram with the same name, regardless if it has a tir_label or not. The old behaviour would only match against histograms with the same name and no tir_label.",
+      "range": {
+        "startLine": 143,
+        "startChar": 12,
+        "endLine": 143,
+        "endChar": 22
+      },
+      "revId": "19e179d09de1f07815abb0e22b9d2bc3646558c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
