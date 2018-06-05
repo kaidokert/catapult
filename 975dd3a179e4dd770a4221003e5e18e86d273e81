@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "16de57fa_b1d6614a",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2944,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-06-05T13:37:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a13fa00_fbbbc860",
+      "revId": "975dd3a179e4dd770a4221003e5e18e86d273e81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b9dd7a76_f89c487b",
         "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2018-06-05T09:29:09Z",
       "side": 1,
       "message": "I\u0027m not exactly sure why we need this \"willCreateBrowser\"; can\u0027t we access the profile_directory within the test* methods themselves?",
+      "revId": "975dd3a179e4dd770a4221003e5e18e86d273e81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "162ce4d9_c688589c",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-06-05T13:37:04Z",
+      "side": 1,
+      "message": "The reason is that when Chrome opens, it writes a bunch of stuff to the profile, so it is hard to test that various setup code works in the test* proper.\n\nThis is more of an issue for testPushEmptyProfile, which wants to ensure that after SetUpEnvironment is called, the profile is empty except for \"lib\". For this one we don\u0027t need it explicitly, so I\u0027ve removed it.",
+      "parentUuid": "b9dd7a76_f89c487b",
       "revId": "975dd3a179e4dd770a4221003e5e18e86d273e81",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "47f44630_576892b6",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-06-05T13:37:04Z",
+      "side": 1,
+      "message": "Yes, it is.\n\nSee comments on the CL this branched from. This is less important now, but in the future CL we will be using a new technique to always populate something in the sdcard.\n\nMy first attempt at implementation ended up populating the sdcard with lots of temp directories, which I fixed by hardcoding a name. This test will be modified to ensure that we aren\u0027t doing that sort of thing here.\n\nLet me know if there\u0027s a better place for this sort of test (code under test is android_browser_finder.py), but Ned recommended adding stuff here in the other CL.",
+      "parentUuid": "efb96aeb_334276fd",
+      "revId": "975dd3a179e4dd770a4221003e5e18e86d273e81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d41f4cbc_9098062a",
         "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
         "patchSetId": 1
@@ -67,6 +121,24 @@
       "revId": "975dd3a179e4dd770a4221003e5e18e86d273e81",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4ce4fc0_c02ee874",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-06-05T13:37:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d41f4cbc_9098062a",
+      "revId": "975dd3a179e4dd770a4221003e5e18e86d273e81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
