@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c1633c25_6643433b",
+        "filename": "dashboard/index.yaml",
+        "patchSetId": 21
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-05T16:14:31Z",
+      "side": 1,
+      "message": "nit: Can you add a quick comment in here mentioning the pairs need to have the same sorted property in order for zigzag to work?",
+      "range": {
+        "startLine": 22,
+        "startChar": 2,
+        "endLine": 22,
+        "endChar": 7
+      },
+      "revId": "3d2a431a196ae5e01a00143b32491d0bbffd8df8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
