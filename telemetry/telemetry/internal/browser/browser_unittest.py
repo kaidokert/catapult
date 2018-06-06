@@ -4,7 +4,9 @@
 
 import logging
 import os
+import posixpath
 import re
+import shutil
 import tempfile
 import unittest
 
@@ -155,6 +157,58 @@ class BrowserTest(browser_test_case.BrowserTestCase):
     ui = self._browser.GetAppUi()
     self.assertTrue(isinstance(ui, app_ui.AppUi))
     self.assertIsNotNone(ui.WaitForUiNode(resource_id='action_bar_root'))
+
+
+class PushProfileBrowserTest(unittest.TestCase):
+
+  @decorators.Enabled('android')
+  def testPushEmptyProfile(self):
+    finder_options = options_for_unittests.GetCopy()
+    finder_options.browser_options.profile_dir = None
+    browser_to_create = browser_finder.FindBrowser(finder_options)
+    browser_to_create.SetUpEnvironment(finder_options.browser_options)
+
+    profile_dir = browser_to_create.profile_directory
+    device = browser_to_create._platform_backend.device
+
+    profile_paths = device.ListDirectory(profile_dir)
+    self.assertEqual(1, len(profile_paths))
+    lib_path = profile_paths[0]
+    self.assertEqual("lib", posixpath.basename(lib_path))
+
+  @decorators.Enabled('android')
+  def testPushDefaultProfile(self):
+    # Add a few files and directories to a temp directory, and ensure they are
+    # copied to the device.
+    tempdir = tempfile.mkdtemp()
+    foo_path = os.path.join(tempdir, 'foo')
+    with open(foo_path, 'w') as f:
+      f.write('foo_data')
+
+    bar_path = os.path.join(tempdir, 'path', 'to', 'bar')
+    os.makedirs(os.path.dirname(bar_path))
+    with open(bar_path, 'w') as f:
+      f.write('bar_data')
+
+    profile_files_to_copy = [
+        (foo_path, 'foo'),
+        (bar_path, posixpath.join('path', 'to', 'bar'))]
+
+    finder_options = options_for_unittests.GetCopy()
+    finder_options.browser_options.profile_dir = tempdir
+    browser_to_create = browser_finder.FindBrowser(finder_options)
+    browser_to_create.SetUpEnvironment(finder_options.browser_options)
+
+    profile_dir = browser_to_create.profile_directory
+    device = browser_to_create._platform_backend.device
+
+    device_profile_paths = [
+        posixpath.join(profile_dir, path) for _, path in profile_files_to_copy]
+    device = browser_to_create._platform_backend.device
+    self.assertTrue(device.PathExists(device_profile_paths),
+                    device_profile_paths)
+
+    shutil.rmtree(tempdir)
 
 
 class CommandLineBrowserTest(browser_test_case.BrowserTestCase):
