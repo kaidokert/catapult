@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "04ea0451_66227723",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-06T10:25:13Z",
+      "side": 1,
+      "message": "I\u0027m wondering now whether subclassing BrowserTestCase is maybe not the right thing to do. It feels like you end up with strange hooks and stashing data in class variables because your tests need to have finer control on how the browser is created (beyond what CustomizeBrowserOptions supports).\n\nWould it be easier and cleaner to subclass from unittest.TestCase directly (see e.g. [1]) so you have full control over the whole browser creation process and, hopefully, all of the code fits in two separate test methods (for an simple and an empty profile) both within the same class?\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/browser/browser_unittest.py?rcl\u003dba9d017c9e77b3e6bcd2bfa7dceeedc9f1de2414\u0026l\u003d220",
+      "parentUuid": "162ce4d9_c688589c",
+      "revId": "975dd3a179e4dd770a4221003e5e18e86d273e81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "efb96aeb_334276fd",
         "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
         "patchSetId": 1
@@ -101,6 +119,24 @@
       "side": 1,
       "message": "Yes, it is.\n\nSee comments on the CL this branched from. This is less important now, but in the future CL we will be using a new technique to always populate something in the sdcard.\n\nMy first attempt at implementation ended up populating the sdcard with lots of temp directories, which I fixed by hardcoding a name. This test will be modified to ensure that we aren\u0027t doing that sort of thing here.\n\nLet me know if there\u0027s a better place for this sort of test (code under test is android_browser_finder.py), but Ned recommended adding stuff here in the other CL.",
       "parentUuid": "efb96aeb_334276fd",
+      "revId": "975dd3a179e4dd770a4221003e5e18e86d273e81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ee409d9_29a5e692",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-06T10:25:13Z",
+      "side": 1,
+      "message": "Let\u0027s better put this into android_browser_finder_unittest.py\n\nStill, I\u0027m not super convinced that we should be testing the temporary sdcard stuff here. Can we leave it out for now and consider adding it on a follow up CL if becomes apparent that we really need it?",
+      "parentUuid": "47f44630_576892b6",
       "revId": "975dd3a179e4dd770a4221003e5e18e86d273e81",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true

@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0845c686_2e59af08",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-06T10:25:13Z",
+      "side": 1,
+      "message": "nit: \"for to\" -\u003e \"to\"",
+      "revId": "64e169f17757f9ba7b896c48ebfb795d611ee194",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b1c758b_fcad88ba",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-06T10:25:13Z",
+      "side": 1,
+      "message": "this EnableRoot can now be removed?",
+      "revId": "64e169f17757f9ba7b896c48ebfb795d611ee194",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f2baf6b_f99d7782",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-06T10:25:13Z",
+      "side": 1,
+      "message": "why do we need posixpath.abspath here? (that depends on os.getchwd() which would be the wrong thing here), would posixpath.normpath be enough?\n\nhttps://docs.python.org/2/library/os.path.html#os.path.abspath",
+      "revId": "64e169f17757f9ba7b896c48ebfb795d611ee194",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
