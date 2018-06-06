@@ -52,6 +52,24 @@
       "revId": "71c80496dbc0bc7070229fb1d0a063d131b4f9c1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1bb6b1f_588b08ae",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1001629
+      },
+      "writtenOn": "2018-06-06T12:46:13Z",
+      "side": 1,
+      "message": "stdout is currently not suppressed, so it\u0027s currently just logged, like stderr will be after this change.\n\nThe subprocess call is synchronous, so why would there be mixing?",
+      "parentUuid": "f73ab32a_2eb75bf1",
+      "revId": "71c80496dbc0bc7070229fb1d0a063d131b4f9c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
