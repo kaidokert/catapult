@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5d1a6887_c17a06a6",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-06-06T22:19:45Z",
+      "side": 1,
+      "message": "Hmhh, this may add file to the --profile-dir directory from commandline. I think in case user specifies --profile-dir, we should avoid copy file in profile_files_to_copy to that",
+      "revId": "5a8e54b5259169f6820bad46456cd1af18ba5e9b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "826d8227_406b97a4",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-06-06T22:19:45Z",
+      "side": 1,
+      "message": "this tempdir removal should be in a try catch block. Better yet, you can use https://cs.chromium.org/chromium/src/third_party/catapult/common/py_utils/py_utils/tempfile_ext.py?rcl\u003d1b4007165563cf3f1afb0e46c8fe0f0037985c1c\u0026l\u003d12",
+      "revId": "5a8e54b5259169f6820bad46456cd1af18ba5e9b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
