@@ -34,6 +34,24 @@
       "revId": "71c80496dbc0bc7070229fb1d0a063d131b4f9c1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f73ab32a_2eb75bf1",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-06-06T12:44:28Z",
+      "side": 1,
+      "message": "That would make the log easier to consume (as the output from this subprocess and Telemetry log are not mixed together).\n\nAnother benefit is I find stdout from the subprocess also reveal useful information for debugging sometime.",
+      "parentUuid": "31910f1b_e7ad783a",
+      "revId": "71c80496dbc0bc7070229fb1d0a063d131b4f9c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
