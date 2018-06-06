@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "86d2e44b_b335236e",
+        "filename": "tracing/tracing/value/diagnostics/add_reserved_diagnostics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-06T18:35:26Z",
+      "side": 1,
+      "message": "I think this function could be simpler. Would this work?\n\nmerged \u003d None\nfor h in hs:\n  d \u003d h.diagnostics.get(diagnostic_name)\n  if d is None: continue\n  if merged is None:\n    merged \u003d d\n  else:\n    merged.AddDiagnostic(d)\n    h.diagnostics[diagonstic_name] \u003d merged",
+      "revId": "c841fe699cf743beac9c5097214c4c296b4ef98f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
