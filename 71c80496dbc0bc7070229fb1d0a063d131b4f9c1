@@ -70,6 +70,24 @@
       "revId": "71c80496dbc0bc7070229fb1d0a063d131b4f9c1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4866c03_93e61869",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-06-06T12:53:34Z",
+      "side": 1,
+      "message": "Ah ok. I think I remember it wrong then. \n\nAnother benefit with this approach is we won\u0027t add log unless there is something wrong with the subprocess call. \n\nIt also ensure that all the log output are captured by Telemetry\u0027s per-test log artifact which is implemented by capture logging handler (see https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/story_runner.py?rcl\u003dba9d017c9e77b3e6bcd2bfa7dceeedc9f1de2414\u0026l\u003d115)",
+      "parentUuid": "a1bb6b1f_588b08ae",
+      "revId": "71c80496dbc0bc7070229fb1d0a063d131b4f9c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
