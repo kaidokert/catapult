@@ -160,6 +160,24 @@
     },
     {
       "key": {
+        "uuid": "f0c59ea7_1d14b9a6",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-06-06T18:25:55Z",
+      "side": 1,
+      "message": "Yes, the first one is a default Python-style stack. Most Python code produces this style. Telemetry has a custom exception hook, so Telemetry tests produce the second style. It\u0027s not exhaustive, because code can arbitrarily customize its stack trace formats. It also doesn\u0027t include C++ or JS stacks.",
+      "parentUuid": "9ce54d10_d623105b",
+      "revId": "f050cf5defc88b8a44e43682e9e81b1900101176",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d6986cdd_0080eaf9",
         "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
         "patchSetId": 1
