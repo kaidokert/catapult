@@ -177,9 +177,9 @@ class PushProfileBrowserTest(unittest.TestCase):
     self.assertEqual("lib", posixpath.basename(lib_path))
 
   @decorators.Enabled('android')
-  def testPushDefaultProfile(self):
+  def testPushDefaultProfileDir(self):
     # Add a few files and directories to a temp directory, and ensure they are
-    # copied to the device.
+    # copied to the device using BrowserOptions.profile_dir.
     tempdir = tempfile.mkdtemp()
     foo_path = os.path.join(tempdir, 'foo')
     with open(foo_path, 'w') as f:
@@ -204,6 +204,40 @@ class PushProfileBrowserTest(unittest.TestCase):
 
     device_profile_paths = [
         posixpath.join(profile_dir, path) for _, path in profile_files_to_copy]
+    device = browser_to_create._platform_backend.device
+    self.assertTrue(device.PathExists(device_profile_paths),
+                    device_profile_paths)
+
+    shutil.rmtree(tempdir)
+
+  @decorators.Enabled('android')
+  def testPushDefaultProfileFiles(self):
+    # Add a few files and directories to a temp directory, and ensure they are
+    # copied to the device using BrowserOptions.profile_files_to_copy.
+    tempdir = tempfile.mkdtemp()
+    foo_path = os.path.join(tempdir, 'foo')
+    with open(foo_path, 'w') as f:
+      f.write('foo_data')
+
+    bar_path = os.path.join(tempdir, 'path', 'to', 'bar')
+    os.makedirs(os.path.dirname(bar_path))
+    with open(bar_path, 'w') as f:
+      f.write('bar_data')
+
+    finder_options = options_for_unittests.GetCopy()
+    finder_options.browser_options.profile_files_to_copy = [
+        (foo_path, 'foo'),
+        (bar_path, posixpath.join('path', 'to', 'bar'))]
+
+    browser_to_create = browser_finder.FindBrowser(finder_options)
+    browser_to_create.SetUpEnvironment(finder_options.browser_options)
+
+    profile_dir = browser_to_create.profile_directory
+    device = browser_to_create._platform_backend.device
+
+    device_profile_paths = [
+        posixpath.join(profile_dir, path)
+        for _, path in finder_options.browser_options.profile_files_to_copy]
     device = browser_to_create._platform_backend.device
     self.assertTrue(device.PathExists(device_profile_paths),
                     device_profile_paths)

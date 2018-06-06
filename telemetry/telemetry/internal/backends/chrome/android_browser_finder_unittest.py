@@ -3,6 +3,9 @@
 # found in the LICENSE file.
 
 import os
+import posixpath
+import shutil
+import tempfile
 import unittest
 
 import mock
@@ -10,7 +13,9 @@ from pyfakefs import fake_filesystem_unittest
 
 from telemetry.core import android_platform
 from telemetry.core import exceptions
+from telemetry import decorators
 from telemetry.internal.backends.chrome import android_browser_finder
+from telemetry.internal.browser import browser_finder
 from telemetry.internal.platform import android_platform_backend
 from telemetry.internal.util import binary_manager
 from telemetry.testing import options_for_unittests
@@ -176,3 +181,48 @@ class SelectDefaultBrowserTest(unittest.TestCase):
     self.assertIs(
         possible_browsers[1],
         android_browser_finder.SelectDefaultBrowser(possible_browsers))
+
+class SetUpProfileBrowserTest(unittest.TestCase):
+
+  @decorators.Enabled('android')
+  def testPushDefaultProfileFiles(self):
+    # Add a few files and directories to a temp directory, and ensure they are
+    # copied to the device using BrowserOptions.profile_files_to_copy. Also,
+    # ensure that the profile is placed in the /sdcard with a fixed directory
+    # name.
+    tempdir = tempfile.mkdtemp()
+    foo_path = os.path.join(tempdir, 'foo')
+    with open(foo_path, 'w') as f:
+      f.write('foo_data')
+
+    bar_path = os.path.join(tempdir, 'path', 'to', 'bar')
+    os.makedirs(os.path.dirname(bar_path))
+    with open(bar_path, 'w') as f:
+      f.write('bar_data')
+
+    finder_options = options_for_unittests.GetCopy()
+    finder_options.browser_options.profile_files_to_copy = [
+        (foo_path, 'foo'),
+        (bar_path, posixpath.join('path', 'to', 'bar'))]
+
+    browser_to_create = browser_finder.FindBrowser(finder_options)
+    browser_to_create.SetUpEnvironment(finder_options.browser_options)
+
+    profile_dir = browser_to_create.profile_directory
+    sdcard_dir = posixpath.join(posixpath.sep, 'sdcard', 'profile',
+                                '_default_profile')
+    device = browser_to_create._platform_backend.device
+
+    device_profile_paths = [
+        posixpath.join(profile_dir, path)
+        for _, path in finder_options.browser_options.profile_files_to_copy]
+    sdcard_profile_paths = [
+        posixpath.join(sdcard_dir, path)
+        for _, path in finder_options.browser_options.profile_files_to_copy]
+    device = browser_to_create._platform_backend.device
+    self.assertTrue(device.PathExists(device_profile_paths),
+                    device_profile_paths)
+    self.assertTrue(device.PathExists(device_profile_paths),
+                    sdcard_profile_paths)
+
+    shutil.rmtree(tempdir)
