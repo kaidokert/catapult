@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c3e9af15_508b8933",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-06T18:24:02Z",
+      "side": 1,
+      "message": "Added this text:\nDepending on the shape of the data in the database, filtering by property A in the query and property B post-hoc could return zero results and a next_cursor that the caller needs to chase, whereas filtering by property B in the query and A post-hoc could return all the right alerts without a next_cursor.",
+      "parentUuid": "bf62ef51_a7666ca9",
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ed376f63_ddaa615a",
         "filename": "dashboard/dashboard/api/README.md",
         "patchSetId": 20
@@ -54,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "4bcabdfe_663bc4f1",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-06T18:24:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24e44b75_9de7d6b4",
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1eb1400e_f4c6b7d8",
         "filename": "dashboard/dashboard/api/README.md",
         "patchSetId": 20
@@ -65,6 +101,24 @@
       "writtenOn": "2018-06-05T15:27:19Z",
       "side": 1,
       "message": "not sure if we want this much generality? Maybe it\u0027s enough to have max_revision (compared against end_revision) and min_revision (compared against start_revision) ?\n\nWill keep the API simpler and easier to understand.",
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "519c14e2_4adc5e9a",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-06T18:24:02Z",
+      "side": 1,
+      "message": "Alerts have start and end revision, not a single revision, so I think that min/max start/end revision are clearer than min/max revision. You might be right, though, so maybe we can monitor usage for a while and revisit?",
+      "parentUuid": "1eb1400e_f4c6b7d8",
       "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -88,6 +142,24 @@
     },
     {
       "key": {
+        "uuid": "c574de91_f261430f",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-06T18:24:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b682ab9_03ebcfc1",
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4b0e8ede_012d82f5",
         "filename": "dashboard/dashboard/api/README.md",
         "patchSetId": 20
@@ -105,6 +177,24 @@
     },
     {
       "key": {
+        "uuid": "14ac5b02_ded0e557",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-06T18:24:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b0e8ede_012d82f5",
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d718bcb7_e8d78dcf",
         "filename": "dashboard/dashboard/api/README.md",
         "patchSetId": 20
@@ -119,6 +209,24 @@
       "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "333f2f99_48740206",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-06T18:24:02Z",
+      "side": 1,
+      "message": "Cleaning up this mess and switching to crisp, clear v2spa terminology here is going to require another CL or two.\n\nThis \u0027test\u0027 is the full test path like master/bot/test_suite/measurement/test_case.\nThe \u0027test\u0027 property in the returned data does not include master/bot/test_suite, but includes v2spa\u0027s measurement and test case, and sometimes part of the v2spa test suite. V2spa test suites are not quite the same thing as V1 test suites. Some v2spa test suites include TestMetadata.test_part1_name.",
+      "parentUuid": "d718bcb7_e8d78dcf",
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -145,6 +253,30 @@
     },
     {
       "key": {
+        "uuid": "327a8f9d_dac4d678",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-06T18:24:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a590431c_2591c726",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 11
+      },
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f1dec36_6d68d9d8",
         "filename": "dashboard/dashboard/api/alerts.py",
         "patchSetId": 20
@@ -165,6 +297,30 @@
       "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "378dd021_eef9d249",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-06T18:24:02Z",
+      "side": 1,
+      "message": "Add a comment.\nNo, hooks are not called for queries.\nhttps://github.com/googlecloudplatform/datastore-ndb-python/issues/211\nThe AlertsHandler queries for keys_only, then calls ndb.get_multi(), which does invoke _post_get_hook.\nI could move this filter into a method on InternalOnlyModel in a followup if you like.",
+      "parentUuid": "5f1dec36_6d68d9d8",
+      "range": {
+        "startLine": 122,
+        "startChar": 15,
+        "endLine": 122,
+        "endChar": 29
+      },
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -191,6 +347,30 @@
     },
     {
       "key": {
+        "uuid": "afc32659_aaf0bc0c",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-06T18:24:02Z",
+      "side": 1,
+      "message": "These are boolean labels for filtering and grouping metrics. They might be useful, or maybe not.",
+      "parentUuid": "2a04a09b_0e9e0e02",
+      "range": {
+        "startLine": 186,
+        "startChar": 18,
+        "endLine": 186,
+        "endChar": 22
+      },
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0bc7f654_51514617",
         "filename": "dashboard/dashboard/api/alerts.py",
         "patchSetId": 20
@@ -214,6 +394,30 @@
     },
     {
       "key": {
+        "uuid": "fb54a68c_c10e377a",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-06T18:24:02Z",
+      "side": 1,
+      "message": "I\u0027ll validate the booleans to help users figure out how to set them, but I think it\u0027s ok to set limit to any int.",
+      "parentUuid": "0bc7f654_51514617",
+      "range": {
+        "startLine": 210,
+        "startChar": 8,
+        "endLine": 210,
+        "endChar": 18
+      },
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c622af9a_ed0205db",
         "filename": "dashboard/dashboard/api/alerts.py",
         "patchSetId": 20
@@ -234,6 +438,30 @@
       "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b4d4c8b_9e6c3278",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-06T18:24:02Z",
+      "side": 1,
+      "message": "Yep, I was planning to do that in a followup.",
+      "parentUuid": "c622af9a_ed0205db",
+      "range": {
+        "startLine": 237,
+        "startChar": 36,
+        "endLine": 237,
+        "endChar": 54
+      },
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
