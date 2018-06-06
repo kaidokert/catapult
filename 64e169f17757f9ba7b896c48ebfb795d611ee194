@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "388a2d0c_1e8e1fe7",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-06-06T13:33:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0845c686_2e59af08",
+      "revId": "64e169f17757f9ba7b896c48ebfb795d611ee194",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3b1c758b_fcad88ba",
         "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
         "patchSetId": 10
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "6027c1fb_f9751274",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-06-06T13:33:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b1c758b_fcad88ba",
+      "revId": "64e169f17757f9ba7b896c48ebfb795d611ee194",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0f2baf6b_f99d7782",
         "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
         "patchSetId": 10
@@ -50,6 +86,24 @@
       "revId": "64e169f17757f9ba7b896c48ebfb795d611ee194",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed460845_9cf7239e",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-06-06T13:33:32Z",
+      "side": 1,
+      "message": "Ah yeah I think normpath works. I only did this because I noticed some paths had \".\" components in debug logs. Done.",
+      "parentUuid": "0f2baf6b_f99d7782",
+      "revId": "64e169f17757f9ba7b896c48ebfb795d611ee194",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

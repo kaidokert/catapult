@@ -90,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "e64d95d4_16a4de5b",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-06-06T13:33:32Z",
+      "side": 1,
+      "message": "Actually yeah that works better, don\u0027t know why I didn\u0027t see that possibility :) Done.",
+      "parentUuid": "04ea0451_66227723",
+      "revId": "975dd3a179e4dd770a4221003e5e18e86d273e81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "efb96aeb_334276fd",
         "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
         "patchSetId": 1
@@ -140,6 +158,24 @@
       "revId": "975dd3a179e4dd770a4221003e5e18e86d273e81",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5841641d_469a2c44",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-06-06T13:33:32Z",
+      "side": 1,
+      "message": "Removed for now. I can bring it back later if Ned wants it (when we actually change behavior).",
+      "parentUuid": "3ee409d9_29a5e692",
+      "revId": "975dd3a179e4dd770a4221003e5e18e86d273e81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
