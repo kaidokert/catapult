@@ -324,6 +324,30 @@
     },
     {
       "key": {
+        "uuid": "393a460f_bd96e0a1",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-06T18:31:21Z",
+      "side": 1,
+      "message": "I meant this hook: https://github.com/catapult-project/catapult/blob/master/dashboard/dashboard/common/datastore_hooks.py#L126\n\nWe install a global hook that modifies the query itself before it runs.",
+      "parentUuid": "378dd021_eef9d249",
+      "range": {
+        "startLine": 122,
+        "startChar": 15,
+        "endLine": 122,
+        "endChar": 29
+      },
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2a04a09b_0e9e0e02",
         "filename": "dashboard/dashboard/api/alerts.py",
         "patchSetId": 20
