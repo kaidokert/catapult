@@ -16,6 +16,24 @@
       "revId": "c841fe699cf743beac9c5097214c4c296b4ef98f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9790ce49_5e92c735",
+        "filename": "tracing/tracing/value/diagnostics/add_reserved_diagnostics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-06T18:59:16Z",
+      "side": 1,
+      "message": "Thanks, that is simpler, done.",
+      "parentUuid": "86d2e44b_b335236e",
+      "revId": "c841fe699cf743beac9c5097214c4c296b4ef98f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
