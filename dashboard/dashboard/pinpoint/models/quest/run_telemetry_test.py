@@ -36,6 +36,12 @@ class RunTelemetryTest(run_test.RunTest):
       # TODO: Remove this hack when all builders build performance_test_suite.
       swarming_extra_args.append(benchmark)
 
+    if benchmark == 'blink_perf':
+      # https://github.com/catapult-project/catapult/issues/4499
+      raise ValueError(
+          '`blink_perf` takes too much bot time to run and has been disabled. '
+          'Please run one of the sub-benchmarks (blink_perf.*) instead.')
+
     story = arguments.get('story')
     if story:
       swarming_extra_args += ('--story-filter', story)

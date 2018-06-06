@@ -67,6 +67,12 @@ class FromDictTest(unittest.TestCase):
         'server', {'key': 'value'}, ['--benchmarks'] + _BASE_EXTRA_ARGS)
     self.assertEqual(quest, expected)
 
+  def testBenchmarkIsBlinkPerf(self):
+    arguments = dict(_BASE_ARGUMENTS)
+    arguments['benchmark'] = 'blink_perf'
+    with self.assertRaises(ValueError):
+      run_telemetry_test.RunTelemetryTest.FromDict(arguments)
+
   def testMissingBrowser(self):
     arguments = dict(_BASE_ARGUMENTS)
     del arguments['browser']
