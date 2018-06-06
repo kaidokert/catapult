@@ -106,6 +106,24 @@
       "revId": "71c80496dbc0bc7070229fb1d0a063d131b4f9c1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb7b4729_2efc0750",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-06-06T13:03:18Z",
+      "side": 1,
+      "message": "Nico: you\u0027re right about that again :-P\n\nStill on the last point if we log data into stdout/stderr directly Telemetry, Telemetry won\u0027t be able to capture those into log file (we use this to get per-test log in https://sheriff-o-matic.appspot.com/chromium.perf).\n\nThis is our fault for not implementing any utility method to make this easier, so feel free to land this as-is. We can clean this up later.",
+      "parentUuid": "cd74ddec_ef469188",
+      "revId": "71c80496dbc0bc7070229fb1d0a063d131b4f9c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
