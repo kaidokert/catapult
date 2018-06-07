@@ -38,7 +38,7 @@ class Value(object):
   """An abstract value produced by a telemetry page test.
   """
   def __init__(self, page, name, units, important, description,
-               tir_label, grouping_keys):
+               tir_label, grouping_keys, story_tags=None):
     """A generic Value object.
 
     Args:
@@ -82,6 +82,7 @@ class Value(object):
     self.description = description
     self.tir_label = tir_label
     self.grouping_keys = grouping_keys
+    self.story_tags = story_tags or set()
 
   def __eq__(self, other):
     return hash(self) == hash(other)
@@ -216,6 +217,9 @@ class Value(object):
     if self.grouping_keys:
       d['grouping_keys'] = self.grouping_keys
 
+    if self.story_tags:
+      d['story_tags'] = list(self.story_tags)
+
     return d
 
   def AsDictWithoutBaseClassEntries(self):
@@ -310,6 +314,10 @@ class Value(object):
       d['grouping_keys'] = grouping_keys
     else:
       d['grouping_keys'] = None
+
+    story_tags = value_dict.get('story_tags', None)
+    if story_tags:
+      d['story_tags'] = story_tags
 
     return d
 
