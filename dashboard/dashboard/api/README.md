@@ -9,6 +9,38 @@ for examples of how to access the API.
 ## Alerts
 URL patterns for accessing alerts:
 
+ * `/api/alerts?<params>`: Get matching alerts. Supported query parameters:
+    * `key`: Urlsafe alert entity key.
+    * `sheriff`: String. If unspecified, alerts for any sheriff will be
+      returned.
+    * `bug_id`: Set to `''` in order to select untriaged alerts.
+    * `is_improvement`: One of `true` or `false`. If unspecified, both
+      improvements and regressions are returned.
+    * `recovered`: One of `true` or `false`. If unspecified, both recovered and
+      unrecovered alerts are returned.
+    * `test`: Full slash-separated test path string like
+      `master/bot/test_suite/measurement/test_case`.
+    * `master`, `bot`, `test_suite`: Optional strings.
+    * `limit`: Positive integer. Default 100.
+    * `cursor`: Set to the `next_cursor` returned from a previous request in
+      order to page through results for queries that match more than `limit`
+      alerts.
+    * `min_start_revision`, `max_start_revision`: Integers. If unspecified,
+      alerts at any revisions will be returned.
+    * `min_end_revision`, `max_end_revision`: Integers. If unspecified, alerts
+      at any revisions will be returned.
+    * `min_timestamp`, `max_timestamp`: Datetimes in the format
+      `%Y-%m-%d %H:%M`.
+    * `inequality_property`: One of `start_revision`, `end_revision`, or
+      `timestamp`. If more than one of those query parameters is specified, you
+      can optionally set `inequality_property` to control which property is
+      filtered in the query; the other properties will be filtered post-hoc.
+      Depending on the shape of the data in the database, filtering by property
+      A in the query and property B post-hoc could return zero results and a
+      next_cursor that you need to chase, whereas filtering by property B in the
+      query and A post-hoc could return all the right alerts without a
+      next_cursor.
+
  * `/api/alerts/bug_id/id`: Get all the alerts associated with bug `id`.
  * `/api/alerts/keys/comma_sep_list`: Get the alerts with the given list of
    keys, separated by commas.
