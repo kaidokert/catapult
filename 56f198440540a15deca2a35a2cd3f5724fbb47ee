@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d1566eb1_fa14d801",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-06-07T18:10:08Z",
+      "side": 1,
+      "message": "The problem that this line highlights is that, in the old grouping key design, we figured that maybe benchmarks would want to add grouping keys in addition to the keys that the story specified. Here, I think we _don\u0027t_ want benchmarks to be able to add story tags.",
+      "revId": "56f198440540a15deca2a35a2cd3f5724fbb47ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
