@@ -73,11 +73,12 @@ class ListOfScalarValues(summarizable.SummarizableValue):
   def __init__(self, page, name, units, values,
                important=True, description=None,
                tir_label=None, none_value_reason=None,
-               std=None, improvement_direction=None, grouping_keys=None):
+               std=None, improvement_direction=None, grouping_keys=None,
+               story_tags=None):
     super(ListOfScalarValues, self).__init__(page, name, units, important,
                                              description, tir_label,
                                              improvement_direction,
-                                             grouping_keys)
+                                             grouping_keys, story_tags)
     if values is not None:
       assert isinstance(values, list)
       assert len(values) > 0
@@ -167,16 +168,22 @@ class ListOfScalarValues(summarizable.SummarizableValue):
     assert len(values) > 0
     v0 = values[0]
 
-    return cls._MergeLikeValues(values, v0.page, v0.name, v0.grouping_keys)
+    return cls._MergeLikeValues(values, v0.page, v0.name, v0.grouping_keys,
+                                v0.story_tags)
 
   @classmethod
   def MergeLikeValuesFromDifferentPages(cls, values):
     assert len(values) > 0
     v0 = values[0]
-    return cls._MergeLikeValues(values, None, v0.name, v0.grouping_keys)
+    story_tags = set()
+    for v in values:
+      for tag in v.story_tags:
+        story_tags.add(tag)
+    return cls._MergeLikeValues(values, None, v0.name, v0.grouping_keys,
+                                story_tags)
 
   @classmethod
-  def _MergeLikeValues(cls, values, page, name, grouping_keys):
+  def _MergeLikeValues(cls, values, page, name, grouping_keys, story_tags):
     v0 = values[0]
     merged_values = []
     list_of_samples = []
@@ -207,4 +214,5 @@ class ListOfScalarValues(summarizable.SummarizableValue):
         std=pooled_std,
         none_value_reason=none_value_reason,
         improvement_direction=v0.improvement_direction,
-        grouping_keys=grouping_keys)
+        grouping_keys=grouping_keys,
+        story_tags=story_tags)
