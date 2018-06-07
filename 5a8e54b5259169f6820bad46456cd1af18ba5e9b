@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "523770e6_186639ad",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-06-07T14:03:54Z",
+      "side": 1,
+      "message": "TODO: Add a test for this, where we set both profile_files_to_copy and profile_dir",
+      "parentUuid": "86481d9d_66c756ea",
+      "revId": "5a8e54b5259169f6820bad46456cd1af18ba5e9b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "826d8227_406b97a4",
         "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
         "patchSetId": 16
