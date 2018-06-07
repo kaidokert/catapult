@@ -14,7 +14,7 @@ class ScalarValue(summarizable.SummarizableValue):
   def __init__(self, page, name, units, value, important=True,
                description=None, tir_label=None,
                none_value_reason=None, improvement_direction=None,
-               grouping_keys=None):
+               grouping_keys=None, story_tags=None):
     """A single value (float or integer) result from a test.
 
     A test that counts the number of DOM elements in a page might produce a
@@ -23,7 +23,7 @@ class ScalarValue(summarizable.SummarizableValue):
     """
     super(ScalarValue, self).__init__(page, name, units, important, description,
                                       tir_label, improvement_direction,
-                                      grouping_keys)
+                                      grouping_keys, story_tags)
     assert value is None or isinstance(value, numbers.Number)
     none_values.ValidateNoneValueReason(value, none_value_reason)
     self.value = value
@@ -35,7 +35,8 @@ class ScalarValue(summarizable.SummarizableValue):
     else:
       page_name = 'None'
     return ('ScalarValue(%s, %s, %s, %s, important=%s, description=%s, '
-            'tir_label=%s, improvement_direction=%s, grouping_keys=%s') % (
+            'tir_label=%s, improvement_direction=%s, grouping_keys=%s, '
+            'story_tags=%r') % (
                 page_name,
                 self.name,
                 self.units,
@@ -44,7 +45,8 @@ class ScalarValue(summarizable.SummarizableValue):
                 self.description,
                 self.tir_label,
                 self.improvement_direction,
-                self.grouping_keys)
+                self.grouping_keys,
+                self.story_tags)
 
   def GetBuildbotDataType(self, output_context):
     if self._IsImportantGivenOutputIntent(output_context):
@@ -99,16 +101,22 @@ class ScalarValue(summarizable.SummarizableValue):
   def MergeLikeValuesFromSamePage(cls, values):
     assert len(values) > 0
     v0 = values[0]
-    return cls._MergeLikeValues(values, v0.page, v0.name, v0.grouping_keys)
+    return cls._MergeLikeValues(values, v0.page, v0.name, v0.grouping_keys,
+                                v0.story_tags)
 
   @classmethod
   def MergeLikeValuesFromDifferentPages(cls, values):
     assert len(values) > 0
     v0 = values[0]
-    return cls._MergeLikeValues(values, None, v0.name, v0.grouping_keys)
+    story_tags = set()
+    for v in values:
+      for tag in v.story_tags:
+        story_tags.add(tag)
+    return cls._MergeLikeValues(values, None, v0.name, v0.grouping_keys,
+                                story_tags)
 
   @classmethod
-  def _MergeLikeValues(cls, values, page, name, grouping_keys):
+  def _MergeLikeValues(cls, values, page, name, grouping_keys, story_tags):
     v0 = values[0]
 
     merged_value = [v.value for v in values]
@@ -125,4 +133,4 @@ class ScalarValue(summarizable.SummarizableValue):
         tir_label=value_module.MergedTirLabel(values),
         none_value_reason=none_value_reason,
         improvement_direction=v0.improvement_direction,
-        grouping_keys=grouping_keys)
+        grouping_keys=grouping_keys, story_tags=story_tags)
