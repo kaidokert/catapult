@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "f3a6b205_e2da69e4",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-07T11:07:11Z",
+      "side": 1,
+      "message": "This still sounds terrible. :( As an API client I don\u0027t want to worry about these issues or how the data is stored on the backend.\n\nCould we:\n- make an educated guess on what value makes the most sense to use as principal inequality in the query (doesn\u0027t have to work well always, just in the most common API calls we expect to do),\n- if the query results are empty but have a next cursor, follow it for me and return until some results are found?",
+      "parentUuid": "c3e9af15_508b8933",
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ed376f63_ddaa615a",
         "filename": "dashboard/dashboard/api/README.md",
         "patchSetId": 20
@@ -119,6 +137,24 @@
       "side": 1,
       "message": "Alerts have start and end revision, not a single revision, so I think that min/max start/end revision are clearer than min/max revision. You might be right, though, so maybe we can monitor usage for a while and revisit?",
       "parentUuid": "1eb1400e_f4c6b7d8",
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e328d5f_1accd5cf",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-07T11:07:11Z",
+      "side": 1,
+      "message": "I don\u0027t think we\u0027ll ever revisit, but not a strong opinion from me here anyway. :)",
+      "parentUuid": "519c14e2_4adc5e9a",
       "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -224,6 +260,24 @@
       "side": 1,
       "message": "Cleaning up this mess and switching to crisp, clear v2spa terminology here is going to require another CL or two.\n\nThis \u0027test\u0027 is the full test path like master/bot/test_suite/measurement/test_case.\nThe \u0027test\u0027 property in the returned data does not include master/bot/test_suite, but includes v2spa\u0027s measurement and test case, and sometimes part of the v2spa test suite. V2spa test suites are not quite the same thing as V1 test suites. Some v2spa test suites include TestMetadata.test_part1_name.",
       "parentUuid": "d718bcb7_e8d78dcf",
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f6c7b65d_91e7050c",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-07T11:07:11Z",
+      "side": 1,
+      "message": ":-/ Oh well, too bad. Yeah, let\u0027s leave that for later.",
+      "parentUuid": "333f2f99_48740206",
       "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false

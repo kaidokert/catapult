@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fcf4b804_12c98e5b",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 29
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-07T11:07:11Z",
+      "side": 1,
+      "message": "this is still not super clear to me; when is_improvement is true do I get only improvements? or both improvements and regressions? I assume when it\u0027s false I get only regressions.",
+      "revId": "914f2ac7329d7b040a00316854be0ca8ff40f03b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c42b59e_5e7cae4e",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 29
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-07T11:07:11Z",
+      "side": 1,
+      "message": "ditto.",
+      "revId": "914f2ac7329d7b040a00316854be0ca8ff40f03b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45d4f9eb_a40f97e5",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 29
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-07T11:07:11Z",
+      "side": 1,
+      "message": "Can we make this take dates in isoformat?\n\nhttps://docs.python.org/2/library/datetime.html#datetime.datetime.isoformat\n\n(also, I assume timestamps in alerts are UTC?)",
+      "revId": "914f2ac7329d7b040a00316854be0ca8ff40f03b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
