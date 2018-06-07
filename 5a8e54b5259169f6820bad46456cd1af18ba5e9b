@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "86481d9d_66c756ea",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-06-07T13:20:46Z",
+      "side": 1,
+      "message": "Hm to match the desktop behavior, I think we do want to support adding profile_files_to_copy files to the profile even if a --profile-dir is specified. I\u0027ve done so without mutating the --profile-dir contents, which matches what we do on desktop.",
+      "parentUuid": "5d1a6887_c17a06a6",
+      "revId": "5a8e54b5259169f6820bad46456cd1af18ba5e9b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "826d8227_406b97a4",
         "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
         "patchSetId": 16
@@ -33,6 +51,24 @@
       "revId": "5a8e54b5259169f6820bad46456cd1af18ba5e9b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37a97540_1b33ff6e",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-06-07T13:20:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "826d8227_406b97a4",
+      "revId": "5a8e54b5259169f6820bad46456cd1af18ba5e9b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
