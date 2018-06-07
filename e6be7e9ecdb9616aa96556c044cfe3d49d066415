@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "e338439f_9ccf2507",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-07T19:43:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3a6b205_e2da69e4",
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ed376f63_ddaa615a",
         "filename": "dashboard/dashboard/api/README.md",
         "patchSetId": 20
@@ -158,6 +176,24 @@
       "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d0e6e4a_5111318e",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 20
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-07T19:43:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5e328d5f_1accd5cf",
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -390,6 +426,30 @@
       "side": 1,
       "message": "I meant this hook: https://github.com/catapult-project/catapult/blob/master/dashboard/dashboard/common/datastore_hooks.py#L126\n\nWe install a global hook that modifies the query itself before it runs.",
       "parentUuid": "378dd021_eef9d249",
+      "range": {
+        "startLine": 122,
+        "startChar": 15,
+        "endLine": 122,
+        "endChar": 29
+      },
+      "revId": "e6be7e9ecdb9616aa96556c044cfe3d49d066415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7199c07e_7c8ae315",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-07T19:43:49Z",
+      "side": 1,
+      "message": "Oh sorry I didn\u0027t see that! Done.\nThe link to the hooks article in _DatastorePreHook returns 404, and I can\u0027t find it in google. Can you find documentation for pre call hooks?",
+      "parentUuid": "393a460f_bd96e0a1",
       "range": {
         "startLine": 122,
         "startChar": 15,
