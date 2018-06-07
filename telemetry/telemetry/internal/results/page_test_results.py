@@ -489,6 +489,7 @@ class PageTestResults(object):
         self._current_page_run.story not in self._all_stories)
 
     story_keys = self._current_page_run.story.grouping_keys
+    value.story_tags = self._current_page_run.story.tags
 
     if story_keys:
       for k, v in story_keys.iteritems():
