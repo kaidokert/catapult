@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "61edb2d4_69a07855",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-07T08:56:26Z",
+      "side": 1,
+      "message": "I think this is mostly testing the interaction between SetUpEnvironment (defined in android_browser_finder.py) and the browser profile on the device; so the tests should better go into android_browser_finder_test.py",
+      "revId": "f453f39afa75a21cf652071042903331ebd2f0d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "406b8dc8_96afee2d",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-07T08:56:26Z",
+      "side": 1,
+      "message": "Add a comment explaining that SetUpEnvironment will call RemoveProfile in this case.\n\nAlso please call CleanUpEnvironment on a finally block as shown e.g. here: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/browser/possible_browser.py?rcl\u003d93a962fcd7c76763caeae897b38b6efda440a705\u0026l\u003d17",
+      "revId": "f453f39afa75a21cf652071042903331ebd2f0d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85965c16_58d8c0cc",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-07T08:56:26Z",
+      "side": 1,
+      "message": "wondering if we should have instead:\n\n  expected_paths \u003d [posixpath.join(profile_dir, \u0027lib\u0027)]\n  self.assertEqual(profile_paths, expected_paths)\n\nAlso add a comment explaining that \"lib\" is created there after installing the browser, and we expect only that file to remain in the profile.",
+      "revId": "f453f39afa75a21cf652071042903331ebd2f0d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fe73ec9_2fdbb9f5",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-07T08:56:26Z",
+      "side": 1,
+      "message": "put all of this on a try-finally block, e.g.:\n\ntempdir \u003d ..\ntry:\n  ...\nfinally:\n  shutil.rmtree(tempdir)",
+      "revId": "f453f39afa75a21cf652071042903331ebd2f0d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4361129c_001c3711",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-07T08:56:26Z",
+      "side": 1,
+      "message": "It looks like from the (host, device) pair of paths; you never use the \"host\" paths.",
+      "revId": "f453f39afa75a21cf652071042903331ebd2f0d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc52ea9f_c6d3ad97",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-07T08:56:26Z",
+      "side": 1,
+      "message": "ditto, also add a comment to explain that SetUpEnvironment will call PushProfile, and put a try-finally block to call CleanUpEnvironment",
+      "revId": "f453f39afa75a21cf652071042903331ebd2f0d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
