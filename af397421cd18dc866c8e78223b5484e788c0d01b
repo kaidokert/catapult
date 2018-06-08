@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d4c23ad8_4317d45b",
+        "filename": "experimental/soundwave/soundwave/commands.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-08T14:58:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1f7d68d_485e8f62",
+      "revId": "af397421cd18dc866c8e78223b5484e788c0d01b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ef31dbb0_289b3a76",
         "filename": "experimental/soundwave/soundwave/commands.py",
         "patchSetId": 1
@@ -30,6 +48,30 @@
       "writtenOn": "2018-06-08T14:05:49Z",
       "side": 1,
       "message": "I have a slight preference for separating the context managers into an ApiSession and a DbSession and then doing:\n\nwith _ApiSession() as api, _DbSession() as db:\n  # Our code goes here...\n\nMy rationale is that I could see us wanting to use an ApiSession() without a DB or vice versa in the future and this needlessly entangles the setup of the two connections together. I don\u0027t have a strong preference, though, so it\u0027s up to you.",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 20
+      },
+      "revId": "af397421cd18dc866c8e78223b5484e788c0d01b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a747deb7_ec6581c5",
+        "filename": "experimental/soundwave/soundwave/commands.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-08T14:58:09Z",
+      "side": 1,
+      "message": "I thought about that too, but I think I want to keep both together because:\n\n1. In the case of the API, there is really no session to manage, there is nothing to \"close\" at the end so _ApiSession would look a bit odd.\n2. Keeping both together forces \"all\" initialization to happen in the same place. The bug this patch tries to solve was, precisely, forgetting to initialize one of the components in some circumstances.\n\nThinking ahead, I think a better organization would be to have some \"Command\" class, so we can make initialization/finalization more explicit and keep both api/con as members of the object instead of having to pass them around like this. But that requires some more heavy refactor, so maybe wait until we want to add a third command to better tell us which code would need to be shared or not.",
+      "parentUuid": "ef31dbb0_289b3a76",
       "range": {
         "startLine": 26,
         "startChar": 4,
