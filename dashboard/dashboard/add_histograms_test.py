@@ -45,7 +45,8 @@ def _CreateHistogram(
     name='hist', master=None, bot=None, benchmark=None,
     device=None, owner=None, stories=None, story_tags=None,
     benchmark_description=None, commit_position=None,
-    samples=None, max_samples=None, is_ref=False, is_summary=None):
+    samples=None, max_samples=None, is_ref=False, is_summary=None,
+    revision_timestamp=None):
   hists = [histogram_module.Histogram(name, 'count')]
   if max_samples:
     hists[0].max_num_sample_values = max_samples
@@ -98,6 +99,10 @@ def _CreateHistogram(
     histograms.AddSharedDiagnostic(
         reserved_infos.SUMMARY_KEYS.name,
         generic_set.GenericSet(is_summary))
+  if revision_timestamp:
+    histograms.AddSharedDiagnostic(
+        reserved_infos.REVISION_TIMESTAMPS.name,
+        )
   return histograms
 
 
