@@ -54,13 +54,7 @@ def _FindScriptInPath(script_name):
 
 
 def _VersionName():
-  is_synced = not _Run(
-      ['git', 'diff', 'origin/master', '--no-ext-diff']).strip()
-  deployment_type = 'clean' if is_synced else 'dev'
-  email = _Run(['git', 'config', '--get', 'user.email'])
-  username = email[0:email.find('@')]
-  commit_hash = _Run(['git', 'rev-parse', '--short=8', 'HEAD']).strip()
-  return '%s-%s-%s' % (deployment_type, username, commit_hash)
+  return 'charliea-dev'
 
 
 def _Run(command):
