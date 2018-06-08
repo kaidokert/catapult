@@ -555,8 +555,9 @@ class AndroidPlatformBackend(
       device_root = posixpath.normpath(posixpath.join(profile_dir,
                                                       posix_rel_root))
 
-      if rel_root == '.' and 'lib' in files:
-        files.remove('lib')
+      if rel_root == '.' and ('lib' in files or 'lib' dirs):
+        raise Exception('Cannot have a file or directory named ./lib in the'
+                        'new profile pushing to the device.')
       device_paths.extend(posixpath.join(device_root, n) for n in files + dirs)
 
     owner_group = '%s.%s' % (uid, uid)
