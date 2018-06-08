@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d1f7d68d_485e8f62",
+        "filename": "experimental/soundwave/soundwave/commands.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-06-08T14:05:49Z",
+      "side": 1,
+      "message": "nit: think we still want a blank line here",
+      "revId": "af397421cd18dc866c8e78223b5484e788c0d01b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef31dbb0_289b3a76",
+        "filename": "experimental/soundwave/soundwave/commands.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-06-08T14:05:49Z",
+      "side": 1,
+      "message": "I have a slight preference for separating the context managers into an ApiSession and a DbSession and then doing:\n\nwith _ApiSession() as api, _DbSession() as db:\n  # Our code goes here...\n\nMy rationale is that I could see us wanting to use an ApiSession() without a DB or vice versa in the future and this needlessly entangles the setup of the two connections together. I don\u0027t have a strong preference, though, so it\u0027s up to you.",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 20
+      },
+      "revId": "af397421cd18dc866c8e78223b5484e788c0d01b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
