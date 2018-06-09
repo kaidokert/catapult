@@ -205,18 +205,18 @@ class TestCli(test_case.MainTestCase):
                              [1/1] pass_test.PassingTest.test_pass passed
                              1 test passed, 0 skipped, 0 failures.
 
-                             Name           Stmts   Miss  Cover
-                             ----------------------------------
-                             fail_test.py       4      4     0%
-                             pass_test.py       4      0   100%
-                             ----------------------------------
-                             TOTAL              8      4    50%
+                             Name        Stmts   Miss  Cover
+                             -------------------------------
+                             fail_test       4      4     0%
+                             pass_test       4      0   100%
+                             -------------------------------
+                             TOTAL           8      4    50%
                              """))
         except ImportError:  # pragma: no cover
             # We can never cover this line, since running coverage means
             # that import will succeed.
             self.check(['-c'], files=PASS_TEST_FILES, ret=1,
-                       out='Error: coverage is not installed\n', err='')
+                       out='Error: coverage is not installed.\n', err='')
 
     def test_debugger(self):
         if sys.version_info.major == 3:  # pragma: python3
