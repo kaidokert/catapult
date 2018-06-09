@@ -216,7 +216,7 @@ class TestCli(test_case.MainTestCase):
             # We can never cover this line, since running coverage means
             # that import will succeed.
             self.check(['-c'], files=PASS_TEST_FILES, ret=1,
-                       out='Error: coverage is not installed\n', err='')
+                       out='Error: coverage is not installed.\n', err='')
 
     def test_debugger(self):
         if sys.version_info.major == 3:  # pragma: python3
