@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "024959d9_bac94a5c",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-06-10T21:57:28Z",
+      "side": 1,
+      "message": "Nit: this should be:\n\n  self.print_(\u0027Error: coverage is not installed.\u0027)",
+      "revId": "fd6f9746349c79a7287f4effbcc89b55a3cfe63b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a4f2c16_1651082f",
+        "filename": "third_party/typ/typ/tests/main_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-06-10T21:57:28Z",
+      "side": 1,
+      "message": "Why did this block change?\n\nUsing coverage 4.5.1 installed locally w/ `pip install --user coverage`, the old syntax passes and your new one will fail. Do you have some other version of coverage installed somewhere/how ?",
+      "revId": "fd6f9746349c79a7287f4effbcc89b55a3cfe63b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
