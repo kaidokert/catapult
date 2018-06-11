@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b2b4f8e1_0fcb353f",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-06-11T20:56:12Z",
+      "side": 1,
+      "message": "this shouldn\u0027t be necessary (i.e. it shouldn\u0027t have any effect)",
+      "range": {
+        "startLine": 263,
+        "startChar": 4,
+        "endLine": 263,
+        "endChar": 8
+      },
+      "revId": "483ef7e69f262131d4ac5d659521b39064f83d4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f4e6dab_8ad25cf6",
+        "filename": "third_party/typ/run",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2018-06-11T20:56:12Z",
+      "side": 1,
+      "message": "this should help",
+      "range": {
+        "startLine": 1,
+        "startChar": 15,
+        "endLine": 1,
+        "endChar": 22
+      },
+      "revId": "483ef7e69f262131d4ac5d659521b39064f83d4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
