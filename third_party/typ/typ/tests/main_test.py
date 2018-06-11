@@ -23,6 +23,7 @@ from typ import test_case
 from typ import Host
 from typ import VERSION
 from typ.fakes import test_result_server_fake
+from typ.fakes import host_fake
 
 
 is_python3 = bool(sys.version_info.major == 3)
@@ -244,6 +245,28 @@ class TestCli(test_case.MainTestCase):
         self.assertIn('[1/1] err_test.ErrTest.test_err failed unexpectedly',
                       out)
         self.assertIn('0 tests passed, 0 skipped, 1 failure', out)
+
+    def test_expectations(self):
+        files = {
+            'expectations.txt': d('''\
+                # tags: foo bar
+                crbug.com/12345 [ foo ] fail_test.FailingTest.test_fail [ Failure ]
+                '''),
+            'fail_test.py': FAIL_TEST_PY,
+        }
+
+        # No tags are passed, so this should fail unexpectedly.
+        _, out, _, _ = self.check(['-X', 'expectations.txt'],
+                                  files=files, ret=1)
+
+        # A matching tag is passed, so the test should fail as expected.
+        _, out, _, _ = self.check(['-X', 'expectations.txt', '-x', 'foo'],
+                                  files=files, ret=0)
+
+        # A tag that doesn't match is passed, so the test should fail
+        # unexpectedly.
+        _, out, _, _ = self.check(['-X', 'expectations.txt', '-x', 'bar'],
+                                  files=files, ret=1)
 
     def test_fail(self):
         _, out, _, _ = self.check([], files=FAIL_TEST_FILES, ret=1, err='')

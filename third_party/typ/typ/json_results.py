@@ -87,17 +87,15 @@ def make_full_results(metadata, seconds_since_epoch, all_test_names, results):
     full_results['num_failures_by_type']['PASS'] = len(passing_tests)
     full_results['num_failures_by_type']['SKIP'] = len(skipped_tests)
 
+    full_results['num_regressions'] = 0
+
     full_results['tests'] = OrderedDict()
 
     for test_name in all_test_names:
         value = _results_for_test(test_name, results)
-        if test_name in skipped_tests:
-            value['expected'] = 'SKIP'
-        else:
-            value['expected'] = 'PASS'
-            if value['actual'].endswith('FAIL'):
-                value['is_unexpected'] = True
         _add_path_to_trie(full_results['tests'], test_name, value)
+        if value['is_unexpected']:
+            full_results['num_regressions'] += 1
 
     return full_results
 
@@ -116,7 +114,7 @@ def make_upload_request(test_results_server, builder, master, testtype,
 
 
 def exit_code_from_full_results(full_results):
-    return 1 if num_failures(full_results) else 0
+    return 1 if full_results['num_regressions'] else 0
 
 
 def num_failures(full_results):
@@ -174,6 +172,7 @@ def _results_for_test(test_name, results):
         actuals.append('SKIP')
     value['actual'] = ' '.join(actuals)
     value['times'] = times
+    value['is_unexpected'] = r.unexpected
     return value
 
 def _add_path_to_trie(trie, path, value):
