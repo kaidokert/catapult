@@ -6,7 +6,6 @@ import optparse
 import sys
 
 from py_utils import class_util
-from py_utils import expectations_parser
 from telemetry import decorators
 from telemetry.internal import story_runner
 from telemetry.internal.util import command_line
@@ -14,6 +13,7 @@ from telemetry.page import legacy_page_test
 from telemetry.story import expectations as expectations_module
 from telemetry.web_perf import timeline_based_measurement
 from tracing.value.diagnostics import generic_set
+from typ import expectations_parser
 
 Owner = decorators.Owner # pylint: disable=invalid-name
 
