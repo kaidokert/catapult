@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "54adcf05_bca214cc",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-06-11T14:59:07Z",
+      "side": 1,
+      "message": "This is only failing on mac, can you write:\n\n @decorators.Disabled(\u0027mac\u0027)\n @decorators.Enabled(\u0027has tabs\u0027)",
+      "revId": "3e4c405d7ff5c7b3718618d417a7d8c4ac192cb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
