@@ -74,7 +74,7 @@ class DumpGraphJsonHandler(request_handler.RequestHandler):
     entities += q.fetch(limit=num_points)
 
     # Get the Anomaly and Sheriff entities.
-    alerts = anomaly.Anomaly.GetAlertsForTest(test_key)
+    alerts, _, _ = anomaly.Anomaly.QueryAsync(test=test_key).get_result()
     sheriff_keys = {alert.sheriff for alert in alerts}
     sheriffs = [sheriff.get() for sheriff in sheriff_keys]
     entities += alerts
