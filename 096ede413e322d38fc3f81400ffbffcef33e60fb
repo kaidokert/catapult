@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b872cf05_49cfbde7",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-06-11T18:55:27Z",
+      "side": 1,
+      "message": "Why do you make the commandline option support a list of expectation files and then assert that only a single expectation file is supported?",
+      "revId": "096ede413e322d38fc3f81400ffbffcef33e60fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
