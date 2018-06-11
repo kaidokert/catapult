@@ -5,7 +5,7 @@
 
 import unittest
 
-from py_utils import expectations_parser
+from typ import expectations_parser
 
 
 class TestExpectationParserTest(unittest.TestCase):

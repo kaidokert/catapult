@@ -5,9 +5,9 @@
 import unittest
 
 
-from py_utils import expectations_parser
 from telemetry.story import expectations
 from telemetry.testing import fakes
+from typ import expectations_parser
 
 
 class MockState(object):
