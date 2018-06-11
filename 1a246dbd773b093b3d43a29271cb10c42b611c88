@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "63399350_ec7229cb",
+        "filename": "dashboard/dashboard/group_report.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-11T23:31:37Z",
+      "side": 1,
+      "message": "nit: Feels like you could catch the exception from QueryAsync since that does a cast to int as well.",
+      "range": {
+        "startLine": 61,
+        "startChar": 15,
+        "endLine": 61,
+        "endChar": 21
+      },
+      "revId": "1a246dbd773b093b3d43a29271cb10c42b611c88",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d2d509e_a9e03662",
+        "filename": "dashboard/dashboard/models/anomaly_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-11T23:31:37Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we move the tests in here as well, since the functionality moved to anomaly?",
+      "range": {
+        "startLine": 7,
+        "startChar": 5,
+        "endLine": 7,
+        "endChar": 11
+      },
+      "revId": "1a246dbd773b093b3d43a29271cb10c42b611c88",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
