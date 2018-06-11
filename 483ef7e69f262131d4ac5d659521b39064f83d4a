@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e20fc297_c4e33537",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-06-11T20:57:21Z",
+      "side": 1,
+      "message": "Ack. Removed this",
+      "parentUuid": "b2b4f8e1_0fcb353f",
+      "range": {
+        "startLine": 263,
+        "startChar": 4,
+        "endLine": 263,
+        "endChar": 8
+      },
+      "revId": "483ef7e69f262131d4ac5d659521b39064f83d4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2f4e6dab_8ad25cf6",
         "filename": "third_party/typ/run",
         "patchSetId": 12
