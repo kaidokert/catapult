@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 
 import datetime
+import json
 import logging
 import time
 import urllib
@@ -12,6 +13,7 @@ from google.appengine.ext import ndb
 
 from dashboard import alerts
 from dashboard import group_report
+from dashboard.api import api_auth
 from dashboard.api import api_request_handler
 from dashboard.common import request_handler
 from dashboard.common import utils
@@ -143,8 +145,7 @@ def QueryAnomalies(
   if sheriff is not None:
     sheriff_key = ndb.Key('Sheriff', sheriff)
     sheriff_entity = sheriff_key.get()
-    if not sheriff_entity:
-      raise api_request_handler.BadRequestError('Invalid sheriff %s' % sheriff)
+    assert sheriff_entity is not None
     logging.info('filter:sheriff=%s', sheriff)
     query = query.filter(anomaly.Anomaly.sheriff == sheriff_key)
   if is_improvement is not None:
@@ -257,7 +258,7 @@ def QueryAnomaliesUntilFound(
 class AlertsHandler(api_request_handler.ApiRequestHandler):
   """API handler for various alert requests."""
 
-  def AuthorizedPost(self, *args):
+  def post(self, *args):
     """Returns alert data in response to API requests.
 
     Possible list types:
@@ -268,6 +269,15 @@ class AlertsHandler(api_request_handler.ApiRequestHandler):
     Outputs:
       Alerts data; see README.md.
     """
+    self._SetCorsHeadersIfAppropriate()
+    try:
+      api_auth.Authorize()
+    except (api_auth.OAuthError, api_auth.NotLoggedInError) as e:
+      # If the user isn't signed in or isn't an internal user, then they won't
+      # be able to access internal_only data, but they should still be allowed
+      # to access non-internal_only data.
+      pass
+
     alert_list = None
     response = {}
     try:
@@ -332,8 +342,8 @@ class AlertsHandler(api_request_handler.ApiRequestHandler):
           sheriff_key = ndb.Key('Sheriff', sheriff_name)
           sheriff = sheriff_key.get()
           if not sheriff:
-            raise api_request_handler.BadRequestError(
-                'Invalid sheriff %s' % sheriff_name)
+            self.WriteErrorMessage('Invalid sheriff %s' % sheriff_name, 400)
+            return
           response['DEPRECATION WARNING'] = (
               'Please use /api/alerts?min_timestamp=%s&sheriff=%s' % (
                   urllib.quote(cutoff.isoformat()),
@@ -355,14 +365,15 @@ class AlertsHandler(api_request_handler.ApiRequestHandler):
           query = query.order(-anomaly.Anomaly.timestamp)
           alert_list = query.fetch()
         else:
-          raise api_request_handler.BadRequestError(
-              'Invalid alert type %s' % list_type)
-    except request_handler.InvalidInputError as e:
-      raise api_request_handler.BadRequestError(e.message)
+          self.WriteErrorMessage('Invalid alert type %s' % list_type, 400)
+          return
+    except (AssertionError, request_handler.InvalidInputError) as e:
+      self.WriteErrorMessage(e.message, 400)
+      return
 
     anomaly_dicts = alerts.AnomalyDicts(
         [a for a in alert_list if a.key.kind() == 'Anomaly'])
 
     response['anomalies'] = anomaly_dicts
 
-    return response
+    self.response.out.write(json.dumps(response))
