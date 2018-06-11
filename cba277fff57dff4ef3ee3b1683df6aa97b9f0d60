@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3abf56fb_4b3e6bb3",
+        "filename": "dashboard/dashboard/add_histograms_queue.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-06-11T23:00:04Z",
+      "side": 1,
+      "message": "Should we bother putting this on rows as an annotation? I\u0027m fine either way. If V2SPA would be helped by it, let\u0027s do it. Otherwise, maybe we shouldn\u0027t bother.",
+      "revId": "cba277fff57dff4ef3ee3b1683df6aa97b9f0d60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
