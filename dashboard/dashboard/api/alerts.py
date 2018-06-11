@@ -11,7 +11,6 @@ from google.appengine.datastore import datastore_query
 from google.appengine.ext import ndb
 
 from dashboard import alerts
-from dashboard import group_report
 from dashboard.api import api_request_handler
 from dashboard.common import request_handler
 from dashboard.common import utils
@@ -308,20 +307,17 @@ class AlertsHandler(api_request_handler.ApiRequestHandler):
         list_type = args[0]
         if list_type.startswith('bug_id'):
           bug_id = list_type.replace('bug_id/', '')
-          response['DEPRECATION WARNING'] = (
+          raise api_request_handler.BadRequestError(
               'Please use /api/alerts?bug_id=%s' % bug_id)
-          alert_list = group_report.GetAlertsWithBugId(bug_id)
         elif list_type.startswith('keys'):
           keys = list_type.replace('keys/', '').split(',')
-          response['DEPRECATION WARNING'] = (
+          raise api_request_handler.BadRequestError(
               'Please use /api/alerts?key=%s' % keys[0])
-          alert_list = group_report.GetAlertsForKeys(keys)
         elif list_type.startswith('rev'):
           rev = list_type.replace('rev/', '')
-          response['DEPRECATION WARNING'] = (
+          raise api_request_handler.BadRequestError(
               'Please use /api/alerts?max_end_revision=%s&min_start_revision=%s'
               % (rev, rev))
-          alert_list = group_report.GetAlertsAroundRevision(rev)
         elif list_type.startswith('history'):
           try:
             days = int(list_type.replace('history/', ''))
@@ -334,26 +330,18 @@ class AlertsHandler(api_request_handler.ApiRequestHandler):
           if not sheriff:
             raise api_request_handler.BadRequestError(
                 'Invalid sheriff %s' % sheriff_name)
-          response['DEPRECATION WARNING'] = (
-              'Please use /api/alerts?min_timestamp=%s&sheriff=%s' % (
-                  urllib.quote(cutoff.isoformat()),
-                  urllib.quote(sheriff_name)))
+          error = 'Please use /api/alerts?min_timestamp=%s&sheriff=%s' % (
+              urllib.quote(cutoff.isoformat()),
+              urllib.quote(sheriff_name))
           include_improvements = bool(self.request.get('improvements'))
           filter_for_benchmark = self.request.get('benchmark')
-          query = anomaly.Anomaly.query(anomaly.Anomaly.sheriff == sheriff_key)
-          query = query.filter(anomaly.Anomaly.timestamp > cutoff)
           if not include_improvements:
-            query = query.filter(
-                anomaly.Anomaly.is_improvement == False)
-            response['DEPRECATION WARNING'] += '&is_improvement=false'
+            error += '&is_improvement=false'
           if filter_for_benchmark:
-            query = query.filter(
-                anomaly.Anomaly.benchmark_name == filter_for_benchmark)
-            response['DEPRECATION WARNING'] += (
+            error += (
                 '&test_suite_name=' + filter_for_benchmark)
 
-          query = query.order(-anomaly.Anomaly.timestamp)
-          alert_list = query.fetch()
+          raise api_request_handler.BadRequestError(error)
         else:
           raise api_request_handler.BadRequestError(
               'Invalid alert type %s' % list_type)
