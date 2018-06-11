@@ -16,6 +16,24 @@
       "revId": "096ede413e322d38fc3f81400ffbffcef33e60fb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f7c7711_bf0df9d7",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-06-11T18:56:47Z",
+      "side": 1,
+      "message": "Because I want the API to actually be a list (it needs to support multiple files in some cases),  and I want to add support in a follow-on CL, but for now I want to make sure we don\u0027t just ignore the subsequent files.",
+      "parentUuid": "b872cf05_49cfbde7",
+      "revId": "096ede413e322d38fc3f81400ffbffcef33e60fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
