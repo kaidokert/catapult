@@ -9,6 +9,12 @@ import sys
 
 from tools import cov
 
+try:
+  import coverage
+  sys.stdout.write(coverage.__file__)
+except ImportError:
+  pass
+
 
 class Runner(object):
 

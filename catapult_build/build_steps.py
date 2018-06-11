@@ -179,6 +179,12 @@ _CATAPULT_TESTS = [
         'disabled': ['android'],
     },
     {
+        'name': 'Typ unittest',
+        'path': 'third_party/typ/run',
+        'additional_args': ['tests'],
+        'disabled': ['android'],
+    },
+    {
         'name': 'Vinn Tests',
         'path': 'third_party/vinn/bin/run_tests',
         'disabled': ['android'],
@@ -254,6 +260,7 @@ def main(args=None):
         'env': {}
     }
     step['cmd'] = ['python', os.path.join(args.api_path_checkout, test['path'])]
+    step['env'] = os.environ.copy()
     if step['name'] == 'Systrace Tests':
       step['cmd'] += ['--device=' + args.platform]
     if test.get('additional_args'):
