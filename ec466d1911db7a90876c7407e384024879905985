@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a1b7f915_4f99f720",
+        "filename": "experimental/soundwave/soundwave/tables/timeseries.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-11T08:48:05Z",
+      "side": 1,
+      "message": "nit: maybe add link to https://cs.chromium.org/chromium/src/third_party/catapult/dashboard/dashboard/models/anomaly.py?rcl\u003d4bc53b00e2e7dca877c4d7b0b3836cb950bbfa88\u0026l\u003d20",
+      "revId": "ec466d1911db7a90876c7407e384024879905985",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
