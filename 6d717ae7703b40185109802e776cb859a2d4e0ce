@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e01dac15_ddd2a7f6",
+        "filename": "third_party/typ/typ/tests/main_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-06-11T16:45:19Z",
+      "side": 1,
+      "message": "Can we change the test to self.assertGreaterEqual() instead? The actual value isn\u0027t that important, and I\u0027d rather avoid the sleep().",
+      "revId": "6d717ae7703b40185109802e776cb859a2d4e0ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
