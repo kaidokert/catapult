@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env vpython
 
 from __future__ import print_function
 
@@ -8,6 +8,12 @@ import subprocess
 import sys
 
 from tools import cov
+
+try:
+  import coverage
+  sys.stdout.write(coverage.__file__)
+except ImportError:
+  pass
 
 
 class Runner(object):
