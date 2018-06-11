@@ -33,6 +33,24 @@
       "revId": "fd6f9746349c79a7287f4effbcc89b55a3cfe63b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50d51246_437a8ffa",
+        "filename": "third_party/typ/typ/tests/main_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-06-11T00:13:50Z",
+      "side": 1,
+      "message": "This is not my machine but the catapult CQ linux bot. Probably it has some older version of coverage.\n\nWhat do you think if we branch this check based on coverage version?",
+      "parentUuid": "7a4f2c16_1651082f",
+      "revId": "fd6f9746349c79a7287f4effbcc89b55a3cfe63b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
