@@ -22,8 +22,11 @@ class Oobe(web_contents.WebContents):
         if webview.EvaluateJavaScript(
             """
             bases = document.getElementsByTagName('base');
-            bases.length > 0 ?
-                bases[0].href.indexOf('https://accounts.google.com/') == 0 : false;
+            if (bases.length > 0) {
+              href = bases[0].href;
+              href.indexOf('https://accounts.google.com/') == 0 ||
+                  href.indexOf('https://gaiastaging.corp.google.com/') == 0;
+            }
             """):
           py_utils.WaitFor(webview.HasReachedQuiescence, 20)
           return webview
