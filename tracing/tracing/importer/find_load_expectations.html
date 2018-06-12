@@ -78,6 +78,181 @@ tr.exportTo('tr.importer', function() {
     return candidatesForFrameId;
   }
 
+  function findAllEvents(rendererHelper, category, title) {
+    const targetEvents = [];
+
+    for (const ev of rendererHelper.process.getDescendantEvents()) {
+      if (!tr.e.chrome.EventFinderUtils.hasCategoryAndName(ev, category, title)) continue;
+      targetEvents.push(ev);
+    }
+
+    return targetEvents;
+  }
+
+  function groupEventsByPaints(events, mainFrameId) {
+    // Assuming events have been sorted in ascending order.
+    const paints = [];
+    for (const event of events) {
+      const paintCounter = event.args.data.paint_counter;
+      if (!paintCounter && paintCounter!==0)
+        throw Exception("paint_counter should be an integer");
+      const frameId = event.args.data.frame;
+      if (frameId !== mainFrameId) continue;
+      if (!(paintCounter in paints)) paints[paintCounter] = [];
+      paints[paintCounter].push(event);
+    }
+    return paints;
+  }
+
+  function groupEventsByObjects(events, mainFrameId) {
+    // Assuming events have been sorted in ascending order.
+    const objects = [];
+    for (const event of events) {
+      const frameId = event.args.data.frame;
+      if (frameId !== mainFrameId) continue;
+      const paintCounter = event.args.data.paint_counter;
+      let domNodeId = event.args.data.dom_node_id;
+      if (!domNodeId) domNodeId = 'domNodeId_is_null'
+      if (!(domNodeId in objects)) objects[domNodeId] = [];
+      objects[domNodeId].push(event);
+    }
+    return objects;
+  }
+
+  function getMainFrameId(events) {
+    for (const event of events) {
+      if (event.args.data.is_in_main_frame) return event.args.data.frame;
+    }
+    return null;
+  }
+
+  function findSize(paintEventData) {
+    return paintEventData.size_height * paintEventData.size_width;
+  }
+
+  // paintProperties are in "or" relation.
+  // object types:
+  // * is_text
+  // * is_text_area
+  // * is_text_field
+  // * is_layout_ng_text
+  // * is_svg_text
+  // * is_svg
+  // * is_video
+  // * is_image
+  // * has_background_image
+  // * is_layout_image
+  // * is_layout_ng_list_marker_image,
+  // * has_box_decoration_background
+  // * is_svg_image
+  // * is_canvas
+  // * will_render_image
+  // Reference: https://chromium-review.googlesource.com/c/chromium/src/+/1062926/28/third_party/blink/renderer/core/layout/paint_tracker.cc
+  function findLargestAtLastFrame(objects, objectTypes) {
+    let maxArea = null;
+    let largestObjectId = null;
+    for (const domNodeId of Object.keys(objects)) {
+      const objectEvents = objects[domNodeId];
+      // Assuming events in objects are sorted by start.
+
+      const objectFinalEvent = objectEvents[objectEvents.length - 1];
+      const isTypeOfInterest = !!objectTypes.find(
+          t => objectFinalEvent.args.data[t]);
+      if (!isTypeOfInterest) continue;
+      // sizes not in view port is 0
+      const area = findSize(objectFinalEvent.args.data);
+      if (!maxArea || area > maxArea) {
+        maxArea = area;
+        largestObjectId = domNodeId;
+      }
+    }
+    return largestObjectId;
+  }
+
+  function findLargestObjectFirstPaint(objects,
+      objectTypes, needInViewport) {
+    // ['is_image', 'has_background_image'], true
+    const largestObjectId =
+        findLargestAtLastFrame(objects, objectTypes);
+    if (!largestObjectId) return null;
+    return objects[largestObjectId][0].start;
+  }
+
+  function findLastObjectFirstPaintedInViewPort(objects,
+      objectTypes, needInViewport) {
+    let maxTime = null;
+    for (const domNodeId of Object.keys(objects)) {
+      const objectEvents = objects[domNodeId];
+      let firstPaintedInViewPort = null;
+      // Assuming objectEvents are sorted in ascending order by start.
+      for (const e of objectEvents) {
+        const isTypeOfInterest = !!objectTypes.find(
+          t => e.args.data[t]);
+        if (!isTypeOfInterest) break;
+        if (e.args.data.is_in_viewport) {
+          firstPaintedInViewPort = e.start;
+          break;
+        }
+      }
+      if (!firstPaintedInViewPort) continue;
+      if (!maxTime || maxTime < firstPaintedInViewPort)
+        maxTime = firstPaintedInViewPort;
+    }
+    return maxTime;
+  }
+
+  function computeFirstContentfulPaintVariants_(
+    rendererHelper, navigationStart, searchWindowEnd) {
+      const results = {
+          largestImageFirstPaint: null,
+          largestTextFirstPaint: null,
+          largestImageOrTextFirstPaint: null,
+          lastImageFirstPaint: null,
+          lastTextFirstPaint: null,
+          lastImageOrTextFirstPaint: null
+      };
+      const paintTrackerEvents = findAllEvents(rendererHelper, 'loading',
+          'PaintTracker::NotifObjectPrePaint');
+      const eventsInNavigation = paintTrackerEvents.filter(
+          e => e.start >= navigationStart.start && e.start <= searchWindowEnd);
+      if (eventsInNavigation.length === 0) return results;
+      eventsInNavigation.sort((a, b) => a.start - b.start);
+      const mainFrameId = getMainFrameId(eventsInNavigation);
+      if (!mainFrameId) return results;
+      const paints =
+          groupEventsByPaints(eventsInNavigation,mainFrameId);
+      const objects =
+          groupEventsByObjects(eventsInNavigation, mainFrameId);
+      const lastPaintEvents = paints[paints.length-1];
+      const lastTimeStamp = lastPaintEvents[lastPaintEvents.length-1].start;
+
+      // largest image first paint
+      const imageTypes = ['is_image', 'has_background_image', 'is_video',
+          'is_svg', 'is_canvas'];
+      results.largestImageFirstPaint = findLargestObjectFirstPaint(
+          objects, imageTypes);
+
+      // largest text first paint
+      const textTypes = ['is_text', 'is_svg_text'];
+      results.largestTextFirstPaint = findLargestObjectFirstPaint(
+          objects, textTypes);
+
+      // largest image or text first paint
+      results.largestImageOrTextFirstPaint = findLargestObjectFirstPaint(
+          objects, imageTypes.concat(textTypes));
+
+      // last image first paint
+      results.lastImageFirstPaint = findLastObjectFirstPaintedInViewPort(
+          objects, imageTypes, true);
+      // last text first paint
+      results.lastTextFirstPaint = findLastObjectFirstPaintedInViewPort(
+          objects, textTypes, true);
+      // last image or text first paint
+      results.lastImageOrTextFirstPaint = findLastObjectFirstPaintedInViewPort(
+          objects, imageTypes.concat(textTypes), true);
+      return results;
+  }
+
   /**
    * Returns Time to Interactive and First CPU Idle for the
    * given parameters. See the time_to_interactive.html module for detailed
@@ -185,6 +360,9 @@ tr.exportTo('tr.importer', function() {
           rendererHelper, navigationStart, fmpEvent,
           domContentLoadedEndEvent, searchWindowEnd);
 
+    const fcpVariants = computeFirstContentfulPaintVariants_(
+        rendererHelper, navigationStart, searchWindowEnd);
+
     const duration = (interactiveTime === undefined) ?
       searchWindowEnd - navigationStart.start :
       interactiveTime - navigationStart.start;
@@ -193,8 +371,12 @@ tr.exportTo('tr.importer', function() {
         rendererHelper.modelHelper.model,
         tr.model.um.LOAD_SUBTYPE_NAMES.SUCCESSFUL, navigationStart.start,
         duration, rendererHelper.process, navigationStart, fmpEvent,
-        domContentLoadedEndEvent, firstCpuIdleTime, interactiveTime, url,
-        frameId);
+        domContentLoadedEndEvent, firstCpuIdleTime, interactiveTime,
+        fcpVariants.largestImageFirstPaint, fcpVariants.largestTextFirstPaint,
+        fcpVariants.largestImageOrTextFirstPaint,
+        fcpVariants.lastImageFirstPaint, fcpVariants.lastTextFirstPaint,
+        fcpVariants.lastImageOrTextFirstPaint,
+        url, frameId);
   }
 
   /**
