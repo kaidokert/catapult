@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9d503a6b_cfaf1424",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-13T16:54:20Z",
+      "side": 1,
+      "message": "I\u0027m wondering how this is typically used. Do all stories in the benchmark use the exact same list of profile_files_to_copy? Or different stories might use different files to add?",
+      "revId": "136894bc8826b590f006e923a79231db6b230ef5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71c669c2_71de58dd",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-13T16:54:20Z",
+      "side": 1,
+      "message": "It would be probably best to factor out this code into a context-manager to be used as, e.g.:\n\n    with ProfileWithExtraFiles(\n        self._browser_options.profile_dir, profile_files_to_copy) as profile_dir:\n      self._platform_backend.PushProfile(..., profile_dir)",
+      "revId": "136894bc8826b590f006e923a79231db6b230ef5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80671cf1_708049e4",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-13T16:54:20Z",
+      "side": 1,
+      "message": "don\u0027t forget to try-finally the temp_directory removal",
+      "revId": "136894bc8826b590f006e923a79231db6b230ef5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
