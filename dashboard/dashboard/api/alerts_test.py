@@ -36,7 +36,6 @@ class AlertsGeneralTest(testing_common.TestCase):
     self._testapp = webtest.TestApp(app)
     self._mock_oauth = None
     self._mock_internal = None
-    self._MockUser(NON_GOOGLE_USER)
 
   def _MockUser(self, user):
     if self._mock_oauth:
