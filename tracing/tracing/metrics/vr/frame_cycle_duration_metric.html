@@ -25,9 +25,11 @@ tr.exportTo('tr.metrics.vr', function() {
     return createdHistograms;
   }
 
+  const DRAW_FRAME_TITLE = 'VrShellGl::DrawFrame';
+
   function frameCycleDurationMetric(histograms, model, opt_options) {
     const histogramsByEventTitle = new Map();
-    histogramsByEventTitle.set('VrShellGl::DrawFrame',
+    histogramsByEventTitle.set(DRAW_FRAME_TITLE,
         createHistograms(histograms, 'draw_frame',
             {description: 'Duration to render one frame'}, true));
     histogramsByEventTitle.set('VrShellGl::AcquireFrame',
@@ -129,6 +131,19 @@ tr.exportTo('tr.metrics.vr', function() {
     // Maps from the GUID of a UiRenderer::DrawUiView slice to each of its
     // children slices.
     const drawUiSubSlicesMap = new Map();
+
+    const drawFrameHists = histogramsByEventTitle.get(DRAW_FRAME_TITLE);
+    const relatedNames = {
+      wall: new tr.v.d.RelatedNameMap(),
+      cpu: new tr.v.d.RelatedNameMap(),
+    };
+    drawFrameHists.wall.diagnostics.set('breakdown', relatedNames.wall);
+    drawFrameHists.cpu.diagnostics.set('breakdown', relatedNames.cpu);
+    for (const [title, hists] of histogramsByEventTitle) {
+      if (title === DRAW_FRAME_TITLE) continue;
+      relatedNames.wall.set(title.split('.')[1], hists.wall.name);
+      relatedNames.cpu.set(title.split('.')[1], hists.cpu.name);
+    }
 
     const chromeHelper = model.getOrCreateHelper(
         tr.model.helpers.ChromeModelHelper);
