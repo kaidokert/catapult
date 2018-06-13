@@ -152,6 +152,38 @@ class HistogramUnittest(unittest.TestCase):
   def assertDeepEqual(self, a, b):
     self.assertEqual(ToJSON(a), ToJSON(b))
 
+  def testClone(self):
+    boundaries = histogram.HistogramBinBoundaries.CreateLinear(0, 1.0, 10)
+    hist = histogram.Histogram('nomenclature', 'unitless', boundaries)
+    hist.description = 'Once upon a time'
+    hist.short_name = 'nom'
+    hist.max_num_sample_values = 42
+    hist.CustomizeSummaryOptions({
+        'avg': False,
+        'percentile': [0.9],
+    })
+    hist.diagnostics['how'] = generic_set.GenericSet(['method'])
+    hist.AddSample(0.5, {'diag': generic_set.GenericSet(['value'])})
+    clone = hist.Clone()
+
+    self.assertNotEqual(hist.guid, clone.guid)
+    self.assertEqual(clone.name, 'nomenclature')
+    self.assertEqual(clone.unit, 'unitless')
+    self.assertEqual(len(clone.bins), 12)
+    self.assertEqual(clone.description, 'Once upon a time')
+    self.assertEqual(clone.max_num_sample_values, 42)
+    self.assertEqual(clone.summary_options['avg'], False)
+    self.assertEqual(clone.summary_options['percentile'], [0.9])
+    self.assertEqual(clone.short_name, 'nom')
+    self.assertEqual(clone.average, 0.5)
+    self.assertEqual(clone.num_values, 1)
+    self.assertEqual(list(clone.diagnostics['how'])[0], 'method')
+    clone_diagnostics = clone.GetBinForValue(clone.average).diagnostic_maps
+    self.assertEqual(len(clone_diagnostics), 1)
+    diag = clone_diagnostics[0]['diag']
+    self.assertEqual(len(diag), 1)
+    self.assertEqual(list(diag)[0], 'value')
+
   def testDefaultBoundaries(self):
     hist = histogram.Histogram('', 'ms')
     self.assertEqual(len(hist.bins), 102)

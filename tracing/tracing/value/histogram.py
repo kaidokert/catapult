@@ -755,6 +755,9 @@ class HistogramBin(object):
 
   def AddBin(self, other):
     self._count += other.count
+    MergeSampledStreams(
+        self.diagnostic_maps, self.count, other.diagnostic_maps, other.count,
+        MAX_DIAGNOSTIC_MAPS)
 
   @property
   def diagnostic_maps(self):
@@ -891,6 +894,18 @@ class Histogram(object):
     self._max_num_sample_values = self._GetDefaultMaxNumSampleValues()
 
   @property
+  def description(self):
+    return self._description
+
+  @description.setter
+  def description(self, s):
+    self._description = s
+
+  @property
+  def summary_options(self):
+    return self._summary_options
+
+  @property
   def nan_diagnostic_maps(self):
     return self._nan_diagnostic_maps
 
@@ -922,6 +937,10 @@ class Histogram(object):
   @property
   def short_name(self):
     return self._short_name
+
+  @short_name.setter
+  def short_name(self, n):
+    self._short_name = n
 
   @property
   def guid(self):
@@ -1110,16 +1129,31 @@ class Histogram(object):
 
     self.diagnostics.Merge(other.diagnostics)
 
+    for stat, option in other._summary_options.iteritems():
+      if stat == 'percentile':
+        for percent in option:
+          if percent not in self.summary_options[stat]:
+            self.summary_options[stat].append(percent)
+      elif option and not self.summary_options[stat]:
+        self._summary_options[stat] = True
+
   def CustomizeSummaryOptions(self, options):
     for key, value in options.iteritems():
       self._summary_options[key] = value
 
   def Clone(self):
-    return Histogram.FromDict(self.AsDict())
-
-  def CloneEmpty(self):
-    return Histogram(self.name, self.unit, HistogramBinBoundaries.FromDict(
-        self._bin_boundaries_dict))
+    boundaries = HistogramBinBoundaries.FromDict(self._bin_boundaries_dict)
+    hist = Histogram(self.name, self.unit, boundaries)
+    hist.short_name = self.short_name
+    hist.description = self.description
+    hist.max_num_sample_values = self.max_num_sample_values
+    for stat, option in self.summary_options.iteritems():
+      if stat == 'percentile':
+        hist.summary_options[stat] = list(option)
+      else:
+        hist.summary_options[stat] = option
+    hist.AddHistogram(self)
+    return hist
 
   @property
   def statistics_scalars(self):
