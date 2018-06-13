@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f5a48569_8f2155f5",
+        "filename": "experimental/benchmark_health_report/dashboard_api.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-13T18:24:31Z",
+      "side": 1,
+      "message": "Is there a reason you have all these other params since GetAlerts only seems to use 2.",
+      "range": {
+        "startLine": 21,
+        "startChar": 4,
+        "endLine": 21,
+        "endChar": 14
+      },
+      "revId": "c30ce62b4b1eba96fd64c519df924b5cdbf1f7bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
