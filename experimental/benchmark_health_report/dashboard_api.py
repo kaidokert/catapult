@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import datetime
 import httplib2
 import json
 import re
@@ -13,11 +14,11 @@ from oauth2client import service_account  # pylint: disable=no-name-in-module
 _PATH_TO_JSON_KEYFILE = 'PATH/TO/keyfile.json'
 
 def GetAlerts(num_days, benchmark=None):
-  url = '/api/alerts/history/%d' % num_days
-  postdata = 'improvements=true'
-  if benchmark is not None:
-    postdata += '&benchmark=%s' % benchmark
-  return _MakeDashboardApiRequest(url, postdata)['anomalies']
+  min_timestamp = datetime.datetime.now() - datetime.timedelta(days=num_days)
+  postdata = ['min_timestamp=' + min_timestamp.isoformat()]
+  if benchmark:
+    postdata.append('test_suite=' + benchmark)
+  return _MakeDashboardApiRequest('/api/alerts', '&'.join(postdata))['anomalies']
 
 def GetBug(bug_id):
   url = '/api/bugs/%d' % bug_id
