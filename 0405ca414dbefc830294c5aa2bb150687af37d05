@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bf9cf29a_4a08e4d6",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-14T17:59:34Z",
+      "side": 1,
+      "message": "Thank you! That\u0027s super helpful.\n\nI\u0027m not sure, but it looks like OAuthError encompasses both 2. invalid credentials and 3. transient errors. I\u0027m not sure how to tease them apart, or if that\u0027s in the scope of this CL.",
+      "parentUuid": "eaf35f5e_066b6753",
+      "range": {
+        "startLine": 275,
+        "startChar": 12,
+        "endLine": 275,
+        "endChar": 58
+      },
+      "revId": "0405ca414dbefc830294c5aa2bb150687af37d05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e2f1f56e_1d9bd8c1",
         "filename": "dashboard/dashboard/api/alerts.py",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "03f27937_d779114f",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-14T17:59:34Z",
+      "side": 1,
+      "message": "There are two datastore hooks:\nhttps://github.com/catapult-project/catapult/blob/master/dashboard/dashboard/models/internal_only_model.py#L22\nhttps://github.com/catapult-project/catapult/blob/master/dashboard/dashboard/common/datastore_hooks.py#L157",
+      "parentUuid": "e2f1f56e_1d9bd8c1",
+      "range": {
+        "startLine": 277,
+        "startChar": 46,
+        "endLine": 278,
+        "endChar": 41
+      },
+      "revId": "0405ca414dbefc830294c5aa2bb150687af37d05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f8e06086_9a55a5b3",
         "filename": "dashboard/dashboard/api/alerts.py",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2018-06-13T21:44:17Z",
       "side": 1,
       "message": "Assertion errors must never ever happen in a correctly constructed program :( If they do happen, it is better for the handler to crash loudly with HTTP 500 and a stack trace in the logs. Because a failed assertion is a bug in the logic that should be fixed.\n\nAt least that\u0027s how assertion are supposed to be used. I\u0027m not familiar with catapult code, maybe you\u0027ve repurposed them for input validation or something (which I believe is wrong, but my opinion doesn\u0027t matter in this code base).",
+      "range": {
+        "startLine": 370,
+        "startChar": 12,
+        "endLine": 370,
+        "endChar": 26
+      },
+      "revId": "0405ca414dbefc830294c5aa2bb150687af37d05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fef3dc8b_daba79bd",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-14T17:59:34Z",
+      "side": 1,
+      "message": "I\u0027ll add a comment to this effect, but this AssertionError is for the case where a non-internal user requests an internal-only entity by its key, triggering this hook:\nhttps://github.com/catapult-project/catapult/blob/master/dashboard/dashboard/models/internal_only_model.py#L22\nI think we agree that that should not \u0027assert False\u0027. Maybe it should raise a specific error so that endpoints like this can pretend that the key doesn\u0027t exist?",
+      "parentUuid": "f8e06086_9a55a5b3",
       "range": {
         "startLine": 370,
         "startChar": 12,
