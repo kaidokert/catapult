@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c5f65baf_98b09ee0",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1725,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-06-14T18:11:30Z",
+      "side": 1,
+      "message": "nits remove the extra blank line",
+      "revId": "e6ab3ad58ea0c932238cc62bc136a9dc456a3221",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
