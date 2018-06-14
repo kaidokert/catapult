@@ -36,7 +36,7 @@ class AlertsGeneralTest(testing_common.TestCase):
     self._testapp = webtest.TestApp(app)
     self._mock_oauth = None
     self._mock_internal = None
-    self._MockUser(NON_GOOGLE_USER)
+    self._MockUser(None)
 
   def _MockUser(self, user):
     if self._mock_oauth:
@@ -45,8 +45,6 @@ class AlertsGeneralTest(testing_common.TestCase):
     if self._mock_internal:
       self._mock_internal.stop()
       self._mock_internal = None
-    if user is None:
-      return
     self._mock_oauth = mock.patch('dashboard.api.api_auth.oauth')
     self._mock_oauth.start()
     api_auth.oauth.get_current_user.return_value = user
@@ -58,7 +56,8 @@ class AlertsGeneralTest(testing_common.TestCase):
     utils.GetCachedIsInternalUser.return_value = user == GOOGLER_USER
 
   def tearDown(self):
-    self._MockUser(None)
+    self._mock_oauth.stop()
+    self._mock_internal.stop()
 
   def _Post(self, **params):
     return json.loads(self._testapp.post('/api/alerts', params).body)
