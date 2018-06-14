@@ -15,6 +15,11 @@ from telemetry.timeline import tracing_config
 from tracing.trace_data import trace_data as trace_data_module
 
 
+def InjectMarker(tab, marker):
+  tab.EvaluateJavaScript('console.time({{ marker }});', marker=marker)
+  tab.EvaluateJavaScript('console.timeEnd({{ marker }});', marker=marker)
+
+
 class TracingControllerTest(tab_test_case.TabTestCase):
 
   @decorators.Isolated
@@ -74,11 +79,6 @@ class TracingControllerTest(tab_test_case.TabTestCase):
 
     tab = self._browser.tabs[0]
 
-    def InjectMarker(index):
-      marker = 'test-marker-%d' % index
-      tab.EvaluateJavaScript('console.time({{ marker }});', marker=marker)
-      tab.EvaluateJavaScript('console.timeEnd({{ marker }});', marker=marker)
-
     # Set up the tracing config.
     tracing_controller = self._browser.platform.tracing_controller
     config = tracing_config.TracingConfig()
@@ -87,14 +87,14 @@ class TracingControllerTest(tab_test_case.TabTestCase):
     # Start tracing and inject a unique marker into the sub-trace.
     tracing_controller.StartTracing(config)
     self.assertTrue(tracing_controller.is_tracing_running)
-    InjectMarker(0)
+    InjectMarker(tab, 'test-marker-0')
 
     # Flush tracing |subtrace_count - 1| times and inject a unique marker into
     # the sub-trace each time.
     for i in xrange(1, subtrace_count):
       tracing_controller.FlushTracing()
       self.assertTrue(tracing_controller.is_tracing_running)
-      InjectMarker(i)
+      InjectMarker(tab, 'test-marker-%d' % i)
 
     # Stop tracing.
     trace_data, errors = tracing_controller.StopTracing()
@@ -147,7 +147,7 @@ class TracingControllerTest(tab_test_case.TabTestCase):
         trace_data.HasTracesFor(trace_data_module.BATTOR_TRACE_PART))
 
 
-class StartupTracingTest(unittest.TestCase):
+class BrowserStartupTracingTest(unittest.TestCase):
   # https://github.com/catapult-project/catapult/issues/3099 (Android)
   @decorators.Disabled('android')
   @decorators.Isolated
@@ -186,3 +186,60 @@ class StartupTracingTest(unittest.TestCase):
     finally:
       if platform.tracing_controller.is_tracing_running:
         platform.tracing_controller.StopTracing()
+
+
+class BrowserShutdownTracingTest(unittest.TestCase):
+  """ Test ensuring the tracing are still collected from browsers that closed
+  before tracing_controller.StopTracing() is called.
+
+  """
+  @decorators.Isolated
+  def testBrowserShutdownTracing(self):
+    finder_options = options_for_unittests.GetCopy()
+    possible_browser = browser_finder.FindBrowser(finder_options)
+    if not possible_browser:
+      raise Exception('No browser found, cannot continue test.')
+    platform = possible_browser.platform
+
+    # Start tracing
+    self.assertFalse(platform.tracing_controller.is_tracing_running)
+    config = tracing_config.TracingConfig()
+    config.enable_chrome_trace = True
+    platform.tracing_controller.StartTracing(config)
+    self.assertTrue(platform.tracing_controller.is_tracing_running)
+
+    try:
+      possible_browser.SetUpEnvironment(finder_options.browser_options)
+
+      # Start two browsers
+      browser_1 = possible_browser.Create()
+      browser_2 = possible_browser.Create()
+
+      browser_1.tabs[0].Navigate('about:blank')
+      browser_1.tabs[0].WaitForDocumentReadyStateToBeInteractiveOrBetter()
+      InjectMarker(browser_1.tabs[0], 'Browser-1')
+
+      browser_2.tabs[0].Navigate('about:blank')
+      browser_2.tabs[0].WaitForDocumentReadyStateToBeInteractiveOrBetter()
+      InjectMarker(browser_2.tabs[0], 'Browser-2')
+
+      # Close browser 1, then stop tracing, then close browser 2
+      browser_1.Close()
+      trace_data, errors = platform.tracing_controller.StopTracing()
+      browser_2.Close()
+
+      self.assertEqual(errors, [])
+
+      # Test that trace data is parseable
+      model = model_module.TimelineModel(trace_data)
+
+      # Check that the markers 'Browser-1' and 'Browser-2' can be found in the
+      # trace.
+      self.assertTrue(model.FindTimelineMarkers('Browser-1'))
+      self.assertTrue(model.FindTimelineMarkers('Browser-2'))
+
+      self.assertFalse(platform.tracing_controller.is_tracing_running)
+    finally:
+      possible_browser.CleanUpEnvironment()
+      #if platform.tracing_controller.is_tracing_running:
+      #  platform.tracing_controller.StopTracing()
