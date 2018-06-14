@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7055f8d4_66782ec4",
+        "filename": "experimental/benchmark_health_report/dashboard_api.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-14T09:27:42Z",
+      "side": 1,
+      "message": "Here you should be building a dict and passing to urllib.urlencode (e.g. as done in soundwave script below).",
+      "revId": "482ce62923d8eb746d9027f5d425e4e9fb9e8143",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5246fb6c_2fe4fb2f",
+        "filename": "experimental/soundwave/soundwave/dashboard_api.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-14T09:27:42Z",
+      "side": 1,
+      "message": "Should this be: \u0027alerts?\u0027 + urllib.urlencode(options)\n\nI assume the format returned by the new API the same as the old one?",
+      "revId": "482ce62923d8eb746d9027f5d425e4e9fb9e8143",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
