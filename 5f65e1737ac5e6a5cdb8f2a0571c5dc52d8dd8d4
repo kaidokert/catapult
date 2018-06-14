@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "238ea7d6_277014c8",
+        "filename": "telemetry/telemetry/core/tracing_controller_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-14T13:29:30Z",
+      "side": 1,
+      "message": "Should this \"InjectMarker\" be a tab method?",
+      "revId": "5f65e1737ac5e6a5cdb8f2a0571c5dc52d8dd8d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
