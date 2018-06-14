@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "67b81cef_752a4054",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-06-14T12:21:53Z",
+      "side": 1,
+      "message": "Ah cool, that makes sense to me.",
+      "parentUuid": "5acdda22_bdd84132",
+      "revId": "136894bc8826b590f006e923a79231db6b230ef5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "71c669c2_71de58dd",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
         "patchSetId": 18
