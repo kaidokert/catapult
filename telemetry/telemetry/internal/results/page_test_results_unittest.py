@@ -103,6 +103,34 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
     self.assertTrue(results.all_page_runs[0].skipped)
     self.assertTrue(results.all_page_runs[1].ok)
 
+  def testInterruptMiddleRun(self):
+    results = page_test_results.PageTestResults()
+    results.WillRunPage(self.pages[1])
+    results.DidRunPage(self.pages[1])
+    results.InterruptBenchmark(self.pages, 2)
+
+    self.assertEqual(6, len(results.all_page_runs))
+    self.assertTrue(results.all_page_runs[0].ok)
+    self.assertTrue(results.all_page_runs[1].skipped)
+    self.assertTrue(results.all_page_runs[2].skipped)
+    self.assertTrue(results.all_page_runs[3].skipped)
+    self.assertTrue(results.all_page_runs[4].skipped)
+    self.assertTrue(results.all_page_runs[5].skipped)
+
+  def testInterruptBeginningRun(self):
+    results = page_test_results.PageTestResults()
+    results.InterruptBenchmark(self.pages, 1)
+
+    self.assertTrue(results.all_page_runs[0].skipped)
+    self.assertEqual(self.pages[0], results.all_page_runs[0].story)
+    self.assertEqual(set([]),
+                     results.pages_that_succeeded_and_not_skipped)
+
+    self.assertEqual(3, len(results.all_page_runs))
+    self.assertTrue(results.all_page_runs[0].skipped)
+    self.assertTrue(results.all_page_runs[1].skipped)
+    self.assertTrue(results.all_page_runs[2].skipped)
+
   def testPassesNoSkips(self):
     results = page_test_results.PageTestResults()
     results.WillRunPage(self.pages[0])
@@ -427,6 +455,23 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
     results.WillRunPage(self.pages[0])
     results.ImportHistogramDicts(histogram_dicts)
     results.DidRunPage(self.pages[0])
+    self.assertEqual(results.AsHistogramDicts(), histogram_dicts)
+
+  def testImportHistogramDicts_DelayedImport(self):
+    hs = histogram_set.HistogramSet()
+    hs.AddHistogram(histogram_module.Histogram('foo', 'count'))
+    hs.AddSharedDiagnostic('bar', generic_set.GenericSet(['baz']))
+    histogram_dicts = hs.AsDicts()
+    benchmark_metadata = benchmark.BenchmarkMetadata(
+        'benchmark_name', 'benchmark_description')
+    results = page_test_results.PageTestResults(
+        benchmark_metadata=benchmark_metadata)
+    results.telemetry_info.benchmark_start_epoch = 1501773200
+    results.WillRunPage(self.pages[0])
+    results.ImportHistogramDicts(histogram_dicts, import_immediately=False)
+    results.DidRunPage(self.pages[0])
+    self.assertEqual(len(results.AsHistogramDicts()), 0)
+    results.PopulateHistogramSet()
     self.assertEqual(results.AsHistogramDicts(), histogram_dicts)
 
   def testAddSharedDiagnostic(self):

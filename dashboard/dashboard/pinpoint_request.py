@@ -14,14 +14,15 @@ from dashboard.common import utils
 from dashboard.services import crrev_service
 from dashboard.services import pinpoint_service
 
-_PINPOINT_REPOSITORIES = 'repositories'
 _ISOLATE_TARGETS = [
     'angle_perftests', 'cc_perftests', 'gpu_perftests',
     'load_library_perf_tests', 'media_perftests', 'net_perftests',
     'performance_browser_tests', 'telemetry_perf_tests',
     'telemetry_perf_webview_tests', 'tracing_perftests']
 _BOTS_USING_PERFORMANCE_TEST_SUITES = [
-    'linux-perf', 'mac-10_12_laptop_low_end-perf'
+    'linux-perf', 'mac-10_12_laptop_low_end-perf',
+    'mac-10_13_laptop_high_end-perf',
+    'mojo-linux-perf',
 ]
 
 
