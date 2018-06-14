@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c083b65b_afa389e1",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-06-14T04:40:55Z",
+      "side": 1,
+      "message": "Yes most benchmarks use the same list. Currently, no stories use different files but it was meant as an API for benchmarks to easily add files without creating an entire profile.",
+      "parentUuid": "9d503a6b_cfaf1424",
+      "revId": "136894bc8826b590f006e923a79231db6b230ef5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "71c669c2_71de58dd",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
         "patchSetId": 18
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "13e523c2_a2f7e285",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-06-14T04:40:55Z",
+      "side": 1,
+      "message": "Done. I wasn\u0027t sure where to put this since it is doesn\u0027t depend on |self| and it isn\u0027t used anywhere else. I ended up just putting it at the top of this file as a free function.",
+      "parentUuid": "71c669c2_71de58dd",
+      "revId": "136894bc8826b590f006e923a79231db6b230ef5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "80671cf1_708049e4",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
         "patchSetId": 18
@@ -50,6 +86,24 @@
       "revId": "136894bc8826b590f006e923a79231db6b230ef5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c97ddde8_ba26066b",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1142059
+      },
+      "writtenOn": "2018-06-14T04:40:55Z",
+      "side": 1,
+      "message": "Done, via tempfile_ext.NamedTemporaryDirectory",
+      "parentUuid": "80671cf1_708049e4",
+      "revId": "136894bc8826b590f006e923a79231db6b230ef5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
