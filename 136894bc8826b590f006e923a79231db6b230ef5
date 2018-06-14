@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "5acdda22_bdd84132",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-14T09:43:56Z",
+      "side": 1,
+      "message": "I see. Yes, I want to move to a world in which browser_options are frozen and immutable from the time they are read. And this would fit well with that model.\n\nThen the right place for this to happen would be at some higher level: e.g. during the benchmark setup, the profile dir with the extra files is crafted just once, and the same dir is then just used by all stories. No need to re-create the same thing over and over again for each browser launch.\n\nAnyway, that\u0027s probably a larger refactor for another day, and by splitting most of your new code into a single self-contained function you\u0027ll make that easier to move in the future.\n\nThanks for that!",
+      "parentUuid": "c083b65b_afa389e1",
+      "revId": "136894bc8826b590f006e923a79231db6b230ef5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "71c669c2_71de58dd",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
         "patchSetId": 18
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "Done. I wasn\u0027t sure where to put this since it is doesn\u0027t depend on |self| and it isn\u0027t used anywhere else. I ended up just putting it at the top of this file as a free function.",
       "parentUuid": "71c669c2_71de58dd",
+      "revId": "136894bc8826b590f006e923a79231db6b230ef5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e6f592d_6c2ef081",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-14T09:43:56Z",
+      "side": 1,
+      "message": "Ack. Yes, this looks great!",
+      "parentUuid": "13e523c2_a2f7e285",
       "revId": "136894bc8826b590f006e923a79231db6b230ef5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
