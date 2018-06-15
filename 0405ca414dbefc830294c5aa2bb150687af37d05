@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "39f52e7b_c5f4892d",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-06-15T17:22:43Z",
+      "side": 1,
+      "message": "See https://cloud.google.com/appengine/docs/standard/python/refdocs/google.appengine.api.oauth.oauth_api#google.appengine.api.oauth.oauth_api.OAuthRequestError\n\noauth.OAuthRequestError is fatal error, everything else is transient.",
+      "parentUuid": "bf9cf29a_4a08e4d6",
+      "range": {
+        "startLine": 275,
+        "startChar": 12,
+        "endLine": 275,
+        "endChar": 58
+      },
+      "revId": "0405ca414dbefc830294c5aa2bb150687af37d05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e2f1f56e_1d9bd8c1",
         "filename": "dashboard/dashboard/api/alerts.py",
         "patchSetId": 1
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "4aa5f065_f43e43e6",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-06-15T17:22:43Z",
+      "side": 1,
+      "message": "I\u0027m worried that IsUnalteredQueryPermitted checks users.get_current_user() even for API requests. It means API requests must be protected by CSRF tokens too, otherwise if an internal user visits a malicious site, this site may send a cross-site request to the dashboard using the cookies stored in the browser.\n\nAPI requests should require OAuth tokens and completely ignore cookies.",
+      "parentUuid": "03f27937_d779114f",
+      "range": {
+        "startLine": 277,
+        "startChar": 46,
+        "endLine": 278,
+        "endChar": 41
+      },
+      "revId": "0405ca414dbefc830294c5aa2bb150687af37d05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f8e06086_9a55a5b3",
         "filename": "dashboard/dashboard/api/alerts.py",
         "patchSetId": 1
@@ -131,6 +179,30 @@
       "side": 1,
       "message": "I\u0027ll add a comment to this effect, but this AssertionError is for the case where a non-internal user requests an internal-only entity by its key, triggering this hook:\nhttps://github.com/catapult-project/catapult/blob/master/dashboard/dashboard/models/internal_only_model.py#L22\nI think we agree that that should not \u0027assert False\u0027. Maybe it should raise a specific error so that endpoints like this can pretend that the key doesn\u0027t exist?",
       "parentUuid": "f8e06086_9a55a5b3",
+      "range": {
+        "startLine": 370,
+        "startChar": 12,
+        "endLine": 370,
+        "endChar": 26
+      },
+      "revId": "0405ca414dbefc830294c5aa2bb150687af37d05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77b7e27e_bec0931c",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-06-15T17:22:43Z",
+      "side": 1,
+      "message": "Yes, if this is used for a control flow, it should be a documented exception class, not AssertionError.",
+      "parentUuid": "fef3dc8b_daba79bd",
       "range": {
         "startLine": 370,
         "startChar": 12,
