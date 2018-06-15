@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "216cb62d_895411e7",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-15T08:32:31Z",
+      "side": 1,
+      "message": "nit: explicitly state `timeout\u003d5`, it makes it more readable",
+      "revId": "4d4032402e35e69753d9fdab4eacea65b69d120b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
