@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0b58596c_1a23e86b",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-15T17:41:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e9b20ccb_0cc7cf41",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 10
+      },
+      "revId": "7379c5e691283af781ad096ab7f103bbeb4e4832",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "19ac7e76_e28f7d97",
         "filename": "dashboard/dashboard/common/descriptor.py",
         "patchSetId": 2
@@ -39,6 +63,24 @@
       "revId": "7379c5e691283af781ad096ab7f103bbeb4e4832",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce8da3b9_c162083e",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-15T17:41:12Z",
+      "side": 1,
+      "message": "From a UI point of view, master is just a grouping of bots.\nThe V1 UI actually already does this, V2 just follows that lead.",
+      "parentUuid": "19ac7e76_e28f7d97",
+      "revId": "7379c5e691283af781ad096ab7f103bbeb4e4832",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "2d6b1e6c_bc536ee7",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-15T17:41:12Z",
+      "side": 1,
+      "message": "Nothing yet, but I think it will be useful for logging and debugging, especially in the v2spa report request handler, which deals with lots of different Descriptor objects.",
+      "parentUuid": "cf0476c0_af285f4e",
+      "range": {
+        "startLine": 48,
+        "startChar": 6,
+        "endLine": 48,
+        "endChar": 14
+      },
+      "revId": "7379c5e691283af781ad096ab7f103bbeb4e4832",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "92d639d6_30743114",
         "filename": "dashboard/dashboard/common/descriptor.py",
         "patchSetId": 2
@@ -85,6 +151,30 @@
       "revId": "7379c5e691283af781ad096ab7f103bbeb4e4832",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecf9f178_4044a883",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-15T17:41:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92d639d6_30743114",
+      "range": {
+        "startLine": 71,
+        "startChar": 6,
+        "endLine": 71,
+        "endChar": 10
+      },
+      "revId": "7379c5e691283af781ad096ab7f103bbeb4e4832",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
