@@ -14,6 +14,7 @@ import urllib
 from apiclient import discovery
 from apiclient import errors
 from google.appengine.api import memcache
+from google.appengine.api import oauth
 from google.appengine.api import urlfetch
 from google.appengine.api import urlfetch_errors
 from google.appengine.api import users
@@ -29,11 +30,25 @@ SERVICE_ACCOUNT_KEY = 'service_account'
 EMAIL_SCOPE = 'https://www.googleapis.com/auth/userinfo.email'
 _PROJECT_ID_KEY = 'project_id'
 _DEFAULT_CUSTOM_METRIC_VAL = 1
+OAUTH_SCOPES = (
+    'https://www.googleapis.com/auth/userinfo.email',
+)
 
 
 def _GetNowRfc3339():
   """Returns the current time formatted per RFC 3339."""
   return time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
+
+
+def GetCurrentUser():
+  # When called in the context of ApiRequestHandlers, returns
+  # oauth.get_current_user(). Otherwise, returns users.get_current_user().
+  # This prevents a CSRF whereby a malicious site posts an api request without
+  # an Authorization header (so oauth.get_current_user() is None), but while the
+  # user is signed in, so their cookies make users.get_current_user() internal.
+  if os.environ.get('REQUEST_URI', '').startswith('/api/'):
+    return oauth.get_current_user()
+  return users.get_current_user()
 
 
 def TickMonitoringCustomMetric(metric_name):
@@ -337,7 +352,7 @@ def MinimumRange(ranges):
 
 def IsInternalUser():
   """Checks whether the user should be able to see internal-only data."""
-  username = users.get_current_user()
+  username = GetCurrentUser()
   if not username:
     return False
   cached = GetCachedIsInternalUser(username)
@@ -422,7 +437,7 @@ def ServiceAccountHttp(scope=EMAIL_SCOPE, timeout=None):
 
 def IsValidSheriffUser():
   """Checks whether the user should be allowed to triage alerts."""
-  user = users.get_current_user()
+  user = GetCurrentUser()
   sheriff_domains = stored_object.Get(SHERIFF_DOMAINS_KEY)
   if user:
     domain_matched = sheriff_domains and any(

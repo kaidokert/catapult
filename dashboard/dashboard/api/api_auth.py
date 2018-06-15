@@ -33,9 +33,6 @@ OAUTH_CLIENT_ID_WHITELIST = [
     # This oauth client id used to upload histograms from cronet bots.
     '113172445342431053212'
 ]
-OAUTH_SCOPES = (
-    'https://www.googleapis.com/auth/userinfo.email',
-)
 
 
 class ApiAuthException(Exception):
@@ -59,9 +56,9 @@ class InternalOnlyError(ApiAuthException):
 
 def Authorize():
   try:
-    user = oauth.get_current_user(OAUTH_SCOPES)
-  except oauth.Error:
-    raise NotLoggedInError
+    user = utils.GetCurrentUser()
+  except oauth.OAuthRequestError:
+    raise OAuthError
 
   if not user:
     raise NotLoggedInError
@@ -70,7 +67,7 @@ def Authorize():
     if not user.email().endswith('.gserviceaccount.com'):
       # For non-service account, need to verify that the OAuth client ID
       # is in our whitelist.
-      client_id = oauth.get_client_id(OAUTH_SCOPES)
+      client_id = oauth.get_client_id(utils.OAUTH_SCOPES)
       if client_id not in OAUTH_CLIENT_ID_WHITELIST:
         logging.info('OAuth client id %s for user %s not in whitelist',
                      client_id, user.email())
@@ -80,7 +77,7 @@ def Authorize():
     raise OAuthError
 
   logging.info('OAuth user logged in as: %s', user.email())
-  if utils.IsGroupMember(user.email(), 'chromeperf-access'):
+  if utils.IsInternalUser():
     datastore_hooks.SetPrivilegedRequest()
 
 
@@ -91,6 +88,6 @@ def Email():
     The email address, as a string or None if there is no user logged in.
   """
   try:
-    return oauth.get_current_user(OAUTH_SCOPES).email()
+    return utils.GetCurrentUser().email()
   except oauth.InvalidOAuthParametersError:
     return None

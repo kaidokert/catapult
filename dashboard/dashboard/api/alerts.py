@@ -21,6 +21,9 @@ ISO_8601_FORMAT = '%Y-%m-%dT%H:%M:%S'
 class AlertsHandler(api_request_handler.ApiRequestHandler):
   """API handler for various alert requests."""
 
+  def _AllowAnonymous(self):
+    return True
+
   def AuthorizedPost(self, *args):
     """Returns alert data in response to API requests.
 
@@ -138,6 +141,10 @@ class AlertsHandler(api_request_handler.ApiRequestHandler):
         else:
           raise api_request_handler.BadRequestError(
               'Invalid alert type %s' % list_type)
+    except AssertionError:
+      # The only known assertion is in InternalOnlyModel._post_get_hook when a
+      # non-internal user requests an internal-only entity.
+      raise api_request_handler.BadRequestError('Not found')
     except request_handler.InvalidInputError as e:
       raise api_request_handler.BadRequestError(e.message)
 
