@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e9b20ccb_0cc7cf41",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-15T16:55:37Z",
+      "side": 1,
+      "message": "There\u0027s a couple places where these stat names are hardcoded, pinpoint_request.py is one, there might be some in add_histograms* somewhere, wondering if we can all use a common spot, switch pinpoint_request.py to use descriptors, etc.",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 10
+      },
+      "revId": "7379c5e691283af781ad096ab7f103bbeb4e4832",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19ac7e76_e28f7d97",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-15T16:55:37Z",
+      "side": 1,
+      "message": "Why is master and bot collapsed together under bot?",
+      "revId": "7379c5e691283af781ad096ab7f103bbeb4e4832",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf0476c0_af285f4e",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-15T16:55:37Z",
+      "side": 1,
+      "message": "What\u0027s this used for?",
+      "range": {
+        "startLine": 48,
+        "startChar": 6,
+        "endLine": 48,
+        "endChar": 14
+      },
+      "revId": "7379c5e691283af781ad096ab7f103bbeb4e4832",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92d639d6_30743114",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-15T16:55:37Z",
+      "side": 1,
+      "message": "nit: Can you add your name to the todo\u0027s and file a bug(s) for them?",
+      "range": {
+        "startLine": 71,
+        "startChar": 6,
+        "endLine": 71,
+        "endChar": 10
+      },
+      "revId": "7379c5e691283af781ad096ab7f103bbeb4e4832",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
