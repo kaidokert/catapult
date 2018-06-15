@@ -378,17 +378,22 @@ def _GetDiagnosticValue(name, hist, optional=False):
 
 def ComputeRevision(histograms):
   _CheckRequest(len(histograms) > 0, 'Must upload at least one histogram')
-  commit_position = _GetDiagnosticValue(
+  rev = _GetDiagnosticValue(
       reserved_infos.CHROMIUM_COMMIT_POSITIONS.name,
-      histograms.GetFirstHistogram())
+      histograms.GetFirstHistogram(), optional=True)
 
-  # TODO(eakuefner): Allow users to specify other types of revisions to be used
-  # for computing revisions of dashboard points. See
-  # https://github.com/catapult-project/catapult/issues/3623.
-  if not type(commit_position) in (long, int):
+  if rev is None:
+    revision_timestamps = histograms.GetFirstHistogram().diagnostics.get(
+        reserved_infos.REVISION_TIMESTAMPS.name)
+    _CheckRequest(
+        revision_timestamps is not None,
+        'Must specify REVISION_TIMESTAMPS or CHROMIUM_COMMIT_POSITIONS')
+    rev = revision_timestamps.max_timestamp
+
+  if not type(rev) in (long, int):
     raise api_request_handler.BadRequestError(
-        'Commit Position must be an integer.')
-  return commit_position
+        'Revision must be an integer.')
+  return rev
 
 
 def InlineDenseSharedDiagnostics(histograms):
