@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "509a0dd6_0797da7d",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-15T20:25:11Z",
+      "side": 1,
+      "message": "Why not isinstance()?",
+      "revId": "ebd9ad54b3966a2dd2b931be4975d3af505c5de8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
