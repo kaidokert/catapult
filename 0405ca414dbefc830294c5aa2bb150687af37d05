@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "51f6af12_c6b80c4f",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-15T21:42:25Z",
+      "side": 1,
+      "message": "Thanks!\nI\u0027m not sure if I synthesized that correctly. Can you take another look at api_auth.py and api_request_handler.py?",
+      "parentUuid": "39f52e7b_c5f4892d",
+      "range": {
+        "startLine": 275,
+        "startChar": 12,
+        "endLine": 275,
+        "endChar": 58
+      },
+      "revId": "0405ca414dbefc830294c5aa2bb150687af37d05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e2f1f56e_1d9bd8c1",
         "filename": "dashboard/dashboard/api/alerts.py",
         "patchSetId": 1
@@ -144,6 +168,30 @@
     },
     {
       "key": {
+        "uuid": "b668803f_98e07d9e",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-15T21:42:25Z",
+      "side": 1,
+      "message": "I created utils.GetCurrentUser() to return oauth.get_current_user() when REQUEST_URI starts with /api/, and users.get_current_user() otherwise. I switched a few places from users.get_current_user to utils.GetCurrentUser(), including IsInternalUser().\nPTAL?",
+      "parentUuid": "4aa5f065_f43e43e6",
+      "range": {
+        "startLine": 277,
+        "startChar": 46,
+        "endLine": 278,
+        "endChar": 41
+      },
+      "revId": "0405ca414dbefc830294c5aa2bb150687af37d05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f8e06086_9a55a5b3",
         "filename": "dashboard/dashboard/api/alerts.py",
         "patchSetId": 1
@@ -203,6 +251,30 @@
       "side": 1,
       "message": "Yes, if this is used for a control flow, it should be a documented exception class, not AssertionError.",
       "parentUuid": "fef3dc8b_daba79bd",
+      "range": {
+        "startLine": 370,
+        "startChar": 12,
+        "endLine": 370,
+        "endChar": 26
+      },
+      "revId": "0405ca414dbefc830294c5aa2bb150687af37d05",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0071bdef_548e278d",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-15T21:42:25Z",
+      "side": 1,
+      "message": "https://bugs.chromium.org/p/chromium/issues/detail?id\u003d853289",
+      "parentUuid": "77b7e27e_bec0931c",
       "range": {
         "startLine": 370,
         "startChar": 12,
