@@ -72,6 +72,21 @@ tr.exportTo('tr.metrics.rendering', function() {
     if (isOther) yield 'other';
   }
 
+  function getDisplayCompositorThread(model) {
+    const chromeHelper = model.getOrCreateHelper(
+        tr.model.helpers.ChromeModelHelper);
+    const gpuHelper = chromeHelper.gpuHelper;
+    if (gpuHelper) {
+      const thread =
+          gpuHelper.process.findAtMostOneThreadNamed('VizCompositorThread');
+      if (thread) {
+        return thread;
+      }
+    }
+    const browserHelper = chromeHelper.browserHelpers[0];
+    return browserHelper.process.findAtMostOneThreadNamed('CrBrowserMain');
+  }
+
   function renderingMetric(histograms, model) {
     // Find animation ranges and their total duration.
     const animationSegments = model.userModel.segments.filter(
@@ -123,6 +138,19 @@ tr.exportTo('tr.metrics.rendering', function() {
           },
           { description: 'CPU cores per second of threads during animation' });
     }
+
+    const dcThread = getDisplayCompositorThread(model);
+    const aggregateTimes = [];
+    for (const slice of dcThread.sliceGroup.slices) {
+      if (slice.title === 'SurfaceAggregator::Aggregate') {
+        aggregateTimes.push(slice.duration);
+      }
+    }
+    histograms.createHistogram('pipeline:surface_aggregation',
+        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
+        aggregateTimes, {
+          description: 'Time spent aggregating surfaces in microseconds',
+          summaryOptions: {sum: false}});
   }
 
   tr.metrics.MetricRegistry.register(renderingMetric);
