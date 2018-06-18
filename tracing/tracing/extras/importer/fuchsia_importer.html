@@ -64,14 +64,13 @@ tr.exportTo('tr.e.importer.fuchsia', function() {
     finalizeImport() {
     }
 
-    isIdleThread(tid) {
-      // There's not a good way to detect the kernel's idle threads right now
-      // so we're stuck with assuming that large numbered threads are idle ones.
-      return tid > IDLE_THREAD_THRESHOLD;
+    isIdleThread(prio) {
+      // A thread is idle iff its priority is set to 0.
+      return prio === 0;
     }
 
-    recordThreadState_(tid, timestamp, state) {
-      if (this.isIdleThread(tid)) {
+    recordThreadState_(tid, timestamp, state, prio) {
+      if (this.isIdleThread(prio)) {
         return;
       }
       const states =
@@ -88,17 +87,20 @@ tr.exportTo('tr.e.importer.fuchsia', function() {
     //     "out": {
     //       "pid": 25977,
     //       "tid": 28909,
-    //       "state": 3
+    //       "state": 3,
+    //       "prio": 20
     //     },
     //     "in": {
     //       "pid": 0,
-    //       "tid": 6444931392
+    //       "tid": 6444931392,
+    //       "prio": 0
     //     }
     //   },
     processContextSwitchEvent_(event) {
       let tid = event.in.tid;
       let threadName = tid.toString();
       let procName = '';
+      let prio = event.in.prio;
 
       if (this.threadInfo_.has(tid)) {
         const threadInfo = this.threadInfo_.get(tid);
@@ -111,7 +113,7 @@ tr.exportTo('tr.e.importer.fuchsia', function() {
 
       const name = procName + threadName;
 
-      if (this.isIdleThread(tid)) {
+      if (this.isIdleThread(prio)) {
         tid = undefined; // Fake kernel idle task
       }
 
@@ -120,7 +122,7 @@ tr.exportTo('tr.e.importer.fuchsia', function() {
       cpu.switchActiveThread(timestamp, {}, tid, name, tid);
 
       const SCHEDULING_STATE = tr.model.SCHEDULING_STATE;
-      this.recordThreadState_(tid, timestamp, SCHEDULING_STATE.RUNNING);
+      this.recordThreadState_(tid, timestamp, SCHEDULING_STATE.RUNNING, prio);
 
       let outState = SCHEDULING_STATE.UNKNOWN;
 
@@ -145,7 +147,7 @@ tr.exportTo('tr.e.importer.fuchsia', function() {
           outState = SCHEDULING_STATE.TASK_DEAD;
           break;
       }
-      this.recordThreadState_(event.out.tid, timestamp, outState);
+      this.recordThreadState_(event.out.tid, timestamp, outState, event.out.prio);
     }
 
     processProcessInfoEvent_(event) {
