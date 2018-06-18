@@ -9,28 +9,29 @@ from dashboard.pinpoint.models.compare import compare
 
 class CompareTest(unittest.TestCase):
 
-  def testNoValues(self):
-    comparison = compare.Compare(range(10), [], 10)
+  def testNoValuesA(self):
+    comparison = compare.Compare([], range(10), 1000, 'performance')
     self.assertEqual(comparison, compare.UNKNOWN)
 
-    comparison = compare.Compare([], range(10), 1000)
+  def testNoValuesB(self):
+    comparison = compare.Compare(range(10), [], 10, 'performance')
     self.assertEqual(comparison, compare.UNKNOWN)
 
   def testDifferent(self):
-    comparison = compare.Compare(range(10), range(10, 20), 20)
+    comparison = compare.Compare(range(10), range(10, 20), 20, 'performance')
     self.assertEqual(comparison, compare.DIFFERENT)
 
   def testUnknown(self):
-    comparison = compare.Compare(range(10), range(5, 15), 20)
+    comparison = compare.Compare(range(10), range(5, 15), 20, 'performance')
     self.assertEqual(comparison, compare.UNKNOWN)
 
   def testSame(self):
-    comparison = compare.Compare(range(10), range(10), 20)
+    comparison = compare.Compare(range(10), range(10), 20, 'performance')
     self.assertEqual(comparison, compare.SAME)
 
   def testAttemptCount(self):
-    comparison = compare.Compare(range(10), range(10), 10)
+    comparison = compare.Compare(range(10), range(10), 10, 'performance')
     self.assertEqual(comparison, compare.UNKNOWN)
 
-    comparison = compare.Compare(range(10), range(10), 20)
+    comparison = compare.Compare(range(10), range(10), 20, 'performance')
     self.assertEqual(comparison, compare.SAME)
