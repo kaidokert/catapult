@@ -5,6 +5,7 @@
 import datetime
 import glob
 import heapq
+import json
 import logging
 import os
 import os.path
@@ -586,3 +587,33 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     if self._tmp_minidump_dir:
       shutil.rmtree(self._tmp_minidump_dir, ignore_errors=True)
       self._tmp_minidump_dir = None
+
+  @property
+  def supports_resize_browser(self):
+    return True
+
+  def ResizeBrowser(self, width, height, number_steps=None, duration=None):
+    timeout = 30
+    bounds = {
+        'width' : width,
+        'height' : height
+    }
+    if number_steps is None:
+      number_steps = 0
+    if duration is None:
+      duration = 0.
+    params = {
+        'windowId': 1,
+        'bounds' : bounds,
+        'bounds_animation_number_steps' : number_steps,
+        'bounds_animation_duration_ms' : duration
+    }
+    request = {
+        'method' : 'Browser.setWindowBounds',
+        'params' : params
+    }
+    response = self.devtools_client._browser_inspector_websocket.SyncRequest(
+        request, timeout)
+    if 'error' in response:
+      raise Exception('ResizeBrowser error in response %s',
+                      json.dumps(response, indent=2))

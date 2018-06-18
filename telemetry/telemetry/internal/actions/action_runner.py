@@ -806,6 +806,10 @@ class ActionRunner(object):
     self._RunAction(RepaintContinuouslyAction(
         seconds=0 if self._skip_waits else seconds))
 
+  def ResizeBrowser(self, width, height, number_steps=None, duration=None):
+    if not self._tab.browser.supports_resize_browser:
+      raise exceptions.StoryActionError('Browser Resizing is not supported')
+    self._tab.browser.ResizeBrowser(width, height, number_steps, duration)
 
 class Interaction(object):
 

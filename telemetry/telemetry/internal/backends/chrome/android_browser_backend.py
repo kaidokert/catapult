@@ -202,3 +202,11 @@ class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
 
   def SymbolizeMinidump(self, minidump_path):
     return None
+
+  @property
+  def supports_resize_browser(self):
+    return False
+
+  def ResizeBrowser(self, width, height, number_steps=None, duration=None):
+    raise NotImplementedError()
+

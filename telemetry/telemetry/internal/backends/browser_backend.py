@@ -173,3 +173,10 @@ class BrowserBackend(app_backend.AppBackend):
 
   def ExitOverviewMode(self, timeout): # pylint: disable=unused-argument
     raise exceptions.StoryActionError('Overview mode is not supported')
+
+  @property
+  def supports_resize_browser(self):
+    return False
+
+  def ResizeBrowser(self, width, height, number_steps=None, duration=None):
+    raise NotImplementedError()
