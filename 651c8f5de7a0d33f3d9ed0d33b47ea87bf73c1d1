@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "34b4c395_d26039f3",
+        "filename": "telemetry/examples/benchmarks/android_go_benchmark.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-18T13:12:41Z",
+      "side": 1,
+      "message": "There are some operations that Telemetry wants to broadcast to all tabs during StopChromeTracing, e.g. [1] where each \"context\" is a \"tab\". There we iterate over all tabs, so both of them show up, but the one from the first iteration does not appear to respond and requests sent to its websocket time out. I agree with Ned that this is a bug, and should be fixed.\n\nAt the moment, anyway, we have this workaround, where things work as long as we only keep a single tab open. Egor, do you think it\u0027s still possible to measure startup under the conditions you care about with these restrictions? If so I can lad a CL (close to what Ned had) to unblock you; while this other bug is being investigated. Otherwise I\u0027ll need a bit more time.\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py?rcl\u003df3ce003c2baaf3b2aba669681f832139efe5d773\u0026l\u003d439",
+      "parentUuid": "74fdfa5e_fa149cf8",
+      "revId": "651c8f5de7a0d33f3d9ed0d33b47ea87bf73c1d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c4e13169_b7863c00",
         "filename": "telemetry/examples/benchmarks/android_go_benchmark.py",
         "patchSetId": 1
