@@ -16,6 +16,24 @@
       "revId": "d994c86437440be2d186020de6d373bc2384b547",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0ee2ba2_537d5211",
+        "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1168098
+      },
+      "writtenOn": "2018-06-18T23:28:02Z",
+      "side": 0,
+      "message": "Ah, good call, done.",
+      "parentUuid": "e41ba5db_acc7c99b",
+      "revId": "d994c86437440be2d186020de6d373bc2384b547",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
