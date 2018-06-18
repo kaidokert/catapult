@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "27c9fb8d_94cd753e",
+        "filename": "telemetry/examples/benchmarks/android_go_benchmark.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-18T11:37:42Z",
+      "side": 1,
+      "message": "To try out run this with:\n./telemetry/examples/run_benchmark --browser android-chrome --chrome-root $SRC android_go.example",
+      "revId": "651c8f5de7a0d33f3d9ed0d33b47ea87bf73c1d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "064bcb7c_6af10076",
+        "filename": "telemetry/examples/benchmarks/android_go_benchmark.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-18T11:37:42Z",
+      "side": 1,
+      "message": "This bit is important. If we also include the URL on the second browser launch, then we end up with two open tabs (from the first and second launch) and, on the second launch, we seem to have troubles communicating with the tab from the first one during the \"stop tracing\" flow.\n\nEgor, not sure how you envision the later Chrome launches to happen, and how the page is going to be reloaded?",
+      "revId": "651c8f5de7a0d33f3d9ed0d33b47ea87bf73c1d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4e13169_b7863c00",
+        "filename": "telemetry/examples/benchmarks/android_go_benchmark.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-18T11:37:42Z",
+      "side": 1,
+      "message": "Ideally I want to \"close\" the browser at the end of this loop; but, for now, \"StopTracing\" needs the browser to still be open otherwise it fails with the ChromeClockSyncError when trying to add the clock sync on the (now gone) devtools client.\n\nI regard this is something that could be fixed.",
+      "revId": "651c8f5de7a0d33f3d9ed0d33b47ea87bf73c1d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f798280_4727b8c2",
+        "filename": "telemetry/examples/benchmarks/android_go_benchmark.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-18T11:37:42Z",
+      "side": 1,
+      "message": "Just run this new story we\u0027re trying to write.",
+      "revId": "651c8f5de7a0d33f3d9ed0d33b47ea87bf73c1d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2275f776_55b24401",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-18T11:37:42Z",
+      "side": 1,
+      "message": "This is the original patch from Ned. And these are the traces we get.\n\nwithout patch:\nhttps://perezju.users.x20web.corp.google.com/www/cr849703/ps1/go_story_only_last_browser.html\n\nwith patch:\nhttps://perezju.users.x20web.corp.google.com/www/cr849703/ps1/go_story_two_browsers.html",
+      "revId": "651c8f5de7a0d33f3d9ed0d33b47ea87bf73c1d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
