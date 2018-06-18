@@ -8,14 +8,23 @@ import collections
 import logging
 
 from google.appengine.api import datastore_errors
+from google.appengine.ext import ndb
 
 from dashboard.common import datastore_hooks
+from dashboard.common import descriptor
 from dashboard.common import request_handler
 from dashboard.common import stored_object
+from dashboard.common import utils
 from dashboard.models import graph_data
 
 # TestMetadata suite cache key.
 _LIST_SUITES_CACHE_KEY = 'list_tests_get_test_suites'
+
+_TEST_SUITES_2_CACHE_KEY = 'test_suites_2'
+
+
+def FetchCachedTestSuites2():
+  return stored_object.Get(_NamespaceKey(_TEST_SUITES_2_CACHE_KEY))
 
 
 def FetchCachedTestSuites():
@@ -58,11 +67,41 @@ def UpdateTestSuites(permissions_namespace):
   key = _NamespaceKey(_LIST_SUITES_CACHE_KEY, namespace=permissions_namespace)
   stored_object.Set(key, suite_dict)
 
+  stored_object.Set(_NamespaceKey(
+      _TEST_SUITES_2_CACHE_KEY, permissions_namespace), _ListTestSuites())
+
 
 def _NamespaceKey(key, namespace=None):
   if not namespace:
     namespace = datastore_hooks.GetNamespace()
   return '%s__%s' % (namespace, key)
+
+
+@ndb.tasklet
+def _ListTestSuitesAsync(test_suites, partial_tests, parent_test=None):
+  query = graph_data.TestMetadata.query()
+  query = query.filter(graph_data.TestMetadata.parent_test == parent_test)
+  query = query.filter(graph_data.TestMetadata.deprecated == False)
+  keys = yield query.fetch_async(keys_only=True)
+  for key in keys:
+    test_path = utils.TestPath(key)
+    desc = descriptor.Descriptor.FromTestPath(test_path.split('/'))
+    if desc.test_suite:
+      test_suites.add(desc.test_suite)
+    elif partial_tests:
+      partial_tests.add(key)
+    else:
+      logging.info('Unable to parse "%s"', test_path)
+
+def _ListTestSuites():
+  test_suites = set()
+  partial_tests = set()
+  _ListTestSuitesAsync(test_suites, partial_tests).get_result()
+  ndb.Future.wait_all(_ListTestSuitesAsync(test_suites, None, key)
+                      for key in partial_tests)
+  test_suites = list(test_suites)
+  test_suites.sort()
+  return test_suites
 
 
 def _CreateTestSuiteDict():

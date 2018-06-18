@@ -80,6 +80,10 @@ class ListTestSuitesTest(testing_common.TestCase):
         {'foo': 'bar'},
         update_test_suites.FetchCachedTestSuites())
 
+    stored_object.Set(update_test_suites._NamespaceKey(
+        update_test_suites._TEST_SUITES_2_CACHE_KEY), ['foo'])
+    self.assertEqual(['foo'], update_test_suites.FetchCachedTestSuites2())
+
     # Making a request to /udate_test_suites forces an update.
     self.testapp.post('/update_test_suites')
     self.assertEqual(
@@ -95,6 +99,10 @@ class ListTestSuitesTest(testing_common.TestCase):
             },
         },
         update_test_suites.FetchCachedTestSuites())
+
+    self.assertEqual(
+        ['dromaeo', 'really', 'scrolling'],
+        update_test_suites.FetchCachedTestSuites2())
 
   def testPost_InternalOnly(self):
     self.SetCurrentUser('internal@chromium.org')
