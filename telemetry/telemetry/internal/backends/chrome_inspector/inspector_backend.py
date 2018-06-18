@@ -80,6 +80,9 @@ class InspectorBackend(object):
             py_utils.TimeoutException) as e:
       self._ConvertExceptionFromInspectorWebsocket(e)
 
+  def __str__(self):
+    return '<inspector for %s>' % self.debugger_url
+
   def Disconnect(self):
     """Disconnects the inspector websocket.
 

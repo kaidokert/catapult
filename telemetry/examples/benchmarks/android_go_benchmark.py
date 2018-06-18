@@ -60,6 +60,13 @@ class SharedAndroidStoryState(story_module.SharedState):
     self._browser = self._possible_browser.FindExistingBrowser()
     return self._browser
 
+  def CloseBrowser(self):
+    if self._browser is not None:
+      try:
+        self._browser.Close()
+      finally:
+        self._browser = None
+
   def WillRunStory(self, story):
     # TODO: Should start replay to use WPR recordings.
     # See e.g.: https://goo.gl/UJuu8a
@@ -73,12 +80,13 @@ class SharedAndroidStoryState(story_module.SharedState):
   def DidRunStory(self, _):
     self._current_story = None
     try:
-      self._browser.Close()
+      self.CloseBrowser()
     finally:
-      self._browser = None
       self._possible_browser.CleanUpEnvironment()
 
   def DumpStateUponFailure(self, story, results):
+    logging.error('There was an error!')
+    return
     del story
     del results
     if self._browser is not None:
@@ -96,13 +104,16 @@ class AndroidGoFooStory(story_module.Story):
   def __init__(self):
     super(AndroidGoFooStory, self).__init__(
         SharedAndroidStoryState, name='go:story:foo')
+    self.url = 'https://en.wikipedia.org/wiki/Main_Page'
 
   def Run(self, state):
-    state.LaunchBrowser('https://en.wikipedia.org/wiki/Main_Page')
-    browser = state.FindBrowser()
-    action_runner = browser.foreground_tab.action_runner
-    action_runner.tab.WaitForDocumentReadyStateToBeComplete()
-    action_runner.RepeatableBrowserDrivenScroll(repeat_count=2)
+    for i in xrange(2):
+      state.CloseBrowser()  # Close previous browser, if any.
+      state.LaunchBrowser(self.url if i == 0 else None)
+      browser = state.FindBrowser()
+      action_runner = browser.foreground_tab.action_runner
+      action_runner.tab.WaitForDocumentReadyStateToBeComplete()
+      action_runner.RepeatableBrowserDrivenScroll(repeat_count=2)
 
 
 class AndroidGoBarStory(story_module.Story):
@@ -122,7 +133,7 @@ class AndroidGoStories(story_module.StorySet):
   def __init__(self):
     super(AndroidGoStories, self).__init__()
     self.AddStory(AndroidGoFooStory())
-    self.AddStory(AndroidGoBarStory())
+    # self.AddStory(AndroidGoBarStory())
 
 
 class AndroidGoBenchmark(benchmark.Benchmark):
