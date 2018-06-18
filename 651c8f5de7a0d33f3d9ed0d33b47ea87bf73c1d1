@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "a23d9b29_d9faa28b",
+        "filename": "telemetry/examples/benchmarks/android_go_benchmark.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-06-18T12:08:05Z",
+      "side": 1,
+      "message": "In my model of the world we should not communicate to the first tab after CloseBrowser(). We grabbed the trace just before closing (FlushTracing), will carry it until trace merge time (StopTracing AFAICT), that should be enough for grabbing all benchmark results, no? Tabs accumulating should not be a problem - on start of a new browser process those tabs are not restored/reloaded (with a sole exception of Main intent AFAIR), and I *think* having many of tabs in the switcher would not slow anything down on start. We can drop tabs at the beginning of the test to avoid accumulating app state and get even more reproducibility.",
+      "parentUuid": "064bcb7c_6af10076",
+      "revId": "651c8f5de7a0d33f3d9ed0d33b47ea87bf73c1d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c4e13169_b7863c00",
         "filename": "telemetry/examples/benchmarks/android_go_benchmark.py",
         "patchSetId": 1
@@ -82,6 +100,24 @@
       "writtenOn": "2018-06-18T11:48:52Z",
       "side": 1,
       "message": "FlushTracing already does issue the clock sync: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/platform/tracing_controller_backend.py?rcl\u003df3ce003c2baaf3b2aba669681f832139efe5d773\u0026l\u003d167\n\nIndeed we need to make sure that traces with multiple syncs work correctly.",
+      "parentUuid": "82edde6e_43533ad2",
+      "revId": "651c8f5de7a0d33f3d9ed0d33b47ea87bf73c1d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aaa00723_3ce108d1",
+        "filename": "telemetry/examples/benchmarks/android_go_benchmark.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-06-18T12:08:05Z",
+      "side": 1,
+      "message": "good luck with this, folks. I never envisioned this because FlushTracing looked scary and I avoided it in favor of browser.Close() doing StopTracing, as you know :)",
       "parentUuid": "82edde6e_43533ad2",
       "revId": "651c8f5de7a0d33f3d9ed0d33b47ea87bf73c1d1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
