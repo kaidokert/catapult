@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "74fdfa5e_fa149cf8",
+        "filename": "telemetry/examples/benchmarks/android_go_benchmark.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-06-18T12:54:42Z",
+      "side": 1,
+      "message": "What is the trouble communicating with the tab from the first one? I agree with pasko@ that it\u0027s weird that the story author need to know about this kind of issue to engineer their stories around it. \n\nI would prefer we fix the problem with communicating with the tab from the first one during the \"stop tracing\" flow instead.",
+      "parentUuid": "a23d9b29_d9faa28b",
+      "revId": "651c8f5de7a0d33f3d9ed0d33b47ea87bf73c1d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c4e13169_b7863c00",
         "filename": "telemetry/examples/benchmarks/android_go_benchmark.py",
         "patchSetId": 1
