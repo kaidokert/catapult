@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ca8e6f66_f17dd383",
+        "filename": "dashboard/dashboard/update_test_suites.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-19T16:23:19Z",
+      "side": 1,
+      "message": "Does this generate a different list of suites from _CreateTestSuiteDict? Could you just not just use the keys from that?",
+      "range": {
+        "startLine": 70,
+        "startChar": 2,
+        "endLine": 70,
+        "endChar": 15
+      },
+      "revId": "ed9eb6a1bc26090cb8ff1ea9dc44136317755db9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
