@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1ef96e11_1184d083",
+        "filename": "telemetry/examples/benchmarks/android_go_benchmark.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-06-19T16:07:45Z",
+      "side": 1,
+      "message": "This is essentially an alias, and used only once. It would be easier to read this code _without_ such alias - less searches, less worry of it being overridden and even less lines of code.",
+      "range": {
+        "startLine": 47,
+        "startChar": 2,
+        "endLine": 47,
+        "endChar": 31
+      },
+      "revId": "b2c09e865a83641cba4b26b0a83b6bb8fca76cb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88d7db1f_270d2dae",
+        "filename": "telemetry/examples/benchmarks/android_go_benchmark.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-06-19T16:07:45Z",
+      "side": 1,
+      "message": "If these workarounds work, I see no problem living with them for a few weeks, thank you!",
+      "range": {
+        "startLine": 78,
+        "startChar": 10,
+        "endLine": 78,
+        "endChar": 28
+      },
+      "revId": "b2c09e865a83641cba4b26b0a83b6bb8fca76cb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f49563e_a6fe2563",
+        "filename": "telemetry/examples/benchmarks/android_go_benchmark.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-06-19T16:07:45Z",
+      "side": 1,
+      "message": "Perhaps a derail, but I found there is something I did not ask before, and it left me guessing:\n\nManaging SharedAndroidStoryState._browser looks to me more complicated than necessary. Is there a fundamental need in having it? Is it because _possible_browser.FindExistingBrowser() can be done only once (or it is too slow to call multiple times)?\n\nBy only looking at this class one needs some guessing what the _browser lifetime assumptions are of the caller. When such state travels from one loop iteration to another (in Run()) the leak of the abstraction looks heavier than the benefits the abstraction provides. I think a simpler flow would be to do \u0027if browser: self.CloseBrowser(browser)\u0027 in AndroidGoFooStory.Run(), which would make the data flow explicit, and would remove the \u0027self._browser is not None\u0027 and such sprinkled in SharedAndroidStoryState.",
+      "range": {
+        "startLine": 83,
+        "startChar": 8,
+        "endLine": 83,
+        "endChar": 28
+      },
+      "revId": "b2c09e865a83641cba4b26b0a83b6bb8fca76cb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
