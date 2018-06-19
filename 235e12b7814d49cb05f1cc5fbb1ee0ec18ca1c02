@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5d5e2c9b_6486c697",
+        "filename": "dashboard/dashboard/pinpoint/models/compare/compare_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-19T08:51:27Z",
+      "side": 1,
+      "message": "Add a couple of tests for \"functional\" so we can see a possible difference?",
+      "revId": "235e12b7814d49cb05f1cc5fbb1ee0ec18ca1c02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
