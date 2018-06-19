@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8584e89b_cde05bcd",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-19T15:39:59Z",
+      "side": 1,
+      "message": "Not a huge fan of this, what if we stored these all unhashed in a stored_object?",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 25
+      },
+      "revId": "bfbe78bb1fd979b3424d14a1b51c4513ec45d458",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
