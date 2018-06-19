@@ -242,3 +242,24 @@ class ApkHelper(object):
     if '.' not in name:
       return '%s.%s' % (self.GetPackageName(), name)
     return name
+
+  def GetAbis(self):
+    """Returns a list of ABIs compatible with the apk."""
+    # Use lib/* to determine the compatible ABIs.
+    contents = aapt.List(self._apk_path)
+    libs = set()
+    for filename in contents:
+      path_tokens = filename.split('/')
+      if len(path_tokens) >= 2 and path_tokens[0] == 'lib':
+        libs.add(path_tokens[1])
+    lib_to_abi = {
+        'armeabi-v7a': ['armeabi-v7a', 'arm64-v8a'],
+        'arm64-v8a': ['arm64-v8a'],
+        'x86': ['x86', 'x64'],
+        'x64': ['x64']
+    }
+    try:
+      return list(set([abi for lib in list(libs)
+                       for abi in lib_to_abi[lib]]))
+    except KeyError:
+      raise Exception('Unexpected ABI in lib/* folder.')
