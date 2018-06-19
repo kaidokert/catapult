@@ -257,6 +257,13 @@ class ChromeBrowserBackend(browser_backend.BrowserBackend):
       return 'render'
 
   def Close(self):
+    # If Chrome tracing is running, flush tracing so that we retain a copy
+    # of the trace from this browser before it's closed.
+    tracing_controller_backend = (
+        self._platform_backend.tracing_controller_backend)
+    if tracing_controller_backend.is_chrome_tracing_running:
+      tracing_controller_backend.FlushTracing()
+
     if self._devtools_client:
       self._devtools_client.Close()
       self._devtools_client = None
