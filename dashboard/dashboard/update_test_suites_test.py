@@ -2,8 +2,8 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import hashlib
 import unittest
-
 import webapp2
 import webtest
 
@@ -11,6 +11,7 @@ from google.appengine.ext import ndb
 
 from dashboard import update_test_suites
 from dashboard.common import datastore_hooks
+from dashboard.common import descriptor
 from dashboard.common import stored_object
 from dashboard.common import testing_common
 from dashboard.common import utils
@@ -80,6 +81,10 @@ class ListTestSuitesTest(testing_common.TestCase):
         {'foo': 'bar'},
         update_test_suites.FetchCachedTestSuites())
 
+    stored_object.Set(update_test_suites._NamespaceKey(
+        update_test_suites._TEST_SUITES_2_CACHE_KEY), ['foo'])
+    self.assertEqual(['foo'], update_test_suites.FetchCachedTestSuites2())
+
     # Making a request to /udate_test_suites forces an update.
     self.testapp.post('/update_test_suites')
     self.assertEqual(
@@ -95,6 +100,10 @@ class ListTestSuitesTest(testing_common.TestCase):
             },
         },
         update_test_suites.FetchCachedTestSuites())
+
+    self.assertEqual(
+        ['dromaeo', 'really', 'scrolling'],
+        update_test_suites.FetchCachedTestSuites2())
 
   def testPost_InternalOnly(self):
     self.SetCurrentUser('internal@chromium.org')
@@ -306,6 +315,27 @@ class ListTestSuitesTest(testing_common.TestCase):
   def testGetSubTestPath(self):
     key = utils.TestKey('Chromium/mac/my_suite/foo/bar')
     self.assertEqual('foo/bar', update_test_suites._GetTestSubPath(key))
+
+  def testPartialTestSuites(self):
+    orig_partial = descriptor.PARTIAL_TEST_SUITE_HASHES
+    descriptor.PARTIAL_TEST_SUITE_HASHES = [
+        hashlib.sha256('TEST_PARTIAL_TEST_SUITE').hexdigest()
+    ]
+    testing_common.AddTests(
+        ['master'],
+        ['bot'],
+        {
+            'TEST_PARTIAL_TEST_SUITE': {
+                'COMPOSITE': {
+                    'measurement': {},
+                },
+            },
+        })
+    self.testapp.post('/update_test_suites')
+    self.assertEqual(
+        ['TEST_PARTIAL_TEST_SUITE:COMPOSITE'],
+        update_test_suites.FetchCachedTestSuites2())
+    descriptor.PARTIAL_TEST_SUITE_HASHES = orig_partial
 
 
 if __name__ == '__main__':
