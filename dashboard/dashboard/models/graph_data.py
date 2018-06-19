@@ -378,7 +378,7 @@ class Row(ndb.Expando):
   timestamp = ndb.DateTimeProperty(auto_now_add=True, indexed=True)
 
   # The Y-value at this point.
-  value = ndb.FloatProperty(indexed=True)
+  value = ndb.FloatProperty(indexed=False)
 
   # The standard deviation at this point. Optional.
   error = ndb.FloatProperty(indexed=False)
