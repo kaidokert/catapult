@@ -269,6 +269,11 @@ def PinpointParamsFromBisectParams(params):
     if alert_keys:
       alert_key = alert_keys[0]
 
+  alert_magnitude = None
+  if alert_key:
+    alert = ndb.Key(urlsafe=alert_key).get()
+    alert_magnitude = alert.median_after_anomaly - alert.median_before_anomaly
+
   pinpoint_params = {
       'configuration': bot_name,
       'benchmark': suite,
@@ -280,6 +285,7 @@ def PinpointParamsFromBisectParams(params):
       'target': target,
       'user': email,
       'name': job_name,
+      'alert_magnitude': alert_magnitude,
       'tags': json.dumps({
           'test_path': test_path,
           'alert': alert_key
