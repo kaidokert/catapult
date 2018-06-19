@@ -41,3 +41,12 @@ def Dump(what, apk, assets=None):
   if isinstance(assets, basestring):
     assets = [assets]
   return _RunAaptCmd(['dump', what, apk] + assets).splitlines()
+
+def List(apk):
+  """Returns the output of the aapt list command.
+
+  Args:
+    apk: Path to apk you want to list the contents of.
+  """
+  return _RunAaptCmd(['list', apk]).splitlines()
+
