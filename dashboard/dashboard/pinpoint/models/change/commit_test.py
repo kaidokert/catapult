@@ -150,6 +150,19 @@ deps_os = {
           'git_hash': 'unknown git hash',
       })
 
+  @mock.patch('dashboard.services.gitiles_service.CommitInfo')
+  def testFromDictString(self, commit_info):
+    commit_info.return_value = _GITILES_COMMIT_INFO
+
+    c = commit.Commit.FromDict(test.CHROMIUM_URL + '/+/aaa7336')
+
+    expected = commit.Commit('chromium', 'aaa7336')
+    self.assertEqual(c, expected)
+
+  def testFromDictBadUrl(self):
+    with self.assertRaises(ValueError):
+      commit.Commit.FromDict('https://example.com/not/a/gitiles/url')
+
 
 class MidpointTest(test.TestCase):
 

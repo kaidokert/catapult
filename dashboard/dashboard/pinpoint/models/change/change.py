@@ -100,14 +100,20 @@ class Change(collections.namedtuple('Change', ('commits', 'patch'))):
 
   @classmethod
   def FromDict(cls, data):
-    commits = tuple(commit_module.Commit.FromDict(commit)
-                    for commit in data['commits'])
-    if 'patch' in data:
-      patch = patch_module.FromDict(data['patch'])
+    if isinstance(data, basestring):
+      try:
+        return cls((commit_module.Commit.FromDict(data),))
+      except (KeyError, ValueError):
+        return cls((), patch=patch_module.FromDict(data))
     else:
-      patch = None
+      commits = tuple(commit_module.Commit.FromDict(commit)
+                      for commit in data['commits'])
+      if 'patch' in data:
+        patch = patch_module.FromDict(data['patch'])
+      else:
+        patch = None
 
-    return cls(commits, patch=patch)
+      return cls(commits, patch=patch)
 
   @classmethod
   def Midpoint(cls, change_a, change_b):

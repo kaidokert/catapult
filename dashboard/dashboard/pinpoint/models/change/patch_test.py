@@ -64,10 +64,6 @@ class FromDictTest(unittest.TestCase):
         'https://example.com', 'repo~branch~id', 'other revision')
     self.assertEqual(p, expected)
 
-  def testFromDictBadUrl(self):
-    with self.assertRaises(ValueError):
-      patch.FromDict('https://example.com/not/a/gerrit/url')
-
 
 class GerritPatchTest(unittest.TestCase):
 
@@ -144,3 +140,7 @@ class GerritPatchTest(unittest.TestCase):
     expected = patch.GerritPatch(
         'https://example.com', 'repo~branch~id', 'current revision')
     self.assertEqual(p, expected)
+
+  def testFromDictBadUrl(self):
+    with self.assertRaises(ValueError):
+      patch.GerritPatch.FromDict('https://example.com/not/a/gerrit/url')
