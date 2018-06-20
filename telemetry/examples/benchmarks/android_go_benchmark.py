@@ -60,6 +60,24 @@ class SharedAndroidStoryState(story_module.SharedState):
     self._browser = self._possible_browser.FindExistingBrowser()
     return self._browser
 
+  def CloseBrowser(self):
+    if self._browser is not None:
+      try:
+        # TODO(crbug.com/854212): The following are workarounds should not be
+        # needed:
+        # a) Explicitly call flush tracing so that we retain a copy of the
+        # trace from this browser before it's closed.
+        if self.platform.tracing_controller.is_tracing_running:
+          self.platform.tracing_controller.FlushTracing()
+        # b) Close all tabs before closing the browser. Prevents a bug that
+        # would cause future browser instances to hang when older tabs receive
+        # DevTools requests.
+        while len(self._browser.tabs) > 0:
+          self._browser.tabs[0].Close(keep_one=False)
+        self._browser.Close()
+      finally:
+        self._browser = None
+
   def WillRunStory(self, story):
     # TODO: Should start replay to use WPR recordings.
     # See e.g.: https://goo.gl/UJuu8a
@@ -73,9 +91,8 @@ class SharedAndroidStoryState(story_module.SharedState):
   def DidRunStory(self, _):
     self._current_story = None
     try:
-      self._browser.Close()
+      self.CloseBrowser()
     finally:
-      self._browser = None
       self._possible_browser.CleanUpEnvironment()
 
   def DumpStateUponFailure(self, story, results):
@@ -93,16 +110,21 @@ class SharedAndroidStoryState(story_module.SharedState):
 
 
 class AndroidGoFooStory(story_module.Story):
+  """An example story that restarts the browser a few times."""
+  URL = 'https://en.wikipedia.org/wiki/Main_Page'
+
   def __init__(self):
     super(AndroidGoFooStory, self).__init__(
         SharedAndroidStoryState, name='go:story:foo')
 
   def Run(self, state):
-    state.LaunchBrowser('https://en.wikipedia.org/wiki/Main_Page')
-    browser = state.FindBrowser()
-    action_runner = browser.foreground_tab.action_runner
-    action_runner.tab.WaitForDocumentReadyStateToBeComplete()
-    action_runner.RepeatableBrowserDrivenScroll(repeat_count=2)
+    for _ in xrange(3):
+      state.CloseBrowser()  # Close previous browser, if any.
+      state.LaunchBrowser(self.URL)
+      browser = state.FindBrowser()
+      action_runner = browser.foreground_tab.action_runner
+      action_runner.tab.WaitForDocumentReadyStateToBeComplete()
+      action_runner.RepeatableBrowserDrivenScroll(repeat_count=2)
 
 
 class AndroidGoBarStory(story_module.Story):
