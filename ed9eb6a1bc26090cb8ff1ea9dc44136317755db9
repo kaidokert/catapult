@@ -22,6 +22,30 @@
       "revId": "ed9eb6a1bc26090cb8ff1ea9dc44136317755db9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "393f817f_6cf6a2ff",
+        "filename": "dashboard/dashboard/update_test_suites.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-20T18:04:07Z",
+      "side": 1,
+      "message": "Yes, the list of test suites is different. Some test suite names are transformed to allow the UI to group them. There are also some new test suite names (see the partial/composite stuff).",
+      "parentUuid": "ca8e6f66_f17dd383",
+      "range": {
+        "startLine": 70,
+        "startChar": 2,
+        "endLine": 70,
+        "endChar": 15
+      },
+      "revId": "ed9eb6a1bc26090cb8ff1ea9dc44136317755db9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
