@@ -140,6 +140,30 @@
       "revId": "b2c09e865a83641cba4b26b0a83b6bb8fca76cb8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f04c1831_a7d559e4",
+        "filename": "telemetry/examples/benchmarks/android_go_benchmark.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-20T15:20:00Z",
+      "side": 1,
+      "message": "I agree with pretty much everything you said. In particular:\n\n1. Errors flying up and down the control flow is indeed messy; this causes e.g. errors sometimes showing up out of order in the logs, which can be very confusing.\n\n2. Refactoring this for the whole of Telemetry will take a while.\n\nAnyway, as we have control over the shared state here, it\u0027s a good time to try out ideas. Have a look at the latest patch.\n\nIt\u0027s still a bit awkward because of the bugs in crbug.com/854212, but at least all of the awkwardness is now encapsulated in two single methods.\n\nLet me know what you think.",
+      "parentUuid": "e6ac1ebd_9dcdb6d4",
+      "range": {
+        "startLine": 83,
+        "startChar": 8,
+        "endLine": 83,
+        "endChar": 28
+      },
+      "revId": "b2c09e865a83641cba4b26b0a83b6bb8fca76cb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
