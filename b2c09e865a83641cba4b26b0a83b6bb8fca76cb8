@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c76e0a30_1e303eae",
+        "filename": "telemetry/examples/benchmarks/android_go_benchmark.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-20T08:50:21Z",
+      "side": 1,
+      "message": "Good point. Done.",
+      "parentUuid": "1ef96e11_1184d083",
+      "range": {
+        "startLine": 47,
+        "startChar": 2,
+        "endLine": 47,
+        "endChar": 31
+      },
+      "revId": "b2c09e865a83641cba4b26b0a83b6bb8fca76cb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "88d7db1f_270d2dae",
         "filename": "telemetry/examples/benchmarks/android_go_benchmark.py",
         "patchSetId": 5
@@ -59,6 +83,30 @@
       "writtenOn": "2018-06-19T16:07:45Z",
       "side": 1,
       "message": "Perhaps a derail, but I found there is something I did not ask before, and it left me guessing:\n\nManaging SharedAndroidStoryState._browser looks to me more complicated than necessary. Is there a fundamental need in having it? Is it because _possible_browser.FindExistingBrowser() can be done only once (or it is too slow to call multiple times)?\n\nBy only looking at this class one needs some guessing what the _browser lifetime assumptions are of the caller. When such state travels from one loop iteration to another (in Run()) the leak of the abstraction looks heavier than the benefits the abstraction provides. I think a simpler flow would be to do \u0027if browser: self.CloseBrowser(browser)\u0027 in AndroidGoFooStory.Run(), which would make the data flow explicit, and would remove the \u0027self._browser is not None\u0027 and such sprinkled in SharedAndroidStoryState.",
+      "range": {
+        "startLine": 83,
+        "startChar": 8,
+        "endLine": 83,
+        "endChar": 28
+      },
+      "revId": "b2c09e865a83641cba4b26b0a83b6bb8fca76cb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "630f7836_39de2def",
+        "filename": "telemetry/examples/benchmarks/android_go_benchmark.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-20T08:50:21Z",
+      "side": 1,
+      "message": "Yes, I agree, I also thought about this. There isn\u0027t really much point for the shared state to know anything about the browser or manage it\u0027s lifetime. The story.Run should hold and manage it\u0027s state.\n\nThe only reason why I kept it there was due to \"DumpStateUponFailure\" which is called by the test runner when things go wrong to, among other things, give the browser a chance to dump debug info which might be useful when diagnosing failures. But I couldn\u0027t easily come up with an alternative for that. Any ideas or suggestions?",
+      "parentUuid": "3f49563e_a6fe2563",
       "range": {
         "startLine": 83,
         "startChar": 8,
