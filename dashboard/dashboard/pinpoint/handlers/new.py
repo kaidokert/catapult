@@ -162,7 +162,7 @@ def _GenerateQuests(arguments):
 def _ValidatePin(pin):
   if not pin:
     return None
-  return change.Change.FromDict({'commits': [], 'patch': pin})
+  return change.Change.FromDict(pin)
 
 
 def _ValidateTags(tags):

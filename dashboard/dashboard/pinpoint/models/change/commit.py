@@ -139,13 +139,21 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
       KeyError: The repository name is not in the local datastore,
                 or the git hash is not valid.
     """
-    repository = data['repository']
+    if isinstance(data, basestring):
+      url_parts = data.split('+')
+      if len(url_parts) != 2:
+        raise ValueError('Unknown commit URL format: ' + data)
+
+      repository, git_hash = url_parts
+      repository = repository[:-1]
+      git_hash = git_hash[1:]
+    else:
+      repository = data['repository']
+      git_hash = data['git_hash']
 
     # Translate repository if it's a URL.
     if repository.startswith('https://'):
       repository = repository_module.RepositoryName(repository)
-
-    git_hash = data['git_hash']
 
     try:
       # If they send in something like HEAD, resolve to a hash.

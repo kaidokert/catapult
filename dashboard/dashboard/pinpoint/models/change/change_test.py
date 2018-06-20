@@ -109,6 +109,28 @@ class ChangeTest(test.TestCase):
     expected = change.Change(commits, p)
     self.assertEqual(c, expected)
 
+  def testFromDictStringCommit(self):
+    c = change.Change.FromDict(test.CHROMIUM_URL + '/+/aaa7336')
+
+    expected = change.Change((commit.Commit('chromium', 'aaa7336'),))
+    self.assertEqual(c, expected)
+
+  @mock.patch('dashboard.services.gerrit_service.GetChange')
+  def testFromDictStringPatch(self, get_change):
+    get_change.return_value = {
+        '_number': 658277,
+        'id': 'repo~branch~id',
+        'current_revision': '2f0d5c7',
+        'revisions': {'2f0d5c7': {}}
+    }
+
+    c = change.Change.FromDict('https://example.com/c/repo/+/658277')
+
+    p = patch.GerritPatch(
+        'https://example.com', 'repo~branch~id', '2f0d5c7')
+    expected = change.Change((), patch=p)
+    self.assertEqual(c, expected)
+
 
 class MidpointTest(test.TestCase):
 
