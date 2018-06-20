@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "183966d4_2c0c0db5",
+        "filename": "experimental/soundwave/.gitignore",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-06-20T20:12:11Z",
+      "side": 1,
+      "message": "The new mode needs a few files other than DB, which I add to .gitignore here",
+      "revId": "9263bb2ff8477bcaab4beafe450df5a44966be5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
