@@ -190,7 +190,8 @@ def _BatchHistogramsIntoTasks(
     test_path = ComputeTestPath(suite_path, hist.guid, histograms)
 
     if test_path in duplicate_check:
-      logging.warning('Duplicate histogram detected: %s', test_path)
+      raise api_request_handler.BadRequestError(
+          'Duplicate histogram detected: %s' % test_path)
     duplicate_check.add(test_path)
 
     # TODO(eakuefner): Batch these better than one per task.
@@ -385,7 +386,7 @@ def ComputeRevision(histograms):
   # TODO(eakuefner): Allow users to specify other types of revisions to be used
   # for computing revisions of dashboard points. See
   # https://github.com/catapult-project/catapult/issues/3623.
-  if not type(commit_position) in (long, int):
+  if not isinstance(commit_position, (long, int)):
     raise api_request_handler.BadRequestError(
         'Commit Position must be an integer.')
   return commit_position
