@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "211c8a2b_321dbf17",
+        "filename": "dashboard/dashboard/api/api_auth.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-06-20T21:13:14Z",
+      "side": 1,
+      "message": "oauth.OAuthRequestError\n\n(to make sure transient errors when checking the token result in HTTP 500, oauth.Error is too generic covering both fatal and transient errors)",
+      "range": {
+        "startLine": 76,
+        "startChar": 9,
+        "endLine": 76,
+        "endChar": 20
+      },
+      "revId": "9252f355d93d3bab37d0a4896a3366bcfd668865",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "754e13bb_dbb37a5c",
+        "filename": "dashboard/dashboard/api/api_auth.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-06-20T21:13:14Z",
+      "side": 1,
+      "message": "This function assumes GetCurrentUser() raises InvalidOAuthParametersError for not-logged-in user. Authorize() above assumes it returns None. Which one is it?\n\nI think it would be more consistent if GetCurrentUser() returned None for not-logged-in user. Then Email() would simply be:\n\n  user \u003d utils.GetCurrentUser()\n  return user.email() if user else None\n\nIn GetCurrentUser(), in OAuth path, you can check presence of os.environ[\u0027HTTP_AUTHORIZATION\u0027]. If it is missing, then the user is not logged in. If it is present, oauth.get_current_user() will either return a User, or raise an exception.\n\nThe check for os.environ[\u0027HTTP_AUTHORIZATION\u0027] is required because, IIRC, oauth.get_current_user() raises an exception if the token is not present and it is hard to distinguish this case from a broken token.",
+      "range": {
+        "startLine": 92,
+        "startChar": 9,
+        "endLine": 92,
+        "endChar": 42
+      },
+      "revId": "9252f355d93d3bab37d0a4896a3366bcfd668865",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "012afc98_f116865b",
+        "filename": "dashboard/dashboard/common/utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-06-20T21:13:14Z",
+      "side": 1,
+      "message": "oauth.get_current_user(OAUTH_SCOPES)",
+      "range": {
+        "startLine": 50,
+        "startChar": 11,
+        "endLine": 50,
+        "endChar": 35
+      },
+      "revId": "9252f355d93d3bab37d0a4896a3366bcfd668865",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a9d49ba_3e4dc790",
+        "filename": "dashboard/dashboard/common/utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2018-06-20T21:13:14Z",
+      "side": 1,
+      "message": "I don\u0027t think this works correctly: username here is User object, not a string. It is treated as a string below.\n\nUser object has __str__() convertor: https://cloud.google.com/appengine/docs/standard/python/refdocs/modules/google/appengine/api/users#User\n\nBut it returns a nickname, not email. Nickname is:\n\n\"\"\"\nThe nickname will be a unique, human readable identifier for this user with\nrespect to this application. It will be an email address for some users,\nand part of the email address for some users.\n\"\"\"\n\nSo under some unspecified conditions, code below will use \"part of the email address\" in place of an email.\n\nI guess this explains why chrome-infra-auth constantly sees malformed requests from perf-dashboard:\n\n  BadRequestException: Invalid identity: Identity has invalid format: cordovium1.\n\nLooks like \u0027cordovium1\u0027 (whatever it is) falls under unspecified conditions under which nickname() returns part of an email.\n\n\n---\n\nPlease either make sure either GetCurrentUser returns a string and all its callers expect a string, or make all callers expect User object and use user.email().",
+      "range": {
+        "startLine": 355,
+        "startChar": 2,
+        "endLine": 355,
+        "endChar": 10
+      },
+      "revId": "9252f355d93d3bab37d0a4896a3366bcfd668865",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
