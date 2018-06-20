@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7b9171ba_96c3e861",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1285054
+      },
+      "writtenOn": "2018-06-20T17:04:39Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "cacb0654_dad652c0",
+      "revId": "10c6c0f9b84e110f3acf424fe94fc57db770fe7a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0a2a20f3_5ecca011",
         "filename": "devil/devil/android/apk_helper.py",
         "patchSetId": 11
@@ -33,6 +51,24 @@
       "revId": "10c6c0f9b84e110f3acf424fe94fc57db770fe7a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e723f1c5_c6551379",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1285054
+      },
+      "writtenOn": "2018-06-20T17:04:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a2a20f3_5ecca011",
+      "revId": "10c6c0f9b84e110f3acf424fe94fc57db770fe7a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "1c2bbb67_95448d53",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 2809,
+      "author": {
+        "id": 1285054
+      },
+      "writtenOn": "2018-06-20T17:04:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2b92c12_38088ea9",
+      "revId": "10c6c0f9b84e110f3acf424fe94fc57db770fe7a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8476525e_1938fb25",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 11
@@ -67,6 +121,24 @@
       "revId": "10c6c0f9b84e110f3acf424fe94fc57db770fe7a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01208643_d0495ad8",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 2810,
+      "author": {
+        "id": 1285054
+      },
+      "writtenOn": "2018-06-20T17:04:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8476525e_1938fb25",
+      "revId": "10c6c0f9b84e110f3acf424fe94fc57db770fe7a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
