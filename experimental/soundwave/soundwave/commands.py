@@ -31,6 +31,12 @@ def _ApiAndDbSession(args):
   """
   api = dashboard_api.PerfDashboardCommunicator(args)
   con = sqlite3.connect(args.database_file)
+
+  # Tell sqlite to use a write-ahead log, which drastically increases its
+  # concurrency capabilities. This helps prevent 'database is locked' exceptions
+  # when we have many workers writing to a single database.
+  con.execute('PRAGMA journal_mode=WAL')
+
   try:
     tables.CreateIfNeeded(con)
     yield api, con
