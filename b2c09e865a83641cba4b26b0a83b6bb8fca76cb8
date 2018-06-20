@@ -116,6 +116,30 @@
       "revId": "b2c09e865a83641cba4b26b0a83b6bb8fca76cb8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6ac1ebd_9dcdb6d4",
+        "filename": "telemetry/examples/benchmarks/android_go_benchmark.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-06-20T13:17:24Z",
+      "side": 1,
+      "message": "hmm, handling failures is important indeed!\n\nI did not know that Browser has a lot to print on failures. I find story_runner._RunStoryAndProcessErrorIfNeeded() complicated in one regard: after some failure is flying up the stack the story runner passes control down to those components (where the failure originates from) to print more information. This control flow is non-intuitive to me and as we see requires plumbing the errors in two ways. A one-way plumbing could be to allow layers down the callstack to print enough error messages and allow the story runner (i.e. up the callstack) to only wrap the higher levels.\n\nThough I realize that this refactoring may take a while ..\n\nOne way could be to give up on generalizing multiple browsers in Telemetry and allow AndroidGoFooStory to catch/print/raise exceptions related to the Browser instance. I find it less complicated because the handling of the object exceptional state happens very closely to the places where the object is actively used, without 2-way plumbing.\n\nOne downside of this approach would be that to avoid duplication of this handling in various stories, we may want to mandate using an utility to wrap a browser in try+catch as soon as we get a ref to it. It could be as much as 2 lines with a contextmanager or a longer chain of inheritance from Story. I think initially it would be better to leave it to this benchmark to handle, and then later once there is a desire to duplicate this Browser failure printing, we can figure out what\u0027s the most usable API there is.\n\nP.S: I\u0027ve seen a few failures, and those printouts from browser were not very useful to me, especially because it was not clear where they are flying from. I guess I would appreciate clearer layering ;)",
+      "parentUuid": "630f7836_39de2def",
+      "range": {
+        "startLine": 83,
+        "startChar": 8,
+        "endLine": 83,
+        "endChar": 28
+      },
+      "revId": "b2c09e865a83641cba4b26b0a83b6bb8fca76cb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
