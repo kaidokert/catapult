@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f821edcf_40b1c244",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1285054
+      },
+      "writtenOn": "2018-06-20T14:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e262043_a7cce374",
+      "revId": "a608555319b97db74d2bf3d2df046b2906d56562",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f62b494e_2c7c5dd7",
         "filename": "devil/devil/android/apk_helper.py",
         "patchSetId": 9
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "f64f9e41_754dd790",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1285054
+      },
+      "writtenOn": "2018-06-20T14:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f62b494e_2c7c5dd7",
+      "revId": "a608555319b97db74d2bf3d2df046b2906d56562",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a284bfa0_f41795aa",
         "filename": "devil/devil/android/apk_helper.py",
         "patchSetId": 9
@@ -50,6 +86,24 @@
       "revId": "a608555319b97db74d2bf3d2df046b2906d56562",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32d3ae0c_09e39722",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1285054
+      },
+      "writtenOn": "2018-06-20T14:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a284bfa0_f41795aa",
+      "revId": "a608555319b97db74d2bf3d2df046b2906d56562",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
