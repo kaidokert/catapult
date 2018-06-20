@@ -22,6 +22,30 @@
       "revId": "16a89d1d1f36931ef3282f153a221fc35d6e8ebc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "828c66fb_5b51ffca",
+        "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1168098
+      },
+      "writtenOn": "2018-06-20T00:38:03Z",
+      "side": 1,
+      "message": "In general, I agree with you on avoiding abbreviations whenever possible, however note that \"prio\" is the name of the field in the context switch events.  In my opinion, this function has more to do with processing those particular events than it does with the concept of priority in general.\n\nAdditionally, \"tid\" is an abbreviation, and should be \"threadId\" if \"prio\" should be \"priority\" (please let me know your thoughts on this, I guess you could argue that \"tid\" is a well known enough abbreviation that it\u0027s fair game).",
+      "parentUuid": "a39a6882_57acec89",
+      "range": {
+        "startLine": 67,
+        "startChar": 17,
+        "endLine": 67,
+        "endChar": 21
+      },
+      "revId": "16a89d1d1f36931ef3282f153a221fc35d6e8ebc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
