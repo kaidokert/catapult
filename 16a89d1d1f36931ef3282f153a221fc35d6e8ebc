@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a39a6882_57acec89",
+        "filename": "tracing/tracing/extras/importer/fuchsia_importer.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1211219
+      },
+      "writtenOn": "2018-06-20T00:26:51Z",
+      "side": 1,
+      "message": "Could you please use `priority` instead of `prio`? In my humble opinion, I think we shouldn\u0027t use abbreviation when possible :)",
+      "range": {
+        "startLine": 67,
+        "startChar": 17,
+        "endLine": 67,
+        "endChar": 21
+      },
+      "revId": "16a89d1d1f36931ef3282f153a221fc35d6e8ebc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
