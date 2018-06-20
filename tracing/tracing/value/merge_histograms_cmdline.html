@@ -69,16 +69,44 @@ function stripInternalDiagnostics(mergedHistograms) {
 
 function mergeHistograms(histogramsPath, groupingKeys) {
   const histograms = new tr.v.HistogramSet();
+  let t0 = new Date();
   histograms.importDicts(JSON.parse(tr.b.getSync('file://' + histogramsPath)));
+  let t1 = new Date();
+  histograms.createHistogram('import_time', tr.b.Unit.byName.timeDurationInMs, [t1 - t0]);
+  t0 = new Date();
   histograms.resolveRelatedHistograms();
+  t1 = new Date();
+  histograms.createHistogram('resolve_time', tr.b.Unit.byName.timeDurationInMs, [t1 - t0]);
+  t0 = new Date();
   histograms.buildGroupingsFromTags([tr.v.d.RESERVED_NAMES.STORY_TAGS]);
+  t1 = new Date();
+  histograms.createHistogram('build_grouping_time', tr.b.Unit.byName.timeDurationInMs, [t1 - t0]);
+
+  t0 = new Date();
   const groupings = groupingKeys.map(findGrouping);
+  t1 = new Date();
+  histograms.createHistogram('make_groupings_time', tr.b.Unit.byName.timeDurationInMs, [t1 - t0]);
+  t0 = new Date();
   const groupedHistograms = histograms.groupHistogramsRecursively(groupings);
+  t1 = new Date();
+  histograms.createHistogram('group_histograms_time', tr.b.Unit.byName.timeDurationInMs, [t1 - t0]);
   const mergedHistograms = new tr.v.HistogramSet();
+  t0 = new Date();
   mergeLeafHistograms(groupedHistograms, mergedHistograms);
+  t1 = new Date();
+  histograms.createHistogram('merge_leaf_histograms_time', tr.b.Unit.byName.timeDurationInMs, [t1 - t0]);
+  t0 = new Date();
   mergedHistograms.deduplicateDiagnostics();
+  t1 = new Date();
+  histograms.createHistogram('deduplicate_time', tr.b.Unit.byName.timeDurationInMs, [t1 - t0]);
+  t0 = new Date();
   mergedHistograms.mergeRelationships();
+  t1 = new Date();
+  histograms.createHistogram('merge_relationships_time', tr.b.Unit.byName.timeDurationInMs, [t1 - t0]);
+  t0 = new Date();
   stripInternalDiagnostics(mergedHistograms);
+  t1 = new Date();
+  histograms.createHistogram('strip_internal_diags_time', tr.b.Unit.byName.timeDurationInMs, [t1 - t0]);
   return mergedHistograms;
 }
 

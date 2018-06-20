@@ -1,3 +1,4 @@
+import time
 # Copyright 2018 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
@@ -108,54 +109,101 @@ def AddReservedDiagnostics(histogram_dicts, names_to_values):
   # We need to generate summary statistics for anything that had a story, so
   # filter out every histogram with no stories, then merge. If you keep the
   # histograms with no story, you end up with duplicates.
+  t0 = time.time()
   hs_with_stories = _LoadHistogramSet(histogram_dicts)
+  t1 = time.time()
+  print 'WITH STORIES %s' % (t1 - t0)
+  t0 = time.time()
   hs_with_stories.FilterHistograms(
       lambda h: not h.diagnostics.get(reserved_infos.STORIES.name, []))
+  t1 = time.time()
+  print 'WITH STORIES FILTER %s' % (t1 - t0)
 
+  t0 = time.time()
   hs_with_no_stories = _LoadHistogramSet(histogram_dicts)
+  t1 = time.time()
+  print 'WITHOUT STORIES %s' % (t1 - t0)
+  t0 = time.time()
   hs_with_no_stories.FilterHistograms(
       lambda h: h.diagnostics.get(reserved_infos.STORIES.name, []))
+  t1 = time.time()
+  print 'WITHOUT STORIES FILTER %s' % (t1 - t0)
 
   # TODO(#3987): Refactor recipes to call merge_histograms separately.
   # This call combines all repetitions of a metric for a given story into a
   # single histogram.
   hs = histogram_set.HistogramSet()
+  t0 = time.time()
   hs.ImportDicts(hs_with_stories.AsDicts())
+  t1 = time.time()
+  print 'IMPORT DICTS WITH STORIES %s' % (t1 -t0)
 
+  t0 = time.time()
   for h in hs:
     h.diagnostics[reserved_infos.TEST_PATH.name] = (
         generic_set.GenericSet([ComputeTestPath(h)]))
+  t1 = time.time()
+  print 'COMPUTE TEST PATHS %s' % (t1 - t0)
 
+  t0 = time.time()
   _GetAndDeleteHadFailures(hs)
+  t1 = time.time()
+  print 'DELETE FAILURES %s' % (t1 - t0)
+  t0 = time.time()
   dicts_across_repeats = _MergeHistogramSetByPath(hs)
-
+  t1 = time.time()
+  print 'MERGE ACROSS REPEAT %s' % (t1 - t0)
+  t0 = time.time()
   had_failures = _GetAndDeleteHadFailures(hs_with_stories)
+  t1 = time.time()
+  print 'DELETE FAILURES WITH STORIES %s' % (t1 - t0)
 
   if not had_failures:
     # This call creates summary metrics across each tag set of stories.
     hs = histogram_set.HistogramSet()
+    t0 = time.time()
     hs.ImportDicts(hs_with_stories.AsDicts())
+    t1 = time.time()
+    print 'IMPORT WITH STORIES %s' % (t1 - t0)
+    t0 = time.time()
     hs.FilterHistograms(lambda h: not GetTIRLabelFromHistogram(h))
+    t1 = time.time()
+    print 'FILTER TIR LABELS %s' % (t1 - t0)
 
+    t0 = time.time()
     for h in hs:
       h.diagnostics[reserved_infos.SUMMARY_KEYS.name] = (
           generic_set.GenericSet(['name', 'storyTags']))
       h.diagnostics[reserved_infos.TEST_PATH.name] = (
           generic_set.GenericSet([ComputeTestPath(h)]))
+    t1 = time.time()
+    print 'ADDING SUMMARY KEYS %s' % (t1 - t0)
 
+    t0 = time.time()
     dicts_across_stories = _MergeHistogramSetByPath(hs)
+    t1 = time.time()
+    print 'MERGE ACROSS STORIES %s' % (t1 - t0)
 
     # This call creates summary metrics across the entire story set.
     hs = histogram_set.HistogramSet()
+    t0 = time.time()
     hs.ImportDicts(hs_with_stories.AsDicts())
+    t1 = time.time()
+    print 'IMPORT WITH STORIES %s' % (t1 - t0)
 
+    t0 = time.time()
     for h in hs:
       h.diagnostics[reserved_infos.SUMMARY_KEYS.name] = (
           generic_set.GenericSet(['name']))
       h.diagnostics[reserved_infos.TEST_PATH.name] = (
           generic_set.GenericSet([ComputeTestPath(h)]))
+    t1 = time.time()
+    print 'ADDING SUMMARY WITHOUT STORIES %s' % (t1 - t0)
 
+    t0 = time.time()
     dicts_across_names = _MergeHistogramSetByPath(hs)
+    t1 = time.time()
+    print 'MERGE ACROSS NAMES %s' % (t1 - t0)
   else:
     dicts_across_stories = []
     dicts_across_names = []
@@ -166,19 +214,32 @@ def AddReservedDiagnostics(histogram_dicts, names_to_values):
   # on the command line. Finally, since we end up with a lot of diagnostics
   # that no histograms refer to, we make sure to prune those.
   histograms = histogram_set.HistogramSet()
+  t0 = time.time()
   histograms.ImportDicts(dicts_across_names)
   histograms.ImportDicts(dicts_across_stories)
   histograms.ImportDicts(dicts_across_repeats)
   histograms.ImportDicts(hs_with_no_stories.AsDicts())
+  t1 = time.time()
+  print 'ALL IMPORTS %s' % (t1 - t0)
+
 
   # Merge tagmaps since we OBBS may produce several for shared runs
+  t0 = time.time()
   _MergeAndReplaceSharedDiagnostics(
       reserved_infos.TAG_MAP.name, histograms)
+  t1 = time.time()
+  print 'MERGE AND REPLACE %s' % (t1 - t0)
 
+  t0 = time.time()
   histograms.DeduplicateDiagnostics()
+  t1 = time.time()
+  print 'DEDUPLICATE %s' % (t1 - t0)
   for name, value in names_to_values.iteritems():
     assert name in ALL_NAMES
     histograms.AddSharedDiagnostic(name, generic_set.GenericSet([value]))
+  t0 = time.time()
   histograms.RemoveOrphanedDiagnostics()
+  t1 = time.time()
+  print 'REMOVE ORPHANED %s' % (t1 - t0)
 
   return json.dumps(histograms.AsDicts())
