@@ -107,7 +107,13 @@ tr.exportTo('cp', () => {
   };
 
   const STORE = Redux.createStore(
-      rootReducer, DEFAULT_STATE, Redux.applyMiddleware(THUNK));
+    rootReducer,
+    DEFAULT_STATE,
+    Redux.compose(
+      Redux.applyMiddleware(THUNK),
+      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    )
+  );
 
   const ReduxMixin = PolymerRedux(STORE);
 
