@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "be4ed7a9_390226db",
+        "filename": "experimental/soundwave/soundwave/dashboard_api.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-20T12:02:20Z",
+      "side": 1,
+      "message": "Note this is handled inconsistently by the /alerts and the /list_timeseries API\u0027s.\n\nThe former uses *not* specifying a sheriff to disable filtering by rotation; the later needs one to explicitly pass \"all\", c.f. https://cs.chromium.org/chromium/src/third_party/catapult/dashboard/dashboard/api/list_timeseries.py?rcl\u003df153b902bec3811dd5faa9e807240b059e7bbc8c\u0026l\u003d30\n\nI have a slight preference for the former, in case we want to make both API calls consistent.",
+      "revId": "77f695ad35af22ca37700e2c27c736eb45e11f30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
