@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d97c8112_b29bf49a",
+        "filename": "experimental/soundwave/soundwave/commands.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-06-20T19:59:12Z",
+      "side": 1,
+      "message": "Note that this doesn\u0027t need to be set on every connection - it only needs to be set on the database once. (See \"Persistence of WAL mode\" section on this page: https://www.sqlite.org/wal.html)",
+      "revId": "d3d222bf8a1fd87b7940defb234ef86614807ede",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
