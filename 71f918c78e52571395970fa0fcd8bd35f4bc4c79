@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c4efee11_0acad8f7",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-20T21:34:52Z",
+      "side": 1,
+      "message": "nit: lets declare these at top",
+      "range": {
+        "startLine": 55,
+        "startChar": 51,
+        "endLine": 55,
+        "endChar": 70
+      },
+      "revId": "71f918c78e52571395970fa0fcd8bd35f4bc4c79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
