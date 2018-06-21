@@ -16,6 +16,47 @@
       "revId": "93e8257e9e92397cb2637faf6819688d22a46be5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "906d51a3_32a99159",
+        "filename": "telemetry/examples/benchmarks/android_go_benchmark.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-06-21T15:42:05Z",
+      "side": 1,
+      "message": "SG!",
+      "parentUuid": "d1aa073f_c86617bb",
+      "revId": "93e8257e9e92397cb2637faf6819688d22a46be5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80fa0da7_5ffb1eb5",
+        "filename": "telemetry/telemetry/internal/browser/possible_browser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-06-21T15:42:05Z",
+      "side": 1,
+      "message": "hmm, I would rather vote for the default being False, since it seems that most benchmarks start doing something when the browser has warmed up, so clearing pagecache is not so important for the majority of cases.\n\nAlso I would vote for having less default parameters in general, but since this one is temporary, it sounds good enough. Worried that this may cause false regressions in chromeperf, fingers crossed :)",
+      "range": {
+        "startLine": 109,
+        "startChar": 5,
+        "endLine": 110,
+        "endChar": 42
+      },
+      "revId": "93e8257e9e92397cb2637faf6819688d22a46be5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
