@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c0b7b7d2_65cd76ae",
+        "filename": "telemetry/telemetry/value/__init__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-21T10:23:38Z",
+      "side": 1,
+      "message": "Interestingly this now fails on my local checkout with:\n\nE: 93, 0: Bad option value \u0027unidiomatic-typecheck\u0027 (bad-option-value)\n\nI assume it\u0027s because of the pylint version? Do we know what caused the version to change on the catapult CQ?",
+      "revId": "5a3950d3a13d98f6274ed2d21390ade6517a86ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
