@@ -16,6 +16,23 @@
       "revId": "9263bb2ff8477bcaab4beafe450df5a44966be5e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "48c98741_75ab2c01",
+        "filename": "experimental/soundwave/soundwave/commands.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-21T08:55:40Z",
+      "side": 1,
+      "message": "Nice! Can you also include a pointer here to https://www.sqlite.org/wal.html ?",
+      "revId": "9263bb2ff8477bcaab4beafe450df5a44966be5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
