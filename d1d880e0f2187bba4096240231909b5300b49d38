@@ -16,6 +16,24 @@
       "revId": "d1d880e0f2187bba4096240231909b5300b49d38",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "115c53a8_ce44ffc5",
+        "filename": "experimental/soundwave/soundwave/tables/timeseries.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-06-21T14:18:01Z",
+      "side": 1,
+      "message": "Yea - that occurred to me, but the idea of having to do a join to find the data every time that we wanted it seemed worse than the duplication across rows. I figured it\u0027s fine for now, but if we start to get lots of columns like this, we might want to think harder about how we do this.",
+      "parentUuid": "39d08094_0d045c4d",
+      "revId": "d1d880e0f2187bba4096240231909b5300b49d38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
