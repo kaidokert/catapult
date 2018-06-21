@@ -16,6 +16,24 @@
       "revId": "5a3950d3a13d98f6274ed2d21390ade6517a86ad",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1d12235_434dd43a",
+        "filename": "telemetry/telemetry/value/__init__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-06-21T11:06:07Z",
+      "side": 1,
+      "message": "I guess someone updated depot_tools? +agable@ to confirm",
+      "parentUuid": "c0b7b7d2_65cd76ae",
+      "revId": "5a3950d3a13d98f6274ed2d21390ade6517a86ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
