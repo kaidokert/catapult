@@ -57,6 +57,30 @@
       "revId": "93e8257e9e92397cb2637faf6819688d22a46be5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51a8c1fe_a3ce8e4b",
+        "filename": "telemetry/telemetry/internal/browser/possible_browser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-21T15:55:18Z",
+      "side": 1,
+      "message": "Maybe the name is a bit misleading (but not worrying too much about it since it\u0027s only temporary). clear_caches\u003dTrue only means it will call _ClearCachesOnStart(), which still respects \"clear_sytem_cache_for_browser_and_profile_on_start\" as set by the benchmark.\n\nIt starts with the default as True just to keep the existing behavior (where _ClearCachesOnStart was called unconditionally) and prevent any false regressions. This change should not affect any benchmarks.\n\nThe expected progression is to later switch this default to False and eventually remove both the option and the call to _ClearCachesOnStart completely.",
+      "parentUuid": "80fa0da7_5ffb1eb5",
+      "range": {
+        "startLine": 109,
+        "startChar": 5,
+        "endLine": 110,
+        "endChar": 42
+      },
+      "revId": "93e8257e9e92397cb2637faf6819688d22a46be5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
