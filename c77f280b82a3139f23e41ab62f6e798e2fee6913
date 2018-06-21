@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "761b3da4_bc8f3c05",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-06-21T23:01:28Z",
+      "side": 1,
+      "message": "I think I do want to move more in that direction. The intent is to have some sane default dummy data so that tests that implicitly depend on external services, but aren\u0027t explicitly testing them, don\u0027t have to mock out tons of things. (Especially the unit tests for handlers.New, Job, and JobState, and future integration tests.)",
+      "parentUuid": "95d802b6_7688b586",
+      "revId": "c77f280b82a3139f23e41ab62f6e798e2fee6913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f557abbc_d89a352a",
         "filename": "dashboard/dashboard/pinpoint/models/change/commit_test.py",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "44fb0334_c1d487f3",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-06-21T23:01:28Z",
+      "side": 1,
+      "message": "This test ensures that we use the git hash returned from Gitiles, rather than the one passed in by the API user. If you remove line [154], the test will fail.\n\n[154] https://chromium.googlesource.com/catapult/+/master/dashboard/dashboard/pinpoint/models/change/commit.py#154",
+      "parentUuid": "f557abbc_d89a352a",
+      "revId": "c77f280b82a3139f23e41ab62f6e798e2fee6913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b482ee9d_f014562b",
         "filename": "dashboard/dashboard/pinpoint/test.py",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2018-06-07T09:28:19Z",
       "side": 1,
       "message": "I don\u0027t think we really need the special casing, so I suggest we should either:\n\n- always return: \u0027hash of %s\u0027 % git_hash; or just\n- always return: git_hash",
+      "revId": "c77f280b82a3139f23e41ab62f6e798e2fee6913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "093b79ce_aeb1662e",
+        "filename": "dashboard/dashboard/pinpoint/test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-06-21T23:01:28Z",
+      "side": 1,
+      "message": "Not sure if I agree with either of those options. The first one wouldn\u0027t reflect what would happen in the real-world, and the second one wouldn\u0027t catch errors related to the handling of HEAD.",
+      "parentUuid": "b482ee9d_f014562b",
       "revId": "c77f280b82a3139f23e41ab62f6e798e2fee6913",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
