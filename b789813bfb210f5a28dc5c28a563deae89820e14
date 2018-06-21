@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c5611aa6_ffc791d5",
+        "filename": "dashboard/dashboard/pinpoint/models/change/change.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-21T09:27:19Z",
+      "side": 1,
+      "message": "I think this would be a lot more readable and less magical if it were something like:\n\n    if instance(data, basestring):\n      if is_gitiles_url(data):\n        data \u003d {\u0027commits\u0027: [data]}\n      elif is_gerrit_url(data):\n        data \u003d {\u0027commits\u0027: [], \u0027patch\u0027: data}\n      else:\n        raise ValueError(\u0027Invalid value!\u0027)\n\n    # Then do the same as before.\n\nAlso in fact wondering whether the \"turn URL into a suitable change Dict\" should be done explicitly by the caller instead of some magic here in FromDict. What do you think?",
+      "revId": "b789813bfb210f5a28dc5c28a563deae89820e14",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
