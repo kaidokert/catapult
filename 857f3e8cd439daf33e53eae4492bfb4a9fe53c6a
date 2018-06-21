@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "79678efd_2463b754",
+        "filename": "telemetry/examples/benchmarks/android_go_benchmark.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-21T08:24:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37a3f26a_92786fd6",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 17
+      },
+      "revId": "857f3e8cd439daf33e53eae4492bfb4a9fe53c6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "607fd0fd_b1f118ae",
         "filename": "telemetry/examples/benchmarks/android_go_benchmark.py",
         "patchSetId": 9
@@ -36,6 +60,30 @@
       "writtenOn": "2018-06-20T16:49:53Z",
       "side": 1,
       "message": "perhaps self._browser_to_close would be a tiny bit clearer",
+      "range": {
+        "startLine": 120,
+        "startChar": 12,
+        "endLine": 120,
+        "endChar": 20
+      },
+      "revId": "857f3e8cd439daf33e53eae4492bfb4a9fe53c6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9222f6ce_14d517dc",
+        "filename": "telemetry/examples/benchmarks/android_go_benchmark.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-21T08:24:14Z",
+      "side": 1,
+      "message": "Good suggestion. Done.",
+      "parentUuid": "607fd0fd_b1f118ae",
       "range": {
         "startLine": 120,
         "startChar": 12,
