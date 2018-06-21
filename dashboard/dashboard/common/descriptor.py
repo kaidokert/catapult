@@ -12,10 +12,14 @@ Test paths can be arbitrarily long, but there are a fixed number of semantic
 characteristics. Multiple test path components may be joined into a single
 characteristic.
 
+These are timeseries Descriptors, not test suite descriptors, not line
+descriptors, not fetch descriptors.
+
 This translation layer should be temporary until the descriptor concept can be
 pushed down into the Model layer.
 """
 
+from dashboard.common import stored_object
 
 TEST_BUILD_TYPE = 'test'
 REFERENCE_BUILD_TYPE = 'ref'
@@ -28,6 +32,104 @@ class Descriptor(object):
   Supports partial test paths (e.g. test suite paths) by allowing some
   characteristics to be None.
   """
+
+  @classmethod
+  def _PartialTestSuites(cls):
+    """Returns a list of test path component strings that must be joined with
+    the subsequent test path component in order to form a composite test suite.
+    Some are internal-only, but there's no need to store a separate list for
+    external users.
+    """
+    if not hasattr(cls, 'PARTIAL_TEST_SUITES'):
+      cls.PARTIAL_TEST_SUITES = stored_object.Get('partial_test_suites')
+    return cls.PARTIAL_TEST_SUITES
+
+  @classmethod
+  def _CompositeTestSuites(cls):
+    """
+    Returns a list of test suites composed of 2 or more test path components.
+    All composite test suites start with a partial test suite, but not all test
+    suites that start with a partial test suite are composite.
+    Some are internal-only, but there's no need to store a separate list for
+    external users.
+    """
+    if not hasattr(cls, 'COMPOSITE_TEST_SUITES'):
+      cls.COMPOSITE_TEST_SUITES = stored_object.Get('composite_test_suites')
+    return cls.COMPOSITE_TEST_SUITES
+
+  @classmethod
+  def _GroupableTestSuitePrefixes(cls):
+    """
+    Returns a list of prefixes of test suites that are transformed to allow the
+    UI to group them.
+    Some are internal-only, but there's no need to store a separate list for
+    external users.
+    """
+    if not hasattr(cls, 'GROUPABLE_TEST_SUITE_PREFIXES'):
+      cls.GROUPABLE_TEST_SUITE_PREFIXES = stored_object.Get(
+          'groupable_test_suite_prefixes')
+    return cls.GROUPABLE_TEST_SUITE_PREFIXES
+
+  @classmethod
+  def FromTestPath(cls, path):
+    """Parse a test path into a Descriptor.
+
+    Args:
+      path: Array of strings of any length.
+
+    Returns:
+      Descriptor
+    """
+    if len(path) < 2:
+      return cls()
+
+    bot = path.pop(0) + ':' + path.pop(0)
+    if len(path) == 0:
+      return cls(bot=bot)
+
+    test_suite = path.pop(0)
+
+    if test_suite in cls._PartialTestSuites():
+      if len(path) == 0:
+        return cls(bot=bot)
+      test_suite += ':' + path.pop(0)
+
+    if test_suite.startswith('resource_sizes '):
+      test_suite = 'resource_sizes:' + test_suite[16:-1]
+    else:
+      for prefix in cls._GroupableTestSuitePrefixes():
+        if test_suite.startswith(prefix):
+          test_suite = prefix[:-1] + ':' + test_suite[len(prefix):]
+          break
+
+    if len(path) == 0:
+      return cls(test_suite=test_suite, bot=bot)
+
+    build_type = TEST_BUILD_TYPE
+    measurement = path.pop(0)
+    statistic = None
+    # TODO(crbug.com/853258) some measurements include path[4]
+    for suffix in STATISTICS:
+      if measurement.endswith('_' + suffix):
+        statistic = suffix
+        measurement = measurement[:-(1 + len(suffix))]
+    if len(path) == 0:
+      return cls(test_suite=test_suite, bot=bot, measurement=measurement,
+                 build_type=build_type, statistic=statistic)
+
+    test_case = path.pop(0)
+    if test_case.endswith('_ref'):
+      test_case = test_case[:-4]
+      build_type = REFERENCE_BUILD_TYPE
+    if test_case == REFERENCE_BUILD_TYPE:
+      build_type = REFERENCE_BUILD_TYPE
+      test_case = None
+    # TODO(crbug.com/853258) some test_cases include path[5] and/or path[6]
+    # and/or path[7]
+    # TODO(crbug.com/853258) some test_cases need to be modified
+
+    return cls(test_suite=test_suite, bot=bot, measurement=measurement,
+               statistic=statistic, test_case=test_case, build_type=build_type)
 
   def __init__(self, test_suite=None, measurement=None, bot=None,
                test_case=None, statistic=None, build_type=None):
@@ -43,54 +145,6 @@ class Descriptor(object):
         self.test_suite, self.measurement, self.bot, self.test_case,
         self.statistic, self.build_type)
 
-  @classmethod
-  def FromTestPath(cls, path):
-    """Parse a test path into a Descriptor.
-
-    Args:
-      path: Array of strings of any length.
-
-    Returns:
-      Descriptor
-    """
-    if len(path) < 2:
-      return cls()
-
-    bot = path[0] + ':' + path[1]
-    if len(path) == 2:
-      return cls(bot=bot)
-
-    test_suite = path[2]
-    # TODO(crbug.com/853258) some test_suites include path[3]
-    if len(path) == 3:
-      return cls(test_suite=test_suite, bot=bot)
-
-    build_type = TEST_BUILD_TYPE
-    measurement = path[3]
-    statistic = None
-    # TODO(crbug.com/853258) some measurements include path[4]
-    for suffix in STATISTICS:
-      if measurement.endswith('_' + suffix):
-        statistic = suffix
-        measurement = measurement[:-(1 + len(suffix))]
-    if len(path) == 4:
-      return cls(test_suite=test_suite, bot=bot, measurement=measurement,
-                 build_type=build_type, statistic=statistic)
-
-    test_case = path[4]
-    if test_case.endswith('_ref'):
-      test_case = test_case[:-4]
-      build_type = REFERENCE_BUILD_TYPE
-    if test_case == REFERENCE_BUILD_TYPE:
-      build_type = REFERENCE_BUILD_TYPE
-      test_case = None
-    # TODO(crbug.com/853258) some test_cases include path[5] and/or path[6]
-    # and/or path[7]
-    # TODO(crbug.com/853258) some test_cases need to be modified
-
-    return cls(test_suite=test_suite, bot=bot, measurement=measurement,
-               statistic=statistic, test_case=test_case, build_type=build_type)
-
   def ToTestPaths(self):
     # There may be multiple possible test paths for a given Descriptor.
 
@@ -101,8 +155,20 @@ class Descriptor(object):
     if not self.test_suite:
       return [test_path]
 
-    # TODO(crbug.com/853258) some test_suites need to be modified
-    test_path += '/' + self.test_suite
+    test_path += '/'
+
+    if self.test_suite.startswith('resource_sizes:'):
+      test_path += 'resource sizes (%s)' % self.test_suite[15:]
+    elif self.test_suite in self._CompositeTestSuites():
+      test_path += self.test_suite.replace(':', '/')
+    else:
+      first_part = self.test_suite.split(':')[0]
+      for prefix in self._GroupableTestSuitePrefixes():
+        if prefix[:-1] == first_part:
+          test_path += prefix + self.test_suite[len(first_part) + 1:]
+          break
+      else:
+        test_path += self.test_suite
     if not self.measurement:
       return [test_path]
 
