@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7e7f9c78_fc847c12",
+        "filename": "tracing/tracing/value/histogram_parameter_collector.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-21T21:05:39Z",
+      "side": 1,
+      "message": "nit: are these defined anywhere that you could reference instead of hardcoding",
+      "range": {
+        "startLine": 117,
+        "startChar": 32,
+        "endLine": 117,
+        "endChar": 39
+      },
+      "revId": "237dd45ba2ebf386f97b574eb5f78e47c648e40e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
