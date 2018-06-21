@@ -33,6 +33,24 @@
       "revId": "9263bb2ff8477bcaab4beafe450df5a44966be5e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ad12797_bbc0c515",
+        "filename": "experimental/soundwave/soundwave/commands.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-06-21T14:21:30Z",
+      "side": 1,
+      "message": "Done. Also included the note about the stickiness.",
+      "parentUuid": "48c98741_75ab2c01",
+      "revId": "9263bb2ff8477bcaab4beafe450df5a44966be5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
