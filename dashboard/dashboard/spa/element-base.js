@@ -106,8 +106,28 @@ tr.exportTo('cp', () => {
     }
   };
 
+  // Do not record changes automatically when in production.
+  const PRODUCTION = location.hostname === 'chromeperf.appspot.com';
+  const EXTENSION_OPTIONS = {
+    shouldRecordChanges: !PRODUCTION,
+  };
+
+  const COMPOSE_ENHANCERS = typeof window !== 'undefined' &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(EXTENSION_OPTIONS) :
+    function () {
+      if (arguments.length === 0) return undefined;
+      if (typeof arguments[0] === 'object') return Redux.compose;
+      return Redux.compose.apply(null, arguments);
+    };
+
   const STORE = Redux.createStore(
-      rootReducer, DEFAULT_STATE, Redux.applyMiddleware(THUNK));
+    rootReducer,
+    DEFAULT_STATE,
+    COMPOSE_ENHANCERS(
+      Redux.applyMiddleware(THUNK)
+    )
+  );
 
   const ReduxMixin = PolymerRedux(STORE);
 
