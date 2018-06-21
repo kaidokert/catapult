@@ -142,6 +142,10 @@ def _construct_atrace_args(config, categories):
   elif 'sched' in categories:
     # 'sched' is a high-volume tag, double the default buffer size
     # to accommodate that
+    atrace_args.extend(['-b', '8192'])
+  elif:
+    # https://crbug.com/814330: webview_startup sometimes exceeds the buffer
+    # limit, so doubling this.
     atrace_args.extend(['-b', '4096'])
   extra_args = _construct_extra_atrace_args(config, categories)
 
