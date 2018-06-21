@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "39d08094_0d045c4d",
+        "filename": "experimental/soundwave/soundwave/tables/timeseries.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-21T10:56:53Z",
+      "side": 1,
+      "message": "I\u0027m also thinking now, it\u0027s a bit strange that we duplicate this value on all rows when, in essence, it probably depends on (test_suite, measurement) only.\n\nAnyway, it\u0027s probably fine to keep it here for now.",
+      "revId": "d1d880e0f2187bba4096240231909b5300b49d38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
