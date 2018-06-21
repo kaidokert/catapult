@@ -9,6 +9,56 @@ from dashboard.pinpoint.models import job_state
 from dashboard.pinpoint.models import quest
 
 
+class ExploreTest(unittest.TestCase):
+
+  def testDifferent(self):
+    # TODO(dtu): Implement when we have more powerful mocking available.
+    pass
+
+  def testPending(self):
+    state = job_state.JobState([_QuestStub(_ExecutionPass)],
+                               comparison_mode=job_state.PERFORMANCE)
+    state.AddChange('change 1')
+    state.AddChange('change 2')
+
+    state.Explore()
+
+    self.assertEqual(len(state._changes), 2)
+    self.assertEqual(len(state._attempts['change 1']), 10)
+    self.assertEqual(len(state._attempts['change 2']), 10)
+
+  def testSame(self):
+    state = job_state.JobState([_QuestStub(_ExecutionPass)],
+                               comparison_mode=job_state.PERFORMANCE)
+    state.AddChange('change 1')
+    state.AddChange('change 2')
+
+    state.ScheduleWork()
+    state.Explore()
+
+    self.assertEqual(len(state._changes), 2)
+    self.assertEqual(len(state._attempts['change 1']), 10)
+    self.assertEqual(len(state._attempts['change 2']), 10)
+
+  def testUnknown(self):
+    state = job_state.JobState([_QuestStub(_ExecutionPass)],
+                               comparison_mode=job_state.FUNCTIONAL)
+    state.AddChange('change 1')
+    state.AddChange('change 2')
+
+    state.ScheduleWork()
+    state.Explore()
+
+    self.assertEqual(len(state._attempts['change 1']), 20)
+    self.assertEqual(len(state._attempts['change 2']), 10)
+
+    state.ScheduleWork()
+    state.Explore()
+
+    self.assertEqual(len(state._attempts['change 1']), 20)
+    self.assertEqual(len(state._attempts['change 2']), 20)
+
+
 class ScheduleWorkTest(unittest.TestCase):
 
   def testNoAttempts(self):
