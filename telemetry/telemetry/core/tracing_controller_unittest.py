@@ -2,17 +2,18 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-import time
+import os
+import tempfile
 import unittest
 
-from battor import battor_wrapper
 from telemetry import decorators
 from telemetry.internal.browser import browser_finder
 from telemetry.testing import options_for_unittests
 from telemetry.testing import tab_test_case
 from telemetry.timeline import model as model_module
 from telemetry.timeline import tracing_config
-from tracing.trace_data import trace_data as trace_data_module
+
+from tracing.mre import map_single_trace
 
 
 class TracingControllerTest(tab_test_case.TabTestCase):
@@ -101,50 +102,43 @@ class TracingControllerTest(tab_test_case.TabTestCase):
     self.assertEqual(errors, [])
     self.assertFalse(tracing_controller.is_tracing_running)
 
-    # Test that trace data is parsable
-    model = model_module.TimelineModel(trace_data)
+    tmp = tempfile.NamedTemporaryFile(delete=False)
+    tmp.close()
+    trace_file_path = tmp.name
+    trace_data.Serialize(trace_file_path)
 
-    # Check that the markers 'test-marker-0', 'flush-tracing', 'test-marker-1',
-    # ..., 'flush-tracing', 'test-marker-|subtrace_count - 1|' are monotonic.
-    custom_markers = [
-        marker
-        for i in xrange(subtrace_count)
-        for marker in model.FindTimelineMarkers('test-marker-%d' % i)
-    ]
-    flush_markers = model.FindTimelineMarkers(['flush-tracing'] *
-                                              (subtrace_count - 1))
-    markers = [
-        marker for group in zip(custom_markers, flush_markers)
-        for marker in group
-    ] + custom_markers[-1:]
+    try:
+      # Parse the trace and extract all test markers & trace-flushing markers
+      results = map_single_trace.ExecuteTraceMappingCode(
+          trace_file_path, """
+  function processTrace(results, model) {
+      var markers = [];
+      model.getAllThreads().forEach(function(thread) {
+          for (const event of thread.asyncSliceGroup.slices) {
+             if (event.title.startsWith('test-marker') ||
+                 event.title === 'flush-tracing') {
+                 markers.push({'title': event.title, 'start': event.start});
+             }
+         }
+     });
+     results.addPair('markers', markers);
+  };
+           """)
 
-    self.assertEquals(len(custom_markers), subtrace_count)
-    self.assertEquals(len(flush_markers), subtrace_count - 1)
-    self.assertEquals(len(markers), 2 * subtrace_count - 1)
-
-    for i in xrange(1, len(markers)):
-      self.assertLess(markers[i - 1].end, markers[i].start)
-
-  @decorators.Disabled('linux')  # crbug.com/673761
-  def testBattOrTracing(self):
-    test_platform = self._browser.platform.GetOSName()
-    device = (self._browser.platform._platform_backend.device
-              if test_platform == 'android' else None)
-    if (not battor_wrapper.IsBattOrConnected(
-        test_platform, android_device=device)):
-      return  # Do not run the test if no BattOr is connected.
-
-    tracing_controller = self._browser.platform.tracing_controller
-    config = tracing_config.TracingConfig()
-    config.enable_battor_trace = True
-    tracing_controller.StartTracing(config)
-    # We wait 1s before starting and stopping tracing to avoid crbug.com/602266,
-    # which would cause a crash otherwise.
-    time.sleep(1)
-    trace_data, errors = tracing_controller.StopTracing()
-    self.assertEqual(errors, [])
-    self.assertTrue(
-        trace_data.HasTracesFor(trace_data_module.BATTOR_TRACE_PART))
+      # Check that the markers 'test-marker-0', 'flush-tracing',
+      # 'test-marker-1', ..., 'flush-tracing',
+      # 'test-marker-|subtrace_count - 1|' are monotonic.
+      markers = results['markers']
+      self.assertEquals(subtrace_count*2 - 1, len(markers))
+      for i in xrange(0, len(markers) - 2):
+        if i % 2 == 0:
+          expected_title = 'test-marker-%d' % (i/2)
+        else:
+          expected_title = 'flush-tracing'
+        self.assertEquals(expected_title, markers[i]['title'])
+        self.assertLess(markers[i]['start'], markers[i + 1]['start'])
+    finally:
+      os.remove(trace_file_path)
 
 
 class StartupTracingTest(unittest.TestCase):
