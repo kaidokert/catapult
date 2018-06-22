@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e9e0d0de_bcf34dae",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-22T08:52:29Z",
+      "side": 1,
+      "message": "can you add some comments explaining where those expected lengths come from? And why they change when you add calls to SheduleWork, etc.? It\u0027s unclear to me what is this testing.",
+      "revId": "5d94d5b3a9ac9901b544442d0aa66d2c5e881d64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
