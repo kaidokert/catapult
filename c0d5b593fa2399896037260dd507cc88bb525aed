@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8a400b13_17c68fed",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2018-06-22T20:45:03Z",
+      "side": 1,
+      "message": "So window Ids are randomized. We need some way to be able to lookup the active windows.",
+      "revId": "c0d5b593fa2399896037260dd507cc88bb525aed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
