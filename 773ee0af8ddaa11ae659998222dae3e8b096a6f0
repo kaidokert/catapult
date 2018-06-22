@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "06fede81_06b99084",
+        "filename": "dashboard/dashboard/spa/element-base.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-22T19:04:15Z",
+      "side": 1,
+      "message": "Let\u0027s name this \u0027IS_PRODUCTION\u0027 since it\u0027s a bool.\nThe production hostname is \u0027v2spa-dot-chromeperf.appspot.com\u0027 for now.\nLet\u0027s share this with ChromeperfApp.isProduction() by return it to tr.exportTo alongside ElementBase.",
+      "revId": "773ee0af8ddaa11ae659998222dae3e8b096a6f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d794ccbb_1b33a2d7",
+        "filename": "dashboard/dashboard/spa/element-base.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-22T19:04:15Z",
+      "side": 1,
+      "message": "It\u0027s a bit difficult to follow this. Would something like this work?\n\nlet MIDDLEWARE \u003d Redux.applyMiddleware(THUNK);\nif (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {\n  MIDDLEWARE \u003d Redux.compose(MIDDLEWARE, window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({shouldRecordChanges: !IS_PRODUCTION}))\n}",
+      "range": {
+        "startLine": 115,
+        "startChar": 2,
+        "endLine": 122,
+        "endChar": 6
+      },
+      "revId": "773ee0af8ddaa11ae659998222dae3e8b096a6f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
