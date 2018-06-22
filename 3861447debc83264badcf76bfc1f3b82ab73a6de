@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ddd30cc_2ea0040a",
+        "filename": "telemetry/telemetry/core/tracing_controller_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-22T21:57:31Z",
+      "side": 1,
+      "message": "Did you want to go ahead and migrate these two other TimelineModels?",
+      "revId": "3861447debc83264badcf76bfc1f3b82ab73a6de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5489e50_0f73db6d",
+        "filename": "telemetry/telemetry/core/tracing_controller_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-22T21:57:31Z",
+      "side": 1,
+      "message": "Can this use for..of?\nfor (const thread of model.getAllThreads())",
+      "revId": "3861447debc83264badcf76bfc1f3b82ab73a6de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79fceecd_0b6c98bf",
+        "filename": "telemetry/telemetry/util/trace_runner.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-22T21:57:31Z",
+      "side": 1,
+      "message": "Would it make sense to put this in map_single_trace.py? Maybe split a base class like TemporaryFile out of TemporaryMapScript for the trace file?",
+      "revId": "3861447debc83264badcf76bfc1f3b82ab73a6de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06b22624_44c9b3f5",
+        "filename": "tracing/tracing/mre/map_single_trace.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-22T21:57:31Z",
+      "side": 1,
+      "message": "What does this do?",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 31
+      },
+      "revId": "3861447debc83264badcf76bfc1f3b82ab73a6de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a42be7f_0c727ca3",
+        "filename": "tracing/tracing/mre/map_single_trace.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-22T21:57:31Z",
+      "side": 1,
+      "message": "Would it make sense to hardcode the function declaration so that callers don\u0027t need to be careful to name the function \"processTrace\"? They would need to know that the parameters are named \"results\" and \"model\", but that seems less surprising to me, but IDK. :-)",
+      "revId": "3861447debc83264badcf76bfc1f3b82ab73a6de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
