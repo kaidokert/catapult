@@ -204,39 +204,55 @@ class Anomaly(internal_only_model.InternalOnlyModel):
     results = []
     deadline = time.time() + deadline_seconds
     while not results and time.time() < deadline:
+      any_equality_filters = False
       query = cls.query()
       if sheriff is not None:
         sheriff_key = ndb.Key('Sheriff', sheriff)
         sheriff_entity = yield sheriff_key.get_async()
         if sheriff_entity:
           query = query.filter(cls.sheriff == sheriff_key)
+          any_equality_filters = True
       if is_improvement is not None:
         query = query.filter(cls.is_improvement == is_improvement)
+        any_equality_filters = True
       if bug_id is not None:
         if bug_id == '':
           bug_id = None
         else:
           bug_id = int(bug_id)
         query = query.filter(cls.bug_id == bug_id)
+        any_equality_filters = True
       if recovered is not None:
         query = query.filter(cls.recovered == recovered)
+        any_equality_filters = True
       if test:
         query = query.filter(cls.test.IN([
             utils.OldStyleTestKey(test), utils.TestMetadataKey(test)]))
         query = query.order(cls.key)
       if master_name:
         query = query.filter(cls.master_name == master_name)
+        any_equality_filters = True
       if bot_name:
         query = query.filter(cls.bot_name == bot_name)
+        any_equality_filters = True
       if test_suite_name:
         query = query.filter(cls.benchmark_name == test_suite_name)
+        any_equality_filters = True
 
       query, post_filters = cls._InequalityFilters(
           query, inequality_property, min_end_revision, max_end_revision,
           min_start_revision, max_start_revision, min_timestamp, max_timestamp)
       if post_filters:
         keys_only = False
-      query = query.order(-cls.timestamp)
+      if any_equality_filters:
+        # Generally, most queries want to filter by an equality filter (sheriff,
+        # test, etc) and order results by timestamp. Some queries instead only
+        # want to filter by inequality filters (start_revision, end_revision),
+        # and don't require ordering by timestamp. In fact, ordering
+        # inequality-only queries by timestamp imposes an unnecessary burden on
+        # the query scheduler, which can slow queries down to where they are
+        # unusable.
+        query = query.order(-cls.timestamp)
 
       futures = [query.fetch_page_async(
           limit, start_cursor=start_cursor, keys_only=keys_only)]
@@ -307,7 +323,7 @@ class Anomaly(internal_only_model.InternalOnlyModel):
       if inequality_property == 'start_revision':
         logging.info('filter:min_start_revision=%d', min_start_revision)
         query = query.filter(cls.start_revision >= min_start_revision)
-        query = query.order(-cls.start_revision)
+        query = query.order(cls.start_revision)
       else:
         post_filters.append(lambda a: a.start_revision >= min_start_revision)
 
@@ -325,7 +341,7 @@ class Anomaly(internal_only_model.InternalOnlyModel):
       if inequality_property == 'end_revision':
         logging.info('filter:min_end_revision=%d', min_end_revision)
         query = query.filter(cls.end_revision >= min_end_revision)
-        query = query.order(-cls.end_revision)
+        query = query.order(cls.end_revision)
       else:
         post_filters.append(lambda a: a.end_revision >= min_end_revision)
 
