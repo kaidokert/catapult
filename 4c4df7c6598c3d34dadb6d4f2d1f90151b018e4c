@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d7a7a759_ff64aa33",
+        "filename": "telemetry/telemetry/core/tracing_controller_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-22T14:39:53Z",
+      "side": 1,
+      "message": "After landing your CL https://chromium-review.googlesource.com/c/catapult/+/1111598 I can also drop some markers on the trace and assert that these are found at the end.",
+      "revId": "4c4df7c6598c3d34dadb6d4f2d1f90151b018e4c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
