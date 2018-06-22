@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d273ca3_2fb6da2e",
+        "filename": "dashboard/dashboard/api/test_suites.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-22T18:21:25Z",
+      "side": 1,
+      "message": "Can you setup a test file, even though it only amounts to a trivial test that the endpoint returns whatever is in the stored_object",
+      "range": {
+        "startLine": 12,
+        "startChar": 6,
+        "endLine": 12,
+        "endChar": 20
+      },
+      "revId": "5455f80d429bdea6b1f214774d02e5d2f72d477b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f81a80e_5052636e",
+        "filename": "dashboard/dashboard/update_test_suites.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-22T18:21:25Z",
+      "side": 1,
+      "message": "nit: there\u0027s a synctasklet decorator as well if you want the syntax to be consistent",
+      "range": {
+        "startLine": 100,
+        "startChar": 4,
+        "endLine": 100,
+        "endChar": 19
+      },
+      "revId": "5455f80d429bdea6b1f214774d02e5d2f72d477b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "105f9dc0_19183c23",
+        "filename": "dashboard/dashboard/update_test_suites_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-22T18:21:25Z",
+      "side": 1,
+      "message": "Is the hashing still necessary?",
+      "range": {
+        "startLine": 320,
+        "startChar": 30,
+        "endLine": 320,
+        "endChar": 55
+      },
+      "revId": "5455f80d429bdea6b1f214774d02e5d2f72d477b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
