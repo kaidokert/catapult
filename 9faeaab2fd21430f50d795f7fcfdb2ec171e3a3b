@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa94a39_a6391b42",
+        "filename": "telemetry/telemetry/core/tracing_controller_unittest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-22T14:23:35Z",
+      "side": 1,
+      "message": "Can a good chuck of this be encapsulated in a helper method that takes the trace_data as input and returns the list of markers? I think it will be pretty useful in many places.\n\nAlso, for the trace file, I think using a temp dir (like in [1]) is cleaner than creating an empty temp-file that later gets overwritten. \n\n[1]: https://chromium-review.googlesource.com/c/catapult/+/1111841/2/telemetry/telemetry/core/tracing_controller_unittest.py#180",
+      "revId": "9faeaab2fd21430f50d795f7fcfdb2ec171e3a3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c51efb85_5b14b0e3",
+        "filename": "tracing/tracing/mre/map_single_trace.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-22T14:23:35Z",
+      "side": 1,
+      "message": "nit: no white space between \"\"\" and start of sentence.",
+      "revId": "9faeaab2fd21430f50d795f7fcfdb2ec171e3a3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3caadc64_3eebc39c",
+        "filename": "tracing/tracing/mre/map_single_trace.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-22T14:23:35Z",
+      "side": 1,
+      "message": "nit: extra blank line here,",
+      "revId": "9faeaab2fd21430f50d795f7fcfdb2ec171e3a3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f1110fe_606bcca1",
+        "filename": "tracing/tracing/mre/map_single_trace.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-22T14:23:35Z",
+      "side": 1,
+      "message": "nit: return -\u003e returns",
+      "revId": "9faeaab2fd21430f50d795f7fcfdb2ec171e3a3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
