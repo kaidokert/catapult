@@ -13,7 +13,10 @@ import tracing_project
 import vinn
 
 from tracing.mre import failure
+from tracing.mre import file_handle
+from tracing.mre import function_handle
 from tracing.mre import mre_result
+from tracing.mre import job
 
 _MAP_SINGLE_TRACE_CMDLINE_PATH = os.path.join(
     tracing_project.TracingProject.tracing_src_path, 'mre',
@@ -140,3 +143,34 @@ def MapSingleTrace(trace_handle,
     raise InternalMapError('Internal error: No results were produced!')
 
   return result
+
+
+def ExecuteTraceMappingCode(trace_file_path, process_trace_func_code,
+                            extra_import_options=None,
+                            trace_canonical_url=None):
+  """ Execute |process_trace_func_code| on the input |trace_file_path|.
+
+  process_trace_func_code must contain a function named 'process_trace' with
+  signature as follows:
+    function process_trace(result, model) {
+       ...
+    }
+
+  Whereas results is an instance of tr.mre.MreResult, and model is an instance
+  of tr.model.Model which was resulted from parsing the input trace.
+
+  Returns:
+    This function return as instance of tracing.mre.MreResult
+  """
+  with tempfile.NamedTemporaryFile(delete=False) as tmp:
+    tmp.write(process_trace_func_code)
+  temp_trace_mapper_path = tmp.name
+  handle = function_handle.FunctionHandle(
+      function_handle.ModuleToLoad(filename=temp_trace_mapper_path),
+      function_name='wrapper_process_trace')
+  mapping_job = job.Job(handle)
+  trace_file_path = os.path.abspath(trace_file_path)
+  if not trace_canonical_url:
+    trace_canonical_url = 'file://%s' % trace_file_path
+  trace_handle = file_handle.URLFileHandle(trace_file_path, trace_canonical_url)
+  return MapSingleTrace(trace_handle, mapping_job, extra_import_options)
