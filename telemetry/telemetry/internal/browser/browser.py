@@ -331,6 +331,13 @@ class Browser(app.App):
   def supports_power_metrics(self):
     return self._browser_backend.supports_power_metrics
 
+  @property
+  def supports_resize_browser(self):
+    return self._browser_backend.supports_resize_browser
+
+  def ResizeBrowser(self, width, height, number_steps=None, duration=None):
+    self._browser_backend.ResizeBrowser(width, height, number_steps, duration)
+
   def DumpStateUponFailure(self):
     logging.info('*************** BROWSER STANDARD OUTPUT ***************')
     try:

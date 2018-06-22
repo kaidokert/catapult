@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import json
 import logging
 import time
 
@@ -223,3 +224,33 @@ class CrOSBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     if self._platform_backend.CanTakeScreenshot():
       self._cri.TakeScreenshotWithPrefix('login-screen')
     raise exceptions.LoginException(error)
+
+  @property
+  def supports_resize_browser(self):
+    return True
+
+  def ResizeBrowser(self, width, height, number_steps=None, duration=None):
+    timeout = 30
+    bounds = {
+        'width' : width,
+        'height' : height
+    }
+    if number_steps is None:
+      number_steps = 0
+    if duration is None:
+      duration = 0.
+    params = {
+        'windowId': 1,
+        'bounds' : bounds,
+        'bounds_animation_number_steps' : number_steps,
+        'bounds_animation_duration_ms' : duration
+    }
+    request = {
+        'method' : 'Browser.setWindowBounds',
+        'params' : params
+    }
+    response = self.devtools_client._browser_inspector_websocket.SyncRequest(
+        request, timeout)
+    if 'error' in response:
+      raise Exception('ResizeBrowser error in response %s',
+                      json.dumps(response, indent=2))
