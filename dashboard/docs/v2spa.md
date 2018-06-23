@@ -4,6 +4,7 @@ available for preview at https://v2spa-dot-chromeperf.appspot.com .
 In order to develop or deploy v2spa, a one-time setup is required:
 ```
 cd dashboard
+ln -sf ../third_party/idb/idb.js
 ln -sf ../third_party/polymer2
 ln -sf ../third_party/redux
 ln -sf ../tracing/tracing

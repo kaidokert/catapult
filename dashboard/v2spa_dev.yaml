@@ -22,6 +22,10 @@ handlers:
   static_files: polymer2/bower_components/\1/\2
   upload: polymer2/bower_components/.*/.*\.(html|js|css)$
 
+- url: /idb.js
+  static_files: idb.js
+  upload: idb\.js
+
 - url: /redux.min.js
   static_files: redux/redux.min.js
   upload: redux/redux\.min\.js

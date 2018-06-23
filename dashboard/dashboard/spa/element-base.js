@@ -74,7 +74,7 @@ tr.exportTo('cp', () => {
   // When true, state is recursively frozen so that improper property setting
   // causes an error to be thrown. Freezing significantly impacts performance,
   // so set to false in order to measure performance on localhost.
-  const DEBUG = location.hostname === 'localhost';
+  const IS_DEBUG = location.hostname === 'localhost';
 
   // Forwards (state, action) to action.reducer.
   function rootReducer(state, action) {
@@ -85,7 +85,7 @@ tr.exportTo('cp', () => {
       throw new Error(action.type.typeName);
     }
     if (!REDUCERS.has(action.type)) return state;
-    if (DEBUG) Object.deepFreeze(state);
+    if (IS_DEBUG) Object.deepFreeze(state);
     return REDUCERS.get(action.type)(state, action);
   }
 
@@ -106,8 +106,24 @@ tr.exportTo('cp', () => {
     }
   };
 
+  let MIDDLEWARE = Redux.applyMiddleware(THUNK);
+
+  // When true, do not record changes automatically in Redux DevTools Extension.
+  const IS_PRODUCTION = location.hostname === 'v2spa-dot-chromeperf.appspot.com';
+
+  if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
+    MIDDLEWARE = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+      shouldRecordChanges: !IS_PRODUCTION,
+    })(
+      MIDDLEWARE
+    );
+  }
+
   const STORE = Redux.createStore(
-      rootReducer, DEFAULT_STATE, Redux.applyMiddleware(THUNK));
+    rootReducer,
+    DEFAULT_STATE,
+    MIDDLEWARE
+  );
 
   const ReduxMixin = PolymerRedux(STORE);
 
@@ -517,5 +533,7 @@ tr.exportTo('cp', () => {
   return {
     ElementBase,
     sha256,
+    IS_DEBUG,
+    IS_PRODUCTION,
   };
 });
