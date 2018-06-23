@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6d32ae5a_708f71cb",
+        "filename": "dashboard/dashboard/spa/element-base.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-06-23T01:39:09Z",
+      "side": 1,
+      "message": "Great idea. I\u0027ll do the same with \u0027DEBUG\u0027. Should I make a config file to hold variables of this nature?",
+      "parentUuid": "06fede81_06b99084",
+      "revId": "773ee0af8ddaa11ae659998222dae3e8b096a6f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d794ccbb_1b33a2d7",
         "filename": "dashboard/dashboard/spa/element-base.js",
         "patchSetId": 8
@@ -30,6 +48,30 @@
       "writtenOn": "2018-06-22T19:04:15Z",
       "side": 1,
       "message": "It\u0027s a bit difficult to follow this. Would something like this work?\n\nlet MIDDLEWARE \u003d Redux.applyMiddleware(THUNK);\nif (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {\n  MIDDLEWARE \u003d Redux.compose(MIDDLEWARE, window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({shouldRecordChanges: !IS_PRODUCTION}))\n}",
+      "range": {
+        "startLine": 115,
+        "startChar": 2,
+        "endLine": 122,
+        "endChar": 6
+      },
+      "revId": "773ee0af8ddaa11ae659998222dae3e8b096a6f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f64b34b2_973645c1",
+        "filename": "dashboard/dashboard/spa/element-base.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-06-23T01:39:09Z",
+      "side": 1,
+      "message": "I was following off the documentation for Redux DevTools Extension. It doesn\u0027t look very friendly. Your suggestion is much more readable, but it will differ due to `__REDUX_DEVTOOLS_EXTENSION_COMPOSE__` being a replacement for `Redux.compose`.",
+      "parentUuid": "d794ccbb_1b33a2d7",
       "range": {
         "startLine": 115,
         "startChar": 2,
