@@ -9,6 +9,18 @@ from dashboard.models import try_job
 from dashboard.services import issue_tracker_service
 
 
+def _ParseBool(value):
+  if value is None:
+    return None
+  value_lower = value.lower()
+  if value_lower in ('true', '1'):
+    return True
+  elif value_lower in ('false', '0'):
+    return False
+  else:
+    raise ValueError(value)
+
+
 class BugsHandler(api_request_handler.ApiRequestHandler):
   """API handler for bug requests.
 
@@ -33,10 +45,16 @@ class BugsHandler(api_request_handler.ApiRequestHandler):
     except ValueError:
       raise api_request_handler.BadRequestError(
           'Invalid bug ID "%s".' % args[0])
+
+    try:
+      with_comments = _ParseBool(self.request.get('with_comments', None))
+    except ValueError:
+      raise api_request_handler.BadRequestError(
+          "value of |with_comments| should be 'true' or 'false'")
+
     service = issue_tracker_service.IssueTrackerService(
         utils.ServiceAccountHttp())
     issue = service.GetIssue(bug_id)
-    comments = service.GetIssueComments(bug_id)
     bisects = try_job.TryJob.query(try_job.TryJob.bug_id == bug_id).fetch()
 
     def _FormatDate(d):
@@ -44,7 +62,7 @@ class BugsHandler(api_request_handler.ApiRequestHandler):
         return ''
       return d.isoformat()
 
-    return {'bug': {
+    response = {'bug': {
         'author': issue.get('author', {}).get('name'),
         'owner': issue.get('owner', {}).get('name'),
         'legacy_bisects': [{
@@ -60,11 +78,6 @@ class BugsHandler(api_request_handler.ApiRequestHandler):
             'started_timestamp': _FormatDate(b.last_ran_timestamp),
         } for b in bisects],
         'cc': [cc.get('name') for cc in issue.get('cc', [])],
-        'comments': [{
-            'content': comment.get('content'),
-            'author': comment.get('author'),
-            'published': comment.get('published'),
-        } for comment in comments],
         'components': issue.get('components', []),
         'id': bug_id,
         'labels': issue.get('labels', []),
@@ -74,6 +87,16 @@ class BugsHandler(api_request_handler.ApiRequestHandler):
         'status': issue.get('status'),
         'summary': issue.get('summary'),
     }}
+
+    if with_comments:
+      comments = service.GetIssueComments(bug_id)
+      response['bug']['comments'] = [{
+          'content': comment.get('content'),
+          'author': comment.get('author'),
+          'published': comment.get('published'),
+      } for comment in comments]
+
+    return response
 
   def _GetCulpritInfo(self, try_job_entity):
     if not try_job_entity.results_data:
