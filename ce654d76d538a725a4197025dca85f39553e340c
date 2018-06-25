@@ -46,6 +46,30 @@
       "revId": "ce654d76d538a725a4197025dca85f39553e340c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce1bc2ed_fe131443",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-06-25T13:52:47Z",
+      "side": 1,
+      "message": "up to you, I am classifying it as a low level nit :)",
+      "parentUuid": "b6163d27_b5ccf262",
+      "range": {
+        "startLine": 179,
+        "startChar": 6,
+        "endLine": 179,
+        "endChar": 18
+      },
+      "revId": "ce654d76d538a725a4197025dca85f39553e340c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
