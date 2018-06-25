@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "050307af_6974d337",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-06-25T18:39:39Z",
+      "side": 1,
+      "message": "Done. I\u0027ve retained the mock-setting here, but also added a default value in test.py for other tests that depend on CommitInfo() but don\u0027t care about the exact return values.",
+      "parentUuid": "708f57b9_0c4aac0b",
+      "revId": "c77f280b82a3139f23e41ab62f6e798e2fee6913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f557abbc_d89a352a",
         "filename": "dashboard/dashboard/pinpoint/models/change/commit_test.py",
         "patchSetId": 1
