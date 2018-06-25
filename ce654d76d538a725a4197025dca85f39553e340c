@@ -22,6 +22,30 @@
       "revId": "ce654d76d538a725a4197025dca85f39553e340c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6163d27_b5ccf262",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-25T13:26:23Z",
+      "side": 1,
+      "message": "Good point. I thought of that. Added these only \"preemptively\" in case we need to make a distinction later, none of the sibling implementations do this AFAIK. Should perhaps have waited to add them until we actually need them. :D\n\nIf the opportunity comes in follow up CLs I\u0027ll try to improve docs around this.",
+      "parentUuid": "88f37bfc_55325e6f",
+      "range": {
+        "startLine": 179,
+        "startChar": 6,
+        "endLine": 179,
+        "endChar": 18
+      },
+      "revId": "ce654d76d538a725a4197025dca85f39553e340c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
