@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "88f37bfc_55325e6f",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-06-25T12:47:02Z",
+      "side": 1,
+      "message": "Is the distinction between True/False going to be used somewhere soon?\n\nIf there is a use for returning boolean, I think it would be good to document what RecordClockSyncMarker \u0027Returns:\u0027. It could be somewhere in internal/platform/tracing_agent/__init__.py. On the other hand it is internal, and it is not trivial to find the root of all this hierarchy, so it probably would not make the documentation much more useful. WDYT?",
+      "range": {
+        "startLine": 179,
+        "startChar": 6,
+        "endLine": 179,
+        "endChar": 18
+      },
+      "revId": "ce654d76d538a725a4197025dca85f39553e340c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
