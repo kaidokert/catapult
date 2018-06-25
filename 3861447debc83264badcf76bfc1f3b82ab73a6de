@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d5aff926_5c8d1da0",
+        "filename": "telemetry/telemetry/core/tracing_controller_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-06-25T20:13:20Z",
+      "side": 1,
+      "message": "No, this CL is already big. I would defer this to other CLs.",
+      "parentUuid": "9ddd30cc_2ea0040a",
+      "revId": "3861447debc83264badcf76bfc1f3b82ab73a6de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f5489e50_0f73db6d",
         "filename": "telemetry/telemetry/core/tracing_controller_unittest.py",
         "patchSetId": 6
@@ -33,6 +51,24 @@
       "revId": "3861447debc83264badcf76bfc1f3b82ab73a6de",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0112889_9a219338",
+        "filename": "telemetry/telemetry/core/tracing_controller_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-06-25T20:13:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5489e50_0f73db6d",
+      "revId": "3861447debc83264badcf76bfc1f3b82ab73a6de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -76,6 +112,30 @@
     },
     {
       "key": {
+        "uuid": "d756e2b1_c48d234e",
+        "filename": "tracing/tracing/mre/map_single_trace.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-06-25T20:13:20Z",
+      "side": 1,
+      "message": "This makes the stack trace point to processTrace as source code instead of some random file. e.g: it will shows s.t like \"exception thrown at processTrace line 20\"",
+      "parentUuid": "06b22624_44c9b3f5",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 31
+      },
+      "revId": "3861447debc83264badcf76bfc1f3b82ab73a6de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8a42be7f_0c727ca3",
         "filename": "tracing/tracing/mre/map_single_trace.py",
         "patchSetId": 6
@@ -87,6 +147,24 @@
       "writtenOn": "2018-06-22T21:57:31Z",
       "side": 1,
       "message": "Would it make sense to hardcode the function declaration so that callers don\u0027t need to be careful to name the function \"processTrace\"? They would need to know that the parameters are named \"results\" and \"model\", but that seems less surprising to me, but IDK. :-)",
+      "revId": "3861447debc83264badcf76bfc1f3b82ab73a6de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4199efe_86d33d84",
+        "filename": "tracing/tracing/mre/map_single_trace.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-06-25T20:13:20Z",
+      "side": 1,
+      "message": "I find asking users to write a callback provide more clarity. Otherwise it would be weird where model \u0026 results objects come from",
+      "parentUuid": "8a42be7f_0c727ca3",
       "revId": "3861447debc83264badcf76bfc1f3b82ab73a6de",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
