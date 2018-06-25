@@ -16,6 +16,24 @@
       "revId": "5d94d5b3a9ac9901b544442d0aa66d2c5e881d64",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7773ca22_ff651bb0",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-06-25T16:45:31Z",
+      "side": 1,
+      "message": "Done. I reframed the code so that it doesn\u0027t compare against the exact values, and added additional comments.",
+      "parentUuid": "e9e0d0de_bcf34dae",
+      "revId": "5d94d5b3a9ac9901b544442d0aa66d2c5e881d64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
