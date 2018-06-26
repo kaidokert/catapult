@@ -2,11 +2,9 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-import os
+import contextlib
 import time
 import unittest
-
-from tracing.metrics import metric_runner
 
 from battor import battor_wrapper
 from telemetry import decorators
@@ -19,7 +17,33 @@ from telemetry.timeline import tracing_config
 
 from tracing.trace_data import trace_data as trace_data_module
 
-from py_utils import tempfile_ext
+
+TEST_MARKER_PREFIX = 'test-marker-'
+
+
+def InjectMarker(tab, label):
+  marker = TEST_MARKER_PREFIX + str(label)
+  tab.EvaluateJavaScript('console.time({{ marker }});', marker=marker)
+  tab.EvaluateJavaScript('console.timeEnd({{ marker }});', marker=marker)
+
+
+def ReadMarkerEvents(trace_data):
+  # Parse the trace and extract all test markers & trace-flushing markers
+  return trace_runner.ExecuteMappingCodeOnTraceData(
+      trace_data, """
+function processTrace(results, model) {
+    var markers = [];
+    for (const thread of model.getAllThreads()) {
+        for (const event of thread.asyncSliceGroup.slices) {
+            if (event.title.startsWith('test-marker-') ||
+                event.title === 'flush-tracing') {
+                markers.push({'title': event.title, 'start': event.start});
+           }
+       }
+   }
+   results.addPair('markers', markers);
+};
+       """)['markers']
 
 
 class TracingControllerTest(tab_test_case.TabTestCase):
@@ -82,11 +106,6 @@ class TracingControllerTest(tab_test_case.TabTestCase):
 
     tab = self._browser.tabs[0]
 
-    def InjectMarker(index):
-      marker = 'test-marker-%d' % index
-      tab.EvaluateJavaScript('console.time({{ marker }});', marker=marker)
-      tab.EvaluateJavaScript('console.timeEnd({{ marker }});', marker=marker)
-
     # Set up the tracing config.
     tracing_controller = self._browser.platform.tracing_controller
     config = tracing_config.TracingConfig()
@@ -95,42 +114,25 @@ class TracingControllerTest(tab_test_case.TabTestCase):
     # Start tracing and inject a unique marker into the sub-trace.
     tracing_controller.StartTracing(config)
     self.assertTrue(tracing_controller.is_tracing_running)
-    InjectMarker(0)
+    InjectMarker(tab, 0)
 
     # Flush tracing |subtrace_count - 1| times and inject a unique marker into
     # the sub-trace each time.
     for i in xrange(1, subtrace_count):
       tracing_controller.FlushTracing()
       self.assertTrue(tracing_controller.is_tracing_running)
-      InjectMarker(i)
+      InjectMarker(tab, i)
 
     # Stop tracing.
     trace_data, errors = tracing_controller.StopTracing()
     self.assertEqual(errors, [])
     self.assertFalse(tracing_controller.is_tracing_running)
 
-    # Parse the trace and extract all test markers & trace-flushing markers
-    results = trace_runner.ExecuteMappingCodeOnTraceData(
-        trace_data, """
-function processTrace(results, model) {
-    var markers = [];
-    for (const thread of model.getAllThreads()) {
-        for (const event of thread.asyncSliceGroup.slices) {
-            if (event.title.startsWith('test-marker') ||
-                event.title === 'flush-tracing') {
-                markers.push({'title': event.title, 'start': event.start});
-           }
-       }
-   }
-   results.addPair('markers', markers);
-};
-         """)
-
     # Check that the markers 'test-marker-0', 'flush-tracing',
     # 'test-marker-1', ..., 'flush-tracing',
     # 'test-marker-|subtrace_count - 1|' are monotonic.
-    markers = results['markers']
-    self.assertEquals(subtrace_count*2 - 1, len(markers))
+    markers = ReadMarkerEvents(trace_data)
+    self.assertEquals(2 * subtrace_count - 1, len(markers))
     for i in xrange(0, len(markers) - 2):
       if i % 2 == 0:
         expected_title = 'test-marker-%d' % (i/2)
@@ -181,31 +183,37 @@ class StartupTracingTest(unittest.TestCase):
   def tracing_controller(self):
     return self.possible_browser.platform.tracing_controller
 
-  def CheckValidTrace(self, stop_tracing_result):
-    trace_data, errors = stop_tracing_result
+  @contextlib.contextmanager
+  def BlankPageTab(self):
+    with self.possible_browser.BrowserSession(self.browser_options) as browser:
+      browser.tabs[0].Navigate('about:blank')
+      browser.tabs[0].WaitForDocumentReadyStateToBeInteractiveOrBetter()
+      yield browser.tabs[0]
+
+  def StopTracingAndGetTestMarkers(self):
+    self.assertTrue(self.tracing_controller.is_tracing_running)
+    trace_data, errors = self.tracing_controller.StopTracing()
+    self.assertFalse(self.tracing_controller.is_tracing_running)
     self.assertEqual(errors, [])
-
-    with tempfile_ext.NamedTemporaryDirectory() as temp_dir:
-      trace_file = os.path.join(temp_dir, 'trace.html')
-      trace_data.Serialize(trace_file)
-      mre_result = metric_runner.RunMetric(trace_file, ['tracingMetric'])
-
-    self.assertFalse(mre_result.failures)
+    return [
+        e['title'][len(TEST_MARKER_PREFIX):]
+        for e in ReadMarkerEvents(trace_data)
+        if e['title'].startswith(TEST_MARKER_PREFIX)]
 
   @decorators.Isolated
   def testStopTracingWhileBrowserIsRunning(self):
     self.tracing_controller.StartTracing(self.config)
-    with self.possible_browser.BrowserSession(self.browser_options) as browser:
-      browser.tabs[0].Navigate('about:blank')
-      browser.tabs[0].WaitForDocumentReadyStateToBeInteractiveOrBetter()
-      self.CheckValidTrace(self.tracing_controller.StopTracing())
+    with self.BlankPageTab() as tab:
+      InjectMarker(tab, 'foo')
+      markers = self.StopTracingAndGetTestMarkers()
+    self.assertEquals(markers, ['foo'])
 
   @decorators.Isolated
   def testCloseBrowserBeforeTracingIsStopped(self):
     self.tracing_controller.StartTracing(self.config)
-    with self.possible_browser.BrowserSession(self.browser_options) as browser:
-      browser.tabs[0].Navigate('about:blank')
-      browser.tabs[0].WaitForDocumentReadyStateToBeInteractiveOrBetter()
+    with self.BlankPageTab() as tab:
+      InjectMarker(tab, 'bar')
       # TODO(crbug.com/854212): This should happen implicitly on browser.Close()
       self.tracing_controller.FlushTracing()
-    self.CheckValidTrace(self.tracing_controller.StopTracing())
+    markers = self.StopTracingAndGetTestMarkers()
+    self.assertEquals(markers, ['bar'])
