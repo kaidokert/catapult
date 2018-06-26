@@ -16,6 +16,24 @@
       "revId": "5668cc1d6fb41376a564818be7e3e42a92cb98ca",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "feba93c5_c35499e0",
+        "filename": "tracing/tracing/metrics/android_startup_metric_test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-06-26T19:04:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f47977e_f4c002e5",
+      "revId": "5668cc1d6fb41376a564818be7e3e42a92cb98ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
