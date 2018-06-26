@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5c6403ae_b76f97de",
+        "filename": "tracing/tracing/extras/importer/linux_perf/binder_parser.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1115914
+      },
+      "writtenOn": "2018-06-26T21:16:52Z",
+      "side": 1,
+      "message": "nit: can you follow the comment format as in binderTransRE (i.e. %d)",
+      "range": {
+        "startLine": 27,
+        "startChar": 47,
+        "endLine": 27,
+        "endChar": 53
+      },
+      "revId": "12c661dafcf9c6409ea3122ba3cef851407db841",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12e3aa85_ef233b9d",
+        "filename": "tracing/tracing/extras/importer/linux_perf/binder_parser.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1115914
+      },
+      "writtenOn": "2018-06-26T21:16:52Z",
+      "side": 1,
+      "message": "This seems to be called once, and it is very specific to the use case of updating the sizes. It does not need to be in its own function.",
+      "range": {
+        "startLine": 116,
+        "startChar": 11,
+        "endLine": 116,
+        "endChar": 40
+      },
+      "revId": "12c661dafcf9c6409ea3122ba3cef851407db841",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
