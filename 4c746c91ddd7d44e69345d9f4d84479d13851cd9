@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "316f5a64_bede1769",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-26T08:15:59Z",
+      "side": 1,
+      "message": "Still I\u0027m not seeing why here we \"Need more changes\"; but we didn\u0027t in the previous \"testSame\".\n\nWhat is making the difference?",
+      "revId": "4c746c91ddd7d44e69345d9f4d84479d13851cd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
