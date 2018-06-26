@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d98b33e7_23606b53",
+        "filename": "telemetry/telemetry/core/tracing_controller_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-26T14:00:41Z",
+      "side": 1,
+      "message": "Now this test (correctly) fails if we remove the FlushTracing from here.\n\nWhen the linked bug is fixed, the test should still pass even after removing this line.",
+      "revId": "0f1b0426da711e4053f0a934c2edc7dc6ebfe2b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
