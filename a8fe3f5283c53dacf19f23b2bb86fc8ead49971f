@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "24482d70_71c6b742",
+        "filename": "dashboard/dashboard/api/bugs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-26T15:30:13Z",
+      "side": 1,
+      "message": "Also update the README",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 11
+      },
+      "revId": "a8fe3f5283c53dacf19f23b2bb86fc8ead49971f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ce55c67_c4d0ea0c",
+        "filename": "dashboard/dashboard/api/bugs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-26T15:30:13Z",
+      "side": 1,
+      "message": "Ethan, I remember you were thinking about how to represent bools in requests for the dashboard.\n\nAt least in /api, there\u0027s already bool usage in /api/alerts and this deviates from that. Perhaps we should move this _ParseBool to a common spot to ensure consistency.",
+      "range": {
+        "startLine": 12,
+        "startChar": 4,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "a8fe3f5283c53dacf19f23b2bb86fc8ead49971f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "827eee90_d72530c6",
+        "filename": "dashboard/dashboard/api/bugs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-26T15:30:13Z",
+      "side": 1,
+      "message": "bikeshed: include_comments?",
+      "range": {
+        "startLine": 50,
+        "startChar": 51,
+        "endLine": 50,
+        "endChar": 64
+      },
+      "revId": "a8fe3f5283c53dacf19f23b2bb86fc8ead49971f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
