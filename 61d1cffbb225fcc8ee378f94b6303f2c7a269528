@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "be6640c0_4081e9d8",
+        "filename": "dashboard/dashboard/pinpoint_request.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-06-26T04:48:14Z",
+      "side": 1,
+      "message": "I decided to call it `comparison_magnitude` to go along with `comparison_mode`.",
+      "revId": "61d1cffbb225fcc8ee378f94b6303f2c7a269528",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
