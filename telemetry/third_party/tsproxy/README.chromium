@@ -6,7 +6,7 @@ License: Apache
 License File: NOT_SHIPPED
 Security Critical: no
 
-Local modification: no
+Local modification: add OWNERS file to make it easier for code review of roll.
 
 Description:
 tsproxy provides basic latency, download and upload traffic shaping while only
