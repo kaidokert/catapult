@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "39b37d92_5cde7471",
+        "filename": "dashboard/dashboard/api/test_suites_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-27T15:43:08Z",
+      "side": 1,
+      "message": "We should follow up and move this setup code somewhere common for tests (at the least for these api ones), can you add a TODO here.",
+      "range": {
+        "startLine": 46,
+        "startChar": 6,
+        "endLine": 46,
+        "endChar": 15
+      },
+      "revId": "6186c2151215b6c7097562f42ff89c5e420d8b34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
