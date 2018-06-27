@@ -16,6 +16,24 @@
       "revId": "4c746c91ddd7d44e69345d9f4d84479d13851cd9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab41e523_ad84c2cd",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-06-27T02:52:35Z",
+      "side": 1,
+      "message": "I changed it so that testSame has more attempts than testUnknown, therefore having more confidence that they are the same. (The difference previously was caused by the difference in comparison_mode, since FUNCTIONAL requires more repeats than PERFORMANCE.)",
+      "parentUuid": "316f5a64_bede1769",
+      "revId": "4c746c91ddd7d44e69345d9f4d84479d13851cd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
