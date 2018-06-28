@@ -744,7 +744,7 @@ tr.exportTo('cp', () => {
 
     openNewBugDialog: statePath => async(dispatch, getState) => {
       let userEmail = getState().userEmail;
-      if (location.hostname === 'localhost') {
+      if (cp.config.IS_MOCKING) {
         userEmail = 'you@chromium.org';
       }
       if (!userEmail) return;
@@ -757,7 +757,7 @@ tr.exportTo('cp', () => {
 
     openExistingBugDialog: statePath => async(dispatch, getState) => {
       let userEmail = getState().userEmail;
-      if (location.hostname === 'localhost') {
+      if (cp.config.IS_MOCKING) {
         userEmail = 'you@chromium.org';
       }
       if (!userEmail) return;

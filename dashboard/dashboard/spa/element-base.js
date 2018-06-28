@@ -71,11 +71,6 @@ tr.exportTo('cp', () => {
   // function(!Object state, !Object action):!Object state.
   const REDUCERS = new Map();
 
-  // When true, state is recursively frozen so that improper property setting
-  // causes an error to be thrown. Freezing significantly impacts performance,
-  // so set to false in order to measure performance on localhost.
-  const DEBUG = location.hostname === 'localhost';
-
   // Forwards (state, action) to action.reducer.
   function rootReducer(state, action) {
     if (state === undefined) {
@@ -85,7 +80,7 @@ tr.exportTo('cp', () => {
       throw new Error(action.type.typeName);
     }
     if (!REDUCERS.has(action.type)) return state;
-    if (DEBUG) Object.deepFreeze(state);
+    if (cp.config.IS_DEBUG) Object.deepFreeze(state);
     return REDUCERS.get(action.type)(state, action);
   }
 

@@ -184,7 +184,8 @@ tr.exportTo('cp', () => {
       for (const row of event.model.table.rows) {
         const tr = document.createElement('tr');
         table.appendChild(tr);
-        for (let scalarIndex = 0; scalarIndex < 2 * statisticsCount; ++scalarIndex) {
+        for (let scalarIndex = 0; scalarIndex < 2 * statisticsCount;
+          ++scalarIndex) {
           const td = document.createElement('td');
           tr.appendChild(td);
           const scalar = row.scalars[scalarIndex];
@@ -195,7 +196,7 @@ tr.exportTo('cp', () => {
       }
       this.$.scratch.appendChild(table);
       const range = document.createRange();
-      range.selectNodeContents(this.$.scratch)
+      range.selectNodeContents(this.$.scratch);
       const selection = window.getSelection();
       selection.removeAllRanges();
       selection.addRange(range);
@@ -363,7 +364,7 @@ tr.exportTo('cp', () => {
         }
       }
       if (!tr) return;
-      const td = tr.querySelectorAll('td')[event.model.row.labelParts.length]
+      const td = tr.querySelectorAll('td')[event.model.row.labelParts.length];
       const tdRect = await cp.measureElement(td);
       await this.dispatch('showTooltip', this.statePath, {
         rows: event.model.row.actualDescriptors.map(descriptor => [
@@ -379,7 +380,7 @@ tr.exportTo('cp', () => {
   }
 
   ReportSection.canEdit = (table, userEmail) =>
-    (location.hostname === 'localhost') ||
+    cp.config.IS_MOCKING ||
     (table && table.owners && userEmail && table.owners.includes(userEmail));
 
   ReportSection.properties = {
@@ -807,7 +808,7 @@ tr.exportTo('cp', () => {
         [entity.name, entity]));
       const source = {...state.source};
       source.options = cp.OptionGroup.groupValues(action.filteredNames);
-      if (location.hostname === 'localhost' || rootState.userEmail) {
+      if (cp.config.IS_MOCKING || rootState.userEmail) {
         source.options.push(ReportSection.CREATE);
       }
       source.label = `Reports (${action.sources.length})`;

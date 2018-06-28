@@ -71,7 +71,7 @@ tr.exportTo('cp', () => {
     }
 
     onFinishRequest_(actual) {
-      if (location.hostname === 'localhost') return;
+      if (cp.config.IS_MOCKING) return;
       if (actual === this.cacheKey_) return;
       // eslint-disable-next-line no-console
       console.error('WRONG sessionId!', {expected: this.cacheKey_, actual});
