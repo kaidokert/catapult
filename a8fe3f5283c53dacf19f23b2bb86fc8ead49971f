@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "9d0209ba_93eda000",
+        "filename": "dashboard/dashboard/api/bugs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-06-28T16:07:24Z",
+      "side": 1,
+      "message": "I like api utils, let\u0027s do that. Put a TODO in to switch alerts to use that too.",
+      "parentUuid": "828642c2_741a9436",
+      "range": {
+        "startLine": 12,
+        "startChar": 4,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "a8fe3f5283c53dacf19f23b2bb86fc8ead49971f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "827eee90_d72530c6",
         "filename": "dashboard/dashboard/api/bugs.py",
         "patchSetId": 1
