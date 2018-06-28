@@ -379,7 +379,7 @@ tr.exportTo('cp', () => {
   }
 
   ReportSection.canEdit = (table, userEmail) =>
-    (location.hostname === 'localhost') ||
+    cp.IS_DEBUG ||
     (table && table.owners && userEmail && table.owners.includes(userEmail));
 
   ReportSection.properties = {
@@ -807,7 +807,7 @@ tr.exportTo('cp', () => {
         [entity.name, entity]));
       const source = {...state.source};
       source.options = cp.OptionGroup.groupValues(action.filteredNames);
-      if (location.hostname === 'localhost' || rootState.userEmail) {
+      if (cp.IS_DEBUG || rootState.userEmail) {
         source.options.push(ReportSection.CREATE);
       }
       source.label = `Reports (${action.sources.length})`;
