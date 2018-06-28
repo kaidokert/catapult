@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d2a1d557_c95beb8f",
+        "filename": "dashboard/dashboard/api/bugs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-28T15:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24482d70_71c6b742",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 11
+      },
+      "revId": "a8fe3f5283c53dacf19f23b2bb86fc8ead49971f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ce55c67_c4d0ea0c",
         "filename": "dashboard/dashboard/api/bugs.py",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "828642c2_741a9436",
+        "filename": "dashboard/dashboard/api/bugs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-28T15:45:33Z",
+      "side": 1,
+      "message": "Maybe in the existing dashboard.common.utils? Or a new dashboard.api.utils?",
+      "parentUuid": "6ce55c67_c4d0ea0c",
+      "range": {
+        "startLine": 12,
+        "startChar": 4,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "a8fe3f5283c53dacf19f23b2bb86fc8ead49971f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "827eee90_d72530c6",
         "filename": "dashboard/dashboard/api/bugs.py",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2018-06-26T15:30:13Z",
       "side": 1,
       "message": "bikeshed: include_comments?",
+      "range": {
+        "startLine": 50,
+        "startChar": 51,
+        "endLine": 50,
+        "endChar": 64
+      },
+      "revId": "a8fe3f5283c53dacf19f23b2bb86fc8ead49971f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5cc0886_f13fa316",
+        "filename": "dashboard/dashboard/api/bugs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-28T15:45:33Z",
+      "side": 1,
+      "message": "Neat! I like that better! Done.",
+      "parentUuid": "827eee90_d72530c6",
       "range": {
         "startLine": 50,
         "startChar": 51,
