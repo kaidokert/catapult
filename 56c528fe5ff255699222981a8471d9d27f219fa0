@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44244a41_78fa0e9f",
+        "filename": "dashboard/dashboard/spa/element-base.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-28T17:32:50Z",
+      "side": 1,
+      "message": "Let\u0027s move this up next to IS_DEBUG.",
+      "revId": "56c528fe5ff255699222981a8471d9d27f219fa0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62afa19e_4927418b",
+        "filename": "dashboard/dashboard/spa/element-base.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-28T17:32:50Z",
+      "side": 1,
+      "message": "This can fit on the previous line.",
+      "revId": "56c528fe5ff255699222981a8471d9d27f219fa0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06ae70fb_bc21031b",
+        "filename": "dashboard/dashboard/spa/element-base.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-28T17:32:50Z",
+      "side": 1,
+      "message": "These can all fit on one line.",
+      "revId": "56c528fe5ff255699222981a8471d9d27f219fa0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a2c7655_632cdf62",
+        "filename": "dashboard/dashboard/spa/index.html",
+        "patchSetId": 11
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-28T17:32:50Z",
+      "side": 1,
+      "message": "Let\u0027s leave this change for another CL.",
+      "revId": "56c528fe5ff255699222981a8471d9d27f219fa0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a90a26d_fc65c09f",
+        "filename": "dashboard/docs/v2spa.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-28T17:32:50Z",
+      "side": 1,
+      "message": "Let\u0027s leave this change for another CL.",
+      "revId": "56c528fe5ff255699222981a8471d9d27f219fa0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c956d5e_50142d8b",
+        "filename": "dashboard/v2spa_dev.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-28T17:32:50Z",
+      "side": 1,
+      "message": "Let\u0027s leave this change for another CL.",
+      "revId": "56c528fe5ff255699222981a8471d9d27f219fa0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
