@@ -167,7 +167,7 @@ tr.exportTo('cp', () => {
     }
 
     get isProduction() {
-      return location.hostname === 'v2spa-dot-chromeperf.appspot.com';
+      return cp.IS_PRODUCTION;
     }
 
     getChartTitle_(ids) {
