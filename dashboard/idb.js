@@ -1,0 +1,1 @@
+../third_party/idb/idb.js
