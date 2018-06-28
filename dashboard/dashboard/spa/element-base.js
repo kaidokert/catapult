@@ -74,7 +74,12 @@ tr.exportTo('cp', () => {
   // When true, state is recursively frozen so that improper property setting
   // causes an error to be thrown. Freezing significantly impacts performance,
   // so set to false in order to measure performance on localhost.
-  const DEBUG = location.hostname === 'localhost';
+  const IS_DEBUG = location.hostname === 'localhost';
+
+  // When in production, tell Redux Dev Tools to disable automatic recording.
+  const PRODUCTION_ORIGIN = 'v2spa-dot-chromeperf.appspot.com';
+  const PRODUCTION_URL = `https://${PRODUCTION_ORIGIN}`;
+  const IS_PRODUCTION = location.hostname === PRODUCTION_ORIGIN;
 
   // Forwards (state, action) to action.reducer.
   function rootReducer(state, action) {
@@ -85,7 +90,7 @@ tr.exportTo('cp', () => {
       throw new Error(action.type.typeName);
     }
     if (!REDUCERS.has(action.type)) return state;
-    if (DEBUG) Object.deepFreeze(state);
+    if (IS_DEBUG) Object.deepFreeze(state);
     return REDUCERS.get(action.type)(state, action);
   }
 
@@ -106,9 +111,25 @@ tr.exportTo('cp', () => {
     }
   };
 
-  const STORE = Redux.createStore(
-      rootReducer, DEFAULT_STATE, Redux.applyMiddleware(THUNK));
+  let MIDDLEWARE = Redux.applyMiddleware(THUNK);
 
+  if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
+    MIDDLEWARE = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+      // Do not record changes automatically when in a production environment.
+      shouldRecordChanges: !IS_PRODUCTION,
+
+      // Increase the maximum number of actions stored in the history tree. The
+      // oldest actions are removed once maxAge is reached. It's critical for
+      // performance.
+      //
+      // TODO(Sam): Ask if it's possible to reduce the number of actions being
+      //            dispatched. The app is reaching the limit upon load, which
+      //            can be affecting performance.
+      maxAge: 75,
+    })(MIDDLEWARE);
+  }
+
+  const STORE = Redux.createStore(rootReducer, DEFAULT_STATE, MIDDLEWARE);
   const ReduxMixin = PolymerRedux(STORE);
 
   /*
@@ -517,5 +538,8 @@ tr.exportTo('cp', () => {
   return {
     ElementBase,
     sha256,
+    IS_DEBUG,
+    IS_PRODUCTION,
+    PRODUCTION_URL,
   };
 });

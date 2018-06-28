@@ -103,7 +103,7 @@ tr.exportTo('cp', () => {
       return {
         name: this.name_,
         owners: ['benjhayden@chromium.org', 'benjhayden@google.com'],
-        url: 'https://v2spa-dot-chromeperf.appspot.com/',
+        url: cp.PRODUCTION_URL,
         statistics: ['avg', 'std'],
         rows,
       };
@@ -379,7 +379,7 @@ tr.exportTo('cp', () => {
   }
 
   ReportSection.canEdit = (table, userEmail) =>
-    (location.hostname === 'localhost') ||
+    cp.IS_DEBUG ||
     (table && table.owners && userEmail && table.owners.includes(userEmail));
 
   ReportSection.properties = {
@@ -807,7 +807,7 @@ tr.exportTo('cp', () => {
         [entity.name, entity]));
       const source = {...state.source};
       source.options = cp.OptionGroup.groupValues(action.filteredNames);
-      if (location.hostname === 'localhost' || rootState.userEmail) {
+      if (cp.IS_DEBUG || rootState.userEmail) {
         source.options.push(ReportSection.CREATE);
       }
       source.label = `Reports (${action.sources.length})`;
