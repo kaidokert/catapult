@@ -13,6 +13,7 @@ from dashboard import email_template
 from dashboard.common import request_handler
 from dashboard.common import utils
 from dashboard.models import anomaly
+from dashboard.models import bug_label_patterns
 from dashboard.models import sheriff
 
 _MAX_ANOMALIES_TO_COUNT = 5000
@@ -39,15 +40,12 @@ class AlertsHandler(request_handler.RequestHandler):
       JSON data for an XHR request to show a table of alerts.
     """
     sheriff_name = self.request.get('sheriff', 'Chromium Perf Sheriff')
-    sheriff_key = ndb.Key('Sheriff', sheriff_name)
-    if not _SheriffIsFound(sheriff_key):
+    if not _SheriffIsFound(sheriff_name):
       self.response.out.write(json.dumps({
           'error': 'Sheriff "%s" not found.' % sheriff_name
       }))
       return
 
-    include_improvements = bool(self.request.get('improvements'))
-    include_triaged = bool(self.request.get('triaged'))
     # Cursors are used to fetch paged queries. If none is supplied, then the
     # first 500 alerts will be returned. If a cursor is given, the next
     # 500 alerts (starting at the given cursor) will be returned.
@@ -55,24 +53,39 @@ class AlertsHandler(request_handler.RequestHandler):
     if anomaly_cursor:
       anomaly_cursor = Cursor(urlsafe=anomaly_cursor)
 
-    anomaly_values = _FetchAnomalies(sheriff_key, include_improvements,
-                                     include_triaged, anomaly_cursor)
-    anomalies = ndb.get_multi(anomaly_values['anomaly_keys'])
+    is_improvement = None
+    if not bool(self.request.get('improvements')):
+      is_improvement = False
+
+    bug_id = None
+    recovered = None
+    if not bool(self.request.get('triaged')):
+      bug_id = ''
+      recovered = False
+
+    anomalies, next_cursor, count = anomaly.Anomaly.QueryAsync(
+        start_cursor=anomaly_cursor,
+        sheriff=sheriff_name,
+        bug_id=bug_id,
+        is_improvement=is_improvement,
+        recovered=recovered,
+        count_limit=_MAX_ANOMALIES_TO_COUNT,
+        limit=_MAX_ANOMALIES_TO_SHOW).get_result()
 
     values = {
         'anomaly_list': AnomalyDicts(anomalies),
-        'anomaly_count': anomaly_values['anomaly_count'],
+        'anomaly_count': count,
         'sheriff_list': _GetSheriffList(),
-        'anomaly_cursor': (anomaly_values['anomaly_cursor'].urlsafe()
-                           if anomaly_values['anomaly_cursor'] else None),
-        'show_more_anomalies': anomaly_values['show_more_anomalies'],
+        'anomaly_cursor': (next_cursor.urlsafe() if next_cursor else None),
+        'show_more_anomalies': next_cursor != None,
     }
     self.GetDynamicVariables(values)
     self.response.out.write(json.dumps(values))
 
 
-def _SheriffIsFound(sheriff_key):
+def _SheriffIsFound(sheriff_name):
   """Checks whether the sheriff can be found for the current user."""
+  sheriff_key = ndb.Key('Sheriff', sheriff_name)
   try:
     sheriff_entity = sheriff_key.get()
   except AssertionError:
@@ -80,51 +93,6 @@ def _SheriffIsFound(sheriff_key):
     # and indicates an internal-only Sheriff but an external user.
     return False
   return sheriff_entity is not None
-
-
-def _FetchAnomalies(sheriff_key, include_improvements, include_triaged,
-                    start_cursor):
-  """Fetches a page of the list of Anomaly keys that may be shown.
-
-  Args:
-    sheriff_key: The ndb.Key for the Sheriff to fetch alerts for.
-    include_improvements: Whether to include improvement Anomalies.
-    include_triaged: Whether to include Anomalies with a bug ID already set.
-    start_cursor: The cursor at which to begin the paged query. None if
-                  beginning of keys.
-
-  Returns:
-    A dictionary containing:
-    anomalies_count: Length of all keys up to _MAX_ANOMALIES_TO_COUNT.
-    anomaly_keys: A list of Anomaly keys, in reverse-chronological order.
-    anomaly_cursor: The cursor to begin the next paged query at.
-    show_more_anomalies: A bool if there are entities past the cursor.
-  """
-
-  query = anomaly.Anomaly.query(
-      anomaly.Anomaly.sheriff == sheriff_key)
-
-  if not include_improvements:
-    query = query.filter(
-        anomaly.Anomaly.is_improvement == False)
-
-  if not include_triaged:
-    query = query.filter(
-        anomaly.Anomaly.bug_id == None)
-    query = query.filter(
-        anomaly.Anomaly.recovered == False)
-
-  query = query.order(-anomaly.Anomaly.timestamp)
-
-  return_values = {}
-  # Total Anomaly count is maintained by query.count(limit).
-  return_values['anomaly_count'] = query.count(_MAX_ANOMALIES_TO_COUNT)
-  # See https://cloud.google.com/appengine/docs/standard/python/ndb/queryclass
-  # about fetch_page.
-  (return_values['anomaly_keys'], return_values['anomaly_cursor'],
-   return_values['show_more_anomalies']) = query.fetch_page(
-       _MAX_ANOMALIES_TO_SHOW, start_cursor=start_cursor, keys_only=True)
-  return return_values
 
 
 def _GetSheriffList():
@@ -149,42 +117,50 @@ def GetAnomalyDict(anomaly_entity, bisect_status=None):
   Returns:
     A dictionary which is safe to be encoded as JSON.
   """
-  alert_dict = _AlertDict(anomaly_entity)
-  alert_dict.update({
+  test_key = anomaly_entity.GetTestMetadataKey()
+  test_path = utils.TestPath(test_key)
+  test_path_parts = test_path.split('/')
+  dashboard_link = email_template.GetReportPageLink(
+      test_path, rev=anomaly_entity.end_revision, add_protocol_and_host=False)
+
+  bug_labels = set()
+  bug_components = set()
+  if anomaly_entity.internal_only:
+    bug_labels.add('Restrict-View-Google')
+  tags = bug_label_patterns.GetBugLabelsForTest(test_key)
+  tags += anomaly_entity.sheriff.get().labels
+  for tag in tags:
+    if tag.startswith('Cr-'):
+      bug_components.add(tag.replace('Cr-', '').replace('-', '>'))
+    else:
+      bug_labels.add(tag)
+
+  return {
+      'absolute_delta': '%s' % anomaly_entity.GetDisplayAbsoluteChanged(),
+      'bisect_status': bisect_status,
+      'bot': test_path_parts[1],
+      'bug_components': list(bug_components),
+      'bug_labels': list(bug_labels),
+      'bug_id': anomaly_entity.bug_id,
+      'dashboard_link': dashboard_link,
+      'date': str(anomaly_entity.timestamp.date()),
+      'display_end': anomaly_entity.display_end,
+      'display_start': anomaly_entity.display_start,
+      'end_revision': anomaly_entity.end_revision,
+      'improvement': anomaly_entity.is_improvement,
+      'key': anomaly_entity.key.urlsafe(),
+      'master': test_path_parts[0],
       'median_after_anomaly': anomaly_entity.median_after_anomaly,
       'median_before_anomaly': anomaly_entity.median_before_anomaly,
       'percent_changed': '%s' % anomaly_entity.GetDisplayPercentChanged(),
-      'absolute_delta': '%s' % anomaly_entity.GetDisplayAbsoluteChanged(),
-      'improvement': anomaly_entity.is_improvement,
-      'bisect_status': bisect_status,
       'recovered': anomaly_entity.recovered,
       'ref_test': anomaly_entity.GetRefTestPath(),
+      'start_revision': anomaly_entity.start_revision,
+      'test': '/'.join(test_path_parts[3:]),
+      'testsuite': test_path_parts[2],
+      'timestamp': anomaly_entity.timestamp.isoformat(),
       'type': 'anomaly',
       'units': anomaly_entity.units,
-  })
-  return alert_dict
-
-
-def _AlertDict(alert_entity):
-  """Returns a base dictionary with properties common to all alerts."""
-  test_path = utils.TestPath(alert_entity.GetTestMetadataKey())
-  test_path_parts = test_path.split('/')
-  dashboard_link = email_template.GetReportPageLink(
-      test_path, rev=alert_entity.end_revision, add_protocol_and_host=False)
-  return {
-      'key': alert_entity.key.urlsafe(),
-      'start_revision': alert_entity.start_revision,
-      'end_revision': alert_entity.end_revision,
-      'date': str(alert_entity.timestamp.date()),
-      'timestamp': alert_entity.timestamp.isoformat(),
-      'master': test_path_parts[0],
-      'bot': test_path_parts[1],
-      'testsuite': test_path_parts[2],
-      'test': '/'.join(test_path_parts[3:]),
-      'bug_id': alert_entity.bug_id,
-      'dashboard_link': dashboard_link,
-      'display_start': alert_entity.display_start,
-      'display_end': alert_entity.display_end,
   }
 
 

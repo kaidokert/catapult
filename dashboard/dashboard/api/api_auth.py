@@ -11,6 +11,9 @@ from dashboard.common import utils
 
 
 OAUTH_CLIENT_ID_WHITELIST = [
+    # This oauth client id is for V2SPA.
+    # TODO(benjhayden) Remove this before launching.
+    '62121018386-rhk28ad5lbqheinh05fgau3shotl2t6c.apps.googleusercontent.com',
     # This oauth client id is from Pinpoint.
     '62121018386-aqdfougp0ddn93knqj6g79vvn42ajmrg.apps.googleusercontent.com',
     # This oauth client id is from the 'chromeperf' API console.
@@ -57,6 +60,7 @@ class InternalOnlyError(ApiAuthException):
     super(InternalOnlyError, self).__init__('User does not have access')
 
 
+
 def Authorize():
   try:
     user = oauth.get_current_user(OAUTH_SCOPES)
@@ -68,6 +72,30 @@ def Authorize():
 
   try:
     if not user.email().endswith('.gserviceaccount.com'):
+      # For non-service account, need to verify that the OAuth client ID
+      # is in our whitelist.
+      client_id = oauth.get_client_id(OAUTH_SCOPES)
+      if client_id not in OAUTH_CLIENT_ID_WHITELIST:
+        logging.info('OAuth client id %s for user %s not in whitelist',
+                     client_id, user.email())
+        user = None
+        raise OAuthError
+  except oauth.Error:
+    raise OAuthError
+
+  logging.info('OAuth user logged in as: %s', user.email())
+  if utils.IsGroupMember(user.email(), 'chromeperf-access'):
+    datastore_hooks.SetPrivilegedRequest()
+
+
+def GetCurrentUser():
+  return oauth.get_current_user(OAUTH_SCOPES)
+
+
+def AuthorizeOauthUser():
+  try:
+    user = GetCurrentUser()
+    if user and not user.email().endswith('.gserviceaccount.com'):
       # For non-service account, need to verify that the OAuth client ID
       # is in our whitelist.
       client_id = oauth.get_client_id(OAUTH_SCOPES)

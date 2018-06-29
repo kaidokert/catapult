@@ -733,11 +733,10 @@ class StoryRunnerTest(unittest.TestCase):
     generic_diagnostics_values = [
         list(diagnostic) for diagnostic in generic_diagnostics]
 
-    self.assertGreater(len(generic_diagnostics), 3)
+    self.assertGreater(len(generic_diagnostics), 2)
     self.assertIn(['win10'], generic_diagnostics_values)
     self.assertIn(['win'], generic_diagnostics_values)
     self.assertIn(['amd64'], generic_diagnostics_values)
-    self.assertIn([8 * (1024 ** 3)], generic_diagnostics_values)
 
   def testRunStoryAddsDeviceInfo_EvenInErrors(self):
     class ErrorRaisingDummyLocalStory(DummyLocalStory):
@@ -772,11 +771,10 @@ class StoryRunnerTest(unittest.TestCase):
     generic_diagnostics_values = [
         list(diagnostic) for diagnostic in generic_diagnostics]
 
-    self.assertGreater(len(generic_diagnostics), 3)
+    self.assertGreater(len(generic_diagnostics), 2)
     self.assertIn(['win10'], generic_diagnostics_values)
     self.assertIn(['win'], generic_diagnostics_values)
     self.assertIn(['amd64'], generic_diagnostics_values)
-    self.assertIn([8 * (1024 ** 3)], generic_diagnostics_values)
 
   def testRunStoryAddsDeviceInfo_OnePerStorySet(self):
     class Test(legacy_page_test.LegacyPageTest):
@@ -805,18 +803,16 @@ class StoryRunnerTest(unittest.TestCase):
     generic_diagnostics_values = [
         list(diagnostic) for diagnostic in generic_diagnostics]
 
-    self.assertGreater(len(generic_diagnostics), 3)
+    self.assertGreater(len(generic_diagnostics), 2)
     self.assertIn(['win10'], generic_diagnostics_values)
     self.assertIn(['win'], generic_diagnostics_values)
     self.assertIn(['amd64'], generic_diagnostics_values)
-    self.assertIn([8 * (1024 ** 3)], generic_diagnostics_values)
 
     self.assertEqual(1, len(
         [value for value in generic_diagnostics_values if value == ['win']]))
 
     first_histogram_diags = hs.GetFirstHistogram().diagnostics
     self.assertIn(reserved_infos.ARCHITECTURES.name, first_histogram_diags)
-    self.assertIn(reserved_infos.MEMORY_AMOUNTS.name, first_histogram_diags)
     self.assertIn(reserved_infos.OS_NAMES.name, first_histogram_diags)
     self.assertIn(reserved_infos.OS_VERSIONS.name, first_histogram_diags)
 
@@ -829,7 +825,7 @@ class StoryRunnerTest(unittest.TestCase):
     hs.ImportDicts(self.results.AsHistogramDicts())
     tagmap = None
     for diagnostic in hs.shared_diagnostics:
-      if type(diagnostic) == histogram_module.TagMap:
+      if isinstance(diagnostic, histogram_module.TagMap):
         tagmap = diagnostic
         break
 
@@ -867,7 +863,7 @@ class StoryRunnerTest(unittest.TestCase):
     hs.ImportDicts(self.results.AsHistogramDicts())
     tagmap = None
     for diagnostic in hs.shared_diagnostics:
-      if type(diagnostic) == histogram_module.TagMap:
+      if isinstance(diagnostic, histogram_module.TagMap):
         tagmap = diagnostic
         break
 
@@ -1433,46 +1429,6 @@ class StoryRunnerTest(unittest.TestCase):
     finally:
       shutil.rmtree(temp_path)
 
-  def testRunBenchmarkTimeDuration(self):
-    fake_benchmark = FakeBenchmark()
-    options = _GenerateBaseBrowserFinderOptions()
-    options.output_formats.append('histograms')
-
-    with mock.patch('telemetry.internal.story_runner.time') as time_patch:
-      # Note: we patch the time module loaded by story_runner, not methods
-      # within the time module itself. This prevents calls from any other
-      # clients of time.time() to interfere with the test.
-      time_patch.time.side_effect = [1, 61]
-      tmp_path = tempfile.mkdtemp()
-
-      try:
-        options.output_dir = tmp_path
-        story_runner.RunBenchmark(fake_benchmark, options)
-        with open(os.path.join(tmp_path, 'results-chart.json')) as f:
-          data = json.load(f)
-        with open(os.path.join(tmp_path, 'histograms.json')) as f:
-          histogram_data = json.load(f)
-
-        histograms = histogram_set.HistogramSet()
-        histograms.ImportDicts(histogram_data)
-
-        self.assertEqual(len(data['charts']), 1)
-        charts = data['charts']
-        self.assertIn('benchmark_duration', charts)
-        duration = charts['benchmark_duration']
-        self.assertIn("summary", duration)
-        summary = duration['summary']
-        duration = summary['value']
-        self.assertAlmostEqual(duration, 1)
-
-        hists = histograms.GetHistogramsNamed('benchmark_total_duration')
-        self.assertEqual(len(hists), 1)
-        hist = hists[0]
-        self.assertEqual(hist.num_values, 1)
-        self.assertAlmostEqual(hist.sample_values[0], 60000)
-      finally:
-        shutil.rmtree(tmp_path)
-
   def testRunBenchmarkStoryTimeDuration(self):
     class FakeBenchmarkWithStories(FakeBenchmark):
       def __init__(self):
@@ -1700,6 +1656,7 @@ class LogsArtifactTest(unittest.TestCase):
       json_data = {}
       with open(os.path.join(out_dir, 'test-results.json')) as f:
         json_data = json.load(f)
+
       foo_artifacts = json_data['tests']['TestBenchmark']['foo']['artifacts']
       foo_artifact_log_path = os.path.join(
           out_dir, foo_artifacts['logs'][0])
@@ -1715,3 +1672,9 @@ class LogsArtifactTest(unittest.TestCase):
       self.assertIn('Exception: this is an unexpected exception', foo_log)
       self.assertIn("raise Exception('this is an unexpected exception')",
                     foo_log)
+
+      # Assert that the second story got written as a SKIP as it failed
+      # to run because of the exception.
+      bar_log = json_data['tests']['TestBenchmark']['bar']
+      self.assertEquals(bar_log['expected'], 'PASS')
+      self.assertEquals(bar_log['actual'], 'SKIP')

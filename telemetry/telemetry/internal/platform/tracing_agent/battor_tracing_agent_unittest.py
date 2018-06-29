@@ -8,7 +8,6 @@ from battor import battor_error
 from battor import battor_wrapper
 from devil.android import battery_utils
 from telemetry.internal.platform.tracing_agent import battor_tracing_agent
-from telemetry.timeline import trace_data
 from telemetry.timeline import tracing_config
 from tracing.trace_data import trace_data
 
@@ -102,6 +101,8 @@ class BattOrTracingAgentTest(unittest.TestCase):
     self._battery_utils = battery_utils.BatteryUtils
     battery_utils.BatteryUtils = FakeBatteryUtils
 
+    self._is_battor_connected = battor_wrapper.IsBattOrConnected
+
     # Agents and backends.
     self.android_backend = FakeAndroidPlatformBackend()
     self.desktop_backend = FakeDesktopPlatformBackend()
@@ -113,6 +114,7 @@ class BattOrTracingAgentTest(unittest.TestCase):
   def tearDown(self):
     battor_wrapper.BattOrWrapper = self._battor_wrapper
     battery_utils.BatteryUtils = self._battery_utils
+    battor_wrapper.IsBattOrConnected = self._is_battor_connected
 
   def testInit(self):
     self.assertTrue(isinstance(self.android_agent._platform_backend,

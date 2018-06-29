@@ -6,23 +6,24 @@
 
 import json
 
-from google.appengine.api import users
 from google.appengine.ext import ndb
 
 from dashboard import start_try_job
+from dashboard.common import descriptor
 from dashboard.common import request_handler
 from dashboard.common import utils
 from dashboard.services import crrev_service
 from dashboard.services import pinpoint_service
 
-_PINPOINT_REPOSITORIES = 'repositories'
 _ISOLATE_TARGETS = [
     'angle_perftests', 'cc_perftests', 'gpu_perftests',
     'load_library_perf_tests', 'media_perftests', 'net_perftests',
     'performance_browser_tests', 'telemetry_perf_tests',
     'telemetry_perf_webview_tests', 'tracing_perftests']
 _BOTS_USING_PERFORMANCE_TEST_SUITES = [
-    'linux-perf', 'mac-10_12_laptop_low_end-perf'
+    'linux-perf', 'mac-10_12_laptop_low_end-perf',
+    'mac-10_13_laptop_high_end-perf',
+    'mojo-linux-perf',
 ]
 
 
@@ -142,14 +143,10 @@ def ParseTIRLabelChartNameAndTraceName(test_path_parts):
 
 
 def ParseStatisticNameFromChart(chart_name):
-  statistic_types = [
-      'avg', 'min', 'max', 'sum', 'std', 'count'
-  ]
-
   chart_name_parts = chart_name.split('_')
   statistic_name = ''
 
-  if chart_name_parts[-1] in statistic_types:
+  if chart_name_parts[-1] in descriptor.STATISTICS:
     chart_name = '_'.join(chart_name_parts[:-1])
     statistic_name = chart_name_parts[-1]
   return chart_name, statistic_name
@@ -173,7 +170,7 @@ def PinpointParamsFromPerfTryParams(params):
     'error' field.
   """
   if not utils.IsValidSheriffUser():
-    user = users.get_current_user()
+    user = utils.GetUserEmail()
     raise InvalidParamsError('User "%s" not authorized.' % user)
 
   test_path = params['test_path']
@@ -193,7 +190,7 @@ def PinpointParamsFromPerfTryParams(params):
 
   extra_test_args = params['extra_test_args']
 
-  email = users.get_current_user().email()
+  email = utils.GetUserEmail()
   job_name = 'Job on [%s/%s] for [%s]' % (bot_name, suite, email)
 
   return {
@@ -226,7 +223,7 @@ def PinpointParamsFromBisectParams(params):
     'error' field.
   """
   if not utils.IsValidSheriffUser():
-    user = users.get_current_user()
+    user = utils.GetUserEmail()
     raise InvalidParamsError('User "%s" not authorized.' % user)
 
   test_path = params['test_path']
@@ -259,7 +256,7 @@ def PinpointParamsFromBisectParams(params):
   start_git_hash = ResolveToGitHash(start_commit)
   end_git_hash = ResolveToGitHash(end_commit)
 
-  email = users.get_current_user().email()
+  email = utils.GetUserEmail()
   job_name = 'Job on [%s/%s/%s] for [%s]' % (bot_name, suite, chart_name, email)
 
   # Histogram names don't include the statistic, so split these
@@ -271,6 +268,11 @@ def PinpointParamsFromBisectParams(params):
     if alert_keys:
       alert_key = alert_keys[0]
 
+  alert_magnitude = None
+  if alert_key:
+    alert = ndb.Key(urlsafe=alert_key).get()
+    alert_magnitude = alert.median_after_anomaly - alert.median_before_anomaly
+
   pinpoint_params = {
       'configuration': bot_name,
       'benchmark': suite,
@@ -279,6 +281,7 @@ def PinpointParamsFromBisectParams(params):
       'end_git_hash': end_git_hash,
       'bug_id': params['bug_id'],
       'comparison_mode': bisect_mode,
+      'comparison_magnitude': alert_magnitude,
       'target': target,
       'user': email,
       'name': job_name,
