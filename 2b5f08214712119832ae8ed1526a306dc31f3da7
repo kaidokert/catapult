@@ -46,6 +46,30 @@
       "revId": "2b5f08214712119832ae8ed1526a306dc31f3da7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "26516243_ccbbcb94",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1116050
+      },
+      "writtenOn": "2018-06-29T15:43:48Z",
+      "side": 1,
+      "message": "Yup, SGTM.",
+      "parentUuid": "29fb43cd_658628ea",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 36
+      },
+      "revId": "2b5f08214712119832ae8ed1526a306dc31f3da7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
