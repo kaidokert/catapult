@@ -70,6 +70,74 @@
       "revId": "2b5f08214712119832ae8ed1526a306dc31f3da7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3e5aa7b_6ab6bcad",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-29T20:40:27Z",
+      "side": 1,
+      "message": "Instead of magic numbers, please use tr.b.convertUnit",
+      "revId": "2b5f08214712119832ae8ed1526a306dc31f3da7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "031bb073_d4987cc6",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-29T20:40:27Z",
+      "side": 1,
+      "message": "Why not use normalizedPercentage with the default boundaries?\nhttps://github.com/catapult-project/catapult/blob/master/tracing/tracing/value/histogram.html#L1449",
+      "revId": "2b5f08214712119832ae8ed1526a306dc31f3da7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a90c03e3_7b4eb8fc",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-29T20:40:27Z",
+      "side": 1,
+      "message": "Is there really no way to narrow down the set of threads to consider?",
+      "revId": "2b5f08214712119832ae8ed1526a306dc31f3da7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "210b576a_1a1445f4",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-29T20:40:27Z",
+      "side": 1,
+      "message": "Why can\u0027t you add this to UserModelBuilder in this CL?",
+      "revId": "2b5f08214712119832ae8ed1526a306dc31f3da7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
