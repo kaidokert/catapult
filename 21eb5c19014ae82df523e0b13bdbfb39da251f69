@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3609bb34_42bf67e0",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 18
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-29T16:54:14Z",
+      "side": 1,
+      "message": "Let\u0027s keep the dispatch to a single statement even though it wraps lines.",
+      "revId": "21eb5c19014ae82df523e0b13bdbfb39da251f69",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f6af138_bad5841b",
+        "filename": "dashboard/dashboard/spa/chromeperf-app.js",
+        "patchSetId": 18
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-29T16:54:14Z",
+      "side": 1,
+      "message": "Move back up to previous line?",
+      "revId": "21eb5c19014ae82df523e0b13bdbfb39da251f69",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
