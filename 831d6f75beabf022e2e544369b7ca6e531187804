@@ -34,6 +34,24 @@
       "revId": "831d6f75beabf022e2e544369b7ca6e531187804",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42d87600_9ac11e3a",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-29T15:46:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed79a6ee_54be3920",
+      "revId": "831d6f75beabf022e2e544369b7ca6e531187804",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
