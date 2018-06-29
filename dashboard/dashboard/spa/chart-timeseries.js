@@ -218,10 +218,11 @@ tr.exportTo('cp', () => {
 
   ChartTimeseries.actions = {
     prefetch: (statePath, lineDescriptors) => async(dispatch, getState) => {
-      await Promise.all(lineDescriptors.map(async lineDescriptor => {
-        await dispatch(ChartTimeseries.actions.fetchLineDescriptor(
-            statePath, lineDescriptor));
-      }));
+      for (const lineDescriptor of lineDescriptors) {
+        const { fetchLineDescriptor } = ChartTimeseries.actions;
+        const action = fetchLineDescriptor(statePath, lineDescriptor);
+        dispatch(action);
+      }
     },
 
     load: statePath => async(dispatch, getState) => {
@@ -262,9 +263,11 @@ tr.exportTo('cp', () => {
 
     loadLineDescriptor_: (statePath, lineDescriptor) =>
       async(dispatch, getState) => {
+        const { fetchLineDescriptor, measureYTicks_ } = ChartTimeseries.actions;
+
         let timeserieses = await dispatch(
-            ChartTimeseries.actions.fetchLineDescriptor(
-                statePath, lineDescriptor));
+            fetchLineDescriptor(statePath, lineDescriptor)
+        );
         timeserieses = timeserieses.filter(ts => ts.data.length > 0);
         if (timeserieses.length === 0) return;
 
@@ -299,8 +302,7 @@ tr.exportTo('cp', () => {
           lineDescriptor,
           timeserieses,
         });
-        dispatch(ChartTimeseries.actions.measureYTicks_(
-            statePath, lineDescriptor));
+        dispatch(measureYTicks_(statePath, lineDescriptor));
       },
 
     measureYTicks_: (statePath, lineDescriptor) =>
