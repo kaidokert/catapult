@@ -22,6 +22,30 @@
       "revId": "2b5f08214712119832ae8ed1526a306dc31f3da7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29fb43cd_658628ea",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-06-29T15:41:58Z",
+      "side": 1,
+      "message": "Sure. But, keep in mind that this CL just translates existing metrics to TBMv2 without any changes. When the new c++-side-computed smoothness metrics are available, these will be thrown away and replaced by them. The TODO is a reminder about the not-perfect meaning of the current percentage_smooth metric.",
+      "parentUuid": "172cd581_4bf8a710",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 36
+      },
+      "revId": "2b5f08214712119832ae8ed1526a306dc31f3da7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
