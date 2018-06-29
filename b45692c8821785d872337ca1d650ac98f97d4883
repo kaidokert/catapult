@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "38df3c86_cc6cfd76",
+        "filename": "common/node_runner/node_runner/package-lock.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-06-29T20:58:13Z",
+      "side": 1,
+      "message": "Including this file was intentional.\n\n\"This file is intended to be committed into source repositories, and serves various purposes...\"\n(https://docs.npmjs.com/files/package-lock.json)",
+      "revId": "b45692c8821785d872337ca1d650ac98f97d4883",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7120a3e4_16a58259",
         "filename": "dashboard/.gitignore",
         "patchSetId": 2
