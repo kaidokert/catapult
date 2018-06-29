@@ -72,6 +72,31 @@ tr.exportTo('tr.metrics.rendering', function() {
     if (isOther) yield 'other';
   }
 
+  function getDisplayCompositorThread(model) {
+    const chromeHelper = model.getOrCreateHelper(
+        tr.model.helpers.ChromeModelHelper);
+    const gpuHelper = chromeHelper.gpuHelper;
+    if (gpuHelper) {
+      const thread =
+          gpuHelper.process.findAtMostOneThreadNamed('VizCompositorThread');
+      if (thread) {
+        return thread;
+      }
+    }
+    const browserHelper = chromeHelper.browserHelpers[0];
+    return browserHelper.process.findAtMostOneThreadNamed('CrBrowserMain');
+  }
+
+  function getGpuThread(model) {
+    const chromeHelper = model.getOrCreateHelper(
+        tr.model.helpers.ChromeModelHelper);
+    const gpuHelper = chromeHelper.gpuHelper;
+    if (gpuHelper) {
+      return gpuHelper.process.findAtMostOneThreadNamed('CrGpuMain');
+    }
+    return undefined;
+  }
+
   function renderingMetric(histograms, model) {
     // Find animation ranges and their total duration.
     const animationSegments = model.userModel.segments.filter(
@@ -122,6 +147,27 @@ tr.exportTo('tr.metrics.rendering', function() {
             diagnostics: { breakdown: breakdowns.get(category) }
           },
           { description: 'CPU cores per second of threads during animation' });
+    }
+
+    // SwapBuffers in queue.
+    {
+      const swapBuffersQueueTimes = [];
+      const thread = getGpuThread(model);
+      for (const slice of thread.sliceGroup.slices) {
+        if (slice.title !== 'CommandBufferQueue') {
+          continue;
+        }
+
+        const flowEvent = slice.inFlowEvents[0];
+        if (flowEvent && flowEvent.args.command === 'SwapBuffers') {
+          swapBuffersQueueTimes.push(flowEvent.duration);
+        }
+      }
+      histograms.createHistogram('pipeline:swap_buffers_queue',
+          tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
+          swapBuffersQueueTimes, {
+            description: 'Time spent by SwapBuffers command in the queue.',
+            summaryOptions: {sum: false}});
     }
   }
 
