@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7120a3e4_16a58259",
+        "filename": "dashboard/.gitignore",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-06-29T20:57:17Z",
+      "side": 1,
+      "message": "Would it be possible to merge this file into /.gitignore?",
+      "revId": "b45692c8821785d872337ca1d650ac98f97d4883",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
