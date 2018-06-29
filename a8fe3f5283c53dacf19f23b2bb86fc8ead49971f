@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "a724b521_e1d17e43",
+        "filename": "dashboard/dashboard/api/bugs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-29T10:54:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d0209ba_93eda000",
+      "range": {
+        "startLine": 12,
+        "startChar": 4,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "a8fe3f5283c53dacf19f23b2bb86fc8ead49971f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "827eee90_d72530c6",
         "filename": "dashboard/dashboard/api/bugs.py",
         "patchSetId": 1

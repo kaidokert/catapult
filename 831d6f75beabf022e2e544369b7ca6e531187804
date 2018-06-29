@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "efcfc614_e985e363",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-06-29T10:54:03Z",
+      "side": 1,
+      "message": "Is there a relevant bug already filed? Or should I create a new one?",
+      "revId": "831d6f75beabf022e2e544369b7ca6e531187804",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
