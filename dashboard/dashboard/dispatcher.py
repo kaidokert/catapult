@@ -51,10 +51,13 @@ from dashboard import short_uri
 from dashboard import speed_releasing
 from dashboard import start_try_job
 from dashboard import update_bug_with_results
+from dashboard import update_test_suite_descriptors
 from dashboard import update_test_suites
 from dashboard.api import alerts as api_alerts
 from dashboard.api import bugs
+from dashboard.api import describe
 from dashboard.api import list_timeseries
+from dashboard.api import test_suites
 from dashboard.api import timeseries
 
 
@@ -67,7 +70,9 @@ _URL_MAPPING = [
     (r'/api/alerts', api_alerts.AlertsHandler),
     (r'/api/alerts/(.*)', api_alerts.AlertsHandler),
     (r'/api/bugs/(.*)', bugs.BugsHandler),
+    (r'/api/describe/(.*)', describe.DescribeHandler),
     (r'/api/list_timeseries/(.*)', list_timeseries.ListTimeseriesHandler),
+    (r'/api/test_suites', test_suites.TestSuitesHandler),
     (r'/api/timeseries/(.*)', timeseries.TimeseriesHandler),
     ('/associate_alerts', associate_alerts.AssociateAlertsHandler),
     ('/bug_details', bug_details.BugDetailsHandler),
@@ -119,6 +124,8 @@ _URL_MAPPING = [
     ('/update_bug_with_results',
      update_bug_with_results.UpdateBugWithResultsHandler),
     ('/update_test_suites', update_test_suites.UpdateTestSuitesHandler),
+    ('/update_test_suite_descriptors',
+     update_test_suite_descriptors.UpdateTestSuiteDescriptorsHandler),
     (oauth2_decorator.DECORATOR.callback_path,
      oauth2_decorator.DECORATOR.callback_handler())
 ]
