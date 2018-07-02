@@ -95,6 +95,62 @@ class Descriptor(object):
     return cls.GROUPABLE_TEST_SUITE_PREFIXES
 
   @classmethod
+  def _MeasurementCase(cls, test_suite, path):
+    if len(path) == 1:
+      return path.pop(0), None
+
+    if test_suite.startswith('resource_sizes'):
+      parts, path[:] = path[:], []
+      return ':'.join(parts), None
+
+    if test_suite == 'sizes':
+      parts, path[:] = path[:], []
+      return ':'.join(parts[:6]), ':'.join(parts[6:])
+
+    if (test_suite.startswith('system_health') or
+        (test_suite in [
+            'tab_switching.typical_25',
+            'v8.browsing_desktop',
+            'v8.browsing_desktop-future',
+            'v8.browsing_mobile',
+            'v8.browsing_mobile-future',
+            ])):
+      measurement = parts.pop(0)
+      parts.pop(0)
+      if len(parts) == 0:
+        return measurement, None
+      return measurement, parts.pop(0).replace('_', ':').replace(
+          'long:running:tools', 'long_running_tools')
+
+    if test_suite in [
+        'memory.dual_browser_test', 'memory.top_10_mobile',
+        'v8.runtime_stats.top_25']:
+      measurement = parts.pop(0)
+      case = parts.pop(0)
+      if len(parts) == 0:
+        return measurement, None
+      return measurement, case + ':' + parts.pop(0)
+
+    #if test_part1_name:
+    #  test_suite_hash = Hash(test_suite)
+    #  if (test_suite_hash ==
+    #      '89d460df708abdf78bbc722c755324614c179c8d5c523120ae9e3882d4f4a920'):
+    #    if len(parts) < 3:
+    #      return ':'.join(parts), None
+    #    return ':'.join(parts[:2]), parts[3]
+
+    #  if (test_suite_hash ==
+    #      '2c74dc4e60629fc0bcc621c72d376beb02c1df3bb251fec7c07d232736e83b1a'):
+    #    return ':'.join(parts[:2]), ':'.join(parts[2:])
+
+    #  if IsPolyMeasurement(test_suite):
+    #    if parts[-1] == 'no-mitigations':
+    #      parts.pop()
+    #    return ':'.join(parts), 'no-mitigations'
+
+    return path.pop(0), path.pop(0)
+
+  @classmethod
   def FromTestPath(cls, path):
     """Parse a test path into a Descriptor.
 
@@ -130,27 +186,27 @@ class Descriptor(object):
       return cls(test_suite=test_suite, bot=bot)
 
     build_type = TEST_BUILD_TYPE
-    measurement = path.pop(0)
+    if path[-1] == 'ref':
+      path.pop()
+      build_type = REFERENCE_BUILD_TYPE
+
+    if len(path) == 0:
+      return cls(test_suite=test_suite, bot=bot, build_type=build_type)
+
+    measurement, test_case = cls._MeasurementCase(test_suite, path)
+
     statistic = None
-    # TODO(crbug.com/853258) some measurements include path[4]
     for suffix in STATISTICS:
       if measurement.endswith('_' + suffix):
         statistic = suffix
         measurement = measurement[:-(1 + len(suffix))]
-    if len(path) == 0:
-      return cls(test_suite=test_suite, bot=bot, measurement=measurement,
-                 build_type=build_type, statistic=statistic)
 
-    test_case = path.pop(0)
-    if test_case.endswith('_ref'):
+    if test_case and test_case.endswith('_ref'):
       test_case = test_case[:-4]
       build_type = REFERENCE_BUILD_TYPE
     if test_case == REFERENCE_BUILD_TYPE:
       build_type = REFERENCE_BUILD_TYPE
       test_case = None
-    # TODO(crbug.com/853258) some test_cases include path[5] and/or path[6]
-    # and/or path[7]
-    # TODO(crbug.com/853258) some test_cases need to be modified
 
     return cls(test_suite=test_suite, bot=bot, measurement=measurement,
                statistic=statistic, test_case=test_case, build_type=build_type)
@@ -186,9 +242,24 @@ class Descriptor(object):
     test_path += '/' + self.measurement
     if self.statistic:
       test_path += '_' + self.statistic
+
     if self.test_case:
-      # TODO(crbug.com/853258) some test_cases need to be modified
-      test_path += '/' + self.test_case
+      if (self.test_suite.startswith('system_health') or
+          (self.test_suite in [
+              'tab_switching.typical_25',
+              'v8:browsing_desktop',
+              'v8:browsing_desktop-future',
+              'v8:browsing_mobile',
+              'v8:browsing_mobile-future',
+              ])):
+        test_case = self.test_case.split(':')
+        if test_case[0] == 'long_running_tools':
+          test_path += '/' + test_case[0]
+        else:
+          test_path += '/' + '_'.join(test_case[:2])
+        test_path += '/' + '_'.join(test_case)
+      else:
+        test_path += '/' + self.test_case
 
     candidates = [test_path]
     if self.build_type == REFERENCE_BUILD_TYPE:
