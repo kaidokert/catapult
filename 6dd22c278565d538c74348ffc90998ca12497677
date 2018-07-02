@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "720b6a79_e11918db",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-07-02T23:11:52Z",
+      "side": 1,
+      "message": "I go with the interpretation that you want to return a generic set with two elements, one is \u0027Benchmark documentation link\u0027, and another is decorators.GetDocumentationLink(self).\n\nCurious: how does the js/frontend code even know that this is meant to be a tuple and not just a set that happen to have 2 strings?",
+      "parentUuid": "4a81a139_0715ad8f",
+      "revId": "6dd22c278565d538c74348ffc90998ca12497677",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e94eabdd_7bd65dfd",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 1
@@ -54,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "cb072198_68d3b445",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-07-02T23:11:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e94eabdd_7bd65dfd",
+      "revId": "6dd22c278565d538c74348ffc90998ca12497677",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "51fa318f_603f8358",
         "filename": "tracing/tracing/value/diagnostics/reserved_infos.py",
         "patchSetId": 1
@@ -68,6 +104,24 @@
       "revId": "6dd22c278565d538c74348ffc90998ca12497677",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65903273_66bc2043",
+        "filename": "tracing/tracing/value/diagnostics/reserved_infos.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-07-02T23:11:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51fa318f_603f8358",
+      "revId": "6dd22c278565d538c74348ffc90998ca12497677",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
