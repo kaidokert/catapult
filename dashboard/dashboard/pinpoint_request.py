@@ -21,10 +21,11 @@ _ISOLATE_TARGETS = [
     'load_library_perf_tests', 'media_perftests', 'net_perftests',
     'performance_browser_tests', 'telemetry_perf_tests',
     'telemetry_perf_webview_tests', 'tracing_perftests']
-_BOTS_USING_PERFORMANCE_TEST_SUITES = [
-    'linux-perf', 'mac-10_12_laptop_low_end-perf',
-    'mac-10_13_laptop_high_end-perf',
-    'mojo-linux-perf',
+_BOTS_USING_PERFORMANCE_TEST_SUITES = [  # Sorted by OS, then config name.
+    'linux-perf', 'mojo-linux-perf',
+    'mac-10_12_laptop_low_end-perf', 'mac-10_13_laptop_high_end-perf',
+    'chromium-rel-win10', 'chromium-rel-win7-dual',
+    'chromium-rel-win7-gpu-nvidia', 'win-high-dpi',
 ]
 
 
