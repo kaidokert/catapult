@@ -34,6 +34,24 @@
       "revId": "2e36331c5169422e531d5f209823b3655b711666",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa654b33_0d3aeaf3",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-07-02T16:43:58Z",
+      "side": 1,
+      "message": "Right. This is use by the legacy timeline.py metric, TBMv2 doesn\u0027t use this since we have the code to detect the renderer thread directly.\n\nOnce the bug to migrate the smoothness benchmarks to use TBMv2 (crbug.com/760553) is done, you can just kill this code :-)",
+      "parentUuid": "c4483245_0d0e9ee7",
+      "revId": "2e36331c5169422e531d5f209823b3655b711666",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
