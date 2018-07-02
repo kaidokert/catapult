@@ -22,6 +22,9 @@ class DescriptorTest(testing_common.TestCase):
     stored_object.Set(descriptor.GROUPABLE_TEST_SUITE_PREFIXES_KEY, [
         'TEST_GROUPABLE%',
     ])
+    stored_object.Set(descriptor.POLY_MEASUREMENT_TEST_SUITES_KEY, [
+        'resource_sizes:foo',
+    ])
 
   def testFromTestPath_Empty(self):
     desc = descriptor.Descriptor.FromTestPath([])
@@ -126,6 +129,18 @@ class DescriptorTest(testing_common.TestCase):
     self.assertEqual('master:bot', desc.bot)
     self.assertEqual('TEST_GROUPABLE:FOO', desc.test_suite)
 
+  def testFromTestPath_SystemHealth(self):
+    desc = descriptor.Descriptor.FromTestPath([
+        'master', 'bot', 'system_health.common_desktop', 'measurement',
+        'browse_news', 'browse_news_cnn'])
+    self.assertEqual('browse:news:cnn', desc.test_case)
+
+  def testFromTestPath_ResourceSizes(self):
+    desc = descriptor.Descriptor.FromTestPath([
+        'master', 'bot', 'resource_sizes:foo', 'a', 'b', 'c', 'd'])
+    self.assertEqual('a:b:c:d', desc.measurement)
+    self.assertEqual(None, desc.test_case)
+
   def testToTestPaths_Empty(self):
     self.assertEqual([], descriptor.Descriptor().ToTestPaths())
 
@@ -189,6 +204,21 @@ class DescriptorTest(testing_common.TestCase):
         bot='master:bot',
         test_suite='TEST_GROUPABLE:FOO').ToTestPaths())
 
+  def testToTestPath_SystemHealth(self):
+    expected = ('master/bot/system_health.common_desktop/measurement/'
+                'browse_news/browse_news_cnn')
+    self.assertEqual([expected], descriptor.Descriptor(
+        bot='master:bot',
+        test_suite='system_health.common_desktop',
+        measurement='measurement',
+        test_case='browse:news:cnn').ToTestPaths())
+
+  def testToTestPath_ResourceSizes(self):
+    expected = ('master/bot/resource sizes (foo)/a/b/c')
+    self.assertEqual([expected], descriptor.Descriptor(
+        bot='master:bot',
+        test_suite='resource_sizes:foo',
+        measurement='a:b:c').ToTestPaths())
 
 if __name__ == '__main__':
   unittest.main()
