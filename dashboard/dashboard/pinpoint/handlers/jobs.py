@@ -11,7 +11,7 @@ from dashboard.api import api_auth
 from dashboard.pinpoint.models import job as job_module
 
 
-_MAX_JOBS_TO_FETCH = 100
+_MAX_JOBS_TO_FETCH = 1000
 _MAX_JOBS_TO_COUNT = 1000
 
 
@@ -42,6 +42,11 @@ def _GetJobs(options):
 
   jobs = job_future.get_result()
   for job in jobs:
-    result['jobs'].append(job.AsDict(options))
+    a = job.AsDict(options)
+    if 'webview' not in a['arguments']['configuration']:
+      continue
+    if a['status'] != 'Failed':
+      continue
+    result['jobs'].append(a)
 
   return result

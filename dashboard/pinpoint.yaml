@@ -1,5 +1,7 @@
 service: pinpoint
 
+default_expiration: "30s"
+
 runtime: python27
 api_version: 1
 threadsafe: true

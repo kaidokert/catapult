@@ -7,6 +7,9 @@ found in the LICENSE file.
 
 <link rel="import" href="/elements/base-style.html">
 <link rel="import" href="/elements/loading-wrapper.html">
+<link rel="import" href="/elements/stats-page/stats-summary.html">
+<link rel="import" href="/elements/stats-page/stats-table.html">
+
 
 <dom-module id="stats-page">
   <template>
@@ -14,7 +17,12 @@ found in the LICENSE file.
 
     <h1>Stats</h1>
     <loading-wrapper url="/api/stats" response="{{jobs}}">
-      <!-- TODO: Insert cool charts and data here -->
+      <stats-summary jobs="[[jobs]]"></stats-summary>
+      <stats-table id="jobs-table"
+          jobs="[[jobs]]"
+          sort-by="[[queryParams.sortBy]]"
+          sort-descending="[[queryParams.sortDescending]]">
+      </stats-table>
     </loading-wrapper>
   </template>
 

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<dom-module id="stats-summary">
+  <template>
+    <style include="base-style">
+    #stats {
+      width: 500px;
+    }
+
+    tr, td {
+      text-align: center;
+    }
+    </style>
+
+    <h1>Quick Summary</h1>
+    <table id="stats">
+      <thead>
+        <tr>
+          <th># Jobs last 7 days
+          <th>Repro'd
+          <th>No Repro
+          <th>Failures
+      <tbody>
+          <tr>
+            <td>[[numCompletedJobs(jobs)]]
+            <td>[[calculateRepro(jobs)]]
+            <td>[[calculateNoRepro(jobs)]]
+            <td>[[calculateFailure(jobs)]]
+        </template>
+    </table>
+  </template>
+
+  <script>
+    'use strict';
+    Polymer({
+      is: 'stats-summary',
+
+      properties: {
+        jobs: {
+          type: Object,
+        },
+      },
+
+      last7Days(job, now) {
+        const created = new Date(job.created + 'Z');
+        const elapsedMS = now - created;
+
+        return (elapsedMS <= 7 * 24 * 60 * 60 * 1000);
+      },
+
+      filter7Days(jobs) {
+        const recentJobs = [];
+
+        const now = Date.now();
+
+        for (const j of jobs) {
+          if (this.last7Days(j, now)) {
+            recentJobs.push(j);
+          }
+        }
+
+        return recentJobs;
+      },
+
+      numCompletedJobs(jobs) {
+        jobs = this.filter7Days(jobs);
+
+        let num = 0;
+
+        for (const j of jobs) {
+          if (j.status != 'Running') {
+            num += 1;
+          }
+        }
+        return num;
+      },
+
+      formatPercent(num, total) {
+        const percent = num / total;
+        return num + ' (' + (100.0 * percent).toFixed(1) + '%)';
+      },
+
+      calculateRepro(jobs) {
+        jobs = this.filter7Days(jobs);
+
+        let repro = 0;
+
+        for (const j of jobs) {
+          if (j.status != 'Completed') {
+            continue;
+          }
+
+          if (j.differences > 0) {
+            repro += 1;
+          }
+        }
+        return this.formatPercent(repro, this.numCompletedJobs(jobs));
+      },
+
+      calculateNoRepro(jobs) {
+        jobs = this.filter7Days(jobs);
+
+        let repro = 0;
+
+        for (const j of jobs) {
+          if (j.status != 'Completed') {
+            continue;
+          }
+
+          if (j.differences == 0) {
+            repro += 1;
+          }
+        }
+        return this.formatPercent(repro, this.numCompletedJobs(jobs));
+      },
+
+      calculateFailure(jobs) {
+        jobs = this.filter7Days(jobs);
+
+        let repro = 0;
+
+        for (const j of jobs) {
+          if (j.status == 'Failed') {
+            repro += 1;
+          }
+        }
+        return this.formatPercent(repro, this.numCompletedJobs(jobs));
+      }
+    });
+  </script>
+</dom-module>
