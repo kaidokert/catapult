@@ -317,15 +317,14 @@ class ChromeTracingAgent(tracing_agent.TracingAgent):
           'Tracing is not running on platform backend %s.'
           % self._platform_backend)
 
-    for backend in self._IterInspectorBackends():
-      backend.EvaluateJavaScript("console.time('flush-tracing');")
+    main_backend = next(self._IterInspectorBackends())
+    main_backend.EvaluateJavaScript("console.time('flush-tracing');")
 
     self.StopAgentTracing()
     self.CollectAgentTraceData(trace_data_builder)
     self.StartAgentTracing(config, timeout)
 
-    for backend in self._IterInspectorBackends():
-      backend.EvaluateJavaScript("console.timeEnd('flush-tracing');")
+    main_backend.EvaluateJavaScript("console.timeEnd('flush-tracing');")
 
   def _IterInspectorBackends(self):
     for client in chrome_tracing_devtools_manager.GetDevToolsClients(
