@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "92866a1d_557417f0",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-02T15:39:10Z",
+      "side": 1,
+      "message": "Doing some code archaeology I tracked these down to https://codereview.chromium.org/63283005 (over 4 years ago), but even then the loop was already there.\n\nThis was used by old \"timeline.py\" metric. Any idea if these are still used by the new TBMv2 metrics?",
+      "revId": "2e36331c5169422e531d5f209823b3655b711666",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
