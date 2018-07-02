@@ -37,6 +37,10 @@ tr.exportTo('tr.v.d', function() {
       return this.range_.duration;
     }
 
+    supportsDeduplicationFastPath() {
+      return true;
+    }
+
     clone() {
       const clone = new tr.v.d.DateRange(this.range_.min);
       clone.addDiagnostic(this);

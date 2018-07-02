@@ -36,7 +36,19 @@ tr.exportTo('tr.v.d', function() {
      */
     constructor(values) {
       super();
+
+      if (typeof values[Symbol.iterator] !== 'function') {
+        throw new Error('GenericSet must be constructed from an interable.');
+      }
+
       this.values_ = new Set(values);
+      this.has_objects_ = false;
+
+      for (const value of values.values()) {
+        if (typeof value === 'object') {
+          this.has_objects_ = true;
+        }
+      }
     }
 
     get size() {
@@ -45,6 +57,10 @@ tr.exportTo('tr.v.d', function() {
 
     get length() {
       return this.values_.size;
+    }
+
+    get supportsDeduplicationFastPath() {
+      return !(this.has_objects_);
     }
 
     * [Symbol.iterator]() {
@@ -70,6 +86,14 @@ tr.exportTo('tr.v.d', function() {
         if (!other.has(value)) return false;
       }
       return true;
+    }
+
+    key() {
+      let key = '';
+      for (const value of new Array(this.values_.values()).sort()) {
+        key += value;
+      }
+      return key;
     }
 
     asDictInto_(d) {
