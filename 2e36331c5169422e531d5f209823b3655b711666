@@ -16,6 +16,24 @@
       "revId": "2e36331c5169422e531d5f209823b3655b711666",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4483245_0d0e9ee7",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-02T15:41:30Z",
+      "side": 1,
+      "message": "And this is the actual start of it all:\nhttps://codereview.chromium.org/29423005/diff/960001/tools/telemetry/telemetry/core/backends/chrome/chrome_browser_backend.py",
+      "parentUuid": "92866a1d_557417f0",
+      "revId": "2e36331c5169422e531d5f209823b3655b711666",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
