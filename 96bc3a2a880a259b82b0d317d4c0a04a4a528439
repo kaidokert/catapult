@@ -16,6 +16,24 @@
       "revId": "96bc3a2a880a259b82b0d317d4c0a04a4a528439",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8d4b2c1_0fe2fa49",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-07-02T11:42:04Z",
+      "side": 1,
+      "message": "Thank you, I will not forget it for any am.. err.. number of days. Done.",
+      "parentUuid": "537face4_a8b0a252",
+      "revId": "96bc3a2a880a259b82b0d317d4c0a04a4a528439",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
