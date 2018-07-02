@@ -211,6 +211,16 @@ class Benchmark(command_line.Command):
     """
     return generic_set.GenericSet(decorators.GetEmails(self) or [])
 
+  def GetDocumentationLink(self):
+    """Returns a Generic Diagnostic containing the benchmark's documentation
+       link in a string.
+
+    Returns:
+      Diagnostic with the link (string) to the benchmark documentation.
+    """
+    return generic_set.GenericSet(
+        ['Benchmark documentation link', decorators.GetDocumentationLink(self)])
+
   @decorators.Deprecated(
       2017, 7, 29, 'Use CreateCoreTimelineBasedMeasurementOptions instead.')
   def CreateTimelineBasedMeasurementOptions(self):
