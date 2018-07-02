@@ -4,6 +4,8 @@
 
 import datetime
 import json
+import logging
+import sys
 import unittest
 
 import mock
@@ -54,6 +56,7 @@ class FileBugTest(testing_common.TestCase):
 
   def setUp(self):
     super(FileBugTest, self).setUp()
+    logging.getLogger().setLevel(logging.DEBUG)
     app = webapp2.WSGIApplication([('/file_bug', file_bug.FileBugHandler)])
     self.testapp = webtest.TestApp(app)
     testing_common.SetSheriffDomains(['chromium.org'])
@@ -895,4 +898,5 @@ class FileBugTest(testing_common.TestCase):
         response.body)
 
 if __name__ == '__main__':
+  logging.basicConfig(stream=sys.stderr)
   unittest.main()
