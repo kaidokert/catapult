@@ -436,7 +436,8 @@ class DevToolsClientBackend(object):
     self._tab_ids = []
     try:
       context_map = self.GetUpdatedInspectableContexts()
-      for context in context_map.contexts:
+      # TODO: HACK
+      for context in context_map.contexts[:1]:
         if context['type'] not in ['iframe', 'page', 'webview']:
           continue
         context_id = context['id']
