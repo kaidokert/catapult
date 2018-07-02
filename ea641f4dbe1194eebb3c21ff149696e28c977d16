@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a69b6259_601e1ad7",
+        "filename": "tracing/tracing/value/diagnostics/generic_set.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-07-02T17:11:59Z",
+      "side": 1,
+      "message": "I think you may want to \"memorize\" this in case the method is called multiple times?\n\ne.g:\nif (!this._key) {\n   ...\n}\nreturn this._key",
+      "revId": "ea641f4dbe1194eebb3c21ff149696e28c977d16",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
