@@ -126,6 +126,12 @@ class DescriptorTest(testing_common.TestCase):
     self.assertEqual('master:bot', desc.bot)
     self.assertEqual('TEST_GROUPABLE:FOO', desc.test_suite)
 
+  def testFromTestPath_SystemHealth(self):
+    desc = descriptor.Descriptor.FromTestPath([
+      'master', 'bot', 'system_health.common_desktop', 'measurement',
+      'browse_news', 'browse_news_cnn'])
+    self.assertEqual('browse:news:cnn', desc.test_case)
+
   def testToTestPaths_Empty(self):
     self.assertEqual([], descriptor.Descriptor().ToTestPaths())
 
