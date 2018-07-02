@@ -73,6 +73,23 @@
     },
     {
       "key": {
+        "uuid": "be00e5ad_38a19c28",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1215729
+      },
+      "writtenOn": "2018-07-02T14:39:10Z",
+      "side": 1,
+      "message": "Do you think it\u0027s necessary to add a comment about why we follow the order of DRM_EVENT, DISPLAY_EVENT, DISPLAY_EVENT?",
+      "revId": "2b5f08214712119832ae8ed1526a306dc31f3da7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c3e5aa7b_6ab6bcad",
         "filename": "tracing/tracing/metrics/rendering_metric.html",
         "patchSetId": 2
