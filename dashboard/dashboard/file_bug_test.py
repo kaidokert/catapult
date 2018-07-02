@@ -4,6 +4,8 @@
 
 import datetime
 import json
+import logging
+import sys
 import unittest
 
 import mock
@@ -54,6 +56,9 @@ class FileBugTest(testing_common.TestCase):
 
   def setUp(self):
     super(FileBugTest, self).setUp()
+    logging.fatal('OCCAM 0')
+    sys.stderr.stream.write('OCCAM 1')
+    sys.stdout.stream.write('OCCAM 2')
     app = webapp2.WSGIApplication([('/file_bug', file_bug.FileBugHandler)])
     self.testapp = webtest.TestApp(app)
     testing_common.SetSheriffDomains(['chromium.org'])
