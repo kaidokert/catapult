@@ -4,6 +4,8 @@
 
 import datetime
 import json
+import logging
+import sys
 import unittest
 
 import mock
@@ -24,6 +26,15 @@ from dashboard.models import anomaly
 from dashboard.models import bug_label_patterns
 from dashboard.models import sheriff
 from dashboard.services import crrev_service
+
+
+def LogToStdOut():
+  logger = logging.getLogger()
+  logger.level = logging.DEBUG
+  logger.addHandler(logging.StreamHandler(sys.stdout))
+
+
+LogToStdOut()
 
 
 class MockIssueTrackerService(object):
