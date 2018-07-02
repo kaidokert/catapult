@@ -87,9 +87,14 @@ class FileBugHandler(request_handler.RequestHandler):
       description: The default bug description string.
       urlsafe_keys: Comma-separated Alert keys in urlsafe format.
     """
+    logging.fatal('summary %r', summary)
     alert_keys = [ndb.Key(urlsafe=k) for k in urlsafe_keys.split(',')]
+    logging.fatal('keys %r', alert_keys)
     labels, components = _FetchLabelsAndComponents(alert_keys)
+    logging.fatal('labels %r', labels)
+    logging.fatal('components %r', components)
     owner_components = _FetchBugComponents(alert_keys)
+    logging.fatal('owner %r', owner_components)
 
     self.RenderHtml('bug_result.html', {
         'bug_create_form': True,
