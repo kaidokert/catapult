@@ -37,8 +37,12 @@ class RequestHandler(webapp2.RequestHandler):
           values.
       status: int. HTTP status code.
     """
+    logging.info('file=%r', template_file)
+    logging.info('values=%r', template_values)
+    logging.info('status=%r', status)
     self.response.set_status(status)
     template = JINJA2_ENVIRONMENT.get_template(template_file)
+    logging.info('template=%r', template)
     self.GetDynamicVariables(template_values)
     self.response.out.write(template.render(template_values))
 
