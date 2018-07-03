@@ -88,6 +88,24 @@
       "revId": "2e36331c5169422e531d5f209823b3655b711666",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1348c2e6_9c82803a",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-03T14:51:19Z",
+      "side": 1,
+      "message": "Ack. All tests in this CL now pass, so indeed we have identified all tweaks needed.\n\nI\u0027m exploring now the alternative you recommend to find the renderer process of the main foreground tab only.",
+      "parentUuid": "2d0b3146_41229bef",
+      "revId": "2e36331c5169422e531d5f209823b3655b711666",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
