@@ -19,7 +19,6 @@ from tracing.trace_data import trace_data as trace_data_module
 
 TEST_DIR = os.path.join(os.path.dirname(__file__), 'test_data')
 ATRACE_DATA = os.path.join(TEST_DIR, 'atrace_data')
-BATTOR_DATA = os.path.join(TEST_DIR, 'battor_test_data.txt')
 COMBINED_PROFILE_CHROME_DATA = os.path.join(
     TEST_DIR, 'profile-chrome_systrace_perf_chrome_data')
 
@@ -75,13 +74,6 @@ class OutputGeneratorTest(unittest.TestCase):
   def testHtmlOutputGenerationFormatsMultipleTraces(self):
     trace_results = []
     trace_data_builder = trace_data_module.TraceDataBuilder()
-
-    with open(BATTOR_DATA) as fp:
-      battor_data = fp.read()
-    trace_results.append(
-        trace_result.TraceResult('powerTraceAsString', battor_data))
-    trace_data_builder.AddTraceFor(
-        trace_data_module.BATTOR_TRACE_PART, battor_data)
 
     with open(ATRACE_DATA) as fp:
       atrace_data = fp.read()
