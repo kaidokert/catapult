@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5259b278_634f9b3a",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-03T17:10:44Z",
+      "side": 1,
+      "message": "are all these cases covered by tests? sizes and the memory.top_10_mobile look like they might not",
+      "range": {
+        "startLine": 121,
+        "startChar": 22,
+        "endLine": 121,
+        "endChar": 27
+      },
+      "revId": "4358b5d4b1655c24dd7ea7aa46f4687a1efcd9ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
