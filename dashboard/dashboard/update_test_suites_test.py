@@ -29,6 +29,7 @@ class ListTestSuitesTest(testing_common.TestCase):
     datastore_hooks.InstallHooks()
     testing_common.SetIsInternalUser('internal@chromium.org', True)
     self.UnsetCurrentUser()
+    descriptor.Descriptor.ResetMemoizedConfiguration()
     stored_object.Set(descriptor.PARTIAL_TEST_SUITES_KEY, [
         'TEST_PARTIAL_TEST_SUITE',
     ])
