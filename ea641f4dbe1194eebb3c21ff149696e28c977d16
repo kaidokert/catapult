@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f959511a_f2d22240",
+        "filename": "tracing/tracing/value/diagnostics/generic_set.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-07-03T14:13:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "843a54f7_30928da4",
+      "range": {
+        "startLine": 62,
+        "startChar": 8,
+        "endLine": 62,
+        "endChar": 37
+      },
+      "revId": "ea641f4dbe1194eebb3c21ff149696e28c977d16",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a69b6259_601e1ad7",
         "filename": "tracing/tracing/value/diagnostics/generic_set.html",
         "patchSetId": 3
@@ -112,6 +136,72 @@
     },
     {
       "key": {
+        "uuid": "a0468835_0441fb7d",
+        "filename": "tracing/tracing/value/diagnostics/generic_set.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-07-03T14:13:07Z",
+      "side": 1,
+      "message": "Renamed to hashKey.",
+      "parentUuid": "fcfdeac6_213627e7",
+      "range": {
+        "startLine": 91,
+        "startChar": 4,
+        "endLine": 91,
+        "endChar": 7
+      },
+      "revId": "ea641f4dbe1194eebb3c21ff149696e28c977d16",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a2b15e4_9643188d",
+        "filename": "tracing/tracing/value/diagnostics/generic_set.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-07-03T14:13:07Z",
+      "side": 1,
+      "message": "Done. My trepidation previously was that it performs a fair bit of computation, but with memoization it\u0027s much more natural for it to be a getter.",
+      "parentUuid": "60b20778_a2cb967f",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 11
+      },
+      "revId": "ea641f4dbe1194eebb3c21ff149696e28c977d16",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92202c03_604a8432",
+        "filename": "tracing/tracing/value/diagnostics/generic_set.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-07-03T14:13:07Z",
+      "side": 1,
+      "message": "I think you might have typoed \u0027memoize\u0027 -- Done.",
+      "parentUuid": "a69b6259_601e1ad7",
+      "revId": "ea641f4dbe1194eebb3c21ff149696e28c977d16",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3db1eba3_add6df00",
         "filename": "tracing/tracing/value/diagnostics/generic_set.html",
         "patchSetId": 3
@@ -123,6 +213,24 @@
       "writtenOn": "2018-07-02T22:45:53Z",
       "side": 1,
       "message": "if (typeof value \u003d\u003d\u003d \u0027object\u0027) this.has_objects_ \u003d true;",
+      "revId": "ea641f4dbe1194eebb3c21ff149696e28c977d16",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c5f6bf9_153954a4",
+        "filename": "tracing/tracing/value/diagnostics/generic_set.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-07-03T14:13:07Z",
+      "side": 1,
+      "message": "Done. Good catch -- just reused the block above for this.",
+      "parentUuid": "3db1eba3_add6df00",
       "revId": "ea641f4dbe1194eebb3c21ff149696e28c977d16",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
