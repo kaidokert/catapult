@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "425e75a2_739ca63b",
+        "filename": "tracing/tracing/value/histogram_set.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-03T16:41:02Z",
+      "side": 1,
+      "message": "unused?",
+      "range": {
+        "startLine": 330,
+        "startChar": 12,
+        "endLine": 330,
+        "endChar": 23
+      },
+      "revId": "5957856392ef1371b364268baa9f5b2305067e3c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
