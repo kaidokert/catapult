@@ -435,22 +435,25 @@ class DevToolsClientBackend(object):
     assert self.is_tracing_running
     self._tab_ids = []
     try:
-      context_map = self.GetUpdatedInspectableContexts()
-      for context in context_map.contexts:
-        if context['type'] not in ['iframe', 'page', 'webview']:
-          continue
-        context_id = context['id']
-        backend = context_map.GetInspectorBackend(context_id)
+      for backend in self._IterInspectorBackends(['iframe', 'page', 'webview']):
         backend.EvaluateJavaScript(
             """
             console.time({{ backend_id }});
             console.timeEnd({{ backend_id }});
-            console.time.toString().indexOf('[native code]') != -1;
             """,
             backend_id=backend.id)
         self._tab_ids.append(backend.id)
     finally:
       self._tracing_backend.StopTracing()
+
+  def _IterInspectorBackends(self, types):
+    context_map = self.GetUpdatedInspectableContexts()
+    for context in context_map.contexts:
+      if context['type'] in types:
+        yield context_map.GetInspectorBackend(context['id'])
+
+  def ForegroundTabBackend(self):
+    next(self._IterInspectorBackends(['page']), None)
 
   def CollectChromeTracingData(self, trace_data_builder, timeout=60):
     self._CreateTracingBackendIfNeeded()
