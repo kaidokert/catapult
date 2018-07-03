@@ -566,7 +566,7 @@ class PageTestResults(object):
     assert value.IsMergableWith(representative_value)
 
   def PrintSummary(self):
-    if self._benchmark_enabled:
+    if self._benchmark_enabled and self.pages_that_succeeded_and_not_skipped:
       self._progress_reporter.DidFinishAllTests(self)
 
       # Only serialize the trace if output_format is json or html.
