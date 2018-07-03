@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "72486c05_343f1cde",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-07-03T14:16:07Z",
+      "side": 1,
+      "message": "Sorry, I should have just written it out. The element should be an array:\n\ngeneric_set.GenericSet([[\u0027Link title\u0027, url]])",
+      "parentUuid": "720b6a79_e11918db",
+      "revId": "6dd22c278565d538c74348ffc90998ca12497677",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e94eabdd_7bd65dfd",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 1
