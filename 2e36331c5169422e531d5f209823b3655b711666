@@ -52,6 +52,24 @@
       "revId": "2e36331c5169422e531d5f209823b3655b711666",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "937f7e61_292aef14",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-03T09:15:32Z",
+      "side": 1,
+      "message": "Do legacy smoothness benchmarks use multiple tabs? If not maybe the \"hack\" to just put a marker on the foreground tab should be enough until crbug.com/760553 is resolved?",
+      "parentUuid": "aa654b33_0d3aeaf3",
+      "revId": "2e36331c5169422e531d5f209823b3655b711666",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
