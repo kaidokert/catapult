@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "773fe066_34aeab6a",
+        "filename": "systrace/systrace/output_generator_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-07-03T18:53:36Z",
+      "side": 1,
+      "message": "Note that we need to add another trace instead of BattOr to avoid hitting the threshold for https://cs.chromium.org/chromium/src/third_party/catapult/systrace/systrace/output_generator.py?type\u003dcs\u0026q\u003d%22%3E+3%22+f:systrace\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d56, at which point the md5 sums no longer match below",
+      "revId": "93807fec4d286f57c0d4827ee55cb66b68cafd8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
