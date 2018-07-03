@@ -213,3 +213,22 @@ class StartupTracingTest(unittest.TestCase):
       self.tracing_controller.FlushTracing()
     markers = self.StopTracingAndGetTestMarkers()
     self.assertEquals(markers, ['bar'])
+
+  @decorators.Isolated
+  def testRestartBrowserWhileTracing(self):
+    expected_markers = ['browser-%i' % i for i in xrange(1, 4)]
+    self.tracing_controller.StartTracing(self.config)
+    try:
+      self.possible_browser.SetUpEnvironment(self.browser_options)
+      for marker in expected_markers:
+        with self.possible_browser.Create() as browser:
+          browser.tabs[0].Navigate('about:blank')
+          browser.tabs[0].WaitForDocumentReadyStateToBeInteractiveOrBetter()
+          InjectMarker(browser.tabs[0], marker)
+          # TODO(crbug.com/854212): This should happen implicitly.
+          self.tracing_controller.FlushTracing()
+    finally:
+      self.possible_browser.CleanUpEnvironment()
+    markers = self.StopTracingAndGetTestMarkers()
+    # Markers may be out of order.
+    self.assertItemsEqual(markers, expected_markers)
