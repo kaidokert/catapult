@@ -70,6 +70,24 @@
       "revId": "2e36331c5169422e531d5f209823b3655b711666",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d0b3146_41229bef",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-07-03T10:59:13Z",
+      "side": 1,
+      "message": "None of the legacy benchmark use multitabs, so I think what you propose should work. \n\nAnother alternative is, you can also remove this and add some code in the timeline metrics to find the render process \u0026 assert that there is only one.",
+      "parentUuid": "937f7e61_292aef14",
+      "revId": "2e36331c5169422e531d5f209823b3655b711666",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
