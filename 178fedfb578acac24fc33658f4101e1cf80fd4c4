@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c70418d9_6f473a9c",
+        "filename": "dashboard/dashboard/api/describe_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-03T17:39:54Z",
+      "side": 1,
+      "message": "https://github.com/catapult-project/catapult/blob/master/dashboard/dashboard/api/test_suites_test.py#L47\n\nThink we said next time we hit this, we\u0027d refactor.",
+      "revId": "178fedfb578acac24fc33658f4101e1cf80fd4c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb7fd573_300e31e9",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-03T17:39:54Z",
+      "side": 1,
+      "message": "Didn\u0027t realize it does this, that would be unexpected if I was using this. What functionality depends on the path param being modified?",
+      "range": {
+        "startLine": 101,
+        "startChar": 4,
+        "endLine": 101,
+        "endChar": 11
+      },
+      "revId": "178fedfb578acac24fc33658f4101e1cf80fd4c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bdb67f0_ee9d8429",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-03T17:39:54Z",
+      "side": 1,
+      "message": "Probably not worth turning this into a tasklet considering you\u0027re just doing the operations in order anyway with no real overlap that I can see. Also, no idea if deferred.defer handles this properly, a synctasklet maybe but I have my doubts about tasklet.",
+      "range": {
+        "startLine": 45,
+        "startChar": 5,
+        "endLine": 45,
+        "endChar": 12
+      },
+      "revId": "178fedfb578acac24fc33658f4101e1cf80fd4c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b868f585_f5fdc34b",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-03T17:39:54Z",
+      "side": 1,
+      "message": "You\u0027re inside a tasklet, believe sync calls have potential to deadlock and Descriptor.FromTestPath calls out sync to stored_object.Get(...)",
+      "revId": "178fedfb578acac24fc33658f4101e1cf80fd4c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0eab625_584aca35",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-03T17:39:54Z",
+      "side": 1,
+      "message": "Inside a tasklet you need to use the async versions: yield stored_object.SetAsync(..)",
+      "range": {
+        "startLine": 84,
+        "startChar": 16,
+        "endLine": 84,
+        "endChar": 19
+      },
+      "revId": "178fedfb578acac24fc33658f4101e1cf80fd4c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
