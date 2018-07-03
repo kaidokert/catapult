@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "991326e9_360cfcd4",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/atrace_tracing_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-03T09:51:17Z",
+      "side": 1,
+      "message": "Can you add this directly in telemetry.core.exceptions? Also maybe make it a subclass of TracingException?",
+      "revId": "e64258cf4e1f70c1008b033411a7af37fc9f86f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bc2ee5c_1f6a0269",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/atrace_tracing_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-03T09:51:17Z",
+      "side": 1,
+      "message": "Is there some way we can tell whether this was due to a timeout or another kind of error?",
+      "revId": "e64258cf4e1f70c1008b033411a7af37fc9f86f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be17953c_9a18befc",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/atrace_tracing_agent_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-03T09:51:17Z",
+      "side": 1,
+      "message": "nit: extra blank line here.",
+      "revId": "e64258cf4e1f70c1008b033411a7af37fc9f86f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
