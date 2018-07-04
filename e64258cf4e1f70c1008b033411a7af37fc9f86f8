@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "ef8127f1_e36fb3e6",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/atrace_tracing_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-04T08:51:51Z",
+      "side": 1,
+      "message": "I think those should be moved to core.exceptions too (I can do that on a follow up CL); it\u0027s better if all Telemetry errors and their hierarchy can be identified by looking at a single file. Ned, any thoughts on this?",
+      "parentUuid": "05657754_03c7f3b8",
+      "revId": "e64258cf4e1f70c1008b033411a7af37fc9f86f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9bc2ee5c_1f6a0269",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/atrace_tracing_agent.py",
         "patchSetId": 1
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "I believe GetResults will always return an array if there is no timeout. The only reason GetResults() can return false is due to the timeout decorator.\n\nThere are also other potential failure modes though too: device-side failures will usually result in devil throwing an exception, and invalid trace data will usually be caught by the tracing importer. I\u0027m unclear if we actually want to handle those types of errors here though.",
       "parentUuid": "9bc2ee5c_1f6a0269",
+      "revId": "e64258cf4e1f70c1008b033411a7af37fc9f86f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e457ad10_9c1f2aad",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/atrace_tracing_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-04T08:51:51Z",
+      "side": 1,
+      "message": "Oh, wow [1], I think it\u0027s weird that the Timeout decorator returns false on timeout (rather than raising an exception). Anyway, then yes, I\u0027m happy with your error message. No need to change anything here.\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/common/py_utils/py_utils/__init__.py?rcl\u003d20c83a81a0e6dfe818f945d3be5d5efc2ae206cf\u0026l\u003d104",
+      "parentUuid": "127e5005_5e3772a9",
       "revId": "e64258cf4e1f70c1008b033411a7af37fc9f86f8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
