@@ -90,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "c38fa1d7_73b4ee32",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-07-04T16:20:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be00e5ad_38a19c28",
+      "revId": "2b5f08214712119832ae8ed1526a306dc31f3da7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c3e5aa7b_6ab6bcad",
         "filename": "tracing/tracing/metrics/rendering_metric.html",
         "patchSetId": 2
@@ -107,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "4988d991_d649089f",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-07-04T16:20:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3e5aa7b_6ab6bcad",
+      "revId": "2b5f08214712119832ae8ed1526a306dc31f3da7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "031bb073_d4987cc6",
         "filename": "tracing/tracing/metrics/rendering_metric.html",
         "patchSetId": 2
@@ -118,6 +154,24 @@
       "writtenOn": "2018-06-29T20:40:27Z",
       "side": 1,
       "message": "Why not use normalizedPercentage with the default boundaries?\nhttps://github.com/catapult-project/catapult/blob/master/tracing/tracing/value/histogram.html#L1449",
+      "revId": "2b5f08214712119832ae8ed1526a306dc31f3da7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "044a8275_0d5ffd76",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-07-04T16:20:44Z",
+      "side": 1,
+      "message": "Mainly because the legacy definition has a \"score\" unit.\n\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/web_perf/metrics/smoothness.py?l\u003d291\n\nI changed it to normalizedPercentage. Will the unit change cause any alert issues when I rename the metric to percentage_smooth later?",
+      "parentUuid": "031bb073_d4987cc6",
       "revId": "2b5f08214712119832ae8ed1526a306dc31f3da7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -141,6 +195,24 @@
     },
     {
       "key": {
+        "uuid": "489367c9_db4cb19b",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-07-04T16:20:44Z",
+      "side": 1,
+      "message": "This is the same way the legacy code finds interaction recrods:\n\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/web_perf/timeline_based_measurement.py?l\u003d74",
+      "parentUuid": "a90c03e3_7b4eb8fc",
+      "revId": "2b5f08214712119832ae8ed1526a306dc31f3da7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "210b576a_1a1445f4",
         "filename": "tracing/tracing/metrics/rendering_metric.html",
         "patchSetId": 2
@@ -152,6 +224,24 @@
       "writtenOn": "2018-06-29T20:40:27Z",
       "side": 1,
       "message": "Why can\u0027t you add this to UserModelBuilder in this CL?",
+      "revId": "2b5f08214712119832ae8ed1526a306dc31f3da7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2faa74c4_a6d50528",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-07-04T16:20:44Z",
+      "side": 1,
+      "message": "My personal opinion: this is used only in the rendering metric for now; so it\u0027s cleaner if it\u0027s defined here. In future, if we decide to use it in other metrics, we should move it to a place that\u0027s accessible by all. Do you prefer to move it now?",
+      "parentUuid": "210b576a_1a1445f4",
       "revId": "2b5f08214712119832ae8ed1526a306dc31f3da7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
