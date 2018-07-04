@@ -108,6 +108,9 @@ class FakeDevtoolsClient(object):
   def GetChromeBranchNumber(self):
     return self.chrome_branch_number
 
+  def ForegroundTabBackend(self):
+    return None
+
 
 class ChromeTracingAgentTest(unittest.TestCase):
   def setUp(self):
