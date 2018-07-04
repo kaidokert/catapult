@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "277bc1ef_bd79c47d",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-04T11:29:08Z",
+      "side": 0,
+      "message": "Looks like this line isn\u0027t doing anything. At some point in the past this was read as a \"success\" value [1], but that code was later removed.\n\n[1]: https://chromium.googlesource.com/catapult/+/c8463afae846f015eba884e20aaec7ff5c98fbef%5E%21/#F0",
+      "revId": "5abd99f5f7685f0e3b18f11e2fcda667a3be83e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2628c244_5180f1a5",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-04T11:29:08Z",
+      "side": 1,
+      "message": "No behavior change here for now, only refactoring to reuse code and reduce the surface where the bug is exposed.\n\nOn a follow up CL I\u0027ll handle with this case too.",
+      "revId": "1292e5e3fb2b88ebfa5332a0d70e46b12a4cf8ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a999f2da_f1fbc5eb",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_tracing_agent.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-04T11:29:08Z",
+      "side": 1,
+      "message": "This is the main change: instead of iterating over all backends, now we only go over the first tab of each devtools client.",
+      "revId": "1292e5e3fb2b88ebfa5332a0d70e46b12a4cf8ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
