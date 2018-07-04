@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import logging
 import time
 import unittest
 
@@ -101,6 +102,7 @@ class TracingControllerTest(tab_test_case.TabTestCase):
   @decorators.Isolated
   @decorators.Disabled('win')  # crbug.com/829976
   def testFlushTracing(self):
+    logging.info('===================================================')
     subtrace_count = 5
 
     tab = self._browser.tabs[0]
@@ -131,6 +133,7 @@ class TracingControllerTest(tab_test_case.TabTestCase):
     # 'test-marker-1', ..., 'flush-tracing',
     # 'test-marker-|subtrace_count - 1|' are monotonic.
     markers = ReadMarkerEvents(trace_data)
+    logging.error('Markers: %s', markers)
     self.assertEquals(2 * subtrace_count - 1, len(markers))
     for i in xrange(0, len(markers) - 2):
       if i % 2 == 0:
