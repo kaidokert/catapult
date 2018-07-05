@@ -118,7 +118,7 @@ class SmoothGestureTest(page_test_test_case.PageTestTestCase):
     ps.AddStory(ScrollingPage(
         'file://scrollable_page.html', ps, base_dir=ps.base_dir))
     models = []
-    tab_ids = []
+
     class ScrollingGestureTestMeasurement(legacy_page_test.LegacyPageTest):
       def __init__(self):
         # pylint: disable=bad-super-call
@@ -134,12 +134,11 @@ class SmoothGestureTest(page_test_test_case.PageTestTestCase):
         del page, results  # unused
         models.append(model_module.TimelineModel(
             tab.browser.platform.tracing_controller.StopTracing()[0]))
-        tab_ids.append(tab.id)
 
     self.RunMeasurement(ScrollingGestureTestMeasurement(), ps)
+    self.assertEqual(len(models), 1)
     timeline_model = models[0]
-    renderer_thread = timeline_model.GetRendererThreadFromTabId(
-        tab_ids[0])
+    renderer_thread = timeline_model.GetFirstRendererThread()
     smooth_record = None
     for e in renderer_thread.async_slices:
       if tir_module.IsTimelineInteractionRecord(e.name):
