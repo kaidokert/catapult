@@ -16,6 +16,24 @@
       "revId": "1df633bc96ccbfe33bd015a150c891c2e52225ea",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92bdafc8_2079be53",
+        "filename": "telemetry/telemetry/internal/browser/tab_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-05T08:36:41Z",
+      "side": 1,
+      "message": "I\u0027ll try to do that on a follow up CL. Want to make sure first this doesn\u0027t cause the test to fail *more* on the platforms where it already runs.",
+      "parentUuid": "fa1b31d3_06937f6f",
+      "revId": "1df633bc96ccbfe33bd015a150c891c2e52225ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
