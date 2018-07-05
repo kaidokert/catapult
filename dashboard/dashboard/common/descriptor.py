@@ -104,8 +104,11 @@ class Descriptor(object):
   def FromTestPath(cls, path):
     """Parse a test path into a Descriptor.
 
+    Removes parsed components from |path|. Unparsed components will remain in
+    |path|.
+
     Args:
-      path: Array of strings of any length.
+      path: List of strings of any length.
 
     Returns:
       Descriptor
