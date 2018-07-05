@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa1b31d3_06937f6f",
+        "filename": "telemetry/telemetry/internal/browser/tab_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-07-05T00:55:33Z",
+      "side": 1,
+      "message": "Should you try to reenable the tests on these platforms?",
+      "revId": "1df633bc96ccbfe33bd015a150c891c2e52225ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
