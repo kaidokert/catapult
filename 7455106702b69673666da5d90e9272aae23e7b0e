@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f1fd59d9_71dfd724",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-05T18:23:30Z",
+      "side": 1,
+      "message": "Nit: I think this would be easier to read if it were formatted like this.\n\nconst timestamps \u003d events.map(event \u003d\u003e (\n    event.title !\u003d\u003d DRM_EVENT ? event.start : (\n        tr.b.convertUnit(\n            event.args.data[\u0027vblank.tv_sec\u0027],\n            tr.b.UnitScale.TIME.SEC, tr.b.UnitScale.TIME.MILLI_SEC) +\n        tr.b.convertUnit(\n            event.args.data[\u0027vblank.tv_usec\u0027],\n            tr.b.UnitScale.TIME.MICRO_SEC, tr.b.UnitScale.TIME.MILLI_SEC))));",
+      "range": {
+        "startLine": 165,
+        "startChar": 4,
+        "endLine": 175,
+        "endChar": 26
+      },
+      "revId": "7455106702b69673666da5d90e9272aae23e7b0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
