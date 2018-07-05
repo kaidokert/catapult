@@ -178,6 +178,24 @@
     },
     {
       "key": {
+        "uuid": "3aff8d11_cd1534eb",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-05T03:43:06Z",
+      "side": 1,
+      "message": "If there\u0027s a pre-existing timeseries named percentage_smooth whose values range 0-100 instead of 0-1, then, yes, I believe that renaming this metric to percentage_smooth would create a lot of alerts when the values suddenly drop from 0-100 to 0-1.\nThe \"percentage\" is in the unit now, so could you call it \"smooth_frames\" instead?",
+      "parentUuid": "044a8275_0d5ffd76",
+      "revId": "2b5f08214712119832ae8ed1526a306dc31f3da7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a90c03e3_7b4eb8fc",
         "filename": "tracing/tracing/metrics/rendering_metric.html",
         "patchSetId": 2
@@ -213,6 +231,24 @@
     },
     {
       "key": {
+        "uuid": "5df6cb21_99d0fd78",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-05T03:43:06Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "489367c9_db4cb19b",
+      "revId": "2b5f08214712119832ae8ed1526a306dc31f3da7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "210b576a_1a1445f4",
         "filename": "tracing/tracing/metrics/rendering_metric.html",
         "patchSetId": 2
@@ -242,6 +278,24 @@
       "side": 1,
       "message": "My personal opinion: this is used only in the rendering metric for now; so it\u0027s cleaner if it\u0027s defined here. In future, if we decide to use it in other metrics, we should move it to a place that\u0027s accessible by all. Do you prefer to move it now?",
       "parentUuid": "210b576a_1a1445f4",
+      "revId": "2b5f08214712119832ae8ed1526a306dc31f3da7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79435a6c_ca1f0f8c",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-05T03:43:06Z",
+      "side": 1,
+      "message": "Keeping it here until another metric wants it sgtm. In that case, please change the todo to just a comment about how it could be merged into UserModelBuilder when another metric wants it.",
+      "parentUuid": "2faa74c4_a6d50528",
       "revId": "2b5f08214712119832ae8ed1526a306dc31f3da7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
