@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "509775ba_983f9d68",
+        "filename": "dashboard/dashboard/api/describe_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-05T21:09:12Z",
+      "side": 1,
+      "message": "I needed to refactor this for another reason in the CL to allow unauthorized /api/alerts requests.\nhttps://chromium-review.googlesource.com/c/catapult/+/1095657/14/dashboard/dashboard/common/testing_common.py",
+      "parentUuid": "c70418d9_6f473a9c",
+      "revId": "178fedfb578acac24fc33658f4101e1cf80fd4c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fb7fd573_300e31e9",
         "filename": "dashboard/dashboard/common/descriptor.py",
         "patchSetId": 6
@@ -30,6 +48,30 @@
       "writtenOn": "2018-07-03T17:39:54Z",
       "side": 1,
       "message": "Didn\u0027t realize it does this, that would be unexpected if I was using this. What functionality depends on the path param being modified?",
+      "range": {
+        "startLine": 101,
+        "startChar": 4,
+        "endLine": 101,
+        "endChar": 11
+      },
+      "revId": "178fedfb578acac24fc33658f4101e1cf80fd4c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31a6622e_02eaa89b",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-05T21:09:12Z",
+      "side": 1,
+      "message": "update_test_suite_descriptors.UpdateDescriptor shouldn\u0027t store incomplete measurement and test case names. When it finds a test path that it can\u0027t parse, it should return early.\nSome other callers, OTOH, like update_test_suites, don\u0027t care if it couldn\u0027t parse the measurement and test case, just so long as it could parse the test suite.\nI considered making FromTestPath return (descriptor, bool success) or (descriptor, path) but consuming path seemed simpler.\nWDYT?",
+      "parentUuid": "fb7fd573_300e31e9",
       "range": {
         "startLine": 101,
         "startChar": 4,
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "4ab565a8_719c52e6",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-05T21:09:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4bdb67f0_ee9d8429",
+      "range": {
+        "startLine": 45,
+        "startChar": 5,
+        "endLine": 45,
+        "endChar": 12
+      },
+      "revId": "178fedfb578acac24fc33658f4101e1cf80fd4c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b868f585_f5fdc34b",
         "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
         "patchSetId": 6
@@ -79,6 +145,24 @@
       "revId": "178fedfb578acac24fc33658f4101e1cf80fd4c4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29160927_21b1dc8a",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-05T21:09:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b868f585_f5fdc34b",
+      "revId": "178fedfb578acac24fc33658f4101e1cf80fd4c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -102,6 +186,30 @@
       "revId": "178fedfb578acac24fc33658f4101e1cf80fd4c4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec6f440a_a421f99e",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-05T21:09:12Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e0eab625_584aca35",
+      "range": {
+        "startLine": 84,
+        "startChar": 16,
+        "endLine": 84,
+        "endChar": 19
+      },
+      "revId": "178fedfb578acac24fc33658f4101e1cf80fd4c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
