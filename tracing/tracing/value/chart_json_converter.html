@@ -20,6 +20,9 @@ tr.exportTo('tr.v', function() {
      * @param {!tr.v.HistogramSet} histograms
      */
     static convertChartJson(charts, histograms) {
+      if ('chart_data' in charts) {
+        charts = charts.chart_data;
+      }
       const traceValues = charts.charts.trace;
 
       // The chromeperf dashboard requires some Diagnostics to be shared, even
