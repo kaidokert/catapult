@@ -49,16 +49,25 @@ class LinuxPlatformBackend(
 
   @decorators.Cache
   def GetOSVersionName(self):
-    if not os.path.exists('/etc/lsb-release'):
+
+    if os.path.exists('/etc/lsb-release'):
+      codename_key_name = 'DISTRIB_CODENAME'
+      release_key_name = 'DISTRIB_RELEASE'
+      file_name = '/etc/lsb-release'
+    elif os.path.exists('/etc/os-release'):
+      codename_key_name = 'NAME'
+      release_key_name = 'VERSION'
+      file_name = '/etc/os-release'
+    else:
       raise NotImplementedError('Unknown Linux OS version')
 
     codename = None
     version = None
-    for line in self.GetFileContents('/etc/lsb-release').splitlines():
+    for line in self.GetFileContents(file_name).splitlines():
       key, _, value = line.partition('=')
-      if key == 'DISTRIB_CODENAME':
+      if key == codename_key_name:
         codename = value.strip()
-      elif key == 'DISTRIB_RELEASE':
+      elif key == release_key_name:
         try:
           version = float(value)
         except ValueError:
