@@ -22,6 +22,30 @@
       "revId": "4358b5d4b1655c24dd7ea7aa46f4687a1efcd9ad",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "faf505c6_57f88f11",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-05T21:27:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5259b278_634f9b3a",
+      "range": {
+        "startLine": 121,
+        "startChar": 22,
+        "endLine": 121,
+        "endChar": 27
+      },
+      "revId": "4358b5d4b1655c24dd7ea7aa46f4687a1efcd9ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
