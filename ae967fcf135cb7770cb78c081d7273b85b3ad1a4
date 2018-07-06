@@ -16,6 +16,24 @@
       "revId": "ae967fcf135cb7770cb78c081d7273b85b3ad1a4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf766a09_93625b9c",
+        "filename": "dashboard/dashboard/delete_all_entities.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-06T20:07:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80dc3ca6_d20a08f6",
+      "revId": "ae967fcf135cb7770cb78c081d7273b85b3ad1a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
