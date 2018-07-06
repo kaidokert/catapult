@@ -158,16 +158,12 @@ class DescriptorTest(testing_common.TestCase):
     self.assertEqual(descriptor.NO_MITIGATIONS_CASE, desc.test_case)
 
   def testFromTestPath_Unparsed(self):
-    parts = ['master', 'bot', 'suite', 'measurement', 'case', 'extra']
-    descriptor.Descriptor.FromTestPath(parts)
-    self.assertEqual(1, len(parts))
-    self.assertEqual('extra', parts[0])
-
-  def testFromTestPath_UnparsedRef(self):
-    parts = ['master', 'bot', 'suite', 'measurement', 'case', 'extra', 'ref']
-    descriptor.Descriptor.FromTestPath(parts)
-    self.assertEqual(1, len(parts))
-    self.assertEqual('extra', parts[0])
+    with self.assertRaises(ValueError):
+      descriptor.Descriptor.FromTestPath(
+          ['master', 'bot', 'suite', 'measurement', 'case', 'extra'])
+    with self.assertRaises(ValueError):
+      descriptor.Descriptor.FromTestPath(
+          ['master', 'bot', 'suite', 'measurement', 'case', 'extra', 'ref'])
 
   def testFromTestPath_Memory(self):
     desc = descriptor.Descriptor.FromTestPath([

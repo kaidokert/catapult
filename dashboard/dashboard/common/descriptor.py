@@ -162,17 +162,23 @@ class Descriptor(object):
     return path.pop(0), path.pop(0)
 
   @classmethod
-  def FromTestPath(cls, path):
+  def FromTestPath(cls, test_path):
     """Parse a test path into a Descriptor.
 
     Args:
-      path: Array of strings of any length.
+      test_path: List/tuple of strings of any length.
+
+    Raises:
+      ValueError when unable to parse all path components.
 
     Returns:
       Descriptor
     """
-    if len(path) < 2:
+    if len(test_path) < 2:
       return cls()
+
+    # Copy path so it can be mutated without affecting caller.
+    path = list(test_path)
 
     bot = path.pop(0) + ':' + path.pop(0)
     if len(path) == 0:
@@ -218,6 +224,9 @@ class Descriptor(object):
     if test_case == REFERENCE_BUILD_TYPE:
       build_type = REFERENCE_BUILD_TYPE
       test_case = None
+
+    if path:
+      raise ValueError('Unable to parse %r' % test_path)
 
     return cls(test_suite=test_suite, bot=bot, measurement=measurement,
                statistic=statistic, test_case=test_case, build_type=build_type)
