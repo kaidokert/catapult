@@ -47,6 +47,10 @@ class Descriptor(object):
     self.statistic = statistic
     self.build_type = build_type
 
+  def Clone(self):
+    return Descriptor(self.test_suite, self.measurement, self.bot,
+                      self.test_case, self.statistic, self.build_type)
+
   def __repr__(self):
     return 'Descriptor(%r, %r, %r, %r, %r, %r)' % (
         self.test_suite, self.measurement, self.bot, self.test_case,
