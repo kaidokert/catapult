@@ -126,6 +126,30 @@
     },
     {
       "key": {
+        "uuid": "8d7a0dd4_5a8a7869",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-06T17:42:50Z",
+      "side": 1,
+      "message": "I had been thinking that there would be callers that might not care if the test case was parsed correctly, as long as the measurement, suite, and bot were.\nBut now that I think about the sequencing more, Descriptor should be able to parse everything correctly before that situation could arise, so I\u0027ll change this to raise an exception in that case.",
+      "parentUuid": "7139df5d_c26a8263",
+      "range": {
+        "startLine": 101,
+        "startChar": 4,
+        "endLine": 101,
+        "endChar": 11
+      },
+      "revId": "178fedfb578acac24fc33658f4101e1cf80fd4c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4bdb67f0_ee9d8429",
         "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
         "patchSetId": 6
