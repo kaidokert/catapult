@@ -191,6 +191,7 @@ class Anomaly(internal_only_model.InternalOnlyModel):
       sheriff=None,
       start_cursor=None,
       test=None,
+      test_keys=None,
       test_suite_name=None):
     if key:
       # This tasklet isn't allowed to catch the internal_only AssertionError.
@@ -220,9 +221,13 @@ class Anomaly(internal_only_model.InternalOnlyModel):
         query = query.filter(cls.bug_id == bug_id)
       if recovered is not None:
         query = query.filter(cls.recovered == recovered)
-      if test:
-        query = query.filter(cls.test.IN([
-            utils.OldStyleTestKey(test), utils.TestMetadataKey(test)]))
+      if test or test_keys:
+        if not test_keys:
+          test_keys = []
+        if test:
+          test_keys += [utils.OldStyleTestKey(test),
+                        utils.TestMetadataKey(test)]
+        query = query.filter(cls.test.IN(test_keys))
         query = query.order(cls.key)
       if master_name:
         query = query.filter(cls.master_name == master_name)
