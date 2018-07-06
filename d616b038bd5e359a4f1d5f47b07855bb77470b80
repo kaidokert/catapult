@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "32d1b59a_30ef5b96",
+        "filename": "dashboard/dashboard/update_dashboard_stats.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-07-06T19:36:22Z",
+      "side": 1,
+      "message": "Why do we have both a get and a post handler if they\u0027re identical?",
+      "revId": "d616b038bd5e359a4f1d5f47b07855bb77470b80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "564bd525_b7771339",
+        "filename": "dashboard/dashboard/update_dashboard_stats.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-07-06T19:36:22Z",
+      "side": 1,
+      "message": "Should be timestampInMs",
+      "revId": "d616b038bd5e359a4f1d5f47b07855bb77470b80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8cbb8fc0_36fc0043",
         "filename": "dashboard/dashboard/update_dashboard_stats.py",
         "patchSetId": 7
@@ -19,6 +53,23 @@
         "endLine": 147,
         "endChar": 22
       },
+      "revId": "d616b038bd5e359a4f1d5f47b07855bb77470b80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "401bb560_3c3724c7",
+        "filename": "dashboard/dashboard/update_dashboard_stats_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-07-06T19:36:22Z",
+      "side": 1,
+      "message": "I know these are just tests, but why can\u0027t you just use c as a key?",
       "revId": "d616b038bd5e359a4f1d5f47b07855bb77470b80",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
