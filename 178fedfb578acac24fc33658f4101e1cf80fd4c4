@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "682c027b_73322366",
+        "filename": "dashboard/dashboard/api/describe_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-06T15:58:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "509775ba_983f9d68",
+      "revId": "178fedfb578acac24fc33658f4101e1cf80fd4c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fb7fd573_300e31e9",
         "filename": "dashboard/dashboard/common/descriptor.py",
         "patchSetId": 6
@@ -72,6 +90,30 @@
       "side": 1,
       "message": "update_test_suite_descriptors.UpdateDescriptor shouldn\u0027t store incomplete measurement and test case names. When it finds a test path that it can\u0027t parse, it should return early.\nSome other callers, OTOH, like update_test_suites, don\u0027t care if it couldn\u0027t parse the measurement and test case, just so long as it could parse the test suite.\nI considered making FromTestPath return (descriptor, bool success) or (descriptor, path) but consuming path seemed simpler.\nWDYT?",
       "parentUuid": "fb7fd573_300e31e9",
+      "range": {
+        "startLine": 101,
+        "startChar": 4,
+        "endLine": 101,
+        "endChar": 11
+      },
+      "revId": "178fedfb578acac24fc33658f4101e1cf80fd4c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7139df5d_c26a8263",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-06T15:58:57Z",
+      "side": 1,
+      "message": "Could you not just return None on failure? Or optionally raise an exception?",
+      "parentUuid": "31a6622e_02eaa89b",
       "range": {
         "startLine": 101,
         "startChar": 4,
