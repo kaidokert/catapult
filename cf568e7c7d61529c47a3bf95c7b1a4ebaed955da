@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6be6aaa9_1bd44411",
+        "filename": "telemetry/telemetry/core/tracing_controller_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-07-06T13:49:35Z",
+      "side": 1,
+      "message": "Can you add another test which there are two browsers that are careted around the same time, and one is closed before tracing stop, one is closed after tracing stop \u0026 add check that there are markers from both browsers in the final trace?",
+      "revId": "cf568e7c7d61529c47a3bf95c7b1a4ebaed955da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
