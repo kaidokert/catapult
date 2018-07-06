@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "42abe10a_372481b5",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1215729
+      },
+      "writtenOn": "2018-07-06T20:36:51Z",
+      "side": 1,
+      "message": "we can move \"const browserProcess \u003d modelHelper.browserProcess;\" inside here.",
+      "revId": "1d3d5bef9f20c037b0a00617ce84f5255edfa4b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
