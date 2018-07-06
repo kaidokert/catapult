@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "27ce0a4d_7b8799b9",
+        "filename": "dashboard/dashboard/delete_all_entities.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-06T14:21:49Z",
+      "side": 1,
+      "message": "Maybe instead of a deadline, structure this so that this is a queued task that just does a query + delete, and if there\u0027s more, queue itself again.\n\ndef QueueDeleteAllofKindTask(kind):\n  deferred.defer(_DeleteForRealzOnTaskQueue, kind)\n\ndef _DeleteForRealzOnTaskQueue(kind):\n  ... do stuff\n  if more:\n    QueueDeleteAllofKindTask(kind)",
+      "range": {
+        "startLine": 19,
+        "startChar": 4,
+        "endLine": 19,
+        "endChar": 21
+      },
+      "revId": "d72390fdcdaa0b390914a1b3c91d907232802057",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
