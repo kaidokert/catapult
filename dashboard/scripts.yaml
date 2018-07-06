@@ -56,6 +56,11 @@ handlers:
   login: admin
   secure: always
 
+- url: /delete_all_entities
+  script: dashboard.dispatcher.APP
+  login: admin
+  secure: always
+
 - url: /delete_expired_entities
   script: dashboard.dispatcher.APP
   login: admin
