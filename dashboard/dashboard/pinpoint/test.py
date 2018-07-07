@@ -38,6 +38,11 @@ class TestCase(testing_common.TestCase):
     self.commit_range = patcher.start()
     self.commit_range.side_effect = _CommitRangeStub
 
+    patcher = mock.patch('dashboard.services.gitiles_service.FileContents')
+    self.addCleanup(patcher.stop)
+    self.file_contents = patcher.start()
+    self.file_contents.return_value = 'deps = {}'
+
   def _PopulateData(self):
     # Add repository mappings.
     repository.Repository(id='catapult', urls=[CATAPULT_URL]).put()
