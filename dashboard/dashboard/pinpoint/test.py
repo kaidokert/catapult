@@ -33,6 +33,11 @@ class TestCase(testing_common.TestCase):
     self.commit_info = patcher.start()
     self.commit_info.side_effect = _CommitInfoStub
 
+    patcher = mock.patch('dashboard.services.gitiles_service.CommitRange')
+    self.addCleanup(patcher.stop)
+    self.commit_range = patcher.start()
+    self.commit_range.side_effect = _CommitRangeStub
+
   def _PopulateData(self):
     # Add repository mappings.
     repository.Repository(id='catapult', urls=[CATAPULT_URL]).put()
@@ -54,3 +59,8 @@ def _CommitInfoStub(repository_url, git_hash):
                  'Commit message.\n'
                  'Cr-Commit-Position: refs/heads/master@{#123456}',
   }
+
+
+def _CommitRangeStub(repository_url, first_git_hash, last_git_hash):
+  del first_git_hash
+  return [_CommitInfoStub(repository_url, last_git_hash)]

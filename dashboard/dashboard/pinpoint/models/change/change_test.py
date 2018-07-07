@@ -6,8 +6,15 @@ import mock
 
 from dashboard.pinpoint.models.change import change
 from dashboard.pinpoint.models.change import commit
+from dashboard.pinpoint.models.change import commit_test
 from dashboard.pinpoint.models.change import patch
 from dashboard.pinpoint import test
+
+
+CHANGE_A = change.Change([commit_test.COMMIT_A])
+CHANGE_B = change.Change([commit_test.COMMIT_B])
+CHANGE_MIDPOINT = change.Change([commit_test.COMMIT_MIDPOINT])
+SetMidpoint = commit_test.SetMidpoint # pylint: disable=invalid-name
 
 
 class ChangeTest(test.TestCase):
