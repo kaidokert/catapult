@@ -723,6 +723,8 @@ tr.exportTo('tr.ui.b', function() {
 
         const column = this.tableColumns_[i];
         const value = column.value(rowInfo.userRow);
+        const showSearchLink = column.showSearchLink &&
+                               column.showSearchLink(rowInfo.userRow);
         const colSpan = column.colSpan ? column.colSpan : 1;
         td.style.colSpan = colSpan;
 
@@ -762,6 +764,12 @@ tr.exportTo('tr.ui.b', function() {
         if (value !== undefined) {
           Polymer.dom(td).appendChild(
               tr.ui.b.asHTMLOrTextNode(value, this.ownerDocument));
+          if (showSearchLink) {
+            tr.ui.b.createLink({parent: td,
+              textContent: 'codesearch',
+              href: 'https://cs.chromium.org/search/?q=' + encodeURI(value),
+              marginLeft: '20px'});
+          }
         }
 
         td.addEventListener('click', function(i, clickEvent) {
