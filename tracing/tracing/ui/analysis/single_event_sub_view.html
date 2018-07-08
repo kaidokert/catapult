@@ -59,7 +59,8 @@ Polymer({
       {
         title: 'Value',
         width: '100%',
-        value(row) { return row.value; }
+        value(row) { return row.value; },
+        showSearchLink(row) { return row.value; }
       }
     ];
     this.$.table.showHeader = false;
@@ -120,7 +121,7 @@ Polymer({
     }
 
     if (event.title) {
-      rows.push({ name: 'Title', value: event.title });
+      rows.push({ name: 'Title', value: event.title, search: true });
     }
 
     if (event.category) {

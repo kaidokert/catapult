@@ -79,6 +79,9 @@ Polymer({
       width: '350px',
       cmp(rowA, rowB) {
         return rowA.title.localeCompare(rowB.title);
+      },
+      showSearchLink(row) {
+        return (row.title === 'Totals') ? undefined : row.title;
       }
     });
     if (this.eventsHaveDuration_) {
