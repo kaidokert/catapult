@@ -140,6 +140,15 @@ class AnomalyTest(testing_common.TestCase):
     self.assertEqual('adept/android/lodging/assessment/story',
                      anomalies[0].test.id())
 
+  def testTestKeys(self):
+    self._CreateAnomaly()
+    test_path = 'adept/android/lodging/assessment/story'
+    self._CreateAnomaly(test=test_path)
+    anomalies, _, _ = anomaly.Anomaly.QueryAsync(test_keys=[
+        utils.TestMetadataKey(test_path)]).get_result()
+    self.assertEqual(1, len(anomalies))
+    self.assertEqual(test_path, anomalies[0].test.id())
+
   def testBugId(self):
     self._CreateAnomaly()
     self._CreateAnomaly(bug_id=42)
