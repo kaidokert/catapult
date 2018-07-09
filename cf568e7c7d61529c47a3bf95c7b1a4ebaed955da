@@ -52,6 +52,24 @@
       "revId": "cf568e7c7d61529c47a3bf95c7b1a4ebaed955da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2ee2765_e3652986",
+        "filename": "telemetry/telemetry/core/tracing_controller_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-09T10:56:37Z",
+      "side": 1,
+      "message": "Not Android only. I\u0027ve just checked on --browser\u003dstable. A single browser is created, even if you \"create\" twice.",
+      "parentUuid": "05a422c4_44ce9e37",
+      "revId": "cf568e7c7d61529c47a3bf95c7b1a4ebaed955da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
