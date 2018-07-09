@@ -84,6 +84,7 @@ tr.exportTo('cp', () => {
     // Minimaps only need the (x, y) coordinates to draw the line.
     // FastHistograms contain only r_commit_pos and the needed statistic.
     // Fetches /api/timeseries2/testpath&columns=r_commit_pos,value
+    // Question(Sam): Can I have the updated list of columns for each LOD?
     XY: 'xy',
 
     // chart-pair.chartLayout can draw its lines using XY FastHistograms
@@ -162,6 +163,24 @@ tr.exportTo('cp', () => {
   };
 
   class TimeseriesRequest extends cp.RequestBase {
+    /*
+     * type options = {
+     *   testSuite: any,
+     *   measurement: any,
+     *   bot: any,
+     *   testCase: any,
+     *   statistic: any,
+     *   buildType: any,
+     *
+     *   // Commit revision range
+     *   minRevision?: any,
+     *   maxRevision?: any,
+     *
+     *   // Timestamp range
+     *   minTimestamp?: any,
+     *   maxTimestamp?: any,
+     * }
+     */
     constructor(options) {
       super(options);
       this.measurement_ = options.measurement;
@@ -169,14 +188,19 @@ tr.exportTo('cp', () => {
       this.queryParams_.set('testSuite', options.testSuite);
       this.queryParams_.set('measurement', options.measurement);
       this.queryParams_.set('bot', options.bot);
+
       if (options.testCase) {
         this.queryParams_.set('testCase', options.testCase);
       }
+
       this.queryParams_.set('statistic', options.statistic);
+
       if (options.buildType) {
         this.queryParams_.set('buildType', options.buildType);
       }
+
       this.queryParams_.set('columns', options.columns.join(','));
+
       if (options.minRevision) {
         this.queryParams_.set('minRevision', options.minRevision);
       }
@@ -224,13 +248,34 @@ tr.exportTo('cp', () => {
     }
   }
 
+  function columnsByLevelOfDetail(level) {
+    switch (level) {
+      case LEVEL_OF_DETAIL.XY:
+        return ['revision', 'r_commit_pos', 'timestamp', 'value'];
+      case LEVEL_OF_DETAIL.ANNOTATIONS:
+        return ['revision', 'alert'];
+      default:
+        throw new Error(`${level} is not a valid Level Of Detail`);
+    }
+  }
+
   class TimeseriesCache extends cp.CacheBase {
     constructor(options, dispatch, getState) {
       super(options, dispatch, getState);
       this.fetchDescriptor_ = this.options_.fetchDescriptor;
       this.refStatePath_ = this.options_.refStatePath;
-      // TODO change columns_ depending on level of detail.
-      this.columns_ = ['revision', 'r_commit_pos', 'timestamp', 'value'];
+      this.minRevision_ = this.options_.minRevision;
+      this.maxRevision_ = this.options_.maxRevision;
+
+      // Question(Sam): Do we need support for min/max timestamp?
+      // this.minTimestamp_ = this.options_.minTimestamp;
+      // this.maxTimestamp_ = this.options_.maxTimestamp;
+
+      // TODO(Sam): Change columns based on the level of detail
+      this.columns_ = columnsByLevelOfDetail(LEVEL_OF_DETAIL.XY);
+
+      // TODO(Sam): Allow for level of detail to be specified through options
+      this.levelOfDetail_ = LEVEL_OF_DETAIL.XY;
     }
 
     get cacheStatePath_() {
@@ -238,30 +283,46 @@ tr.exportTo('cp', () => {
     }
 
     computeCacheKey_() {
-      return [
+      const cacheKey = [
         this.fetchDescriptor_.testSuite,
         this.fetchDescriptor_.measurement,
         this.fetchDescriptor_.bot,
         this.fetchDescriptor_.testCase,
         this.fetchDescriptor_.buildType,
       ].join('/').replace(/\./g, '_');
+
+      // Open a connection to an IndexedDB database of this timeseries request.
+      // If it does not exist, create it.
+      this.dbPromise = idb.open(cacheKey, 1, upgradeDB => {
+        if (upgradeDB.oldVersion === 0) {
+          upgradeDB.createObjectStore('dataPoints');
+          upgradeDB.createObjectStore('metadata');
+          upgradeDB.createObjectStore('ranges');
+        }
+        console.log('IndexedDB successfully updated');
+      });
+
+      return cacheKey;
     }
 
     get isInCache_() {
-      const entry = this.rootState_.timeseries[this.cacheKey_];
-      if (entry === undefined) return false;
       // TODO levelOfDetail, revision/timestamp ranges
-      return true;
+      const entry = this.rootState_.timeseries[this.cacheKey_];
+      return !!entry;
     }
 
     async readFromCache_() {
       let entry = this.rootState_.timeseries[this.cacheKey_];
       // TODO levelOfDetail, revision/timestamp ranges
-      await Promise.all(entry.ranges[LEVEL_OF_DETAIL.XY].map(rangeRequest =>
-        rangeRequest.completion));
+      await Promise.all(entry.ranges[LEVEL_OF_DETAIL.XY].map(
+          rangeRequest => rangeRequest.completion
+      ));
       this.rootState_ = this.getState_();
       entry = this.rootState_.timeseries[this.cacheKey_];
-      return {unit: entry.unit, data: entry.data};
+      return {
+        unit: entry.unit,
+        data: entry.data
+      };
     }
 
     async fetch_() {
@@ -272,16 +333,53 @@ tr.exportTo('cp', () => {
       // it may involve mixing in data from previous requests with different
       // levels of detail.
       const request = this.createRequest_();
-      const completion = (async() => {
-        const response = await request.response;
-        this.onFinishRequest_(response);
+
+      const cache = (async() => {
+        const response = await this.readFromIDB_();
+        this.onFinishRequest_(response, 'IndexedDB');
         return this.readFromCache_();
       })();
-      this.onStartRequest_(request, completion);
-      return await completion;
+
+      const network = (async() => {
+        const response = await request.response;
+        this.onFinishRequest_(response, 'Network');
+        this.writeToIDB_(response); // don't wait for write to finish
+        return this.readFromCache_();
+      })();
+
+      this.onStartRequest_(request, network);
+
+      // TODO(Sam): Convert to async generator
+      const result = await cache;
+      if (result) {
+        // Cache hit!
+        return result;
+      }
+
+      // Cache miss; wait for the network request as a fallback.
+      this.writeToIDB_(network);
+      return await network;
     }
 
     createRequest_() {
+      /*
+       * type options = {
+       *   testSuite: any,
+       *   measurement: any,
+       *   bot: any,
+       *   testCase: any,
+       *   statistic: any,
+       *   buildType: any,
+       *
+       *   // Commit revision range
+       *   minRevision?: any,
+       *   maxRevision?: any,
+       *
+       *   // Timestamp range
+       *   minTimestamp?: any,
+       *   maxTimestamp?: any,
+       * }
+       */
       return new TimeseriesRequest({
         testSuite: this.fetchDescriptor_.testSuite,
         measurement: this.fetchDescriptor_.measurement,
@@ -289,7 +387,15 @@ tr.exportTo('cp', () => {
         testCase: this.fetchDescriptor_.testCase,
         statistic: this.fetchDescriptor_.statistic,
         buildType: this.fetchDescriptor_.buildType,
+
         columns: this.columns_,
+
+        minRevision: this.minRevision_,
+        maxRevision: this.maxRevision_,
+
+        // Question(Sam): Should this support timestamp ranges?
+        // minTimestamp: this.minTimestamp_,
+        // maxTimestamp: this.maxTimestamp_,
       });
     }
 
@@ -306,15 +412,267 @@ tr.exportTo('cp', () => {
     }
 
     onFinishRequest_(result) {
+      // Tell the Redux store the response is ready
       this.dispatch_({
         type: TimeseriesCache.reducers.receive.typeName,
         fetchDescriptor: this.fetchDescriptor_,
         cacheKey: this.cacheKey_,
         columns: this.columns_,
-        timeseries: result.timeseries,
+        timeseries: result.timeseries || [],
         units: result.units,
       });
       this.rootState_ = this.getState_();
+    }
+
+    // Read any existing data from IndexedDB.
+    async readFromIDB_() {
+      let start = new Date();
+      const db = await this.dbPromise;
+      let diff = new Date() - start;
+      console.log(`Opening DB took ${diff}ms`, this.cacheKey_);
+
+      try {
+        const transaction = db.transaction(
+            ['dataPoints', 'metadata'],
+            'readonly'
+        );
+
+        const dataStore = transaction.objectStore('dataPoints');
+        const metadataStore = transaction.objectStore('metadata');
+
+        // Take out all metadata for this line.
+        start = new Date();
+        const [columns, units] = await Promise.all([
+          metadataStore.get('columns'),
+          metadataStore.get('units'),
+        ]);
+        diff = new Date() - start;
+        console.log(`Fetching metadata took ${diff}ms`);
+
+        // Check for non-existant timeseries
+        if (!columns) {
+          console.error('Timeseries does not exist in cache!');
+          return;
+        }
+
+        // Check for non-existant units
+        if (!units) {
+          console.error(
+              'Missing units in IndexedDB. Honestly, I have no idea how this ' +
+              'can possibly happen.'
+          );
+          return;
+        }
+
+        // Check that the cached version contains all the columns we need for
+        // the requested level-of-detail (LOD).
+        for (const column of this.columns_) {
+          if (!columns.includes(column)) {
+            console.error(
+                'The cache does not contain all the needed columns for this ' +
+                'timeseries!'
+            );
+            return;
+          }
+        }
+
+        // All is good, so let's retrieve the data we have!
+        start = new Date();
+        let dataPoints = [];
+        if (this.minRevision_ && this.maxRevision_) {
+          const range = IDBKeyRange.bound(this.minRevision_, this.maxRevision_);
+          const cursor = await dataStore.openCursor(range);
+
+          while (cursor) {
+            dataPoints.push(cursor.value);
+            cursor.continue(); // TODO(Sam): Does this need to be awaited?
+          }
+        } else {
+          dataPoints = await dataStore.getAll() || [];
+        }
+        diff = new Date() - start;
+        console.log(`Fetching datapoints took ${diff}ms`);
+
+        // Denormalize requested columns to an array with the same order as
+        // requested.
+        start = new Date();
+        const timeseries = [];
+        for (const dataPoint of dataPoints) {
+          const result = [];
+          for (const column of this.columns_) {
+            result.push(dataPoint[column]);
+          }
+          timeseries.push(result);
+        }
+        diff = new Date() - start;
+        console.log(`Denormalizing took ${diff}ms`);
+
+        return { timeseries, units };
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async writeToIDB_({ timeseries, ...metadata }) {
+      // Check for error in response
+      if (metadata.error) {
+        return;
+      }
+
+      // Store the result in IndexedDB
+      const db = await this.dbPromise;
+
+      try {
+        // Store information about the timeseries
+        const transaction = db.transaction(
+            ['dataPoints', 'metadata', 'ranges'],
+            'readwrite'
+        );
+
+        const dataStore = transaction.objectStore('dataPoints');
+        const metadataStore = transaction.objectStore('metadata');
+        const rangeStore = transaction.objectStore('ranges');
+
+        // Store timeseries indexed by r_commit_pos (preferred) or revision.
+        // Take the response and map each unnamed column to its cooresponding
+        // name in the QueryParams.
+        for (const datapoint of (timeseries || [])) {
+          const namedDatapoint = this.columns_.reduce(
+              (prev, name, index) =>
+                Object.assign(prev, { [name]: datapoint[index] }),
+              {}
+          );
+          const key = namedDatapoint.r_commit_pos || namedDatapoint.revision;
+
+          // Merge with existing data
+          // Note(Sam): IndexedDB should be fast enough to "get" for every key.
+          // A notable experiment might be to "getAll" and find by key. We can
+          // then compare performance between "get" and "getAll".
+          const prev = await dataStore.get(key);
+          const next = Object.assign({}, prev, namedDatapoint);
+
+          dataStore.put(next, key);
+        }
+
+        // Update the range of data we contain in the "ranges" object store.
+        const min = parseInt(this.minRevision_) ||
+          parseInt(timeseries[0].r_commit_pos) ||
+          timeseries[0].revision ||
+          undefined;
+
+        const max = parseInt(this.maxRevision_) ||
+          parseInt(timeseries[timeseries.length].r_commit_pos) ||
+          timeseries[timeseries.length].revision ||
+          undefined;
+
+        if (min || max) {
+          const currRange = tr.b.math.Range.fromExplicitRange(min, max);
+          const prevRangesRaw = await rangeStore.get(this.levelOfDetail_);
+          const prevRanges = prevRangesRaw.map(range =>
+            tr.b.math.Range.fromDict({ ...range, isEmpty: false })
+          );
+
+          currRange.mergeIntoArray(prevRanges);
+          rangeStore.put(prevRanges, this.levelOfDetail_);
+        } else {
+          // Question(Sam): Will this ever happen?
+          console.warn('Min/max is not specified; cannot update ranges');
+        }
+
+        // Store metadata separately in the "metadata" object store.
+        for (const key of Object.keys(metadata)) {
+          metadataStore.put(metadata[key], key);
+        }
+
+        // Store the columns available for data points in the "metadata" object
+        // store. This is helpful to keep track of LOD.
+        // TODO(sbalana): Test when LOD is implemented
+        // TODO(sbalana): Push for the spread operator. Greatly needed here.
+        const prevColumns = await metadataStore.get('columns');
+        const nextColumns = [...new Set([
+          ...prevColumns,
+          ...this.columns_,
+        ])];
+
+        metadataStore.put(nextColumns, 'columns');
+
+        // Finish the transaction
+        await transaction.complete;
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async* reader() {
+      this.ensureCacheState_();
+      this.cacheKey_ = this.computeCacheKey_();
+
+      // Check if we already have all the data in Redux
+      if (this.isInCache_) {
+        yield this.readFromCache_();
+        return;
+      }
+
+      const request = this.createRequest_();
+
+      // Start a race between IndexedDB and the network. The winner gets to
+      // yield their result first. The loser will yield their result second.
+
+      const cache = (async() => {
+        const response = await this.readFromIDB_();
+        if (response) {
+          this.onFinishRequest_(response);
+        }
+        return {
+          name: 'IndexedDB',
+          result: response ? await this.readFromCache_() : null,
+        };
+      })();
+
+      // Note(Sam): This following (not implemented) call might be neccessary to
+      // create an animated, dashed line.
+      // this.onStartCacheRequest_(request);
+
+      const network = (async() => {
+        const response = await request.response;
+        this.onFinishRequest_(response);
+        this.writeToIDB_(response); // don't wait for write to finish
+        return {
+          name: 'Network',
+          result: await this.readFromCache_(),
+        };
+      })();
+
+      this.onStartRequest_(request, network);
+
+      // Start the race
+      const winner = await Promise.race([cache, network]);
+
+      // Check for results
+      if (winner.result) {
+        yield winner.result;
+      } else {
+        console.warn(`${winner.name} resolved with no results`);
+      }
+
+      // Wait for the loser
+      const start = new Date();
+      switch (winner.name) {
+        case 'IndexedDB':
+          console.log('IndexedDB won! YAY!');
+          yield await network;
+          break;
+
+        case 'Network':
+          console.log('Network won... wow IndexedDB sucks');
+          yield await cache;
+          break;
+
+        default:
+          throw new Error(`${winner.name} did not enter the race`);
+      }
+      const diff = new Date() - start;
+      console.log(`Finished ${diff}ms faster`);
     }
   }
 
@@ -390,21 +748,28 @@ tr.exportTo('cp', () => {
         }
       }
 
-      const data = (action.timeseries || []).map(
-          row => FastHistogram.fromRow(
-              csvRow(action.columns, row),
-              action.fetchDescriptor,
-              conversionFactor));
+      const data = (action.timeseries || []).map(row =>
+        FastHistogram.fromRow(
+            csvRow(action.columns, row),
+            action.fetchDescriptor,
+            conversionFactor
+        )
+      );
 
       const entry = rootState.timeseries[action.cacheKey];
-      const levelOfDetail = action.fetchDescriptor.levelOfDetail;
+      const {
+        levelOfDetail,
+        minRev,
+        maxRev,
+        minTimestampMs,
+        maxTimestampMs,
+      } = action.fetchDescriptor;
+
       const rangeRequests = entry.ranges[levelOfDetail].map(rangeRequest => {
-        if (rangeRequest.minRev !== action.fetchDescriptor.minRev ||
-            rangeRequest.maxRev !== action.fetchDescriptor.maxRev ||
-            rangeRequest.minTimestampMs !==
-            action.fetchDescriptor.minTimestampMs ||
-            rangeRequest.maxTimestampMs !==
-            action.fetchDescriptor.maxTimestampMs) {
+        if (rangeRequest.minRev !== minRev ||
+            rangeRequest.maxRev !== maxRev ||
+            rangeRequest.minTimestampMs !== minTimestampMs ||
+            rangeRequest.maxTimestampMs !== maxTimestampMs) {
           return rangeRequest;
         }
         return {
@@ -434,12 +799,25 @@ tr.exportTo('cp', () => {
 
   cp.ElementBase.registerReducers(TimeseriesCache);
 
-  const ReadTimeseries = options => async(dispatch, getState) =>
-    await new TimeseriesCache(options, dispatch, getState).read();
+  /*
+  const ReadTimeseries = options => async function* (dispatch, getState) {
+    const value = await new TimeseriesCache(options, dispatch, getState).read();
+    yield value;
+  }
+  */
+  const ReadTimeseries = options => async function(dispatch, getState) {
+    const value = await new TimeseriesCache(options, dispatch, getState).read();
+    return value;
+  };
+
+  const TimeseriesReader = ({ dispatch, getState, ...options }) =>
+    new TimeseriesCache(options, dispatch, getState).reader();
+
 
   return {
     FastHistogram,
     LEVEL_OF_DETAIL,
     ReadTimeseries,
+    TimeseriesReader,
   };
 });

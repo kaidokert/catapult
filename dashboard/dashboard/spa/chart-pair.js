@@ -4,6 +4,7 @@
 */
 'use strict';
 tr.exportTo('cp', () => {
+  // Renders the minimap and the main chart
   class ChartPair extends cp.ElementBase {
     hideOptions_(minimapLayout) {
       return this.$.minimap.showPlaceholder(
@@ -231,20 +232,27 @@ tr.exportTo('cp', () => {
             {xPct: value + '%'}));
       },
 
+    // Ignore "fake" line descriptors
+    // Manages the revision range
     load: statePath => async(dispatch, getState) => {
+      const { updateObject } = cp.ElementBase.actions;
+
       const state = Polymer.Path.get(getState(), statePath);
       if (!state || !state.lineDescriptors ||
           state.lineDescriptors.length === 0) {
-        dispatch(cp.ElementBase.actions.updateObject(
-            `${statePath}.minimapLayout`, {lineDescriptors: []}));
-        dispatch(cp.ElementBase.actions.updateObject(
-            `${statePath}.chartLayout`, {lineDescriptors: []}));
+        dispatch(updateObject(`${statePath}.minimapLayout`, {
+          lineDescriptors: []
+        }));
+        dispatch(updateObject(`${statePath}.chartLayout`, {
+          lineDescriptors: []
+        }));
         return;
       }
 
       const {firstRealLineDescriptor, timeserieses} =
         await ChartPair.findFirstRealLineDescriptor(
-            state.lineDescriptors, dispatch, `${statePath}.minimapLayout`);
+            state.lineDescriptors, `${statePath}.minimapLayout`, dispatch,
+            getState);
 
       let firstRevision = tr.b.math.Statistics.min(timeserieses.map(ts => {
         if (!ts || !ts.data) return Infinity;
@@ -288,10 +296,9 @@ tr.exportTo('cp', () => {
       }
 
       let maxRevision = state.maxRevision;
-      if (maxRevision === undefined ||
-          maxRevision <= firstRevision) {
+      if (maxRevision === undefined || maxRevision <= firstRevision) {
         maxRevision = lastRevision;
-        dispatch(cp.ElementBase.actions.updateObject(statePath, {
+        dispatch(updateObject(statePath, {
           maxRevision,
         }));
       }
@@ -303,12 +310,12 @@ tr.exportTo('cp', () => {
           icons: [],
         });
       }
-      dispatch(cp.ElementBase.actions.updateObject(
-          `${statePath}.minimapLayout`, {
-            lineDescriptors: minimapLineDescriptors,
-            brushRevisions: [minRevision, maxRevision],
-            fixedXAxis: state.fixedXAxis,
-          }));
+
+      dispatch(updateObject(`${statePath}.minimapLayout`, {
+        lineDescriptors: minimapLineDescriptors,
+        brushRevisions: [minRevision, maxRevision],
+        fixedXAxis: state.fixedXAxis,
+      }));
 
       let lineDescriptors = state.lineDescriptors;
       if (lineDescriptors.length === 1) {
@@ -319,7 +326,8 @@ tr.exportTo('cp', () => {
           icons: [],
         });
       }
-      dispatch(cp.ElementBase.actions.updateObject(`${statePath}.chartLayout`, {
+
+      dispatch(updateObject(`${statePath}.chartLayout`, {
         lineDescriptors,
         minRevision,
         maxRevision,
@@ -604,19 +612,31 @@ tr.exportTo('cp', () => {
     };
   };
 
+  // Some line descriptors do not have any data; we only want the ones with
+  // data. We'll call these "real" line descriptors
   ChartPair.findFirstRealLineDescriptor = async(
-    lineDescriptors, dispatch, refStatePath) => {
+    lineDescriptors,
+    refStatePath,
+    dispatch,
+    getState
+  ) => {
     for (const firstRealLineDescriptor of lineDescriptors) {
-      const timeserieses = await dispatch(
-          cp.ChartTimeseries.actions.fetchLineDescriptor(
-              refStatePath, firstRealLineDescriptor));
+      const timeserieses = await cp.ChartTimeseries.fetchLineDescriptor(
+          refStatePath, firstRealLineDescriptor, dispatch, getState);
+
       for (const timeseries of timeserieses) {
         if (timeseries.data.length) {
-          return {firstRealLineDescriptor, timeserieses};
+          return {
+            firstRealLineDescriptor,
+            timeserieses
+          };
         }
       }
     }
-    return {timeserieses: []};
+
+    return {
+      timeserieses: []
+    };
   };
 
   cp.ElementBase.register(ChartPair);

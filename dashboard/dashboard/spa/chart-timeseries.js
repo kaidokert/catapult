@@ -218,15 +218,21 @@ tr.exportTo('cp', () => {
 
   ChartTimeseries.actions = {
     prefetch: (statePath, lineDescriptors) => async(dispatch, getState) => {
-      for (const lineDescriptor of lineDescriptors) {
-        dispatch(ChartTimeseries.actions.fetchLineDescriptor(
-            statePath, lineDescriptor));
-      }
+      await Promise.all(lineDescriptors.map(async lineDescriptor => {
+        ChartTimeseries.fetchLineDescriptor(statePath, lineDescriptor, dispatch,
+            getState);
+      }));
     },
 
+    // Load all lines specified by ChartSection.createLineDescriptors
     load: statePath => async(dispatch, getState) => {
       let state = Polymer.Path.get(getState(), statePath);
-      if (!state) return;
+      if (!state) {
+        console.warn(`Redux state path ${statePath} not found`);
+        return;
+      }
+
+      // Signal any loader components
       dispatch(cp.ElementBase.actions.updateObject(statePath, {
         isLoading: true,
         lines: [],
@@ -234,101 +240,21 @@ tr.exportTo('cp', () => {
 
       // Load each lineDescriptor in parallel.
       await Promise.all(state.lineDescriptors.map(lineDescriptor =>
-        dispatch(ChartTimeseries.actions.loadLineDescriptor_(
-            statePath, lineDescriptor))));
+        ChartTimeseries.loadLine(statePath, lineDescriptor, dispatch, getState)
+      ));
+
       state = Polymer.Path.get(getState(), statePath);
-      if (!state) return;
-      dispatch(cp.ElementBase.actions.updateObject(
-          statePath, {isLoading: false}));
+      if (!state) {
+        // User closed the chart before it could finish loading
+        console.warn(`Redux state path ${statePath} not found`);
+        return;
+      }
+
+      // Turn off loader components
+      dispatch(cp.ElementBase.actions.updateObject(statePath, {
+        isLoading: false,
+      }));
     },
-
-    fetchLineDescriptor: (statePath, lineDescriptor) =>
-      async(dispatch, getState) => {
-        const fetchDescriptors = ChartTimeseries.createFetchDescriptors(
-            lineDescriptor);
-        // Don't display anything until we have all the data back.
-        // TODO batch and display partial data with animated dashed lines.
-        return await Promise.all(fetchDescriptors.map(async fetchDescriptor => {
-          try {
-            const ts = await dispatch(cp.ReadTimeseries({
-              fetchDescriptor,
-              refStatePath: statePath,
-            }));
-            return ts;
-          } catch (err) {
-          }
-        }));
-      },
-
-    loadLineDescriptor_: (statePath, lineDescriptor) =>
-      async(dispatch, getState) => {
-        const { fetchLineDescriptor, measureYTicks_ } = ChartTimeseries.actions;
-
-        let timeserieses = await dispatch(
-            ChartTimeseries.actions.fetchLineDescriptor(
-                statePath, lineDescriptor));
-        timeserieses = timeserieses.filter(ts => ts.data.length > 0);
-        if (timeserieses.length === 0) return;
-
-        await cp.ElementBase.afterRender(); // TODO remove
-
-        const state = Polymer.Path.get(getState(), statePath);
-
-        if (!state) {
-          // This chart is no longer in the redux store.
-          return;
-        }
-
-        if (0 === state.lineDescriptors.filter(other =>
-          ChartTimeseries.lineDescriptorEqual(
-              lineDescriptor, other)).length) {
-          // This lineDescriptor is no longer in state.lineDescriptors, so
-          // ignore it.
-          return;
-        }
-
-        for (const line of state.lines) {
-          if (ChartTimeseries.lineDescriptorEqual(
-              line.descriptor, lineDescriptor)) {
-            // |lineDescriptor| is already in state.lines, so ignore it.
-            return;
-          }
-        }
-
-        dispatch({
-          type: ChartTimeseries.reducers.layout.typeName,
-          statePath,
-          lineDescriptor,
-          timeserieses,
-        });
-        dispatch(
-            ChartTimeseries.actions.measureYTicks_(statePath, lineDescriptor));
-      },
-
-    measureYTicks_: (statePath, lineDescriptor) =>
-      async(dispatch, getState) => {
-        const state = Polymer.Path.get(getState(), statePath);
-        const ticks = new Set();
-        if (state.yAxis.ticksForUnitName) {
-          for (const unitTicks of state.yAxis.ticksForUnitName.values()) {
-            for (const tick of unitTicks) {
-              ticks.add(tick.text);
-            }
-          }
-        }
-        for (const line of state.lines) {
-          if (!line.ticks) continue;
-          for (const tick of line.ticks) {
-            ticks.add(tick.text);
-          }
-        }
-        if (ticks.size === 0) return;
-        const rects = await Promise.all([...ticks].map(tick =>
-          cp.measureText(tick)));
-        const width = tr.b.math.Statistics.max(rects, rect => rect.width);
-        dispatch(cp.ElementBase.actions.updateObject(
-            statePath + '.yAxis', {width}));
-      },
 
     dotMouseOver_: (statePath, line, datum) => async(dispatch, getState) => {
       dispatch({
@@ -516,7 +442,201 @@ tr.exportTo('cp', () => {
     lineDescriptor.buildType,
   ]);
 
-  ChartTimeseries.createFetchDescriptors = lineDescriptor => {
+  // Helper function to load a single line descriptor.
+  ChartTimeseries.loadLineDescriptor = async function* (
+      statePath,
+      lineDescriptor,
+      dispatch,
+      getState
+  ) {
+    let timeserieses = await ChartTimeseries.fetchLineDescriptor(
+        statePath, lineDescriptor, dispatch, getState);
+
+    timeserieses = timeserieses.filter(ts => ts.data.length > 0);
+    if (timeserieses.length === 0) return;
+
+    // Note(Sam): Don't worry about this
+    await cp.ElementBase.afterRender(); // TODO remove
+
+    const state = Polymer.Path.get(getState(), statePath);
+    if (!state) {
+      // This chart is no longer in the redux store.
+      console.warn(`Redux state ${statePath} cannot be found`);
+      return;
+    }
+
+    const index = state.lineDescriptors.findIndex(other =>
+      ChartTimeseries.lineDescriptorEqual(lineDescriptor, other)
+    );
+    if (index === -1) {
+      // This lineDescriptor is no longer in state.lineDescriptors, so
+      // ignore it.
+      console.warn('This lineDescriptor is not longer in the state');
+      return;
+    }
+
+    for (const { descriptor } of state.lines) {
+      if (ChartTimeseries.lineDescriptorEqual(descriptor, lineDescriptor)) {
+        // |lineDescriptor| is already in state.lines, so ignore it.
+        console.warn('This lineDescriptor is already in the state');
+        return;
+      }
+    }
+
+    dispatch({
+      type: ChartTimeseries.reducers.layout.typeName,
+      statePath,
+      lineDescriptor,
+      timeserieses,
+    });
+    ChartTimeseries.measureYTicks(statePath, lineDescriptor, dispatch,
+        getState);
+  };
+
+  // Iteratively pass timeseries data for a single line to a Polymer component.
+  // Replacement for `loadLineDescriptor`.
+  ChartTimeseries.loadLine = async(
+    statePath,
+    lineDescriptor,
+    dispatch,
+    getState
+  ) => {
+    const reader = ChartTimeseries.lineReader(
+        statePath, lineDescriptor, dispatch, getState);
+
+    for await (const ts of reader) {
+      // TODO(Sam): Batching and debouncing
+
+      // Note(Sam): Don't worry about this
+      await cp.ElementBase.afterRender(); // TODO remove
+
+      const state = Polymer.Path.get(getState(), statePath);
+      if (!state) {
+        // This chart is no longer in the redux store.
+        console.warn(`Redux state ${statePath} cannot be found`);
+        return;
+      }
+
+      if (state.isLoading) {
+        // Turn off loader components
+        dispatch(cp.ElementBase.actions.updateObject(statePath, {
+          isLoading: false,
+        }));
+      }
+
+      const index = state.lineDescriptors.findIndex(other =>
+        ChartTimeseries.lineDescriptorEqual(lineDescriptor, other)
+      );
+      if (index === -1) {
+        // This lineDescriptor is no longer in state.lineDescriptors, so
+        // ignore it.
+        console.warn('This lineDescriptor is not longer in the state');
+        return;
+      }
+
+      for (const { descriptor } of state.lines) {
+        if (ChartTimeseries.lineDescriptorEqual(descriptor, lineDescriptor)) {
+          // |lineDescriptor| is already in state.lines, so merge it.
+          console.warn('This lineDescriptor is already in the state');
+          return;
+        }
+      }
+
+      dispatch({
+        type: ChartTimeseries.reducers.layout.typeName,
+        statePath,
+        lineDescriptor,
+        timeserieses: [ts],
+      });
+      ChartTimeseries.measureYTicks(statePath, lineDescriptor, dispatch,
+          getState);
+    }
+  };
+
+  // Iterative way to fetch some of the timeseries data for a single line using
+  // ES6 generators. Replacement for `fetchLineDescriptor`.
+  ChartTimeseries.lineReader = async function* (
+      statePath,
+      lineDescriptor,
+      dispatch,
+      getState
+  ) {
+    const fetchDescriptors = ChartTimeseries.createFetchDescriptors(
+        lineDescriptor);
+
+    // Readers is an array of asynchronous generators.
+    const readers = fetchDescriptors.map(fetchDescriptor =>
+      cp.TimeseriesReader({
+        fetchDescriptor,
+        refStatePath: statePath,
+        dispatch,
+        getState,
+      })
+    );
+
+    const promises = readers.map(promisifyReader);
+
+    function promisifyReader(reader) {
+      const promise = (async() => {
+        try {
+          const { value, done } = await reader.next();
+          try {
+            return value;
+          } finally {
+            if (done === false) {
+              console.log('Adding to promises');
+              const next = promisifyReader(reader);
+              promises.push(next);
+            }
+          }
+        } catch (err) {
+          console.error(err);
+        } finally {
+          const index = promises.indexOf(promise);
+          promises.splice(index, 1);
+        }
+      })();
+      return promise;
+    }
+
+    while (promises.length) {
+      console.log(promises.length);
+      const ts = await Promise.race(promises);
+      if (ts.data && ts.data.length > 0) {
+        yield ts;
+      }
+    }
+  };
+
+  // Blocking way to fetch all of the timeseries data for a single line.
+  ChartTimeseries.fetchLineDescriptor = async(
+    statePath,
+    lineDescriptor,
+    dispatch,
+    getState
+  ) => {
+    // Don't display anything until we have all the data back.
+    // TODO(Sam): Use cp.CacheBase.batchResponses to reduce the cost of
+    // processing and rendering multiple times. Debounce if Polymer calls
+    // an event handler or observer.
+    // TODO(Ben): Display partial data with animated dashed lines.
+    const fetchDescriptors = ChartTimeseries.createFetchDescriptors(
+        lineDescriptor);
+
+    return await Promise.all(fetchDescriptors.map(async fetchDescriptor => {
+      try {
+        const ts = await dispatch(cp.ReadTimeseries({
+          fetchDescriptor,
+          refStatePath: statePath,
+        }));
+        return ts;
+      } catch (err) {
+        console.error('Failed reading timeseries', err);
+      }
+    }));
+  };
+
+  ChartTimeseries.createFetchDescriptors = (lineDescriptor) => {
     let testCases = lineDescriptor.testCases;
     if (testCases.length === 0) testCases = [undefined];
     const fetchDescriptors = [];
@@ -536,6 +656,35 @@ tr.exportTo('cp', () => {
       }
     }
     return fetchDescriptors;
+  };
+
+  ChartTimeseries.measureYTicks = async(
+    statePath,
+    lineDescriptor,
+    dispatch,
+    getState
+  ) => {
+    const state = Polymer.Path.get(getState(), statePath);
+    const ticks = new Set();
+    if (state.yAxis.ticksForUnitName) {
+      for (const unitTicks of state.yAxis.ticksForUnitName.values()) {
+        for (const tick of unitTicks) {
+          ticks.add(tick.text);
+        }
+      }
+    }
+    for (const line of state.lines) {
+      if (!line.ticks) continue;
+      for (const tick of line.ticks) {
+        ticks.add(tick.text);
+      }
+    }
+    if (ticks.size === 0) return;
+    const rects = await Promise.all([...ticks].map(tick =>
+      cp.measureText(tick)));
+    const width = tr.b.math.Statistics.max(rects, rect => rect.width);
+    dispatch(cp.ElementBase.actions.updateObject(
+        statePath + '.yAxis', {width}));
   };
 
   ChartTimeseries.mergeTimeserieses = (lineDescriptor, timeserieses, range) => {
