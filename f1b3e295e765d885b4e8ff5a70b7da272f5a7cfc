@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6aef546f_c96bf72b",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-09T14:26:50Z",
+      "side": 1,
+      "message": "I can\u0027t find where this is defined, are there changes you didn\u0027t upload?",
+      "range": {
+        "startLine": 22,
+        "startChar": 32,
+        "endLine": 22,
+        "endChar": 40
+      },
+      "revId": "f1b3e295e765d885b4e8ff5a70b7da272f5a7cfc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
