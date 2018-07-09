@@ -70,6 +70,24 @@
       "revId": "cf568e7c7d61529c47a3bf95c7b1a4ebaed955da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15f31eb3_84871334",
+        "filename": "telemetry/telemetry/core/tracing_controller_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-07-09T13:07:20Z",
+      "side": 1,
+      "message": "Hmhh weird. I recalled I was able to create two browsers running in parallel on desktop in https://chromium-review.googlesource.com/c/catapult/+/1100745/1/telemetry/telemetry/core/tracing_controller_unittest.py. :-/",
+      "parentUuid": "e2ee2765_e3652986",
+      "revId": "cf568e7c7d61529c47a3bf95c7b1a4ebaed955da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
