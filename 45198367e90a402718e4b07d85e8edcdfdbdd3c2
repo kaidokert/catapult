@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e41f72a_9cc0e0d7",
+        "filename": "telemetry/telemetry/core/tracing_controller.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-09T11:19:58Z",
+      "side": 0,
+      "message": "After all the testing added I guess it\u0027s fine to consider this \"no longer a hack\" ?",
+      "revId": "45198367e90a402718e4b07d85e8edcdfdbdd3c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
