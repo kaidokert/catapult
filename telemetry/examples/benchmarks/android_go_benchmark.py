@@ -112,12 +112,6 @@ class SharedAndroidStoryState(story_module.SharedState):
       # trace from this browser before it's closed.
       if self.platform.tracing_controller.is_tracing_running:
         self.platform.tracing_controller.FlushTracing()
-
-      # b) Close all tabs before closing the browser. Prevents a bug that
-      # would cause future browser instances to hang when older tabs receive
-      # DevTools requests.
-      while len(browser.tabs) > 0:
-        browser.tabs[0].Close(keep_one=False)
     finally:
       browser.Close()
 
