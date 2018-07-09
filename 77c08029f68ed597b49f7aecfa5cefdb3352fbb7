@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f536ea53_b321be73",
+        "filename": "dashboard/dashboard/pinpoint/models/change/change_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-09T08:37:02Z",
+      "side": 1,
+      "message": "super nit: two spaces between the code and the comment.\n\n\"To improve legibility, these comments should be at least 2 spaces away from the code.\"\nhttps://github.com/google/styleguide/blob/gh-pages/pyguide.md#385-block-and-inline-comments",
+      "revId": "77c08029f68ed597b49f7aecfa5cefdb3352fbb7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73bfd275_5af006a7",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-09T08:37:02Z",
+      "side": 1,
+      "message": "can you also explain in a comment, is \"midpoint\" the mid-point between A and B?",
+      "revId": "77c08029f68ed597b49f7aecfa5cefdb3352fbb7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f0a9abf_adf3c1e9",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-09T08:37:02Z",
+      "side": 1,
+      "message": "wondering here whether we should name the commits something like: commit_a, commit_b, ..., commit_e; so they are also easier to read and reason about in the tests?",
+      "revId": "77c08029f68ed597b49f7aecfa5cefdb3352fbb7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
