@@ -16,6 +16,24 @@
       "revId": "cf568e7c7d61529c47a3bf95c7b1a4ebaed955da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8af45799_3fdfbffc",
+        "filename": "telemetry/telemetry/core/tracing_controller_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-09T09:34:09Z",
+      "side": 1,
+      "message": "That is tricky, because it requires having two distinct browsers installed on the target platform. Otherwise there is no way to \"create\" two instances of the same browser without closing the first one first. Usually the second \"create\" would just \"activate\" the existing browser instance already alive.",
+      "parentUuid": "6be6aaa9_1bd44411",
+      "revId": "cf568e7c7d61529c47a3bf95c7b1a4ebaed955da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
