@@ -50,6 +50,24 @@
       "revId": "77c08029f68ed597b49f7aecfa5cefdb3352fbb7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7568f22_a31ef4fd",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-09T08:49:31Z",
+      "side": 1,
+      "message": "Actually, looking at how this is used in e.g. https://chromium-review.googlesource.com/c/catapult/+/1128456, maybe instead of a mock returning a fixed list, this could be a \"fake\" with a little implementation that can be called as, e.g.:\n\n  CommitRange(\"change_7\", \"change_13\") -\u003e [\"change_13\", \"change_12\", ..., \"change_8\"]\n\nThis will also give you more flexibility on the sorts of tests you can write, make them more readable, and simplify things by *always* patching this gitiles_service for all tests (as opposed to this SetMidpoint, which needs to carefully think when and when not to patch depending on the result you are expecting).",
+      "parentUuid": "7f0a9abf_adf3c1e9",
+      "revId": "77c08029f68ed597b49f7aecfa5cefdb3352fbb7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
