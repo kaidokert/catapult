@@ -20,6 +20,11 @@ class BadRequestError(Exception):
   pass
 
 
+class NotFoundError(Exception):
+  def __init__(self):
+    super(NotFoundError, self).__init__('Not found')
+
+
 class ApiRequestHandler(webapp2.RequestHandler):
   """API handler for api requests.
 
@@ -45,6 +50,8 @@ class ApiRequestHandler(webapp2.RequestHandler):
     try:
       results = self.AuthorizedPost(*args)
       self.response.out.write(json.dumps(results))
+    except NotFoundError as e:
+      self.WriteErrorMessage(e.message, 404)
     except BadRequestError as e:
       self.WriteErrorMessage(e.message, 400)
 
