@@ -46,6 +46,30 @@
       "revId": "34f0d7e2e45f3c8796b6f37fd99ea1117f6218b2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99ff119c_4a57202c",
+        "filename": "dashboard/dashboard/common/xsrf.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-09T16:07:28Z",
+      "side": 0,
+      "message": "sounds fine",
+      "parentUuid": "92c86d1b_4b7f9974",
+      "range": {
+        "startLine": 23,
+        "startChar": 38,
+        "endLine": 23,
+        "endChar": 52
+      },
+      "revId": "34f0d7e2e45f3c8796b6f37fd99ea1117f6218b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
