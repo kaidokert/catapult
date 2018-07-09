@@ -129,3 +129,36 @@ The bugs API returns the following JSON about the bug:
   * `/api/timeseries/test_path`: Return the timeseries data for the given
     `test_path` as JSON. Can specify `num_days` param in postdata, defaults to
     30.
+  * `/api/timeseries2?<params>`: Get timeseries data, alerts, Histograms, and
+    SparseDiagnostics. Post body parameters may include the following:
+     * `test_suite`, `measurement`, `bot`: Required strings from
+       `/api/test_suites` and `/api/describe`.
+     * `test_case`: Optional string from `/api/describe`.
+     * `build_type`: Optional enum `test` (default) or `ref`.
+     * `columns`: Required CSV. May contain
+        * `revision`
+        * `avg`
+        * `std`
+        * `revisions`
+        * `timestamp`
+        * `alert`
+        * `histogram`
+        * `diagnostics`
+     * `min_rev`: Optional number.
+     * `max_rev`: Optional number.
+    Returns a JSON object containing `units`, `improvement_direction` ("down" or
+    "up"), and "data", which is an array. Elements of the data array are arrays
+    of values corresponding to the `columns` parameter. For example, if
+    `columns=revision,avg,timestamp`, then elements of the data array will be
+    2-tuples like `[123456,42.42,"2018-07-09T09:58:20.210539"]`.
+    The `revisions` column produces an object whose keys are names like
+    `r_webkit` and `r_chromium`, and whose values are numbers or strings.
+    The `alert` column produces objects as specified in the Alerts section
+    above.
+    The `histogram` column produces [Histogram
+    JSON](https://chromium.googlesource.com/catapult/+/master/docs/histogram-set-json-format.md).
+    The `diagnostics` column produces an object whose keys are names (which may
+    be [reserved
+    names](https://chromium.googlesource.com/catapult/+/master/tracing/tracing/value/diagnostics/reserved_infos.py)),
+    and whose values are [Diagnostic
+    JSON](https://chromium.googlesource.com/catapult/+/master/docs/histogram-set-json-format.md#diagnostics).
