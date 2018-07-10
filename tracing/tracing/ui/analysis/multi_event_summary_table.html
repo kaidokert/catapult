@@ -79,6 +79,13 @@ Polymer({
       width: '350px',
       cmp(rowA, rowB) {
         return rowA.title.localeCompare(rowB.title);
+      },
+      mutateCell(row, td) {
+        if (row.title === 'Totals') return;
+        if (!tr.isExported('tr-ui-e-chrome-codesearch')) return;
+        const link = document.createElement('tr-ui-e-chrome-codesearch');
+        link.searchPhrase = row.title;
+        Polymer.dom(td).appendChild(link);
       }
     });
     if (this.eventsHaveDuration_) {
