@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f7cb21be_e4348754",
+        "filename": "tracing/tracing/ui/analysis/multi_event_summary_table.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-07-10T04:44:31Z",
+      "side": 1,
+      "message": "I am not really sure if this is something that\u0027s allowed or not. If not, any guidance where this should go?\n\nI attempted writing a generic codesearch-linkifier, where the project/embedder (i.e. chrome, or other projects that use trace-viewer ... not sure what the right term is) can inject the codesearch URL (or the factory that generates the codesearch URL), and have this code use that here. But I couldn\u0027t find a good way of doing that (other than what is in here). I looked at chrome_config.html, hoping there could be something there, but failed to find anything similar there that I could follow. As someone not familiar with polymer (or web-development, really), guidance would be most helpful!",
+      "revId": "c644e83d51e2db1b9963554158af6d8d83026749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
