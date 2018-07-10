@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c1ebe813_5be7522e",
+        "filename": "tracing/tracing/extras/importer/linux_perf/binder_parser.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 553,
+      "author": {
+        "id": 1291738
+      },
+      "writtenOn": "2018-07-10T04:18:33Z",
+      "side": 1,
+      "message": "While this change is not strictly necessary to produce correct output, it is done to avoid setting incorrect slice arguments in the else condition below. \n\nI feel it is better to not set arguments at all, and then set the correct ones later rather than  set incorrect arguments and fix them later by overwriting them. \n\nIf for some reason you disagree, I can rip out these lines.",
+      "range": {
+        "startLine": 542,
+        "startChar": 0,
+        "endLine": 553,
+        "endChar": 26
+      },
+      "revId": "6672f90cb48e5d2fb754a3d5593d6acdb5385dc2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
