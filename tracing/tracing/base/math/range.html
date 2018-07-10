@@ -218,6 +218,42 @@ tr.exportTo('tr.b.math', function() {
       const last = tr.b.findFirstTrueIndexInSortedArray(sortedArray,
           obj => this.max_ !== undefined && this.max_ < getValue(obj));
       return sortedArray.slice(first, last);
+    },
+
+    // Merge into an array of disconnected Ranges which has been sorted by min.
+    // WARNING: THIS MUTATES THE ARRAY
+    mergeIntoArray(sortedArray) {
+      // Keep track of where to insert into the sorted array.
+      let insertionIndex = 0;
+
+      for (let i = 0; i < sortedArray.length; i++) {
+        const range = sortedArray[i];
+
+        // TODO(Sam): Optimize by replacing `findIntersection` with a series of
+        // if statements.
+        const intersection = range.findIntersection(this);
+        const sameMin = tr.b.math.approximately(range.min, intersection.min);
+        const sameMax = tr.b.math.approximately(range.max, intersection.max);
+
+        if (sameMin && sameMax) {
+          // Remove the previous range
+          sortedArray.splice(i, 1);
+          i--;
+        } else if (sameMin || sameMax) {
+          // Remove the previous range
+          sortedArray.splice(i, 1);
+          i--;
+
+          // Merge the previous and current range.
+          this.addRange(range);
+        } else if (range.max < this.min) {
+          // This range will be inserted before
+          insertionIndex = i + 1;
+        }
+      }
+
+      // Insert this range into the sorted array
+      sortedArray.splice(insertionIndex, 0, this);
     }
   };
 

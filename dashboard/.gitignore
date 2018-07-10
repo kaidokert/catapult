@@ -4,6 +4,7 @@
 /polymer2
 /redux
 /redux.min.js
+/idb.js
 
 # Catapult tracing library
 /tracing
