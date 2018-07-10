@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c64d1754_c9a3e77d",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-10T08:50:08Z",
+      "side": 1,
+      "message": "nit: maybe move the tuple to a PERFORMANCE_TESTS module level constant?",
+      "revId": "5b0e0dbfff565e569e54a0fb7e43a5cac3f0a483",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
