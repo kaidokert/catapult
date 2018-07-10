@@ -30,7 +30,7 @@ class DescriptorTest(testing_common.TestCase):
     descriptor.Descriptor.ResetMemoizedConfigurationForTesting()
 
   def testFromTestPath_Empty(self):
-    desc = descriptor.Descriptor.FromTestPath([])
+    desc = descriptor.Descriptor.FromTestPath('')
     self.assertEqual(None, desc.test_suite)
     self.assertEqual(None, desc.measurement)
     self.assertEqual(None, desc.bot)
@@ -39,7 +39,7 @@ class DescriptorTest(testing_common.TestCase):
     self.assertEqual(None, desc.build_type)
 
   def testFromTestPath_Short(self):
-    desc = descriptor.Descriptor.FromTestPath([''])
+    desc = descriptor.Descriptor.FromTestPath('master')
     self.assertEqual(None, desc.test_suite)
     self.assertEqual(None, desc.measurement)
     self.assertEqual(None, desc.bot)
@@ -48,7 +48,7 @@ class DescriptorTest(testing_common.TestCase):
     self.assertEqual(None, desc.build_type)
 
   def testFromTestPath_Bot(self):
-    desc = descriptor.Descriptor.FromTestPath(['master', 'bot'])
+    desc = descriptor.Descriptor.FromTestPath('master/bot')
     self.assertEqual(None, desc.test_suite)
     self.assertEqual(None, desc.measurement)
     self.assertEqual('master:bot', desc.bot)
@@ -57,7 +57,7 @@ class DescriptorTest(testing_common.TestCase):
     self.assertEqual(None, desc.build_type)
 
   def testFromTestPath_Suite(self):
-    desc = descriptor.Descriptor.FromTestPath(['master', 'bot', 'suite'])
+    desc = descriptor.Descriptor.FromTestPath('master/bot/suite')
     self.assertEqual('suite', desc.test_suite)
     self.assertEqual(None, desc.measurement)
     self.assertEqual('master:bot', desc.bot)
@@ -66,8 +66,7 @@ class DescriptorTest(testing_common.TestCase):
     self.assertEqual(None, desc.build_type)
 
   def testFromTestPath_Measurement(self):
-    desc = descriptor.Descriptor.FromTestPath([
-        'master', 'bot', 'suite', 'measure'])
+    desc = descriptor.Descriptor.FromTestPath('master/bot/suite/measure')
     self.assertEqual('suite', desc.test_suite)
     self.assertEqual('measure', desc.measurement)
     self.assertEqual('master:bot', desc.bot)
@@ -76,8 +75,7 @@ class DescriptorTest(testing_common.TestCase):
     self.assertEqual(descriptor.TEST_BUILD_TYPE, desc.build_type)
 
   def testFromTestPath_Statistic(self):
-    desc = descriptor.Descriptor.FromTestPath([
-        'master', 'bot', 'suite', 'measure_avg'])
+    desc = descriptor.Descriptor.FromTestPath('master/bot/suite/measure_avg')
     self.assertEqual('suite', desc.test_suite)
     self.assertEqual('measure', desc.measurement)
     self.assertEqual('master:bot', desc.bot)
@@ -86,8 +84,8 @@ class DescriptorTest(testing_common.TestCase):
     self.assertEqual(descriptor.TEST_BUILD_TYPE, desc.build_type)
 
   def testFromTestPath_Ref(self):
-    desc = descriptor.Descriptor.FromTestPath([
-        'master', 'bot', 'suite', 'measure_avg', 'ref'])
+    desc = descriptor.Descriptor.FromTestPath(
+        'master/bot/suite/measure_avg/ref')
     self.assertEqual('suite', desc.test_suite)
     self.assertEqual('measure', desc.measurement)
     self.assertEqual('master:bot', desc.bot)
@@ -96,8 +94,8 @@ class DescriptorTest(testing_common.TestCase):
     self.assertEqual(descriptor.REFERENCE_BUILD_TYPE, desc.build_type)
 
   def testFromTestPath_TestCase(self):
-    desc = descriptor.Descriptor.FromTestPath([
-        'master', 'bot', 'suite', 'measure_avg', 'case'])
+    desc = descriptor.Descriptor.FromTestPath(
+        'master/bot/suite/measure_avg/case')
     self.assertEqual('suite', desc.test_suite)
     self.assertEqual('measure', desc.measurement)
     self.assertEqual('master:bot', desc.bot)
@@ -106,8 +104,8 @@ class DescriptorTest(testing_common.TestCase):
     self.assertEqual(descriptor.TEST_BUILD_TYPE, desc.build_type)
 
   def testFromTestPath_All(self):
-    desc = descriptor.Descriptor.FromTestPath([
-        'master', 'bot', 'suite', 'measure_avg', 'case_ref'])
+    desc = descriptor.Descriptor.FromTestPath(
+        'master/bot/suite/measure_avg/case_ref')
     self.assertEqual('suite', desc.test_suite)
     self.assertEqual('measure', desc.measurement)
     self.assertEqual('master:bot', desc.bot)
@@ -116,74 +114,69 @@ class DescriptorTest(testing_common.TestCase):
     self.assertEqual(descriptor.REFERENCE_BUILD_TYPE, desc.build_type)
 
   def testFromTestPath_Partial(self):
-    desc = descriptor.Descriptor.FromTestPath([
-        'master', 'bot', 'TEST_PARTIAL_TEST_SUITE'])
+    desc = descriptor.Descriptor.FromTestPath(
+        'master/bot/TEST_PARTIAL_TEST_SUITE')
     self.assertEqual('master:bot', desc.bot)
     self.assertEqual(None, desc.test_suite)
 
-    desc = descriptor.Descriptor.FromTestPath([
-        'master', 'bot', 'TEST_PARTIAL_TEST_SUITE', 'COMPOSITE'])
+    desc = descriptor.Descriptor.FromTestPath(
+        'master/bot/TEST_PARTIAL_TEST_SUITE/COMPOSITE')
     self.assertEqual('master:bot', desc.bot)
     self.assertEqual('TEST_PARTIAL_TEST_SUITE:COMPOSITE', desc.test_suite)
 
   def testFromTestPath_Groupable(self):
-    desc = descriptor.Descriptor.FromTestPath([
-        'master', 'bot', 'TEST_GROUPABLE%FOO'])
+    desc = descriptor.Descriptor.FromTestPath(
+        'master/bot/TEST_GROUPABLE%FOO')
     self.assertEqual('master:bot', desc.bot)
     self.assertEqual('TEST_GROUPABLE:FOO', desc.test_suite)
 
   def testFromTestPath_SystemHealth(self):
-    desc = descriptor.Descriptor.FromTestPath([
-        'master', 'bot', 'system_health.common_desktop', 'measurement',
-        'browse_news', 'browse_news_cnn'])
+    desc = descriptor.Descriptor.FromTestPath(
+        'master/bot/system_health.common_desktop/measurement/'
+        'browse_news/browse_news_cnn')
     self.assertEqual('browse:news:cnn', desc.test_case)
 
   def testFromTestPath_LongRunningTools(self):
-    desc = descriptor.Descriptor.FromTestPath([
-        'master', 'bot', 'system_health.common_desktop', 'measurement',
-        'long_running_tools', 'long_running_tools:gmail'])
+    desc = descriptor.Descriptor.FromTestPath(
+        'master/bot/system_health.common_desktop/measurement/'
+        'long_running_tools/long_running_tools:gmail')
     self.assertEqual('long_running_tools:gmail', desc.test_case)
 
   def testFromTestPath_ResourceSizes(self):
-    desc = descriptor.Descriptor.FromTestPath([
-        'master', 'bot', 'resource_sizes:foo', 'a', 'b', 'c', 'd'])
+    desc = descriptor.Descriptor.FromTestPath(
+        'master/bot/resource_sizes:foo/a/b/c/d')
     self.assertEqual('a:b:c:d', desc.measurement)
     self.assertEqual(None, desc.test_case)
 
   def testFromTestPath_NoMitigations(self):
-    desc = descriptor.Descriptor.FromTestPath([
-        'master', 'bot', 'polymeasurement', 'a', 'b', 'c',
-        descriptor.NO_MITIGATIONS_CASE])
+    desc = descriptor.Descriptor.FromTestPath(
+        'master/bot/polymeasurement/a/b/c/' +
+        descriptor.NO_MITIGATIONS_CASE)
     self.assertEqual('a:b:c', desc.measurement)
     self.assertEqual(descriptor.NO_MITIGATIONS_CASE, desc.test_case)
 
   def testFromTestPath_Unparsed(self):
-    parts = ['master', 'bot', 'suite', 'measurement', 'case', 'extra']
-    descriptor.Descriptor.FromTestPath(parts)
-    self.assertEqual(1, len(parts))
-    self.assertEqual('extra', parts[0])
-
-  def testFromTestPath_UnparsedRef(self):
-    parts = ['master', 'bot', 'suite', 'measurement', 'case', 'extra', 'ref']
-    descriptor.Descriptor.FromTestPath(parts)
-    self.assertEqual(1, len(parts))
-    self.assertEqual('extra', parts[0])
+    with self.assertRaises(ValueError):
+      descriptor.Descriptor.FromTestPath(
+          'master/bot/suite/measurement/case/extra')
+    with self.assertRaises(ValueError):
+      descriptor.Descriptor.FromTestPath(
+          'master/bot/suite/measurement/case/extra/ref')
 
   def testFromTestPath_Memory(self):
-    desc = descriptor.Descriptor.FromTestPath([
-        'master', 'bot', 'memory.top_10_mobile', 'measurement', 'ground'])
+    desc = descriptor.Descriptor.FromTestPath(
+        'master/bot/memory.top_10_mobile/measurement/ground')
     self.assertEqual('measurement', desc.measurement)
     self.assertEqual(None, desc.test_case)
 
-    desc = descriptor.Descriptor.FromTestPath([
-        'master', 'bot', 'memory.top_10_mobile', 'measurement', 'ground',
-        'page'])
+    desc = descriptor.Descriptor.FromTestPath(
+        'master/bot/memory.top_10_mobile/measurement/ground/page')
     self.assertEqual('measurement', desc.measurement)
     self.assertEqual('ground:page', desc.test_case)
 
   def testFromTestPath_Sizes(self):
     desc = descriptor.Descriptor.FromTestPath(
-        'master/bot/sizes/a/b/c/d/e/f/g/h/i'.split('/'))
+        'master/bot/sizes/a/b/c/d/e/f/g/h/i')
     self.assertEqual('sizes', desc.test_suite)
     self.assertEqual('a:b:c:d:e:f', desc.measurement)
     self.assertEqual('g:h:i', desc.test_case)
