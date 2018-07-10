@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f22fd670_f5eb8805",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-10T08:42:48Z",
+      "side": 1,
+      "message": "super nit: expand CSV to \"comma separated values\"; otherwise it makes me feel like I have to submit a full CSV file as the value of this param. :D",
+      "revId": "33b9f66a965c82112e57c6104a146f7bafb38c57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5f6a4f9_239b0716",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-10T08:42:48Z",
+      "side": 1,
+      "message": "could we also request e.g. min/max?",
+      "revId": "33b9f66a965c82112e57c6104a146f7bafb38c57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8a283b1_bf2df7db",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-10T08:42:48Z",
+      "side": 1,
+      "message": "Are these rev\u0027s commit positions? (aka point id\u0027s?)\n\nAlso would be nice to be able to specify a range using dates.",
+      "revId": "33b9f66a965c82112e57c6104a146f7bafb38c57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a643913c_8a7d310e",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-10T08:42:48Z",
+      "side": 1,
+      "message": "wondering if the docs of revisions, alert, etc. should be moved up next to where they are listed as possible `columns` values. (Or, alternatively, just add a comment there noting that these will be explained below.)",
+      "revId": "33b9f66a965c82112e57c6104a146f7bafb38c57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
