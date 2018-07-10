@@ -780,6 +780,7 @@ class HistogramBin(object):
 # TODO(#3814) Presubmit to compare with unit.html.
 UNIT_NAMES = [
     'ms',
+    'msBestFitFormat',
     'tsMs',
     'n%',
     'sizeInBytes',
