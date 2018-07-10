@@ -67,6 +67,92 @@
       "revId": "33b9f66a965c82112e57c6104a146f7bafb38c57",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25e5677f_810850f1",
+        "filename": "dashboard/dashboard/api/timeseries2.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-10T15:29:52Z",
+      "side": 1,
+      "message": "tasklet + sync calls \u003d potential deadlock",
+      "range": {
+        "startLine": 110,
+        "startChar": 40,
+        "endLine": 110,
+        "endChar": 52
+      },
+      "revId": "33b9f66a965c82112e57c6104a146f7bafb38c57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0473c3aa_1adc409f",
+        "filename": "dashboard/dashboard/api/timeseries2.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-10T15:29:52Z",
+      "side": 1,
+      "message": "Curious how\u0027s this perform vs doing a N queries in parallel? iirc appengine implements the IN as a tonne of OR statements",
+      "range": {
+        "startLine": 183,
+        "startChar": 63,
+        "endLine": 183,
+        "endChar": 65
+      },
+      "revId": "33b9f66a965c82112e57c6104a146f7bafb38c57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46e7c4b5_fc844052",
+        "filename": "dashboard/dashboard/api/timeseries2.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-10T15:29:52Z",
+      "side": 1,
+      "message": "nit: mind moving this yield to it\u0027s own line, just feels like there\u0027s a lot happening here, same with diagnostic one below.",
+      "revId": "33b9f66a965c82112e57c6104a146f7bafb38c57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e469eca9_99dbf6ac",
+        "filename": "dashboard/dashboard/api/timeseries2_test.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-10T15:29:52Z",
+      "side": 1,
+      "message": "Isn\u0027t there a version of this in testing_common now?",
+      "range": {
+        "startLine": 54,
+        "startChar": 6,
+        "endLine": 54,
+        "endChar": 15
+      },
+      "revId": "33b9f66a965c82112e57c6104a146f7bafb38c57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
