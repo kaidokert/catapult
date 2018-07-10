@@ -47,6 +47,10 @@ class Descriptor(object):
     self.statistic = statistic
     self.build_type = build_type
 
+  def Clone(self):
+    return Descriptor(self.test_suite, self.measurement, self.bot,
+                      self.test_case, self.statistic, self.build_type)
+
   def __repr__(self):
     return 'Descriptor(%r, %r, %r, %r, %r, %r)' % (
         self.test_suite, self.measurement, self.bot, self.test_case,
@@ -162,7 +166,7 @@ class Descriptor(object):
     return path.pop(0), path.pop(0)
 
   @classmethod
-  def FromTestPath(cls, path):
+  def FromTestPath(cls, test_path):
     """Parse a test path into a Descriptor.
 
     Args:
@@ -171,6 +175,7 @@ class Descriptor(object):
     Returns:
       Descriptor
     """
+    path = test_path.split('/')
     if len(path) < 2:
       return cls()
 
