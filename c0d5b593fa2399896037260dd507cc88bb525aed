@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2f79a5c6_428bc569",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2018-07-10T17:54:10Z",
+      "side": 1,
+      "message": "Is this a process done until the browser side of the api has landed? Happen to know of an example that I could look at?",
+      "parentUuid": "74407bba_3b6bad1a",
+      "revId": "c0d5b593fa2399896037260dd507cc88bb525aed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8a400b13_17c68fed",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
         "patchSetId": 7
