@@ -1,0 +1,236 @@
+# Copyright 2018 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+from google.appengine.ext import ndb
+
+from dashboard import alerts
+from dashboard.api import api_request_handler
+from dashboard.common import descriptor
+from dashboard.common import utils
+from dashboard.models import anomaly
+from dashboard.models import graph_data
+from dashboard.models import histogram
+
+
+# These limits should prevent DeadlineExceededErrors.
+# TODO(benjhayden): Find a better strategy for staying under the deadline.
+DIAGNOSTICS_QUERY_LIMIT = 10000
+HISTOGRAMS_QUERY_LIMIT = 10000
+ROWS_QUERY_LIMIT = 20000
+
+COLUMNS_REQUIRING_ROWS = {'timestamp', 'revisions'}.union(descriptor.STATISTICS)
+CACHE_SECONDS = 60 * 60 * 24 * 7
+
+
+class Timeseries2Handler(api_request_handler.ApiRequestHandler):
+
+  def __init__(self, request, response):
+    self.initialize(request, response)
+    self._descriptor = None
+    self._min_revision = None
+    self._max_revision = None
+    self._columns = []
+    self._unsuffixed_test_metadata_keys = []
+    self._test_keys = []
+    self._units = None
+    self._improvement_direction = None
+    self._data = {}
+    self._private = False
+
+  def _AllowAnonymous(self):
+    return True
+
+  def AuthorizedPost(self):
+    self._descriptor = descriptor.Descriptor(
+        test_suite=self.request.get('test_suite'),
+        measurement=self.request.get('measurement'),
+        bot=self.request.get('bot'),
+        test_case=self.request.get('test_case'),
+        statistic=None,
+        build_type=self.request.get('build_type'))
+    self._min_revision = self.request.get('min_rev')
+    self._min_revision = int(self._min_revision) if self._min_revision else None
+    self._max_revision = self.request.get('max_rev')
+    self._max_revision = int(self._max_revision) if self._max_revision else None
+    self._columns = self.request.get('columns').split(',')
+    return self.Query()
+
+  def Query(self):
+    # Always need to query TestMetadata even if the caller doesn't need units
+    # and improvement_direction because Row doesn't have internal_only.
+    # Use tasklets so that they can process the data as it arrives.
+    self._CreateTestKeys()
+    futures = [self._QueryTests()]
+    if COLUMNS_REQUIRING_ROWS.intersection(self._columns):
+      futures.append(self._QueryRows())
+    if 'alert' in self._columns:
+      futures.append(self._QueryAlerts())
+    if 'histogram' in self._columns:
+      futures.append(self._QueryHistograms())
+    if 'diagnostics' in self._columns:
+      futures.append(self._QueryDiagnostics())
+    try:
+      ndb.Future.wait_all(futures)
+      for future in futures:
+        # Propagate exceptions from the tasklets.
+        future.get_result()
+    except AssertionError:
+      # The caller has requested internal-only data but is not authorized.
+      raise api_request_handler.NotFoundError
+
+    self._SetCacheControl()
+    return {
+        'units': self._units,
+        'improvement_direction': self._improvement_direction,
+        'data': [[datum.get(col) for col in self._columns]
+                 for _, datum in sorted(self._data.iteritems())],
+    }
+
+  def _SetCacheControl(self):
+    self.response.headers['Cache-Control'] = '%s, max-age=%d' % (
+        'private' if self._private else 'public', CACHE_SECONDS)
+
+  def _CreateTestKeys(self):
+    desc = self._descriptor.Clone()
+
+    desc.statistic = None
+    unsuffixed_test_paths = desc.ToTestPathsSync()
+    self._unsuffixed_test_metadata_keys = [
+        utils.TestMetadataKey(path) for path in unsuffixed_test_paths]
+
+    test_paths = []
+    for statistic in descriptor.STATISTICS:
+      if statistic in self._columns:
+        desc.statistic = statistic
+        test_paths.extend(desc.ToTestPathsSync())
+
+    test_metadata_keys = [utils.TestMetadataKey(path) for path in test_paths]
+    test_metadata_keys.extend(self._unsuffixed_test_metadata_keys)
+    test_paths.extend(unsuffixed_test_paths)
+
+    test_old_keys = [utils.OldStyleTestKey(path) for path in test_paths]
+    self._test_keys = test_old_keys + test_metadata_keys
+
+  @ndb.tasklet
+  def _QueryTests(self):
+    tests = yield [key.get_async() for key in self._test_keys]
+    tests = [test for test in tests if test]
+    if not tests:
+      raise api_request_handler.NotFoundError
+
+    improvement_direction = None
+    for test in tests:
+      if test.internal_only:
+        self._private = True
+
+      test_desc = yield descriptor.Descriptor.FromTestPathAsync(
+          utils.TestPath(test.key))
+      # The unit for 'count' statistics is trivially always 'count'. Callers
+      # certainly want the units of the measurement, which is the same as the
+      # units of the 'avg' and 'std' statistics.
+      if self._units is None or test_desc.statistic != 'count':
+        self._units = test.units
+        improvement_direction = test.improvement_direction
+
+    if improvement_direction == anomaly.DOWN:
+      self._improvement_direction = 'down'
+    elif improvement_direction == anomaly.UP:
+      self._improvement_direction = 'up'
+    else:
+      self._improvement_direction = None
+
+  def _Datum(self, revision):
+    return self._data.setdefault(revision, {'revision': revision})
+
+  @ndb.tasklet
+  def _QueryRows(self):
+    limit = ROWS_QUERY_LIMIT
+    projection = None
+    if 'std' not in self._columns and 'revisions' not in self._columns:
+      projection = ['revision', 'value']
+      if 'timestamp' in self._columns:
+        projection.append('timestamp')
+      limit = None
+    yield [self._QueryRowsForTest(test_key, projection, limit)
+           for test_key in self._test_keys]
+
+  @ndb.tasklet
+  def _QueryRowsForTest(self, test_key, projection, limit):
+    test_desc = yield descriptor.Descriptor.FromTestPathAsync(
+        utils.TestPath(test_key))
+    query = graph_data.Row.query(projection=projection)
+    query = query.filter(graph_data.Row.parent_test == test_key)
+    if self._min_revision:
+      query = query.filter(graph_data.Row.revision >= self._min_revision)
+    if self._max_revision:
+      query = query.filter(graph_data.Row.revision <= self._max_revision)
+    query = query.order(-graph_data.Row.revision)
+    rows = yield query.fetch_async(limit)
+    for row in rows:
+      datum = self._Datum(row.revision)
+      if test_desc.statistic in [None, 'avg']:
+        datum['avg'] = round(row.value, 6)
+      elif test_desc.statistic == 'std':
+        datum['std'] = round(row.value, 6)
+      elif test_desc.statistic == 'count':
+        datum['count'] = round(row.value, 6)
+      if row.error:
+        datum['std'] = round(row.error, 6)
+      if hasattr(row, 'd_count'):
+        datum['count'] = round(row.d_count, 6)
+      # TODO(benjhayden) Other d_statistics
+      datum['timestamp'] = row.timestamp.isoformat()
+      if 'revisions' in self._columns:
+        datum['revisions'] = {
+            attr: value for attr, value in row.to_dict().iteritems()
+            if attr.startswith('r_')}
+
+  @ndb.tasklet
+  def _QueryAlerts(self):
+    anomalies, _, _ = yield anomaly.Anomaly.QueryAsync(
+        test_keys=self._test_keys,
+        max_start_revision=self._max_revision,
+        min_end_revision=self._min_revision)
+    for alert in anomalies:
+      if alert.internal_only:
+        self._private = True
+      # TODO(benjhayden) end_revision or start_revision?
+      datum = self._Datum(alert.end_revision)
+      # TODO(benjhayden) bisect_status
+      datum['alert'] = alerts.GetAnomalyDict(alert)
+
+  @ndb.tasklet
+  def _QueryHistograms(self):
+    query = histogram.Histogram.query(histogram.Histogram.test.IN(
+        self._unsuffixed_test_metadata_keys))
+    if self._min_revision:
+      query = query.filter(
+          histogram.Histogram.revision >= self._min_revision)
+    if self._max_revision:
+      query = query.filter(
+          histogram.Histogram.revision <= self._max_revision)
+    histograms = yield query.fetch_async(HISTOGRAMS_QUERY_LIMIT)
+    for hist in histograms:
+      if hist.internal_only:
+        self._private = True
+      self._Datum(hist.revision)['histogram'] = hist.data
+
+  @ndb.tasklet
+  def _QueryDiagnostics(self):
+    query = histogram.SparseDiagnostic.query(histogram.SparseDiagnostic.test.IN(
+        self._unsuffixed_test_metadata_keys))
+    if self._min_revision:
+      query = query.filter(
+          histogram.SparseDiagnostic.start_revision >= self._min_revision)
+    if self._max_revision:
+      query = query.filter(
+          histogram.SparseDiagnostic.start_revision <= self._max_revision)
+    diagnostics = yield query.fetch_async(DIAGNOSTICS_QUERY_LIMIT)
+    for diag in diagnostics:
+      if diag.internal_only:
+        self._private = True
+      # TODO(benjhayden) end_revision or start_revision?
+      datum = self._Datum(diag.start_revision)
+      datum_diags = datum.setdefault('diagnostics', {})
+      datum_diags[diag.name] = diag.data
