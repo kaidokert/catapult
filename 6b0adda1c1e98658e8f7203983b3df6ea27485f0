@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ec6d860_ee6d260b",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-10T08:25:02Z",
+      "side": 1,
+      "message": "nit: feel free to ignore for now, but if something like this comes up again in other places it would be cleaner to detect the platform and then use ntpath.join or posixpath.join respectively.",
+      "revId": "6b0adda1c1e98658e8f7203983b3df6ea27485f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
