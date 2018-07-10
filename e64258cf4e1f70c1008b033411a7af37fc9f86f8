@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "74557174_201bd20f",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/atrace_tracing_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1291738
+      },
+      "writtenOn": "2018-07-10T04:45:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef8127f1_e36fb3e6",
+      "revId": "e64258cf4e1f70c1008b033411a7af37fc9f86f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9bc2ee5c_1f6a0269",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/atrace_tracing_agent.py",
         "patchSetId": 1
@@ -137,6 +155,24 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "be17953c_9a18befc",
+      "revId": "e64258cf4e1f70c1008b033411a7af37fc9f86f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "01e4c4cc_1c41703d",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/atrace_tracing_agent_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1291738
+      },
+      "writtenOn": "2018-07-10T04:45:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0b431ab_e42f8622",
       "revId": "e64258cf4e1f70c1008b033411a7af37fc9f86f8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
