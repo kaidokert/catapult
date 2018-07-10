@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a98eec2f_7da82484",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-10T23:25:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f22fd670_f5eb8805",
+      "revId": "33b9f66a965c82112e57c6104a146f7bafb38c57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b5f6a4f9_239b0716",
         "filename": "dashboard/dashboard/api/README.md",
         "patchSetId": 16
@@ -33,6 +51,24 @@
       "revId": "33b9f66a965c82112e57c6104a146f7bafb38c57",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df39da93_bcf27740",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-10T23:25:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5f6a4f9_239b0716",
+      "revId": "33b9f66a965c82112e57c6104a146f7bafb38c57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "05651545_9f7a3548",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-10T23:25:35Z",
+      "side": 1,
+      "message": "Yes, commented point ids. They\u0027re commit positions for the timeseries that use commit positions for their point ids. Other timeseries use timestamps or mixtures of version numbers for point ids.\n\nRow is the only model with upload timestamp, so accepting min/max timestamp would require waiting to query Histograms/Diagnostics/Alerts until after the timestamps could be resolved to revisions by querying for Rows around the given timestamp range. We could do that if necessary, but let\u0027s see if that use case can wait for revision timestamps to roll out?",
+      "parentUuid": "d8a283b1_bf2df7db",
+      "revId": "33b9f66a965c82112e57c6104a146f7bafb38c57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a643913c_8a7d310e",
         "filename": "dashboard/dashboard/api/README.md",
         "patchSetId": 16
@@ -67,6 +121,24 @@
       "revId": "33b9f66a965c82112e57c6104a146f7bafb38c57",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c6ba039_c3068789",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-10T23:25:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a643913c_8a7d310e",
+      "revId": "33b9f66a965c82112e57c6104a146f7bafb38c57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -93,6 +165,30 @@
     },
     {
       "key": {
+        "uuid": "4fdb1e67_866fd32f",
+        "filename": "dashboard/dashboard/api/timeseries2.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-10T23:25:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25e5677f_810850f1",
+      "range": {
+        "startLine": 110,
+        "startChar": 40,
+        "endLine": 110,
+        "endChar": 52
+      },
+      "revId": "33b9f66a965c82112e57c6104a146f7bafb38c57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0473c3aa_1adc409f",
         "filename": "dashboard/dashboard/api/timeseries2.py",
         "patchSetId": 16
@@ -104,6 +200,30 @@
       "writtenOn": "2018-07-10T15:29:52Z",
       "side": 1,
       "message": "Curious how\u0027s this perform vs doing a N queries in parallel? iirc appengine implements the IN as a tonne of OR statements",
+      "range": {
+        "startLine": 183,
+        "startChar": 63,
+        "endLine": 183,
+        "endChar": 65
+      },
+      "revId": "33b9f66a965c82112e57c6104a146f7bafb38c57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5f3bbd0_32569130",
+        "filename": "dashboard/dashboard/api/timeseries2.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-10T23:25:35Z",
+      "side": 1,
+      "message": "Parallel queries seem to be significantly faster than IN.\nHowever, when I went to test this query, I noticed that we don\u0027t have the required Histogram indexes, so I rewrote this.",
+      "parentUuid": "0473c3aa_1adc409f",
       "range": {
         "startLine": 183,
         "startChar": 63,
@@ -133,6 +253,24 @@
     },
     {
       "key": {
+        "uuid": "1fa0c972_13b218b5",
+        "filename": "dashboard/dashboard/api/timeseries2.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-10T23:25:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46e7c4b5_fc844052",
+      "revId": "33b9f66a965c82112e57c6104a146f7bafb38c57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e469eca9_99dbf6ac",
         "filename": "dashboard/dashboard/api/timeseries2_test.py",
         "patchSetId": 16
@@ -153,6 +291,30 @@
       "revId": "33b9f66a965c82112e57c6104a146f7bafb38c57",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "814e6f6a_b582de7d",
+        "filename": "dashboard/dashboard/api/timeseries2_test.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-10T23:25:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e469eca9_99dbf6ac",
+      "range": {
+        "startLine": 54,
+        "startChar": 6,
+        "endLine": 54,
+        "endChar": 15
+      },
+      "revId": "33b9f66a965c82112e57c6104a146f7bafb38c57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
