@@ -762,6 +762,9 @@ tr.exportTo('tr.ui.b', function() {
         if (value !== undefined) {
           Polymer.dom(td).appendChild(
               tr.ui.b.asHTMLOrTextNode(value, this.ownerDocument));
+          if (column.mutateCell) {
+            column.mutateCell(rowInfo.userRow, td);
+          }
         }
 
         td.addEventListener('click', function(i, clickEvent) {

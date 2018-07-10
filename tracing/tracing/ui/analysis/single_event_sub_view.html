@@ -59,7 +59,14 @@ Polymer({
       {
         title: 'Value',
         width: '100%',
-        value(row) { return row.value; }
+        value(row) { return row.value; },
+        mutateCell(row, td) {
+          if (!row.search) return;
+          if (!tr.isExported('tr-ui-e-chrome-codesearch')) return;
+          const link = document.createElement('tr-ui-e-chrome-codesearch');
+          link.searchPhrase = row.value;
+          Polymer.dom(td).appendChild(link);
+        }
       }
     ];
     this.$.table.showHeader = false;
@@ -120,7 +127,7 @@ Polymer({
     }
 
     if (event.title) {
-      rows.push({ name: 'Title', value: event.title });
+      rows.push({ name: 'Title', value: event.title, search: true });
     }
 
     if (event.category) {
