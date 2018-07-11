@@ -16,6 +16,24 @@
       "revId": "5776f314523d9c24e0cf9dd4350e30e3d211a1f7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b2bc49d_8d600301",
+        "filename": "dashboard/dashboard/pinpoint/models/change/change_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-07-11T16:24:49Z",
+      "side": 1,
+      "message": "Yes! There\u0027s more we can do with Patch, which will come in a future change. We\u0027ll also want to mock/stub out Gerrit.",
+      "parentUuid": "3e88bfee_24ee6022",
+      "revId": "5776f314523d9c24e0cf9dd4350e30e3d211a1f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
