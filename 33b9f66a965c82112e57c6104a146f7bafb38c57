@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "31640b9d_b57f3022",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-11T08:43:31Z",
+      "side": 1,
+      "message": "Hmm, I was asking because on soundwave we want to be able to say things \"give me data for the last n days\", which is supported by the current timeseries API.\n\nWe could work around that trying to figure out suitable min/max rev, but the fact that these are sometimes commit positions and sometimes timestamps makes it tricky.",
+      "parentUuid": "05651545_9f7a3548",
+      "revId": "33b9f66a965c82112e57c6104a146f7bafb38c57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a643913c_8a7d310e",
         "filename": "dashboard/dashboard/api/README.md",
         "patchSetId": 16
