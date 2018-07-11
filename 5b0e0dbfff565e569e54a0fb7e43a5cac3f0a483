@@ -16,6 +16,24 @@
       "revId": "5b0e0dbfff565e569e54a0fb7e43a5cac3f0a483",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3583dd7_f12d1bc2",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-07-11T01:33:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c64d1754_c9a3e77d",
+      "revId": "5b0e0dbfff565e569e54a0fb7e43a5cac3f0a483",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
