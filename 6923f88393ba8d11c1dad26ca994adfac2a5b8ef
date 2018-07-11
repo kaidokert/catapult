@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c3decbae_6b2b197f",
+        "filename": "dashboard/dashboard/api/timeseries2.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-11T21:56:36Z",
+      "side": 1,
+      "message": "It would need to accept and return up to 3 cursors and the client would need to know to chase them, but yeah, maybe.\nThe frontend could also say \"i want 500 data points spaced evenly throughout this range\". V2SPA\u0027s TimeseriesIterator currently does that so that it doesn\u0027t try to draw more points than there are pixels. Timeseries2Handler could do that with one keys_only query followed by lots of gets.\nAsync query iterators might also be helpful:\nhttps://cloud.google.com/appengine/docs/standard/python/ndb/async#query_iterators_in_tasklets\nTimeseries2Handler might also store a timestamp when the request starts so that tasklets can know how much time they have left so they can save some time for json.dumps().\nHTTP chunking might allow the async query iterators to serialize as they go instead of saving time for json.dumps().\nLots of things for me to try after this CL. :-)",
+      "parentUuid": "88c8949b_0e30da8b",
+      "range": {
+        "startLine": 16,
+        "startChar": 2,
+        "endLine": 16,
+        "endChar": 7
+      },
+      "revId": "6923f88393ba8d11c1dad26ca994adfac2a5b8ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6aacc139_9c7fd2ed",
         "filename": "dashboard/dashboard/api/timeseries2.py",
         "patchSetId": 22
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "3b4b60dd_9e022e10",
+        "filename": "dashboard/dashboard/api/timeseries2.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-11T21:56:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6aacc139_9c7fd2ed",
+      "range": {
+        "startLine": 150,
+        "startChar": 8,
+        "endLine": 150,
+        "endChar": 11
+      },
+      "revId": "6923f88393ba8d11c1dad26ca994adfac2a5b8ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ae3aacf_2a37c400",
         "filename": "dashboard/dashboard/api/timeseries2.py",
         "patchSetId": 22
@@ -59,6 +107,30 @@
       "writtenOn": "2018-07-11T17:24:54Z",
       "side": 1,
       "message": "test: did any test cases end up with a statistic on the descriptor?",
+      "range": {
+        "startLine": 172,
+        "startChar": 19,
+        "endLine": 172,
+        "endChar": 28
+      },
+      "revId": "6923f88393ba8d11c1dad26ca994adfac2a5b8ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25f69196_67808343",
+        "filename": "dashboard/dashboard/api/timeseries2.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-11T21:56:36Z",
+      "side": 1,
+      "message": "testMixOldStyleRowsWithNewStyleRows",
+      "parentUuid": "2ae3aacf_2a37c400",
       "range": {
         "startLine": 172,
         "startChar": 19,
@@ -105,6 +177,24 @@
     },
     {
       "key": {
+        "uuid": "abbe913c_44481cff",
+        "filename": "dashboard/dashboard/api/timeseries2.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-11T21:56:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29b7060f_d6e9be6f",
+      "revId": "6923f88393ba8d11c1dad26ca994adfac2a5b8ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "99878841_dbebe414",
         "filename": "dashboard/dashboard/api/timeseries2_test.py",
         "patchSetId": 22
@@ -128,6 +218,30 @@
     },
     {
       "key": {
+        "uuid": "44d2b526_2d5e47ef",
+        "filename": "dashboard/dashboard/api/timeseries2_test.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-11T21:56:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99878841_dbebe414",
+      "range": {
+        "startLine": 70,
+        "startChar": 14,
+        "endLine": 70,
+        "endChar": 30
+      },
+      "revId": "6923f88393ba8d11c1dad26ca994adfac2a5b8ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2a6547a8_5d392d50",
         "filename": "dashboard/dashboard/api/timeseries2_test.py",
         "patchSetId": 22
@@ -142,6 +256,24 @@
       "revId": "6923f88393ba8d11c1dad26ca994adfac2a5b8ef",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6cbf5af_d03bc945",
+        "filename": "dashboard/dashboard/api/timeseries2_test.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-11T21:56:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a6547a8_5d392d50",
+      "revId": "6923f88393ba8d11c1dad26ca994adfac2a5b8ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -168,6 +300,30 @@
     },
     {
       "key": {
+        "uuid": "acd984b3_01c94af3",
+        "filename": "dashboard/dashboard/api/timeseries2_test.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-11T21:56:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38410491_4ed6a2d2",
+      "range": {
+        "startLine": 125,
+        "startChar": 13,
+        "endLine": 125,
+        "endChar": 27
+      },
+      "revId": "6923f88393ba8d11c1dad26ca994adfac2a5b8ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "54b23beb_419b1086",
         "filename": "dashboard/dashboard/api/timeseries2_test.py",
         "patchSetId": 22
@@ -188,6 +344,30 @@
       "revId": "6923f88393ba8d11c1dad26ca994adfac2a5b8ef",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f36df52_acd0879d",
+        "filename": "dashboard/dashboard/api/timeseries2_test.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-11T21:56:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54b23beb_419b1086",
+      "range": {
+        "startLine": 128,
+        "startChar": 11,
+        "endLine": 128,
+        "endChar": 25
+      },
+      "revId": "6923f88393ba8d11c1dad26ca994adfac2a5b8ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
