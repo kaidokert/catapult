@@ -1,0 +1,193 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "88c8949b_0e30da8b",
+        "filename": "dashboard/dashboard/api/timeseries2.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-11T17:24:54Z",
+      "side": 1,
+      "message": "return cursors?",
+      "range": {
+        "startLine": 16,
+        "startChar": 2,
+        "endLine": 16,
+        "endChar": 7
+      },
+      "revId": "6923f88393ba8d11c1dad26ca994adfac2a5b8ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6aacc139_9c7fd2ed",
+        "filename": "dashboard/dashboard/api/timeseries2.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-11T17:24:54Z",
+      "side": 1,
+      "message": "do you hit the projection path in any test?",
+      "range": {
+        "startLine": 150,
+        "startChar": 8,
+        "endLine": 150,
+        "endChar": 11
+      },
+      "revId": "6923f88393ba8d11c1dad26ca994adfac2a5b8ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ae3aacf_2a37c400",
+        "filename": "dashboard/dashboard/api/timeseries2.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-11T17:24:54Z",
+      "side": 1,
+      "message": "test: did any test cases end up with a statistic on the descriptor?",
+      "range": {
+        "startLine": 172,
+        "startChar": 19,
+        "endLine": 172,
+        "endChar": 28
+      },
+      "revId": "6923f88393ba8d11c1dad26ca994adfac2a5b8ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25ea3767_13285d77",
+        "filename": "dashboard/dashboard/api/timeseries2.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-11T17:24:54Z",
+      "side": 1,
+      "message": "Same comment as diagnostic re: README",
+      "revId": "6923f88393ba8d11c1dad26ca994adfac2a5b8ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29b7060f_d6e9be6f",
+        "filename": "dashboard/dashboard/api/timeseries2.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-11T17:24:54Z",
+      "side": 1,
+      "message": "Since you\u0027re only expected to get 1 or 0, use query.get_async()",
+      "revId": "6923f88393ba8d11c1dad26ca994adfac2a5b8ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99878841_dbebe414",
+        "filename": "dashboard/dashboard/api/timeseries2_test.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-11T17:24:54Z",
+      "side": 1,
+      "message": "nit: technically this is also an internalonly model and should get that set",
+      "range": {
+        "startLine": 70,
+        "startChar": 14,
+        "endLine": 70,
+        "endChar": 30
+      },
+      "revId": "6923f88393ba8d11c1dad26ca994adfac2a5b8ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a6547a8_5d392d50",
+        "filename": "dashboard/dashboard/api/timeseries2_test.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-11T17:24:54Z",
+      "side": 1,
+      "message": "nit: this was kinda hard to read since you iterate from (1, 21, 2) creating them, suggest\n\nri \u003d (i * 2) + 1\n\nself.assertEqual(ri, datum[0])\nself.assertEqual(ri * 2, datum[1][\u0027r_i2\u0027])\netc.",
+      "revId": "6923f88393ba8d11c1dad26ca994adfac2a5b8ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38410491_4ed6a2d2",
+        "filename": "dashboard/dashboard/api/timeseries2_test.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-11T17:24:54Z",
+      "side": 1,
+      "message": "nit: assert something on the diagnostic data?\n\nAlso, the diagnostic ranges are a little tricky and not well spelled out in the README. The way it\u0027s done now it looks like they need to keep track of the last diagnostic for each name. I\u0027d be sure to call that out a bit more clearly in docs.",
+      "range": {
+        "startLine": 125,
+        "startChar": 13,
+        "endLine": 125,
+        "endChar": 27
+      },
+      "revId": "6923f88393ba8d11c1dad26ca994adfac2a5b8ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54b23beb_419b1086",
+        "filename": "dashboard/dashboard/api/timeseries2_test.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-11T17:24:54Z",
+      "side": 1,
+      "message": "nit: shouldn\u0027t you assert something about the histogram data?",
+      "range": {
+        "startLine": 128,
+        "startChar": 11,
+        "endLine": 128,
+        "endChar": 25
+      },
+      "revId": "6923f88393ba8d11c1dad26ca994adfac2a5b8ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
