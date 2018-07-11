@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3e88bfee_24ee6022",
+        "filename": "dashboard/dashboard/pinpoint/models/change/change_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-11T08:55:14Z",
+      "side": 1,
+      "message": "could we do a similar thing with patch where you just pass a number to get different patches?",
+      "revId": "5776f314523d9c24e0cf9dd4350e30e3d211a1f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
