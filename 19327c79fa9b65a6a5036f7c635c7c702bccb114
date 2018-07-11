@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a3665aa0_bb8942d6",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-11T19:49:48Z",
+      "side": 1,
+      "message": "One thing I just wondered is if these will interfere with turning on threading. Maybe just make a note of it for now in the code, with like # TODO: Revisit when turning on threadsafe: true",
+      "revId": "19327c79fa9b65a6a5036f7c635c7c702bccb114",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
