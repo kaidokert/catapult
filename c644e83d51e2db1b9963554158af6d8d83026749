@@ -149,6 +149,24 @@
     },
     {
       "key": {
+        "uuid": "3a472834_002ed925",
+        "filename": "tracing/tracing/ui/analysis/single_event_sub_view.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-07-12T18:43:53Z",
+      "side": 1,
+      "message": "This is now gone!",
+      "parentUuid": "6fef232a_a3a19fb4",
+      "revId": "c644e83d51e2db1b9963554158af6d8d83026749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7df210f7_2ba47523",
         "filename": "tracing/tracing/ui/analysis/single_event_sub_view.html",
         "patchSetId": 7
@@ -199,6 +217,24 @@
       "revId": "c644e83d51e2db1b9963554158af6d8d83026749",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35d56ccf_2ca93584",
+        "filename": "tracing/tracing/ui/analysis/single_event_sub_view.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-07-12T18:43:53Z",
+      "side": 1,
+      "message": "Done (thanks!)",
+      "parentUuid": "7ba2a482_98ec4397",
+      "revId": "c644e83d51e2db1b9963554158af6d8d83026749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
