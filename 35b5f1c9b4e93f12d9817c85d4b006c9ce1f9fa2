@@ -22,6 +22,30 @@
       "revId": "35b5f1c9b4e93f12d9817c85d4b006c9ce1f9fa2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e6fec11_f42cab9e",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-07-12T18:19:57Z",
+      "side": 1,
+      "message": "The code path is already covered by a previous test (for \u0027performance_test_suite\u0027). Don\u0027t think it makes sense to add a test for every item in this list.",
+      "parentUuid": "da619c08_067b6513",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 18
+      },
+      "revId": "35b5f1c9b4e93f12d9817c85d4b006c9ce1f9fa2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
