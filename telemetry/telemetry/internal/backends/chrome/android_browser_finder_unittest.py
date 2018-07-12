@@ -279,3 +279,70 @@ class SetUpProfileBrowserTest(unittest.TestCase):
                         absolute_expected_profile_paths)
       finally:
         browser_to_create.CleanUpEnvironment()
+
+  @decorators.Enabled('android')
+  def testPushDefaultProfileFilesRemoveStaleDirectories(self):
+    # Push some directories, then push a subset of that, and ensure that the
+    # stale directories from the first push have been cleaned up.
+    standalone_dir = 'standalone'
+    parent_dir = 'parent'
+    sub_dir = os.path.join(parent_dir, 'sub')
+    default_profile_dir = posixpath.join(
+        '/sdcard', 'profile', '_default_profile')
+
+    # Create and push the larger set of directories.
+    with tempfile_ext.NamedTemporaryDirectory() as tempdir:
+      standalone_path = os.path.join(tempdir, standalone_dir)
+      sub_path = os.path.join(tempdir, sub_dir)
+      os.makedirs(standalone_path)
+      os.makedirs(sub_path)
+      # Empty dirs are bad, so add some files.
+      with open(os.path.join(standalone_path, 'file1'), 'w') as f:
+        f.write('asdf')
+      with open(os.path.join(sub_path, 'file2'), 'w') as f:
+        f.write('asdf')
+
+      finder_options = options_for_unittests.GetCopy()
+      finder_options.browser_options.profile_dir = tempdir
+      browser_to_create = browser_finder.FindBrowser(finder_options)
+
+      try:
+        browser_to_create.SetUpEnvironment(finder_options.browser_options)
+      finally:
+        browser_to_create.CleanUpEnvironment()
+
+    # Create and push the subset of directories.
+    with tempfile_ext.NamedTemporaryDirectory() as tempdir:
+      standalone_path = os.path.join(tempdir, standalone_dir)
+      parent_path = os.path.join(tempdir, parent_dir)
+      os.makedirs(standalone_path)
+      os.makedirs(parent_path)
+      with open(os.path.join(standalone_path, 'file1'), 'w') as f:
+        f.write('asdf')
+      with open(os.path.join(parent_path, 'file2'), 'w') as f:
+        f.write('asdf')
+
+      finder_options = options_for_unittests.GetCopy()
+      finder_options.browser_options.profile_dir = tempdir
+      browser_to_create = browser_finder.FindBrowser(finder_options)
+
+      device = browser_to_create._platform_backend.device
+
+      # Make sure the old files are still there before we push.
+      self.assertTrue(device.PathExists(
+          posixpath.join(default_profile_dir, sub_dir)))
+      self.assertTrue(device.PathExists(
+          posixpath.join(default_profile_dir, standalone_dir)))
+
+      try:
+        browser_to_create.SetUpEnvironment(finder_options.browser_options)
+        # Make sure the files we pushed are still there, but the stale directory
+        # is gone.
+        self.assertFalse(device.PathExists(
+            posixpath.join(default_profile_dir, sub_dir)))
+        self.assertTrue(device.PathExists(
+            posixpath.join(default_profile_dir, standalone_dir)))
+        self.assertTrue(device.PathExists(
+            posixpath.join(default_profile_dir, parent_dir)))
+      finally:
+        browser_to_create.CleanUpEnvironment()
