@@ -139,6 +139,24 @@
       "revId": "c644e83d51e2db1b9963554158af6d8d83026749",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a29eb4a4_32847aff",
+        "filename": "tracing/tracing/ui/analysis/single_event_sub_view.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-07-12T05:22:43Z",
+      "side": 1,
+      "message": "I think you are suggesting that the |value| for the row should be the codesearch element? Right now, the codesearch element simply adds the 🔍 unicode (which links to codesearch), and it does not include the default event.title (which is an analysis-link in the multi-event case). So if I understood your suggestion correctly, that feels like it would be more complex than it currently is. But perhaps I misunderstood/am missing something?",
+      "parentUuid": "7df210f7_2ba47523",
+      "revId": "c644e83d51e2db1b9963554158af6d8d83026749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
