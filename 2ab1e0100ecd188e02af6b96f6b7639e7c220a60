@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ddb20c83_0abe4675",
+        "filename": "experimental/long_term_monitoring_tool/fetch_binary.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-12T14:50:31Z",
+      "side": 1,
+      "message": "nit: Have a look at and copy the #! line from e.g.: https://github.com/catapult-project/catapult/blob/afc65122aa9744092b0568e39f35e77d4b13b91f/experimental/soundwave/bin/export_csv#L1\n\nAlso don\u0027t forget to include the copyright notice.",
+      "revId": "2ab1e0100ecd188e02af6b96f6b7639e7c220a60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb667d63_d75d513b",
+        "filename": "experimental/long_term_monitoring_tool/fetch_binary.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-12T14:50:31Z",
+      "side": 1,
+      "message": "nit: move the main function closer to the bottom of the file.",
+      "revId": "2ab1e0100ecd188e02af6b96f6b7639e7c220a60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4e2241b_bf2fc5b5",
+        "filename": "experimental/long_term_monitoring_tool/fetch_binary.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-12T14:50:31Z",
+      "side": 1,
+      "message": "Not really sure if we need a class for this now:\n\n- Some methods (e.g. IsGsutilInstalled) do not depend on \"self\" at all.\n- It\u0027s making some of the dependencies between methods harder to see: your class attributes are almost like \"globals\"; by taking your methods out and making them plain functions it will be more explicit what their input/outputs are.\n- The code from both PargeArgs and Main could nicely sit within the top level main. They are short, no need to break them apart.",
+      "revId": "2ab1e0100ecd188e02af6b96f6b7639e7c220a60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f49cda23_05a6d3f1",
+        "filename": "experimental/long_term_monitoring_tool/fetch_binary.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-12T14:50:31Z",
+      "side": 1,
+      "message": "nit: you can also just return a string, e.g.:\n\n  return \u0027gsutil is not installed, ...\u0027\n\nwhen that reaches sys.exit(..) python will print the error and return a non-zero exit code.",
+      "revId": "2ab1e0100ecd188e02af6b96f6b7639e7c220a60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "129cdbda_f6d0a5e8",
+        "filename": "experimental/long_term_monitoring_tool/fetch_binary.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-12T14:50:31Z",
+      "side": 1,
+      "message": "On non trivial functions/methods, like this, do not forget to include a docstring documenting args and return value.\n\nSee e.g.: https://github.com/catapult-project/catapult/blob/afc65122aa9744092b0568e39f35e77d4b13b91f/experimental/soundwave/soundwave/dashboard_api.py#L127",
+      "revId": "2ab1e0100ecd188e02af6b96f6b7639e7c220a60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9ddb4ea_c0eb7f4d",
+        "filename": "experimental/long_term_monitoring_tool/fetch_binary.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-12T14:50:31Z",
+      "side": 1,
+      "message": "nit: you\u0027ll get more space if you break the line immediately after the first: (",
+      "revId": "2ab1e0100ecd188e02af6b96f6b7639e7c220a60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
