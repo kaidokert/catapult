@@ -179,6 +179,8 @@ def ProcessHistogramSet(histogram_dicts):
   with timing.WallTimeLogger('_QueueHistogramTasks'):
     _QueueHistogramTasks(tasks)
 
+  print 'FOO'
+
 
 def _ValidateMasterBotBenchmarkName(master, bot, benchmark):
   for n in (master, bot, benchmark):
