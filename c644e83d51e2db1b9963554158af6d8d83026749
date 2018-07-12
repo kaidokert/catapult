@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "b68b8837_1992c1a5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-12T04:25:24Z",
+      "side": 1,
+      "message": "Please file a new bug.",
+      "parentUuid": "aa8e2e93_2f706a8b",
+      "range": {
+        "startLine": 12,
+        "startChar": 4,
+        "endLine": 12,
+        "endChar": 19
+      },
+      "revId": "c644e83d51e2db1b9963554158af6d8d83026749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f7cb21be_e4348754",
         "filename": "tracing/tracing/ui/analysis/multi_event_summary_table.html",
         "patchSetId": 7
@@ -60,6 +84,58 @@
       "writtenOn": "2018-07-10T04:44:31Z",
       "side": 1,
       "message": "I am not really sure if this is something that\u0027s allowed or not. If not, any guidance where this should go?\n\nI attempted writing a generic codesearch-linkifier, where the project/embedder (i.e. chrome, or other projects that use trace-viewer ... not sure what the right term is) can inject the codesearch URL (or the factory that generates the codesearch URL), and have this code use that here. But I couldn\u0027t find a good way of doing that (other than what is in here). I looked at chrome_config.html, hoping there could be something there, but failed to find anything similar there that I could follow. As someone not familiar with polymer (or web-development, really), guidance would be most helpful!",
+      "revId": "c644e83d51e2db1b9963554158af6d8d83026749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe91d819_7b4790e0",
+        "filename": "tracing/tracing/ui/analysis/multi_event_summary_table.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-12T04:25:24Z",
+      "side": 1,
+      "message": "It looks like multi_thread_slice_sub_view does this, so I think it\u0027s fine here.",
+      "parentUuid": "f7cb21be_e4348754",
+      "revId": "c644e83d51e2db1b9963554158af6d8d83026749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6fef232a_a3a19fb4",
+        "filename": "tracing/tracing/ui/analysis/single_event_sub_view.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-12T04:25:24Z",
+      "side": 1,
+      "message": "Could this be moved into getEventRowsHelper_?",
+      "revId": "c644e83d51e2db1b9963554158af6d8d83026749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7df210f7_2ba47523",
+        "filename": "tracing/tracing/ui/analysis/single_event_sub_view.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-12T04:25:24Z",
+      "side": 1,
+      "message": "let value \u003d event.title;\nif (tr.isExported(\u0027tr-ui-e-chrome-codesearch\u0027)) {\nconst link \u003d ...\nvalue \u003d link;\n}",
       "revId": "c644e83d51e2db1b9963554158af6d8d83026749",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
