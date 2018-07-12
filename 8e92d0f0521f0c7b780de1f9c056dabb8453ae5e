@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0da9fac8_1078d047",
+        "filename": "cr-buildbucket.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-12T21:21:05Z",
+      "side": 1,
+      "message": "Took this straight from https://chrome-infra-auth.appspot.com/auth/groups/service-account-chromeperf",
+      "range": {
+        "startLine": 41,
+        "startChar": 24,
+        "endLine": 41,
+        "endChar": 36
+      },
+      "revId": "8e92d0f0521f0c7b780de1f9c056dabb8453ae5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45c1de1c_1c1047cc",
+        "filename": "cr-buildbucket.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-12T21:21:05Z",
+      "side": 1,
+      "message": "A lot of this stuff is just a straight up copy-paste of the luci.chromium.try version. Keep it all?",
+      "revId": "8e92d0f0521f0c7b780de1f9c056dabb8453ae5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1bd6443_f7c0e7ec",
+        "filename": "cr-buildbucket.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-12T21:21:05Z",
+      "side": 1,
+      "message": "Copied from luci.chromium.try, do I need it?",
+      "range": {
+        "startLine": 57,
+        "startChar": 8,
+        "endLine": 57,
+        "endChar": 20
+      },
+      "revId": "8e92d0f0521f0c7b780de1f9c056dabb8453ae5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
