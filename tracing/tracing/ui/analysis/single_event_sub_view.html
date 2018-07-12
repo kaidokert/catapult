@@ -120,7 +120,13 @@ Polymer({
     }
 
     if (event.title) {
-      rows.push({ name: 'Title', value: event.title });
+      let title = event.title;
+      if (tr.isExported('tr-ui-e-chrome-codesearch')) {
+        const link = document.createElement('tr-ui-e-chrome-codesearch');
+        link.searchPhrase = title;
+        title = link;
+      }
+      rows.push({ name: 'Title', value: title });
     }
 
     if (event.category) {
