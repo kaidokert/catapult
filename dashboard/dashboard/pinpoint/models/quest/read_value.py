@@ -13,6 +13,10 @@ from tracing.value.diagnostics import diagnostic_ref
 from tracing.value.diagnostics import reserved_infos
 
 
+_PERFORMANCE_TESTS = ('performance_test_suite',
+                      'performance_webview_test_suite')
+
+
 class ReadValueError(Exception):
 
   pass
@@ -57,7 +61,7 @@ class ReadHistogramsJsonValue(quest.Quest):
     benchmark = arguments.get('benchmark')
     if not benchmark:
       raise TypeError('Missing "benchmark" argument.')
-    if arguments.get('target') == 'performance_test_suite':
+    if arguments.get('target') in _PERFORMANCE_TESTS:
       path_separator = '\\' if _IsWindows(arguments) else '/'
       results_filename = benchmark + path_separator + 'perf_results.json'
     else:
