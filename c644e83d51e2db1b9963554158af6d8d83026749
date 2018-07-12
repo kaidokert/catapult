@@ -181,6 +181,24 @@
       "revId": "c644e83d51e2db1b9963554158af6d8d83026749",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ba2a482_98ec4397",
+        "filename": "tracing/tracing/ui/analysis/single_event_sub_view.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-12T17:06:00Z",
+      "side": 1,
+      "message": "tr-ui-b-table is already too complex, so I\u0027d rather not add mutateCell to its API.\nYou could make tr-ui-e-chrome-codesearch contain the text as well as the icon, or wrap the text and the tr-ui-e-chrome-codesearch in a span or div.",
+      "parentUuid": "a29eb4a4_32847aff",
+      "revId": "c644e83d51e2db1b9963554158af6d8d83026749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
