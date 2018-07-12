@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1fb83592_a6ad2a4a",
+        "filename": "cr-buildbucket.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1002080
+      },
+      "writtenOn": "2018-07-12T21:31:43Z",
+      "side": 1,
+      "message": "I think it\u0027ll be cleaner to create a new account for this (old accounts come with baggage, and might be more permissive than necessary):\n\ngo/luci-new-task-account (Which just asks you to file a new ticket)\n\nBesides, new account have nice looking names, instead of a bunch of gibberish.",
+      "parentUuid": "0da9fac8_1078d047",
+      "range": {
+        "startLine": 41,
+        "startChar": 24,
+        "endLine": 41,
+        "endChar": 36
+      },
+      "revId": "8e92d0f0521f0c7b780de1f9c056dabb8453ae5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "45c1de1c_1c1047cc",
         "filename": "cr-buildbucket.cfg",
         "patchSetId": 1
@@ -53,6 +77,30 @@
       "writtenOn": "2018-07-12T21:21:05Z",
       "side": 1,
       "message": "Copied from luci.chromium.try, do I need it?",
+      "range": {
+        "startLine": 57,
+        "startChar": 8,
+        "endLine": 57,
+        "endChar": 20
+      },
+      "revId": "8e92d0f0521f0c7b780de1f9c056dabb8453ae5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "690be0fb_44a0243f",
+        "filename": "cr-buildbucket.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1002080
+      },
+      "writtenOn": "2018-07-12T21:31:43Z",
+      "side": 1,
+      "message": "I\u0027m not actually sure why this is there, but it\u0027s been copy/pasted in a lot of places.",
+      "parentUuid": "a1bd6443_f7c0e7ec",
       "range": {
         "startLine": 57,
         "startChar": 8,
