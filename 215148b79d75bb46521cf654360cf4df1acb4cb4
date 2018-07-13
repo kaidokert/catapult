@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b0fc907b_71aa598b",
+        "filename": "experimental/long_term_monitoring_tool/fetch_binary.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-13T13:22:29Z",
+      "side": 1,
+      "message": "No need for this line. Clients should be responsible to figure out if they want to use the default or some other path.",
+      "revId": "215148b79d75bb46521cf654360cf4df1acb4cb4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75c8718b_08cc6b4d",
+        "filename": "experimental/long_term_monitoring_tool/fetch_binary.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-13T13:22:29Z",
+      "side": 1,
+      "message": "here use os.path.join(output_dir, GetAPKName(uri)) to build paths",
+      "revId": "215148b79d75bb46521cf654360cf4df1acb4cb4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f372588_1c032122",
+        "filename": "experimental/long_term_monitoring_tool/fetch_binary.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-13T13:22:29Z",
+      "side": 1,
+      "message": "nits:\n- use all_uris.splitlines() instead\n- since we also care about the latest, maybe a for loop on reversed(lines) and return as soon as you find a non-empty line?\n- uri.strip() !\u003d \u0027\u0027, should be enough to test if the line is empty or not.",
+      "revId": "215148b79d75bb46521cf654360cf4df1acb4cb4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cbcaefe6_0f3095ee",
+        "filename": "experimental/long_term_monitoring_tool/fetch_binary.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-13T13:22:29Z",
+      "side": 1,
+      "message": "add: default\u003dDEFAULT_DOWNLOAD_PATH",
+      "revId": "215148b79d75bb46521cf654360cf4df1acb4cb4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8843de1_9f524ccd",
+        "filename": "experimental/long_term_monitoring_tool/fetch_binary.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-13T13:22:29Z",
+      "side": 1,
+      "message": "now you can fold these two loops into a single one :)\n\nAlso let\u0027s do the range inclusive of the \"to\" milestone.\n\nfor milestone in range(args.from_milestone, args.to_milestone + 1):\n  uri \u003d GetLatestVersionURI(milestone)\n  DownloadAPKFromURI(uri, args.output_path)",
+      "revId": "215148b79d75bb46521cf654360cf4df1acb4cb4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
