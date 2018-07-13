@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6317054b_8524e639",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1460,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-13T10:47:34Z",
+      "side": 1,
+      "message": "Now that we\u0027re doing this, can you replace this with a suitable call to RemovePath?",
+      "revId": "3e9bed62c1391fba54285df1c06a7e69701532ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25048fce_39e8e58d",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1606,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-13T10:47:34Z",
+      "side": 1,
+      "message": "you should be using posixpath.relpath for this.",
+      "revId": "3e9bed62c1391fba54285df1c06a7e69701532ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "309feb0a_a16e4dc4",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1619,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-13T10:47:34Z",
+      "side": 1,
+      "message": "you should be using os.path.relpath for this.\n\nalso theoretically the host and device could be using different path separators (e.g. in windows), so maybe on the result replace os.sep with posixpath.sep.",
+      "revId": "3e9bed62c1391fba54285df1c06a7e69701532ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7ba8e5a_fe6eb011",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1625,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-13T10:47:34Z",
+      "side": 1,
+      "message": "this is probably just\n\nstale_dirs \u003d device_dirs - host_dirs\n\nplus extra joining of device_path prefix.",
+      "revId": "3e9bed62c1391fba54285df1c06a7e69701532ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03f7d4f9_384a7344",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-13T10:47:34Z",
+      "side": 1,
+      "message": "This feels like too much of an \"integration\" test for something that should be \"unit\" tested. Could you add some more focused tests in device_utils_devicetest.py instead?",
+      "revId": "3e9bed62c1391fba54285df1c06a7e69701532ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
