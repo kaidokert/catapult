@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "110d77a3_39760f3d",
+        "filename": "experimental/long_term_monitoring_tool/fetch_binary.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-13T08:58:23Z",
+      "side": 1,
+      "message": "Add an output_dir input arg, so clients can specify a different location. Also it might be cleaner if the function downloads a single URI and you move the for loop out to the caller.",
+      "revId": "45b51417d519c2566333c00c69c1eab09d2f1d8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ba490ad_aee2e970",
+        "filename": "experimental/long_term_monitoring_tool/fetch_binary.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-13T08:58:23Z",
+      "side": 1,
+      "message": "add an example of what an uri looks like, so it\u0027s clear why this code would extract the APK name from that.",
+      "revId": "45b51417d519c2566333c00c69c1eab09d2f1d8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "281d6485_4eecbbd1",
+        "filename": "experimental/long_term_monitoring_tool/fetch_binary.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-13T08:58:23Z",
+      "side": 1,
+      "message": "avoid using exit in places other than main(), instead here maybe we want to raise a custom exception. For example define\n\nclass CloudDownloadFailed(Exception):\n  pass\n\nand here just: raise CloudDownloadFailed(uri)",
+      "revId": "45b51417d519c2566333c00c69c1eab09d2f1d8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e08f761_a3f20286",
+        "filename": "experimental/long_term_monitoring_tool/fetch_binary.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-13T08:58:23Z",
+      "side": 1,
+      "message": "ditto: don\u0027t exit, raise a custom exception instead.",
+      "revId": "45b51417d519c2566333c00c69c1eab09d2f1d8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "687a374d_a03b2325",
+        "filename": "experimental/long_term_monitoring_tool/fetch_binary.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-13T08:58:23Z",
+      "side": 1,
+      "message": "let\u0027s try to move all print statements out of functions, and let all the printing be done by the callers (e.g. this one can be printed in main, before calling the function). This would allow us in the future to reuse these functions in other contexts, and leave up to the caller decide what the best message to print is.\n\nAlso the whole function is small enough maybe we don\u0027t need a function at all, this could just be:\n\nuris \u003d [GetLatestVersionURI(m) for m in range(from_milestone, to_milestone)]\n\n:)",
+      "revId": "45b51417d519c2566333c00c69c1eab09d2f1d8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0667908d_e750b63f",
+        "filename": "experimental/long_term_monitoring_tool/fetch_binary.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-13T08:58:23Z",
+      "side": 1,
+      "message": "nit: starting milestones -\u003e starting milestone number",
+      "revId": "45b51417d519c2566333c00c69c1eab09d2f1d8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "381c2901_03b4376f",
+        "filename": "experimental/long_term_monitoring_tool/fetch_binary.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-13T08:58:23Z",
+      "side": 1,
+      "message": "let\u0027s also just: return \"interrupted, exiting...\"",
+      "revId": "45b51417d519c2566333c00c69c1eab09d2f1d8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
