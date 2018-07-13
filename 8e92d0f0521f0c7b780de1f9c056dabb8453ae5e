@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7ef8ceb0_ada26176",
+        "filename": "cr-buildbucket.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-13T19:25:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "860ca506_beb2203b",
+      "revId": "8e92d0f0521f0c7b780de1f9c056dabb8453ae5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0da9fac8_1078d047",
         "filename": "cr-buildbucket.cfg",
         "patchSetId": 1
@@ -90,6 +108,30 @@
     },
     {
       "key": {
+        "uuid": "f667ca03_80730547",
+        "filename": "cr-buildbucket.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-13T19:25:02Z",
+      "side": 1,
+      "message": "Filed issue here: https://bugs.chromium.org/p/chromium/issues/detail?id\u003d863212\n\nWill update once I have the new account.",
+      "parentUuid": "dcc329e8_01cc4ca5",
+      "range": {
+        "startLine": 41,
+        "startChar": 24,
+        "endLine": 41,
+        "endChar": 36
+      },
+      "revId": "8e92d0f0521f0c7b780de1f9c056dabb8453ae5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "45c1de1c_1c1047cc",
         "filename": "cr-buildbucket.cfg",
         "patchSetId": 1
@@ -136,6 +178,30 @@
       "writtenOn": "2018-07-13T18:57:46Z",
       "side": 1,
       "message": "will your recipe use+populate this cache?",
+      "range": {
+        "startLine": 49,
+        "startChar": 6,
+        "endLine": 52,
+        "endChar": 7
+      },
+      "revId": "8e92d0f0521f0c7b780de1f9c056dabb8453ae5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79700199_f7d28eb7",
+        "filename": "cr-buildbucket.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-13T19:25:02Z",
+      "side": 1,
+      "message": "From a quick search of win_toolchain in cs, I doubt it. Removed.",
+      "parentUuid": "61d63e42_bdd2f016",
       "range": {
         "startLine": 49,
         "startChar": 6,
