@@ -87,6 +87,24 @@
       "revId": "c0d5b593fa2399896037260dd507cc88bb525aed",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a199b868_a8978f02",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-07-13T21:34:14Z",
+      "side": 1,
+      "message": "We would probably need a way to expose this. Though sorry for my lack of understanding here, can a single browser instance have more than a single window? If so, how?",
+      "parentUuid": "9904b97a_93d9c696",
+      "revId": "c0d5b593fa2399896037260dd507cc88bb525aed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
