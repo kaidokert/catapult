@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "860ca506_beb2203b",
+        "filename": "cr-buildbucket.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-07-13T18:57:46Z",
+      "side": 1,
+      "message": "this is default, not necessary",
+      "revId": "8e92d0f0521f0c7b780de1f9c056dabb8453ae5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0da9fac8_1078d047",
         "filename": "cr-buildbucket.cfg",
         "patchSetId": 1
@@ -49,6 +66,30 @@
     },
     {
       "key": {
+        "uuid": "dcc329e8_01cc4ca5",
+        "filename": "cr-buildbucket.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-07-13T18:57:46Z",
+      "side": 1,
+      "message": "moreover, we might want to start creating these service accounts automatically, so ideally we stick to the current scheme",
+      "parentUuid": "1fb83592_a6ad2a4a",
+      "range": {
+        "startLine": 41,
+        "startChar": 24,
+        "endLine": 41,
+        "endChar": 36
+      },
+      "revId": "8e92d0f0521f0c7b780de1f9c056dabb8453ae5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "45c1de1c_1c1047cc",
         "filename": "cr-buildbucket.cfg",
         "patchSetId": 1
@@ -60,6 +101,47 @@
       "writtenOn": "2018-07-12T21:21:05Z",
       "side": 1,
       "message": "A lot of this stuff is just a straight up copy-paste of the luci.chromium.try version. Keep it all?",
+      "revId": "8e92d0f0521f0c7b780de1f9c056dabb8453ae5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82251c11_4763873e",
+        "filename": "cr-buildbucket.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-07-13T18:57:46Z",
+      "side": 1,
+      "message": "Robbie, is it time to make this the default? people keep copying this stuff",
+      "parentUuid": "45c1de1c_1c1047cc",
+      "revId": "8e92d0f0521f0c7b780de1f9c056dabb8453ae5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61d63e42_bdd2f016",
+        "filename": "cr-buildbucket.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-07-13T18:57:46Z",
+      "side": 1,
+      "message": "will your recipe use+populate this cache?",
+      "range": {
+        "startLine": 49,
+        "startChar": 6,
+        "endLine": 52,
+        "endChar": 7
+      },
       "revId": "8e92d0f0521f0c7b780de1f9c056dabb8453ae5e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -101,6 +183,30 @@
       "side": 1,
       "message": "I\u0027m not actually sure why this is there, but it\u0027s been copy/pasted in a lot of places.",
       "parentUuid": "a1bd6443_f7c0e7ec",
+      "range": {
+        "startLine": 57,
+        "startChar": 8,
+        "endLine": 57,
+        "endChar": 20
+      },
+      "revId": "8e92d0f0521f0c7b780de1f9c056dabb8453ae5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1dbe684c_8c06134d",
+        "filename": "cr-buildbucket.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-07-13T18:57:46Z",
+      "side": 1,
+      "message": "Vadim, we still need this? It\u0027s been some time",
+      "parentUuid": "690be0fb_44a0243f",
       "range": {
         "startLine": 57,
         "startChar": 8,
