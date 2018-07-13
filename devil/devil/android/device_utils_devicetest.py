@@ -210,6 +210,36 @@ class DeviceUtilsPushDeleteFilesTest(device_test_case.DeviceTestCase):
     cmd_helper.RunCmd(['rm', '-rf', host_tmp_dir])
     self.device.RemovePath(_DEVICE_DIR, recursive=True, force=True)
 
+  def testPushWithStaleDirectories(self):
+    host_tmp_dir = tempfile.mkdtemp()
+    host_sub_dir1 = '%s/%s' % (host_tmp_dir, _SUB_DIR1)
+    host_sub_dir2 = "%s/%s/%s" % (host_tmp_dir, _SUB_DIR, _SUB_DIR2)
+    cmd_helper.RunCmd(['mkdir', '-p', host_sub_dir1])
+    cmd_helper.RunCmd(['mkdir', '-p', host_sub_dir2])
+
+    (_, _) = self._MakeTempFileGivenDir(
+        host_sub_dir1, _OLD_CONTENTS)
+    (_, _) = self._MakeTempFileGivenDir(
+        host_sub_dir2, _OLD_CONTENTS)
+
+    self.device.PushChangedFiles([(host_tmp_dir, _DEVICE_DIR)],
+                                   delete_device_stale=True)
+    top_level_dirs = self.device.ListDirectory(_DEVICE_DIR)
+    self.assertIn(_SUB_DIR1, top_level_dirs)
+    self.assertIn(_SUB_DIR, top_level_dirs)
+    sub_dir = self.device.ListDirectory('%s/%s' % (_DEVICE_DIR, _SUB_DIR))
+    self.assertIn(_SUB_DIR2, sub_dir)
+
+    cmd_helper.RunCmd(['rm', '-rf', host_sub_dir2])
+    self.device.PushChangedFiles([(host_tmp_dir, _DEVICE_DIR)],
+                                   delete_device_stale=True)
+
+    top_level_dirs = self.device.ListDirectory(_DEVICE_DIR)
+    self.assertIn(_SUB_DIR1, top_level_dirs)
+    self.assertIn(_SUB_DIR, top_level_dirs)
+    sub_dir = self.device.ListDirectory('%s/%s' % (_DEVICE_DIR, _SUB_DIR))
+    self.assertEqual([], sub_dir)
+
   def testRestartAdbd(self):
     def get_adbd_pid():
       try:
