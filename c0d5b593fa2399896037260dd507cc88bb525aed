@@ -105,6 +105,24 @@
       "revId": "c0d5b593fa2399896037260dd507cc88bb525aed",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df324b33_bbbb743c",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2018-07-13T22:18:19Z",
+      "side": 1,
+      "message": "The current default behaviour is that we re-use an existing browser process for all subsequent browser windows.\n\nWe track all browser windows in a static instance of chrome/browser/ui/browser_list.h. So each subsequent window that\u0027s created is made in the existing process and added to the single list. The devtools implementation (in review) for this id needs to look up the window based on id (https://chromium-review.googlesource.com/c/chromium/src/+/984858)\n\nSo each way of launching a new window is told to the central list (new window commands, command line, dragging a tab out, etc.)",
+      "parentUuid": "a199b868_a8978f02",
+      "revId": "c0d5b593fa2399896037260dd507cc88bb525aed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
