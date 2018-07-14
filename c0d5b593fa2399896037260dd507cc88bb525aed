@@ -123,6 +123,24 @@
       "revId": "c0d5b593fa2399896037260dd507cc88bb525aed",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8caafc14_e9042780",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-07-14T00:09:18Z",
+      "side": 1,
+      "message": "Ah, thanks for explaining, Jon! I think it makes sense to support some API to get all the active windows now. \n\nWith that design, it probably makes more sense to add a python Window class as well. Basically a browser object owns many Windows instances, and many tabs instance. Each tab belong to one of the windows.\n\nThe resize() method would then be a property of windows. So people can write code like this:\n\nfor w in browser.windows:\n   w.resize(width, height)\n\nor s.t like:\n\n# only resize the windows that load foo.com\nfor w in browser.windows:\n   for t in w.tabs:\n     if t.GetUrl() \u003d\u003d \u0027https://foo.com\u0027:\n        w.resize(width, height)\n        break",
+      "parentUuid": "df324b33_bbbb743c",
+      "revId": "c0d5b593fa2399896037260dd507cc88bb525aed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
