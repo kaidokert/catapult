@@ -332,7 +332,7 @@ def strip_and_decompress_trace(trace_data):
 
   if not trace_data.startswith(TRACE_TEXT_HEADER):
     # No header found, so assume the data is compressed.
-    trace_data = zlib.decompress(trace_data)
+    trace_data = zlib.decompressobj().decompress(trace_data)
 
   # Enforce Unix line-endings.
   trace_data = trace_data.replace('\r', '')
