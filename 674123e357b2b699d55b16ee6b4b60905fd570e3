@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e7204ed_ebbf4907",
+        "filename": "devil/devil/android/device_utils_devicetest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-16T08:55:15Z",
+      "side": 1,
+      "message": "You can use os.makedirs for these.",
+      "revId": "674123e357b2b699d55b16ee6b4b60905fd570e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4b430a2_b60564be",
+        "filename": "devil/devil/android/device_utils_devicetest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-16T08:55:15Z",
+      "side": 1,
+      "message": "if you are discarding the results anyway, I think there is no need to write the LHS at all, e.g. just:\n\n  self._MakeTempFileGivenDir(...)\n\n\nshould be enough.",
+      "revId": "674123e357b2b699d55b16ee6b4b60905fd570e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82c6e759_ca5f4ba1",
+        "filename": "devil/devil/android/device_utils_devicetest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-16T08:55:15Z",
+      "side": 1,
+      "message": "Can you add a couple of high level comments explaining what is going on?",
+      "revId": "674123e357b2b699d55b16ee6b4b60905fd570e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
