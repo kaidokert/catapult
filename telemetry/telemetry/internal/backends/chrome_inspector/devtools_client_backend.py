@@ -35,10 +35,9 @@ class TabNotFoundError(exceptions.Error):
 # in this file.
 _FIRST_CALL_TIMEOUT = 60
 
-
 class DevToolsClientConfig(object):
-  def __init__(self, local_port, app_backend,
-               remote_port=None, browser_target=None):
+  def __init__(self, local_port, remote_port, app_backend,
+               browser_target=None):
     """Create an object with the details needed to identify a DevTools agent.
 
     Args:
@@ -51,11 +50,19 @@ class DevToolsClientConfig(object):
       browser_target: An optional string to override the default path used to
         establish a websocket connection with the browser inspector.
     """
-    self._local_port = local_port
+
     self._app_backend = app_backend
-    self._remote_port = remote_port or local_port
+
+    self.platform_backend = self.app_backend.platform_backend
     self._browser_target = browser_target or '/devtools/browser'
     self._created = False
+
+    self._forwarder = self.platform_backend.forwarder_factory.Create(
+        local_port=local_port,
+        remote_port=remote_port, reverse=True)
+
+    self._local_port = self._forwarder.local_port
+    self._remote_port = self._forwarder.remote_port or self._local_port
 
   def __str__(self):
     s = self.browser_target_url
@@ -105,6 +112,11 @@ class DevToolsClientConfig(object):
     devtools_client = DevToolsClientBackend(self)
     self._created = True
     return devtools_client
+
+  def Close(self):
+    if self._forwarder:
+      self._forwarder.Close()
+      self._forwarder = None
 
   def IsAgentReady(self):
     """Whether the DevTools agent is ready to establish a connection."""
