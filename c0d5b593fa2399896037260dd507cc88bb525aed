@@ -158,6 +158,24 @@
       "revId": "c0d5b593fa2399896037260dd507cc88bb525aed",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a4af29a_a79bc513",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-07-16T15:27:16Z",
+      "side": 1,
+      "message": "There is a Browser.getWindowForTarget() API that returns the window-id. Is that something we could use here?",
+      "parentUuid": "8caafc14_e9042780",
+      "revId": "c0d5b593fa2399896037260dd507cc88bb525aed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
