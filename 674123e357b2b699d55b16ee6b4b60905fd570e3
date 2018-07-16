@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "10ddd57a_59f3d86a",
+        "filename": "devil/devil/android/device_utils_devicetest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2018-07-16T17:17:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e7204ed_ebbf4907",
+      "revId": "674123e357b2b699d55b16ee6b4b60905fd570e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e4b430a2_b60564be",
         "filename": "devil/devil/android/device_utils_devicetest.py",
         "patchSetId": 4
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "b1b2ad12_54bee5b1",
+        "filename": "devil/devil/android/device_utils_devicetest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2018-07-16T17:17:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4b430a2_b60564be",
+      "revId": "674123e357b2b699d55b16ee6b4b60905fd570e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "82c6e759_ca5f4ba1",
         "filename": "devil/devil/android/device_utils_devicetest.py",
         "patchSetId": 4
@@ -50,6 +86,24 @@
       "revId": "674123e357b2b699d55b16ee6b4b60905fd570e3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe3ad169_79d94caa",
+        "filename": "devil/devil/android/device_utils_devicetest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2018-07-16T17:17:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82c6e759_ca5f4ba1",
+      "revId": "674123e357b2b699d55b16ee6b4b60905fd570e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
