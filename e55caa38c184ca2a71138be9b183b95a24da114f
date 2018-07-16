@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "99cd09e9_21f1e7d5",
+        "filename": "dashboard/dashboard/pinpoint/models/change/change_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-16T09:11:15Z",
+      "side": 1,
+      "message": "not sure how often this would come handy, but how about the following interface?\n\na) Change(..., patch\u003dFalse) -\u003e change with no patch\nb) Change(..., patch\u003dTrue) -\u003e change with some default patch\nc) Change(..., patch\u003d\u00271234\u0027) -\u003e change with patch_test.Patch(\u00271234\u0027)\nd) Change(..., patch\u003dpatch) -\u003e change with this exact patch object\n\n(d might be going too far)",
+      "revId": "e55caa38c184ca2a71138be9b183b95a24da114f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
