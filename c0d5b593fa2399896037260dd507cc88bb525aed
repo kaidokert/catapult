@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "3f31e35f_6bdd59b2",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-16T09:17:08Z",
+      "side": 1,
+      "message": "I don\u0027t think these are needed, right? They just inherit from the parent class?",
+      "revId": "c0d5b593fa2399896037260dd507cc88bb525aed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "74407bba_3b6bad1a",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
         "patchSetId": 7
