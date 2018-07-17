@@ -22,7 +22,6 @@ HISTOGRAMS_QUERY_LIMIT = 1000
 ROWS_QUERY_LIMIT = 20000
 
 COLUMNS_REQUIRING_ROWS = {'timestamp', 'revisions'}.union(descriptor.STATISTICS)
-CACHE_SECONDS = 60 * 60 * 24 * 7
 
 
 class Timeseries2Handler(api_request_handler.ApiRequestHandler):
@@ -52,8 +51,6 @@ class Timeseries2Handler(api_request_handler.ApiRequestHandler):
     except AssertionError:
       # The caller has requested internal-only data but is not authorized.
       raise api_request_handler.NotFoundError
-    self.response.headers['Cache-Control'] = '%s, max-age=%d' % (
-        'private' if query.private else 'public', CACHE_SECONDS)
     return result
 
 
@@ -73,11 +70,6 @@ class TimeseriesQuery(object):
     self._units = None
     self._improvement_direction = None
     self._data = {}
-    self._private = False
-
-  @property
-  def private(self):
-    return self._private
 
   @timing.TimeWall('fetch')
   @timing.TimeCpu('fetch')
@@ -163,9 +155,6 @@ class TimeseriesQuery(object):
 
     improvement_direction = None
     for test in tests:
-      if test.internal_only:
-        self._private = True
-
       test_desc = yield descriptor.Descriptor.FromTestPathAsync(
           utils.TestPath(test.key))
       # The unit for 'count' statistics is trivially always 'count'. Callers
@@ -256,17 +245,17 @@ class TimeseriesQuery(object):
         yield [self._FetchHistogram(test_key, row.revision) for row in rows]
 
   def _FilterRowQuery(self, query):
-    if self._min_revision:
-      query = query.filter(graph_data.Row.revision >= self._min_revision)
-    elif self._min_timestamp:
-      query = query.filter(graph_data.Row.timestamp >= self._min_timestamp)
-    if self._max_revision:
-      query = query.filter(graph_data.Row.revision <= self._max_revision)
-    elif self._max_timestamp:
-      query = query.filter(graph_data.Row.timestamp <= self._max_timestamp)
     if self._min_revision or self._max_revision:
+      if self._min_revision:
+        query = query.filter(graph_data.Row.revision >= self._min_revision)
+      if self._max_revision:
+        query = query.filter(graph_data.Row.revision <= self._max_revision)
       query = query.order(-graph_data.Row.revision)
-    else:
+    elif self._min_timestamp or self._max_timestamp:
+      if self._min_timestamp:
+        query = query.filter(graph_data.Row.timestamp >= self._min_timestamp)
+      if self._max_timestamp:
+        query = query.filter(graph_data.Row.timestamp <= self._max_timestamp)
       query = query.order(-graph_data.Row.timestamp)
     return query
 
@@ -277,8 +266,6 @@ class TimeseriesQuery(object):
         max_start_revision=self._max_revision,
         min_end_revision=self._min_revision)
     for alert in anomalies:
-      if alert.internal_only:
-        self._private = True
       datum = self._Datum(alert.end_revision)
       # TODO(benjhayden) bisect_status
       datum['alert'] = alerts.GetAnomalyDict(alert)
@@ -304,8 +291,6 @@ class TimeseriesQuery(object):
     hist = yield query.get_async()
     if hist is None:
       return
-    if hist.internal_only:
-      self._private = True
     self._Datum(hist.revision)['histogram'] = hist.data
 
   @ndb.tasklet
@@ -327,8 +312,6 @@ class TimeseriesQuery(object):
     query = query.order(-histogram.SparseDiagnostic.start_revision)
     diagnostics = yield query.fetch_async(DIAGNOSTICS_QUERY_LIMIT)
     for diag in diagnostics:
-      if diag.internal_only:
-        self._private = True
       datum = self._Datum(diag.start_revision)
       datum_diags = datum.setdefault('diagnostics', {})
       datum_diags[diag.name] = diag.data
