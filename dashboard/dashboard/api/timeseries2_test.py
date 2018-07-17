@@ -269,6 +269,25 @@ class Timeseries2Test(testing_common.TestCase):
       self.assertEqual(1 + (2 * i), datum[0])
       self.assertEqual(_TEST_HISTOGRAM_DATA['name'], datum[1]['name'])
 
+  def testResolveTimestamps(self):
+    self._MockData()
+    response = self._Post(
+        test_suite='suite', measurement='measure', bot='master:bot',
+        test_case='case', build_type='test',
+        min_timestamp=datetime.datetime.utcfromtimestamp(5).isoformat(),
+        max_timestamp=datetime.datetime.utcfromtimestamp(1).isoformat(),
+        columns='revision,avg,alert')
+    # There aren't any rows with timestamp < 1, so max_revision = None.
+    self.assertEqual(8, len(response['data']))
+    for i, datum in enumerate(response['data']):
+      self.assertEqual(3, len(datum))
+      self.assertEqual(5 + (2 * i), datum[0])
+      self.assertEqual(5 + (2 * i), datum[1])
+      if i == 3:
+        self.assertEqual('measure/case', datum[2]['test'])
+      else:
+        self.assertEqual(None, datum[2])
+
 
 if __name__ == '__main__':
   unittest.main()
