@@ -11,9 +11,11 @@ from google.appengine.ext import ndb
 from dashboard import alerts
 from dashboard import group_report
 from dashboard.api import api_request_handler
-from dashboard.api import utils
+from dashboard.api import utils as api_utils
 from dashboard.common import request_handler
+from dashboard.common import utils
 from dashboard.models import anomaly
+from dashboard.models import report_template
 
 
 class AlertsHandler(api_request_handler.ApiRequestHandler):
@@ -37,16 +39,32 @@ class AlertsHandler(api_request_handler.ApiRequestHandler):
     response = {}
     try:
       if len(args) == 0:
-        is_improvement = utils.ParseBool(self.request.get(
+        is_improvement = api_utils.ParseBool(self.request.get(
             'is_improvement', None))
-        recovered = utils.ParseBool(self.request.get('recovered', None))
+        recovered = api_utils.ParseBool(self.request.get('recovered', None))
         start_cursor = self.request.get('cursor', None)
         if start_cursor:
           start_cursor = datastore_query.Cursor(urlsafe=start_cursor)
-        min_timestamp = utils.ParseISO8601(self.request.get(
+        min_timestamp = api_utils.ParseISO8601(self.request.get(
             'min_timestamp', None))
-        max_timestamp = utils.ParseISO8601(self.request.get(
+        max_timestamp = api_utils.ParseISO8601(self.request.get(
             'max_timestamp', None))
+
+        test_keys = []
+        for template_id in self.request.get_all('report'):
+          template = ndb.Key('ReportTemplate', int(template_id)).get()
+          if not template:
+            if any(template_id == handler.template.key.id()
+                   for handler in report_template.STATIC_TEMPLATES):
+              continue
+            # TODO Allow static templates to support this.
+            raise api_request_handler.BadRequestError(
+                'Invalid report id %r' % template_id)
+          for table_row in template.template['rows']:
+            for desc in report_template.TableRowDescriptors(table_row):
+              for test_path in desc.ToTestPathsSync():
+                test_keys.append(utils.TestMetadataKey(test_path))
+                test_keys.append(utils.OldStyleTestKey(test_path))
 
         try:
           alert_list, next_cursor, _ = anomaly.Anomaly.QueryAsync(
@@ -66,6 +84,7 @@ class AlertsHandler(api_request_handler.ApiRequestHandler):
               sheriff=self.request.get('sheriff', None),
               start_cursor=start_cursor,
               test=self.request.get('test', None),
+              test_keys=test_keys,
               test_suite_name=self.request.get('test_suite', None)).get_result()
         except AssertionError:
           alert_list, next_cursor = [], None
