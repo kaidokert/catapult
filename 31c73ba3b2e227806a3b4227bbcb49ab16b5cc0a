@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4846096a_7415b317",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-17T09:46:51Z",
+      "side": 1,
+      "message": "I think this won\u0027t quite work, because if the agent is not ready, then nothing will call Close() on the devtools_config and you\u0027ll leave there a dangling forwarder still running.\n\nInstead we\u0027ll probably need to change the API of the devtools_client_backend a bit. Currently we do:\n\n1. create a forwarder between the \"devtools_port\" (aka remote_port) and some local_port.\n2. create a DevToolsClientConfig that remembers the local/remote port pair.\n3. call devtools_config.IsAgentReady() which tries to ping the local port to see if the agent there is ready. If not, nothing happens we discard the devtools_config and we\u0027ll try again later. (Here the browser_backend will remember that we left a forwarder open, and will try to reuse that on later attempts or close in the end if it all fails.)\n4. If the agent is ready, then we actually create the DevtoolsClientBackend and return that.\n\nI would propose instead to encapsulate most of this into a single function:\n\n  devtools_client_backend.GetDevToolsClientBackendIfReady(app_backend, devtools_client, browser_target)\n\nWhich does basically all of 1-4, except that:\n\n- If the agent is not ready in 3, maybe close the forwarder then and return None to indicate that the DevtoolsClientBackend was not created. On later attempts we\u0027ll just create a new forwarder.\n\n- If the agent *is* ready, pass the forwarder as an extra arg to the DevtoolsClientBackend, so it can hold a reference to it, and then close the forwarder when the devtools_client itself is closed.\n\nI\u0027m also suspecting that after some of these changes the DevToolsClientConfig might not be needed at all anymore: it was mostly there to temporarily hold the local/remote ports of a forwarder that was owned elsewhere, and then pass them to the DevtoolsClientBackend when ready; but now this thing *will* own the forwarder itself, so not much need of the extra container. Anyway, to keep things simple this is something that we might do in a follow up cleanup CL and not right away.",
+      "revId": "31c73ba3b2e227806a3b4227bbcb49ab16b5cc0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
