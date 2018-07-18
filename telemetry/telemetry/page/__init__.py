@@ -39,7 +39,7 @@ class Page(story.Story):
     if base_dir is None:
       base_dir = os.path.dirname(inspect.getfile(self.__class__))
     self._base_dir = base_dir
-    self._name = name
+    self._name = name[:150]
     self._cache_temperature = cache_temperature
 
     assert traffic_setting in traffic_setting_module.NETWORK_CONFIGS, (
