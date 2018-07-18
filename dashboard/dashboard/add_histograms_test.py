@@ -39,7 +39,8 @@ def _CreateHistogram(
     name='hist', master=None, bot=None, benchmark=None,
     device=None, owner=None, stories=None, story_tags=None,
     benchmark_description=None, commit_position=None,
-    samples=None, max_samples=None, is_ref=False, is_summary=None):
+    samples=None, max_samples=None, is_ref=False, is_summary=None,
+    point_id=None):
   hists = [histogram_module.Histogram(name, 'count')]
   if max_samples:
     hists[0].max_num_sample_values = max_samples
@@ -92,6 +93,10 @@ def _CreateHistogram(
     histograms.AddSharedDiagnostic(
         reserved_infos.SUMMARY_KEYS.name,
         generic_set.GenericSet(is_summary))
+  if point_id is not None:
+    histograms.AddSharedDiagnostic(
+        reserved_infos.DASHBOARD_POINT_ID.name,
+        generic_set.GenericSet(point_id))
   return histograms
 
 

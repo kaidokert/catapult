@@ -398,9 +398,14 @@ def _GetDiagnosticValue(name, hist, optional=False):
 
 def ComputeRevision(histograms):
   _CheckRequest(len(histograms) > 0, 'Must upload at least one histogram')
-  commit_position = _GetDiagnosticValue(
-      reserved_infos.CHROMIUM_COMMIT_POSITIONS.name,
-      histograms.GetFirstHistogram())
+  point_id = _GetDiagnosticValue(
+      reserved_infos.DASHBOARD_POINT_ID.name,
+      histograms.GetFirstHistogram(), optional=True)
+
+  if point_id is None:
+    commit_position = _GetDiagnosticValue(
+        reserved_infos.CHROMIUM_COMMIT_POSITIONS.name,
+        histograms.GetFirstHistogram())
 
   # TODO(eakuefner): Allow users to specify other types of revisions to be used
   # for computing revisions of dashboard points. See
