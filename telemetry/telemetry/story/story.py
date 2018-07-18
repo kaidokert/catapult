@@ -49,7 +49,7 @@ class Story(object):
                       shared_state_module.SharedState)
     self._shared_state_class = shared_state_class
     assert name, 'All stories must be named.'
-    self._name = name
+    self._name = name[:150]
     self._platform_specific = platform_specific
     global _next_story_id # pylint: disable=global-statement
     self._id = _next_story_id
