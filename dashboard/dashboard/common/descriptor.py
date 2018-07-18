@@ -58,6 +58,12 @@ class Descriptor(object):
         self.test_suite, self.measurement, self.bot, self.test_case,
         self.statistic, self.build_type)
 
+  def __eq__(self, other):
+    return repr(self) == repr(other)
+
+  def __lt__(self, other):
+    return repr(self) < repr(other)
+
   @classmethod
   def ResetMemoizedConfigurationForTesting(cls):
     cls.PARTIAL_TEST_SUITES = None
