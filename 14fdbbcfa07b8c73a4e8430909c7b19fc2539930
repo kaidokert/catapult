@@ -34,6 +34,24 @@
       "revId": "14fdbbcfa07b8c73a4e8430909c7b19fc2539930",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9379510e_b42e2739",
+        "filename": "telemetry/telemetry/internal/platform/linux_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-19T13:12:06Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1b2e8417_0c542df9",
+      "revId": "14fdbbcfa07b8c73a4e8430909c7b19fc2539930",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
