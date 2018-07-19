@@ -38,3 +38,6 @@ catapult_base/catapult_base/bin/
 # Generated fetched binary's timestamp
 # See details in py_utils.cloud_storage.GetIfChanged(file_path, bucket) method.
 .fetchts
+
+# the generated csv file in /experimental/long_term_health
+/experimental/long_term_health/full_milestone_info.csv
