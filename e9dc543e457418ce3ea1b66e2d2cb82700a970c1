@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "276a5aff_f41a2121",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-19T18:01:28Z",
+      "side": 1,
+      "message": "Maybe restructure like this since you\u0027ll eventually need to add a revision_timestamp fallback.\n\npoint_id \u003d ...\nif point_id:\n  return point_id\n\ncommit_pos \u003d ...\nif commit_pos:\n  ...\n\netc.",
+      "range": {
+        "startLine": 401,
+        "startChar": 2,
+        "endLine": 401,
+        "endChar": 10
+      },
+      "revId": "e9dc543e457418ce3ea1b66e2d2cb82700a970c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
