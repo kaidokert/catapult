@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a9d3808d_23da378a",
+        "filename": "experimental/long_term_health/generate_version_milestone_mapping_table.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-19T10:26:12Z",
+      "side": 1,
+      "message": "Maybe on a follow up CL, we should probably merge this and your previous fetch_binary.py in a single long_term_health.py script.\n\nMy idea is it that it would:\n- check whether the csv with the full version_number already exists; if not, create it automatically.\n- then use that information to fetch any needed builds.",
+      "revId": "31ecc22db7595e0ac4ebddb26152605f1820cee1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ce6115a_b8c338f1",
+        "filename": "experimental/long_term_health/generate_version_milestone_mapping_table.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-19T10:26:12Z",
+      "side": 1,
+      "message": "To make this a bit more general I would split this in two functions\n\n- GetChromiumLog(revision, count\u003d10)\n  e.g. you call this with revision\u003d\u0027refs/branch-heads/{branch}\u0027,\n  and you get back the log with the latest 10 commits.\n\n- GetBranchInfo(milestone, branch)\n  - call GetChromiumLog(\u0027refs/branch-heads/{branch}\u0027), then find the latest log which\n    incremented the version number\n  - figure out the release date and version number\n  - assert that the version number is for the correct milestone\n  - return a (milestone, branch, version_number, release_date) tuple (which the caller basically just sends to the csv writer.\n\nI don\u0027t think we need individual functions for GetReleaseDate/GetVersionNumber, both are small enough, and can fit in my suggested GetBranchInfo.",
+      "revId": "31ecc22db7595e0ac4ebddb26152605f1820cee1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e91e6d2_856deb16",
+        "filename": "experimental/long_term_health/generate_version_milestone_mapping_table.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-19T10:26:12Z",
+      "side": 1,
+      "message": "nit: maybe call this \u0027full_milestone_info.csv\u0027\n\nalso, to make sure this works regardless of the working directory from where you run the script, you can add at the top:\n\nAPP_DIR \u003d os.path.normpath(os.path.dirname(__file__))\n\nand then use os.path.join(APP_DIR, \u0027full_milestone_info.csv\u0027) to get absolute paths to open those files.\n\nFinally, remember to add this auto-generated file to .gitignore",
+      "revId": "31ecc22db7595e0ac4ebddb26152605f1820cee1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71367b25_ad863f46",
+        "filename": "experimental/long_term_health/generate_version_milestone_mapping_table.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-19T10:26:12Z",
+      "side": 1,
+      "message": "nit: QUOTE_MINIMAL is already the default, no need to add this.",
+      "revId": "31ecc22db7595e0ac4ebddb26152605f1820cee1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c571b65_c3ac7bec",
+        "filename": "experimental/long_term_health/generate_version_milestone_mapping_table.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-19T10:26:12Z",
+      "side": 1,
+      "message": "nit: let\u0027s use version_number and release_date",
+      "revId": "31ecc22db7595e0ac4ebddb26152605f1820cee1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91fa3cbf_0883147c",
+        "filename": "experimental/long_term_health/generate_version_milestone_mapping_table.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-19T10:26:12Z",
+      "side": 1,
+      "message": "use os.path.join(APP_DIR, ..) here too",
+      "revId": "31ecc22db7595e0ac4ebddb26152605f1820cee1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5685b318_8125f18b",
+        "filename": "experimental/long_term_health/generate_version_milestone_mapping_table.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-19T10:26:12Z",
+      "side": 1,
+      "message": "this will be more readable if you do:\n\n    for milestone, branch in reader:",
+      "revId": "31ecc22db7595e0ac4ebddb26152605f1820cee1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
