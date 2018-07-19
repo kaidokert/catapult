@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4083d2b0_091e6e2e",
+        "filename": ".gitignore",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-19T12:17:27Z",
+      "side": 1,
+      "message": "nit: let\u0027s better add this on a local:\n\n/experimental/long_term_health/.gitignore\n\nno need for the extra comment there.",
+      "revId": "599f33477f57178713f48120a4b24a00e59048e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f18f8c1b_f40df524",
+        "filename": "experimental/long_term_health/generate_version_milestone_mapping_table.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-19T12:17:27Z",
+      "side": 1,
+      "message": "nit: extra blank line here.",
+      "revId": "599f33477f57178713f48120a4b24a00e59048e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11b14e09_a2ac426d",
+        "filename": "experimental/long_term_health/generate_version_milestone_mapping_table.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-19T12:17:27Z",
+      "side": 1,
+      "message": "nit: no need for this one, just use 10 as the default value on GetChromiumLog",
+      "revId": "599f33477f57178713f48120a4b24a00e59048e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b00f58f_cd243c3a",
+        "filename": "experimental/long_term_health/generate_version_milestone_mapping_table.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-19T12:17:27Z",
+      "side": 1,
+      "message": "nits: \n- rephrase: the number of git logs that you ...\n- add extra blank line between Args and Returns",
+      "revId": "599f33477f57178713f48120a4b24a00e59048e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79df81ce_03536cd2",
+        "filename": "experimental/long_term_health/generate_version_milestone_mapping_table.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-19T12:17:27Z",
+      "side": 1,
+      "message": "nit: rubbish character -\u003e useless characters at the front of the json ...",
+      "revId": "599f33477f57178713f48120a4b24a00e59048e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b636feeb_7c06628b",
+        "filename": "experimental/long_term_health/generate_version_milestone_mapping_table.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-19T12:17:27Z",
+      "side": 1,
+      "message": "nit: no need for the extra variable, just return json.loads(...)",
+      "revId": "599f33477f57178713f48120a4b24a00e59048e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83f00db3_a758f9a6",
+        "filename": "experimental/long_term_health/generate_version_milestone_mapping_table.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-19T12:17:27Z",
+      "side": 1,
+      "message": "nit: Remove the \"Used to\" just \"Get the latest ...\"",
+      "revId": "599f33477f57178713f48120a4b24a00e59048e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ccac5665_643dd17f",
+        "filename": "experimental/long_term_health/generate_version_milestone_mapping_table.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-19T12:17:27Z",
+      "side": 1,
+      "message": "nit: extra blank lines between Args/Raises.",
+      "revId": "599f33477f57178713f48120a4b24a00e59048e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e71da267_54a8864d",
+        "filename": "experimental/long_term_health/generate_version_milestone_mapping_table.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-19T12:17:27Z",
+      "side": 1,
+      "message": "nit: use .isoformat() here rather than strftime.",
+      "revId": "599f33477f57178713f48120a4b24a00e59048e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c0cd2d2_095b8546",
+        "filename": "experimental/long_term_health/generate_version_milestone_mapping_table.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-19T12:17:27Z",
+      "side": 1,
+      "message": "nit: for clarity, let\u0027s leave an extra blank line after this for loop.",
+      "revId": "599f33477f57178713f48120a4b24a00e59048e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "935d4f7e_581fae22",
+        "filename": "experimental/long_term_health/generate_version_milestone_mapping_table.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-19T12:17:27Z",
+      "side": 1,
+      "message": "nit: I think we don\u0027t need a custom exception here. Let\u0027s just do:\n\n    assert False, \u0027Could not find commit with version increment\u0027",
+      "revId": "599f33477f57178713f48120a4b24a00e59048e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
