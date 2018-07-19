@@ -16,6 +16,24 @@
       "revId": "14fdbbcfa07b8c73a4e8430909c7b19fc2539930",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b2e8417_0c542df9",
+        "filename": "telemetry/telemetry/internal/platform/linux_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-07-19T13:11:16Z",
+      "side": 1,
+      "message": "It\u0027s in the contract of the method API that it returns True if succeeded (https://github.com/catapult-project/catapult/blob/master/telemetry/telemetry/core/platform.py#L382)",
+      "parentUuid": "c9bd9017_cda60045",
+      "revId": "14fdbbcfa07b8c73a4e8430909c7b19fc2539930",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
