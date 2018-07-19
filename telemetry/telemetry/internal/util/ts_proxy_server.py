@@ -148,7 +148,7 @@ class TsProxyServer(object):
 
   def UpdateTrafficSettings(
       self, round_trip_latency_ms=0,
-      download_bandwidth_kbps=0, upload_bandwidth_kbps=0, timeout=5):
+      download_bandwidth_kbps=0, upload_bandwidth_kbps=0, timeout=20):
     self._IssueCommand('set rtt %s' % round_trip_latency_ms, timeout)
     self._IssueCommand('set inkbps %s' % download_bandwidth_kbps, timeout)
     self._IssueCommand('set outkbps %s' % upload_bandwidth_kbps, timeout)
