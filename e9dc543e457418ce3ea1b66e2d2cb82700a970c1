@@ -22,6 +22,30 @@
       "revId": "e9dc543e457418ce3ea1b66e2d2cb82700a970c1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80d5e3a2_5d92e4f5",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-07-19T18:38:58Z",
+      "side": 1,
+      "message": "Did something similar; I realized that before we weren\u0027t erroring if point_id was malformed, which we need to do. Added an additional test for that case also.",
+      "parentUuid": "276a5aff_f41a2121",
+      "range": {
+        "startLine": 401,
+        "startChar": 2,
+        "endLine": 401,
+        "endChar": 10
+      },
+      "revId": "e9dc543e457418ce3ea1b66e2d2cb82700a970c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
