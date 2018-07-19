@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "8807ecf6_e786391c",
+        "filename": "experimental/long_term_health/generate_version_milestone_mapping_table.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-07-19T10:45:42Z",
+      "side": 1,
+      "message": "Do we need to supply two argument for the `GetBranchInfo` function? I think only supply branch number should be enough as branch number and milestone are one to one correspondence.",
+      "parentUuid": "7ce6115a_b8c338f1",
+      "revId": "31ecc22db7595e0ac4ebddb26152605f1820cee1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1e91e6d2_856deb16",
         "filename": "experimental/long_term_health/generate_version_milestone_mapping_table.py",
         "patchSetId": 7
@@ -70,6 +88,24 @@
     },
     {
       "key": {
+        "uuid": "6177be3c_4bf06620",
+        "filename": "experimental/long_term_health/generate_version_milestone_mapping_table.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-07-19T10:45:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71367b25_ad863f46",
+      "revId": "31ecc22db7595e0ac4ebddb26152605f1820cee1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2c571b65_c3ac7bec",
         "filename": "experimental/long_term_health/generate_version_milestone_mapping_table.py",
         "patchSetId": 7
@@ -84,6 +120,24 @@
       "revId": "31ecc22db7595e0ac4ebddb26152605f1820cee1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01490e33_76a2fd28",
+        "filename": "experimental/long_term_health/generate_version_milestone_mapping_table.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-07-19T10:45:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c571b65_c3ac7bec",
+      "revId": "31ecc22db7595e0ac4ebddb26152605f1820cee1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -118,6 +172,24 @@
       "revId": "31ecc22db7595e0ac4ebddb26152605f1820cee1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c8e7e24_1b9db999",
+        "filename": "experimental/long_term_health/generate_version_milestone_mapping_table.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-07-19T10:45:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5685b318_8125f18b",
+      "revId": "31ecc22db7595e0ac4ebddb26152605f1820cee1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
