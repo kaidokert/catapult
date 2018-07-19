@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "d8b6d283_50ab05f0",
+        "filename": "experimental/long_term_health/generate_version_milestone_mapping_table.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-19T11:01:58Z",
+      "side": 1,
+      "message": "Yes I agree, I only suggested including it so: (1) you can also add it on your return tuple to be written as-is by the csvwriter and (2) we can add the extra check that the version number corresponds with the milestone.\n\nBut either way shouldn\u0027t be much difference.",
+      "parentUuid": "8807ecf6_e786391c",
+      "revId": "31ecc22db7595e0ac4ebddb26152605f1820cee1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1e91e6d2_856deb16",
         "filename": "experimental/long_term_health/generate_version_milestone_mapping_table.py",
         "patchSetId": 7
