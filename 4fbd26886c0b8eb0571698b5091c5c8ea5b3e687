@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "102261e9_3b53f6f0",
+        "filename": "common/node_runner/node_runner/package.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-20T17:11:31Z",
+      "side": 1,
+      "message": "Can we remove transpilation?",
+      "parentUuid": "475cb687_e37ad298",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 51
+      },
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4c1608cd_c6729e00",
         "filename": "common/node_runner/node_runner/package.json",
         "patchSetId": 5
@@ -36,6 +60,24 @@
       "writtenOn": "2018-07-20T00:44:51Z",
       "side": 1,
       "message": "Is it a good idea to move idb out of third_party and into node_runner? I wasn\u0027t sure about this, but it reduced the amount of code in sw-utils folder.",
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57bfeafb_6014f679",
+        "filename": "common/node_runner/node_runner/package.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-20T17:11:31Z",
+      "side": 1,
+      "message": "If we\u0027re compiling code into v2spa, then it should be checked into catapult so we can review and patch it if necessary. We should try to only use npm for code that is used to check or compile the code that is deployed.",
+      "parentUuid": "4c1608cd_c6729e00",
       "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -116,6 +158,23 @@
     },
     {
       "key": {
+        "uuid": "4b7f2b62_14e7e8a6",
+        "filename": "dashboard/bin/deploy_v2spa",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-20T17:11:31Z",
+      "side": 1,
+      "message": "Can this be removed?",
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c1d7ea4f_2e0bfbe9",
         "filename": "dashboard/dashboard/spa/chart-base.html",
         "patchSetId": 5
@@ -127,6 +186,41 @@
       "writtenOn": "2018-07-20T00:44:51Z",
       "side": 1,
       "message": "In an attempt to speed up rendering.\n\nhttps://www.polymer-project.org/2.0/docs/api/elements/Polymer.DomRepeat#property-initialCount",
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77b7d51e_f612d483",
+        "filename": "dashboard/dashboard/spa/chart-base.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-20T17:11:31Z",
+      "side": 1,
+      "message": "Please split this to a separate CL.",
+      "parentUuid": "c1d7ea4f_2e0bfbe9",
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f91d4a7_bee7cb74",
+        "filename": "dashboard/dashboard/spa/index.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-20T17:11:31Z",
+      "side": 1,
+      "message": "Now that I look at it, I think I like having index.js better than I thought I would.\nCan you go ahead and move this code into index.js?",
       "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -161,6 +255,24 @@
       "writtenOn": "2018-07-20T00:44:51Z",
       "side": 1,
       "message": "This is importing directly from node_modules. Is this okay?",
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f04f24d_d71a14ef",
+        "filename": "dashboard/dashboard/spa/service-worker.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-20T17:11:31Z",
+      "side": 1,
+      "message": "Deployed code should all be checked into catapult so that we can review and patch it if necessary.",
+      "parentUuid": "3b1add16_c5e5adaa",
       "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -241,6 +353,57 @@
         "endLine": 27,
         "endChar": 36
       },
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6779bed_a30a06e7",
+        "filename": "tracing/tracing/base/math/range.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-20T17:11:31Z",
+      "side": 1,
+      "message": "Can you copy this change to a new CL for the master branch?",
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ebd5a42_77b68629",
+        "filename": "tracing/tracing/base/math/range.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-20T17:11:31Z",
+      "side": 1,
+      "message": "Why do you need to clone the ranges here?",
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1783847_4e8b903f",
+        "filename": "tracing/tracing/base/math/range.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-20T17:11:31Z",
+      "side": 1,
+      "message": "Can this use for (const range of sortedArray)?",
       "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
