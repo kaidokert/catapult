@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce9d808b_3f065c37",
+        "filename": "dashboard/dashboard/short_uri.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-20T15:37:53Z",
+      "side": 1,
+      "message": "nit: mind moving these below the handler definition and prefixing _",
+      "revId": "655b335b58eec7d7aec3a4563beb69455dffe999",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1df56d6_b3a2f577",
+        "filename": "dashboard/dashboard/short_uri.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-20T15:37:53Z",
+      "side": 1,
+      "message": "Could we not just resave this back into the old pagestate, dividing the state into v1/v2? That way we don\u0027t have to hit the update path every time.",
+      "range": {
+        "startLine": 81,
+        "startChar": 20,
+        "endLine": 81,
+        "endChar": 23
+      },
+      "revId": "655b335b58eec7d7aec3a4563beb69455dffe999",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
