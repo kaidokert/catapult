@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a6ee1df6_2ef4644e",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-20T14:08:51Z",
+      "side": 1,
+      "message": "Isn\u0027t this losing information about what the error was?",
+      "revId": "6912806e8aac38c0c33fc20717e84ffdfed808f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
