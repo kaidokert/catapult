@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9244bb36_46e1edb2",
+        "filename": "dashboard/dashboard/spa/service-worker.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-20T20:47:41Z",
+      "side": 1,
+      "message": "Should I remove all code related to caching files? There are no files specified to be cached, so it\u0027s really doing nothing.",
+      "revId": "5520573a94c779511b1c13d035027a202acb53bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e198647c_73a8b90b",
+        "filename": "dashboard/dashboard/spa/service-worker.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-20T20:47:41Z",
+      "side": 1,
+      "message": "Here is some more code relating to caching files that isn\u0027t being used.",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 8
+      },
+      "revId": "5520573a94c779511b1c13d035027a202acb53bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c04b66ba_fb4c5093",
+        "filename": "dashboard/dashboard/spa/service-worker.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-20T20:47:41Z",
+      "side": 1,
+      "message": "And lastly, here is the rest of the code relating to caching files that is not being used.",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 3
+      },
+      "revId": "5520573a94c779511b1c13d035027a202acb53bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae01acd1_db56d270",
+        "filename": "dashboard/dashboard/spa/service-worker.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-20T20:47:41Z",
+      "side": 1,
+      "message": "Helper functions for caching files that are not being used.",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 1
+      },
+      "revId": "5520573a94c779511b1c13d035027a202acb53bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
