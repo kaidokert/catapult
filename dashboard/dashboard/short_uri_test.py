@@ -5,21 +5,36 @@
 import json
 import unittest
 
-import webapp2
-import webtest
-
 from dashboard import short_uri
 from dashboard.common import testing_common
+from dashboard.models import graph_data
+from dashboard.models import page_state
 
 
 class ShortUriTest(testing_common.TestCase):
 
   def setUp(self):
     super(ShortUriTest, self).setUp()
-    app = webapp2.WSGIApplication(
-        [('/short_uri',
-          short_uri.ShortUriHandler)])
-    self.testapp = webtest.TestApp(app)
+    self.SetUpApp([('/short_uri', short_uri.ShortUriHandler)])
+
+  def testUpgrade(self):
+    graph_data.TestMetadata(
+        has_rows=True, id='master/bot/suite/measurement/case').put()
+    page_state.PageState(id='test_sid', value=json.dumps({
+        'charts': [
+            [
+                ['master/bot/suite/measurement', ['all']],
+            ],
+        ]})).put()
+    response = self.testapp.get('/short_uri', {'sid': 'test_sid', 'v2': 'true'})
+    expected = {
+        'testSuites': ['suite'],
+        'measurements': ['measurement'],
+        'bots': ['master:bot'],
+        'testCases': ['case'],
+    }
+    actual = json.loads(response.body)['chartSections'][0]['parameters']
+    self.assertEqual(expected, actual)
 
   def testPostAndGet(self):
     sample_page_state = {
@@ -32,8 +47,7 @@ class ShortUriTest(testing_common.TestCase):
     self.assertIsNotNone(page_state_id)
 
     response = self.testapp.get('/short_uri', {'sid': page_state_id})
-    page_state = json.loads(response.body)
-    self.assertEqual(sample_page_state, page_state)
+    self.assertEqual(sample_page_state, json.loads(response.body))
 
   def testGet_InvalidSID(self):
     self.testapp.get('/short_uri', {'sid': '123xyz'}, status=400)
