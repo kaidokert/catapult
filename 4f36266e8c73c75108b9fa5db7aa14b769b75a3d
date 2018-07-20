@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "83c90563_87ca202e",
+        "filename": "dashboard/dashboard/common/report_query.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-20T18:03:03Z",
+      "side": 1,
+      "message": "Do you mind breaking this up into a few lines, I\u0027m really bad at understanding nested comprehensions",
+      "range": {
+        "startLine": 56,
+        "startChar": 24,
+        "endLine": 56,
+        "endChar": 32
+      },
+      "revId": "4f36266e8c73c75108b9fa5db7aa14b769b75a3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f9faac8_81c41486",
+        "filename": "dashboard/dashboard/common/report_query.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-20T18:03:03Z",
+      "side": 1,
+      "message": "fyi, there\u0027s also synctasklet",
+      "range": {
+        "startLine": 62,
+        "startChar": 6,
+        "endLine": 62,
+        "endChar": 15
+      },
+      "revId": "4f36266e8c73c75108b9fa5db7aa14b769b75a3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47851ecb_4d0b2d24",
+        "filename": "dashboard/dashboard/common/report_query.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-20T18:03:03Z",
+      "side": 1,
+      "message": "as discussed over vc, splitting this into a few functions would be nice",
+      "range": {
+        "startLine": 76,
+        "startChar": 6,
+        "endLine": 76,
+        "endChar": 17
+      },
+      "revId": "4f36266e8c73c75108b9fa5db7aa14b769b75a3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c4cdc1c_adfe1aff",
+        "filename": "dashboard/dashboard/common/report_query.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-20T18:03:03Z",
+      "side": 1,
+      "message": "nit: im not good at nested comprehensions, please expand and make it obvious",
+      "revId": "4f36266e8c73c75108b9fa5db7aa14b769b75a3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "869deeed_99633c05",
+        "filename": "dashboard/dashboard/common/report_query.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-20T18:03:03Z",
+      "side": 1,
+      "message": "think we talked about adding a logging.warning here, this is the kind of case where somethign goes missing ont he frontend and warning statement in the logs could save time debugging",
+      "range": {
+        "startLine": 108,
+        "startChar": 8,
+        "endLine": 108,
+        "endChar": 14
+      },
+      "revId": "4f36266e8c73c75108b9fa5db7aa14b769b75a3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
