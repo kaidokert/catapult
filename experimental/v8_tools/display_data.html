@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<input type="file" id="file-input" />
+<h3>Sample Values:</h3>
+<pre id="sample-values"></pre>
+
+<script>
+    'use strict';
+
+    //  load the content of the file and further display the data
+    function readSingleFile(e) {
+      const file = e.target.files[0];
+      if (!file) {
+        return;
+      }
+      const reader = new FileReader();
+
+      reader.onload = function(e) {
+        const contents = e.target.result;
+        displayContents(contents);
+      };
+      reader.readAsText(file);
+    }
+
+    //  prototype for data from sampleValues-related info
+    class sampleValue {
+      constructor(name, stories, sampleValues, storysetRepeats) {
+        this.name = name;
+        this.stories = stories;
+        this.sampleValues = sampleValues;
+        this.storysetRepeats = storysetRepeats;
+      }
+    }
+
+    function extractData(contents) {
+      const result = [];
+      const reg = /<histogram-json>(.*?)<\/histogram-json>/g;
+      let m = reg.exec(contents);
+      while (m !== null) {
+        result.push(m[1]);
+        m = reg.exec(contents);
+      }
+      return result;
+    }
+
+    function displayContents(contents) {
+      const valuesArr = [];
+      const guidArr = [];
+      const sampleArr = [];
+      const sampleValueInfo = [];
+      const guidValueInfo = new Map();
+
+      //  extract every piece of data between <histogram-json> tags;
+      //  all data is written between these tags
+      const result = extractData(contents);
+
+      // here is just a division of information in 3 categories
+      // (values-related; guid-related; sampleValues-related)
+      for (const element of result) {
+        const obj = JSON.parse(element);
+        if (obj.hasOwnProperty('type')) {
+          if (obj.type === 'DateRange') {
+            guidArr.push(obj);
+          } else {
+            valuesArr.push(obj);
+          }
+        } else {
+          sampleArr.push(obj);
+        }
+      }
+
+
+      //  populate sampleValueInfo with SampleValue objects
+      //  containing name, story and value, storysetRepeat
+      sampleArr.forEach(element => {
+        sampleValueInfo.push(new sampleValue(element.name,
+            element.diagnostics.stories,
+            element.sampleValues,
+            element.diagnostics.storysetRepeats));
+      });
+
+      //  populate guidValue with guidValue objects containing guid, value
+      valuesArr.forEach(e => {
+        guidValueInfo.set(e.guid, e.values);
+      });
+
+      //  this map contains:
+      //  key - SampleValue object; value - value associated with guid
+      //  the match is between story and guid which are the same
+      //  for each guid there is a value
+      const commonGuidMap = new Map();
+
+      //  for every SampleValue object is matched
+      //  an elem from guidValueInfo with the same value
+      for (const value of sampleValueInfo) {
+        if (guidValueInfo.has(value.stories)) {
+          commonGuidMap.set(value, guidValueInfo.get(value.stories));
+        }
+      }
+
+      generateTable(commonGuidMap);
+    }
+
+    //  create a single cell with data in the table
+    function createCell(content, row) {
+      const cell = document.createElement('td');
+      const cellText = document.createTextNode(content);
+      cell.appendChild(cellText);
+      row.appendChild(cell);
+    }
+
+    function generateTable(sample) {
+      // get the reference by the Id
+      const body = document.getElementById('sample-values');
+
+      // creates a <table> element and a <tbody> element
+      const tbl = document.createElement('table');
+      const tblBody = document.createElement('tbody');
+
+      // creating all cells
+      for (const [key, value] of sample.entries()) {
+        // creates a table row
+        const row = document.createElement('tr');
+
+        // Create a <td> element and a text node, make the text
+        // node the contents of the <td>, and put the <td> at
+        // the end of the table row
+
+        // display name, stories, sampleValues, the coresponding
+        //  values and storysetRepeats
+
+        createCell(`${key.name}`, row);
+        createCell(`${key.stories}`, row);
+        createCell(`${key.sampleValues}`, row);
+        createCell(`${value}`, row);
+        createCell(`${key.storysetRepeats}`, row);
+
+        // add the row to the end of the table body
+        tblBody.appendChild(row);
+      }
+
+      // put the <tbody> in the <table>
+      tbl.appendChild(tblBody);
+      // appends <table> into <body>
+      body.appendChild(tbl);
+      // sets the border attribute of tbl to 2;
+      tbl.setAttribute('border', '1');
+    }
+
+    document.getElementById('file-input')
+        .addEventListener('change', readSingleFile, false);
+</script>
+
+</head>
+
+<body>
+</body>
+
+</html>
