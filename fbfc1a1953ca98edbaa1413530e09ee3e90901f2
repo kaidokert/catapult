@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e91225ef_4a910ff4",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-20T09:35:28Z",
+      "side": 1,
+      "message": "nit: extra blank line here; at the top level there should be two blank lines separating \"blocks\" of stuff.",
+      "revId": "fbfc1a1953ca98edbaa1413530e09ee3e90901f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca69e57e_e7cb6bc5",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-20T09:35:28Z",
+      "side": 1,
+      "message": "nit: character -\u003e characters",
+      "revId": "fbfc1a1953ca98edbaa1413530e09ee3e90901f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6597203a_abe7f179",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-20T09:35:28Z",
+      "side": 1,
+      "message": "nit: update the docstring, just remove the \"Raises\" section.",
+      "revId": "fbfc1a1953ca98edbaa1413530e09ee3e90901f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a493dd94_7c339161",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-20T09:35:28Z",
+      "side": 1,
+      "message": "nit: I don\u0027t think we need a named constant here, just put the 5 here and bring the comment you wrote when defining the constant here too. Helps keeping all of the relevant info in the same place.",
+      "revId": "fbfc1a1953ca98edbaa1413530e09ee3e90901f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a61ec6e_05d4c3c4",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-20T09:35:28Z",
+      "side": 1,
+      "message": "I think we should move both of these to *after* the parse_args; so e.g. people can still run the script with --help before actually doing any actions.",
+      "revId": "fbfc1a1953ca98edbaa1413530e09ee3e90901f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
