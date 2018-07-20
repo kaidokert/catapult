@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "72426838_7f16d98c",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-07-20T12:00:39Z",
+      "side": 1,
+      "message": "May be something like \"Sample values\" or something like that.",
+      "revId": "3a605e06aa86f22796997d2efa185ac1c8c3f6a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f5741c4_b5acd17b",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-07-20T12:00:39Z",
+      "side": 1,
+      "message": "some other id may be like sample_values?",
+      "revId": "3a605e06aa86f22796997d2efa185ac1c8c3f6a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "13698bec_43038592",
         "filename": "experimental/v8_tools/display_data.html",
         "patchSetId": 1
@@ -71,6 +105,23 @@
     },
     {
       "key": {
+        "uuid": "be1d6b37_2c642cf2",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-07-20T12:00:39Z",
+      "side": 1,
+      "message": "may be say there are two types of entries: once that define guid and the other for sample values. GUID-related is actually defining guids for time related things. \nValues: map guid to a value\nDateRange: these define guids for time related values\nSamplevalue: information about the metrics",
+      "revId": "3a605e06aa86f22796997d2efa185ac1c8c3f6a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4d1ba3f6_4ae12429",
         "filename": "experimental/v8_tools/display_data.html",
         "patchSetId": 1
@@ -88,6 +139,40 @@
         "endLine": 60,
         "endChar": 33
       },
+      "revId": "3a605e06aa86f22796997d2efa185ac1c8c3f6a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee2bb6bc_07f4aff6",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-07-20T12:00:39Z",
+      "side": 1,
+      "message": "Using type:GenericSet might be better than value.",
+      "revId": "3a605e06aa86f22796997d2efa185ac1c8c3f6a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4869918_d4c2c6e0",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-07-20T12:00:39Z",
+      "side": 1,
+      "message": "Here using type:Daterange is better.",
       "revId": "3a605e06aa86f22796997d2efa185ac1c8c3f6a1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -117,6 +202,23 @@
     },
     {
       "key": {
+        "uuid": "a1a46c03_423dbfc7",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-07-20T12:00:39Z",
+      "side": 1,
+      "message": "Are the above comments for testing?",
+      "revId": "3a605e06aa86f22796997d2efa185ac1c8c3f6a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e22c9f4d_c3c665de",
         "filename": "experimental/v8_tools/display_data.html",
         "patchSetId": 1
@@ -134,6 +236,23 @@
         "endLine": 100,
         "endChar": 39
       },
+      "revId": "3a605e06aa86f22796997d2efa185ac1c8c3f6a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a46686d3_6e7a4614",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-07-20T12:00:39Z",
+      "side": 1,
+      "message": "This can be removed as well.",
       "revId": "3a605e06aa86f22796997d2efa185ac1c8c3f6a1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
