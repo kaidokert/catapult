@@ -33,6 +33,24 @@
       "revId": "98edd1b50e4a74d5c8163e2d72afdde921a482e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63c86052_b65a16af",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1604,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2018-07-20T18:34:00Z",
+      "side": 1,
+      "message": "Yes and no - it looks like _RESTART_ADBD_SCRIPT is written to a file before running, which is why it works. However, it *should* be possible to do everything in a single line with semicolons.\n\nAs in, I can do that manually just fine with:\n\nadb shell \u0027function list_subdirs() { for f in \"$1\"/*; do if [ -d \"$f\" ] ; then if [ \"$f\" \u003d\u003d \".\" ] || [ \"$f\" \u003d\u003d \"..\" ] ; then continue ; fi ; echo \"$f\" ; list_subdirs \"$f\" ; fi; done ; } ; list_subdirs /data/local/tmp/device_utils_test \u0027\n\nbut if the exact same command is run using RunShellCommand (with or without shell\u003dTrue), it just fails with a very unhelpful:\n\n/system/bin/sh: \u0027function list_subdirs() { for f in \"$1\"/*; do if [ -d \"$f\" ] ; then if [ \"$f\" \u003d\u003d \".\" ] || [ \"$f\" \u003d\u003d \"..\" ] ; then continue ; fi ; echo \"$f\" ; list_subdirs \"$f\" ; fi; done ; } ; list_subdirs /data/local/tmp/device_utils_test \u0027: not found",
+      "parentUuid": "a35d67b8_0e4717e8",
+      "revId": "98edd1b50e4a74d5c8163e2d72afdde921a482e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
