@@ -15,6 +15,17 @@ handlers:
   static_files: dashboard/spa/index.html
   upload: dashboard/spa/index.html
 
+- url: /index.js
+  static_files: dashboard/spa/index.js
+  upload: dashboard/spa/index.js
+
+- url: /service-worker.js
+  static_files: dashboard/spa/service-worker.js
+  upload: dashboard/spa/service-worker.js
+
+- url: /sw-utils/
+  static_dir: dashboard/spa/sw-utils
+
 - url: /dashboard/static/
   static_dir: dashboard/static/
 

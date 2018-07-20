@@ -16,6 +16,10 @@ def _AddToPathIfNeeded(path):
   if path not in sys.path:
     sys.path.insert(0, path)
 
+def _AddToEnvIfNeeded(key, value):
+  if key not in os.environ:
+    os.environ[key] = value
+
 NODE_VULCANIZE = os.path.abspath(os.path.join(
   os.path.dirname(__file__), '..', '..',
   'common/node_runner/node_runner/node_modules/vulcanize/bin/vulcanize'))
@@ -23,6 +27,10 @@ NODE_VULCANIZE = os.path.abspath(os.path.join(
 MINIFY = os.path.abspath(os.path.join(
   os.path.dirname(__file__), '..', '..',
   'common/node_runner/node_runner/minify'))
+
+WEBPACK = os.path.abspath(os.path.join(
+  os.path.dirname(__file__), '..', '..',
+  'common/node_runner/node_runner/node_modules/.bin/webpack-command'))
 
 
 def _TimestampScript():
@@ -57,6 +65,23 @@ def VulcanizeHistogramsViewer(temp_dir):
   return viewer_dir_path
 
 
+def Webpack(temp_dir, spa_path):
+  output_path = os.path.join(temp_dir, 'webpack')
+  modules_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
+      '..', 'common', 'node_runner', 'node_runner', 'node_modules'))
+  third_party_path = os.path.abspath(os.path.join(os.path.dirname(__file__),
+      '..', '..', 'third_party'))
+
+  config_filename = os.path.join(spa_path, 'webpack.config.js')
+
+  _AddToEnvIfNeeded('WEBPACK_OUTPUT_PATH', output_path);
+  _AddToEnvIfNeeded('WEBPACK_NODE_MODULES', modules_path);
+  _AddToEnvIfNeeded('WEBPACK_THIRD_PARTY', third_party_path);
+
+  subprocess.call([ WEBPACK, '--config', config_filename ])
+  return output_path
+
+
 def Main():
   dashboard_path = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
   _AddToPathIfNeeded(dashboard_path)
@@ -64,12 +89,14 @@ def Main():
   _AddToPathIfNeeded(catapult_path)
   tracing_path = os.path.join(catapult_path, 'tracing')
   _AddToPathIfNeeded(tracing_path)
+  spa_path = os.path.join(dashboard_path, 'dashboard', 'spa')
   import dashboard
 
   temp_dir = tempfile.mkdtemp()
   deployment_paths = dashboard.PathsForDeployment()
   deployment_paths.append(VulcanizeHistogramsViewer(temp_dir))
   deployment_paths.append(VulcanizeIndex(temp_dir, dashboard_path))
+  deployment_paths.append(Webpack(temp_dir, spa_path))
 
   from catapult_build import appengine_deploy
   version = None
