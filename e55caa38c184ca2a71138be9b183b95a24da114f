@@ -16,6 +16,24 @@
       "revId": "e55caa38c184ca2a71138be9b183b95a24da114f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2685fff3_0be0af6d",
+        "filename": "dashboard/dashboard/pinpoint/models/change/change_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-07-20T05:20:53Z",
+      "side": 1,
+      "message": "I think we can add it later if we find that we need it.",
+      "parentUuid": "99cd09e9_21f1e7d5",
+      "revId": "e55caa38c184ca2a71138be9b183b95a24da114f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
