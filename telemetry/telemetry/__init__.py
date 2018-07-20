@@ -6,6 +6,7 @@ import os
 import sys
 
 try:
+
   # This enables much better stack upon native code crashes.
   import faulthandler
   faulthandler.enable()
