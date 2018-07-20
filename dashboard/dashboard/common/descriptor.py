@@ -80,6 +80,12 @@ class Descriptor(object):
 
   CONFIGURATION = {}
 
+  def __eq__(self, other):
+    return repr(self) == repr(other)
+
+  def __lt__(self, other):
+    return repr(self) < repr(other)
+
   @classmethod
   @ndb.tasklet
   def _GetConfiguration(cls, key, default=None):
