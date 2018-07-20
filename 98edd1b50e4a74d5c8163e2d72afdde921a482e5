@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2bfc7fff_949a170d",
+        "filename": "devil/devil/android/device_scripts/list_device_dirs.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-20T09:03:29Z",
+      "side": 1,
+      "message": "here replace \"%1\" with %s, see my comment below.",
+      "revId": "98edd1b50e4a74d5c8163e2d72afdde921a482e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a35d67b8_0e4717e8",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1604,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-20T09:03:29Z",
+      "side": 1,
+      "message": "I think I\u0027m very happy with this idea, but having the script in another file and having to push it as well is probably not needed. I think we can just have a _RECURSIVE_DIRECTORY_LIST_SCRIPT defined at the top of this file (e.g. next to _RESTART_ADBD_SCRIPT), and then just call:\n\n    self.RunShellCommand(_RECURSIVE_DIRECTORY_LIST_SCRIPT % cmd_helper.SingleQuote(path))\n\nI think that \"should just work\".",
+      "revId": "98edd1b50e4a74d5c8163e2d72afdde921a482e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
