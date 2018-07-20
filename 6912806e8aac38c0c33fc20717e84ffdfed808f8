@@ -34,6 +34,24 @@
       "revId": "6912806e8aac38c0c33fc20717e84ffdfed808f8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e89e8f8_4a1940c4",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-20T14:14:06Z",
+      "side": 1,
+      "message": "Ah! Correct. That\u0027s the right way to do this.",
+      "parentUuid": "311ce177_3f51965c",
+      "revId": "6912806e8aac38c0c33fc20717e84ffdfed808f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
