@@ -16,6 +16,24 @@
       "revId": "590de69b6d31092f1d9dd3b7806e133171b154d4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51b38e2b_3e1afaa5",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-07-20T19:26:56Z",
+      "side": 1,
+      "message": "attempts to push a small file to the external storage dir; on failure, remounts it as writable: https://codesearch.chromium.org/chromium/src/third_party/catapult/devil/devil/android/tools/provision_devices.py?rcl\u003d213eaf4f79bcdfc088cb7a6512948b7777403c7f\u0026l\u003d512",
+      "parentUuid": "0dd9c408_2167d131",
+      "revId": "590de69b6d31092f1d9dd3b7806e133171b154d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
