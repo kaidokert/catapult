@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "53b53dea_d91d1b87",
+        "filename": "dashboard/dashboard/common/report_query.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-20T18:32:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83c90563_87ca202e",
+      "range": {
+        "startLine": 56,
+        "startChar": 24,
+        "endLine": 56,
+        "endChar": 32
+      },
+      "revId": "4f36266e8c73c75108b9fa5db7aa14b769b75a3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f9faac8_81c41486",
         "filename": "dashboard/dashboard/common/report_query.py",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2018-07-20T18:03:03Z",
       "side": 1,
       "message": "fyi, there\u0027s also synctasklet",
+      "range": {
+        "startLine": 62,
+        "startChar": 6,
+        "endLine": 62,
+        "endChar": 15
+      },
+      "revId": "4f36266e8c73c75108b9fa5db7aa14b769b75a3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b121c9cd_0c54885a",
+        "filename": "dashboard/dashboard/common/report_query.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-20T18:32:33Z",
+      "side": 1,
+      "message": "Is it ok if I keep this as is? I find the get_result() helps me remember what\u0027s happening better than synctasklet. If I expected FetchSync() to contain other logic, then I\u0027d definitely switch it to a synctasklet to make it easier to yield new futures, but I think it\u0027d be a bug if FetchSync() weren\u0027t just a sync version of FetchAsync().",
+      "parentUuid": "9f9faac8_81c41486",
       "range": {
         "startLine": 62,
         "startChar": 6,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "fa4603ee_6758e1e4",
+        "filename": "dashboard/dashboard/common/report_query.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-20T18:32:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47851ecb_4d0b2d24",
+      "range": {
+        "startLine": 76,
+        "startChar": 6,
+        "endLine": 76,
+        "endChar": 17
+      },
+      "revId": "4f36266e8c73c75108b9fa5db7aa14b769b75a3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4c4cdc1c_adfe1aff",
         "filename": "dashboard/dashboard/common/report_query.py",
         "patchSetId": 1
@@ -85,6 +157,24 @@
       "revId": "4f36266e8c73c75108b9fa5db7aa14b769b75a3d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8bb14b3_bdbb9b21",
+        "filename": "dashboard/dashboard/common/report_query.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-20T18:32:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c4cdc1c_adfe1aff",
+      "revId": "4f36266e8c73c75108b9fa5db7aa14b769b75a3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -108,6 +198,30 @@
       "revId": "4f36266e8c73c75108b9fa5db7aa14b769b75a3d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a75e6ea_abcbb668",
+        "filename": "dashboard/dashboard/common/report_query.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-20T18:32:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "869deeed_99633c05",
+      "range": {
+        "startLine": 108,
+        "startChar": 8,
+        "endLine": 108,
+        "endChar": 14
+      },
+      "revId": "4f36266e8c73c75108b9fa5db7aa14b769b75a3d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
