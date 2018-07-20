@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "13698bec_43038592",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-07-20T11:57:36Z",
+      "side": 1,
+      "message": "try using class for this sort of thing",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 24
+      },
+      "revId": "3a605e06aa86f22796997d2efa185ac1c8c3f6a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84beb4ba_3a88a80e",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-07-20T11:57:36Z",
+      "side": 1,
+      "message": "I\u0027m not sure you need this given that your regex searches for \u003chistogram-json\u003e anyway.",
+      "range": {
+        "startLine": 48,
+        "startChar": 6,
+        "endLine": 49,
+        "endChar": 46
+      },
+      "revId": "3a605e06aa86f22796997d2efa185ac1c8c3f6a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3168528_8e67f20f",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-07-20T11:57:36Z",
+      "side": 1,
+      "message": "It\u0027s a shame that you have to strip off the tags here despite having already  having found them in the match method.\n\nYou can use RegExp.exec to iterate through the matches manually, with:\n\nconst result \u003d []\nconst re \u003d /\u003chistogram-json\u003e(.*?)\u003c\\/histogram-json\u003e/g\nlet m \u003d re.exec(str)\nwhile (m !\u003d null) {\n  result.push(m[1])\n  m \u003d re.exec(str)\n}\n\nThis is, admittedly, uglier, but you could package it up in a helper function.",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 13
+      },
+      "revId": "3a605e06aa86f22796997d2efa185ac1c8c3f6a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d1ba3f6_4ae12429",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-07-20T11:57:36Z",
+      "side": 1,
+      "message": "prefer\n\n  for (let element of result) {...}\n\nto\n  \n  result.forEach(element \u003d\u003e {...})",
+      "range": {
+        "startLine": 60,
+        "startChar": 6,
+        "endLine": 60,
+        "endChar": 33
+      },
+      "revId": "3a605e06aa86f22796997d2efa185ac1c8c3f6a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac400a6e_7e068b40",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-07-20T11:57:36Z",
+      "side": 1,
+      "message": "remove debug code",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 44
+      },
+      "revId": "3a605e06aa86f22796997d2efa185ac1c8c3f6a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e22c9f4d_c3c665de",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-07-20T11:57:36Z",
+      "side": 1,
+      "message": "Searching for a guid in guidValueInfo would be better if it were a Map.",
+      "range": {
+        "startLine": 100,
+        "startChar": 26,
+        "endLine": 100,
+        "endChar": 39
+      },
+      "revId": "3a605e06aa86f22796997d2efa185ac1c8c3f6a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
