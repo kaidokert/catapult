@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "01469419_9f2edddb",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-07-20T11:57:39Z",
+      "side": 1,
+      "message": "Change this to a simple string to avoid duplicative stack printing above (line 100)",
+      "revId": "d91890d7338cf3f9b3ae61517210ebfa48ce09e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
