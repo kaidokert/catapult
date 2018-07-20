@@ -51,6 +51,24 @@
       "revId": "98edd1b50e4a74d5c8163e2d72afdde921a482e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a2cb0b5_f1b918eb",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1604,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-07-20T19:15:02Z",
+      "side": 1,
+      "message": "I agree with Juan here -- if that doesn\u0027t work currently, we ought to figure out why \u0026 try to make it work. We could also consider exposing the handle_large_command logic as a flag s.t. you could ask to always have the script written to a file \u0026 pushed.",
+      "parentUuid": "63c86052_b65a16af",
+      "revId": "98edd1b50e4a74d5c8163e2d72afdde921a482e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
