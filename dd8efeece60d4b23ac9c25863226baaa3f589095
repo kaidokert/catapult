@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "38d763dd_5b8bfb72",
+        "filename": "dashboard/dashboard/short_uri.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-20T20:32:03Z",
+      "side": 1,
+      "message": "Hm can you just do that? assign a new property like that without declaring it as part of PageState and it works?\n\nanyway, I was more thinking just rewrite the state.value, it\u0027s structure is kinda like:\n\n{\n  \u0027charts\u0027: ...\n}\n\n\nturning that into\n\n\n{\n  \u0027v1\u0027: { \u0027charts\u0027: ...}\n  \u0027v2\u0027: {...}\n}\n\nwdyt? otherwise you could probably do what you just did, but shouldn\u0027t you add a jsonproperty to PageState?",
+      "range": {
+        "startLine": 41,
+        "startChar": 12,
+        "endLine": 41,
+        "endChar": 20
+      },
+      "revId": "dd8efeece60d4b23ac9c25863226baaa3f589095",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
