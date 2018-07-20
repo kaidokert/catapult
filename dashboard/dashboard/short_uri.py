@@ -9,8 +9,55 @@ import json
 
 from google.appengine.ext import ndb
 
+from dashboard import list_tests
+from dashboard.common import descriptor
 from dashboard.common import request_handler
 from dashboard.models import page_state
+
+
+def UpgradeChart(chart):
+  suites = set()
+  measurements = set()
+  bots = set()
+  cases = set()
+  for prefix, suffixes in chart:
+    if suffixes == ['all']:
+      paths = list_tests.GetTestsMatchingPattern(
+          prefix + '/*', only_with_rows=True)
+    else:
+      paths = [prefix + '/' + suffix for suffix in suffixes]
+    for path in paths:
+      desc = descriptor.Descriptor.FromTestPathSync(path)
+      suites.add(desc.test_suite)
+      bots.add(desc.bot)
+      measurements.add(desc.measurement)
+      if desc.test_case:
+        cases.add(desc.test_case)
+  return {
+      'parameters': {
+          'testSuites': list(suites),
+          'measurements': list(measurements),
+          'bots': list(bots),
+          'testCases': list(cases),
+      },
+  }
+
+
+def Upgrade(statejson):
+  try:
+    state = json.loads(statejson)
+  except ValueError:
+    return statejson
+  if not state.get('charts'):
+    return statejson
+  state = {
+      'showingReportSection': False,
+      'chartSections': [
+          UpgradeChart(chart) for chart in state['charts']
+      ],
+  }
+  statejson = json.dumps(state)
+  return statejson
 
 
 class ShortUriHandler(request_handler.RequestHandler):
@@ -30,7 +77,10 @@ class ShortUriHandler(request_handler.RequestHandler):
       self.ReportError('Invalid sid.', status=400)
       return
 
-    self.response.out.write(state.value)
+    state = state.value
+    if self.request.get('v2'):
+      state = Upgrade(state)
+    self.response.out.write(state)
 
   def post(self):
     """Handles saving page states and getting state id."""
