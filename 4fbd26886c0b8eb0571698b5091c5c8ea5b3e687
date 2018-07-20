@@ -1,0 +1,266 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "475cb687_e37ad298",
+        "filename": "common/node_runner/node_runner/package.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-20T00:44:51Z",
+      "side": 1,
+      "message": "Used for transpilation, minification, and uglification.",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 51
+      },
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c1608cd_c6729e00",
+        "filename": "common/node_runner/node_runner/package.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-20T00:44:51Z",
+      "side": 1,
+      "message": "Is it a good idea to move idb out of third_party and into node_runner? I wasn\u0027t sure about this, but it reduced the amount of code in sw-utils folder.",
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee193584_ea7417ac",
+        "filename": "common/node_runner/node_runner/package.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-20T00:44:51Z",
+      "side": 1,
+      "message": "Another viable option is `webpack-cli`.\n\nhttps://github.com/webpack/webpack-cli",
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c374281_f96382ec",
+        "filename": "dashboard/.gitignore",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-20T00:44:51Z",
+      "side": 1,
+      "message": "I can remove this if it\u0027s okay for the service worker to import directly from node_modules",
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f497035_80927df7",
+        "filename": "dashboard/bin/deploy_v2spa",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-20T00:44:51Z",
+      "side": 1,
+      "message": "Tried to stick with the convention here",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 27
+      },
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc936f06_cd94c4cf",
+        "filename": "dashboard/bin/deploy_v2spa",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-20T00:44:51Z",
+      "side": 1,
+      "message": "Another viable option is `webpack-cli`.\n\nhttps://github.com/webpack/webpack-cli",
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1d7ea4f_2e0bfbe9",
+        "filename": "dashboard/dashboard/spa/chart-base.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-20T00:44:51Z",
+      "side": 1,
+      "message": "In an attempt to speed up rendering.\n\nhttps://www.polymer-project.org/2.0/docs/api/elements/Polymer.DomRepeat#property-initialCount",
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "138347bd_4791a02e",
+        "filename": "dashboard/dashboard/spa/index.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-20T00:44:51Z",
+      "side": 1,
+      "message": "If we start using node_modules instead of third_party, we won\u0027t need this.",
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b1add16_c5e5adaa",
+        "filename": "dashboard/dashboard/spa/service-worker.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-20T00:44:51Z",
+      "side": 1,
+      "message": "This is importing directly from node_modules. Is this okay?",
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b990114_9010c8ab",
+        "filename": "dashboard/dashboard/spa/sw-utils/timing.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-20T00:44:51Z",
+      "side": 1,
+      "message": "It would be awesome to start using Sean\u0027s library, `tsmon`.",
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7b7253d_c40b3056",
+        "filename": "dashboard/dashboard/spa/timeseries-cache.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-20T00:44:51Z",
+      "side": 1,
+      "message": "Need to think of a more precise key; this is causing a bug since it doesn\u0027t consider min/max revision. Often times this gets through to the minimap and causes it to render the smaller region of the main chart.",
+      "range": {
+        "startLine": 473,
+        "startChar": 0,
+        "endLine": 474,
+        "endChar": 39
+      },
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07056f85_c8ab9f75",
+        "filename": "dashboard/dashboard/spa/webpack.config.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-20T00:44:51Z",
+      "side": 1,
+      "message": "I am using this preset to transpile the for-await loop into something that the minifier can parse. Perhaps I can find the exact preset or plugin that only transpiles for-await and use that instead. Preset env transpiles much more than what is needed.\n\nAnother option is to set the target to the latest version of Chrome :)",
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7357c4f0_023173df",
+        "filename": "dashboard/v2spa_dev.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-20T00:44:51Z",
+      "side": 1,
+      "message": "Now that I\u0027m using Webpack to bundle and uglify the service worker, these uploads will not work. Perhaps I can introduce a development configuration for Webpack that runs whenever a file is changed/saved.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 36
+      },
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "568244d0_93f8f290",
+        "filename": "tracing/tracing/base/math/range_test.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 789,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-20T00:44:51Z",
+      "side": 1,
+      "message": "I can\u0027t think of any other use cases at the moment. I would appreciate any suggestions.",
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
