@@ -159,16 +159,76 @@ def DecrementPatchNumber(version_num, num):
   return '.'.join(version_num_list)
 
 
-def main(args):
+
+def ParseArguments(args):
+  """Parse the command line arguments.
+
+  If the program is ran with no argument, it will download the 10 latest
+  chrome versions
+
+  Args:
+    args(list): list of arguments(string)
+
+  Returns:
+    Namespace: a class storing all the parsed arguments
+  """
+  def GetLatestMilestoneNum():
+    with open(os.path.join(
+        APP_DIR, 'milestone_build_mapping_table.csv')) as milestone_build_table:
+      for milestone, _ in reversed(list(csv.reader(milestone_build_table))):
+        return int(milestone)
+
+  latest_milestone = GetLatestMilestoneNum()
   parser = argparse.ArgumentParser(
       description='tool to download different versions of chrome')
-  parser.add_argument('from_milestone', type=int,
-                      help='starting milestone number')
-  parser.add_argument('to_milestone', type=int,
-                      help='ending milestone number')
+  # from_date and from_milestone cannot present at the same time
+  start = parser.add_mutually_exclusive_group()
+  # to_date and to_milestone cannot present at the same time
+  end = parser.add_mutually_exclusive_group()
+  start.add_argument('--from-milestone', type=int,
+                     default=latest_milestone - 9,
+                     help='starting milestone number')
+  start.add_argument('--from-date', type=str,
+                     help='starting version release date')
+  end.add_argument('--to-milestone', type=int, default=latest_milestone,
+                   help='ending milestone number')
+  end.add_argument('--to-date', type=str,
+                   help='ending version release date')
   parser.add_argument('--output-path', default=DEFAULT_DOWNLOAD_PATH,
-                      help='the path that the APKs well be stored')
-  args = parser.parse_args(args)
+                      help='the path that the APKs will be stored')
+  return parser.parse_args(args)
+
+
+def DateToMilestone(parsed_arguments):
+  """If dates are present, convert the dates to corresponding milestones.
+
+  Args:
+    parsed_arguments(Namespace class): object storing the relevant arguments
+  """
+  with open(os.path.join(
+      APP_DIR, 'full_milestone_info.csv')) as full_info_table:
+    table = list(csv.reader(full_info_table))
+
+    if parsed_arguments.from_date:
+      # find the earliest milestone after the `from_date`
+      for milestone, _, _, release_date in table[1:]:  # skip header
+        if datetime.datetime.strptime(release_date, '%Y-%m-%dT%H:%M:%S') > (
+            datetime.datetime.strptime(parsed_arguments.from_date, '%Y-%m-%d')):
+          parsed_arguments.from_milestone = int(milestone)
+          break
+
+    if parsed_arguments.to_date:
+      # find the latest milestone before the `to_date`
+      for milestone, _, _, release_date in reversed(table):
+        if datetime.datetime.strptime(release_date, '%Y-%m-%dT%H:%M:%S') < (
+            datetime.datetime.strptime(parsed_arguments.to_date, '%Y-%m-%d')):
+          parsed_arguments.to_milestone = int(milestone)
+          break
+
+
+def main(parsed_arguments):
+
+  parsed_arguments = ParseArguments(parsed_arguments)
 
   if not IsGsutilInstalled():
     return 'gsutil is not installed, please install it and try again'
@@ -177,13 +237,16 @@ def main(args):
     print 'Generating full milestone info table, please wait'
     GenerateFullInfoCSV()
 
+  DateToMilestone(parsed_arguments)
+
   print ('Getting the storage URI, this process might '
          'take some time, please wait patiently')
 
   try:
-    for milestone in range(args.from_milestone, args.to_milestone + 1):
+    for milestone in range(
+        parsed_arguments.from_milestone, parsed_arguments.to_milestone + 1):
       uri = GetLatestVersionURI(milestone)
-      DownloadAPKFromURI(uri, args.output_path)
+      DownloadAPKFromURI(uri, parsed_arguments.output_path)
     return 0
   except KeyboardInterrupt:
     return 'interrupted, exiting...'
