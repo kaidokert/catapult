@@ -4,7 +4,7 @@
 */
 'use strict';
 tr.exportTo('cp', () => {
-  class ExpandButton extends Polymer.GestureEventListeners(cp.ElementBase) {
+  class ExpandButton extends cp.ElementBase {
     toggle_(event) {
       this.dispatch('toggle', this.statePath);
     }
