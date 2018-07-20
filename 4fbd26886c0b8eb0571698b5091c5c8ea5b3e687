@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "03d0169a_d6c92849",
+        "filename": "common/node_runner/node_runner/package.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-20T18:39:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "102261e9_3b53f6f0",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 51
+      },
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4c1608cd_c6729e00",
         "filename": "common/node_runner/node_runner/package.json",
         "patchSetId": 5
@@ -81,6 +105,24 @@
       "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c854c2e_1c0b6256",
+        "filename": "common/node_runner/node_runner/package.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-20T18:39:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57bfeafb_6014f679",
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -175,6 +217,24 @@
     },
     {
       "key": {
+        "uuid": "444f444c_2a3085f2",
+        "filename": "dashboard/bin/deploy_v2spa",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-20T18:39:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b7f2b62_14e7e8a6",
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c1d7ea4f_2e0bfbe9",
         "filename": "dashboard/dashboard/spa/chart-base.html",
         "patchSetId": 5
@@ -210,6 +270,24 @@
     },
     {
       "key": {
+        "uuid": "c050ab33_bb01ddd1",
+        "filename": "dashboard/dashboard/spa/chart-base.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-20T18:39:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77b7d51e_f612d483",
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f91d4a7_bee7cb74",
         "filename": "dashboard/dashboard/spa/index.html",
         "patchSetId": 5
@@ -227,6 +305,24 @@
     },
     {
       "key": {
+        "uuid": "acfdce9c_5a078063",
+        "filename": "dashboard/dashboard/spa/index.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-20T18:39:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f91d4a7_bee7cb74",
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "138347bd_4791a02e",
         "filename": "dashboard/dashboard/spa/index.html",
         "patchSetId": 5
@@ -241,6 +337,24 @@
       "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71eb8c91_4ca7240a",
+        "filename": "dashboard/dashboard/spa/index.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-20T18:39:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "138347bd_4791a02e",
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -276,6 +390,24 @@
       "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c044ecd9_c22a90ab",
+        "filename": "dashboard/dashboard/spa/service-worker.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-20T18:39:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f04f24d_d71a14ef",
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -376,6 +508,24 @@
     },
     {
       "key": {
+        "uuid": "bf719097_524d179f",
+        "filename": "tracing/tracing/base/math/range.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-20T18:39:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b6779bed_a30a06e7",
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9ebd5a42_77b68629",
         "filename": "tracing/tracing/base/math/range.html",
         "patchSetId": 5
@@ -393,6 +543,24 @@
     },
     {
       "key": {
+        "uuid": "9a8cdc55_44eb0355",
+        "filename": "tracing/tracing/base/math/range.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-20T18:39:09Z",
+      "side": 1,
+      "message": "I clone the ranges here so that if the result is modified outside this function, it will not modify the original copy.\n\nI was acting under the assumption that JS would simply return a reference to `sortedArray` instead of making a copy. Is my assumption incorrect?",
+      "parentUuid": "9ebd5a42_77b68629",
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e1783847_4e8b903f",
         "filename": "tracing/tracing/base/math/range.html",
         "patchSetId": 5
@@ -404,6 +572,24 @@
       "writtenOn": "2018-07-20T17:11:31Z",
       "side": 1,
       "message": "Can this use for (const range of sortedArray)?",
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e48a3f63_cd94e9a0",
+        "filename": "tracing/tracing/base/math/range.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-20T18:39:09Z",
+      "side": 1,
+      "message": "Nice catch! This function didn\u0027t used to return a new copy; it was directly modifying the array, adding and removing as necessary. The old way forced me to use a regular for loop, but now that this function doesn\u0027t mutate its parameter, I can use for-of without worry.",
+      "parentUuid": "e1783847_4e8b903f",
       "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
