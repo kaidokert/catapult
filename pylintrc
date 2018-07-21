@@ -9,15 +9,21 @@ extension-pkg-whitelist=numpy
 # TODO: Shrink this list to as small as possible.
 disable=
   design,
-  similarities,
-
   fixme,
   locally-disabled,
   locally-enabled,
   missing-docstring,
   no-self-use,
   protected-access,
+  redefined-variable-type,
+  similarities,
+  simplifiable-if-statement,
+  singleton-comparison,
   star-args,
+  too-many-nested-blocks,
+  unsubscriptable-object,
+  using-constant-test,
+  wrong-import-order,
 
 
 [REPORTS]
