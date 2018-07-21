@@ -12,6 +12,7 @@ tr.exportTo('cp', () => {
     66: 540276,
     67: 550428,
     68: 561733,
+    69: 576753,
   };
   const CURRENT_MILESTONE = tr.b.math.Statistics.max(
       Object.keys(CHROMIUM_MILESTONES));
@@ -356,6 +357,7 @@ tr.exportTo('cp', () => {
     }
 
     async onOverRow_(event) {
+      if (!event.model.row.actualDescriptors) return;
       let tr;
       for (const elem of event.path) {
         if (elem.tagName === 'TR') {
@@ -859,9 +861,10 @@ tr.exportTo('cp', () => {
           table && (table.name === report.name));
         tables.splice(placeholderIndex, 1);
 
-        const rows = report.rows.map(row => ReportSection.transformReportRow(
-            row, state.minRevision, state.maxRevision, report.statistics,
-            action.testSuites));
+        const rows = report.report.rows.map(
+            row => ReportSection.transformReportRow(
+                row, state.minRevision, state.maxRevision,
+                report.report.statistics, action.testSuites));
 
         // Right-align labelParts.
         const maxLabelParts = tr.b.math.Statistics.max(rows, row =>
@@ -897,6 +900,7 @@ tr.exportTo('cp', () => {
 
         tables.push({
           ...report,
+          ...report.report,
           canEdit: false, // See actions.renderEditForm
           isEditing: false,
           rows,
@@ -1147,10 +1151,12 @@ tr.exportTo('cp', () => {
         if (rowUnit.baseUnit === tr.b.Unit.byName.sizeInBytes) {
           unitPrefix = tr.b.UnitPrefixScale.BINARY.KIBI;
         }
+        const running = tr.b.math.RunningStatistics.fromDict(
+            row.data[revision].statistics);
         scalars.push({
           unit,
           unitPrefix,
-          value: row[revision][statistic],
+          value: running[statistic],
         });
       }
     }
@@ -1158,13 +1164,16 @@ tr.exportTo('cp', () => {
       const unit = ((statistic === 'count') ? tr.b.Unit.byName.count :
         rowUnit).correspondingDeltaUnit;
       const deltaValue = (
-        row[maxRevision][statistic] -
-        row[minRevision][statistic]);
+        tr.b.math.RunningStatistics.fromDict(
+            row.data[maxRevision].statistics)[statistic] -
+        tr.b.math.RunningStatistics.fromDict(
+            row.data[minRevision].statistics)[statistic]);
       const suffix = tr.b.Unit.nameSuffixForImprovementDirection(
           unit.improvementDirection);
       scalars.push({
         unit: tr.b.Unit.byName[`normalizedPercentageDelta${suffix}`],
-        value: deltaValue / row[minRevision][statistic],
+        value: deltaValue / tr.b.math.RunningStatistics.fromDict(
+            row.data[minRevision].statistics)[statistic],
       });
       scalars.push({
         unit,

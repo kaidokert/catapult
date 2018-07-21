@@ -618,7 +618,7 @@ tr.exportTo('cp', () => {
           cp.ChartTimeseries.actions.fetchLineDescriptor(
               refStatePath, firstRealLineDescriptor));
       for (const timeseries of timeserieses) {
-        if (timeseries.data.length) {
+        if (timeseries && timeseries.data.length) {
           return {firstRealLineDescriptor, timeserieses};
         }
       }
