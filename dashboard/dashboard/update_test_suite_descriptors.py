@@ -39,6 +39,11 @@ def UpdateTestSuiteDescriptors(namespace):
     deferred.defer(UpdateDescriptor, suite, namespace)
 
 def UpdateDescriptor(test_suite, namespace):
+  if namespace == datastore_hooks.INTERNAL:
+    # deferred.Defer() packages up the function call and arguments, not changes
+    # to global state like this.
+    datastore_hooks.SetPrivilegedRequest()
+
   test_path = descriptor.Descriptor(
       test_suite=test_suite, bot='place:holder').ToTestPathsSync()[0].split('/')
 
