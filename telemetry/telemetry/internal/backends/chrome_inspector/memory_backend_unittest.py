@@ -2,9 +2,9 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-import mock
 import unittest
 
+import mock
 
 from telemetry.internal.backends.chrome_inspector import inspector_websocket
 from telemetry.internal.backends.chrome_inspector import memory_backend
@@ -59,6 +59,7 @@ class MemoryBackendTest(tab_test_case.TabTestCase):
     PerformCheck('critical')
 
 
+# pylint: disable=unsubscriptable-object
 class MemoryBackendUnitTest(unittest.TestCase):
 
   def setUp(self):
