@@ -112,7 +112,7 @@ tr.exportTo('cp', () => {
     for (const measurement of descriptor.measurements) {
       merged.measurements.add(measurement);
     }
-    for (const testCase of descriptor.testCases) {
+    for (const testCase of descriptor.cases) {
       merged.testCases.add(testCase);
     }
   }

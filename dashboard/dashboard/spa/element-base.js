@@ -342,10 +342,9 @@ tr.exportTo('cp', () => {
       });
     },
 
-    chain: (statePath, actions) => async(dispatch, getState) => {
+    chain: actions => async(dispatch, getState) => {
       dispatch({
         type: ElementBase.reducers.chain.typeName,
-        statePath,
         actions,
       });
     },
@@ -376,12 +375,16 @@ tr.exportTo('cp', () => {
       return rootState;
     },
 
-    chain: (state, {actions}, rootState) => {
+    chain: (rootState, {actions}, rootStateAgain) => {
       for (const action of actions) {
-        if (!REDUCERS.has(action.type)) continue;
-        state = REDUCERS.get(action.type)(state, action);
+        if (!REDUCERS.has(action.type)) {
+          // eslint-disable-next-line no-console
+          console.warn('Unrecognized action type', action);
+          continue;
+        }
+        rootState = REDUCERS.get(action.type)(rootState, action);
       }
-      return state;
+      return rootState;
     },
   };
 

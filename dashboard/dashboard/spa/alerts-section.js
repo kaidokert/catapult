@@ -922,7 +922,7 @@ tr.exportTo('cp', () => {
       if (lineDescriptors.length === 1) {
         lineDescriptors.push({
           ...lineDescriptors[0],
-          buildType: 'reference',
+          buildType: 'ref',
           icons: [],
         });
       }
