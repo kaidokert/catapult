@@ -17,12 +17,14 @@ from telemetry.internal.util import external_modules
 
 np = external_modules.ImportOptionalModule('numpy')
 
+# pylint: disable=wrong-import-position
 if np is None:
   from telemetry.internal.image_processing import image_util_bitmap_impl
   impl = image_util_bitmap_impl
 else:
   from telemetry.internal.image_processing import image_util_numpy_impl
   impl = image_util_numpy_impl
+# pylint: enable=wrong-import-position
 
 
 def Channels(image):
