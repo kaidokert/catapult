@@ -1,0 +1,129 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c6dff8ab_56b2b847",
+        "filename": "dashboard/dashboard/models/page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-22T04:01:47Z",
+      "side": 1,
+      "message": "isinstance(c, list) would be more idiomatic.",
+      "revId": "2e6efd05a0b5ebe19d1d1e064b52ee7be316a398",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "382a410a_bab286a9",
+        "filename": "dashboard/dashboard/models/page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-22T04:01:47Z",
+      "side": 1,
+      "message": "This doesn\u0027t support migrating measurements or stories, which can appear in row[1] either instead of row[0] or in addition.",
+      "revId": "2e6efd05a0b5ebe19d1d1e064b52ee7be316a398",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d20f3b9_1e3e4d9d",
+        "filename": "dashboard/dashboard/models/page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-22T04:01:47Z",
+      "side": 1,
+      "message": "remove?",
+      "revId": "2e6efd05a0b5ebe19d1d1e064b52ee7be316a398",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f6e16ef_1a29f254",
+        "filename": "dashboard/dashboard/models/page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-22T04:01:47Z",
+      "side": 1,
+      "message": "This doesn\u0027t support migrating measurements or stories, which can appear in row[1] either instead of row[0] or in addition.",
+      "revId": "2e6efd05a0b5ebe19d1d1e064b52ee7be316a398",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "caa5b924_4f450ad3",
+        "filename": "dashboard/dashboard/models/page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-22T04:01:47Z",
+      "side": 1,
+      "message": "Comment that this is targeted at the dev console?",
+      "revId": "2e6efd05a0b5ebe19d1d1e064b52ee7be316a398",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b8a600f_b2147682",
+        "filename": "dashboard/dashboard/models/page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-22T04:01:47Z",
+      "side": 1,
+      "message": "Don\u0027t you need to pass the cursor to defer() so that it doesn\u0027t keep fixing the same first page?",
+      "revId": "2e6efd05a0b5ebe19d1d1e064b52ee7be316a398",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff2a630d_f59e92a5",
+        "filename": "dashboard/dashboard/models/page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-22T04:01:47Z",
+      "side": 1,
+      "message": "lowercase query()?",
+      "range": {
+        "startLine": 50,
+        "startChar": 32,
+        "endLine": 50,
+        "endChar": 37
+      },
+      "revId": "2e6efd05a0b5ebe19d1d1e064b52ee7be316a398",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
