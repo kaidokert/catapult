@@ -2,12 +2,12 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-from py_utils import atexit_with_log
+from collections import defaultdict
 import inspect
 import logging
 import os
 
-from collections import defaultdict
+from py_utils import atexit_with_log
 
 
 def GetChildPids(processes, pid):

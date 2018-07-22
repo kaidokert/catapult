@@ -198,6 +198,7 @@ def Run(test, story_set, finder_options, results, max_failures=None,
 
   state = None
   device_info_diags = {}
+  # pylint: disable=too-many-nested-blocks
   try:
     pageset_repeat = _GetPageSetRepeat(finder_options)
     if finder_options.smoke_test_mode:
