@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a8fd44e_fd9fe628",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-23T08:53:26Z",
+      "side": 1,
+      "message": "Instead of ParseArguments and \"DeteToMilestone\", maybe it will be clearer if we break up these two as: BuildArgumentParser (where you just create and configure the parser) and then a ProcessArguments (where you convert dates to milestones if needed, figure out other default values etc).",
+      "revId": "3ced76bd1cba27c05691cd82090316ab1a8139a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "577c0ce6_22b4cb85",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-23T08:53:26Z",
+      "side": 1,
+      "message": "I think it would be better if we don\u0027t open/close these files lots of times. Ideally we just need to open milestone_build_mapping_table.csv once to generate full_milestone_info.csv if needed; and then only open full_milestone_info.csv once and maybe keep a copy in memory for all the things we might later need.\n\nHere in particular, there is really no reason to figure out the latest_milestone before building the argument parser, let\u0027s just leave the default as None; and *after* parsing, if it remains None, then we look up the value for the latest milestone.\n\nBut not super sure about this. What do you think?",
+      "revId": "3ced76bd1cba27c05691cd82090316ab1a8139a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22752cf9_55df91d5",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-23T08:53:26Z",
+      "side": 1,
+      "message": "There is a lot of code repetition between these two. I would suggest instead:\n- define a couple of functions ParseIsoFormatDate, ParseDate to parse each of the two date formats you need; then you can even use type\u003dParseDate in your arg parser to validate the dates earlier at the time when read from the command line.\n- then define that takes a datetime object and finds the closes milestone before/after that date. At this point it _might_ make sense to write a little class to basically hold the data of full_milestone_info.csv and allow clients to ask simple questions about the milestones like this one. Up to you if you want to add that on this or a follow up CL.",
+      "revId": "3ced76bd1cba27c05691cd82090316ab1a8139a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4922f6b_3587dc7d",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-23T08:53:26Z",
+      "side": 1,
+      "message": "nit: I would still call this just \"args\".",
+      "revId": "3ced76bd1cba27c05691cd82090316ab1a8139a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
