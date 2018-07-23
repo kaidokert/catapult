@@ -206,6 +206,97 @@ tr.exportTo('tr.metrics.rendering', function() {
         { description: 'Percentage of frames that were hitting 60 FPS.' });
   }
 
+  function getGraphicsPipelineSlices(thread) {
+    const slices = [];
+    for (const slice of thread.sliceGroup.slices) {
+      if (slice.title === 'Graphics.Pipeline') {
+        slices.push(slice);
+      }
+    }
+    return slices;
+  }
+
+  function addPipelineHistograms(histograms, model, segments) {
+    let events = [];
+    for (const thread of model.getAllThreads()) {
+      const graphicsEvents = getGraphicsPipelineSlices(thread);
+      for (const segment of segments) {
+        const filteredEvents = segment.boundsRange.filterArray(graphicsEvents,
+            evt => evt.start);
+        events = events.concat(filteredEvents);
+      }
+    }
+    const bindEvents = {};
+    for (const event of events) {
+      if (!event.bindId || !event.args || !event.args.step) {
+        continue;
+      }
+      const bindId = event.bindId;
+      if (!(bindId in bindEvents)) {
+        bindEvents[bindId] = {};
+      }
+      if (event.args.step in bindEvents[bindId]) {
+        // It is possible for the same frame to go through multiple
+        // 'SurfaceAggregation' steps (e.g. if the embedder submits new content,
+        // but the embedded content does not change). In such cases, we should
+        // count only the earliest aggregation step.
+        if (event.args.step !== 'SurfaceAggregation') {
+          throw new Error('Unexpected duplicate step: ' + event.args.step);
+        }
+        continue;
+      }
+      bindEvents[bindId][event.args.step] = event;
+    }
+
+    const issueToReceipt = [];
+    const receiptToSubmit = [];
+    const submitToAggregate = [];
+    const PIPELINE_STEPS = [
+      'IssueBeginFrame', 'ReceiveBeginFrame', 'GenerateRenderPass',
+      'SubmitCompositorFrame', 'ReceiveCompositorFrame', 'SurfaceAggregation'
+    ];
+    for (const bindId in bindEvents) {
+      const flow = bindEvents[bindId];
+      // Report only for the cases that go through the complete pipeline.
+      if (PIPELINE_STEPS.some(step => !(step in flow))) {
+        continue;
+      }
+      issueToReceipt.push(flow.ReceiveBeginFrame.start -
+                          flow.IssueBeginFrame.start);
+      receiptToSubmit.push(flow.SubmitCompositorFrame.start -
+                           flow.ReceiveBeginFrame.start);
+      submitToAggregate.push(flow.SurfaceAggregation.start -
+                             flow.SubmitCompositorFrame.start);
+    }
+    histograms.createHistogram(
+        'pipeline:begin_frame_transport',
+        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
+        issueToReceipt, {
+          description: 'How long it takes for the client to receive begin ' +
+          'frame message from the display compositor. This measures the IPC ' +
+          'latency, and the task-queueing time in the renderer process ' +
+          '(compositor thread).',
+        });
+    histograms.createHistogram(
+        'pipeline:begin_frame_to_frame_submission',
+        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
+        receiptToSubmit, {
+          description: 'How long it takes for client to submit new content, ' +
+          'i.e. a CompositorFrame, after it receives a begin-frame message ' +
+          'from the display compositor.',
+        });
+    histograms.createHistogram(
+        'pipeline:frame_submission_to_display',
+        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
+        submitToAggregate, {
+          description: 'How long it takes for the new content submitted by a ' +
+          'client to actually be processed for display on screen. This ' +
+          'measures both the IPC and task-queueing latency in the display ' +
+          'compositor, as well as additional processing in the display ' +
+          'compositor (e.g. surface-synchronization etc.).',
+        });
+  }
+
   function renderingMetric(histograms, model) {
     // Find interesting segments we want to compute metrics in. We use trace
     // events produced by Telemetry. One drawback of this method is that we
@@ -246,6 +337,7 @@ tr.exportTo('tr.metrics.rendering', function() {
 
     addCoresPerSecondHistograms(histograms, model, segments);
     addFrameTimeHistograms(histograms, model, segments);
+    addPipelineHistograms(histograms, model, segments);
   }
 
   tr.metrics.MetricRegistry.register(renderingMetric);
