@@ -40,7 +40,7 @@ def _CreateHistogram(
     device=None, owner=None, stories=None, story_tags=None,
     benchmark_description=None, commit_position=None,
     samples=None, max_samples=None, is_ref=False, is_summary=None,
-    point_id=None):
+    point_id=None, revision_timestamp=None):
   hists = [histogram_module.Histogram(name, 'count')]
   if max_samples:
     hists[0].max_num_sample_values = max_samples
@@ -97,6 +97,10 @@ def _CreateHistogram(
     histograms.AddSharedDiagnostic(
         reserved_infos.POINT_ID.name,
         generic_set.GenericSet([point_id]))
+  if revision_timestamp is not None:
+    histograms.AddSharedDiagnostic(
+        reserved_infos.REVISION_TIMESTAMPS.name,
+        histogram_module.DateRange(revision_timestamp))
   return histograms
 
 
@@ -1365,12 +1369,9 @@ class AddHistogramsTest(testing_common.TestCase):
     self.assertEqual('master/bot/benchmark/hist/http___story_ref', test_path)
 
   def testComputeRevision(self):
-    hist = histogram_module.Histogram('hist', 'count')
-    histograms = histogram_set.HistogramSet([hist])
-    chromium_commit = generic_set.GenericSet([424242])
-    histograms.AddSharedDiagnostic(
-        reserved_infos.CHROMIUM_COMMIT_POSITIONS.name, chromium_commit)
-    self.assertEqual(424242, add_histograms.ComputeRevision(histograms))
+    hs = _CreateHistogram(name='hist', commit_position=424242,
+                          revision_timestamp=123456)
+    self.assertEqual(424242, add_histograms.ComputeRevision(hs))
 
   def testComputeRevision_NotInteger_Raises(self):
     hist = histogram_module.Histogram('hist', 'count')
@@ -1391,12 +1392,28 @@ class AddHistogramsTest(testing_common.TestCase):
       add_histograms.ComputeRevision(histograms)
 
   def testComputeRevision_UsesPointIdIfPresent(self):
-    hs = _CreateHistogram(name='foo', commit_position=123456, point_id=234567)
+    hs = _CreateHistogram(name='foo', commit_position=123456, point_id=234567,
+                          revision_timestamp=345678)
     rev = add_histograms.ComputeRevision(hs)
-    self.assertEqual(rev, 234567)
+    self.assertEqual(234567, rev)
 
   def testComputeRevision_PointIdNotInteger_Raises(self):
     hs = _CreateHistogram(name='foo', commit_position=123456, point_id='abc')
+    with self.assertRaises(api_request_handler.BadRequestError):
+      add_histograms.ComputeRevision(hs)
+
+  def testComputeRevision_UsesRevisionTimestampIfNecessary(self):
+    hs = _CreateHistogram(name='foo', revision_timestamp=123456)
+    rev = add_histograms.ComputeRevision(hs)
+    self.assertEqual(123456, rev)
+
+  def testComputeRevision_RevisionTimestampNotInteger_Raises(self):
+    hs = _CreateHistogram(name='foo', revision_timestamp='abc')
+    with self.assertRaises(api_request_handler.BadRequestError):
+      add_histograms.ComputeRevision(hs)
+
+  def testComputeRevision_NoRevision_Raises(self):
+    hs = _CreateHistogram(name='foo')
     with self.assertRaises(api_request_handler.BadRequestError):
       add_histograms.ComputeRevision(hs)
 
