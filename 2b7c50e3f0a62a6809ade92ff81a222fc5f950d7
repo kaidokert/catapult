@@ -88,6 +88,24 @@
       "revId": "2b7c50e3f0a62a6809ade92ff81a222fc5f950d7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00f76089_6113530d",
+        "filename": "experimental/v8_tools/graph_data.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-07-23T16:10:35Z",
+      "side": 1,
+      "message": "yeah, that\u0027s why I\u0027ve started preferring CFDs over histograms (or kernel-density estimates), they don\u0027t need binning.",
+      "parentUuid": "f6e73696_eedc0f94",
+      "revId": "2b7c50e3f0a62a6809ade92ff81a222fc5f950d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
