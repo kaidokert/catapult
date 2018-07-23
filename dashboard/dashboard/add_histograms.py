@@ -405,6 +405,11 @@ def ComputeRevision(histograms):
   if rev is None:
     rev = _GetDiagnosticValue(
         reserved_infos.CHROMIUM_COMMIT_POSITIONS.name,
+        histograms.GetFirstHistogram(), optional=True)
+
+  if rev is None:
+    rev = _GetDiagnosticValue(
+        reserved_infos.REVISION_TIMESTAMPS.name,
         histograms.GetFirstHistogram())
 
   if not isinstance(rev, (long, int)):
