@@ -16,6 +16,24 @@
       "revId": "d2a123ed8438f6d94b0abc71f1be32a7f1635105",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75b534e8_d9fdce5d",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-23T15:08:00Z",
+      "side": 1,
+      "message": "Ah! I missed that! maybe just leave a TODO to remove?",
+      "parentUuid": "3d292be2_e46f5510",
+      "revId": "d2a123ed8438f6d94b0abc71f1be32a7f1635105",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
