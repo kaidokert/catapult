@@ -46,6 +46,30 @@
       "revId": "dd8efeece60d4b23ac9c25863226baaa3f589095",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "213e115a_d88e0d2b",
+        "filename": "dashboard/dashboard/short_uri.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-23T15:00:32Z",
+      "side": 1,
+      "message": "That\u0027s fine, I kinda prefer it as jsonproperty since that\u0027s clearer what it is and I doubt the dumps/loads time is meaningful but dont\u0027 care that deeply",
+      "parentUuid": "368685ed_c40e071e",
+      "range": {
+        "startLine": 41,
+        "startChar": 12,
+        "endLine": 41,
+        "endChar": 20
+      },
+      "revId": "dd8efeece60d4b23ac9c25863226baaa3f589095",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

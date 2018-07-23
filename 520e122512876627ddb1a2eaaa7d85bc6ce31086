@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "324dedc8_816c7499",
+        "filename": "dashboard/dashboard/short_uri.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-23T15:00:32Z",
+      "side": 1,
+      "message": "I ran into a newer format where these were dicts, see the cl I sent for an example. You should probably handle those + this format and just error out if you can\u0027t do the conversion.",
+      "range": {
+        "startLine": 83,
+        "startChar": 6,
+        "endLine": 83,
+        "endChar": 12
+      },
+      "revId": "520e122512876627ddb1a2eaaa7d85bc6ce31086",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
