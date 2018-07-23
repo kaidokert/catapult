@@ -16,6 +16,24 @@
       "revId": "2b7c50e3f0a62a6809ade92ff81a222fc5f950d7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57eb03fe_1c554904",
+        "filename": "experimental/v8_tools/graph_data.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1293423
+      },
+      "writtenOn": "2018-07-23T15:40:12Z",
+      "side": 1,
+      "message": "This ones just sorting the data by its memory used (the y-axis). I thought that I\u0027d do the cumulative frequency plot in another CL because I thought that correctly binning the values may take a little bit of thought (although once the data is processed it will be sufficient to just use the linePlot function, so that CL will really just be creating the processing function to compute the cumulative frequencies).\nI just did a quick search and it looks like d3 will handle calculating the bin sizes actually.",
+      "parentUuid": "fd15735a_1bbefd22",
+      "revId": "2b7c50e3f0a62a6809ade92ff81a222fc5f950d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
