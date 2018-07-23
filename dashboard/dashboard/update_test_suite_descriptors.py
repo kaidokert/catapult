@@ -29,6 +29,8 @@ class UpdateTestSuiteDescriptorsHandler(request_handler.RequestHandler):
   def post(self):
     namespace = datastore_hooks.EXTERNAL
     if self.request.get('internal_only') == 'true':
+      # SetPrivilegedRequest so that FetchCachedTestSuites2() gets the internal
+      # list of test suites.
       datastore_hooks.SetPrivilegedRequest()
       namespace = datastore_hooks.INTERNAL
     UpdateTestSuiteDescriptors(namespace)
@@ -39,6 +41,11 @@ def UpdateTestSuiteDescriptors(namespace):
     deferred.defer(UpdateDescriptor, suite, namespace)
 
 def UpdateDescriptor(test_suite, namespace):
+  if namespace == datastore_hooks.INTERNAL:
+    # deferred.Defer() packages up the function call and arguments, not changes
+    # to global state like this.
+    datastore_hooks.SetPrivilegedRequest()
+
   test_path = descriptor.Descriptor(
       test_suite=test_suite, bot='place:holder').ToTestPathsSync()[0].split('/')
 
@@ -55,6 +62,12 @@ def UpdateDescriptor(test_suite, namespace):
         graph_data.TestMetadata.test_part1_name == test_path[3])
   query = query.filter(graph_data.TestMetadata.deprecated == False)
   query = query.filter(graph_data.TestMetadata.has_rows == True)
+  if namespace == datastore_hooks.EXTERNAL:
+    # This function could be called by internal users, but the data will be
+    # served to external users, so don't rely on datastore_hooks to add this
+    # filter.
+    query = query.filter(graph_data.TestMetadata.internal_only == False)
+
   for key in query.fetch(keys_only=True):
     desc = descriptor.Descriptor.FromTestPathSync(utils.TestPath(key))
     bots.add(desc.bot)
