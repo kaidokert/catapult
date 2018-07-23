@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2b73dd09_99b236c2",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-23T14:54:32Z",
+      "side": 1,
+      "message": "Why didn\u0027t test coverage catch this?",
+      "revId": "b3cbf53905174dda85b6470a5b75d3f450c81a38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d56fb08_50ec4d1d",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-23T14:54:32Z",
+      "side": 1,
+      "message": "the setprivilegedrequest call in post() is probably pointless then and can be removed",
+      "range": {
+        "startLine": 45,
+        "startChar": 20,
+        "endLine": 45,
+        "endChar": 40
+      },
+      "revId": "b3cbf53905174dda85b6470a5b75d3f450c81a38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3f2009a_45440b17",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-23T14:54:32Z",
+      "side": 1,
+      "message": "Not totally clear on what this is for, isn\u0027t UdpateDescriptor only called from the UpdateTestSiteDescriptors loop above?",
+      "range": {
+        "startLine": 64,
+        "startChar": 11,
+        "endLine": 64,
+        "endChar": 19
+      },
+      "revId": "b3cbf53905174dda85b6470a5b75d3f450c81a38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
