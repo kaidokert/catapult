@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f4961e0a_4325476e",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-23T19:11:20Z",
+      "side": 1,
+      "message": "I forgot to set test.internal_only \u003d True in testInternal.",
+      "parentUuid": "2b73dd09_99b236c2",
+      "revId": "b3cbf53905174dda85b6470a5b75d3f450c81a38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4d56fb08_50ec4d1d",
         "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
         "patchSetId": 2
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "d55caee9_9028454c",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-23T19:11:20Z",
+      "side": 1,
+      "message": "It was making FetchCachedTestSuites2 get the internal list of test suites, but UpdateTestSuiteDescriptors can call NamespaceKey and stored_object.Get manually.",
+      "parentUuid": "4d56fb08_50ec4d1d",
+      "range": {
+        "startLine": 45,
+        "startChar": 20,
+        "endLine": 45,
+        "endChar": 40
+      },
+      "revId": "b3cbf53905174dda85b6470a5b75d3f450c81a38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f3f2009a_45440b17",
         "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
         "patchSetId": 2
@@ -53,6 +95,30 @@
       "writtenOn": "2018-07-23T14:54:32Z",
       "side": 1,
       "message": "Not totally clear on what this is for, isn\u0027t UdpateDescriptor only called from the UpdateTestSiteDescriptors loop above?",
+      "range": {
+        "startLine": 64,
+        "startChar": 11,
+        "endLine": 64,
+        "endChar": 19
+      },
+      "revId": "b3cbf53905174dda85b6470a5b75d3f450c81a38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5784dff1_c4ad09e3",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-23T19:11:20Z",
+      "side": 1,
+      "message": "I\u0027ve tried to call it in dev_console. I think it would be useful to be able to call it in dev_console in the future if, for example, a test suite changes and we want the UI to pick up the change faster than 24 hours, or if we\u0027re prototyping a Descriptor change.",
+      "parentUuid": "f3f2009a_45440b17",
       "range": {
         "startLine": 64,
         "startChar": 11,
