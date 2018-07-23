@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8083c800_c8362b56",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-07-23T09:52:00Z",
+      "side": 1,
+      "message": "can you clean up this commit message? It\u0027s easiest to do with the web editor.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 47
+      },
+      "revId": "25655e6869336d579ead610f050cf60fa525bf8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
