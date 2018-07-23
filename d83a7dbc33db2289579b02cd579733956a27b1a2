@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9e02072b_82bb0d6f",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-23T15:35:21Z",
+      "side": 1,
+      "message": "maybe now this can be a method of your new class?",
+      "revId": "d83a7dbc33db2289579b02cd579733956a27b1a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d031e955_ee8fd666",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-23T15:35:21Z",
+      "side": 1,
+      "message": "Also this is pretty generic, so move it as a module level function. Probably don\u0027t call it just \"Date\" if it\u0027s a module level function; either ParseDate, or DateArg, or ... maybe you can think of something else :)",
+      "revId": "d83a7dbc33db2289579b02cd579733956a27b1a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "770d788a_d516c160",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-23T15:35:21Z",
+      "side": 1,
+      "message": "nit: \"table\" is not very descriptive. A bit below I\u0027m suggesting to call the class MilestoneInfo, so maybe call this minfo? (not a great name either, maybe you can think of something better :))",
+      "revId": "d83a7dbc33db2289579b02cd579733956a27b1a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17713217_694ce32e",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-23T15:35:21Z",
+      "side": 1,
+      "message": "GetLatestMilestoneNum is now pretty easy to compute (and as I suggested above you can make it a property) so no need to save this value. You can kill the previous two lines and just make the following:\n\n  if args.from_milestone is None:\n      args.from_milestone \u003d table.latest_milestone - 9\n\netc.",
+      "revId": "d83a7dbc33db2289579b02cd579733956a27b1a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bdc8cd5_7678c8e7",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-23T15:35:21Z",
+      "side": 1,
+      "message": "let\u0027s call this MilestoneInfo\n\nAlso small nit, move this closer to the top of the file. Broadly speaking, it\u0027s nice to order things going from the most \"general\" (that could be potentially used in some other situations) at the top, towards the \"specific\" (that really just make sense in this particular script) at the bottom.",
+      "revId": "d83a7dbc33db2289579b02cd579733956a27b1a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "603412de_54990250",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-23T15:35:21Z",
+      "side": 1,
+      "message": "Make this a \"private\" property by calling it self._table\n\nAlso, maybe we should do \"parsing\" at this time, e.g.:\n- parse milestone and branch numbers as int\u0027s\n- parse release dates as dates\n- complain if the csv is empty (so your later methods can assume that there are always some milestones defined)\n\nAnd store the already parsed data. I\u0027m also thinking, to make things more readable, whether it might make sense to store all of these as a list of dicts (instead of a list of tuples), for this you could use the csv dict reader.",
+      "revId": "d83a7dbc33db2289579b02cd579733956a27b1a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16e7ad38_ce834462",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-23T15:35:21Z",
+      "side": 1,
+      "message": "No need for this to be a static method; it\u0027s pretty general, so move it out of the class as a module level function.",
+      "revId": "d83a7dbc33db2289579b02cd579733956a27b1a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eba107b9_6053f818",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-23T15:35:21Z",
+      "side": 1,
+      "message": "this is now pretty fast to compute (not reading full csv anymore), so maybe you can make it a simple property, e.g.:\n\n  @property\n  def latest_milestone(self):\n    return self._table[-1][\u0027milestone\u0027]",
+      "revId": "d83a7dbc33db2289579b02cd579733956a27b1a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
