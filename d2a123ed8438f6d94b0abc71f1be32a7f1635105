@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d292be2_e46f5510",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-07-23T11:22:14Z",
+      "side": 1,
+      "message": "The \u0027--experimental-story-shard-begin-index\u0027 flag is still working here",
+      "revId": "d2a123ed8438f6d94b0abc71f1be32a7f1635105",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
