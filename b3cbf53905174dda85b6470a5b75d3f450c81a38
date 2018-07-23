@@ -128,6 +128,30 @@
       "revId": "b3cbf53905174dda85b6470a5b75d3f450c81a38",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58825e11_d4063a01",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-23T23:34:43Z",
+      "side": 1,
+      "message": "I see. Feel it\u0027s a little strange the way it is now, could be cleaner like:\n\ndef UpdateTestSuiteDescriptors:\n  for suite in ...\n    ScheduleUpdateDescriptor(...)\n\ndef ScheduleUpdateDescriptor(...)\n  deferred.defer(_ActuallyUpdateDescriptor)\n\ndef _ActuallyUpdateDesctipror(...)\n  ...\n\nThat way it always runs under the same conditions/account/privileges.",
+      "parentUuid": "5784dff1_c4ad09e3",
+      "range": {
+        "startLine": 64,
+        "startChar": 11,
+        "endLine": 64,
+        "endChar": 19
+      },
+      "revId": "b3cbf53905174dda85b6470a5b75d3f450c81a38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
