@@ -34,6 +34,47 @@
       "revId": "31c73ba3b2e227806a3b4227bbcb49ab16b5cc0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "26800f9a_2e413eb9",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1294533
+      },
+      "writtenOn": "2018-07-23T11:28:20Z",
+      "side": 1,
+      "message": "I\u0027ve added a call to Close(), and checked it in as an FYI ... but yeah, this is dangerous. I\u0027ll do as you suggest.",
+      "parentUuid": "dd0697b8_fd1f736b",
+      "revId": "31c73ba3b2e227806a3b4227bbcb49ab16b5cc0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ea47bff_39ff2ae7",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1294533
+      },
+      "writtenOn": "2018-07-23T11:28:20Z",
+      "side": 1,
+      "message": "I added this out of symmetry with the original code. It isn\u0027t being called (unless there\u0027s some destructor style Voodoo going on?). Should I call it, or remove it? Does the forwarder need any explicit Close\u0027ing?",
+      "range": {
+        "startLine": 116,
+        "startChar": 18,
+        "endLine": 116,
+        "endChar": 0
+      },
+      "revId": "31c73ba3b2e227806a3b4227bbcb49ab16b5cc0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
