@@ -17,7 +17,6 @@ import re
 import subprocess
 import sys
 
-
 PROCESSOR_ARCHITECTURE = 'arm'
 DEFAULT_DOWNLOAD_PATH = 'out'
 APP_DIR = os.path.normpath(os.path.dirname(__file__))
@@ -69,7 +68,7 @@ def GetBranchInfo(milestone, branch):
     if version_number:
       release_date = datetime.datetime.strptime(
           log['committer']['time'], '%a %b %d %X %Y').isoformat()
-      return (milestone, branch, version_number.group(0), release_date)
+      return milestone, branch, version_number.group(0), release_date
 
   #  raise exception if non of the log is relevant
   assert False, 'Could not find commit with version increment'
@@ -94,6 +93,7 @@ def DownloadAPKFromURI(uri, output_dir):
     uri(string): Gsutil URI
     output_dir(string): The path that the APKs will be stored
   """
+
   def GetAPKName(gs_uri):
     # example `gs_uri`: gs://chrome-signed/android-B0urB0N/56.0.2924.3/arm/
     # ChromeStable.apk
@@ -107,11 +107,12 @@ def DownloadAPKFromURI(uri, output_dir):
     raise CloudDownloadFailed(uri)
 
 
-def GetLatestVersionURI(milestone_num):
+def GetLatestVersionURI(milestone_num, table):
   """Helper function for `GetCloudStorageURIs`.
 
   Args:
     milestone_num(int): Number representing the milestone.
+    table(FullInfoTable): the object that stores all the table content
 
   Returns:
     string: The URI for the latest version of Chrome for a given milestone.
@@ -120,25 +121,20 @@ def GetLatestVersionURI(milestone_num):
     CloudDownloadFailed: this would be rise if we cannot find the apk within 5
     patch
   """
-  with open(os.path.join(
-      APP_DIR, 'full_milestone_info.csv')) as full_info_table:
-    reader = csv.reader(full_info_table)
-    next(reader)  # skip the header line
-    for milestone, _, version_num, _ in reader:
-      if int(milestone) == milestone_num:
-        # check whether the latest patch is in the Google Cloud storage as
-        # sometimes it is not, so we need to decrement patch and get the
-        # previous one
-        for i in range(5):
-          # above number has been tested, and it works from milestone 45 to 68
-          download_uri = ('gs://chrome-signed/android-B0urB0N/%s/%s/Chrome'
-                          'Stable.apk') % (DecrementPatchNumber(version_num, i),
-                                           PROCESSOR_ARCHITECTURE)
-          # check exit code to confirm the existence of the package
-          if subprocess.call(['gsutil', 'ls', download_uri]) == 0:
-            return download_uri
+  version_num = table.GetVersionNumberFromMilestone(milestone_num)
+  # check whether the latest patch is in the Google Cloud storage as
+  # sometimes it is not, so we need to decrement patch and get the
+  # previous one
+  for i in range(5):
+    # above number has been tested, and it works from milestone 45 to 68
+    download_uri = ('gs://chrome-signed/android-B0urB0N/%s/%s/Chrome'
+                    'Stable.apk') % (DecrementPatchNumber(version_num, i),
+                                     PROCESSOR_ARCHITECTURE)
+    # check exit code to confirm the existence of the package
+    if subprocess.call(['gsutil', 'ls', download_uri]) == 0:
+      return download_uri
 
-    raise CloudDownloadFailed(milestone_num)
+  raise CloudDownloadFailed(milestone_num)
 
 
 def DecrementPatchNumber(version_num, num):
@@ -155,20 +151,107 @@ def DecrementPatchNumber(version_num, num):
   """
   version_num_list = version_num.split('.')
   version_num_list[-1] = str(int(version_num_list[-1]) - num)
-  assert version_num_list[-1] >= 0, 'patch number cannot be negative'
+  assert int(version_num_list[-1]) >= 0, 'patch number cannot be negative'
   return '.'.join(version_num_list)
 
 
-def main(args):
+def BuildArgumentParser(args):
+  """Set the expected options for the argument parser.
+
+  If the program is ran with no argument, it will download the 10 latest
+  chrome versions
+
+  Args:
+    args(list): list of arguments(string)
+
+  Returns:
+    Namespace: a class storing all the parsed arguments
+  """
+  def Date(date_str):
+    try:
+      date_object = datetime.datetime.strptime(date_str, '%Y-%m-%d')
+    except ValueError:
+      msg = (
+          '%s is not a valid date value or it doesn\'t adhere to the required '
+          'format, please double check' % date_str)
+      raise argparse.ArgumentTypeError(msg)
+    return date_object
+
   parser = argparse.ArgumentParser(
       description='tool to download different versions of chrome')
-  parser.add_argument('from_milestone', type=int,
-                      help='starting milestone number')
-  parser.add_argument('to_milestone', type=int,
-                      help='ending milestone number')
+  # from_date and from_milestone cannot present at the same time
+  start = parser.add_mutually_exclusive_group()
+  # to_date and to_milestone cannot present at the same time
+  end = parser.add_mutually_exclusive_group()
+  start.add_argument('--from-milestone', type=int,
+                     help='starting milestone number')
+  start.add_argument('--from-date', type=Date,
+                     help='starting version release date'
+                          ', must be in the format `2017-10-02`')
+  end.add_argument('--to-milestone', type=int,
+                   help='ending milestone number')
+  end.add_argument('--to-date', type=Date,
+                   help='ending version release date'
+                        ', must be in the format `2017-10-02`')
   parser.add_argument('--output-path', default=DEFAULT_DOWNLOAD_PATH,
-                      help='the path that the APKs well be stored')
-  args = parser.parse_args(args)
+                      help='the path that the APKs will be stored')
+  return parser.parse_args(args)
+
+
+def ProcessArguments(args, table):
+  """Set `to_milestone` and `from_milestone` according to provided arguments.
+
+  Args:
+    args(Namespace class): object storing the relevant arguments
+    table(FullInfoTable class): the object that stores all the table content
+  """
+  if args.from_date:
+    args.from_milestone = table.GetEarliestVersionAfterDate(args.from_date)
+  if args.to_date:
+    args.to_milestone = table.GetLatestVersionBeforeDate(args.to_date)
+  if args.to_milestone is None or args.from_milestone is None:
+    latest_version_num = table.GetLatestMilestoneNum()
+    if args.from_milestone is None:
+      args.from_milestone = latest_version_num - 9
+    if args.to_milestone is None:
+      args.to_milestone = latest_version_num
+
+
+class FullInfoTable(object):
+  """Simple class to store the full_milestone_info.csv data.
+  """
+
+  def __init__(self):
+    with open(
+        os.path.join(APP_DIR, 'full_milestone_info.csv')) as full_info_table:
+      self.table = list(csv.reader(full_info_table))
+
+  @staticmethod
+  def ParseIsoFormatDate(iso_date_str):
+    return datetime.datetime.strptime(iso_date_str, '%Y-%m-%dT%H:%M:%S')
+
+  def GetLatestMilestoneNum(self):
+    for milestone, _, _, _ in reversed(self.table):
+      return int(milestone)
+
+  def GetLatestVersionBeforeDate(self, date):
+    for milestone, _, _, release_date in reversed(self.table):
+      if self.ParseIsoFormatDate(release_date) < date:
+        return int(milestone)
+
+  def GetEarliestVersionAfterDate(self, date):
+    for milestone, _, _, release_date in self.table[1:]:
+      if self.ParseIsoFormatDate(release_date) > date:
+        return int(milestone)
+
+  def GetVersionNumberFromMilestone(self, target_milestone):
+    for milestone, _, version_num, _ in self.table[1:]:
+      if target_milestone == int(milestone):
+        return version_num
+
+
+def main(args):
+  args = BuildArgumentParser(args)
 
   if not IsGsutilInstalled():
     return 'gsutil is not installed, please install it and try again'
@@ -177,12 +260,17 @@ def main(args):
     print 'Generating full milestone info table, please wait'
     GenerateFullInfoCSV()
 
+  # load the full_milestone_info.csv into memory for later use
+  table = FullInfoTable()
+  ProcessArguments(args, table)
+
   print ('Getting the storage URI, this process might '
          'take some time, please wait patiently')
 
   try:
-    for milestone in range(args.from_milestone, args.to_milestone + 1):
-      uri = GetLatestVersionURI(milestone)
+    for milestone in range(
+        args.from_milestone, args.to_milestone + 1):
+      uri = GetLatestVersionURI(milestone, table)
       DownloadAPKFromURI(uri, args.output_path)
     return 0
   except KeyboardInterrupt:
