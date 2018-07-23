@@ -22,6 +22,121 @@
       "revId": "25655e6869336d579ead610f050cf60fa525bf8d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fbd7f73d_864c6682",
+        "filename": "experimental/v8_tools/graph_data.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-07-23T10:00:53Z",
+      "side": 1,
+      "message": "instead of forEach + push, you can use map\n\nthough actually, since you\u0027re maxing anyway, you could just use \"reduce\".",
+      "range": {
+        "startLine": 76,
+        "startChar": 21,
+        "endLine": 76,
+        "endChar": 28
+      },
+      "revId": "25655e6869336d579ead610f050cf60fa525bf8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1add2a81_5097be77",
+        "filename": "experimental/v8_tools/graph_data.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-07-23T10:00:53Z",
+      "side": 1,
+      "message": "nit: you can just pass in \"projection\" here",
+      "range": {
+        "startLine": 78,
+        "startChar": 42,
+        "endLine": 78,
+        "endChar": 68
+      },
+      "revId": "25655e6869336d579ead610f050cf60fa525bf8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35a3c5bb_4ec234b5",
+        "filename": "experimental/v8_tools/graph_data.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-07-23T10:00:53Z",
+      "side": 1,
+      "message": "nit: no need for these parens",
+      "range": {
+        "startLine": 90,
+        "startChar": 22,
+        "endLine": 90,
+        "endChar": 23
+      },
+      "revId": "25655e6869336d579ead610f050cf60fa525bf8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c259d64_e5158b0f",
+        "filename": "experimental/v8_tools/graph_data.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-07-23T10:00:53Z",
+      "side": 1,
+      "message": "nit: no need for these parens",
+      "range": {
+        "startLine": 99,
+        "startChar": 22,
+        "endLine": 99,
+        "endChar": 23
+      },
+      "revId": "25655e6869336d579ead610f050cf60fa525bf8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23776686_dcc88fc1",
+        "filename": "experimental/v8_tools/graph_plotter.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-07-23T10:00:53Z",
+      "side": 1,
+      "message": "be consistent with your pseudo-private method naming, you use foo_ here but __foo in GraphData",
+      "range": {
+        "startLine": 52,
+        "startChar": 2,
+        "endLine": 52,
+        "endChar": 16
+      },
+      "revId": "25655e6869336d579ead610f050cf60fa525bf8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
