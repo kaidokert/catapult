@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "926b01d4_2f54d9de",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-07-23T09:09:22Z",
+      "side": 1,
+      "message": "Two avoid an extra pass, we can also let extractData push them into two different arrays, guidInfoArray and sampleValueArray. I think for now we don\u0027t need DateRange so, we can ignore those samples.",
+      "revId": "d4e6f78ea37b20f7d19ca0580f3a2a2db2e3c55c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8af86493_52f51f93",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-07-23T09:09:22Z",
+      "side": 1,
+      "message": "May be call this dateRangeInfoArray and valuesArray as genericSetInfoArr. Both these are GUID to value mappings. For now, we don\u0027t even need this. So, it is not required to even store these objects. You can remove guidArr completely and add it back if we need it later.",
+      "revId": "d4e6f78ea37b20f7d19ca0580f3a2a2db2e3c55c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e7ac780_680bcf02",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-07-23T09:09:22Z",
+      "side": 1,
+      "message": "In the later steps, when we want to replace other entries (like storySetRepeats etc.,) map may not work really well. How about just creating a new sampleValues that have the values replaced instead of their GUIDs? I am also Ok if you want to do this as a part of the next step.",
+      "revId": "d4e6f78ea37b20f7d19ca0580f3a2a2db2e3c55c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
