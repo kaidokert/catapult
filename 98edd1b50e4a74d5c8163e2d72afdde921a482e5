@@ -69,6 +69,24 @@
       "revId": "98edd1b50e4a74d5c8163e2d72afdde921a482e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d4152d8_58a99ff3",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1604,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-23T10:36:27Z",
+      "side": 1,
+      "message": "Hmm, I did try it (not with device_utils but a more simple adb wrapper) and it did work without having to write the file first and copy/pasting your script as-is with new lines and everything in it (just properly quoted/escaped, which RunShellCommand should also already do for you).\n\nLet me try to figure out why this doesn\u0027t seem to work with RunShellCommand.",
+      "parentUuid": "3a2cb0b5_f1b918eb",
+      "revId": "98edd1b50e4a74d5c8163e2d72afdde921a482e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
