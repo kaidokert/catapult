@@ -11,21 +11,7 @@ found in the LICENSE file.
     font: 12px helvetica,arial,sans-serif;
   }
 </style>
-<script>
-'use strict';
-// Use native shadow DOM to encapsulate web components instead of the slower
-// shady DOM.
-window.Polymer = {dom: 'shadow'};
-window.addEventListener('load', () => {
-  const loadTimes = Object.entries(performance.timing.toJSON()).filter(p =>
-    p[1] > 0);
-  loadTimes.sort((a, b) => a[1] - b[1]);
-  const start = loadTimes.shift()[1];
-  for (const [name, timeStamp] of loadTimes) {
-    tr.b.Timing.mark('load', name, start).end(timeStamp);
-  }
-});
-</script>
+<script src="/dashboard/spa/index.js"></script>
 <link rel="import" href="/bower_components/polymer/polymer.html" data-suppress-import-order>
 <link rel="import" href="/tracing/base/base.html" data-suppress-import-order>
 <script src="/dashboard/spa/measure_element.js"></script>

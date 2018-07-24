@@ -15,6 +15,10 @@ handlers:
   static_files: dashboard/spa/index.html
   upload: dashboard/spa/index.html
 
+- url: /index.js
+  static_files: dashboard/spa/index.js
+  upload: dashboard/spa/index.js
+
 - url: /dashboard/static/
   static_dir: dashboard/static/
 
@@ -25,10 +29,6 @@ handlers:
 - url: /redux.min.js
   static_files: redux/redux.min.js
   upload: redux/redux\.min\.js
-
-- url: /idb.js
-  static_files: idb.js
-  upload: kdb.js
 
 - url: /gl-matrix-min.js
   static_files: gl-matrix-min.js
