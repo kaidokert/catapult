@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a1916044_38f20a96",
+        "filename": "catapult_build/test_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-24T12:26:16Z",
+      "side": 1,
+      "message": "is this here just for debugging? don\u0027t forget to remove.",
+      "revId": "48773769ea07c18bd9655028bd77ee478f759a12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
