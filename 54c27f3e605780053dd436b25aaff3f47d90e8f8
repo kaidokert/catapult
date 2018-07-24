@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ed9a254_4d38a35b",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-24T14:32:35Z",
+      "side": 1,
+      "message": "I don\u0027t think this should be done here. It should be a task of the UI (or tool creating jobs) to strip off whitespaces if needed before making a request.\n\nIf badly formatted values reach here the correct behavior should be to fail and not try to guess the user intent.",
+      "revId": "54c27f3e605780053dd436b25aaff3f47d90e8f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
