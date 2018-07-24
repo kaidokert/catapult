@@ -22,6 +22,7 @@ def _Color(s, color):
 
 
 def _RunTest(test, chrome_command):
+  print('Running Test {}'.format(test))
   if sys.platform in test.get('disabled_platforms', {}):
     return 0
   command = [test['path']]
