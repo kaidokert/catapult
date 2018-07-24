@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ab2da133_acc5d084",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1294533
+      },
+      "writtenOn": "2018-07-24T10:02:06Z",
+      "side": 1,
+      "message": "local_port used to be a parameter here, but all calling sites use a 0 port, so I\u0027ve removed it as a parameter and hard-coded it instead. WDYT? Feels like a case of YAGNI?",
+      "range": {
+        "startLine": 54,
+        "startChar": 13,
+        "endLine": 54,
+        "endChar": 46
+      },
+      "revId": "441fda749b7f8f3d17685450051f6a2141f71c3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
