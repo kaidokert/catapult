@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "271b6d3e_6685e70d",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-07-24T17:22:28Z",
+      "side": 1,
+      "message": "The runnings are actually this: (\u0027_count\u0027, \u0027_mean\u0027, \u0027_max\u0027, \u0027_min\u0027, \u0027_sum\u0027, \u0027_variance\u0027, \u0027_meanlogs\u0027). From here: https://cs.chromium.org/chromium/src/third_party/catapult/tracing/tracing/value/histogram.py?q\u003dRunningStatis\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d195. So, we shouldn\u0027t be averaging them. Sorry, I haven\u0027t noticed this earlier. You can upload another cl and just remove the average field. We are just interested in the sampleValue.",
+      "parentUuid": "dcca387b_f43b02fd",
+      "range": {
+        "startLine": 99,
+        "startChar": 9,
+        "endLine": 100,
+        "endChar": 70
+      },
+      "revId": "d19870e4b8580848605d9b56fb5d1cf4e170d327",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8f4f1037_d2d8f8ac",
         "filename": "experimental/v8_tools/display_data.html",
         "patchSetId": 7
