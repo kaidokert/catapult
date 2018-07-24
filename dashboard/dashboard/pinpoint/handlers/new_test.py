@@ -18,7 +18,7 @@ from dashboard.pinpoint.models.change import patch as patch_module
 
 _BASE_REQUEST = {
     'target': 'telemetry_perf_tests',
-    'configuration': 'chromium-rel-mac11-pro',
+    'configuration': 'chromium-rel-mac11-pro ',  # Trailing whitespace.
     'benchmark': 'speedometer',
     'bug_id': '12345',
     'start_git_hash': '1',

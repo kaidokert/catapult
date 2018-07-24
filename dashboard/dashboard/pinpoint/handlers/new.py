@@ -39,6 +39,9 @@ class New(api_request_handler.ApiRequestHandler):
 def _CreateJob(request):
   """Creates a new Pinpoint job from WebOb request arguments."""
   original_arguments = request.params.mixed()
+  for key, value in original_arguments.iteritems():
+    if isinstance(value, basestring):
+      original_arguments[key] = value.strip()
   arguments = _ArgumentsWithConfiguration(original_arguments)
 
   # Validate arguments and convert them to canonical internal representation.
