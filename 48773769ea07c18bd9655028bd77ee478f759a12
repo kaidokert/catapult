@@ -16,6 +16,23 @@
       "revId": "48773769ea07c18bd9655028bd77ee478f759a12",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "183de5f7_6c88e3c8",
+        "filename": "telemetry/telemetry/internal/forwarders/fuchsia_forwarder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-24T14:04:54Z",
+      "side": 1,
+      "message": "Not sure how things work for fuchsia, but you will probably need the forward and reverse forwarder. The diagram here might help: https://docs.google.com/document/d/1l4CIqZACAlyogsbPESz0IY3FS4bS7f-DimVQC1uM-os/edit#bookmark\u003did.agwxg3885d6x\n\nA \"regular\" forwarder (no. 2 in the diagram) is used to send web page recordings from the host to the Chrome instance on the device; while a \"reverse\" forwarder (no. 6) is used to establish a connection between DevTools agent (on the device) and its DevToolsClient (part of Telemetry) in the host.\n\nAlso I think this is mixing the roles of the \"forwarder\" and the \"platform/device\". Sorry because due to legacy reasons this is slightly messy in the current code base.\n\nThe \"forwarder\" should simply establish a network connection between/host device. And that\u0027s pretty much it. It shouldn\u0027t have, e.g., \"RunCommand\" methods.\n\nThe \"Device\" should just hold information necessary to identify a particular fuchsia device connected to the host (what you have below as FuchsiaDevice is probably right).\n\nThen you do probably want to define a \"FuchsiaInterface\" or something like that, similar to CrOSInterface [1] which is the thing that you use to send and run commands on the device.\n\nFinally the \"platform\" should take an instance of your FuchsiaDevice, create a FuchsiaInterface from it, and keep a reference to it (e.g. as in [2]) so the platform can implement its required interface calling methods of this object (and *not* the forwarder).\n\nNote _forwarder as a member of the platform backend is going away (see crbug.com/799415), so you shouldn\u0027t attempt at changing it\u0027s API or constructor arguments.\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/core/cros_interface.py?rcl\u003d2a64e6b6d554193f50f82d9557442615457365d9\u0026l\u003d94\n[2]: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/platform/cros_platform_backend.py?rcl\u003d2a64e6b6d554193f50f82d9557442615457365d9\u0026l\u003d22",
+      "revId": "48773769ea07c18bd9655028bd77ee478f759a12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
