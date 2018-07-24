@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "dcca387b_f43b02fd",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-07-24T16:52:10Z",
+      "side": 1,
+      "message": "I am not sure what \"running\" field actually represents. In my udnerstanding, we have one value per each sample, so this isn\u0027t the average over the entire set of runs. Could you leave a TODO there saying we need to find out what running actually represents.",
+      "parentUuid": "d2e337db_b81e104a",
+      "range": {
+        "startLine": 99,
+        "startChar": 9,
+        "endLine": 100,
+        "endChar": 70
+      },
+      "revId": "d19870e4b8580848605d9b56fb5d1cf4e170d327",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8f4f1037_d2d8f8ac",
         "filename": "experimental/v8_tools/display_data.html",
         "patchSetId": 7
@@ -36,6 +60,30 @@
       "writtenOn": "2018-07-24T16:00:25Z",
       "side": 1,
       "message": "how about adding e.min to guidValueInfoMap?",
+      "range": {
+        "startLine": 106,
+        "startChar": 12,
+        "endLine": 106,
+        "endChar": 30
+      },
+      "revId": "d19870e4b8580848605d9b56fb5d1cf4e170d327",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7d59785_e2e12e1b",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-07-24T16:52:10Z",
+      "side": 1,
+      "message": "+1.",
+      "parentUuid": "8f4f1037_d2d8f8ac",
       "range": {
         "startLine": 106,
         "startChar": 12,
