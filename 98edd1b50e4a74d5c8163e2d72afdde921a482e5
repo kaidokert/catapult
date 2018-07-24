@@ -87,6 +87,24 @@
       "revId": "98edd1b50e4a74d5c8163e2d72afdde921a482e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "794cac8f_47c95ee0",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1604,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2018-07-24T18:07:19Z",
+      "side": 1,
+      "message": "This is the command that\u0027s ultimately getting run with RunShellCommand in cmd_helper.py using the multiline string:\n\n[u\u0027/usr/local/google/home/bsheedy/android_sdk/platform-tools/adb\u0027, \u0027-s\u0027, \u0027HT7AK1A01905\u0027, \u0027shell\u0027, \u0027( \\\u0027\\\u0027\"\\\u0027\"\\\u0027\\n  function list_subdirs() {\\n    for f in \"$1\"/* ;\\n    do\\n      if [ -d \"$f\" ] ;\\n      then\\n        if [ \"$f\" \u003d\u003d \".\" ] || [ \"$f\" \u003d\u003d \"..\" ] ;\\n        then\\n          continue ;\\n        fi ;\\n        echo \"$f\" ;\\n        list_subdirs \"$f\" ;\\n      fi ;\\n    done ;\\n  } ;\\n  list_subdirs \"/data/local/tmp/device_utils_test\"\\n\\\u0027\"\\\u0027\"\\\u0027\\\u0027 );echo %$?\u0027]\n\nwhich fails with:\n\n  /system/bin/sh: \u0027\n    function list_subdirs() {\n      for f in \"$1\"/* ;\n      do\n        if [ -d \"$f\" ] ;\n        then\n          if [ \"$f\" \u003d\u003d \".\" ] || [ \"$f\" \u003d\u003d \"..\" ] ;\n          then\n            continue ;\n          fi ;\n          echo \"$f\" ;\n          list_subdirs \"$f\" ;\n        fi ;\n      done ;\n    } ;\n    list_subdirs \"/data/local/tmp/device_utils_test\"\n  \u0027: not found",
+      "parentUuid": "7d4152d8_58a99ff3",
+      "revId": "98edd1b50e4a74d5c8163e2d72afdde921a482e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
