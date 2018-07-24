@@ -20,6 +20,16 @@ tr.exportTo('tr.e.blink', function() {
       }
       return undefined;
     }
+
+    get viewSubGroupTitle() {
+      if (this.title.startsWith('FrameScheduler.')) {
+        return this.title.substring(15);
+      }
+      if (this.title.startsWith('Scheduler.')) {
+        return this.title.substring(10);
+      }
+      return this.title;
+    }
   }
 
   tr.model.AsyncSlice.subTypes.register(BlinkSchedulerAsyncSlice, {
