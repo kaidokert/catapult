@@ -2,6 +2,57 @@
   "comments": [
     {
       "key": {
+        "uuid": "710a72d5_2e2cdf41",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-24T14:30:22Z",
+      "side": 1,
+      "message": "nit: let\u0027s call \"remote_port\" just \"devtools_port\" here.\n\nIn the desktop case the port is actually a \"local\" port as it is on the same machine as the test runner, and in that case the forwarder falls back to a dummy \"do nothing forwarder\" that just sets local_port \u003d\u003d remote_port.",
+      "revId": "441fda749b7f8f3d17685450051f6a2141f71c3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "891c17de_fd960607",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-24T14:30:22Z",
+      "side": 1,
+      "message": "I think this needs to be a bit more defensive, to ensure \"Close\" is also called even if there are errors while waiting for the agent to be ready. Maybe something like:\n\n  devtools_agent \u003d None\n  try:\n    if devtools_config.IsAgentReady():\n      devtools_agent \u003d devtools_config.Create()\n  finally:\n    if devtools_agent is None:  # agent was not ready.\n      devtools_config.Close()\n\n  return devtools_agent",
+      "revId": "441fda749b7f8f3d17685450051f6a2141f71c3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04d24016_a313f55a",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-24T14:30:22Z",
+      "side": 1,
+      "message": "I think this is a great first step to move the forwarder into the DevToolsClientConfig. But maybe leave a TODO here remove the DevToolsClientConfig in a follow up CL, and merge it with DevToolsClientBakckend itself.",
+      "revId": "441fda749b7f8f3d17685450051f6a2141f71c3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ab2da133_acc5d084",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
         "patchSetId": 3
@@ -19,6 +70,81 @@
         "endLine": 54,
         "endChar": 46
       },
+      "revId": "441fda749b7f8f3d17685450051f6a2141f71c3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdae37c3_9b84a280",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-24T14:30:22Z",
+      "side": 1,
+      "message": "Yes. OK to remove the old \"local_port\" and rename \"remote_port\" to \"devtools_port\" for same reasons as above.",
+      "parentUuid": "ab2da133_acc5d084",
+      "range": {
+        "startLine": 54,
+        "startChar": 13,
+        "endLine": 54,
+        "endChar": 46
+      },
+      "revId": "441fda749b7f8f3d17685450051f6a2141f71c3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f979414c_85a5fdb8",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-24T14:30:22Z",
+      "side": 1,
+      "message": "do we really need to keep a reference here to the platform_backend? I would propose to remove that.\n\nIf really needed you could expose it as a @property instead.",
+      "revId": "441fda749b7f8f3d17685450051f6a2141f71c3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b9b4d46_5a779d64",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-24T14:30:22Z",
+      "side": 1,
+      "message": "nit: add a comment here stating that setting local_port\u003dNone will let the forwarder choose an available port for us.",
+      "revId": "441fda749b7f8f3d17685450051f6a2141f71c3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81217395_9b271dd5",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-24T14:30:22Z",
+      "side": 1,
+      "message": "The \"or self._local_port\" is no longer needed. In the contract of the forwarder it should already have resolved ports to actual valid numbers.",
       "revId": "441fda749b7f8f3d17685450051f6a2141f71c3b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
