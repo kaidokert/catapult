@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ecdd8dc_923f2c56",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-07-24T20:30:08Z",
+      "side": 1,
+      "message": "This is weird. Can this be explained somehow? Is there a way to make this more deterministic? This is fine to keep if not, just struck me as odd.",
+      "revId": "e964bdcc733277894142a192dee681285619702f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b7db050_c25ac758",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-07-24T20:30:08Z",
+      "side": 1,
+      "message": "Can you use _CheckRequest here",
+      "revId": "e964bdcc733277894142a192dee681285619702f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
