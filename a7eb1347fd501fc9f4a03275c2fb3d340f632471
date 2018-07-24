@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ee11338_d370e01b",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-07-24T14:54:27Z",
+      "side": 1,
+      "message": "this should probably be called after the data is read successfully, so in the reader.onload function",
+      "range": {
+        "startLine": 3,
+        "startChar": 44,
+        "endLine": 3,
+        "endChar": 54
+      },
+      "revId": "a7eb1347fd501fc9f4a03275c2fb3d340f632471",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65b7e462_5f260ed1",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-07-24T14:54:27Z",
+      "side": 1,
+      "message": "why only set guidValueInfo for GenericSet entries, and not any entry with a guid field?",
+      "range": {
+        "startLine": 45,
+        "startChar": 28,
+        "endLine": 45,
+        "endChar": 35
+      },
+      "revId": "a7eb1347fd501fc9f4a03275c2fb3d340f632471",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9307f30f_4a616881",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-07-24T14:54:27Z",
+      "side": 1,
+      "message": "why go via a genericSetInfo array, and not build the guidValueInfo map in extractData immediately when objects with a guid are encountered?",
+      "range": {
+        "startLine": 46,
+        "startChar": 10,
+        "endLine": 46,
+        "endChar": 46
+      },
+      "revId": "a7eb1347fd501fc9f4a03275c2fb3d340f632471",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9cf91c96_1e131464",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-07-24T14:54:27Z",
+      "side": 1,
+      "message": "nit: if you load multiple files, this will install multiple click handlers on the buttons. You might want to have global sampleArr/guidValueInfo fields and only set the click handlers once.",
+      "range": {
+        "startLine": 54,
+        "startChar": 11,
+        "endLine": 54,
+        "endChar": 37
+      },
+      "revId": "a7eb1347fd501fc9f4a03275c2fb3d340f632471",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
