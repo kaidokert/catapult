@@ -118,7 +118,8 @@ def _EnsureExecutable(gsutil):
   st = os.stat(gsutil)
   if not st.st_mode & stat.S_IEXEC:
     os.chmod(gsutil, st.st_mode | stat.S_IEXEC)
-
+def _Hllo():
+  pass
 
 def _RunCommand(args):
   # On cros device, as telemetry is running as root, home will be set to /root/,
