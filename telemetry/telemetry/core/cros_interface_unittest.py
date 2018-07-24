@@ -20,7 +20,7 @@ from telemetry.testing import options_for_unittests
 class CrOSInterfaceTest(unittest.TestCase):
 
   def _GetCRI(self):
-    remote = options_for_unittests.GetCopy().cros_remote
+    remote = options_for_unittests.GetCopy().remote
     remote_ssh_port = options_for_unittests.GetCopy().cros_remote_ssh_port
     return cros_interface.CrOSInterface(
         remote, remote_ssh_port,
@@ -142,7 +142,7 @@ class CrOSInterfaceTest(unittest.TestCase):
     and locally on the device to check for consistency.
     """
     options = options_for_unittests.GetCopy()
-    with cros_interface.CrOSInterface(options.cros_remote,
+    with cros_interface.CrOSInterface(options.remote,
                                       options.cros_remote_ssh_port,
                                       options.cros_ssh_identity) as cri:
 

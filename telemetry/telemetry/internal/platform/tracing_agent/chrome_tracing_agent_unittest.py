@@ -42,7 +42,7 @@ class FakeAndroidPlatformBackend(FakePlatformBackend):
 class FakeCrOSPlatformBackend(FakePlatformBackend):
   def __init__(self):
     super(FakeCrOSPlatformBackend, self).__init__()
-    remote = options_for_unittests.GetCopy().cros_remote
+    remote = options_for_unittests.GetCopy().remote
     remote_ssh_port = options_for_unittests.GetCopy().cros_remote_ssh_port
     self.cri = cros_interface.CrOSInterface(
         remote, remote_ssh_port,
