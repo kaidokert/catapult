@@ -33,6 +33,24 @@
       "revId": "48773769ea07c18bd9655028bd77ee478f759a12",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d893a5ba_06e6db02",
+        "filename": "telemetry/telemetry/internal/forwarders/fuchsia_forwarder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-24T14:07:42Z",
+      "side": 1,
+      "message": "Looking a bit more into it my proposed \"FuchsiaInterface\" is probably your \"DeviceTarget\" ? Btw, where is that defined?",
+      "parentUuid": "183de5f7_6c88e3c8",
+      "revId": "48773769ea07c18bd9655028bd77ee478f759a12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
