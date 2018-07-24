@@ -28,7 +28,7 @@ class RunTelemetryTest(run_test.RunTest):
     return self._Start(change, isolate_server, isolate_hash, extra_args)
 
   @classmethod
-  def FromDict(cls, arguments):
+  def _SwarmingExtraArgs(cls, arguments):
     swarming_extra_args = []
 
     benchmark = arguments.get('benchmark')
@@ -61,4 +61,7 @@ class RunTelemetryTest(run_test.RunTest):
       swarming_extra_args += ('--webview-embedder-apk',
                               '../../out/Release/apks/SystemWebViewShell.apk')
 
-    return cls._FromDict(arguments, swarming_extra_args + _DEFAULT_EXTRA_ARGS)
+    swarming_extra_args += _DEFAULT_EXTRA_ARGS
+    swarming_extra_args += super(RunTelemetryTest, cls)._SwarmingExtraArgs(
+        arguments)
+    return swarming_extra_args
