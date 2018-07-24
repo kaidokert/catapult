@@ -82,7 +82,7 @@ tr.exportTo('tr.b', function() {
         hitType: 'event',
         eventCategory: this.groupName,
         eventAction: this.functionName,
-        eventValue: this.durationMs,
+        eventValue: Math.round(this.durationMs),
       });
     }
   }

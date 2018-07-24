@@ -185,9 +185,8 @@ tr.exportTo('cp', () => {
       const statePath = action.statePath || '';
       try {
         return Polymer.Path.setImmutable(rootState, statePath, state => {
-          const mark = tr.b.Timing.mark('reducer', reducer.typeName);
+          // TODO Timing.mark -> ts_mon
           const newState = reducer(state, action, rootState);
-          mark.end();
           return newState;
         });
       } catch (error) {
@@ -226,26 +225,21 @@ tr.exportTo('cp', () => {
         const debugName = cls.name + '.' + name;
 
         cls.prototype[name] = async function eventListenerWrapper(event) {
-          // Measure the time from when the browser receives the event to when
-          // we receive the event.
-          if (event && event.timeStamp) {
-            tr.b.Timing.mark('listener', debugName, event.timeStamp).end();
-          }
+          // TODO ts_mon to measure the time from when the browser receives the
+          // event to when we receive the event.
+          // TODO Timing.mark -> ts_mon to measure the first paint latency by
+          // starting the event listener without awaiting it.
 
-          const firstPaintMark = tr.b.Timing.mark('firstPaint', debugName);
-          // Measure the first paint latency by starting the event listener
-          // without awaiting it.
-          const resultPromise = wrapped.call(this, event);
-          (async() => {
-            await ElementBase.afterRender();
-            firstPaintMark.end();
-          })();
           const result = await resultPromise;
-          const lastPaintMark = tr.b.Timing.mark('lastPaint', debugName);
-          (async() => {
-            await ElementBase.afterRender();
-            lastPaintMark.end();
-          })();
+
+          if (event && event.timeStamp) {
+            const lastPaintMark = tr.b.Timing.mark(
+                'lastPaint', debugName, event.timeStamp);
+            (async() => {
+              await ElementBase.afterRender();
+              lastPaintMark.end();
+            })();
+          }
           return result;
         };
       })();
@@ -265,9 +259,8 @@ tr.exportTo('cp', () => {
         const thunk = action(...args);
         Object.defineProperty(thunk, 'name', {value: debugName});
         const thunkReplacement = async(dispatch, getState) => {
-          const mark = tr.b.Timing.mark('action', debugName);
+          // TODO Timing.mark -> ts_mon
           const result = await thunk(dispatch, getState);
-          mark.end();
           return result;
         };
         Object.defineProperty(thunkReplacement, 'name', {
@@ -308,14 +301,6 @@ tr.exportTo('cp', () => {
   ElementBase.idlePeriod = () => new Promise(resolve =>
     requestIdleCallback(resolve));
 
-  ElementBase.measureInputLatency = async(groupName, functionName, event) => {
-    const mark = tr.b.Timing.mark(
-        groupName, functionName,
-        event.timeStamp || event.detail.sourceEvent.timeStamp);
-    await ElementBase.afterRender();
-    mark.end();
-  };
-
   ElementBase.actions = {
     updateObject: (statePath, delta) => async(dispatch, getState) => {
       dispatch({
@@ -342,10 +327,9 @@ tr.exportTo('cp', () => {
       });
     },
 
-    chain: (statePath, actions) => async(dispatch, getState) => {
+    chain: actions => async(dispatch, getState) => {
       dispatch({
         type: ElementBase.reducers.chain.typeName,
-        statePath,
         actions,
       });
     },
@@ -376,12 +360,16 @@ tr.exportTo('cp', () => {
       return rootState;
     },
 
-    chain: (state, {actions}, rootState) => {
+    chain: (rootState, {actions}, rootStateAgain) => {
       for (const action of actions) {
-        if (!REDUCERS.has(action.type)) continue;
-        state = REDUCERS.get(action.type)(state, action);
+        if (!REDUCERS.has(action.type)) {
+          // eslint-disable-next-line no-console
+          console.warn('Unrecognized action type', action);
+          continue;
+        }
+        rootState = REDUCERS.get(action.type)(rootState, action);
       }
-      return state;
+      return rootState;
     },
   };
 
