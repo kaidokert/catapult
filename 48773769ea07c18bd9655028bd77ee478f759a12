@@ -19,6 +19,98 @@
     },
     {
       "key": {
+        "uuid": "49ad8528_131c26a1",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_finder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1116023
+      },
+      "writtenOn": "2018-07-24T18:58:13Z",
+      "side": 1,
+      "message": "nit: content_shell",
+      "range": {
+        "startLine": 31,
+        "startChar": 38,
+        "endLine": 31,
+        "endChar": 52
+      },
+      "revId": "48773769ea07c18bd9655028bd77ee478f759a12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84dce409_e092a8b6",
+        "filename": "telemetry/telemetry/internal/forwarders/fuchsia_forwarder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1116023
+      },
+      "writtenOn": "2018-07-24T18:58:13Z",
+      "side": 1,
+      "message": "If the device is started, it doesn\u0027t mean that port forwarding is active.",
+      "range": {
+        "startLine": 38,
+        "startChar": 16,
+        "endLine": 38,
+        "endChar": 34
+      },
+      "revId": "48773769ea07c18bd9655028bd77ee478f759a12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51e57889_9d038d12",
+        "filename": "telemetry/telemetry/internal/forwarders/fuchsia_forwarder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1116023
+      },
+      "writtenOn": "2018-07-24T18:58:13Z",
+      "side": 1,
+      "message": "This doesn\u0027t look like something that belongs to a \"Forwarder\". Forwarder should be responsible for forwarding network connections, not for running commands on a remote device.",
+      "range": {
+        "startLine": 52,
+        "startChar": 6,
+        "endLine": 52,
+        "endChar": 17
+      },
+      "revId": "48773769ea07c18bd9655028bd77ee478f759a12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f175fb3_102d5cb9",
+        "filename": "telemetry/telemetry/internal/forwarders/fuchsia_forwarder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1116023
+      },
+      "writtenOn": "2018-07-24T18:58:13Z",
+      "side": 1,
+      "message": "I don\u0027t think we want ForwarderFactory should be responsible for setting up a device. I think this belongs to FuchsiaPlatformBackend.\n\nAlso when creating a device I think we want to use the configuration (address and SSH identity) from the FuchsiaDevice object passed to FuchsiaPlatformBackend.__init__().",
+      "range": {
+        "startLine": 89,
+        "startChar": 10,
+        "endLine": 90,
+        "endChar": 63
+      },
+      "revId": "48773769ea07c18bd9655028bd77ee478f759a12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "183de5f7_6c88e3c8",
         "filename": "telemetry/telemetry/internal/forwarders/fuchsia_forwarder.py",
         "patchSetId": 1
@@ -48,6 +140,144 @@
       "side": 1,
       "message": "Looking a bit more into it my proposed \"FuchsiaInterface\" is probably your \"DeviceTarget\" ? Btw, where is that defined?",
       "parentUuid": "183de5f7_6c88e3c8",
+      "revId": "48773769ea07c18bd9655028bd77ee478f759a12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef39ba17_ef60ab36",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1116023
+      },
+      "writtenOn": "2018-07-24T18:58:13Z",
+      "side": 1,
+      "message": "This option is set with --identity flag. I think we want to rename it to ssh_identity if we want to use it here.\n\nBut note that SSH config that we use to connect to Fuchsia devices contains a reference to the identity file and some other configuration. It\u0027s better to use it here instead of just ssh_identity - it enables SSH persistent connection, which makes things significantly faster. I suggest updating FuchsiaDevice() to take ssh_config instead of ssh_identity and add a new option to pass ssh_config when starting catapult.",
+      "range": {
+        "startLine": 43,
+        "startChar": 42,
+        "endLine": 43,
+        "endChar": 59
+      },
+      "revId": "48773769ea07c18bd9655028bd77ee478f759a12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e544b46f_424f02c0",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1116023
+      },
+      "writtenOn": "2018-07-24T18:58:13Z",
+      "side": 1,
+      "message": "Maybe add a separate options flag for the device IP? Then this class will return a non-empty list when we have a device.",
+      "range": {
+        "startLine": 43,
+        "startChar": 24,
+        "endLine": 43,
+        "endChar": 28
+      },
+      "revId": "48773769ea07c18bd9655028bd77ee478f759a12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c68b5078_d60cf5ea",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1116023
+      },
+      "writtenOn": "2018-07-24T18:58:13Z",
+      "side": 1,
+      "message": "Fuchsia",
+      "range": {
+        "startLine": 77,
+        "startChar": 12,
+        "endLine": 77,
+        "endChar": 18
+      },
+      "revId": "48773769ea07c18bd9655028bd77ee478f759a12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a96e953_6fbddf12",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1116023
+      },
+      "writtenOn": "2018-07-24T18:58:13Z",
+      "side": 1,
+      "message": "Maybe return contents of third_party/fuchsia-sdk/sdk/.hash ?",
+      "range": {
+        "startLine": 80,
+        "startChar": 12,
+        "endLine": 80,
+        "endChar": 52
+      },
+      "revId": "48773769ea07c18bd9655028bd77ee478f759a12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d226add_8249c2a3",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1116023
+      },
+      "writtenOn": "2018-07-24T18:58:13Z",
+      "side": 1,
+      "message": "Is this really used for anything? If not, then maybe keep it non-implemented until we need it.",
+      "range": {
+        "startLine": 93,
+        "startChar": 6,
+        "endLine": 93,
+        "endChar": 16
+      },
+      "revId": "48773769ea07c18bd9655028bd77ee478f759a12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "300b2bcb_c47cb58a",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1116023
+      },
+      "writtenOn": "2018-07-24T18:58:13Z",
+      "side": 1,
+      "message": "We don\u0027t need to copy docs from the interface definition to implementation.",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 7
+      },
       "revId": "48773769ea07c18bd9655028bd77ee478f759a12",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
