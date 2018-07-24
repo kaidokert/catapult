@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d2e337db_b81e104a",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-07-24T16:00:25Z",
+      "side": 1,
+      "message": "this is fine for now, but potentially in the future we might want to calculate things like this dynamically, since we might want average or median or 99th percentile, or something else, and we don\u0027t necessarily want to precalculate all of them for large datasets.",
+      "range": {
+        "startLine": 99,
+        "startChar": 9,
+        "endLine": 100,
+        "endChar": 70
+      },
+      "revId": "d19870e4b8580848605d9b56fb5d1cf4e170d327",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8f4f1037_d2d8f8ac",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-07-24T16:00:25Z",
+      "side": 1,
+      "message": "how about adding e.min to guidValueInfoMap?",
+      "range": {
+        "startLine": 106,
+        "startChar": 12,
+        "endLine": 106,
+        "endChar": 30
+      },
+      "revId": "d19870e4b8580848605d9b56fb5d1cf4e170d327",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
