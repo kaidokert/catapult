@@ -91,6 +91,57 @@
       "revId": "a7eb1347fd501fc9f4a03275c2fb3d340f632471",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37e2176d_b1a00587",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-07-24T15:19:38Z",
+      "side": 1,
+      "message": "nit: metched -\u003e matched",
+      "revId": "a7eb1347fd501fc9f4a03275c2fb3d340f632471",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d2bb502_e876d4c6",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-07-24T15:19:38Z",
+      "side": 1,
+      "message": "This relates to my later comment. We can iterate over sampleValue instead of matchedData and look up the guid-\u003evalue mapping in the guidValueInfo. If we do that, we also don\u0027t need createMatch function.",
+      "revId": "a7eb1347fd501fc9f4a03275c2fb3d340f632471",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77db6c7d_f7414a19",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-07-24T15:19:38Z",
+      "side": 1,
+      "message": "Instead of creating matchedData, could you just lookup the value here. like replace e.matchedValue with guidValueInfo.get(sampleValue.diagnostics[fieldFilter]. If you do this, then we need to iterate over sampleValue  instead of matchedData.",
+      "revId": "a7eb1347fd501fc9f4a03275c2fb3d340f632471",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
