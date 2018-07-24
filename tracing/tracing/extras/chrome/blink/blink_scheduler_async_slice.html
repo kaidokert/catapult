@@ -15,6 +15,9 @@ tr.exportTo('tr.e.blink', function() {
       if (this.title.startsWith('FrameScheduler.')) {
         return 'Frame' + this.id;
       }
+      if (this.title.startsWith('Scheduler.')) {
+        return 'Renderer Scheduler';
+      }
       return undefined;
     }
   }
@@ -23,6 +26,7 @@ tr.exportTo('tr.e.blink', function() {
     categoryParts: [
       'renderer.scheduler',
       'disabled-by-default-renderer.scheduler',
+      'disabled-by-default-renderer.scheduler.debug',
     ]
   });
 
