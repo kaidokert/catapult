@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f1c6eaa1_0693e34a",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1294533
+      },
+      "writtenOn": "2018-07-24T16:20:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "710a72d5_2e2cdf41",
+      "revId": "441fda749b7f8f3d17685450051f6a2141f71c3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "891c17de_fd960607",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "cf8343dd_f6ca0c1e",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1294533
+      },
+      "writtenOn": "2018-07-24T16:20:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "891c17de_fd960607",
+      "revId": "441fda749b7f8f3d17685450051f6a2141f71c3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "04d24016_a313f55a",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
         "patchSetId": 3
@@ -50,6 +86,24 @@
       "revId": "441fda749b7f8f3d17685450051f6a2141f71c3b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f66907a0_eb1b6146",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1294533
+      },
+      "writtenOn": "2018-07-24T16:20:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04d24016_a313f55a",
+      "revId": "441fda749b7f8f3d17685450051f6a2141f71c3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -100,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "fad32f68_99093a5b",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1294533
+      },
+      "writtenOn": "2018-07-24T16:20:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdae37c3_9b84a280",
+      "range": {
+        "startLine": 54,
+        "startChar": 13,
+        "endLine": 54,
+        "endChar": 46
+      },
+      "revId": "441fda749b7f8f3d17685450051f6a2141f71c3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f979414c_85a5fdb8",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
         "patchSetId": 3
@@ -111,6 +189,24 @@
       "writtenOn": "2018-07-24T14:30:22Z",
       "side": 1,
       "message": "do we really need to keep a reference here to the platform_backend? I would propose to remove that.\n\nIf really needed you could expose it as a @property instead.",
+      "revId": "441fda749b7f8f3d17685450051f6a2141f71c3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efb0d1a7_4d0882d7",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1294533
+      },
+      "writtenOn": "2018-07-24T16:20:43Z",
+      "side": 1,
+      "message": "I\u0027ve kept it as a local rather than a member, to prevent it turning into a crazy long line of indirections.",
+      "parentUuid": "f979414c_85a5fdb8",
       "revId": "441fda749b7f8f3d17685450051f6a2141f71c3b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -134,6 +230,24 @@
     },
     {
       "key": {
+        "uuid": "0aba6df6_f826ce62",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1294533
+      },
+      "writtenOn": "2018-07-24T16:20:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b9b4d46_5a779d64",
+      "revId": "441fda749b7f8f3d17685450051f6a2141f71c3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "81217395_9b271dd5",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
         "patchSetId": 3
@@ -148,6 +262,24 @@
       "revId": "441fda749b7f8f3d17685450051f6a2141f71c3b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4cce709d_7cd3f82f",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1294533
+      },
+      "writtenOn": "2018-07-24T16:20:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81217395_9b271dd5",
+      "revId": "441fda749b7f8f3d17685450051f6a2141f71c3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
