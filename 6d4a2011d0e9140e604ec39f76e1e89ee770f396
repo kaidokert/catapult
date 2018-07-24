@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d2293b81_79a3e869",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-24T14:46:02Z",
+      "side": 1,
+      "message": "to make this more general, make the class receive the filepath as argument; and let the client figure out the location of the csv file.",
+      "revId": "6d4a2011d0e9140e604ec39f76e1e89ee770f396",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9c50803_939c48cb",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-24T14:46:02Z",
+      "side": 1,
+      "message": "nit: just for a bit of code organization, let\u0027s move most of this into a private _LoadCsvTable method to be called by this constructor.",
+      "revId": "6d4a2011d0e9140e604ec39f76e1e89ee770f396",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd45ff9d_ef93459b",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-24T14:46:02Z",
+      "side": 1,
+      "message": "a table with a header but no rows is still empty, and your code would not catch this.",
+      "revId": "6d4a2011d0e9140e604ec39f76e1e89ee770f396",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d8da04f_8c31eca6",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-24T14:46:02Z",
+      "side": 1,
+      "message": "should these methods raise (maybe?) a LookUpError if no matching row is found?",
+      "revId": "6d4a2011d0e9140e604ec39f76e1e89ee770f396",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19b465d1_016d265f",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-24T14:46:02Z",
+      "side": 1,
+      "message": "This should describe what the method does, not which clients use it.",
+      "revId": "6d4a2011d0e9140e604ec39f76e1e89ee770f396",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9dadac4d_c0190ccf",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-24T14:46:02Z",
+      "side": 1,
+      "message": "nit: rise -\u003e risen\n\n(I think? not super sure)",
+      "revId": "6d4a2011d0e9140e604ec39f76e1e89ee770f396",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e49c0a7_636e9a18",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-24T14:46:02Z",
+      "side": 1,
+      "message": "nit: move this one closer to the top of the file (before MilestoneInfo).",
+      "revId": "6d4a2011d0e9140e604ec39f76e1e89ee770f396",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef411512_16b077c1",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-24T14:46:02Z",
+      "side": 1,
+      "message": "also move this closer to the top, close to the other date parsing function.\n\nAdd a docstring explaining this works well as a type\u003d argument for an ArgumentParser.",
+      "revId": "6d4a2011d0e9140e604ec39f76e1e89ee770f396",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9464e705_ff4daf6b",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-24T14:46:02Z",
+      "side": 1,
+      "message": "nit: update the class name.",
+      "revId": "6d4a2011d0e9140e604ec39f76e1e89ee770f396",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b27584c_ad6a10c6",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-24T14:46:02Z",
+      "side": 1,
+      "message": "nit: milestone_info_table -\u003e milestone_info.",
+      "revId": "6d4a2011d0e9140e604ec39f76e1e89ee770f396",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
