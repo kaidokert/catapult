@@ -16,6 +16,24 @@
       "revId": "c9111f68cac95234cc8ffb83ae965fd2c6dd8153",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a2ea34b_4759d3f3",
+        "filename": "common/py_utils/py_utils/refactor/annotated_symbol/reference.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-24T19:05:17Z",
+      "side": 1,
+      "message": "Think its defined by one of the base classes, snippet.Symbol, guess pylint doesn\u0027t follow those through",
+      "parentUuid": "3d8c5119_12790cf4",
+      "revId": "c9111f68cac95234cc8ffb83ae965fd2c6dd8153",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
