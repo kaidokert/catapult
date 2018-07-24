@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d8c5119_12790cf4",
+        "filename": "common/py_utils/py_utils/refactor/annotated_symbol/reference.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-07-24T18:42:07Z",
+      "side": 1,
+      "message": "this probably can be fixed by defining self._children in the __init__ method, I think",
+      "revId": "c9111f68cac95234cc8ffb83ae965fd2c6dd8153",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
