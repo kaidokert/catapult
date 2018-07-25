@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "9c426966_3e0e802e",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-25T13:24:10Z",
+      "side": 1,
+      "message": "update docstring",
+      "revId": "45b38969c9f32d0402461b22c0f8102df986f32d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf79887b_199f6b6f",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-25T13:24:10Z",
+      "side": 1,
+      "message": "this still needs updating?",
+      "revId": "45b38969c9f32d0402461b22c0f8102df986f32d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ea14b577_f5a465bf",
         "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
         "patchSetId": 4
@@ -13,6 +47,24 @@
       "writtenOn": "2018-07-25T10:34:52Z",
       "side": 1,
       "message": "this seems very fragile to me. How can we be sure that location ./build/fuschia always apply?",
+      "revId": "45b38969c9f32d0402461b22c0f8102df986f32d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb0fc97c_e0482281",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-25T13:24:10Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "ea14b577_f5a465bf",
       "revId": "45b38969c9f32d0402461b22c0f8102df986f32d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -47,6 +99,23 @@
       "writtenOn": "2018-07-25T10:34:52Z",
       "side": 1,
       "message": "same here",
+      "revId": "45b38969c9f32d0402461b22c0f8102df986f32d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab418322_bc3e9797",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-25T13:24:10Z",
+      "side": 1,
+      "message": "After https://chromium-review.googlesource.com/c/catapult/+/1138321 lands, you won\u0027t need a forwarder any more.",
       "revId": "45b38969c9f32d0402461b22c0f8102df986f32d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
