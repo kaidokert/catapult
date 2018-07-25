@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce3fb8f9_4a2dad4b",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-25T13:52:53Z",
+      "side": 1,
+      "message": "nit: I think you can skip the `dest` arg, the default is the same as the value you are providing.",
+      "revId": "3101421116125903d9b6a99b609e9ef3c1203e1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "904c3a02_37d2466c",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-25T13:52:53Z",
+      "side": 1,
+      "message": "\u0027Default is set to false.\u0027 sounds like an implementation detail that might be more confusing to users (false \u003d\u003d no field trials?). Just remove that bit from the help, and I think the rest makes it clear what the flag does. :)",
+      "revId": "3101421116125903d9b6a99b609e9ef3c1203e1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
