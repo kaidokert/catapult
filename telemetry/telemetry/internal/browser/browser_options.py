@@ -98,6 +98,14 @@ class BrowserFinderOptions(optparse.Values):
         default=socket.getservbyname('ssh'),
         dest='cros_remote_ssh_port',
         help='The SSH port of the remote ChromeOS device (requires --remote).')
+    group.add_option(
+        '--run-without-field-trials',
+        action='store_true',
+        dest='run_without_field_trials',
+        default=False,
+        help='Run the tests without adding field trial configuration. Set this '
+             'flag if you want to run benchmark for older version of Chrome. '
+             'Default is set to false.')
     identity = None
     testing_rsa = os.path.join(
         util.GetTelemetryThirdPartyDir(), 'chromite', 'ssh_keys', 'testing_rsa')
