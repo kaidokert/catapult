@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "07287af0_2f2e08fc",
+        "filename": "tracing/tracing/extras/chrome/blink/blink_scheduler_async_slice.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1150969
+      },
+      "writtenOn": "2018-07-25T13:23:11Z",
+      "side": 1,
+      "message": "These hard-coded numbers are rather hard to read or to change. Could we add a small helper function here?\n\nfunction dropPrefix(string, prefix) {\n  if (string.startsWith(prefix))\n    return string.substring(prefix.length);\n  return string;\n}\n\nAlso it might be a good idea to prepend a couple of whitespaces to the the string to visually highlight the grouping.",
+      "range": {
+        "startLine": 26,
+        "startChar": 36,
+        "endLine": 26,
+        "endChar": 38
+      },
+      "revId": "e958f41e34dd1c14b8f79bdbde9b71362af5bbf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
