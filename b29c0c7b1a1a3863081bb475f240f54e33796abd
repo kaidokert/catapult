@@ -22,6 +22,30 @@
       "revId": "b29c0c7b1a1a3863081bb475f240f54e33796abd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16b2662a_406dcec5",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-25T19:44:04Z",
+      "side": 1,
+      "message": "Yes, they\u0027re the only way afaict to see which test suites are causing OOM.",
+      "parentUuid": "7133778a_8b825379",
+      "range": {
+        "startLine": 51,
+        "startChar": 2,
+        "endLine": 51,
+        "endChar": 9
+      },
+      "revId": "b29c0c7b1a1a3863081bb475f240f54e33796abd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
