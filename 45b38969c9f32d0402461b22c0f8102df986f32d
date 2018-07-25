@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ea14b577_f5a465bf",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-07-25T10:34:52Z",
+      "side": 1,
+      "message": "this seems very fragile to me. How can we be sure that location ./build/fuschia always apply?",
+      "revId": "45b38969c9f32d0402461b22c0f8102df986f32d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a0b2174_2e86414b",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-07-25T10:34:52Z",
+      "side": 1,
+      "message": "Is this valid to assume?",
+      "revId": "45b38969c9f32d0402461b22c0f8102df986f32d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d079bff0_a9915307",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-07-25T10:34:52Z",
+      "side": 1,
+      "message": "same here",
+      "revId": "45b38969c9f32d0402461b22c0f8102df986f32d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
