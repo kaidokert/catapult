@@ -33,6 +33,23 @@
       "revId": "e964bdcc733277894142a192dee681285619702f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90c461cd_3c76e398",
+        "filename": "dashboard/dashboard/models/histogram.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-07-25T03:16:38Z",
+      "side": 1,
+      "message": "Why does this need to be an option?",
+      "revId": "e964bdcc733277894142a192dee681285619702f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
