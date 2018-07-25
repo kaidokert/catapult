@@ -1,0 +1,208 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d02ab5d0_031c3ddd",
+        "filename": "dashboard/bin/deploy_v2spa",
+        "patchSetId": 10
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-25T18:55:16Z",
+      "side": 1,
+      "message": "It looks like this script requires these env vars to be configured this way, so it won\u0027t work if callers have set them to different paths. Is there a reason not to just say os.environ[...] \u003d ... without the IfNeeded branch?",
+      "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe862170_3bb4df01",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-25T18:55:16Z",
+      "side": 1,
+      "message": "That\u0027s a good idea!\ndebounce() is a method on ElementBase that stores debounce jobs on the element, but they should be stored in redux instead.\nWant to move ElementBase.debounce() to ElementBase.actions in a separate CL?",
+      "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed34cbf3_33604094",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-25T18:55:16Z",
+      "side": 1,
+      "message": "Can you copy the comment from timeseries-cache.js about why this is necessary?",
+      "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24e69076_68ae9fb4",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-25T18:55:16Z",
+      "side": 1,
+      "message": "Let\u0027s clean out notes like these before committing? :-)",
+      "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13190249_fbbcf372",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 594,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-25T18:55:16Z",
+      "side": 1,
+      "message": "Can you make this function signature consistent with actions even though it isn\u0027t being dispatched? We might want to wrap it in the same way as actions are wrapped, which relies on a consistent signature.\n(statePath, lineDescriptor) \u003d\u003e async(dispatch, getState) \u003d\u003e {}",
+      "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69460e29_1008af61",
+        "filename": "dashboard/dashboard/spa/sw-utils/channel.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-25T18:55:16Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem worth creating a file for. Are you planning to expand it, or can it be merged into another file?",
+      "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c665035b_cc03fbd8",
+        "filename": "dashboard/dashboard/spa/sw-utils/mark.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-25T18:55:16Z",
+      "side": 1,
+      "message": "Should Marks be buffered in case some of them end before the page sends the configuration?",
+      "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8c0259d_0dedd8b7",
+        "filename": "dashboard/dashboard/spa/sw-utils/mark.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-25T18:55:16Z",
+      "side": 1,
+      "message": "This seems less robust than tr.b.Timing.mark\u0027s way of measuring the duration, which uses simple counter-based GUIDs to ensure that marks have unique names. If we need to add an async await call (e.g. to hash a string or look something up in idb), then the last measure by this name might not be the intended measure.",
+      "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dfe553ea_90109f4b",
+        "filename": "dashboard/dashboard/spa/sw-utils/mark.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-25T18:55:16Z",
+      "side": 1,
+      "message": "Can you define constants for these string keys instead of comments?",
+      "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6e97355_d05f4a0a",
+        "filename": "dashboard/dashboard/spa/webpack.config.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-25T18:55:16Z",
+      "side": 1,
+      "message": "How much does uglify save versus the size of the source map?",
+      "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37bbcebb_43289afb",
+        "filename": "dashboard/v2spa.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-25T18:55:16Z",
+      "side": 1,
+      "message": "Would it be possible to name the generated file \"service-worker.min.js\" without the \"webpack\" directory?",
+      "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fc40fda_c978d432",
+        "filename": "dashboard/v2spa_dev.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-25T18:55:16Z",
+      "side": 1,
+      "message": "Is this necessary? It looks like index.html correctly refers to /dashboard/spa/index.js.",
+      "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
