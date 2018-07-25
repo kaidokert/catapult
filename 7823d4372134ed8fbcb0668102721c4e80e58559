@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b4169f41_a0e6f377",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 34
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-25T10:18:44Z",
+      "side": 1,
+      "message": "just to make sure I understand correctly, this will return alerts on the test_paths from the report?",
+      "revId": "7823d4372134ed8fbcb0668102721c4e80e58559",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad9049e8_ea6ebb3b",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 34
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-25T10:18:44Z",
+      "side": 1,
+      "message": "Maybe add an example? I\u0027m still not super sure.\n\nI find it slightly confusing that the same end-point is used to both to read and create reports. Maybe that\u0027s fine, but could we at least separate in the documentation these two cases in separate paragraphs?",
+      "revId": "7823d4372134ed8fbcb0668102721c4e80e58559",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
