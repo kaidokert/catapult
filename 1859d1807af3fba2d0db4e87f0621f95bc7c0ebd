@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ed5ecdc7_082f5e41",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-25T08:21:11Z",
+      "side": 1,
+      "message": "super nit: two spaces between the code and the comment\nhttps://github.com/google/styleguide/blob/gh-pages/pyguide.md#385-block-and-inline-comments",
+      "revId": "1859d1807af3fba2d0db4e87f0621f95bc7c0ebd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da436934_fad13fcf",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-25T08:21:11Z",
+      "side": 1,
+      "message": "super nit again :)",
+      "revId": "1859d1807af3fba2d0db4e87f0621f95bc7c0ebd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
