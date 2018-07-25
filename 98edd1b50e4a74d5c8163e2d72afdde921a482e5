@@ -105,6 +105,24 @@
       "revId": "98edd1b50e4a74d5c8163e2d72afdde921a482e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67642f31_76baf98d",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1604,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2018-07-25T17:38:19Z",
+      "side": 1,
+      "message": "It looks like it was an issue with single quoting. By removing the call to single quote the command, and using shell\u003dTrue to prevent RunShellCommand from automatically quoting it, everything works.",
+      "parentUuid": "794cac8f_47c95ee0",
+      "revId": "98edd1b50e4a74d5c8163e2d72afdde921a482e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
