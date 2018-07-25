@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "695a3d11_bcad1167",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-25T14:32:26Z",
+      "side": 1,
+      "message": "Actually, looking at the double negation you end up with in the other CL, I would suggest to set:\n\n  \u0027--run-without-field-trials\u0027,\n  action\u003d\u0027store_false\u0027, dest\u003d\u0027include_field_trials\u0027, default\u003dTrue,\n\nSo we include field trials by default, and set this to false when you supply the flag.",
+      "parentUuid": "ce3fb8f9_4a2dad4b",
+      "revId": "3101421116125903d9b6a99b609e9ef3c1203e1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "904c3a02_37d2466c",
         "filename": "telemetry/telemetry/internal/browser/browser_options.py",
         "patchSetId": 5
