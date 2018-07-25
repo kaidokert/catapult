@@ -138,6 +138,19 @@ def _RunCommand(args):
   elif _IsRunningOnSwarming():
     gsutil_env = os.environ.copy()
 
+  def _pretty(e):
+    for k, v in e.iteritems():
+      print '  - %s -> %s' % (k, v)
+
+  print 'TEST'
+  print _pretty(os.environ)
+  print
+  print 'gsutil_env'
+  print _pretty(gsutil_env)
+  print
+
+  subprocess.call([_GSUTIL_PATH, 'version', '-l'])
+
   if os.name == 'nt':
     # If Windows, prepend python. Python scripts aren't directly executable.
     args = [sys.executable, _GSUTIL_PATH] + args
@@ -150,6 +163,9 @@ def _RunCommand(args):
     raise CloudStorageIODisabled(
         "Environment variable DISABLE_CLOUD_STORAGE_IO is set to 1. "
         'Command %s is not allowed to run' % args)
+
+  print
+  print args
 
   gsutil = subprocess.Popen(args, stdout=subprocess.PIPE,
                             stderr=subprocess.PIPE, env=gsutil_env)
