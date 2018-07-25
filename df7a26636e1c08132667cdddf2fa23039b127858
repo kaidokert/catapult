@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "322517e9_01a806aa",
+        "filename": "experimental/v8_tools/graph_data.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-07-25T15:50:10Z",
+      "side": 1,
+      "message": "probably best to use different parameter names here, e.g. a and b",
+      "range": {
+        "startLine": 145,
+        "startChar": 34,
+        "endLine": 145,
+        "endChar": 38
+      },
+      "revId": "df7a26636e1c08132667cdddf2fa23039b127858",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed3ece32_f0299f4f",
+        "filename": "experimental/v8_tools/metrics_viewer.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-07-25T15:50:10Z",
+      "side": 1,
+      "message": "might be that we just want a straight-up plotCumulativeFrequency() method here, since a whole bunch of logic will be different if it\u0027s e.g. a histogram.",
+      "range": {
+        "startLine": 52,
+        "startChar": 13,
+        "endLine": 52,
+        "endChar": 20
+      },
+      "revId": "df7a26636e1c08132667cdddf2fa23039b127858",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
