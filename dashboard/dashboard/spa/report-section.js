@@ -517,6 +517,13 @@ tr.exportTo('cp', () => {
       let rootState = getState();
       let state = Polymer.Path.get(rootState, statePath);
       let testSuites = [];
+
+      // TODO(Sam): Find how this action is being dispatched without both a min
+      // or max revision. Once the source is found, remove this.
+      if (!state.minRevision || !state.maxRevision) {
+        return;
+      }
+
       if (state.source.selectedOptions.includes(ReportSection.CREATE)) {
         testSuites = await cp.TeamFilter.get(rootState.teamName).testSuites(
             await cp.ReadTestSuites()(dispatch, getState));
