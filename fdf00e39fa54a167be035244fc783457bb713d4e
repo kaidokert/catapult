@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bb2cf947_7c3ccc83",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-25T12:00:30Z",
+      "side": 1,
+      "message": "no need to define this, it\u0027s already a Python built-in exception:\nhttps://docs.python.org/2/library/exceptions.html#exception-hierarchy",
+      "revId": "fdf00e39fa54a167be035244fc783457bb713d4e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e3fa74b_ca8d059d",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-25T12:00:30Z",
+      "side": 1,
+      "message": "this would consume the whole file just to check the length, and then you won\u0027t have any rows to read!\n\nInstead I propose:\n- remove the checks to see if the file exists and is not empty (if the file does not exist we\u0027ll get an exception when trying to open it, which is also fine).\n- remove the len(list(reader)) check, just return (or collect) the list of parsed rows.\n- *then*, once you have the list of rows, complain if it\u0027s empty. Also here it\u0027s a bit strange to complain with a CloudDownloadFailed, as we didn\u0027t fail trying to download anything. Maybe try to pick a more relevant built-in exception, or just add a simple assert, that will be enough for now.\n\nThat will make the code simpler and easier to read.",
+      "revId": "fdf00e39fa54a167be035244fc783457bb713d4e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6ffaf29_8d669923",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-25T12:00:30Z",
+      "side": 1,
+      "message": "nit: patch -\u003e minor versions (?)\n\nsorry, I didn\u0027t see this earlier :)",
+      "revId": "fdf00e39fa54a167be035244fc783457bb713d4e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
