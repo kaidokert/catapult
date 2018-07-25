@@ -44,6 +44,7 @@ def main(args):
   binary_manager.InitDependencyManager([])
   options = browser_options.BrowserFinderOptions()
   options.browser_options.extra_browser_args.add('--headless')
+  options.browser_options.extra_browser_args.add('--start-xvfb')
   parser = options.CreateParser(usage="Run snap-it's unittests")
   parser.parse_args(args)
   return RunSnapItUnittest(options)
