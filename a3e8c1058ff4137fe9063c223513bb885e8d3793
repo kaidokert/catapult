@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "50f5ef4e_753a4266",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/patch-job-fab.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-25T20:59:21Z",
+      "side": 1,
+      "message": "file a bug + nextaction?",
+      "range": {
+        "startLine": 84,
+        "startChar": 13,
+        "endLine": 84,
+        "endChar": 17
+      },
+      "revId": "a3e8c1058ff4137fe9063c223513bb885e8d3793",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
