@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "40558999_da854425",
+        "filename": "dashboard/bin/deploy_v2spa",
+        "patchSetId": 10
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-25T20:52:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d02ab5d0_031c3ddd",
+      "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fe862170_3bb4df01",
         "filename": "dashboard/dashboard/spa/chart-timeseries.js",
         "patchSetId": 10
@@ -33,6 +51,24 @@
       "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23c72bee_75965e90",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-25T20:52:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fe862170_3bb4df01",
+      "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "0a5d450a_b79288b8",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-25T20:52:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed34cbf3_33604094",
+      "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "24e69076_68ae9fb4",
         "filename": "dashboard/dashboard/spa/chart-timeseries.js",
         "patchSetId": 10
@@ -67,6 +121,24 @@
       "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e924e4b_25e824ea",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-25T20:52:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24e69076_68ae9fb4",
+      "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "878ce666_f10795d7",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 594,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-25T20:52:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13190249_fbbcf372",
+      "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "69460e29_1008af61",
         "filename": "dashboard/dashboard/spa/sw-utils/channel.js",
         "patchSetId": 10
@@ -98,6 +188,24 @@
       "writtenOn": "2018-07-25T18:55:16Z",
       "side": 1,
       "message": "This doesn\u0027t seem worth creating a file for. Are you planning to expand it, or can it be merged into another file?",
+      "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7df904ca_26fb8b52",
+        "filename": "dashboard/dashboard/spa/sw-utils/channel.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-25T20:52:52Z",
+      "side": 1,
+      "message": "I created a separate file for an instance of a BroadcastChannel to act as a simpler singleton that works between files. I thought this would help if we later decide to send more to/from the Service Worker. Now that I think of it, it would cleaner to delegate `service-worker.js` for all communication with the main application. I\u0027ll remove this file.",
+      "parentUuid": "69460e29_1008af61",
       "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "5617dd4e_5b7d56ef",
+        "filename": "dashboard/dashboard/spa/sw-utils/mark.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-25T20:52:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c665035b_cc03fbd8",
+      "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f8c0259d_0dedd8b7",
         "filename": "dashboard/dashboard/spa/sw-utils/mark.js",
         "patchSetId": 10
@@ -135,6 +261,24 @@
       "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb00b9a7_bdf924b1",
+        "filename": "dashboard/dashboard/spa/sw-utils/mark.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-25T20:52:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8c0259d_0dedd8b7",
+      "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "db6d78d7_e110415f",
+        "filename": "dashboard/dashboard/spa/sw-utils/mark.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-25T20:52:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfe553ea_90109f4b",
+      "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a6e97355_d05f4a0a",
         "filename": "dashboard/dashboard/spa/webpack.config.js",
         "patchSetId": 10
@@ -166,6 +328,24 @@
       "writtenOn": "2018-07-25T18:55:16Z",
       "side": 1,
       "message": "How much does uglify save versus the size of the source map?",
+      "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43f50153_7db57f07",
+        "filename": "dashboard/dashboard/spa/webpack.config.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-25T20:52:52Z",
+      "side": 1,
+      "message": "See webpack\u0027s output:\n```\nwebpack v4.16.1\n\n0d9f2f1b24445ca2aab3\n  size     name            module                                         status\n  7.88 kB  0               ../third_party/idb/idb.js                      built\n  26.3 kB  1               ./dashboard/spa/service-worker.js + 4 modules  built\n\n  size     name            asset                                          status\n  14.4 kB  service-worker  service-worker.js                              emitted\n  56.7 kB  service-worker  service-worker.js.map                          emitted\n\n  Δt 516ms\n```\n\nI plan on removing the source map before submitting this CL to the commit queue. It\u0027s helpful for debugging while I\u0027m changing things. I can add a flag to the deploy script; is that something you would like to have?",
+      "parentUuid": "a6e97355_d05f4a0a",
       "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -189,6 +369,24 @@
     },
     {
       "key": {
+        "uuid": "d56e3f1d_72a171f9",
+        "filename": "dashboard/v2spa.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-25T20:52:52Z",
+      "side": 1,
+      "message": "It is possible. I was doing it to prevent the AppEngine upload to fail if Webpack failed.",
+      "parentUuid": "37bbcebb_43289afb",
+      "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9fc40fda_c978d432",
         "filename": "dashboard/v2spa_dev.yaml",
         "patchSetId": 10
@@ -203,6 +401,24 @@
       "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4969bf4_17dec92d",
+        "filename": "dashboard/v2spa_dev.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-07-25T20:52:52Z",
+      "side": 1,
+      "message": "Nice catch.",
+      "parentUuid": "9fc40fda_c978d432",
+      "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
