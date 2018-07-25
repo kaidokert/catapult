@@ -41,6 +41,7 @@ def RunSnapItUnittest(finder_options):
 
 
 def main(args):
+  os.environ['DISPLAY'] = ':0.0'
   binary_manager.InitDependencyManager([])
   options = browser_options.BrowserFinderOptions()
   options.browser_options.extra_browser_args.add('--headless')
