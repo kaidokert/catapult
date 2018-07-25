@@ -33,6 +33,93 @@
       "revId": "7823d4372134ed8fbcb0668102721c4e80e58559",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a859156_cf4ed2f4",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 34
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-25T15:07:29Z",
+      "side": 1,
+      "message": "Yeah I\u0027d lean towards just making it more explicit with /api/report/modify, etc.",
+      "parentUuid": "ad9049e8_ea6ebb3b",
+      "revId": "7823d4372134ed8fbcb0668102721c4e80e58559",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4973c761_5a3cec69",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 34
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-25T15:07:29Z",
+      "side": 1,
+      "message": "This should probably live in report_template?",
+      "range": {
+        "startLine": 22,
+        "startChar": 4,
+        "endLine": 22,
+        "endChar": 30
+      },
+      "revId": "7823d4372134ed8fbcb0668102721c4e80e58559",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00a62d90_21d9a0a4",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 34
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-25T15:07:29Z",
+      "side": 1,
+      "message": "can you de-nest these comprehensions please, i have trouble with them",
+      "range": {
+        "startLine": 74,
+        "startChar": 21,
+        "endLine": 74,
+        "endChar": 24
+      },
+      "revId": "7823d4372134ed8fbcb0668102721c4e80e58559",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f28845e_689010f6",
+        "filename": "dashboard/dashboard/api/report.py",
+        "patchSetId": 34
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-25T15:07:29Z",
+      "side": 1,
+      "message": "Really wonder if we should go ahead and make an explicit exception instead of the general assertionerror, feel like you\u0027ve been catching these a lot lately.",
+      "range": {
+        "startLine": 51,
+        "startChar": 11,
+        "endLine": 51,
+        "endChar": 25
+      },
+      "revId": "7823d4372134ed8fbcb0668102721c4e80e58559",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
