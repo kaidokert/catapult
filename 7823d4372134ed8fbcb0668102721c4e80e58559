@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "feed1df7_46db3dbe",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 34
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-25T20:51:50Z",
+      "side": 1,
+      "message": "Yep, clarified.",
+      "parentUuid": "b4169f41_a0e6f377",
+      "revId": "7823d4372134ed8fbcb0668102721c4e80e58559",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ad9049e8_ea6ebb3b",
         "filename": "dashboard/dashboard/api/README.md",
         "patchSetId": 34
@@ -54,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "31b631d8_55371d9b",
+        "filename": "dashboard/dashboard/api/README.md",
+        "patchSetId": 34
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-25T20:51:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a859156_cf4ed2f4",
+      "revId": "7823d4372134ed8fbcb0668102721c4e80e58559",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4973c761_5a3cec69",
         "filename": "dashboard/dashboard/api/alerts.py",
         "patchSetId": 34
@@ -74,6 +110,30 @@
       "revId": "7823d4372134ed8fbcb0668102721c4e80e58559",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e8f6da5_77a262cd",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 34
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-25T20:51:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4973c761_5a3cec69",
+      "range": {
+        "startLine": 22,
+        "startChar": 4,
+        "endLine": 22,
+        "endChar": 30
+      },
+      "revId": "7823d4372134ed8fbcb0668102721c4e80e58559",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -100,6 +160,30 @@
     },
     {
       "key": {
+        "uuid": "a2a38d20_77b5e372",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 34
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-25T20:51:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00a62d90_21d9a0a4",
+      "range": {
+        "startLine": 74,
+        "startChar": 21,
+        "endLine": 74,
+        "endChar": 24
+      },
+      "revId": "7823d4372134ed8fbcb0668102721c4e80e58559",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1f28845e_689010f6",
         "filename": "dashboard/dashboard/api/report.py",
         "patchSetId": 34
@@ -111,6 +195,30 @@
       "writtenOn": "2018-07-25T15:07:29Z",
       "side": 1,
       "message": "Really wonder if we should go ahead and make an explicit exception instead of the general assertionerror, feel like you\u0027ve been catching these a lot lately.",
+      "range": {
+        "startLine": 51,
+        "startChar": 11,
+        "endLine": 51,
+        "endChar": 25
+      },
+      "revId": "7823d4372134ed8fbcb0668102721c4e80e58559",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb351eeb_2df26399",
+        "filename": "dashboard/dashboard/api/report.py",
+        "patchSetId": 34
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-25T20:51:50Z",
+      "side": 1,
+      "message": "https://bugs.chromium.org/p/chromium/issues/detail?id\u003d853289\nAny reason not to wait for v2spa to launch and deprecate the old code first?",
+      "parentUuid": "1f28845e_689010f6",
       "range": {
         "startLine": 51,
         "startChar": 11,
