@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/dashboard/spa/timeseries-cache.html">
+<link rel="import" href="/tracing/core/test_utils.html">
+<script type="module" src="/dashboard/spa/sw-utils/idb.js"></script>
+<script type="module">
+'use strict';
+import idb from './idb';
+tr.exportTo('idb', () => idb);
+</script>
+
+<script>
+'use strict';
+
+function createRequest({
+  // Required
+  testSuite,     // string
+  measurement,   // string
+  bot,           // string
+  statistic,     // string
+  columns,       // [string]
+  levelOfDetail, // cp.LEVEL_OF_DETAIL
+
+  // Optional
+  testCase,      // string
+  buildType,     // string
+  minRevision,   // number
+  maxRevision,   // number
+}) {
+  if (!testSuite || !measurement || !bot || !statistic ||
+      !Array.isArray(columns) || !columns.length || !levelOfDetail) {
+    throw new Error('Required arguments are not all specified');
+  }
+
+  const req = new Request('/api/timeseries2');
+}
+
+tr.b.unittest.testSuite(function() {
+  test('it_writes_empty_data', function() {
+    assert.deepEqual();
+  });
+});
+</script>
