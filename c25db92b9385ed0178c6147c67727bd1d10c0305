@@ -34,6 +34,24 @@
       "revId": "c25db92b9385ed0178c6147c67727bd1d10c0305",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdc3edbf_0c8e130d",
+        "filename": "experimental/alert_configs/memory.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-26T13:15:35Z",
+      "side": 1,
+      "message": "Sure! Done.",
+      "parentUuid": "a697d3b5_93da5ecd",
+      "revId": "c25db92b9385ed0178c6147c67727bd1d10c0305",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
