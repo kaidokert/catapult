@@ -16,6 +16,24 @@
       "revId": "42016a47fa2b5e8b2bdb90615385a67d16589499",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "184f28e2_01d05255",
+        "filename": "devil/devil/android/device_errors.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-26T13:46:45Z",
+      "side": 0,
+      "message": "pylint suggests replacing range(len(..)) with enumerate(..); but here we don\u0027t even need that.",
+      "parentUuid": "6b2cd416_8032d730",
+      "revId": "42016a47fa2b5e8b2bdb90615385a67d16589499",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
