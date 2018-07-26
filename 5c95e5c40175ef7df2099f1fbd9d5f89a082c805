@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a0054563_2e1d6bf8",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-26T17:43:35Z",
+      "side": 1,
+      "message": "is this different than the alias info in bot_configurations that dave added?",
+      "revId": "5c95e5c40175ef7df2099f1fbd9d5f89a082c805",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88e7c4bd_40a2e501",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-26T17:43:35Z",
+      "side": 1,
+      "message": "would it be simpler to just ToTestPathsAsync() + [TestDescriptorWithBotAliasChanged.ToTestPathsAsync() for alias in aliases]?",
+      "range": {
+        "startLine": 238,
+        "startChar": 4,
+        "endLine": 238,
+        "endChar": 14
+      },
+      "revId": "5c95e5c40175ef7df2099f1fbd9d5f89a082c805",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
