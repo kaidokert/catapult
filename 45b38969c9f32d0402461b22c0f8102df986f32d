@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2aae03d1_8ef64ead",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1279964
+      },
+      "writtenOn": "2018-07-26T17:06:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c426966_3e0e802e",
+      "revId": "45b38969c9f32d0402461b22c0f8102df986f32d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cf79887b_199f6b6f",
         "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
         "patchSetId": 4
@@ -33,6 +51,24 @@
       "revId": "45b38969c9f32d0402461b22c0f8102df986f32d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d26a7f4_59e42912",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1279964
+      },
+      "writtenOn": "2018-07-26T17:06:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf79887b_199f6b6f",
+      "revId": "45b38969c9f32d0402461b22c0f8102df986f32d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "06ec86e0_8273d260",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1279964
+      },
+      "writtenOn": "2018-07-26T17:06:35Z",
+      "side": 1,
+      "message": "We can\u0027t be, really. I\u0027ve altered it so it calculates the location based on the containing file\u0027s location, but it\u0027s still brittle w.r.t. the general structure of the repositories. If Catapult is ever not explicitly in the chromium repository, it\u0027ll probably break. That said, it\u0027s unlikely that those two paths will change in a way that doesn\u0027t get noticed. I\u0027ve also added an assertion that makes sure we do at least make it to a directory called \u0027src\u0027.",
+      "parentUuid": "fb0fc97c_e0482281",
+      "revId": "45b38969c9f32d0402461b22c0f8102df986f32d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8a0b2174_2e86414b",
         "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
         "patchSetId": 4
@@ -85,6 +139,24 @@
       "revId": "45b38969c9f32d0402461b22c0f8102df986f32d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85abd63f_a8bc8588",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1279964
+      },
+      "writtenOn": "2018-07-26T17:06:35Z",
+      "side": 1,
+      "message": "It\u0027s only use is guarded by a check against options.remote, which would be more likely to provide a valid IP address. Currently, *42.64 is the static IP address that we\u0027re instructed to set up Fuchsia hardware with when using the provided Edge Routers.\n\nI\u0027ve refactored it to use the netaddr utility in the fuchsia-sdk. It\u0027s not a guarantee, and if netaddr fails to run, it still defaults to this IP, but it should be nicer for dynamic discovery.",
+      "parentUuid": "8a0b2174_2e86414b",
+      "revId": "45b38969c9f32d0402461b22c0f8102df986f32d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -105,6 +177,24 @@
     },
     {
       "key": {
+        "uuid": "2937b1cd_3fedb537",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1279964
+      },
+      "writtenOn": "2018-07-26T17:06:35Z",
+      "side": 1,
+      "message": "In general, yes, that path is more fixed than the device IP might be, but its usage is also guarded by a check into the options object in FindAllAvailableDevices, and the existence of the path is also ensured before it is used to construct a FuchsiaDevice. This path is also less likely to change as it\u0027s the default fuchsia output directory for chrome.\n\nI have refactored it to be based on this file\u0027s location, though, and not the CWD, so it should be somewhat less fragile.",
+      "parentUuid": "d079bff0_a9915307",
+      "revId": "45b38969c9f32d0402461b22c0f8102df986f32d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ab418322_bc3e9797",
         "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
         "patchSetId": 4
@@ -119,6 +209,24 @@
       "revId": "45b38969c9f32d0402461b22c0f8102df986f32d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3cdfe48_1237184a",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1279964
+      },
+      "writtenOn": "2018-07-26T17:06:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ab418322_bc3e9797",
+      "revId": "45b38969c9f32d0402461b22c0f8102df986f32d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
