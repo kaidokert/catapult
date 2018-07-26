@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "f92abdb3_d6e2502a",
+        "filename": "dashboard/dashboard/models/histogram.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-26T20:37:29Z",
+      "side": 1,
+      "message": "Oh, if there\u0027s only one per bot+suite, then I think it\u0027s a good trade-off to have this additional model. Thanks for clarifying!",
+      "parentUuid": "31823e75_b3d80b6e",
+      "revId": "e964bdcc733277894142a192dee681285619702f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "90c461cd_3c76e398",
         "filename": "dashboard/dashboard/models/histogram.py",
         "patchSetId": 18
