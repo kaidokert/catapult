@@ -4,9 +4,11 @@
 
 import unittest
 
-from dashboard.common import stored_object
 from dashboard.common import descriptor
+from dashboard.common import namespaced_stored_object
+from dashboard.common import stored_object
 from dashboard.common import testing_common
+from dashboard.pinpoint.models import bot_configurations
 
 
 class DescriptorTest(testing_common.TestCase):
@@ -33,6 +35,14 @@ class DescriptorTest(testing_common.TestCase):
     stored_object.Set(descriptor.TWO_TWO_TEST_SUITES_KEY, [
         'TEST_PARTIAL_TEST_SUITE:two_two',
     ])
+    namespaced_stored_object.Set(bot_configurations.BOT_CONFIGURATIONS_KEY, {
+        'a': {
+            'alias': 'b',
+        },
+        'c': {
+            'alias': 'b',
+        },
+    })
     descriptor.Descriptor.ResetMemoizedConfigurationForTesting()
 
   def testFromTestPath_Empty(self):
@@ -329,6 +339,18 @@ class DescriptorTest(testing_common.TestCase):
         test_suite='TEST_PARTIAL_TEST_SUITE:two_two',
         measurement='a:b',
         test_case='c:d').ToTestPathsSync())
+
+  def testToTestPath_BotAliases(self):
+    expected = [
+        'master/a/suite/measure',
+        'master/b/suite/measure',
+        'master/c/suite/measure',
+    ]
+    self.assertEqual(expected, descriptor.Descriptor(
+        bot='master:b',
+        test_suite='suite',
+        measurement='measure').ToTestPathsSync())
+
 
 if __name__ == '__main__':
   unittest.main()
