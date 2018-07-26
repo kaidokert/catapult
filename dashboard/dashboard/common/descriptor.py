@@ -239,7 +239,7 @@ class Descriptor(object):
     test_path += '/'
 
     if self.test_suite.startswith('resource_sizes:'):
-      test_path += 'resource sizes (%s)' % self.test_suite[15:]
+      test_path += 'resource_sizes (%s)' % self.test_suite[15:]
     elif self.test_suite in (yield self._GetConfiguration(
         COMPOSITE_TEST_SUITES_KEY, [])):
       test_path += self.test_suite.replace(':', '/')

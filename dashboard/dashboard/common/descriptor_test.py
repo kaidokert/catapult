@@ -284,7 +284,7 @@ class DescriptorTest(testing_common.TestCase):
         test_case='long_running_tools:gmail').ToTestPathsSync())
 
   def testToTestPath_ResourceSizes(self):
-    expected = 'master/bot/resource sizes (foo)/a/b/c'
+    expected = 'master/bot/resource_sizes (foo)/a/b/c'
     self.assertEqual([expected], descriptor.Descriptor(
         bot='master:bot',
         test_suite='resource_sizes:foo',
