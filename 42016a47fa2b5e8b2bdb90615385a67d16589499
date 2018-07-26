@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6b2cd416_8032d730",
+        "filename": "devil/devil/android/device_errors.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-07-26T13:28:13Z",
+      "side": 0,
+      "message": "?",
+      "revId": "42016a47fa2b5e8b2bdb90615385a67d16589499",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

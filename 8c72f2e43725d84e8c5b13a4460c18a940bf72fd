@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "330415d7_7b11786d",
+        "filename": "devil/devil/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-07-26T13:28:13Z",
+      "side": 1,
+      "message": "Do we need to add this to the path for everything in devil?",
+      "revId": "8c72f2e43725d84e8c5b13a4460c18a940bf72fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e7e892a_38b7a398",
+        "filename": "devil/devil/android/_devil_path.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-07-26T13:28:13Z",
+      "side": 1,
+      "message": "What\u0027s the motivation here?",
+      "revId": "8c72f2e43725d84e8c5b13a4460c18a940bf72fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
