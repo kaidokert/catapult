@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "d086f1e0_838d3aed",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-26T20:08:09Z",
+      "side": 1,
+      "message": "+dtu\n\nYes, let\u0027s have just 1 spot to dump this data. The format isn\u0027t particularly documented at the moment, but I\u0027m sure we can figure out something between us. At worst, maybe a wrapper around bot_configurations that\u0027s fully tested and we all just use that. Dave, any thoughts here?",
+      "parentUuid": "a0971791_5127cb8c",
+      "revId": "5c95e5c40175ef7df2099f1fbd9d5f89a082c805",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "88e7c4bd_40a2e501",
         "filename": "dashboard/dashboard/common/descriptor.py",
         "patchSetId": 7
@@ -72,6 +90,30 @@
       "side": 1,
       "message": "In order to avoid infinite recursion, I would need to move most of the rest of this method into a new method and call that in a loop, but if we ever want to support measurement or test case aliases, we\u0027d need to split that function again. It seems simpler to me to handle a single list throughout a single method split into a few clear sections. This method was already handling a list of test paths at the end for _ref, and callers are handling lists of test paths, so this CL just extends the list-handling back to the beginning of the method for consistency.\nBut I can see how having multiple methods that handle single strings would be simpler from another perspective, so I can refactor that if you want.",
       "parentUuid": "88e7c4bd_40a2e501",
+      "range": {
+        "startLine": 238,
+        "startChar": 4,
+        "endLine": 238,
+        "endChar": 14
+      },
+      "revId": "5c95e5c40175ef7df2099f1fbd9d5f89a082c805",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b946b182_834c83e0",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-26T20:08:09Z",
+      "side": 1,
+      "message": "sorry, yeah that suggestion would actually be:\ndef ToTestPaths():\n  return ToTestPathForRealz() + [aliased_descriptor.ToTestPathForRealz(a) for aliases]\n\ndef ToTestPathForRealz():\n  all the same stuff\n\nI\u0027m kinda in favour of whatever you can do to break this function up a bit, because it\u0027s slowly growing in complexity.",
+      "parentUuid": "069774f4_f79f5adc",
       "range": {
         "startLine": 238,
         "startChar": 4,
