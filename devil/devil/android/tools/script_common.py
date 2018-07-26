@@ -55,4 +55,3 @@ def GetDevices(requested_devices, blacklist_file):
                   for d in available.intersection(requested))
   else:
     return devices
-

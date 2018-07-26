@@ -9,13 +9,7 @@ import os
 import sys
 import zipfile
 
-if __name__ == '__main__':
-  _DEVIL_ROOT_DIR = os.path.abspath(
-      os.path.join(os.path.dirname(__file__), '..', '..'))
-  _PY_UTILS_ROOT_DIR = os.path.abspath(
-      os.path.join(_DEVIL_ROOT_DIR, '..', 'common', 'py_utils'))
-  sys.path.extend((_DEVIL_ROOT_DIR, _PY_UTILS_ROOT_DIR))
-
+import _devil_path  # pylint: disable=relative-import,unused-import
 from devil import base_error
 from devil.utils import cmd_helper
 from py_utils import tempfile_ext

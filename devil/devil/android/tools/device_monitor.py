@@ -20,11 +20,7 @@ import socket
 import sys
 import time
 
-if __name__ == '__main__':
-  sys.path.append(
-      os.path.abspath(os.path.join(os.path.dirname(__file__),
-                                   '..', '..', '..')))
-
+import _devil_path  # pylint: disable=relative-import,unused-import
 from devil.android import battery_utils
 from devil.android import device_blacklist
 from devil.android import device_errors
@@ -112,9 +108,9 @@ def get_device_status_unsafe(device):
       except ValueError:
         continue
       key = line.split(':')[0].strip()
-      if 'MemTotal' == key:
+      if key == 'MemTotal':
         status['mem']['total'] = value
-      elif 'MemFree' == key:
+      elif key == 'MemFree':
         status['mem']['free'] = value
 
   # Process
@@ -162,7 +158,8 @@ def get_device_status(device):
   try:
     status = get_device_status_unsafe(device)
   except device_errors.DeviceUnreachableError:
-    status = {'state': 'offline'}
+    status = collections.defaultdict(dict)
+    status['state'] = 'offline'
   return status
 
 

@@ -7,15 +7,10 @@ import logging
 import os
 import posixpath
 import shutil
-import sys
 import tempfile
 import unittest
 
-if __name__ == '__main__':
-  sys.path.append(
-      os.path.abspath(os.path.join(
-          os.path.dirname(__file__), '..', '..', '..')))
-
+import _devil_path  # pylint: disable=relative-import,unused-import
 from devil import base_error
 from devil import devil_env
 from devil.android import device_temp_file

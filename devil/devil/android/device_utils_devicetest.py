@@ -10,14 +10,10 @@ The test will invoke real devices
 
 import os
 import posixpath
-import sys
 import tempfile
 import unittest
 
-if __name__ == '__main__':
-  sys.path.append(
-      os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', )))
-
+import _devil_path  # pylint: disable=relative-import,unused-import
 from devil.android import device_test_case
 from devil.android import device_utils
 from devil.android.sdk import adb_wrapper

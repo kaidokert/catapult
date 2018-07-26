@@ -12,11 +12,7 @@ import subprocess
 import sys
 import time
 
-if __name__ == '__main__':
-  sys.path.append(
-      os.path.abspath(os.path.join(os.path.dirname(__file__),
-                                   '..', '..', '..')))
-
+import _devil_path  # pylint: disable=relative-import,unused-import
 from devil import devil_env
 from devil.android import device_errors
 from devil.android.sdk import adb_wrapper

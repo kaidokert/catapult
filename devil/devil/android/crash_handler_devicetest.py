@@ -3,14 +3,9 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-import os
-import sys
 import unittest
 
-if __name__ == '__main__':
-  sys.path.append(
-      os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', )))
-
+import _devil_path  # pylint: disable=relative-import,unused-import
 from devil.android import crash_handler
 from devil.android import device_errors
 from devil.android import device_utils
