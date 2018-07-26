@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "346c2418_366392e5",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-07-26T23:12:37Z",
+      "side": 1,
+      "message": "Looks like we\u0027re always looking for a particular bot in the list of aliaseses. Maybe a better API for `Aliaseses` would be `def Aliases(name)` that returns the aliases for just the given bot name. Then we\u0027re not wasting the work of creating the entire aliaseses list.",
+      "revId": "cae9a2767ad09ffe8feeef9dc08ccfa95ebe42d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b0f72ee_1cc2f340",
+        "filename": "dashboard/dashboard/pinpoint/models/bot_configurations.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-07-26T23:12:37Z",
+      "side": 1,
+      "message": "Let\u0027s move it to dashboard/common/. Better not to have dashboard depend on pinpoint.",
+      "revId": "cae9a2767ad09ffe8feeef9dc08ccfa95ebe42d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39b6ca42_e97ca6f6",
+        "filename": "dashboard/dashboard/pinpoint/models/bot_configurations.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-07-26T23:12:37Z",
+      "side": 1,
+      "message": "If it will simplify the code, let\u0027s just assume that there\u0027s no nested/intersecting aliases. Since we control the bot_configurations dict anyway.",
+      "revId": "cae9a2767ad09ffe8feeef9dc08ccfa95ebe42d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
