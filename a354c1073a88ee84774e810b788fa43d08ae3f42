@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "16b8b442_8ac4bd86",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-26T08:39:04Z",
+      "side": 1,
+      "message": "This aren\u0027t needed any more.",
+      "revId": "a354c1073a88ee84774e810b788fa43d08ae3f42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecf64957_a46aa723",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1617,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-26T08:39:04Z",
+      "side": 1,
+      "message": "you do need here cmd_helper.SingleQuote(path), rather than just path, in case there are spaces or special characters on the path.",
+      "revId": "a354c1073a88ee84774e810b788fa43d08ae3f42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b436697_d25f9606",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1620,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-26T08:39:04Z",
+      "side": 1,
+      "message": "nit: I would rephrase this as:\n\n  We use shell\u003dTrue to evaluate the command as a script through the shell,\n  otherwise RunShellCommand tries to interpret it as the name of a (non \n  existent) command to run.",
+      "revId": "a354c1073a88ee84774e810b788fa43d08ae3f42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
