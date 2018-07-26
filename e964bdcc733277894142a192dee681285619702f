@@ -36,6 +36,23 @@
     },
     {
       "key": {
+        "uuid": "bf0983b2_2caee957",
+        "filename": "dashboard/dashboard/models/histogram.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-26T18:33:38Z",
+      "side": 1,
+      "message": "Why not just index the test and revision properties of Histogram and do a projection query for them?",
+      "revId": "e964bdcc733277894142a192dee681285619702f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "90c461cd_3c76e398",
         "filename": "dashboard/dashboard/models/histogram.py",
         "patchSetId": 18
