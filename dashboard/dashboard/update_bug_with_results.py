@@ -239,6 +239,7 @@ def _GetCulpritCLOwnerAndComment(job, authors_to_cc):
     message = _AUTO_ASSIGN_MSG % {'author': authors_to_cc[0]}
     comment = '{0}{1}'.format(message, comment)
     owner = authors_to_cc[0]
+  # just happed to be open
   return owner, comment
 
 
