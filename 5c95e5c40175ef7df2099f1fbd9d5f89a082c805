@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "d13d8af8_9ace1c99",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-07-26T21:06:48Z",
+      "side": 1,
+      "message": "When I added aliases to bot_configurations, I also created a wrapper for it. We can move that (pinpoint/models/bot_configurations.py) to a common location and add a helper function for looking up these aliases.",
+      "parentUuid": "d086f1e0_838d3aed",
+      "revId": "5c95e5c40175ef7df2099f1fbd9d5f89a082c805",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "88e7c4bd_40a2e501",
         "filename": "dashboard/dashboard/common/descriptor.py",
         "patchSetId": 7
