@@ -123,6 +123,30 @@
       "revId": "5c95e5c40175ef7df2099f1fbd9d5f89a082c805",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cda8d9ba_38b08ab3",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-26T21:02:57Z",
+      "side": 1,
+      "message": "PTAL",
+      "parentUuid": "b946b182_834c83e0",
+      "range": {
+        "startLine": 238,
+        "startChar": 4,
+        "endLine": 238,
+        "endChar": 14
+      },
+      "revId": "5c95e5c40175ef7df2099f1fbd9d5f89a082c805",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
