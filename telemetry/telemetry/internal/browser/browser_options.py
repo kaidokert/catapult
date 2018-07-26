@@ -55,6 +55,8 @@ class BrowserFinderOptions(optparse.Values):
     self.interval_profiling_periods = []
     self.interval_profiling_frequency = 1000
 
+    self.include_field_trials = True
+
   def __repr__(self):
     return str(sorted(self.__dict__.items()))
 
@@ -342,6 +344,7 @@ class BrowserOptions(object):
     # time the logs data is uploaded.
     self.logs_cloud_bucket = cloud_storage.TELEMETRY_OUTPUT
     self.logs_cloud_remote_path = None
+    self.include_field_trials = True
 
     # TODO(danduong): Find a way to store target_os here instead of
     # finder_options.
@@ -445,6 +448,7 @@ class BrowserOptions(object):
         delattr(finder_options, o)
 
     self.browser_type = finder_options.browser_type
+    self.include_field_trials = finder_options.include_field_trials
     self._finder_options = finder_options
 
     if hasattr(self, 'extra_browser_args_as_string'):
