@@ -202,6 +202,14 @@ class DescriptorTest(testing_common.TestCase):
     self.assertEqual('c:d', desc.test_case)
     self.assertEqual(descriptor.REFERENCE_BUILD_TYPE, desc.build_type)
 
+  def testFromTestPath_SystemHealthRef(self):
+    desc = descriptor.Descriptor.FromTestPathSync(
+        'master/bot/system_health.memory_desktop/m/a_b/a_b_c_ref')
+    self.assertEqual('system_health.memory_desktop', desc.test_suite)
+    self.assertEqual('m', desc.measurement)
+    self.assertEqual('a:b:c', desc.test_case)
+    self.assertEqual(descriptor.REFERENCE_BUILD_TYPE, desc.build_type)
+
   def testToTestPaths_Empty(self):
     self.assertEqual([], descriptor.Descriptor().ToTestPathsSync())
 
