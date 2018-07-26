@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e078ba14_f0b06641",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-07-26T06:00:29Z",
+      "side": 1,
+      "message": "Yep. Graphics.Pipeline events are emitted from the browser, renderer, and gpu processes (with oop-d).",
+      "parentUuid": "36be0cc7_c7eb7df9",
+      "revId": "92c22d9d270a8f053508475f3270c154c2773e25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e855e8fe_76c06d04",
         "filename": "tracing/tracing/metrics/rendering_metric.html",
         "patchSetId": 6
@@ -33,6 +51,24 @@
       "revId": "92c22d9d270a8f053508475f3270c154c2773e25",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11aca0b9_24787b43",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-07-26T06:00:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e855e8fe_76c06d04",
+      "revId": "92c22d9d270a8f053508475f3270c154c2773e25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "03583c7b_f11397ba",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-07-26T06:00:29Z",
+      "side": 1,
+      "message": "Yep. GenerateRenderPass will be used to generate breakdown metrics for \u0027receiptToSubmit\u0027, and ReceiveCompositorFrame will be used to generate breakdown metrics for \u0027submitToAggregate\u0027.",
+      "parentUuid": "590ab8a7_313c2132",
+      "revId": "92c22d9d270a8f053508475f3270c154c2773e25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1557c8be_bba17696",
         "filename": "tracing/tracing/metrics/rendering_metric.html",
         "patchSetId": 6
@@ -67,6 +121,24 @@
       "revId": "92c22d9d270a8f053508475f3270c154c2773e25",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d34208d_a97640ff",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-07-26T06:00:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1557c8be_bba17696",
+      "revId": "92c22d9d270a8f053508475f3270c154c2773e25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "d9110a3b_c780ca79",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-07-26T06:00:29Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "8738025a_c80e902a",
+      "revId": "92c22d9d270a8f053508475f3270c154c2773e25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "100512ce_b389b262",
         "filename": "tracing/tracing/metrics/rendering_metric.html",
         "patchSetId": 6
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "b51a71e2_6811a31d",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-07-26T06:00:29Z",
+      "side": 1,
+      "message": "Done, thanks!\n\nI am going to add breakdowns in a follow-up CL ... but what are RelatedEventSets? Are there docs?",
+      "parentUuid": "100512ce_b389b262",
+      "revId": "92c22d9d270a8f053508475f3270c154c2773e25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ec45677e_0abf5013",
         "filename": "tracing/tracing/metrics/rendering_metric.html",
         "patchSetId": 6
@@ -115,6 +223,24 @@
       "writtenOn": "2018-07-25T18:59:57Z",
       "side": 1,
       "message": "These description strings may be duplicated several times in telemetry and results.html files, and concise is usually better anyway.\nWhat is \"the client\"?\nDoes this one measurement include both IPC latency and task queue time? Would it be possible or useful to split them?\nMaybe something like this? \u0027Latency from display compositor to begin frame message, includes IPC latency and task queue time\u0027",
+      "revId": "92c22d9d270a8f053508475f3270c154c2773e25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b218d5ce_a0076ed9",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-07-26T06:00:29Z",
+      "side": 1,
+      "message": "I have made it brief. But is there a good way of making this kind of detail (like this, ~3/4 sentences) available in the UI? Folks closely familiar with what it measures don\u0027t need the information. Folks unfamiliar with the precise measurement are the target audience for this, and this is a pretty minimal explanation.\n\nThe measurement includes both IPC latency and the task-queue time in the thread. I don\u0027t believe there is a good way to measure just the IPC latency that does not include the task-queue time.",
+      "parentUuid": "ec45677e_0abf5013",
       "revId": "92c22d9d270a8f053508475f3270c154c2773e25",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -138,6 +264,24 @@
     },
     {
       "key": {
+        "uuid": "22297e03_426a06db",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-07-26T06:00:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0e54685_99830e10",
+      "revId": "92c22d9d270a8f053508475f3270c154c2773e25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1231c0d5_81bb1d2c",
         "filename": "tracing/tracing/metrics/rendering_metric.html",
         "patchSetId": 6
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "f0871b0f_b7800904",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-07-26T06:00:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1231c0d5_81bb1d2c",
+      "revId": "92c22d9d270a8f053508475f3270c154c2773e25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "785253d4_86926512",
         "filename": "tracing/tracing/metrics/rendering_metric.html",
         "patchSetId": 6
@@ -169,6 +331,24 @@
       "revId": "92c22d9d270a8f053508475f3270c154c2773e25",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efc5a21c_1e0caa83",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-07-26T06:00:29Z",
+      "side": 1,
+      "message": "We will add breakdown metric for this in a follow up CL (using ReceiveCompositorFrame etc.).",
+      "parentUuid": "785253d4_86926512",
+      "revId": "92c22d9d270a8f053508475f3270c154c2773e25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
