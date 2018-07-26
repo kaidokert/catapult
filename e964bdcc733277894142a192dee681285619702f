@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "eeb3e414_365f3a8a",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-26T20:24:12Z",
+      "side": 1,
+      "message": "Eventual consistency, put() followed by immediate query. The histogram records aren\u0027t all in a single entity group, they could be though. I\u0027m really liking ben\u0027s suggestion of a projection query over the existing histograms, but they\u0027re not structured like that and so we\u0027d still have the consistency issue here. It *should* be fine though, this would only happen on the very first upload.",
+      "parentUuid": "5ecdd8dc_923f2c56",
+      "revId": "e964bdcc733277894142a192dee681285619702f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8b7db050_c25ac758",
         "filename": "dashboard/dashboard/add_histograms.py",
         "patchSetId": 18
@@ -30,6 +48,24 @@
       "writtenOn": "2018-07-24T20:30:08Z",
       "side": 1,
       "message": "Can you use _CheckRequest here",
+      "revId": "e964bdcc733277894142a192dee681285619702f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f15d02e2_79d2f491",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-26T20:24:12Z",
+      "side": 1,
+      "message": "Sure",
+      "parentUuid": "8b7db050_c25ac758",
       "revId": "e964bdcc733277894142a192dee681285619702f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "31823e75_b3d80b6e",
+        "filename": "dashboard/dashboard/models/histogram.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-26T20:24:12Z",
+      "side": 1,
+      "message": "That\u0027s a really good idea, didn\u0027t think of that at first. It seems like a bit of a tradeoff, since you don\u0027t actually need records for every histogram in a benchmark, just the suite itself. So you\u0027d introduce indexing for every histogram, but only ever use the suite, or have this additional class.",
+      "parentUuid": "bf0983b2_2caee957",
+      "revId": "e964bdcc733277894142a192dee681285619702f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "90c461cd_3c76e398",
         "filename": "dashboard/dashboard/models/histogram.py",
         "patchSetId": 18
@@ -64,6 +118,24 @@
       "writtenOn": "2018-07-25T03:16:38Z",
       "side": 1,
       "message": "Why does this need to be an option?",
+      "revId": "e964bdcc733277894142a192dee681285619702f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01a0ce0b_bedfc585",
+        "filename": "dashboard/dashboard/models/histogram.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-26T20:24:12Z",
+      "side": 1,
+      "message": "Just a tweak to not bother polluting memcache, since it\u0027s only referenced in 1 other spot which is add_histograms_queue.",
+      "parentUuid": "90c461cd_3c76e398",
       "revId": "e964bdcc733277894142a192dee681285619702f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
