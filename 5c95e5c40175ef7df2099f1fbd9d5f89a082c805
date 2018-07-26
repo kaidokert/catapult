@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a0971791_5127cb8c",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-26T18:13:32Z",
+      "side": 1,
+      "message": "I generated these from bot_configurations. Is the format of bot_configurations permanent, or is there an API for it that Descriptor can depend on? If so, I can make Descriptor generate bot aliases from bot_configurations so that I don\u0027t need to update bot_aliases whenever bot_configurations changes.",
+      "parentUuid": "a0054563_2e1d6bf8",
+      "revId": "5c95e5c40175ef7df2099f1fbd9d5f89a082c805",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "88e7c4bd_40a2e501",
         "filename": "dashboard/dashboard/common/descriptor.py",
         "patchSetId": 7
@@ -30,6 +48,30 @@
       "writtenOn": "2018-07-26T17:43:35Z",
       "side": 1,
       "message": "would it be simpler to just ToTestPathsAsync() + [TestDescriptorWithBotAliasChanged.ToTestPathsAsync() for alias in aliases]?",
+      "range": {
+        "startLine": 238,
+        "startChar": 4,
+        "endLine": 238,
+        "endChar": 14
+      },
+      "revId": "5c95e5c40175ef7df2099f1fbd9d5f89a082c805",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "069774f4_f79f5adc",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-26T18:13:32Z",
+      "side": 1,
+      "message": "In order to avoid infinite recursion, I would need to move most of the rest of this method into a new method and call that in a loop, but if we ever want to support measurement or test case aliases, we\u0027d need to split that function again. It seems simpler to me to handle a single list throughout a single method split into a few clear sections. This method was already handling a list of test paths at the end for _ref, and callers are handling lists of test paths, so this CL just extends the list-handling back to the beginning of the method for consistency.\nBut I can see how having multiple methods that handle single strings would be simpler from another perspective, so I can refactor that if you want.",
+      "parentUuid": "88e7c4bd_40a2e501",
       "range": {
         "startLine": 238,
         "startChar": 4,
