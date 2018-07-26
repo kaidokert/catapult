@@ -84,6 +84,24 @@
     },
     {
       "key": {
+        "uuid": "374b3eb9_47c054be",
+        "filename": "experimental/v8_tools/metrics_viewer.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-07-26T11:27:20Z",
+      "side": 1,
+      "message": "I believe we expect future data to be in the form:\n\n{\n  key1: [values1...],\n  key2: [values2...],\n}\n\ni.e. currently\n\n{\n  withSiteIsoEnabled: withs,\n  withoutSiteIsoEnabled: without,\n}\n\nEventually we\u0027ll want to accept this kind of format in the load.",
+      "parentUuid": "94142392_0185d811",
+      "revId": "df7a26636e1c08132667cdddf2fa23039b127858",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ed3ece32_f0299f4f",
         "filename": "experimental/v8_tools/metrics_viewer.html",
         "patchSetId": 1
