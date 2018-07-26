@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "0c136507_e1376fbc",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-26T18:49:48Z",
+      "side": 1,
+      "message": "Any thread on any process or just their main threads?",
+      "parentUuid": "e078ba14_f0b06641",
+      "revId": "92c22d9d270a8f053508475f3270c154c2773e25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e855e8fe_76c06d04",
         "filename": "tracing/tracing/metrics/rendering_metric.html",
         "patchSetId": 6
@@ -241,6 +259,24 @@
       "side": 1,
       "message": "I have made it brief. But is there a good way of making this kind of detail (like this, ~3/4 sentences) available in the UI? Folks closely familiar with what it measures don\u0027t need the information. Folks unfamiliar with the precise measurement are the target audience for this, and this is a pretty minimal explanation.\n\nThe measurement includes both IPC latency and the task-queue time in the thread. I don\u0027t believe there is a good way to measure just the IPC latency that does not include the task-queue time.",
       "parentUuid": "ec45677e_0abf5013",
+      "revId": "92c22d9d270a8f053508475f3270c154c2773e25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9774349c_b3e9e673",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-26T18:49:48Z",
+      "side": 1,
+      "message": "We have plans on the back-burner to restructure HistogramSet JSON to be more efficient, but in the mean time you could add a GenericSet diagnostic containing a URL. That will be deduplicated by telemetry and linkified in the UI.",
+      "parentUuid": "b218d5ce_a0076ed9",
       "revId": "92c22d9d270a8f053508475f3270c154c2773e25",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
