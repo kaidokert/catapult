@@ -33,6 +33,9 @@ class DescriptorTest(testing_common.TestCase):
     stored_object.Set(descriptor.TWO_TWO_TEST_SUITES_KEY, [
         'TEST_PARTIAL_TEST_SUITE:two_two',
     ])
+    stored_object.Set(descriptor.BOT_ALIASES_KEY, [
+        ['master:a', 'master:b', 'master:c'],
+    ])
     descriptor.Descriptor.ResetMemoizedConfigurationForTesting()
 
   def testFromTestPath_Empty(self):
@@ -329,6 +332,18 @@ class DescriptorTest(testing_common.TestCase):
         test_suite='TEST_PARTIAL_TEST_SUITE:two_two',
         measurement='a:b',
         test_case='c:d').ToTestPathsSync())
+
+  def testToTestPath_BotAliases(self):
+    expected = [
+        'master/a/suite/measure',
+        'master/b/suite/measure',
+        'master/c/suite/measure',
+    ]
+    self.assertEqual(expected, descriptor.Descriptor(
+        bot='master:b',
+        test_suite='suite',
+        measurement='measure').ToTestPathsSync())
+
 
 if __name__ == '__main__':
   unittest.main()
