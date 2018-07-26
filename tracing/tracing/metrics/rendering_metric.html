@@ -227,18 +227,31 @@ tr.exportTo('tr.metrics.rendering', function() {
     // This code should be merged into UserModelBuilder when another metric
     // wants it, too.
     const segments = [];
+    const gestureEvents = [];
     const IRExp = /Interaction\.([^/]+)(\/[^/]*)?$/;
     for (const thread of model.getAllThreads()) {
       for (const slice of thread.asyncSliceGroup.slices) {
-        if (slice.title === GESTURE_EVENT) {
-          segments.push(new tr.model.um.Segment(
-              slice.start, slice.duration));
-        } else {
-          const parts = IRExp.exec(slice.title);
-          if (parts && !parts[1].startsWith('Gesture_')) {
-            segments.push(new tr.model.um.Segment(
-                slice.start, slice.duration));
+        if (slice.title === GESTURE_EVENT) gestureEvents.push(slice);
+      }
+    }
+    for (const thread of model.getAllThreads()) {
+      for (const slice of thread.asyncSliceGroup.slices) {
+        const parts = IRExp.exec(slice.title);
+        if (!parts) continue;
+        let gestureEventFound = false;
+        if (parts[1].startsWith('Gesture_')) {
+          for (const gestureEvent of gestureEvents) {
+            if (slice.boundsRange.intersectsRangeInclusive(
+                gestureEvent.boundsRange)) {
+              segments.push(new tr.model.um.Segment(
+                  gestureEvent.start, gestureEvent.duration));
+              gestureEventFound = true;
+              break;
+            }
           }
+        }
+        if (!gestureEventFound) {
+          segments.push(new tr.model.um.Segment(slice.start, slice.duration));
         }
       }
     }
