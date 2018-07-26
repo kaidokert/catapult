@@ -52,6 +52,9 @@ POLY_MEASUREMENT_TEST_SUITES_KEY = 'poly_measurement_test_suites'
 # cases are each composed of two test path components.
 TWO_TWO_TEST_SUITES_KEY = 'two_two_test_suites'
 
+# This stored object contains a list of lists of bot aliases.
+BOT_ALIASES_KEY = 'bot_aliases'
+
 
 class Descriptor(object):
   """Describe a timeseries by its characteristics.
@@ -232,37 +235,48 @@ class Descriptor(object):
     if not self.bot:
       raise ndb.Return([])
 
-    test_path = self.bot.replace(':', '/')
+    test_paths = [self.bot]
+    bot_aliases = yield self._GetConfiguration(BOT_ALIASES_KEY, [])
+    for aliases in bot_aliases:
+      if self.bot in aliases:
+        test_paths = aliases
+        break
+    test_paths = [test_path.replace(':', '/') for test_path in test_paths]
     if not self.test_suite:
-      raise ndb.Return([test_path])
+      raise ndb.Return(test_paths)
 
-    test_path += '/'
+    test_paths = [p + '/' for p in test_paths]
 
     if self.test_suite.startswith('resource_sizes:'):
-      test_path += 'resource_sizes (%s)' % self.test_suite[15:]
+      test_paths = [p + 'resource_sizes (%s)' % self.test_suite[15:]
+                    for p in test_paths]
     elif self.test_suite in (yield self._GetConfiguration(
         COMPOSITE_TEST_SUITES_KEY, [])):
-      test_path += self.test_suite.replace(':', '/')
+      test_paths = [p + self.test_suite.replace(':', '/')
+                    for p in test_paths]
     else:
       first_part = self.test_suite.split(':')[0]
       for prefix in (yield self._GetConfiguration(
           GROUPABLE_TEST_SUITE_PREFIXES_KEY, [])):
         if prefix[:-1] == first_part:
-          test_path += prefix + self.test_suite[len(first_part) + 1:]
+          test_paths = [p + prefix + self.test_suite[len(first_part) + 1:]
+                        for p in test_paths]
           break
       else:
-        test_path += self.test_suite
+        test_paths = [p + self.test_suite for p in test_paths]
     if not self.measurement:
-      raise ndb.Return([test_path])
+      raise ndb.Return(test_paths)
 
     if self.test_suite in (yield self._GetConfiguration(
         POLY_MEASUREMENT_TEST_SUITES_KEY, [])):
-      test_path += '/' + self.measurement.replace(':', '/')
+      test_paths = [p + '/' + self.measurement.replace(':', '/')
+                    for p in test_paths]
     else:
-      test_path += '/' + self.measurement
+      test_paths = [p + '/' + self.measurement
+                    for p in test_paths]
 
     if self.statistic:
-      test_path += '_' + self.statistic
+      test_paths = [p + '_' + self.statistic for p in test_paths]
 
     if self.test_case:
       if (self.test_suite.startswith('system_health') or
@@ -275,21 +289,21 @@ class Descriptor(object):
               ])):
         test_case = self.test_case.split(':')
         if test_case[0] == 'long_running_tools':
-          test_path += '/' + test_case[0]
+          test_paths = [p + '/' + test_case[0] for p in test_paths]
         else:
-          test_path += '/' + '_'.join(test_case[:2])
-        test_path += '/' + '_'.join(test_case)
+          test_paths = [p + '/' + '_'.join(test_case[:2]) for p in test_paths]
+        test_paths = [p + '/' + '_'.join(test_case) for p in test_paths]
       elif self.test_suite in [
           'sizes', 'memory.dual_browser_test', 'memory.top_10_mobile',
           'v8:runtime_stats.top_25'] + (yield self._GetConfiguration(
               TWO_TWO_TEST_SUITES_KEY, [])):
-        test_path += '/' + self.test_case.replace(':', '/')
+        test_paths = [p + '/' + self.test_case.replace(':', '/')
+                      for p in test_paths]
       else:
-        test_path += '/' + self.test_case
+        test_paths = [p + '/' + self.test_case for p in test_paths]
 
-    candidates = [test_path]
     if self.build_type == REFERENCE_BUILD_TYPE:
-      candidates = [candidate + suffix
-                    for candidate in candidates
+      test_paths = [test_path + suffix
+                    for test_path in test_paths
                     for suffix in ['_ref', '/ref']]
-    raise ndb.Return(candidates)
+    raise ndb.Return(test_paths)
