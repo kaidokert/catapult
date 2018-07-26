@@ -10,6 +10,7 @@ from telemetry import decorators
 from telemetry.internal.backends.chrome import android_browser_finder
 from telemetry.internal.backends.chrome import cros_browser_finder
 from telemetry.internal.backends.chrome import desktop_browser_finder
+from telemetry.internal.backends.chrome import fuchsia_browser_finder
 from telemetry.internal.browser import browser_finder_exceptions
 from telemetry.internal.platform import device_finder
 
@@ -17,6 +18,7 @@ BROWSER_FINDERS = [
     desktop_browser_finder,
     android_browser_finder,
     cros_browser_finder,
+    fuchsia_browser_finder
 ]
 
 
@@ -49,12 +51,12 @@ def FindBrowser(options):
     raise browser_finder_exceptions.BrowserFinderException(
         '--browser-executable requires --browser=exact.')
 
-  if options.browser_type == 'cros-chrome' and options.cros_remote is None:
+  if options.browser_type == 'cros-chrome' and options.remote is None:
     raise browser_finder_exceptions.BrowserFinderException(
-        'browser_type=cros-chrome requires cros_remote be set.')
+        'browser_type=cros-chrome requires remote be set.')
   if (options.browser_type != 'cros-chrome' and
       options.browser_type != 'cros-chrome-guest' and
-      options.cros_remote != None):
+      options.remote != None):
     raise browser_finder_exceptions.BrowserFinderException(
         '--remote requires --browser=cros-chrome or cros-chrome-guest.')
 
