@@ -22,6 +22,30 @@
       "revId": "e958f41e34dd1c14b8f79bdbde9b71362af5bbf4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc4469cc_370753f3",
+        "filename": "tracing/tracing/extras/chrome/blink/blink_scheduler_async_slice.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1149089
+      },
+      "writtenOn": "2018-07-26T12:08:34Z",
+      "side": 1,
+      "message": "It\u0027s a performance critical code, added a comment though.\nRegarding trailing whitespace it\u0027s tricky to pass \u0026nbsp; to HTML layout afterwards (outherwise it \"eats\" the whitespce). Would be nice to have but it\u0027s out of scope for this patch.",
+      "parentUuid": "07287af0_2f2e08fc",
+      "range": {
+        "startLine": 26,
+        "startChar": 36,
+        "endLine": 26,
+        "endChar": 38
+      },
+      "revId": "e958f41e34dd1c14b8f79bdbde9b71362af5bbf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
