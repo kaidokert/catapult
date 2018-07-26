@@ -7,15 +7,11 @@
 
 import argparse
 import copy
-import os
 import sys
 import termios
 import tty
 
-if __name__ == '__main__':
-  sys.path.append(
-      os.path.abspath(os.path.join(os.path.dirname(__file__),
-                                   '..', '..', '..')))
+import _devil_path  # pylint: disable=relative-import,unused-import
 from devil import base_error
 from devil.android.sdk import keyevent
 from devil.android.tools import script_common

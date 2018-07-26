@@ -6,15 +6,10 @@
 """A script to manipulate device CPU frequency."""
 
 import argparse
-import os
 import pprint
 import sys
 
-if __name__ == '__main__':
-  sys.path.append(
-      os.path.abspath(os.path.join(os.path.dirname(__file__),
-                                   '..', '..', '..')))
-
+import _devil_path  # pylint: disable=relative-import,unused-import
 from devil.android import device_utils
 from devil.android.perf import perf_control
 from devil.android.tools import script_common

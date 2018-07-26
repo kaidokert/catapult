@@ -6,15 +6,10 @@
 import argparse
 import fcntl
 import logging
-import os
 import re
 import sys
 
-if __name__ == '__main__':
-  sys.path.append(
-      os.path.abspath(os.path.join(os.path.dirname(__file__),
-                                   '..', '..')))
-
+import _devil_path  # pylint: disable=relative-import,unused-import
 from devil.android import device_errors
 from devil.utils import lsusb
 from devil.utils import run_tests_helper
@@ -108,4 +103,3 @@ def main():
 
 if __name__ == '__main__':
   sys.exit(main())
-

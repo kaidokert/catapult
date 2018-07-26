@@ -29,7 +29,9 @@ def SysPath(path):
     sys.path.pop()
 
 with SysPath(DEPENDENCY_MANAGER_PATH):
-  import dependency_manager  # pylint: disable=import-error
+  # pylint: disable=wrong-import-position
+  # pylint: disable=import-error
+  import dependency_manager
 
 _ANDROID_BUILD_TOOLS = {'aapt', 'dexdump', 'split-select'}
 
@@ -191,4 +193,3 @@ def GetPlatform(arch=None, device=None):
 
 
 config = _Environment()
-

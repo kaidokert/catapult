@@ -7,15 +7,12 @@
 
 import argparse
 import logging
-import os
-import psutil
 import signal
 import sys
 
-if __name__ == '__main__':
-  sys.path.append(
-      os.path.abspath(os.path.join(os.path.dirname(__file__),
-                                   '..', '..', '..')))
+import psutil
+
+import _devil_path  # pylint: disable=relative-import,unused-import
 from devil.android import device_blacklist
 from devil.android import device_errors
 from devil.android import device_utils
@@ -38,7 +35,7 @@ def KillAllAdb():
         # as newer (v2 and over) versions of psutil.
         # See: http://grodola.blogspot.com/2014/01/psutil-20-porting.html
         pinfo = p.as_dict(attrs=['pid', 'name', 'cmdline'])
-        if 'adb' == pinfo['name']:
+        if pinfo['name'] == 'adb':
           pinfo['cmdline'] = ' '.join(pinfo['cmdline'])
           yield p, pinfo
       except (psutil.NoSuchProcess, psutil.AccessDenied):

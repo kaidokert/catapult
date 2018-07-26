@@ -11,10 +11,7 @@ import signal
 import sys
 import unittest
 
-_CATAPULT_BASE_DIR = os.path.abspath(os.path.join(
-    os.path.dirname(__file__), '..', '..', '..', '..'))
-
-sys.path.append(os.path.join(_CATAPULT_BASE_DIR, 'devil'))
+import _devil_path  # pylint: disable=relative-import,unused-import
 from devil import devil_env
 from devil.android import device_errors
 from devil.android import device_test_case

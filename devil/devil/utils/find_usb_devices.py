@@ -5,15 +5,10 @@
 
 import argparse
 import logging
-import os
 import re
 import sys
 
-if __name__ == '__main__':
-  sys.path.append(
-      os.path.abspath(os.path.join(os.path.dirname(__file__),
-                                   '..', '..')))
-
+import _devil_path  # pylint: disable=relative-import,unused-import
 from devil.utils import cmd_helper
 from devil.utils import usb_hubs
 from devil.utils import lsusb
@@ -452,9 +447,9 @@ def GetBusDeviceFromTTY(tty_string):
   for line in _GetTtyUSBInfo(tty_string).splitlines():
     bus_match = _BUS_NUM_REGEX.match(line)
     device_match = _DEVICE_NUM_REGEX.match(line)
-    if bus_match and bus_num == None:
+    if bus_match and bus_num is None:
       bus_num = int(bus_match.group(1))
-    if device_match and device_num == None:
+    if device_match and device_num is None:
       device_num = int(device_match.group(1))
   if bus_num is None or device_num is None:
     raise ValueError('Info not found')

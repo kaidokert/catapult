@@ -12,13 +12,9 @@ import contextlib
 import os
 import tempfile
 import time
-import sys
 import unittest
 
-if __name__ == '__main__':
-  sys.path.append(os.path.abspath(
-      os.path.join(os.path.dirname(__file__), '..', '..')))
-
+import _devil_path  # pylint: disable=relative-import,unused-import
 from devil.utils import parallelizer
 
 
@@ -187,4 +183,3 @@ class SyncParallelizerTest(unittest.TestCase):
 
 if __name__ == '__main__':
   unittest.main(verbosity=2)
-
