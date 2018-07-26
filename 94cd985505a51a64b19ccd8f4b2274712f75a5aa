@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "27c4855b_9a67d1ef",
+        "filename": "devil/devil/android/crash_handler_devicetest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-26T10:21:16Z",
+      "side": 1,
+      "message": "Hope you don\u0027t think this is too terrible. It was either this or completely disabling \"wrong-import-position\" warnings on all these files. I thought this was a better compromise because (1) the scope of the pylint disable is smaller and (2) allows to factor out some common code.",
+      "revId": "94cd985505a51a64b19ccd8f4b2274712f75a5aa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
