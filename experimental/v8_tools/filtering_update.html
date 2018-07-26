@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<input type='file' id='file-input'/>
+<input type='button' value='stories' id='storyBtn' style='visibility:hidden;'/>
+<input type='button' value='storyTags' id='storyTagsBtn' style='visibility:hidden;'/>
+<input type='button' value='storysetRepeats' id='storysetRepeatsBtn' style='visibility:hidden;'/>
+<input type='button' value='traceStart' id='traceStartBtn' style='visibility:hidden;'/>
+<input type='button' value='traceUrls' id='traceUrlsBtn' style='visibility:hidden;'/>
+
+<input type='text' id='metricname' style='visibility:hidden;'/>
+<input type='text' id='storyname' style='visibility:hidden;'/>
+
+<input type='button' value='check' id='submit' style='visibility:hidden;'/>
+
+<h3>Sample Values:</h3>
+<pre id='sample-values'></pre>
+<script>
+    'use strict';
+    //  just to make sure the user doesn't press any button before having
+    //  any relevant information
+    function visibleAll() {
+      document.getElementById('storyBtn').style.visibility = 'visible';
+      document.getElementById('storyTagsBtn').style.visibility = 'visible';
+      document.getElementById('storysetRepeatsBtn').style.visibility = 'visible';
+      document.getElementById('traceStartBtn').style.visibility = 'visible';
+      document.getElementById('traceUrlsBtn').style.visibility = 'visible';
+      document.getElementById('metricname').style.visibility = 'visible';
+      document.getElementById('storyname').style.visibility = 'visible';
+      document.getElementById('submit').style.visibility = 'visible';
+    }
+
+    //  load the content of the file and further display the data
+    function readSingleFile(e) {
+      const file = e.target.files[0];
+      if (!file) {
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        //  extract data from file and distribute it in some relevant structures
+        const contents = extractData(e.target.result);
+        // results for all guid-related; for now they are not
+        // divided in 3 parts depending on the type
+        // all results with sample-value-related
+        const sampleArr = contents.sampleValueArray;
+        //  map guid to value within the same structure
+        const guidValueInfo = contents.guidValueInfo;
+
+        //  data is displayed in a default format
+        displayContents(sampleArr, guidValueInfo);
+        visibleAll();
+
+
+        //  every button should be able to filter the information regarding
+        //  one of the possibilities of choosing
+        document.getElementById('storyBtn')
+            .addEventListener('click', function() {
+              displayContents(sampleArr, guidValueInfo, 'stories');
+            }, false);
+        document.getElementById('storyTagsBtn')
+            .addEventListener('click', function() {
+              displayContents(sampleArr, guidValueInfo, 'storyTags');
+            }, false);
+        document.getElementById('storysetRepeatsBtn')
+            .addEventListener('click', function() {
+              displayContents(sampleArr, guidValueInfo, 'storysetRepeats');
+            }, false);
+        document.getElementById('traceStartBtn')
+            .addEventListener('click', function() {
+              displayContents(sampleArr, guidValueInfo, 'traceStart');
+            }, false);
+        document.getElementById('traceUrlsBtn')
+            .addEventListener('click', function() {
+              displayContents(sampleArr, guidValueInfo, 'traceUrls');
+            }, false);
+
+        //  when action of writing the desire metric & story is done
+        document.getElementById('submit')
+            .addEventListener('click', function() {
+              displayByRequest(sampleArr, guidValueInfo,
+                  document.getElementById('metricname').value,
+                  document.getElementById('storyname').value);
+            }, false);
+      };
+      reader.readAsText(file);
+    }
+    // extract all data and divide it in sampleValues related
+    // and guid related (later I'll may divide this in 3 parts
+    // depending on the type of guid )
+    function extractData(contents) {
+      // populate guidValue with guidValue objects containing
+      // guid and value from the same type of data
+      const guidValueInfoMap = new Map();
+      const result = [];
+      const sampleValue = [];
+      //  workaround for later
+      const dateRangeMap = new Map();
+      const other = [];
+      //  extract every piece of data between <histogram-json> tags;
+      //  all data is written between these tags
+      const reg = /<histogram-json>(.*?)<\/histogram-json>/g;
+      let m = reg.exec(contents);
+      while (m !== null) {
+        result.push(m[1]);
+        m = reg.exec(contents);
+      }
+      for (const element of result) {
+        const e = JSON.parse(element);
+        if (e.hasOwnProperty('sampleValues')) {
+          sampleValue.push(e);
+        } else {
+          if (e.type === 'GenericSet') {
+            guidValueInfoMap.set(e.guid, e.values);
+          } else if (e.type === 'DateRange') {
+            dateRangeMap.set(e.guid, e.min);
+          } else {
+            other.push(e);
+          }
+        }
+      }
+      return {
+        guidValueInfo: guidValueInfoMap,
+        guidMinInfo: dateRangeMap,
+        otherTypes: other,
+        sampleValueArray: sampleValue
+      };
+    }
+    //  create a single cell with data in the table
+    function createCell(content, row) {
+      const cell = document.createElement('td');
+      const cellText = document.createTextNode(content);
+      cell.appendChild(cellText);
+      row.appendChild(cell);
+    }
+
+    function displayContents(sampleArr, guidValueInfo, fieldFilter) {
+      // get the reference by the Id
+      const body = document.getElementById('sample-values');
+      // creates a <table> element and a <tbody> element
+      const tbl = document.createElement('table');
+      const tblBody = document.createElement('tbody');
+
+      //  just to check if this block is meant for
+      //  a specific action: the one after the text boxes were filled
+      if (fieldFilter === 'check') {
+        // creating all cells for titles for heading part
+        const r = document.createElement('tr');
+        createCell('Metric name', r);
+        createCell('Story guid', r);
+        createCell('Story name', r);
+        createCell('Sample value', r);
+        tblBody.appendChild(r);
+
+        // display the most relevant information regarding
+        // the metric and the story which were solicited
+        for (const element of sampleArr) {
+          const row = document.createElement('tr');
+          createCell(`${element.name}`, row);
+          createCell(`${element.diagnostics.stories}`, row);
+          createCell(`${guidValueInfo.get(element.diagnostics.stories)}`, row);
+          createCell(`${element.sampleValues}`, row);
+          tblBody.appendChild(row);
+        }
+        // put the <tbody> in the <table>
+        tbl.appendChild(tblBody);
+        // appends <table> into <body>
+        body.replaceChild(tbl, body.childNodes[0]);
+        // sets the border attribute of tbl to 1;
+        tbl.setAttribute('border', '1');
+      } else
+      if (fieldFilter === undefined) {
+        // creating all cells for titles for heanding
+        const r = document.createElement('tr');
+        createCell('Name', r);
+        createCell('Sample Values', r);
+        createCell('Stories', r);
+        createCell('StoryTags', r);
+        createCell('StorySetRepeats', r);
+        createCell('TraceStart', r);
+        createCell('TraceUrls', r);
+        tblBody.appendChild(r);
+
+        for (const e of sampleArr) {
+          // creates a table row
+          const row = document.createElement('tr');
+          createCell(`${e.name}`, row);
+          createCell(`${e.sampleValues}`, row);
+          createCell(`${e.diagnostics.stories}`, row);
+          createCell(`${e.diagnostics.storyTags}`, row);
+          createCell(`${e.diagnostics.storysetRepeats}`, row);
+          createCell(`${e.diagnostics.traceStart}`, row);
+          createCell(`${e.diagnostics.traceUrls}`, row);
+          tblBody.appendChild(row);
+        }
+
+        // put the <tbody> in the <table>
+        tbl.appendChild(tblBody);
+        // appends <table> into <body>
+        body.appendChild(tbl);
+        // sets the border attribute of tbl to 1;
+        tbl.setAttribute('border', '1');
+      } else {
+      //  this array contains:
+      // mathchedSampleValueGuid objects which contains values from
+      // SampleArr and the coresponding value from guidValueInfo map
+      // depending on this: guid == field
+        const r = document.createElement('tr');
+        createCell('Name', r);
+        createCell('Sample Value', r);
+        createCell(`${fieldFilter}`, r);
+        createCell(`Matched value for ${fieldFilter}`, r);
+        tblBody.appendChild(r);
+
+        for (const e of sampleArr) {
+        // creates a table row
+          const row = document.createElement('tr');
+          // Create a <td> element and a text node, make the text
+          // node the contents of the <td>, and put the <td> at
+          // the end of the table row
+          createCell(`${e.name}`, row);
+          createCell(`${e.sampleValues}`, row);
+          createCell(`${e.diagnostics[fieldFilter]}`, row);
+          createCell(`${guidValueInfo.get(e.diagnostics[fieldFilter])}`, row);
+          // add the row to the end of the table body
+          tblBody.appendChild(row);
+        }
+        // put the <tbody> in the <table>
+        tbl.appendChild(tblBody);
+        // appends <table> into <body>
+        body.replaceChild(tbl, body.childNodes[0]);
+        // sets the border attribute of tbl to 1;
+        tbl.setAttribute('border', '1');
+      }
+    }
+
+    //  create a structure that contains all sample Values
+    //  for specific benchMarkStart for specific
+    //  metric and story;
+    //  it will come a further modification for labels
+    //  instead of benchmarkStart
+    function takeByComponent(selectedMetrics) {
+      const content = new Map();
+      for (const val of selectedMetrics) {
+        if (content.has(val.diagnostics.benchmarkStart)) {
+          const aux = content.get(val.diagnostics.benchmarkStart);
+          aux.concat(val.sampleValues);
+          content.set(val.diagnostics.benchmarkStart, aux);
+        } else {
+          content.set(val.diagnostics.benchmarkStart, val.sampleValues);
+        }
+      }
+      return content;
+    }
+
+    //  filter all the sampleValues depending on the story
+    //  and metric that were chosen by the user;
+    //  at this stage, the information is not displayed
+    function displayByRequest(sampleArr, guidValueInfo, metricname, storyname) {
+      const selectedMetrics = sampleArr
+          .filter(value => value.name === metricname &&
+                       guidValueInfo
+                           .get(value.diagnostics.stories)[0] === storyname);
+      displayContents(selectedMetrics, guidValueInfo, 'check');
+      return takeByComponent(selectedMetrics);
+    }
+    document.getElementById('file-input')
+        .addEventListener('change', readSingleFile, false);
+</script>
+</head>
+<body>
+</body>
+</html>
