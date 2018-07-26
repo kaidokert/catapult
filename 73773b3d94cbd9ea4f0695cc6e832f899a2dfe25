@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a69ebf1e_493fba4c",
+        "filename": "infra/config/cq.cfg",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1002080
+      },
+      "writtenOn": "2018-07-26T21:44:15Z",
+      "side": 1,
+      "message": "I think this is singular, so you\u0027ll want to put the \"buckets\" into the try_job entry above.",
+      "range": {
+        "startLine": 35,
+        "startChar": 2,
+        "endLine": 35,
+        "endChar": 9
+      },
+      "revId": "73773b3d94cbd9ea4f0695cc6e832f899a2dfe25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
