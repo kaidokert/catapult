@@ -22,6 +22,30 @@
       "revId": "73773b3d94cbd9ea4f0695cc6e832f899a2dfe25",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87b02aab_8873bb2f",
+        "filename": "infra/config/cq.cfg",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-26T21:55:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a69ebf1e_493fba4c",
+      "range": {
+        "startLine": 35,
+        "startChar": 2,
+        "endLine": 35,
+        "endChar": 9
+      },
+      "revId": "73773b3d94cbd9ea4f0695cc6e832f899a2dfe25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
