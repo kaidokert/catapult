@@ -3,8 +3,10 @@
 # found in the LICENSE file.
 
 import logging
+import time
 
 from google.appengine.ext import deferred
+from google.appengine.ext import db
 
 from dashboard import update_test_suites
 from dashboard.common import datastore_hooks
@@ -47,8 +49,14 @@ def ScheduleUpdateDescriptor(test_suite, namespace):
   deferred.defer(_UpdateDescriptor, test_suite, namespace)
 
 
-def _UpdateDescriptor(test_suite, namespace):
-  logging.info('%s %s', test_suite, namespace)
+DEADLINE_SECONDS = 60 * 9.5
+
+
+def _UpdateDescriptor(test_suite, namespace, start_cursor=None,
+                      measurements=(), bots=(), cases=()):
+  deadline = time.time() + DEADLINE_SECONDS
+  logging.info('%s %s %d %d %d', test_suite, namespace,
+               len(measurements), len(bots), len(cases))
   # This function always runs in the taskqueue as an anonymous user.
   if namespace == datastore_hooks.INTERNAL:
     datastore_hooks.SetPrivilegedRequest()
@@ -56,9 +64,9 @@ def _UpdateDescriptor(test_suite, namespace):
   test_path = descriptor.Descriptor(
       test_suite=test_suite, bot='place:holder').ToTestPathsSync()[0].split('/')
 
-  measurements = set()
-  bots = set()
-  cases = set()
+  measurements = set(measurements)
+  bots = set(bots)
+  cases = set(cases)
   # TODO(4549) Tagmaps.
 
   query = graph_data.TestMetadata.query()
@@ -70,18 +78,34 @@ def _UpdateDescriptor(test_suite, namespace):
   query = query.filter(graph_data.TestMetadata.deprecated == False)
   query = query.filter(graph_data.TestMetadata.has_rows == True)
 
-  # Use an iterator because some test suites have more keys than can fit in
-  # memory.
-  for key in query.iter(keys_only=True):
-    desc = descriptor.Descriptor.FromTestPathSync(utils.TestPath(key))
-    bots.add(desc.bot)
-    if desc.measurement:
-      measurements.add(desc.measurement)
-    if desc.test_case:
-      cases.add(desc.test_case)
+  # Some test suites have more keys than can fit in memory or can be processed
+  # in 10 minutes, so use an iterator.
+  query_iter = query.iter(
+      start_cursor=start_cursor, produce_cursors=True, keys_only=True)
+
+  try:
+    for key in query_iter:
+      desc = descriptor.Descriptor.FromTestPathSync(utils.TestPath(key))
+      bots.add(desc.bot)
+      if desc.measurement:
+        measurements.add(desc.measurement)
+      if desc.test_case:
+        cases.add(desc.test_case)
+      if time.time() > deadline:
+        break
+  except db.BadRequestError:
+    # Sometimes the iterator runs for a while then throws this. Try, try again.
+    logging.warn('BadRequestError caught')
 
   logging.info('%d measurements, %d bots, %d cases',
                len(measurements), len(bots), len(cases))
+
+  if query_iter.probably_has_next():
+    logging.info('continuing')
+    deferred.defer(_UpdateDescriptor, test_suite, namespace,
+                   query_iter.cursor_before(), measurements, bots, cases)
+    return
+
   desc = {
       'measurements': list(sorted(measurements)),
       'bots': list(sorted(bots)),
