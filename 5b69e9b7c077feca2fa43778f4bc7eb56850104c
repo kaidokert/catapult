@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2f3386a8_e64575df",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-07-27T20:33:20Z",
+      "side": 1,
+      "message": "Darn, ok well at least this one runs, maybe revert back to the simpler version without all this buffering stuff and then we can try making this faster in the future if its important.",
+      "revId": "5b69e9b7c077feca2fa43778f4bc7eb56850104c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
