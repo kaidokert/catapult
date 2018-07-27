@@ -4,6 +4,8 @@
 
 import logging
 
+from telemetry.core import os_version as os_version_module
+
 
 class StoryExpectations(object):
   """An object that contains disabling expectations for benchmarks and stories.
@@ -273,6 +275,19 @@ class _TestConditionByMacVersion(_TestCondition):
     return platform.GetOSVersionDetailString().startswith(self._version)
 
 
+class _TestConditionByWinVersion(_TestCondition):
+  def __init__(self, version_module):
+    self._version_module = version_module
+
+  def __str__(self):
+    return self._name
+
+  def ShouldDisable(self, platform, finder_options):
+    if platform.GetOSName() != 'win':
+      return False
+    return platform.GetOSVersionName() == self._version_module
+
+
 class _TestConditionLogicalAndConditions(_TestCondition):
   def __init__(self, conditions, name):
     self._conditions = conditions
@@ -302,6 +317,8 @@ class _TestConditionLogicalOrConditions(_TestCondition):
 ALL = _AllTestCondition()
 ALL_MAC = _TestConditionByPlatformList(['mac'], 'Mac')
 ALL_WIN = _TestConditionByPlatformList(['win'], 'Win')
+WIN_7 = _TestConditionByWinVersion(os_version_module.WIN_7)
+WIN_10 = _TestConditionByWinVersion(os_version_module.WIN_10)
 ALL_LINUX = _TestConditionByPlatformList(['linux'], 'Linux')
 ALL_CHROMEOS = _TestConditionByPlatformList(['chromeos'], 'ChromeOS')
 ALL_ANDROID = _TestConditionByPlatformList(['android'], 'Android')
@@ -347,6 +364,8 @@ EXPECTATION_NAME_MAP = {
     'Android_but_not_webview': ANDROID_NOT_WEBVIEW,
     'Mac': ALL_MAC,
     'Win': ALL_WIN,
+    'Win_7': WIN_7,
+    'Win_10': WIN_10,
     'Linux': ALL_LINUX,
     'ChromeOS': ALL_CHROMEOS,
     'Android': ALL_ANDROID,
