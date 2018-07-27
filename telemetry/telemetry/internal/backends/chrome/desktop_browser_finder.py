@@ -130,12 +130,12 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
 
     self._InitPlatformIfNeeded()
 
-    startup_args = self.GetBrowserStartupArgs(self._browser_options)
 
     num_retries = 3
     for x in range(0, num_retries):
       returned_browser = None
       try:
+        startup_args = self.GetBrowserStartupArgs(self._browser_options)
         returned_browser = None
 
         browser_backend = desktop_browser_backend.DesktopBrowserBackend(
