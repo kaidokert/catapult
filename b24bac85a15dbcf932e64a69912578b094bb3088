@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "85595e35_714c51ea",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-27T13:16:56Z",
+      "side": 1,
+      "message": "I think the usual:\n\n  action\u003d\u0027store_true\u0027, dest\u003d\u0027compatibility_mode\u0027, default\u003dFalse\n\nworks best here. I had suggested it the other way around previously to avoid the negation (\"without\") in your dest variable; but here we don\u0027t have that issue.",
+      "revId": "b24bac85a15dbcf932e64a69912578b094bb3088",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d53e5d9a_f3501d76",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-27T13:16:56Z",
+      "side": 1,
+      "message": "I think we can make this more short and to the point:\n\n  Run benchmarks in a way which is compatible with older versions of Chrome.",
+      "revId": "b24bac85a15dbcf932e64a69912578b094bb3088",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70343884_0f9b4b92",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-27T13:16:56Z",
+      "side": 1,
+      "message": "I think you can just add your option to this list, instead of copying the value below.",
+      "revId": "b24bac85a15dbcf932e64a69912578b094bb3088",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
