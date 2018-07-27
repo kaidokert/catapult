@@ -68,8 +68,7 @@ class ChangeInternalOnlyTest(testing_common.TestCase):
         ('bots', 'ChromiumPerf/win7'),
         ('bots', 'ChromiumGPU/mac'),
     ])
-    self.ExecuteTaskQueueTasks(
-        '/change_internal_only', change_internal_only._QUEUE_NAME)
+    self.ExecuteDeferredTasks(change_internal_only.QUEUE_NAME)
 
     bot_whitelist = stored_object.Get(add_point_queue.BOT_WHITELIST_KEY)
     self.assertEqual(bot_whitelist, [])
@@ -88,7 +87,7 @@ class ChangeInternalOnlyTest(testing_common.TestCase):
     for test in tests:
       if (test.test_path.startswith('ChromiumPerf/win7') or
           test.test_path.startswith('ChromiumGPU/mac')):
-        self.assertTrue(test.internal_only)
+        self.assertTrue(test.internal_only, test.test_path)
       else:
         self.assertFalse(test.internal_only)
 
@@ -113,8 +112,7 @@ class ChangeInternalOnlyTest(testing_common.TestCase):
         ('bots', 'ChromiumPerf/win7'),
         ('bots', 'ChromiumGPU/mac'),
     ])
-    self.ExecuteTaskQueueTasks(
-        '/change_internal_only', change_internal_only._QUEUE_NAME)
+    self.ExecuteDeferredTasks(change_internal_only.QUEUE_NAME)
 
     bot_whitelist = stored_object.Get(add_point_queue.BOT_WHITELIST_KEY)
     self.assertEqual(bot_whitelist, [])
@@ -126,8 +124,7 @@ class ChangeInternalOnlyTest(testing_common.TestCase):
         ('bots', 'ChromiumPerf/win7'),
         ('bots', 'ChromiumGPU/mac'),
     ])
-    self.ExecuteTaskQueueTasks(
-        '/change_internal_only', change_internal_only._QUEUE_NAME)
+    self.ExecuteDeferredTasks(change_internal_only.QUEUE_NAME)
 
     bot_whitelist = stored_object.Get(add_point_queue.BOT_WHITELIST_KEY)
     self.assertTrue('win7' in bot_whitelist)
