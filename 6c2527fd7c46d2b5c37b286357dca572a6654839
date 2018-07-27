@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c042961d_1fbaf721",
+        "filename": "experimental/v8_tools/graph_data.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-07-27T09:47:23Z",
+      "side": 1,
+      "message": "not that it super matters, but it\u0027s not unusual to just loop through the colours array when you run out, rather than falling back.",
+      "range": {
+        "startLine": 29,
+        "startChar": 9,
+        "endLine": 29,
+        "endChar": 23
+      },
+      "revId": "6c2527fd7c46d2b5c37b286357dca572a6654839",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a5d18eb_c2e4c1a7",
+        "filename": "experimental/v8_tools/graph_data.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-07-27T09:47:23Z",
+      "side": 1,
+      "message": "give a short example here.",
+      "range": {
+        "startLine": 81,
+        "startChar": 72,
+        "endLine": 81,
+        "endChar": 73
+      },
+      "revId": "6c2527fd7c46d2b5c37b286357dca572a6654839",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66fff9df_9ded0d96",
+        "filename": "experimental/v8_tools/graph_data.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-07-27T09:47:23Z",
+      "side": 1,
+      "message": "you can use Object.entries to iterate over both keys and values:\n\nfor (const [displayLabel, values] of Object.entries(displayLabels))",
+      "range": {
+        "startLine": 91,
+        "startChar": 4,
+        "endLine": 91,
+        "endChar": 46
+      },
+      "revId": "6c2527fd7c46d2b5c37b286357dca572a6654839",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
