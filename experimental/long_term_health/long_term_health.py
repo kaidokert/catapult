@@ -296,8 +296,10 @@ def main(args):
 
   try:
     for milestone in range(args.from_milestone, args.to_milestone + 1):
-      uri = milestone_info.GetLatestVersionURI(milestone)
-      DownloadAPKFromURI(uri, args.output_path)
+      if len([apk for apk in os.listdir(
+          args.output_path) if apk.startswith(str(milestone))]) == 0:
+        uri = milestone_info.GetLatestVersionURI(milestone)
+        DownloadAPKFromURI(uri, args.output_path)
     return 0
   except KeyboardInterrupt:
     return 'interrupted, exiting...'
