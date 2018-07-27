@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3619416f_fc73eae5",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-07-27T09:02:52Z",
+      "side": 1,
+      "message": "you can remove this space.",
+      "revId": "a548cdeef3516ac1bab7a6496d9dc705aafc482f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c88f721_089367b3",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-07-27T09:02:52Z",
+      "side": 1,
+      "message": "We can replace this with guidValueInfoMap.set(e.guid, e.min), so we have guid -\u003e value mapping in just one place.",
+      "revId": "a548cdeef3516ac1bab7a6496d9dc705aafc482f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa22aa95_e26a80c8",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-07-27T09:02:52Z",
+      "side": 1,
+      "message": "I think we can just use guidValueInfo instead of two different maps. In linke 115, you can replace it with something like guildValueInfoMap.set(e.guid, e.min).",
+      "revId": "a548cdeef3516ac1bab7a6496d9dc705aafc482f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9de591a4_9c68d10d",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-07-27T09:02:52Z",
+      "side": 1,
+      "message": "Is the difference between the if and else part only that we display fewer fields. In that case, we can have if and else when we are actually adding the elements to not duplicate the code.",
+      "revId": "a548cdeef3516ac1bab7a6496d9dc705aafc482f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f2f9b0c_f62e001d",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-07-27T09:02:52Z",
+      "side": 1,
+      "message": "It should be else if",
+      "revId": "a548cdeef3516ac1bab7a6496d9dc705aafc482f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9122daa2_038eccc0",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-07-27T09:02:52Z",
+      "side": 1,
+      "message": "remove this empty line.",
+      "revId": "a548cdeef3516ac1bab7a6496d9dc705aafc482f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6883074b_9f791a82",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-07-27T09:02:52Z",
+      "side": 1,
+      "message": "What happens with the returned data here? Do we display it somewhere?",
+      "revId": "a548cdeef3516ac1bab7a6496d9dc705aafc482f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d75f7d7_9e0c0aa3",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-07-27T09:02:52Z",
+      "side": 1,
+      "message": "We actually don\u0027t want to display a table, so I think it is not required to call this at all.",
+      "revId": "a548cdeef3516ac1bab7a6496d9dc705aafc482f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
