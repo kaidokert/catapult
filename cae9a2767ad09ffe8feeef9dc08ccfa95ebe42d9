@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2a170a4e_624f37df",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-27T05:26:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "346c2418_366392e5",
+      "revId": "cae9a2767ad09ffe8feeef9dc08ccfa95ebe42d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2b0f72ee_1cc2f340",
         "filename": "dashboard/dashboard/pinpoint/models/bot_configurations.py",
         "patchSetId": 10
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "d7cf6672_cc534064",
+        "filename": "dashboard/dashboard/pinpoint/models/bot_configurations.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-27T05:26:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b0f72ee_1cc2f340",
+      "revId": "cae9a2767ad09ffe8feeef9dc08ccfa95ebe42d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "39b6ca42_e97ca6f6",
         "filename": "dashboard/dashboard/pinpoint/models/bot_configurations.py",
         "patchSetId": 10
@@ -47,6 +83,24 @@
       "writtenOn": "2018-07-26T23:12:37Z",
       "side": 1,
       "message": "If it will simplify the code, let\u0027s just assume that there\u0027s no nested/intersecting aliases. Since we control the bot_configurations dict anyway.",
+      "revId": "cae9a2767ad09ffe8feeef9dc08ccfa95ebe42d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb64af99_dd451ed3",
+        "filename": "dashboard/dashboard/pinpoint/models/bot_configurations.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-27T05:26:44Z",
+      "side": 1,
+      "message": "Sorry, not sure I understand. If you\u0027re proposing changing the structure of the bot_configurations dict, can you describe the new structure?",
+      "parentUuid": "39b6ca42_e97ca6f6",
       "revId": "cae9a2767ad09ffe8feeef9dc08ccfa95ebe42d9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
