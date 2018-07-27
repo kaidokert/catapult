@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b3f6d9d8_927e2312",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2018-07-27T16:13:34Z",
+      "side": 1,
+      "message": "Better off adding a formal docstring here that describes the exact type of this arg:\n\ngo/pythonstyle",
+      "parentUuid": "6c4df27e_0ac7aca0",
+      "revId": "f6957f6f2d1c21f42ae5428757f557cd20ca8855",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "aff3de9f_cc1f3479",
         "filename": "telemetry/telemetry/story/expectations.py",
         "patchSetId": 3
