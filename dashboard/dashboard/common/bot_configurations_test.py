@@ -2,17 +2,17 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+from dashboard.common import bot_configurations
 from dashboard.common import namespaced_stored_object
-from dashboard.pinpoint.models import bot_configurations
-from dashboard.pinpoint import test
+from dashboard.common import testing_common
 
 
-class ConfigTest(test.TestCase):
+class ConfigTest(testing_common.TestCase):
 
   def setUp(self):
     super(ConfigTest, self).setUp()
 
-    namespaced_stored_object.Set('bot_configurations', {
+    namespaced_stored_object.Set(bot_configurations.BOT_CONFIGURATIONS_KEY, {
         'chromium-rel-mac11-pro': {'alias': 'mac-11-perf'},
         'mac-11-perf': {'arg': 'value'},
     })
@@ -31,3 +31,23 @@ class ConfigTest(test.TestCase):
     actual = bot_configurations.List()
     expected = ['mac-11-perf']
     self.assertEqual(actual, expected)
+
+  def testAliases(self):
+    namespaced_stored_object.Set(bot_configurations.BOT_CONFIGURATIONS_KEY, {
+        'a': {
+            'alias': 'b',
+        },
+        'b': {
+            'alias': 'c',
+        },
+        'd': {
+            'alias': 'e',
+        },
+    })
+    aliases = bot_configurations.GetAliasesAsync('c').get_result()
+    self.assertEqual(3, len(aliases))
+    self.assertIn('a', aliases)
+    self.assertIn('b', aliases)
+    self.assertIn('c', aliases)
+    self.assertNotIn('d', aliases)
+    self.assertNotIn('e', aliases)
