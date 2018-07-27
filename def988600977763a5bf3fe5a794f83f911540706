@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "2e7bc577_eae6e51e",
+        "filename": "dashboard/dashboard/spa/simple-redux.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-07-27T17:40:46Z",
+      "side": 1,
+      "message": "This definitely seems like functionality that tends to get repeated a lot while mutating Redux state. Though to me this seems like more of a general helper function than something that\u0027s necessarily specific to Redux?",
+      "range": {
+        "startLine": 29,
+        "startChar": 2,
+        "endLine": 29,
+        "endChar": 20
+      },
+      "revId": "def988600977763a5bf3fe5a794f83f911540706",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "efa0a204_ce99f25a",
         "filename": "dashboard/dashboard/spa/simple-redux.js",
         "patchSetId": 6
@@ -22,6 +45,52 @@
       "revId": "def988600977763a5bf3fe5a794f83f911540706",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06faa0c1_39cbdc05",
+        "filename": "dashboard/dashboard/spa/simple-redux.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-07-27T17:40:46Z",
+      "side": 1,
+      "message": "This chain is a little difficult for me to follow at first glance. Would it be possible to include a usage example for this?",
+      "range": {
+        "startLine": 68,
+        "startChar": 16,
+        "endLine": 68,
+        "endChar": 59
+      },
+      "revId": "def988600977763a5bf3fe5a794f83f911540706",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21e2b208_7368517c",
+        "filename": "dashboard/dashboard/spa/simple-redux.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-07-27T17:40:46Z",
+      "side": 1,
+      "message": "Just an FYI that this is the pattern I ended up using in Monorail to solve a similar problem of action creators without thunk. I definitely can\u0027t vouch for this approach, but I thought we could share notes. \n\nAsync action creator here: https://cs.chromium.org/chromium/infra/appengine/monorail/elements/redux/redux-mixin.html?q\u003dredux-mixin+file:%5Einfra/appengine/monorail/elements/+package:%5Echromium$\u0026dr\u0026l\u003d56 \nFunction call here: https://cs.chromium.org/chromium/infra/appengine/monorail/elements/flt/mr-approval-page/mr-approval-page.js?l\u003d118",
+      "range": {
+        "startLine": 68,
+        "startChar": 2,
+        "endLine": 68,
+        "endChar": 13
+      },
+      "revId": "def988600977763a5bf3fe5a794f83f911540706",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
