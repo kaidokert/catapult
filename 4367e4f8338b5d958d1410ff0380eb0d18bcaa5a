@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5d81018a_35fc80a1",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-27T14:58:33Z",
+      "side": 1,
+      "message": "If the apk is already there, we\u0027ll probably want to know the path to it (so we can install it, or tell Telemetry to run it). So instead let\u0027s break this into:\n- An extra method to find  the apk for a milestone if we already have it; return None if we dont\u0027\n- An extra wrapper method to \"just get the apk\"; that tries to find it locally first, if not there it downloads it, and in either case returns the path the apk to install.",
+      "revId": "4367e4f8338b5d958d1410ff0380eb0d18bcaa5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
