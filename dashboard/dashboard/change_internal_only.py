@@ -6,25 +6,19 @@
 
 import logging
 
-from google.appengine.api import taskqueue
-from google.appengine.datastore import datastore_query
+from google.appengine.ext import deferred
 from google.appengine.ext import ndb
 
 from dashboard import add_point_queue
-from dashboard.common import request_handler
 from dashboard.common import datastore_hooks
+from dashboard.common import request_handler
 from dashboard.common import stored_object
+from dashboard.common import utils
 from dashboard.models import anomaly
 from dashboard.models import graph_data
 
-# Number of Row entities to process at once.
-_MAX_ROWS_TO_PUT = 25
 
-# Number of TestMetadata entities to process at once.
-_MAX_TESTS_TO_PUT = 25
-
-# Which queue to use for tasks started by this handler. Must be in queue.yaml.
-_QUEUE_NAME = 'migrate-queue'
+QUEUE_NAME = 'migrate-queue'
 
 
 class ChangeInternalOnlyHandler(request_handler.RequestHandler):
@@ -59,9 +53,6 @@ class ChangeInternalOnlyHandler(request_handler.RequestHandler):
       internal_only: "true" if turning on internal_only, else "false".
       bots: Bots to update. Multiple bots parameters are possible; the value
           of each should be a string like "MasterName/platform-name".
-      test: An urlsafe Key for a TestMetadata entity.
-      cursor: An urlsafe Cursor; this parameter is only given if we're part-way
-          through processing a Bot or a TestMetadata.
 
     Outputs:
       A message to the user if this request was started by the web form,
@@ -80,109 +71,70 @@ class ChangeInternalOnlyHandler(request_handler.RequestHandler):
       self.ReportError('No internal_only field')
       return
 
-    bot_names = self.request.get_all('bots')
-    test_key_urlsafe = self.request.get('test')
-    cursor = self.request.get('cursor', None)
+    master_bots = [master_bot.split('/')
+                   for master_bot in self.request.get_all('bots')]
+    if master_bots:
+      UpdateBotWhitelist(master_bots, internal_only)
+      ndb.Future.wait_all([UpdateBot(master, bot, internal_only)
+                           for master, bot in master_bots])
 
-    if bot_names and len(bot_names) > 1:
-      self._UpdateMultipleBots(bot_names, internal_only)
-      self.RenderHtml('result.html', {
-          'headline': ('Updating internal_only. This may take some time '
-                       'depending on the data to update. Check the task queue '
-                       'to determine whether the job is still in progress.'),
-      })
-    elif bot_names and len(bot_names) == 1:
-      self._UpdateBot(bot_names[0], internal_only, cursor=cursor)
-    elif test_key_urlsafe:
-      self._UpdateTest(test_key_urlsafe, internal_only)
+    self.RenderHtml('result.html', {'headline': (
+        'Updating internal_only. This may take some time depending on the data '
+        'to update. Check the task queue to determine whether the job is still '
+        'in progress.')})
 
-  def _UpdateBotWhitelist(self, bot_master_names, internal_only):
-    """Updates the global bot_whitelist object, otherwise subsequent add_point
-    calls will overwrite our work."""
-    bot_whitelist = stored_object.Get(add_point_queue.BOT_WHITELIST_KEY)
-    bot_names = [b.split('/')[1] for b in bot_master_names]
 
-    if internal_only:
-      bot_whitelist = [b for b in bot_whitelist if b not in bot_names]
-    else:
-      bot_whitelist.extend(bot_names)
-      bot_whitelist = list(set(bot_whitelist))
-    bot_whitelist.sort()
+def UpdateBotWhitelist(master_bots, internal_only):
+  bot_whitelist = set(stored_object.Get(add_point_queue.BOT_WHITELIST_KEY))
+  changing_names = {b[1] for b in master_bots}
+  if internal_only:
+    bot_whitelist = [b for b in bot_whitelist if b not in changing_names]
+  else:
+    bot_whitelist = changing_names.union(bot_whitelist)
+  stored_object.Set(add_point_queue.BOT_WHITELIST_KEY, sorted(bot_whitelist))
 
-    stored_object.Set(add_point_queue.BOT_WHITELIST_KEY, bot_whitelist)
 
-  def _UpdateMultipleBots(self, bot_names, internal_only):
-    """Kicks off update tasks for individual bots and their tests."""
+@ndb.tasklet
+def UpdateBot(master, bot, internal_only):
+  bot_entity = yield ndb.Key('Master', master, 'Bot', bot).get_async()
+  bot_entity.internal_only = internal_only
+  yield bot_entity.put_async()
+  deferred.defer(UpdateTests, master, bot, _queue=QUEUE_NAME)
 
-    self._UpdateBotWhitelist(bot_names, internal_only)
 
-    for bot_name in bot_names:
-      taskqueue.add(
-          url='/change_internal_only',
-          params={
-              'bots': bot_name,
-              'internal_only': 'true' if internal_only else 'false'
-          },
-          queue_name=_QUEUE_NAME)
+def UpdateTests(master, bot, start_cursor=None, skip_correct=True):
+  datastore_hooks.SetPrivilegedRequest()
+  internal_only = ndb.Key('Master', master, 'Bot', bot).get().internal_only
+  logging.info('%s/%s internal_only=%s', master, bot, internal_only)
 
-  def _UpdateBot(self, bot_name, internal_only, cursor=None):
-    """Starts updating internal_only for the given bot and associated data."""
-    master, bot = bot_name.split('/')
-    bot_key = ndb.Key('Master', master, 'Bot', bot)
+  @ndb.tasklet
+  def HandleTest(test):
+    deferred.defer(UpdateAnomalies, test.test_path, _queue=QUEUE_NAME)
+    if test.internal_only != internal_only:
+      test.internal_only = internal_only
+      yield test.put_async()
 
-    if not cursor:
-      # First time updating for this Bot.
-      bot_entity = bot_key.get()
-      if bot_entity.internal_only != internal_only:
-        bot_entity.internal_only = internal_only
-        bot_entity.put()
-    else:
-      cursor = datastore_query.Cursor(urlsafe=cursor)
+  query = graph_data.TestMetadata.query(
+      graph_data.TestMetadata.master_name == master,
+      graph_data.TestMetadata.bot_name == bot)
+  if skip_correct:
+    query = query.filter(
+        graph_data.TestMetadata.internal_only == (not internal_only))
+  count, next_cursor = utils.IterateQueryAsync(
+      query, start_cursor, HandleTest).get_result()
+  logging.info('%d tests', count)
 
-    # Fetch a certain number of TestMetadata entities starting from cursor. See:
-    # https://developers.google.com/appengine/docs/python/ndb/queryclass
+  if next_cursor:
+    logging.info('continuing')
+    deferred.defer(UpdateTests, master, bot, next_cursor, _queue=QUEUE_NAME)
 
-    # Start update tasks for each existing subordinate TestMetadata.
-    test_query = graph_data.TestMetadata.query(
-        graph_data.TestMetadata.master_name == master,
-        graph_data.TestMetadata.bot_name == bot)
-    test_keys, next_cursor, more = test_query.fetch_page(
-        _MAX_TESTS_TO_PUT, start_cursor=cursor, keys_only=True)
 
-    for test_key in test_keys:
-      taskqueue.add(
-          url='/change_internal_only',
-          params={
-              'test': test_key.urlsafe(),
-              'internal_only': 'true' if internal_only else 'false',
-          },
-          queue_name=_QUEUE_NAME)
-
-    if more:
-      taskqueue.add(
-          url='/change_internal_only',
-          params={
-              'bots': bot_name,
-              'cursor': next_cursor.urlsafe(),
-              'internal_only': 'true' if internal_only else 'false',
-          },
-          queue_name=_QUEUE_NAME)
-
-  def _UpdateTest(self, test_key_urlsafe, internal_only):
-    """Updates the given TestMetadata and associated Row entities."""
-    test_key = ndb.Key(urlsafe=test_key_urlsafe)
-
-    # First time updating for this TestMetadata.
-    test_entity = test_key.get()
-    if test_entity.internal_only != internal_only:
-      test_entity.internal_only = internal_only
-      test_entity.put()
-
-    # Update all of the Anomaly entities for this test.
-    # Assuming that this should be fast enough to do in one request
-    # for any one test.
-    anomalies, _, _ = anomaly.Anomaly.QueryAsync(test=test_key).get_result()
-    for anomaly_entity in anomalies:
-      if anomaly_entity.internal_only != internal_only:
-        anomaly_entity.internal_only = internal_only
-    ndb.put_multi(anomalies)
+def UpdateAnomalies(test_path):
+  datastore_hooks.SetPrivilegedRequest()
+  test = utils.TestKey(test_path).get()
+  bot = ndb.Key('Master', test.master_name, 'Bot', test.bot_name).get()
+  anomalies, _, _ = anomaly.Anomaly.QueryAsync(
+      test=test_path, internal_only=not bot.internal_only).get_result()
+  for entity in anomalies:
+    entity.internal_only = bot.internal_only
+  ndb.put_multi(anomalies)
