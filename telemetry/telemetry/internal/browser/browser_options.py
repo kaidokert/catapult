@@ -55,6 +55,8 @@ class BrowserFinderOptions(optparse.Values):
     self.interval_profiling_periods = []
     self.interval_profiling_frequency = 1000
 
+    self.normal_mode = True
+
   def __repr__(self):
     return str(sorted(self.__dict__.items()))
 
@@ -98,6 +100,13 @@ class BrowserFinderOptions(optparse.Values):
         default=socket.getservbyname('ssh'),
         dest='cros_remote_ssh_port',
         help='The SSH port of the remote ChromeOS device (requires --remote).')
+    parser.add_option(
+        '--compatibility-mode',
+        action='store_true',
+        dest='compatibility_mode',
+        default=False,
+        help='Run benchmarks in a way which is compatible with older versions of '
+             'Chrome.')
     identity = None
     testing_rsa = os.path.join(
         util.GetTelemetryThirdPartyDir(), 'chromite', 'ssh_keys', 'testing_rsa')
@@ -282,6 +291,7 @@ class BrowserFinderOptions(optparse.Values):
     for k, v in defaults.__dict__.items():
       self.ensure_value(k, v)
 
+
 class BrowserOptions(object):
   """Options to be used for launching a browser."""
   # Allows clients to check whether they are dealing with a browser_options
@@ -357,6 +367,8 @@ class BrowserOptions(object):
     # already exist.
     self.profile_files_to_copy = []
 
+    self.normal_mode = True
+
   def __repr__(self):
     # This works around the infinite loop caused by the introduction of a
     # circular reference with _finder_options.
@@ -430,13 +442,14 @@ class BrowserOptions(object):
     parser.add_option_group(group)
 
   def UpdateFromParseResults(self, finder_options):
-    """Copies our options from finder_options"""
+    """Copies our options from finder_options."""
     browser_options_list = [
         'extra_browser_args_as_string',
         'extra_wpr_args_as_string',
         'profile_dir',
         'profile_type',
         'show_stdout',
+        'compatibility_mode'
         ]
     for o in browser_options_list:
       a = getattr(finder_options, o, None)
@@ -445,6 +458,7 @@ class BrowserOptions(object):
         delattr(finder_options, o)
 
     self.browser_type = finder_options.browser_type
+    self.normal_mode = finder_options.normal_mode
     self._finder_options = finder_options
 
     if hasattr(self, 'extra_browser_args_as_string'):
