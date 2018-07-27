@@ -15,17 +15,15 @@ the kernel.  It creates an HTML file for visualizing the trace.
 # support Python 3 yet.
 
 import sys
+import optparse
+import os
+import time
 
 version = sys.version_info[:2]
 if version != (2, 7):
   sys.stderr.write('This script does not support Python %d.%d. '
                    'Please use Python 2.7.\n' % version)
   sys.exit(1)
-
-
-import optparse
-import os
-import time
 
 _SYSTRACE_DIR = os.path.abspath(
     os.path.join(os.path.dirname(__file__), os.path.pardir))
@@ -37,6 +35,7 @@ if _DEVIL_DIR not in sys.path:
 if _SYSTRACE_DIR not in sys.path:
   sys.path.insert(0, _SYSTRACE_DIR)
 
+# pylint: disable=wrong-import-position
 from devil import devil_env
 from devil.android.sdk import adb_wrapper
 from systrace import systrace_runner
