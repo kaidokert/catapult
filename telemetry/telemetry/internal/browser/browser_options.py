@@ -55,6 +55,8 @@ class BrowserFinderOptions(optparse.Values):
     self.interval_profiling_periods = []
     self.interval_profiling_frequency = 1000
 
+    self.normal_mode = True
+
   def __repr__(self):
     return str(sorted(self.__dict__.items()))
 
@@ -98,6 +100,15 @@ class BrowserFinderOptions(optparse.Values):
         default=socket.getservbyname('ssh'),
         dest='cros_remote_ssh_port',
         help='The SSH port of the remote ChromeOS device (requires --remote).')
+    parser.add_option(
+        '--compatibility-mode',
+        action='store_false',
+        dest='normal_mode',
+        default=True,
+        help='Run benchmarks in compatibility mode. Set this flag if you want '
+             'to run benchmarks for earlier versions of Chrome. The reason is '
+             'that we need to make certain configuration change in order to '
+             'run current benchmarks for earlier versions of Chrome')
     identity = None
     testing_rsa = os.path.join(
         util.GetTelemetryThirdPartyDir(), 'chromite', 'ssh_keys', 'testing_rsa')
@@ -342,6 +353,7 @@ class BrowserOptions(object):
     # time the logs data is uploaded.
     self.logs_cloud_bucket = cloud_storage.TELEMETRY_OUTPUT
     self.logs_cloud_remote_path = None
+    self.include_field_trials = True
 
     # TODO(danduong): Find a way to store target_os here instead of
     # finder_options.
@@ -356,6 +368,8 @@ class BrowserOptions(object):
     # the file to. Uses recursive directory creation if directories do not
     # already exist.
     self.profile_files_to_copy = []
+
+    self.normal_mode = True
 
   def __repr__(self):
     # This works around the infinite loop caused by the introduction of a
@@ -445,6 +459,7 @@ class BrowserOptions(object):
         delattr(finder_options, o)
 
     self.browser_type = finder_options.browser_type
+    self.normal_mode = finder_options.normal_mode
     self._finder_options = finder_options
 
     if hasattr(self, 'extra_browser_args_as_string'):
