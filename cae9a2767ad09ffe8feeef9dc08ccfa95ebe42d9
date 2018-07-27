@@ -140,6 +140,24 @@
       "revId": "cae9a2767ad09ffe8feeef9dc08ccfa95ebe42d9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfd3ff1b_b3eaf40e",
+        "filename": "dashboard/dashboard/pinpoint/models/bot_configurations.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-27T21:40:23Z",
+      "side": 1,
+      "message": "Perfect, thank you! PTAL?",
+      "parentUuid": "e414a912_9c8bddf0",
+      "revId": "cae9a2767ad09ffe8feeef9dc08ccfa95ebe42d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
