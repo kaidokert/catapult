@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6e26a45d_b58329a8",
+        "filename": "experimental/v8_tools/graph_data.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1293423
+      },
+      "writtenOn": "2018-07-27T10:40:16Z",
+      "side": 1,
+      "message": "I think this also simplifies the code a little bit so I\u0027ve gone ahead and changed it. Thanks.",
+      "parentUuid": "c042961d_1fbaf721",
+      "range": {
+        "startLine": 29,
+        "startChar": 9,
+        "endLine": 29,
+        "endChar": 23
+      },
+      "revId": "6c2527fd7c46d2b5c37b286357dca572a6654839",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a5d18eb_c2e4c1a7",
         "filename": "experimental/v8_tools/graph_data.js",
         "patchSetId": 2
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "0c9d0730_cdf223a6",
+        "filename": "experimental/v8_tools/graph_data.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1293423
+      },
+      "writtenOn": "2018-07-27T10:40:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20bab568_4d5b507d",
+      "range": {
+        "startLine": 81,
+        "startChar": 72,
+        "endLine": 81,
+        "endChar": 73
+      },
+      "revId": "6c2527fd7c46d2b5c37b286357dca572a6654839",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "66fff9df_9ded0d96",
         "filename": "experimental/v8_tools/graph_data.js",
         "patchSetId": 2
@@ -116,6 +164,30 @@
       "revId": "6c2527fd7c46d2b5c37b286357dca572a6654839",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "375b533e_4c5177cb",
+        "filename": "experimental/v8_tools/graph_data.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1293423
+      },
+      "writtenOn": "2018-07-27T10:40:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66fff9df_9ded0d96",
+      "range": {
+        "startLine": 91,
+        "startChar": 4,
+        "endLine": 91,
+        "endChar": 46
+      },
+      "revId": "6c2527fd7c46d2b5c37b286357dca572a6654839",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
