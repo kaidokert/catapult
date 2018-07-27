@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "835f488c_d39e55d7",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-07-27T09:47:16Z",
+      "side": 1,
+      "message": "In the browser, the main-thread. In the renderer, the main and compositor threads. In the gpu, the compositor-thread.",
+      "parentUuid": "0c136507_e1376fbc",
+      "revId": "92c22d9d270a8f053508475f3270c154c2773e25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e855e8fe_76c06d04",
         "filename": "tracing/tracing/metrics/rendering_metric.html",
         "patchSetId": 6
