@@ -20,7 +20,6 @@ from dashboard import graph_revisions
 from dashboard.common import datastore_hooks
 from dashboard.common import histogram_helpers
 from dashboard.common import request_handler
-from dashboard.common import stored_object
 from dashboard.common import utils
 from dashboard.models import anomaly
 from dashboard.models import graph_data
@@ -86,14 +85,9 @@ class AddHistogramsQueueHandler(request_handler.RequestHandler):
     """
     datastore_hooks.SetPrivilegedRequest()
 
-    bot_whitelist_future = stored_object.GetAsync(
-        add_point_queue.BOT_WHITELIST_KEY)
-
     params = json.loads(self.request.body)
 
     _PrewarmGets(params)
-
-    bot_whitelist = bot_whitelist_future.get_result()
 
     # Roughly, the processing of histograms and the processing of rows can be
     # done in parallel since there are no dependencies.
@@ -101,7 +95,7 @@ class AddHistogramsQueueHandler(request_handler.RequestHandler):
     futures = []
 
     for p in params:
-      futures.extend(_ProcessRowAndHistogram(p, bot_whitelist))
+      futures.extend(_ProcessRowAndHistogram(p))
 
     ndb.Future.wait_all(futures)
 
@@ -139,7 +133,7 @@ def _PrewarmGets(params):
   ndb.get_multi_async(list(keys))
 
 
-def _ProcessRowAndHistogram(params, bot_whitelist):
+def _ProcessRowAndHistogram(params):
   revision = int(params['revision'])
   test_path = params['test_path']
   benchmark_description = params['benchmark_description']
@@ -162,7 +156,7 @@ def _ProcessRowAndHistogram(params, bot_whitelist):
   else:
     rest = None
   full_test_name = '/'.join(test_path_parts[2:])
-  internal_only = add_point_queue.BotInternalOnly(bot, bot_whitelist)
+  internal_only = add_point_queue.BotInternalOnly(master, bot)
   extra_args = GetUnitArgs(hist.unit)
 
   unescaped_story_name = _GetStoryFromDiagnosticsDict(params.get('diagnostics'))
