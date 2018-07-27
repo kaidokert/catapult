@@ -16,6 +16,17 @@ class GraphData {
     this.dataSources = [];
     /** @private @const {Object} */
     this.plotter_ = new GraphPlotter(this);
+    /** @private @const {Array<string>} colors_
+     * Each new datasource is assigned a color.
+     * At first an attempt will be made to assign an unused color
+     * from this array and failing that the default color is used.
+     */
+    this.colors_ = [
+      'green',
+      'orange',
+    ];
+    /** @private @const {string} fallbackColor_ The default line color.*/
+    this.fallbackColor_ = 'black';
   }
 
   /**
@@ -65,25 +76,32 @@ class GraphData {
 
   /**
    * Registers the supplied data as a dataSource, enabling it to be plotted and
-   * processed. The data source can supply various attributes: the color is
-   * optional and defines the line color to be used (useful for when multiple
-   * data sources are being plotted), the data attribute is the supply of raw
-   * data to be processed and the key attribute is the label which will be
-   * assigned to the data on the legend.
-   * @param {{data: Array<Object>, color: string, key: string}} dataSource
+   * processed. The data source should be in the form of an object where
+   * the keys are the desired display labels (for the legend) corresponding
+   * to the supplied values, each of which should be an array of numbers.
+   * @param {Object} data
    * @return {GraphData}
    */
-  addData(dataSource) {
-    const { data, color, key } = dataSource;
-    if (!(data instanceof Array)) {
-      throw new Error(
-          'The data attribute of the supplied dataSource must be an Array');
+  addData(data) {
+    if (typeof data !== 'object') {
+      throw new Error('Expected an object to be supplied.');
     }
-    this.dataSources.push({
-      data,
-      color: color ? color : 'black',
-      key: key ? key : `Line ${this.dataSources.length}`,
-    });
+    const displayLabels = Object.keys(data);
+    let index = this.dataSources.length;
+    for (const displayLabel of displayLabels) {
+      const values = data[displayLabel];
+      if (values.constructor !== Array ||
+        !values.every((val) => typeof val === 'number')) {
+        throw new Error('The supplied values should be an array of numbers.');
+      }
+      this.dataSources.push({
+        data: values,
+        color: index < this.colors_.length ?
+          this.colors_[index] : this.fallbackColor_,
+        key: displayLabel,
+      });
+      index++;
+    }
     return this;
   }
 
