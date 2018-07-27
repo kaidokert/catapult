@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "58350974_8e17c0ad",
+        "filename": "dashboard/dashboard/common/bot_configurations.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-07-27T22:33:30Z",
+      "side": 1,
+      "message": "Could be even simpler.\n\nif not (configurations and bot in configurations):\n  raise ndb.Return({bot})\n\ncanonical \u003d configurations[bot].get(\u0027alias\u0027, bot)\n\naliases \u003d {canonical}\nfor name, configuration in configurations.iteritems():\n  if configuration.get(\u0027alias\u0027) \u003d\u003d canonical:\n    aliases.add(name)\n\nraise ndb.Return(aliases)",
+      "revId": "7e85291d961e7d29e2f34ed5bb224617286eca46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
