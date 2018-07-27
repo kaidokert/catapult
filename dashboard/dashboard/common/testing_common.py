@@ -110,12 +110,25 @@ class TestCase(unittest.TestCase):
                 urllib.unquote_plus(base64.b64decode(task['body'])))
       self.ExecuteTaskQueueTasks(handler_name, task_queue_name)
 
+  def FakeRequest(self):
+    # deferred.Defer() packages up the function call and arguments, not changes
+    # to global state like SetPrivilegedRequest, so set privileged=False as the
+    # taskqueue does, and test that UpdateDescriptor sets it back to True so
+    # that it gets the internal TestMetadata.
+    class FakeRequest(object):
+      def __init__(self):
+        self.registry = {'privileged': False}
+    webapp2._local.request = None
+    return mock.patch.object(
+        webapp2._local, 'request', FakeRequest(), create=True)
+
   def ExecuteDeferredTasks(self, task_queue_name):
     task_queue = self.testbed.get_stub(testbed.TASKQUEUE_SERVICE_NAME)
     tasks = task_queue.GetTasks(task_queue_name)
     task_queue.FlushQueue(task_queue_name)
     for task in tasks:
-      deferred.run(base64.b64decode(task['body']))
+      with self.FakeRequest():
+        deferred.run(base64.b64decode(task['body']))
       self.ExecuteDeferredTasks(task_queue_name)
 
   def GetTaskQueueTasks(self, task_queue_name):
