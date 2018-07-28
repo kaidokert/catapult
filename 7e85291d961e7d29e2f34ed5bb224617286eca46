@@ -16,6 +16,24 @@
       "revId": "7e85291d961e7d29e2f34ed5bb224617286eca46",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1615ee48_c09e1d8c",
+        "filename": "dashboard/dashboard/common/bot_configurations.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-28T04:12:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58350974_8e17c0ad",
+      "revId": "7e85291d961e7d29e2f34ed5bb224617286eca46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
