@@ -103,6 +103,13 @@ class Descriptor(object):
     if len(path) == 1:
       raise ndb.Return((path.pop(0), None))
 
+    if test_suite.startswith('loading.'):
+      measurement = path.pop(0)
+      parts, path[:] = path[:], []
+      if parts[1].endswith('_' + parts[0]):
+        parts[1] = parts[1][:-(len(parts[0]) + 1)]
+      raise ndb.Return((measurement, ':'.join(parts)))
+
     if test_suite.startswith('resource_sizes'):
       parts, path[:] = path[:], []
       raise ndb.Return((':'.join(parts), None))
@@ -195,6 +202,9 @@ class Descriptor(object):
     if path[-1] == 'ref':
       path.pop()
       build_type = REFERENCE_BUILD_TYPE
+    elif path[-1].endswith('_ref'):
+      build_type = REFERENCE_BUILD_TYPE
+      path[-1] = path[-1][:-4]
 
     if len(path) == 0:
       raise ndb.Return(cls(
@@ -207,13 +217,6 @@ class Descriptor(object):
       if measurement.endswith('_' + suffix):
         statistic = suffix
         measurement = measurement[:-(1 + len(suffix))]
-
-    if test_case and test_case.endswith('_ref'):
-      test_case = test_case[:-4]
-      build_type = REFERENCE_BUILD_TYPE
-    if test_case == REFERENCE_BUILD_TYPE:
-      build_type = REFERENCE_BUILD_TYPE
-      test_case = None
 
     if path:
       raise ValueError('Unable to parse %r' % test_path)
