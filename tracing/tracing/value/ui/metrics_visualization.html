@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/ui/base/metrics_column_chart.html">
+<link rel="import" href="/tracing/ui/base/metrics_name_bar_chart.html">
+<dom-module id='tr-v-ui-metrics-visualization'>
+  <template>
+    <style>
+      button {
+        -webkit-appearance: none;
+        border: 0;
+        font-size: initial;
+        padding: 5px;
+      }
+    </style>
+    <h5 id="error">
+    </h5>
+    <div id="container">
+    </div>
+    <div id="children">
+    </div>
+  </template>
+</dom-module>
+<script>
+'use strict';
+
+Polymer({
+  is: 'tr-v-ui-metrics-visualization',
+
+  created() {
+    this.chart_ = new tr.ui.b.MetricsColumnChart();
+    this.chart_.isStacked = true;
+    this.chart_.hideXAxis = true;
+    this.chart_.graphHeight = 400;
+    this.chart_.graphWidth = 600;
+    this.chart_.enableToolTip = true;
+    this.chart_.yAxisLabel = 'ms';
+    this.chart_.chartTitle = 'Metrics Visualization';
+
+    this.chart_.toolTipCallBack = (rect) => this.openChildChart(rect);
+
+    this.mainColors_ = [
+      ['#FF9E80', '#FF6E40', '#FF3D00', '#DD2C00'],
+      ['#FFE57F', '#FFD740', '#FFC400', '#FFAB00'],
+      ['#80D8FF', '#40C4FF', '#00B0FF', '#0091EA'],
+      ['#CCFF90', '#B2FF59', '#76FF03', '#64DD17'],
+      ['#B388FF', '#7C4DFF', '#651FFF', '#6200EA'],
+      ['#FF80AB', '#FF4081', '#F50057', '#C51162'],
+      ['#FFD180', '#FFAB40', '#FF9100', '#FF6D00'],
+      ['#8C9EFF', '#536DFE', '#3D5AFE', '#304FFE']];
+
+    this.subColors_ = [
+      ['#FFAB91', '#FF8A65', '#FF7043', '#FF5722',
+        '#F4511E', '#E64A19', '#D84315', '#BF360C'],
+      ['#FFE082', '#FFD54F', '#FFCA28', '#FFC107',
+        '#FFB300', '#FFA000', '#FF8F00', '#FF6F00'],
+      ['#81D4fA', '#4fC3F7', '#29B6F6', '#03A9F4',
+        '#039BE5', '#0288D1', '#0277BD', '#01579B'],
+      ['#C5E1A5', '#AED581', '#9CCC65', '#8BC34A',
+        '#7CB342', '#689F38', '#558B2F', '#33691E'],
+      ['#B39DDB', '#9575CD', '#7E57C2', '#673AB7',
+        '#5E35B1', '#512DA8', '#4527A0', '#311B92'],
+      ['#F48FB1', '#F06292', '#EC407A', '#E91E63',
+        '#D81B60', '#C2185B', '#AD1457', '#880E4F'],
+      ['#FFCC80', '#FFB74D', '#FFA726', '#FF9800',
+        '#FB8C00', '#F57C00', '#EF6C00', '#E65100'],
+      ['#9FA8DA', '#7986CB', '#5C6BC0', '#3F51B5',
+        '#3949AB', '#303F9F', '#283593', '#1A237E']];
+
+    this.colors_ = {};
+
+    this.displayLabelIndex_ = -1;
+    this.nameIndex_ = -1;
+    this.pageNameIndex_ = -1;
+    this.valueIndex_ = -1;
+
+    this.displayLabels_ = [];
+    this.breakdownData_ = [];
+  },
+
+  ready() {
+
+  },
+
+  build(rawData, mainMetricNames, subMetricNames) {
+    if (!rawData || rawData.length <= 1) {
+      this.$.error.innerHTML = 'Invalid data provided.';
+      return;
+    }
+
+    if (!mainMetricNames || !subMetricNames ||
+        mainMetricNames.length !== subMetricNames.length) {
+      this.$.error.innerHTML = 'Invalid metric names provided.';
+      return;
+    }
+
+    this.mainMetricNames_ = mainMetricNames;
+    this.subMetricNames_ = subMetricNames;
+
+    Polymer.dom(this.$.container).appendChild(this.chart_);
+    this.populateChart(rawData);
+  },
+
+  // Create data series for chart
+  populateChart(rawData) {
+    const headers = rawData[0];
+    const rows = rawData.slice(1, -1);
+
+    this.getIndicesFromHeaders(headers);
+
+    const filteredData = rows.filter((row) => this.filterRow(row));
+    const groupedData = this.groupData(filteredData);
+    const sortedData = groupedData.sort((a, b) => this.compareTimes(a, b));
+    const processedData = this.processData(sortedData);
+
+    this.setChartColors();
+
+    this.chart_.data = processedData;
+  },
+
+  // Store header indices for later use
+  getIndicesFromHeaders(headers) {
+    for (let i = 0; i < headers.length; ++i) {
+      switch (headers[i]) {
+        case 'avg':
+          this.valueIndex_ = i;
+          break;
+        case 'displayLabel':
+          this.displayLabelIndex_ = i;
+          break;
+        case 'name':
+          this.nameIndex_ = i;
+          break;
+        case 'stories':
+          this.pageNameIndex_ = i;
+          break;
+      }
+    }
+  },
+
+  // Remove rows that don't contain relevant metrics
+  filterRow(row) {
+    const name = row[this.nameIndex_];
+    if (this.mainMetricNames_.indexOf(name) >= 0) return true;
+    for (const subNames of this.subMetricNames_) {
+      if (subNames.indexOf(name) >= 0) return true;
+    }
+    return false;
+  },
+
+  // Get data from metrics and group according to page
+  groupData(filteredData) {
+    const groups = {};
+    for (let i = 0; i < filteredData.length; i++) {
+      const row = filteredData[i];
+      const pageName = row[this.pageNameIndex_];
+      const displayLabel = row[this.displayLabelIndex_];
+      const metricName = row[this.nameIndex_];
+
+      // Keep track of all unique display labels for grouping
+      if (!this.displayLabels_.includes(displayLabel)) {
+        this.displayLabels_.push(displayLabel);
+      }
+
+      let pageData = { data: [] };
+
+      // Determine whether the current metric is a main metric or a sub metric
+      const mainMetricIndex = this.mainMetricNames_.indexOf(metricName);
+      let subMetricIndex = -1;
+      let subMetricGroupIndex = -1;
+      for (let i = 0; i < this.subMetricNames_.length; ++i) {
+        const subNames = this.subMetricNames_[i];
+        pageData[this.mainMetricNames_[i]] = [];
+        const index = subNames.indexOf(metricName);
+        if (index >= 0) {
+          subMetricIndex = index;
+          subMetricGroupIndex = i;
+        }
+      }
+
+      // Populate the grouped data object
+      const page = groups[pageName] || {};
+      if (Object.keys(page).length === 0) { // Page doesn't exist
+        page[displayLabel] = pageData;
+        groups[pageName] = page;
+      } else { // Page exists, look for current display label
+        if (displayLabel in page) { // Display label exists
+          pageData = page[displayLabel];
+        } else { // Display label doesn't exist
+          page[displayLabel] = pageData;
+        }
+      }
+
+      // Fill in value
+      const value = this.getRoundedNumber(row[this.valueIndex_]);
+      if (mainMetricIndex >= 0) {
+        pageData.data[mainMetricIndex] = value;
+      } else if (subMetricIndex >= 0) {
+        const mainMetricName = this.mainMetricNames_[subMetricGroupIndex];
+        const subMetricData = pageData[mainMetricName];
+        subMetricData[subMetricIndex] = value;
+      }
+    }
+
+    // Convert to array to allow sorting later on
+    const groupedData = [];
+    for (const pageName in groups) {
+      const page = { pageName };
+      groupedData.push({...page, ...groups[pageName]});
+    }
+    return groupedData;
+  },
+
+  // Sort data by total duration of metrics in first run
+  compareTimes(a, b) {
+    let aValue = 0;
+    let bValue = 0;
+    if (a[this.displayLabels_[0]]) {
+      aValue = a[this.displayLabels_[0]].data.reduce((x, y) => x + y, 0);
+    }
+    if (b[this.displayLabels_[0]]) {
+      bValue = b[this.displayLabels_[0]].data.reduce((x, y) => x + y, 0);
+    }
+    if (aValue === bValue) {
+      return 0;
+    }
+    return (aValue < bValue) ? -1 : 1;
+  },
+
+  // Process data into format that the charts can use
+  processData(sortedData) {
+    const processedData = [];
+    let xCount = 0; // Used to space data for grouped column chart
+
+    // Populate input data for main chart and breakdown charts
+    for (let i = 0; i < sortedData.length; ++i) {
+      const pageData = sortedData[i];
+      for (const displayLabel in sortedData[i]) {
+        if (displayLabel !== 'pageName') {
+          const main = {x: xCount, label: displayLabel,
+            group: sortedData[i].pageName};
+
+          const breakdown = {};
+          for (let j = 0; j < this.mainMetricNames_.length; ++j) {
+            const metricName = this.mainMetricNames_[j];
+            const key = this.getSeriesKey(metricName, displayLabel);
+            main[key] = pageData[displayLabel].data[j];
+            breakdown[key] = pageData[displayLabel][metricName];
+          }
+          processedData.push(main);
+          this.breakdownData_[xCount] = breakdown;
+          xCount++;
+        }
+      }
+
+      const empty = { x: xCount };
+      processedData.push(empty);
+      xCount++;
+    }
+    return processedData;
+  },
+
+  // Assign color gradient to series in chart
+  setChartColors() {
+    for (let i = 0; i < this.mainMetricNames_.length; ++i) {
+      for (let j = 0; j < this.displayLabels_.length; ++j) {
+        const series = this.getSeriesKey(this.mainMetricNames_[i],
+            this.displayLabels_[j]);
+        const mainColorIndex = i % this.mainColors_.length;
+        const subColorIndex = j % this.mainColors_[mainColorIndex].length;
+        const color = this.mainColors_[mainColorIndex][subColorIndex];
+        this.chart_.getDataSeries(series).color = color;
+        this.colors_[series] = this.subColors_[mainColorIndex];
+      }
+    }
+  },
+
+  getSeriesKey(metricName, displayLabel) {
+    return metricName + '-' + displayLabel;
+  },
+
+  getRoundedNumber(string) {
+    return Number(Number(string).toFixed(2));
+  },
+
+  initializeChildDiv(id) {
+    const div = document.createElement('div');
+    div.id = id;
+    div.style.position = 'relative';
+    div.style.display = 'inline-block';
+    return div;
+  },
+
+  initializeChildChart(div, title) {
+    const childChart = new tr.ui.b.MetricsNameBarChart();
+    childChart.xAxisLabel = 'ms';
+    childChart.isStacked = true;
+    childChart.graphHeight = 300;
+    childChart.graphWidth = 400;
+    childChart.displayColLabelinHover = true;
+    childChart.displayXInHover = false;
+    childChart.chartTitle = title;
+    div.appendChild(childChart);
+    return childChart;
+  },
+
+  initializeCloseButton(div) {
+    const button = document.createElement('button');
+    button.innerHTML = 'X';
+    button.addEventListener ('click', () => {
+      Polymer.dom(this.$.children).removeChild(div);
+    });
+    button.style.position = 'absolute';
+    button.style.top = 0;
+    button.style.right = 400;
+    div.appendChild(button);
+    return button;
+  },
+
+  // Create child chart and populate it
+  openChildChart(rect) {
+    const div = this.initializeChildDiv(rect.key);
+    Polymer.dom(this.$.children).appendChild(div);
+
+    const title = rect.key + ': ' + rect.datum.group;
+    const childChart = this.initializeChildChart(div, title);
+    const button = this.initializeCloseButton(div);
+
+    let subSteps;
+    for (let i = 0; i < this.mainMetricNames_.length; ++i) {
+      const metricName = this.mainMetricNames_[i];
+      if (rect.key.startsWith(metricName)) {
+        subSteps = this.subMetricNames_[i];
+        break;
+      }
+    }
+
+    const stepColors = this.colors_[rect.key];
+    const childData = [];
+    let total = 0;
+
+    for (let i = 0; i < subSteps.length; ++i) {
+      const subStep = subSteps[i];
+
+      const stepValue = this.breakdownData_[rect.datum.x][rect.key][i];
+      const data = { x: subStep, hide: total, label: rect.datum.label };
+      data[subStep] = stepValue;
+      childData.push(data);
+      total += stepValue;
+
+      const colorIndex = i % stepColors.length;
+      childChart.getDataSeries(subStep).color = stepColors[colorIndex];
+    }
+
+    childChart.data = childData;
+  },
+});
+</script>
