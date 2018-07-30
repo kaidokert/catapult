@@ -54,7 +54,7 @@ def _ProfileWithExtraFiles(profile_dir, profile_files_to_copy):
     # random name due to the extra failure mode of filling up the sdcard
     # in the case of unclean test teardown. We should consider changing
     # PushProfile to avoid writing to this intermediate location.
-    host_profile = os.path.join(tempdir, "_default_profile")
+    host_profile = os.path.join(tempdir, '_default_profile')
     if profile_dir:
       shutil.copytree(profile_dir, host_profile)
     else:
@@ -71,6 +71,7 @@ def _ProfileWithExtraFiles(profile_dir, profile_files_to_copy):
 
 class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
   """A launchable android browser instance."""
+
   def __init__(self, browser_type, finder_options, android_platform,
                backend_settings, local_apk=None):
     super(PossibleAndroidBrowser, self).__init__(
@@ -249,9 +250,12 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
 
   def GetBrowserStartupArgs(self, browser_options):
     startup_args = chrome_startup_args.GetFromBrowserOptions(browser_options)
+    # use the flag `--ignore-certificate-errors` if in compatibility mode
+    is_supporting_spki_list = False if browser_options.compatibility_mode else (
+        self._backend_settings.supports_spki_list)
     startup_args.extend(chrome_startup_args.GetReplayArgs(
         self._platform_backend.network_controller_backend,
-        supports_spki_list=self._backend_settings.supports_spki_list))
+        supports_spki_list=is_supporting_spki_list))
     startup_args.append('--enable-remote-debugging')
     startup_args.append('--disable-fre')
     startup_args.append('--disable-external-intent-requests')
