@@ -12,13 +12,15 @@
         <div id='canvas'></div>
     </body>
     <script src="./graph_data.js"></script>
+    <script src="./line_plotter.js"></script>
+    <script src="./box_plotter.js"></script>
     <script src="./graph_plotter.js"></script>
     <script>
       'use strict';
       /*
        * Example usage of chart plotting.
        */
-      const DATA_LOCATION = './example/data/TravelGifPage.csv';
+      const DATA_LOCATION = 'http://0.0.0.0:8000/example/data/TravelGifPage.csv';
       const METRIC_NAME = 'memory:chrome:all_processes:reported_by_os:' +
         'proportional_resident_size';
       const without = [];
