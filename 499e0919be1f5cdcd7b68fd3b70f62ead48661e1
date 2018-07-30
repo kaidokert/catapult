@@ -22,6 +22,30 @@
       "revId": "499e0919be1f5cdcd7b68fd3b70f62ead48661e1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ac40b2a_d0a37692",
+        "filename": "experimental/v8_tools/plotter.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1293423
+      },
+      "writtenOn": "2018-07-30T15:42:08Z",
+      "side": 1,
+      "message": "Thanks, I thought that it would be useful for providing documentation value because I found the JSDoc @interface tag, but actually that may have been intended to be used with TypeScript :) Do you know if theres a good way to document what kind of \u0027interface\u0027 the plotting classes should adhere to, or are the examples of the existing classes sufficient documention themselves?",
+      "parentUuid": "9734b208_ca4542db",
+      "range": {
+        "startLine": 8,
+        "startChar": 6,
+        "endLine": 8,
+        "endChar": 13
+      },
+      "revId": "499e0919be1f5cdcd7b68fd3b70f62ead48661e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
