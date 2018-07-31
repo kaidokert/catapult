@@ -288,7 +288,7 @@ tr.exportTo('cp', () => {
       }));
     }
 
-    async onAddAlertsSection_() {
+    async onAlerts_(event) {
       this.dispatchEvent(new CustomEvent('alerts', {
         bubbles: true,
         composed: true,
@@ -419,7 +419,6 @@ tr.exportTo('cp', () => {
 
   ReportSection.properties = {
     ...cp.ElementBase.statePathProperties('statePath', {
-      anyAlerts: {type: Boolean},
       copiedMeasurements: {type: Boolean},
       isLoading: {type: Boolean},
       milestone: {type: Number},
@@ -536,14 +535,17 @@ tr.exportTo('cp', () => {
       const request = new ReportNamesRequest({});
       const sources = await request.response;
       const rootState = getState();
-      const filteredNames = await cp.TeamFilter.get(
-          rootState.teamName).reportNames(sources.map(entity => entity.name));
-      dispatch({
-        type: ReportSection.reducers.receiveSources.typeName,
-        statePath,
-        sources,
-        filteredNames,
-      });
+      const teamFilter = cp.TeamFilter.get(rootState.teamName);
+      cp.ElementBase.actions.chain([
+        {
+          type: ReportSection.reducers.receiveTemplateIds.typeName,
+          reportTemplateIds: await teamFilter.reportNames(sources),
+        },
+        {
+          type: ReportSection.reducers.receiveSourceOptions.typeName,
+          statePath,
+        },
+      ])(dispatch, getState);
       ReportSection.actions.loadReports(statePath)(dispatch, getState);
     },
 
@@ -566,17 +568,15 @@ tr.exportTo('cp', () => {
       const requestedReports = new Set(state.source.selectedOptions);
       const revisions = [state.minRevision, state.maxRevision];
 
-      // If any report names are not in templateIds, early return, wait for
-      // loadSources to finish and dispatch loadReports again.
-      // TODO use a CacheBase subclass: loadReports is called from both
-      // loadSources and restoreState, so the default report may be fetched
-      // twice.
+      // If any report names are not in reportTemplateIds, early return, wait
+      // for loadSources to finish and dispatch loadReports again.
+      if (!rootState.reportTemplateIds) return;
       const promises = [];
       for (const name of names) {
-        const templateId = state.templateIds.get(name);
+        const templateId = rootState.reportTemplateIds.get(name);
         if (templateId === undefined) return;
         promises.push(new ReportRequest({
-          ...state.templateIds.get(name),
+          ...templateId,
           revisions,
         }).response);
       }
@@ -745,15 +745,17 @@ tr.exportTo('cp', () => {
         isLoading: true,
       })(dispatch, getState);
       const sources = await request.response;
-      sources.sort((a, b) => a.name.localeCompare(b.name));
-      const filteredNames = await cp.TeamFilter.get(
-          rootState.teamName).reportNames(sources.map(entity => entity.name));
-      dispatch({
-        type: ReportSection.reducers.receiveSources.typeName,
-        statePath,
-        sources,
-        filteredNames,
-      });
+      const teamFilter = cp.TeamFilter.get(rootState.teamName);
+      cp.ElementBase.actions.chain([
+        {
+          type: ReportSection.reducers.receiveTemplateIds.typeName,
+          reportTemplateIds: await teamFilter.reportNames(sources),
+        },
+        {
+          type: ReportSection.reducers.receiveSourceOptions.typeName,
+          statePath,
+        },
+      ])(dispatch, getState);
       rootState = getState();
       state = Polymer.Path.get(rootState, statePath);
       cp.ElementBase.actions.updateObject(statePath, {
@@ -846,16 +848,20 @@ tr.exportTo('cp', () => {
       };
     },
 
-    receiveSources: (state, action, rootState) => {
-      const templateIds = new Map(action.sources.map(entity =>
+    receiveTemplateIds: (rootState, {reportTemplateIds}, rootStateAgain) => {
+      reportTemplateIds = new Map(reportTemplateIds.map(entity =>
         [entity.name, entity]));
-      const source = {...state.source};
-      source.options = cp.OptionGroup.groupValues(action.filteredNames);
+      return {...rootState, reportTemplateIds};
+    },
+
+    receiveSourceOptions: (state, action, rootState) => {
+      const options = cp.OptionGroup.groupValues(
+          rootState.reportTemplateIds.keys());
       if (cp.IS_DEBUG || rootState.userEmail) {
-        source.options.push(ReportSection.CREATE);
+        options.push(ReportSection.CREATE);
       }
-      source.label = `Reports (${action.sources.length})`;
-      return {...state, source, templateIds};
+      const label = `Reports (${rootState.reportTemplateIds.size})`;
+      return {...state, source: {...state.source, options, label}};
     },
 
     requestReports: (state, action, rootState) => {
@@ -1114,13 +1120,11 @@ tr.exportTo('cp', () => {
         query: '',
         selectedOptions: sources,
       },
-      templateIds: new Map(),
       milestone: parseInt(options.milestone) || CURRENT_MILESTONE,
       minRevision: options.minRevision,
       maxRevision: options.maxRevision,
       minRevisionInput: options.minRevision,
       maxRevisionInput: options.maxRevision,
-      anyAlerts: false,
       tables: [PLACEHOLDER_TABLE],
       tooltip: {},
     };

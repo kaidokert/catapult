@@ -31,7 +31,8 @@ found in the LICENSE file.
       #sheriff {
         width: 350px;
       }
-      #sheriff_container {
+      #sheriff_container,
+      #bug_container {
         margin-right: 8px;
       }
 
@@ -125,7 +126,7 @@ found in the LICENSE file.
       <iron-collapse
           horizontal
           id="sheriff_container"
-          opened="[[showSheriff_(bug)]]">
+          opened="[[showSheriff_(bug, report)]]">
         <dropdown-input
             id="sheriff"
             state-path="[[statePath]].sheriff"
@@ -134,13 +135,26 @@ found in the LICENSE file.
         </dropdown-input>
       </iron-collapse>
 
-      <iron-collapse horizontal opened="[[showBug_(sheriff)]]">
+      <iron-collapse
+          horizontal
+          id="bug_container"
+          opened="[[showBug_(sheriff, report)]]">
         <dropdown-input
             id="bug"
             state-path="[[statePath]].bug"
             on-clear="onBugClear_"
             on-input-keyup="onBugKeyup_"
             on-option-select="onBugSelect_">
+        </dropdown-input>
+      </iron-collapse>
+
+      <iron-collapse horizontal opened="[[showReport_(sheriff, bug)]]">
+        <dropdown-input
+            id="report"
+            state-path="[[statePath]].report"
+            on-clear="onReportClear_"
+            on-input-keyup="onReportKeyup_"
+            on-option-select="onReportSelect_">
         </dropdown-input>
       </iron-collapse>
 
