@@ -172,10 +172,11 @@ class JobState(object):
 
   def AsDict(self):
     state = []
+    change_dicts = change_module.AsDictMulti(self._changes)
     for change in self._changes:
       state.append({
           'attempts': [attempt.AsDict() for attempt in self._attempts[change]],
-          'change': change.AsDict(),
+          'change': change_dicts[change],
           'comparisons': {},
           'result_values': self._ResultValues(change),
       })

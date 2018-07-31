@@ -5,8 +5,27 @@
 import collections
 import itertools
 
+from google.appengine.api import memcache
+
 from dashboard.pinpoint.models.change import commit as commit_module
 from dashboard.pinpoint.models.change import patch as patch_module
+
+
+_CACHE_DURATION = 60 * 60 * 24 * 7 * 2  # 2 weeks.
+
+
+def AsDictMulti(changes):
+  cached = memcache.get_multi(change.id_string for change in changes)
+  dicts = {}
+  for change in changes:
+    id_string = change.id_string
+    if id_string in cached:
+      change_dict = cached[id_string]
+    else:
+      change_dict = change.AsDict()
+      memcache.add(id_string, change_dict, time=_CACHE_DURATION)
+    dicts[change] = change_dict
+  return dicts
 
 
 class Change(collections.namedtuple('Change', ('commits', 'patch'))):
