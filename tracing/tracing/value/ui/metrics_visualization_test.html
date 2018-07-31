@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/value/ui/metrics_visualization.html">
+
+<script>
+'use strict';
+
+tr.b.unittest.testSuite(function() {
+  test('instantiate', function() {
+    const cp = document.createElement('tr-v-ui-metrics-visualization');
+    this.addHTMLOutput(cp);
+
+    const rawData = [
+      ['name', 'avg', 'displayLabel', 'stories'],
+      ['main_step_1', 50.5, 'run_1', 'test.com'],
+      ['main_step_1', 60.8, 'run_2', 'test.com'],
+      ['main_step_2', 30.3, 'run_1', 'test.com'],
+      ['main_step_2', 45.2, 'run_2', 'test.com'],
+      ['main_step_3', 42.1, 'run_1', 'test.com'],
+      ['main_step_3', 36.8, 'run_2', 'test.com'],
+      ['sub_step_1a', 30.5, 'run_1', 'test.com'],
+      ['sub_step_1a', 25.8, 'run_2', 'test.com'],
+      ['sub_step_1b', 20, 'run_1', 'test.com'],
+      ['sub_step_1b', 35, 'run_2', 'test.com'],
+      ['sub_step_2a', 10.3, 'run_1', 'test.com'],
+      ['sub_step_2a', 15.2, 'run_2', 'test.com'],
+      ['sub_step_2b', 15, 'run_1', 'test.com'],
+      ['sub_step_2b', 20, 'run_2', 'test.com'],
+      ['sub_step_2c', 5, 'run_1', 'test.com'],
+      ['sub_step_2c', 10, 'run_2', 'test.com'],
+      ['sub_step_3a', 42.1, 'run_1', 'test.com'],
+      ['sub_step_3a', 36.8, 'run_2', 'test.com']
+    ];
+
+    const mainMetricNames = ['main_step_1',
+      'main_step_2', 'main_step_3'];
+
+    const subMetricNames = [
+      ['sub_step_1a', 'sub_step_1b'],
+      ['sub_step_2a', 'sub_step_2b', 'sub_step_2c'],
+      ['sub_step_3a']
+    ];
+
+    cp.build(tr.ui.b.rawData, mainMetricNames, subMetricNames);
+  });
+});
+</script>
