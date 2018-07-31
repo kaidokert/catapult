@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "909157c2_40171b38",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-07-31T15:55:51Z",
+      "side": 1,
+      "message": "The goal is to be able to run the benchmark from M48.",
+      "parentUuid": "0040f656_7cd9442a",
+      "revId": "968f037a42b067e633571332582d1db68ab3b375",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9d52035d_41391fd0",
         "filename": "devil/devil/android/flag_changer.py",
         "patchSetId": 1
