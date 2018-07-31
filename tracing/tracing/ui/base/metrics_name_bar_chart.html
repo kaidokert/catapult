@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/ui/base/name_bar_chart.html">
+
+<script>
+'use strict';
+
+tr.exportTo('tr.ui.b', function() {
+  const MetricsNameBarChart = tr.ui.b.define('metrics-name-bar-chart',
+      tr.ui.b.NameBarChart);
+
+  // This chart supports modified hover values with custom labels
+  MetricsNameBarChart.prototype = {
+    __proto__: tr.ui.b.NameBarChart.prototype,
+
+    decorate() {
+      super.decorate();
+
+      this.getDataSeries('group').color = 'transparent';
+      this.getDataSeries('label').color = 'transparent';
+      this.getDataSeries('hide').color = 'transparent';
+    },
+
+    updateDataRange_() {
+      if (!this.isStacked) {
+        super.updateDataRange_();
+        return;
+      }
+
+      this.autoDataRange_.reset();
+      this.autoDataRange_.addValue(0);
+      for (const datum of this.data_) {
+        let sum = 0;
+        for (const [key, series] of this.seriesByKey_) {
+          if (key === 'label' || key === 'group' || datum[key] === undefined) {
+            continue;
+          }
+          sum += datum[key];
+        }
+        this.autoDataRange_.addValue(sum);
+      }
+    },
+
+    getStackedRectsForDatum_(datum, index) {
+      const stacks = [];
+      let bottom = this.yScale_.range()[0];
+      let sum = 0;
+      for (const [key, series] of this.seriesByKey_) {
+        if (key === 'label' || key === 'group' || datum[key] === undefined ||
+            !this.isSeriesEnabled(key)) {
+          continue;
+        }
+
+        sum += this.dataRange.clamp(datum[key]);
+        const heightPx = bottom - this.yScale_(sum);
+        bottom -= heightPx;
+        stacks.push({
+          key,
+          value: datum[key],
+          color: this.getDataSeries(key).color,
+          heightPx,
+          topPx: bottom,
+          underflow: sum < this.dataRange.min,
+          overflow: sum > this.dataRange.max,
+        });
+      }
+      return stacks;
+    },
+
+    drawHoverValueBox_(rect) {
+      const rectHoverEvent = new tr.b.Event('rect-mouseenter');
+      rectHoverEvent.rect = rect;
+      this.dispatchEvent(rectHoverEvent);
+
+      if (!this.enableHoverBox || rect.key === 'hide') return;
+
+      const seriesKeys = [...this.seriesByKey_.keys()];
+      const chartAreaSel = d3.select(this.chartAreaElement);
+      chartAreaSel.selectAll('.hover').remove();
+
+      let groupWidthPx = 0;
+      let groupHeightPx = 0;
+      if (seriesKeys.length > 1) {
+        groupWidthPx = tr.ui.b.getSVGTextSize(
+            this.chartAreaElement, rect.datum.group).width;
+        groupHeightPx = this.textHeightPx_;
+      }
+
+      let labelWidthPx = 0;
+      let labelHeightPx = 0;
+      if (rect.datum.label !== undefined) {
+        labelWidthPx = tr.ui.b.getSVGTextSize(this.chartAreaElement,
+            rect.datum.label).width + 5;
+        labelHeightPx = this.textHeightPx_;
+      }
+
+      const valueWidthPx = tr.ui.b.getSVGTextSize(
+          this.chartAreaElement, rect.value).width;
+      const valueHeightPx = this.textHeightPx_;
+
+      const hoverWidthPx = Math.min(
+          Math.max(groupWidthPx, valueWidthPx, labelWidthPx) + 5,
+          Math.max(50, rect.widthPx));
+      const hoverTopPx = rect.topPx + (rect.heightPx / 2);
+      const hoverLeftPx = rect.leftPx + rect.widthPx - hoverWidthPx;
+
+      chartAreaSel
+          .append('rect')
+          .on('mouseleave', () => this.clearHoverValueBox_(rect))
+          .attr('class', 'hover')
+          .attr('fill', 'white')
+          .attr('x', hoverLeftPx)
+          .attr('y', hoverTopPx)
+          .attr('width', hoverWidthPx)
+          .attr('height', groupHeightPx + valueHeightPx + labelHeightPx);
+
+      if (rect.datum.group !== undefined) {
+        chartAreaSel
+            .append('text')
+            .on('mouseleave', () => this.clearHoverValueBox_(rect))
+            .attr('class', 'hover')
+            .attr('fill', rect.color)
+            .attr('x', hoverLeftPx + 2)
+            .attr('y', hoverTopPx + groupHeightPx - 3)
+            .text(rect.datum.group);
+      }
+
+      if (rect.datum.label !== undefined) {
+        chartAreaSel
+            .append('text')
+            .on('mouseleave', () => this.clearHoverValueBox_(rect))
+            .attr('class', 'hover')
+            .attr('fill', rect.color)
+            .attr('x', hoverLeftPx + 2)
+            .attr('y', hoverTopPx + groupHeightPx + valueHeightPx - 3)
+            .text('' + rect.datum.label);
+      }
+
+      chartAreaSel
+          .append('text')
+          .on('mouseleave', () => this.clearHoverValueBox_(rect))
+          .attr('class', 'hover')
+          .attr('fill', rect.color)
+          .attr('x', hoverLeftPx + 2)
+          .attr('y', hoverTopPx + groupHeightPx + valueHeightPx +
+                labelHeightPx - 3)
+          .text(rect.value);
+    },
+  };
+
+  return {
+    MetricsNameBarChart,
+  };
+});
+</script>
