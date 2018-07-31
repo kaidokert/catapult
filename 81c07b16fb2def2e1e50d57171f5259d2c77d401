@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5d711fa2_3d15710a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-31T08:16:01Z",
+      "side": 1,
+      "message": "Try to edit this to make it read more as a succinct record of what this change makes, and why is it needed. And less as comments to the reviewer. :)",
+      "revId": "81c07b16fb2def2e1e50d57171f5259d2c77d401",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6efa7c8_ebde2a01",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-31T08:16:01Z",
+      "side": 1,
+      "message": "nit: also add a comment here explaining what this option does (e.g. similar to the help string of --compatibility-mode arg).",
+      "revId": "81c07b16fb2def2e1e50d57171f5259d2c77d401",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
