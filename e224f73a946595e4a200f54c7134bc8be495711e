@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "18dbd459_7ba700e1",
+        "filename": "tracing/tracing/extras/importer/linux_perf/mali_parser.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1211219
+      },
+      "writtenOn": "2018-07-31T23:47:29Z",
+      "side": 1,
+      "message": "nit: Would regex fail because of incomplete event? If so maybe we want to check whether it succeeds",
+      "range": {
+        "startLine": 330,
+        "startChar": 12,
+        "endLine": 330,
+        "endChar": 20
+      },
+      "revId": "e224f73a946595e4a200f54c7134bc8be495711e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
