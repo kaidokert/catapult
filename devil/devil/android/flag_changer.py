@@ -52,12 +52,13 @@ class FlagChanger(object):
     once the tests have completed.
   """
 
-  def __init__(self, device, cmdline_file):
+  def __init__(self, device, cmdline_file, compatibility_mode=False):
     """Initializes the FlagChanger and records the original arguments.
 
     Args:
       device: A DeviceUtils instance.
       cmdline_file: Name of the command line file where to store flags.
+      compatibility_mode: Whether to run in compatibility mode
     """
     self._device = device
     self._should_reset_enforce = False
@@ -66,12 +67,14 @@ class FlagChanger(object):
       raise ValueError(
           'cmdline_file should be a file name only, do not include path'
           ' separators in: %s' % cmdline_file)
-    self._cmdline_path = posixpath.join(_CMDLINE_DIR, cmdline_file)
+    # use the legacy commandline path if in compatibility mode
+    cmdline_dir = _CMDLINE_DIR_LEGACY if compatibility_mode else _CMDLINE_DIR
+    self._cmdline_path = posixpath.join(cmdline_dir, cmdline_file)
 
     cmdline_path_legacy = posixpath.join(_CMDLINE_DIR_LEGACY, cmdline_file)
     if self._device.PathExists(cmdline_path_legacy):
       logger.warning(
-            'Removing legacy command line file %r.', cmdline_path_legacy)
+          'Removing legacy command line file %r.', cmdline_path_legacy)
       self._device.RemovePath(cmdline_path_legacy, as_root=True)
 
     self._state_stack = [None]  # Actual state is set by GetCurrentFlags().
@@ -195,7 +198,7 @@ class FlagChanger(object):
     """
     # The initial state must always remain on the stack.
     assert len(self._state_stack) > 1, (
-      "Mismatch between calls to Add/RemoveFlags and Restore")
+        'Mismatch between calls to Add/RemoveFlags and Restore')
     self._state_stack.pop()
     if len(self._state_stack) == 1:
       self._ResetEnforce()
