@@ -33,6 +33,8 @@ tr.exportTo('cp', () => {
   const PRODUCTION_URL = `https://${PRODUCTION_ORIGIN}`;
   const IS_PRODUCTION = location.hostname === PRODUCTION_ORIGIN;
 
+  const thresholdInMs = 8;
+
   // Forwards (state, action) to action.reducer.
   function rootReducer(state, action) {
     if (state === undefined) {
@@ -43,7 +45,19 @@ tr.exportTo('cp', () => {
     }
     if (!REDUCERS.has(action.type)) return state;
     if (IS_DEBUG) Object.deepFreeze(state);
-    return REDUCERS.get(action.type)(state, action);
+
+    // Time the response of running this action through the reducers.
+    const start = Date.now();
+    const result = REDUCERS.get(action.type)(state, action);
+    const diffInMs = Date.now() - start;
+
+    // Check for long-running reducers
+    if (diffInMs >= thresholdInMs) {
+      // eslint-disable-next-line no-console
+      console.warn(`Action "${action.type}" took ${diffInMs}ms`, action);
+    }
+
+    return result;
   }
 
   // This is all that is needed from redux-thunk to enable asynchronous action
@@ -221,6 +235,7 @@ tr.exportTo('cp', () => {
     }
   };
 
+  // Wrap event listeners with timing functionality.
   ElementBase.registerEventListeners = cls => {
     // Polymer handles the addEventListener() calls, this method just wraps
     // 'on*_' methods with Timing marks.
