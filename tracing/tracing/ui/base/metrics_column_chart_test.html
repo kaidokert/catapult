@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/ui/base/metrics_column_chart.html">
+
+<script>
+'use strict';
+
+tr.b.unittest.testSuite(function() {
+  test('undefined', function() {
+    const chart = new tr.ui.b.MetricsColumnChart();
+    assert.throws(function() {
+      chart.data = undefined;
+    });
+  });
+
+  test('instantiate', function() {
+    const chart = new tr.ui.b.MetricsColumnChart();
+    chart.isStacked = true;
+    this.addHTMLOutput(chart);
+    chart.data = [
+      {x: 10, alpha: 20, beta: 60 },
+      {x: 20, alpha: 10, beta: 20 },
+      {x: 30, alpha: 30, beta: 25 },
+      {x: 40, alpha: 50, beta: 40 }
+    ];
+  });
+
+  test('instantiateGrouped', function() {
+    const chart = new tr.ui.b.MetricsColumnChart();
+    chart.isStacked = true;
+    this.addHTMLOutput(chart);
+    chart.data = [
+      {x: 10, alpha: 100, beta: 50, group: 'group1' },
+      {x: 20, alpha: 110, beta: 75, group: 'group1' },
+      {x: 30 },
+      {x: 40, alpha: 100, beta: 125, group: 'group2' },
+      {x: 50, alpha: 50, beta: 125, group: 'group2' }
+    ];
+  });
+
+  test('instantiateGroupedWithLabel', function() {
+    const chart = new tr.ui.b.MetricsColumnChart();
+    chart.isStacked = true;
+    this.addHTMLOutput(chart);
+    chart.data = [
+      {x: 10, alpha: 50, beta: 10, group: 'group1', label: 'label1' },
+      {x: 20, alpha: 70, beta: 75, group: 'group1', label: 'label2' },
+      {x: 30 },
+      {x: 40, alpha: 60, beta: 25, group: 'group2', label: 'label1' },
+      {x: 50, alpha: 50, beta: 40, group: 'group2', label: 'label2' }
+    ];
+  });
+});
+</script>
