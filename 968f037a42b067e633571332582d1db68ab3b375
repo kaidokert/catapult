@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9d52035d_41391fd0",
+        "filename": "devil/devil/android/flag_changer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-31T15:07:16Z",
+      "side": 1,
+      "message": "nit: to be more explicit, I would name this option \"use_legacy_path\".",
+      "revId": "968f037a42b067e633571332582d1db68ab3b375",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b125c825_53024301",
+        "filename": "devil/devil/android/flag_changer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-31T15:07:16Z",
+      "side": 1,
+      "message": "We need to make sure we never leave two \"command line\" files in the device, as that will make it hard to predict which is the one that Chrome is reading.\n\nSo I propose instead:\n\n- compute cmdline_path and alternate_cmdline_path, each using the _CMDLINE_DIR and _LEGACY_CMDLINE_DIR\n- if the option to use_legacy_path\u003dTrue, the swap the value of those two paths.\n- make sure we record the path to use in self._cmdline_path.\n- make sure we *remove* the alternate file.\n\nAlso make sure to add a corresponding test for these behaviors.",
+      "revId": "968f037a42b067e633571332582d1db68ab3b375",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
