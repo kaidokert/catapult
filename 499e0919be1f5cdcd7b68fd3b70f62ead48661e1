@@ -46,6 +46,53 @@
       "revId": "499e0919be1f5cdcd7b68fd3b70f62ead48661e1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb4c07ca_0ea2b44a",
+        "filename": "experimental/v8_tools/plotter.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-07-31T08:23:21Z",
+      "side": 1,
+      "message": "Hm, good question -- TypeScript interfaces get compiled away to nothing AFAIK.\n\nSo, with your argument, for documentation reasons I\u0027m happy for the interface class to exist -- the other option I think would be to provide that documentation in the graph plotter\u0027s plot method. Up to you.",
+      "parentUuid": "7ac40b2a_d0a37692",
+      "range": {
+        "startLine": 8,
+        "startChar": 6,
+        "endLine": 8,
+        "endChar": 13
+      },
+      "revId": "499e0919be1f5cdcd7b68fd3b70f62ead48661e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4fd8481_4e012ef0",
+        "filename": "experimental/v8_tools/plotter.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-07-31T08:23:21Z",
+      "side": 1,
+      "message": "nit: spelling",
+      "range": {
+        "startLine": 22,
+        "startChar": 36,
+        "endLine": 22,
+        "endChar": 51
+      },
+      "revId": "499e0919be1f5cdcd7b68fd3b70f62ead48661e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
