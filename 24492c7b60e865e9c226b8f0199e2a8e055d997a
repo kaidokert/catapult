@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ab63311e_71076357",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-31T07:41:04Z",
+      "side": 1,
+      "message": "you can better write this as:\n\n    supports_spki_list \u003d (self._backend_settings.supports_spki_list and\n                          not browser_options.compatibility_mode)",
+      "revId": "24492c7b60e865e9c226b8f0199e2a8e055d997a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
