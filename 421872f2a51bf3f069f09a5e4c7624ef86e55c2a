@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e56f0f48_eaebb084",
+        "filename": "dashboard/dashboard/pinpoint/models/change/change.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-31T08:59:31Z",
+      "side": 1,
+      "message": "Add a docstring.",
+      "revId": "421872f2a51bf3f069f09a5e4c7624ef86e55c2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
