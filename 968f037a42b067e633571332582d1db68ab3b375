@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "e5af4ef4_74ff57ef",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-31T16:05:30Z",
+      "side": 1,
+      "message": "Sorry for the lack of context. Leonard\u0027s project is described here:\nhttps://docs.google.com/document/d/14yfNRKyQ6cAoJJL7hvXiBKR3Z-JPp6e22MbNnjdskpk/edit?usp\u003dsharing",
+      "parentUuid": "909157c2_40171b38",
+      "revId": "968f037a42b067e633571332582d1db68ab3b375",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9d52035d_41391fd0",
         "filename": "devil/devil/android/flag_changer.py",
         "patchSetId": 1
