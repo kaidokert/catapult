@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "945473c0_74e21119",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-31T20:25:12Z",
+      "side": 1,
+      "message": "You can merge this loop with the previous one by collecting gestureEvents and Interaction records first, then processing them in a separate loop. I think that might be faster and clearer.",
+      "revId": "9847b56d37dba71f743b051db792d146982107b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49b2d4ec_b1dadf3c",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-07-31T20:25:12Z",
+      "side": 1,
+      "message": "Can you add some comments? I\u0027m not sure what exactly is happening or why.",
+      "revId": "9847b56d37dba71f743b051db792d146982107b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
