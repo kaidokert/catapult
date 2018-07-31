@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e934160f_1887de9a",
+        "filename": "telemetry/telemetry/internal/results/histogram_set_json_output_formatter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-07-31T09:01:12Z",
+      "side": 1,
+      "message": "Thanks for fixing this! I also noted these badly formatted json\u0027s in some isolate outputs, but hadn\u0027t the time to look at where they were coming from.",
+      "revId": "f5afe197b6148faca2aa3fba9c0fd46f5ff3e7d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
