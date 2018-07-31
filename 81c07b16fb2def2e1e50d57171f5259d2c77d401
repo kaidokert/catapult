@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "edde9325_b6ff3777",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-07-31T08:40:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d711fa2_3d15710a",
+      "revId": "81c07b16fb2def2e1e50d57171f5259d2c77d401",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a6efa7c8_ebde2a01",
         "filename": "telemetry/telemetry/internal/browser/browser_options.py",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "81c07b16fb2def2e1e50d57171f5259d2c77d401",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e110be1_c0f76744",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-07-31T08:40:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6efa7c8_ebde2a01",
+      "revId": "81c07b16fb2def2e1e50d57171f5259d2c77d401",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
