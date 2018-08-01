@@ -72,6 +72,10 @@ def FindBrowser(options):
         default_browsers.append(new_default_browser)
       browsers.extend(curr_browsers)
 
+  if not browsers:
+    raise browser_finder_exceptions.BrowserFinderException(
+        'Cannot find any browser')
+
   if options.browser_type is None:
     if default_browsers:
       default_browser = sorted(default_browsers,
@@ -99,11 +103,9 @@ def FindBrowser(options):
       y_idx = types.index(y.browser_type)
       return x_idx - y_idx
     browsers.sort(CompareBrowsersOnTypePriority)
-    if len(browsers) >= 1:
-      browsers[0].UpdateExecutableIfNeeded()
-      return browsers[0]
-    else:
-      return None
+    # len(browsers) is guaranteed > 0.
+    browsers[0].UpdateExecutableIfNeeded()
+    return browsers[0]
 
   matching_browsers = [
       b for b in browsers
