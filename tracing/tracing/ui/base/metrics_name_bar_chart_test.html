@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/ui/base/metrics_name_bar_chart.html">
+
+<script>
+'use strict';
+
+tr.b.unittest.testSuite(function() {
+  test('undefined', function() {
+    const chart = new tr.ui.b.MetricsNameBarChart();
+    assert.throws(function() {
+      chart.data = undefined;
+    });
+  });
+
+  test('instantiate', function() {
+    const chart = new tr.ui.b.MetricsNameBarChart();
+    chart.isStacked = true;
+    this.addHTMLOutput(chart);
+    chart.data = [
+      {x: 'Category 1', alpha: 20, beta: 10, omega: 20 },
+      {x: 'Category 2', alpha: 10, beta: 15, omega: 5 },
+      {x: 'Category 3', alpha: 30, beta: 5, omega: 25 }
+    ];
+  });
+
+  test('instantiateWithHide', function() {
+    const chart = new tr.ui.b.MetricsNameBarChart();
+    chart.isStacked = true;
+    this.addHTMLOutput(chart);
+    chart.data = [
+      {x: 'Category 1', alpha: 20 },
+      {x: 'Category 2', hide: 20, beta: 10 },
+      {x: 'Category 3', hide: 30, omega: 25 }
+    ];
+  });
+
+  test('instantiateWithLabel', function() {
+    const chart = new tr.ui.b.MetricsNameBarChart();
+    chart.isStacked = true;
+    this.addHTMLOutput(chart);
+    chart.data = [
+      {x: 'Category 1', alpha: 60, label: 'label' },
+      {x: 'Category 2', hide: 60, beta: 75, label: 'label' },
+      {x: 'Category 3', hide: 135, omega: 45, label: 'label' }
+    ];
+  });
+
+  test('instantiateGroupedWithLabel', function() {
+    const chart = new tr.ui.b.MetricsNameBarChart();
+    chart.isStacked = true;
+    this.addHTMLOutput(chart);
+    chart.data = [
+      {x: 'Category 1', alpha: 40, label: 'label1', group: 'group1' },
+      {x: 'Category 1', alpha: 30, label: 'label2', group: 'group1' },
+      {x: '　'},
+      {x: 'Category 2', hide: 40, beta: 55, label: 'label1', group: 'group2' },
+      {x: 'Category 2', hide: 40, beta: 65, label: 'label2', group: 'group2' },
+      {x: '　'},
+      {x: 'Category 3', hide: 95, omega: 10, label: 'label1', group: 'group3' },
+      {x: 'Category 3', hide: 95, omega: 20, label: 'label2', group: 'group3' }
+    ];
+  });
+});
+</script>

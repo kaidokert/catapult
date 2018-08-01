@@ -34,6 +34,10 @@ tr.exportTo('tr.v', function() {
       this.buildTable_();
     }
 
+    get table() {
+      return this.table_;
+    }
+
     prepare_() {
       for (const [key, grouping] of tr.v.HistogramGrouping.BY_KEY) {
         if (IGNORE_GROUPING_KEYS.includes(key)) continue;
