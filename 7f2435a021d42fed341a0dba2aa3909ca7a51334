@@ -144,6 +144,91 @@
     },
     {
       "key": {
+        "uuid": "595dd5b7_5464fc66",
+        "filename": "dashboard/dashboard/spa/service-worker.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T20:22:28Z",
+      "side": 1,
+      "message": "Can you move this to a function outside of the install event listener, named something like handleMessage?",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e93d4d3_d6774e35",
+        "filename": "dashboard/dashboard/spa/service-worker.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T20:22:28Z",
+      "side": 1,
+      "message": "Why removeEventListener?",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd8a6277_666ba47f",
+        "filename": "dashboard/dashboard/spa/service-worker.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T20:22:28Z",
+      "side": 1,
+      "message": "Can you move the body of this branch to a function named something like handleTimeseriesFetch?",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "667e5ca1_a65557bf",
+        "filename": "dashboard/dashboard/spa/service-worker.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T20:22:28Z",
+      "side": 1,
+      "message": "Racing is an implementation detail. \"CacheRequest\" is a more common term for what this is.\nIDBRace -\u003e CacheRequestBase\nTimeseriesRace -\u003e TimeseriesCacheRequest\nrace -\u003e cacheRequest\nrace.js -\u003e cache-request.js",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9990f96f_c3f17336",
+        "filename": "dashboard/dashboard/spa/service-worker.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T20:22:28Z",
+      "side": 1,
+      "message": "Can you move this to a getter like nextResult?",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "44df764c_7ce71624",
         "filename": "dashboard/dashboard/spa/sw-utils/level-of-detail.js",
         "patchSetId": 17
@@ -155,6 +240,217 @@
       "writtenOn": "2018-08-01T19:09:31Z",
       "side": 1,
       "message": "The new backend doesn\u0027t support r_commit_pos, and it\u0027s removed here, so I think you can remove this TODO and update the comments above.",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9d6c8a1_94b4ad1c",
+        "filename": "dashboard/dashboard/spa/sw-utils/race.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T20:22:28Z",
+      "side": 1,
+      "message": "s/Private/Final/\ns/overwrite/override/\n\"Private\" refers to whether callers outside this class may call a method. Some of these methods\u0027 names start with underscores, so they\u0027re private, but \"next\" and Symbol.asyncIterator are public and called outside this class.\n\"Final\" refers to whether subclasses may override it.",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "506b7c89_036e94b3",
+        "filename": "dashboard/dashboard/spa/sw-utils/race.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T20:22:28Z",
+      "side": 1,
+      "message": "Can you move this to a method?",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0f4014c_976e620c",
+        "filename": "dashboard/dashboard/spa/sw-utils/race.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T20:22:28Z",
+      "side": 1,
+      "message": "Can you move this to a method?",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4a47f2e_408f215e",
+        "filename": "dashboard/dashboard/spa/sw-utils/race.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T20:22:28Z",
+      "side": 1,
+      "message": "It looks like these have no effect.",
+      "range": {
+        "startLine": 125,
+        "startChar": 46,
+        "endLine": 125,
+        "endChar": 55
+      },
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48d0636b_b60e2e18",
+        "filename": "dashboard/dashboard/spa/sw-utils/race.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T20:22:28Z",
+      "side": 1,
+      "message": "Would it be simpler to handle both promises generally without defining a winner and loser?\nwhile (promises) yield await Promise.race(promises);",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4fcece91_8d1b2c0d",
+        "filename": "dashboard/dashboard/spa/sw-utils/race.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T20:22:28Z",
+      "side": 1,
+      "message": "Forgot mark.end()",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 172,
+        "endChar": 19
+      },
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec72dc16_ec2f9c42",
+        "filename": "dashboard/dashboard/spa/sw-utils/race.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T20:22:28Z",
+      "side": 1,
+      "message": "\"Debounce\" refers to a process of ignoring illusionary copies of an event to reveal the true event. This class isn\u0027t ignoring anything, so I think \"DatabaseWriteQueue\" would be a better term for this class.",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8977168d_5c514655",
+        "filename": "dashboard/dashboard/spa/sw-utils/race.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T20:22:28Z",
+      "side": 1,
+      "message": "Any particular reason for this value, or would 1000 work as well?",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e924d6b3_91721ca3",
+        "filename": "dashboard/dashboard/spa/sw-utils/race.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T20:22:28Z",
+      "side": 1,
+      "message": "nit: please rename \"delayMs\" to indicate unit.",
+      "range": {
+        "startLine": 193,
+        "startChar": 9,
+        "endLine": 193,
+        "endChar": 14
+      },
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a60ca3d_cb3be6c2",
+        "filename": "dashboard/dashboard/spa/sw-utils/race.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T20:22:28Z",
+      "side": 1,
+      "message": "style nit: please add a blank line before this method.",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e617e298_65d72766",
+        "filename": "dashboard/dashboard/spa/sw-utils/race.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T20:22:28Z",
+      "side": 1,
+      "message": "Can you refactor this together with the setTimeout callback into a flush() method on the DebouncedWriter?",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 250,
+        "endChar": 28
+      },
       "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
