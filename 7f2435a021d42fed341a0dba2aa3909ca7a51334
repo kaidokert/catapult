@@ -1,0 +1,163 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ea45887_34e24372",
+        "filename": "dashboard/bin/deploy_v2spa",
+        "patchSetId": 17
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T19:09:31Z",
+      "side": 1,
+      "message": "style nit: no spaces inside brackets, please",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d8f8b43_7a1b612b",
+        "filename": "dashboard/bin/deploy_v2spa",
+        "patchSetId": 17
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T19:09:31Z",
+      "side": 1,
+      "message": "Remove?",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31da6044_a0337e5f",
+        "filename": "dashboard/dashboard/spa/chart-pair.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T19:09:31Z",
+      "side": 1,
+      "message": "The minimap will display fresh data when it receives it, right? So the data might be temporarily stale.",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f710653_2b2f048a",
+        "filename": "dashboard/dashboard/spa/element-base.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T19:09:31Z",
+      "side": 1,
+      "message": "I think we\u0027d rather do this in a reducer wrapper and try to keep rootReducer as simple as possible, per my \"things redux forgot\" cl.",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 18
+      },
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59315e4e_c8615c7d",
+        "filename": "dashboard/dashboard/spa/index.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T19:09:31Z",
+      "side": 1,
+      "message": "Good point! Maybe move IS_PRODUCTION into this file? Then it can do this:\nif (IS_PRODUCTION) ga(\u0027create\u0027,...)",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af623229_52a5ae41",
+        "filename": "dashboard/dashboard/spa/report-section.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T19:09:31Z",
+      "side": 1,
+      "message": "I think I might have fixed this recently?",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd0a0e7f_c9ad6c36",
+        "filename": "dashboard/dashboard/spa/request-base.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T19:09:31Z",
+      "side": 1,
+      "message": "This typecheck shouldn\u0027t be necessary.",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ad932ce_5e050879",
+        "filename": "dashboard/dashboard/spa/request-base.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T19:09:31Z",
+      "side": 1,
+      "message": "Why catch and rethrow?",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44df764c_7ce71624",
+        "filename": "dashboard/dashboard/spa/sw-utils/level-of-detail.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T19:09:31Z",
+      "side": 1,
+      "message": "The new backend doesn\u0027t support r_commit_pos, and it\u0027s removed here, so I think you can remove this TODO and update the comments above.",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
