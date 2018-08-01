@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a4737255_52ac2c4b",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-01T08:29:54Z",
+      "side": 1,
+      "message": "Is this TODO still valid? I think we throw CloudDowloadFailed right? Do we want to do something else instead.",
+      "revId": "51f8788ee2f876c97741c28975608202fb3e971d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3a1bb33_06ed10b6",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-01T08:29:54Z",
+      "side": 1,
+      "message": "nit: May be split this into two statements for readability? \nlike\nlocal_apks \u003d [apk for apk in....]\nsorted_local_apks \u003d sorted(local_apks, key \u003d )\n\nPlease feel free to ignore this comment, since I am more biased towards c++ code :).",
+      "revId": "51f8788ee2f876c97741c28975608202fb3e971d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
