@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a80e6ab_32343d11",
+        "filename": "telemetry/telemetry/wpr/archive_info.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-01T10:33:54Z",
+      "side": 1,
+      "message": "nit: I think this will be a bit cleaner if you do:\n\n  story_names \u003d set(story_archives.iterkeys())\n  if stories is not None:\n    story_names.intersection_update(s.name for s in stories)\n  for story_name in story_names:\n    ...\n\nAlso wondering whether the caller should supply the list of story names rather than stories?",
+      "revId": "e9270abb3a9bb55e38d61a3dbfc328c138f28d42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
