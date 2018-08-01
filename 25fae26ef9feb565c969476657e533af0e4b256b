@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a2c13023_a2888804",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-01T13:56:25Z",
+      "side": 1,
+      "message": "nit: fix up indentation here",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 6
+      },
+      "revId": "25fae26ef9feb565c969476657e533af0e4b256b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98e7982f_0ad5dcc4",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-01T13:56:25Z",
+      "side": 1,
+      "message": "what does this do?",
+      "range": {
+        "startLine": 19,
+        "startChar": 18,
+        "endLine": 19,
+        "endChar": 33
+      },
+      "revId": "25fae26ef9feb565c969476657e533af0e4b256b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e69c3011_e203a0b2",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-01T13:56:25Z",
+      "side": 1,
+      "message": "move the \u003chead\u003e section to the top, and wrap the rest (including the app div and the inputs above it) in \u003cbody\u003e",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 7
+      },
+      "revId": "25fae26ef9feb565c969476657e533af0e4b256b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5908178a_2b826818",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-01T13:56:25Z",
+      "side": 1,
+      "message": "remove -- this syntax won\u0027t work anyway.",
+      "range": {
+        "startLine": 33,
+        "startChar": 6,
+        "endLine": 33,
+        "endChar": 73
+      },
+      "revId": "25fae26ef9feb565c969476657e533af0e4b256b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e62eb8f_9a2f8b98",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-01T13:56:25Z",
+      "side": 1,
+      "message": "this entire script might be more readable/maintainable if moved into a separate file.",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 17
+      },
+      "revId": "25fae26ef9feb565c969476657e533af0e4b256b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e472816_7663cedc",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-01T13:56:25Z",
+      "side": 1,
+      "message": "I think this could be a computed value based on sampleArr.length \u003e 0",
+      "range": {
+        "startLine": 42,
+        "startChar": 8,
+        "endLine": 42,
+        "endChar": 19
+      },
+      "revId": "25fae26ef9feb565c969476657e533af0e4b256b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "089be2d4_3160b075",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-01T13:56:25Z",
+      "side": 1,
+      "message": "nit: (it\u0027s a small thing, but throughout) only one space after the // in comments",
+      "range": {
+        "startLine": 49,
+        "startChar": 10,
+        "endLine": 49,
+        "endChar": 12
+      },
+      "revId": "25fae26ef9feb565c969476657e533af0e4b256b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d71374d_be545203",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-01T13:56:25Z",
+      "side": 1,
+      "message": "since you\u0027re using map, this can just be:\n\n  const metricsWithDuplicates \u003d this.sampleArr.map(el \u003d\u003e el.name);\n\nEither that, or add directly into a Set from the start, using forEach instead of map.",
+      "range": {
+        "startLine": 52,
+        "startChar": 29,
+        "endLine": 52,
+        "endChar": 70
+      },
+      "revId": "25fae26ef9feb565c969476657e533af0e4b256b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "717fcb19_8faa8ec3",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-01T13:56:25Z",
+      "side": 1,
+      "message": "I don\u0027t think a select for diagnostics is useful -- you should use diagnostics for the filtering, like you do for metrics and stories, but once the metric+story filtering is done I think we just care about the sample values for that metric.",
+      "range": {
+        "startLine": 67,
+        "startChar": 8,
+        "endLine": 67,
+        "endChar": 19
+      },
+      "revId": "25fae26ef9feb565c969476657e533af0e4b256b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a84e884b_1add1de9",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-01T13:56:25Z",
+      "side": 1,
+      "message": "nit: indent to match the rest",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 3
+      },
+      "revId": "25fae26ef9feb565c969476657e533af0e4b256b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e5972f8_62f966c6",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-01T13:56:25Z",
+      "side": 1,
+      "message": "is this ever used?",
+      "range": {
+        "startLine": 238,
+        "startChar": 6,
+        "endLine": 238,
+        "endChar": 36
+      },
+      "revId": "25fae26ef9feb565c969476657e533af0e4b256b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
