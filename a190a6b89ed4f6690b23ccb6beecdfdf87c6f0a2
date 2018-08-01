@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ffbebcf8_58635075",
+        "filename": "devil/devil/android/flag_changer.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-01T09:59:33Z",
+      "side": 1,
+      "message": "nit: also update this doc, should not mention compatibility mode, rather than it falls back to using the legacy path (needed for Chrome 54 and earlier).",
+      "revId": "a190a6b89ed4f6690b23ccb6beecdfdf87c6f0a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c7c2238_c6d6e676",
+        "filename": "devil/devil/android/flag_changer.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-01T09:59:33Z",
+      "side": 1,
+      "message": "nit: replace \u0027legacy\u0027 with \u0027alternate\u0027",
+      "revId": "a190a6b89ed4f6690b23ccb6beecdfdf87c6f0a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
