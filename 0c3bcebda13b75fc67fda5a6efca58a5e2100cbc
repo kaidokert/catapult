@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ee745be_0cb7d99a",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T17:19:22Z",
+      "side": 1,
+      "message": "Why not set drawEvents[id] \u003d event and let generateBreakdownForDraw iterate over subSlices?",
+      "revId": "0c3bcebda13b75fc67fda5a6efca58a5e2100cbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
