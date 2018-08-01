@@ -16,6 +16,24 @@
       "revId": "e9270abb3a9bb55e38d61a3dbfc328c138f28d42",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab145930_22683dfd",
+        "filename": "telemetry/telemetry/wpr/archive_info.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-08-01T13:37:32Z",
+      "side": 1,
+      "message": "+1 for supplying only the list of story names\n\nThough you want to be a bit more careful here. wpr_archive sometimes does look up story by url and not by name (legacy reason) and some wpr archives in tools/perf may rely on page\u0027s url.\n\ncrbug.com/810616\n\nYou may want to fix that before landing this to avoid breakage.",
+      "parentUuid": "5a80e6ab_32343d11",
+      "revId": "e9270abb3a9bb55e38d61a3dbfc328c138f28d42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
