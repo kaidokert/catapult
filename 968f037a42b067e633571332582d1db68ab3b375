@@ -90,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "d919fe6c_95fa04f9",
+        "filename": "devil/devil/android/flag_changer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-08-01T08:30:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32b71bf8_e617208a",
+      "revId": "968f037a42b067e633571332582d1db68ab3b375",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b125c825_53024301",
         "filename": "devil/devil/android/flag_changer.py",
         "patchSetId": 1
@@ -104,6 +122,24 @@
       "revId": "968f037a42b067e633571332582d1db68ab3b375",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30f7ab38_b4633cf0",
+        "filename": "devil/devil/android/flag_changer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-08-01T08:30:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b125c825_53024301",
+      "revId": "968f037a42b067e633571332582d1db68ab3b375",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
