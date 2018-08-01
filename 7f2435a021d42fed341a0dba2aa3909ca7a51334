@@ -576,6 +576,23 @@
     },
     {
       "key": {
+        "uuid": "9710db65_b12ce983",
+        "filename": "dashboard/dashboard/spa/sw-utils/range.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T22:22:27Z",
+      "side": 1,
+      "message": "Can you remove the methods that you aren\u0027t using?",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "32f7cb2d_ddc08233",
         "filename": "dashboard/dashboard/spa/webpack.config.js",
         "patchSetId": 17
