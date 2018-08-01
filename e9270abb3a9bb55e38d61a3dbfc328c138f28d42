@@ -34,6 +34,24 @@
       "revId": "e9270abb3a9bb55e38d61a3dbfc328c138f28d42",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31b7f62e_a2a3e1d8",
+        "filename": "telemetry/telemetry/wpr/archive_info.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1179424
+      },
+      "writtenOn": "2018-08-01T15:26:53Z",
+      "side": 1,
+      "message": "OK, I will try to fix crbug.com/810616 first.",
+      "parentUuid": "ab145930_22683dfd",
+      "revId": "e9270abb3a9bb55e38d61a3dbfc328c138f28d42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
