@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cc593852_0feaa2d4",
+        "filename": "tracing/tracing/extras/importer/trace_event_importer_test.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T22:10:52Z",
+      "side": 1,
+      "message": "nit: remove these blank lines?",
+      "revId": "72874cafda263e22787552a7f66ae5f63cbf5f65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
