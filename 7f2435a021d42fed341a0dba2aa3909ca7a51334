@@ -53,6 +53,108 @@
     },
     {
       "key": {
+        "uuid": "6a7b9fb2_9d1fc90a",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T22:08:17Z",
+      "side": 1,
+      "message": "Why not keep the spinner spinning until all lines have loaded?",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f1ad6da_ec8aefd2",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T22:08:17Z",
+      "side": 1,
+      "message": "nit: no blank lines at end of blocks, please",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7edc594_c435fd51",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T22:08:17Z",
+      "side": 1,
+      "message": "What happens when you remove this?",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "241269ed_8b6c72bc",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T22:08:17Z",
+      "side": 1,
+      "message": "Why do this here?",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "376bd467_9a8d114a",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T22:08:17Z",
+      "side": 1,
+      "message": "Is this not in fetchDescriptor?",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "201bd7b9_e792b6bc",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T22:08:17Z",
+      "side": 1,
+      "message": "The promises.splice() and the while loop below look very similar to parts of batchResponses.\nbatchResponses could take an array of either promises or async generators, and promote simple promises to async generators that only yield once.\nCan you try to refactor this with TimeseriesReader and batchResponses?",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1f710653_2b2f048a",
         "filename": "dashboard/dashboard/spa/element-base.js",
         "patchSetId": 17
@@ -240,6 +342,23 @@
       "writtenOn": "2018-08-01T19:09:31Z",
       "side": 1,
       "message": "The new backend doesn\u0027t support r_commit_pos, and it\u0027s removed here, so I think you can remove this TODO and update the comments above.",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54750517_6386d1d2",
+        "filename": "dashboard/dashboard/spa/sw-utils/mark.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-01T22:08:17Z",
+      "side": 1,
+      "message": "It\u0027s possible that another measure with the same name could sneak in, so this would record the latter duration twice. It would be safer to compute the duration by subtracting the timestamps of the start and end marks since they have unique names, as tr.b.Timing\u0027s Mark does.\nhttps://github.com/catapult-project/catapult/blob/master/tracing/tracing/base/timing.html#L58",
       "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
