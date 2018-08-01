@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "11454f28_f1a4ba20",
+        "filename": "tracing/tracing/extras/importer/linux_perf/mali_parser.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1150054
+      },
+      "writtenOn": "2018-08-01T19:38:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a53b56c6_60488f08",
+      "revId": "e224f73a946595e4a200f54c7134bc8be495711e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "18dbd459_7ba700e1",
         "filename": "tracing/tracing/extras/importer/linux_perf/mali_parser.html",
         "patchSetId": 1
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "660c77d4_41eefe9b",
+        "filename": "tracing/tracing/extras/importer/linux_perf/mali_parser.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1150054
+      },
+      "writtenOn": "2018-08-01T19:38:18Z",
+      "side": 1,
+      "message": "Not sure it\u0027s possible to get an incomplete event, but I added a warning / fail return in case someone changes the event source.",
+      "parentUuid": "18dbd459_7ba700e1",
+      "range": {
+        "startLine": 330,
+        "startChar": 12,
+        "endLine": 330,
+        "endChar": 20
+      },
+      "revId": "e224f73a946595e4a200f54c7134bc8be495711e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2e237e0d_7c01dd53",
         "filename": "tracing/tracing/extras/importer/linux_perf/mali_parser.html",
         "patchSetId": 1
@@ -56,6 +98,24 @@
       "revId": "e224f73a946595e4a200f54c7134bc8be495711e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65a7c7e2_b770acbf",
+        "filename": "tracing/tracing/extras/importer/linux_perf/mali_parser.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1150054
+      },
+      "writtenOn": "2018-08-01T19:38:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e237e0d_7c01dd53",
+      "revId": "e224f73a946595e4a200f54c7134bc8be495711e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -76,6 +136,24 @@
     },
     {
       "key": {
+        "uuid": "6368a464_c9ac09fc",
+        "filename": "tracing/tracing/extras/importer/linux_perf/mali_parser.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1150054
+      },
+      "writtenOn": "2018-08-01T19:38:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46c11e33_d4767018",
+      "revId": "e224f73a946595e4a200f54c7134bc8be495711e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "56677de0_d3a912d5",
         "filename": "tracing/tracing/extras/importer/linux_perf/mali_parser.html",
         "patchSetId": 1
@@ -87,6 +165,24 @@
       "writtenOn": "2018-08-01T05:09:00Z",
       "side": 1,
       "message": "style nit: no case block necessary\ncase \u0027S\u0027:\n  ...\n  break;\ncase \u0027F\u0027:\n  ...\n  break;",
+      "revId": "e224f73a946595e4a200f54c7134bc8be495711e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7ca1c5a_dd36ef3f",
+        "filename": "tracing/tracing/extras/importer/linux_perf/mali_parser.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1150054
+      },
+      "writtenOn": "2018-08-01T19:38:18Z",
+      "side": 1,
+      "message": "eslint complains about \u0027unexpected lexical declaration in case block\u0027 if I remove them, because of the \u0027args\u0027 and \u0027deferredJobs\u0027 declarations.",
+      "parentUuid": "56677de0_d3a912d5",
       "revId": "e224f73a946595e4a200f54c7134bc8be495711e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -110,6 +206,24 @@
     },
     {
       "key": {
+        "uuid": "4ee9a4a8_9c321cab",
+        "filename": "tracing/tracing/extras/importer/linux_perf/mali_parser.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1150054
+      },
+      "writtenOn": "2018-08-01T19:38:18Z",
+      "side": 1,
+      "message": "Since I lazily create the keys in this.deferredJobs_, it\u0027s normal for deferredJobs to be undefined. (I\u0027m lazily creating so I don\u0027t have to hard-code the list of job types unnecessarily.)\n\nAnd having no deferred jobs of a type (or even of any type) is also normal: it just means the GPU is about to go idle. The next job event will start immediately rather than being deferred.",
+      "parentUuid": "1207ebaf_16e1e7f7",
+      "revId": "e224f73a946595e4a200f54c7134bc8be495711e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "962b9c2b_91331807",
         "filename": "tracing/tracing/extras/importer/linux_perf/mali_parser_test.html",
         "patchSetId": 1
@@ -124,6 +238,24 @@
       "revId": "e224f73a946595e4a200f54c7134bc8be495711e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3289f3dc_0f04ad63",
+        "filename": "tracing/tracing/extras/importer/linux_perf/mali_parser_test.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 1150054
+      },
+      "writtenOn": "2018-08-01T19:38:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "962b9c2b_91331807",
+      "revId": "e224f73a946595e4a200f54c7134bc8be495711e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
