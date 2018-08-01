@@ -481,14 +481,6 @@ tr.exportTo('tr.e.importer', function() {
     processDurationEvent(event) {
       const thread = this.model_.getOrCreateProcess(event.pid)
           .getOrCreateThread(event.tid);
-      const ts = this.toModelTimeFromUs_(event.ts);
-      if (!thread.sliceGroup.isTimestampValidForBeginOrEnd(ts)) {
-        this.model_.importWarning({
-          type: 'duration_parse_error',
-          message: 'Timestamps are moving backward.'
-        });
-        return;
-      }
 
       if (event.ph === 'B') {
         const slice = thread.sliceGroup.beginSlice(
