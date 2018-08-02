@@ -43,13 +43,12 @@ found in the LICENSE file.
         color: var(--paper-grey-500);
       }
 
-      #min_revision {
-        margin-right: 16px;
+      #alerts {
+        color: var(--paper-indigo-500);
       }
 
-      #add_alerts {
-        height: 34px;
-        margin: 0;
+      #min_revision {
+        margin-right: 8px;
       }
 
       #close {
@@ -95,7 +94,7 @@ found in the LICENSE file.
         vertical-align: top;
       }
 
-      #spacer {
+      .spacer {
         flex-grow: 1;
       }
 
@@ -130,7 +129,7 @@ found in the LICENSE file.
         };
       }
 
-      .edit_form table paper-input div[slot="suffix"] {
+      paper-input div[slot="suffix"] {
         height: 32px;
       }
 
@@ -200,7 +199,14 @@ found in the LICENSE file.
           on-option-select="onSelectSource_">
       </dropdown-input>
 
-      <span id="spacer">&nbsp;</span>
+      <paper-icon-button
+          id="alerts"
+          icon="add-alert"
+          title="Alerts"
+          on-tap="onAlerts_">
+      </paper-icon-button>
+
+      <span class="spacer">&nbsp;</span>
 
       <template is="dom-if" if="[[isPreviousMilestone_(milestone)]]">
         <paper-button
@@ -214,13 +220,21 @@ found in the LICENSE file.
           id="min_revision"
           value="[[minRevisionInput]]"
           size="6"
+          label="min revision"
           on-keyup="onMinRevisionKeyup_">
+        <div slot="suffix">
+          &nbsp;
+        </div>
       </paper-input>
 
       <paper-input
           value="[[maxRevisionInput]]"
           size="6"
+          label="max revision"
           on-keyup="onMaxRevisionKeyup_">
+        <div slot="suffix">
+          &nbsp;
+        </div>
       </paper-input>
 
       <template is="dom-if" if="[[isNextMilestone_(milestone)]]">
@@ -231,15 +245,7 @@ found in the LICENSE file.
         </paper-button>
       </template>
 
-      <template is="dom-if" if="[[anyAlerts]]">
-        <paper-button
-            id="add_alerts"
-            on-tap="onAddAlertsSection_">
-          Alerts
-        </paper-button>
-      </template>
-
-      <span id="spacer">&nbsp;</span>
+      <span class="spacer">&nbsp;</span>
 
       <paper-icon-button
           id="close"
