@@ -52,6 +52,24 @@
       "revId": "f6651a0e04ac62caf67bc58900a10eea8585f711",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed9086b0_0d379d8d",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1003154
+      },
+      "writtenOn": "2018-08-02T21:38:48Z",
+      "side": 1,
+      "message": "I filed crbug.com/870453\n\nAlso, use_live_sites is only an option for story_runner.py, so it triggers a failure on the try bots.\n\nI think just use browser_options.wpr_mode\u003dWPR_OFF is enough for our purpose.\n\nPTAL again.",
+      "parentUuid": "2c00a864_c64ceef0",
+      "revId": "f6651a0e04ac62caf67bc58900a10eea8585f711",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
