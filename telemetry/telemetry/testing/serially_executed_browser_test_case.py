@@ -11,6 +11,7 @@ from py_utils import cloud_storage
 from telemetry.internal.browser import browser_finder
 from telemetry.internal.browser import browser_finder_exceptions
 from telemetry.testing import browser_test_context
+from telemetry.util import wpr_modes
 
 
 DEFAULT_LOG_FORMAT = (
@@ -78,7 +79,13 @@ class SeriallyExecutedBrowserTestCase(unittest.TestCase):
       cls.platform = cls._browser_to_create.platform
       cls.platform.SetFullPerformanceModeEnabled(
           browser_options.full_performance_mode)
-      cls.platform.network_controller.Open()
+      if browser_options.use_live_sites:
+        wpr_mode = wpr_modes.WPR_OFF
+      elif browser_options.browser_options.wpr_mode == wpr_modes.WPR_RECORD:
+        wpr_mode = wpr_modes.WPR_RECORD
+      else:
+        wpr_mode = wpr_modes.WPR_REPLAY
+      cls.platform.network_controller.Open(wpr_mode)
     else:
       assert cls.platform == cls._browser_to_create.platform, (
           'All browser launches within same test suite must use browsers on '
