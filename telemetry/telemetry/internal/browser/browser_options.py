@@ -37,7 +37,7 @@ class BrowserFinderOptions(optparse.Values):
     self.device = None
     self.cros_ssh_identity = None
 
-    self.cros_remote = None
+    self.remote = None
 
     self.verbosity = 0
 
@@ -90,14 +90,14 @@ class BrowserFinderOptions(optparse.Values):
         'CHROMIUM_OUTPUT_DIR.')
     group.add_option(
         '--remote',
-        dest='cros_remote',
-        help='The hostname of a remote ChromeOS device to use.')
+        dest='remote',
+        help='The hostname of a remote device to use.')
     group.add_option(
         '--remote-ssh-port',
         type=int,
         default=socket.getservbyname('ssh'),
-        dest='cros_remote_ssh_port',
-        help='The SSH port of the remote ChromeOS device (requires --remote).')
+        dest='remote_ssh_port',
+        help='The SSH port of the remote device (requires --remote).')
     parser.add_option(
         '--compatibility-mode',
         action='store_true',
@@ -105,6 +105,7 @@ class BrowserFinderOptions(optparse.Values):
         default=False,
         help='Run benchmarks in a way which is compatible with older versions of '
              'Chrome.')
+
     identity = None
     testing_rsa = os.path.join(
         util.GetTelemetryThirdPartyDir(), 'chromite', 'ssh_keys', 'testing_rsa')
@@ -115,6 +116,11 @@ class BrowserFinderOptions(optparse.Values):
         dest='cros_ssh_identity',
         default=identity,
         help='The identity file to use when ssh\'ing into the ChromeOS device')
+    group.add_option(
+        '--ssh_config',
+        type=str,
+        default=None,
+        help='The path to the ssh_config file to be used for remote devices')
     parser.add_option_group(group)
 
     # Debugging options
