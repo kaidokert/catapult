@@ -50,7 +50,10 @@ tr.exportTo('cp', () => {
     cc: {type: String},
     components: {type: Array},
     description: {type: String},
-    isOpen: {type: Boolean},
+    isOpen: {
+      type: Boolean,
+      reflectToAttribute: true,
+    },
     labels: {type: Array},
     owner: {type: String},
     summary: {type: String},

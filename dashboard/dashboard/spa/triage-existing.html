@@ -16,35 +16,16 @@ found in the LICENSE file.
       }
 
       paper-dialog {
+        font-size: 12px;
         margin: 0;
+        padding: 16px;
       }
 
       #controls {
+        align-items: center;
         display: flex;
         margin: 0;
         padding: 0;
-      }
-
-      paper-input {
-        margin: 0 0 0 16px;
-        padding: 0;
-      }
-
-      paper-button:not([disabled]) {
-        color: var(--paper-indigo-500);
-        font-weight: bold;
-      }
-
-      #controls paper-button {
-        background-color: var(--paper-indigo-50);
-        display: flex;
-        margin: 16px;
-        padding: 8px;
-      }
-
-      #controls paper-button[disabled] {
-        background-color: unset;
-        font-weight: normal;
       }
 
       .spacer {
@@ -76,11 +57,9 @@ found in the LICENSE file.
         background: #eee;
       }
 
-      table paper-button {
-        background-color: unset;
-        margin: 0;
-        padding: 0;
-        width: 100%;
+      .bug_id {
+        cursor: pointer;
+        font-weight: bold;
       }
 
       td:nth-of-type(4) {
@@ -103,11 +82,11 @@ found in the LICENSE file.
             on-keyup="onIdKeyup_">
         </paper-input>
 
-        <paper-button
+        <raised-button
             disabled="[[!isIdValid_(bugId)]]"
             on-tap="onSubmit_">
           Submit
-        </paper-button>
+        </raised-button>
 
         <span class="spacer">&nbsp;</span>
 
@@ -131,10 +110,8 @@ found in the LICENSE file.
         <tbody>
           <template is="dom-repeat" items="[[filterBugs_(recentPerformanceBugs, onlyIntersectingBugs, selectedRange)]]" as="bug" index-as="bugIndex">
             <tr>
-              <td>
-                <paper-button on-tap="onRecentPerformanceBugTap_">
-                  [[bug.id]]
-                </paper-button>
+              <td class="bug_id" on-tap="onRecentPerformanceBugTap_">
+                [[bug.id]]
               </td>
 
               <td>[[bug.status]]</td>

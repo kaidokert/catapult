@@ -44,13 +44,18 @@ tr.exportTo('cp', () => {
     }
   }
 
-  TriageExisting.properties = cp.ElementBase.statePathProperties('statePath', {
-    bugId: {type: String},
-    isOpen: {type: Boolean},
-    onlyIntersectingBugs: {type: Boolean},
-    recentPerformanceBugs: {type: Array},
-    selectedRange: {type: Object},
-  });
+  TriageExisting.properties = {
+    ...cp.ElementBase.statePathProperties('statePath', {
+      bugId: {type: String},
+      isOpen: {type: Boolean},
+      onlyIntersectingBugs: {type: Boolean},
+      selectedRange: {type: Object},
+    }),
+    recentPerformanceBugs: {
+      type: Array,
+      statePath: 'recentPerformanceBugs',
+    },
+  };
 
   TriageExisting.DEFAULT_STATE = {
     bugId: '',

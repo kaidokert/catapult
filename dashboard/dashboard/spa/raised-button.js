@@ -7,6 +7,13 @@ tr.exportTo('cp', () => {
   class RaisedButton extends cp.ElementBase {
   }
 
+  RaisedButton.properties = {
+    disabled: {
+      type: Boolean,
+      reflectToAttribute: true,
+    },
+  };
+
   cp.ElementBase.register(RaisedButton);
 
   return {
