@@ -111,6 +111,24 @@
     },
     {
       "key": {
+        "uuid": "5e36e139_85c6e13d",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-02T12:14:12Z",
+      "side": 1,
+      "message": "Let\u0027s leave it as concatenating for now, aggregating means choosing an aggregating function and to me it\u0027s not obvious what that should be (e.g. for GC it should maybe be the last value rather than the average).",
+      "parentUuid": "78cb3ad5_34febbe3",
+      "revId": "ffa74836c09c09d8b1714e19f22edc0d6ee55e8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0fe53005_4b8fbb2e",
         "filename": "experimental/v8_tools/filter.js",
         "patchSetId": 12
