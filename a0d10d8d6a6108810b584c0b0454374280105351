@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f4c57c8c_b04ff857",
+        "filename": "telemetry/telemetry/internal/browser/browser_finder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-02T10:36:39Z",
+      "side": 1,
+      "message": "I think this would be cleaner and more efficient if we go for min() with a custom key instead, see e.g.:\nhttps://docs.python.org/2/library/functions.html#min",
+      "revId": "a0d10d8d6a6108810b584c0b0454374280105351",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
