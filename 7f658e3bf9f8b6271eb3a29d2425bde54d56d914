@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "07f84b74_4d3ce693",
+        "filename": "dashboard/dashboard/report_templates/chrome_health.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-02T15:08:18Z",
+      "side": 1,
+      "message": "Ah! Also these. Do you think a syntax like this for matching testCases could be supported? The alternative is to either check-in an explicit list of story names, or retrieve the list of stories from timeseries in the dashboard and filter them.",
+      "revId": "7f658e3bf9f8b6271eb3a29d2425bde54d56d914",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
