@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9472a639_d1b5c57e",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-02T09:58:16Z",
+      "side": 1,
+      "message": "we probably want here the version number, but let\u0027s do that on a follow up CL.",
+      "revId": "4dfd4b54296d532a46adbd60ff50e9aaca592cbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84301312_0852cd0a",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-02T09:58:16Z",
+      "side": 1,
+      "message": "Agree with your comment. Also let\u0027s think about this later. Removing field trials is something we should be doing *always* for this test runner; but not sure about other things (like ignore certificate errors).",
+      "revId": "4dfd4b54296d532a46adbd60ff50e9aaca592cbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7bea5049_614a8801",
+        "filename": "experimental/long_term_health/long_term_health.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-02T09:58:16Z",
+      "side": 1,
+      "message": "instead of this let\u0027s define a \"colored\" function, so you can do:\n\n    print colored(\u0027Some text here.\u0027)\n\nby default we can start with just coloring it green. Later we can add options to change the color.",
+      "revId": "4dfd4b54296d532a46adbd60ff50e9aaca592cbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
