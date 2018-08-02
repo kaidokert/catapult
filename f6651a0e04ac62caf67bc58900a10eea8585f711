@@ -16,6 +16,24 @@
       "revId": "f6651a0e04ac62caf67bc58900a10eea8585f711",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98cc5551_d2b09a16",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2018-08-02T21:23:59Z",
+      "side": 1,
+      "message": "There\u0027s no scaffolding in telemetry/testing for running serially_executed_browser_test_case against fakes. It\u0027s really not Mo\u0027s job to add sophisticated unit tests like this. Can we file a bug against the Telemetry team to add such framework and then Mo will add a test for this later?",
+      "parentUuid": "ac9cdcd9_22e9bc18",
+      "revId": "f6651a0e04ac62caf67bc58900a10eea8585f711",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
