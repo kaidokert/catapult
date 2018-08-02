@@ -232,13 +232,12 @@ found in the LICENSE file.
       </span>
 
       <span>
-        <paper-button
+        <raised-button
             id="recent_bugs"
-            raised
             disabled$="[[_empty(recentlyModifiedBugs)]]"
             on-tap="onTapRecentlyModifiedBugs_">
           Recent Bugs
-        </paper-button>
+        </raised-button>
 
         <paper-dialog
             opened="[[hasTriagedNew]]"
@@ -324,7 +323,7 @@ found in the LICENSE file.
           Open Chart[[_plural(selectedAlertsCount)]]
         </paper-button>
 
-        <span>
+        <span style="position: relative;">
           <paper-button
               disabled$="[[!canTriage_(alertGroups)]]"
               on-tap="onTriageNew_">
