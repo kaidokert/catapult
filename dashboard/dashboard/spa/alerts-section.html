@@ -232,13 +232,12 @@ found in the LICENSE file.
       </span>
 
       <span>
-        <paper-button
+        <raised-button
             id="recent_bugs"
-            raised
             disabled$="[[_empty(recentlyModifiedBugs)]]"
             on-tap="onTapRecentlyModifiedBugs_">
           Recent Bugs
-        </paper-button>
+        </raised-button>
 
         <paper-dialog
             opened="[[hasTriagedNew]]"
