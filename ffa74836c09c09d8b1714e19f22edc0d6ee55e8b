@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "81cb3db8_9876b8e0",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-02T12:08:36Z",
+      "side": 1,
+      "message": "this is actually (value, key)",
+      "range": {
+        "startLine": 28,
+        "startChar": 18,
+        "endLine": 28,
+        "endChar": 28
+      },
+      "revId": "ffa74836c09c09d8b1714e19f22edc0d6ee55e8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "11aae11e_fa761022",
         "filename": "experimental/v8_tools/filter.js",
         "patchSetId": 12
@@ -64,6 +87,29 @@
         "startChar": 0,
         "endLine": 22,
         "endChar": 38
+      },
+      "revId": "ffa74836c09c09d8b1714e19f22edc0d6ee55e8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0fe53005_4b8fbb2e",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-02T12:08:36Z",
+      "side": 1,
+      "message": "why not just return \"content\"?",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 36
       },
       "revId": "ffa74836c09c09d8b1714e19f22edc0d6ee55e8b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
