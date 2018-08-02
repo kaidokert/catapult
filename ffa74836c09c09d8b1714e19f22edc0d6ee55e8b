@@ -119,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "38e73e3f_71b0f58e",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-02T12:33:53Z",
+      "side": 1,
+      "message": "That\u0027s probably because you\u0027re still trying to set it in visibleAll, try removing that set and maybe you won\u0027t need the setter here.",
+      "parentUuid": "b974be49_d0b17327",
+      "range": {
+        "startLine": 16,
+        "startChar": 6,
+        "endLine": 16,
+        "endChar": 14
+      },
+      "revId": "ffa74836c09c09d8b1714e19f22edc0d6ee55e8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c657c08e_8b74c9bc",
         "filename": "experimental/v8_tools/filter.js",
         "patchSetId": 12
