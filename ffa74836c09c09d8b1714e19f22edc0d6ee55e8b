@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "515bcc8d_c460efc9",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-02T12:31:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11aae11e_fa761022",
+      "range": {
+        "startLine": 4,
+        "startChar": 6,
+        "endLine": 4,
+        "endChar": 21
+      },
+      "revId": "ffa74836c09c09d8b1714e19f22edc0d6ee55e8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4389fccb_5f6963e3",
         "filename": "experimental/v8_tools/filter.js",
         "patchSetId": 12
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "b974be49_d0b17327",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-02T12:31:53Z",
+      "side": 1,
+      "message": "I was forced to use the setter like this because it doesn\u0027t work without it.",
+      "parentUuid": "4389fccb_5f6963e3",
+      "range": {
+        "startLine": 16,
+        "startChar": 6,
+        "endLine": 16,
+        "endChar": 14
+      },
+      "revId": "ffa74836c09c09d8b1714e19f22edc0d6ee55e8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c657c08e_8b74c9bc",
         "filename": "experimental/v8_tools/filter.js",
         "patchSetId": 12
@@ -91,6 +139,30 @@
       "revId": "ffa74836c09c09d8b1714e19f22edc0d6ee55e8b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d05d0ec_73e2fed4",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-02T12:31:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c657c08e_8b74c9bc",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 38
+      },
+      "revId": "ffa74836c09c09d8b1714e19f22edc0d6ee55e8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -126,6 +198,24 @@
       "revId": "ffa74836c09c09d8b1714e19f22edc0d6ee55e8b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e0d720c_5b298c72",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-02T12:31:53Z",
+      "side": 1,
+      "message": "Ok, I\u0027ll leave it as concatenating for now and I\u0027ll come back later to choose a proper aggregating function when I\u0027ll figure out what should exactly happen at this point.",
+      "parentUuid": "5e36e139_85c6e13d",
+      "revId": "ffa74836c09c09d8b1714e19f22edc0d6ee55e8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -172,6 +262,30 @@
       "revId": "ffa74836c09c09d8b1714e19f22edc0d6ee55e8b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f22906f0_4496e2cc",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-02T12:31:53Z",
+      "side": 1,
+      "message": "Yes, I know, in this case it doesn\u0027t make sense to return something, I\u0027ll just return undefined.",
+      "parentUuid": "c973d2c6_f9ec974a",
+      "range": {
+        "startLine": 85,
+        "startChar": 6,
+        "endLine": 85,
+        "endChar": 7
+      },
+      "revId": "ffa74836c09c09d8b1714e19f22edc0d6ee55e8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
