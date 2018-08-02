@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "11aae11e_fa761022",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-02T11:14:32Z",
+      "side": 1,
+      "message": "this probably needs a different name, e.g. \"resultsViewer\" or even just \"app\".",
+      "range": {
+        "startLine": 4,
+        "startChar": 6,
+        "endLine": 4,
+        "endChar": 21
+      },
+      "revId": "ffa74836c09c09d8b1714e19f22edc0d6ee55e8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4389fccb_5f6963e3",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-02T11:14:32Z",
+      "side": 1,
+      "message": "if you don\u0027t have a setter, I think you can inline the getter, i.e.\n\n  seen() {\n   return ...\n  }\n\nif that doesn\u0027t work then ignore this :)",
+      "range": {
+        "startLine": 16,
+        "startChar": 6,
+        "endLine": 16,
+        "endChar": 14
+      },
+      "revId": "ffa74836c09c09d8b1714e19f22edc0d6ee55e8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c657c08e_8b74c9bc",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-02T11:14:32Z",
+      "side": 1,
+      "message": "if you\u0027re already using underscore, you can use _.uniq with el\u003d\u003eel.name as the iteratee",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 38
+      },
+      "revId": "ffa74836c09c09d8b1714e19f22edc0d6ee55e8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c973d2c6_f9ec974a",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-02T11:14:32Z",
+      "side": 1,
+      "message": "this is missing a default return value.",
+      "range": {
+        "startLine": 85,
+        "startChar": 6,
+        "endLine": 85,
+        "endChar": 7
+      },
+      "revId": "ffa74836c09c09d8b1714e19f22edc0d6ee55e8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
