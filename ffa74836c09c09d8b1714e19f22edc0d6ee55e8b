@@ -94,6 +94,23 @@
     },
     {
       "key": {
+        "uuid": "78cb3ad5_34febbe3",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-02T12:08:41Z",
+      "side": 1,
+      "message": "We can aggregate the sampleValues when there are multiple of them. For example, for several memory metric, there will be one sample value per each garbage collection. So, I am not sure concatenating them with other runs is a good idea. We can may be start with average for now and see later how to make it configurable. I am also OK, if you want to do it in a different cl.",
+      "revId": "ffa74836c09c09d8b1714e19f22edc0d6ee55e8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0fe53005_4b8fbb2e",
         "filename": "experimental/v8_tools/filter.js",
         "patchSetId": 12
