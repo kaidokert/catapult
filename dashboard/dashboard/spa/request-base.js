@@ -83,29 +83,39 @@ tr.exportTo('cp', () => {
       this.cacheKey_ = undefined; // will be computed in read()
     }
 
+    // cacheStatePath_ returns the state path to the location of the cached
+    // data.
     get cacheStatePath_() {
       // Subclasses may override this to return a statePath. read() will ensure
       // that the statePath exists.
     }
 
+    // defaultCacheState_ provides a sensible default for data during
+    // initialization.
     get defaultCacheState_() {
       // Subclasses may override this to return a different default cache state.
     }
 
+    // computeCacheKey_ returns a unique string for the request. This is used to
+    // store the data in a predictable location in the Redux state.
     computeCacheKey_() {
-      throw new Error('subclasses must override either computeCacheKey_');
+      throw new Error('subclasses must override computeCacheKey_');
     }
 
+    // isInCache_ returns true if existing data exists, otherwise false.
     get isInCache_() {
       throw new Error('subclasses must override isInCache_()');
     }
 
+    // createRequest_ returns an instantiation of any class that extends from
+    // cp.RequestBase.
     createRequest_() {
       throw new Error('subclasses must override createRequest_()');
     }
 
     async fetch_() {
       const request = this.createRequest_();
+
       const completion = (async() => {
         const response = await request.response;
         this.onFinishRequest_(response);
@@ -140,16 +150,33 @@ tr.exportTo('cp', () => {
     //   await new FooCache(options, dispatch, getState).read();
     // const foo = await dispatch(ReadFoo(options))
     async read() {
-      this.ensureCacheState_();
-      this.cacheKey_ = this.computeCacheKey_();
-      if (this.cacheKey_ instanceof Promise) {
-        // Some caches need to use async APIs to compute their cacheKey_,
-        // some caches need read() to call onStartRequest_() before the first
-        // await.
-        this.cacheKey_ = await this.cacheKey_;
+      try {
+        this.ensureCacheState_();
+
+        this.cacheKey_ = this.computeCacheKey_();
+        if (this.cacheKey_ instanceof Promise) {
+          // Some caches need to use async APIs to compute their cacheKey_,
+          // some caches need read() to call onStartRequest_() before the first
+          // await.
+          try {
+            this.cacheKey_ = await this.cacheKey_;
+          } catch (err) {
+            throw new Error('Cannot compute cache key', err);
+          }
+        }
+
+        if (this.isInCache_) {
+          try {
+            return await this.readFromCache_();
+          } catch (err) {
+            throw new Error('Cannot read from Redux timeseries cache', err);
+          }
+        }
+
+        return await this.fetch_();
+      } catch (err) {
+        throw new Error('Fetch unsuccessful', err);
       }
-      if (this.isInCache_) return await this.readFromCache_();
-      return await this.fetch_();
     }
   }
 
