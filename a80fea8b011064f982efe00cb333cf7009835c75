@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2a2f9f54_38044c37",
+        "filename": "experimental/long_term_health/long_term_health/apk_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-03T13:23:27Z",
+      "side": 1,
+      "message": "Sorry, no relative imports. :)\nhttps://github.com/google/styleguide/blob/gh-pages/pyguide.md#224-decision\n\nDo the full: \n\n    from long_term_health import utils\n\nand so on in all files.",
+      "revId": "a80fea8b011064f982efe00cb333cf7009835c75",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
