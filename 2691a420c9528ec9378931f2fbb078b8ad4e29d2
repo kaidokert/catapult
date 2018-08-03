@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce091a9b_b5b10391",
+        "filename": "telemetry/telemetry/internal/actions/scroll.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-03T10:52:29Z",
+      "side": 1,
+      "message": "I saw we tend to import gesture_common.js before other specific gestures like scroll.js, e.g.:\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/actions/scroll.py?rcl\u003dd38bbdff043da3482cc0c60d44f97b172a82c1f4\u0026l\u003d58\n\nDoes it work if we only add the definition in gesture_common.js and use it in the other scripts?",
+      "revId": "2691a420c9528ec9378931f2fbb078b8ad4e29d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
