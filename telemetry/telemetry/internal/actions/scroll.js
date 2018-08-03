@@ -48,6 +48,13 @@
     this.distance_func_ = optDistanceFunc;
   }
 
+  // Chrome version before M50 doesn't have `pageScaleFactor` function, to run
+  // benchmark on them we will need this function to fail back gracefully
+  function getPageScaleFactor() {
+    const pageScaleFactor = chrome.gpuBenchmarking.pageScaleFactor;
+    return pageScaleFactor ? pageScaleFactor() : 1;
+  }
+
   ScrollAction.prototype.isScrollingViewport_ = function() {
     const viewportElement = document.scrollingElement || document.body;
     if (!viewportElement) {
@@ -169,9 +176,8 @@
         this.options_.speed_;
     const distance =
         Math.min(maxScrollLengthPixels, this.getScrollDistance_()) *
-        chrome.gpuBenchmarking.pageScaleFactor();
-    const speed =
-        this.options_.speed_ * chrome.gpuBenchmarking.pageScaleFactor();
+        getPageScaleFactor();
+    const speed = this.options_.speed_ * getPageScaleFactor();
 
     const rect = __GestureCommon_GetBoundingVisibleRect(this.options_.element_);
     const startLeft =

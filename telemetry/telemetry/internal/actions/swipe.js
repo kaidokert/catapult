@@ -39,6 +39,13 @@
     this.callback_ = opt_callback;
   }
 
+  // Chrome version before M50 doesn't have `pageScaleFactor` function, to run
+  // benchmark on them we will need this function to fail back gracefully
+  function getPageScaleFactor() {
+    const pageScaleFactor = chrome.gpuBenchmarking.pageScaleFactor;
+    return pageScaleFactor ? pageScaleFactor() : 1;
+  }
+
   SwipeAction.prototype.start = function(opt_options) {
     this.options_ = new SwipeGestureOptions(opt_options);
     // Assign this.element_ here instead of constructor, because the constructor
@@ -50,8 +57,7 @@
   SwipeAction.prototype.startGesture_ = function() {
     this.beginMeasuringHook();
 
-    const speed = this.options_.speed_ *
-        chrome.gpuBenchmarking.pageScaleFactor();
+    const speed = this.options_.speed_ * getPageScaleFactor();
     const rect = __GestureCommon_GetBoundingVisibleRect(this.options_.element_);
     const startLeft =
         rect.left + rect.width * this.options_.left_start_ratio_;
