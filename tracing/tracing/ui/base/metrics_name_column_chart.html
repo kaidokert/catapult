@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/ui/base/name_column_chart.html">
+
+<script>
+'use strict';
+
+tr.exportTo('tr.ui.b', function() {
+  const MetricsNameColumnChart = tr.ui.b.define('metrics-name-column-chart',
+      tr.ui.b.NameColumnChart);
+  const MIN_GUIDELINE_HEIGHT_PX = 3;
+
+  // This chart supports grouped columns and clickable tooltips
+  MetricsNameColumnChart.prototype = {
+    __proto__: tr.ui.b.NameColumnChart.prototype,
+
+    decorate() {
+      super.decorate();
+
+      this.hideXAxis = true;
+      this.toolTipCallBack_ = () => {};
+      this.getDataSeries('group').color = 'transparent';
+      this.getDataSeries('label').color = 'transparent';
+    },
+
+    set toolTipCallBack(callback) {
+      this.toolTipCallBack_ = callback;
+    },
+
+    get toolTipCallBack() {
+      return this.toolTipCallBack_;
+    },
+
+    updateDataRange_() {
+      if (!this.isStacked) {
+        super.updateDataRange_();
+        return;
+      }
+
+      this.autoDataRange_.reset();
+      this.autoDataRange_.addValue(0);
+      for (const datum of this.data_) {
+        let sum = 0;
+        for (const [key, series] of this.seriesByKey_) {
+          if (key === 'label' || key === 'group' || datum[key] === undefined) {
+            continue;
+          }
+          sum += datum[key];
+        }
+        this.autoDataRange_.addValue(sum);
+      }
+    },
+
+    getStackedRectsForDatum_(datum, index) {
+      const stacks = [];
+      let bottom = this.yScale_.range()[0];
+      let sum = 0;
+      for (const [key, series] of this.seriesByKey_) {
+        if (key === 'label' || key === 'group' || datum[key] === undefined ||
+            !this.isSeriesEnabled(key)) {
+          continue;
+        }
+
+        sum += this.dataRange.clamp(datum[key]);
+        const heightPx = bottom - this.yScale_(sum);
+        bottom -= heightPx;
+        stacks.push({
+          key,
+          value: datum[key],
+          color: this.getDataSeries(key).color,
+          heightPx,
+          topPx: bottom,
+          underflow: sum < this.dataRange.min,
+          overflow: sum > this.dataRange.max,
+        });
+      }
+      return stacks;
+    },
+
+    drawToolTip(rect) {
+      const chartAreaSel = d3.select(this.chartAreaElement);
+      chartAreaSel.selectAll('.tooltip').remove();
+
+      const hoverLeftPx = rect.leftPx + (rect.widthPx / 2);
+      const hoverTopPx = rect.topPx;
+
+      const labelText = 'View Breakdown';
+      const labelWidth = tr.ui.b.getSVGTextSize(
+          this.chartAreaElement, labelText).width + 5;
+      const labelHeight = this.textHeightPx_;
+
+      chartAreaSel
+          .append('rect')
+          .attr('class', 'tooltip')
+          .attr('fill', 'white')
+          .attr('opacity', 0.8)
+          .attr('stroke', 'black')
+          .attr('x', hoverLeftPx)
+          .attr('y', hoverTopPx)
+          .attr('width', labelWidth + 5)
+          .attr('height', labelHeight + 10);
+
+      chartAreaSel
+          .append('text')
+          .style('cursor', 'pointer')
+          .attr('class', 'tooltip')
+          .on('mousedown', () => this.toolTipCallBack_(rect))
+          .attr('fill', 'blue')
+          .attr('x', hoverLeftPx + 4)
+          .attr('y', hoverTopPx + labelHeight)
+          .attr('text-decoration', 'underline')
+          .text(labelText);
+    },
+
+    drawHoverValueBox_(rect) {
+      const rectHoverEvent = new tr.b.Event('rect-mouseenter');
+      rectHoverEvent.rect = rect;
+      this.dispatchEvent(rectHoverEvent);
+
+      if (!this.enableHoverBox) return;
+
+      const chartAreaSel = d3.select(this.chartAreaElement);
+      chartAreaSel.selectAll('.hover').remove();
+
+      let labelWidthPx = 0;
+      let labelHeightPx = 0;
+      if (rect.datum.label !== undefined) {
+        labelWidthPx = tr.ui.b.getSVGTextSize(
+            this.chartAreaElement, rect.datum.label).width + 2;
+        labelHeightPx = this.textHeightPx_;
+      }
+
+      let groupWidthPx = 0;
+      let groupHeightPx = 0;
+      if (rect.datum.group !== undefined) {
+        groupWidthPx = tr.ui.b.getSVGTextSize(
+            this.chartAreaElement, rect.datum.group).width + 2;
+        groupHeightPx = this.textHeightPx_;
+      }
+
+      let value = rect.value;
+      if (this.unit) value = this.unit.format(value);
+      const valueWidthPx = tr.ui.b.getSVGTextSize(
+          this.chartAreaElement, value).width + 2;
+      const valueHeightPx = this.textHeightPx_;
+
+      const hoverWidthPx = Math.max(valueWidthPx, groupWidthPx, labelWidthPx);
+
+      let hoverLeftPx = rect.leftPx + (rect.widthPx / 2);
+      hoverLeftPx = Math.max(hoverLeftPx - hoverWidthPx, -this.margin.left);
+
+      const hoverHeightPx = valueHeightPx + groupHeightPx + labelHeightPx + 2;
+
+      let hoverTopPx = rect.topPx;
+      hoverTopPx = Math.min(
+          hoverTopPx, this.getBoundingClientRect().height - hoverHeightPx - 32);
+
+      chartAreaSel
+          .append('rect')
+          .attr('class', 'hover')
+          .on('mouseleave', () => this.clearHoverValueBox_(rect))
+          .on('mousedown', this.drawToolTip.bind(this, rect))
+          .attr('fill', 'white')
+          .attr('opacity', 0.9)
+          .attr('x', hoverLeftPx)
+          .attr('y', hoverTopPx)
+          .attr('width', hoverWidthPx)
+          .attr('height', labelHeightPx + groupHeightPx + valueHeightPx);
+
+      if (rect.datum.label !== undefined) {
+        chartAreaSel
+            .append('text')
+            .on('mouseleave', () => this.clearHoverValueBox_(rect))
+            .on('mousedown', this.drawToolTip.bind(this, rect))
+            .attr('class', 'hover')
+            .attr('fill', rect.color)
+            .attr('x', hoverLeftPx + 2)
+            .attr('y', hoverTopPx + labelHeightPx - 4)
+            .text(rect.datum.label);
+      }
+
+      if (rect.datum.group !== undefined) {
+        chartAreaSel
+            .append('text')
+            .on('mouseleave', () => this.clearHoverValueBox_(rect))
+            .on('mousedown', this.drawToolTip.bind(this, rect))
+            .attr('class', 'hover')
+            .attr('fill', rect.color)
+            .attr('x', hoverLeftPx + 2)
+            .attr('y', hoverTopPx + labelHeightPx + groupHeightPx - 4)
+            .text(rect.datum.group);
+      }
+
+      chartAreaSel
+          .append('text')
+          .on('mouseleave', () => this.clearHoverValueBox_(rect))
+          .on('mousedown', this.drawToolTip.bind(this, rect))
+          .attr('class', 'hover')
+          .attr('fill', rect.color)
+          .attr('x', hoverLeftPx + 2)
+          .attr('y', hoverTopPx + labelHeightPx +
+              groupHeightPx + valueHeightPx - 4)
+          .text(value);
+    },
+
+    drawRect_(rect, sel) {
+      sel = sel.data([rect]);
+      sel.enter().append('rect')
+          .attr('fill', rect.color)
+          .attr('x', rect.leftPx)
+          .attr('y', rect.topPx)
+          .attr('width', rect.widthPx)
+          .attr('height', rect.heightPx)
+          .on('mousedown', this.drawToolTip.bind(this, rect))
+          .on('mouseenter', this.drawHoverValueBox_.bind(this, rect))
+          .on('mouseleave', this.clearHoverValueBox_.bind(this, rect));
+      sel.exit().remove();
+    },
+
+    drawUnderflow_(rect, sel) {
+      sel = sel.data([rect]);
+      sel.enter().append('text')
+          .text('*')
+          .attr('fill', rect.color)
+          .attr('x', rect.leftPx + (rect.widthPx / 2))
+          .attr('y', this.graphHeight)
+          .on('mousedown', this.drawToolTip.bind(this, rect))
+          .on('mouseenter', this.drawHoverValueBox_.bind(this, rect))
+          .on('mouseleave', this.clearHoverValueBox_.bind(this, rect));
+      sel.exit().remove();
+    },
+
+    updateLegend_() {
+      const chartAreaSel = d3.select(this.chartAreaElement);
+      chartAreaSel.selectAll('.legend').remove();
+      if (this.hideLegend) return;
+
+      const series = [...this.seriesByKey_.values()].
+          filter(series => series.title !== '').reverse();
+      const legendEntriesSel = chartAreaSel.selectAll('.legend').data(series);
+
+      legendEntriesSel.enter()
+          .append('foreignObject')
+          .attr('class', 'legend')
+          .attr('x', this.graphWidth + 2)
+          .attr('width', this.margin.right)
+          .attr('height', 18)
+          .attr('transform', (series, i) => 'translate(0,' + i * 18 + ')')
+          .append('xhtml:body')
+          .style('margin', 0)
+          .append('tr-ui-b-chart-legend-key')
+          .property('color', series =>
+            ((this.currentHighlightedLegendKey === series.key) ?
+              series.highlightedColor : series.color))
+          .property('width', this.margin.right)
+          .property('target', series => series.target)
+          .property('title', series => series.title)
+          .property('optional', series => series.optional)
+          .property('enabled', series => series.enabled)
+          .text(series => series.title);
+      legendEntriesSel.exit().remove();
+    },
+  };
+
+  return {
+    MetricsNameColumnChart,
+  };
+});
+</script>
