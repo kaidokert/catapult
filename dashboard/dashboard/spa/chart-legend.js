@@ -4,8 +4,8 @@
 */
 'use strict';
 tr.exportTo('cp', () => {
-  class ChartLegend extends Polymer.GestureEventListeners(cp.ElementBase) {
-    onLeafMouseOver_(event) {
+  class ChartLegend extends cp.ElementBase {
+    async onLeafMouseOver_(event) {
       this.dispatchEvent(new CustomEvent('leaf-mouseover', {
         bubbles: true,
         composed: true,
@@ -13,7 +13,7 @@ tr.exportTo('cp', () => {
       }));
     }
 
-    onLeafMouseOut_(event) {
+    async onLeafMouseOut_(event) {
       this.dispatchEvent(new CustomEvent('leaf-mouseout', {
         bubbles: true,
         composed: true,
@@ -21,7 +21,7 @@ tr.exportTo('cp', () => {
       }));
     }
 
-    onLeafTap_(event) {
+    async onLeafTap_(event) {
       event.cancelBubble = true;
       this.dispatchEvent(new CustomEvent('leaf-tap', {
         bubbles: true,

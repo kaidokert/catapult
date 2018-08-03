@@ -21,7 +21,7 @@ tr.exportTo('cp', () => {
         bubbles: true,
         composed: true,
         detail: {
-          ctrlKey: event.detail.sourceEvent.ctrlKey,
+          ctrlKey: event.ctrlKey,
           datum: event.model.datum,
           datumIndex: event.model.datumIndex,
           line: event.model.parentModel.line,
