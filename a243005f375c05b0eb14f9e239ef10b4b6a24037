@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dbadd46c_3c5625bd",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 15
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-03T08:43:13Z",
+      "side": 1,
+      "message": "The usual style is to just use // for comments :)",
+      "revId": "a243005f375c05b0eb14f9e239ef10b4b6a24037",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
