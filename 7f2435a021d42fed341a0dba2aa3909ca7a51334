@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "219f745b_177532a4",
+        "filename": "dashboard/bin/deploy_v2spa",
+        "patchSetId": 17
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ea45887_34e24372",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6d8f8b43_7a1b612b",
         "filename": "dashboard/bin/deploy_v2spa",
         "patchSetId": 17
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "5df047bd_9a19dece",
+        "filename": "dashboard/bin/deploy_v2spa",
+        "patchSetId": 17
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d8f8b43_7a1b612b",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "31da6044_a0337e5f",
         "filename": "dashboard/dashboard/spa/chart-pair.js",
         "patchSetId": 17
@@ -47,6 +83,24 @@
       "writtenOn": "2018-08-01T19:09:31Z",
       "side": 1,
       "message": "The minimap will display fresh data when it receives it, right? So the data might be temporarily stale.",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca5ffbf1_37428432",
+        "filename": "dashboard/dashboard/spa/chart-pair.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "That is correct. There will be an update sent as soon as the network resolves. I should get rid of this comment.",
+      "parentUuid": "31da6044_a0337e5f",
       "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "63525709_ca7cfcc6",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "When loading is true, none of the lines will show. It would be nice to have just the progress bar loading but still show the chart lines. Is this something you want in this CL?",
+      "parentUuid": "6a7b9fb2_9d1fc90a",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0f1ad6da_ec8aefd2",
         "filename": "dashboard/dashboard/spa/chart-timeseries.js",
         "patchSetId": 17
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "625f6423_7cb168e3",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f1ad6da_ec8aefd2",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b7edc594_c435fd51",
         "filename": "dashboard/dashboard/spa/chart-timeseries.js",
         "patchSetId": 17
@@ -98,6 +188,24 @@
       "writtenOn": "2018-08-01T22:08:17Z",
       "side": 1,
       "message": "What happens when you remove this?",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf36245b_242cd569",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "I have always been too afraid to try because I thought you\u0027d know more about the context here since this is your TODO. Although, It didn\u0027t seem to change anything after I removed it.",
+      "parentUuid": "b7edc594_c435fd51",
       "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "48e05e41_42c184c7",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "Nice catch! This was left over from my experimentation in the beginning of implementing this feature. I can\u0027t believe I didn\u0027t catch this before. Thanks!",
+      "parentUuid": "241269ed_8b6c72bc",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "376bd467_9a8d114a",
         "filename": "dashboard/dashboard/spa/chart-timeseries.js",
         "patchSetId": 17
@@ -138,6 +264,24 @@
     },
     {
       "key": {
+        "uuid": "5d36cba5_c62f5856",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "Nice catch!",
+      "parentUuid": "376bd467_9a8d114a",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "201bd7b9_e792b6bc",
         "filename": "dashboard/dashboard/spa/chart-timeseries.js",
         "patchSetId": 17
@@ -152,6 +296,24 @@
       "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95bcebb4_10541d7f",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "201bd7b9_e792b6bc",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -178,6 +340,30 @@
     },
     {
       "key": {
+        "uuid": "8e4d310b_b56ceb2b",
+        "filename": "dashboard/dashboard/spa/element-base.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1f710653_2b2f048a",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 18
+      },
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "59315e4e_c8615c7d",
         "filename": "dashboard/dashboard/spa/index.js",
         "patchSetId": 17
@@ -189,6 +375,24 @@
       "writtenOn": "2018-08-01T19:09:31Z",
       "side": 1,
       "message": "Good point! Maybe move IS_PRODUCTION into this file? Then it can do this:\nif (IS_PRODUCTION) ga(\u0027create\u0027,...)",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9303bb51_2affff10",
+        "filename": "dashboard/dashboard/spa/index.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "The problem with that is not being able to export it afterwards moving IS_PRODUCTION into this file. I anticipated index.js to be ran before any other JavaScript so we can get Google Analytics and the Service Worker setup as soon as possible.",
+      "parentUuid": "59315e4e_c8615c7d",
       "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -212,6 +416,24 @@
     },
     {
       "key": {
+        "uuid": "4f8b19ff_6ed59ab0",
+        "filename": "dashboard/dashboard/spa/report-section.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "Yay! I\u0027ll remove this.",
+      "parentUuid": "af623229_52a5ae41",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bd0a0e7f_c9ad6c36",
         "filename": "dashboard/dashboard/spa/request-base.js",
         "patchSetId": 17
@@ -229,6 +451,24 @@
     },
     {
       "key": {
+        "uuid": "401a8dca_55225598",
+        "filename": "dashboard/dashboard/spa/request-base.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd0a0e7f_c9ad6c36",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3ad932ce_5e050879",
         "filename": "dashboard/dashboard/spa/request-base.js",
         "patchSetId": 17
@@ -240,6 +480,24 @@
       "writtenOn": "2018-08-01T19:09:31Z",
       "side": 1,
       "message": "Why catch and rethrow?",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff3133f5_a77bb215",
+        "filename": "dashboard/dashboard/spa/request-base.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "I was adding more context for debugging, which was helpful at the time. I\u0027ll change it back now.",
+      "parentUuid": "3ad932ce_5e050879",
       "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -263,6 +521,24 @@
     },
     {
       "key": {
+        "uuid": "c25cba49_c1276175",
+        "filename": "dashboard/dashboard/spa/service-worker.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "595dd5b7_5464fc66",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e93d4d3_d6774e35",
         "filename": "dashboard/dashboard/spa/service-worker.js",
         "patchSetId": 17
@@ -274,6 +550,24 @@
       "writtenOn": "2018-08-01T20:22:28Z",
       "side": 1,
       "message": "Why removeEventListener?",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "980504b7_ca5f2eb7",
+        "filename": "dashboard/dashboard/spa/service-worker.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "I could have assigned/delete the event listener directly, but I believe add/remove is a more extendable way of achieving the same result. Would you prefer I use the simple way of assign/delete?\n\ne.g.\n\n  // Assign\n  channel.onmessage \u003d handleMessage;\n\n  // Delete\n  delete channel.onmessage;",
+      "parentUuid": "3e93d4d3_d6774e35",
       "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -297,6 +591,24 @@
     },
     {
       "key": {
+        "uuid": "54cf0da8_05145f63",
+        "filename": "dashboard/dashboard/spa/service-worker.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd8a6277_666ba47f",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "667e5ca1_a65557bf",
         "filename": "dashboard/dashboard/spa/service-worker.js",
         "patchSetId": 17
@@ -311,6 +623,24 @@
       "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3511eb5e_6a17d0d1",
+        "filename": "dashboard/dashboard/spa/service-worker.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "Good suggestion. I\u0027ll rename those classes/files.",
+      "parentUuid": "667e5ca1_a65557bf",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -331,6 +661,24 @@
     },
     {
       "key": {
+        "uuid": "b94cff21_749b87df",
+        "filename": "dashboard/dashboard/spa/service-worker.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "My latest patch simplifies this.",
+      "parentUuid": "9990f96f_c3f17336",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "44df764c_7ce71624",
         "filename": "dashboard/dashboard/spa/sw-utils/level-of-detail.js",
         "patchSetId": 17
@@ -345,6 +693,24 @@
       "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ce32349_dd1e1afa",
+        "filename": "dashboard/dashboard/spa/sw-utils/level-of-detail.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44df764c_7ce71624",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -365,6 +731,24 @@
     },
     {
       "key": {
+        "uuid": "c968083a_b8a942ea",
+        "filename": "dashboard/dashboard/spa/sw-utils/mark.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "See line 23 and 88 of this file. I am keeping a counter and appending to the unique identifier for each Mark to avoid duplicates. This will work as long as we don\u0027t have more than 2^54 Marks.",
+      "parentUuid": "54750517_6386d1d2",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a9d6c8a1_94b4ad1c",
         "filename": "dashboard/dashboard/spa/sw-utils/race.js",
         "patchSetId": 17
@@ -379,6 +763,24 @@
       "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d47700b0_15f7de15",
+        "filename": "dashboard/dashboard/spa/sw-utils/race.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9d6c8a1_94b4ad1c",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -399,6 +801,24 @@
     },
     {
       "key": {
+        "uuid": "85ecc265_dfb88a95",
+        "filename": "dashboard/dashboard/spa/sw-utils/race.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "Async generator methods are unfortunately not supported by UglifyJS/terser, forcing me to write this. Should I open an issue with https://github.com/fabiosantoscode/terser?",
+      "parentUuid": "506b7c89_036e94b3",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f0f4014c_976e620c",
         "filename": "dashboard/dashboard/spa/sw-utils/race.js",
         "patchSetId": 17
@@ -413,6 +833,24 @@
       "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "092f8415_13425ca1",
+        "filename": "dashboard/dashboard/spa/sw-utils/race.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0f4014c_976e620c",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -439,6 +877,30 @@
     },
     {
       "key": {
+        "uuid": "cf750742_60598243",
+        "filename": "dashboard/dashboard/spa/sw-utils/race.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "Right. I\u0027ll remove this.",
+      "parentUuid": "f4a47f2e_408f215e",
+      "range": {
+        "startLine": 125,
+        "startChar": 46,
+        "endLine": 125,
+        "endChar": 55
+      },
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "48d0636b_b60e2e18",
         "filename": "dashboard/dashboard/spa/sw-utils/race.js",
         "patchSetId": 17
@@ -450,6 +912,24 @@
       "writtenOn": "2018-08-01T20:22:28Z",
       "side": 1,
       "message": "Would it be simpler to handle both promises generally without defining a winner and loser?\nwhile (promises) yield await Promise.race(promises);",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1e43f4b_c45581b8",
+        "filename": "dashboard/dashboard/spa/sw-utils/race.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "When the network wins, I do not yield the results of the cache. Can that approach achieve something similar?",
+      "parentUuid": "48d0636b_b60e2e18",
       "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -479,6 +959,30 @@
     },
     {
       "key": {
+        "uuid": "0ec2e9ba_c64f5348",
+        "filename": "dashboard/dashboard/spa/sw-utils/race.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "Thanks! I didn\u0027t catch that.",
+      "parentUuid": "4fcece91_8d1b2c0d",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 172,
+        "endChar": 19
+      },
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ec72dc16_ec2f9c42",
         "filename": "dashboard/dashboard/spa/sw-utils/race.js",
         "patchSetId": 17
@@ -490,6 +994,24 @@
       "writtenOn": "2018-08-01T20:22:28Z",
       "side": 1,
       "message": "\"Debounce\" refers to a process of ignoring illusionary copies of an event to reveal the true event. This class isn\u0027t ignoring anything, so I think \"DatabaseWriteQueue\" would be a better term for this class.",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf4e4690_ffb8b5f8",
+        "filename": "dashboard/dashboard/spa/sw-utils/race.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "Thanks for the clarification. I am leaning towards \"WritingQueue\" since it does not specify where/how it writes. It simply uses the `writeFunc` passed upon `enqueue`.",
+      "parentUuid": "ec72dc16_ec2f9c42",
       "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -536,6 +1058,48 @@
     },
     {
       "key": {
+        "uuid": "785e1534_f278ace5",
+        "filename": "dashboard/dashboard/spa/sw-utils/race.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e924d6b3_91721ca3",
+      "range": {
+        "startLine": 193,
+        "startChar": 9,
+        "endLine": 193,
+        "endChar": 14
+      },
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "59ca5bb3_f945d6e0",
+        "filename": "dashboard/dashboard/spa/sw-utils/race.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "For requests that take longer than 1 second, I found this to work better. I\u0027ll change it back though, assuming that our users won\u0027t be making crazy requests like me.",
+      "parentUuid": "8977168d_5c514655",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4a60ca3d_cb3be6c2",
         "filename": "dashboard/dashboard/spa/sw-utils/race.js",
         "patchSetId": 17
@@ -550,6 +1114,24 @@
       "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9abb4bd2_4d50a9e8",
+        "filename": "dashboard/dashboard/spa/sw-utils/race.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a60ca3d_cb3be6c2",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -576,6 +1158,30 @@
     },
     {
       "key": {
+        "uuid": "dcdd005c_933c7e58",
+        "filename": "dashboard/dashboard/spa/sw-utils/race.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e617e298_65d72766",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 250,
+        "endChar": 28
+      },
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9710db65_b12ce983",
         "filename": "dashboard/dashboard/spa/sw-utils/range.js",
         "patchSetId": 17
@@ -593,6 +1199,24 @@
     },
     {
       "key": {
+        "uuid": "40e634ea_487ea9b6",
+        "filename": "dashboard/dashboard/spa/sw-utils/range.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9710db65_b12ce983",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "32f7cb2d_ddc08233",
         "filename": "dashboard/dashboard/spa/webpack.config.js",
         "patchSetId": 17
@@ -607,6 +1231,24 @@
       "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "baebafb4_9dcc175c",
+        "filename": "dashboard/dashboard/spa/webpack.config.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-03T20:00:06Z",
+      "side": 1,
+      "message": "Good idea!",
+      "parentUuid": "32f7cb2d_ddc08233",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
