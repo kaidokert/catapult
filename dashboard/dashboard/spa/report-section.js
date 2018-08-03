@@ -19,22 +19,6 @@ tr.exportTo('cp', () => {
   const MIN_MILESTONE = tr.b.math.Statistics.min(
       Object.keys(CHROMIUM_MILESTONES));
 
-  class ReportNamesRequest extends cp.RequestBase {
-    get url_() {
-      // The ReportHandler doesn't use this query parameter, but it helps caches
-      // (such as the browser cache) understand that it returns different data
-      // depending on whether the user is authorized to access internal data.
-      const internal = this.headers_.has('Authorization');
-      return '/api/report/names' + (internal ? '?internal' : '');
-    }
-
-    async localhostResponse_() {
-      return [
-        {name: cp.ReportSection.DEFAULT_NAME, id: 0, modified: 0},
-      ];
-    }
-  }
-
   class ReportRequest extends cp.RequestBase {
     constructor(options) {
       super(options);
@@ -167,7 +151,6 @@ tr.exportTo('cp', () => {
     }
 
     async onSelectSource_(event) {
-      event.cancelBubble = true;
       await this.dispatch('loadReports', this.statePath);
       if (this.source.selectedOptions.includes(ReportSection.CREATE)) {
         const name = this.shadowRoot.querySelector(
@@ -340,7 +323,6 @@ tr.exportTo('cp', () => {
     }
 
     async onTestSuiteSelect_(event) {
-      event.cancelBubble = true;
       await this.dispatch('templateTestSuite', this.statePath,
           event.model.tableIndex, event.model.rowIndex);
     }
@@ -533,20 +515,16 @@ tr.exportTo('cp', () => {
     },
 
     loadSources: statePath => async(dispatch, getState) => {
-      const request = new ReportNamesRequest({});
-      const sources = await request.response;
+      const reportTemplateIds = await dispatch(cp.ReadReportNames());
       const rootState = getState();
       const teamFilter = cp.TeamFilter.get(rootState.teamName);
-      cp.ElementBase.actions.chain([
-        {
-          type: ReportSection.reducers.receiveTemplateIds.typeName,
-          reportTemplateIds: await teamFilter.reportNames(sources),
-        },
-        {
-          type: ReportSection.reducers.receiveSourceOptions.typeName,
-          statePath,
-        },
-      ])(dispatch, getState);
+      const reportNames = await teamFilter.reportNames(
+          reportTemplateIds.map(t => t.name));
+      dispatch({
+        type: ReportSection.reducers.receiveSourceOptions.typeName,
+        statePath,
+        reportNames,
+      });
       ReportSection.actions.loadReports(statePath)(dispatch, getState);
     },
 
@@ -574,12 +552,15 @@ tr.exportTo('cp', () => {
       if (!rootState.reportTemplateIds) return;
       const promises = [];
       for (const name of names) {
-        const templateId = rootState.reportTemplateIds.get(name);
-        if (templateId === undefined) return;
-        promises.push(new ReportRequest({
-          ...templateId,
-          revisions,
-        }).response);
+        for (const templateId of rootState.reportTemplateIds) {
+          if (templateId.name === name) {
+            console.trace('fetching', templateId.name, revisions);
+            promises.push(new ReportRequest({
+              ...templateId,
+              revisions,
+            }).response);
+          }
+        }
       }
 
       const batches = cp.RequestBase.batchResponses(promises);
@@ -745,18 +726,18 @@ tr.exportTo('cp', () => {
       cp.ElementBase.actions.updateObject(statePath, {
         isLoading: true,
       })(dispatch, getState);
-      const sources = await request.response;
+      const reportTemplateIds = await request.response;
+      cp.ElementBase.actions.updateObject('', {
+        reportTemplateIds,
+      })(dispatch, getState);
       const teamFilter = cp.TeamFilter.get(rootState.teamName);
-      cp.ElementBase.actions.chain([
-        {
-          type: ReportSection.reducers.receiveTemplateIds.typeName,
-          reportTemplateIds: await teamFilter.reportNames(sources),
-        },
-        {
-          type: ReportSection.reducers.receiveSourceOptions.typeName,
-          statePath,
-        },
-      ])(dispatch, getState);
+      const reportNames = await teamFilter.reportNames(
+          reportTemplateIds.map(t => t.name));
+      dispatch({
+        type: ReportSection.reducers.receiveSourceOptions.typeName,
+        statePath,
+        reportNames,
+      });
       rootState = getState();
       state = Polymer.Path.get(rootState, statePath);
       cp.ElementBase.actions.updateObject(statePath, {
@@ -849,19 +830,12 @@ tr.exportTo('cp', () => {
       };
     },
 
-    receiveTemplateIds: (rootState, {reportTemplateIds}, rootStateAgain) => {
-      reportTemplateIds = new Map(reportTemplateIds.map(entity =>
-        [entity.name, entity]));
-      return {...rootState, reportTemplateIds};
-    },
-
-    receiveSourceOptions: (state, action, rootState) => {
-      const options = cp.OptionGroup.groupValues(
-          rootState.reportTemplateIds.keys());
+    receiveSourceOptions: (state, {reportNames}, rootState) => {
+      const options = cp.OptionGroup.groupValues(reportNames);
       if (cp.IS_DEBUG || rootState.userEmail) {
         options.push(ReportSection.CREATE);
       }
-      const label = `Reports (${rootState.reportTemplateIds.size})`;
+      const label = `Reports (${reportNames.length})`;
       return {...state, source: {...state.source, options, label}};
     },
 
