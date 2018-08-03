@@ -68,17 +68,10 @@ found in the LICENSE file.
       }
 
       expand-button {
-        --paper-button: {
-          margin: 0;
-          min-width: 0;
-          padding: 0;
-          height: 100%;
-        };
-        --iron-icon: {
-          height: 20px;
-          padding: 0;
-          width: 20px;
-        };
+        margin: 0;
+        min-width: 0;
+        padding: 0;
+        height: 100%;
       }
 
       #catsum {
@@ -123,7 +116,7 @@ found in the LICENSE file.
                     name="count"
                     sort-column="[[sortColumn]]"
                     sort-descending="[[sortDescending]]"
-                    on-tap="onSort_">
+                    on-click="onSort_">
                   Count
                 </column-head>
               </th>
@@ -142,7 +135,7 @@ found in the LICENSE file.
                       name="bug"
                       sort-column="[[sortColumn]]"
                       sort-descending="[[sortDescending]]"
-                      on-tap="onSort_">
+                      on-click="onSort_">
                     Bug
                   </column-head>
                 </th>
@@ -153,7 +146,7 @@ found in the LICENSE file.
                     name="revisions"
                     sort-column="[[sortColumn]]"
                     sort-descending="[[sortDescending]]"
-                    on-tap="onSort_">
+                    on-click="onSort_">
                   Revisions
                 </column-head>
               </th>
@@ -163,7 +156,7 @@ found in the LICENSE file.
                     name="testSuite"
                     sort-column="[[sortColumn]]"
                     sort-descending="[[sortDescending]]"
-                    on-tap="onSort_">
+                    on-click="onSort_">
                   Test Suite
                 </column-head>
               </th>
@@ -173,7 +166,7 @@ found in the LICENSE file.
                     name="measurement"
                     sort-column="[[sortColumn]]"
                     sort-descending="[[sortDescending]]"
-                    on-tap="onSort_">
+                    on-click="onSort_">
                   Measurement
                 </column-head>
               </th>
@@ -184,7 +177,7 @@ found in the LICENSE file.
                       name="master"
                       sort-column="[[sortColumn]]"
                       sort-descending="[[sortDescending]]"
-                      on-tap="onSort_">
+                      on-click="onSort_">
                     Master
                   </column-head>
                 </th>
@@ -195,7 +188,7 @@ found in the LICENSE file.
                     name="bot"
                     sort-column="[[sortColumn]]"
                     sort-descending="[[sortDescending]]"
-                    on-tap="onSort_">
+                    on-click="onSort_">
                   Bot
                 </column-head>
               </th>
@@ -206,7 +199,7 @@ found in the LICENSE file.
                       name="testCase"
                       sort-column="[[sortColumn]]"
                       sort-descending="[[sortDescending]]"
-                      on-tap="onSort_">
+                      on-click="onSort_">
                     Test case
                   </column-head>
                 </th>
@@ -217,7 +210,7 @@ found in the LICENSE file.
                     name="delta"
                     sort-column="[[sortColumn]]"
                     sort-descending="[[sortDescending]]"
-                    on-tap="onSort_">
+                    on-click="onSort_">
                   Delta
                 </column-head>
               </th>
@@ -227,7 +220,7 @@ found in the LICENSE file.
                     name="deltaPct"
                     sort-column="[[sortColumn]]"
                     sort-descending="[[sortDescending]]"
-                    on-tap="onSort_">
+                    on-click="onSort_">
                   Delta %
                 </column-head>
               </th>
@@ -239,7 +232,7 @@ found in the LICENSE file.
               <template is="dom-repeat" items="[[alertGroup.alerts]]" as="alert" index-as="alertIndex">
                 <template is="dom-if" if="[[shouldDisplayAlert_(alertGroup, alertIndex)]]">
                   <tr style$="color: [[alert.color]];"
-                      on-tap="onRowTap_">
+                      on-click="onRowTap_">
                     <td>
                       <template is="dom-if" if="[[shouldDisplayExpandGroupButton_(alertGroup, alertIndex)]]">
                         <expand-button state-path="[[statePath]].alertGroups.[[alertGroupIndex]]">
@@ -252,7 +245,7 @@ found in the LICENSE file.
                       <paper-checkbox
                           checked="[[alert.isSelected]]"
                           disabled="[[areAlertGroupsPlaceholders]]"
-                          on-tap="onSelect_">
+                          on-click="onSelect_">
                         <template is="dom-if" if="[[_eq(0, alertIndex)]]">
                           [[selectedCount_(alertGroup)]]
                         </template>
