@@ -129,9 +129,9 @@ class MilestoneInfo(object):
     # previous one
     for i in range(5):
       # above number has been tested, and it works from milestone 45 to 68
-      download_uri = ('gs://chrome-signed/android-B0urB0N/%s/%s/Chrome'
-                      'Stable.apk') % (DecrementPatchNumber(version_num, i),
-                                       PROCESSOR_ARCHITECTURE)
+      download_uri = (
+          'gs://chrome-signed/android-*/%s/%s/ChromeStable.apk'
+          % (DecrementPatchNumber(version_num, i), PROCESSOR_ARCHITECTURE))
       # check exit code to confirm the existence of the package
       if subprocess.call(['gsutil', 'ls', download_uri]) == 0:
         return download_uri
