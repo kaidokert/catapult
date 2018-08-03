@@ -18,42 +18,48 @@ class GraphPlotter {
     this.canvasHeight_ = 720;
     /** @private {number} */
     this.canvasWidth_ = 1280;
+    /** @private @const {Object} chartDimensions_
+     * Provides access to the chart's dimensions to aid plotters
+     * (e.g., for when computing scales for the axes).
+     */
+    this.chartDimensions_ = {};
     /* Provides spacing around the chart for labels and the axes. */
-    const margins = {
+    this.chartDimensions_.margins = {
       top: 50,
       right: 200,
       left: 80,
       bottom: 50,
     };
-    const width = this.canvasWidth_ - margins.left - margins.right;
-    const height = this.canvasHeight_ - margins.top - margins.bottom;
-    /** @private @const {Object} chartDimensions
-     * Provides access to the chart's dimensions to aid plotters
-     * (e.g., for when computing scales for the axes).
-     */
-    this.chartDimensions = {
-      margins,
-      width,
-      height,
-    };
+    this.prepareBackground_();
+  }
+
+  prepareBackground_() {
+    this.chartDimensions_.width =
+        this.canvasWidth_ -
+            this.chartDimensions_.margins.left -
+                this.chartDimensions_.margins.right;
+    this.chartDimensions_.height =
+        this.canvasHeight_ -
+            this.chartDimensions_.margins.top -
+                this.chartDimensions_.margins.bottom;
     /** @private @const {Object} */
     this.background_ = d3.select('#canvas').append('svg:svg')
         .attr('width', this.canvasWidth_)
         .attr('height', this.canvasHeight_);
     /** @private @const {Object} */
     this.chart_ = this.background_.append('g')
-        .attr('transform', `translate(${this.chartDimensions.margins.left}, 
-                  ${this.chartDimensions.margins.top})`);
+        .attr('transform', `translate(${this.chartDimensions_.margins.left}, 
+                ${this.chartDimensions_.margins.top})`);
     /* Appending a clip path rectangle prevents any drawings with the
-     * clip-path: url(#plot-clip) attribute from being displayed outside
-     * of the chart area.
-     */
+    * clip-path: url(#plot-clip) attribute from being displayed outside
+    * of the chart area.
+    */
     this.chart_.append('defs')
         .append('clipPath')
         .attr('id', 'plot-clip')
         .append('rect')
-        .attr('width', this.chartDimensions.width)
-        .attr('height', this.chartDimensions.height);
+        .attr('width', this.chartDimensions_.width)
+        .attr('height', this.chartDimensions_.height);
     /** @private {Object} */
     this.legend_ = this.createLegend_();
   }
@@ -63,31 +69,31 @@ class GraphPlotter {
     return this.chart_.append('g')
         .attr('class', 'legend')
         .attr('transform',
-            `translate(${this.chartDimensions.width + padding},
-                ${this.chartDimensions.margins.top})`);
+            `translate(${this.chartDimensions_.width + padding},
+                ${this.chartDimensions_.margins.top})`);
   }
 
   labelTitle_() {
     this.chart_.append('text')
-        .attr('x', this.chartDimensions.width / 2)
-        .attr('y', 0 - this.chartDimensions.margins.top / 2)
+        .attr('x', this.chartDimensions_.width / 2)
+        .attr('y', 0 - this.chartDimensions_.margins.top / 2)
         .attr('text-anchor', 'middle')
         .text(this.graph_.title());
   }
 
   labelAxis_() {
     const chartBottom =
-      this.chartDimensions.height + this.chartDimensions.margins.bottom;
+      this.chartDimensions_.height + this.chartDimensions_.margins.bottom;
     this.chart_.append('text')
-        .attr('transform', `translate(${this.chartDimensions.width / 2}, 
+        .attr('transform', `translate(${this.chartDimensions_.width / 2}, 
             ${chartBottom})`)
         .attr('text-anchor', 'middle')
         .text(this.graph_.xAxis());
 
     this.chart_.append('text')
         .attr('transform', 'rotate(-90)')
-        .attr('y', 0 - (this.chartDimensions.margins.left / 2))
-        .attr('x', 0 - (this.chartDimensions.height / 2))
+        .attr('y', 0 - (this.chartDimensions_.margins.left / 2))
+        .attr('x', 0 - (this.chartDimensions_.height / 2))
         .attr('text-anchor', 'middle')
         .text(this.graph_.yAxis());
   }
@@ -107,13 +113,14 @@ class GraphPlotter {
    * class to render the axes, the plot itself and any legend information.
    */
   plot(plotter) {
+    this.plottingStrategy = plotter;
     this.labelTitle_();
     this.labelAxis_();
-    /* Other classes should not be able to change chartDimensions
+    /* Other classes should not be able to change chartDimensions_
     * as then it will no longer reflect the chart's
     * true dimensions.
     */
-    const dimensionsCopy = Object.assign({}, this.chartDimensions);
+    const dimensionsCopy = Object.assign({}, this.chartDimensions_);
     plotter.plot(this.graph_, this.chart_, this.legend_, dimensionsCopy);
   }
 }
