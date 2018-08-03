@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "7580708b_5c0b893b",
+        "filename": "dashboard/dashboard/models/report_template.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-03T11:11:36Z",
+      "side": 1,
+      "message": "and just because I\u0027m lazy, can you add \"import random, datetime\" at the top of the example so I can copy/paste those too. :)",
+      "parentUuid": "b98e4a52_05215f21",
+      "revId": "5bf383f9134211476f3e534bd42402c9e2e1b99b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b18317a5_ffecab11",
         "filename": "dashboard/dashboard/models/report_template.py",
         "patchSetId": 1
