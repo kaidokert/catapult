@@ -6,23 +6,14 @@ found in the LICENSE file.
 -->
 
 <link rel="import" href="/bower_components/iron-collapse/iron-collapse.html">
-<link rel="import" href="/bower_components/paper-input/paper-input.html">
 <link rel="import" href="/bower_components/paper-styles/element-styles/paper-material-styles.html">
+<link rel="import" href="/dashboard/spa/cp-input.html">
 <link rel="import" href="/dashboard/spa/element-base.html">
 <link rel="import" href="/dashboard/spa/option-group.html">
 
 <dom-module id="dropdown-input">
   <template>
     <style include="paper-material-styles">
-      #input {
-        --paper-input-container: {
-          padding: 0;
-        }
-        --paper-input-container-input: {
-          font-size: 12px;
-        };
-      }
-
       #input[required] {
         /* Leave space for the error message */
         padding-bottom: 16px;
@@ -74,28 +65,23 @@ found in the LICENSE file.
       }
     </style>
 
-    <paper-input
+    <cp-input
         id="input"
         autofocus="[[isFocused]]"
-        disabled$="[[isDisabled_(alwaysEnabled, options)]]"
-        label="[[label]]"
-        required$="[[required]]"
-        error-message="[[errorMessage]]"
-        invalid="[[!isValid_(selectedOptions)]]"
-        tabindex="1"
+        disabled="[[isDisabled_(alwaysEnabled, options)]]"
+        placeholder="[[label]]"
         value="[[getInputValue_(isFocused, query, selectedOptions)]]"
         on-blur="onBlur_"
         on-focus="onFocus_"
         on-keyup="onKeyup_">
       <iron-icon
           id="input_clear"
-          slot="suffix"
           icon="clear"
           title="clear"
           alt="clear"
           on-click="onClear_">
       </iron-icon>
-    </paper-input>
+    </cp-input>
 
     <div id="dropdown">
       <template is="dom-if" if="[[renderDropdown_(hasBeenOpened, largeDom)]]">
