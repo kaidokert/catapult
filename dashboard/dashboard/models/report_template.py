@@ -2,6 +2,8 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import functools
+
 from google.appengine.ext import ndb
 
 from dashboard.common import report_query
@@ -27,15 +29,55 @@ def ListStaticTemplates():
 
 
 def Static(internal_only, template_id, name, modified):
-  def Decorator(handler):
-    handler.template = ReportTemplate(
+  """This decorator is a bit fiddly! You may prefer creating ReportTemplate
+  entities if possible.
+
+  Tips:
+  - Copy `template_id` and `modified` from the REPL into your code using
+      int(random.random() * (2 ** 31))
+      datetime.datetime.now()
+  - Put your static templates in common/ and make api/report_names.py and
+    api/report_generate.py import it.
+  - If you want to dynamically fetch available bots or test cases, see
+    update_test_suite_descriptors.FetchCachedTestSuiteDescriptor().
+  - The generated report must specify a documentation url.
+
+  Usage:
+  @report_template.Static(False, 1797699531, 'Paryl:Awesome:Report',
+                          datetime.datetime(2018, 8, 2, 11, 5, 1, 17014))
+  def ParylAwesomeReport(revisions):
+    desc = update_test_suite_descriptors.FetchCachedTestSuiteDescriptor('paryl')
+    return report_query.ReportQuery(MakeAwesomeTemplate(desc), revisions)
+
+  Names need to be mutable and are for display purposes only. Identifiers need
+  to be immutable and are used for caching. Ids are required to be ints like
+  dynamic ReportTemplates' ids so the API can validate them and so they convey a
+  sense of "danger, don't change this".
+  """
+  assert isinstance(template_id, int)  # JS can't handle python floats or longs!
+  def Decorator(decorated):
+    @functools.wraps(decorated)
+    def Replacement(revisions):
+      report = decorated(revisions)
+      assert isinstance(report.get('url'), basestring), (
+          'Reports are required to link to documentation')
+      return report
+    Replacement.template = ReportTemplate(
         internal_only=internal_only,
         id=template_id,
         name=name,
         modified=modified)
-    STATIC_TEMPLATES.append(handler)
-    return handler
+    STATIC_TEMPLATES.append(Replacement)
+    return Replacement
   return Decorator
+
+
+def RegisterStaticTemplate(internal_only, template_id, name, modified,
+                           template):
+  @Static(internal_only, template_id, name, modified)
+  def GenerateReport(revisions):
+    return report_query.ReportQuery(template, revisions)
+  return GenerateReport
 
 
 def List():
