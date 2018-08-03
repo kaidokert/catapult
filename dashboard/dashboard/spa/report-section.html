@@ -43,6 +43,11 @@ found in the LICENSE file.
         margin-right: 8px;
       }
 
+      #min_revision,
+      #max_revision {
+        width: 84px;
+      }
+
       #close {
         align-self: flex-start;
         cursor: pointer;
@@ -116,30 +121,13 @@ found in the LICENSE file.
         flex-direction: column;
       }
 
-      .edit_form table paper-input {
-        --paper-input-container: {
-          padding: 0;
-        };
-        --paper-input-container-input: {
-          font-size: 12px;
-        };
-      }
-
-      paper-input div[slot="suffix"] {
-        height: 32px;
-      }
-
       .edit_form_controls {
         display: flex;
         justify-content: space-evenly;
       }
 
-      .edit_form_controls paper-input {
-        flex-grow: 1;
-      }
-
       .edit_form_controls dropdown-input:not(:last-child),
-      .edit_form_controls paper-input:not(:last-child) {
+      .edit_form_controls cp-input:not(:last-child) {
         margin-right: 16px;
       }
 
@@ -176,6 +164,10 @@ found in the LICENSE file.
       #tooltip td {
         padding: 2px;
       }
+
+      .error {
+        color: red;
+      }
     </style>
 
     <div id="controls">
@@ -207,26 +199,19 @@ found in the LICENSE file.
         </raised-button>
       </template>
 
-      <paper-input
+      <cp-input
           id="min_revision"
           value="[[minRevisionInput]]"
-          size="6"
-          label="min revision"
+          placeholder="min revision"
           on-keyup="onMinRevisionKeyup_">
-        <div slot="suffix">
-          &nbsp;
-        </div>
-      </paper-input>
+      </cp-input>
 
-      <paper-input
+      <cp-input
+          id="max_revision"
           value="[[maxRevisionInput]]"
-          size="6"
-          label="max revision"
+          placeholder="max revision"
           on-keyup="onMaxRevisionKeyup_">
-        <div slot="suffix">
-          &nbsp;
-        </div>
-      </paper-input>
+      </cp-input>
 
       <template is="dom-if" if="[[isNextMilestone_(milestone)]]">
         <raised-button
@@ -255,33 +240,40 @@ found in the LICENSE file.
           <iron-collapse horizontal opened="[[table.isEditing]]">
             <iron-collapse class="edit_form" opened="[[table.isEditing]]">
               <div class="edit_form_controls">
-                <paper-input
-                    label="Report Name"
-                    value="[[table.name]]"
+                <div>
+                  <cp-input
+                      class="report_name_input"
+                      error$="[[_empty(table.name)]]"
+                      placeholder="Report Name"
+                      value="[[table.name]]"
+                      on-keyup="onTemplateNameKeyUp_">
+                  </cp-input>
+                  <span class="error" hidden$="[[!_empty(table.name)]]">
                     required
-                    auto-validate
-                    error-message="required"
-                    on-keyup="onTemplateNameKeyUp_">
-                </paper-input>
+                  </span>
+                </div>
 
-                <paper-input
-                    label="Owners"
-                    required
-                    auto-validate
-                    error-message="comma-separate list of complete email addresses"
-                    value="[[table.owners]]"
-                    on-keyup="onTemplateOwnersKeyUp_">
-                </paper-input>
+                <div>
+                  <cp-input
+                      error$="[[_empty(table.owners)]]"
+                      placeholder="Owners"
+                      value="[[table.owners]]"
+                      on-keyup="onTemplateOwnersKeyUp_">
+                  </cp-input>
+                  <span class="error" hidden$="[[!_empty(table.owners)]]">
+                      comma-separate list of complete email addresses
+                  </span>
+                </div>
 
                 <dropdown-input
                     state-path="[[statePath]].tables.[[tableIndex]].statistic">
                 </dropdown-input>
 
-                <paper-input
-                    label="Documentation"
+                <cp-input
+                    placeholder="Documentation"
                     value="[[table.url]]"
                     on-keyup="onTemplateUrlKeyUp_">
-                </paper-input>
+                </cp-input>
               </div>
 
               <table>
@@ -289,17 +281,15 @@ found in the LICENSE file.
                   <template is="dom-repeat" items="[[table.rows]]" as="row" index-as="rowIndex">
                     <tr>
                       <td>
-                        <paper-input
-                            label="Label"
-                            required
-                            error-message="required"
-                            auto-validate
+                        <cp-input
+                            placeholder="Label"
+                            error$="[[_empty(row.label)]]"
                             value="[[row.label]]"
                             on-keyup="onTemplateRowLabelKeyUp_">
-                          <div slot="suffix">
-                            &nbsp;
-                          </div>
-                        </paper-input>
+                        </cp-input>
+                        <span class="error" hidden$="[[!_empty(row.label)]]">
+                          required
+                        </span>
                       </td>
                       <td>
                         <dropdown-input
