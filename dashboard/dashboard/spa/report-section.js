@@ -167,7 +167,6 @@ tr.exportTo('cp', () => {
     }
 
     async onSelectSource_(event) {
-      event.cancelBubble = true;
       await this.dispatch('loadReports', this.statePath);
       if (this.source.selectedOptions.includes(ReportSection.CREATE)) {
         const name = this.shadowRoot.querySelector(
@@ -340,7 +339,6 @@ tr.exportTo('cp', () => {
     }
 
     async onTestSuiteSelect_(event) {
-      event.cancelBubble = true;
       await this.dispatch('templateTestSuite', this.statePath,
           event.model.tableIndex, event.model.rowIndex);
     }
