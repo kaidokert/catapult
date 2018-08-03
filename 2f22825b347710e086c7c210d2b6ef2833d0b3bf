@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7d24f798_049004ef",
+        "filename": "experimental/long_term_health/bin/long_term_health",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-03T10:47:20Z",
+      "side": 1,
+      "message": "I think I prefer importing one level up and rename the \"long_term_health_utils\" subdir as just \"long_term_health\", so your imports become:\n\n    from long_term_health import apk_finder\n    from long_term_health import milestone_info\n    from long_term_health import utils\n\netc; so it\u0027s very clear that the imported modules are from this specific \"app\".",
+      "revId": "2f22825b347710e086c7c210d2b6ef2833d0b3bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90f608fc_4001124d",
+        "filename": "experimental/long_term_health/bin/long_term_health",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-03T10:47:20Z",
+      "side": 1,
+      "message": "note we usually import only modules, not functions or variables:\nhttps://github.com/google/styleguide/blob/gh-pages/pyguide.md#22-imports\n\nsame thing needs to be changed on all other files.",
+      "revId": "2f22825b347710e086c7c210d2b6ef2833d0b3bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f15df2e_e6dbb325",
+        "filename": "experimental/long_term_health/long_term_health_utils/apk_finder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-03T10:47:20Z",
+      "side": 1,
+      "message": "does it work if you move the disables to this line only? e.g.\n\n    from distutils import version  # pylint: disable\u003dimport-error,no-name-in-module",
+      "revId": "2f22825b347710e086c7c210d2b6ef2833d0b3bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7a3f2a0_7a14bb55",
+        "filename": "experimental/long_term_health/long_term_health_utils/utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-03T10:47:20Z",
+      "side": 1,
+      "message": "Maybe just call this \"APP_ROOT\"",
+      "revId": "2f22825b347710e086c7c210d2b6ef2833d0b3bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
