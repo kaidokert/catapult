@@ -69,6 +69,24 @@
       "revId": "42d6ec9ffbdf9e2e0d904105c477b42cf13d9644",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6df731a_ed2b5efe",
+        "filename": "telemetry/telemetry/wpr/archive_info.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-03T13:25:36Z",
+      "side": 1,
+      "message": "I vote to just remove the warnings here and let the other code path catch the issue.",
+      "parentUuid": "30829ce7_ec29b1ee",
+      "revId": "42d6ec9ffbdf9e2e0d904105c477b42cf13d9644",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
