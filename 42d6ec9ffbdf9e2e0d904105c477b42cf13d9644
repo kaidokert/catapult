@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0750f91d_28cdcb29",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-03T10:36:46Z",
+      "side": 1,
+      "message": "this should be now just \"if story_names:\"",
+      "revId": "42d6ec9ffbdf9e2e0d904105c477b42cf13d9644",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4de902c8_2d96271a",
+        "filename": "telemetry/telemetry/wpr/archive_info.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-03T10:36:46Z",
+      "side": 1,
+      "message": "should we make this an exception rather than warnings?",
+      "revId": "42d6ec9ffbdf9e2e0d904105c477b42cf13d9644",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
