@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b2ed26c1_3eb22da3",
+        "filename": "dashboard/dashboard/common/system_health_report.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-03T11:33:37Z",
+      "side": 1,
+      "message": "still unclear to me where should this go?",
+      "revId": "9bce639d3c1ddf91e7a20af485a43b50446fe662",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16095726_7463fe57",
+        "filename": "dashboard/dashboard/common/system_health_report.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-03T11:33:37Z",
+      "side": 1,
+      "message": "Here I\u0027m using the decorator to register these \"dynamically generated but otherwise static\" templates :P\n\nWondering whether there should be a regular function to call e.g.:\n\n  report_template.RegisterStaticTemplate(\n      template_id\u003dtemplate_id,\n      name\u003dname,\n      internal_only\u003dFalse,\n      modified\u003dmodified,\n      template\u003dtemplate)\n\nthat does the same thing?\n\n(here pylint also complains that nobody is \"using\" my Report function).",
+      "revId": "9bce639d3c1ddf91e7a20af485a43b50446fe662",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
