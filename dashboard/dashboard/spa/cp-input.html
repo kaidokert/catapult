@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/dashboard/spa/element-base.html">
+
+<dom-module id="cp-input">
+  <template>
+    <style>
+      :host {
+        background: var(--paper-indigo-50);
+        border-bottom: 2px solid var(--paper-indigo-500);
+        display: flex;
+      }
+      input {
+        background: var(--paper-indigo-50);
+        border: 0;
+        flex-grow: 1;
+        font-size: 12px;
+        outline: none;
+        padding: 8px;
+        width: 100%;
+      }
+    </style>
+
+    <input
+        id="input"
+        size="0"
+        value="[[value]]"
+        placeholder="[[placeholder]]"
+        on-keyup="onKeyup_"></input>
+    <slot></slot>
+  </template>
+</dom-module>
+<script src="/dashboard/spa/cp-input.js"></script>

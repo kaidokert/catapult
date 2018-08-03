@@ -43,6 +43,11 @@ found in the LICENSE file.
         margin-right: 8px;
       }
 
+      #min_revision,
+      #max_revision {
+        width: 84px;
+      }
+
       #close {
         align-self: flex-start;
         cursor: pointer;
@@ -207,26 +212,19 @@ found in the LICENSE file.
         </raised-button>
       </template>
 
-      <paper-input
+      <cp-input
           id="min_revision"
           value="[[minRevisionInput]]"
-          size="6"
-          label="min revision"
+          placeholder="min revision"
           on-keyup="onMinRevisionKeyup_">
-        <div slot="suffix">
-          &nbsp;
-        </div>
-      </paper-input>
+      </cp-input>
 
-      <paper-input
+      <cp-input
+          id="max_revision"
           value="[[maxRevisionInput]]"
-          size="6"
-          label="max revision"
+          placeholder="max revision"
           on-keyup="onMaxRevisionKeyup_">
-        <div slot="suffix">
-          &nbsp;
-        </div>
-      </paper-input>
+      </cp-input>
 
       <template is="dom-if" if="[[isNextMilestone_(milestone)]]">
         <raised-button
@@ -277,11 +275,11 @@ found in the LICENSE file.
                     state-path="[[statePath]].tables.[[tableIndex]].statistic">
                 </dropdown-input>
 
-                <paper-input
-                    label="Documentation"
+                <cp-input
+                    placeholder="Documentation"
                     value="[[table.url]]"
                     on-keyup="onTemplateUrlKeyUp_">
-                </paper-input>
+                </cp-input>
               </div>
 
               <table>
