@@ -1,0 +1,265 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "869bbb48_6a643b2d",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-05T21:26:32Z",
+      "side": 1,
+      "message": "Please use a div instead and style it as necessary.",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6dba171a_72ada823",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-05T21:26:32Z",
+      "side": 1,
+      "message": "I didn\u0027t understand this UI until I read the code.\nWould it make sense to replace these two text boxes and button with a range slider labeled something like \"Percentile range\"?\nHere\u0027s jquery\u0027s range slider for inspiration, though we\u0027d rather not include jquery in results.html.\nhttp://jqueryui.com/slider/#range",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d18a31bd_6c5a5e14",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-05T21:26:32Z",
+      "side": 1,
+      "message": "Where did these come from? Could you use the SinebowColorGenerator instead?",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1d00ead_c86aedbe",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-05T21:26:32Z",
+      "side": 1,
+      "message": "Can you comment this?",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b23fa929_96ec2d8b",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-05T21:26:32Z",
+      "side": 1,
+      "message": "This would be more readable as `e.key \u003d\u003d\u003d \u0027Enter\u0027` instead.",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fab713ec_dd6e03bc",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-05T21:26:32Z",
+      "side": 1,
+      "message": "Is this `false` necessary? useCapture defaults to false.",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "260fb257_a713ccce",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-05T21:26:32Z",
+      "side": 1,
+      "message": "ES6 Maps do not necessarily retain their order. Please keep sortedGroups_ an array, and add groupByPageName_.",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5726cf7_94086a23",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-05T21:26:32Z",
+      "side": 1,
+      "message": "Would it make sense to set position and display using CSS and merge this method back into initializeChild_?",
+      "range": {
+        "startLine": 251,
+        "startChar": 2,
+        "endLine": 256,
+        "endChar": 4
+      },
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3375d56_7baabe65",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-05T21:26:32Z",
+      "side": 1,
+      "message": "Would it be possible to copy the svg from histogram-set-table-cell\u0027s close_histogram instead?",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfb73cb8_06f1b9ee",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-05T21:26:32Z",
+      "side": 1,
+      "message": "Would it be possible to set this using CSS?",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8ac3d6f_e118aae9",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-05T21:26:32Z",
+      "side": 1,
+      "message": "Would it make sense to set width: 100% and compute height such that the y-axis looks good?",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1af94b7a_46f330af",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-05T21:26:32Z",
+      "side": 1,
+      "message": "It looks like `i` is only used to index subSteps, so can this use for..of instead?",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d15e5466_582cd2a8",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-05T21:26:32Z",
+      "side": 1,
+      "message": "ES6 Maps don\u0027t necessarily retain their order.\n\nfor (let i \u003d startIndex; i \u003c endIndex; ++i) {\n  const [pageName, page] \u003d this.sortedGroups_[i];\n  slicedGroups.set(pageName, page);\n}",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6744aeca_bf781283",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-05T21:26:32Z",
+      "side": 1,
+      "message": "If you only want to match a single page name at a time instead of fuzzy-matching, maybe use a \u003cselect\u003e instead?",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ed831b1_25b0dc06",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-05T21:26:32Z",
+      "side": 1,
+      "message": "Please use innerText instead of innerHTML.\nIf this is the only message that might be displayed in search_error, you can move the text into the HTML template and set this.$.search_error.style.display.",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
