@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cb84aa41_5bd2378f",
+        "filename": "experimental/long_term_health/long_term_health/full_milestone_info.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-06T13:25:24Z",
+      "side": 1,
+      "message": "I\u0027m now wondering whether this method belongs here, maybe should go into apk_finder. Clients can use on their own milestone_info.GetVersionNumberFromMilestone(..) to figure out the version number; and then apk_finder tries to find the closest matching version in cloud storage. This way all gsutil stuff can be contained in apk_finder.\n\nYou can move the method now, and add tests for apk_finder on a follow up.",
+      "revId": "a4b647cef55f45c79297d659ac5ce62af47e6549",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c342d243_ec55acd9",
+        "filename": "experimental/long_term_health/long_term_health/full_milestone_info_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-06T13:25:24Z",
+      "side": 1,
+      "message": "We should make these tests hermetic, i.e., not depend on network connection or external services.\n\nIf we\u0027re doing that then there isn\u0027t much to test about GetChromiumLog, so we can skip these. But on tests for GetBranchInfo tests below you can mock GetChromiumLog to return some pre-defined outputs and write the tests based on that. See e.g.:\nhttps://cs.chromium.org/chromium/src/third_party/catapult/dashboard/dashboard/pinpoint/test.py",
+      "revId": "a4b647cef55f45c79297d659ac5ce62af47e6549",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33d40c75_492a0f8d",
+        "filename": "experimental/long_term_health/long_term_health/full_milestone_info_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-06T13:25:24Z",
+      "side": 1,
+      "message": "nit: I have a slight preference for the syntax:\n\n    with self.assertRaises(AssetionError):\n      full_milestone_info.DecrementPatchNumber(\u002768.0.3440.70\u0027, 71)\n\nI think it\u0027s more readable.",
+      "revId": "a4b647cef55f45c79297d659ac5ce62af47e6549",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb9a90c7_6332f888",
+        "filename": "experimental/long_term_health/long_term_health/full_milestone_info_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-06T13:25:24Z",
+      "side": 1,
+      "message": "Let\u0027s try to avoid referring to this pattern in the source code, just use \"android-*\" whether possible.",
+      "revId": "a4b647cef55f45c79297d659ac5ce62af47e6549",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
