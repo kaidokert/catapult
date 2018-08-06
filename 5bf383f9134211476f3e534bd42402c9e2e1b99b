@@ -90,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "ebdaa2d7_65bb631e",
+        "filename": "dashboard/dashboard/models/report_template.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-06T08:49:54Z",
+      "side": 1,
+      "message": "I don\u0027t see this (and other) of the mentioned changes. :)",
+      "parentUuid": "6caf309b_d7aaff39",
+      "revId": "5bf383f9134211476f3e534bd42402c9e2e1b99b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b18317a5_ffecab11",
         "filename": "dashboard/dashboard/models/report_template.py",
         "patchSetId": 1
@@ -125,6 +143,24 @@
     },
     {
       "key": {
+        "uuid": "4284fc07_f4d5894b",
+        "filename": "dashboard/dashboard/models/report_template.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-06T08:49:54Z",
+      "side": 1,
+      "message": "Ah, d\u0027oh! Of course!",
+      "parentUuid": "74eaade3_f462d481",
+      "revId": "5bf383f9134211476f3e534bd42402c9e2e1b99b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "12a00fcc_7922ce8b",
         "filename": "dashboard/dashboard/models/report_template.py",
         "patchSetId": 1
@@ -154,6 +190,24 @@
       "side": 1,
       "message": "The cached test suite descriptors are regenerated once per day, but you control when you fetch the descriptor: you can either call it when your module is imported, or when your static template handler function is called. Your module is imported whenever app engine spins up a new instance, which happens when we deploy a new version or when a burst of traffic requires a new instance. Your static template handler function is called when a client hits /api/report/generate. Fetching the descriptor is a single database get() which is usually \u003c100ms, so if you\u0027re at all concerned about using stale data, then I\u0027d recommend fetching the descriptor and building the template in your handler function when the client hits /api/report/generate.\nDoes that help?",
       "parentUuid": "12a00fcc_7922ce8b",
+      "revId": "5bf383f9134211476f3e534bd42402c9e2e1b99b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30d3be40_3a4d2587",
+        "filename": "dashboard/dashboard/models/report_template.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-06T08:49:54Z",
+      "side": 1,
+      "message": "Yep, this is very useful! Can we add something like this to the docs?",
+      "parentUuid": "6ae114ca_b63569ac",
       "revId": "5bf383f9134211476f3e534bd42402c9e2e1b99b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
