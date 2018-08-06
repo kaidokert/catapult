@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "cb3f9009_89771727",
+        "filename": "telemetry/telemetry/internal/platform/linux_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1111977
+      },
+      "writtenOn": "2018-08-06T15:44:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67d1d1e2_23f4a54b",
+      "revId": "2bf8a3f5e5be25b790cf29ede380a41c8e6c935d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e68a266e_b643daca",
         "filename": "telemetry/telemetry/internal/platform/linux_platform_backend.py",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "4dc2be22_70fbe113",
+        "filename": "telemetry/telemetry/internal/platform/linux_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1111977
+      },
+      "writtenOn": "2018-08-06T15:44:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e68a266e_b643daca",
+      "revId": "2bf8a3f5e5be25b790cf29ede380a41c8e6c935d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "50421b3e_89eb976b",
         "filename": "telemetry/telemetry/internal/platform/linux_platform_backend.py",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2018-08-06T15:30:35Z",
       "side": 1,
       "message": "should this also get a default value?",
+      "revId": "2bf8a3f5e5be25b790cf29ede380a41c8e6c935d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68014767_6ffaff67",
+        "filename": "telemetry/telemetry/internal/platform/linux_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1111977
+      },
+      "writtenOn": "2018-08-06T15:44:37Z",
+      "side": 1,
+      "message": "I couldn\u0027t find a canonical definition of /etc/lsb-release, and AFAICS from the lsb_release command it just says \"n/a\" when it\u0027s not set. The fallback in os-release is there only because the man page says it should be.",
+      "parentUuid": "50421b3e_89eb976b",
       "revId": "2bf8a3f5e5be25b790cf29ede380a41c8e6c935d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
