@@ -3,6 +3,10 @@
 # found in the LICENSE file.
 
 from dashboard.api import api_request_handler
+# pylint: disable=unused-import
+# Module imported for its side effects: registering static report templates.
+from dashboard.common import system_health_report
+# pylint: enable=unused-import
 from dashboard.models import report_template
 
 
