@@ -221,6 +221,7 @@ tr.exportTo('cp', () => {
     }
   };
 
+  // Wrap event listeners with timing functionality.
   ElementBase.registerEventListeners = cls => {
     // Polymer handles the addEventListener() calls, this method just wraps
     // 'on*_' methods with Timing marks.

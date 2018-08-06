@@ -532,6 +532,7 @@ tr.exportTo('cp', () => {
       let rootState = getState();
       let state = Polymer.Path.get(rootState, statePath);
       let testSuites = [];
+
       if (state.source.selectedOptions.includes(ReportSection.CREATE)) {
         testSuites = await cp.TeamFilter.get(rootState.teamName).testSuites(
             await cp.ReadTestSuites()(dispatch, getState));

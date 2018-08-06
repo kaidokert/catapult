@@ -4,6 +4,7 @@
 */
 'use strict';
 tr.exportTo('cp', () => {
+  // Renders the minimap and the main chart
   class ChartPair extends cp.ElementBase {
     hideOptions_(minimapLayout) {
       return this.$.minimap.showPlaceholder(
@@ -18,6 +19,7 @@ tr.exportTo('cp', () => {
     onMinimapBrush_(event) {
       if (event.detail.sourceEvent.detail.state !== 'end') return;
       this.dispatch('brushMinimap', this.statePath);
+
       if (this.isLinked) {
         this.dispatch('updateLinkedRevisions', this.linkedStatePath,
             this.minRevision, this.maxRevision);
@@ -232,6 +234,9 @@ tr.exportTo('cp', () => {
         })(dispatch, getState);
       },
 
+    // Ignore "fake" line descriptors
+    // Manages the revision range
+    // Updates the main chart and the minimap
     load: statePath => async(dispatch, getState) => {
       const state = Polymer.Path.get(getState(), statePath);
       if (!state || !state.lineDescriptors ||
@@ -247,7 +252,8 @@ tr.exportTo('cp', () => {
 
       const {firstRealLineDescriptor, timeserieses} =
         await ChartPair.findFirstRealLineDescriptor(
-            state.lineDescriptors, dispatch, `${statePath}.minimapLayout`);
+            state.lineDescriptors, `${statePath}.minimapLayout`, dispatch,
+            getState);
 
       let firstRevision = tr.b.math.Statistics.min(timeserieses.map(ts => {
         if (!ts || !ts.data) return Infinity;
@@ -291,8 +297,7 @@ tr.exportTo('cp', () => {
       }
 
       let maxRevision = state.maxRevision;
-      if (maxRevision === undefined ||
-          maxRevision <= firstRevision) {
+      if (maxRevision === undefined || maxRevision <= firstRevision) {
         maxRevision = lastRevision;
         cp.ElementBase.actions.updateObject(statePath, {
           maxRevision,
@@ -611,19 +616,46 @@ tr.exportTo('cp', () => {
     };
   };
 
+  // Some line descriptors do not have any data; we only want the ones with
+  // data. We'll call these "real" line descriptors
   ChartPair.findFirstRealLineDescriptor = async(
-    lineDescriptors, dispatch, refStatePath) => {
+    lineDescriptors,
+    refStatePath,
+    dispatch,
+    getState
+  ) => {
     for (const firstRealLineDescriptor of lineDescriptors) {
-      const timeserieses = await dispatch(
-          cp.ChartTimeseries.actions.fetchLineDescriptor(
-              refStatePath, firstRealLineDescriptor));
-      for (const timeseries of timeserieses) {
-        if (timeseries && timeseries.data.length) {
+      const fetchDescriptors = cp.ChartTimeseries.createFetchDescriptors(
+          firstRealLineDescriptor);
+
+      const results = await Promise.all(fetchDescriptors.map(
+          async fetchDescriptor => {
+            const reader = cp.TimeseriesReader({
+              dispatch,
+              getState,
+              fetchDescriptor,
+              refStatePath,
+            });
+            for await (const result of reader) {
+              // Return the first thing the generator yields.
+              return result;
+            }
+          }
+      ));
+
+      for (const { timeseries } of results) {
+        if (!timeseries || !timeseries.data) {
+          throw new Error('Timeseries data formatted incorrectly', timeseries);
+        }
+        if (timeseries.data.length) {
           return {firstRealLineDescriptor, timeserieses};
         }
       }
     }
-    return {timeserieses: []};
+
+    return {
+      timeserieses: []
+    };
   };
 
   cp.ElementBase.register(ChartPair);
