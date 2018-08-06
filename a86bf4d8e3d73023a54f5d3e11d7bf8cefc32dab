@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e26a58fe_8eb57e45",
+        "filename": "dashboard/dashboard/api/report_generate.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-06T11:51:16Z",
+      "side": 1,
+      "message": "not sure what\u0027s less ugly, either this or adding a \"RegisterStaticTemplates\" function on the module to be called to actually register the templates (instead of having that as a side effect of importing the module).\n\nBut then we also need to make sure that a second call to the hypothetical \"RegisterStaticTemplates\" does nothing.\n\nWhat do you think?",
+      "revId": "a86bf4d8e3d73023a54f5d3e11d7bf8cefc32dab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37814a19_8aa29bea",
+        "filename": "dashboard/dashboard/common/system_health_report.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-06T11:51:16Z",
+      "side": 1,
+      "message": "Ok, so I kept the decorator (so my previously proposed RegisterStaticTemplate wont be needed, sorry!) since this allows me to compute the template on each call to the handler as you suggested.\n\nWe may not need to update it as often. But if this works and not too slow, I guess that\u0027s preferable too.",
+      "revId": "a86bf4d8e3d73023a54f5d3e11d7bf8cefc32dab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "426b51c9_f50a8ab3",
+        "filename": "dashboard/dashboard/common/system_health_report.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-06T11:51:16Z",
+      "side": 1,
+      "message": "+benhenry, +ushesh: I want your feedback on these.\n\nStill going a bit back and forth with the names. Some of the things I\u0027m thinking are:\n\n- Whether we want to completely replace the existing Health:* reports, currently based on\n  memory.top_10_mobile, or keep both sets at least for a while.\n  (Note this is in v2spa only, reports on the legacy health dashboard will remain and\n  remain based on memory.top_10_mobile.)\n\n- Initially we _can_ provide reports based on these internal bots, so I named the reports\n  \"Android Go (Internal)\" and \"Nexus 5 (Internal)\". However, when upstream bots start\n  building clank and the relevant devices are added, the plan is to switch to \"Android Go\"\n  (no longer \"Internal\") and \"Pixel 2\". So this naming should allow us to have a bit of\n  overlap of downstream/upstream bots during the transition period.",
+      "revId": "a86bf4d8e3d73023a54f5d3e11d7bf8cefc32dab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
