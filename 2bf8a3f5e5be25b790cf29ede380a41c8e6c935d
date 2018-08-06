@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "67d1d1e2_23f4a54b",
+        "filename": "telemetry/telemetry/internal/platform/linux_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-06T15:30:35Z",
+      "side": 1,
+      "message": "let\u0027s make this a private _ReadReleaseFile",
+      "revId": "2bf8a3f5e5be25b790cf29ede380a41c8e6c935d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e68a266e_b643daca",
+        "filename": "telemetry/telemetry/internal/platform/linux_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-06T15:30:35Z",
+      "side": 1,
+      "message": "Does not seem there is a reason for this to be a method (does not use \"self\"). Move it outside and make module private instead.",
+      "revId": "2bf8a3f5e5be25b790cf29ede380a41c8e6c935d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50421b3e_89eb976b",
+        "filename": "telemetry/telemetry/internal/platform/linux_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-06T15:30:35Z",
+      "side": 1,
+      "message": "should this also get a default value?",
+      "revId": "2bf8a3f5e5be25b790cf29ede380a41c8e6c935d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a423ef0_6ac71d06",
+        "filename": "telemetry/telemetry/internal/platform/linux_platform_backend_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-06T15:30:35Z",
+      "side": 1,
+      "message": "ditto: should move out of class.",
+      "revId": "2bf8a3f5e5be25b790cf29ede380a41c8e6c935d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
