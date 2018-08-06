@@ -44,7 +44,7 @@ def GetBranchInfo(milestone, branch):
     branch(string): the latest branch corresponding with the milestone
 
   Returns:
-    dict: version incrementing log info
+    tuple(string): milestone number, branch, version number, and release date
   """
   # loop through the logs to get the first log that increments the version
   # number
@@ -116,14 +116,14 @@ class MilestoneInfo(object):
   def latest_milestone(self):
     return self._table[-1]['milestone']
 
-  def GetLatestVersionBeforeDate(self, date):
+  def GetLatestMilestoneBeforeDate(self, date):
     for row in reversed(self._table):
       if row['release_date'] < date:
         return row['milestone']
     raise LookupError(
         'Cannot find any version before the given date %s' % date.isoformat())
 
-  def GetEarliestVersionAfterDate(self, date):
+  def GetEarliestMilestoneAfterDate(self, date):
     for row in self._table:
       if row['release_date'] > date:
         return row['milestone']
