@@ -5,6 +5,7 @@
 import logging
 import os
 import platform
+import shlex
 import subprocess
 import sys
 
@@ -47,25 +48,40 @@ class LinuxPlatformBackend(
   def GetOSName(self):
     return 'linux'
 
+  def ReadReleaseFile(self, file_path):
+    if not os.path.exists(file_path):
+      return None
+
+    release_data = {}
+    for line in self.GetFileContents(file_path).splitlines():
+      key, _, value = line.partition('=')
+      release_data[key] = ' '.join(shlex.split(value.strip()))
+    return release_data
+
+  def ToFloatWithFallback(self, value):
+    try:
+      return float(value)
+    except (TypeError, ValueError):
+      return 0.0
+
   @decorators.Cache
   def GetOSVersionName(self):
-    if not os.path.exists('/etc/lsb-release'):
-      raise NotImplementedError('Unknown Linux OS version')
+    # First try os-release(5).
+    for path in ('/etc/os-release', '/usr/lib/os-release'):
+      os_release = self.ReadReleaseFile(path)
+      if os_release:
+        codename = os_release.get('ID', 'linux')
+        version = self.ToFloatWithFallback(os_release.get('VERSION_ID'))
+        return os_version.OSVersion(codename, version)
 
-    codename = None
-    version = None
-    for line in self.GetFileContents('/etc/lsb-release').splitlines():
-      key, _, value = line.partition('=')
-      if key == 'DISTRIB_CODENAME':
-        codename = value.strip()
-      elif key == 'DISTRIB_RELEASE':
-        try:
-          version = float(value)
-        except ValueError:
-          version = 0.0
-      if codename and version:
-        break
-    return os_version.OSVersion(codename, version)
+    # Use lsb-release as a fallback.
+    lsb_release = self.ReadReleaseFile('/etc/lsb-release')
+    if lsb_release:
+      codename = lsb_release.get('DISTRIB_CODENAME')
+      version = self.ToFloatWithFallback(lsb_release.get('DISTRIB_RELEASE'))
+      return os_version.OSVersion(codename, version)
+
+    raise NotImplementedError('Unknown Linux OS version')
 
   def GetOSVersionDetailString(self):
     return ''  # TODO(kbr): Implement this.
