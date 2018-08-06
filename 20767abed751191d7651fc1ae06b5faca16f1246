@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b8bf287a_6ff8baaa",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-06T17:00:47Z",
+      "side": 1,
+      "message": "Did you mean `else if`?",
+      "revId": "20767abed751191d7651fc1ae06b5faca16f1246",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c29b84a3_4e93d372",
+        "filename": "tracing/tracing/metrics/rendering_metric_test.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-06T17:00:47Z",
+      "side": 1,
+      "message": "record",
+      "range": {
+        "startLine": 355,
+        "startChar": 31,
+        "endLine": 355,
+        "endChar": 37
+      },
+      "revId": "20767abed751191d7651fc1ae06b5faca16f1246",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
