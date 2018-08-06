@@ -117,6 +117,30 @@
     },
     {
       "key": {
+        "uuid": "e09ee17b_6ef76ffe",
+        "filename": "dashboard/dashboard/spa/simple-redux.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2018-08-06T23:27:42Z",
+      "side": 1,
+      "message": "we use a custom uncaught js error reporting handler in monorail and SoM: \nhttps://cs.chromium.org/chromium/infra/go/src/infra/appengine/sheriff-o-matic/frontend/scripts/clientmon.js and\nhttps://cs.chromium.org/chromium/infra/appengine/monorail/framework/clientmon.py\ne.g. These report the js stack traces as errors in your GAE server logs. The GAE dashboard can then aggregate and track their occurrence over time.",
+      "parentUuid": "42ee13b8_adb734b2",
+      "range": {
+        "startLine": 75,
+        "startChar": 6,
+        "endLine": 78,
+        "endChar": 18
+      },
+      "revId": "def988600977763a5bf3fe5a794f83f911540706",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "756ddab6_5ea42af9",
         "filename": "dashboard/dashboard/spa/simple-redux.js",
         "patchSetId": 6
@@ -179,6 +203,29 @@
         "startChar": 19,
         "endLine": 88,
         "endChar": 51
+      },
+      "revId": "def988600977763a5bf3fe5a794f83f911540706",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42156bcd_ea45f2d6",
+        "filename": "dashboard/dashboard/spa/simple-redux.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2018-08-06T23:27:42Z",
+      "side": 1,
+      "message": "Is there an example of this pattern documented somewhere in the vicinity of https://redux.js.org/recipes/structuringreducers/splittingreducerlogic (and does that section describe the problem addressed by statePathReducer)?",
+      "range": {
+        "startLine": 109,
+        "startChar": 2,
+        "endLine": 122,
+        "endChar": 5
       },
       "revId": "def988600977763a5bf3fe5a794f83f911540706",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
