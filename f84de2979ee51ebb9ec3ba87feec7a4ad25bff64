@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d37ddaf8_770750c5",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1116023
+      },
+      "writtenOn": "2018-08-06T23:14:32Z",
+      "side": 1,
+      "message": "I don\u0027t think we want to hardcode this path. out/fuchsia may in fact contain Windows build.",
+      "range": {
+        "startLine": 17,
+        "startChar": 27,
+        "endLine": 17,
+        "endChar": 69
+      },
+      "revId": "f84de2979ee51ebb9ec3ba87feec7a4ad25bff64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ada0cb2c_2e462be0",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1116023
+      },
+      "writtenOn": "2018-08-06T23:14:32Z",
+      "side": 1,
+      "message": "third_party/fuchsia-sdk exists only with target_os\u003d[\"fuchsia\"] in .gclient, so this code will fail in most cases. I think you want to run this in FindAllAvailableDevices() only when some flag was passed that indicates that the user wants to run tests on fuchsia (e.g. --discover-fuchsia).",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 42
+      },
+      "revId": "f84de2979ee51ebb9ec3ba87feec7a4ad25bff64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
