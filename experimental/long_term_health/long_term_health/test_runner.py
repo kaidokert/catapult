@@ -18,7 +18,7 @@ def RunBenchmark(path_to_apk):
   """
   apk_name = path_to_apk.split('/')[-1]
   subprocess.call(['adb', 'install', '-r', '-d', path_to_apk])
-  subprocess.call(['../../../../tools/perf/run_benchmark',
+  subprocess.call(['%s/../../../../tools/perf/run_benchmark' % utils.APP_ROOT,
                    '--browser=android-system-chrome',
                    '--pageset-repeat=1',  # could remove this later
                    '--results-label=%s' % apk_name,  # could remove this as well
