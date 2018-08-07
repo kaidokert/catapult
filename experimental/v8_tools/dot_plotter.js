@@ -17,7 +17,7 @@ class DotPlotter {
     this.scaleForXAxis_ = this.createXAxisScale_(graph, chartDimensions);
     this.xAxisGenerator_ = d3.axisBottom(this.scaleForXAxis_);
     // Draw the x-axis.
-    chart.append('g')
+    this.xAxisDrawing_ = chart.append('g')
         .call(this.xAxisGenerator_)
         .attr('transform', `translate(0, ${chartDimensions.height})`);
   }
@@ -119,6 +119,23 @@ class DotPlotter {
           .attr('fill', color);
       linePosition += gapSize;
     });
+    const axes = {
+      x: {
+        generator: this.xAxisGenerator_,
+        drawing: this.xAxisDrawing_,
+        scale: this.scaleForXAxis_,
+      },
+    };
+    const keys = graph.dataSources.map(({ key }) => key);
+    const draw = (xAxisScale) => {
+      keys.forEach(key =>
+        chart.selectAll(`.dot-${key}`)
+            .attr('cx', datum => xAxisScale(datum.x)));
+    };
+    const shouldScale = {
+      x: true,
+      y: false,
+    };
+    GraphUtils.createZoom(shouldScale, chart, chartDimensions, draw, axes);
   }
 }
-
