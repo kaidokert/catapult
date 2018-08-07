@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "d91fd148_013704c9",
+        "filename": "dashboard/dashboard/api/report_generate.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-07T10:11:36Z",
+      "side": 1,
+      "message": "Good idea, that looks nicer!",
+      "parentUuid": "2f846ad1_215a2afb",
+      "revId": "a86bf4d8e3d73023a54f5d3e11d7bf8cefc32dab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "37814a19_8aa29bea",
         "filename": "dashboard/dashboard/common/system_health_report.py",
         "patchSetId": 4
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "Feel free to add a dashboard.common.timing.WallTimeLogger around the FetchCachedTestSuiteDescriptors if you want to monitor a stackdriver metric to measure the latency, or go ahead and memoize the descriptor with a timestamp to re-fetch it after some hours. Up to you!",
       "parentUuid": "37814a19_8aa29bea",
+      "revId": "a86bf4d8e3d73023a54f5d3e11d7bf8cefc32dab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a18c535_6ff6146b",
+        "filename": "dashboard/dashboard/common/system_health_report.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-07T10:11:36Z",
+      "side": 1,
+      "message": "I went for the memoization idea. Let me know if you think the Memoize decorator could fit into some other common module for others to reuse.",
+      "parentUuid": "1e34694f_e4bc3d0f",
       "revId": "a86bf4d8e3d73023a54f5d3e11d7bf8cefc32dab",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
