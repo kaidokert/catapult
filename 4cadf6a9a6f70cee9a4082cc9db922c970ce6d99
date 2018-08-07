@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa007105_ea279b36",
+        "filename": "telemetry/telemetry/internal/browser/browser_finder.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-07T10:36:15Z",
+      "side": 1,
+      "message": "nit: use \"b\" for browser, rather than \"x\" as your variable in the lambda expression.",
+      "revId": "4cadf6a9a6f70cee9a4082cc9db922c970ce6d99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
