@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d630f791_49ac0b9c",
+        "filename": "dashboard/dashboard/models/report_template.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-07T08:55:05Z",
+      "side": 1,
+      "message": "nit: use maybe \u0027https://example.com/path_to/my_doc\u0027 or something that reads more like \"documentation for the report\" rather than \"some random url\". :)",
+      "revId": "12bd3795ea80ace6414c62a6167f1d119de200c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa06de67_ee6c8c56",
+        "filename": "dashboard/dashboard/models/report_template.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-07T08:55:05Z",
+      "side": 1,
+      "message": "In the end it turned out that I didn\u0027t need this. So maybe don\u0027t add until someone really needs it?",
+      "revId": "12bd3795ea80ace6414c62a6167f1d119de200c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
