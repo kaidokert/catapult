@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f586762_dbb13bdc",
+        "filename": "experimental/v8_tools/dot_plotter.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-07T09:04:37Z",
+      "side": 1,
+      "message": "this algorithm is fine for now, might be interesting to re-think it in the future for tighter packing.",
+      "range": {
+        "startLine": 41,
+        "startChar": 2,
+        "endLine": 41,
+        "endChar": 21
+      },
+      "revId": "28a6d203fa7efcd26e224bae03a278bdea0d4c1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
