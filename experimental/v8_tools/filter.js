@@ -1,6 +1,9 @@
 'use strict';
-
+const MiB = 1024 * 1024;
 Vue.component('v-select', VueSelect.VueSelect);
+
+//  Vue component for drop-down menu; here the metrics,
+//  stories and diagnostics are chosen through selection
 const app = new Vue({
   el: '#app',
   data: {
@@ -9,23 +12,32 @@ const app = new Vue({
     selected_metric: null,
     selected_story: null,
     selected_diagnostic: null,
+    graph: null
   },
+
+  //  Draw a plot depending on the target value.
+  methods: {
+    plot() {
+      this.graph.xAxis('Data Points')
+          .yAxis('Memory used (MiB)')
+          .title(this.selected_story)
+          .addData(JSON.parse(JSON.stringify((this.target))))
+          .plotCumulativeFrequency();
+    }
+  },
+
   computed: {
     seen() {
       return this.sampleArr.length > 0 ? true : false;
     },
-    /*
-     *  Compute the metrics; the user will choose one.
-     */
+    //  Compute the metrics; the user will choose one.
     metrics() {
       const metricsNames = [];
       this.sampleArr.forEach(el => metricsNames.push(el.name));
       return _.uniq(metricsNames);
     },
 
-    /*
-     *  Compute the stories depending on the chosen metric.
-     */
+    //  Compute the stories depending on the chosen metric.
     stories() {
       const reqMetrics = this.sampleArr
           .filter(elem => elem.name === this.selected_metric);
@@ -34,10 +46,8 @@ const app = new Vue({
           .push(this.guidValue.get(elem.diagnostics.stories)[0]));
       return Array.from(new Set(storiesByGuid));
     },
-    /*
-     * Compute all diagnostic elements; the final result will actually
-     * depend on the metric + story and this diagnostic.
-     */
+    //  Compute all diagnostic elements; the final result will actually
+    //  depend on the metric + story and this diagnostic.
     diagnostics() {
       if (this.selected_story !== null && this.selected_metric !== null) {
         const result = this.sampleArr
@@ -50,13 +60,13 @@ const app = new Vue({
         return _.union.apply(this, allDiagnostic);
       }
     },
-    /*
-     *  Compute the final result: metric + story + diagnostic;
-     *  the format for a specific diagnostic is:
-     *  {key: diagnosticItem; value: sampleValues};
-     *  For each (story + metric) item with the same diagnostic
-     *  value will be collected all sample values.
-     */
+
+    //  Compute the final result: metric + story + diagnostic;
+    //  the format for a specific diagnostic is:
+    //  {key: diagnosticItem; value: sampleValues};
+    //  For each (story + metric) item with the same diagnostic
+    //  value will be collected all sample values.
+
     target() {
       if (this.selected_story !== null &&
         this.selected_metric !== null &&
@@ -66,14 +76,21 @@ const app = new Vue({
                     this.guidValue
                         .get(value.diagnostics.stories)[0] ===
                         this.selected_story);
+
         const content = new Map();
+
         for (const val of result) {
           const storyEl = this.guidValue.get(
               val.diagnostics[this.selected_diagnostic]);
           if (storyEl === undefined) {
             continue;
           }
-          const storyItem = storyEl[0];
+          let storyItem = '';
+          if (typeof storyEl === 'number') {
+            storyItem = storyEl;
+          } else {
+            storyItem = storyEl[0];
+          }
           if (content.has(storyItem)) {
             const aux = content.get(storyItem);
             content.set(storyItem, aux.concat(val.sampleValues));
@@ -81,94 +98,151 @@ const app = new Vue({
             content.set(storyItem, val.sampleValues);
           }
         }
-        /*
-         *  Just for displaying data; will be removed.
-         *  It's not possible to manipulate a map in origin format.
-         */
-        const contentDisplay = [];
+
+        //  Just for displaying data; will be removed.
+        //  It's not possible to manipulate a map in origin format.
+        const contentKeys = [];
+        const contentVal = [];
         for (const [key, value] of content.entries()) {
-          const elem = { keyItem: key, valueItem: value };
-          contentDisplay.push(elem);
+          value.map(value => +((value / MiB).toFixed(5)));
+          contentKeys.push(key);
+          contentVal.push(value);
         }
-        return contentDisplay;
+        const obj = _.object(contentKeys, contentVal);
+        return obj;
       }
       return undefined;
     }
+  },
+  watch: {
+    //  Whenever a new metric/story/diagnostic is chosen
+    //  this fucntion will run for drawing a new type of plot.
+    target() {
+      if (this.graph === null) {
+        this.graph = new GraphData();
+        this.plot();
+      } else {
+        this.graph.plotter_.remove();
+        this.graph = new GraphData();
+        this.plot();
+      }
+    }
   }
 });
-/*
- *  Just to make sure the user doesn't press any button before having
- *  any relevant information.
- */
-function visibleAll() {
-  document.getElementById('storyBtn').style.visibility = 'visible';
-  document.getElementById('storyTagsBtn').style.visibility = 'visible';
-  document.getElementById('storysetRepeatsBtn').style.visibility = 'visible';
-  document.getElementById('traceStartBtn').style.visibility = 'visible';
-  document.getElementById('traceUrlsBtn').style.visibility = 'visible';
-  document.getElementById('metricname').style.visibility = 'visible';
-  document.getElementById('storyname').style.visibility = 'visible';
-  document.getElementById('submit').style.visibility = 'visible';
+
+//  Register a new component for displaying data
+//  in a table.
+Vue.component('data-table', {
+  template: '#table-template',
+  props: {
+    data: Array,
+    columns: Array,
+    filterKey: String
+  },
+  data() {
+    const sort = {};
+    this.columns.forEach(function(key) {
+      sort[key] = 1;
+    });
+    return {
+      sortKey: '',
+      sortOrders: sort
+    };
+  },
+  computed: {
+    filteredData() {
+      const sortKey = this.sortKey;
+      const filterKey = this.filterKey && this.filterKey.toLowerCase();
+      const order = this.sortOrders[sortKey] || 1;
+      let data = this.data;
+      if (filterKey) {
+        data = data.filter(function(row) {
+          return Object.keys(row).some(function(key) {
+            return String(row[key]).toLowerCase().indexOf(filterKey) > -1;
+          });
+        });
+      }
+      if (sortKey) {
+        data = data.slice().sort(function(a, b) {
+          a = a[sortKey];
+          b = b[sortKey];
+          if (a === b) {
+            return 0;
+          }
+          if (a > b) {
+            return 1 * ord;
+          }
+          return -1 * ord;
+        });
+      }
+      return data;
+    }
+  },
+  filters: {
+    capitalize(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+  },
+  methods: {
+    sortBy(key) {
+      this.sortKey = key;
+      this.sortOrders[key] = this.sortOrders[key] * -1;
+    }
+  }
+});
+
+const display_ = new Vue({
+  el: '#table',
+  data: {
+    searchQuery: '',
+    gridColumns: ['metric', 'story', 'sampleValues'],
+    gridData: []
+  },
+  computed: {
+    seen() {
+      return this.gridData.length > 0 ? true : false;
+    }
+  }
+});
+
+class element {
+  constructor(metric, story, sampleValues) {
+    this.metric = metric;
+    this.story = story;
+    this.sampleValues = sampleValues;
+  }
 }
-/*
- *  Load the content of the file and further display the data.
- */
+
+//   Load the content of the file and further display the data.
 function readSingleFile(e) {
   const file = e.target.files[0];
   if (!file) {
     return;
   }
-  /*
-   *  Extract data from file and distribute it in some relevant structures:
-   *  results for all guid-related( for now they are not
-   *  divided in 3 parts depending on the type ) and
-   *  all results with sample-value-related and
-   *  map guid to value within the same structure
-   */
+  //  Extract data from file and distribute it in some relevant structures:
+  //  results for all guid-related( for now they are not
+  //  divided in 3 parts depending on the type ) and
+  //  all results with sample-value-related and
+  //  map guid to value within the same structure
   const reader = new FileReader();
   reader.onload = function(e) {
     const contents = extractData(e.target.result);
     const sampleArr = contents.sampleValueArray;
     const guidValueInfo = contents.guidValueInfo;
 
+    const tableElems = [];
+    sampleArr.map(val => tableElems.push(
+        new element(val.name, guidValueInfo.get(
+            val.diagnostics.stories
+        )[0],
+        val.sampleValues)
+    ));
+    display_.gridData = tableElems;
     app.sampleArr = sampleArr;
     app.guidValue = guidValueInfo;
-
-    /*
-     *  Data is displayed in a default format.
-     */
-
-    //  displayContents(sampleArr, guidValueInfo);
-    visibleAll();
-
-    /*
-     *  Every button should be able to filter the information regarding
-     *  one of the possibilities of choosing.
-     */
-    document.getElementById('storyBtn')
-        .addEventListener('click', function() {
-          displayContents(sampleArr, guidValueInfo, 'stories');
-        }, false);
-    document.getElementById('storyTagsBtn')
-        .addEventListener('click', function() {
-          displayContents(sampleArr, guidValueInfo, 'storyTags');
-        }, false);
-    document.getElementById('storysetRepeatsBtn')
-        .addEventListener('click', function() {
-          displayContents(sampleArr, guidValueInfo, 'storysetRepeats');
-        }, false);
-    document.getElementById('traceStartBtn')
-        .addEventListener('click', function() {
-          displayContents(sampleArr, guidValueInfo, 'traceStart');
-        }, false);
-    document.getElementById('traceUrlsBtn')
-        .addEventListener('click', function() {
-          displayContents(sampleArr, guidValueInfo, 'traceUrls');
-        }, false);
   };
   reader.readAsText(file);
 }
-
 
 function extractData(contents) {
   /*
@@ -198,12 +272,16 @@ function extractData(contents) {
       if (e.type === 'GenericSet') {
         guidValueInfoMap.set(e.guid, e.values);
       } else if (e.type === 'DateRange') {
-        dateRangeMap.set(e.guid, e.min);
+        guidValueInfoMap.set(e.guid, e.min);
       } else {
         other.push(e);
       }
     }
   }
+  // for (const [key, value] of guidValueInfoMap.entries()) {
+  //   console.log(`${key} ${value}`);
+  // }
+  // console.log(other);
   return {
     guidValueInfo: guidValueInfoMap,
     guidMinInfo: dateRangeMap,
