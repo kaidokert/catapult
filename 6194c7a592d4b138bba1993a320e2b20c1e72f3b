@@ -16,6 +16,24 @@
       "revId": "6194c7a592d4b138bba1993a320e2b20c1e72f3b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f2a8a68_2421c841",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-07T14:14:15Z",
+      "side": 1,
+      "message": "I think this new formulation would help with other devices which are not \"rootable\" but otherwise can run commands as root just fine with \"su\". If that\u0027s the use case you care about this should solve your issues.\n\nOtherwise completely removing the check is hard, because Telemetry does rely in many places on the ability to run commands as root. Teasing out those places and make it \"degrade gracefully\" is probably a much larger project.",
+      "parentUuid": "ef5b2339_a6f9b24a",
+      "revId": "6194c7a592d4b138bba1993a320e2b20c1e72f3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
