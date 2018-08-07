@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "4d77d480_85fa59f8",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-08-07T00:46:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3f6d9d8_927e2312",
+      "revId": "f6957f6f2d1c21f42ae5428757f557cd20ca8855",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aff3de9f_cc1f3479",
         "filename": "telemetry/telemetry/story/expectations.py",
         "patchSetId": 3
@@ -51,6 +69,24 @@
       "revId": "f6957f6f2d1c21f42ae5428757f557cd20ca8855",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fead2e0_3a9298f8",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-08-07T00:46:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aff3de9f_cc1f3479",
+      "revId": "f6957f6f2d1c21f42ae5428757f557cd20ca8855",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
