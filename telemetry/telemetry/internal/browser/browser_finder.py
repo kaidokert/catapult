@@ -35,7 +35,7 @@ def FindBrowser(options):
     A BrowserOptions object.
 
   Returns:
-    A PossibleBrowser object.
+    A PossibleBrowser object. None if browser does not exist in DUT.
 
   Raises:
     BrowserFinderException: Options improperly set, or an error occurred.
@@ -72,6 +72,9 @@ def FindBrowser(options):
         default_browsers.append(new_default_browser)
       browsers.extend(curr_browsers)
 
+  if not browsers:
+    return None
+
   if options.browser_type is None:
     if default_browsers:
       default_browser = sorted(default_browsers,
@@ -94,16 +97,9 @@ def FindBrowser(options):
 
   if options.browser_type == 'any':
     types = FindAllBrowserTypes(options)
-    def CompareBrowsersOnTypePriority(x, y):
-      x_idx = types.index(x.browser_type)
-      y_idx = types.index(y.browser_type)
-      return x_idx - y_idx
-    browsers.sort(CompareBrowsersOnTypePriority)
-    if len(browsers) >= 1:
-      browsers[0].UpdateExecutableIfNeeded()
-      return browsers[0]
-    else:
-      return None
+    chosen_browser = min(browsers, key=lambda x: types.index(x.browser_type))
+    chosen_browser.UpdateExecutableIfNeeded()
+    return chosen_browser
 
   matching_browsers = [
       b for b in browsers
@@ -116,8 +112,8 @@ def FindBrowser(options):
   elif len(matching_browsers) > 1:
     logging.warning('Multiple browsers of the same type found: %s',
                     repr(matching_browsers))
-    chosen_browser = sorted(matching_browsers,
-                            key=lambda b: b.last_modification_time)[-1]
+    chosen_browser = max(matching_browsers,
+                         key=lambda b: b.last_modification_time)
 
   if chosen_browser:
     logging.info('Chose browser: %s', repr(chosen_browser))
