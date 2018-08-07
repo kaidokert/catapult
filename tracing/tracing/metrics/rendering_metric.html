@@ -89,6 +89,21 @@ tr.exportTo('tr.metrics.rendering', function() {
     if (isOther) yield 'other';
   }
 
+  function getDisplayCompositorThread(model) {
+    const chromeHelper = model.getOrCreateHelper(
+        tr.model.helpers.ChromeModelHelper);
+    const gpuHelper = chromeHelper.gpuHelper;
+    if (gpuHelper) {
+      const thread =
+          gpuHelper.process.findAtMostOneThreadNamed('VizCompositorThread');
+      if (thread) {
+        return thread;
+      }
+    }
+    const browserHelper = chromeHelper.browserHelpers[0];
+    return browserHelper.process.findAtMostOneThreadNamed('CrBrowserMain');
+  }
+
   function addCoresPerSecondHistograms(histograms, model, segments) {
     const totalDuration = tr.b.math.Statistics.sum(
         segments, segment => segment.duration);
@@ -437,6 +452,33 @@ tr.exportTo('tr.metrics.rendering', function() {
     addCoresPerSecondHistograms(histograms, model, segments);
     addFrameTimeHistograms(histograms, model, segments);
     addPipelineHistograms(histograms, model, segments);
+
+
+    {
+      const dcThread = getDisplayCompositorThread(model);
+      const aggregateTimes = [];
+      for (const slice of dcThread.sliceGroup.slices) {
+        if (slice.title === 'SurfaceAggregator::Aggregate') {
+          aggregateTimes.push(slice.duration);
+        }
+      }
+      histograms.createHistogram('pipeline:surface_aggregation',
+          tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
+          aggregateTimes, {
+            description: 'Time spent aggregating surfaces in microseconds',
+            summaryOptions: {sum: false}});
+      const drawFrameTimes = [];
+      for (const slice of dcThread.sliceGroup.slices) {
+        if (slice.title === 'DirectRenderer::DrawFrame') {
+          drawFrameTimes.push(slice.duration);
+        }
+      }
+      histograms.createHistogram('pipeline:draw_frame',
+          tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
+          drawFrameTimes, {
+            description: 'Time spent drawing frame in microseconds',
+            summaryOptions: {sum: false}});
+    }
   }
 
   tr.metrics.MetricRegistry.register(renderingMetric);
