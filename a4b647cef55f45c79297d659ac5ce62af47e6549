@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f1278e3a_617d5e1d",
+        "filename": "experimental/long_term_health/long_term_health/full_milestone_info.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-08-07T09:45:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb84aa41_5bd2378f",
+      "revId": "a4b647cef55f45c79297d659ac5ce62af47e6549",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c342d243_ec55acd9",
         "filename": "experimental/long_term_health/long_term_health/full_milestone_info_test.py",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "a4b647cef55f45c79297d659ac5ce62af47e6549",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc56f510_b1f18dd2",
+        "filename": "experimental/long_term_health/long_term_health/full_milestone_info_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-08-07T09:45:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c342d243_ec55acd9",
+      "revId": "a4b647cef55f45c79297d659ac5ce62af47e6549",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "d0975f23_7d4f201c",
+        "filename": "experimental/long_term_health/long_term_health/full_milestone_info_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-08-07T09:45:57Z",
+      "side": 1,
+      "message": "Moved `DecrementPatchNumber` to the `apk_finder.py`, test cases will be added on later CL.",
+      "parentUuid": "33d40c75_492a0f8d",
+      "revId": "a4b647cef55f45c79297d659ac5ce62af47e6549",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bb9a90c7_6332f888",
         "filename": "experimental/long_term_health/long_term_health/full_milestone_info_test.py",
         "patchSetId": 2
@@ -67,6 +121,24 @@
       "revId": "a4b647cef55f45c79297d659ac5ce62af47e6549",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "956c7541_d536335a",
+        "filename": "experimental/long_term_health/long_term_health/full_milestone_info_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-08-07T09:45:57Z",
+      "side": 1,
+      "message": "Moved `GetLatestVersionURI` to the `apk_finder.py`, test cases will be added on later CL.",
+      "parentUuid": "bb9a90c7_6332f888",
+      "revId": "a4b647cef55f45c79297d659ac5ce62af47e6549",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
