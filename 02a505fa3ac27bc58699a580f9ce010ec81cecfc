@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f7b7800_5bac5036",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-07T12:11:31Z",
+      "side": 1,
+      "message": "I think it would make sense for the table to be part of the same Vue app as the selects, so that it can display data that\u0027s filtered using the select boxes.",
+      "range": {
+        "startLine": 194,
+        "startChar": 6,
+        "endLine": 194,
+        "endChar": 14
+      },
+      "revId": "02a505fa3ac27bc58699a580f9ce010ec81cecfc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1aa0373a_0cdae183",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-07T12:11:31Z",
+      "side": 1,
+      "message": "I tried running this locally and had an error here that there is no 0th element.",
+      "range": {
+        "startLine": 237,
+        "startChar": 9,
+        "endLine": 237,
+        "endChar": 12
+      },
+      "revId": "02a505fa3ac27bc58699a580f9ce010ec81cecfc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
