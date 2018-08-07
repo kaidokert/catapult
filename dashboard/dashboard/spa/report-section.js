@@ -531,6 +531,7 @@ tr.exportTo('cp', () => {
       let rootState = getState();
       let state = Polymer.Path.get(rootState, statePath);
       let testSuites = [];
+
       if (state.source.selectedOptions.includes(ReportSection.CREATE)) {
         testSuites = await cp.TeamFilter.get(rootState.teamName).testSuites(
             await cp.ReadTestSuites()(dispatch, getState));
@@ -544,6 +545,14 @@ tr.exportTo('cp', () => {
       const names = state.source.selectedOptions.filter(name =>
         name !== ReportSection.CREATE);
       const requestedReports = new Set(state.source.selectedOptions);
+
+      if (!state.minRevision || !state.maxRevision) {
+        // There is nothing to fetch, let's get outta here!
+        // TODO(Sam): Locate where this action is being called without mix/max
+        // revision and annihilate any faulty code.
+        return;
+      }
+
       const revisions = [state.minRevision, state.maxRevision];
       const reportTemplateIds = await cp.ReadReportNames()(dispatch, getState);
       const promises = [];

@@ -83,29 +83,39 @@ tr.exportTo('cp', () => {
       this.cacheKey_ = undefined; // will be computed in read()
     }
 
+    // cacheStatePath_ returns the state path to the location of the cached
+    // data.
     get cacheStatePath_() {
       // Subclasses may override this to return a statePath. read() will ensure
       // that the statePath exists.
     }
 
+    // defaultCacheState_ provides a sensible default for data during
+    // initialization.
     get defaultCacheState_() {
       // Subclasses may override this to return a different default cache state.
     }
 
+    // computeCacheKey_ returns a unique string for the request. This is used to
+    // store the data in a predictable location in the Redux state.
     computeCacheKey_() {
-      throw new Error('subclasses must override either computeCacheKey_');
+      throw new Error('subclasses must override computeCacheKey_');
     }
 
+    // isInCache_ returns true if existing data exists, otherwise false.
     get isInCache_() {
       throw new Error('subclasses must override isInCache_()');
     }
 
+    // createRequest_ returns an instantiation of any class that extends from
+    // cp.RequestBase.
     createRequest_() {
       throw new Error('subclasses must override createRequest_()');
     }
 
     async fetch_() {
       const request = this.createRequest_();
+
       const completion = (async() => {
         const response = await request.response;
         this.onFinishRequest_(response);
@@ -141,6 +151,7 @@ tr.exportTo('cp', () => {
     // const foo = await dispatch(ReadFoo(options))
     async read() {
       this.ensureCacheState_();
+
       this.cacheKey_ = this.computeCacheKey_();
       if (this.cacheKey_ instanceof Promise) {
         // Some caches need to use async APIs to compute their cacheKey_,
@@ -148,7 +159,11 @@ tr.exportTo('cp', () => {
         // await.
         this.cacheKey_ = await this.cacheKey_;
       }
-      if (this.isInCache_) return await this.readFromCache_();
+
+      if (this.isInCache_) {
+        return await this.readFromCache_();
+      }
+
       return await this.fetch_();
     }
   }
@@ -171,26 +186,60 @@ tr.exportTo('cp', () => {
    *   });
    * }
    *
-   * |promises| can be any promise, need not be RequestBase.response.
+   * |tasks| is expected to be a mixed array of promises, iterators, and
+   * asynchronous iterators. Promises do not have to be cp.RequestBase.response.
    */
-  RequestBase.batchResponses = async function* (promises, opt_getDelayPromise) {
+  RequestBase.batchResponses = async function* (tasks, opt_getDelayPromise) {
     const getDelayPromise = opt_getDelayPromise || (() =>
       cp.ElementBase.timeout(500));
+
+    const promises = [];
     let delay;
     let results = [];
     let errors = [];
-    promises = promises.map(narcissus => {
-      const socrates = (async() => {
+
+    function promisifyIterator(reader) {
+      const promise = (async() => {
         try {
-          results.push(await narcissus);
+          const { value, done } = await Promise.resolve(reader.next());
+          if (!done) {
+            results.push(value);
+            const next = promisifyIterator(reader);
+            promises.push(next);
+          }
         } catch (err) {
           errors.push(err);
         } finally {
-          promises.splice(promises.indexOf(socrates), 1);
+          const index = promises.indexOf(promise);
+          promises.splice(index, 1);
         }
       })();
-      return socrates;
-    });
+      return promise;
+    }
+
+    function wrapPromise(dumpPromise) {
+      const promise = (async() => {
+        try {
+          results.push(await dumpPromise);
+        } catch (err) {
+          errors.push(err);
+        } finally {
+          const index = promises.indexOf(promise);
+          promises.splice(index, 1);
+        }
+      })();
+      return promise;
+    }
+
+    for (const task of tasks) {
+      if (typeof task.next === 'function') {
+        // Task is either a synchronous or asynchronous iterator.
+        promises.push(promisifyIterator(task));
+      } else {
+        // Task has to be a promise.
+        promises.push(wrapPromise(task));
+      }
+    }
 
     while (promises.length) {
       if (delay) {
@@ -210,6 +259,7 @@ tr.exportTo('cp', () => {
         delay.isResolved = false;
       }
     }
+
     yield {results, errors};
   };
 
