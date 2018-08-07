@@ -34,6 +34,24 @@
       "revId": "6194c7a592d4b138bba1993a320e2b20c1e72f3b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92836d35_fe9be165",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2018-08-07T19:32:36Z",
+      "side": 1,
+      "message": "Would be ideal if we didn\u0027t need root access in order to run Telemetry-based correctness tests. Our team only needs the ability to bring up the browser and pass command line arguments to it, not suspend the CPU governor, etc.",
+      "parentUuid": "8f2a8a68_2421c841",
+      "revId": "6194c7a592d4b138bba1993a320e2b20c1e72f3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
