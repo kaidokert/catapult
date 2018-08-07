@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fed3dbbd_430198a8",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1285369
+      },
+      "writtenOn": "2018-08-07T17:20:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "869bbb48_6a643b2d",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6dba171a_72ada823",
         "filename": "tracing/tracing/value/ui/metrics_visualization.html",
         "patchSetId": 14
@@ -30,6 +48,24 @@
       "writtenOn": "2018-08-05T21:26:32Z",
       "side": 1,
       "message": "I didn\u0027t understand this UI until I read the code.\nWould it make sense to replace these two text boxes and button with a range slider labeled something like \"Percentile range\"?\nHere\u0027s jquery\u0027s range slider for inspiration, though we\u0027d rather not include jquery in results.html.\nhttp://jqueryui.com/slider/#range",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6299aab5_ae9b5347",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1285369
+      },
+      "writtenOn": "2018-08-07T17:20:17Z",
+      "side": 1,
+      "message": "We considered using a slider originally, but it was fairly complex (would need something double-ended like this: https://refreshless.com/nouislider/) and not as user-friendly. It was difficult to drag the slider to the exact position needed and would end up taking longer than just entering the exact percentiles, so we decided on the text boxes instead.",
+      "parentUuid": "6dba171a_72ada823",
       "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "b287757c_78732964",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1285369
+      },
+      "writtenOn": "2018-08-07T17:20:17Z",
+      "side": 1,
+      "message": "They\u0027re from the material design color palettes (https://material.io/design/color/the-color-system.html#tools-for-picking-colors). I needed gradients to indicate that different runs of the same page were related (ex. light red, medium red, dark red), and Sinebow doesn\u0027t seem to support that?",
+      "parentUuid": "d18a31bd_6c5a5e14",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b1d00ead_c86aedbe",
         "filename": "tracing/tracing/value/ui/metrics_visualization.html",
         "patchSetId": 14
@@ -67,6 +121,24 @@
       "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75d741e5_4603bee8",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1285369
+      },
+      "writtenOn": "2018-08-07T17:20:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1d00ead_c86aedbe",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "270b86a3_88039d87",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1285369
+      },
+      "writtenOn": "2018-08-07T17:20:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b23fa929_96ec2d8b",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fab713ec_dd6e03bc",
         "filename": "tracing/tracing/value/ui/metrics_visualization.html",
         "patchSetId": 14
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "3764fdbc_f4c80820",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1285369
+      },
+      "writtenOn": "2018-08-07T17:20:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fab713ec_dd6e03bc",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "260fb257_a713ccce",
         "filename": "tracing/tracing/value/ui/metrics_visualization.html",
         "patchSetId": 14
@@ -118,6 +226,24 @@
       "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d923faa_2200d61f",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1285369
+      },
+      "writtenOn": "2018-08-07T17:20:17Z",
+      "side": 1,
+      "message": "Okay, I changed the code so that an array of sortedPages is stored, as well as an unsorted map of the groups. Later iterations over the pages now use the array and not the map.",
+      "parentUuid": "260fb257_a713ccce",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -144,6 +270,30 @@
     },
     {
       "key": {
+        "uuid": "362df2d5_87725f2b",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1285369
+      },
+      "writtenOn": "2018-08-07T17:20:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5726cf7_94086a23",
+      "range": {
+        "startLine": 251,
+        "startChar": 2,
+        "endLine": 256,
+        "endChar": 4
+      },
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b3375d56_7baabe65",
         "filename": "tracing/tracing/value/ui/metrics_visualization.html",
         "patchSetId": 14
@@ -158,6 +308,24 @@
       "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e7bfea6_1fbebb6a",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1285369
+      },
+      "writtenOn": "2018-08-07T17:20:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3375d56_7baabe65",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -178,6 +346,24 @@
     },
     {
       "key": {
+        "uuid": "361da654_7198a1db",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1285369
+      },
+      "writtenOn": "2018-08-07T17:20:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cfb73cb8_06f1b9ee",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a8ac3d6f_e118aae9",
         "filename": "tracing/tracing/value/ui/metrics_visualization.html",
         "patchSetId": 14
@@ -192,6 +378,24 @@
       "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "afca722d_c64e810c",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1285369
+      },
+      "writtenOn": "2018-08-07T17:20:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8ac3d6f_e118aae9",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -212,6 +416,24 @@
     },
     {
       "key": {
+        "uuid": "ad1cec9a_da9cbeac",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1285369
+      },
+      "writtenOn": "2018-08-07T17:20:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1af94b7a_46f330af",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d15e5466_582cd2a8",
         "filename": "tracing/tracing/value/ui/metrics_visualization.html",
         "patchSetId": 14
@@ -226,6 +448,24 @@
       "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85367586_a44cee0d",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1285369
+      },
+      "writtenOn": "2018-08-07T17:20:17Z",
+      "side": 1,
+      "message": "This has been fixed, now the array of sorted page names is sliced instead.",
+      "parentUuid": "d15e5466_582cd2a8",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -246,6 +486,24 @@
     },
     {
       "key": {
+        "uuid": "58d1aaa5_28c6dd60",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1285369
+      },
+      "writtenOn": "2018-08-07T17:20:17Z",
+      "side": 1,
+      "message": "It\u0027s possible that there might be hundreds of pages in a benchmark, which would make the select fairly difficult to use. I was also thinking of implementing a better matching algorithm in the future?",
+      "parentUuid": "6744aeca_bf781283",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8ed831b1_25b0dc06",
         "filename": "tracing/tracing/value/ui/metrics_visualization.html",
         "patchSetId": 14
@@ -260,6 +518,24 @@
       "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f66d6fe_cae3ed3a",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1285369
+      },
+      "writtenOn": "2018-08-07T17:20:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ed831b1_25b0dc06",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
