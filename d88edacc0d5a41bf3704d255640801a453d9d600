@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "77849a05_c98c23be",
+        "filename": "experimental/long_term_health/long_term_health/apk_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-07T11:06:22Z",
+      "side": 1,
+      "message": "please use \u0027android-*\u0027 in the URI.",
+      "revId": "d88edacc0d5a41bf3704d255640801a453d9d600",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e24f413_babeaebc",
+        "filename": "experimental/long_term_health/long_term_health/full_milestone_info_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-07T11:06:22Z",
+      "side": 1,
+      "message": "Since this is just test data, maybe it\u0027s fine to do the more succinct non-dict writer, e.g.:\n\n  writer.writerow(fieldnames)\n  writer.writerow(13, 234, \u002712.0.234.250\u0027, \u00272013-07-20T00:39:24\u0027)\n  [..]",
+      "revId": "d88edacc0d5a41bf3704d255640801a453d9d600",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c508689_9e125542",
+        "filename": "experimental/long_term_health/long_term_health/full_milestone_info_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-07T11:06:22Z",
+      "side": 1,
+      "message": "This on looks like it\u0027s testing internal details about how _table is stored. We should only test the public API. I think it\u0027s fine to just remove this test (and make a few of the others more explicit, see below).",
+      "revId": "d88edacc0d5a41bf3704d255640801a453d9d600",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95116782_b2fc1305",
+        "filename": "experimental/long_term_health/long_term_health/full_milestone_info_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-07T11:06:22Z",
+      "side": 1,
+      "message": "let\u0027s check that all milestone, branch, version_number and date are what we expect.",
+      "revId": "d88edacc0d5a41bf3704d255640801a453d9d600",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53e99852_dd517b29",
+        "filename": "experimental/long_term_health/long_term_health/full_milestone_info_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-07T11:06:22Z",
+      "side": 1,
+      "message": "nit: version -\u003e milestone (and also below)",
+      "revId": "d88edacc0d5a41bf3704d255640801a453d9d600",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6cdfcc3_c5c58fa7",
+        "filename": "experimental/long_term_health/long_term_health/full_milestone_info_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-07T11:06:22Z",
+      "side": 1,
+      "message": "Also add some tests for what happens when you request a milestone before the date of the oldest version; or after the most recent one.",
+      "revId": "d88edacc0d5a41bf3704d255640801a453d9d600",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
