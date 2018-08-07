@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "948cc0d1_98c03b42",
+        "filename": "experimental/long_term_health/long_term_health/apk_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-08-07T18:46:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77849a05_c98c23be",
+      "revId": "d88edacc0d5a41bf3704d255640801a453d9d600",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e24f413_babeaebc",
         "filename": "experimental/long_term_health/long_term_health/full_milestone_info_test.py",
         "patchSetId": 3
@@ -33,6 +51,24 @@
       "revId": "d88edacc0d5a41bf3704d255640801a453d9d600",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bc89593_08c0095f",
+        "filename": "experimental/long_term_health/long_term_health/full_milestone_info_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-08-07T18:46:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e24f413_babeaebc",
+      "revId": "d88edacc0d5a41bf3704d255640801a453d9d600",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "56905672_ded659fc",
+        "filename": "experimental/long_term_health/long_term_health/full_milestone_info_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-08-07T18:46:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c508689_9e125542",
+      "revId": "d88edacc0d5a41bf3704d255640801a453d9d600",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "95116782_b2fc1305",
         "filename": "experimental/long_term_health/long_term_health/full_milestone_info_test.py",
         "patchSetId": 3
@@ -64,6 +118,24 @@
       "writtenOn": "2018-08-07T11:06:22Z",
       "side": 1,
       "message": "let\u0027s check that all milestone, branch, version_number and date are what we expect.",
+      "revId": "d88edacc0d5a41bf3704d255640801a453d9d600",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "effb4a87_3de1b4ae",
+        "filename": "experimental/long_term_health/long_term_health/full_milestone_info_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-08-07T18:46:45Z",
+      "side": 1,
+      "message": "I am not sure whether I understand this comment. There seems to be no public API that I can use to test all the milestone, branch, version_number and date. But I added some more assertions for the test `testGetVersionNumberFromMilestone` to ensure that we get the correct version numbers for all the milestones in this test table.",
+      "parentUuid": "95116782_b2fc1305",
       "revId": "d88edacc0d5a41bf3704d255640801a453d9d600",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "fd84d712_2cdb4e39",
+        "filename": "experimental/long_term_health/long_term_health/full_milestone_info_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-08-07T18:46:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53e99852_dd517b29",
+      "revId": "d88edacc0d5a41bf3704d255640801a453d9d600",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d6cdfcc3_c5c58fa7",
         "filename": "experimental/long_term_health/long_term_health/full_milestone_info_test.py",
         "patchSetId": 3
@@ -101,6 +191,24 @@
       "revId": "d88edacc0d5a41bf3704d255640801a453d9d600",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1bee07e_4c8d48fb",
+        "filename": "experimental/long_term_health/long_term_health/full_milestone_info_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-08-07T18:46:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6cdfcc3_c5c58fa7",
+      "revId": "d88edacc0d5a41bf3704d255640801a453d9d600",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
