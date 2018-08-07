@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ef5b2339_a6f9b24a",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-08-07T13:56:25Z",
+      "side": 1,
+      "message": "not in this CL but kbr@ was wondering if we can make this check optional",
+      "revId": "6194c7a592d4b138bba1993a320e2b20c1e72f3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
