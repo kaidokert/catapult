@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "969104dc_c21bbdfa",
+        "filename": "dependency_manager/dependency_manager/local_path_info_unittest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001352
+      },
+      "writtenOn": "2018-08-08T07:31:29Z",
+      "side": 1,
+      "message": "Yes, that\u0027s exactly what happens, from the official page:\n\n  pyfakefs implements a fake file system that mocks the Python file system modules. Using\n  pyfakefs, your tests operate on a fake file system in memory without touching the real disk.\n  The software under test requires no modification to work with pyfakefs.\n\nIn particular, the open() built-in is bound to the pyfakefs version (see https://github.com/jmcgeheeiv/pyfakefs/blob/master/pyfakefs/tests/example.py)",
+      "parentUuid": "a30b59cd_f58afba1",
+      "revId": "138707113e01d47509b905168d675402890a633f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "649fabc0_34979162",
         "filename": "dependency_manager/dependency_manager/local_path_info_unittest.py",
         "patchSetId": 5
@@ -33,6 +51,24 @@
       "revId": "138707113e01d47509b905168d675402890a633f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b90dfcb_b3d2609d",
+        "filename": "dependency_manager/dependency_manager/local_path_info_unittest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1001352
+      },
+      "writtenOn": "2018-08-08T07:31:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "649fabc0_34979162",
+      "revId": "138707113e01d47509b905168d675402890a633f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
