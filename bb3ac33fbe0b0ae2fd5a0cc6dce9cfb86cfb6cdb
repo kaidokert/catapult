@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "960b68d6_1f21ee67",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1116023
+      },
+      "writtenOn": "2018-08-08T21:58:20Z",
+      "side": 1,
+      "message": "Something like the following would be a better CL description:\n\"\"\"\nAdd FuchsiaDevice and FuchsiaForwarder class.\n\nThe new classes will be used in the future to run catapult tests\non Fuchsia.\n\"\"\"",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 11
+      },
+      "revId": "bb3ac33fbe0b0ae2fd5a0cc6dce9cfb86cfb6cdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44744920_8cb47381",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1116023
+      },
+      "writtenOn": "2018-08-08T21:58:20Z",
+      "side": 1,
+      "message": "nit: add an empty line here please",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 6
+      },
+      "revId": "bb3ac33fbe0b0ae2fd5a0cc6dce9cfb86cfb6cdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5491b05e_b0c6c14e",
         "filename": "telemetry/telemetry/core/fuchsia_interface.py",
         "patchSetId": 1
@@ -166,6 +212,75 @@
       "writtenOn": "2018-08-07T15:33:31Z",
       "side": 1,
       "message": "I\u0027m still unsure about the exact logic of the forwarder. Note this will be called twice by Telemetry.\n\n- The first time, Telemetry will start a server on the host for web page replay. This will\n  be serving content at some given local port (determined by the WPR server). The it will call\n  forwarder_factory.Create(local_port\u003dlocal_port, remote_port\u003dNone, reverse\u003dFalse) to get\n  a corresponding \"remote_port\". The remote_port is then given to Chrome so it reads web pages\n  from it.\n\n- The second time, *after* Chrome has started, it will publicize a port where devtools will\n  be listening to connections. This is a \"remote_port\" (on the device) which we want to\n  connect back to a \"local_port\" for Telemetry to talk to devtools, so we run:\n  forwarder_factory.Create(local_port\u003dNone, remote_port\u003dremote_port, reverse\u003dTrue)\n\n(setting either local or remote port to None means we let the forwarder pick any available port)\n\nSo your forwarder needs to support both of these usages. So far, do you also need to create this port forwardning for some other additional reason?",
+      "revId": "bb3ac33fbe0b0ae2fd5a0cc6dce9cfb86cfb6cdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dede4b2d_3fa4eb31",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1116023
+      },
+      "writtenOn": "2018-08-08T21:58:20Z",
+      "side": 1,
+      "message": "nit: empty line here please",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 14
+      },
+      "revId": "bb3ac33fbe0b0ae2fd5a0cc6dce9cfb86cfb6cdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d836a855_2cac0849",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1116023
+      },
+      "writtenOn": "2018-08-08T21:58:20Z",
+      "side": 1,
+      "message": "this will wait forever if the process decides to write more data than can fit into the pipe buffer.\nit\u0027s better to call communicate() and then get the result out of the returned stdoutdata",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 13
+      },
+      "revId": "bb3ac33fbe0b0ae2fd5a0cc6dce9cfb86cfb6cdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6995fd2_14b2ed50",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1116023
+      },
+      "writtenOn": "2018-08-08T21:58:20Z",
+      "side": 1,
+      "message": "FindAllAvailableDevices() already knows about _DEFAULT_FUCHSIA_IP, so you don\u0027t need to duplicate this logic here.",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 37
+      },
       "revId": "bb3ac33fbe0b0ae2fd5a0cc6dce9cfb86cfb6cdb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
