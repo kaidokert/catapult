@@ -504,6 +504,24 @@
     },
     {
       "key": {
+        "uuid": "543146dd_f61d862e",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1285369
+      },
+      "writtenOn": "2018-08-08T15:43:24Z",
+      "side": 1,
+      "message": "Update: I changed the searching feature to use regex",
+      "parentUuid": "58d1aaa5_28c6dd60",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8ed831b1_25b0dc06",
         "filename": "tracing/tracing/value/ui/metrics_visualization.html",
         "patchSetId": 14
