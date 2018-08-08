@@ -18,6 +18,7 @@ Example:
   stored_object.Set(john.userid, john)
 """
 
+import datetime
 import cPickle as pickle
 
 from google.appengine.ext import ndb
@@ -49,6 +50,30 @@ def GetAsync(key):
   raise ndb.Return(entity.GetData())
 
 
+CACHE = {}
+DEFAULT_CACHE_SECONDS = 60 * 60 * 24
+
+@ndb.tasklet
+def GetCachedAsync(key, cache_seconds=DEFAULT_CACHE_SECONDS):
+  now = datetime.datetime.now()
+  cache_seconds = datetime.timedelta(0, cache_seconds)
+  if key not in CACHE or CACHE[key][1] < (now - cache_seconds):
+    value = yield GetAsync(key)
+    CACHE[key] = (value, now)
+  raise ndb.Return(CACHE[key][0])
+
+
+def ResetCacheForTesting():
+  global CACHE
+  CACHE = {}
+
+
+@ndb.synctasklet
+def GetCached(key, cache_seconds=DEFAULT_CACHE_SECONDS):
+  result = yield GetCachedAsync(key, cache_seconds)
+  raise ndb.Return(result)
+
+
 @ndb.synctasklet
 def Set(key, value):
   """Sets the value in datastore.
@@ -62,6 +87,7 @@ def Set(key, value):
 
 @ndb.tasklet
 def SetAsync(key, value):
+  CACHE[key] = (value, datetime.datetime.now())
   entity = yield ndb.Key(MultipartEntity, key).get_async()
   if not entity:
     entity = MultipartEntity(id=key)
