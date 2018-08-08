@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a30b59cd_f58afba1",
+        "filename": "dependency_manager/dependency_manager/local_path_info_unittest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-08-08T02:12:41Z",
+      "side": 1,
+      "message": "how are we making sure that these files created here are not leaking? Does setUpPyfakefs monkey patch open()?",
+      "revId": "138707113e01d47509b905168d675402890a633f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "649fabc0_34979162",
+        "filename": "dependency_manager/dependency_manager/local_path_info_unittest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-08-08T02:12:41Z",
+      "side": 1,
+      "message": "nits: remove the extra blank line",
+      "revId": "138707113e01d47509b905168d675402890a633f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
