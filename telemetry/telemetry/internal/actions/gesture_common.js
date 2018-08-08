@@ -41,6 +41,20 @@
     return pageScaleFactor ? pageScaleFactor.apply(chrome.gpuBenchmarking) : 1;
   }
 
+  // Chrome version before M50 doesn't have `visualViewportX` function, to run
+  // benchmark on them we will need this function to fail back gracefully
+  function getVisualViewportX() {
+    const visualViewportX = chrome.gpuBenchmarking.visualViewportX;
+    return visualViewportX ? visualViewportX.apply(chrome.gpuBenchmarking) : 0;
+  }
+
+  // Chrome version before M50 doesn't have `visualViewportY` function, to run
+  // benchmark on them we will need this function to fail back gracefully
+  function getVisualViewportY() {
+    const visualViewportX = chrome.gpuBenchmarking.visualViewportY;
+    return visualViewportX ? visualViewportX.apply(chrome.gpuBenchmarking) : 0;
+  }
+
   // Zoom-independent window height. See crbug.com/627123 for more details.
   function getWindowHeight() {
     return getPageScaleFactor() * chrome.gpuBenchmarking.visualViewportHeight();
@@ -65,8 +79,8 @@
     // with page scale. We first translate so that the viewport offset is
     // at the origin and then we apply the scaling factor.
     const scale = getPageScaleFactor();
-    const visualViewportX = chrome.gpuBenchmarking.visualViewportX();
-    const visualViewportY = chrome.gpuBenchmarking.visualViewportY();
+    const visualViewportX = getVisualViewportX();
+    const visualViewportY = getVisualViewportY();
     rect.top = (rect.top - visualViewportY) * scale;
     rect.left = (rect.left - visualViewportX) * scale;
     rect.width *= scale;
