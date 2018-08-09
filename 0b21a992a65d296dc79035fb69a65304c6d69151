@@ -294,6 +294,24 @@
     },
     {
       "key": {
+        "uuid": "a85f0bad_4ffb724a",
+        "filename": "dashboard/dashboard/spa/service-worker.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-09T23:08:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb5f02e5_7679eceb",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "73dcee1d_88dfb830",
         "filename": "dashboard/dashboard/spa/service-worker.js",
         "patchSetId": 20
@@ -857,6 +875,24 @@
       "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "598fbfc9_67578869",
+        "filename": "third_party/idb/idb.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-09T23:08:15Z",
+      "side": 1,
+      "message": "I shouldn\u0027t need to change idb anymore. I\u0027ll change this whole file back to what it was before.",
+      "parentUuid": "bd8d7236_414c4cf2",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
