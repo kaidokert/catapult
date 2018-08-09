@@ -212,6 +212,24 @@
     },
     {
       "key": {
+        "uuid": "6ac535c7_297dba0b",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T17:25:48Z",
+      "side": 1,
+      "message": "If that\u0027s my todo, then you can leave it. :-)",
+      "parentUuid": "bf36245b_242cd569",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "241269ed_8b6c72bc",
         "filename": "dashboard/dashboard/spa/chart-timeseries.js",
         "patchSetId": 17
@@ -393,6 +411,24 @@
       "side": 1,
       "message": "The problem with that is not being able to export it afterwards moving IS_PRODUCTION into this file. I anticipated index.js to be ran before any other JavaScript so we can get Google Analytics and the Service Worker setup as soon as possible.",
       "parentUuid": "59315e4e_c8615c7d",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd2d87ef_89b151aa",
+        "filename": "dashboard/dashboard/spa/index.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T17:25:48Z",
+      "side": 1,
+      "message": "Yeah, just set window.IS_PRODUCTION and I\u0027ll clean it up when it switches to ES6 modules.",
+      "parentUuid": "9303bb51_2affff10",
       "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -819,6 +855,24 @@
     },
     {
       "key": {
+        "uuid": "85dca275_8196bbdb",
+        "filename": "dashboard/dashboard/spa/sw-utils/race.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T17:25:48Z",
+      "side": 1,
+      "message": "You already did this. Thanks!",
+      "parentUuid": "85ecc265_dfb88a95",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f0f4014c_976e620c",
         "filename": "dashboard/dashboard/spa/sw-utils/race.js",
         "patchSetId": 17
@@ -930,6 +984,41 @@
       "side": 1,
       "message": "When the network wins, I do not yield the results of the cache. Can that approach achieve something similar?",
       "parentUuid": "48d0636b_b60e2e18",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "442d9415_af45eaf2",
+        "filename": "dashboard/dashboard/spa/sw-utils/race.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T17:25:48Z",
+      "side": 1,
+      "message": "if-else would be simpler.",
+      "parentUuid": "b1e43f4b_c45581b8",
+      "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99711661_d0ae3cee",
+        "filename": "dashboard/dashboard/spa/sw-utils/race.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T17:25:48Z",
+      "side": 1,
+      "message": "Deduplicate writer.enqueue by writing network.result regardless of whether it\u0027s the winner or loser.",
       "revId": "7f2435a021d42fed341a0dba2aa3909ca7a51334",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true

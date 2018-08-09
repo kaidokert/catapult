@@ -70,6 +70,23 @@
     },
     {
       "key": {
+        "uuid": "78a06424_aea6bd23",
+        "filename": "dashboard/dashboard/spa/report-section.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T17:25:48Z",
+      "side": 1,
+      "message": "Want to drop a console.trace() and see if you can debug this? If not, you can leave a TODO(benjhayden)",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1f9b5c9b_1d0c847a",
         "filename": "dashboard/dashboard/spa/request-base.js",
         "patchSetId": 20
@@ -155,6 +172,23 @@
       "writtenOn": "2018-08-08T23:02:02Z",
       "side": 1,
       "message": "I\u0027m not sure I understand how this function is creating a listener. It looks like it\u0027s forwarding results back to a client.",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a449b346_64abc94d",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T17:25:48Z",
+      "side": 1,
+      "message": "Update references to DebounceWriter",
       "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true

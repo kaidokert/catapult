@@ -370,6 +370,24 @@
     },
     {
       "key": {
+        "uuid": "33c4c06b_80b18db0",
+        "filename": "dashboard/dashboard/spa/webpack.config.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T17:25:48Z",
+      "side": 1,
+      "message": "Source maps LGTM!",
+      "parentUuid": "43f50153_7db57f07",
+      "revId": "4c623a3043e1c573b6f91217df17ef06fa91cfb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "37bbcebb_43289afb",
         "filename": "dashboard/v2spa.yaml",
         "patchSetId": 10
