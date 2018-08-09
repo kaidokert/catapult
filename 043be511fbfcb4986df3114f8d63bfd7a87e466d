@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "295da008_744ec997",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T21:15:09Z",
+      "side": 1,
+      "message": "Thanks, that makes sense.\nCan you still add a label like \u0027Percentile range\u0027?",
+      "parentUuid": "6299aab5_ae9b5347",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d18a31bd_6c5a5e14",
         "filename": "tracing/tracing/value/ui/metrics_visualization.html",
         "patchSetId": 14
@@ -104,6 +122,24 @@
       "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcb41969_90b50b85",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T21:15:09Z",
+      "side": 1,
+      "message": "opt_a or opt_brightness should support that, but now that I look at these colors, I think I like them better than what Sinebow would produce right now. I\u0027m working on Sinebow\u0027s algorithm, so don\u0027t worry about it for now.",
+      "parentUuid": "b287757c_78732964",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -519,6 +555,24 @@
       "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36eebc14_a34be8f7",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T21:15:09Z",
+      "side": 1,
+      "message": "SGTM!",
+      "parentUuid": "543146dd_f61d862e",
+      "revId": "043be511fbfcb4986df3114f8d63bfd7a87e466d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
