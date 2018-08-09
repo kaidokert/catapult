@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "227bd012_804c8bae",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1279964
+      },
+      "writtenOn": "2018-08-09T22:54:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "960b68d6_1f21ee67",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 11
+      },
+      "revId": "bb3ac33fbe0b0ae2fd5a0cc6dce9cfb86cfb6cdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "44744920_8cb47381",
         "filename": "telemetry/telemetry/core/fuchsia_interface.py",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "76440872_79551946",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1279964
+      },
+      "writtenOn": "2018-08-09T22:54:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44744920_8cb47381",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 6
+      },
+      "revId": "bb3ac33fbe0b0ae2fd5a0cc6dce9cfb86cfb6cdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5491b05e_b0c6c14e",
         "filename": "telemetry/telemetry/core/fuchsia_interface.py",
         "patchSetId": 1
@@ -62,6 +110,24 @@
       "revId": "bb3ac33fbe0b0ae2fd5a0cc6dce9cfb86cfb6cdb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "702aee00_fa7a605c",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1279964
+      },
+      "writtenOn": "2018-08-09T22:54:40Z",
+      "side": 1,
+      "message": "Attempting to use GetChromiumSrcDir causes a fatal presubmit error that prevents uploading. I\u0027ve added some logic to fuchsia_browser_finder.py that checks for import errors when importing Fuchsia-specific modules, and triggers a failure to find any Fuchsia browsers in the event that it couldn\u0027t accomplish the imports. That should appear in a later CL. Unfortunately, a few things do require knowledge of the Chromium root. I can see about checking for the presence of that flag at the earliest entry point to code for Fuchsia support and try modifying the path there, but that will also be in a later CL",
+      "parentUuid": "5491b05e_b0c6c14e",
+      "revId": "bb3ac33fbe0b0ae2fd5a0cc6dce9cfb86cfb6cdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -82,6 +148,24 @@
     },
     {
       "key": {
+        "uuid": "2fef073b_1c9db5cc",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1279964
+      },
+      "writtenOn": "2018-08-09T22:54:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfeb59ca_5df28f52",
+      "revId": "bb3ac33fbe0b0ae2fd5a0cc6dce9cfb86cfb6cdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7e40fdd1_055766cc",
         "filename": "telemetry/telemetry/core/fuchsia_interface.py",
         "patchSetId": 1
@@ -96,6 +180,24 @@
       "revId": "bb3ac33fbe0b0ae2fd5a0cc6dce9cfb86cfb6cdb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c87b65d_ac443e93",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1279964
+      },
+      "writtenOn": "2018-08-09T22:54:40Z",
+      "side": 1,
+      "message": "Yes, I\u0027ve made it so.",
+      "parentUuid": "7e40fdd1_055766cc",
+      "revId": "bb3ac33fbe0b0ae2fd5a0cc6dce9cfb86cfb6cdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -116,6 +218,24 @@
     },
     {
       "key": {
+        "uuid": "bc50503e_3fde3093",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1279964
+      },
+      "writtenOn": "2018-08-09T22:54:40Z",
+      "side": 1,
+      "message": "yes, but it requires that devices be booted manually before running tests via fx boot.",
+      "parentUuid": "49b44bdd_26da2fd9",
+      "revId": "bb3ac33fbe0b0ae2fd5a0cc6dce9cfb86cfb6cdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "098dc84e_20f09578",
         "filename": "telemetry/telemetry/core/fuchsia_interface.py",
         "patchSetId": 1
@@ -130,6 +250,24 @@
       "revId": "bb3ac33fbe0b0ae2fd5a0cc6dce9cfb86cfb6cdb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57d292d4_ab29d993",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1279964
+      },
+      "writtenOn": "2018-08-09T22:54:40Z",
+      "side": 1,
+      "message": "In this case, Start is just making sure that the device is actually on and listening, and waits until that\u0027s the case, or times out with an exception.",
+      "parentUuid": "098dc84e_20f09578",
+      "revId": "bb3ac33fbe0b0ae2fd5a0cc6dce9cfb86cfb6cdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -150,6 +288,24 @@
     },
     {
       "key": {
+        "uuid": "ff71bfbb_a6547d80",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1279964
+      },
+      "writtenOn": "2018-08-09T22:54:40Z",
+      "side": 1,
+      "message": "I\u0027ve moved it, though the platform_backend won\u0027t show up until a later CL",
+      "parentUuid": "bae96f6b_1f2185af",
+      "revId": "bb3ac33fbe0b0ae2fd5a0cc6dce9cfb86cfb6cdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6dc4a4d6_5f88f272",
         "filename": "telemetry/telemetry/core/fuchsia_interface.py",
         "patchSetId": 1
@@ -164,6 +320,24 @@
       "revId": "bb3ac33fbe0b0ae2fd5a0cc6dce9cfb86cfb6cdb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76fda4fa_fb468ad5",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1279964
+      },
+      "writtenOn": "2018-08-09T22:54:40Z",
+      "side": 1,
+      "message": "I was just mirroring the DeviceTarget\u0027s API, but yeah, it\u0027s probably unnecessary.",
+      "parentUuid": "6dc4a4d6_5f88f272",
+      "revId": "bb3ac33fbe0b0ae2fd5a0cc6dce9cfb86cfb6cdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -184,6 +358,24 @@
     },
     {
       "key": {
+        "uuid": "712f2e49_c79ae3ea",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1279964
+      },
+      "writtenOn": "2018-08-09T22:54:40Z",
+      "side": 1,
+      "message": "I\u0027ve extracted all the port interactions to the FuchsiaForwarder",
+      "parentUuid": "df0705f1_9183da1c",
+      "revId": "bb3ac33fbe0b0ae2fd5a0cc6dce9cfb86cfb6cdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a9499dfe_a5e17e18",
         "filename": "telemetry/telemetry/core/fuchsia_interface.py",
         "patchSetId": 1
@@ -198,6 +390,24 @@
       "revId": "bb3ac33fbe0b0ae2fd5a0cc6dce9cfb86cfb6cdb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df48f961_3a53aa0a",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1279964
+      },
+      "writtenOn": "2018-08-09T22:54:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9499dfe_a5e17e18",
+      "revId": "bb3ac33fbe0b0ae2fd5a0cc6dce9cfb86cfb6cdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -241,6 +451,30 @@
     },
     {
       "key": {
+        "uuid": "48a0d49c_065ff32f",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1279964
+      },
+      "writtenOn": "2018-08-09T22:54:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dede4b2d_3fa4eb31",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 14
+      },
+      "revId": "bb3ac33fbe0b0ae2fd5a0cc6dce9cfb86cfb6cdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d836a855_2cac0849",
         "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
         "patchSetId": 1
@@ -264,6 +498,30 @@
     },
     {
       "key": {
+        "uuid": "8827f9b3_496be1f1",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1279964
+      },
+      "writtenOn": "2018-08-09T22:54:40Z",
+      "side": 1,
+      "message": "Done. I\u0027ve also altered it to read all the discovered devices and report all of them.",
+      "parentUuid": "d836a855_2cac0849",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 13
+      },
+      "revId": "bb3ac33fbe0b0ae2fd5a0cc6dce9cfb86cfb6cdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d6995fd2_14b2ed50",
         "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
         "patchSetId": 1
@@ -284,6 +542,30 @@
       "revId": "bb3ac33fbe0b0ae2fd5a0cc6dce9cfb86cfb6cdb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e0bc1c3_74490909",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1279964
+      },
+      "writtenOn": "2018-08-09T22:54:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6995fd2_14b2ed50",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 37
+      },
+      "revId": "bb3ac33fbe0b0ae2fd5a0cc6dce9cfb86cfb6cdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
