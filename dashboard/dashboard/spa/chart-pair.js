@@ -11,8 +11,21 @@ tr.exportTo('cp', () => {
           (minimapLayout ? minimapLayout.lines : []));
     }
 
-    onOptionsToggle_(event) {
-      this.dispatch('showOptions', this.statePath, !this.isShowingOptions);
+    async onMenuKeyup_(event) {
+      if (event.key === 'Escape') {
+        await this.dispatch('showOptions', this.statePath,
+            !this.isShowingOptions);
+      }
+    }
+
+    async onMenuBlur_(event) {
+      await this.dispatch('showOptions', this.statePath,
+          !this.isShowingOptions);
+    }
+
+    async onOptionsToggle_(event) {
+      await this.dispatch('showOptions', this.statePath,
+          !this.isShowingOptions);
     }
 
     onMinimapBrush_(event) {

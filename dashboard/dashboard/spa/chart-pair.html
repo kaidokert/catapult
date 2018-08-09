@@ -9,6 +9,7 @@ found in the LICENSE file.
 <link rel="import" href="/bower_components/paper-progress/paper-progress.html">
 <link rel="import" href="/bower_components/paper-radio-button/paper-radio-button.html">
 <link rel="import" href="/bower_components/paper-radio-group/paper-radio-group.html">
+<link rel="import" href="/bower_components/paper-styles/element-styles/paper-material-styles.html">
 <link rel="import" href="/bower_components/paper-tabs/paper-tabs.html">
 <link rel="import" href="/dashboard/spa/chart-parameter.html">
 <link rel="import" href="/dashboard/spa/chart-timeseries.html">
@@ -20,7 +21,7 @@ found in the LICENSE file.
 
 <dom-module id="chart-pair">
   <template>
-    <style>
+    <style include="paper-material-styles">
       #minimap,
       #chart {
         width: 100%;
@@ -57,12 +58,22 @@ found in the LICENSE file.
         margin-top: 20px;
       }
 
-      paper-dialog {
-        margin: 0;
+      #options_menu {
+        @apply --paper-material-elevation-2;
+        background-color: white;
+        font-size: 12px;
+        max-height: 600px;
+        overflow: hidden;
+        outline: none;
+        padding-right: 8px;
+        position: absolute;
+        z-index: var(--layer-menu);
       }
 
-      paper-dialog div {
+      #options_menu_inner {
         display: flex;
+        padding: 16px;
+        overflow: hidden;
       }
 
       .column {
@@ -79,6 +90,12 @@ found in the LICENSE file.
 
       paper-toggle-button {
         padding: 4px;
+      }
+
+      paper-radio-button {
+        --paper-radio-button-label: {
+          white-space: nowrap;
+        }
       }
 
       paper-radio-group {
@@ -100,12 +117,13 @@ found in the LICENSE file.
             on-click="onOptionsToggle_">
         </iron-icon>
 
-        <paper-dialog
+        <iron-collapse
+            id="options_menu"
             opened="[[isShowingOptions]]"
-            horizontal-align="left"
-            vertical-align="top"
-            on-iron-overlay-canceled="onOptionsToggle_">
-          <div>
+            tabindex="0"
+            on-blur="onMenuBlur_"
+            on-keyup="onMenuKeyup_">
+          <iron-collapse id="options_menu_inner" horizontal opened="[[isShowingOptions]]">
             <div id="toggles" class="column">
               <b>Options</b>
               <paper-toggle-button
@@ -144,7 +162,8 @@ found in the LICENSE file.
               </paper-radio-group>
             </div>
           </div>
-        </paper-dialog>
+          </iron-collapse>
+        </iron-collapse>
       </span>
 
       <chart-timeseries
