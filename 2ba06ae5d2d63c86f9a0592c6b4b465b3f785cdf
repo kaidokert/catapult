@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "47b3848d_7c74ece7",
+        "filename": "dashboard/dashboard/spa/simple-redux.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T05:21:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1e062af_a222deaa",
+      "range": {
+        "startLine": 139,
+        "startChar": 2,
+        "endLine": 139,
+        "endChar": 19
+      },
+      "revId": "2ba06ae5d2d63c86f9a0592c6b4b465b3f785cdf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "67a2385e_1616c981",
         "filename": "dashboard/dashboard/spa/simple-redux.js",
         "patchSetId": 7
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "e5901520_7a94b692",
+        "filename": "dashboard/dashboard/spa/simple-redux.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T05:21:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67a2385e_1616c981",
+      "range": {
+        "startLine": 156,
+        "startChar": 2,
+        "endLine": 156,
+        "endChar": 23
+      },
+      "revId": "2ba06ae5d2d63c86f9a0592c6b4b465b3f785cdf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1f0d750d_f4f04a3d",
         "filename": "dashboard/dashboard/spa/simple-redux.js",
         "patchSetId": 7
@@ -59,6 +107,30 @@
       "writtenOn": "2018-07-27T17:40:46Z",
       "side": 1,
       "message": "Having a double function call for standard usage is a bit confusing, I think. Is it possible to simplify the usage?",
+      "range": {
+        "startLine": 192,
+        "startChar": 31,
+        "endLine": 192,
+        "endChar": 72
+      },
+      "revId": "2ba06ae5d2d63c86f9a0592c6b4b465b3f785cdf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99788d1a_7ccceeff",
+        "filename": "dashboard/dashboard/spa/simple-redux.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T05:21:48Z",
+      "side": 1,
+      "message": "Added a comment that currying supports registerReducers.",
+      "parentUuid": "1f0d750d_f4f04a3d",
       "range": {
         "startLine": 192,
         "startChar": 31,
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "cdffb00f_fdb62be0",
+        "filename": "dashboard/dashboard/spa/simple-redux.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T05:21:48Z",
+      "side": 1,
+      "message": "go/chromeperf-v2-mvc",
+      "parentUuid": "dd32dc1d_172ffcec",
+      "range": {
+        "startLine": 194,
+        "startChar": 2,
+        "endLine": 194,
+        "endChar": 21
+      },
+      "revId": "2ba06ae5d2d63c86f9a0592c6b4b465b3f785cdf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bea127ae_0dfe7c8c",
         "filename": "dashboard/dashboard/spa/simple-redux.js",
         "patchSetId": 7
@@ -105,6 +201,30 @@
       "writtenOn": "2018-07-27T17:40:46Z",
       "side": 1,
       "message": "Do we necessarily want to tie reducers to specific web components? I feel that coupling reducers with the components they\u0027re used by could become a maintenance burden, and I wonder if it might make more sense to organize reducers based on the segment of the data they interact with rather than specific components.",
+      "range": {
+        "startLine": 205,
+        "startChar": 22,
+        "endLine": 205,
+        "endChar": 41
+      },
+      "revId": "2ba06ae5d2d63c86f9a0592c6b4b465b3f785cdf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f92c7487_fa773c55",
+        "filename": "dashboard/dashboard/spa/simple-redux.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T05:21:48Z",
+      "side": 1,
+      "message": "go/chromeperf-v2-mvc",
+      "parentUuid": "bea127ae_0dfe7c8c",
       "range": {
         "startLine": 205,
         "startChar": 22,

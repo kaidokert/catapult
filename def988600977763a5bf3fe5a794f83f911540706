@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d8efb5e9_39875c98",
+        "filename": "dashboard/dashboard/spa/simple-redux.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T05:21:48Z",
+      "side": 1,
+      "message": "Yeah, V2SPA is still on Polymer2 so it isn\u0027t using ES6 modules yet.\nI\u0027ll assign this to window.setImmutable for now, and convert this file to an ES6 module when I convert the app to Polymer3.",
+      "parentUuid": "2e7bc577_eae6e51e",
+      "range": {
+        "startLine": 29,
+        "startChar": 2,
+        "endLine": 29,
+        "endChar": 20
+      },
+      "revId": "def988600977763a5bf3fe5a794f83f911540706",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "efa0a204_ce99f25a",
         "filename": "dashboard/dashboard/spa/simple-redux.js",
         "patchSetId": 6
@@ -45,6 +69,30 @@
       "revId": "def988600977763a5bf3fe5a794f83f911540706",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "664afdaf_3c675b8a",
+        "filename": "dashboard/dashboard/spa/simple-redux.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T05:21:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "efa0a204_ce99f25a",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 46
+      },
+      "revId": "def988600977763a5bf3fe5a794f83f911540706",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -91,6 +139,30 @@
       "revId": "def988600977763a5bf3fe5a794f83f911540706",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "641243ef_5c0fa345",
+        "filename": "dashboard/dashboard/spa/simple-redux.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T05:21:48Z",
+      "side": 1,
+      "message": "This is how Redux middleware works. I don\u0027t fully understand it, either. :-D\nhttps://redux.js.org/advanced/middleware#the-final-approach\nThe only usage is in createSimpleStore below.",
+      "parentUuid": "06faa0c1_39cbdc05",
+      "range": {
+        "startLine": 68,
+        "startChar": 16,
+        "endLine": 68,
+        "endChar": 59
+      },
+      "revId": "def988600977763a5bf3fe5a794f83f911540706",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     },
     {
       "key": {
@@ -141,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "89474f65_062f38c9",
+        "filename": "dashboard/dashboard/spa/simple-redux.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T05:21:48Z",
+      "side": 1,
+      "message": "I removed this catch, and I\u0027ll add the error reporting elsewhere.",
+      "parentUuid": "e09ee17b_6ef76ffe",
+      "range": {
+        "startLine": 75,
+        "startChar": 6,
+        "endLine": 78,
+        "endChar": 18
+      },
+      "revId": "def988600977763a5bf3fe5a794f83f911540706",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "756ddab6_5ea42af9",
         "filename": "dashboard/dashboard/spa/simple-redux.js",
         "patchSetId": 6
@@ -164,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "ba245806_cd73ba63",
+        "filename": "dashboard/dashboard/spa/simple-redux.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T05:21:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "756ddab6_5ea42af9",
+      "range": {
+        "startLine": 83,
+        "startChar": 14,
+        "endLine": 83,
+        "endChar": 27
+      },
+      "revId": "def988600977763a5bf3fe5a794f83f911540706",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1390e281_0620761e",
         "filename": "dashboard/dashboard/spa/simple-redux.js",
         "patchSetId": 6
@@ -175,6 +295,30 @@
       "writtenOn": "2018-07-26T20:45:42Z",
       "side": 1,
       "message": "Both of these parameters can stay undefined and will function as expected. There is no need to set defaults.",
+      "range": {
+        "startLine": 84,
+        "startChar": 4,
+        "endLine": 85,
+        "endChar": 18
+      },
+      "revId": "def988600977763a5bf3fe5a794f83f911540706",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ffd2fcc_4db96e77",
+        "filename": "dashboard/dashboard/spa/simple-redux.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T05:21:48Z",
+      "side": 1,
+      "message": "I kept the defaultState \u003d {} for clarity.",
+      "parentUuid": "1390e281_0620761e",
       "range": {
         "startLine": 84,
         "startChar": 4,
@@ -210,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "10cacf81_a90101c8",
+        "filename": "dashboard/dashboard/spa/simple-redux.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T05:21:48Z",
+      "side": 1,
+      "message": "Looks like no?\nhttps://github.com/reduxjs/redux/blob/master/docs/api/compose.md",
+      "parentUuid": "50a2895c_5d5c9a4e",
+      "range": {
+        "startLine": 88,
+        "startChar": 19,
+        "endLine": 88,
+        "endChar": 51
+      },
+      "revId": "def988600977763a5bf3fe5a794f83f911540706",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "42156bcd_ea45f2d6",
         "filename": "dashboard/dashboard/spa/simple-redux.js",
         "patchSetId": 6
@@ -221,6 +389,30 @@
       "writtenOn": "2018-08-06T23:27:42Z",
       "side": 1,
       "message": "Is there an example of this pattern documented somewhere in the vicinity of https://redux.js.org/recipes/structuringreducers/splittingreducerlogic (and does that section describe the problem addressed by statePathReducer)?",
+      "range": {
+        "startLine": 109,
+        "startChar": 2,
+        "endLine": 122,
+        "endChar": 5
+      },
+      "revId": "def988600977763a5bf3fe5a794f83f911540706",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e61d7882_76c12fb0",
+        "filename": "dashboard/dashboard/spa/simple-redux.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T05:21:48Z",
+      "side": 1,
+      "message": "This page describes passing array indexes in actions.\nhttps://redux.js.org/recipes/structuringreducers/immutableupdatepatterns#updating-an-item-in-an-array\n\nFor more discussion, please see go/chromeperf-v2-mvc",
+      "parentUuid": "42156bcd_ea45f2d6",
       "range": {
         "startLine": 109,
         "startChar": 2,
@@ -256,6 +448,30 @@
     },
     {
       "key": {
+        "uuid": "8596a4bc_c8c0a676",
+        "filename": "dashboard/dashboard/spa/simple-redux.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T05:21:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46e3258e_4aaca63d",
+      "range": {
+        "startLine": 173,
+        "startChar": 35,
+        "endLine": 173,
+        "endChar": 44
+      },
+      "revId": "def988600977763a5bf3fe5a794f83f911540706",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "79f5fc7f_284ceedb",
         "filename": "dashboard/dashboard/spa/simple-redux.js",
         "patchSetId": 6
@@ -276,6 +492,30 @@
       "revId": "def988600977763a5bf3fe5a794f83f911540706",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce510f02_5f278c76",
+        "filename": "dashboard/dashboard/spa/simple-redux.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T05:21:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79f5fc7f_284ceedb",
+      "range": {
+        "startLine": 195,
+        "startChar": 4,
+        "endLine": 195,
+        "endChar": 75
+      },
+      "revId": "def988600977763a5bf3fe5a794f83f911540706",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
