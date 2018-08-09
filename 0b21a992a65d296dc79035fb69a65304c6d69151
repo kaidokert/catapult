@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "be7a06cd_0d9c0d1d",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-09T23:02:50Z",
+      "side": 1,
+      "message": "I just realized that this method fetches whole lines is parallel, rather than fetchDescriptors in parallel. I\u0027m opting to use\n\n  const promises \u003d [];\n\n  for (const lineDescriptor of lineDescriptors) {\n    const fetchDescriptors \u003d ChartTimeseries.createFetchDescriptors(\n        lineDescriptor);\n    for (const fetchDescriptor of fetchDescriptors) {\n      const reader \u003d cp.TimeseriesReader({\n        fetchDescriptor,\n        refStatePath: statePath,\n        dispatch,\n        getState,\n      });\n      const consumeAll \u003d async() \u003d\u003e {\n        for await (const _ of reader) {\n          // Wait for the Service Worker to finish all its tasks.\n          // Disgard the result since preload doesn\u0027t display data.\n        }\n      };\n      promises.push(consumeAll());\n    }\n  }\n\n  await Promise.all(promises);",
+      "parentUuid": "95c51fcb_e7919bc5",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c20b2b54_abf4444a",
         "filename": "dashboard/dashboard/spa/chart-timeseries.js",
         "patchSetId": 20
@@ -33,6 +51,24 @@
       "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df480ae9_e5e4e2ca",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-09T23:02:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c20b2b54_abf4444a",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "5e9639cf_84e18804",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-09T23:02:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5caa27d_0b9ae54b",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "45757b58_e3810f12",
         "filename": "dashboard/dashboard/spa/chart-timeseries.js",
         "patchSetId": 20
@@ -67,6 +121,24 @@
       "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5ce61ee_07e26493",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-09T23:02:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45757b58_e3810f12",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "5197b99c_563836c0",
+        "filename": "dashboard/dashboard/spa/report-section.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-09T23:02:50Z",
+      "side": 1,
+      "message": "I couldn\u0027t get the trace to get called, so this might have been fixed already. I deleted this check.",
+      "parentUuid": "78a06424_aea6bd23",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1f9b5c9b_1d0c847a",
         "filename": "dashboard/dashboard/spa/request-base.js",
         "patchSetId": 20
@@ -101,6 +191,42 @@
       "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad1e6738_24b3452c",
+        "filename": "dashboard/dashboard/spa/request-base.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-09T23:02:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f9b5c9b_1d0c847a",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f73631c6_a439be17",
+        "filename": "dashboard/dashboard/spa/request-base.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-09T23:02:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f9b5c9b_1d0c847a",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -124,6 +250,30 @@
       "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aed1fc74_aba961b8",
+        "filename": "dashboard/dashboard/spa/request-base.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-09T23:02:50Z",
+      "side": 1,
+      "message": "This was necessary for iterators, but iterators aren\u0027t async so this should be removed.",
+      "parentUuid": "62f3badb_90536b95",
+      "range": {
+        "startLine": 204,
+        "startChar": 40,
+        "endLine": 204,
+        "endChar": 56
+      },
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -161,6 +311,24 @@
     },
     {
       "key": {
+        "uuid": "ba29b8e5_7165f5af",
+        "filename": "dashboard/dashboard/spa/service-worker.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-09T23:02:50Z",
+      "side": 1,
+      "message": "The reports cache uses this method too :)",
+      "parentUuid": "73dcee1d_88dfb830",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6306802f_a8b5d81f",
         "filename": "dashboard/dashboard/spa/service-worker.js",
         "patchSetId": 20
@@ -175,6 +343,24 @@
       "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d7b98a4_bb224b7c",
+        "filename": "dashboard/dashboard/spa/service-worker.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-09T23:02:50Z",
+      "side": 1,
+      "message": "Right. I will rename this function to \"broadcast\".",
+      "parentUuid": "6306802f_a8b5d81f",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -195,6 +381,24 @@
     },
     {
       "key": {
+        "uuid": "a8d400b9_30de873d",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-09T23:02:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a449b346_64abc94d",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "43199327_543c609b",
         "filename": "dashboard/dashboard/spa/sw-utils/range.js",
         "patchSetId": 20
@@ -209,6 +413,24 @@
       "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0df0e956_8baad807",
+        "filename": "dashboard/dashboard/spa/sw-utils/range.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-09T23:02:50Z",
+      "side": 1,
+      "message": "This was used when I was eliminating unused methods from Range. I removed this.",
+      "parentUuid": "43199327_543c609b",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -235,6 +457,30 @@
     },
     {
       "key": {
+        "uuid": "e62373f2_02ba109c",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-test.html",
+        "patchSetId": 20
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-09T23:02:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d22d70d5_be7e53ac",
+      "range": {
+        "startLine": 3,
+        "startChar": 10,
+        "endLine": 3,
+        "endChar": 14
+      },
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "db86ff66_cbff4935",
         "filename": "dashboard/dashboard/spa/sw-utils/timeseries-test.html",
         "patchSetId": 20
@@ -249,6 +495,24 @@
       "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "631d3734_9d42ebde",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-test.html",
+        "patchSetId": 20
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-09T23:02:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db86ff66_cbff4935",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -269,6 +533,24 @@
     },
     {
       "key": {
+        "uuid": "86feea7d_c9677f0c",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-09T23:02:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83731124_a2bdc6c7",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2db964ed_8eabce5b",
         "filename": "dashboard/dashboard/spa/sw-utils/timeseries.js",
         "patchSetId": 20
@@ -283,6 +565,24 @@
       "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1daf95d9_d03f941f",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-09T23:02:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2db964ed_8eabce5b",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -303,6 +603,24 @@
     },
     {
       "key": {
+        "uuid": "5b9e82fd_4a3c3678",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-09T23:02:50Z",
+      "side": 1,
+      "message": "This was to stay consistent with the IndexedDB database schema for the timeseries cache. I have adjusted the schema from \u0027dataPoints\u0027 to \u0027data\u0027.",
+      "parentUuid": "0e0deda3_27ca157f",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a863fee8_16e5c980",
         "filename": "dashboard/dashboard/spa/sw-utils/timeseries.js",
         "patchSetId": 20
@@ -317,6 +635,24 @@
       "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0566e40b_4bc87a01",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-09T23:02:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a863fee8_16e5c980",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -337,6 +673,24 @@
     },
     {
       "key": {
+        "uuid": "20db01c2_895610af",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-09T23:02:50Z",
+      "side": 1,
+      "message": "I remember ESLint complaining about something when I initially tried using object spread.",
+      "parentUuid": "6d84416d_aca25e4c",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9593ae47_d3745c27",
         "filename": "dashboard/dashboard/spa/timeseries-cache.js",
         "patchSetId": 20
@@ -351,6 +705,24 @@
       "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20934044_8e735031",
+        "filename": "dashboard/dashboard/spa/timeseries-cache.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-09T23:02:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9593ae47_d3745c27",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -371,6 +743,24 @@
     },
     {
       "key": {
+        "uuid": "8aa69d91_9fc0d157",
+        "filename": "dashboard/dashboard/spa/timeseries-cache.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-09T23:02:50Z",
+      "side": 1,
+      "message": "I just refactored the only code using r_commit_pos, `FastHistogram.fromRow`. I\u0027ll remove this TODO now.",
+      "parentUuid": "e0983db7_baa84b2b",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5928c02a_413c13de",
         "filename": "dashboard/dashboard/spa/timeseries-cache.js",
         "patchSetId": 20
@@ -385,6 +775,24 @@
       "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1cca6618_6f14a214",
+        "filename": "dashboard/dashboard/spa/timeseries-cache.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-09T23:02:50Z",
+      "side": 1,
+      "message": "Yes, TimeseriesIterator handles revision ranges. I removed these TODOs.",
+      "parentUuid": "5928c02a_413c13de",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -408,6 +816,30 @@
       "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04568bdb_76ccbb6b",
+        "filename": "dashboard/dashboard/spa/timeseries-cache.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-09T23:02:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf7e1aab_86b5c56d",
+      "range": {
+        "startLine": 463,
+        "startChar": 51,
+        "endLine": 463,
+        "endChar": 55
+      },
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {

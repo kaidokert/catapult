@@ -723,6 +723,24 @@
     },
     {
       "key": {
+        "uuid": "fcc2fbc6_3f91f51f",
+        "filename": "tracing/tracing/base/math/range.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-09T23:02:50Z",
+      "side": 1,
+      "message": "Filter returns a new array. Clone can be removed since the use case is small enough.",
+      "parentUuid": "9a8cdc55_44eb0355",
+      "revId": "4fbd26886c0b8eb0571698b5091c5c8ea5b3e687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e1783847_4e8b903f",
         "filename": "tracing/tracing/base/math/range.html",
         "patchSetId": 5
