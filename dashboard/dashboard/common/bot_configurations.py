@@ -6,14 +6,23 @@ import string
 
 from google.appengine.ext import ndb
 
+from dashboard.common import datastore_hooks
 from dashboard.common import namespaced_stored_object
+from dashboard.common import stored_object
+from dashboard.common import timing
 
 
 BOT_CONFIGURATIONS_KEY = 'bot_configurations'
 
+# Prefetch bot configurations:
+stored_object.GetCachedAsync(namespaced_stored_object.NamespaceKey(
+    BOT_CONFIGURATIONS_KEY, datastore_hooks.INTERNAL))
+stored_object.GetCachedAsync(namespaced_stored_object.NamespaceKey(
+    BOT_CONFIGURATIONS_KEY, datastore_hooks.EXTERNAL))
+
 
 def Get(name):
-  configurations = namespaced_stored_object.Get(BOT_CONFIGURATIONS_KEY)
+  configurations = namespaced_stored_object.GetCached(BOT_CONFIGURATIONS_KEY)
   configuration = configurations[name]
   if 'alias' in configuration:
     return configurations[configuration['alias']]
@@ -23,8 +32,9 @@ def Get(name):
 @ndb.tasklet
 def GetAliasesAsync(bot):
   aliases = {bot}
-  configurations = yield namespaced_stored_object.GetAsync(
-      BOT_CONFIGURATIONS_KEY)
+  with timing.WallTimeLogger('occam'):
+    configurations = yield namespaced_stored_object.GetCachedAsync(
+        BOT_CONFIGURATIONS_KEY)
   if not configurations or bot not in configurations:
     raise ndb.Return(aliases)
   if 'alias' in configurations[bot]:
