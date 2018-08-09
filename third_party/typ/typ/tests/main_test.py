@@ -23,6 +23,7 @@ from typ import test_case
 from typ import Host
 from typ import VERSION
 from typ.fakes import test_result_server_fake
+from typ.fakes import host_fake
 
 
 is_python3 = bool(sys.version_info.major == 3)
@@ -249,6 +250,28 @@ class TestCli(test_case.MainTestCase):
         self.assertIn('[1/1] err_test.ErrTest.test_err failed unexpectedly',
                       out)
         self.assertIn('0 tests passed, 0 skipped, 1 failure', out)
+
+    def test_expectations(self):
+        files = {
+            'expectations.txt': d('''\
+                # tags: [ foo bar ]
+                crbug.com/12345 [ foo ] fail_test.FailingTest.test_fail [ Failure ]
+                '''),
+            'fail_test.py': FAIL_TEST_PY,
+        }
+
+        # No tags are passed, so this should fail unexpectedly.
+        #_, out, _, _ = self.check(['-X', 'expectations.txt'],
+        #                          files=files, ret=1)
+
+        # A matching tag is passed, so the test should fail as expected.
+        _, out, _, _ = self.check(['-X', 'expectations.txt', '-x', 'foo'],
+                                  files=files, ret=0)
+
+        # A tag that doesn't match is passed, so the test should fail
+        # unexpectedly.
+        _, out, _, _ = self.check(['-X', 'expectations.txt', '-x', 'bar'],
+                                  files=files, ret=1)
 
     def test_fail(self):
         _, out, _, _ = self.check([], files=FAIL_TEST_FILES, ret=1, err='')
@@ -571,7 +594,7 @@ class TestCli(test_case.MainTestCase):
 
         # We do a bunch of assertIn()'s to work around the non-portable
         # tracebacks.
-        self.assertIn(('[1/9] sf_test.ExpectedFailures.test_fail failed:\n'
+        self.assertIn(('[1/9] sf_test.ExpectedFailures.test_fail failed as expected:\n'
                        '  Traceback '), out)
         self.assertIn(('[2/9] sf_test.ExpectedFailures.test_pass '
                        'passed unexpectedly'), out)
@@ -697,7 +720,7 @@ class TestCli(test_case.MainTestCase):
 
         self.assertEqual(len(posts), 1)
         payload = posts[0][2].decode('utf8')
-        self.assertIn('"test_pass": {"actual": "PASS"',
+        self.assertIn('"test_pass": {"expected": "PASS", "actual": "PASS"',
                       payload)
         self.assertTrue(payload.endswith('--\r\n'))
         self.assertNotEqual(server.log.getvalue(), '')
@@ -775,15 +798,15 @@ class TestCli(test_case.MainTestCase):
         self.assertEqual(len(result['times']), 1)
         self.assertGreater(result['times'][0], 0)
         result.pop('times')
-        self.assertEqual(results['tests'],
-                         {u'pass_test': {
+        self.assertEqual({u'pass_test': {
                              u'PassingTest': {
                                  u'test_pass': {
                                      u'actual': u'PASS',
                                      u'expected': u'PASS',
                                  }
                              }
-                         }})
+                         }},
+                         results['tests'])
 
     def test_write_trace_to(self):
         _, _, _, files = self.check(['--write-trace-to', 'trace.json'],
@@ -796,8 +819,8 @@ class TestCli(test_case.MainTestCase):
         self.assertEqual(event['name'], 'pass_test.PassingTest.test_pass')
         self.assertEqual(event['ph'], 'X')
         self.assertEqual(event['tid'], 1)
-        self.assertEqual(event['args']['expected'], ['Pass'])
-        self.assertEqual(event['args']['actual'], 'Pass')
+        self.assertEqual(event['args']['expected'], ['PASS'])
+        self.assertEqual(event['args']['actual'], 'PASS')
 
 
 class TestMain(TestCli):
