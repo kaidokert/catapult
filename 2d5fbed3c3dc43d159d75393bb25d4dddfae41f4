@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8cd0a7f9_baed39c9",
+        "filename": "experimental/long_term_health/long_term_health/apk_finder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-09T09:16:23Z",
+      "side": 1,
+      "message": "Hmm, this version number mangling (splitting, back and forth between str and int) is getting annoying. How about defining a ChromeVersion class (could be a namedtuple) which can parse the version strings and allow to easily compare version numbers, do arithmetic with them, etc? So this would simply become:\n\n  chrome_type \u003d \u0027Monochrome\u0027 if version.milestone \u003e\u003d 53 else \u0027Chrome\u0027\n\nYou could do that on a follow up CL.",
+      "revId": "2d5fbed3c3dc43d159d75393bb25d4dddfae41f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
