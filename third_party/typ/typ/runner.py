@@ -13,6 +13,7 @@
 # limitations under the License.
 
 import fnmatch
+import glob
 import importlib
 import inspect
 import json
@@ -34,11 +35,12 @@ if path_to_file.endswith('.pyc'):  # pragma: no cover
     path_to_file = path_to_file[:-1]
 dir_above_typ = os.path.dirname(os.path.dirname(path_to_file))
 if dir_above_typ not in sys.path:  # pragma: no cover
-    sys.path.append(dir_above_typ)
+    sys.path.insert(0, dir_above_typ)
 
 
 from typ import json_results
 from typ.arg_parser import ArgumentParser
+from typ.expectations_parser import TestExpectationParser, ParseError
 from typ.host import Host
 from typ.pool import make_pool
 from typ.stats import Stats
@@ -114,6 +116,10 @@ class Runner(object):
         self.top_level_dirs = []
         self.win_multiprocessing = WinMultiprocessing.spawn
         self.final_responses = []
+        self.has_expectations = False
+        self.individual_expectations = {}
+        self.expectation_globs = []
+        self.expectation_tags = set()
 
         # initialize self.args to the defaults.
         parser = ArgumentParser(self.host)
@@ -341,6 +347,30 @@ class Runner(object):
             self.cov = coverage.coverage(source=self.coverage_source,
                                          data_suffix=True)
             self.cov.erase()
+
+        if args.expectations_files:
+            if len(args.expectations_files) != 1:
+                self.print_(
+                    'Only a single expectation file is currently supported',
+                    stream=h.stderr)
+                return 1
+            contents = self.host.read_text_file(args.expectations_files[0])
+            try:
+                parser = TestExpectationParser(contents)
+            except ParseError as e:
+                self.print_(e.message, stream=h.stderr)
+                return 1
+            self.has_expectations = True
+            for exp in parser.expectations:
+                if exp.test.endswith('*'):
+                    self.expectation_globs.append(exp)
+                else:
+                    self.individual_expectations.setdefault(exp.test, [])
+                    self.individual_expectations[exp.test].append(exp)
+            self.expectation_globs = sorted(self.expectation_globs,
+                                            key=lambda exp: len(exp.test))
+        self.expectation_tags = set(args.expectation_tags)
+
         return 0
 
     def find_tests(self, args):
@@ -585,6 +615,9 @@ class Runner(object):
 
         if result.unexpected:
             result_str += ' unexpectedly'
+        elif result.actual == ResultType.Failure:
+            result_str += ' as expected'
+
         if self.args.timing:
             timing_str = ' %.4fs' % result.took
         else:
@@ -789,6 +822,10 @@ class _Child(object):
         self.top_level_dirs = parent.top_level_dirs
         self.loaded_suites = {}
         self.cov = None
+        self.has_expectations = parent.has_expectations
+        self.individual_expectations = parent.individual_expectations
+        self.expectation_globs = parent.expectation_globs
+        self.expectation_tags = parent.expectation_tags
 
 
 def _setup_process(host, worker_num, child):
@@ -841,7 +878,7 @@ def _run_one_test(child, test_input):
     # This comes up when using the FakeTestLoader and testing typ itself,
     # but could come up when testing non-typ code as well.
     h.capture_output(divert=not child.passthrough)
-
+    expected_results = expected_results_for(child, test_name)
     ex_str = ''
     try:
         orig_skip = unittest.skip
@@ -849,6 +886,10 @@ def _run_one_test(child, test_input):
         if child.all:
             unittest.skip = lambda reason: lambda x: x
             unittest.skipIf = lambda condition, reason: lambda x: x
+        elif 'Skip' in expected_results:
+            return Result(test_name, ResultTypeSkip, start, 0,
+                          child.worker_num, unexpected=False, code=0,
+                          err='', pid=pid)
 
         try:
             suite = child.loader.loadTestsFromName(test_name)
@@ -898,7 +939,25 @@ def _run_one_test(child, test_input):
 
     took = h.time() - start
     return _result_from_test_result(test_result, test_name, start, took, out,
-                                    err, child.worker_num, pid)
+                                    err, child.worker_num, pid,
+                                    expected_results,
+                                    child.has_expectations)
+
+
+def expected_results_for(child, test):
+    exps = child.individual_expectations.get(test)
+    tags = child.expectation_tags
+    if exps:
+        for exp in exps:
+            conds = set(exp.conditions)
+            if conds.intersection(tags) == conds:
+                return exp.results
+    for exp in child.expectation_globs:
+        conds = set(exp.conditions)
+        if (fnmatch.fnmatch(test, exp.test) and
+                conds.intersection(tags) == conds):
+            return exp.results
+    return [ResultType.Pass]
 
 
 def _run_under_debugger(host, test_case, suite,
@@ -913,42 +972,41 @@ def _run_under_debugger(host, test_case, suite,
 
 
 def _result_from_test_result(test_result, test_name, start, took, out, err,
-                             worker_num, pid):
+                             worker_num, pid, expected_results,
+                             has_expectations):
     flaky = False
+    expected = expected_results
     if test_result.failures:
-        expected = [ResultType.Pass]
         actual = ResultType.Failure
         code = 1
-        unexpected = True
         err = err + test_result.failures[0][1]
+        unexpected = actual not in expected
     elif test_result.errors:
-        expected = [ResultType.Pass]
         actual = ResultType.Failure
         code = 1
-        unexpected = True
         err = err + test_result.errors[0][1]
+        unexpected = actual not in expected
     elif test_result.skipped:
-        expected = [ResultType.Skip]
         actual = ResultType.Skip
         err = err + test_result.skipped[0][1]
         code = 0
-        unexpected = False
+        if has_expectations:
+            unexpected = actual not in expected
+        else:
+            unexpected = False
     elif test_result.expectedFailures:
-        expected = [ResultType.Failure]
         actual = ResultType.Failure
         code = 1
         err = err + test_result.expectedFailures[0][1]
         unexpected = False
     elif test_result.unexpectedSuccesses:
-        expected = [ResultType.Failure]
         actual = ResultType.Pass
         code = 0
         unexpected = True
     else:
-        expected = [ResultType.Pass]
         actual = ResultType.Pass
         code = 0
-        unexpected = False
+        unexpected = actual not in expected
 
     return Result(test_name, actual, start, took, worker_num,
                   expected, unexpected, flaky, code, out, err, pid)
