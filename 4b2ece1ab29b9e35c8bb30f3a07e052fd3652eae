@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "93d4b3ab_ecf4d39b",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-09T09:12:38Z",
+      "side": 1,
+      "message": "still not sure if averaging is the right thing to do here, but it\u0027s fine for now.",
+      "range": {
+        "startLine": 266,
+        "startChar": 17,
+        "endLine": 266,
+        "endChar": 40
+      },
+      "revId": "4b2ece1ab29b9e35c8bb30f3a07e052fd3652eae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "52363e06_e7fb3cbe",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-09T09:12:38Z",
+      "side": 1,
+      "message": "nit: const aux \u003d [average(e.sampleValues)];",
+      "range": {
+        "startLine": 269,
+        "startChar": 8,
+        "endLine": 270,
+        "endChar": 42
+      },
+      "revId": "4b2ece1ab29b9e35c8bb30f3a07e052fd3652eae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cccda797_31e13c25",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-09T09:12:38Z",
+      "side": 1,
+      "message": "nit: metric",
+      "range": {
+        "startLine": 276,
+        "startChar": 15,
+        "endLine": 276,
+        "endChar": 20
+      },
+      "revId": "4b2ece1ab29b9e35c8bb30f3a07e052fd3652eae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fee6abb5_cb7d5cdf",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-09T09:12:38Z",
+      "side": 1,
+      "message": "nit: capitalise class names (TableRow, StoryRow)",
+      "range": {
+        "startLine": 283,
+        "startChar": 14,
+        "endLine": 283,
+        "endChar": 22
+      },
+      "revId": "4b2ece1ab29b9e35c8bb30f3a07e052fd3652eae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
