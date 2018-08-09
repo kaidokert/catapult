@@ -158,6 +158,239 @@
       "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43199327_543c609b",
+        "filename": "dashboard/dashboard/spa/sw-utils/range.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T05:50:06Z",
+      "side": 1,
+      "message": "What does this mean?",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d22d70d5_be7e53ac",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-test.html",
+        "patchSetId": 20
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T05:50:06Z",
+      "side": 1,
+      "message": "nit: 2018",
+      "range": {
+        "startLine": 3,
+        "startChar": 10,
+        "endLine": 3,
+        "endChar": 14
+      },
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db86ff66_cbff4935",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-test.html",
+        "patchSetId": 20
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T05:50:06Z",
+      "side": 1,
+      "message": "Should this be in a tearDown method?",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83731124_a2bdc6c7",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T05:50:06Z",
+      "side": 1,
+      "message": "It looks like this ignores minRevision if maxRevision is unset, and vice versa.\nWould it be possible to set minRevision\u003d0 or -Infinity if it\u0027s unset but maxRevision is set, and vice versa?",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2db964ed_8eabce5b",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T05:50:06Z",
+      "side": 1,
+      "message": "Can you define constants for the object store names as well as the readonly/readwrite transaction modes?",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e0deda3_27ca157f",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T05:50:06Z",
+      "side": 1,
+      "message": "Any reason not to use the term \u0027datum\u0027 instead of datapoint and \u0027data\u0027 instead of \u0027datapoints\u0027 to be consistent with the UI?",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a863fee8_16e5c980",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T05:50:06Z",
+      "side": 1,
+      "message": "I think the for..of loop would be faster and more readable.\n\nconst normalizedDatum \u003d {};\nfor (let i \u003d 0; i \u003c this.columns.length; ++i) {\n  normalizedDatum[this.columns[i]] \u003d datum[i];\n}\nreturn normalizedDatum;",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d84416d_aca25e4c",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T05:50:06Z",
+      "side": 1,
+      "message": "nit: can you use object spread instead of Object.assign()?",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9593ae47_d3745c27",
+        "filename": "dashboard/dashboard/spa/timeseries-cache.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T05:50:06Z",
+      "side": 1,
+      "message": "Looks like this is done?",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0983db7_baa84b2b",
+        "filename": "dashboard/dashboard/spa/timeseries-cache.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T05:50:06Z",
+      "side": 1,
+      "message": "This is done?",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5928c02a_413c13de",
+        "filename": "dashboard/dashboard/spa/timeseries-cache.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T05:50:06Z",
+      "side": 1,
+      "message": "Can you confirm that TimeseriesIterator in chart-timeseries.js handles this and remove these todos?",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf7e1aab_86b5c56d",
+        "filename": "dashboard/dashboard/spa/timeseries-cache.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T05:50:06Z",
+      "side": 1,
+      "message": "nit: no apostrophe",
+      "range": {
+        "startLine": 463,
+        "startChar": 51,
+        "endLine": 463,
+        "endChar": 55
+      },
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd8d7236_414c4cf2",
+        "filename": "third_party/idb/idb.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-09T05:50:06Z",
+      "side": 1,
+      "message": "Please make another CL to update third_party files on master branch.",
+      "revId": "0b21a992a65d296dc79035fb69a65304c6d69151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
