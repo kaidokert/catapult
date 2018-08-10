@@ -428,6 +428,24 @@
     },
     {
       "key": {
+        "uuid": "50a12b35_5c1565b6",
+        "filename": "telemetry/telemetry/internal/forwarders/fuchsia_forwarder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1279964
+      },
+      "writtenOn": "2018-08-10T22:00:49Z",
+      "side": 1,
+      "message": "I\u0027ve currently got a CL in review that will allow the Forwarder to support both of these use cases. The SSHPortForwarder needed to be extended with bidirectional forwarding capabilities. While the rest of this CL is being reviewed, I\u0027ll include the necessary changes from that Cl when it\u0027s merged.",
+      "parentUuid": "2f000121_44d9b295",
+      "revId": "bb3ac33fbe0b0ae2fd5a0cc6dce9cfb86cfb6cdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dede4b2d_3fa4eb31",
         "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
         "patchSetId": 1
