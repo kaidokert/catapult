@@ -6,8 +6,8 @@ found in the LICENSE file.
 -->
 
 <link rel="import" href="/bower_components/iron-icon/iron-icon.html">
-<link rel="import" href="/bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="/bower_components/paper-progress/paper-progress.html">
+<link rel="import" href="/bower_components/paper-styles/element-styles/paper-material-styles.html">
 <link rel="import" href="/bower_components/paper-toast/paper-toast.html">
 <link rel="import" href="/bower_components/paper-toggle-button/paper-toggle-button.html">
 <link rel="import" href="/dashboard/spa/alerts-table.html">
@@ -21,7 +21,7 @@ found in the LICENSE file.
 
 <dom-module id="alerts-section">
   <template>
-    <style>
+    <style include="paper-material-styles">
       #controls {
         align-items: center;
         display: flex;
@@ -65,6 +65,10 @@ found in the LICENSE file.
         margin-bottom: 8px;
       }
 
+      #recent_bugs_container {
+        position: relative;
+      }
+
       #recent_bugs {
         border-radius: 24px;
         background-color: var(--paper-indigo-50);
@@ -76,15 +80,20 @@ found in the LICENSE file.
         color: var(--paper-grey-500);
       }
 
+      .bug_notification {
+        @apply --paper-material-elevation-2;
+        background-color: white;
+        font-size: 12px;
+        overflow: hidden;
+        padding: 8px;
+        position: absolute;
+        white-space: nowrap;
+        z-index: var(--layer-menu);
+      }
+
       #recent_bugs_table {
         margin: 0;
         padding: 0;
-      }
-
-      paper-dialog {
-        margin: 0;
-        padding: 8px;
-        position: absolute !important;
       }
 
       #close {
@@ -226,7 +235,7 @@ found in the LICENSE file.
         </template>
       </span>
 
-      <span>
+      <span id="recent_bugs_container">
         <raised-button
             id="recent_bugs"
             disabled$="[[_empty(recentlyModifiedBugs)]]"
@@ -234,45 +243,34 @@ found in the LICENSE file.
           Recent Bugs
         </raised-button>
 
-        <paper-dialog
-            opened="[[hasTriagedNew]]"
-            horizontal-align="right"
-            vertical-align="top"
-            no-overlap
-            on-iron-overlay-canceled="onCancelTriagedNew_">
+        <iron-collapse
+            class="bug_notification"
+            opened="[[hasTriagedNew]]">
           Created
           <a href="[[crbug_(triagedBugId)]]" target="_blank">
             [[triagedBugId]]
           </a>
-        </paper-dialog>
+        </iron-collapse>
 
-        <paper-dialog
-            opened="[[hasTriagedExisting]]"
-            horizontal-align="right"
-            vertical-align="top"
-            no-overlap
-            on-iron-overlay-canceled="onCancelTriagedExisting_">
+        <iron-collapse
+            class="bug_notification"
+            opened="[[hasTriagedExisting]]">
           Updated
           <a href="[[crbug_(triagedBugId)]]" target="_blank">
             [[triagedBugId]]
           </a>
-        </paper-dialog>
+        </iron-collapse>
 
-        <paper-dialog
-            opened="[[hasIgnored]]"
-            horizontal-align="right"
-            vertical-align="top"
-            no-overlap
-            on-iron-overlay-canceled="onCancelIgnored_">
+        <iron-collapse
+            class="bug_notification"
+            opened="[[hasIgnored]]">
           Ignored [[ignoredCount]] alert[[_plural(ignoredCount)]]
-        </paper-dialog>
+        </iron-collapse>
 
-        <paper-dialog
+        <iron-collapse
+            class="bug_notification"
             opened="[[showingRecentlyModifiedBugs]]"
-            horizontal-align="right"
-            vertical-align="top"
-            no-overlap
-            on-iron-overlay-canceled="onCancelRecentlyModifiedBugs_">
+            on-blur="onRecentlyModifiedBugsBlur_">
           <table id="recent_bugs_table">
             <thead>
               <tr>
@@ -291,7 +289,7 @@ found in the LICENSE file.
               </tr>
             </template>
           </table>
-        </paper-dialog>
+        </iron-collapse>
       </span>
 
       <iron-icon
