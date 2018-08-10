@@ -10,6 +10,7 @@ found in the LICENSE file.
 <link rel="import" href="/dashboard/spa/cp-input.html">
 <link rel="import" href="/dashboard/spa/element-base.html">
 <link rel="import" href="/dashboard/spa/option-group.html">
+<link rel="import" href="/dashboard/spa/utils.html">
 
 <dom-module id="dropdown-input">
   <template>
@@ -24,6 +25,7 @@ found in the LICENSE file.
 
       #input_clear {
         cursor: pointer;
+        flex-shrink: 0;
         height: 24px;
         width: 24px;
       }
@@ -36,7 +38,7 @@ found in the LICENSE file.
         overflow: auto;
         padding-right: 8px;
         position: absolute;
-        z-index: 100;
+        z-index: var(--layer-menu);
       }
 
       #dropdown iron-collapse {
