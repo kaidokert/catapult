@@ -3,31 +3,44 @@
 # found in the LICENSE file.
 """Functions to get the desired Chrome APK.
 """
+from collections import namedtuple
 import os
 import subprocess
 
 from distutils import version  # pylint: disable=import-error,no-name-in-module
 from long_term_health import utils
 
+
 PROCESSOR_ARCHITECTURE = 'arm'
 
 
-def DecrementPatchNumber(version_num, num):
-  """Helper function for `GetLatestVersionURI`.
-
-  DecrementPatchNumber('68.0.3440.70', 6) => '68.0.3440.64'
-
-  Args:
-    version_num(string): version number to be decremented
-    num(int): the amount that the patch number need to be reduced
-
-  Returns:
-    string: decremented version number
+class ChromeVersion(namedtuple('Version', 'milestone minor build patch')):
+  """Class to represents chrome version number.
   """
-  version_num_list = version_num.split('.')
-  version_num_list[-1] = str(int(version_num_list[-1]) - num)
-  assert int(version_num_list[-1]) >= 0, 'patch number cannot be negative'
-  return '.'.join(version_num_list)
+
+  def __new__(cls, version_num):
+    self = super(ChromeVersion, cls).__new__(
+        cls, *map(int, version_num.split('.')))
+    return self
+
+  def GetDecrementedVersionNum(self, num):
+    """Get the version number with patch number decremented by given amount.
+
+    ChromeVersion('68.0.3440.70').getDecrementedVersionNum(6) => '68.0.3440.64'
+
+    Args:
+      num(int): the amount that the patch number need to be reduced
+
+    Returns:
+      ChromeVersion: decremented Chrome version
+    """
+    patch_num = self.patch - num
+    assert patch_num >= 0, 'patch number cannot be negative'
+    return ChromeVersion(
+        '%d.%d.%d.%d' % (self.milestone, self.minor, self.build, patch_num))
+
+  def __str__(self):
+    return '.'.join(map(str, self))
 
 
 def GetLatestAvailableVersionURI(version_num):
@@ -46,17 +59,18 @@ def GetLatestAvailableVersionURI(version_num):
     CloudDownloadFailed: this would be risen if we cannot find the apk within
     5 patches
   """
+
+  chrome_version = ChromeVersion(version_num)
   # Monochrome is introduced at M53, we will use normal chrome for earlier
   # milestones
-  chrome_type = 'Monochrome' if int(
-      version_num.split('.')[0]) >= 53 else 'Chrome'
+  chrome_type = 'Monochrome' if chrome_version.milestone >= 53 else 'Chrome'
   # check whether the latest patch is in the Google Cloud storage as
   # sometimes it is not, so we need to decrement patch and get the
   # previous one
   for i in range(20):
     # above number has been tested, and it works from milestone 45 to 68
     download_uri = ('gs://chrome-signed/android-*/%s/%s/%s'
-                    'Stable.apk') % (DecrementPatchNumber(version_num, i),
+                    'Stable.apk') % (chrome_version.GetDecrementedVersionNum(i),
                                      PROCESSOR_ARCHITECTURE, chrome_type)
     # check exit code to confirm the existence of the package
     if subprocess.call(['gsutil', 'ls', download_uri]) == 0:
