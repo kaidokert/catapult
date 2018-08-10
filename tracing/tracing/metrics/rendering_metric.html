@@ -29,23 +29,33 @@ found in the LICENSE file.
  * from the OS. So, the metric may be noisy and not be very meaningful for
  * threads that do not have a message loop.
  *
- * frame_times
- * ===========
+ * frame_times_tbmv2
+ * =================
  * The distribution of durations between consecutive display compositor's swap
  * buffer calls, or DRM page flips on ChromeOS devices, during animations.
  *
- * mean_frame_time
- * ===============
- * The arithmetic mean of frame_times.
+ * mean_frame_time_tbmv2
+ * =====================
+ * The arithmetic mean of frame_times_tbmv2.
  *
- * percentage_smooth
- * =================
+ * smooth_frames
+ * =============
  * The percentage of frame_times that are less than 17ms.
  *
  * TODO(chiniforooshan): This metric weighs all frames equally. So, e.g.
  * percentage_smooth is lower (worse) if we have 10 100ms-frames instead of 5
  * 1s-frames. I think it makes more sense to compute the percentage of
  * non-smooth time during animation.
+ *
+ * queueing_durations_tbmv2
+ * ========================
+ * This quantifies how out of sync the compositor and renderer threads are. It
+ * is the amount of wall time that elapses between a
+ * ScheduledActionSendBeginMainFrame event in the compositor thread and the
+ * corresponding BeginMainFrame event in the main thread.
+ *
+ * All renderer processes, including ones for out-of-process iframes, are used
+ * to compute the metric.
  */
 tr.exportTo('tr.metrics.rendering', function() {
   const UNKNOWN_THREAD_NAME = 'Unknown';
@@ -66,13 +76,19 @@ tr.exportTo('tr.metrics.rendering', function() {
   CATEGORY_THREAD_MAP.set('renderer_main', [/^CrRendererMain$/]);
 
   // Various tracing events.
-  const DRM_EVENT = 'DrmEventFlipComplete';
+  const BEGIN_MAIN_FRAME_EVENT = 'ThreadProxy::BeginMainFrame';
   const DISPLAY_EVENT = 'BenchmarkInstrumentation::DisplayRenderingStats';
+  const DRM_EVENT = 'DrmEventFlipComplete';
   const GESTURE_EVENT = 'SyntheticGestureController::running';
+  const SEND_BEGIN_FRAME_EVENT =
+      'ThreadProxy::ScheduledActionSendBeginMainFrame';
 
-  function addValueToMap_(map, key, value) {
-    const oldValue = map.get(key) || 0;
-    map.set(key, oldValue + value);
+  // Updates a value in a map. The default behaviour is to add the new value to
+  // the existing value.
+  function updateMap_(
+      map, key, value, operator = (a, b) => (a || 0) + (b || 0)) {
+    const oldValue = map.get(key);
+    map.set(key, operator(oldValue, value));
   }
 
   function* getCategories_(threadName) {
@@ -96,7 +112,7 @@ tr.exportTo('tr.metrics.rendering', function() {
     // Compute and store CPU times per categories and thread name.
     const threadValues = new Map();
     for (const thread of model.getAllThreads()) {
-      addValueToMap_(
+      updateMap_(
           threadValues,
           thread.name || UNKNOWN_THREAD_NAME,
           tr.b.math.Statistics.sum(
@@ -108,7 +124,7 @@ tr.exportTo('tr.metrics.rendering', function() {
     const breakdowns = new Map();
     for (const [threadName, coresPerSec] of threadValues) {
       for (const category of getCategories_(threadName)) {
-        addValueToMap_(categoryValues, category, coresPerSec);
+        updateMap_(categoryValues, category, coresPerSec);
         if (!breakdowns.has(category)) {
           breakdowns.set(category, new tr.v.d.Breakdown());
         }
@@ -373,6 +389,61 @@ tr.exportTo('tr.metrics.rendering', function() {
     }
   }
 
+  function addQueueingDurationHistograms(histograms, model, segments) {
+    // TODO(chiniforooshan): We use the target renderer to compute metrics to
+    // match the legacy code.  When we are confident about the correctness and
+    // the legacy metrics are deleted, we should change this to compute metrics
+    // for all renderer processes.
+    const chromeHelper = model.getOrCreateHelper(
+        tr.model.helpers.ChromeModelHelper);
+    if (!chromeHelper) return;
+
+    const sendBeginFrameTimes = new Map();
+    const beginMainFrameTimes = new Map();
+    const queueingDurations = [];
+    const ranges = segments.map(s => s.boundsRange);
+    for (const pid in chromeHelper.rendererHelpers) {
+      const rendererHelper = chromeHelper.rendererHelpers[pid];
+      for (const slice of rendererHelper.slicesIntersectingRanges(ranges)) {
+        if (slice.title !== SEND_BEGIN_FRAME_EVENT &&
+            slice.title !== BEGIN_MAIN_FRAME_EVENT) {
+          continue;
+        }
+        const id = slice.args.begin_frame_id;
+        if (id === undefined) {
+          throw new Error('Event is missing begin_frame_id');
+        }
+
+        if (slice.title === SEND_BEGIN_FRAME_EVENT) {
+          if (sendBeginFrameTimes.has(id)) {
+            throw new Error('There must be exactly one send begin frame event');
+          }
+          sendBeginFrameTimes.set(id, slice.start);
+        } else {
+          if (beginMainFrameTimes.has(id)) {
+            throw new Error('There must be exactly one begin main frame event');
+          }
+          beginMainFrameTimes.set(id, slice.start);
+        }
+      }
+      sendBeginFrameTimes.forEach(function(time, id) {
+        queueingDurations.push(beginMainFrameTimes.get(id) - time);
+      });
+      sendBeginFrameTimes.clear();
+      beginMainFrameTimes.clear();
+    }
+
+    histograms.createHistogram(
+        'queueing_durations_tbmv2',
+        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter, queueingDurations, {
+          binBoundaries:
+            tr.v.HistogramBinBoundaries.createExponential(0.01, 2, 20),
+          description: 'Time between ScheduledActionSendBeginMainFrame in ' +
+                       'the compositor thread and the corresponding ' +
+                       'BeginMainFrame in the main thread.'
+        });
+  }
+
   function renderingMetric(histograms, model) {
     // Find interesting segments we want to compute metrics in. We use trace
     // events produced by Telemetry. One drawback of this method is that we
@@ -437,6 +508,7 @@ tr.exportTo('tr.metrics.rendering', function() {
     addCoresPerSecondHistograms(histograms, model, segments);
     addFrameTimeHistograms(histograms, model, segments);
     addPipelineHistograms(histograms, model, segments);
+    addQueueingDurationHistograms(histograms, model, segments);
   }
 
   tr.metrics.MetricRegistry.register(renderingMetric);
