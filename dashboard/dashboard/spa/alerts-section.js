@@ -683,7 +683,7 @@ tr.exportTo('cp', () => {
       localStorage.setItem('recentlyModifiedBugs', JSON.stringify(
           state.recentlyModifiedBugs));
 
-      await cp.ElementBase.timeout(5000);
+      await cp.timeout(5000);
       state = Polymer.Path.get(getState(), statePath);
       if (state.triagedBugId !== triagedBugId) return;
       dispatch(AlertsSection.actions.cancelTriagedExisting(statePath));
@@ -733,7 +733,7 @@ tr.exportTo('cp', () => {
         hasIgnored: true,
         ignoredCount,
       }));
-      await cp.ElementBase.timeout(5000);
+      await cp.timeout(5000);
       state = Polymer.Path.get(getState(), statePath);
       if (state.ignoredCount !== ignoredCount) return;
       dispatch(cp.ElementBase.actions.updateObject(statePath, {
@@ -815,7 +815,7 @@ tr.exportTo('cp', () => {
           statePath, {isLoading: false}));
 
       if (bugId === undefined) return;
-      await cp.ElementBase.timeout(5000);
+      await cp.timeout(5000);
       state = Polymer.Path.get(getState(), statePath);
       if (state.triagedBugId !== bugId) return;
       dispatch(cp.ElementBase.actions.updateObject(statePath, {

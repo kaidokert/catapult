@@ -408,7 +408,7 @@ tr.exportTo('cp', () => {
       // effectively just prefetching the timeseries and pre-stamping the DOM.
       let state = Polymer.Path.get(getState(), statePath);
       for (let tabIndex = 0; tabIndex < state.relatedTabs.length; ++tabIndex) {
-        await cp.ElementBase.idlePeriod();
+        await cp.idlePeriod();
         state = Polymer.Path.get(getState(), statePath);
         if (tabIndex >= state.relatedTabs.length) break;
         cp.ElementBase.actions.updateObject(

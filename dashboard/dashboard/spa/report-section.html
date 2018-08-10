@@ -161,7 +161,7 @@ found in the LICENSE file.
       #scratch {
         opacity: 0;
         position: absolute;
-        z-index: -100;
+        z-index: var(--layer-hidden);
       }
 
       #tooltip {
@@ -169,7 +169,7 @@ found in the LICENSE file.
         border: 2px solid var(--paper-indigo-500);
         padding: 8px;
         position: absolute;
-        z-index: 100;
+        z-index: var(--layer-menu);
       }
 
       #tooltip td {
