@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "510108c2_db1e652a",
+        "filename": "dashboard/dashboard/spa/index.html",
+        "patchSetId": 11
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-08-10T23:46:29Z",
+      "side": 1,
+      "message": "Random question: Is this a catapault thing? What does this do?",
+      "range": {
+        "startLine": 52,
+        "startChar": 69,
+        "endLine": 52,
+        "endChar": 95
+      },
+      "revId": "297a5df9af4b8d99a569c02f269d4f8effc74006",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
