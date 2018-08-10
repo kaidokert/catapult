@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "054d47e5_4ebc0664",
+        "filename": "experimental/long_term_health/long_term_health/apk_finder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-10T11:45:56Z",
+      "side": 1,
+      "message": "instead let\u0027s have this function return a new ChromeVersion with the decremented patch number, and then define a __str__ method to turn ChromeVersion\u0027s into strings.",
+      "revId": "49e21119fe097b163eec64df260c6b2c71a771c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
