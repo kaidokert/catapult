@@ -18,16 +18,16 @@ tr.exportTo('cp', () => {
 
     async focus() {
       this.nativeInput.focus();
-      while (cp.ElementBase.getActiveElement() !== this.nativeInput) {
-        await cp.ElementBase.timeout(50);
+      while (cp.getActiveElement() !== this.nativeInput) {
+        await cp.timeout(50);
         this.nativeInput.focus();
       }
     }
 
     async blur() {
       this.nativeInput.blur();
-      while (cp.ElementBase.getActiveElement() === this.nativeInput) {
-        await cp.ElementBase.timeout(50);
+      while (cp.getActiveElement() === this.nativeInput) {
+        await cp.timeout(50);
         this.nativeInput.blur();
       }
     }

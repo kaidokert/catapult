@@ -41,7 +41,7 @@ tr.exportTo('cp', () => {
       if (cp.IS_DEBUG) {
         // Simulate network latency in order to test loading state e.g. progress
         // bars.
-        await cp.ElementBase.timeout(1000);
+        await cp.timeout(1000);
         return this.postProcess_(await this.localhostResponse_());
       }
 
@@ -175,7 +175,7 @@ tr.exportTo('cp', () => {
    */
   RequestBase.batchResponses = async function* (promises, opt_getDelayPromise) {
     const getDelayPromise = opt_getDelayPromise || (() =>
-      cp.ElementBase.timeout(500));
+      cp.timeout(500));
     let delay;
     let results = [];
     let errors = [];
