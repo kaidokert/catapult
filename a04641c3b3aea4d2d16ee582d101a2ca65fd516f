@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "08bc321b_93e991b2",
+        "filename": "experimental/long_term_health/long_term_health/apk_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-10T14:56:04Z",
+      "side": 1,
+      "message": "nit: we tend to prefer the more slightly more readable list comprehensions over map, e.g.:\n\n  args \u003d [int(v) for v in version_num.split(\u0027.\u0027)]\n  return super(ChromeVersion, cls).__new__(cls, *args)",
+      "revId": "a04641c3b3aea4d2d16ee582d101a2ca65fd516f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a89209f5_6cdaceec",
+        "filename": "experimental/long_term_health/long_term_health/apk_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-10T14:56:04Z",
+      "side": 1,
+      "message": "Oh, we should let __new__ take either a tuple or a string, to save us from having to make the string and then breaking it up again.\n\nAlso do:\n\n  return type(self)(...)\n\nIn case we make subclasses of this later.",
+      "revId": "a04641c3b3aea4d2d16ee582d101a2ca65fd516f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c16ea79_b75274fc",
+        "filename": "experimental/long_term_health/long_term_health/apk_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-10T14:56:04Z",
+      "side": 1,
+      "message": "nit: move \"magic\" methods close to the top, e.g. after __new__, and before regular methods.",
+      "revId": "a04641c3b3aea4d2d16ee582d101a2ca65fd516f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c7c67df_d846199a",
+        "filename": "experimental/long_term_health/long_term_health/apk_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-10T14:56:04Z",
+      "side": 1,
+      "message": "here you should be able to use ChromeVersion too, right? (Probably we don\u0027t even need distutils.version any more).",
+      "revId": "a04641c3b3aea4d2d16ee582d101a2ca65fd516f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
