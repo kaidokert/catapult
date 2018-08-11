@@ -46,10 +46,12 @@ found in the LICENSE file.
       }
 
       #options {
-        color: var(--paper-indigo-500);
+        color: var(--primary-color-dark);
         cursor: pointer;
-        height: 24px;
+        height: var(--icon-size);
+        outline: none;
         padding: 0;
+        width: var(--icon-size);
       }
 
       #options_container {
@@ -57,12 +59,21 @@ found in the LICENSE file.
         margin-top: 20px;
       }
 
-      paper-dialog {
-        margin: 0;
+      #options_menu {
+        @apply --elevation-2;
+        background-color: var(--background-color);
+        max-height: 600px;
+        overflow: hidden;
+        outline: none;
+        padding-right: 8px;
+        position: absolute;
+        z-index: var(--layer-menu);
       }
 
-      paper-dialog div {
+      #options_menu_inner {
         display: flex;
+        padding: 16px;
+        overflow: hidden;
       }
 
       .column {
@@ -81,6 +92,12 @@ found in the LICENSE file.
         padding: 4px;
       }
 
+      paper-radio-button {
+        --paper-radio-button-label: {
+          white-space: nowrap;
+        }
+      }
+
       paper-radio-group {
         display: flex;
         flex-direction: column;
@@ -97,15 +114,17 @@ found in the LICENSE file.
             id="options"
             icon="settings"
             style$="width: calc([[chartLayout.yAxisWidth]]px - 8px);"
+            tabindex="0"
             on-click="onOptionsToggle_">
         </iron-icon>
 
-        <paper-dialog
+        <iron-collapse
+            id="options_menu"
             opened="[[isShowingOptions]]"
-            horizontal-align="left"
-            vertical-align="top"
-            on-iron-overlay-canceled="onOptionsToggle_">
-          <div>
+            tabindex="0"
+            on-blur="onMenuBlur_"
+            on-keyup="onMenuKeyup_">
+          <iron-collapse id="options_menu_inner" horizontal opened="[[isShowingOptions]]">
             <div id="toggles" class="column">
               <b>Options</b>
               <paper-toggle-button
@@ -144,7 +163,8 @@ found in the LICENSE file.
               </paper-radio-group>
             </div>
           </div>
-        </paper-dialog>
+          </iron-collapse>
+        </iron-collapse>
       </span>
 
       <chart-timeseries
