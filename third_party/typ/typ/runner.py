@@ -116,7 +116,9 @@ class Runner(object):
         self.top_level_dirs = []
         self.win_multiprocessing = WinMultiprocessing.spawn
         self.final_responses = []
-        self.expectations = []
+        self.has_expectations = False
+        self.individual_expectations = {}
+        self.expectation_globs = []
         self.expectation_tags = set()
 
         # initialize self.args to the defaults.
@@ -358,7 +360,15 @@ class Runner(object):
             except ParseError as e:
                 self.print_(e.message, stream=h.stderr)
                 return 1
-            self.expectations = parser.expectations
+            self.has_expectations = True
+            for exp in parser.expectations:
+                if exp.test.endswith('*'):
+                    self.expectation_globs.append(exp)
+                else:
+                    self.individual_expectations.setdefault(exp.test, [])
+                    self.individual_expectations[exp.test].append(exp)
+            self.expectation_globs = sorted(self.expectation_globs,
+                                            key=lambda exp: len(exp.test))
         self.expectation_tags = set(args.expectation_tags)
 
         return 0
@@ -812,7 +822,9 @@ class _Child(object):
         self.top_level_dirs = parent.top_level_dirs
         self.loaded_suites = {}
         self.cov = None
-        self.expectations = parent.expectations
+        self.has_expectations = parent.has_expectations
+        self.individual_expectations = parent.individual_expectations
+        self.expectation_globs = parent.expectation_globs
         self.expectation_tags = parent.expectation_tags
 
 
@@ -866,10 +878,7 @@ def _run_one_test(child, test_input):
     # This comes up when using the FakeTestLoader and testing typ itself,
     # but could come up when testing non-typ code as well.
     h.capture_output(divert=not child.passthrough)
-    has_expectations = child.expectations != []
-    expected_results = expected_results_for(child.expectations,
-                                            child.expectation_tags,
-                                            test_name)
+    expected_results = expected_results_for(child, test_name)
     ex_str = ''
     try:
         orig_skip = unittest.skip
@@ -931,17 +940,24 @@ def _run_one_test(child, test_input):
     took = h.time() - start
     return _result_from_test_result(test_result, test_name, start, took, out,
                                     err, child.worker_num, pid,
-                                    expected_results, has_expectations)
+                                    expected_results,
+                                    child.has_expectations)
 
 
-def expected_results_for(expectations, expectation_tags, test):
-    results = set()
-    for exp in expectations:
+def expected_results_for(child, test):
+    exps = child.individual_expectations.get(test)
+    tags = child.expectation_tags
+    if exps:
+        for exp in exps:
+            conds = set(exp.conditions)
+            if conds.intersection(tags) == conds:
+                return exp.results
+    for exp in child.expectation_globs:
+        conds = set(exp.conditions)
         if (fnmatch.fnmatch(test, exp.test) and
-                set(exp.conditions).intersection(expectation_tags) ==
-                set(exp.conditions)):
-            results.update(set(exp.results))
-    return sorted(results) if results else [ResultType.Pass]
+                conds.intersection(tags) == conds):
+            return exp.results
+    return [ResultType.Pass]
 
 
 def _run_under_debugger(host, test_case, suite,
