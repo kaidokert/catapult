@@ -144,6 +144,17 @@ class ArgumentParser(argparse.ArgumentParser):
             self.add_argument('-v', '--verbose', action='count', default=0,
                               help=('Prints more stuff (can specify multiple '
                                     'times for more output).'))
+            self.add_argument('-x', '--conditions',
+                              dest='conditions',
+                              nargs='*', default=[],
+                              help=('test expectations tags (conditions) '
+                                    'that apply to this run (can specify '
+                                    'multiple times'))
+            self.add_argument('-X', '--expectations-file',
+                              dest='expectations_files',
+                              nargs='*', default=[],
+                              help=('test expectations file (can specify '
+                                    'multiple times'))
             self.add_argument('--passthrough', action='store_true',
                               default=False,
                               help='Prints all output while running.')
