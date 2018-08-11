@@ -6,7 +6,6 @@ found in the LICENSE file.
 -->
 
 <link rel="import" href="/bower_components/iron-icon/iron-icon.html">
-<link rel="import" href="/bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="/bower_components/paper-progress/paper-progress.html">
 <link rel="import" href="/bower_components/paper-toast/paper-toast.html">
 <link rel="import" href="/bower_components/paper-toggle-button/paper-toggle-button.html">
@@ -55,8 +54,8 @@ found in the LICENSE file.
       }
 
       paper-progress {
-        --paper-progress-active-color: var(--paper-indigo-500);
-        --paper-progress-container-color: white;
+        --paper-progress-active-color: var(--primary-color-dark);
+        --paper-progress-container-color: var(--background-color);
         width: 100%;
       }
 
@@ -65,15 +64,18 @@ found in the LICENSE file.
         margin-bottom: 8px;
       }
 
-      #recent_bugs {
-        border-radius: 24px;
-        background-color: var(--paper-indigo-50);
-        color: var(--paper-indigo-500);
+      #recent_bugs_container {
+        position: relative;
       }
 
-      #recent_bugs[disabled] {
-        background-color: var(--paper-grey-100);
-        color: var(--paper-grey-500);
+      .bug_notification {
+        @apply --elevation-2;
+        background-color: var(--background-color);
+        overflow: hidden;
+        padding: 8px;
+        position: absolute;
+        white-space: nowrap;
+        z-index: var(--layer-menu);
       }
 
       #recent_bugs_table {
@@ -81,18 +83,12 @@ found in the LICENSE file.
         padding: 0;
       }
 
-      paper-dialog {
-        margin: 0;
-        padding: 8px;
-        position: absolute !important;
-      }
-
       #close {
         align-self: flex-start;
         cursor: pointer;
         flex-shrink: 0;
-        height: 24px;
-        width: 24px;
+        height: var(--icon-size);
+        width: var(--icon-size);
       }
 
       #triage_controls {
@@ -103,8 +99,8 @@ found in the LICENSE file.
       }
 
       #triage_controls[anySelected] {
-        background-color: var(--paper-indigo-50);
-        color: var(--paper-indigo-500);
+        background-color: var(--primary-color-light);
+        color: var(--primary-color-dark);
       }
 
       #triage_controls .button {
@@ -116,7 +112,7 @@ found in the LICENSE file.
       }
 
       #triage_controls .button[disabled] {
-        color: var(--paper-grey-500);
+        color: var(--neutral-color-dark);
         font-weight: normal;
       }
 
@@ -125,12 +121,12 @@ found in the LICENSE file.
       }
 
       #edit, #documentation {
-        color: var(--paper-indigo-500);
+        color: var(--primary-color-dark);
         padding: 8px;
       }
 
       paper-toast a {
-        color: var(--paper-indigo-300);
+        color: var(--primary-color-medium);
       }
     </style>
 
@@ -226,7 +222,7 @@ found in the LICENSE file.
         </template>
       </span>
 
-      <span>
+      <span id="recent_bugs_container">
         <raised-button
             id="recent_bugs"
             disabled$="[[_empty(recentlyModifiedBugs)]]"
@@ -234,45 +230,34 @@ found in the LICENSE file.
           Recent Bugs
         </raised-button>
 
-        <paper-dialog
-            opened="[[hasTriagedNew]]"
-            horizontal-align="right"
-            vertical-align="top"
-            no-overlap
-            on-iron-overlay-canceled="onCancelTriagedNew_">
+        <iron-collapse
+            class="bug_notification"
+            opened="[[hasTriagedNew]]">
           Created
           <a href="[[crbug_(triagedBugId)]]" target="_blank">
             [[triagedBugId]]
           </a>
-        </paper-dialog>
+        </iron-collapse>
 
-        <paper-dialog
-            opened="[[hasTriagedExisting]]"
-            horizontal-align="right"
-            vertical-align="top"
-            no-overlap
-            on-iron-overlay-canceled="onCancelTriagedExisting_">
+        <iron-collapse
+            class="bug_notification"
+            opened="[[hasTriagedExisting]]">
           Updated
           <a href="[[crbug_(triagedBugId)]]" target="_blank">
             [[triagedBugId]]
           </a>
-        </paper-dialog>
+        </iron-collapse>
 
-        <paper-dialog
-            opened="[[hasIgnored]]"
-            horizontal-align="right"
-            vertical-align="top"
-            no-overlap
-            on-iron-overlay-canceled="onCancelIgnored_">
+        <iron-collapse
+            class="bug_notification"
+            opened="[[hasIgnored]]">
           Ignored [[ignoredCount]] alert[[_plural(ignoredCount)]]
-        </paper-dialog>
+        </iron-collapse>
 
-        <paper-dialog
+        <iron-collapse
+            class="bug_notification"
             opened="[[showingRecentlyModifiedBugs]]"
-            horizontal-align="right"
-            vertical-align="top"
-            no-overlap
-            on-iron-overlay-canceled="onCancelRecentlyModifiedBugs_">
+            on-blur="onRecentlyModifiedBugsBlur_">
           <table id="recent_bugs_table">
             <thead>
               <tr>
@@ -291,7 +276,7 @@ found in the LICENSE file.
               </tr>
             </template>
           </table>
-        </paper-dialog>
+        </iron-collapse>
       </span>
 
       <iron-icon
