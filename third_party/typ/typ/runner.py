@@ -118,6 +118,8 @@ class Runner(object):
         self.has_expectations = False
         self.expectations = {}
         self.conditions = set()
+        self.individual_expectations = {}
+        self.expectation_globs = OrderedDict()
 
         # initialize self.args to the defaults.
         parser = ArgumentParser(self.host)
@@ -356,6 +358,9 @@ class Runner(object):
         return 0
 
     def parse_expectations(self):
+        # TODO(crbug.com/835690): With the addition of globs, this makes
+        # the runner code a bit unwieldly; we should move the logic for
+        # handling expectations into its own class in expectations_parser.py.
         args = self.args
         if len(args.expectations_files) != 1:
             # TODO(crbug.com/835690): Fix this.
@@ -370,12 +375,27 @@ class Runner(object):
             self.print_(e.message, stream=h.stderr)
             return 1
         self.has_expectations = True
+        expectation_globs = []
         for exp in parser.expectations:
-            self.expectations.setdefault(exp.test, [])
             # TODO(crbug.com/83560) - Add support for multiple policies
             # for supporting multiple matching lines, e.g., allow/union,
             # reject, etc.
-            self.expectations[exp.test].append(exp)
+            if exp.test.endswith('*'):
+                expectation_globs.append(exp)
+            else:
+                self.individual_expectations.setdefault(exp.test, [])
+                self.individual_expectations[exp.test].append(exp)
+
+            # By using an OrderedDict for the globs and inserting them
+            # with the longest globs first, this'll allow us to match
+            # by the longest glob first. We could also use a list of
+            # lists of exps here, but using an OrderedDict makes debugging
+            # a bit easier and hopefully isn't much of a performance impact.
+            expectation_globs = sorted(expectation_globs,
+                                       key=lambda exp: len(exp.test))
+            for exp in expectation_globs:
+                self.expectation_globs.setdefault(exp.test, [])
+                self.expectation_globs[exp.test].append(exp)
         self.conditions = set(args.conditions)
 
     def find_tests(self, args):
@@ -829,7 +849,8 @@ class _Child(object):
         self.cov = None
         self.has_expectations = parent.has_expectations
         self.conditions = parent.conditions
-        self.expectations = parent.expectations
+        self.individual_expectations = parent.individual_expectations
+        self.expectation_globs = parent.expectation_globs
 
 
 def _setup_process(host, worker_num, child):
@@ -947,6 +968,15 @@ def _run_one_test(child, test_input):
 
 
 def expected_results_for(child, test):
+    results = set()
+    for exp in child.expectations.get(test, []):
+        if (set(exp.conditions).intersection(child.conditions) ==
+                set(exp.conditions)):
+            results.update(set(exp.results))
+    return sorted(results) if results else [ResultType.Pass]
+
+
+def expected_results_for(child, test):
     # A TestExpectations file may contain multiple lines of tests with
     # the same name, each with different sets of conditions for the results,
     # e.g.:
@@ -956,14 +986,35 @@ def expected_results_for(child, test):
     # To determine the expected results for a test, we have to loop over
     # all of the failures matching a test, find the ones that match all of
     # the conditions, and return the union of all of the results.
+    #
+    # The longest matching test string (a name or glob) has priority.
+    #
     # TODO(crbug.com/83560): Handle multiple policies for multiple matching
     # lines (also see above in parse_expectations()).
     results = set()
-    for exp in child.expectations.get(test, []):
-        if (set(exp.conditions).intersection(child.conditions) ==
-                set(exp.conditions)):
+
+    # First check for exact matches on test names.
+    for exp in child.individual_expectations.get(test, []):
+        conds = set(exp.conditions)
+        if conds.intersection(child.conditions) == conds:
             results.update(set(exp.results))
-    return sorted(results) if results else [ResultType.Pass]
+    if results:
+        return results
+
+    # There were no exact matches, so check for matching globs. The globs
+    # inserted into the OrderedDict by length, so by running through the
+    # globs in order we ensure we will hit the longest-length matches first.
+    for glob, exps in child.expectation_globs.items():
+        if fnmatch.fnmatch(test, glob):
+            for exp in exps:   
+                conds = set(exp.conditions)
+                if conds.intersection(child.conds) == conds:
+                    results.update(set(exp.results))
+            if results:
+                return results
+
+    # Nothing matched, so the test is expected to pass by default.
+    return [ResultType.Pass]
 
 
 def _run_under_debugger(host, test_case, suite,
