@@ -45,8 +45,8 @@ found in the LICENSE file.
       }
 
       paper-progress {
-        --paper-progress-active-color: var(--paper-indigo-500);
-        --paper-progress-container-color: white;
+        --paper-progress-active-color: var(--primary-color-dark);
+        --paper-progress-container-color: var(--background-color);
         width: 100%;
       }
 
@@ -74,8 +74,8 @@ found in the LICENSE file.
         align-self: flex-start;
         cursor: pointer;
         flex-shrink: 0;
-        height: 24px;
-        width: 24px;
+        height: var(--icon-size);
+        width: var(--icon-size);
       }
 
       #chart_container {
@@ -101,10 +101,10 @@ found in the LICENSE file.
       }
 
       #related_tabstrip {
-        color: var(--paper-indigo-500);
+        color: var(--primary-color-dark);
         display: flex;
         margin-top: 8px;
-        background-color: var(--paper-indigo-50);
+        background-color: var(--primary-color-light);
         align-items: center;
       }
 
@@ -112,7 +112,7 @@ found in the LICENSE file.
         flex-grow: 1;
         text-align: left;
         height: 24px;
-        --paper-tabs-selection-bar-color: var(--paper-indigo-500);
+        --paper-tabs-selection-bar-color: var(--primary-color-dark);
       }
 
       #related_tabstrip paper-tab {
@@ -124,11 +124,11 @@ found in the LICENSE file.
         flex-wrap: wrap;
         max-height: 324px;
         overflow: auto;
-        background-color: var(--paper-indigo-50);
+        background-color: var(--primary-color-light);
       }
 
       .sparkline_tile {
-        background: white;
+        background: var(--background-color);
         cursor: pointer;
         margin: 4px;
         width: 300px;
@@ -147,13 +147,13 @@ found in the LICENSE file.
 
       #documentation {
         align-self: center;
-        color: var(--paper-indigo-500);
+        color: var(--primary-color-dark);
       }
 
       #options {
-        background: var(--paper-indigo-500);
+        background: var(--primary-color-dark);
         border-radius: 3px;
-        color: white;
+        color: var(--background-color);
         height: 30px;
         max-height: 30px;
         padding: 0;
