@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7cb213e9_dad9a7d5",
+        "filename": "dashboard/dashboard/spa/chart-section.js",
+        "patchSetId": 29
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-13T20:14:51Z",
+      "side": 1,
+      "message": "Can be replaced with Array#findIndex()\nhttps://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex",
+      "range": {
+        "startLine": 430,
+        "startChar": 0,
+        "endLine": 438,
+        "endChar": 9
+      },
+      "revId": "7460bff5eb6c8720ea5df10cc455f07eb37986c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

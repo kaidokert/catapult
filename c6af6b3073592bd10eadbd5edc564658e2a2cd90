@@ -1,0 +1,129 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fef7f715_d02c4a3d",
+        "filename": "dashboard/dashboard/spa/column-head.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-13T20:14:51Z",
+      "side": 1,
+      "message": "Good idea! I might be able to do this in my CL too!",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 5
+      },
+      "revId": "c6af6b3073592bd10eadbd5edc564658e2a2cd90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a942f2b_36b32160",
+        "filename": "dashboard/dashboard/spa/utils.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-13T20:14:51Z",
+      "side": 1,
+      "message": "Nit: Perhaps \"is\" could be in front of the variable name to be more explicit about returning a boolean (e.g. \"isElementChildOf\")",
+      "revId": "c6af6b3073592bd10eadbd5edc564658e2a2cd90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25e3e7c6_1400f47e",
+        "filename": "dashboard/dashboard/spa/utils.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-13T20:14:51Z",
+      "side": 1,
+      "message": "Nit: The name doesn\u0027t quite express what it is doing. The promises waits for afterNextRender, so another possible name could be \"waitForAfterNextRender\".\n\nI generally choose function names starting with verbs. If you don\u0027t, which is fine because it is more important to be consistent, you can ignore this comment and the ones below it.",
+      "revId": "c6af6b3073592bd10eadbd5edc564658e2a2cd90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "504767ee_d662069f",
+        "filename": "dashboard/dashboard/spa/utils.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-13T20:14:51Z",
+      "side": 1,
+      "message": "Is anything using this function?",
+      "revId": "c6af6b3073592bd10eadbd5edc564658e2a2cd90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3276044_1035390e",
+        "filename": "dashboard/dashboard/spa/utils.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-13T20:14:51Z",
+      "side": 1,
+      "message": "Nit: \"wait\"?",
+      "revId": "c6af6b3073592bd10eadbd5edc564658e2a2cd90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6251c96_ba483c4c",
+        "filename": "dashboard/dashboard/spa/utils.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-13T20:14:51Z",
+      "side": 1,
+      "message": "Nit: waitForAnimationFrame?",
+      "revId": "c6af6b3073592bd10eadbd5edc564658e2a2cd90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49a62f46_940cb94c",
+        "filename": "dashboard/dashboard/spa/utils.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-13T20:14:51Z",
+      "side": 1,
+      "message": "Nit: waitForIdle?",
+      "revId": "c6af6b3073592bd10eadbd5edc564658e2a2cd90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
