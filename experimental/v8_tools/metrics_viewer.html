@@ -11,11 +11,11 @@
       </style>
         <div id='canvas'></div>
     </body>
-    <script src="./graph_data.js"></script>
-    <script src="./line_plotter.js"></script>
-    <script src="./box_plotter.js"></script>
-    <script src="./dot_plotter.js"></script>
-    <script src="./graph_plotter.js"></script>
+      <script src="./graph_data.js"></script>
+      <script src="./line_plotter.js"></script>
+      <script src="./box_plotter.js"></script>
+      <script src="./dot_plotter.js"></script>
+      <script src="./graph_plotter.js"></script>
     <script>
       'use strict';
       /*
@@ -27,9 +27,7 @@
       const without = [];
       const withs = [];
       const MiB = 1024 * 1024;
-
       const convertBytesToMiB = (value) => +((value / MiB).toFixed(5));
-
       const loadData = async() => {
         const data = await d3.csv(DATA_LOCATION);
         const propResSizeData = data.filter(row => row.name === METRIC_NAME);
