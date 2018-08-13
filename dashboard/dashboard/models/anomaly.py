@@ -176,6 +176,7 @@ class Anomaly(internal_only_model.InternalOnlyModel):
       count_limit=0,
       deadline_seconds=50,
       inequality_property=None,
+      internal_only=None,
       is_improvement=None,
       key=None,
       keys_only=False,
@@ -206,6 +207,8 @@ class Anomaly(internal_only_model.InternalOnlyModel):
     deadline = time.time() + deadline_seconds
     while not results and time.time() < deadline:
       query = cls.query()
+      if internal_only is not None:
+        query = query.filter(cls.internal_only == internal_only)
       if sheriff is not None:
         sheriff_key = ndb.Key('Sheriff', sheriff)
         sheriff_entity = yield sheriff_key.get_async()

@@ -7,6 +7,7 @@ import unittest
 
 from google.appengine.ext import ndb
 
+from dashboard.common import datastore_hooks
 from dashboard.common import testing_common
 from dashboard.common import utils
 from dashboard.models import anomaly
@@ -71,6 +72,7 @@ class AnomalyTest(testing_common.TestCase):
 
   def _CreateAnomaly(self,
                      timestamp=None,
+                     internal_only=False,
                      bug_id=None,
                      sheriff_name=None,
                      test='master/bot/test_suite/measurement/test_case',
@@ -83,6 +85,7 @@ class AnomalyTest(testing_common.TestCase):
                      is_improvement=False,
                      recovered=False):
     entity = anomaly.Anomaly()
+    entity.internal_only = internal_only
     if timestamp:
       entity.timestamp = timestamp
     entity.bug_id = bug_id
@@ -105,6 +108,16 @@ class AnomalyTest(testing_common.TestCase):
     anomalies, _, _ = anomaly.Anomaly.QueryAsync(
         key=self._CreateAnomaly()).get_result()
     self.assertEqual(1, len(anomalies))
+
+  def testInternalOnly(self):
+    self._CreateAnomaly(internal_only=True)
+    self._CreateAnomaly(test='adept/android/lodging/assessment/story')
+    self.PatchDatastoreHooksRequest()
+    datastore_hooks.SetPrivilegedRequest()
+    anomalies, _, _ = anomaly.Anomaly.QueryAsync(
+        internal_only=True).get_result()
+    self.assertEqual(1, len(anomalies))
+    self.assertEqual('bot', anomalies[0].bot_name)
 
   def testBot(self):
     self._CreateAnomaly()
