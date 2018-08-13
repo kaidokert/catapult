@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "212f24f2_d840c7f4",
+        "filename": "telemetry/telemetry/internal/platform/linux_platform_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-08-13T22:08:34Z",
+      "side": 1,
+      "message": "nits: can you add logging.error(\u0027Unrecognizable OS version: %s. Will fallback to 0.0\u0027, value) here?\n\nAlso rename this method to _GetOsVersion(..)",
+      "revId": "4776b6aa6f198482fdcd076a66494ef3543a5497",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
