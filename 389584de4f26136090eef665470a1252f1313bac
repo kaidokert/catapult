@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b147b56d_76379d5f",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-13T22:11:35Z",
+      "side": 1,
+      "message": "Default arguments haven\u0027t been approved by the style guide yet, and it looks like neither caller overrides this, so maybe merge it into the function?",
+      "revId": "389584de4f26136090eef665470a1252f1313bac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b747086d_204b3140",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-13T22:11:35Z",
+      "side": 1,
+      "message": "Please use for..of Object.values() instead:\n\nfor (const rendererHelper of Object.values(chromeHelper.rendererHelpers))",
+      "revId": "389584de4f26136090eef665470a1252f1313bac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8146db2d_207d5dc7",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-13T22:11:35Z",
+      "side": 1,
+      "message": "Can these events really happen on any thread, or can you select specific threads to improve performance?",
+      "revId": "389584de4f26136090eef665470a1252f1313bac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5654b21_175c6ee7",
+        "filename": "tracing/tracing/metrics/rendering_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-13T22:11:35Z",
+      "side": 1,
+      "message": "Please use for..of instead.",
+      "revId": "389584de4f26136090eef665470a1252f1313bac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
