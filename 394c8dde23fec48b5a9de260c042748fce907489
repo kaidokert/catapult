@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f7fe2e26_0152d58d",
+        "filename": "experimental/idb_performance/flat.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-13T20:18:56Z",
+      "side": 1,
+      "message": "Is it okay to import third party scripts from a CDN in experimental?",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 94
+      },
+      "revId": "394c8dde23fec48b5a9de260c042748fce907489",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
