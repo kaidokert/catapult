@@ -8,9 +8,9 @@ tr.exportTo('cp', () => {
     async connectedCallback() {
       super.connectedCallback();
       if (this.autofocus) {
-        while (cp.ElementBase.getActiveElement() !== this.nativeInput) {
+        while (cp.getActiveElement() !== this.nativeInput) {
           this.$.input.focus();
-          await cp.ElementBase.timeout(50);
+          await cp.timeout(50);
         }
       }
     }
