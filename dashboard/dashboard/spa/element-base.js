@@ -243,7 +243,7 @@ tr.exportTo('cp', () => {
           const firstPaintMark = tr.b.Timing.mark('firstPaint', debugName);
           const resultPromise = wrapped.call(this, event);
           (async() => {
-            await ElementBase.afterRender();
+            await cp.afterRender();
             firstPaintMark.end();
           })();
 
@@ -251,7 +251,7 @@ tr.exportTo('cp', () => {
 
           const lastPaintMark = tr.b.Timing.mark('lastPaint', debugName);
           (async() => {
-            await ElementBase.afterRender();
+            await cp.afterRender();
             lastPaintMark.end();
           })();
 
@@ -299,25 +299,6 @@ tr.exportTo('cp', () => {
     ElementBase.registerActions(subclass);
     ElementBase.registerReducers(subclass);
   };
-
-  ElementBase.afterRender = () => new Promise(resolve => {
-    Polymer.RenderStatus.afterNextRender({}, () => {
-      resolve();
-    });
-  });
-
-  ElementBase.beforeRender = () => new Promise(resolve => {
-    Polymer.RenderStatus.beforeNextRender({}, () => {
-      resolve();
-    });
-  });
-
-  ElementBase.timeout = ms => new Promise(resolve => setTimeout(resolve, ms));
-  ElementBase.animationFrame = () => new Promise(resolve =>
-    requestAnimationFrame(resolve));
-
-  ElementBase.idlePeriod = () => new Promise(resolve =>
-    requestIdleCallback(resolve));
 
   ElementBase.actions = {
     updateObject: (statePath, delta) => async(dispatch, getState) => {
@@ -392,64 +373,6 @@ tr.exportTo('cp', () => {
   };
 
   ElementBase.registerReducers(ElementBase);
-
-  ElementBase.getActiveElement = () => {
-    let element = document.activeElement;
-    while (element !== null && element.shadowRoot) {
-      element = element.shadowRoot.activeElement;
-    }
-    return element;
-  };
-
-  ElementBase.measureTrace = () => {
-    const events = [];
-    const loadTimes = Object.entries(performance.timing.toJSON()).filter(p =>
-      p[1] > 0);
-    loadTimes.sort((a, b) => a[1] - b[1]);
-    const start = loadTimes.shift()[1];
-    for (const [name, timeStamp] of loadTimes) {
-      events.push({
-        name: 'load:' + name,
-        start,
-        end: timeStamp,
-        duration: timeStamp - start,
-      });
-    }
-    for (const measure of performance.getEntriesByType('measure')) {
-      const name = measure.name.replace(/[ \.]/g, ':').replace(
-          ':reducers:', ':').replace(':actions:', ':');
-      events.push({
-        name,
-        start: measure.startTime,
-        duration: measure.duration,
-        end: measure.startTime + measure.duration,
-      });
-    }
-    return events;
-  };
-
-  ElementBase.measureHistograms = () => {
-    const histograms = new tr.v.HistogramSet();
-    const unit = tr.b.Unit.byName.timeDurationInMs_smallerIsBetter;
-    for (const event of ElementBase.measureTrace()) {
-      let hist = histograms.getHistogramNamed(event.name);
-      if (!hist) {
-        hist = histograms.createHistogram(event.name, unit, []);
-      }
-      hist.addSample(event.duration);
-    }
-    return histograms;
-  };
-
-  ElementBase.measureTable = () => {
-    const table = [];
-    for (const hist of cp.ElementBase.measureHistograms()) {
-      table.push([hist.average, hist.name]);
-    }
-    table.sort((a, b) => (a[0] - b[0]));
-    return table.map(p =>
-      ('' + parseInt(p[0])).padEnd(6) + p[1]).join('\n');
-  };
 
   return {
     ElementBase,
