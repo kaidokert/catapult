@@ -66,11 +66,11 @@ class SharedPageState(story_module.SharedState):
     # browser_options and into finder_options.
     browser_options = self._finder_options.browser_options
     if self._finder_options.use_live_sites:
-      wpr_mode = wpr_modes.WPR_OFF
+      self._wpr_mode = wpr_modes.WPR_OFF
     elif browser_options.wpr_mode == wpr_modes.WPR_RECORD:
-      wpr_mode = wpr_modes.WPR_RECORD
+      self._wpr_mode = wpr_modes.WPR_RECORD
     else:
-      wpr_mode = wpr_modes.WPR_REPLAY
+      self._wpr_mode = wpr_modes.WPR_REPLAY
     self._extra_wpr_args = browser_options.extra_wpr_args
 
     profiling_mod = browser_interval_profiling_controller
@@ -83,7 +83,7 @@ class SharedPageState(story_module.SharedState):
 
     self.platform.SetFullPerformanceModeEnabled(
         finder_options.full_performance_mode)
-    self.platform.network_controller.Open(wpr_mode)
+    self.platform.network_controller.Open(self._wpr_mode)
     self.platform.Initialize()
 
   @property
@@ -97,6 +97,10 @@ class SharedPageState(story_module.SharedState):
   @property
   def browser(self):
     return self._browser
+
+  @property
+  def wpr_mode(self):
+    return self._wpr_mode
 
   def _FindBrowser(self, finder_options):
     possible_browser = browser_finder.FindBrowser(finder_options)

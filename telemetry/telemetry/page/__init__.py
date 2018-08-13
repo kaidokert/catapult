@@ -53,6 +53,7 @@ class Page(story.Story):
     self.script_to_evaluate_on_commit = None
     self._SchemeErrorCheck()
     self._extra_browser_args = extra_browser_args or []
+    self._wpr_mode = None
 
   @property
   def cache_temperature(self):
@@ -70,6 +71,10 @@ class Page(story.Story):
   def extra_browser_args(self):
     return self._extra_browser_args
 
+  @property
+  def wpr_mode(self):
+    return self._wpr_mode
+
   def _SchemeErrorCheck(self):
     if not self._scheme:
       raise ValueError('Must prepend the URL with scheme (e.g. file://)')
@@ -82,6 +87,7 @@ class Page(story.Story):
         raise ValueError('startup_url with local file scheme is not supported')
 
   def Run(self, shared_state):
+    self._wpr_mode = shared_state.wpr_mode
     current_tab = shared_state.current_tab
     # Collect garbage from previous run several times to make the results more
     # stable if needed.
