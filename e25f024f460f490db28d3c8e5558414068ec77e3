@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fbc2ba8b_92869b19",
+        "filename": "dashboard/dashboard/spa/alerts-section.html",
+        "patchSetId": 24
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-13T20:39:46Z",
+      "side": 1,
+      "message": "That would be confusing since there are 4 of them.",
+      "parentUuid": "39faacc3_bc911d19",
+      "revId": "e25f024f460f490db28d3c8e5558414068ec77e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "517dff8e_28223437",
         "filename": "dashboard/dashboard/spa/alerts-section.html",
         "patchSetId": 24
@@ -39,6 +57,30 @@
       "revId": "e25f024f460f490db28d3c8e5558414068ec77e3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dcf94823_3b021c0b",
+        "filename": "dashboard/dashboard/spa/alerts-section.html",
+        "patchSetId": 24
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-13T20:39:46Z",
+      "side": 1,
+      "message": "Same as above.",
+      "parentUuid": "517dff8e_28223437",
+      "range": {
+        "startLine": 219,
+        "startChar": 0,
+        "endLine": 244,
+        "endChar": 36
+      },
+      "revId": "e25f024f460f490db28d3c8e5558414068ec77e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

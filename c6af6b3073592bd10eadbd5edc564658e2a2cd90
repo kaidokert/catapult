@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "575e8ec3_f2b8b93b",
+        "filename": "dashboard/dashboard/spa/column-head.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-13T20:39:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fef7f715_d02c4a3d",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 5
+      },
+      "revId": "c6af6b3073592bd10eadbd5edc564658e2a2cd90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a942f2b_36b32160",
         "filename": "dashboard/dashboard/spa/utils.js",
         "patchSetId": 31
@@ -59,6 +83,24 @@
     },
     {
       "key": {
+        "uuid": "4f281666_88db97e9",
+        "filename": "dashboard/dashboard/spa/utils.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-13T20:39:46Z",
+      "side": 1,
+      "message": "Generally, yes, function names should be verbs.\nHowever, these functions that return Promises are all meant to be used with the \u0027await\u0027 keyword. Adding \u0027wait\u0027 to these function names would be redundant. There\u0027s some old code in tracing that uses these names:\nhttps://github.com/catapult-project/catapult/blob/master/tracing/tracing/base/raf.html#L171\n\nA better name might be something like \u0027getAfterRenderPromise\u0027 or \u0027getTimeoutPromise\u0027, but let\u0027s hold off on bike-shedding these names until I send this file out for broader review when I go to merge it to master.",
+      "parentUuid": "25e3e7c6_1400f47e",
+      "revId": "c6af6b3073592bd10eadbd5edc564658e2a2cd90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "504767ee_d662069f",
         "filename": "dashboard/dashboard/spa/utils.js",
         "patchSetId": 31
@@ -73,6 +115,24 @@
       "revId": "c6af6b3073592bd10eadbd5edc564658e2a2cd90",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4cd1ec29_423a3466",
+        "filename": "dashboard/dashboard/spa/utils.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-13T20:39:46Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "504767ee_d662069f",
+      "revId": "c6af6b3073592bd10eadbd5edc564658e2a2cd90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -93,6 +153,24 @@
     },
     {
       "key": {
+        "uuid": "a181f0e0_21ead2a9",
+        "filename": "dashboard/dashboard/spa/utils.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-13T20:39:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a3276044_1035390e",
+      "revId": "c6af6b3073592bd10eadbd5edc564658e2a2cd90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e6251c96_ba483c4c",
         "filename": "dashboard/dashboard/spa/utils.js",
         "patchSetId": 31
@@ -110,6 +188,24 @@
     },
     {
       "key": {
+        "uuid": "a642e1e0_b76653d1",
+        "filename": "dashboard/dashboard/spa/utils.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-13T20:39:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e6251c96_ba483c4c",
+      "revId": "c6af6b3073592bd10eadbd5edc564658e2a2cd90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "49a62f46_940cb94c",
         "filename": "dashboard/dashboard/spa/utils.js",
         "patchSetId": 31
@@ -124,6 +220,24 @@
       "revId": "c6af6b3073592bd10eadbd5edc564658e2a2cd90",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e32b1291_cf362658",
+        "filename": "dashboard/dashboard/spa/utils.js",
+        "patchSetId": 31
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-13T20:39:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "49a62f46_940cb94c",
+      "revId": "c6af6b3073592bd10eadbd5edc564658e2a2cd90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
