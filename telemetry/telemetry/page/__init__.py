@@ -82,6 +82,7 @@ class Page(story.Story):
         raise ValueError('startup_url with local file scheme is not supported')
 
   def Run(self, shared_state):
+    self._wpr_mode = shared_state.wpr_mode
     current_tab = shared_state.current_tab
     # Collect garbage from previous run several times to make the results more
     # stable if needed.
