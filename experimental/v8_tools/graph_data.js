@@ -75,12 +75,32 @@ class GraphData {
    * Registers the supplied data as a dataSource, enabling it to be plotted and
    * processed. The data source should be in the form of an object where
    * the keys are the desired display labels (for the legend) corresponding
-   * to the supplied values, each of which should be an array of numbers.
+   * to the supplied values, each of which should be a one dimensional array of
+   * numbers or a dict of key:value pairs for categorical data.
    * For example:
    * {
    *   labelOne: [numbers...],
    *   labelTwo: [numbers...],
    * }
+   * or
+   * {
+   *   labelOne: {
+   *     categoryOne: number,
+   *     categoryTwo: number,
+   *   },
+   *   labelTwo: {
+   *     categoryOne: number,
+   *     categoryTwo: number,
+   *   },
+   * }
+   *
+   * Data of the second form will be converted internally into a table with the
+   * first column corresponding to the categories and the second to the values.
+   * So for the above example it will become:
+   * [
+   *  [categoryOne, number],
+   *  [categoryTwo, number],
+   * ]
    * @param {Object} data
    * @return {GraphData}
    */
@@ -89,13 +109,13 @@ class GraphData {
       throw new TypeError('Expected an object to be supplied.');
     }
     for (const [displayLabel, values] of Object.entries(data)) {
-      if (values.constructor !== Array ||
-        !values.every((val) => typeof val === 'number')) {
-        throw new TypeError(
-            'The supplied values should be an array of numbers.');
+      if (values.constructor !== Array && typeof values !== 'object') {
+        throw new TypeError(`Unexpected type for value: ${typeof values}`);
       }
+      const table =
+          typeof values === 'object' ? Object.entries(values) : values;
       this.dataSources.push({
-        data: values,
+        data: table,
         color: this.nextColor_(),
         key: displayLabel,
       });
@@ -178,6 +198,10 @@ class GraphData {
    */
   plotDot() {
     this.plotter_.plot(new DotPlotter());
+  }
+
+  plotBar() {
+    this.plotter_.plot(new BarPlotter());
   }
 
   /**
