@@ -83,29 +83,39 @@ tr.exportTo('cp', () => {
       this.cacheKey_ = undefined; // will be computed in read()
     }
 
+    // cacheStatePath_ returns the state path to the location of the cached
+    // data.
     get cacheStatePath_() {
       // Subclasses may override this to return a statePath. read() will ensure
       // that the statePath exists.
     }
 
+    // defaultCacheState_ provides a sensible default for data during
+    // initialization.
     get defaultCacheState_() {
       // Subclasses may override this to return a different default cache state.
     }
 
+    // computeCacheKey_ returns a unique string for the request. This is used to
+    // store the data in a predictable location in the Redux state.
     computeCacheKey_() {
-      throw new Error('subclasses must override either computeCacheKey_');
+      throw new Error('subclasses must override computeCacheKey_');
     }
 
+    // isInCache_ returns true if existing data exists, otherwise false.
     get isInCache_() {
       throw new Error('subclasses must override isInCache_()');
     }
 
+    // createRequest_ returns an instantiation of any class that extends from
+    // cp.RequestBase.
     createRequest_() {
       throw new Error('subclasses must override createRequest_()');
     }
 
     async fetch_() {
       const request = this.createRequest_();
+
       const completion = (async() => {
         const response = await request.response;
         this.onFinishRequest_(response);
@@ -141,6 +151,7 @@ tr.exportTo('cp', () => {
     // const foo = await dispatch(ReadFoo(options))
     async read() {
       this.ensureCacheState_();
+
       this.cacheKey_ = this.computeCacheKey_();
       if (this.cacheKey_ instanceof Promise) {
         // Some caches need to use async APIs to compute their cacheKey_,
@@ -148,7 +159,11 @@ tr.exportTo('cp', () => {
         // await.
         this.cacheKey_ = await this.cacheKey_;
       }
-      if (this.isInCache_) return await this.readFromCache_();
+
+      if (this.isInCache_) {
+        return await this.readFromCache_();
+      }
+
       return await this.fetch_();
     }
   }
@@ -171,30 +186,56 @@ tr.exportTo('cp', () => {
    *   });
    * }
    *
-   * |promises| can be any promise, need not be RequestBase.response.
+   * |tasks| is expected to be a mixed array of promises and asynchronous
+   * iterators. Promises do not have to be cp.RequestBase.response.
    */
-  RequestBase.batchResponses = async function* (promises, opt_getDelayPromise) {
+  RequestBase.batchResponses = async function* (tasks, opt_getDelayPromise) {
     const getDelayPromise = opt_getDelayPromise || (() =>
       cp.ElementBase.timeout(500));
+
+    const promises = [];
     let delay;
     let results = [];
     let errors = [];
-    promises = promises.map(narcissus => {
-      const socrates = (async() => {
+
+    // Aggregates results and errors for promises and asynchronous generators.
+    function wrap(task) {
+      const promise = (async() => {
         try {
-          results.push(await narcissus);
+          if (typeof task.next === 'function') {
+            // Task is an asynchronous iterator.
+            const { value, done } = await task.next();
+            if (!done) {
+              results.push(value);
+              const next = wrap(task);
+              promises.push(next);
+            }
+          } else {
+            // Task has to be a promise.
+            results.push(await task);
+          }
         } catch (err) {
           errors.push(err);
         } finally {
-          promises.splice(promises.indexOf(socrates), 1);
+          const index = promises.indexOf(promise);
+          promises.splice(index, 1);
         }
       })();
-      return socrates;
-    });
+      return promise;
+    }
+
+    // Convert tasks to promises by "wrapping" them.
+    for (const task of tasks) {
+      promises.push(wrap(task));
+    }
 
     while (promises.length) {
       if (delay) {
+        // Race promises with a delay acting as a timeout for yielding
+        // aggregated results and errors.
         await Promise.race([delay, ...promises]);
+
+        // Inform the caller of results/errors then reset everything.
         if (delay.isResolved) {
           yield {results, errors};
           results = [];
@@ -202,6 +243,8 @@ tr.exportTo('cp', () => {
           delay = undefined;
         }
       } else {
+        // Wait for the first result to come back, then start a new delay
+        // acting as a timeout for yielding aggregated results and errors.
         await Promise.race(promises);
         delay = (async() => {
           await getDelayPromise();
@@ -210,6 +253,7 @@ tr.exportTo('cp', () => {
         delay.isResolved = false;
       }
     }
+
     yield {results, errors};
   };
 

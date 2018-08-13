@@ -349,7 +349,7 @@ tr.exportTo('cp', () => {
           yExtension,
         });
 
-    if (state.xAxis.generateTicks) {
+    if (state.xAxis.generateTicks && state.lines.length) {
       state = ChartBase.generateXTicksReducer(state, xRange, rawXs);
     }
 
