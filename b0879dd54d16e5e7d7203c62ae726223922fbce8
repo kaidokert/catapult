@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "11322f65_e99517b6",
+        "filename": "devil/devil/android/sdk/version_codes.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2018-08-14T17:43:01Z",
+      "side": 1,
+      "message": "I needed to get the first letter of the version name such as J or K since the cts apks are stored by these letters.",
+      "parentUuid": "66ad0438_a9921ada",
+      "revId": "b0879dd54d16e5e7d7203c62ae726223922fbce8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "072b3dee_114ed298",
         "filename": "devil/devil/android/sdk/version_codes_test.py",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2018-08-14T01:04:24Z",
       "side": 1,
       "message": "I get what you\u0027re going for here, but I don\u0027t think this is the right way to test it.",
+      "revId": "b0879dd54d16e5e7d7203c62ae726223922fbce8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e29a8d9_08897dda",
+        "filename": "devil/devil/android/sdk/version_codes_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2018-08-14T17:43:01Z",
+      "side": 1,
+      "message": "Please let me know what you have in mind",
+      "parentUuid": "072b3dee_114ed298",
       "revId": "b0879dd54d16e5e7d7203c62ae726223922fbce8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
