@@ -99,7 +99,7 @@ const COLORS = [
   ['#FFD740', '#FFC400', '#FFAB00', '#E29800'],
   ['#FF6E40', '#FF3D00', '#DD2C00', '#A32000'],
   ['#40C4FF', '#00B0FF', '#0091EA', '#006DAF'],
-  ['#B2FF59', '#76FF03', '#64DD17', '#4CA812'],
+  ['#89C641', '#54B503', '#4AA510', '#377A0D'],
   ['#B388FF', '#7C4DFF', '#651FFF', '#6200EA'],
   ['#FF80AB', '#FF4081', '#F50057', '#C51162'],
   ['#FFAB40', '#FF9100', '#FF6D00', '#D65C02'],
@@ -108,6 +108,7 @@ const COLORS = [
 const DEFAULT_COLOR_SCHEME = new tr.b.SinebowColorGenerator();
 
 const VALUE_KEY = 'average'; // Used to access the average value of a metric
+const REPEAT_KEY = 'repeat'; // Used to access number of page set repeats
 
 Polymer({
   is: 'tr-v-ui-metrics-visualization',
@@ -115,8 +116,6 @@ Polymer({
   created() {
     this.chart_ = new tr.ui.b.NameColumnChart();
     this.chart_.isStacked = true;
-    this.chart_.graphHeight = 400;
-    this.chart_.graphWidth = 600;
     this.chart_.yAxisLabel = 'ms';
     this.chart_.hideXAxis = true;
     this.chart_.displayXInHover = true;
@@ -182,7 +181,6 @@ Polymer({
         const displayLabel = tr.v.HistogramGrouping.
             DISPLAY_LABEL.callback(histogram);
         const average = histogram.average === undefined ? 0 : histogram.average;
-        const roundedAverage = Number(average.toFixed(2));
         labels.set(displayLabel, Date.parse(benchmarkStart));
 
         let pageMap = new Map();
@@ -199,9 +197,19 @@ Polymer({
           }
         }
 
-        const metricMap = new Map();
-        labelMap.set(metric, metricMap);
+        let metricMap = new Map();
+        let roundedAverage = Number(average.toFixed(2));
+        let repeat = 0;
+        if (labelMap.has(metric)) { // Check for repeated page sets
+          metricMap = labelMap.get(metric);
+          repeat = metricMap.get(REPEAT_KEY);
+          const oldAverage = metricMap.get(VALUE_KEY);
+          roundedAverage = (oldAverage * repeat +
+              roundedAverage) / (repeat + 1);
+        }
         metricMap.set(VALUE_KEY, roundedAverage);
+        metricMap.set(REPEAT_KEY, repeat + 1);
+        labelMap.set(metric, metricMap);
 
         const merged = new tr.v.d.DiagnosticMap();
         for (const bin of histogram.allBins) {
@@ -215,8 +223,13 @@ Polymer({
           metricMap.set(metric, roundedAverage);
           subMetrics.push(metric);
         } else {
-          for (const [subMetric, value] of merged.get('breakdown')) {
-            metricMap.set(subMetric, Number(value.toFixed(2)));
+          for (const [subMetric, total] of merged.get('breakdown')) {
+            let value = Number(total.toFixed(2));
+            if (metricMap.has(subMetric)) { // Check for repeated page sets
+              const oldValue = metricMap.get(subMetric);
+              value = (oldValue * repeat + value) / (repeat + 1);
+            }
+            metricMap.set(subMetric, value);
             subMetrics.push(subMetric);
           }
         }
@@ -233,6 +246,7 @@ Polymer({
           this.displayLabels_, mainMetricNames));
 
     this.setChartColors_(mainMetricNames, this.displayLabels_, chart);
+    this.setChartSize_(this.groups_.size, this.displayLabels_.length, chart);
     this.setChartData_(this.groups_, this.sortedPages_, this.displayLabels_,
         mainMetricNames, chart);
   },
@@ -283,6 +297,13 @@ Polymer({
       chartData.push({});
     }
     chart.data = chartData;
+  },
+
+  setChartSize_(pageCount, displayLabelCount, chart) {
+    chart.graphHeight = this.getBoundedNumber_(300,
+        pageCount * displayLabelCount * 20, 600);
+    chart.graphWidth = this.getBoundedNumber_(500,
+        pageCount * displayLabelCount * 25, 1000);
   },
 
   // Assign color gradient to series in chart
