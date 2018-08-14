@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f74eeadc_2f698984",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1279964
+      },
+      "writtenOn": "2018-08-14T17:17:17Z",
+      "side": 1,
+      "message": "I can add a fuchsia-out-dir-suffix flag (bit wordy, but more precise) and then plumb it through the FindAllAvailableDevices function and eventually into the FuchsiaInterface.",
+      "parentUuid": "d37ddaf8_770750c5",
+      "range": {
+        "startLine": 17,
+        "startChar": 27,
+        "endLine": 17,
+        "endChar": 69
+      },
+      "revId": "f84de2979ee51ebb9ec3ba87feec7a4ad25bff64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ada0cb2c_2e462be0",
         "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
         "patchSetId": 11
@@ -45,6 +69,30 @@
       "revId": "f84de2979ee51ebb9ec3ba87feec7a4ad25bff64",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c82775f0_ce513731",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1279964
+      },
+      "writtenOn": "2018-08-14T17:17:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ada0cb2c_2e462be0",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 42
+      },
+      "revId": "f84de2979ee51ebb9ec3ba87feec7a4ad25bff64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
