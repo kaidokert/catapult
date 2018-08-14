@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7105856c_6e0c2688",
+        "filename": "devil/devil/android/sdk/version_codes_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-08-14T23:17:35Z",
+      "side": 1,
+      "message": "So this now tests that the version names exactly match the variable names? That doesn\u0027t seem like something we need to guarantee.",
+      "revId": "4ee5a2eac620b5757868fc8e9a033e67eb1401d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46355c62_9226032c",
+        "filename": "devil/devil/android/sdk/version_codes_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-08-14T23:17:35Z",
+      "side": 1,
+      "message": "This seems to significantly overlap with the test above.",
+      "revId": "4ee5a2eac620b5757868fc8e9a033e67eb1401d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
