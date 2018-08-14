@@ -100,11 +100,15 @@ class BrowserFinderOptions(optparse.Values):
         help='The SSH port of the remote ChromeOS device (requires --remote).')
     parser.add_option(
         '--compatibility-mode',
-        action='store_true',
+        action='append',
         dest='compatibility_mode',
-        default=False,
-        help='Run benchmarks in a way which is compatible with older versions of '
-             'Chrome.')
+        choices=['no-field-trials',
+                 'ignore-certificate-errors',
+                 'legacy-command-line-path',
+                 'gpu-benchmarking-fallbacks'],
+        default=[],
+        help='Select the compatibility change that you want to enforce when '
+             'running benchmarks')
     identity = None
     testing_rsa = os.path.join(
         util.GetTelemetryThirdPartyDir(), 'chromite', 'ssh_keys', 'testing_rsa')
@@ -154,7 +158,6 @@ class BrowserFinderOptions(optparse.Values):
         help='When running tests on android webview, more than one apk needs to'
         ' be installed. The apk running the test is said to embed webview.')
     parser.add_option_group(group)
-
 
     # Remote platform options
     group = optparse.OptionGroup(parser, 'Remote platform options')
@@ -365,9 +368,9 @@ class BrowserOptions(object):
     # already exist.
     self.profile_files_to_copy = []
 
-    # When set to True, certain configuration change will be in use to run the
-    # benchmark in compatibility mode, mainly for earlier versions of Chrome
-    self.compatibility_mode = False
+    # The list of compatibility change that you want to enforce, mainly for
+    # earlier versions of Chrome
+    self.compatibility_mode = []
 
   def __repr__(self):
     # This works around the infinite loop caused by the introduction of a
