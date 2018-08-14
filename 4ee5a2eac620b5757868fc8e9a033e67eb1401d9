@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2ed10fa7_6e06f7f6",
+        "filename": "devil/devil/android/sdk/version_codes_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2018-08-14T23:29:21Z",
+      "side": 1,
+      "message": "We should, otherwise we may pick a version name out of the dict and later try to get the sdk level using it and that would fail.",
+      "parentUuid": "7105856c_6e0c2688",
+      "revId": "4ee5a2eac620b5757868fc8e9a033e67eb1401d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "46355c62_9226032c",
         "filename": "devil/devil/android/sdk/version_codes_test.py",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2018-08-14T23:17:35Z",
       "side": 1,
       "message": "This seems to significantly overlap with the test above.",
+      "revId": "4ee5a2eac620b5757868fc8e9a033e67eb1401d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03d90cc9_6630f962",
+        "filename": "devil/devil/android/sdk/version_codes_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2018-08-14T23:29:21Z",
+      "side": 1,
+      "message": "There is overlap, if the 1st test fails, then the 2nd test will fail too.  But having the 1st test makes it more clear what the problem is.  The 2nd test does add additional checks for VERSION_NAMES_DICT that are not covered by the 1st one.",
+      "parentUuid": "46355c62_9226032c",
       "revId": "4ee5a2eac620b5757868fc8e9a033e67eb1401d9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
