@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "68d68d22_477deb2c",
+        "filename": "devil/devil/android/sdk/version_codes.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2018-08-14T17:46:02Z",
+      "side": 1,
+      "message": "I could create a dict from sdk level to version name, or implement a function to do it here if you prefer, let me know.",
+      "parentUuid": "11322f65_e99517b6",
+      "revId": "b0879dd54d16e5e7d7203c62ae726223922fbce8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "072b3dee_114ed298",
         "filename": "devil/devil/android/sdk/version_codes_test.py",
         "patchSetId": 1
