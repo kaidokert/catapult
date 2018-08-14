@@ -1,0 +1,242 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ed93a0f2_e085a388",
+        "filename": "common/node_runner/node_runner/package.json",
+        "patchSetId": 22
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-14T22:19:18Z",
+      "side": 1,
+      "message": "Can this specify a git hash?",
+      "revId": "8f458ee9c6b70c63938becd6585c2ba69e32e35c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8f4091d_ee2ed881",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request.js",
+        "patchSetId": 22
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-14T22:19:18Z",
+      "side": 1,
+      "message": "style nit: underscores at end",
+      "revId": "8f458ee9c6b70c63938becd6585c2ba69e32e35c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df3f1aab_1a53b565",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request.js",
+        "patchSetId": 22
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-14T22:19:18Z",
+      "side": 1,
+      "message": "Let\u0027s measure the size of this pool so we can see when we need to add eviction from this pool.",
+      "revId": "8f458ee9c6b70c63938becd6585c2ba69e32e35c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84827646_69ad73d4",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request.js",
+        "patchSetId": 22
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-14T22:19:18Z",
+      "side": 1,
+      "message": "// Explain why this number.\nconst WRITING_QUEUE_DELAY_MS \u003d 3000;",
+      "revId": "8f458ee9c6b70c63938becd6585c2ba69e32e35c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b6e0f18_fb410ee2",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request.js",
+        "patchSetId": 22
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-14T22:19:18Z",
+      "side": 1,
+      "message": "Let\u0027s put a try..catch around each writeFunc() call and record an analytics event when it fails so we know when to add eviction.",
+      "revId": "8f458ee9c6b70c63938becd6585c2ba69e32e35c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b5fa3ce_ea1120b3",
+        "filename": "dashboard/dashboard/spa/sw-utils/level-of-detail.js",
+        "patchSetId": 22
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-14T22:19:18Z",
+      "side": 1,
+      "message": "case LEVEL_OF_DETAIL.HISTOGRAM:\n  return [\u0027revision\u0027,\u0027histogram\u0027];",
+      "revId": "8f458ee9c6b70c63938becd6585c2ba69e32e35c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "330f82ab_3eefc534",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries.js",
+        "patchSetId": 22
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-14T22:19:18Z",
+      "side": 1,
+      "message": "cache-request-base.js",
+      "revId": "8f458ee9c6b70c63938becd6585c2ba69e32e35c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32494373_dfc5a899",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries.js",
+        "patchSetId": 22
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-14T22:19:18Z",
+      "side": 1,
+      "message": "Can you comment the structure of each datastore?",
+      "revId": "8f458ee9c6b70c63938becd6585c2ba69e32e35c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc0d2550_5202f1df",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries.js",
+        "patchSetId": 22
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-14T22:19:18Z",
+      "side": 1,
+      "message": "Replace with searchParams.get(\u0027columns\u0027) and remove the function from sw-utils.",
+      "revId": "8f458ee9c6b70c63938becd6585c2ba69e32e35c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76dd3c59_d3ffc049",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries.js",
+        "patchSetId": 22
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-14T22:19:18Z",
+      "side": 1,
+      "message": "s/ts/timeseries/\nparams.join(\u0027/\u0027)",
+      "revId": "8f458ee9c6b70c63938becd6585c2ba69e32e35c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42140084_e7e2c678",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries.js",
+        "patchSetId": 22
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-14T22:19:18Z",
+      "side": 1,
+      "message": "don\u0027t need this override",
+      "revId": "8f458ee9c6b70c63938becd6585c2ba69e32e35c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7e25d04_d94f748d",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries.js",
+        "patchSetId": 22
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-14T22:19:18Z",
+      "side": 1,
+      "message": "remove these 2 lines",
+      "revId": "8f458ee9c6b70c63938becd6585c2ba69e32e35c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d4845d3_dedfcbbe",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries.js",
+        "patchSetId": 22
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-14T22:19:18Z",
+      "side": 1,
+      "message": "Split this to a helper function?",
+      "revId": "8f458ee9c6b70c63938becd6585c2ba69e32e35c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e25fd4c_b36efbb6",
+        "filename": "dashboard/dashboard/spa/timeseries-cache.js",
+        "patchSetId": 22
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-14T22:19:18Z",
+      "side": 1,
+      "message": "Remove one of the copies of this function from this file.",
+      "revId": "8f458ee9c6b70c63938becd6585c2ba69e32e35c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
