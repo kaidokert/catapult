@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ab74ea86_b8ac4c19",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-14T15:36:51Z",
+      "side": 1,
+      "message": "Indeed, but I still kept the array for the next steps when I\u0027ll need to compare multiple metrics.",
+      "parentUuid": "d6ed4c4f_85779116",
+      "range": {
+        "startLine": 25,
+        "startChar": 6,
+        "endLine": 25,
+        "endChar": 23
+      },
+      "revId": "efe5037ad7a1eb62a75b70ec1e9c416c85fbe0f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e730cb0_085f5efe",
         "filename": "experimental/v8_tools/filter.js",
         "patchSetId": 10
@@ -45,6 +69,30 @@
       "revId": "efe5037ad7a1eb62a75b70ec1e9c416c85fbe0f4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ea1cafc_79a07987",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-14T15:36:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e730cb0_085f5efe",
+      "range": {
+        "startLine": 29,
+        "startChar": 6,
+        "endLine": 29,
+        "endChar": 13
+      },
+      "revId": "efe5037ad7a1eb62a75b70ec1e9c416c85fbe0f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "223b5b49_c6d85488",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-14T15:36:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "acf1de1a_abcbc813",
+      "range": {
+        "startLine": 33,
+        "startChar": 6,
+        "endLine": 33,
+        "endChar": 20
+      },
+      "revId": "efe5037ad7a1eb62a75b70ec1e9c416c85fbe0f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee26b230_b7d2daca",
         "filename": "experimental/v8_tools/filter.js",
         "patchSetId": 10
@@ -91,6 +163,30 @@
       "revId": "efe5037ad7a1eb62a75b70ec1e9c416c85fbe0f4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d264ae5_b2cdaf09",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-14T15:36:51Z",
+      "side": 1,
+      "message": "I tried but because of dependencies it didn\u0027t work. I think I will remove/modify this anyway.",
+      "parentUuid": "ee26b230_b7d2daca",
+      "range": {
+        "startLine": 64,
+        "startChar": 3,
+        "endLine": 64,
+        "endChar": 22
+      },
+      "revId": "efe5037ad7a1eb62a75b70ec1e9c416c85fbe0f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "178a2934_f0a5cd90",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-14T15:36:51Z",
+      "side": 1,
+      "message": "I think that\u0027s a good option. I did like this just because I tended to keep them separate (the table component and the parent one). Anyway I have to start a process of unification because the components are still too independent.",
+      "parentUuid": "a8bdf091_6501f759",
+      "range": {
+        "startLine": 183,
+        "startChar": 11,
+        "endLine": 183,
+        "endChar": 18
+      },
+      "revId": "efe5037ad7a1eb62a75b70ec1e9c416c85fbe0f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7e8b7758_b6cc1519",
         "filename": "experimental/v8_tools/filter.js",
         "patchSetId": 10
@@ -137,6 +257,30 @@
       "revId": "efe5037ad7a1eb62a75b70ec1e9c416c85fbe0f4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "105ffc65_bedfea32",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-14T15:36:51Z",
+      "side": 1,
+      "message": "I already have a computed parameter for diagnostics_options.\nI know that the action is pretty the same but it comes from different sources.\nOr maybe I did not get it right.",
+      "parentUuid": "7e8b7758_b6cc1519",
+      "range": {
+        "startLine": 224,
+        "startChar": 37,
+        "endLine": 224,
+        "endChar": 39
+      },
+      "revId": "efe5037ad7a1eb62a75b70ec1e9c416c85fbe0f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
