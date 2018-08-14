@@ -123,6 +123,24 @@
       "revId": "b0879dd54d16e5e7d7203c62ae726223922fbce8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "516b8ad3_76016a39",
+        "filename": "devil/devil/android/sdk/version_codes_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2018-08-14T20:58:40Z",
+      "side": 1,
+      "message": "That still does not catch the case that someone adds a new version name constant such as PIE \u003d 28 then does not add it to the dict and does not update the list of known version codes.  Still need to iterate the attributes of the module.  One way to avoid this is to make the version code constants a dict itself to the sdk level, but this would require changing all uses of it to match.",
+      "parentUuid": "b2e2451d_d648cca2",
+      "revId": "b0879dd54d16e5e7d7203c62ae726223922fbce8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
