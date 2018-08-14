@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9e8836e1_02bf504b",
+        "filename": "experimental/long_term_health/long_term_health/apk_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-08-14T10:45:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08bc321b_93e991b2",
+      "revId": "a04641c3b3aea4d2d16ee582d101a2ca65fd516f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a89209f5_6cdaceec",
         "filename": "experimental/long_term_health/long_term_health/apk_finder.py",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "a04641c3b3aea4d2d16ee582d101a2ca65fd516f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9af5e161_a64bbb14",
+        "filename": "experimental/long_term_health/long_term_health/apk_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-08-14T10:45:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a89209f5_6cdaceec",
+      "revId": "a04641c3b3aea4d2d16ee582d101a2ca65fd516f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "ed7e499a_f7053594",
+        "filename": "experimental/long_term_health/long_term_health/apk_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-08-14T10:45:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c16ea79_b75274fc",
+      "revId": "a04641c3b3aea4d2d16ee582d101a2ca65fd516f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9c7c67df_d846199a",
         "filename": "experimental/long_term_health/long_term_health/apk_finder.py",
         "patchSetId": 2
@@ -64,6 +118,24 @@
       "writtenOn": "2018-08-10T14:56:04Z",
       "side": 1,
       "message": "here you should be able to use ChromeVersion too, right? (Probably we don\u0027t even need distutils.version any more).",
+      "revId": "a04641c3b3aea4d2d16ee582d101a2ca65fd516f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0e13031_7baf1cbc",
+        "filename": "experimental/long_term_health/long_term_health/apk_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-08-14T10:45:20Z",
+      "side": 1,
+      "message": "I didn\u0027t have a particularly clean way to use `ChromeVersion` here, since there is some trailing part:\u0027arm_ChromeStable.apk\u0027, so I will keep the `startswith` here. However, I have replaced the `distutils.version` with `ChromeVersion`.",
+      "parentUuid": "9c7c67df_d846199a",
       "revId": "a04641c3b3aea4d2d16ee582d101a2ca65fd516f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
