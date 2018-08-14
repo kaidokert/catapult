@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d76565bd_6b7e3386",
+        "filename": "experimental/v8_tools/dot_plotter.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-14T09:46:18Z",
+      "side": 1,
+      "message": "that\u0027s some fancy JavaScripting there :)",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 22
+      },
+      "revId": "995fcefe898d7580c6f5bc24b03b2d1e12fc7257",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "abe88ec5_e859148c",
+        "filename": "experimental/v8_tools/graph_data.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-14T09:46:18Z",
+      "side": 1,
+      "message": "this would probably be better as an array map\n\nreturn this.dataSources.map(({label, data}) \u003d\u003e ({label, data: ...}))\n\nThat way you\u0027re explicit about what\u0027s in the processed data you\u0027re returning.",
+      "range": {
+        "startLine": 144,
+        "startChar": 4,
+        "endLine": 145,
+        "endChar": 4
+      },
+      "revId": "995fcefe898d7580c6f5bc24b03b2d1e12fc7257",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
