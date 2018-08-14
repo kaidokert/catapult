@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fb70248f_928319a8",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-14T23:16:47Z",
+      "side": 1,
+      "message": "Instead of converting to a string and back, this might be faster: Math.round(average * 100) / 100\n\nIf you need to stick with toFixed(), though, I think parseFloat() is more common than Number().",
+      "revId": "dd5322589fd6a423175ec953c6389b2bfbf6ca20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd3141da_fe155fc5",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-14T23:16:47Z",
+      "side": 1,
+      "message": "Could you merge Histograms or RunningStatistics (histogram.running) instead of duplicating this math from RunningStatistics?",
+      "revId": "dd5322589fd6a423175ec953c6389b2bfbf6ca20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01a3fcdc_01260505",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-14T23:16:47Z",
+      "side": 1,
+      "message": "Please replace this with tr.b.math.clamp()",
+      "revId": "dd5322589fd6a423175ec953c6389b2bfbf6ca20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
