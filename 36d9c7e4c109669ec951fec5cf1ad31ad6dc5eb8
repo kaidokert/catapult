@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "082008fd_20a0471f",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-08-15T08:11:59Z",
+      "side": 1,
+      "message": "I suggest you move these string constants into a file, e.g:\n\ntelemetry/compat_mode_options.py\n\nNO_FIELD_TRIALS \u003d \u0027no-field-trials\u0027\n..\n..\n..\n\nThis way, the client code can refer to the constant variable instead of raw string, which can be error-prone",
+      "revId": "36d9c7e4c109669ec951fec5cf1ad31ad6dc5eb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
