@@ -13,13 +13,12 @@ from google.appengine.api import taskqueue
 from google.appengine.ext import ndb
 
 from dashboard import add_point
-from dashboard import add_point_queue
 from dashboard.api import api_request_handler
 from dashboard.common import datastore_hooks
 from dashboard.common import histogram_helpers
-from dashboard.common import stored_object
 from dashboard.common import timing
 from dashboard.common import utils
+from dashboard.models import graph_data
 from dashboard.models import histogram
 from tracing.value import histogram_set
 from tracing.value.diagnostics import diagnostic
@@ -103,9 +102,6 @@ def ProcessHistogramSet(histogram_dicts):
     raise api_request_handler.BadRequestError(
         'HistogramSet JSON much be a list of dicts')
 
-  bot_whitelist_future = stored_object.GetAsync(
-      add_point_queue.BOT_WHITELIST_KEY)
-
   histograms = histogram_set.HistogramSet()
 
   with timing.WallTimeLogger('hs.ImportDicts'):
@@ -153,8 +149,7 @@ def ProcessHistogramSet(histogram_dicts):
 
     revision = ComputeRevision(histograms)
 
-    bot_whitelist = bot_whitelist_future.get_result()
-    internal_only = add_point_queue.BotInternalOnly(bot, bot_whitelist)
+    internal_only = graph_data.Bot.GetInternalOnlySync(master, bot)
 
   # We'll skip the histogram-level sparse diagnostics because we need to
   # handle those with the histograms, below, so that we can properly assign
