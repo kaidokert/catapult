@@ -168,7 +168,7 @@ def SelectDefaultBrowser(possible_browsers):
 
 
 def CanFindAvailableBrowsers(finder_options):
-  return (cros_device.IsRunningOnCrOS() or finder_options.cros_remote or
+  return (cros_device.IsRunningOnCrOS() or finder_options.remote or
           cros_interface.HasSSH())
 
 
@@ -207,7 +207,7 @@ def FindAllAvailableBrowsers(finder_options, device):
   except cros_interface.LoginException, ex:
     if isinstance(ex, cros_interface.KeylessLoginRequiredException):
       logging.warn('Could not ssh into %s. Your device must be configured',
-                   finder_options.cros_remote)
+                   finder_options.remote)
       logging.warn('to allow passwordless login as root.')
       logging.warn('For a test-build device, pass this to your script:')
       logging.warn('   --identity $(CHROMITE)/ssh_keys/testing_rsa')
