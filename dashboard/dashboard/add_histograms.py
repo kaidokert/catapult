@@ -25,6 +25,7 @@ from tracing.value import histogram_set
 from tracing.value.diagnostics import diagnostic
 from tracing.value.diagnostics import reserved_infos
 
+
 SUITE_LEVEL_SPARSE_DIAGNOSTIC_NAMES = set([
     reserved_infos.ARCHITECTURES.name,
     reserved_infos.BENCHMARKS.name,
