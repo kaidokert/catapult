@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 
 import logging
+import sys
 import time
 
 from google.appengine.ext import db
@@ -16,6 +17,8 @@ from dashboard.common import request_handler
 from dashboard.common import stored_object
 from dashboard.common import utils
 from dashboard.models import graph_data
+from dashboard.models import histogram
+from tracing.value.diagnostics import reserved_infos
 
 
 def CacheKey(test_suite):
@@ -64,6 +67,28 @@ def _QueryTestSuite(test_suite):
   return query
 
 
+def _QueryCaseTags(test_suite, bots):
+  test_paths = set()
+  for bot in bots:
+    desc = descriptor.Descriptor(test_suite=test_suite, bot=bot)
+    for test_path in desc.ToTestPathsSync():
+      test_paths.add(test_path)
+
+  futures = []
+  for test_path in test_paths:
+    futures.append(histogram.SparseDiagnostic.query(
+        histogram.SparseDiagnostic.end_revision == sys.maxint,
+        histogram.SparseDiagnostic.name == reserved_infos.TAG_MAP.name,
+        histogram.SparseDiagnostic.test == utils.TestKey(test_path)).fetch_async())
+
+  diagnostics = ndb.Future.wait_all(futures)
+  case_tags = {}
+  for diagnostic in diagnostics:
+    print diagnostic
+
+  return {tag: list(sorted(cases)) for tag, cases in case_tags}
+
+
 DEADLINE_SECONDS = 60 * 9.5
 
 
@@ -82,7 +107,6 @@ def _UpdateDescriptor(test_suite, namespace, start_cursor=None,
   measurements = set(measurements)
   bots = set(bots)
   cases = set(cases)
-  # TODO(4549) Tagmaps.
 
   # Some test suites have more keys than can fit in memory or can be processed
   # in 10 minutes, so use an iterator instead of a page limit.
@@ -120,6 +144,7 @@ def _UpdateDescriptor(test_suite, namespace, start_cursor=None,
       'measurements': list(sorted(measurements)),
       'bots': list(sorted(bots)),
       'cases': list(sorted(cases)),
+      'caseTags': _QueryCaseTags(test_suite, bots),
   }
   key = namespaced_stored_object.NamespaceKey(
       CacheKey(test_suite), namespace)
