@@ -46,6 +46,30 @@
       "revId": "297a5df9af4b8d99a569c02f269d4f8effc74006",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "926284cc_19625c9b",
+        "filename": "dashboard/dashboard/spa/index.html",
+        "patchSetId": 11
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-15T04:18:06Z",
+      "side": 1,
+      "message": "https://github.com/catapult-project/catapult/blob/master/catapult_build/html_checks.py#L58",
+      "parentUuid": "bfeaea53_1bf238bf",
+      "range": {
+        "startLine": 52,
+        "startChar": 69,
+        "endLine": 52,
+        "endChar": 95
+      },
+      "revId": "297a5df9af4b8d99a569c02f269d4f8effc74006",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
