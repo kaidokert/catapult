@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "39b457b8_21319d7b",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-15T11:04:11Z",
+      "side": 1,
+      "message": "why not this.chosen_plot? Don\u0027t you want to keep it the same as before?",
+      "range": {
+        "startLine": 224,
+        "startChar": 12,
+        "endLine": 224,
+        "endChar": 39
+      },
+      "revId": "c83a36d6b288017498cfbc0ebe01680a4a54afed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

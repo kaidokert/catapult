@@ -281,6 +281,30 @@
       "revId": "efe5037ad7a1eb62a75b70ec1e9c416c85fbe0f4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0f64048d_8b901419",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-15T11:04:11Z",
+      "side": 1,
+      "message": "Ok, at least extract it to a method though",
+      "parentUuid": "105ffc65_bedfea32",
+      "range": {
+        "startLine": 224,
+        "startChar": 37,
+        "endLine": 224,
+        "endChar": 39
+      },
+      "revId": "efe5037ad7a1eb62a75b70ec1e9c416c85fbe0f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
