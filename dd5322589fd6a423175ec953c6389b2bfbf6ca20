@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8dbdca73_874cbf38",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1285369
+      },
+      "writtenOn": "2018-08-15T14:43:58Z",
+      "side": 1,
+      "message": "Switched to Math.round(average * 100) / 100",
+      "parentUuid": "fb70248f_928319a8",
+      "revId": "dd5322589fd6a423175ec953c6389b2bfbf6ca20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dd3141da_fe155fc5",
         "filename": "tracing/tracing/value/ui/metrics_visualization.html",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2018-08-14T23:16:47Z",
       "side": 1,
       "message": "Could you merge Histograms or RunningStatistics (histogram.running) instead of duplicating this math from RunningStatistics?",
+      "revId": "dd5322589fd6a423175ec953c6389b2bfbf6ca20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ebff64e_3db9db2a",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1285369
+      },
+      "writtenOn": "2018-08-15T14:43:58Z",
+      "side": 1,
+      "message": "Changed to use RunningStatistics",
+      "parentUuid": "dd3141da_fe155fc5",
       "revId": "dd5322589fd6a423175ec953c6389b2bfbf6ca20",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -50,6 +86,24 @@
       "revId": "dd5322589fd6a423175ec953c6389b2bfbf6ca20",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b57a8a91_789a76a2",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1285369
+      },
+      "writtenOn": "2018-08-15T14:43:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01a3fcdc_01260505",
+      "revId": "dd5322589fd6a423175ec953c6389b2bfbf6ca20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
