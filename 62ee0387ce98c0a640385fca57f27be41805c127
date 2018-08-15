@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ffadcdd6_1d284fd5",
+        "filename": "experimental/v8_tools/dot_plotter_test.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-15T14:02:34Z",
+      "side": 1,
+      "message": "what happens if the converted keys conflict? e.g. \"key.\" and \"key@\"",
+      "range": {
+        "startLine": 39,
+        "startChar": 8,
+        "endLine": 39,
+        "endChar": 39
+      },
+      "revId": "62ee0387ce98c0a640385fca57f27be41805c127",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
