@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3c548eb6_4b595fe5",
+        "filename": "dashboard/dashboard/change_internal_only.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-15T21:11:51Z",
+      "side": 1,
+      "message": "nit: are you supposed to change the date on an existing file?",
+      "range": {
+        "startLine": 1,
+        "startChar": 12,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "b2dc33d3556134c1487aea1a8d408e1a013cac89",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8baa5d97_135713d3",
+        "filename": "dashboard/dashboard/change_internal_only.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-15T21:11:51Z",
+      "side": 1,
+      "message": "Having everything route through this function felt a bit unnecessary.\n\ndef ChangeInternalOnly(internal_only, bot_names):\n  _UpdateWhitelist()\n  for b in bots:\n    defer(_UpdateBot, b)\n\ndef _Updatebot(...)\n  for t in tests:\n    defer(_updateTest, ...)\n\ndef _UpdateTest(..)\n  ...\n\netc. seems simpler",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 22
+      },
+      "revId": "b2dc33d3556134c1487aea1a8d408e1a013cac89",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4011addf_5ca601f0",
+        "filename": "dashboard/dashboard/change_internal_only.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-15T21:11:51Z",
+      "side": 1,
+      "message": "Does this need to update bot whitelist? Because this path seems to not do that.",
+      "revId": "b2dc33d3556134c1487aea1a8d408e1a013cac89",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
