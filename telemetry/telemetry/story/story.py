@@ -76,6 +76,7 @@ class Story(object):
     else:
       assert isinstance(grouping_keys, dict)
     self._grouping_keys = grouping_keys
+    self.wpr_mode = None
 
   def Run(self, shared_state):
     """Execute the interactions with the applications and/or platforms."""
