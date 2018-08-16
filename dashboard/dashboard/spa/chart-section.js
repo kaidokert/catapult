@@ -230,7 +230,7 @@ tr.exportTo('cp', () => {
             measurements: new Set(),
             bots: new Set(),
             testCases: new Set(),
-            testCaseTags: new Set(),
+            testCaseTags: new Map(),
           },
         });
         dispatch({
@@ -597,41 +597,41 @@ tr.exportTo('cp', () => {
       return {...state, legend: state.legend.map(handleLegendEntry)};
     },
 
-    receiveDescriptor: (state, action, rootState) => {
+    receiveDescriptor: (state, {descriptor}, rootState) => {
       const measurement = {
         ...state.measurement,
-        optionValues: action.descriptor.measurements,
-        options: cp.OptionGroup.groupValues(action.descriptor.measurements),
-        label: `Measurements (${action.descriptor.measurements.size})`,
+        optionValues: descriptor.measurements,
+        options: cp.OptionGroup.groupValues(descriptor.measurements),
+        label: `Measurements (${descriptor.measurements.size})`,
       };
 
-      const botOptions = cp.OptionGroup.groupValues(action.descriptor.bots);
+      const botOptions = cp.OptionGroup.groupValues(descriptor.bots);
       const bot = {
         ...state.bot,
-        optionValues: action.descriptor.bots,
+        optionValues: descriptor.bots,
         options: botOptions.map(option => {
           return {...option, isExpanded: true};
         }),
-        label: `Bots (${action.descriptor.bots.size})`,
+        label: `Bots (${descriptor.bots.size})`,
       };
 
       const testCaseOptions = [];
-      if (action.descriptor.testCases.size) {
+      if (descriptor.testCases.size) {
         testCaseOptions.push({
-          label: `All ${action.descriptor.testCases.size} test cases`,
+          label: `All ${descriptor.testCases.size} test cases`,
           isExpanded: true,
-          options: cp.OptionGroup.groupValues(action.descriptor.testCases),
+          options: cp.OptionGroup.groupValues(descriptor.testCases),
         });
       }
 
       const testCase = {
         ...state.testCase,
-        optionValues: action.descriptor.testCases,
+        optionValues: descriptor.testCases,
         options: testCaseOptions,
-        label: `Test cases (${action.descriptor.testCases.size})`,
+        label: `Test cases (${descriptor.testCases.size})`,
         tags: {
           ...state.testCase.tags,
-          options: cp.OptionGroup.groupValues(action.descriptor.testCaseTags),
+          options: cp.OptionGroup.groupValues(descriptor.testCaseTags.keys()),
         },
       };
 
