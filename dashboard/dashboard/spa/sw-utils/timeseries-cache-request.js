@@ -6,6 +6,7 @@
 
 import Range from './range.js';
 import { CacheRequestBase } from './cache-request-base.js';
+import { IDB } from './constants.js';
 
 
 /**
@@ -43,10 +44,6 @@ const STORE_DATA = 'data';
 const STORE_METADATA = 'metadata';
 const STORE_RANGES = 'ranges';
 const STORES = [STORE_DATA, STORE_METADATA, STORE_RANGES];
-
-// Constants for IndexedDB options
-const TRANSACTION_MODE_READONLY = 'readonly';
-const TRANSACTION_MODE_READWRITE = 'readwrite';
 
 
 export default class TimeseriesCacheRequest extends CacheRequestBase {
@@ -107,7 +104,7 @@ export default class TimeseriesCacheRequest extends CacheRequestBase {
   }
 
   async read(db) {
-    const transaction = db.transaction(STORES, TRANSACTION_MODE_READONLY);
+    const transaction = db.transaction(STORES, IDB.TRANSACTION_READ_ONLY);
 
     const dataPointsPromise = this.getDataPoints_(transaction);
     const [
@@ -232,7 +229,7 @@ export default class TimeseriesCacheRequest extends CacheRequestBase {
 
     const data = this.denormalize_(networkData);
 
-    const transaction = db.transaction(STORES, TRANSACTION_MODE_READWRITE);
+    const transaction = db.transaction(STORES, IDB.TRANSACTION_READ_WRITE);
     await Promise.all([
       this.writeData_(transaction, data),
       this.writeRanges_(transaction, data),
