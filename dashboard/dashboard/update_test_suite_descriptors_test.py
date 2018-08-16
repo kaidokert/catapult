@@ -5,14 +5,17 @@
 import webapp2
 import unittest
 
-from dashboard import update_test_suites
+from google.appengine.ext import ndb
+
 from dashboard import update_test_suite_descriptors
+from dashboard import update_test_suites
 from dashboard.common import datastore_hooks
 from dashboard.common import descriptor
 from dashboard.common import namespaced_stored_object
 from dashboard.common import stored_object
 from dashboard.common import testing_common
 from dashboard.common import utils
+from dashboard.models import graph_data
 
 
 class UpdateTestSuiteDescriptorsTest(testing_common.TestCase):
@@ -48,6 +51,8 @@ class UpdateTestSuiteDescriptorsTest(testing_common.TestCase):
                 },
             },
         })
+    graph_data.Bot(id='bot', parent=ndb.Key('Master', 'master'),
+                   internal_only=True).put()
     test = utils.TestKey('master/bot/internal/measurement/test_case').get()
     test.has_rows = True
     test.internal_only = True
@@ -67,7 +72,7 @@ class UpdateTestSuiteDescriptorsTest(testing_common.TestCase):
 
     expected = {
         'measurements': ['measurement'],
-        'bots': ['master:bot'],
+        'internalBots': ['master:bot'],
         'cases': ['test_case'],
     }
     self.SetCurrentUser('internal@chromium.org')
@@ -100,7 +105,7 @@ class UpdateTestSuiteDescriptorsTest(testing_common.TestCase):
     self.ExecuteDeferredTasks('default')
     expected = {
         'measurements': ['measurement'],
-        'bots': ['master:bot'],
+        'externalBots': ['master:bot'],
         'cases': ['test_case'],
     }
     actual = update_test_suite_descriptors.FetchCachedTestSuiteDescriptor(

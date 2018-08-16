@@ -7,6 +7,7 @@ import time
 
 from google.appengine.ext import db
 from google.appengine.ext import deferred
+from google.appengine.ext import ndb
 
 from dashboard import update_test_suites
 from dashboard.common import datastore_hooks
@@ -118,9 +119,34 @@ def _UpdateDescriptor(test_suite, namespace, start_cursor=None,
 
   desc = {
       'measurements': list(sorted(measurements)),
-      'bots': list(sorted(bots)),
       'cases': list(sorted(cases)),
   }
+
+  if namespace == datastore_hooks.INTERNAL:
+    futures = []
+    for bot in bots:
+      master, bot = bot.split(':')
+      futures.append(ndb.Key('Master', master, 'Bot', bot).get_async())
+
+    ndb.Future.wait_all(futures)
+
+    external_bots = set()
+    internal_bots = set()
+    for future in futures:
+      bot = future.get_result()
+      master_bot = bot.key.parent().id() + ':' + bot.key.id()
+      if bot.internal_only:
+        internal_bots.add(master_bot)
+      else:
+        external_bots.add(master_bot)
+
+    if external_bots:
+      desc['externalBots'] = list(sorted(external_bots))
+    if internal_bots:
+      desc['internalBots'] = list(sorted(internal_bots))
+  else:
+    desc['externalBots'] = list(sorted(bots))
+
   key = namespaced_stored_object.NamespaceKey(
       CacheKey(test_suite), namespace)
   stored_object.Set(key, desc)
