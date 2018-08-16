@@ -456,12 +456,15 @@ class DevToolsClientBackend(object):
     self._tracing_backend.RecordClockSyncMarker(sync_id)
 
   def StopChromeTracing(self):
+    logging.warning('StopChromeTracing!')
     assert self.is_tracing_running
     try:
       backend = self.FirstTabBackend()
       if backend is not None:
+        logging.warning('Adding timeline marker BEGIN!')
         backend.AddTimelineMarker('first-renderer-thread')
         backend.AddTimelineMarker(backend.id)
+        logging.warning('Adding timeline marker END!')
       else:
         logging.warning('No page inspector backend found.')
     finally:
