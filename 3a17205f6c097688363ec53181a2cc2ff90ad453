@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0b18282f_654a45cc",
+        "filename": "dashboard/dashboard/spa/utils.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-16T22:36:52Z",
+      "side": 1,
+      "message": "I just had a crazy idea that you can either play with or ignore if you want.\nWe were talking the other day about how 500ms is both too long and not long enough, depending on the context.\nThe purpose of batchResponses is to balance CPU spent rendering with user-perceived latency.\nWhen rendering a result (timeseries/report/descriptor) is expensive, then batchResponses should increase latency in exchange for lower CPU usage.\nWhen rendering a result is fast, batchResponses should increase CPU usage in exchange for lower latency.\nThis constant 500 could be replaced with a variable that increases when rendering results is expensive, and decreases when rendering results is fast.\nbatchResponses can call performance.now() before and after the yield to see how long it takes callers to render results.\nYou can play with multiplying or squaring the duration of the yield.\nThe delay ms can be initialized to 0 so that the first result always renders immediately.\nThis dynamic strategy might be good enough that callers won\u0027t need to pass custom getDelayPromise factories.",
+      "range": {
+        "startLine": 125,
+        "startChar": 66,
+        "endLine": 125,
+        "endChar": 69
+      },
+      "revId": "3a17205f6c097688363ec53181a2cc2ff90ad453",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9a83b72_2d807b03",
+        "filename": "dashboard/dashboard/spa/utils.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-16T22:36:52Z",
+      "side": 1,
+      "message": "else if (task instanceof Promise) {\n  ...\n} else {\n  throw\n}",
+      "revId": "3a17205f6c097688363ec53181a2cc2ff90ad453",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aaa2ab78_0b89deb0",
+        "filename": "dashboard/dashboard/spa/utils.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-16T22:36:52Z",
+      "side": 1,
+      "message": "Any reason to replace the promises.map() with wrap() and a for loop?",
+      "revId": "3a17205f6c097688363ec53181a2cc2ff90ad453",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
