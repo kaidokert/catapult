@@ -206,6 +206,20 @@ Polymer({
       });
     }
 
+    if (event.dcacheReads) {
+      rows.push({
+        name: 'Cache reads',
+        value: event.dcacheReads,
+      });
+    }
+
+    if (event.dcacheMisses) {
+      rows.push({
+        name: 'Cache misses',
+        value: event.dcacheMisses,
+      });
+    }
+
     function createStackFrameEl(sf) {
       const sfEl = document.createElement('tr-ui-a-stack-frame');
       sfEl.stackFrame = sf;

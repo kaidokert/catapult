@@ -112,7 +112,8 @@ tr.exportTo('tr.ui.b', function() {
         if (this.merging_) {
           this.flush();
         }
-        this.ctx_.fillStyle = this.palette_[colorId];
+        //this.ctx_.fillStyle = this.palette_[colorId];
+        this.ctx_.fillStyle = colorId;
         this.ctx_.globalAlpha = alpha;
         const xLeft = Math.max(x, this.xMin_);
         const xRight = Math.min(r, this.xMax_);

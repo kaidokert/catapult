@@ -590,6 +590,8 @@ tr.exportTo('tr.e.importer', function() {
           event.bind_id);
       slice.startStackFrame = this.getStackFrameForEvent_(event);
       slice.endStackFrame = this.getStackFrameForEvent_(event, true);
+      slice.dcacheReads = event.dr;
+      slice.dcacheMisses = event.dm;
       this.setContextsFromThread_(thread, slice);
 
       return slice;
