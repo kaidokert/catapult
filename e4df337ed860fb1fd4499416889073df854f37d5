@@ -16,6 +16,24 @@
       "revId": "e4df337ed860fb1fd4499416889073df854f37d5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a25791d_0f33a220",
+        "filename": "telemetry/telemetry/page/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1179424
+      },
+      "writtenOn": "2018-08-16T15:16:23Z",
+      "side": 1,
+      "message": "I think wpr_mode should be a page only property. wpr_mode is not suitable for other story sub classes (e.g. AndroidStory) as a story doesn\u0027t necessarily open a browser.",
+      "parentUuid": "1a24fc25_1936e2b6",
+      "revId": "e4df337ed860fb1fd4499416889073df854f37d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
