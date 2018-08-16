@@ -16,6 +16,24 @@
       "revId": "956a38e41d9d0016b13a3c4ca28be18a4cc16b1f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24e6afc7_3fd63f12",
+        "filename": "telemetry/telemetry/internal/util/ts_proxy_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-08-16T14:20:52Z",
+      "side": 1,
+      "message": "I updated the error message. It was a bad error message, since we log the error of stopping the server, which is probably None most of the time.",
+      "parentUuid": "73d8f2a8_d793a6d2",
+      "revId": "956a38e41d9d0016b13a3c4ca28be18a4cc16b1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
