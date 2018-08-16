@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "200cea72_52c64360",
+        "filename": "experimental/v8_tools/dot_plotter.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-16T15:49:01Z",
+      "side": 1,
+      "message": "You can skip the function here since it\u0027s a relatively simple replacement, \u0027\\\\$\u0026\u0027 would suffice ($\u0026 is the current match)",
+      "range": {
+        "startLine": 66,
+        "startChar": 36,
+        "endLine": 66,
+        "endChar": 69
+      },
+      "revId": "d897764f77511547e1edc1453364613aae50c4c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e2db862_4314029d",
+        "filename": "experimental/v8_tools/run_tests.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-16T15:49:01Z",
+      "side": 1,
+      "message": "unused?",
+      "range": {
+        "startLine": 28,
+        "startChar": 15,
+        "endLine": 29,
+        "endChar": 52
+      },
+      "revId": "d897764f77511547e1edc1453364613aae50c4c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
