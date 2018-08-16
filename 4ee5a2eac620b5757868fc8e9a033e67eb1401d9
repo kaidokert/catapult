@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "91b34c29_0f358795",
+        "filename": "devil/devil/android/sdk/version_codes_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-08-16T21:00:26Z",
+      "side": 1,
+      "message": "That seems a better argument for trying to avoid using the value as a parameter to getattr than anything else.",
+      "parentUuid": "2ed10fa7_6e06f7f6",
+      "revId": "4ee5a2eac620b5757868fc8e9a033e67eb1401d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "46355c62_9226032c",
         "filename": "devil/devil/android/sdk/version_codes_test.py",
         "patchSetId": 3
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "There is overlap, if the 1st test fails, then the 2nd test will fail too.  But having the 1st test makes it more clear what the problem is.  The 2nd test does add additional checks for VERSION_NAMES_DICT that are not covered by the 1st one.",
       "parentUuid": "46355c62_9226032c",
+      "revId": "4ee5a2eac620b5757868fc8e9a033e67eb1401d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ebf909f_4bb490a2",
+        "filename": "devil/devil/android/sdk/version_codes_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-08-16T21:00:26Z",
+      "side": 1,
+      "message": "It\u0027d be good to not explicitly test the same things multiple times.",
+      "parentUuid": "03d90cc9_6630f962",
       "revId": "4ee5a2eac620b5757868fc8e9a033e67eb1401d9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
