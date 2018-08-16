@@ -181,7 +181,21 @@ tr.exportTo('tr.ui.b', function() {
         wView = Math.max(dt.xWorldVectorToView(w), 1);
       }
 
-      const colorId = EventPresenter.getSliceColorId(slice);
+      //const colorId = EventPresenter.getSliceColorId(slice);
+      let colorId = 'rgb(128,128,128)';
+      if (slice.dcacheReads) {
+        const low = 0;
+        const high = .1;
+        let v = slice.dcacheMisses / slice.dcacheReads;
+        v = Math.max(low, v);
+        v = Math.min(high, v);
+        v = (v - low) / (high - low);
+        v = Math.floor(256 * v);
+        const r = 255;
+        const g = v;
+        const b = 0;
+        colorId = 'rgb(' + r + ',' + g + ',' + b + ')';
+      }
       const alpha = EventPresenter.getSliceAlpha(slice, async);
       const lightAlpha = alpha * 0.70;
 
