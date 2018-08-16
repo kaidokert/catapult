@@ -438,7 +438,7 @@ tr.exportTo('cp', () => {
       // actual result through a BroadcastChannel to avoid useless JSON parsing.
       // ServiceWorkerListener is listening for messages received on the
       // BroadcastChannel.
-      if (response && response.timeseries) {
+      if (response) {
         this.onFinishRequest_(response);
         const timeseries = await this.readFromCache_();
         yield {

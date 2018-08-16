@@ -55,25 +55,25 @@ function handleFetch(event, url, CacheRequest) {
 // A single response can only be sent once. If you send a Response more than
 // once, it'll silently fail and you'll spend hours debugging/crying.
 function makeFakeResponse() {
-  const blob = new Blob(['{}'], { type: 'application/json' });
+  const blob = new Blob(['null'], { type: 'application/json' });
   return new Response(blob);
 }
 
-async function broadcast(url, race) {
+async function broadcast(url, cacheRequest) {
   // Open a channel for communication between clients.
   const channel = new BroadcastChannel(url);
 
-  // Wait for each contestant to finish the race, informing clients of their
-  // results.
-  for await (const contestant of race) {
-    if (contestant) {
+  // Wait for all results of the CacheRequest. Inform clients of cached results
+  // and fresh results from the network.
+  for await (const response of cacheRequest) {
+    if (response) {
       channel.postMessage({
         type: 'RESULTS',
-        payload: contestant.result,
+        payload: response.result,
       });
     }
   }
 
-  // Tell clients that the race has finished.
+  // Tell clients that the response has ended.
   channel.postMessage({ type: 'DONE' });
 }
