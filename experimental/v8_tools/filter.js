@@ -257,7 +257,7 @@ const app = new Vue({
     selected_metric: null,
     selected_story: null,
     selected_diagnostic: null,
-    graph: null,
+    graph: new GraphData(),
     searchQuery: '',
     gridColumns: ['id', 'metric', 'averageSampleValues'],
     gridData: []
@@ -270,7 +270,7 @@ const app = new Vue({
       this.graph.xAxis('Data Points')
           .yAxis('Memory used (MiB)')
           .title(this.selected_story)
-          .addData(JSON.parse(JSON.stringify((this.target))))
+          .setData(JSON.parse(JSON.stringify((this.target))))
           .plotCumulativeFrequency();
     },
 
@@ -280,7 +280,7 @@ const app = new Vue({
       this.graph
           .xAxis('Memory used (MiB)')
           .title(story)
-          .addData(JSON.parse(JSON.stringify(target)))
+          .setData(JSON.parse(JSON.stringify(target)))
           .plotDot();
     },
 
@@ -290,7 +290,7 @@ const app = new Vue({
       this.graph.xAxis('Data Points')
           .yAxis('Memory used (MiB)')
           .title(story)
-          .addData(JSON.parse(JSON.stringify(target)))
+          .setData(JSON.parse(JSON.stringify(target)))
           .plotCumulativeFrequency();
     },
 
@@ -331,14 +331,7 @@ const app = new Vue({
         contentVal.push(value);
       }
       const obj = _.object(contentKeys, contentVal);
-      if (this.graph === null) {
-        this.graph = new GraphData();
-        this.plotCumulativeFrequencyPlot(obj, story);
-      } else {
-        this.graph.plotter_.remove();
-        this.graph = new GraphData();
-        this.plotCumulativeFrequencyPlot(obj, story);
-      }
+      this.plotCumulativeFrequencyPlot(obj, story);
     },
     //  Draw a plot depending on the target value which is made
     //  of a metric, a story, a diagnostic and a couple of sub-diagnostics
@@ -348,23 +341,9 @@ const app = new Vue({
       const target = this.targetForMultipleDiagnostics(metric, story,
           diagnostic, diagnostics);
       if (chosenPlot === 'Dot plot') {
-        if (this.graph === null) {
-          this.graph = new GraphData();
-          this.plotDotPlot(target, story);
-        } else {
-          this.graph.plotter_.remove();
-          this.graph = new GraphData();
-          this.plotDotPlot(target, story);
-        }
+        this.plotDotPlot(target, story);
       } else {
-        if (this.graph === null) {
-          this.graph = new GraphData();
-          this.plotCumulativeFrequencyPlot(target, story);
-        } else {
-          this.graph.plotter_.remove();
-          this.graph = new GraphData();
-          this.plotCumulativeFrequencyPlot(target, story);
-        }
+        this.plotCumulativeFrequencyPlot(target, story);
       }
     },
 
@@ -529,14 +508,7 @@ const app = new Vue({
     //  this function will run for drawing a new type of plot.
     //  These items are chosen from the drop-down menu.
     target() {
-      if (this.graph === null) {
-        this.graph = new GraphData();
-        this.plotCumulativeFrequency();
-      } else {
-        this.graph.plotter_.remove();
-        this.graph = new GraphData();
-        this.plotCumulativeFrequency();
-      }
+      this.plotCumulativeFrequency();
     }
   }
 });
