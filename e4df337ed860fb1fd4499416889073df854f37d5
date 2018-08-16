@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a24fc25_1936e2b6",
+        "filename": "telemetry/telemetry/page/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-08-16T13:48:02Z",
+      "side": 1,
+      "message": "can you move this to story_runner? This way, it\u0027s applicable for all story",
+      "revId": "e4df337ed860fb1fd4499416889073df854f37d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
