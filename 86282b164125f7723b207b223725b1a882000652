@@ -22,6 +22,30 @@
       "revId": "86282b164125f7723b207b223725b1a882000652",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76bd7a59_866716c2",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-16T21:43:03Z",
+      "side": 1,
+      "message": "That assumes that the Diagnostics are GenericSets, but I\u0027ll refactor it.",
+      "parentUuid": "bf7c339e_d0a39527",
+      "range": {
+        "startLine": 81,
+        "startChar": 22,
+        "endLine": 81,
+        "endChar": 38
+      },
+      "revId": "86282b164125f7723b207b223725b1a882000652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
