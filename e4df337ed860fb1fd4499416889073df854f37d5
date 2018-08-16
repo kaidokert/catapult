@@ -34,6 +34,24 @@
       "revId": "e4df337ed860fb1fd4499416889073df854f37d5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad15c451_b7681cc2",
+        "filename": "telemetry/telemetry/page/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-08-16T15:19:28Z",
+      "side": 1,
+      "message": "A story doesnt\u0027 need to open a browser in order to use WebPageReplay. It can be an app which has a webview for example.\n\nAnother case is you can have story with multiple browsers, and those are not subclass of Page.",
+      "parentUuid": "5a25791d_0f33a220",
+      "revId": "e4df337ed860fb1fd4499416889073df854f37d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
