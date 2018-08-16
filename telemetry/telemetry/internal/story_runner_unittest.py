@@ -1623,7 +1623,7 @@ class BenchmarkJsonResultsTest(unittest.TestCase):
     class StoryFailureSharedState(TestSharedState):
       def RunStory(self, results):
         logging.warning('This will fail gracefully')
-        raise exceptions.AppCrashException()
+        raise exceptions.Error()
 
     class TestBenchmark(benchmark.Benchmark):
       test = DummyTest
