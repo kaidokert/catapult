@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "73d8f2a8_d793a6d2",
+        "filename": "telemetry/telemetry/internal/util/ts_proxy_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-16T14:11:51Z",
+      "side": 1,
+      "message": "Any clue why this was shown as:\n\n  \"RuntimeError: Error starting tsproxy: None\"\n\nin the logs of the linked bug? Is there any other output we could get from the subprocess to figure out why it failed?\n\nIn any case, also probably change the error message to something more precise like:\n\n  \u0027Timed out waiting for tsproxy to start: %s\u0027",
+      "revId": "956a38e41d9d0016b13a3c4ca28be18a4cc16b1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
