@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ebc1967c_7a10cd96",
+        "filename": "experimental/v8_tools/graph_plotter.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1293423
+      },
+      "writtenOn": "2018-08-17T13:46:07Z",
+      "side": 1,
+      "message": "Yep, I\u0027ll change that back.",
+      "parentUuid": "40a57763_4a0ce2bf",
+      "range": {
+        "startLine": 30,
+        "startChar": 33,
+        "endLine": 30,
+        "endChar": 48
+      },
+      "revId": "ec79ff7076ad0dc67c3a4ee0b5ea7dbe21a9adf7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "efbcb42c_1bc63f1a",
         "filename": "experimental/v8_tools/graph_plotter.js",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2018-08-17T12:13:09Z",
       "side": 1,
       "message": "fine for now, but maybe it\u0027d be nice to eventually re-use some of the components?",
+      "range": {
+        "startLine": 48,
+        "startChar": 1,
+        "endLine": 50,
+        "endChar": 5
+      },
+      "revId": "ec79ff7076ad0dc67c3a4ee0b5ea7dbe21a9adf7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce2acc7c_455afdbe",
+        "filename": "experimental/v8_tools/graph_plotter.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1293423
+      },
+      "writtenOn": "2018-08-17T13:46:07Z",
+      "side": 1,
+      "message": "yep, that makes sense",
+      "parentUuid": "efbcb42c_1bc63f1a",
       "range": {
         "startLine": 48,
         "startChar": 1,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "e8b6847a_2f98ecd4",
+        "filename": "experimental/v8_tools/graph_plotter_test.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1293423
+      },
+      "writtenOn": "2018-08-17T13:46:07Z",
+      "side": 1,
+      "message": "Yeah that\u0027s right for data updates so what you suggest would make sense. It may be worth doing in a separate CL though because I would have to change filter.js for that to work (I was going to modfiy filter.js to take advantage of this CL next, so either as part of that or as a final CL after if it requires changing the logic to distinguish between data updates and plot changes). What\u0027d you think?",
+      "parentUuid": "7836cf3c_be9a8f63",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 58
+      },
+      "revId": "ec79ff7076ad0dc67c3a4ee0b5ea7dbe21a9adf7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1099eb00_09601517",
         "filename": "experimental/v8_tools/metrics_viewer.html",
         "patchSetId": 5
@@ -82,6 +154,30 @@
       "writtenOn": "2018-08-17T12:13:09Z",
       "side": 1,
       "message": "any reason to keep addData?",
+      "range": {
+        "startLine": 46,
+        "startChar": 13,
+        "endLine": 46,
+        "endChar": 20
+      },
+      "revId": "ec79ff7076ad0dc67c3a4ee0b5ea7dbe21a9adf7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89446594_a261ecc0",
+        "filename": "experimental/v8_tools/metrics_viewer.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1293423
+      },
+      "writtenOn": "2018-08-17T13:46:07Z",
+      "side": 1,
+      "message": "Nope, I was going to remove (or make it private) in another CL, along with changes to filter.js (Florina\u0027s code) to use setData and take advantage of not having to delete the plot.",
+      "parentUuid": "1099eb00_09601517",
       "range": {
         "startLine": 46,
         "startChar": 13,
