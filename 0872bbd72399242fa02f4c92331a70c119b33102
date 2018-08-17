@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c33ecd21_23cb59ba",
+        "filename": "dashboard/dashboard/spa/raised-button.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-08-17T23:07:00Z",
+      "side": 1,
+      "message": "We don\u0027t currently use variables across components in ChopsUI (currently all variables are more like --chops-button-color in style), but I think that would actually be pretty neat to integrate: if we could create a set of like 3-5 color variables people could set to give their service a unique flavor while keeping in style.",
+      "revId": "0872bbd72399242fa02f4c92331a70c119b33102",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}

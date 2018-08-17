@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2b48bd96_70dbf7da",
+        "filename": "dashboard/dashboard/spa/raised-button.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-08-17T23:07:00Z",
+      "side": 1,
+      "message": "As an fyi, chops-button does end up having more JavaScript: https://cs.chromium.org/chromium/infra/crdx/chopsui/chops-button.html?l\u003d45 \n\nBut it\u0027s really only there to try to get chops-button to feature parity with a native browser button (in particular, accessibility features like having the button able to be enabled view kepress). For this, I really wished there was a way to extend native browser components.",
+      "revId": "f0667bde39174eb0f2111af3ad20f42e75efa805",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
