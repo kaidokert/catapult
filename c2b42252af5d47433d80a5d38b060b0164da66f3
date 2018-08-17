@@ -22,6 +22,30 @@
       "revId": "c2b42252af5d47433d80a5d38b060b0164da66f3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06a28684_2e9d4cbc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1279964
+      },
+      "writtenOn": "2018-08-17T16:23:36Z",
+      "side": 1,
+      "message": "It should be good now.",
+      "parentUuid": "4c58e356_0c79782d",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 0
+      },
+      "revId": "c2b42252af5d47433d80a5d38b060b0164da66f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
