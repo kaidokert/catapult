@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0bf6b366_5992a3ce",
+        "filename": "experimental/long_term_health/long_term_health/apk_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-17T10:53:55Z",
+      "side": 1,
+      "message": "nit: this can just be:\n\n  if len(args) \u003d\u003d 1:\n    args \u003d [int(v) .... ]\n\nNo need for the \"else\" branch where args just stay the same.",
+      "revId": "e54d6ec26ee6b8d2b77f6e39ce7c4f5563ff0ae8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "369aa8a0_7925c491",
+        "filename": "experimental/long_term_health/long_term_health/apk_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-17T10:53:55Z",
+      "side": 1,
+      "message": "nit: just do `return super(...) ` in one line, no need for the extra \"self\" variable.",
+      "revId": "e54d6ec26ee6b8d2b77f6e39ce7c4f5563ff0ae8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "128ea924_5e710076",
+        "filename": "experimental/long_term_health/long_term_health/apk_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-17T10:53:55Z",
+      "side": 1,
+      "message": "nit: no map, sorry :(\n\nwe tend to prefer expanding to a list comprehension: e.g. [str(v) for v in self]",
+      "revId": "e54d6ec26ee6b8d2b77f6e39ce7c4f5563ff0ae8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
