@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "69a31891_c09c45a7",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-17T22:22:44Z",
+      "side": 1,
+      "message": "A deferrable function seems simpler than a RequestHandler in lines of code, and you don\u0027t need to register deferrable functions in dispatcher.py. My 2c :-)",
+      "parentUuid": "b58a82ab_f7e4866e",
+      "revId": "cae53ac29e3920e01fc023207c64ae18c48832e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "01947d49_ddff98c4",
         "filename": "dashboard/dashboard/add_histograms.py",
         "patchSetId": 6
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "Kinda went back and forth on that a bit, didn\u0027t want it to fail somehow and then try again over and over, although that\u0027s *probably* fine in that it will probably just overwrite existing data (I think). I\u0027m thinking if ProcessHistogramSet fails once, it will very likely fail every time since chances are the data is malformed, or we went over the 10 min limit or something.",
       "parentUuid": "01947d49_ddff98c4",
+      "revId": "cae53ac29e3920e01fc023207c64ae18c48832e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89a3bfbf_cd6a1e49",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-17T22:22:44Z",
+      "side": 1,
+      "message": "I thought that there were situations where ProcessHistogramSet could fail in a way that would cause uploaders to retry and maybe succeed. If add_histograms defers all processing in a way that uploaders can\u0027t retry, then it seems necessary for AddHistogramsProcessHandler to take over responsibility for retrying.",
+      "parentUuid": "d84832c6_080b8c2c",
       "revId": "cae53ac29e3920e01fc023207c64ae18c48832e2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -104,6 +140,24 @@
       "revId": "cae53ac29e3920e01fc023207c64ae18c48832e2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "626e01db_5fd10dec",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-17T22:22:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6a530a8c_6a6aca0d",
+      "revId": "cae53ac29e3920e01fc023207c64ae18c48832e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
