@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d2127a7c_c0dafc98",
+        "filename": "tracing/tracing/metrics/rendering/rendering_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-17T18:10:32Z",
+      "side": 1,
+      "message": "Can you declare the list of required categories?\n\ntr.metrics.MetricRegistry.register(renderingMetric, {\n    requiredCategories: [\u0027toplevel\u0027],\n  });",
+      "revId": "ca0cb853a06800dc8a59d80e1cbaf65fa922a444",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
