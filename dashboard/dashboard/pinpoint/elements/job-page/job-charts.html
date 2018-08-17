@@ -5,12 +5,6 @@ Use of this source code is governed by a BSD-style license that can be
 found in the LICENSE file.
 -->
 
-<script src="/jquery/jquery-2.1.4.min.js"></script>
-<!-- Each import of flot reinitializes it, clearing all the plugins from
-  previous imports. Try to import flot only once across the entire app. -->
-<script src="/flot/jquery.flot.min.js"></script>
-<script src="/flot/jquery.flot.errorbars.min.js"></script>
-
 <link rel="import" href="/elements/job-page/job-chart.html">
 <link rel="import" href="/elements/job-page/values-histogram.html">
 
@@ -19,6 +13,8 @@ found in the LICENSE file.
     <style>
       .columns {
         display: grid;
+        grid-auto-columns: 1fr;
+        grid-column-gap: 24px;
       }
 
       job-chart {
@@ -31,8 +27,8 @@ found in the LICENSE file.
     </style>
 
     <div class="columns">
-      <job-chart job-data="[[jobData(job)]]" change-index="{{changeIndex}}"></job-chart>
-      <values-histogram job-data="[[jobData(job)]]" change-index="[[changeIndex]]"></values-histogram>
+      <job-chart job="[[job]]" change-index="{{changeIndex}}"></job-chart>
+      <values-histogram job="[[job]]" change-index="[[changeIndex]]"></values-histogram>
     </div>
   </template>
 

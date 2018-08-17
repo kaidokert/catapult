@@ -44,6 +44,9 @@ found in the LICENSE file.
         display: grid;
         grid-auto-columns: 1fr;
         grid-column-gap: 24px;
+        grid-row-gap: 24px;
+        grid-template-rows: max-content;
+        margin-top: 24px;
       }
 
       #details-column {
@@ -59,8 +62,18 @@ found in the LICENSE file.
         grid-column: 3 / 6;
       }
 
+      #change-a > div {
+        background-color: var(--paper-indigo-500);
+        height: 8px;
+      }
+
       #change-b {
         grid-column: 6 / 9;
+      }
+
+      #change-b > div {
+        background-color: var(--paper-pink-a200);
+        height: 8px;
       }
 
       #exception {
@@ -109,8 +122,14 @@ found in the LICENSE file.
             </template>
           </template>
         </div>
-        <change-details id="change-a" job="[[job]]" change-state="[[previousChangeState(job.state, changeIndex)]]"></change-details>
-        <change-details id="change-b" job="[[job]]" change-state="[[changeState(job.state, changeIndex)]]"></change-details>
+        <div id="change-a">
+          <div></div>
+          <change-details job="[[job]]" change-state="[[previousChangeState(job.state, changeIndex)]]"></change-details>
+        </div>
+        <div id="change-b">
+          <div></div>
+          <change-details job="[[job]]" change-state="[[changeState(job.state, changeIndex)]]"></change-details>
+        </div>
       </div>
       <job-menu-fab job="[[job]]" auth-headers="[[authHeaders]]"></job-menu-fab>
     </loading-wrapper>

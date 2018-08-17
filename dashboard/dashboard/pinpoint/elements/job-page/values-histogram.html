@@ -8,14 +8,30 @@ found in the LICENSE file.
 <dom-module id="values-histogram">
   <template>
     <style>
-      #plot {
-        height: 240px;
-        margin-top: 1em;
+      svg {
+        height: 224px;
+        margin-top: 16px;
         width: 100%;
+      }
+
+      g {
+        height: 100%;
+        width: 100%;
+      }
+
+      #bar_a {
+        fill: #3F51B5;
+      }
+
+      #bar_b {
+        fill: #FF4081;
       }
     </style>
 
-    <div id="plot"></div>
+    <svg id="plot">
+      <g id="bar_a"></g>
+      <g id="bar_b"></g>
+    </svg>
   </template>
 
   <script>
@@ -24,23 +40,18 @@ found in the LICENSE file.
       is: 'values-histogram',
 
       properties: {
-        jobData: {
+        job: {
           type: Object,
-          observer: '_jobDataChanged',
+          observer: '_jobChanged',
         },
 
         changeIndex: {
           type: Number,
           observer: '_changeIndexChanged',
         },
-
-        // The Flot Plot object, returned by $.plot.
-        chart: {
-          value: null
-        }
       },
 
-      _jobDataChanged() {
+      _jobChanged() {
         this.async(this.draw, 1);
       },
 
@@ -49,68 +60,66 @@ found in the LICENSE file.
       },
 
       draw() {
+        if (!this.job) {
+          return;
+        }
         if (this.changeIndex === null) {
           return;
         }
-        if (!this.jobData) {
-          return;
-        }
 
-        const values = this.jobData.state[this.changeIndex].result_values;
+        // Compute y scale.
+        const valuesByChange = this.job.state.map(s => s.result_values);
+        const allValues = [].concat(...valuesByChange);
+        const y = d3.scaleLinear()
+            .domain(d3.extent(allValues)).nice()
+            .rangeRound([224, 0]);
 
-        // Get bounds.
-        const min = this.jobData.bounds[0];
-        const max = this.jobData.bounds[1];
+        // Compute x scale. First, compute all the buckets, then scale all
+        // numbers to the bucket with the largest frequency percentage.
+        const histogram = d3.histogram()
+            .domain(y.domain())
+            .thresholds(y.ticks(20));
+        const histograms = valuesByChange.map(values => bins(histogram, values));
+        const maxBucket =
+            d3.max(d3.merge(histograms), bucket => bucket.proportion);
+        const x = d3.scaleLinear()
+            .domain([0, maxBucket])
+            .range([0, 100]);
 
-        let barWidth = 1;
-        const seriesData = [];
-        if (values.length) {
-          // Calculate buckets.
-          // TODO: Calculate bucketCount based on the average number of values
-          // across all commits with values, to ensure it doesn't change from
-          // commit to commit.
-          const bucketCount =
-            Math.max(Math.round(Math.log(values.length) * 4 + 1), 10);
-          const buckets = new Array(bucketCount).fill(0);
-          for (const value of values) {
-            let index = Math.floor((value - min) / (max - min) * bucketCount);
-            if (index == bucketCount) {
-              index -= 1;
-            }
-            buckets[index] += 1;
-          }
-          barWidth = (max - min) / bucketCount;
+        // Draw histograms.
+        const histogramA = this.changeIndex ? histograms[this.changeIndex - 1] : [];
+        const histogramB = histograms[this.changeIndex];
+        d3.select(this.$.bar_a).call(drawHistogram, x, y, histogramA, false);
+        d3.select(this.$.bar_b).call(drawHistogram, x, y, histogramB, true);
 
-          // Convert buckets to a format that flot likes.
-          for (let i = 0; i < bucketCount; ++i) {
-            seriesData.push([buckets[i], i * (max - min) / bucketCount + min]);
-          }
-        }
-
-        const plotData = [{
-          bars: {
-            barWidth,
-            horizontal: true,
-            show: true
-          },
-          color: '#3f51b5',
-          data: seriesData
-        }];
-
-        // Chart options to be given when initializing the Flot chart.
-        // See: https://github.com/flot/flot/blob/master/API.md#plot-options
-        const options = {
-          grid: {
-            borderWidth: 1,
-            borderColor: 'rgba(0, 0, 0, 0.5)'
-          },
-          xaxis: {tickLength: 0},
-          yaxis: {min, max, tickFormatter: (val, axis) => ''}
-        };
-
-        // Plot the chart!
-        this.chart = $.plot(this.$.plot, plotData, options);
+        // Update Polymer about changes.
+        // TODO(dtu): This adds scope classes every time the histogram changes.
+        // Remove this when we use native shadow dom.
+        this.scopeSubtree(this.$.plot);
       }
     });
+
+    function drawHistogram(svg, x, y, values, bottom) {
+      const bar = svg.selectAll('rect')
+          .data(values.filter(bin => bin.length));
+      bar.enter().append('rect').merge(bar)
+          .attr('width', d => x(d.proportion) + '%')
+          .attr('y', d => {
+            if (bottom) {
+              return (y(d.x0) + y(d.x1)) / 2;
+            }
+            return y(d.x1);
+          })
+          .attr('height', d => (y(d.x0) - y(d.x1)) / 2);
+      bar.exit().remove();
+    }
+
+    function bins(histogram, resultValues) {
+      const bins = histogram(resultValues);
+      for (const bin of bins) {
+        bin.proportion = bin.length / resultValues.length;
+      }
+      return bins;
+    }
   </script>
 </dom-module>
