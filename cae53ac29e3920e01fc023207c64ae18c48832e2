@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a9453f6_289e52b1",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T20:28:40Z",
+      "side": 1,
+      "message": "Can we not do this unless necessary",
+      "revId": "cae53ac29e3920e01fc023207c64ae18c48832e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d2e05ea_be225c92",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T20:28:40Z",
+      "side": 1,
+      "message": "/add_histograms/process",
+      "revId": "cae53ac29e3920e01fc023207c64ae18c48832e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
