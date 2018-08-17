@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "278a9939_1a39e2c5",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-17T22:27:22Z",
+      "side": 1,
+      "message": "True, I\u0027ll change it.",
+      "parentUuid": "69a31891_c09c45a7",
+      "revId": "cae53ac29e3920e01fc023207c64ae18c48832e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "01947d49_ddff98c4",
         "filename": "dashboard/dashboard/add_histograms.py",
         "patchSetId": 6
@@ -102,6 +120,24 @@
       "side": 1,
       "message": "I thought that there were situations where ProcessHistogramSet could fail in a way that would cause uploaders to retry and maybe succeed. If add_histograms defers all processing in a way that uploaders can\u0027t retry, then it seems necessary for AddHistogramsProcessHandler to take over responsibility for retrying.",
       "parentUuid": "d84832c6_080b8c2c",
+      "revId": "cae53ac29e3920e01fc023207c64ae18c48832e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2224bc62_5cee12bd",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-17T22:27:22Z",
+      "side": 1,
+      "message": "afaik the only potentially recoverable error would be something that\u0027s borderline 60s, sometime\u0027s it\u0027ll pass and sometimes it won\u0027t.\n\nThe client can retry in a number of sort of recoverable cases, like their token expired and we rejected, etc. but those all happen outside ProcessHistogramSet",
+      "parentUuid": "89a3bfbf_cd6a1e49",
       "revId": "cae53ac29e3920e01fc023207c64ae18c48832e2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
