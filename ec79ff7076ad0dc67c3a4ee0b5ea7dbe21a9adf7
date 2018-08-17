@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "c7a4183b_3d0dff06",
+        "filename": "experimental/v8_tools/graph_plotter_test.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-17T13:48:53Z",
+      "side": 1,
+      "message": "Absolutely fine to do it in a followup.",
+      "parentUuid": "e8b6847a_2f98ecd4",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 58
+      },
+      "revId": "ec79ff7076ad0dc67c3a4ee0b5ea7dbe21a9adf7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1099eb00_09601517",
         "filename": "experimental/v8_tools/metrics_viewer.html",
         "patchSetId": 5
@@ -187,6 +211,30 @@
       "revId": "ec79ff7076ad0dc67c3a4ee0b5ea7dbe21a9adf7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5eafbf70_80b7bccf",
+        "filename": "experimental/v8_tools/metrics_viewer.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-17T13:48:53Z",
+      "side": 1,
+      "message": "Ack, that\u0027s good practice to split up deprecating and removing an API.",
+      "parentUuid": "89446594_a261ecc0",
+      "range": {
+        "startLine": 46,
+        "startChar": 13,
+        "endLine": 46,
+        "endChar": 20
+      },
+      "revId": "ec79ff7076ad0dc67c3a4ee0b5ea7dbe21a9adf7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
