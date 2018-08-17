@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "19594f2c_ed281a38",
+        "filename": "experimental/long_term_health/bin/long_term_health",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-17T14:56:41Z",
+      "side": 1,
+      "message": "nit: maybe add another hyphen between the milestone number and the date?",
+      "revId": "f4c5fea78fb2095f1bfddf58aea0cdfc0d540823",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f566c39b_1b0466ce",
+        "filename": "experimental/long_term_health/long_term_health/test_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-17T14:56:41Z",
+      "side": 1,
+      "message": "On a follow up CL, let\u0027s add:\n- no-field-trials, always.\n- the others, only when really needed (according to your compatibility doc)",
+      "revId": "f4c5fea78fb2095f1bfddf58aea0cdfc0d540823",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
