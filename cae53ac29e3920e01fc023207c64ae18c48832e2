@@ -2,6 +2,57 @@
   "comments": [
     {
       "key": {
+        "uuid": "92d4554f_0a3af36b",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-17T20:35:11Z",
+      "side": 1,
+      "message": "Why use taskqueue.Task instead of deferred.defer?",
+      "revId": "cae53ac29e3920e01fc023207c64ae18c48832e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01947d49_ddff98c4",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-17T20:35:11Z",
+      "side": 1,
+      "message": "Do you want to wait for ProcessHistogramSet to succeed before deleting?",
+      "revId": "cae53ac29e3920e01fc023207c64ae18c48832e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "335af548_849b2388",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-17T20:35:11Z",
+      "side": 1,
+      "message": "This handler runs on the taskqueue, right? So what does the taskqueue do with responses like this?",
+      "revId": "cae53ac29e3920e01fc023207c64ae18c48832e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5a9453f6_289e52b1",
         "filename": "dashboard/dashboard/add_histograms.py",
         "patchSetId": 6
