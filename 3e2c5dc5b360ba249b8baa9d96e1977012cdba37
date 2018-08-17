@@ -2,6 +2,686 @@
   "comments": [
     {
       "key": {
+        "uuid": "9dc2ca3c_8d25bd54",
+        "filename": "dashboard/dashboard/spa/chart-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "How is this related to the CL?",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8eadd35a_a5e27c93",
+        "filename": "dashboard/dashboard/spa/chart-pair.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "JSDoc?",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "521a2c86_65bf7a62",
+        "filename": "dashboard/dashboard/spa/chart-pair.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Comments that just explain what the code does are spurious. It can be seen that this method does these things in the code below.",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5c9420d_4c3fbc88",
+        "filename": "dashboard/dashboard/spa/chart-pair.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "How about you get rid of this comment and rename the method to findFirstNonEmptyLineDescriptor?",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00fb9d65_6f3c04d6",
+        "filename": "dashboard/dashboard/spa/chart-pair.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a4acd91_7f9a0b54",
+        "filename": "dashboard/dashboard/spa/chart-pair.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "typo?",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80fdf11c_1caf671a",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Can you just write await Promise.all(reader)?",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95e0d210_5dc5a705",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "What? It\u0027s not clear at all how the code block below this does this.",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffac02f6_3deb6abb",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "I don\u0027t understand this comment -- what\u0027s a loader component? _Why_ do we need to signal them?",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15652397_3e711103",
+        "filename": "dashboard/dashboard/spa/element-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "nit: don\u0027t need spaces around braces. Also I don\u0027t understand how window destructures properly here?",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d488d87_df933eef",
+        "filename": "dashboard/dashboard/spa/element-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "The comment below already says this.",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e0d6bf5_7c870b9b",
+        "filename": "dashboard/dashboard/spa/index.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Why",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c41ebf0d_52c7f3d0",
+        "filename": "dashboard/dashboard/spa/index.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Remove",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3015176a_64deef96",
+        "filename": "dashboard/dashboard/spa/index.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Remove",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e805c5c7_f20d3770",
+        "filename": "dashboard/dashboard/spa/index.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Ben, is this necessary? I thought tracing/base specifies shadow already?",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36639e9f_c275ab7b",
+        "filename": "dashboard/dashboard/spa/request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Remove",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc155865_7bb433d6",
+        "filename": "dashboard/dashboard/spa/request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Remove",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "abd58aec_f23cbcc6",
+        "filename": "dashboard/dashboard/spa/request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "How about \"Cache key strings should be unique per request.\"",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8ffe4ff_c37ae4ae",
+        "filename": "dashboard/dashboard/spa/request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Seems obvious from the name.",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd4474ce_d508d4c7",
+        "filename": "dashboard/dashboard/spa/request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Don\u0027t understand this -- what is this used for?",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "481c23d5_da5fec6e",
+        "filename": "dashboard/dashboard/spa/request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "const? Also where do you actually set this?",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01e830ad_de17fdf5",
+        "filename": "dashboard/dashboard/spa/request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "What? Can you rewrite this comment to give a little bit more \"why\"",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d616773_b8380934",
+        "filename": "dashboard/dashboard/spa/request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "I feel like wrap is not a very good name for this. Can you come up with a more descriptive name?",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a62bf213_5d0ee49b",
+        "filename": "dashboard/dashboard/spa/request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Remove",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8744033_0de21240",
+        "filename": "dashboard/dashboard/spa/request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "How about calling the delay timeout?",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62e39bfc_cfe3b16e",
+        "filename": "dashboard/dashboard/spa/request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "...then you can delete this comment.",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8734e60_70b86122",
+        "filename": "dashboard/dashboard/spa/service-worker-listener.html",
+        "patchSetId": 27
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "What\u0027s the necessity of this file? Why not just script src it in the places where you need?",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a40599d2_06473e73",
+        "filename": "dashboard/dashboard/spa/service-worker-listener.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cbef29b3_89fae293",
+        "filename": "dashboard/dashboard/spa/service-worker.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Why do we need post-installation configuration? Why not just set everything up and then install?",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d4086fc_4a215eeb",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "nit: and the\n\nReplace the second sentence with a sentence that begins \"Clients can extend this class to ...\"",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bbf71958_07a840ba",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e321cb9f_a2ad8306",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Child classes should use this method to...",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c70b5e7_33eb93de",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5df9990_c2871ff7",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6dca147_d245399b",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfdeb4ab_3704100e",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e37d1553_949a3da8",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79d52fda_0af4031d",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8bbde462_c3922567",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c14a6cb4_3b3ac5cb",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5f1903b2_71e6617b",
         "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
         "patchSetId": 27
@@ -13,6 +693,91 @@
       "writtenOn": "2018-08-17T18:43:39Z",
       "side": 1,
       "message": "Move this timing inside the branch so it is only recorded when idb.open is actually called.",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffc5deea_b41443e2",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78118ba1_e3caf49b",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b71d91a_9b935adb",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "s/reoccuring/recurrent/",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e36792f_d5eb24da",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "TODO(bug number) pls",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0c799b9_b152e3af",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete comment.",
       "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -53,6 +818,142 @@
     },
     {
       "key": {
+        "uuid": "833666c4_b68cb276",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4fb874be_6cfac12a",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b910522f_89267127",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Tests must disable the ... so that ....",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25b2305f_a637a975",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdc4ecfe_aa76de84",
+        "filename": "dashboard/dashboard/spa/sw-utils/google-analytics.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "nit: s/Google Analytic/GA/ here and throughout this comment.",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e29be2d_c5110784",
+        "filename": "dashboard/dashboard/spa/sw-utils/google-analytics.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Perhaps:\n\nUsed for queueing requests until GA is initialized",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9a1ad09_62eb57be",
+        "filename": "dashboard/dashboard/spa/sw-utils/google-analytics.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "These comments only duplicate GA\u0027s documentation.",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af8054ce_d69de98b",
+        "filename": "dashboard/dashboard/spa/sw-utils/google-analytics.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "When would this happen?",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "65c7d12f_1e1f0fd8",
         "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request-test.html",
         "patchSetId": 27
@@ -70,6 +971,23 @@
     },
     {
       "key": {
+        "uuid": "0ae7cc3d_6db8c19b",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request-test.html",
+        "patchSetId": 27
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "In Google JS, we prefix optional parameters with opt_.\n\nIf you\u0027d like to specify the expected types, write a JSDoc comment instead.",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "006d2f6e_5ac27362",
         "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request-test.html",
         "patchSetId": 27
@@ -81,6 +999,448 @@
       "writtenOn": "2018-08-17T18:43:39Z",
       "side": 1,
       "message": "TimeseriesCacheRequest?",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "601f0f30_202554f1",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request-test.html",
+        "patchSetId": 27
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "nit: Just call this mockFetch",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28badbc3_303ce8fb",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request-test.html",
+        "patchSetId": 27
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "mockResponse",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0a04adb_823d171f",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request-test.html",
+        "patchSetId": 27
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "This is not a useful test. Just write tests for each of these things. They will trivially fail if not exported.",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0fba9dad_0c10d2b1",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request-test.html",
+        "patchSetId": 27
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Please use the name rather than \"it\", and name these using camelcase.",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6e7262d_0d911616",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request-test.html",
+        "patchSetId": 27
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "In general, I don\u0027t really feel like the messages are useful.",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43a48390_80d87454",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request-test.html",
+        "patchSetId": 27
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92634ca0_d281b7c4",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request-test.html",
+        "patchSetId": 27
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d4b8397_775d83e7",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request-test.html",
+        "patchSetId": 27
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecb86bad_ca4b360b",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request-test.html",
+        "patchSetId": 27
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec5ded7e_4e6507db",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request-test.html",
+        "patchSetId": 27
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a6e6002_d99bee92",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request-test.html",
+        "patchSetId": 27
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d488d1f_34298583",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request-test.html",
+        "patchSetId": 27
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Getting tired of typing Delete, you get the idea.",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ead91d5e_62d5abc4",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3f26861_17b7c6da",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "443681fe_a98ea331",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97c3074f_bd155e19",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "252ea5fb_eaf37fe3",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Requested? By whom? Where?",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4a25168_dc8c24a1",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dee7be16_a0220168",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0811cfb3_fb2638ec",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete.",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99e5bbe7_77464fa2",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2b17d2a_2776966d",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Eithere TODO(bug number) if this is important or delete.",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28d24fe6_9860a82f",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d2126cf_6ad5cfb5",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e8931dd_914a61c4",
+        "filename": "dashboard/dashboard/spa/sw-utils/timing.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9908a2d4_5e81d87e",
+        "filename": "dashboard/dashboard/spa/sw-utils/timing.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Why do you need to warn? Can we just blow up if there\u0027s no label instead?",
       "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -115,6 +1475,125 @@
       "writtenOn": "2018-08-17T18:43:39Z",
       "side": 1,
       "message": "What could go wrong if the start mark is not cleared?",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22a633af_abd5bf39",
+        "filename": "dashboard/dashboard/spa/sw-utils/timing.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Can you write a TODO to use tr.b.guid.allocateSimple here instead? Also should be private right?",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a2efc4c_60d633fb",
+        "filename": "dashboard/dashboard/spa/timeseries-cache.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "I don\u0027t understand this? What\u0027s the problem?",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d6e5eb8_4435126f",
+        "filename": "dashboard/dashboard/spa/timeseries-cache.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "delete?",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c021353d_113dba22",
+        "filename": "dashboard/dashboard/spa/timeseries-cache.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70d59cd3_2fcb7b14",
+        "filename": "dashboard/dashboard/spa/timeseries-cache.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0bed110d_1d4e9fce",
+        "filename": "dashboard/dashboard/spa/timeseries-cache.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "If we already have all the data in Redux, then we don\u0027t need to...",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "073047bb_f00f05f5",
+        "filename": "dashboard/dashboard/spa/timeseries-cache.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-08-17T22:44:01Z",
+      "side": 1,
+      "message": "Delete",
       "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
