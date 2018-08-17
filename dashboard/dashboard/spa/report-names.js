@@ -32,7 +32,7 @@ tr.exportTo('cp', () => {
 
   class ReportNamesCache extends cp.CacheBase {
     computeCacheKey_() {
-      return 'reportTemplateIds';
+      return 'reportTempateInfos';
     }
 
     get isInCache_() {
