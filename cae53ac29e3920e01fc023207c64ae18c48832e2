@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b58a82ab_f7e4866e",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-17T21:44:44Z",
+      "side": 1,
+      "message": "Mostly just consistency within the file. Got a preference?",
+      "parentUuid": "92d4554f_0a3af36b",
+      "revId": "cae53ac29e3920e01fc023207c64ae18c48832e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "01947d49_ddff98c4",
         "filename": "dashboard/dashboard/add_histograms.py",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2018-08-17T20:35:11Z",
       "side": 1,
       "message": "Do you want to wait for ProcessHistogramSet to succeed before deleting?",
+      "revId": "cae53ac29e3920e01fc023207c64ae18c48832e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d84832c6_080b8c2c",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-17T21:44:44Z",
+      "side": 1,
+      "message": "Kinda went back and forth on that a bit, didn\u0027t want it to fail somehow and then try again over and over, although that\u0027s *probably* fine in that it will probably just overwrite existing data (I think). I\u0027m thinking if ProcessHistogramSet fails once, it will very likely fail every time since chances are the data is malformed, or we went over the 10 min limit or something.",
+      "parentUuid": "01947d49_ddff98c4",
       "revId": "cae53ac29e3920e01fc023207c64ae18c48832e2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "6a530a8c_6a6aca0d",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-17T21:44:44Z",
+      "side": 1,
+      "message": "Nothing, was only preserved so that I wouldn\u0027t have to change the tests significantly. Down the line I figured it could write this to datastore so that we could link uploads with errors easily, but for now that\u0027s the only reason.",
+      "parentUuid": "335af548_849b2388",
+      "revId": "cae53ac29e3920e01fc023207c64ae18c48832e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5a9453f6_289e52b1",
         "filename": "dashboard/dashboard/add_histograms.py",
         "patchSetId": 6
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "dfd6561c_2a7db9b4",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-17T21:44:44Z",
+      "side": 1,
+      "message": "Kinda wanna still use zlib to verify the data, removed the unnecessary re-compress",
+      "parentUuid": "5a9453f6_289e52b1",
+      "revId": "cae53ac29e3920e01fc023207c64ae18c48832e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2d2e05ea_be225c92",
         "filename": "dashboard/dashboard/add_histograms.py",
         "patchSetId": 6
@@ -84,6 +156,24 @@
       "revId": "cae53ac29e3920e01fc023207c64ae18c48832e2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c8f1915_dd1cf914",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-17T21:44:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d2e05ea_be225c92",
+      "revId": "cae53ac29e3920e01fc023207c64ae18c48832e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
