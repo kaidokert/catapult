@@ -118,45 +118,82 @@ tr.exportTo('cp', () => {
    *   });
    * }
    *
-   * |promises| can be any promise, need not be RequestBase.response.
+   * |tasks| is expected to be an array of promises or asynchronous iterators.
+   * Promises do not have to be cp.RequestBase.response.
    */
-  async function* batchResponses(promises, opt_getDelayPromise) {
-    const getDelayPromise = opt_getDelayPromise || (() =>
-      cp.timeout(500));
-    let delay;
+  async function* batchResponses(tasks, opt_getDelayPromise) {
+    const promises = [];
     let results = [];
     let errors = [];
-    promises = promises.map(narcissus => {
-      const socrates = (async() => {
+
+    // Aggregates results and errors for promises and asynchronous generators.
+    function wrap(task) {
+      const promise = (async() => {
+        const isIterator = typeof task.next === 'function';
+        const isPromise = task instanceof Promise;
+        if (!isIterator && !isPromise) {
+          throw new TypeError(`Task is of invalid type: ${typeof task}`);
+        }
+
         try {
-          results.push(await narcissus);
+          if (isPromise) {
+            results.push(await task);
+            return;
+          }
+
+          // Task must be an asynchronous iterator.
+          const { value, done } = await task.next();
+          if (!done) {
+            results.push(value);
+            const next = wrap(task);
+            promises.push(next);
+          }
         } catch (err) {
           errors.push(err);
         } finally {
-          promises.splice(promises.indexOf(socrates), 1);
+          const index = promises.indexOf(promise);
+          promises.splice(index, 1);
         }
       })();
-      return socrates;
-    });
+      return promise;
+    }
+
+    // Convert tasks to promises by "wrapping" them.
+    for (const task of tasks) {
+      promises.push(wrap(task));
+    }
+
+    let timeToYield = 0;
+    let delay;
 
     while (promises.length) {
-      if (delay) {
-        await Promise.race([delay, ...promises]);
-        if (delay.isResolved) {
-          yield {results, errors};
-          results = [];
-          errors = [];
-          delay = undefined;
-        }
-      } else {
-        await Promise.race(promises);
+      // Race promises with a delay acting as a timeout for yielding aggregated
+      // results and errors.
+      await Promise.race(delay ? [delay, ...promises] : promises);
+
+      if (!delay) {
         delay = (async() => {
-          await getDelayPromise();
+          await timeout(timeToYield);
           delay.isResolved = true;
         })();
         delay.isResolved = false;
+        continue;
       }
+
+      if (!delay.isResolved) continue;
+
+      // The delay promise resolved, indiciating we need to send out results.
+      // Measure how long it takes the caller to process yielded results to
+      // avoid overloading the caller the next time around.
+      const startTime = performance.now();
+      yield {results, errors};
+      timeToYield = performance.now() - startTime;
+
+      results = [];
+      errors = [];
+      delay = undefined;
     }
+
     yield {results, errors};
   }
 
