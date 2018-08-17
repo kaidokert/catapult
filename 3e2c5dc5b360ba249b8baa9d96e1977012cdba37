@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f1903b2_71e6617b",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-17T18:43:39Z",
+      "side": 1,
+      "message": "Move this timing inside the branch so it is only recorded when idb.open is actually called.",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e015dfd_68473750",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-17T18:43:39Z",
+      "side": 1,
+      "message": "I think this would be simpler if it only took a callback without handling the args. The caller can bundle the writefunc with the args into a callback using an arrow function.\n\nCacheRequestBase.writer.enqueue(() \u003d\u003e this.writeIDB_(res.result));",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71694ab9_a7559436",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-17T18:43:39Z",
+      "side": 1,
+      "message": "This arrow function does not appear to return a promise.",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65c7d12f_1e1f0fd8",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request-test.html",
+        "patchSetId": 27
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-17T18:43:39Z",
+      "side": 1,
+      "message": "No need for this enum and these comments in the test. You can hardcode the strings \u0027xy\u0027 etc in getColumnsByLevelOfDetail for now. When v2spa migrates to Polymer3 and ES6 modules, I\u0027ll deduplicate this function with the one in timeseriese-cache.js.",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "006d2f6e_5ac27362",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request-test.html",
+        "patchSetId": 27
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-17T18:43:39Z",
+      "side": 1,
+      "message": "TimeseriesCacheRequest?",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "26cf5646_b24b2324",
+        "filename": "dashboard/dashboard/spa/sw-utils/timing.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-17T18:43:39Z",
+      "side": 1,
+      "message": "Consider two different Timings, A and B, with the same name. It\u0027s possible for A to end before B but reach this code after B reaches this code, so the duration for B would be sent to analytics twice, and the duration for A would never be sent to analytics. The counter can be used to prevent this problem, but only if the duration is computed from the marks whose names use the counter.\n\nconst duration \u003d performance.getEntriesByName(`${this.uid}-end`)[0].startTime - performance.getEntriesByName(`${this.uid}-start`)[0].startTime;\n\nhttps://github.com/catapult-project/catapult/blob/master/tracing/tracing/base/timing.html#L58",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f1dc3c2_070a0f72",
+        "filename": "dashboard/dashboard/spa/sw-utils/timing.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-17T18:43:39Z",
+      "side": 1,
+      "message": "What could go wrong if the start mark is not cleared?",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
