@@ -46,6 +46,30 @@
       "revId": "86282b164125f7723b207b223725b1a882000652",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b7d04c3_e482a7a2",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-17T21:58:16Z",
+      "side": 1,
+      "message": "Hmm didn\u0027t realize that. I think the Pedro added this a while back for owners support, afaik that\u0027s the only usage. Let\u0027s file a bug to get rid of the values one and just change that one callsite in find_anomalies.",
+      "parentUuid": "76bd7a59_866716c2",
+      "range": {
+        "startLine": 81,
+        "startChar": 22,
+        "endLine": 81,
+        "endChar": 38
+      },
+      "revId": "86282b164125f7723b207b223725b1a882000652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
