@@ -51,11 +51,11 @@
         //   withs.push(convertBytesToMiB(+row.avg_x));
         // });
         const graph = new GraphData();
-        graph.xAxis('Story')
-            .yAxis('Memory used (MiB)')
-            .title('Average memory used with and without site' +
-              'isolation enabled for each story')
-            .addData({
+        graph.xAxis('Data Points')
+            .xAxis('Memory used (MiB)')
+            .title('Memory used with and without site' +
+              'isolation enabled for the TrivialGifAnimation story')
+            .setData({
               withSiteIsoEnabled: withs,
               withoutSiteIsoEnabled: withouts,
             })
