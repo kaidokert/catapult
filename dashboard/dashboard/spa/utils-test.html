@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/dashboard/spa/utils.html">
+<link rel="import" href="/tracing/core/test_utils.html">
+
+<script>
+'use strict';
+tr.b.unittest.testSuite(function() {
+  test('isElementChildOf', function() {
+    assert.isTrue(cp.isElementChildOf(
+        document.body, document.body.parentElement));
+    assert.isTrue(cp.isElementChildOf(
+        document.body.children[0], document.body.parentElement));
+    assert.isFalse(cp.isElementChildOf(
+        document.body, document.body));
+    assert.isFalse(cp.isElementChildOf(
+        document.body.parentElement, document.body));
+  });
+
+  test('batchResponses', function() {
+    let resolveDelay;
+    const getDelayPromise = () => new Promise(resolve => {
+      resolveDelay = resolve;
+    });
+  });
+});
+</script>
