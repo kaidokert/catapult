@@ -515,6 +515,8 @@ tr.exportTo('tr.e.importer', function() {
             this.toModelTimeFromUs_(event.tts));
         slice.startStackFrame = this.getStackFrameForEvent_(event);
         slice.endStackFrame = undefined;
+        slice.dcacheReads = event.dr;
+        slice.dcacheMisses = event.dm;
       } else {
         if (!thread.sliceGroup.openSliceCount) {
           this.model_.importWarning({
@@ -537,6 +539,8 @@ tr.exportTo('tr.e.importer', function() {
           });
         }
         slice.endStackFrame = this.getStackFrameForEvent_(event);
+        slice.dcacheReads = event.dr - slice.dcacheReads;
+        slice.dcacheMisses = event.dm - slice.dcacheMisses;
 
         this.mergeArgsInto_(slice.args, event.args, slice.title);
       }
@@ -590,6 +594,8 @@ tr.exportTo('tr.e.importer', function() {
           event.bind_id);
       slice.startStackFrame = this.getStackFrameForEvent_(event);
       slice.endStackFrame = this.getStackFrameForEvent_(event, true);
+      slice.dcacheReads = event.dr;
+      slice.dcacheMisses = event.dm;
       this.setContextsFromThread_(thread, slice);
 
       return slice;
