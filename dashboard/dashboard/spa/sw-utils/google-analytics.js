@@ -26,9 +26,9 @@ class GoogleAnalytics {
     this.trackingId = undefined;
     this.clientId = undefined;
 
-    // When required configuration is not yet setup, all requests to Google
+    // When required configuration is not yet setup, all beacons to Google
     // Analytics must be queued for later.
-    this.paramsQueue = [];
+    this.formQueue = [];
   }
 
   // Configure Google Analytics. Any Timing marks ended before this function is
@@ -37,74 +37,66 @@ class GoogleAnalytics {
     this.trackingId = trackingId;
     this.clientId = clientId;
 
-    // Send out all pending requests.
-    for (const params of this.paramsQueue) {
-      this.sendRequest_(params);
+    // Send out all pending beacons.
+    for (const form of this.formQueue) {
+      this.sendBeacon_(form);
     }
-    this.paramsQueue = [];
+    this.formQueue = [];
   }
 
   sendEvent(category, action, label, value) {
-    const params = this.createParams_();
-    params.set('t', HIT_TYPE_EVENT);
-    params.set('ec', category);      // event category
-    params.set('ea', action);        // event action
-    params.set('ev', value);         // event value
+    const form = this.createForm_();
+    form.set('t', HIT_TYPE_EVENT);
+    form.set('ec', category);      // event category
+    form.set('ea', action);        // event action
+    form.set('ev', value);         // event value
     if (label) {
-      params.set('el', label);       // event label
+      form.set('el', label);       // event label
     }
-    this.send_(params);
+    this.send_(form);
   }
 
   sendTiming(category, action, duration, label) {
-    const params = this.createParams_();
+    const form = this.createForm_();
     const roundedDuration = Math.round(duration);
-    params.set('t', HIT_TYPE_TIMING);
-    params.set('utc', category);        // user timing category
-    params.set('utv', action);          // user timing variable name
-    params.set('utt', roundedDuration); // user timing time
+    form.set('t', HIT_TYPE_TIMING);
+    form.set('utc', category);        // user timing category
+    form.set('utv', action);          // user timing variable name
+    form.set('utt', roundedDuration); // user timing time
     if (label) {
-      params.set('utl', label);         // user timing label
+      form.set('utl', label);         // user timing label
     }
-    this.send_(params);
+    this.send_(form);
   }
 
   sendException(description, fatal = true) {
-    const params = this.createParams_();
-    params.set('t', HIT_TYPE_EXCEPTION);
-    params.set('exd', description);      // exception description
-    params.set('exf', fatal);            // is exception fatal?
-    this.send_(params);
+    const form = this.createForm_();
+    form.set('t', HIT_TYPE_EXCEPTION);
+    form.set('exd', description);      // exception description
+    form.set('exf', fatal);            // is exception fatal?
+    this.send_(form);
   }
 
-  createParams_() {
-    const params = new URLSearchParams();
-    params.set('v', VERSION_NUMBER);
-    params.set('ds', DATA_SOURCE);
-    params.set('cid', GoogleAnalytics.clientId);   // cliend ID
-    params.set('tid', GoogleAnalytics.trackingId); // tracking ID
-    return params;
+  createForm_() {
+    const form = new FormData();
+    form.set('v', VERSION_NUMBER);
+    form.set('ds', DATA_SOURCE);
+    form.set('cid', GoogleAnalytics.clientId);   // cliend ID
+    form.set('tid', GoogleAnalytics.trackingId); // tracking ID
+    return form;
   }
 
-  send_(params) {
+  send_(form) {
     if (!this.clientId || !this.trackingId) {
       // Google Analytics configuration variables not setup. Try again later.
-      this.paramsQueue.push(params);
+      this.formQueue.push(form);
     } else {
-      this.sendRequest_(params);
+      this.sendBeacon_(form);
     }
   }
 
-  async sendRequest_(params) {
-    const response = await fetch('https://www.google-analytics.com/collect', {
-      method: 'POST',
-      body: params.toString(),
-    });
-
-    if (!response.ok) {
-      const text = await response.text();
-      throw new Error(`Bad response from Google Analytics:\n${text}`);
-    }
+  async sendBeacon_(form) {
+    self.navigator.sendBeacon('https://www.google-analytics.com/collect', form);
   }
 }
 
