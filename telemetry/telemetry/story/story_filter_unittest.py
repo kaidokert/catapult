@@ -2,7 +2,11 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import locale
+import optparse
 import unittest
+
+import mock
 
 from telemetry import story
 from telemetry.page import page
@@ -22,7 +26,11 @@ class FilterTest(unittest.TestCase):
     self.p3 = page.Page(
         url='file://share_a/smile/too.html', page_set=story_set,
         name='share_a/smile/too.html', tags=['tag2'])
-    self.pages = [self.p1, self.p2, self.p3]
+    self.p4 = page.Page(
+        url='file://share_a/smile/too.html', page_set=story_set,
+        name='\xd1\x83\xd0\xbb\xd1\x8b\xd0\xb1\xd0\xba\xd0\xb0'.decode('utf-8'),
+        tags=['tag2'])
+    self.pages = [self.p1, self.p2, self.p3, self.p4]
 
   @staticmethod
   def ProcessCommandLineArgs(parser=None, **kwargs):
@@ -58,7 +66,7 @@ class FilterTest(unittest.TestCase):
       def error(self, _):
         raise MockParserException
     with self.assertRaises(MockParserException):
-      self.ProcessCommandLineArgs(parser=MockParser(), story_filter='+')
+      self.ProcessCommandLineArgs(parser=MockParser(), story_filter=u'+')
 
   def testBadStoryShardArgEnd(self):
     class MockParserException(Exception):
@@ -82,29 +90,29 @@ class FilterTest(unittest.TestCase):
           story_shard_begin_index=3)
 
   def testUniqueSubstring(self):
-    self.ProcessCommandLineArgs(story_filter='smile_widen')
+    self.ProcessCommandLineArgs(story_filter=u'smile_widen')
     self.assertPagesSelected([self.p1])
 
   def testSharedSubstring(self):
-    self.ProcessCommandLineArgs(story_filter='smile')
-    self.assertPagesSelected(self.pages)
+    self.ProcessCommandLineArgs(story_filter=u'smile')
+    self.assertPagesSelected([self.p1, self.p2, self.p3])
 
   def testNoMatch(self):
-    self.ProcessCommandLineArgs(story_filter='frown')
+    self.ProcessCommandLineArgs(story_filter=u'frown')
     self.assertPagesSelected([])
 
   def testExclude(self):
-    self.ProcessCommandLineArgs(story_filter_exclude='ShareA')
-    self.assertPagesSelected([self.p1, self.p3])
+    self.ProcessCommandLineArgs(story_filter_exclude=u'ShareA')
+    self.assertPagesSelected([self.p1, self.p3, self.p4])
 
   def testExcludeTakesPriority(self):
     self.ProcessCommandLineArgs(
-        story_filter='smile',
-        story_filter_exclude='wide')
+        story_filter=u'smile',
+        story_filter_exclude=u'wide')
     self.assertPagesSelected([self.p2, self.p3])
 
   def testNoNameMatchesDisplayName(self):
-    self.ProcessCommandLineArgs(story_filter='share_a/smile')
+    self.ProcessCommandLineArgs(story_filter=u'share_a/smile')
     self.assertPagesSelected([self.p3])
 
   def testNotagMatch(self):
@@ -123,7 +131,7 @@ class FilterTest(unittest.TestCase):
 
   def testStoryShardBegin(self):
     self.ProcessCommandLineArgs(story_shard_begin_index=1)
-    self.assertPagesSelected([self.p2, self.p3])
+    self.assertPagesSelected([self.p2, self.p3, self.p4])
 
   def testStoryShardEnd(self):
     self.ProcessCommandLineArgs(story_shard_end_index=2)
@@ -142,3 +150,14 @@ class FilterTest(unittest.TestCase):
   def testStoryShardEndWraps(self):
     self.ProcessCommandLineArgs(story_shard_end_index=5)
     self.assertPagesSelected(self.pages)
+
+  @mock.patch.object(locale, 'getpreferredencoding', return_value='1251')
+  def testUnicode(self, locale_mock):
+    filter_param = '\xd1\x83\xd0\xbb\xd1\x8b'.decode('utf-8').encode('1251')
+
+    parser = optparse.OptionParser()
+    story_filter_module.StoryFilter.AddCommandLineArgs(parser)
+    options = parser.parse_args(['--story-filter', filter_param])[0]
+    story_filter_module.StoryFilter.ProcessCommandLineArgs(parser, options)
+    locale_mock.assert_called()
+    self.assertPagesSelected([self.p4])

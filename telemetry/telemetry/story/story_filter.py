@@ -2,10 +2,16 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import locale
 import optparse
 import re
 
 from telemetry.internal.util import command_line
+
+
+def DecodeCommandLineArgument(option, _, value, parser):
+  unicode_value = value.decode(locale.getpreferredencoding())
+  setattr(parser.values, option.dest, unicode_value)
 
 
 class _StoryMatcher(object):
@@ -13,8 +19,9 @@ class _StoryMatcher(object):
     self._regex = None
     self.has_compile_error = False
     if pattern:
+      assert isinstance(pattern, unicode)
       try:
-        self._regex = re.compile(pattern)
+        self._regex = re.compile(pattern, re.UNICODE)
       except re.error:
         self.has_compile_error = True
 
@@ -22,7 +29,9 @@ class _StoryMatcher(object):
     return self._regex is not None
 
   def HasMatch(self, story):
-    return self and bool(self._regex.search(story.name))
+    story_name = (story.name.decode('utf-8') if isinstance(story.name, str)
+                  else story.name)
+    return self and bool(self._regex.search(story_name))
 
 
 class _StoryTagMatcher(object):
@@ -44,9 +53,11 @@ class StoryFilter(command_line.ArgumentHandlerMixIn):
     group = optparse.OptionGroup(parser, 'User story filtering options')
     group.add_option(
         '--story-filter',
+        callback=DecodeCommandLineArgument, action='callback', type='string',
         help='Use only stories whose names match the given filter regexp.')
     group.add_option(
         '--story-filter-exclude',
+        callback=DecodeCommandLineArgument, action='callback', type='string',
         help='Exclude stories whose names match the given filter regexp.')
     group.add_option(
         '--story-tag-filter',
