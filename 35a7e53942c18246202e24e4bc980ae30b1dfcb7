@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "9cf48426_786d9280",
+        "filename": "experimental/long_term_health/bin/long_term_health",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-17T11:00:10Z",
+      "side": 1,
+      "message": "As in the other CL, it\u0027s more readable if you expand this into:\n\n  if not args.run_label:\n    args.run_label \u003d [...]",
+      "revId": "35a7e53942c18246202e24e4bc980ae30b1dfcb7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6a3ea557_6cad300f",
         "filename": "experimental/long_term_health/long_term_health/test_runner.py",
         "patchSetId": 1
@@ -13,6 +30,24 @@
       "writtenOn": "2018-08-14T10:48:58Z",
       "side": 1,
       "message": "I think I can use ChromeVersion here, so I will change this after the ChromeVersion CL is in.",
+      "revId": "35a7e53942c18246202e24e4bc980ae30b1dfcb7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65c60330_354acf55",
+        "filename": "experimental/long_term_health/long_term_health/test_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-17T11:00:10Z",
+      "side": 1,
+      "message": "Ack. I suggest this method should get both the run_label and a ChromeVersion object; use the version.milestone for the output dir path, and the full version string for the --results-label on the run_benchmark command.",
+      "parentUuid": "6a3ea557_6cad300f",
       "revId": "35a7e53942c18246202e24e4bc980ae30b1dfcb7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
