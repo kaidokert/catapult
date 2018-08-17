@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ddf8f519_476c5b9d",
+        "filename": "dashboard/dashboard/spa/utils-test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-17T23:12:47Z",
+      "side": 1,
+      "message": "seem to only have tested 1 function",
+      "range": {
+        "startLine": 14,
+        "startChar": 8,
+        "endLine": 14,
+        "endChar": 24
+      },
+      "revId": "ac899298c2f715748104e7c2fd442940c2181250",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
