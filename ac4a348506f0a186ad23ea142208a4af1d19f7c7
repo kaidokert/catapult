@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c6d33c0e_c7c7c068",
+        "filename": "dashboard/dashboard/spa/cp-switch.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-08-20T20:49:29Z",
+      "side": 1,
+      "message": "Optional nit: I might consider making this shadow just a tad darker because I think the light color switch can be a bit hard to read againt a light background when in the \"off\" state.",
+      "revId": "ac4a348506f0a186ad23ea142208a4af1d19f7c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
