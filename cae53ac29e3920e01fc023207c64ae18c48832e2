@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "a394ac04_8f7c23cb",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-20T16:00:43Z",
+      "side": 1,
+      "message": "Spoke offline, but just reiterating here. Difficult to find the deferred tasks in the logs, keeping this as a handler instead since a search for /add_histograms gets them all.",
+      "parentUuid": "278a9939_1a39e2c5",
+      "revId": "cae53ac29e3920e01fc023207c64ae18c48832e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "01947d49_ddff98c4",
         "filename": "dashboard/dashboard/add_histograms.py",
         "patchSetId": 6
