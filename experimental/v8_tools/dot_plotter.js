@@ -58,13 +58,7 @@ class DotPlotter {
   dotOffset_(stackOffset, key) {
     return this.scaleForYAxis_(key) - stackOffset * this.getDotDiameter_();
   }
-  /**
-   * Valid css selector chars are alphanumerics, underscores and hypens.
-   * Other characters must be escaped with a '\'.
-   */
-  convertToValidCSSSelectorName_(text) {
-    return text.replace(/[^\w_-]/g, `\\$&`);
-  }
+
   /**
    * Collects the data into groups so that dots which would otherwise overlap
    * are stacked on top of each other instead. This is a rough implementation
@@ -122,7 +116,9 @@ class DotPlotter {
     this.initChart_(graph, chart, chartDimensions);
     const dots = graph.process(
         this.computeDotStacking_.bind(this), this.scaleForXAxis_);
+    const { createClassName, getClassName } = GraphUtils.classNameConverters();
     dots.forEach(({ data, color, key }, index) => {
+      createClassName(key);
       chart.append('line')
           .attr('x1', 0)
           .attr('x2', chartDimensions.width)
@@ -131,7 +127,7 @@ class DotPlotter {
           .attr('stroke-width', 2)
           .attr('stroke-dasharray', 4)
           .attr('stroke', 'gray');
-      chart.selectAll(`.dot-${this.convertToValidCSSSelectorName_(key)}`)
+      chart.selectAll(`.dot-${getClassName(key)}`)
           .data(data)
           .enter()
           .append('circle')
@@ -139,7 +135,7 @@ class DotPlotter {
           .attr('cy', datum => this.dotOffset_(datum.stackOffset, key))
           .attr('r', this.radius_)
           .attr('fill', color)
-          .attr('class', `dot-${this.convertToValidCSSSelectorName_(key)}`)
+          .attr('class', `dot-${getClassName(key)}`)
           .attr('clip-path', 'url(#plot-clip)');
       legend.append('text')
           .text(key)
@@ -158,7 +154,7 @@ class DotPlotter {
           this.computeDotStacking_.bind(this), xAxisScale);
       dots.forEach(({ data, key }) => {
         const newDots = chart
-            .selectAll(`.dot-${this.convertToValidCSSSelectorName_(key)}`)
+            .selectAll(`.dot-${getClassName(key)}`)
             .data(data);
         newDots
             .attr('cx', datum => xAxisScale(datum.x))
