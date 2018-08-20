@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1343c629_1aaa07b0",
+        "filename": "devil/devil/android/battery_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-08-20T15:12:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "905e9ee9_9fc92573",
+      "revId": "431a6d50dafffb990fb4afbaf58b5ca6d3609b8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ac74cc5_b4e586b8",
         "filename": "devil/devil/android/battery_utils.py",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "431a6d50dafffb990fb4afbaf58b5ca6d3609b8f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7833c627_a2ae7c5e",
+        "filename": "devil/devil/android/battery_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-08-20T15:12:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ac74cc5_b4e586b8",
+      "revId": "431a6d50dafffb990fb4afbaf58b5ca6d3609b8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +101,24 @@
       "side": 1,
       "message": "10 seems excessive to me as well; is there a particular reason to deviate from the default here?",
       "parentUuid": "99dfd231_78090fd1",
+      "revId": "431a6d50dafffb990fb4afbaf58b5ca6d3609b8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d2c47d8_46bb4081",
+        "filename": "devil/devil/android/battery_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-08-20T15:12:20Z",
+      "side": 1,
+      "message": "There is no particular reason for this number, I am just trying to be safe here. I will change to use the default value, i.e. 3, if it seems to be enough for you.",
+      "parentUuid": "b2381621_0fa1f00a",
       "revId": "431a6d50dafffb990fb4afbaf58b5ca6d3609b8f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
