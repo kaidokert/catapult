@@ -115,4 +115,30 @@ class GraphUtils {
     setUpZoomReset(zoom
     );
   }
+
+  /**
+   * Utility functions for converting text which may contain invalid
+   * characters for CSS classes/selectors into something safe to
+   * use in class names. This is done through two functions:
+   * createClassName registers the supplied text
+   * getClassName retrieves a suitable string to be used as a class name.
+   */
+  static classNameConverters() {
+    let nextUniqueClassName = 0;
+    const keyToClassName = {};
+    return {
+      createClassName: (key) => {
+        if (keyToClassName[key] === undefined) {
+          keyToClassName[key] = nextUniqueClassName++;
+        }
+      },
+      getClassName: (key) => {
+        if (keyToClassName[key] === undefined) {
+          throw new Error(
+              'The supplied key has not been mapped to a class name.');
+        }
+        return keyToClassName[key].toString();
+      },
+    };
+  }
 }
