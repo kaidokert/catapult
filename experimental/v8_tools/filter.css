@@ -3,57 +3,159 @@
   max-height: 10000000em;
   height: 10000000px;
   margin: 2em auto;
-  margin-top: -10px;
+  margin-top: +10px;
   left: +150px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-#metric {
-  width: 60em;
-  align-content: center;
-  background-color: aliceblue;
+
+.menuLeft {
+  float: left;
+  width: 20%;
+  margin-top: +10px;
 }
 
-#story {
-  width: 60em;
-  align-content: center;
-  background-color: aliceblue;
+.appRight {
+  width: 80%;
 }
 
-#diagnostic {
-  width: 60em;
-  align-content: center;
-  background-color: aliceblue;
+#radioBoxes {
+  margin-top: +10px;
+  margin-left: +10px;
+  padding: 10px;
+  padding: 3px;
 }
 
-#story-row {
-  border-left-width: 10px;
+#select_run {
+  width: 30em;
+  align-content: center;
+  background-color: rgb(245, 252, 245);
+  border: 1px solid #bdd3c9;
+  border-radius: 8px;
+  margin-top: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#apply_button{
+  border: 1px solid #bdd3c9;
+  border-radius: 8px;
+  margin-left:300px;
+  margin-top:5px;
+}
+
+#subcomponentBox {
+  background-color: rgb(229, 245, 229);
+  border: 1px solid #c6ddd2;
+  border-radius: 10px;
+  margin-left: 20px;
+}
+
+#subcomponentBox_ {
+  background-color: rgb(229, 245, 229);
+  border: 1px solid #c6ddd2;
+  border-radius: 10px;
+  margin-left: 45px;
+}
+
+.label-wrapper {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    font-family: "Open Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 270;
+    line-height: 1em;
+}
+
+.has-children {
+  cursor: pointer;
+}
+
+
+#filterItem {
+  max-width: 25em;
+  background-color: rgb(255, 255, 255);
+  margin-top: 10px
+}
+
+#filterBox {
+  background-color: rgb(245, 252, 245);
+  border: 1px solid #d9dfdc;
+  border-radius: 10px;
+}
+
+
+#select_item {
+  width: 60em;
+  align-content: center;
+  background-color: rgb(245, 252, 245);
+  border: 1px solid #bdd3c9;
+  border-radius: 8px;
+}
+#teaxtarea {
+  margin-top: 30px;
+  border-radius: 10px;
 }
 
 #story-story{
-  font-weight: bold;
+  border-left-width: 10px;
+  border: 1px solid #a0d1bb;
+  border-radius: 3px;
+  background-color: #f1f5f2;
 }
+
+#file-input {
+  border: 2px solid #bdd3c9;
+  border-radius: 12px;
+  background-color: #f1f5f2;
+  padding: 4px;
+  text-align: center;
+  margin: 1px;
+}
+
 
 #story-sample {
-  font-weight: bold;
+  border-left-width: 10px;
+  border: 1px solid #a0d1bb;
+  border-radius: 3px;
+  background-color: #f1f5f2;
 }
 
-.opened {
+#diagnostic-row {
+  border-radius: 2px;
+  border: 1px solid #87ceae;
+  border-radius: 3px;
+  background-color: #e2eee5; 
+}
+
+#entry {
+  border: 2px solid #42b983;
+  border-radius: 2px;
+}
+
+.openedMetric {
   background-color: darkgray;
+}
+
+.openedStory {
+  background-color: darkseagreen;
+}
+
+.openedDiagnostic {
+  background-color: darkseagreen;
 }
 
 #canvas {
   max-width: 100em;
   max-height: 60em;
-  margin: 2em auto;
   margin-top: +10px;
-  left: +10px;
 }
 
 #inputBox {
-  width: 40em;
-  background-color: aliceblue;
-  border-radius: 2px;
+  width: 30em;
+  background-color: rgba(255, 255, 255, 0.76);
+  border-radius: 8px;
+  padding: 8px;
 }
 
 body {
