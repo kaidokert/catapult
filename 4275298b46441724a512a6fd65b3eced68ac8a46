@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e628a89_61d3c27d",
+        "filename": "dashboard/dashboard/spa/cp-radio-group.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-08-20T21:15:14Z",
+      "side": 1,
+      "message": "Neat! I didn\u0027t realize you could do this. :)",
+      "revId": "4275298b46441724a512a6fd65b3eced68ac8a46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "72b942a8_d4690586",
+        "filename": "dashboard/dashboard/spa/cp-radio-group.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-08-20T21:15:14Z",
+      "side": 1,
+      "message": "Optional nit: Would it be possible/make sense to adjust this to also work if the radio buttons in the radio group dynamically change?",
+      "revId": "4275298b46441724a512a6fd65b3eced68ac8a46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "992eb739_9c2364b1",
+        "filename": "dashboard/dashboard/spa/cp-radio-group.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-08-20T21:15:14Z",
+      "side": 1,
+      "message": "Optional nit: Should this be listed as a function type property for the element? (You could also instantiate the value in the property declaration.)",
+      "range": {
+        "startLine": 12,
+        "startChar": 6,
+        "endLine": 12,
+        "endChar": 29
+      },
+      "revId": "4275298b46441724a512a6fd65b3eced68ac8a46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8696ebe7_fa699af5",
+        "filename": "dashboard/dashboard/spa/cp-radio.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-08-20T21:15:14Z",
+      "side": 1,
+      "message": "Nit: I think these should both use $\u003d?",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 31
+      },
+      "revId": "4275298b46441724a512a6fd65b3eced68ac8a46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
