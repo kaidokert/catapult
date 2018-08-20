@@ -285,6 +285,34 @@ tr.exportTo('tr.metrics.rendering', function() {
     return browserHelper.process.findAtMostOneThreadNamed('CrBrowserMain');
   }
 
+  function addLayerDetails(histograms, model, segments) {
+    const allPics = [];
+    const procPics = [];
+    for (const thread of model.getAllThreads()) {
+      thread.sliceGroup.slices.forEach(
+          slice => {
+            if (slice.title !== 'PictureLayerCount') return;
+            for (const segment of segments) {
+              if (segment.boundsRange.containsExplicitRangeInclusive(
+                  slice.start, slice.end)) {
+                allPics.push(slice.args.all_picture_layers);
+                procPics.push(slice.args.visible_picture_layers);
+              }
+            }
+          }
+      );
+    }
+
+    histograms.createHistogram(
+        'layers:all_picture_layers',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        allPics, { description: 'All picture layers.', });
+    histograms.createHistogram(
+        'layers:visible_picture_layers',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        allPics, { description: 'All picture layers.', });
+  }
+
   function addPipelineHistograms_(histograms, model, segments) {
     let events = [];
     for (const thread of model.getAllThreads()) {
@@ -498,6 +526,7 @@ tr.exportTo('tr.metrics.rendering', function() {
     addFrameTimeHistograms_(histograms, model, segments);
     addPipelineHistograms_(histograms, model, segments);
     addQueueingDurationHistograms_(histograms, model, segments);
+    addLayerDetails(histograms, model, segments);
   }
 
   tr.metrics.MetricRegistry.register(renderingMetric);
