@@ -238,6 +238,7 @@ class TimelineModel(event_container.TimelineEventContainer):
 
     Raises an error if the thread cannot be found.
     """
+    logging.warning('GetFirstRendererThread')
     markers = self.FindTimelineMarkers('first-renderer-thread')
     assert len(markers) == 1
     renderer_thread = markers[0].start_thread
