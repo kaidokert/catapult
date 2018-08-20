@@ -4,6 +4,11 @@
 */
 'use strict';
 tr.exportTo('cp', () => {
+  /**
+   * ChartPair synchronizes revision ranges and axis properties between two
+   * charts. Typical use-case includes a minimap for overview and a chart for
+   * mouse-over details.
+   */
   class ChartPair extends cp.ElementBase {
     hideOptions_(minimapLayout) {
       return this.$.minimap.showPlaceholder(
@@ -261,8 +266,9 @@ tr.exportTo('cp', () => {
       }
 
       const {firstRealLineDescriptor, timeserieses} =
-        await ChartPair.findFirstRealLineDescriptor(
-            state.lineDescriptors, dispatch, `${statePath}.minimapLayout`);
+        await ChartPair.findFirstNonEmptyLineDescriptor(
+            state.lineDescriptors, `${statePath}.minimapLayout`, dispatch,
+            getState);
 
       let firstRevision = tr.b.math.Statistics.min(timeserieses.map(ts => {
         if (!ts || !ts.data) return Infinity;
@@ -306,8 +312,7 @@ tr.exportTo('cp', () => {
       }
 
       let maxRevision = state.maxRevision;
-      if (maxRevision === undefined ||
-          maxRevision <= firstRevision) {
+      if (maxRevision === undefined || maxRevision <= firstRevision) {
         maxRevision = lastRevision;
         cp.ElementBase.actions.updateObject(statePath, {
           maxRevision,
@@ -626,19 +631,48 @@ tr.exportTo('cp', () => {
     };
   };
 
-  ChartPair.findFirstRealLineDescriptor = async(
-    lineDescriptors, dispatch, refStatePath) => {
+  ChartPair.findFirstNonEmptyLineDescriptor = async(
+    lineDescriptors,
+    refStatePath,
+    dispatch,
+    getState
+  ) => {
     for (const firstRealLineDescriptor of lineDescriptors) {
-      const timeserieses = await dispatch(
-          cp.ChartTimeseries.actions.fetchLineDescriptor(
-              refStatePath, firstRealLineDescriptor));
+      const fetchDescriptors = cp.ChartTimeseries.createFetchDescriptors(
+          firstRealLineDescriptor);
+
+      const results = await Promise.all(fetchDescriptors.map(
+          async fetchDescriptor => {
+            const reader = cp.TimeseriesReader({
+              dispatch,
+              getState,
+              fetchDescriptor,
+              refStatePath,
+            });
+            for await (const result of reader) {
+              return result;
+            }
+          }
+      ));
+
+      const timeserieses = results.map(result => result.timeseries);
+
       for (const timeseries of timeserieses) {
-        if (timeseries && timeseries.data.length) {
-          return {firstRealLineDescriptor, timeserieses};
+        if (!timeseries || !timeseries.data) {
+          throw new Error('Timeseries data formatted incorrectly', timeseries);
+        }
+        if (timeseries.data.length) {
+          return {
+            firstRealLineDescriptor,
+            timeserieses,
+          };
         }
       }
     }
-    return {timeserieses: []};
+
+    return {
+      timeserieses: [],
+    };
   };
 
   cp.ElementBase.register(ChartPair);
