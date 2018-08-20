@@ -128,6 +128,24 @@
       "revId": "b2dc33d3556134c1487aea1a8d408e1a013cac89",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e1e0ac7_7d0704b2",
+        "filename": "dashboard/dashboard/change_internal_only.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-20T22:31:52Z",
+      "side": 1,
+      "message": "Yeah I think I reviewed this before seeing your follow up cl that removed bot_whitelist entirely. Feel free to ignore this issue since it\u0027ll be a non-issue shortly.",
+      "parentUuid": "836eddd4_a2360229",
+      "revId": "b2dc33d3556134c1487aea1a8d408e1a013cac89",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
