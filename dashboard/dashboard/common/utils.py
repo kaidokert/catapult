@@ -4,6 +4,7 @@
 
 """General functions which are useful throughout this project."""
 
+import httplib2
 import json
 import logging
 import os
@@ -18,8 +19,8 @@ from google.appengine.api import oauth
 from google.appengine.api import urlfetch
 from google.appengine.api import urlfetch_errors
 from google.appengine.api import users
+from google.appengine.ext import db
 from google.appengine.ext import ndb
-import httplib2
 from oauth2client import client
 
 from dashboard.common import stored_object
@@ -647,3 +648,42 @@ def GetSheriffForAutorollCommit(commit_info):
   if not m:
     return None
   return m.group(1)
+
+
+@ndb.tasklet
+def IterateQueryAsync(
+    query, start_cursor, handle_entity, deadline_seconds=540,
+    futures_buffer_size=1000, use_cache=False, use_memcache=False):
+  start = time.time()
+  deadline = start + deadline_seconds
+  futures_buffer_half_size = futures_buffer_size / 2
+  query_iterator = query.iter(produce_cursors=True, start_cursor=start_cursor,
+                              use_cache=use_cache, use_memcache=use_memcache)
+  futures_buffer = []
+  count = 0
+  try:
+    while (yield query_iterator.has_next_async()) and (time.time() < deadline):
+      count += 1
+      future = handle_entity(query_iterator.next())
+      if not future:
+        continue
+      if len(futures_buffer) >= futures_buffer_size:
+        # Ideally, we'd like to find the futures that are done, wherever they
+        # are, check their success and remove them, then successively wait_any
+        # until futures_buffer is back under half_size. However, there's no
+        # wait_any_async, so we can approximate the ideal strategy by waiting
+        # for the older half of the buffer to finish.
+        yield futures_buffer[:futures_buffer_half_size]
+        futures_buffer = futures_buffer[futures_buffer_half_size:]
+      futures_buffer.append(future)
+  except db.BadRequestError:
+    # Sometimes the iterator runs for a while then throws this. Try, try again.
+    pass
+
+  yield futures_buffer
+
+  next_cursor = None
+  if (yield query_iterator.has_next_async()):
+    next_cursor = query_iterator.cursor_after()
+
+  raise ndb.Return((count, next_cursor))
