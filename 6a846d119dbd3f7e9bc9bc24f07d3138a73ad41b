@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f7b8f0df_65cf9eaf",
+        "filename": "dashboard/dashboard/spa/utils.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-20T23:03:34Z",
+      "side": 1,
+      "message": "nit: this name really threw me when I was looking through simple-redux, feel like the name could be more descriptive",
+      "range": {
+        "startLine": 20,
+        "startChar": 11,
+        "endLine": 20,
+        "endChar": 23
+      },
+      "revId": "6a846d119dbd3f7e9bc9bc24f07d3138a73ad41b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
