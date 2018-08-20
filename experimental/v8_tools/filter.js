@@ -1,218 +1,154 @@
 'use strict';
 const MiB = 1024 * 1024;
-const bus = new Vue();
 Vue.component('v-select', VueSelect.VueSelect);
 
-//  Register the table component for displaying data.
-//  This is a child for the app Vue instance, so it might
-//  access some of the app's fields.
-Vue.component('data-table', {
-  template: '#table-template',
-  props: {
-    data: Array,
-    columns: Array,
-    filterKey: String
-  },
-  data() {
-    const sort = {};
-    this.columns.forEach(function(key) {
-      sort[key] = 1;
-    });
-    return {
-      sortKey: '',
-      sortOrders: sort,
-      opened: [],
-      storiesEntries: null,
-    };
-  },
-  computed: {
-    //  Filter data from one column.
-    filteredData() {
-      const sortKey = this.sortKey;
-      const filterKey = this.filterKey && this.filterKey.toLowerCase();
-      const order = this.sortOrders[sortKey] || 1;
-      let data = this.data;
-      if (filterKey) {
-        data = data.filter(function(row) {
-          return Object.keys(row).some(function(key) {
-            return String(row[key]).toLowerCase().indexOf(filterKey) > -1;
-          });
-        });
-      }
-      if (sortKey) {
-        data = data.slice().sort(function(a, b) {
-          a = a[sortKey];
-          b = b[sortKey];
-          return (a === b ? 0 : a > b ? 1 : -1) * order;
-        });
-      }
-      return data;
-    }
-  },
-  //  Capitalize the objects field names.
-  filters: {
-    capitalize(str) {
-      return str.charAt(0).toUpperCase() + str.slice(1);
-    }
-  },
-  methods: {
-    sortBy(key) {
-      this.sortKey = key;
-      this.sortOrders[key] = this.sortOrders[key] * -1;
-    },
-
-    //  This method will provide the stories for a specific
-    //  metric when the user presses a row from table.
-    toggle(entry) {
-      const index = this.opened.indexOf(entry.id);
-      if (index > -1) {
-        this.opened.splice(index, 1);
-      } else {
-        this.opened.push(entry.id);
-      }
-      const sampleValues = this.$parent.sampleArr;
-      const guidValue = this.$parent.guidValue;
-      const stories = [];
-      const samples = [];
-
-      const storiesEntries = [];
-      const reqMetrics = sampleValues
-          .filter(elem => elem.name === entry.metric);
-      reqMetrics.map(el => storiesEntries.
-          push(new StoryRow(
-              guidValue.get(el.diagnostics.stories)[0],
-              el.sampleValues
-          )));
-      this.storiesEntries = storiesEntries;
-    }
-  }
-});
-
-//  Vue component for drop-down menu; here the metrics,
-//  stories and diagnostics are chosen through selection.
-const app = new Vue({
-  el: '#app',
+const menu = new Vue({
+  el: '#menu',
   data: {
-    sampleArr: [],
-    guidValue: null,
-    selected_metric: null,
-    selected_story: null,
-    selected_diagnostic: null,
-    graph: null,
-    searchQuery: '',
-    gridColumns: ['id', 'metric', 'averageSampleValues'],
-    gridData: [],
-    table_metric: null
-  },
+    sampleArr: null,
+    guidValueInfo: null,
 
-  //  Draw a plot depending on the target value.
-  methods: {
-    plot() {
-      this.graph.xAxis('Data Points')
-          .yAxis('Memory used (MiB)')
-          .title(this.selected_story)
-          .addData(JSON.parse(JSON.stringify((this.target))))
-          .plotCumulativeFrequency();
-    }
+    browser: null,
+    subprocess: null,
+    probe: null,
+    component: null,
+    size: null,
+    metricNames: null,
+
+    browserOptions: [],
+    subprocessOptions: [],
+    probeOptions: [],
+
+    componentObject: null,
+    sizeObject: null,
+
+    subcomponent: null,
+    subcomponent_: null,
+
+
   },
 
   computed: {
-    seen() {
-      return this.sampleArr.length > 0 ? true : false;
-    },
-    //  Compute the metrics; the user will choose one.
-    metrics() {
-      const metricsNames = [];
-      this.sampleArr.forEach(el => metricsNames.push(el.name));
-      return _.uniq(metricsNames);
-    },
-
-    //  Compute the stories depending on the chosen metric.
-    stories() {
-      const reqMetrics = this.sampleArr
-          .filter(elem => elem.name === this.selected_metric);
-      const storiesByGuid = [];
-      reqMetrics.map(elem => storiesByGuid
-          .push(this.guidValue.get(elem.diagnostics.stories)[0]));
-      return Array.from(new Set(storiesByGuid));
-    },
-    //  Compute all diagnostic elements; the final result will actually
-    //  depend on the metric + story and this diagnostic.
-    diagnostics() {
-      if (this.selected_story !== null && this.selected_metric !== null) {
-        const result = this.sampleArr
-            .filter(value => value.name === this.selected_metric &&
-                    this.guidValue
-                        .get(value.diagnostics.stories)[0] ===
-                        this.selected_story);
-        const allDiagnostic = [];
-        result.map(val => allDiagnostic.push(Object.keys(val.diagnostics)));
-        return _.union.apply(this, allDiagnostic);
-      }
-    },
-
-    //  Compute the final result: metric + story + diagnostic;
-    //  the format for a specific diagnostic is:
-    //  {key: diagnosticItem; value: sampleValues};
-    //  For each (story + metric) item with the same diagnostic
-    //  value will be collected all sample values.
-
-    target() {
-      if (this.selected_story !== null &&
-        this.selected_metric !== null &&
-        this.selected_diagnostic !== null) {
-        const result = this.sampleArr
-            .filter(value => value.name === this.selected_metric &&
-                    this.guidValue
-                        .get(value.diagnostics.stories)[0] ===
-                        this.selected_story);
-
-        const content = new Map();
-
-        for (const val of result) {
-          const storyEl = this.guidValue.get(
-              val.diagnostics[this.selected_diagnostic]);
-          if (storyEl === undefined) {
-            continue;
-          }
-          let storyItem = '';
-          if (typeof storyEl === 'number') {
-            storyItem = storyEl;
-          } else {
-            storyItem = storyEl[0];
-          }
-          if (content.has(storyItem)) {
-            const aux = content.get(storyItem);
-            content.set(storyItem, aux.concat(val.sampleValues));
-          } else {
-            content.set(storyItem, val.sampleValues);
-          }
+    //  Compute size options depending on the type of probe.
+    sizeOptions() {
+      if (this.sizeObject !== null) {
+        if (this.probe === 'reported_by_chrome') {
+          return this.sizeObject.sizeChrome;
         }
-
-        const contentKeys = [];
-        const contentVal = [];
-        for (const [key, value] of content.entries()) {
-          value.map(value => +((value / MiB).toFixed(5)));
-          contentKeys.push(key);
-          contentVal.push(value);
-        }
-        const obj = _.object(contentKeys, contentVal);
-        return obj;
+        return this.sizeObject.sizeOs;
       }
       return undefined;
+    },
+    //  The components are different depending on the type of probe.
+    componentOptions() {
+      if (this.componentObject !== null) {
+        if (this.probe === 'reported_by_chrome') {
+          const component = [];
+          for (const [key, value] of this.componentObject
+              .componentByChrome.entries()) {
+            component.push(key);
+          }
+          return component;
+        }
+        const component = [];
+        for (const [key, value] of this.componentObject
+            .componentByOs.entries()) {
+          component.push(key);
+        }
+        return component;
+      }
+      return undefined;
+    },
+
+    //  Compute the options for the first subcomponent depending on the probes.
+    //  When the user chooses a component, it might be a hierarchical one.
+    firstSubcompOptions() {
+      if (this.component !== null) {
+        if (this.probe === 'reported_by_chrome') {
+          if (this.componentObject.componentByChrome.
+              get(this.component) !== undefined) {
+            const map = this.componentObject
+                .componentByChrome.get(this.component);
+            const array = [];
+            for (const [key, value] of map.entries()) {
+              array.push(key);
+            }
+            return array;
+          }
+          return undefined;
+        }
+        return this.componentObject.componentByOs.get(this.component);
+      }
+      return undefined;
+    },
+
+    //  In case when the component is from Chrome, the hierarchy might have more
+    //  levels.
+    secondSubcompOptions() {
+      if (this.probe === 'reported_by_chrome' && this.subcomponent !== null) {
+        const map = this.componentObject.componentByChrome.get(this.component);
+        return map.get(this.subcomponent);
+      }
+      return undefined;
+    },
+
+    seen() {
+      return this.component !== null;
+    },
+    seen_() {
+      return this.subcomponent !== null;
     }
   },
   watch: {
-    //  Whenever a new metric/story/diagnostic is chosen
-    //  this function will run for drawing a new type of plot.
-    target() {
-      if (this.graph === null) {
-        this.graph = new GraphData();
-        this.plot();
+    probe() {
+      this.component = null;
+      this.subcomponent = null;
+      this.subcomponent_ = null;
+      this.size = null;
+    },
+
+    component() {
+      this.subcomponent = null;
+      this.subcomponent_ = null;
+    },
+
+    subcomponent() {
+      this.subcomponent_ = null;
+    },
+
+  },
+  methods: {
+    //  Build the available metrics upon the chosen items.
+    //  The method applies an intersection for all of them and
+    //  return the result as a collection of metrics that matched.
+    apply() {
+      const metrics = [];
+      for (const name of this.metricNames) {
+        if (this.browser !== null && name.includes(this.browser) &&
+          this.subprocess !== null && name.includes(this.subprocess) &&
+          this.component !== null && name.includes(this.component) &&
+          this.size !== null && name.includes(this.size) &&
+          this.probe !== null && name.includes(this.probe)) {
+          if (this.subcomponent === null) {
+            metrics.push(name);
+          } else {
+            if (name.includes(this.subcomponent)) {
+              if (this.subcomponent_ === null) {
+                metrics.push(name);
+              } else {
+                if (name.includes(this.subcomponent_)) {
+                  metrics.push(name);
+                }
+              }
+            }
+          }
+        }
+      }
+      if (_.uniq(metrics).length === 0) {
+        alert('No metrics found');
       } else {
-        this.graph.plotter_.remove();
-        this.graph = new GraphData();
-        this.plot();
+        alert('You can pick a metric from drop-down');
+        app.parsedMetrics = _.uniq(metrics);
       }
     }
   }
@@ -243,6 +179,7 @@ function average(arr) {
   }, 0) / arr.length;
 }
 
+
 //   Load the content of the file and further display the data.
 function readSingleFile(e) {
   const file = e.target.files[0];
@@ -271,9 +208,9 @@ function readSingleFile(e) {
     }
 
     //  The content for the default table: with name
-    //  of the metric, the average value of the sample values
+    //  of the mtric, the average value of the sample values
     //  plus an id. The latest is used to expand the row.
-    //  It may disappear later.
+    // It may disappear later.
     const tableElems = [];
     let id = 1;
     for (const [key, value] of metricAverage.entries()) {
@@ -284,6 +221,23 @@ function readSingleFile(e) {
     app.gridData = tableElems;
     app.sampleArr = sampleArr;
     app.guidValue = guidValueInfo;
+
+    let metricNames = [];
+    sampleArr.map(e => metricNames.push(e.name));
+    metricNames = _.uniq(metricNames);
+
+    const result = parseAllMetrics(metricNames);
+    menu.sampelArr = sampleArr;
+    menu.guidValueInfo = guidValueInfo;
+
+    menu.browserOptions = result.browsers;
+    menu.subprocessOptions = result.subprocesses;
+    menu.probeOptions = result.probes;
+
+    menu.componentObject = result.components;
+    menu.sizeObject = result.sizes;
+
+    menu.metricNames = result.names;
   };
   reader.readAsText(file);
 }
@@ -329,87 +283,6 @@ function extractData(contents) {
     otherTypes: other,
     sampleValueArray: sampleValue
   };
-}
-
-function createCell(content, row) {
-  const cell = document.createElement('td');
-  const cellText = document.createTextNode(content);
-  cell.appendChild(cellText);
-  row.appendChild(cell);
-}
-
-function displayContents(sampleArr, guidValueInfo, fieldFilter) {
-  // get the reference by the Id
-  const body = document.getElementById('sample-values');
-  // creates a <table> element and a <tbody> element
-  const tbl = document.createElement('table');
-  const tblBody = document.createElement('tbody');
-
-  //  just to check if this block is meant for
-  //  a specific action: the one after the text boxes were filled
-  if (fieldFilter === undefined) {
-    // creating all cells for titles for heanding
-    const r = document.createElement('tr');
-    createCell('Name', r);
-    createCell('Sample Values', r);
-    createCell('Stories', r);
-    createCell('StoryTags', r);
-    createCell('StorySetRepeats', r);
-    createCell('TraceStart', r);
-    createCell('TraceUrls', r);
-    tblBody.appendChild(r);
-
-    for (const e of sampleArr) {
-      // creates a table row
-      const row = document.createElement('tr');
-      createCell(`${e.name}`, row);
-      createCell(`${e.sampleValues}`, row);
-      createCell(`${e.diagnostics.stories}`, row);
-      createCell(`${e.diagnostics.storyTags}`, row);
-      createCell(`${e.diagnostics.storysetRepeats}`, row);
-      createCell(`${e.diagnostics.traceStart}`, row);
-      createCell(`${e.diagnostics.traceUrls}`, row);
-      tblBody.appendChild(row);
-    }
-
-    // put the <tbody> in the <table>
-    tbl.appendChild(tblBody);
-    // appends <table> into <body>
-    body.appendChild(tbl);
-    // sets the border attribute of tbl to 1;
-    tbl.setAttribute('border', '1');
-  } else {
-  //  this array contains:
-  // mathchedSampleValueGuid objects which contains values from
-  // SampleArr and the coresponding value from guidValueInfo map
-  // depending on this: guid == field
-    const r = document.createElement('tr');
-    createCell('Name', r);
-    createCell('Sample Value', r);
-    createCell(`${fieldFilter}`, r);
-    createCell(`Matched value for ${fieldFilter}`, r);
-    tblBody.appendChild(r);
-
-    for (const e of sampleArr) {
-    // creates a table row
-      const row = document.createElement('tr');
-      // Create a <td> element and a text node, make the text
-      // node the contents of the <td>, and put the <td> at
-      // the end of the table row
-      createCell(`${e.name}`, row);
-      createCell(`${e.sampleValues}`, row);
-      createCell(`${e.diagnostics[fieldFilter]}`, row);
-      createCell(`${guidValueInfo.get(e.diagnostics[fieldFilter])}`, row);
-      // add the row to the end of the table body
-      tblBody.appendChild(row);
-    }
-    // put the <tbody> in the <table>
-    tbl.appendChild(tblBody);
-    // appends <table> into <body>
-    body.replaceChild(tbl, body.childNodes[0]);
-    // sets the border attribute of tbl to 1;
-    tbl.setAttribute('border', '1');
-  }
 }
 document.getElementById('file-input')
     .addEventListener('change', readSingleFile, false);
