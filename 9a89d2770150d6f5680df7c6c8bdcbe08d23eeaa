@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9d8f8a18_f88699d9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-20T14:51:29Z",
+      "side": 1,
+      "message": "I think it has to be:\n\n    catapult:#4575",
+      "revId": "9a89d2770150d6f5680df7c6c8bdcbe08d23eeaa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
