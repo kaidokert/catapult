@@ -44,6 +44,11 @@ found in the LICENSE file.
         display: none;
       }
 
+      #uma_links {
+        padding-bottom: 10px;
+        display: none;
+      }
+
       #search_page {
         width: 200px;
         margin-left: 30px;
@@ -70,10 +75,19 @@ found in the LICENSE file.
       #close:hover svg line {
         stroke: white;
       }
+
+      iframe, #content {
+        margin: 0;
+        padding: 0;
+        border: 0;
+      }
     </style>
     <div id="title">Metrics Visualization</div>
     <div id="data_error" class="error">Invalid data provided.</div>
     <div id="selectors">
+      <div id="uma_links">
+        <div id="uma_title">Corresponding UMAs:</div>
+      </div>
       <div id="percentile_label">Percentile Range:</div>
       <input id="start" class="text_input" placeholder="0">
       <input id="end" class="text_input" placeholder="100">
@@ -130,6 +144,9 @@ Polymer({
 
     this.mainMetricNames_ = undefined;
     this.subMetricNames_ = new Map();
+
+    this.osName_ = undefined;
+    this.umaDivs_ = new Map();
   },
 
   ready() {
@@ -146,7 +163,7 @@ Polymer({
     });
   },
 
-  build(histograms, mainMetricNames) {
+  build(histograms, mainMetricNames, umaNames) {
     if (!histograms || histograms.length < 1 ||
         !mainMetricNames || mainMetricNames.length < 1) {
       this.$.data_error.style.display = 'block';
@@ -156,6 +173,11 @@ Polymer({
     this.mainMetricNames_ = mainMetricNames;
     Polymer.dom(this.$.container).appendChild(this.chart_);
     this.populateChart_(histograms, this.mainMetricNames_, this.chart_);
+
+    if (umaNames && umaNames.length <= mainMetricNames.length) {
+      this.addUMALinks_(this.$.uma_links, mainMetricNames, umaNames);
+      this.$.uma_links.style.display = 'block';
+    }
 
     if (this.groups_.size < 1) {
       this.$.data_error.style.display = 'block';
@@ -170,6 +192,8 @@ Polymer({
         tr.v.d.RESERVED_NAMES.STORIES);
     const benchmarkStartGrouping = tr.v.HistogramGrouping.BY_KEY.get(
         tr.v.d.RESERVED_NAMES.BENCHMARK_START);
+    const osNamesGrouping = tr.v.HistogramGrouping.BY_KEY.get(
+        tr.v.d.RESERVED_NAMES.OS_NAMES);
 
     const labels = new Map();
 
@@ -180,6 +204,8 @@ Polymer({
         const page = storiesGrouping.callback(histogram);
         const displayLabel = tr.v.HistogramGrouping.
             DISPLAY_LABEL.callback(histogram);
+        this.osName_ = osNamesGrouping.callback(histogram);
+
         const average = histogram.average === undefined ? 0 : histogram.average;
         labels.set(displayLabel, Date.parse(benchmarkStart));
 
@@ -318,6 +344,102 @@ Polymer({
         const series = this.getSeriesKey_(mainMetric, displayLabel);
         chart.getDataSeries(series).color = color;
       }
+    }
+  },
+
+  getUMAHistogramUrl_(osChar, umaName) {
+    const base = 'https://uma.googleplex.com/p/chrome/histograms/embedded?';
+    const params = [];
+
+    // Get date from one day ago (current date might not be available)
+    const date = new Date();
+    date.setDate(date.getDate() - 1);
+    // Convert date to DDMMYYYY format
+    const formattedDate = date.toISOString().slice(0, 10).replace(/-/g, '');
+
+    params.push('endDate=' + formattedDate);
+    params.push('daycount=' + '1');
+    params.push('histograms=' + umaName);
+    params.push('fixupData=' + 'true');
+    params.push('showMax=' + 'true');
+
+    const filters = [];
+    filters.push('platform', 'eq', osChar);
+    filters.push('channel', 'one_of', '2|1'); // 2:dev, 1:canary
+    filters.push('isofficial', 'eq', 'true');
+    params.push('filters=' + encodeURIComponent(filters.join(',')));
+    params.push('implicitFilters=' + 'isofficial');
+
+    return base + params.join('&');
+  },
+
+  getUMATimelineUrl_(osChar, umaName) {
+    const base = 'https://uma.googleplex.com/p/chrome/timeline_v2/embedded?q=';
+    const query = {
+      day_count: '30',
+      end_date: 'latest',
+      window_size: '1',
+      filters: [
+        {
+          fieldId: 'channel',
+          operator: 'COMPARE',
+          selected: [1]
+        },
+        {
+          fieldId: 'platform',
+          operator: 'EQ',
+          selected: [osChar]
+        },
+      ],
+      histograms: [umaName],
+      entries: [{
+        logScale: false,
+        measure: 'percentile',
+        percentile: 50,
+        zeroBased: true,
+        showVersionAnnotations: true,
+        showExpandedVersionAnnotations: true
+      }]
+    };
+    return base + encodeURIComponent(JSON.stringify(query));
+  },
+
+  showIFrame_(osChar, umaName, parentDiv) {
+    const existingDiv = this.umaDivs_.get(umaName);
+    if (existingDiv) {
+      if (existingDiv.style.display === 'none') {
+        existingDiv.style.display = 'block';
+      } else {
+        existingDiv.style.display = 'none';
+      }
+    } else {
+      const div = document.createElement('div');
+      const source = this.getUMATimelineUrl_(osChar, umaName);
+      const iframe = document.createElement('iframe');
+      iframe.height = 850;
+      iframe.width = 1000;
+      iframe.src = source;
+      div.appendChild(iframe);
+      parentDiv.appendChild(div);
+      this.umaDivs_.set(umaName, div);
+    }
+  },
+
+  addUMALinks_(container, mainMetricNames, umaNames) {
+    // See //depot/google3/analysis/uma/dashboards/common/platforms.go
+    const osChars = new Map([['android', 'A'],
+      ['cros', 'C'],
+      ['linux', 'L'],
+      ['mac', 'M'],
+      ['windows', 'W']]);
+    const osChar = osChars.get(this.osName_) || 'A'; // Default android
+    for (let i = 0; i < umaNames.length; ++i) {
+      const div = document.createElement('div');
+      const button = document.createElement('button');
+      button.innerHTML = mainMetricNames[i];
+      button.onclick = () => this.showIFrame_(osChar, umaNames[i], div);
+      div.appendChild(button);
+      container.appendChild(div);
     }
   },
 

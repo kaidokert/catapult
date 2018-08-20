@@ -64,8 +64,9 @@ tr.b.unittest.testSuite(function() {
 
     const mainMetricNames = ['main_step_1',
       'main_step_2', 'main_step_3'];
+    const umaNames = ['GraphicsPipeline.Browser.ReceivedBeginFrame'];
 
-    cp.build(histograms, mainMetricNames);
+    cp.build(histograms, mainMetricNames, umaNames);
   });
 
   test('instantiateWithRepeat', function() {
