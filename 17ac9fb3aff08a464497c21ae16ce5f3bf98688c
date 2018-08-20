@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bb386842_bca49aa4",
+        "filename": "experimental/v8_tools/metric_significance.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-20T11:14:59Z",
+      "side": 1,
+      "message": "you should maybe throw an exception if runs \u003e 2 (or compute each pair).",
+      "range": {
+        "startLine": 44,
+        "startChar": 6,
+        "endLine": 44,
+        "endChar": 34
+      },
+      "revId": "17ac9fb3aff08a464497c21ae16ce5f3bf98688c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
