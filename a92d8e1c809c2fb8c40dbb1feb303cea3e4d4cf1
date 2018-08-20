@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c2125add_08dce5f8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-20T13:23:22Z",
+      "side": 1,
+      "message": "No need to explicitly mention a type of device, also note the changes are\nnot actually in telemetry :) / Just say something like:\n\nExplicitly read/write command line file as_root.\n\nOn some devices, just enabling root on the device is not enough to run\ncommands with privileges, the commands themselves need to be explicilty\nrun with as_root\u003dTrue.",
+      "revId": "a92d8e1c809c2fb8c40dbb1feb303cea3e4d4cf1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
