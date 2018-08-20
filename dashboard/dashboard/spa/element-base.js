@@ -19,9 +19,7 @@ tr.exportTo('cp', () => {
   const IS_DEBUG = location.hostname === 'localhost';
 
   // When in production, tell Redux Dev Tools to disable automatic recording.
-  const PRODUCTION_ORIGIN = 'v2spa-dot-chromeperf.appspot.com';
-  const PRODUCTION_URL = `https://${PRODUCTION_ORIGIN}`;
-  const IS_PRODUCTION = location.hostname === PRODUCTION_ORIGIN;
+  const { PRODUCTION_URL, IS_PRODUCTION } = window;
 
   // Forwards (state, action) to action.reducer.
   function rootReducer(state, action) {
