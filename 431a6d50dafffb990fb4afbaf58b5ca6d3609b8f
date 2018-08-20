@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "905e9ee9_9fc92573",
+        "filename": "devil/devil/android/battery_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-20T13:29:30Z",
+      "side": 1,
+      "message": "nit: you should only import the crash_handler module, don\u0027t directly import functions in it.",
+      "revId": "431a6d50dafffb990fb4afbaf58b5ca6d3609b8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ac74cc5_b4e586b8",
+        "filename": "devil/devil/android/battery_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-20T13:29:30Z",
+      "side": 1,
+      "message": "super nit: try to make this a full sentence (start with upper case, end with period), also \"could\" -\u003e \"can\"; e.g.\n\n  # Wrapper function so that we can use `RetryOnSystemCrash`.",
+      "revId": "431a6d50dafffb990fb4afbaf58b5ca6d3609b8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99dfd231_78090fd1",
+        "filename": "devil/devil/android/battery_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-20T13:29:30Z",
+      "side": 1,
+      "message": "nit: for the last arg explicitly type `retries\u003d10`, so we know what the \"10\" is without having to go and read the source.\n\nAlso, do we really need that many retries?",
+      "revId": "431a6d50dafffb990fb4afbaf58b5ca6d3609b8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
