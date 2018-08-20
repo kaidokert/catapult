@@ -14,6 +14,7 @@ import logging
 from devil.android import decorators
 from devil.android import device_errors
 from devil.android import device_utils
+from devil.android.crash_handler import RetryOnSystemCrash
 from devil.android.sdk import version_codes
 from devil.utils import timeout_retry
 
@@ -374,7 +375,11 @@ class BatteryUtils(object):
     Returns:
       True if the device is charging, false otherwise.
     """
-    battery_info = self.GetBatteryInfo()
+    # wrapper function so that we could use `RetryOnSystemCrash`
+    def GetBatteryInfoHelper(device):
+      return self.GetBatteryInfo()
+
+    battery_info = RetryOnSystemCrash(GetBatteryInfoHelper, self._device, 10)
     for k in ('AC powered', 'USB powered', 'Wireless powered'):
       if (k in battery_info and
           battery_info[k].lower() in ('true', '1', 'yes')):
