@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "30d85847_cf2cb7e6",
+        "filename": "dashboard/dashboard/spa/chart-pair.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-20T17:34:28Z",
+      "side": 1,
+      "message": "I rework this comment; take a look on my most recent patch set.",
+      "parentUuid": "8eadd35a_a5e27c93",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "521a2c86_65bf7a62",
         "filename": "dashboard/dashboard/spa/chart-pair.js",
         "patchSetId": 27
@@ -104,6 +122,24 @@
     },
     {
       "key": {
+        "uuid": "21a7b65a_228b5c22",
+        "filename": "dashboard/dashboard/spa/chart-pair.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-20T17:34:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a4acd91_7f9a0b54",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "80fdf11c_1caf671a",
         "filename": "dashboard/dashboard/spa/chart-timeseries.js",
         "patchSetId": 27
@@ -115,6 +151,24 @@
       "writtenOn": "2018-08-17T22:44:01Z",
       "side": 1,
       "message": "Can you just write await Promise.all(reader)?",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8586a26f_127ab9ca",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-20T17:34:28Z",
+      "side": 1,
+      "message": "No, async iterators do not have a function analogous to `Promise.all`. The best one-liner that I could do is\n\n  for await (const _ of reader) {}\n\nPerhaps I can rename the function to `ignoreAll` and use the one-liner above.",
+      "parentUuid": "80fdf11c_1caf671a",
       "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -189,6 +243,24 @@
     },
     {
       "key": {
+        "uuid": "34434e47_66626767",
+        "filename": "dashboard/dashboard/spa/element-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-20T17:34:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d488d87_df933eef",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5e0d6bf5_7c870b9b",
         "filename": "dashboard/dashboard/spa/index.js",
         "patchSetId": 27
@@ -200,6 +272,24 @@
       "writtenOn": "2018-08-17T22:44:01Z",
       "side": 1,
       "message": "Why",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc901387_4f4b39fe",
+        "filename": "dashboard/dashboard/spa/index.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-20T17:34:28Z",
+      "side": 1,
+      "message": "This comment was copy-pasted from `index.html`, which came from traceviewer, but I\u0027ll elaborate on the comment.",
+      "parentUuid": "5e0d6bf5_7c870b9b",
       "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -356,6 +446,24 @@
       "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd6b3ac1_ea268715",
+        "filename": "dashboard/dashboard/spa/request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-20T17:34:28Z",
+      "side": 1,
+      "message": "Line 249.",
+      "parentUuid": "481c23d5_da5fec6e",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -699,6 +807,24 @@
     },
     {
       "key": {
+        "uuid": "bf581c1c_9d40902f",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-20T17:34:28Z",
+      "side": 1,
+      "message": "I was considering doing this, but there would be more for finding the average time it takes to open databases across connection pool hits/misses. Would you like to see average timing for calling `openIDB_` or the average time it takes to open a new connection to an IDBDatabase?",
+      "parentUuid": "5f1903b2_71e6617b",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ffc5deea_b41443e2",
         "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
         "patchSetId": 27
@@ -801,6 +927,24 @@
     },
     {
       "key": {
+        "uuid": "8b3286ed_95e52f02",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-20T17:34:28Z",
+      "side": 1,
+      "message": "I agree. This would also simplify binding the right context of `this`. Done.",
+      "parentUuid": "4e015dfd_68473750",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "71694ab9_a7559436",
         "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
         "patchSetId": 27
@@ -815,6 +959,24 @@
       "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1944561_aebb5d28",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-20T17:34:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71694ab9_a7559436",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -937,6 +1099,24 @@
     },
     {
       "key": {
+        "uuid": "39bd9487_c62782b0",
+        "filename": "dashboard/dashboard/spa/sw-utils/google-analytics.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-20T17:34:28Z",
+      "side": 1,
+      "message": "These comments also make it easier to find each parameter in GA\u0027s documentation. Searching for \"ec\" will yield a lot of results; whereas searching for \"event category\" will return fewer.",
+      "parentUuid": "e9a1ad09_62eb57be",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "af8054ce_d69de98b",
         "filename": "dashboard/dashboard/spa/sw-utils/google-analytics.js",
         "patchSetId": 27
@@ -971,6 +1151,24 @@
     },
     {
       "key": {
+        "uuid": "ab8681d4_e0c51565",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request-test.html",
+        "patchSetId": 27
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-20T17:34:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65c7d12f_1e1f0fd8",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ae7cc3d_6db8c19b",
         "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request-test.html",
         "patchSetId": 27
@@ -999,6 +1197,24 @@
       "writtenOn": "2018-08-17T18:43:39Z",
       "side": 1,
       "message": "TimeseriesCacheRequest?",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ea55a59_6ceee058",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request-test.html",
+        "patchSetId": 27
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-20T17:34:28Z",
+      "side": 1,
+      "message": "I can see why this would be confusing. This function simply creates a `Request` object, which will later be used by `fetch`. I\u0027ll add some documentation above this function.",
+      "parentUuid": "006d2f6e_5ac27362",
       "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -1464,6 +1680,24 @@
     },
     {
       "key": {
+        "uuid": "c4365e92_9f6966d6",
+        "filename": "dashboard/dashboard/spa/sw-utils/timing.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-20T17:34:28Z",
+      "side": 1,
+      "message": "Done. Thanks for the detailed explanation.",
+      "parentUuid": "26cf5646_b24b2324",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8f1dc3c2_070a0f72",
         "filename": "dashboard/dashboard/spa/sw-utils/timing.js",
         "patchSetId": 27
@@ -1475,6 +1709,24 @@
       "writtenOn": "2018-08-17T18:43:39Z",
       "side": 1,
       "message": "What could go wrong if the start mark is not cleared?",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0d9fbb2_16f3ed22",
+        "filename": "dashboard/dashboard/spa/sw-utils/timing.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-20T17:34:28Z",
+      "side": 1,
+      "message": "I don\u0027t want to find out. We\u0027re making a bunch of marks in the browser, and some of them aren\u0027t going to be used (e.g. cache misses). I thought it was polite to clean up after myself, but this isn\u0027t necessary. Would you like for me to remove it?",
+      "parentUuid": "8f1dc3c2_070a0f72",
       "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -1509,6 +1761,24 @@
       "writtenOn": "2018-08-17T22:44:01Z",
       "side": 1,
       "message": "I don\u0027t understand this? What\u0027s the problem?",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f724a0a1_f9f5eb5c",
+        "filename": "dashboard/dashboard/spa/timeseries-cache.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-20T17:34:28Z",
+      "side": 1,
+      "message": "CacheBase, by default, does not support asynchronous iterators, a feature that I\u0027ve used here for timeseries data and in another CL for report data.",
+      "parentUuid": "8a2efc4c_60d633fb",
       "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
