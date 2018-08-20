@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "06b056fc_684ac679",
+        "filename": "dashboard/dashboard/spa/cp-checkbox.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-20T22:40:56Z",
+      "side": 1,
+      "message": "Hm, that didn\u0027t seem to work.",
+      "parentUuid": "ce427b78_c8158204",
+      "range": {
+        "startLine": 69,
+        "startChar": 15,
+        "endLine": 69,
+        "endChar": 16
+      },
+      "revId": "eb0be18bae914824f1ffb3e0f2ce2ac61c775e40",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b95d4c29_51b79f5a",
         "filename": "dashboard/dashboard/spa/cp-checkbox.html",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "19360102_5eefc3de",
+        "filename": "dashboard/dashboard/spa/cp-checkbox.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-20T22:40:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b95d4c29_51b79f5a",
+      "range": {
+        "startLine": 70,
+        "startChar": 16,
+        "endLine": 70,
+        "endChar": 17
+      },
+      "revId": "eb0be18bae914824f1ffb3e0f2ce2ac61c775e40",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ffce0346_d2765d84",
         "filename": "dashboard/dashboard/spa/cp-checkbox.html",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2018-08-20T17:09:08Z",
       "side": 1,
       "message": "Random observation: We\u0027ve usually been putting the underscores before method names rather than after in ChopsUI land. ie: onChange_ -\u003e _onChange. Not something I have super strong opinions on, but at some point I think we\u0027ll want to pick a standard so we can be consistent.",
+      "range": {
+        "startLine": 71,
+        "startChar": 19,
+        "endLine": 71,
+        "endChar": 28
+      },
+      "revId": "eb0be18bae914824f1ffb3e0f2ce2ac61c775e40",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a25a03d8_d32cff10",
+        "filename": "dashboard/dashboard/spa/cp-checkbox.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-20T22:40:56Z",
+      "side": 1,
+      "message": "This is the convention in catapult. We can flip it around when we move it to the infra repo. :-)",
+      "parentUuid": "ffce0346_d2765d84",
       "range": {
         "startLine": 71,
         "startChar": 19,
