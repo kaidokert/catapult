@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce427b78_c8158204",
+        "filename": "dashboard/dashboard/spa/cp-checkbox.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-08-20T17:09:08Z",
+      "side": 1,
+      "message": "Nit: Should this be $\u003d?",
+      "range": {
+        "startLine": 69,
+        "startChar": 15,
+        "endLine": 69,
+        "endChar": 16
+      },
+      "revId": "eb0be18bae914824f1ffb3e0f2ce2ac61c775e40",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b95d4c29_51b79f5a",
+        "filename": "dashboard/dashboard/spa/cp-checkbox.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-08-20T17:09:08Z",
+      "side": 1,
+      "message": "Nit: Also maybe $\u003d here?",
+      "range": {
+        "startLine": 70,
+        "startChar": 16,
+        "endLine": 70,
+        "endChar": 17
+      },
+      "revId": "eb0be18bae914824f1ffb3e0f2ce2ac61c775e40",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffce0346_d2765d84",
+        "filename": "dashboard/dashboard/spa/cp-checkbox.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-08-20T17:09:08Z",
+      "side": 1,
+      "message": "Random observation: We\u0027ve usually been putting the underscores before method names rather than after in ChopsUI land. ie: onChange_ -\u003e _onChange. Not something I have super strong opinions on, but at some point I think we\u0027ll want to pick a standard so we can be consistent.",
+      "range": {
+        "startLine": 71,
+        "startChar": 19,
+        "endLine": 71,
+        "endChar": 28
+      },
+      "revId": "eb0be18bae914824f1ffb3e0f2ce2ac61c775e40",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
