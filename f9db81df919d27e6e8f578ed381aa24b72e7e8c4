@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "099ee311_e70c25e9",
+        "filename": "dashboard/dashboard/models/graph_data.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-20T17:13:06Z",
+      "side": 1,
+      "message": "Why did you make one of these a classmethod and the other a static",
+      "range": {
+        "startLine": 99,
+        "startChar": 3,
+        "endLine": 99,
+        "endChar": 14
+      },
+      "revId": "f9db81df919d27e6e8f578ed381aa24b72e7e8c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
