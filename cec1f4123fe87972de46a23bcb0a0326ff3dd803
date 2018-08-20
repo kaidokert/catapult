@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "737a0d94_a425d414",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/job-chart.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2018-08-20T17:40:19Z",
+      "side": 1,
+      "message": "IIUC this is the same color used for the distribution after the regression: https://screenshot.googleplex.com/zPyV936FHSN using the same color for hover is little confusing (like when you hover over the distribution for the blue commit).",
+      "revId": "cec1f4123fe87972de46a23bcb0a0326ff3dd803",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
