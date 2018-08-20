@@ -107,9 +107,9 @@ class Thread(event_container.TimelineEventContainer):
 
     Returns newly opened slice
     """
-    if len(self._open_slices) > 0 and timestamp < self._open_slices[-1].start:
-      raise ValueError(
-          'Slices must be added in increasing timestamp order')
+    #if len(self._open_slices) > 0 and timestamp < self._open_slices[-1].start:
+    #  raise ValueError(
+    #      'Slices must be added in increasing timestamp order')
     new_slice = slice_module.Slice(self, category, name, timestamp,
                                    thread_timestamp=thread_timestamp,
                                    args=args)

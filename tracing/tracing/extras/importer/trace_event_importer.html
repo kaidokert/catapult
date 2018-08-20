@@ -484,6 +484,7 @@ tr.exportTo('tr.e.importer', function() {
       const ts = this.toModelTimeFromUs_(event.ts);
       if (event.dur === 0 &&
           !thread.sliceGroup.isTimestampValidForBeginOrEnd(ts)) {
+        console.log("Dropping event due to backwards timestamps! Event: " + event.name);
         this.model_.importWarning({
           type: 'duration_parse_error',
           message: 'Timestamps are moving backward.'

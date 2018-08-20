@@ -9,6 +9,7 @@ https://code.google.com/p/trace-viewer/
 
 import collections
 import copy
+import logging
 
 import telemetry.timeline.async_slice as tracing_async_slice
 import telemetry.timeline.flow_event as tracing_flow_event
@@ -108,7 +109,8 @@ class TraceEventTimelineImporter(importer.TimelineImporter):
   def _ProcessDurationEvent(self, event):
     thread = (self._GetOrCreateProcess(event['pid'])
               .GetOrCreateThread(event['tid']))
-    if not thread.IsTimestampValidForBeginOrEnd(event['ts'] / 1000.0):
+    if 'dur' in event and event['dur'] > 0.0 and not thread.IsTimestampValidForBeginOrEnd(event['ts'] / 1000.0):
+      logging.warning("Dropping event %s" % event['name'])
       self._model.import_errors.append(
           'Timestamps are moving backward.')
       return
