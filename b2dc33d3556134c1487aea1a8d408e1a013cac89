@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "527f8bfc_903380a6",
+        "filename": "dashboard/dashboard/change_internal_only.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-20T22:28:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c548eb6_4b595fe5",
+      "range": {
+        "startLine": 1,
+        "startChar": 12,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "b2dc33d3556134c1487aea1a8d408e1a013cac89",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8baa5d97_135713d3",
         "filename": "dashboard/dashboard/change_internal_only.py",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "66ef1743_b61d518f",
+        "filename": "dashboard/dashboard/change_internal_only.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-20T22:28:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8baa5d97_135713d3",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 22
+      },
+      "revId": "b2dc33d3556134c1487aea1a8d408e1a013cac89",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4011addf_5ca601f0",
         "filename": "dashboard/dashboard/change_internal_only.py",
         "patchSetId": 4
@@ -62,6 +110,24 @@
       "revId": "b2dc33d3556134c1487aea1a8d408e1a013cac89",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "836eddd4_a2360229",
+        "filename": "dashboard/dashboard/change_internal_only.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-20T22:28:00Z",
+      "side": 1,
+      "message": "Yep, that is one bug in the existing code. Another CL is removing bot_whitelist, and another CL is rewriting this file, but I can go ahead and fix it here since it\u0027s only 1 line.",
+      "parentUuid": "4011addf_5ca601f0",
+      "revId": "b2dc33d3556134c1487aea1a8d408e1a013cac89",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
