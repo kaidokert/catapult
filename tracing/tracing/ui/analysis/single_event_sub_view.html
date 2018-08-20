@@ -206,6 +206,45 @@ Polymer({
       });
     }
 
+    const measureCache = true;
+    if (measureCache) {
+      if (event.dcacheReads) {
+        rows.push({
+          name: 'Cache reads',
+          value: event.dcacheReads,
+        });
+      }
+
+      if (event.dcacheMisses) {
+        rows.push({
+          name: 'Cache misses',
+          value: event.dcacheMisses,
+        });
+        rows.push({
+          name: 'Cache miss %',
+          value: Math.round(1000 * event.dcacheMisses / event.dcacheReads) / 10,
+        });
+      }
+    } else {
+      if (event.dcacheReads) {
+        rows.push({
+          name: 'CPU cycles',
+          value: event.dcacheReads,
+        });
+      }
+
+      if (event.dcacheMisses) {
+        rows.push({
+          name: 'CPU instructions',
+          value: event.dcacheMisses,
+        });
+        rows.push({
+          name: 'Instructions per cycle',
+          value: event.dcacheMisses / event.dcacheReads,
+        });
+      }
+    }
+
     function createStackFrameEl(sf) {
       const sfEl = document.createElement('tr-ui-a-stack-frame');
       sfEl.stackFrame = sf;
