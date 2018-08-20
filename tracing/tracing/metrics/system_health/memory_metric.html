@@ -282,7 +282,10 @@ tr.exportTo('tr.metrics.sh', function() {
    * @param {!function} addProcessScalar The callback for adding a scalar value.
    */
   function addV8MemoryDumpValues(processDump, addProcessScalar) {
-    const v8Dump = processDump.getMemoryAllocatorDumpByFullName('v8');
+    let v8Dump = processDump.getMemoryAllocatorDumpByFullName('v8/isolate');
+    if (v8Dump === undefined) {
+      v8Dump = processDump.getMemoryAllocatorDumpByFullName('v8');
+    }
     if (v8Dump === undefined) return;
 
     v8Dump.children.forEach(function(isolateDump) {
@@ -293,7 +296,10 @@ tr.exportTo('tr.metrics.sh', function() {
             addProcessScalar);
       }
       // v8:heap:...
-      const heapDump = isolateDump.getDescendantDumpByFullName('heap_spaces');
+      let heapDump = isolateDump.getDescendantDumpByFullName('heap_spaces');
+      if (heapDump === undefined) {
+        heapDump = isolateDump.getDescendantDumpByFullName('heap');
+      }
       if (heapDump !== undefined) {
         addV8ComponentValues(heapDump, ['v8', 'heap'], addProcessScalar);
         heapDump.children.forEach(function(spaceDump) {
