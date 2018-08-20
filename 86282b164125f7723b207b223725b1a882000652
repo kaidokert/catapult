@@ -70,6 +70,30 @@
       "revId": "86282b164125f7723b207b223725b1a882000652",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e560943_1cef32a9",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-20T21:51:08Z",
+      "side": 1,
+      "message": "https://bugs.chromium.org/p/chromium/issues/detail?id\u003d876082",
+      "parentUuid": "5b7d04c3_e482a7a2",
+      "range": {
+        "startLine": 81,
+        "startChar": 22,
+        "endLine": 81,
+        "endChar": 38
+      },
+      "revId": "86282b164125f7723b207b223725b1a882000652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
