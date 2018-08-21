@@ -46,6 +46,30 @@
       "revId": "1adc177b511229db4f5fb8379053c34350ddd458",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cffd67e9_b8822dcd",
+        "filename": "experimental/v8_tools/graph_utils.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1293423
+      },
+      "writtenOn": "2018-08-21T11:03:17Z",
+      "side": 1,
+      "message": "Thanks :) This will be used in other contexts besides the dot plot (e.g., in the bar plotter) which is why I left out the \"dot-\".",
+      "parentUuid": "3706be92_35dbe7b9",
+      "range": {
+        "startLine": 140,
+        "startChar": 8,
+        "endLine": 140,
+        "endChar": 46
+      },
+      "revId": "1adc177b511229db4f5fb8379053c34350ddd458",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
