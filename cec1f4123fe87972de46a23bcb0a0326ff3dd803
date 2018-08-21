@@ -34,6 +34,24 @@
       "revId": "cec1f4123fe87972de46a23bcb0a0326ff3dd803",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf9cdd62_a3f481f2",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/job-chart.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-21T09:03:36Z",
+      "side": 1,
+      "message": "my 2c: I actually thought it was fine to change the color as you hover as it gives you a sort of \"preview\" of what will happen when you click (and definitely much clearer than the previous version!)",
+      "parentUuid": "0b9a0920_0b99ea57",
+      "revId": "cec1f4123fe87972de46a23bcb0a0326ff3dd803",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
