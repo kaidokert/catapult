@@ -426,11 +426,12 @@ tr.exportTo('cp', () => {
     },
 
     loadSources: statePath => async(dispatch, getState) => {
-      const reportTemplateIds = await cp.ReadReportNames()(dispatch, getState);
+      const reportTemplateInfos = await cp.ReadReportNames()(dispatch,
+          getState);
       const rootState = getState();
       const teamFilter = cp.TeamFilter.get(rootState.teamName);
       const reportNames = await teamFilter.reportNames(
-          reportTemplateIds.map(t => t.name));
+          reportTemplateInfos.map(t => t.name));
       dispatch({
         type: ReportSection.reducers.receiveSourceOptions.typeName,
         statePath,
@@ -459,11 +460,12 @@ tr.exportTo('cp', () => {
       const requestedReports = new Set(state.source.selectedOptions);
 
       const revisions = [state.minRevision, state.maxRevision];
-      const reportTemplateIds = await cp.ReadReportNames()(dispatch, getState);
+      const reportTemplateInfos = await cp.ReadReportNames()(dispatch,
+          getState);
       const readers = [];
 
       for (const name of names) {
-        for (const templateId of reportTemplateIds) {
+        for (const templateId of reportTemplateInfos) {
           if (templateId.name === name) {
             readers.push(cp.ReportReader({
               ...templateId,
@@ -650,13 +652,13 @@ tr.exportTo('cp', () => {
       cp.ElementBase.actions.updateObject(statePath, {
         isLoading: true,
       })(dispatch, getState);
-      const reportTemplateIds = await request.response;
+      const reportTemplateInfos = await request.response;
       cp.ElementBase.actions.updateObject('', {
-        reportTemplateIds,
+        reportTemplateInfos,
       })(dispatch, getState);
       const teamFilter = cp.TeamFilter.get(rootState.teamName);
       const reportNames = await teamFilter.reportNames(
-          reportTemplateIds.map(t => t.name));
+          reportTemplateInfos.map(t => t.name));
       dispatch({
         type: ReportSection.reducers.receiveSourceOptions.typeName,
         statePath,
