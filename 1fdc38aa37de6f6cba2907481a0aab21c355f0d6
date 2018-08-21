@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9e733230_a54fafb7",
+        "filename": "experimental/v8_tools/dot_plotter.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T11:08:57Z",
+      "side": 1,
+      "message": "out of curiosity, what\u0027s the purpose of this selectAll? won\u0027t it be empty before you append the new data point?",
+      "range": {
+        "startLine": 129,
+        "startChar": 11,
+        "endLine": 129,
+        "endChar": 50
+      },
+      "revId": "1fdc38aa37de6f6cba2907481a0aab21c355f0d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
