@@ -1,0 +1,2 @@
+cipd install infra/testing/wct/linux-amd64 prod
+
