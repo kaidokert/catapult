@@ -22,6 +22,30 @@
       "revId": "1fdc38aa37de6f6cba2907481a0aab21c355f0d6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e58b14ad_f6dad006",
+        "filename": "experimental/v8_tools/dot_plotter.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1293423
+      },
+      "writtenOn": "2018-08-21T13:12:37Z",
+      "side": 1,
+      "message": "Yep, that\u0027s a d3 thing. It does return an empty selection (essentially arrays with added d3-specific functionality) at first, but then creates a selection with placeholders for each datum added through \u0027enter\u0027 (which are later replaced with the appended elements). As I just need the empty selection to do this, technically the selector I use could be any class name that isn\u0027t already used though.\nI think this could probably also work if I just called everything directly on the chart without the selectAll, except that the chart selection won\u0027t be empty and d3 will mistake some of the existing chart children elements as being bound to the provided data (and so not render the circles) unless if I provide a unique id function, because by default the index is used as an id (but from what I\u0027ve seen online I think selectAll is more idiomatic).",
+      "parentUuid": "9e733230_a54fafb7",
+      "range": {
+        "startLine": 129,
+        "startChar": 11,
+        "endLine": 129,
+        "endChar": 50
+      },
+      "revId": "1fdc38aa37de6f6cba2907481a0aab21c355f0d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
