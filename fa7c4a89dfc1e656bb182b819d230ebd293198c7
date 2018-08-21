@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ea5e448_5b1ccf2a",
+        "filename": "experimental/v8_tools/graph_utils.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T14:13:21Z",
+      "side": 1,
+      "message": "nit: getClassNameSuffixFactory()\n\ngenerators mean something else in JS",
+      "range": {
+        "startLine": 126,
+        "startChar": 9,
+        "endLine": 126,
+        "endChar": 39
+      },
+      "revId": "fa7c4a89dfc1e656bb182b819d230ebd293198c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d4aa022_476832d6",
+        "filename": "experimental/v8_tools/graph_utils_test.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T14:13:21Z",
+      "side": 1,
+      "message": "missed a few :)",
+      "revId": "fa7c4a89dfc1e656bb182b819d230ebd293198c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
