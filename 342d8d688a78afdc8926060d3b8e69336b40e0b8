@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ac38b51c_0abdcd57",
+        "filename": "tracing/tracing/value/legacy_json_converter_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-21T18:42:13Z",
+      "side": 1,
+      "message": "Cover stories too",
+      "revId": "342d8d688a78afdc8926060d3b8e69336b40e0b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
