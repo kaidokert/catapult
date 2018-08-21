@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ca10e4d6_4ff1c79a",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T10:03:41Z",
+      "side": 1,
+      "message": "this isn\u0027t really a component, so maybe rename this to just \"app.js\"",
+      "range": {
+        "startLine": 4,
+        "startChar": 12,
+        "endLine": 4,
+        "endChar": 21
+      },
+      "revId": "4504a6295b5951a0f98fe58c49091944453fd18c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

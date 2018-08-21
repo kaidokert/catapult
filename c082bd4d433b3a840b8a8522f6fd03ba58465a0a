@@ -1,0 +1,521 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d4a5c529_d8c06467",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T10:03:41Z",
+      "side": 1,
+      "message": "I don\u0027t think the JSON copy dance is necessary anymore, ask Anthony.",
+      "range": {
+        "startLine": 26,
+        "startChar": 19,
+        "endLine": 26,
+        "endChar": 60
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "acffe8b6_bfc1213b",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T10:03:41Z",
+      "side": 1,
+      "message": "should this be using setData now?",
+      "range": {
+        "startLine": 26,
+        "startChar": 11,
+        "endLine": 26,
+        "endChar": 18
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed75bb2c_088104b5",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T10:03:41Z",
+      "side": 1,
+      "message": "maybe this should be \"plotSingleMetric\" or similar? It\u0027s not 100% clear to me what this does and how it\u0027s different from the above plotDefaultByDiagnostic",
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17f71010_b247bb7d",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T10:03:41Z",
+      "side": 1,
+      "message": "there\u0027s a lot of code duplication between here and the target computed property. Can target be simplified to call this with a single diagnostic?",
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6598cb7c_0513bdff",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T10:03:41Z",
+      "side": 1,
+      "message": "probably needs a different name, e.g. data_loaded() or similar",
+      "range": {
+        "startLine": 175,
+        "startChar": 4,
+        "endLine": 175,
+        "endChar": 8
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1b9f0db_e4809970",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T10:03:41Z",
+      "side": 1,
+      "message": "this simplifies to \"this.sampleArr.length \u003e 0\"",
+      "range": {
+        "startLine": 176,
+        "startChar": 13,
+        "endLine": 176,
+        "endChar": 53
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "030a600b_0f505297",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T10:03:41Z",
+      "side": 1,
+      "message": "you can simplify this to\n\nthis.stories \u0026\u0026 this.stories.length \u003e 0",
+      "range": {
+        "startLine": 180,
+        "startChar": 6,
+        "endLine": 182,
+        "endChar": 7
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "073ea080_3938090c",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T10:03:41Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 186,
+        "startChar": 6,
+        "endLine": 188,
+        "endChar": 7
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "908a9921_c051166c",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T10:03:41Z",
+      "side": 1,
+      "message": "use \"map\" instead of \"forEach(... push)\"",
+      "range": {
+        "startLine": 198,
+        "startChar": 21,
+        "endLine": 198,
+        "endChar": 28
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ac456b1_1ad8be2a",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T10:03:41Z",
+      "side": 1,
+      "message": "make storiesByGuid a Set by default, or use _.uniq as in metrics.",
+      "range": {
+        "startLine": 218,
+        "startChar": 24,
+        "endLine": 218,
+        "endChar": 31
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2aa9f273_b49fba65",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T10:03:41Z",
+      "side": 1,
+      "message": "const allDiagnostics \u003d result.map(val \u003d\u003e Object.keys(val.diagnostics))",
+      "range": {
+        "startLine": 230,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 76
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64673030_6c8fbf12",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T10:03:41Z",
+      "side": 1,
+      "message": "is this the same as _.flatten(allDiagnostic, true)?",
+      "range": {
+        "startLine": 232,
+        "startChar": 15,
+        "endLine": 232,
+        "endChar": 28
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3af1995c_5e3308ac",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T10:03:41Z",
+      "side": 1,
+      "message": "do early returns to avoid indentation, e.g.\n\n  if (this.selected_story \u003d\u003d\u003d null ||\n      this.selected_metric \u003d\u003d\u003d null ||\n      this.selected_diagnostic \u003d\u003d null)\n    return undefined;\n\n  // rest of the code",
+      "range": {
+        "startLine": 239,
+        "startChar": 6,
+        "endLine": 241,
+        "endChar": 42
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "745abbc8_e2b98294",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T10:03:41Z",
+      "side": 1,
+      "message": "why not obj[key] \u003d value?",
+      "range": {
+        "startLine": 273,
+        "startChar": 0,
+        "endLine": 274,
+        "endChar": 33
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3164ac76_6cb60077",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T10:03:41Z",
+      "side": 1,
+      "message": "this is fine for this CL, but it would be good to generalise this to have arbitrary nesting by having a v-for over the levels in the nesting (and adding a level each time we pick a subcomponent.",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 16
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "165998b0_646b4e31",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T10:03:41Z",
+      "side": 1,
+      "message": "so the menu and the \"app\" are different Vue applications? Could they be merged, with menu as a component?",
+      "range": {
+        "startLine": 5,
+        "startChar": 13,
+        "endLine": 5,
+        "endChar": 22
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a3bd3f8_1813560c",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T10:03:41Z",
+      "side": 1,
+      "message": "nit: for now, different name (e.g. subsubcomponent or similar)\n\nin the future, remove these entirely and make component a list.",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 17
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09b391e8_dc8530e3",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T10:03:41Z",
+      "side": 1,
+      "message": "nit: seen_subcomponent",
+      "range": {
+        "startLine": 98,
+        "startChar": 4,
+        "endLine": 98,
+        "endChar": 9
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7d041cb_ae368170",
+        "filename": "experimental/v8_tools/metrics_parser.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T10:03:41Z",
+      "side": 1,
+      "message": "not \"startsWith\"?",
+      "range": {
+        "startLine": 34,
+        "startChar": 8,
+        "endLine": 34,
+        "endChar": 35
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ccb4434_642e7dd4",
+        "filename": "experimental/v8_tools/metrics_parser.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T10:03:41Z",
+      "side": 1,
+      "message": "it would be nice to avoid these splices and instead increase the indices used, since splicing isn\u0027t free.",
+      "range": {
+        "startLine": 36,
+        "startChar": 5,
+        "endLine": 36,
+        "endChar": 27
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fd8d324_5706f8d1",
+        "filename": "experimental/v8_tools/metrics_parser.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T10:03:41Z",
+      "side": 1,
+      "message": "instead of having separate \"reported by chrome\" and \"reported by os\", have another \"componentsForProbe\" map with \"reported_by_chrome\" and \"reported_by_os\" entries. That will allow you to remove the duplication of component building code between the two.",
+      "range": {
+        "startLine": 40,
+        "startChar": 6,
+        "endLine": 40,
+        "endChar": 46
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b90006ea_4b5e3906",
+        "filename": "experimental/v8_tools/metrics_parser.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T10:03:41Z",
+      "side": 1,
+      "message": "this looks like it only goes ~3 levels deep, right? I feel that this could be cleaner by being an arbitrary map of maps, representing a tree, and using an iteration over the entries of elements to build that tree.",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 83,
+        "endChar": 9
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecef070d_15b13c81",
+        "filename": "experimental/v8_tools/metrics_parser.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T10:03:41Z",
+      "side": 1,
+      "message": "nit: else if on same line",
+      "range": {
+        "startLine": 84,
+        "startChar": 8,
+        "endLine": 85,
+        "endChar": 8
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
