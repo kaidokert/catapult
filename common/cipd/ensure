@@ -1,0 +1,5 @@
+$ServiceURL https://chrome-infra-packages.appspot.com/
+$ResolvedVersions cipd_lock.versions
+$VerifiedPlatform linux-amd64
+
+infra/testing/wct/linux-amd64 prod
