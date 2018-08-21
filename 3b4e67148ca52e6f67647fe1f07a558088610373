@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e8952fc1_db566cee",
+        "filename": "dashboard/dashboard/spa/cp-tab.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-08-21T00:15:50Z",
+      "side": 1,
+      "message": "UX Nit: Without a tab selected at first, I think it took me a while to realize which elements on the page were tabs. At first these tabs registered more as normal links than tabs to me. If possible, I think it\u0027d be nice to try to find ways to make the tabs stand out a bit more than links?",
+      "revId": "3b4e67148ca52e6f67647fe1f07a558088610373",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36a81989_08e7a09e",
+        "filename": "dashboard/dashboard/spa/cp-tab.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-08-21T00:15:50Z",
+      "side": 1,
+      "message": "Nit: I noticed that the bolding makes the tab get bigger when selected, which I think makes the UX a bit confusing. Would it be possible to make it so that the tab is the same size before and after?",
+      "revId": "3b4e67148ca52e6f67647fe1f07a558088610373",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
