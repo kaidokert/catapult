@@ -16,6 +16,24 @@
       "revId": "cec1f4123fe87972de46a23bcb0a0326ff3dd803",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b9a0920_0b99ea57",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/job-chart.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-08-21T00:53:56Z",
+      "side": 1,
+      "message": "It\u0027s a lighter version of the same color.\n\nWhat I really wanted was something more similar to the data visualizations on this page: http://worrydream.com/LadderOfAbstraction/ When you hover over a selector, the selected point moves, updating all of the views. Then you don\u0027t need additional colors. Unfortunately, \u003ciron-selector\u003e doesn\u0027t provide this kind of behavior, and I don\u0027t want to roll my own while we\u0027re still on 100% Polymer 1.0.\n\nThe UI\u0027s primary colors are black, indigo, and pink, and I didn\u0027t want to introduce an additional color just for this chart (but we could). Pink is used for \"active\" things, like things that are selected or hovered. Although it might appear that the two commits are equal in this view, I want to slightly emphasize the right commit over the left commit. It\u0027s the right commit that\u0027s selected (because that\u0027s the one that caused the regression).",
+      "parentUuid": "737a0d94_a425d414",
+      "revId": "cec1f4123fe87972de46a23bcb0a0326ff3dd803",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
