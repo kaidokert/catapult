@@ -118,45 +118,93 @@ tr.exportTo('cp', () => {
    *   });
    * }
    *
-   * |promises| can be any promise, need not be RequestBase.response.
+   * |tasks| is expected to be an array of promises or asynchronous iterators.
+   * Promises do not have to be cp.RequestBase.response.
    */
-  async function* batchResponses(promises, opt_getDelayPromise) {
-    const getDelayPromise = opt_getDelayPromise || (() =>
-      cp.timeout(500));
-    let delay;
+  async function* batchResponses(tasks, opt_getDelayPromise) {
     let results = [];
     let errors = [];
-    promises = promises.map(narcissus => {
-      const socrates = (async() => {
+
+    // aggregate wraps a promise or async iterator to aggregate their results
+    // and errors into the arrays above since they do not have access to them
+    // themselves. Returns a promise if the async iterator is not done,
+    // `undefined` otherwise.
+    function aggregate(task) {
+      return (async() => {
+        const isIterator = typeof task.next === 'function';
+        const isPromise = task instanceof Promise;
+        if (!isIterator && !isPromise) {
+          throw new TypeError(`Task is of invalid type: ${typeof task}`);
+        }
+
         try {
-          results.push(await narcissus);
+          if (isPromise) {
+            results.push(await task);
+            return;
+          }
+
+          // Task must be an asynchronous iterator.
+          const { value, done } = await task.next();
+          if (!done) {
+            results.push(value);
+            return smartPromisify(task);
+          }
         } catch (err) {
           errors.push(err);
-        } finally {
-          promises.splice(promises.indexOf(socrates), 1);
         }
       })();
-      return socrates;
-    });
+    }
+
+    const promises = [];
+
+    // Promises need to remove themselves from the above `promises` array so we
+    // don't race them again.
+    function autoRemove(promise) {
+      const self = (async() => {
+        const next = await promise;
+        if (next) {
+          promises.push(removeSelf(next));
+        }
+        const index = promises.indexOf(self);
+        promises.splice(index, 1);
+      })();
+      return self;
+    }
+
+    for (const task of tasks) {
+      promises.push(autoRemove(aggregate(task)));
+    }
+
+    let timeToYield = 0;
+    let timeoutPromise;
 
     while (promises.length) {
-      if (delay) {
-        await Promise.race([delay, ...promises]);
-        if (delay.isResolved) {
-          yield {results, errors};
-          results = [];
-          errors = [];
-          delay = undefined;
-        }
-      } else {
-        await Promise.race(promises);
-        delay = (async() => {
-          await getDelayPromise();
-          delay.isResolved = true;
+      await Promise.race(timeoutPromise ? [timeoutPromise, ...promises] :
+        promises);
+
+      if (!timeoutPromise) {
+        timeoutPromise = (async() => {
+          await timeout(timeToYield);
+          timeoutPromise.isResolved = true;
         })();
-        delay.isResolved = false;
+        timeoutPromise.isResolved = false;
+        continue;
       }
+
+      if (!timeoutPromise.isResolved) continue;
+
+      // The delay promise resolved, indiciating we need to send out results.
+      // Measure how long it takes the caller to process yielded results to
+      // avoid overloading the caller the next time around.
+      const startTime = performance.now();
+      yield {results, errors};
+      timeToYield = performance.now() - startTime;
+
+      results = [];
+      errors = [];
+      timeoutPromise = undefined;
     }
+
     yield {results, errors};
   }
 
