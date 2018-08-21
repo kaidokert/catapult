@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a4a5023c_320b7d74",
+        "filename": "experimental/v8_tools/dot_plotter_test.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T09:00:20Z",
+      "side": 1,
+      "message": "add a test using getClassName too.",
+      "range": {
+        "startLine": 44,
+        "startChar": 37,
+        "endLine": 44,
+        "endChar": 43
+      },
+      "revId": "c8f67c86514aa6696d076e295bdcc91a413f8361",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b64e208_6dbb3d1e",
+        "filename": "experimental/v8_tools/graph_utils.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T09:00:20Z",
+      "side": 1,
+      "message": "you could merge these two into a single lazy getter, similar to defaultdict in python, which creates the class name if necessary and returns it unconditionally.",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 8
+      },
+      "revId": "c8f67c86514aa6696d076e295bdcc91a413f8361",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

@@ -22,6 +22,30 @@
       "revId": "1adc177b511229db4f5fb8379053c34350ddd458",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3706be92_35dbe7b9",
+        "filename": "experimental/v8_tools/graph_utils.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-08-21T09:00:20Z",
+      "side": 1,
+      "message": "It\u0027s good to be explicit here. You could even prepend the \"dot-\" string.",
+      "parentUuid": "8386d521_7fbf3978",
+      "range": {
+        "startLine": 140,
+        "startChar": 8,
+        "endLine": 140,
+        "endChar": 46
+      },
+      "revId": "1adc177b511229db4f5fb8379053c34350ddd458",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
