@@ -376,17 +376,20 @@ tr.exportTo('cp', () => {
           })(dispatch, getState);
         }
 
-        cp.ElementBase.actions.chain([
-          {
-            type: ChromeperfApp.reducers.receiveSessionState.typeName,
-            statePath,
-            sessionState,
-          },
-          {
-            type: ChromeperfApp.reducers.updateLargeDom.typeName,
-            appStatePath: statePath,
-          },
-        ])(dispatch, getState);
+        dispatch({
+          type: 'CHAIN',
+          actions: [
+            {
+              type: ChromeperfApp.reducers.receiveSessionState.typeName,
+              statePath,
+              sessionState,
+            },
+            {
+              type: ChromeperfApp.reducers.updateLargeDom.typeName,
+              appStatePath: statePath,
+            },
+          ],
+        });
         cp.ReportSection.actions.restoreState(
             `${statePath}.reportSection`, sessionState.reportSection
         )(dispatch, getState);
@@ -541,17 +544,20 @@ tr.exportTo('cp', () => {
     },
 
     newChart: (statePath, options) => async(dispatch, getState) => {
-      cp.ElementBase.actions.chain([
-        {
-          type: ChromeperfApp.reducers.newChart.typeName,
-          statePath,
-          options,
-        },
-        {
-          type: ChromeperfApp.reducers.updateLargeDom.typeName,
-          appStatePath: statePath,
-        },
-      ])(dispatch, getState);
+      dispatch({
+        type: 'CHAIN',
+        actions: [
+          {
+            type: ChromeperfApp.reducers.newChart.typeName,
+            statePath,
+            options,
+          },
+          {
+            type: ChromeperfApp.reducers.updateLargeDom.typeName,
+            appStatePath: statePath,
+          },
+        ],
+      });
     },
 
     closeChart: (statePath, sectionId) => async(dispatch, getState) => {

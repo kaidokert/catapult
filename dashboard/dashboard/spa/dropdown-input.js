@@ -99,21 +99,26 @@ tr.exportTo('cp', () => {
     return `[${selectedOptions.length} selected]`;
   };
 
+  DropdownInput.State = {
+    ...cp.OptionGroup.RootState,
+    ...cp.OptionGroup.State,
+    alwaysEnabled: options => options.alwaysEnabled !== true,
+    columns: options => options.columns || [],
+    errorMessage: options => options.errorMessage || '',
+    focusTimestamp: options => undefined,
+    hasBeenOpened: options => false,
+    label: options => options.label || '',
+    query: options => options.query || '',
+    recommended: options => options.recommended || {},
+    requireSingle: options => options.requireSingle || false,
+    required: options => options.required || false,
+  };
+
+  DropdownInput.buildState = options => cp.buildState(
+      DropdownInput.State, options);
+
   DropdownInput.properties = {
-    ...cp.ElementBase.statePathProperties('statePath', {
-      alwaysEnabled: {type: Boolean},
-      hasBeenOpened: {type: Boolean},
-      columns: {type: Array},
-      focusTimestamp: {type: Number},
-      label: {type: String},
-      options: {type: Array},
-      query: {type: String},
-      recommended: {type: Object},
-      required: {type: Boolean},
-      requireSingle: {type: Boolean},
-      errorMessage: {type: String},
-      selectedOptions: {type: Array},
-    }),
+    ...cp.buildProperties('state', DropdownInput.State),
     largeDom: {
       type: Boolean,
       statePath: 'largeDom',
