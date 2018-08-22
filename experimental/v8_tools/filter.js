@@ -260,7 +260,9 @@ const app = new Vue({
     graph: null,
     searchQuery: '',
     gridColumns: ['id', 'metric', 'averageSampleValues'],
-    gridData: []
+    gridData: [],
+    testResults: [],
+
   },
 
   methods: {

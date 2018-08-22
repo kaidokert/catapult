@@ -10,6 +10,10 @@
     <script src="./box_plotter.js"></script>
     <script src="./graph_plotter.js"></script>
     <script src="./dot_plotter.js"></script>
+    <script src="./graph_utils.js"></script>
+    <script src="./metric_significance.js"></script>
+    <script src="../../tracing/third_party/mannwhitneyu/mannwhitneyu.js"></script>
+    <script src="./stat_test_summary.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
 </head>
 
@@ -81,6 +85,22 @@
     </tbody>
   </table>
 </script>
+
+<!-- Template for stats_test_summary_component.js -->
+<script type="text/x-template" id="stat-test-summary-template">
+  'use strict';
+  <div>
+    <p>Statistically significant metrics:</p>
+    <ol>
+      <li v-for='result in testResults'>
+        <p> {{ result.metric }}   <br> 
+            p: {{result.evidence.p}} 
+        </p>
+      </li>
+    </ol>
+  </div>
+</script>
+
 <!-- the root component -->
 <div id='app'>
   <v-select placeholder="Pick a metric"
@@ -99,6 +119,9 @@
             v-model="selected_diagnostic" 
             id='select_item'></v-select>
     <div id='canvas'></div>
+    <stat-test-summary v-if="seen"
+                     v-bind:test-results="testResults"
+                     style='float:right'></stat-test-summary>
     <form id="search">
       <input v-if="seen"
             id='inputBox'
