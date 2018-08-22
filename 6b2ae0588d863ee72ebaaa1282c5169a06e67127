@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fc999036_6c5b6ec8",
+        "filename": "experimental/long_term_health/long_term_health/apk_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-22T09:36:49Z",
+      "side": 1,
+      "message": "We have an assert here when len(args) \u003d\u003d 1. If I understand correct, we shouldn\u0027t reach the if condition right? Do we need to modify this assert?",
+      "revId": "6b2ae0588d863ee72ebaaa1282c5169a06e67127",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
