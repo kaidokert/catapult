@@ -69,6 +69,24 @@
       "revId": "6b2ae0588d863ee72ebaaa1282c5169a06e67127",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2b90394_bdcec036",
+        "filename": "experimental/long_term_health/long_term_health/apk_finder_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-08-22T13:52:40Z",
+      "side": 1,
+      "message": "Yes, you\u0027re right. This is a mistake. I have fixed this in the latest patch set.",
+      "parentUuid": "4e4b9a04_392f5148",
+      "revId": "6b2ae0588d863ee72ebaaa1282c5169a06e67127",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
