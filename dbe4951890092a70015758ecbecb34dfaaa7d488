@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "52cfb4f1_364a3802",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-08-22T20:53:44Z",
+      "side": 1,
+      "message": "nit: should go after the function in which it\u0027s used.",
+      "revId": "dbe4951890092a70015758ecbecb34dfaaa7d488",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a16d5757_8ad4ad09",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-08-22T20:53:44Z",
+      "side": 1,
+      "message": "Add a TODO about doing something about this?",
+      "revId": "dbe4951890092a70015758ecbecb34dfaaa7d488",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f1d74ba_cc70025c",
+        "filename": "dashboard/dashboard/pinpoint/models/job_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-08-22T20:53:44Z",
+      "side": 1,
+      "message": "nit: external imports come before imports in this project.",
+      "revId": "dbe4951890092a70015758ecbecb34dfaaa7d488",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
