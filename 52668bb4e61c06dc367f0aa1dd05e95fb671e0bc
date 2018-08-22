@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "881bc74e_e3102615",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1293423
+      },
+      "writtenOn": "2018-08-22T12:59:01Z",
+      "side": 1,
+      "message": "The linter complains if we don\u0027t insert \u0027use strict\u0027 here (I assume due to the script tags) but Vue complains if we do insert \u0027use strict\u0027 (it outputs warnings to the consoles which clutters it and is a bit annoying). Does anyone know if there\u0027s a different way to insert the templates here?",
+      "range": {
+        "startLine": 91,
+        "startChar": 2,
+        "endLine": 91,
+        "endChar": 15
+      },
+      "revId": "52668bb4e61c06dc367f0aa1dd05e95fb671e0bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
