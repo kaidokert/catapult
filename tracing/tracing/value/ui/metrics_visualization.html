@@ -165,6 +165,27 @@ Polymer({
     this.$.selectors.style.display = 'block';
   },
 
+  buildCT(rawDataNoPatch, rawDataPatch, mainMetricNames) {
+    if (!rawDataNoPatch || rawDataPatch.length < 1 ||
+        ! rawDataPatch || rawDataPatch.length < 1 ||
+        !mainMetricNames || mainMetricNames.length < 1) {
+      this.$.data_error.style.display = 'block';
+      return;
+    }
+
+    this.mainMetricNames_ = mainMetricNames;
+    Polymer.dom(this.$.container).appendChild(this.chart_);
+    this.populateCTChart_(rawDataNoPatch, rawDataPatch,
+        this.mainMetricNames_, this.chart_);
+
+    if (this.groups_.size < 1) {
+      this.$.data_error.style.display = 'block';
+      return;
+    }
+
+    this.$.selectors.style.display = 'block';
+  },
+
   populateChart_(histograms, mainMetricNames, chart) {
     const storiesGrouping = tr.v.HistogramGrouping.BY_KEY.get(
         tr.v.d.RESERVED_NAMES.STORIES);
@@ -237,13 +258,66 @@ Polymer({
     }
 
     this.displayLabels_ = this.getSortedDisplayLabels_(labels);
-    this.sortedPages_ = [...this.groups_.keys()].sort((a, b) =>
-      this.sortGroups_(a, b, this.groups_,
-          this.displayLabels_, mainMetricNames));
+    this.drawChart_(this.groups_, this.displayLabels_, mainMetricNames, chart);
+  },
 
-    this.setChartColors_(mainMetricNames, this.displayLabels_, chart);
-    this.setChartSize_(this.groups_.size, this.displayLabels_.length, chart);
-    this.setChartData_(this.groups_, this.sortedPages_, this.displayLabels_,
+  // Parses Cluster Telemetry data
+  populateCTChart_(rawDataNoPatch, rawDataPatch, mainMetricNames, chart) {
+    const headers = rawDataNoPatch[0];
+    const dataNoPatch = rawDataNoPatch.slice(1, -1);
+    const dataPatch = rawDataPatch.slice(1, -1);
+
+    const metricIndices = [];
+    for (const metricName of mainMetricNames) {
+      metricIndices.push(headers.indexOf(metricName));
+      this.subMetricNames_.set(metricName, [metricName]);
+    }
+    const pageNameIndex = headers.indexOf('page_name');
+
+    this.parseCTData_(dataNoPatch, this.groups_, metricIndices,
+        pageNameIndex, 'nopatch');
+    this.parseCTData_(dataPatch, this.groups_, metricIndices,
+        pageNameIndex, 'patch');
+    this.displayLabels_ = ['nopatch', 'patch'];
+
+    this.drawChart_(this.groups_, this.displayLabels_,
+        mainMetricNames, chart);
+  },
+
+  parseCTData_(data, groups, metricIndices, pageNameIndex, label) {
+    for (let i = 0; i < data.length; ++i) {
+      const row = data[i];
+      const pageName = row[pageNameIndex];
+
+      let pageMap = new Map();
+      if (groups.has(pageName)) {
+        pageMap = groups.get(pageName);
+      } else {
+        groups.set(pageName, pageMap);
+      }
+
+      const labelMap = new Map();
+      for (let j = 0; j < this.mainMetricNames_.length; ++j) {
+        const metricMap = new Map();
+        const value = Math.round(row[metricIndices[j]] * 100) / 100;
+        const statistic = new tr.b.math.RunningStatistics();
+        statistic.add(value);
+        labelMap.set(this.mainMetricNames_[j], metricMap);
+        metricMap.set(this.mainMetricNames_[j], statistic);
+        metricMap.set('statistic', statistic);
+      }
+      pageMap.set(label, labelMap);
+    }
+  },
+
+  drawChart_(groups, displayLabels, mainMetricNames, chart) {
+    this.sortedPages_ = [...groups.keys()].sort((a, b) =>
+      this.sortGroups_(a, b, groups,
+          displayLabels, mainMetricNames));
+
+    this.setChartColors_(mainMetricNames, displayLabels, chart);
+    this.setChartSize_(groups.size, displayLabels.length, chart);
+    this.setChartData_(groups, this.sortedPages_, displayLabels,
         mainMetricNames, chart);
   },
 
@@ -478,8 +552,8 @@ Polymer({
     for (const [mainStep, subSteps] of this.subMetricNames_) {
       totalSteps += subSteps.length;
     }
-    const width = tr.math.clamp(totalSteps * 150, 300, 700);
-    const height = tr.math.clamp(totalSteps * this.displayLabels_.length * 30,
+    const width = tr.b.math.clamp(totalSteps * 150, 300, 700);
+    const height = tr.b.math.clamp(totalSteps * this.displayLabels_.length * 30,
         300, 700);
 
     const childChart = this.initializeChild_(title, height, width);

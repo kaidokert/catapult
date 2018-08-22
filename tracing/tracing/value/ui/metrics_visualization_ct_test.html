@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/value/ui/metrics_visualization_ct.html">
+
+<script>
+'use strict';
+
+tr.b.unittest.testSuite(function() {
+  test('instantiateWithCT', function() {
+    const cp = document.createElement('tr-v-ui-metrics-visualization-ct');
+    this.addHTMLOutput(cp);
+
+    const mainMetricNames = ['pipeline:begin_frame_transport (ms)',
+      'pipeline:begin_frame_to_frame_submission (ms)',
+      'pipeline:frame_submission_to_display (ms)',
+      'pipeline:draw (ms)'];
+
+    cp.build(mainMetricNames);
+  });
+});
+</script>

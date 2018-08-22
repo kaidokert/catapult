@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/value/ui/metrics_visualization.html">
+
+<dom-module id="tr-v-ui-metrics-visualization-ct">
+  <template>
+    <style>
+      button {
+        padding: 5px;
+        font-size: 14px;
+      }
+
+      .error {
+        color: red;
+        display: none;
+      }
+
+      #metrics {
+        display: none;
+      }
+    </style>
+    <div id="container">
+      <div id="CT">
+        <label for="upload_nopatch">CT File (no patch):</label>
+        <input type="file" id="upload_nopatch"/>
+        <label for="upload_patch">CT File (with patch):</label>
+        <input type="file" id="upload_patch"/>
+        <button id="submitCT" on-tap="uploadData_">Submit</button>
+      </div>
+      <div id="error" class="error">Invalid data provided.</div>
+      <tr-v-ui-metrics-visualization id="metrics">
+      </tr-v-ui-metrics-visualization>
+    </div>
+  </template>
+</dom-module>
+
+<script>
+'use strict';
+Polymer({
+  is: 'tr-v-ui-metrics-visualization-ct',
+
+  created() {
+    this.mainMetricNames_ = undefined;
+  },
+
+  build(mainMetricNames) {
+    if (!mainMetricNames || mainMetricNames.length < 1) {
+      this.$.error.style.display = 'block';
+      return;
+    }
+    this.mainMetricNames_ = mainMetricNames;
+  },
+
+  // Parses Cluster Telemetry data
+  uploadData_() {
+    const fileNoPatch = this.$.upload_nopatch.files[0];
+    const filePatch = this.$.upload_patch.files[0];
+
+    if (fileNoPatch === undefined || filePatch === undefined) {
+      this.$.error.style.display = 'block';
+      return;
+    }
+
+    const readerNoPatch = new FileReader();
+    readerNoPatch.readAsText(fileNoPatch);
+
+    readerNoPatch.onload = (eventNoPatch) => {
+      const csvNoPatch = eventNoPatch.target.result;
+
+      const readerPatch = new FileReader();
+      readerPatch.readAsText(filePatch);
+
+      readerPatch.onload = (eventPatch) => {
+        const csvPatch = eventPatch.target.result;
+
+        if (csvNoPatch && csvPatch) {
+          const rawDataNoPatch = this.processCSV_(csvNoPatch);
+          const rawDataPatch = this.processCSV_(csvPatch);
+
+          this.$.metrics.buildCT(rawDataNoPatch, rawDataPatch,
+              this.mainMetricNames_);
+          this.$.metrics.style.display = 'block';
+        } else {
+          this.$.error.style.display = 'block';
+        }
+      };
+    };
+  },
+
+  processCSV_(allText) {
+    const allTextLines = allText.split(/\r\n|\n/);
+    const headers = allTextLines[0].split(',');
+    const lines = [headers];
+
+    for (let i = 1; i < allTextLines.length; ++i) {
+      const row = allTextLines[i].split(',');
+      if (row.length === headers.length) {
+        const rowValues = [];
+        for (let j = 0; j < headers.length; ++j) {
+          rowValues.push(row[j]);
+        }
+        lines.push(rowValues);
+      }
+    }
+    return lines;
+  },
+
+});
+</script>
