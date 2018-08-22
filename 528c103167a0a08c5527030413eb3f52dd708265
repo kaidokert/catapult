@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "dac82494_ff5e67b4",
+        "filename": "experimental/v8_tools/metrics_parser.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T14:22:01Z",
+      "side": 1,
+      "message": "It depends which one is more important and better known by the user. If the most popular one is the size, then we can entirely remove the probe from the menu and auto-detect it behind. But if this probe is important, I see it like this current way.",
+      "parentUuid": "1f9d8a94_de9c3a9c",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 7
+      },
+      "revId": "528c103167a0a08c5527030413eb3f52dd708265",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b4d89c42_2a163e5b",
         "filename": "experimental/v8_tools/metrics_parser.js",
         "patchSetId": 10
@@ -45,6 +69,30 @@
       "revId": "528c103167a0a08c5527030413eb3f52dd708265",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "264dc779_7b763e0c",
+        "filename": "experimental/v8_tools/metrics_parser.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T14:22:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4d89c42_2a163e5b",
+      "range": {
+        "startLine": 35,
+        "startChar": 8,
+        "endLine": 35,
+        "endChar": 33
+      },
+      "revId": "528c103167a0a08c5527030413eb3f52dd708265",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

@@ -1069,6 +1069,30 @@
     },
     {
       "key": {
+        "uuid": "55166f59_00f8337c",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T14:22:01Z",
+      "side": 1,
+      "message": "Oh, I see now. The reason I didn\u0027t make it a component is because you create a component when it doesn\u0027t already exist something similar and a big part of the code is moved in the html part to create the relations with the parent. I avoid to use html if it\u0027s not necessary.",
+      "parentUuid": "f0de6449_c3eeaf8d",
+      "range": {
+        "startLine": 5,
+        "startChar": 13,
+        "endLine": 5,
+        "endChar": 22
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8a3bd3f8_1813560c",
         "filename": "experimental/v8_tools/filter.js",
         "patchSetId": 5
