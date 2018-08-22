@@ -2,6 +2,57 @@
   "comments": [
     {
       "key": {
+        "uuid": "7c6636cf_40145242",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-22T12:26:45Z",
+      "side": 1,
+      "message": "change it to: This is for displaying results for the selected parameters from the drop-down menu.",
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98f4f4b5_3a0443e9",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-22T12:26:45Z",
+      "side": 1,
+      "message": "can we just call plotCumulativeFrequencyPlot(this.target, this.selected_story)?",
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9eebb6b4_a59743a2",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-22T12:26:45Z",
+      "side": 1,
+      "message": "How about naming it Cumulative frequency? If I understand right, x-Axis is cumulative frequency right.",
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d4a5c529_d8c06467",
         "filename": "experimental/v8_tools/app_component.js",
         "patchSetId": 5
@@ -48,6 +99,57 @@
     },
     {
       "key": {
+        "uuid": "96e84956_8c17fc9e",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-22T12:26:45Z",
+      "side": 1,
+      "message": "Just for my understanding, does this plot for a particular metric and a story with a particular  diagnostic?",
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc37959f_2844297e",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-22T12:26:45Z",
+      "side": 1,
+      "message": "can we just use targetForMultipleDiagnostics here to prevent duplicating the logic.",
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc7e2b48_bc05aab4",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-22T12:26:45Z",
+      "side": 1,
+      "message": "I am not sure I understand, the sub-daignostics part of it. Do we specify these sub-diagnostics somehow?",
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ed75bb2c_088104b5",
         "filename": "experimental/v8_tools/app_component.js",
         "patchSetId": 5
@@ -65,6 +167,23 @@
     },
     {
       "key": {
+        "uuid": "97213461_9716968e",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-22T12:26:45Z",
+      "side": 1,
+      "message": "sub-diagnostics come from \u003d\u003e sub-diagnostics chosen from",
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "17f71010_b247bb7d",
         "filename": "experimental/v8_tools/app_component.js",
         "patchSetId": 5
@@ -76,6 +195,23 @@
       "writtenOn": "2018-08-21T10:03:41Z",
       "side": 1,
       "message": "there\u0027s a lot of code duplication between here and the target computed property. Can target be simplified to call this with a single diagnostic?",
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cca9866f_3f560c4a",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-22T12:26:45Z",
+      "side": 1,
+      "message": "if (metric \u003d\u003d null || story \u003d\u003d\u003d null || ....) return undefined;\n\nthe rest of the code need not be within if then. It will be easier to read since we have lesser levels of nesting.",
       "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -260,6 +396,23 @@
         "endLine": 232,
         "endChar": 28
       },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8f3eb11_3671f5df",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-22T12:26:45Z",
+      "side": 1,
+      "message": "how about naming this filterData or something similar. Also can call targetForMultipleDiagnostic(this.selected_story, this.selected_metric, this.selected_diagnostic)",
       "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
