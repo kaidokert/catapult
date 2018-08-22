@@ -396,6 +396,9 @@ def GetReport(try_job_entity, in_progress=False):
   if try_job_entity.bug_id > 0:
     results_data['_tryjob_id'] = try_job_entity.key.id()
 
+  if hasattr(try_job_entity, 'test_path'):
+    results_data['test_path'] = try_job_entity.test_path
+
   return  _GenerateReport(results_data)
 
 
