@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c3f9a203_29941301",
+        "filename": "dashboard/dashboard/common/histogram_helpers.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-08-22T23:35:30Z",
+      "side": 1,
+      "message": "Let\u0027s not duplicate this function. Can we use it in add_point.py?",
+      "revId": "3d65eff0fae07482bcaa3b424377374f80bf8271",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "085ffe19_c01108d7",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-08-22T23:35:30Z",
+      "side": 1,
+      "message": "Let\u0027s pull the trace reading and histograms reading out to separate functions. The mixing of the two things is confusing. Maybe in a follow-up.",
+      "revId": "3d65eff0fae07482bcaa3b424377374f80bf8271",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07267992_70aabfb9",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-08-22T23:35:30Z",
+      "side": 1,
+      "message": "Do we ignore the statistic logic in the summary histogram scenario?\n\nMaybe it would be clearer if it was structured as:\nif test_path in histograms_by_path:\n  result_values \u003d _HistogramValues(histograms_by_path, test_path)\nelse:\n  result_values \u003d _SummaryHistogramValues(histograms_by_path, test_path)",
+      "revId": "3d65eff0fae07482bcaa3b424377374f80bf8271",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2b65f7b_cce4b4de",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-08-22T23:35:30Z",
+      "side": 1,
+      "message": "nit: what\u0027s k?",
+      "revId": "3d65eff0fae07482bcaa3b424377374f80bf8271",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4a1b92e_0e214e38",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-08-22T23:35:30Z",
+      "side": 1,
+      "message": "@eakuefner: It feels like test_path is a Perf Dashboard concept, not a HistogramSet concept. Is there a pure HistogramSet way to look up the summary values?",
+      "revId": "3d65eff0fae07482bcaa3b424377374f80bf8271",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "071532fc_02428b48",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-08-22T23:35:30Z",
+      "side": 1,
+      "message": "I don\u0027t see a test with no `hist_name` parameter. I\u0027m not sure the code works correctly in that scenario.",
+      "revId": "3d65eff0fae07482bcaa3b424377374f80bf8271",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
