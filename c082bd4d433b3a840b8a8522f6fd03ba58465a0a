@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "30fd1a91_ffe188da",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c6636cf_40145242",
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "98f4f4b5_3a0443e9",
         "filename": "experimental/v8_tools/app_component.js",
         "patchSetId": 5
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "d39cc82c_895469f0",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "Yes.",
+      "parentUuid": "98f4f4b5_3a0443e9",
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9eebb6b4_a59743a2",
         "filename": "experimental/v8_tools/app_component.js",
         "patchSetId": 5
@@ -50,6 +86,24 @@
       "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7885e5b_c576d31f",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9eebb6b4_a59743a2",
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -99,6 +153,54 @@
     },
     {
       "key": {
+        "uuid": "c601160e_0b8a0588",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "If the target comes as a result of the table, everything looks fine (I removed the JSON copy for the methods below), but if the target comes as a result of the drop-down menu, some items (TraceUrls etc) create a infinite loop. The watch for \u0027target\u0027 is called whenever the target is changed and draws a new graph. And just for TraceUrls and another 1-2, this ends up in infinite trigger of watch. (comparing with the others, these have Observers but I don\u0027t think it\u0027s a problem).\n\nSo for this method I still have to make the JSON copy.",
+      "parentUuid": "d4a5c529_d8c06467",
+      "range": {
+        "startLine": 26,
+        "startChar": 19,
+        "endLine": 26,
+        "endChar": 60
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d212c494_a099bc7a",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "Yes, I changed this after sending the CL because I didn\u0027t have the new files.",
+      "parentUuid": "acffe8b6_bfc1213b",
+      "range": {
+        "startLine": 26,
+        "startChar": 11,
+        "endLine": 26,
+        "endChar": 18
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "96e84956_8c17fc9e",
         "filename": "experimental/v8_tools/app_component.js",
         "patchSetId": 5
@@ -113,6 +215,24 @@
       "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "614237d2_3430960e",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "It depends on the target. If the target comes from drop-down menu then it would be computed with all sub-diagnostics by default. If the target comes from table (where you can choose a particular sub-diagnostic or even more of them ) then it is a particular one. So it depends on the passed target.",
+      "parentUuid": "96e84956_8c17fc9e",
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -133,6 +253,24 @@
     },
     {
       "key": {
+        "uuid": "d3bf5d77_59e45d22",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "I\u0027ve just changed the logic a bit and created just a single method.",
+      "parentUuid": "fc37959f_2844297e",
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cc7e2b48_bc05aab4",
         "filename": "experimental/v8_tools/app_component.js",
         "patchSetId": 5
@@ -147,6 +285,24 @@
       "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fdfd085_4a8dbe07",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "Yes. For example for label you can choose label1 and label2, skipping label3. This is made in table where we have a multiple select module.",
+      "parentUuid": "cc7e2b48_bc05aab4",
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -167,6 +323,24 @@
     },
     {
       "key": {
+        "uuid": "f16ebe9c_4cd191bc",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "This one is for the table when you gave the story, the diagnostic and the sub-diagnostics. The other one is from the drop-down menu when you did not specify the sub-diagnostics, so you receive a default plot that includes all of them.",
+      "parentUuid": "ed75bb2c_088104b5",
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "97213461_9716968e",
         "filename": "experimental/v8_tools/app_component.js",
         "patchSetId": 5
@@ -181,6 +355,24 @@
       "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2844e03f_077450fe",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97213461_9716968e",
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -201,6 +393,24 @@
     },
     {
       "key": {
+        "uuid": "7aef938b_bab64c5e",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "I created a getSubdiagnostics() method because it\u0027s useful for other things as well.",
+      "parentUuid": "17f71010_b247bb7d",
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cca9866f_3f560c4a",
         "filename": "experimental/v8_tools/app_component.js",
         "patchSetId": 5
@@ -215,6 +425,24 @@
       "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "888cc490_d8acb4aa",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cca9866f_3f560c4a",
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -241,6 +469,30 @@
     },
     {
       "key": {
+        "uuid": "4bd8934f_7f8c6573",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6598cb7c_0513bdff",
+      "range": {
+        "startLine": 175,
+        "startChar": 4,
+        "endLine": 175,
+        "endChar": 8
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c1b9f0db_e4809970",
         "filename": "experimental/v8_tools/app_component.js",
         "patchSetId": 5
@@ -261,6 +513,30 @@
       "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f50ac6c_70f6fb20",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1b9f0db_e4809970",
+      "range": {
+        "startLine": 176,
+        "startChar": 13,
+        "endLine": 176,
+        "endChar": 53
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -287,6 +563,30 @@
     },
     {
       "key": {
+        "uuid": "92ec2963_9542468b",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "030a600b_0f505297",
+      "range": {
+        "startLine": 180,
+        "startChar": 6,
+        "endLine": 182,
+        "endChar": 7
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "073ea080_3938090c",
         "filename": "experimental/v8_tools/app_component.js",
         "patchSetId": 5
@@ -307,6 +607,30 @@
       "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0235b30_5c85e19a",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "073ea080_3938090c",
+      "range": {
+        "startLine": 186,
+        "startChar": 6,
+        "endLine": 188,
+        "endChar": 7
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -333,6 +657,30 @@
     },
     {
       "key": {
+        "uuid": "eff73cbf_98b58139",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "908a9921_c051166c",
+      "range": {
+        "startLine": 198,
+        "startChar": 21,
+        "endLine": 198,
+        "endChar": 28
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7ac456b1_1ad8be2a",
         "filename": "experimental/v8_tools/app_component.js",
         "patchSetId": 5
@@ -353,6 +701,30 @@
       "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "255c328f_5e4a0f1e",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ac456b1_1ad8be2a",
+      "range": {
+        "startLine": 218,
+        "startChar": 24,
+        "endLine": 218,
+        "endChar": 31
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -379,6 +751,30 @@
     },
     {
       "key": {
+        "uuid": "b062786f_b1891f4f",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2aa9f273_b49fba65",
+      "range": {
+        "startLine": 230,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 76
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "64673030_6c8fbf12",
         "filename": "experimental/v8_tools/app_component.js",
         "patchSetId": 5
@@ -402,6 +798,30 @@
     },
     {
       "key": {
+        "uuid": "8c5c567e_daaa7623",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "It\u0027s the union. Like flatten with a single level I suppose.",
+      "parentUuid": "64673030_6c8fbf12",
+      "range": {
+        "startLine": 232,
+        "startChar": 15,
+        "endLine": 232,
+        "endChar": 28
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b8f3eb11_3671f5df",
         "filename": "experimental/v8_tools/app_component.js",
         "patchSetId": 5
@@ -416,6 +836,24 @@
       "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f5e3ff1_d4ea2e45",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8f3eb11_3671f5df",
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -442,6 +880,30 @@
     },
     {
       "key": {
+        "uuid": "3759cfba_453d47d4",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3af1995c_5e3308ac",
+      "range": {
+        "startLine": 239,
+        "startChar": 6,
+        "endLine": 241,
+        "endChar": 42
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "745abbc8_e2b98294",
         "filename": "experimental/v8_tools/app_component.js",
         "patchSetId": 5
@@ -462,6 +924,30 @@
       "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18a07437_ba81d925",
+        "filename": "experimental/v8_tools/app_component.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "Oh yes... \nI tend to see it more complex than it is. Sometimes.",
+      "parentUuid": "745abbc8_e2b98294",
+      "range": {
+        "startLine": 273,
+        "startChar": 0,
+        "endLine": 274,
+        "endChar": 33
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -488,6 +974,30 @@
     },
     {
       "key": {
+        "uuid": "12b9a930_7f216c41",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "Ok, I\u0027ll implement this in my current work.",
+      "parentUuid": "3164ac76_6cb60077",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 16
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "165998b0_646b4e31",
         "filename": "experimental/v8_tools/filter.js",
         "patchSetId": 5
@@ -508,6 +1018,30 @@
       "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "634d8f45_f3a287ac",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "The \u0027app\u0027 and the \u0027menu\u0027 are different instances, so the menu could not be a component. The components like the table should be separate. We can merge them but to me it\u0027s more clear to have 2 different  parts because I see the \u0027menu\u0027 more like a control thing and the \u0027app\u0027 like a displaying part.",
+      "parentUuid": "165998b0_646b4e31",
+      "range": {
+        "startLine": 5,
+        "startChar": 13,
+        "endLine": 5,
+        "endChar": 22
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -534,6 +1068,30 @@
     },
     {
       "key": {
+        "uuid": "d00d2f8b_76ee83d1",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a3bd3f8_1813560c",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 17
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "09b391e8_dc8530e3",
         "filename": "experimental/v8_tools/filter.js",
         "patchSetId": 5
@@ -554,6 +1112,30 @@
       "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c55717ea_e6f07af8",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09b391e8_dc8530e3",
+      "range": {
+        "startLine": 98,
+        "startChar": 4,
+        "endLine": 98,
+        "endChar": 9
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -580,6 +1162,30 @@
     },
     {
       "key": {
+        "uuid": "6e9d1cf8_0c4a4923",
+        "filename": "experimental/v8_tools/metrics_parser.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7d041cb_ae368170",
+      "range": {
+        "startLine": 34,
+        "startChar": 8,
+        "endLine": 34,
+        "endChar": 35
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ccb4434_642e7dd4",
         "filename": "experimental/v8_tools/metrics_parser.js",
         "patchSetId": 5
@@ -600,6 +1206,30 @@
       "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea276538_166ba886",
+        "filename": "experimental/v8_tools/metrics_parser.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ccb4434_642e7dd4",
+      "range": {
+        "startLine": 36,
+        "startChar": 5,
+        "endLine": 36,
+        "endChar": 27
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -626,6 +1256,30 @@
     },
     {
       "key": {
+        "uuid": "b20f7b3f_86fd8cfd",
+        "filename": "experimental/v8_tools/metrics_parser.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "Oh I see.",
+      "parentUuid": "7fd8d324_5706f8d1",
+      "range": {
+        "startLine": 40,
+        "startChar": 6,
+        "endLine": 40,
+        "endChar": 46
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b90006ea_4b5e3906",
         "filename": "experimental/v8_tools/metrics_parser.js",
         "patchSetId": 5
@@ -649,6 +1303,30 @@
     },
     {
       "key": {
+        "uuid": "b231ca56_b2862fc3",
+        "filename": "experimental/v8_tools/metrics_parser.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "I tried to do something like this. I think I didn\u0027t understand that part with \u0027an iteration over the entries of elements to build the tree\u0027. I searched a more flexible way to do that.",
+      "parentUuid": "b90006ea_4b5e3906",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 83,
+        "endChar": 9
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ecef070d_15b13c81",
         "filename": "experimental/v8_tools/metrics_parser.js",
         "patchSetId": 5
@@ -669,6 +1347,30 @@
       "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9149529_5aa063ae",
+        "filename": "experimental/v8_tools/metrics_parser.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-22T13:08:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ecef070d_15b13c81",
+      "range": {
+        "startLine": 84,
+        "startChar": 8,
+        "endLine": 85,
+        "endChar": 8
+      },
+      "revId": "c082bd4d433b3a840b8a8522f6fd03ba58465a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
