@@ -585,7 +585,13 @@ function readSingleFile(e) {
     const sampleArr = contents.sampleValueArray;
     const guidValueInfo = contents.guidValueInfo;
     const metricAverage = new Map();
+    const md = new MetricSignificance();
     for (const e of sampleArr) {
+      const { name, sampleValues, diagnostics } = e;
+      const { labels } = diagnostics;
+      if (name !== 'benchmark_total_duration') {
+        md.add(name, guidValueInfo.get(labels)[0], sampleValues);
+      }
       if (metricAverage.has(e.name)) {
         const aux = metricAverage.get(e.name);
         aux.push(average(e.sampleValues));
@@ -594,7 +600,7 @@ function readSingleFile(e) {
         metricAverage.set(e.name, [average(e.sampleValues)]);
       }
     }
-
+    app.testResults = md.mostSignificant();
     //  The content for the default table: with name
     //  of the mtric, the average value of the sample values
     //  plus an id. The latest is used to expand the row.
