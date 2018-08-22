@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "56cd441d_2b04ad02",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/memory_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-22T15:27:27Z",
+      "side": 1,
+      "message": "nit: should that be a issubclass test?",
+      "revId": "f14c94a97e75d1ebd3f1492f272cdc0872705ae7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10747f56_d5d4ec5e",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-22T15:27:27Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "f14c94a97e75d1ebd3f1492f272cdc0872705ae7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6bd7f5e4_3a79693c",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-22T15:27:27Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "f14c94a97e75d1ebd3f1492f272cdc0872705ae7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e3f1058_1746563b",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-22T15:27:27Z",
+      "side": 1,
+      "message": "in the \"else\" branch, should we log what the exception was? (we should have been doing that instead of \"pass\"?)",
+      "revId": "f14c94a97e75d1ebd3f1492f272cdc0872705ae7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
