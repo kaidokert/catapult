@@ -16,6 +16,24 @@
       "revId": "6b2ae0588d863ee72ebaaa1282c5169a06e67127",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de3989b3_06918b69",
+        "filename": "experimental/long_term_health/long_term_health/apk_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-08-22T12:24:15Z",
+      "side": 1,
+      "message": "The `AssertionError` will be raised if `len(args)` is not 1 nor 4. So if it\u0027s 1 or 4 we still need to check which one it is, thus the if statement.",
+      "parentUuid": "fc999036_6c5b6ec8",
+      "revId": "6b2ae0588d863ee72ebaaa1282c5169a06e67127",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
