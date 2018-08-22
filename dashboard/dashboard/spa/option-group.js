@@ -81,20 +81,24 @@ tr.exportTo('cp', () => {
     return true;
   };
 
+  OptionGroup.State = {
+    options: options => options.options || [],
+  };
+
+  OptionGroup.RootState = {
+    selectedOptions: options => options.selectedOptions || [],
+  };
+
+  OptionGroup.buildState = options => {
+    return {
+      ...cp.buildState(State, options),
+      ...cp.buildState(RootState, options),
+    };
+  };
+
   OptionGroup.properties = {
-    ...cp.ElementBase.statePathProperties('statePath', {
-      options: {
-        type: Array,
-        value: [],
-      },
-    }),
-    ...cp.ElementBase.statePathProperties('rootStatePath', {
-      selectedOptions: {
-        type: Array,
-        value: [],
-      },
-      query: {type: String},
-    }),
+    ...cp.buildProperties('state', State),
+    ...cp.buildProperties('rootState', RootState),
   };
 
   OptionGroup.getValuesFromOption = option => {

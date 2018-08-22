@@ -444,42 +444,49 @@ tr.exportTo('cp', () => {
     }
   }
 
-  AlertsSection.properties = {
-    ...cp.ElementBase.statePathProperties('statePath', {
-      alertGroups: {type: Array},
-      areAlertGroupsPlaceholders: {type: Boolean},
-      bug: {type: Object},
-      hasTriagedNew: {
-        type: Boolean,
-        observer: 'observeTriaged_',
-      },
-      hasTriagedExisting: {
-        type: Boolean,
-        observer: 'observeTriaged_',
-      },
-      hasIgnored: {
-        type: Boolean,
-        observer: 'observeTriaged_',
-      },
-      ignoredCount: {type: Number},
-      triagedBugId: {type: Number},
-      isLoading: {type: Boolean},
-      isOwner: {type: Boolean},
-      preview: {type: Object},
-      showingRecentlyModifiedBugs: {type: Boolean},
-      recentlyModifiedBugs: {type: Array},
-      report: {type: Object},
-      maxRevision: {type: String},
-      minRevision: {type: String},
-      sectionId: {type: String},
-      selectedAlertsCount: {type: Number},
-      showBugColumn: {type: Boolean},
-      showMasterColumn: {type: Boolean},
-      showingImprovements: {type: Boolean},
-      showingTriaged: {type: Boolean},
-      sheriff: {type: Object},
+  const State = {
+    alertGroups: options => PLACEHOLDER_ALERT_GROUPS,
+    areAlertGroupsPlaceholders: options => true,
+    bug: options => cp.DropdownInput.buildState({
+      label: 'Bug',
+      selectedOptions: options.bugs,
     }),
-    ...cp.ElementBase.statePathProperties('linkedStatePath', {
+    hasTriagedNew: {
+      value: options => false,
+      observer: 'observeTriaged_',
+    },
+    hasTriagedExisting: {
+      type: Boolean,
+      observer: 'observeTriaged_',
+    },
+    hasIgnored: {
+      type: Boolean,
+      observer: 'observeTriaged_',
+    },
+    ignoredCount: {type: Number},
+    triagedBugId: {type: Number},
+    isLoading: {type: Boolean},
+    isOwner: {type: Boolean},
+    preview: {type: Object},
+    showingRecentlyModifiedBugs: {type: Boolean},
+    recentlyModifiedBugs: {type: Array},
+    report: {type: Object},
+    maxRevision: {type: String},
+    minRevision: {type: String},
+    sectionId: {type: String},
+    selectedAlertsCount: {type: Number},
+    showBugColumn: {type: Boolean},
+    showMasterColumn: {type: Boolean},
+    showingImprovements: {type: Boolean},
+    showingTriaged: {type: Boolean},
+    sheriff: {type: Object},
+  };
+
+  AlertsSection.buildState = options => cp.buildState(State, options);
+
+  AlertsSection.properties = {
+    ...cp.buildProperties('state', State),
+    ...cp.buildProperties('linkedState', {
       // AlertsSection only needs the linkedStatePath property to forward to
       // ChartPair.
     }),
@@ -1101,7 +1108,7 @@ tr.exportTo('cp', () => {
     updateBugId: (state, {alertKeys, bugId}, rootState) => {
       const alertGroups = state.alertGroups.map(alertGroup => {
         const alerts = alertGroup.alerts.map(a =>
-          alertKeys.has(a.key) ? {...a, bugId} : a);
+          (alertKeys.has(a.key) ? {...a, bugId} : a));
         return {...alertGroup, alerts};
       });
       state = {...state, alertGroups};
@@ -1290,15 +1297,6 @@ tr.exportTo('cp', () => {
 
   AlertsSection.newState = options => {
     return {
-      alertGroups: PLACEHOLDER_ALERT_GROUPS,
-      areAlertGroupsPlaceholders: true,
-      bug: {
-        alwaysEnabled: true,
-        label: 'Bug',
-        options: [],
-        query: '',
-        selectedOptions: options.bugs || [],
-      },
       doOpenCharts: options.doOpenCharts || false,
       doSelectAll: options.doSelectAll || false,
       existingBug: cp.TriageExisting.DEFAULT_STATE,
