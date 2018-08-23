@@ -70,42 +70,33 @@ tr.exportTo('cp', () => {
     }
   }
 
-  TriageExisting.properties = {
-    ...cp.ElementBase.statePathProperties('statePath', {
-      bugId: {type: String},
-      isOpen: {
-        type: Boolean,
-        reflectToAttribute: true,
-        observer: 'observeIsOpen_',
-      },
-      onlyIntersectingBugs: {type: Boolean},
-      selectedRange: {type: Object},
-    }),
-    recentPerformanceBugs: {
-      type: Array,
-      statePath: 'recentPerformanceBugs',
-    },
-  };
-
-  TriageExisting.DEFAULT_STATE = {
-    bugId: '',
-    isOpen: false,
-    onlyIntersectingBugs: true,
-    recentPerformanceBugs: [],
-    selectedRange: undefined,
-  };
-
-  TriageExisting.openState = selectedAlerts => {
+  function getSelectedRange(alerts) {
     const selectedRange = new tr.b.math.Range();
+    if (!alerts) return selectedRange;
     for (const alert of selectedAlerts) {
       selectedRange.addValue(alert.startRevision);
       selectedRange.addValue(alert.endRevision);
     }
-    return {
-      isOpen: true,
-      bugId: '',
-      selectedRange,
-    };
+    return selectedRange;
+  }
+
+  TriageExisting.State = {
+    bugId: options => '',
+    isOpen: {
+      value: options => options.isOpen === true,
+      reflectToAttribute: true,
+      observer: 'observeIsOpen_',
+    },
+    onlyIntersectingBugs: options => true,
+    selectedRange: options => TriageExisting.getSelectedRange(options.alerts),
+  };
+
+  TriageExisting.buildState = options =>
+    cp.buildState(TriageExisting.State, options);
+
+  TriageExisting.properties = {
+    ...cp.buildProperties('state', TriageExisting.State),
+    recentPerformanceBugs: {statePath: 'recentPerformanceBugs'},
   };
 
   TriageExisting.actions = {
