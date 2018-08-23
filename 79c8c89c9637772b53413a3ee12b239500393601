@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "331f5418_3b58353e",
+        "filename": "generate_telemetry_build.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2018-08-23T22:48:13Z",
+      "side": 1,
+      "message": "typo: excluded",
+      "range": {
+        "startLine": 99,
+        "startChar": 7,
+        "endLine": 99,
+        "endChar": 15
+      },
+      "revId": "79c8c89c9637772b53413a3ee12b239500393601",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
