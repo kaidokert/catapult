@@ -433,7 +433,10 @@ tr.exportTo('cp', () => {
     },
   };
 
-  cp.ElementBase.registerReducers(TimeseriesCache);
+  Redux.registerReducers(TimeseriesCache.reducers, [
+    Redux.renameReducer('TimeseriesCache.'),
+    ...Redux.DEFAULT_REDUCER_WRAPPERS,
+  ]);
 
   const ReadTimeseries = options => async(dispatch, getState) =>
     await new TimeseriesCache(options, dispatch, getState).read();

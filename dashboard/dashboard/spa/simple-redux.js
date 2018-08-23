@@ -172,6 +172,18 @@
   }));
 
   /*
+   * Ensure an object exists in the state tree. If it already exists, it is not
+   * modified. If it does not yet exist, it is initialized to `defaultState`.
+   *
+   * Usage:
+   * dispatch({type: 'ENSURE', statePath: 'x.0.y', defaultState: []});
+   */
+  Redux.registerReducer(Redux.statePathReducer(
+      function ENSURE(state, {defaultState = {}}) {
+        return state || defaultState;
+      }));
+
+  /*
    * Toggle booleans in the state tree denoted by `action.statePath`.
    *
    * Usage:

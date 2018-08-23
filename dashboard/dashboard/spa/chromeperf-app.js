@@ -196,50 +196,41 @@ tr.exportTo('cp', () => {
     }
   }
 
-  ChromeperfApp.properties = {
-    ...cp.ElementBase.statePathProperties('statePath', {
-      enableNav: {type: Boolean},
-      isLoading: {type: Boolean},
-      readied: {type: Boolean},
-      reportSection: {
-        type: Object,
-        observer: 'observeSections_',
-      },
-      showingReportSection: {
-        type: Boolean,
-        observer: 'observeSections_',
-      },
-      alertsSectionIds: {type: Array},
-      alertsSectionsById: {
-        type: Object,
-        observer: 'observeSections_',
-      },
-      chartSectionIds: {type: Array},
-      chartSectionsById: {
-        type: Object,
-        observer: 'observeSections_',
-      },
-      closedAlertsIds: {type: Array},
-      closedChartIds: {type: Array},
+  ChromeperfApp.State = {
+    enableNav: options => true,
+    isLoading: options => true,
+    readied: options => false,
+    reportSection: options => cp.ReportSection.buildState({
+      sources: [cp.ReportSection.DEFAULT_NAME],
+    }),
+    linkedChartState: options => cp.buildState(cp.ChartPair.LinkedState, {}),
+    showingReportSection: options => true,
+    alertsSectionIds: options => [],
+    alertsSectionsById: options => {return {};},
+    chartSectionIds: options => [],
+    chartSectionsById: options => {return {};},
+    closedAlertsIds: options => [],
+    closedChartIds: options => [],
+    reduxRoutePath: {
       // App-route sets |route|, and redux sets |reduxRoutePath|.
       // ChromeperfApp translates between them.
       // https://stackoverflow.com/questions/41440316
-      reduxRoutePath: {
-        type: String,
-        observer: 'observeReduxRoute_',
-      },
-      vulcanizedDate: {
-        type: String,
-      },
-    }),
-    route: {
-      type: Object,
+      value: options => '',
+      observer: 'observeReduxRoute_',
     },
-    userEmail: {
-      type: String,
-      statePath: 'userEmail',
-    },
+    vulcanizedDate: options => options.vulcanizedDate,
   };
+
+  ChromeperfApp.properties = {
+    ...cp.buildProperties('state', ChromeperfApp.State),
+    route: {type: Object},
+    userEmail: {statePath: 'userEmail'},
+  };
+
+  ChromeperfApp.observers = [
+    ('observeSections_(showingReportSection, reportSection, ' +
+     'alertsSectionsById, chartSectionsById)'),
+  ];
 
   ChromeperfApp.actions = {
     ready: (statePath, routeParams, authParams) =>
@@ -251,11 +242,11 @@ tr.exportTo('cp', () => {
           })(dispatch, getState);
         });
 
-        cp.ElementBase.actions.ensureObject(statePath)(dispatch, getState);
-        cp.ElementBase.actions.updateObject('', {
-          userEmail: '',
-          largeDom: false,
-        })(dispatch, getState);
+        dispatch({type: 'CHAIN', actions: [
+          {type: 'ENSURE', statePath},
+          {type: 'ENSURE', statePath: 'userEmail', defaultState: ''},
+          {type: 'ENSURE', statePath: 'largeDom', defaultState: false},
+        ]});
 
         // Wait for ChromeperfApp and its reducers to be registered.
         await cp.afterRender();
@@ -264,7 +255,7 @@ tr.exportTo('cp', () => {
         // ReportSection. ReportSection will also fetch public /api/report/names
         // without authorizationHeaders.
         dispatch({
-          type: ChromeperfApp.reducers.ready.typeName,
+          type: ChromeperfApp.reducers.ready.name,
           statePath,
         });
 
@@ -282,10 +273,10 @@ tr.exportTo('cp', () => {
             statePath, routeParams)(dispatch, getState);
 
         // The app is done loading.
-        cp.ElementBase.actions.updateObject(statePath, {
+        dispatch({type: 'UPDATE', statePath, delta: {
           isLoading: false,
           readied: true,
-        })(dispatch, getState);
+        }});
 
         if (cp.IS_DEBUG) {
           cp.ChromeperfApp.actions.getRecentBugs()(dispatch, getState);
@@ -302,7 +293,7 @@ tr.exportTo('cp', () => {
     newAlerts: (statePath, options) => async(dispatch, getState) => {
       const sectionId = tr.b.GUID.allocateSimple();
       dispatch({
-        type: ChromeperfApp.reducers.newAlerts.typeName,
+        type: ChromeperfApp.reducers.newAlerts.name,
         statePath,
         sectionId,
         options,
@@ -319,7 +310,7 @@ tr.exportTo('cp', () => {
 
     closeAlerts: (statePath, sectionId) => async(dispatch, getState) => {
       dispatch({
-        type: ChromeperfApp.reducers.closeAlerts.typeName,
+        type: ChromeperfApp.reducers.closeAlerts.name,
         statePath,
         sectionId,
       });
@@ -332,7 +323,7 @@ tr.exportTo('cp', () => {
         return;
       }
       dispatch({
-        type: ChromeperfApp.reducers.forgetClosedAlerts.typeName,
+        type: ChromeperfApp.reducers.forgetClosedAlerts.name,
         statePath,
       });
     },
@@ -376,17 +367,20 @@ tr.exportTo('cp', () => {
           })(dispatch, getState);
         }
 
-        cp.ElementBase.actions.chain([
-          {
-            type: ChromeperfApp.reducers.receiveSessionState.typeName,
-            statePath,
-            sessionState,
-          },
-          {
-            type: ChromeperfApp.reducers.updateLargeDom.typeName,
-            appStatePath: statePath,
-          },
-        ])(dispatch, getState);
+        dispatch({
+          type: 'CHAIN',
+          actions: [
+            {
+              type: ChromeperfApp.reducers.receiveSessionState.name,
+              statePath,
+              sessionState,
+            },
+            {
+              type: ChromeperfApp.reducers.updateLargeDom.name,
+              appStatePath: statePath,
+            },
+          ],
+        });
         cp.ReportSection.actions.restoreState(
             `${statePath}.reportSection`, sessionState.reportSection
         )(dispatch, getState);
@@ -427,7 +421,7 @@ tr.exportTo('cp', () => {
           showingReportSection: false,
         })(dispatch, getState);
         dispatch({
-          type: ChromeperfApp.reducers.newAlerts.typeName,
+          type: ChromeperfApp.reducers.newAlerts.name,
           statePath,
           options: cp.AlertsSection.newStateOptionsFromQueryParams(
               routeParams),
@@ -541,22 +535,25 @@ tr.exportTo('cp', () => {
     },
 
     newChart: (statePath, options) => async(dispatch, getState) => {
-      cp.ElementBase.actions.chain([
-        {
-          type: ChromeperfApp.reducers.newChart.typeName,
-          statePath,
-          options,
-        },
-        {
-          type: ChromeperfApp.reducers.updateLargeDom.typeName,
-          appStatePath: statePath,
-        },
-      ])(dispatch, getState);
+      dispatch({
+        type: 'CHAIN',
+        actions: [
+          {
+            type: ChromeperfApp.reducers.newChart.name,
+            statePath,
+            options,
+          },
+          {
+            type: ChromeperfApp.reducers.updateLargeDom.name,
+            appStatePath: statePath,
+          },
+        ],
+      });
     },
 
     closeChart: (statePath, sectionId) => async(dispatch, getState) => {
       dispatch({
-        type: ChromeperfApp.reducers.closeChart.typeName,
+        type: ChromeperfApp.reducers.closeChart.name,
         statePath,
         sectionId,
       });
@@ -569,14 +566,14 @@ tr.exportTo('cp', () => {
         return;
       }
       dispatch({
-        type: ChromeperfApp.reducers.forgetClosedChart.typeName,
+        type: ChromeperfApp.reducers.forgetClosedChart.name,
         statePath,
       });
     },
 
     closeAllCharts: statePath => async(dispatch, getState) => {
       dispatch({
-        type: ChromeperfApp.reducers.closeAllCharts.typeName,
+        type: ChromeperfApp.reducers.closeAllCharts.name,
         statePath,
       });
       cp.ChromeperfApp.actions.updateLocation(statePath)(dispatch, getState);
@@ -601,33 +598,7 @@ tr.exportTo('cp', () => {
         vulcanizedDate = tr.b.formatDate(new Date(
             VULCANIZED_TIMESTAMP.getTime() - (1000 * 60 * 60 * 7))) + ' PT';
       }
-      return {
-        ...state,
-        enableNav: true,
-        isLoading: true,
-        readied: false,
-        reportSection: {
-          ...cp.ReportSection.newState({
-            sources: [cp.ReportSection.DEFAULT_NAME],
-          }),
-          type: cp.ReportSection.is,
-          sectionId: tr.b.GUID.allocateSimple(),
-        },
-        showingReportSection: true,
-        alertsSectionIds: [],
-        alertsSectionsById: {},
-        chartSectionIds: [],
-        chartSectionsById: {},
-        linkedChartState: {
-          linkedCursorRevision: undefined,
-          linkedMinRevision: undefined,
-          linkedMaxRevision: undefined,
-          linkedMode: 'normalizeUnit',
-          linkedFixedXAxis: true,
-          linkedZeroYAxis: false,
-        },
-        vulcanizedDate,
-      };
+      return cp.buildState(ChromeperfApp.State, {vulcanizedDate});
     },
 
     closeAllAlerts: (state, action, rootState) => {
@@ -659,7 +630,7 @@ tr.exportTo('cp', () => {
       const newSection = {
         type: cp.AlertsSection.is,
         sectionId,
-        ...cp.AlertsSection.newState(action.options || {}),
+        ...cp.AlertsSection.buildState(action.options || {}),
       };
       const alertsSectionsById = {...state.alertsSectionsById};
       alertsSectionsById[sectionId] = newSection;
@@ -690,7 +661,7 @@ tr.exportTo('cp', () => {
       const newSection = {
         type: cp.ChartSection.is,
         sectionId,
-        ...cp.ChartSection.newState(action.options || {}),
+        ...cp.ChartSection.buildState(action.options || {}),
       };
       const chartSectionsById = {...state.chartSectionsById};
       chartSectionsById[sectionId] = newSection;

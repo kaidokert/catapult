@@ -86,7 +86,11 @@ tr.exportTo('cp', () => {
     },
   };
 
-  cp.ElementBase.registerReducers(SessionIdCache);
+  Redux.registerReducers(SessionIdCache.reducers, [
+    Redux.renameReducer('SessionIdCache.'),
+    ...Redux.DEFAULT_REDUCER_WRAPPERS,
+  ]);
+
 
   const readSessionId = options => async(dispatch, getState) =>
     await new SessionIdCache(options, dispatch, getState).read();

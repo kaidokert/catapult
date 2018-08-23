@@ -139,59 +139,50 @@ tr.exportTo('cp', () => {
     }
   }
 
-  ChartTimeseries.properties = {
-    ...cp.ElementBase.statePathProperties('statePath', {
-      isLoading: {type: Boolean},
-      zeroYAxis: {
-        type: Boolean,
-        observer: 'observeLineDescriptors_',
-      },
-      fixedXAxis: {
-        type: Boolean,
-        observer: 'observeLineDescriptors_',
-      },
-      mode: {
-        type: String,
-        observer: 'observeLineDescriptors_',
-      },
-      maxRevision: {
-        type: Number,
-        observer: 'observeLineDescriptors_',
-      },
-      minRevision: {
-        type: Number,
-        observer: 'observeLineDescriptors_',
-      },
-      lines: {
-        type: Array,
-        observer: 'observeLines_',
-      },
-      lineDescriptors: {
-        type: Array,
-        observer: 'observeLineDescriptors_',
-      },
-    }),
+  ChartTimeseries.State = {
+    ...cp.ChartBase.State,
+    lines: {
+      value: options => cp.ChartBase.State.lines(options),
+      observer: 'observeLines_',
+    },
+    lineDescriptors: {
+      value: options => [],
+      observer: 'observeLineDescriptors_',
+    },
+    minRevision: {
+      value: options => undefined,
+      observer: 'observeLineDescriptors_',
+    },
+    maxRevision: {
+      value: options => undefined,
+      observer: 'observeLineDescriptors_',
+    },
+    brushRevisions: options => [],
+    isLoading: options => false,
+    xAxis: options => {
+      return {...cp.ChartBase.xAxis(options), generateTicks: true};
+    },
+    yAxis: options => {
+      return {...cp.ChartBase.yAxis(options), generateTicks: true};
+    },
+    zeroYAxis: {
+      value: options => false,
+      observer: 'observeLineDescriptors_',
+    },
+    fixedXAxis: {
+      value: options => false,
+      observer: 'observeLineDescriptors_',
+    },
+    mode: {
+      value: options => 'normalizeUnit',
+      observer: 'observeLineDescriptors_',
+    },
   };
 
-  ChartTimeseries.newState = () => {
-    const state = cp.ChartBase.newState();
-    return {
-      ...state,
-      lineDescriptors: [],
-      minRevision: undefined,
-      maxRevision: undefined,
-      brushRevisions: [],
-      isLoading: false,
-      xAxis: {
-        ...state.xAxis,
-        generateTicks: true,
-      },
-      yAxis: {
-        ...state.yAxis,
-        generateTicks: true,
-      },
-    };
-  };
+  ChartTimeseries.properties = cp.buildProperties(
+      'state', ChartTimeseries.State);
+  ChartTimeseries.buildState = options => cp.buildState(
+      ChartTimeseries.State, options);
 
   function arraySetEqual(a, b) {
     if (a.length !== b.length) return false;
