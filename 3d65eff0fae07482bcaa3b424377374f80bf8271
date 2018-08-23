@@ -245,6 +245,24 @@
       "revId": "3d65eff0fae07482bcaa3b424377374f80bf8271",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8097d2b_0573fa25",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-23T01:25:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99ebc6b2_506292b2",
+      "revId": "3d65eff0fae07482bcaa3b424377374f80bf8271",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
