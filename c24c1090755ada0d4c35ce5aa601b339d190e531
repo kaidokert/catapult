@@ -16,6 +16,24 @@
       "revId": "c24c1090755ada0d4c35ce5aa601b339d190e531",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2e10215_02a2ed85",
+        "filename": "dashboard/dashboard/pinpoint/handlers/migrate_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-23T19:35:21Z",
+      "side": 1,
+      "message": "Rewrote these a bit based on offline discussion",
+      "parentUuid": "c8396a01_1fa81bd0",
+      "revId": "c24c1090755ada0d4c35ce5aa601b339d190e531",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
