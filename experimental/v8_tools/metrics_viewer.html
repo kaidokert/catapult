@@ -58,6 +58,10 @@
             .setData({
               withSiteIsoEnabled: withs,
               withoutSiteIsoEnabled: withouts,
+            }, (metric, story, label, id) => {
+              window.alert(
+                  label === 'withSiteIsoEnabled' ?
+                    withs[story][id] : withouts[story][id]);
             })
             .plotBar();
       };

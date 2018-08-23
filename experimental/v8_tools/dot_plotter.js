@@ -72,7 +72,7 @@ class DotPlotter {
     // so any data points in the same bin will definitely overlap.
     const binSize =
         xAxisScale.invert(this.getDotDiameter_()) - xAxisScale.invert(0);
-    data.forEach(datum => {
+    data.forEach((datum, id) => {
       // The lower bound of the bin will be some multiple of binSize so find
       // the closest such multiple less than the datum.
       const lowerBound = Math.round(datum) - (Math.round(datum) % binSize);
@@ -80,7 +80,10 @@ class DotPlotter {
       if (!bins[binMid]) {
         bins[binMid] = [];
       }
-      bins[binMid].push(datum);
+      bins[binMid].push({
+        datum,
+        id,
+      });
     });
     const newPositions = [];
     // Give each value an offset so that they do not overlap.
@@ -90,10 +93,11 @@ class DotPlotter {
       if (stackOffset === -0) {
         stackOffset = 0;
       }
-      bin.forEach(x => {
+      bin.forEach(({ datum, id }) => {
         newPositions.push({
-          x,
+          x: datum,
           stackOffset,
+          id,
         });
         stackOffset++;
       });
@@ -117,6 +121,7 @@ class DotPlotter {
     const dots = graph.process(
         this.computeDotStacking_.bind(this), this.scaleForXAxis_);
     const getClassNameSuffix = GraphUtils.getClassNameSuffixFactory();
+    this.setUpZoom_(graph, chart, chartDimensions, getClassNameSuffix);
     dots.forEach(({ data, color, key }, index) => {
       chart.append('line')
           .attr('x1', 0)
@@ -134,13 +139,31 @@ class DotPlotter {
           .attr('cy', datum => this.dotOffset_(datum.stackOffset, key))
           .attr('r', this.radius_)
           .attr('fill', color)
-          .attr('class', `dot-${getClassNameSuffix(key)}`)
-          .attr('clip-path', 'url(#plot-clip)');
+          .attr('class', datum => `dot-${getClassNameSuffix(key)}`)
+          .attr('clip-path', 'url(#plot-clip)')
+          .on('click', datum => {
+            graph.interactiveCallback(undefined, undefined, key, datum.id);
+          })
+          .on('mouseover', (datum, datumIndex) => {
+            d3.selectAll(`.dot-${getClassNameSuffix(key)}`)
+                .filter((d, i) => i === datumIndex)
+                .attr('r', this.radius_ * 2);
+          })
+          .on('mouseout', (datum, datumIndex) => {
+            d3.selectAll(`.dot-${getClassNameSuffix(key)}`)
+                .filter((d, i) => i === datumIndex)
+                .attr('r', this.radius_);
+          })
+          .append('title')
+          .text('click to view trace');
       legend.append('text')
           .text(key)
           .attr('y', index + 'em')
           .attr('fill', color);
     });
+  }
+
+  setUpZoom_(graph, chart, chartDimensions, getClassNameSuffix) {
     const axes = {
       x: {
         generator: this.xAxisGenerator_,
