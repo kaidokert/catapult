@@ -24,6 +24,8 @@ class GraphData {
       'green',
       'orange',
     ];
+    /** @private {function(string, string, string, number):} */
+    this.interactiveCallback_ = undefined;
   }
 
   /**
@@ -72,6 +74,27 @@ class GraphData {
   }
 
   /**
+   * If the data provider supplied an interactive callback then this calls
+   * that callback. An attempt will be made to supply the callback
+   * with enough data to uniquely identify the datum which triggered
+   * the callback. However, when an argument is unknown,
+   * undefined will be provided instead.
+   * Note that this uses the datums original index as supplied
+   * by the data provider. Hence, if any processing is performed on the
+   * data then it is the responsibilty of the processor to preserve knowledge
+   * of this index.
+   * @param {string} metric
+   * @param {string} story
+   * @param {string} key
+   * @param {number} index
+   */
+  interactiveCallback(metric, story, key, index) {
+    if (this.interactiveCallback_ !== undefined) {
+      this.interactiveCallback_(metric, story, key, index);
+    }
+  }
+
+  /**
    * Registers the supplied data as a dataSource, enabling it to be plotted and
    * processed. The data source should be in the form of an object where
    * the keys are the desired display labels (for the legend) corresponding
@@ -102,10 +125,16 @@ class GraphData {
    *  [categoryOne, [numbers...]],
    *  [categoryTwo, [numbers...]],
    * ]
+   * This also accepts an optional callback which can be used to enable
+   * interactive behaviour with the graph. It will attempt to provide
+   * the metric, story, key and index of the data when these are
+   * known.
    * @param {Object} data
+   * @param {function(string, string, string, number):} [callback]
    * @return {GraphData}
    */
-  addData(data) {
+  addData(data, callback) {
+    this.interactiveCallback_ = callback;
     if (typeof data !== 'object') {
       throw new TypeError('Expected an object to be supplied.');
     }
@@ -136,11 +165,12 @@ class GraphData {
    *   labelTwo: [numbers...],
    * }
    * @param {Object} data
+   * @param {function(string, string, string, number):} [callback]
    * @return {GraphData}
    */
-  setData(data) {
+  setData(data, callback) {
     this.dataSources = [];
-    return this.addData(data);
+    return this.addData(data, callback);
   }
 
   /**
