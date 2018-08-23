@@ -65,19 +65,22 @@ tr.exportTo('cp', () => {
     }
   }
 
-  TriageNew.properties = cp.ElementBase.statePathProperties('statePath', {
-    cc: {type: String},
-    components: {type: Array},
-    description: {type: String},
+  TriageNew.State = {
+    cc: options => options.cc || '',
+    components: options => TriageNew.collectComponents(options.alerts),
+    description: options => '',
     isOpen: {
-      type: Boolean,
+      value: options => false,
       reflectToAttribute: true,
       observer: 'observeIsOpen_',
     },
-    labels: {type: Array},
-    owner: {type: String},
-    summary: {type: String},
-  });
+    labels: options => TriageNew.collectLabels(options.alerts),
+    owner: options => '',
+    summary: options => TriageNew.summarize(options.alerts),
+  };
+
+  TriageNew.buildState = options => cp.buildState(TriageNew.State, options);
+  TriageNew.properties = cp.buildProperties('state', TriageNew.State);
 
   TriageNew.actions = {
     close: statePath => async(dispatch, getState) => {
@@ -138,18 +141,6 @@ tr.exportTo('cp', () => {
       }
       return state;
     },
-  };
-
-  TriageNew.newState = (alerts, userEmail) => {
-    return {
-      cc: userEmail,
-      components: TriageNew.collectComponents(alerts),
-      description: '',
-      isOpen: true,
-      labels: TriageNew.collectLabels(alerts),
-      owner: '',
-      summary: TriageNew.summarize(alerts),
-    };
   };
 
   TriageNew.summarize = alerts => {

@@ -200,7 +200,7 @@ tr.exportTo('cp', () => {
 
     async connectedCallback() {
       super.connectedCallback();
-      this.dispatch('connected', this.statePath, window.innerHeight);
+      this.dispatch('connected', this.statePath);
     }
 
     showSheriff_(bug, report) {
@@ -444,42 +444,64 @@ tr.exportTo('cp', () => {
     }
   }
 
-  AlertsSection.properties = {
-    ...cp.ElementBase.statePathProperties('statePath', {
-      alertGroups: {type: Array},
-      areAlertGroupsPlaceholders: {type: Boolean},
-      bug: {type: Object},
-      hasTriagedNew: {
-        type: Boolean,
-        observer: 'observeTriaged_',
-      },
-      hasTriagedExisting: {
-        type: Boolean,
-        observer: 'observeTriaged_',
-      },
-      hasIgnored: {
-        type: Boolean,
-        observer: 'observeTriaged_',
-      },
-      ignoredCount: {type: Number},
-      triagedBugId: {type: Number},
-      isLoading: {type: Boolean},
-      isOwner: {type: Boolean},
-      preview: {type: Object},
-      showingRecentlyModifiedBugs: {type: Boolean},
-      recentlyModifiedBugs: {type: Array},
-      report: {type: Object},
-      maxRevision: {type: String},
-      minRevision: {type: String},
-      sectionId: {type: String},
-      selectedAlertsCount: {type: Number},
-      showBugColumn: {type: Boolean},
-      showMasterColumn: {type: Boolean},
-      showingImprovements: {type: Boolean},
-      showingTriaged: {type: Boolean},
-      sheriff: {type: Object},
+  AlertsSection.State = {
+    ...cp.AlertsTable.State,
+    bug: options => cp.DropdownInput.buildState({
+      label: 'Bug',
+      selectedOptions: options.bugs,
     }),
-    ...cp.ElementBase.statePathProperties('linkedStatePath', {
+    existingBug: options => cp.TriageExisting.buildState({}),
+    hasTriagedNew: {
+      value: options => false,
+      observer: 'observeTriaged_',
+    },
+    hasTriagedExisting: {
+      value: options => false,
+      observer: 'observeTriaged_',
+    },
+    hasIgnored: {
+      value: options => false,
+      observer: 'observeTriaged_',
+    },
+    ignoredCount: options => 0,
+    isLoading: options => false,
+    isOwner: options => false,
+    maxRevision: options => options.maxRevision || '',
+    minRevision: options => options.minRevision || '',
+    newBug: options => cp.TriageNew.buildState({}),
+    preview: options => cp.ChartPair.buildState(options),
+    recentlyModifiedBugs: options => [],
+    report: options => cp.DropdownInput.buildState({
+      label: 'Report',
+      selectedOptions: options.reports || [],
+    }),
+    sectionId: options => 0,
+    selectedAlertPath: options => undefined,
+    selectedAlertsCount: options => 0,
+    selectedAlertsCount: options => 0,
+    sheriff: options => cp.DropdownInput.buildState({
+      label: 'Sheriff',
+      options: SHERIFFS,
+      selectedOptions: options.sheriffs || [],
+      recommended: {options: RECOMMENDED_SHERIFFS},
+    }),
+    showingImprovements: options => options.showingImprovements || false,
+    showingRecentlyModifiedBugs: options => false,
+    showingTriaged: options => options.showingTriaged || false,
+    triagedBugId: options => 0,
+  };
+
+  AlertsSection.newState = options => {
+    return {
+    };
+  };
+
+  AlertsSection.buildState = options =>
+    cp.buildState(AlertsSection.State, options);
+
+  AlertsSection.properties = {
+    ...cp.buildProperties('state', AlertsSection.State),
+    ...cp.buildProperties('linkedState', {
       // AlertsSection only needs the linkedStatePath property to forward to
       // ChartPair.
     }),
@@ -594,10 +616,8 @@ tr.exportTo('cp', () => {
       })(dispatch, getState);
     },
 
-    connected: (statePath, windowHeightPx) => async(dispatch, getState) => {
+    connected: statePath => async(dispatch, getState) => {
       AlertsSection.actions.loadReportNames(statePath)(dispatch, getState);
-      const tableHeightPx = AlertsSection.tableHeightPx(windowHeightPx);
-      dispatch(cp.ElementBase.actions.updateObject(statePath, {tableHeightPx}));
       const recentlyModifiedBugs = localStorage.getItem('recentlyModifiedBugs');
       if (recentlyModifiedBugs) {
         dispatch({
@@ -611,16 +631,6 @@ tr.exportTo('cp', () => {
           state.bug.selectedOptions.length > 0 ||
           state.report.selectedOptions.length > 0) {
         dispatch(AlertsSection.actions.loadAlerts(statePath));
-      }
-      if (state.doSelectAll) {
-        // TODO select all
-        dispatch(cp.ElementBase.actions.updateObject(
-            statePath, {doSelectAll: false}));
-      }
-      if (state.doOpenCharts) {
-        // TODO open charts
-        dispatch(cp.ElementBase.actions.updateObject(
-            statePath, {doOpenCharts: false}));
       }
     },
 
@@ -870,8 +880,10 @@ tr.exportTo('cp', () => {
         errors,
       });
       state = Polymer.Path.get(getState(), statePath);
-      dispatch(AlertsSection.actions.prefetchPreviewAlertGroup_(
-          statePath, state.alertGroups[0]));
+      if (!state.areAlertGroupsPlaceholders) {
+        dispatch(AlertsSection.actions.prefetchPreviewAlertGroup_(
+            statePath, state.alertGroups[0]));
+      }
     },
 
     toggleShowingImprovements: statePath => async(dispatch, getState) => {
@@ -892,7 +904,6 @@ tr.exportTo('cp', () => {
         const testSuites = [];
         const lineDescriptors = [];
         for (const alert of alertGroup.alerts) {
-          if (alert.testSuite === DASHES) continue;
           testSuites.push(alert.testSuite);
           lineDescriptors.push(AlertsSection.computeLineDescriptor(alert));
         }
@@ -1101,7 +1112,7 @@ tr.exportTo('cp', () => {
     updateBugId: (state, {alertKeys, bugId}, rootState) => {
       const alertGroups = state.alertGroups.map(alertGroup => {
         const alerts = alertGroup.alerts.map(a =>
-          alertKeys.has(a.key) ? {...a, bugId} : a);
+          (alertKeys.has(a.key) ? {...a, bugId} : a));
         return {...alertGroup, alerts};
       });
       state = {...state, alertGroups};
@@ -1118,10 +1129,8 @@ tr.exportTo('cp', () => {
     openNewBugDialog: (state, action, rootState) => {
       const alerts = AlertsSection.getSelectedAlerts(state.alertGroups);
       if (alerts.length === 0) return state;
-      return {
-        ...state,
-        newBug: cp.TriageNew.newState(alerts, action.userEmail),
-      };
+      const newBug = cp.TriageNew.buildState({alerts, cc: action.userEmail});
+      return {...state, newBug};
     },
 
     openExistingBugDialog: (state, action, rootState) => {
@@ -1131,7 +1140,7 @@ tr.exportTo('cp', () => {
         ...state,
         existingBug: {
           ...state.existingBug,
-          ...cp.TriageExisting.openState(alerts),
+          ...cp.TriageExisting.buildState({alerts, isOpen: true}),
         },
       };
     },
@@ -1147,7 +1156,7 @@ tr.exportTo('cp', () => {
       if (!action.alerts.length) {
         state = {
           ...state,
-          alertGroups: PLACEHOLDER_ALERT_GROUPS,
+          alertGroups: cp.AlertsTable.PLACEHOLDER_ALERT_GROUPS,
           areAlertGroupsPlaceholders: true,
           showBugColumn: true,
           showMasterColumn: true,
@@ -1261,83 +1270,6 @@ tr.exportTo('cp', () => {
       showingImprovements: queryParams.get('improvements') !== null,
       showingTriaged: queryParams.get('triaged') !== null,
       sortDescending: queryParams.get('descending') !== null,
-    };
-  };
-
-  const PLACEHOLDER_ALERT_GROUPS = [];
-  const DASHES = '-'.repeat(5);
-  for (let i = 0; i < 5; ++i) {
-    PLACEHOLDER_ALERT_GROUPS.push({
-      isSelected: false,
-      alerts: [
-        {
-          bugId: DASHES,
-          revisions: DASHES,
-          testSuite: DASHES,
-          measurement: DASHES,
-          master: DASHES,
-          bot: DASHES,
-          testCase: DASHES,
-          deltaValue: 0,
-          deltaUnit: tr.b.Unit.byName.countDelta_biggerIsBetter,
-          percentDeltaValue: 0,
-          percentDeltaUnit:
-            tr.b.Unit.byName.normalizedPercentageDelta_biggerIsBetter,
-        },
-      ],
-    });
-  }
-
-  AlertsSection.newState = options => {
-    return {
-      alertGroups: PLACEHOLDER_ALERT_GROUPS,
-      areAlertGroupsPlaceholders: true,
-      bug: {
-        alwaysEnabled: true,
-        label: 'Bug',
-        options: [],
-        query: '',
-        selectedOptions: options.bugs || [],
-      },
-      doOpenCharts: options.doOpenCharts || false,
-      doSelectAll: options.doSelectAll || false,
-      existingBug: cp.TriageExisting.DEFAULT_STATE,
-      hasTriagedNew: false,
-      hasTriagedExisting: false,
-      hasIgnored: false,
-      ignoredCount: 0,
-      triagedBugId: 0,
-      isLoading: false,
-      isOwner: false,
-      maxRevision: options.maxRevision || '',
-      minRevision: options.minRevision || '',
-      newBug: {isOpen: false},
-      preview: cp.ChartPair.newState(options),
-      previousSelectedAlertKey: undefined,
-      recentlyModifiedBugs: [],
-      report: {
-        label: 'Report',
-        options: [],
-        query: '',
-        selectedOptions: options.reports || [],
-      },
-      selectedAlertPath: undefined,
-      selectedAlertsCount: 0,
-      sheriff: {
-        label: 'Sheriff',
-        options: SHERIFFS,
-        query: '',
-        selectedOptions: options.sheriffs || [],
-        recommended: {options: RECOMMENDED_SHERIFFS},
-      },
-      showBugColumn: true,
-      showMasterColumn: true,
-      showTestCaseColumn: true,
-      showingRecentlyModifiedBugs: false,
-      showingImprovements: options.showingImprovements || false,
-      showingTriaged: options.showingTriaged || false,
-      sortColumn: options.sortColumn || 'revisions',
-      sortDescending: options.sortDescending || false,
     };
   };
 
@@ -1557,9 +1489,6 @@ tr.exportTo('cp', () => {
       return state.bug.selectedOptions[0];
     }
   };
-
-  AlertsSection.tableHeightPx = windowHeightPx =>
-    Math.max(122, windowHeightPx - 483);
 
   cp.ElementBase.register(AlertsSection);
 
