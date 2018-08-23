@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2d741b68_6bafeb66",
+        "filename": "dashboard/dashboard/common/histogram_helpers.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-23T00:56:36Z",
+      "side": 1,
+      "message": "Oops, that\u0027s where I moved it from, forgot to delete it.",
+      "parentUuid": "c3f9a203_29941301",
+      "revId": "3d65eff0fae07482bcaa3b424377374f80bf8271",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "085ffe19_c01108d7",
         "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "18012680_abad8010",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-23T00:56:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "085ffe19_c01108d7",
+      "revId": "3d65eff0fae07482bcaa3b424377374f80bf8271",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "07267992_70aabfb9",
         "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2018-08-22T23:35:30Z",
       "side": 1,
       "message": "Do we ignore the statistic logic in the summary histogram scenario?\n\nMaybe it would be clearer if it was structured as:\nif test_path in histograms_by_path:\n  result_values \u003d _HistogramValues(histograms_by_path, test_path)\nelse:\n  result_values \u003d _SummaryHistogramValues(histograms_by_path, test_path)",
+      "revId": "3d65eff0fae07482bcaa3b424377374f80bf8271",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb80cab2_fe34338b",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-23T00:56:36Z",
+      "side": 1,
+      "message": "Done, using statistic now and restructured it as proposed.",
+      "parentUuid": "07267992_70aabfb9",
       "revId": "3d65eff0fae07482bcaa3b424377374f80bf8271",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "59db88d9_ad3c2fe4",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-23T00:56:36Z",
+      "side": 1,
+      "message": "It\u0027s the letter after j.",
+      "parentUuid": "b2b65f7b_cce4b4de",
+      "revId": "3d65eff0fae07482bcaa3b424377374f80bf8271",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f4a1b92e_0e214e38",
         "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
         "patchSetId": 1
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "3d12bf44_59874659",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-23T00:56:36Z",
+      "side": 1,
+      "message": "Might be able to work this by simply matching histograms by name and optionally ignoring tir_label or story. Problem is that you need to know this is a summary statistic to begin with, which we don\u0027t have access to. Might be gettable or plumb\u0027able from the dashboard. Or if there are no matching histograms with that exact name/tir_label/story combo, you fall back to looking for a summary version by making story and/or tir_label optional, a little gross but might work.\n\nThis basically does the same thing as the latter suggestion by constructing the test path, and any paths that begin with the the test path in question would be part of the summary.\n\nEthan, got some ideas here?",
+      "parentUuid": "f4a1b92e_0e214e38",
+      "revId": "3d65eff0fae07482bcaa3b424377374f80bf8271",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "071532fc_02428b48",
         "filename": "dashboard/dashboard/pinpoint/models/quest/read_value_test.py",
         "patchSetId": 1
@@ -98,6 +188,24 @@
       "writtenOn": "2018-08-22T23:35:30Z",
       "side": 1,
       "message": "I don\u0027t see a test with no `hist_name` parameter. I\u0027m not sure the code works correctly in that scenario.",
+      "revId": "3d65eff0fae07482bcaa3b424377374f80bf8271",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9c690d8_eb7ac7d3",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-23T00:56:36Z",
+      "side": 1,
+      "message": "Is no hist_name a thing? Doesn\u0027t that work out to a suite level summary?",
+      "parentUuid": "071532fc_02428b48",
       "revId": "3d65eff0fae07482bcaa3b424377374f80bf8271",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
