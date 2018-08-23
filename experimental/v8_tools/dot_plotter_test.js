@@ -34,15 +34,61 @@ describe('DotPlotter', function() {
     });
   });
   describe('plotting', function() {
+    const graph = new GraphData();
     it('should plot data despite invalid selection characters', function() {
       const data = {
         'source.with:inv@lid _chars"}~$': [1, 2, 3, 4, 5],
       };
-      const graph = new GraphData().addData(data);
+      graph.setData(data);
       chai.expect(() => graph.plotDot()).to.not.throw(Error);
       chai.expect(
           document.querySelectorAll('.dot-0').length)
           .to.equal(5);
     });
+    it('should trigger the supplied callback when a dot is clicked',
+        function() {
+          const data = {
+            'label': [1],
+          };
+          const receivedArguments = [];
+          const callback = (metric, story, key, index) => {
+            receivedArguments.push(key);
+            receivedArguments.push(index);
+          };
+          graph.setData(data, callback).plotDot();
+          d3.selectAll('circle').dispatch('click');
+          chai.expect(receivedArguments.length).to.equal(2);
+          chai.expect(receivedArguments[0]).to.equal('label');
+          chai.expect(receivedArguments[1]).to.equal(0);
+        });
+    it('should trigger the supplied callback when a dot is clicked',
+        function() {
+          const data = {
+            'labelOne': [5, 8, 10],
+            'labelTwo': [4, 1],
+          };
+          let receivedArguments = [];
+          const callback = (metric, story, key, index) => {
+            receivedArguments.push(key);
+            receivedArguments.push(index);
+          };
+          const checkReceivedArgs = (expectedLabel, expectedIndex) => {
+            chai.expect(receivedArguments.length).to.equal(2);
+            chai.expect(receivedArguments[0]).to.equal(expectedLabel);
+            chai.expect(receivedArguments[1]).to.equal(expectedIndex);
+            receivedArguments = [];
+          };
+          graph.setData(data, callback).plotDot();
+          d3.select('.chai-test-dot-0-5').dispatch('click');
+          checkReceivedArgs('labelOne', 0);
+          d3.select('.chai-test-dot-0-8').dispatch('click');
+          checkReceivedArgs('labelOne', 1);
+          d3.select('.chai-test-dot-0-10').dispatch('click');
+          checkReceivedArgs('labelOne', 2);
+          d3.select('.chai-test-dot-1-4').dispatch('click');
+          checkReceivedArgs('labelTwo', 0);
+          d3.select('.chai-test-dot-1-1').dispatch('click');
+          checkReceivedArgs('labelTwo', 1);
+        });
   });
 });
