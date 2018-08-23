@@ -16,6 +16,24 @@
       "revId": "ac4a348506f0a186ad23ea142208a4af1d19f7c7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c0df29e_284cd8eb",
+        "filename": "dashboard/dashboard/spa/cp-switch.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-23T22:11:22Z",
+      "side": 1,
+      "message": "I changed this to @apply --elevation-2 and made neutral-color-light one shade darker. I think it looks much nicer, thanks!",
+      "parentUuid": "c6d33c0e_c7c7c068",
+      "revId": "ac4a348506f0a186ad23ea142208a4af1d19f7c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
