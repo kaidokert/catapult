@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "abeb880c_d83b41ed",
+        "filename": "dashboard/dashboard/spa/cp-radio-group.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-23T22:58:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72b942a8_d4690586",
+      "revId": "4275298b46441724a512a6fd65b3eced68ac8a46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "992eb739_9c2364b1",
         "filename": "dashboard/dashboard/spa/cp-radio-group.js",
         "patchSetId": 1
@@ -70,6 +88,30 @@
       "writtenOn": "2018-08-20T21:15:14Z",
       "side": 1,
       "message": "Nit: I think these should both use $\u003d?",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 31
+      },
+      "revId": "4275298b46441724a512a6fd65b3eced68ac8a46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74839315_58191a1e",
+        "filename": "dashboard/dashboard/spa/cp-radio.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-23T22:58:12Z",
+      "side": 1,
+      "message": "disabled, yes, but checked doesn\u0027t work with $\u003d.",
+      "parentUuid": "8696ebe7_fa699af5",
       "range": {
         "startLine": 59,
         "startChar": 0,
