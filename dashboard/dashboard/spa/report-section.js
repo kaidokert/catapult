@@ -399,26 +399,35 @@ tr.exportTo('cp', () => {
     cp.IS_DEBUG ||
     (table && table.owners && userEmail && table.owners.includes(userEmail));
 
-  ReportSection.properties = {
-    ...cp.ElementBase.statePathProperties('statePath', {
-      copiedMeasurements: {type: Boolean},
-      isLoading: {type: Boolean},
-      milestone: {type: Number},
-      minRevision: {type: Number},
-      maxRevision: {type: Number},
-      minRevisionInput: {type: Number},
-      maxRevisionInput: {type: Number},
-      sectionId: {type: String},
-      source: {type: Object},
-      tables: {type: Array},
-      tooltip: {type: Array},
+  ReportSection.State = {
+    copiedMeasurements: options => false,
+    isLoading: options => false,
+    milestone: options => parseInt(options.milestone) || CURRENT_MILESTONE,
+    minRevision: options => options.minRevision,
+    maxRevision: options => options.maxRevision,
+    minRevisionInput: options => options.minRevision,
+    maxRevisionInput: options => options.maxRevision,
+    sectionId: options => options.sectionId || tr.b.GUID.allocateSimple(),
+    source: options => cp.DropdownInput.buildState({
+      label: 'Reports (loading)',
+      options: [
+        ReportSection.DEFAULT_NAME,
+        ReportSection.CREATE,
+      ],
+      selectedOptions: options.sources ? options.sources : [
+        ReportSection.DEFAULT_NAME,
+      ],
     }),
+    tables: options => [PLACEHOLDER_TABLE],
+    tooltip: options => {},
+  };
+
+  ReportSection.buildState = options => cp.buildState(
+      ReportSection.State, options);
+
+  ReportSection.properties = {
+    ...cp.buildProperties('state', ReportSection.State),
     userEmail: {
-      type: String,
-      statePath: 'userEmail',
-    },
-    userEmail: {
-      type: Object,
       statePath: 'userEmail',
       observer: 'observeUserEmail_',
     },
@@ -484,7 +493,7 @@ tr.exportTo('cp', () => {
 
     selectMilestone: (statePath, milestone) => async(dispatch, getState) => {
       dispatch({
-        type: ReportSection.reducers.selectMilestone.typeName,
+        type: ReportSection.reducers.selectMilestone.name,
         statePath,
         milestone,
       });
@@ -493,7 +502,7 @@ tr.exportTo('cp', () => {
 
     restoreState: (statePath, options) => async(dispatch, getState) => {
       dispatch({
-        type: ReportSection.reducers.restoreState.typeName,
+        type: ReportSection.reducers.restoreState.name,
         statePath,
         options,
       });
@@ -520,7 +529,7 @@ tr.exportTo('cp', () => {
       const reportNames = await teamFilter.reportNames(
           reportTemplateIds.map(t => t.name));
       dispatch({
-        type: ReportSection.reducers.receiveSourceOptions.typeName,
+        type: ReportSection.reducers.receiveSourceOptions.name,
         statePath,
         reportNames,
       });
@@ -536,7 +545,7 @@ tr.exportTo('cp', () => {
             await cp.ReadTestSuites()(dispatch, getState));
       }
       dispatch({
-        type: ReportSection.reducers.requestReports.typeName,
+        type: ReportSection.reducers.requestReports.name,
         statePath,
         testSuites,
       });
@@ -573,7 +582,7 @@ tr.exportTo('cp', () => {
               await cp.ReadTestSuites()(dispatch, getState));
         }
         dispatch({
-          type: ReportSection.reducers.receiveReports.typeName,
+          type: ReportSection.reducers.receiveReports.name,
           statePath,
           reports: results,
           testSuites,
@@ -679,7 +688,7 @@ tr.exportTo('cp', () => {
     templateRemoveRow: (statePath, tableIndex, rowIndex) =>
       async(dispatch, getState) => {
         dispatch({
-          type: ReportSection.reducers.templateRemoveRow.typeName,
+          type: ReportSection.reducers.templateRemoveRow.name,
           statePath,
           tableIndex,
           rowIndex,
@@ -689,7 +698,7 @@ tr.exportTo('cp', () => {
     templateAddRow: (statePath, tableIndex, rowIndex) =>
       async(dispatch, getState) => {
         dispatch({
-          type: ReportSection.reducers.templateAddRow.typeName,
+          type: ReportSection.reducers.templateAddRow.name,
           statePath: `${statePath}.tables.${tableIndex}`,
           rowIndex,
           testSuites: await cp.ReadTestSuites()(dispatch, getState),
@@ -729,7 +738,7 @@ tr.exportTo('cp', () => {
       const reportNames = await teamFilter.reportNames(
           reportTemplateIds.map(t => t.name));
       dispatch({
-        type: ReportSection.reducers.receiveSourceOptions.typeName,
+        type: ReportSection.reducers.receiveSourceOptions.name,
         statePath,
         reportNames,
       });
@@ -1073,31 +1082,6 @@ tr.exportTo('cp', () => {
       }
     }
     return options;
-  };
-
-  ReportSection.newState = options => {
-    const sources = options.sources ? options.sources : [
-      ReportSection.DEFAULT_NAME,
-    ];
-    return {
-      isLoading: false,
-      source: {
-        label: 'Reports (loading)',
-        options: [
-          ReportSection.DEFAULT_NAME,
-          ReportSection.CREATE,
-        ],
-        query: '',
-        selectedOptions: sources,
-      },
-      milestone: parseInt(options.milestone) || CURRENT_MILESTONE,
-      minRevision: options.minRevision,
-      maxRevision: options.maxRevision,
-      minRevisionInput: options.minRevision,
-      maxRevisionInput: options.maxRevision,
-      tables: [PLACEHOLDER_TABLE],
-      tooltip: {},
-    };
   };
 
   ReportSection.getSessionState = state => {
