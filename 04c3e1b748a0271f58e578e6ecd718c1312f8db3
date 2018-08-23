@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bb1e78ac_2d47e0fc",
+        "filename": "dashboard/dashboard/spa/request-base.js",
+        "patchSetId": 33
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-23T23:21:28Z",
+      "side": 1,
+      "message": "This should be in utils.js, right?",
+      "revId": "04c3e1b748a0271f58e578e6ecd718c1312f8db3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "866ae512_944e5734",
+        "filename": "dashboard/dashboard/spa/service-worker-listener.js",
+        "patchSetId": 33
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-23T23:21:28Z",
+      "side": 1,
+      "message": "Add an underscore so it\u0027s private?",
+      "revId": "04c3e1b748a0271f58e578e6ecd718c1312f8db3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd2a23bd_a3017a8c",
+        "filename": "dashboard/dashboard/spa/service-worker-listener.js",
+        "patchSetId": 33
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-23T23:21:28Z",
+      "side": 1,
+      "message": "Is it possible for a message event to arrive in between removeEventListener and addEventListener? Or can two messages arrive before this handler can handle the first? The event would be dropped, right?\nWould it be possible to buffer events in a field on ServiceWorkerListener?",
+      "revId": "04c3e1b748a0271f58e578e6ecd718c1312f8db3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
