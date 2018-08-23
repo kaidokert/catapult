@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d23cdc63_26fba76a",
+        "filename": "dashboard/dashboard/pinpoint/handlers/migrate_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-08-23T23:15:38Z",
+      "side": 1,
+      "message": "nit: This is a Get test.",
+      "revId": "860f64a6a26e81c4f3c9e0f38154949635678754",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af17028c_cef2535d",
+        "filename": "dashboard/dashboard/pinpoint/handlers/migrate_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-08-23T23:15:38Z",
+      "side": 1,
+      "message": "This is a dupe of the previous test. Remove.",
+      "revId": "860f64a6a26e81c4f3c9e0f38154949635678754",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be69539c_2977b54e",
+        "filename": "dashboard/dashboard/pinpoint/handlers/migrate_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-08-23T23:15:38Z",
+      "side": 1,
+      "message": "Assert the response here.",
+      "revId": "860f64a6a26e81c4f3c9e0f38154949635678754",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7d39c17_a62b139e",
+        "filename": "dashboard/dashboard/pinpoint/handlers/migrate_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-08-23T23:15:38Z",
+      "side": 1,
+      "message": "I think this test doesn\u0027t need any `get`s, since they\u0027re all covered by the \"Get\" tests. It should just execute all the tasks, then check the jobs at the end to see that they were migrated.",
+      "revId": "860f64a6a26e81c4f3c9e0f38154949635678754",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
