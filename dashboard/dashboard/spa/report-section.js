@@ -399,26 +399,35 @@ tr.exportTo('cp', () => {
     cp.IS_DEBUG ||
     (table && table.owners && userEmail && table.owners.includes(userEmail));
 
-  ReportSection.properties = {
-    ...cp.ElementBase.statePathProperties('statePath', {
-      copiedMeasurements: {type: Boolean},
-      isLoading: {type: Boolean},
-      milestone: {type: Number},
-      minRevision: {type: Number},
-      maxRevision: {type: Number},
-      minRevisionInput: {type: Number},
-      maxRevisionInput: {type: Number},
-      sectionId: {type: String},
-      source: {type: Object},
-      tables: {type: Array},
-      tooltip: {type: Array},
+  ReportSection.State = {
+    copiedMeasurements: {type: Boolean},
+    isLoading: options => false,
+    milestone: options => parseInt(options.milestone) || CURRENT_MILESTONE,
+    minRevision: options => options.minRevision,
+    maxRevision: options => options.maxRevision,
+    minRevisionInput: options => options.minRevision,
+    maxRevisionInput: options => options.maxRevision,
+    sectionId: options => options.sectionId || tr.b.GUID.allocateSimple(),
+    source: options => cp.DropdownInput.buildState({
+      label: 'Reports (loading)',
+      options: [
+        ReportSection.DEFAULT_NAME,
+        ReportSection.CREATE,
+      ],
+      selectedOptions: options.sources ? options.sources : [
+        ReportSection.DEFAULT_NAME,
+      ],
     }),
+    tables: options => [PLACEHOLDER_TABLE],
+    tooltip: options => {},
+  };
+
+  ReportSection.buildState = options => cp.buildState(
+      ReportSection.State, options);
+
+  ReportSection.properties = {
+    ...cp.buildProperties('state', ReportSection.State),
     userEmail: {
-      type: String,
-      statePath: 'userEmail',
-    },
-    userEmail: {
-      type: Object,
       statePath: 'userEmail',
       observer: 'observeUserEmail_',
     },
@@ -1073,31 +1082,6 @@ tr.exportTo('cp', () => {
       }
     }
     return options;
-  };
-
-  ReportSection.newState = options => {
-    const sources = options.sources ? options.sources : [
-      ReportSection.DEFAULT_NAME,
-    ];
-    return {
-      isLoading: false,
-      source: {
-        label: 'Reports (loading)',
-        options: [
-          ReportSection.DEFAULT_NAME,
-          ReportSection.CREATE,
-        ],
-        query: '',
-        selectedOptions: sources,
-      },
-      milestone: parseInt(options.milestone) || CURRENT_MILESTONE,
-      minRevision: options.minRevision,
-      maxRevision: options.maxRevision,
-      minRevisionInput: options.minRevision,
-      maxRevisionInput: options.maxRevision,
-      tables: [PLACEHOLDER_TABLE],
-      tooltip: {},
-    };
   };
 
   ReportSection.getSessionState = state => {

@@ -196,50 +196,41 @@ tr.exportTo('cp', () => {
     }
   }
 
-  ChromeperfApp.properties = {
-    ...cp.ElementBase.statePathProperties('statePath', {
-      enableNav: {type: Boolean},
-      isLoading: {type: Boolean},
-      readied: {type: Boolean},
-      reportSection: {
-        type: Object,
-        observer: 'observeSections_',
-      },
-      showingReportSection: {
-        type: Boolean,
-        observer: 'observeSections_',
-      },
-      alertsSectionIds: {type: Array},
-      alertsSectionsById: {
-        type: Object,
-        observer: 'observeSections_',
-      },
-      chartSectionIds: {type: Array},
-      chartSectionsById: {
-        type: Object,
-        observer: 'observeSections_',
-      },
-      closedAlertsIds: {type: Array},
-      closedChartIds: {type: Array},
+  ChromeperfApp.State = {
+    enableNav: options => true,
+    isLoading: options => true,
+    readied: options => false,
+    reportSection: options => cp.ReportSection.buildState({
+      sources: [cp.ReportSection.DEFAULT_NAME],
+    }),
+    linkedChartState: options => cp.buildState(cp.ChartPair.LinkedState, {}),
+    showingReportSection: options => true,
+    alertsSectionIds: options => [],
+    alertsSectionsById: options => {return {};},
+    chartSectionIds: options => [],
+    chartSectionsById: options => {return {};},
+    closedAlertsIds: options => [],
+    closedChartIds: options => [],
+    reduxRoutePath: {
       // App-route sets |route|, and redux sets |reduxRoutePath|.
       // ChromeperfApp translates between them.
       // https://stackoverflow.com/questions/41440316
-      reduxRoutePath: {
-        type: String,
-        observer: 'observeReduxRoute_',
-      },
-      vulcanizedDate: {
-        type: String,
-      },
-    }),
-    route: {
-      type: Object,
+      value: options => '',
+      observer: 'observeReduxRoute_',
     },
-    userEmail: {
-      type: String,
-      statePath: 'userEmail',
-    },
+    vulcanizedDate: options => options.vulcanizedDate,
   };
+
+  ChromeperfApp.properties = {
+    ...cp.buildProperties('state', ChromeperfApp.State),
+    route: {type: Object},
+    userEmail: {statePath: 'userEmail'},
+  };
+
+  ChromeperfApp.observers = [
+    ('observeSections_(showingReportSection, reportSection, ' +
+     'alertsSectionsById, chartSectionsById)'),
+  ];
 
   ChromeperfApp.actions = {
     ready: (statePath, routeParams, authParams) =>
@@ -376,17 +367,20 @@ tr.exportTo('cp', () => {
           })(dispatch, getState);
         }
 
-        cp.ElementBase.actions.chain([
-          {
-            type: ChromeperfApp.reducers.receiveSessionState.typeName,
-            statePath,
-            sessionState,
-          },
-          {
-            type: ChromeperfApp.reducers.updateLargeDom.typeName,
-            appStatePath: statePath,
-          },
-        ])(dispatch, getState);
+        dispatch({
+          type: 'CHAIN',
+          actions: [
+            {
+              type: ChromeperfApp.reducers.receiveSessionState.typeName,
+              statePath,
+              sessionState,
+            },
+            {
+              type: ChromeperfApp.reducers.updateLargeDom.typeName,
+              appStatePath: statePath,
+            },
+          ],
+        });
         cp.ReportSection.actions.restoreState(
             `${statePath}.reportSection`, sessionState.reportSection
         )(dispatch, getState);
@@ -541,17 +535,20 @@ tr.exportTo('cp', () => {
     },
 
     newChart: (statePath, options) => async(dispatch, getState) => {
-      cp.ElementBase.actions.chain([
-        {
-          type: ChromeperfApp.reducers.newChart.typeName,
-          statePath,
-          options,
-        },
-        {
-          type: ChromeperfApp.reducers.updateLargeDom.typeName,
-          appStatePath: statePath,
-        },
-      ])(dispatch, getState);
+      dispatch({
+        type: 'CHAIN',
+        actions: [
+          {
+            type: ChromeperfApp.reducers.newChart.typeName,
+            statePath,
+            options,
+          },
+          {
+            type: ChromeperfApp.reducers.updateLargeDom.typeName,
+            appStatePath: statePath,
+          },
+        ],
+      });
     },
 
     closeChart: (statePath, sectionId) => async(dispatch, getState) => {
@@ -601,33 +598,7 @@ tr.exportTo('cp', () => {
         vulcanizedDate = tr.b.formatDate(new Date(
             VULCANIZED_TIMESTAMP.getTime() - (1000 * 60 * 60 * 7))) + ' PT';
       }
-      return {
-        ...state,
-        enableNav: true,
-        isLoading: true,
-        readied: false,
-        reportSection: {
-          ...cp.ReportSection.newState({
-            sources: [cp.ReportSection.DEFAULT_NAME],
-          }),
-          type: cp.ReportSection.is,
-          sectionId: tr.b.GUID.allocateSimple(),
-        },
-        showingReportSection: true,
-        alertsSectionIds: [],
-        alertsSectionsById: {},
-        chartSectionIds: [],
-        chartSectionsById: {},
-        linkedChartState: {
-          linkedCursorRevision: undefined,
-          linkedMinRevision: undefined,
-          linkedMaxRevision: undefined,
-          linkedMode: 'normalizeUnit',
-          linkedFixedXAxis: true,
-          linkedZeroYAxis: false,
-        },
-        vulcanizedDate,
-      };
+      return cp.buildState(ChromeperfApp.State, {vulcanizedDate});
     },
 
     closeAllAlerts: (state, action, rootState) => {
@@ -659,7 +630,7 @@ tr.exportTo('cp', () => {
       const newSection = {
         type: cp.AlertsSection.is,
         sectionId,
-        ...cp.AlertsSection.newState(action.options || {}),
+        ...cp.AlertsSection.buildState(action.options || {}),
       };
       const alertsSectionsById = {...state.alertsSectionsById};
       alertsSectionsById[sectionId] = newSection;
@@ -690,7 +661,7 @@ tr.exportTo('cp', () => {
       const newSection = {
         type: cp.ChartSection.is,
         sectionId,
-        ...cp.ChartSection.newState(action.options || {}),
+        ...cp.ChartSection.buildState(action.options || {}),
       };
       const chartSectionsById = {...state.chartSectionsById};
       chartSectionsById[sectionId] = newSection;
