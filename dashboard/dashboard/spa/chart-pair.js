@@ -124,51 +124,74 @@ tr.exportTo('cp', () => {
     }
   }
 
-  ChartPair.properties = {
-    ...cp.ElementBase.statePathProperties('statePath', {
-      lineDescriptors: {
-        type: Array,
-        observer: 'observeLineDescriptors_',
-      },
-      isExpanded: {type: Boolean},
-      minimapLayout: {type: Object},
-      chartLayout: {type: Object},
+  ChartPair.State = {
+    lineDescriptors: {
+      value: options => [],
+      observer: 'observeLineDescriptors_',
+    },
+    isExpanded: options => true,
+    minimapLayout: options => {
+      const minimapLayout = {
+        ...cp.ChartTimeseries.buildState({}),
+        dotCursor: '',
+        dotRadius: 0,
+        graphHeight: 40,
+      };
+      minimapLayout.xAxis.height = 15;
+      minimapLayout.yAxis.width = 50;
+      minimapLayout.yAxis.generateTicks = false;
+      return minimapLayout;
+    },
+    chartLayout: options => {
+      const chartLayout = cp.ChartTimeseries.buildState({});
+      chartLayout.xAxis.height = 15;
+      chartLayout.xAxis.showTickLines = true;
+      chartLayout.yAxis.width = 50;
+      chartLayout.yAxis.showTickLines = true;
+      return chartLayout;
+    },
+    isShowingOptions: options => false,
+    isLinked: options => true,
+    cursorRevision: options => 0,
+    minRevision: options => 0,
+    maxRevision: options => 0,
+    mode: options => options.mode || 'normalizeUnit',
+    zeroYAxis: options => options.zeroYAxis || false,
+    fixedXAxis: options => options.fixedXAxis !== false,
+  };
 
-      isShowingOptions: {type: Boolean},
-      isLinked: {type: Boolean},
-      cursorRevision: {type: Number },
-      minRevision: {type: Number},
-      maxRevision: {type: Number},
-      mode: {type: String},
-      zeroYAxis: {type: Boolean},
-      fixedXAxis: {type: Boolean},
-    }),
-    ...cp.ElementBase.statePathProperties('linkedStatePath', {
-      linkedCursorRevision: {
-        type: Number,
-        observer: 'observeLinkedCursorRevision_',
-      },
-      linkedMinRevision: {
-        type: Number,
-        observer: 'observeLinkedRevisions_',
-      },
-      linkedMaxRevision: {
-        type: Number,
-        observer: 'observeLinkedRevisions_',
-      },
-      linkedMode: {
-        type: String,
-        observer: 'observeLinkedMode_',
-      },
-      linkedZeroYAxis: {
-        type: Boolean,
-        observer: 'observeLinkedZeroYAxis_',
-      },
-      linkedFixedXAxis: {
-        type: Boolean,
-        observer: 'observeLinkedFixedXAxis_',
-      },
-    }),
+  ChartPair.buildState = options => cp.buildState(ChartPair.State, options);
+
+  ChartPair.LinkedState = {
+    linkedCursorRevision: {
+      type: Number,
+      observer: 'observeLinkedCursorRevision_',
+    },
+    linkedMinRevision: {
+      type: Number,
+      observer: 'observeLinkedRevisions_',
+    },
+    linkedMaxRevision: {
+      type: Number,
+      observer: 'observeLinkedRevisions_',
+    },
+    linkedMode: {
+      type: String,
+      observer: 'observeLinkedMode_',
+    },
+    linkedZeroYAxis: {
+      type: Boolean,
+      observer: 'observeLinkedZeroYAxis_',
+    },
+    linkedFixedXAxis: {
+      type: Boolean,
+      observer: 'observeLinkedFixedXAxis_',
+    },
+  };
+
+  ChartPair.properties = {
+    ...cp.buildProperties('state', ChartPair.State),
+    ...cp.buildProperties('linkedState', ChartPair.LinkedState),
   };
 
   ChartPair.actions = {
@@ -585,45 +608,6 @@ tr.exportTo('cp', () => {
         },
       };
     },
-  };
-
-  ChartPair.newState = options => {
-    const chartState = cp.ChartTimeseries.newState();
-    return {
-      isLinked: true,
-      isExpanded: true,
-      mode: options.mode || 'normalizeUnit',
-      zeroYAxis: options.zeroYAxis || false,
-      fixedXAxis: options.fixedXAxis !== false,
-      minimapLayout: {
-        ...chartState,
-        dotCursor: '',
-        dotRadius: 0,
-        graphHeight: 40,
-        xAxis: {
-          ...chartState.xAxis,
-          height: 15,
-        },
-        yAxis: {
-          ...chartState.yAxis,
-          width: 50,
-          generateTicks: false,
-        },
-      },
-      chartLayout: {
-        ...chartState,
-        xAxis: {
-          ...chartState.xAxis,
-          height: 15,
-          showTickLines: true,
-        },
-        yAxis: {
-          ...chartState.yAxis,
-          width: 50,
-          showTickLines: true,
-        },
-      },
-    };
   };
 
   ChartPair.findFirstRealLineDescriptor = async(
