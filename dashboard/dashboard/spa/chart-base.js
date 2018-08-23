@@ -103,29 +103,16 @@ tr.exportTo('cp', () => {
     }
   }
 
-  ChartBase.properties = cp.ElementBase.statePathProperties('statePath', {
-    bars: {type: Array, value: []},
-    brushSize: {type: Number, value: 10},
-    columns: {type: Array, value: []},
-    dotCursor: {type: String},
-    dotRadius: {type: Number, value: 6},
-    graphHeight: {type: Number, value: 200},
-    lines: {type: Array, value: []},
-    tooltip: {type: Object},
-    xAxis: {type: Object, value: {height: 0}},
-    yAxis: {type: Object, value: {width: 0}},
-  });
-
-  ChartBase.newState = () => {
-    return {
-      bars: [],
-      brushSize: 10,
-      columns: [],
-      dotCursor: 'pointer',
-      dotRadius: 6,
-      graphHeight: 200,
-      lines: [],
-      tooltip: {
+  ChartBase.State = {
+    bars: options => [],
+    brushSize: options => 10,
+    columns: options => [],
+    dotCursor: options => 'pointer',
+    dotRadius: options => 6,
+    graphHeight: options => 200,
+    lines: options => [],
+    tooltip: options => {
+      return {
         isVisible: false,
         left: '',
         right: '',
@@ -133,23 +120,30 @@ tr.exportTo('cp', () => {
         bottom: '',
         color: '',
         rows: [],
-      },
-      xAxis: {
+      };
+    },
+    xAxis: options => {
+      return {
         brushes: [],
         height: 0,
         range: new tr.b.math.Range(),
         showTickLines: false,
         ticks: [],
-      },
-      yAxis: {
+      };
+    },
+    yAxis: options => {
+      return {
         brushes: [],
         range: new tr.b.math.Range(),
         showTickLines: false,
         ticks: [],
         width: 0,
-      },
-    };
+      };
+    },
   };
+
+  ChartBase.properties = cp.buildProperties('state', ChartBase.State);
+  ChartBase.buildState = options => cp.buildState(ChartBase.State, options);
 
   ChartBase.actions = {
     brushX: (statePath, brushIndex, xPct) => async(dispatch, getState) => {

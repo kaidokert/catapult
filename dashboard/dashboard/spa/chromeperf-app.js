@@ -376,17 +376,20 @@ tr.exportTo('cp', () => {
           })(dispatch, getState);
         }
 
-        cp.ElementBase.actions.chain([
-          {
-            type: ChromeperfApp.reducers.receiveSessionState.typeName,
-            statePath,
-            sessionState,
-          },
-          {
-            type: ChromeperfApp.reducers.updateLargeDom.typeName,
-            appStatePath: statePath,
-          },
-        ])(dispatch, getState);
+        dispatch({
+          type: 'CHAIN',
+          actions: [
+            {
+              type: ChromeperfApp.reducers.receiveSessionState.typeName,
+              statePath,
+              sessionState,
+            },
+            {
+              type: ChromeperfApp.reducers.updateLargeDom.typeName,
+              appStatePath: statePath,
+            },
+          ],
+        });
         cp.ReportSection.actions.restoreState(
             `${statePath}.reportSection`, sessionState.reportSection
         )(dispatch, getState);
@@ -541,17 +544,20 @@ tr.exportTo('cp', () => {
     },
 
     newChart: (statePath, options) => async(dispatch, getState) => {
-      cp.ElementBase.actions.chain([
-        {
-          type: ChromeperfApp.reducers.newChart.typeName,
-          statePath,
-          options,
-        },
-        {
-          type: ChromeperfApp.reducers.updateLargeDom.typeName,
-          appStatePath: statePath,
-        },
-      ])(dispatch, getState);
+      dispatch({
+        type: 'CHAIN',
+        actions: [
+          {
+            type: ChromeperfApp.reducers.newChart.typeName,
+            statePath,
+            options,
+          },
+          {
+            type: ChromeperfApp.reducers.updateLargeDom.typeName,
+            appStatePath: statePath,
+          },
+        ],
+      });
     },
 
     closeChart: (statePath, sectionId) => async(dispatch, getState) => {
@@ -607,7 +613,7 @@ tr.exportTo('cp', () => {
         isLoading: true,
         readied: false,
         reportSection: {
-          ...cp.ReportSection.newState({
+          ...cp.ReportSection.buildState({
             sources: [cp.ReportSection.DEFAULT_NAME],
           }),
           type: cp.ReportSection.is,
@@ -659,7 +665,7 @@ tr.exportTo('cp', () => {
       const newSection = {
         type: cp.AlertsSection.is,
         sectionId,
-        ...cp.AlertsSection.newState(action.options || {}),
+        ...cp.AlertsSection.buildState(action.options || {}),
       };
       const alertsSectionsById = {...state.alertsSectionsById};
       alertsSectionsById[sectionId] = newSection;
@@ -690,7 +696,7 @@ tr.exportTo('cp', () => {
       const newSection = {
         type: cp.ChartSection.is,
         sectionId,
-        ...cp.ChartSection.newState(action.options || {}),
+        ...cp.ChartSection.buildState(action.options || {}),
       };
       const chartSectionsById = {...state.chartSectionsById};
       chartSectionsById[sectionId] = newSection;
