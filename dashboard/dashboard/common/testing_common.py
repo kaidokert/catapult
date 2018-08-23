@@ -105,10 +105,15 @@ class TestCase(unittest.TestCase):
     tasks = self.GetTaskQueueTasks(task_queue_name)
     task_queue = self.testbed.get_stub(testbed.TASKQUEUE_SERVICE_NAME)
     task_queue.FlushQueue(task_queue_name)
+    responses = []
     for task in tasks:
-      self.Post(handler_name,
-                urllib.unquote_plus(base64.b64decode(task['body'])))
-      self.ExecuteTaskQueueTasks(handler_name, task_queue_name)
+      responses.append(
+          self.Post(
+              handler_name,
+              urllib.unquote_plus(base64.b64decode(task['body']))))
+      responses.extend(
+          self.ExecuteTaskQueueTasks(handler_name, task_queue_name))
+    return responses
 
   def ExecuteDeferredTasks(self, task_queue_name):
     task_queue = self.testbed.get_stub(testbed.TASKQUEUE_SERVICE_NAME)
