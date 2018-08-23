@@ -10,6 +10,10 @@ tr.exportTo('cp', () => {
       this.scrollIntoView(true);
     }
 
+    getTableHeightPx_() {
+      return Math.max(122, window.innerHeight - 483);
+    }
+
     anySelectedAlerts_(alertGroups) {
       return cp.AlertsSection.getSelectedAlerts(alertGroups).length > 0;
     }
@@ -94,16 +98,43 @@ tr.exportTo('cp', () => {
     }
   }
 
-  AlertsTable.properties = cp.ElementBase.statePathProperties('statePath', {
-    alertGroups: {type: Array},
-    areAlertGroupsPlaceholders: {type: Boolean},
-    showBugColumn: {type: Boolean},
-    showMasterColumn: {type: Boolean},
-    showTestCaseColumn: {type: Boolean},
-    sortColumn: {type: String},
-    sortDescending: {type: Boolean},
-    tableHeightPx: {type: Number},
-  });
+  AlertsTable.PLACEHOLDER_ALERT_GROUPS = [];
+  const DASHES = '-'.repeat(5);
+  for (let i = 0; i < 5; ++i) {
+    AlertsTable.PLACEHOLDER_ALERT_GROUPS.push({
+      isSelected: false,
+      alerts: [
+        {
+          bugId: DASHES,
+          revisions: DASHES,
+          testSuite: DASHES,
+          measurement: DASHES,
+          master: DASHES,
+          bot: DASHES,
+          testCase: DASHES,
+          deltaValue: 0,
+          deltaUnit: tr.b.Unit.byName.countDelta_biggerIsBetter,
+          percentDeltaValue: 0,
+          percentDeltaUnit:
+            tr.b.Unit.byName.normalizedPercentageDelta_biggerIsBetter,
+        },
+      ],
+    });
+  }
+
+  AlertsTable.State = {
+    previousSelectedAlertKey: options => undefined,
+    alertGroups: options => AlertsTable.PLACEHOLDER_ALERT_GROUPS,
+    areAlertGroupsPlaceholders: options => true,
+    showBugColumn: options => true,
+    showMasterColumn: options => true,
+    showTestCaseColumn: options => true,
+    sortColumn: options => options.sortColumn || 'revisions',
+    sortDescending: options => options.sortDescending || false,
+  };
+
+  AlertsTable.properties = cp.buildProperties('state', AlertsTable.State);
+  AlertsTable.buildState = options => cp.buildState(AlertsTable.State, options);
 
   AlertsTable.actions = {
     selectAllAlerts: statePath => async(dispatch, getState) => {
