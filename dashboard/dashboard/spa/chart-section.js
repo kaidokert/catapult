@@ -147,39 +147,70 @@ tr.exportTo('cp', () => {
     }
   }
 
-  ChartSection.properties = {
-    ...cp.ElementBase.statePathProperties('statePath', {
-      testSuite: {type: Object},
-      measurement: {type: Object},
-      bot: {type: Object},
-      testCase: {type: Object},
-      statistic: {type: Object},
-      minimapLayout: {type: Object},
-      chartLayout: {type: Object},
-      minRevision: {
-        type: Number,
-        observer: 'observeRevisions_',
-      },
-      maxRevision: {
-        type: Number,
-        observer: 'observeRevisions_',
-      },
-      fixedXAxis: {type: Boolean},
-      histograms: {type: Object},
-      isExpanded: {type: Boolean},
-      isLinked: {type: Boolean},
-      isLoading: {type: Boolean},
-      isShowingOptions: {type: Boolean},
-      legend: {type: Array},
-      center: {type: Boolean},
-      relatedTabs: {type: Array},
-      sectionId: {type: String},
-      selectedRelatedTabName: {type: String},
-      showHistogramsControls: {type: Boolean},
-      title: {type: String},
-      zeroYAxis: {type: Boolean},
+  ChartSection.State = {
+    sectionId: options => options.sectionId || tr.b.GUID.allocateSimple(),
+    ...cp.ChartPair.State,
+    title: options => options.title || '',
+    isTitleCustom: options => false,
+    legend: options => undefined,
+    minRevision: options => options.minRevision,
+    maxRevision: options => options.maxRevision,
+    relatedTabs: options => [],
+    selectedLineDescriptorHash: options => options.selectedLineDescriptorHash,
+    isLoading: options => false,
+    testSuite: options => cp.ChartParameter.buildState({
+      label: 'Test suites (loading)',
+      canAggregate: true,
+      isAggregated: (options.parameters || {}).testSuitesAggregated || false,
+      selectedOptions: (options.parameters || {}).testSuites || [],
     }),
-    ...cp.ElementBase.statePathProperties('linkedStatePath', {
+    bot: options => cp.ChartParameter.buildState({
+      label: 'Bots',
+      canAggregate: true,
+      isAggregated: (options.parameters || {}).botsAggregated !== false,
+      selectedOptions: (options.parameters || {}).bots || [],
+    }),
+    measurement: options => cp.ChartParameter.buildState({
+      label: 'Measurements',
+      canAggregate: false,
+      selectedOptions: (options.parameters || {}).measurements || [],
+    }),
+    testCase: options => cp.ChartParameter.buildState({
+      label: 'Test cases',
+      canAggregate: true,
+      isAggregated: (options.parameters || {}).testCasesAggregated !== false,
+      selectedOptions: (options.parameters || {}).testCases || [],
+      tags: {
+        selectedOptions: (options.parameters || {}).testCaseTags || [],
+      },
+    }),
+    statistic: options => cp.ChartParameter.buildState({
+      label: 'Statistics',
+      canAggregate: false,
+      selectedOptions: (options.parameters || {}).statistics || ['avg'],
+      options: [
+        'avg',
+        'std',
+        'count',
+        'min',
+        'max',
+        'median',
+        'iqr',
+        '90%',
+        '95%',
+        '99%',
+      ],
+    }),
+    selectedRelatedTabName: options => options.selectedRelatedTabName || '',
+    histograms: options => undefined,
+  };
+
+  ChartSection.buildState = options => cp.buildState(
+      ChartSection.State, options);
+
+  ChartSection.properties = {
+    ...cp.buildProperties('state', ChartSection.State),
+    ...cp.buildProperties('linkedState', {
       // ChartSection only needs the linkedStatePath property to forward to
       // ChartPair.
     }),
@@ -189,6 +220,10 @@ tr.exportTo('cp', () => {
       observer: 'observeUserEmail_',
     },
   };
+
+  ChartSection.observers = [
+    'observeRevisions_(minRevision, maxRevision)',
+  ];
 
   ChartSection.actions = {
     connected: statePath => async(dispatch, getState) => {
@@ -305,18 +340,12 @@ tr.exportTo('cp', () => {
     },
 
     setTitle: (statePath, title) => async(dispatch, getState) => {
-      cp.ElementBase.actions.updateObject(statePath, {
-        title,
-        isTitleCustom: true,
-      })(dispatch, getState);
+      dispatch(Redux.UPDATE(statePath, {title, isTitleCustom: true}));
     },
 
-    showOptions: (statePath, isShowingOptions) =>
-      async(dispatch, getState) => {
-        cp.ElementBase.actions.updateObject(statePath, {
-          isShowingOptions,
-        })(dispatch, getState);
-      },
+    showOptions: (statePath, isShowingOptions) => async(dispatch, getState) => {
+      dispatch(Redux.UPDATE(statePath, {isShowingOptions}));
+    },
 
     brushMinimap: statePath => async(dispatch, getState) => {
       dispatch({
@@ -329,9 +358,7 @@ tr.exportTo('cp', () => {
     brushChart: (statePath, brushIndex, value) =>
       async(dispatch, getState) => {
         const path = `${statePath}.chartLayout.xAxis.brushes.${brushIndex}`;
-        cp.ElementBase.actions.updateObject(path, {
-          xPct: value + '%',
-        })(dispatch, getState);
+        dispatch(Redux.UPDATE(path, {xPct: value + '%'}));
       },
 
     maybeLoadTimeseries: statePath => async(dispatch, getState) => {
@@ -349,14 +376,14 @@ tr.exportTo('cp', () => {
     clearTimeseries: statePath => async(dispatch, getState) => {
       const state = Polymer.Path.get(getState(), statePath);
       if (state.minimapLayout.lines.length) {
-        cp.ElementBase.actions.updateObject(`${statePath}.minimapLayout`, {
+        dispatch(Redux.UPDATE(`${statePath}.minimapLayout`, {
           lineDescriptors: [],
-        })(dispatch, getState);
+        }));
       }
       if (state.chartLayout.lines.length) {
-        cp.ElementBase.actions.updateObject(`${statePath}.chartLayout`, {
+        dispatch(Redux.UPDATE(`${statePath}.chartLayout`, {
           lineDescriptors: [],
-        })(dispatch, getState);
+        }));
       }
       if (state.relatedTabs.length) {
         dispatch({
@@ -393,9 +420,9 @@ tr.exportTo('cp', () => {
               state.selectedLineDescriptorHash)) {
             continue;
           }
-          cp.ElementBase.actions.updateObject(statePath, {
+          dispatch(Redux.UPDATE(statePath, {
             lineDescriptors: [lineDescriptor],
-          })(dispatch, getState);
+          }));
           break;
         }
       }
@@ -411,10 +438,9 @@ tr.exportTo('cp', () => {
         await cp.idle();
         state = Polymer.Path.get(getState(), statePath);
         if (tabIndex >= state.relatedTabs.length) break;
-        cp.ElementBase.actions.updateObject(
-            `${statePath}.relatedTabs.${tabIndex}`, {
-              renderedSparklines: state.relatedTabs[tabIndex].sparklines,
-            })(dispatch, getState);
+        dispatch(Redux.UPDATE(`${statePath}.relatedTabs.${tabIndex}`, {
+          renderedSparklines: state.relatedTabs[tabIndex].sparklines,
+        }));
       }
       */
     },
@@ -433,14 +459,12 @@ tr.exportTo('cp', () => {
             undefined) {
           const path = `${statePath}.relatedTabs.${selectedRelatedTabIndex}`;
           const relatedTab = state.relatedTabs[selectedRelatedTabIndex];
-          cp.ElementBase.actions.updateObject(path, {
+          dispatch(Redux.UPDATE(path, {
             renderedSparklines: relatedTab.sparklines,
-          })(dispatch, getState);
+          }));
         }
 
-        cp.ElementBase.actions.updateObject(statePath, {
-          selectedRelatedTabName,
-        })(dispatch, getState);
+        dispatch(Redux.UPDATE(statePath, {selectedRelatedTabName}));
       },
 
     chartClick: statePath => async(dispatch, getState) => {
@@ -489,11 +513,6 @@ tr.exportTo('cp', () => {
         selectedLineDescriptorHash: await cp.sha(
             cp.ChartTimeseries.stringifyDescriptor(lineDescriptor)),
       });
-      /*
-      cp.ElementBase.actions.updateObject(statePath, {
-        lineDescriptors: [lineDescriptor],
-      })(dispatch, getState);
-      */
     },
 
     legendTap: statePath => async(dispatch, getState) => {
@@ -963,84 +982,6 @@ tr.exportTo('cp', () => {
       fixedXAxis: !routeParams.has('natural'),
       zeroYAxis: routeParams.has('zeroY'),
       selectedLineDescriptorHash: routeParams.get('select'),
-    };
-  };
-
-  ChartSection.newState = options => {
-    const parameters = options.parameters || {};
-    const testSuites = parameters.testSuites || [];
-    const measurements = parameters.measurements || [];
-    const bots = parameters.bots || [];
-    const statistics = parameters.statistics || ['avg'];
-    const selectedRelatedTabName = options.selectedRelatedTabName || undefined;
-    return {
-      ...cp.ChartPair.newState(options),
-      isLoading: false,
-      isLinked: options.isLinked !== false,
-      isExpanded: options.isExpanded !== false,
-      title: options.title || '',
-      isTitleCustom: false,
-      legend: undefined,
-      minRevision: options.minRevision,
-      maxRevision: options.maxRevision,
-      histograms: undefined,
-      showHistogramsControls: false,
-      relatedTabs: [],
-      selectedRelatedTabName,
-      selectedLineDescriptorHash: options.selectedLineDescriptorHash,
-      testSuite: {
-        label: 'Test suites (loading)',
-        canAggregate: true,
-        isAggregated: parameters.testSuitesAggregated || false,
-        query: '',
-        selectedOptions: testSuites,
-        options: [],
-      },
-      bot: {
-        label: 'Bots',
-        canAggregate: true,
-        isAggregated: parameters.botsAggregated !== false,
-        query: '',
-        selectedOptions: bots,
-        options: [],
-      },
-      measurement: {
-        label: 'Measurements',
-        canAggregate: false,
-        query: '',
-        selectedOptions: measurements,
-        options: [],
-      },
-      testCase: {
-        label: 'Test cases',
-        canAggregate: true,
-        isAggregated: parameters.testCasesAggregated !== false,
-        query: '',
-        selectedOptions: parameters.testCases || [],
-        options: [],
-        tags: {
-          options: [],
-          selectedOptions: parameters.testCaseTags || [],
-        },
-      },
-      statistic: {
-        label: 'Statistics',
-        canAggregate: false,
-        query: '',
-        selectedOptions: statistics,
-        options: [
-          'avg',
-          'std',
-          'count',
-          'min',
-          'max',
-          'median',
-          'iqr',
-          '90%',
-          '95%',
-          '99%',
-        ],
-      },
     };
   };
 
