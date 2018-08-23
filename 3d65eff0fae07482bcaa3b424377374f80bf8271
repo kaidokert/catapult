@@ -142,6 +142,24 @@
     },
     {
       "key": {
+        "uuid": "06a5d78f_b66ac267",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-08-23T01:08:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "59db88d9_ad3c2fe4",
+      "revId": "3d65eff0fae07482bcaa3b424377374f80bf8271",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f4a1b92e_0e214e38",
         "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
         "patchSetId": 1
@@ -206,6 +224,24 @@
       "side": 1,
       "message": "Is no hist_name a thing? Doesn\u0027t that work out to a suite level summary?",
       "parentUuid": "071532fc_02428b48",
+      "revId": "3d65eff0fae07482bcaa3b424377374f80bf8271",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99ebc6b2_506292b2",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-08-23T01:08:11Z",
+      "side": 1,
+      "message": "Yeah, for perf tryjobs, they don\u0027t have a particular histogram in mind, but still want the trace links.",
+      "parentUuid": "a9c690d8_eb7ac7d3",
       "revId": "3d65eff0fae07482bcaa3b424377374f80bf8271",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
