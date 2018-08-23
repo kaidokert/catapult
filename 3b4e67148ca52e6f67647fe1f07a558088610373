@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f4014c81_40df0acd",
+        "filename": "dashboard/dashboard/spa/cp-tab.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-23T22:42:33Z",
+      "side": 1,
+      "message": "I bumped up the vertical padding from 4px to 8px.\nI could add border-left/right: 1px solid var(--primary-color-dark)?\nWDYT?",
+      "parentUuid": "e8952fc1_db566cee",
+      "revId": "3b4e67148ca52e6f67647fe1f07a558088610373",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "36a81989_08e7a09e",
         "filename": "dashboard/dashboard/spa/cp-tab.html",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2018-08-21T00:15:50Z",
       "side": 1,
       "message": "Nit: I noticed that the bolding makes the tab get bigger when selected, which I think makes the UX a bit confusing. Would it be possible to make it so that the tab is the same size before and after?",
+      "revId": "3b4e67148ca52e6f67647fe1f07a558088610373",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b976c3c0_2dd954a1",
+        "filename": "dashboard/dashboard/spa/cp-tab.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-23T22:42:33Z",
+      "side": 1,
+      "message": "I set min-width: 100px and justify-content: center. Is there a better way to do that?",
+      "parentUuid": "36a81989_08e7a09e",
       "revId": "3b4e67148ca52e6f67647fe1f07a558088610373",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
