@@ -57,45 +57,28 @@ class MigrateTest(test.TestCase):
     })
 
     self.testapp.post('/api/migrate', status=200)
-    response = self.testapp.post('/api/migrate', status=200)
-    self.assertEqual(response.normal_body, expected)
 
-    response = self.testapp.get('/api/migrate', status=200)
-    self.assertEqual(response.normal_body, expected)
+    task_responses = self.ExecuteTaskQueueTasks('/api/migrate', 'default')
+    self.assertEqual(task_responses[0].normal_body, expected)
+    self.assertEqual(task_responses[1].normal_body, '{}')
 
-    tasks = self.GetTaskQueueTasks('default')
-    self.assertEqual(len(tasks), 2)
-
-    task = tasks.pop()
-    self.assertEqual(task['url'], '/api/migrate')
-    self.assertEqual(task['method'], 'POST')
-    self.assertTrue(task['body'])
+    self.assertEqual(len(task_responses), 2)
 
   def testComplete(self):
     self.testapp.post('/api/migrate', status=200)
-    self.testapp.post('/api/migrate', status=200)
-    params = {'cursor': 'Ch8SGWoMdGVzdGJlZC10ZXN0cgkLEgNKb2IYCgwYACAA'}
-    response = self.testapp.post('/api/migrate', params, status=200)
-    self.assertEqual(response.normal_body, '{}')
+    task_responses = self.ExecuteTaskQueueTasks('/api/migrate', 'default')
+    self.assertEqual(task_responses[-1].normal_body, '{}')
 
     response = self.testapp.get('/api/migrate', status=200)
     self.assertEqual(response.normal_body, '{}')
 
-    tasks = self.GetTaskQueueTasks('default')
-    self.assertEqual(len(tasks), 2)
-
-    task = tasks.pop()
-    self.assertEqual(task['url'], '/api/migrate')
-    self.assertEqual(task['method'], 'POST')
-    self.assertTrue(task['body'])
+    self.assertEqual(len(task_responses), 2)
 
   def testJobsMigrated(self):
     job_state.JobState.__setstate__ = _JobStateSetState
 
     self.testapp.post('/api/migrate', status=200)
-    self.testapp.post('/api/migrate', status=200)
-    params = {'cursor': 'Ch8SGWoMdGVzdGJlZC10ZXN0cgkLEgNKb2IYCgwYACAA'}
-    self.testapp.post('/api/migrate', params, status=200)
+    self.ExecuteTaskQueueTasks('/api/migrate', 'default')
 
     del job_state.JobState.__setstate__
 
