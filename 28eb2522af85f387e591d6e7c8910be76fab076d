@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "86ecf119_c4eb37a6",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-23T13:03:29Z",
+      "side": 1,
+      "message": "add a comment that describes what this function does.",
+      "revId": "28eb2522af85f387e591d6e7c8910be76fab076d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "811852a2_2685c4e6",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-23T13:03:29Z",
+      "side": 1,
+      "message": "we can change this to diagnostics \u003d\u003d\u003d undefined || diagnostics.includes(key.toString()) to avoid duplicating for loop.",
+      "revId": "28eb2522af85f387e591d6e7c8910be76fab076d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bce8053c_6c89dbd0",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-23T13:03:29Z",
+      "side": 1,
+      "message": "this plots a single metric as well right? May be we can name this plotSingleMetricWithAllDiagnostics.",
+      "revId": "28eb2522af85f387e591d6e7c8910be76fab076d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b426266_eeb75921",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-23T13:03:29Z",
+      "side": 1,
+      "message": "a new line here.",
+      "revId": "28eb2522af85f387e591d6e7c8910be76fab076d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d2b05f8_435adb10",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-23T13:03:29Z",
+      "side": 1,
+      "message": "Do we still need this? given that we give a list of components in componentOptions?",
+      "revId": "28eb2522af85f387e591d6e7c8910be76fab076d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c136e0d_31753b62",
+        "filename": "experimental/v8_tools/menu_component.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-23T13:03:29Z",
+      "side": 1,
+      "message": "For this cl, we don\u0027t need this. So we could delete this in this cl and add it in a later cl.",
+      "revId": "28eb2522af85f387e591d6e7c8910be76fab076d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
