@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c8396a01_1fa81bd0",
+        "filename": "dashboard/dashboard/pinpoint/handlers/migrate_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-08-23T18:23:47Z",
+      "side": 1,
+      "message": "This is a little different from the previous test, because it\u0027s testing the response from the post instead of the get.\n\nPreviously, the tests were divided into three stages, Start, Continue, and Complete, representing the three conditional paths in the migrate code, and testing both POST and GET at each stage. But maybe it\u0027s better to have one test for POST and one test for GET.",
+      "revId": "c24c1090755ada0d4c35ce5aa601b339d190e531",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
