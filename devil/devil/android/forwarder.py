@@ -98,6 +98,39 @@ class HostForwarderError(base_error.BaseError):
     super(HostForwarderError, self).__init__(message)
 
 
+class PortForwardingScheme(object):
+  def __init__(self, host, device):
+    """Encapsulates one pair of ports, one on the device, and one on the host,
+    to be connected to each other.
+
+    Args:
+      host (int): The port on the host.
+      device (int): The port on the device.
+    """
+    self._host_port = host
+    self._device_port = device
+
+  @property
+  def host_port(self):
+    "Simple getter to discourage mutation of values"
+    return self._host_port
+
+  @property
+  def device_port(self):
+    "Simple getter to discourage mutation of values"
+    return self._device_port
+
+  @property
+  def is_device_to_host(self):
+    """We assume that this scheme is meant to route traffic from the device to
+    the host if no port is given on the device.
+
+    Returns:
+      bool: Whether this PortForwardingScheme is from device to host or not.
+    """
+    return not self.device_port
+
+
 class Forwarder(object):
   """Thread-safe class to manage port forwards from the device to the host."""
 
@@ -114,16 +147,16 @@ class Forwarder(object):
   _instance = None
 
   @staticmethod
-  def Map(port_pairs, device, tool=None):
+  def Map(scheme_list, device, tool=None):
     """Runs the forwarder.
 
     Args:
-      port_pairs: A list of tuples (device_port, host_port) to forward. Note
-                 that you can specify 0 as a device_port, in which case a
-                 port will by dynamically assigned on the device. You can
-                 get the number of the assigned port using the
-                 DevicePortForHostPort method.
-      device: A DeviceUtils instance.
+      scheme_list (List[PortForwardingScheme]): A list of PortForwardingSchemes
+          to forward. Note that you can specify 0 as a device_port, in which
+          case a port will by dynamically assigned on the device. You can get
+          the number of the assigned port using the DevicePortForHostPort
+          method.
+      device (DeviceUtils): A DeviceUtils instance.
       tool: Tool class to use to get wrapper, if necessary, for executing the
             forwarder (see valgrind_tools.py).
 
@@ -137,11 +170,14 @@ class Forwarder(object):
       instance._InitDeviceLocked(device, tool)
 
       device_serial = str(device)
-      map_arg_lists = [
-          ['--adb=' + adb_wrapper.AdbWrapper.GetAdbPath(),
-           '--serial-id=' + device_serial,
-           '--map', str(device_port), str(host_port)]
-          for device_port, host_port in port_pairs]
+      map_arg_lists = []
+      for forward_scheme in scheme_list:
+        map_arg_list = ['--adb=' + adb_wrapper.AdbWrapper.GetAdbPath(),
+                        '--serial-id=' + device_serial,
+                        '--map',
+                        str(forward_scheme.device_port),
+                        str(forward_scheme.host_port)]
+        map_arg_lists.append(map_arg_list)
       logger.info('Forwarding using commands: %s', map_arg_lists)
 
       for map_arg_list in map_arg_lists:
