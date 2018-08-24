@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff2052ec_29cce4a1",
+        "filename": "experimental/v8_tools/dot_plotter.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-24T10:30:19Z",
+      "side": 1,
+      "message": "Wouldn\u0027t the id be sufficient to uniquely identify the data point? May be I am missing something here.",
+      "revId": "cd895c31fcd4f206b1b63cf434f5a55fb16939ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c10d307c_9d11d4cf",
+        "filename": "experimental/v8_tools/dot_plotter.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-24T10:30:19Z",
+      "side": 1,
+      "message": "a minor nit: Its better to have constants like this (2 here) declared as variables either in the function or even as global values, something like const zoom_on_hover \u003d 2 or something similar and use the variable here.",
+      "revId": "cd895c31fcd4f206b1b63cf434f5a55fb16939ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ba063a3_c432f7e7",
+        "filename": "experimental/v8_tools/graph_data.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-24T10:30:19Z",
+      "side": 1,
+      "message": "the same question as earlier, wouldn\u0027t index be sufficient? Or is it needed for other kinds of graphs?",
+      "revId": "cd895c31fcd4f206b1b63cf434f5a55fb16939ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
