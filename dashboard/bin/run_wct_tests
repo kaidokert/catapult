@@ -1,0 +1,21 @@
+#!/bin/sh
+
+if ! which ${WCT:-wct}; then
+  echo 'Install wct from cipd and add it to your PATH:'
+  echo 'cipd install -root ~/Downloads/cipd infra/testing/wct/linux-amd64 prod'
+  echo 'export PATH=~/Downloads/cipd:$PATH'
+  exit 1
+fi
+
+if ! which ${CHROME:-google-chrome}; then
+  echo 'Set CHROME to a valid command to run chrome.'
+  exit 1
+fi
+
+CATAPULT=$(realpath $(dirname $(realpath $0))/../../)
+
+${WCT:-wct} -chrome ${CHROME:-google-chrome} -base "$CATAPULT/dashboard" \
+  -dep "$CATAPULT/third_party/polymer2/" \
+  -dep "$CATAPULT/tracing/third_party/" \
+  -dep "$CATAPULT/tracing/third_party/gl-matrix/dist/" \
+  -dep "$CATAPULT/tracing/tracing/"
