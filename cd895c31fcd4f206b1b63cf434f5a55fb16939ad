@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "c3b33985_e578a55c",
+        "filename": "experimental/v8_tools/dot_plotter.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-24T12:23:05Z",
+      "side": 1,
+      "message": "Thanks for the explanation. I got it now. In that case, can we have different callbacks for different kind of plots to avoid sending undefined. For example, interactiveCallbackForDotPlot, interactiveCallbackForCFPlot etc.,",
+      "parentUuid": "35762c9b_8fa8108c",
+      "revId": "cd895c31fcd4f206b1b63cf434f5a55fb16939ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c10d307c_9d11d4cf",
         "filename": "experimental/v8_tools/dot_plotter.js",
         "patchSetId": 6
