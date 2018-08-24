@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c76835ae_ae95f361",
+        "filename": "devil/devil/android/forwarder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1001385
+      },
+      "writtenOn": "2018-08-24T22:57:23Z",
+      "side": 1,
+      "message": "What is a \"Scheme\" in this context?\n\nWould a name like PortToForward be more helpful?\n\nIf we\u0027re going to bother refactoring this code then I\u0027d suggest having separate DeviceToHostPortForward and HostToDevicePortForward wrappers, rather than relying on the port-is-zero check - the two could present identical interfaces, besides the constructor.\n\nWDYT?",
+      "range": {
+        "startLine": 101,
+        "startChar": 6,
+        "endLine": 101,
+        "endChar": 26
+      },
+      "revId": "5f0f8bd103593c7bb1604214de84504a39eef064",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61add158_98fa4e90",
+        "filename": "devil/devil/android/forwarder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1001385
+      },
+      "writtenOn": "2018-08-24T22:57:23Z",
+      "side": 1,
+      "message": "This seems like a property that should be in the class-level docstring.\n\nYou should also document what device_port returns if this is a device-\u003ehost forward.",
+      "range": {
+        "startLine": 125,
+        "startChar": 3,
+        "endLine": 126,
+        "endChar": 47
+      },
+      "revId": "5f0f8bd103593c7bb1604214de84504a39eef064",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
