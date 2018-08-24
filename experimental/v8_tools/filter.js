@@ -276,11 +276,14 @@ const app = new Vue({
 
     //  Draw a dot plot depending on the target value.
     //  This is mainly for results from the table.
-    plotDotPlot(target, story) {
+    plotDotPlot(target, story, traces) {
+      const openTrace = (metric, story, label, index) => {
+        window.open(traces[label][index]);
+      };
       this.graph
           .xAxis('Memory used (MiB)')
           .title(story)
-          .addData(JSON.parse(JSON.stringify(target)))
+          .addData(JSON.parse(JSON.stringify(target)), openTrace)
           .plotDot();
     },
 
@@ -302,7 +305,6 @@ const app = new Vue({
               this.guidValue
                   .get(value.diagnostics.stories)[0] ===
                   story);
-
       const content = new Map();
       for (const val of result) {
         const diagnosticItem = this.guidValue.get(
@@ -348,13 +350,15 @@ const app = new Vue({
       const target = this.targetForMultipleDiagnostics(metric, story,
           diagnostic, diagnostics);
       if (chosenPlot === 'Dot plot') {
+        const traces = this.getTraces(metric, story,
+            diagnostic, diagnostics);
         if (this.graph === null) {
           this.graph = new GraphData();
-          this.plotDotPlot(target, story);
+          this.plotDotPlot(target, story, traces);
         } else {
           this.graph.plotter_.remove();
           this.graph = new GraphData();
-          this.plotDotPlot(target, story);
+          this.plotDotPlot(target, story, traces);
         }
       } else {
         if (this.graph === null) {
@@ -372,9 +376,10 @@ const app = new Vue({
     //  sub-diagnostics come from the table, not from the drop-down menu.
     //  It should be the same for both components but for now they should
     //  be divided.
-    targetForMultipleDiagnostics(metric, story, diagnostic, diagnostics) {
+    getTargetForMultipleDiagnostics(
+        metric, story, diagnostic, diagnostics, projection) {
       if (metric !== null && story !== null &&
-        diagnostic !== null && diagnostics !== null) {
+            diagnostic !== null && diagnostics !== null) {
         const result = this.sampleArr
             .filter(value => value.name === metric &&
                     this.guidValue
@@ -394,11 +399,12 @@ const app = new Vue({
           } else {
             currentDiagnostic = diagnosticItem[0];
           }
+          const data = projection(val);
           if (content.has(currentDiagnostic)) {
             const aux = content.get(currentDiagnostic);
-            content.set(currentDiagnostic, aux.concat(val.sampleValues));
+            content.set(currentDiagnostic, aux.concat(data));
           } else {
-            content.set(currentDiagnostic, val.sampleValues);
+            content.set(currentDiagnostic, data);
           }
         }
 
@@ -406,7 +412,6 @@ const app = new Vue({
         const contentVal = [];
         for (const [key, value] of content.entries()) {
           if (diagnostics.includes(key.toString())) {
-            value.map(value => +((value / MiB).toFixed(5)));
             contentKeys.push(key);
             contentVal.push(value);
           }
@@ -415,7 +420,23 @@ const app = new Vue({
         return obj;
       }
       return undefined;
-    }
+    },
+    //  Compute the target when the metric, story, diagnostics and
+    //  sub-diagnostics come from the table, not from the drop-down menu.
+    //  It should be the same for both components but for now they should
+    //  be divided.
+    targetForMultipleDiagnostics(metric, story, diagnostic, diagnostics) {
+      const projection = (val) =>
+        val.sampleValues.map(value => +((value / MiB).toFixed(5)));
+      return this.getTargetForMultipleDiagnostics(...arguments, projection);
+    },
+
+    getTraces(metric, story, diagnostic, diagnostics) {
+      return this.getTargetForMultipleDiagnostics(...arguments, (val) => {
+        const traceUrlId = val.diagnostics.traceUrls;
+        return this.guidValue.get(traceUrlId);
+      });
+    },
   },
 
   computed: {
