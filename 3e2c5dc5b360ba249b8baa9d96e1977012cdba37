@@ -247,6 +247,24 @@
     },
     {
       "key": {
+        "uuid": "1345720d_72071e8f",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-24T16:58:45Z",
+      "side": 1,
+      "message": "I think this would be cleanest as a getter on TimeseriesReader.\n\nget completion() {\n  return (async() \u003d\u003e {\n    for await (const _ of reader) {\n    }\n  })();\n}\n\npromises.push(reader.completion);",
+      "parentUuid": "8586a26f_127ab9ca",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "95e0d210_5dc5a705",
         "filename": "dashboard/dashboard/spa/chart-timeseries.js",
         "patchSetId": 27
@@ -2071,6 +2089,24 @@
     },
     {
       "key": {
+        "uuid": "61dd5c60_fc71a5ac",
+        "filename": "dashboard/dashboard/spa/sw-utils/google-analytics.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-24T16:58:45Z",
+      "side": 1,
+      "message": "\"event category\" is clear enough from context (sendEvent + category) that these comments do not add any additional information.",
+      "parentUuid": "39bd9487_c62782b0",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "af8054ce_d69de98b",
         "filename": "dashboard/dashboard/spa/sw-utils/google-analytics.js",
         "patchSetId": 27
@@ -3238,6 +3274,24 @@
       "side": 1,
       "message": "Changed to be a variable at the top of the file. Also, why use tr.b.guid.allocateSimple for a simple counter?",
       "parentUuid": "22a633af_abd5bf39",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "931021f9_a3faa651",
+        "filename": "dashboard/dashboard/spa/sw-utils/timing.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-24T16:58:45Z",
+      "side": 1,
+      "message": "GUID.allocateSimple *is* a simple counter, but ES6 modules cannot html-import base/guid.html, so re-implementing it here is fine. I\u0027ll refactor this code a bit whenever I migrate v2spa from html imports to es6 modules.",
+      "parentUuid": "1846e09f_6bfb2d2e",
       "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
