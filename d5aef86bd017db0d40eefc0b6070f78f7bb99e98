@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "85743c7c_b8ff3161",
+        "filename": "tracing/tracing/value/legacy_json_converter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-24T01:33:05Z",
+      "side": 1,
+      "message": "is the \u0027r_commit_pos is not None\u0027 necessary?",
+      "revId": "d5aef86bd017db0d40eefc0b6070f78f7bb99e98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad977ec5_7d67d4bc",
+        "filename": "tracing/tracing/value/legacy_json_converter_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-24T01:33:05Z",
+      "side": 1,
+      "message": "test if there are supplemental columns, but no r_commit_pos",
+      "range": {
+        "startLine": 68,
+        "startChar": 9,
+        "endLine": 68,
+        "endChar": 29
+      },
+      "revId": "d5aef86bd017db0d40eefc0b6070f78f7bb99e98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "127e82d1_2cc0aad8",
+        "filename": "tracing/tracing/value/legacy_json_converter_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-24T01:33:05Z",
+      "side": 1,
+      "message": "test if they\u0027re different",
+      "revId": "d5aef86bd017db0d40eefc0b6070f78f7bb99e98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
