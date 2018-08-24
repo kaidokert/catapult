@@ -13,10 +13,19 @@ const app = new Vue({
     searchQuery: '',
     gridColumns: ['id', 'metric', 'averageSampleValues'],
     gridData: [],
-    parsedMetrics: null
+    parsedMetrics: null,
+    globalDiagnostic: null,
+    additionalColumns: null
   },
 
   methods: {
+    plotBarChart(data) {
+      this.graph.xAxis('Story')
+          .yAxis('Memory used (MiB)')
+          .title('Average memory used')
+          .setData(data)
+          .plotBar();
+    },
     //  Draw a cumulative frequency plot depending on the target value.
     //  This is for displaying results for the selected parameters
     // from the drop-down menu.
@@ -94,6 +103,7 @@ const app = new Vue({
       const obj = this.getSubdiagnostics(metric, story, diagnostic);
       this.plotCumulativeFrequencyPlot(obj, story);
     },
+
     //  Draw a plot depending on the target value which is made
     //  of a metric, a story, a diagnostic and a couple of sub-diagnostics
     //  and the chosen type of plot. All are chosen from the table.
@@ -190,7 +200,17 @@ const app = new Vue({
           .getSubdiagnostics(this.selected_metric,
               this.selected_story,
               this.selected_diagnostic);
-    }
+    },
+
+    //  Extract all diagnostic names from all elements.
+    allDiagnostics() {
+      if (this.sampleArr === undefined) {
+        return undefined;
+      }
+      const allDiagnostics = this.sampleArr
+          .map(val => Object.keys(val.diagnostics));
+      return _.union.apply(this, allDiagnostics);
+    },
   },
 
   watch: {
@@ -201,13 +221,57 @@ const app = new Vue({
       this.plotCumulativeFrequency();
     },
 
-    // Whenever the user changes the mind about the top level metric
-    //  all dependencies are changed. (stories and diagnostics are
-    //  dependent of the chosen metric)
     metrics() {
       this.selected_metric = null;
       this.selected_story = null;
       this.selected_diagnostic = null;
+    },
+    //  Compute the data for the columns after the user has chosen a
+    //  particular global diagnostic that has to be split in
+    //  multiple subdiagnostics.
+    globalDiagnostic() {
+      if (this.globalDiagnostic === null) {
+        return undefined;
+      }
+      this.gridColumns = ['id', 'metric', 'averageSampleValues'];
+      const newDiagnostics = new Set();
+      const content = new Map();
+      for (const elem of this.sampleArr) {
+        let diagnostic = this.guidValue.
+            get(elem.diagnostics[this.globalDiagnostic]);
+        if (diagnostic === undefined) {
+          continue;
+        } else if (diagnostic !== 'number') {
+          diagnostic = diagnostic[0];
+        }
+        newDiagnostics.add(diagnostic);
+
+        if (!content.has(elem.name)) {
+          const map = new Map();
+          map.set(diagnostic, [average(elem.sampleValues)]);
+          content.set(elem.name, map);
+        } else {
+          const map = content.get(elem.name);
+          if (map.has(diagnostic)) {
+            const array = map.get(diagnostic);
+            array.push(average(elem.sampleValues));
+            map.set(diagnostic, array);
+            content.set(elem.name, map);
+          } else {
+            map.set(diagnostic, [average(elem.sampleValues)]);
+            content.set(elem.name, map);
+          }
+        }
+      }
+      this.additionalColumns = Array.from(newDiagnostics);
+      for (const elem of this.gridData) {
+        if (content.get(elem.metric) === undefined) {
+          continue;
+        }
+        for (const diag of Array.from(newDiagnostics)) {
+          elem[diag] = average(content.get(elem.metric).get(diag));
+        }
+      }
     }
   }
 });
