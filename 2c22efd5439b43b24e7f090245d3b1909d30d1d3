@@ -16,6 +16,24 @@
       "revId": "2c22efd5439b43b24e7f090245d3b1909d30d1d3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdb77d05_d317c401",
+        "filename": "dashboard/bin/run_wct_tests",
+        "patchSetId": 7
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2018-08-24T21:44:36Z",
+      "side": 1,
+      "message": "Yes, tests on infra will usually install a few packages via CIPD prior to running. Note that CIPD checks the local files first and only fetches a new package if you don\u0027t have the proper one available and installed locally already.  So it\u0027s usually a no-op.\n\nIn infra, we\u0027re moving away from having special bots with specific packages pre-installed manually.  Everything a builder needs gets installed via cipd. That way any particular builder VM can get blown away and it gets re-created and started from scratch, with no manual intervention. \n\nFor running locally, you can try to use CIPD for wct.go (that *should* work. I\u0027m sorry I\u0027m not sure what the cipd error you saw means. vadimsh@ may be able to help or point you to someone who can). In infra local wct runs we usually just build and run wct.go from source since we\u0027re already in the same repo. Not sure what the best answer is for catapult though. Adding ./cipd to .gitignore seems reasonable though.",
+      "parentUuid": "6deca366_e1863f8e",
+      "revId": "2c22efd5439b43b24e7f090245d3b1909d30d1d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
