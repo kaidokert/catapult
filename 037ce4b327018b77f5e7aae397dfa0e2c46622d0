@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "23654a07_4f7d7f85",
+        "filename": "dashboard/dashboard/spa/report-cache.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-24T05:32:59Z",
+      "side": 1,
+      "message": "Don\u0027t you need to await the response in case it\u0027s a promise per the comment above?",
+      "revId": "037ce4b327018b77f5e7aae397dfa0e2c46622d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be26b770_c6833726",
+        "filename": "dashboard/dashboard/spa/report-cache.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-24T05:32:59Z",
+      "side": 1,
+      "message": "Don\u0027t you need to store the response promise here so that readFromCache can await it?",
+      "revId": "037ce4b327018b77f5e7aae397dfa0e2c46622d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41535991_b646abae",
+        "filename": "dashboard/dashboard/spa/report-cache.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-24T05:32:59Z",
+      "side": 1,
+      "message": "Would it be possible to use the statePathReducer wrapper and set statePath: `${this.cacheStatePath_}.${cacheKey}`?",
+      "revId": "037ce4b327018b77f5e7aae397dfa0e2c46622d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f197e75d_063be99f",
+        "filename": "dashboard/dashboard/spa/report-section.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-24T05:32:59Z",
+      "side": 1,
+      "message": "Isn\u0027t this just cp.batchResponses now?",
+      "revId": "037ce4b327018b77f5e7aae397dfa0e2c46622d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a93c4e3_4071a116",
+        "filename": "dashboard/dashboard/spa/report-section.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 863,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-24T05:32:59Z",
+      "side": 1,
+      "message": "This could just be a Redux.UPDATE.",
+      "revId": "037ce4b327018b77f5e7aae397dfa0e2c46622d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
