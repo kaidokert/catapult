@@ -34,6 +34,24 @@
       "revId": "2c22efd5439b43b24e7f090245d3b1909d30d1d3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f23b05d7_17ac46db",
+        "filename": "dashboard/bin/run_wct_tests",
+        "patchSetId": 7
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-24T22:30:35Z",
+      "side": 1,
+      "message": "It looks like infra tests use the recipe api to install cipd packages like wct and chrome, so I have a separate CL to do that for catapult: https://chromium-review.googlesource.com/c/chromium/tools/build/+/1183891\nThat CL passes the paths to wct and chrome to catapult_build/build_steps.py, which passes the paths to run_wct_tests as env vars.\n\nI added instructions to this file to help devs cipd-install wct and add it to their path. It works great!\n\nI have a separate CL to extend wct.go to accept multiple --dep flags so that run_wct_tests doesn\u0027t need to create symlinks for all its dependencies. https://chromium-review.googlesource.com/c/infra/infra/+/1188536",
+      "parentUuid": "bdb77d05_d317c401",
+      "revId": "2c22efd5439b43b24e7f090245d3b1909d30d1d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
