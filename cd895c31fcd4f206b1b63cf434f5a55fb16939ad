@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "35762c9b_8fa8108c",
+        "filename": "experimental/v8_tools/dot_plotter.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1293423
+      },
+      "writtenOn": "2018-08-24T11:20:56Z",
+      "side": 1,
+      "message": "Here key is needed to identify which run the data belongs to (as id\u0027s are not unique between runs because it is just the index of the data as passed into graph data).\nFor example, for input:\n{\nrun1: [0, 1, 2,...]\nrun2: [0, 1, 2,...]\n}\nwe will need to know whether it is run1 or run2 along with the index 0, 1, 2...",
+      "parentUuid": "ff2052ec_29cce4a1",
+      "revId": "cd895c31fcd4f206b1b63cf434f5a55fb16939ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c10d307c_9d11d4cf",
         "filename": "experimental/v8_tools/dot_plotter.js",
         "patchSetId": 6
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "8d6e5c86_8eb3d0e6",
+        "filename": "experimental/v8_tools/dot_plotter.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1293423
+      },
+      "writtenOn": "2018-08-24T11:20:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c10d307c_9d11d4cf",
+      "revId": "cd895c31fcd4f206b1b63cf434f5a55fb16939ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ba063a3_c432f7e7",
         "filename": "experimental/v8_tools/graph_data.js",
         "patchSetId": 6
@@ -47,6 +83,24 @@
       "writtenOn": "2018-08-24T10:30:19Z",
       "side": 1,
       "message": "the same question as earlier, wouldn\u0027t index be sufficient? Or is it needed for other kinds of graphs?",
+      "revId": "cd895c31fcd4f206b1b63cf434f5a55fb16939ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a34cf040_6d7f5a14",
+        "filename": "experimental/v8_tools/graph_data.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1293423
+      },
+      "writtenOn": "2018-08-24T11:20:56Z",
+      "side": 1,
+      "message": "Yep, the rest is needed for other graph types. \nKey is usually the display label (or whichever diagnostic is being used), so that is needed to distinguish between runs for all graph types. \nStory is for the bar charts, which have multiple stories that we have to distinguish between. Similarly, metric will be needed along with story for stacked bar charts, where there will be multiple metrics to distinguish between.\ne.g., the bar chart has a hierarchy something like\n{\nrun1: {\n  story1: values...,\n  story2: values...,\n}\nrun2: etc...\n}\nin which case index is only unique within the \u0027values...\u0027 parts and we need runx (the key) and storyx to narrow down on which \u0027values...\u0027 the index refers to. Also, index isn\u0027t useful for bar charts as the interactive aspect relates to navigating user to the story which was clicked (and the data is aggregated anyway so there\u0027s no way to click on a specific data point).",
+      "parentUuid": "2ba063a3_c432f7e7",
       "revId": "cd895c31fcd4f206b1b63cf434f5a55fb16939ad",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
