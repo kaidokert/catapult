@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6deca366_e1863f8e",
+        "filename": "dashboard/bin/run_wct_tests",
+        "patchSetId": 7
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-24T19:46:44Z",
+      "side": 1,
+      "message": "Is it normal for tests on infra to call cipd to install things before running? Can we just pre-install it on the bot and ask that you have it in your path or something if you want to run locally? We do that with gcloud.\n\nOtherwise, this leaves a stray binary in dashboard/bin, could be either cleaned up or gitignored I suppose. When I tried this locally on my linux cloudtop, cipd failed complaining it was already in a site root.",
+      "revId": "2c22efd5439b43b24e7f090245d3b1909d30d1d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
