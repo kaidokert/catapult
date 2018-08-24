@@ -1,0 +1,23 @@
+#!/bin/sh
+
+echo $WCT
+ls $WCT
+
+BINDIR=$(dirname $(realpath $0))
+pushd $BINDIR
+mkdir -p cipd
+cd cipd
+cipd init
+cipd install infra/testing/wct/linux-amd64 prod
+popd
+
+BASE=$BINDIR/../
+BOWER=$BINDIR/../../third_party/polymer2/
+rm -f $BASE/tracing
+ln -sf $BASE/../tracing/tracing $BASE
+rm -f $BASE/gl-matrix-min.js
+ln -sf $BASE/../tracing/third_party/gl-matrix/dist/gl-matrix-min.js $BASE
+rm -f $BASE/mannwhitneyu
+ln -sf $BASE/../tracing/third_party/mannwhitneyu $BASE
+
+$BINDIR/cipd/wct -chrome google-chrome -base "$BASE" -bower "$BOWER"
