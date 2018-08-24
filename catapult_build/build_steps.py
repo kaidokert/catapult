@@ -62,6 +62,12 @@ _CATAPULT_TESTS = [
         'disabled': ['android'],
     },
     {
+        'name': 'Dashboard WCT Tests',
+        'path': 'dashboard/bin/run_wct_tests',
+        'disabled': ['android', 'win', 'mac'],
+        'uses_wct': True,
+    },
+    {
         'name': 'Dependency Manager Tests',
         'path': 'dependency_manager/bin/run_tests',
     },
@@ -205,6 +211,7 @@ def main(args=None):
   parser.add_argument('--api-path-checkout', help='Path to catapult checkout')
   parser.add_argument('--app-engine-sdk-pythonpath',
                       help='PYTHONPATH to include app engine SDK path')
+  parser.add_argument('--wct-path')
   parser.add_argument('--platform',
                       help='Platform name (linux, mac, or win)')
   parser.add_argument('--output-json', help='Output for buildbot status page')
@@ -270,6 +277,8 @@ def main(args=None):
       step['env']['CHROME_DEVEL_SANDBOX'] = '/opt/chromium/chrome_sandbox'
     if test.get('outputs_presentation_json'):
       step['outputs_presentation_json'] = True
+    if test.get('uses_wct'):
+      step['env']['WCT'] = args.wct_path
     steps.append(step)
   with open(args.output_json, 'w') as outfile:
     json.dump(steps, outfile)
