@@ -314,7 +314,8 @@ def main(argv):
     logging.basicConfig(level=logging.DEBUG)
 
   if options.check:
-    CheckForChanges()
+    if not CheckForChanges():
+      return 1
   elif options.chromium:
     root_path = os.path.dirname(os.path.realpath(__file__))
     output_path = os.path.join(
@@ -324,6 +325,7 @@ def main(argv):
     root_path = os.path.dirname(os.path.realpath(__file__))
     output_path = os.path.join(root_path, "BUILD.gn")
     GenerateBuildFile(root_path, output_path, chromium=False)
+  return 0
 
 if __name__ == '__main__':
   sys.exit(main(sys.argv[1:]))
