@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "11ec6303_a2a00515",
+        "filename": "devil/devil/android/forwarder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1279964
+      },
+      "writtenOn": "2018-08-25T00:10:53Z",
+      "side": 1,
+      "message": "Scheme in this context was a carry-over from the SSH naming convention. Specifically, this class was meant to generate the forwarding string used by SSH as an argument to the -L or -R flag to forward ports from one network location to another. However, this CL is no longer relevant with change to how forwarding will work in the FuchsiaForwarder class in Catapult.",
+      "parentUuid": "c76835ae_ae95f361",
+      "range": {
+        "startLine": 101,
+        "startChar": 6,
+        "endLine": 101,
+        "endChar": 26
+      },
+      "revId": "5f0f8bd103593c7bb1604214de84504a39eef064",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "61add158_98fa4e90",
         "filename": "devil/devil/android/forwarder.py",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "5f0f8bd103593c7bb1604214de84504a39eef064",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2956b5a1_41d98241",
+        "filename": "devil/devil/android/forwarder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1279964
+      },
+      "writtenOn": "2018-08-25T00:10:53Z",
+      "side": 1,
+      "message": "I\u0027ll use this advice when I implement the FuchsiaForwarder class. Unfortunately, this CL is going away...",
+      "parentUuid": "61add158_98fa4e90",
+      "range": {
+        "startLine": 125,
+        "startChar": 3,
+        "endLine": 126,
+        "endChar": 47
+      },
+      "revId": "5f0f8bd103593c7bb1604214de84504a39eef064",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
