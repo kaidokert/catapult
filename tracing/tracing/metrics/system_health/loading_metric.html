@@ -257,6 +257,24 @@ tr.exportTo('tr.metrics.sh', function() {
     };
   }
 
+  function decorateFCPPlusPlusSampleWithDiagnostics_(rendererHelper,
+      eventTimestamp, navigationStartTime, domContentLoadedEndTime, url) {
+    const navStartToEventTimeRange =
+        tr.b.math.Range.fromExplicitRange(navigationStartTime, eventTimestamp);
+    return {
+      value: navStartToEventTimeRange.duration,
+      diagnostics: tr.v.d.DiagnosticMap.fromObject({
+        'Navigation infos': new tr.v.d.GenericSet([{
+          url,
+          pid: rendererHelper.pid,
+          navigationStartTime,
+          domContentLoadedEndTime,
+          eventTimestamp,
+        }])
+      }),
+    };
+  }
+
   function collectLoadingMetricsForRenderer(rendererHelper) {
     const frameToNavStartEvents =
         EventFinderUtils.getSortedMainThreadEventsByFrame(
@@ -279,12 +297,55 @@ tr.exportTo('tr.metrics.sh', function() {
     };
   }
 
-  function collectMetricsFromLoadExpectations(model, chromeHelper) {
+  function addFCPVariantsToHistograms(entries, histograms) {
+    for (const entry of Object.entries(entries)) {
+      const metricName = entry[0];
+      const metricSamples = entry[1];
+
+      const histogram = histograms.createHistogram(
+          metricName, timeDurationInMs_smallerIsBetter, [], {
+            binBoundaries: LOADING_METRIC_BOUNDARIES,
+            description: metricName,
+            summaryOptions: SUMMARY_OPTIONS,
+          });
+      addSamplesToHistogram(
+          metricSamples, histogram, histograms);
+    }
+  }
+
+  function collectFCPVariantsSamples(rendererHelper,
+      fcpVariantsSamplesCollection, expectation) {
+    for (const entries of Object.entries(expectation.fcpVariants)) {
+      const key = entries[0];
+      const value = entries[1];
+      if (!value) continue;
+      if (!(key in fcpVariantsSamplesCollection)) {
+        fcpVariantsSamplesCollection[key] = [];
+      }
+      const sample = decorateFCPPlusPlusSampleWithDiagnostics_(
+          rendererHelper, value,
+          expectation.navigationStart.start,
+          expectation.domContentLoadedEndEvent?expectation.domContentLoadedEndEvent.start:null,
+          expectation.url);
+      fcpVariantsSamplesCollection[key].push(sample);
+    }
+    const sample = {value: expectation.navigationStart.start};
+    fcpVariantsSamplesCollection["navigationStart"] = [sample];
+    // Use a hack to convert ms back to ts.
+    const sampleTs = { value:
+        (expectation.navigationStart.start -
+        rendererHelper.modelHelper.model_.convertTimestampToModelTime(
+              'traceEventClock', 0))*1000};
+    fcpVariantsSamplesCollection["navigationStartTs"] = [sampleTs];
+  }
+
+  function collectMetricsFromLoadExpectations(model, chromeHelper, histograms) {
     // Add FMP, firstCpuIdle and interactive samples from load UE
     const interactiveSamples = [];
     const firstCpuIdleSamples = [];
     const firstMeaningfulPaintSamples = [];
     const firstMeaningfulPaintCpuTimeSamples = [];
+    const fcpVariantsSamplesCollection = [];
     for (const expectation of model.userModel.expectations) {
       if (!(expectation instanceof tr.model.um.LoadExpectation)) continue;
       if (tr.e.chrome.CHROME_INTERNAL_URLS.includes(expectation.url)) {
@@ -314,7 +375,13 @@ tr.exportTo('tr.metrics.sh', function() {
             expectation.fmpEvent.start,
             expectation.domContentLoadedEndEvent.start, expectation.url));
       }
+      if (expectation.fmpEvent !== undefined) {
+        collectFCPVariantsSamples(rendererHelper, fcpVariantsSamplesCollection,
+            expectation);
+        break;
+      }
     }
+    addFCPVariantsToHistograms(fcpVariantsSamplesCollection, histograms);
 
     return {
       firstMeaningfulPaintSamples,
@@ -365,86 +432,90 @@ tr.exportTo('tr.metrics.sh', function() {
   }
 
   function loadingMetric(histograms, model) {
-    const firstPaintHistogram = histograms.createHistogram(
-        'timeToFirstPaint', timeDurationInMs_smallerIsBetter, [], {
-          binBoundaries: LOADING_METRIC_BOUNDARIES,
-          description: 'time to first paint',
-          summaryOptions: SUMMARY_OPTIONS,
-        });
-    const firstContentfulPaintHistogram = histograms.createHistogram(
-        'timeToFirstContentfulPaint', timeDurationInMs_smallerIsBetter, [], {
-          binBoundaries: LOADING_METRIC_BOUNDARIES,
-          description: 'time to first contentful paint',
-          summaryOptions: SUMMARY_OPTIONS,
-        });
-    const onLoadHistogram = histograms.createHistogram(
-        'timeToOnload', timeDurationInMs_smallerIsBetter, [], {
-          binBoundaries: LOADING_METRIC_BOUNDARIES,
-          description: 'time to onload. ' +
-            'This is temporary metric used for PCv1/v2 sanity checking',
-          summaryOptions: SUMMARY_OPTIONS,
-        });
-    const firstMeaningfulPaintHistogram = histograms.createHistogram(
-        'timeToFirstMeaningfulPaint', timeDurationInMs_smallerIsBetter, [], {
-          binBoundaries: LOADING_METRIC_BOUNDARIES,
-          description: 'time to first meaningful paint',
-          summaryOptions: SUMMARY_OPTIONS,
-        });
-    const firstMeaningfulPaintCpuTimeHistogram = histograms.createHistogram(
-        'cpuTimeToFirstMeaningfulPaint', timeDurationInMs_smallerIsBetter, [], {
-          binBoundaries: LOADING_METRIC_BOUNDARIES,
-          description: 'CPU time to first meaningful paint',
-          summaryOptions: SUMMARY_OPTIONS,
-        });
-    const timeToInteractiveHistogram = histograms.createHistogram(
-        'timeToInteractive', timeDurationInMs_smallerIsBetter, [], {
-          binBoundaries: TIME_TO_INTERACTIVE_BOUNDARIES,
-          description: 'Time to Interactive',
-          summaryOptions: SUMMARY_OPTIONS,
-        });
-    const timeToFirstCpuIdleHistogram = histograms.createHistogram(
-        'timeToFirstCpuIdle', timeDurationInMs_smallerIsBetter, [], {
-          binBoundaries: TIME_TO_INTERACTIVE_BOUNDARIES,
-          description: 'Time to First CPU Idle',
-          summaryOptions: SUMMARY_OPTIONS,
-        });
+    try {
+      const firstPaintHistogram = histograms.createHistogram(
+          'timeToFirstPaint', timeDurationInMs_smallerIsBetter, [], {
+            binBoundaries: LOADING_METRIC_BOUNDARIES,
+            description: 'time to first paint',
+            summaryOptions: SUMMARY_OPTIONS,
+          });
+      const firstContentfulPaintHistogram = histograms.createHistogram(
+          'timeToFirstContentfulPaint', timeDurationInMs_smallerIsBetter, [], {
+            binBoundaries: LOADING_METRIC_BOUNDARIES,
+            description: 'time to first contentful paint',
+            summaryOptions: SUMMARY_OPTIONS,
+          });
+      const onLoadHistogram = histograms.createHistogram(
+          'timeToOnload', timeDurationInMs_smallerIsBetter, [], {
+            binBoundaries: LOADING_METRIC_BOUNDARIES,
+            description: 'time to onload. ' +
+              'This is temporary metric used for PCv1/v2 sanity checking',
+            summaryOptions: SUMMARY_OPTIONS,
+          });
+      const firstMeaningfulPaintHistogram = histograms.createHistogram(
+          'timeToFirstMeaningfulPaint', timeDurationInMs_smallerIsBetter, [], {
+            binBoundaries: LOADING_METRIC_BOUNDARIES,
+            description: 'time to first meaningful paint',
+            summaryOptions: SUMMARY_OPTIONS,
+          });
+      const firstMeaningfulPaintCpuTimeHistogram = histograms.createHistogram(
+          'cpuTimeToFirstMeaningfulPaint', timeDurationInMs_smallerIsBetter, [], {
+            binBoundaries: LOADING_METRIC_BOUNDARIES,
+            description: 'CPU time to first meaningful paint',
+            summaryOptions: SUMMARY_OPTIONS,
+          });
+      const timeToInteractiveHistogram = histograms.createHistogram(
+          'timeToInteractive', timeDurationInMs_smallerIsBetter, [], {
+            binBoundaries: TIME_TO_INTERACTIVE_BOUNDARIES,
+            description: 'Time to Interactive',
+            summaryOptions: SUMMARY_OPTIONS,
+          });
+      const timeToFirstCpuIdleHistogram = histograms.createHistogram(
+          'timeToFirstCpuIdle', timeDurationInMs_smallerIsBetter, [], {
+            binBoundaries: TIME_TO_INTERACTIVE_BOUNDARIES,
+            description: 'Time to First CPU Idle',
+            summaryOptions: SUMMARY_OPTIONS,
+          });
 
-    const chromeHelper = model.getOrCreateHelper(
-        tr.model.helpers.ChromeModelHelper);
-    for (const pid in chromeHelper.rendererHelpers) {
-      const rendererHelper = chromeHelper.rendererHelpers[pid];
-      if (rendererHelper.isChromeTracingUI) continue;
+      const chromeHelper = model.getOrCreateHelper(
+          tr.model.helpers.ChromeModelHelper);
+      for (const pid in chromeHelper.rendererHelpers) {
+        const rendererHelper = chromeHelper.rendererHelpers[pid];
+        if (rendererHelper.isChromeTracingUI) continue;
 
-      const samplesSet =
-          collectLoadingMetricsForRenderer(rendererHelper);
+        const samplesSet =
+            collectLoadingMetricsForRenderer(rendererHelper);
 
+        addSamplesToHistogram(
+            samplesSet.firstPaintSamples, firstPaintHistogram, histograms);
+        addSamplesToHistogram(
+            samplesSet.firstContentfulPaintSamples,
+            firstContentfulPaintHistogram,
+            histograms);
+        addSamplesToHistogram(
+            samplesSet.onLoadSamples, onLoadHistogram, histograms);
+      }
+
+      const samplesSet = collectMetricsFromLoadExpectations(model, chromeHelper, histograms);
       addSamplesToHistogram(
-          samplesSet.firstPaintSamples, firstPaintHistogram, histograms);
-      addSamplesToHistogram(
-          samplesSet.firstContentfulPaintSamples,
-          firstContentfulPaintHistogram,
+          samplesSet.firstMeaningfulPaintSamples,
+          firstMeaningfulPaintHistogram,
           histograms);
       addSamplesToHistogram(
-          samplesSet.onLoadSamples, onLoadHistogram, histograms);
+          samplesSet.firstMeaningfulPaintCpuTimeSamples,
+          firstMeaningfulPaintCpuTimeHistogram,
+          histograms);
+      addSamplesToHistogram(
+          samplesSet.interactiveSamples,
+          timeToInteractiveHistogram,
+          histograms);
+      addSamplesToHistogram(
+          samplesSet.firstCpuIdleSamples,
+          timeToFirstCpuIdleHistogram,
+          histograms);
+    } catch (error) {
+      console.error(error);
     }
-
-    const samplesSet = collectMetricsFromLoadExpectations(model, chromeHelper);
-    addSamplesToHistogram(
-        samplesSet.firstMeaningfulPaintSamples,
-        firstMeaningfulPaintHistogram,
-        histograms);
-    addSamplesToHistogram(
-        samplesSet.firstMeaningfulPaintCpuTimeSamples,
-        firstMeaningfulPaintCpuTimeHistogram,
-        histograms);
-    addSamplesToHistogram(
-        samplesSet.interactiveSamples,
-        timeToInteractiveHistogram,
-        histograms);
-    addSamplesToHistogram(
-        samplesSet.firstCpuIdleSamples,
-        timeToFirstCpuIdleHistogram,
-        histograms);
   }
 
   tr.metrics.MetricRegistry.register(loadingMetric);
