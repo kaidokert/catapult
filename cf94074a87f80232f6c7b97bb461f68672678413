@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "753f7c94_6296061d",
+        "filename": "generate_telemetry_build.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2018-08-27T18:03:14Z",
+      "side": 1,
+      "message": "The control flow is a little confusing now. I suggest having the \"if options.check\" block always return either 1 or 0, so that the next block can just be \"if options.chromium\".",
+      "revId": "cf94074a87f80232f6c7b97bb461f68672678413",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
