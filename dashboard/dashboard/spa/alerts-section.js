@@ -1167,13 +1167,19 @@ tr.exportTo('cp', () => {
       // Don't automatically select the first group. Users often want to sort
       // the table by some column before previewing any alerts.
 
-      // Hide the Bug, Master, and Test Case columns if they're boring.
-      const bugs = new Set();
+      // Hide the Triaged, Bug, Master, and Test Case columns if they're boring.
+      let showBugColumn = false;
+      let showTriagedColumn = false;
       const masters = new Set();
       const testCases = new Set();
       for (const group of alertGroups) {
+        if (group.triaged && group.triaged.alerts.length) {
+          showTriagedColumn = true;
+        }
         for (const alert of group.alerts) {
-          bugs.add(alert.bugId);
+          if (alert.bugId) {
+            showBugColumn = true;
+          }
           masters.add(alert.master);
           testCases.add(alert.testCase);
         }
@@ -1183,9 +1189,10 @@ tr.exportTo('cp', () => {
         ...state,
         alertGroups,
         areAlertGroupsPlaceholders: false,
-        showBugColumn: bugs.size > 1,
+        showBugColumn,
         showMasterColumn: masters.size > 1,
         showTestCaseColumn: testCases.size > 1,
+        showTriagedColumn,
       };
     },
 

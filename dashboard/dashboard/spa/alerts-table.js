@@ -127,6 +127,7 @@ tr.exportTo('cp', () => {
     alertGroups: options => AlertsTable.PLACEHOLDER_ALERT_GROUPS,
     areAlertGroupsPlaceholders: options => true,
     showBugColumn: options => true,
+    showTriagedColumn: options => true,
     showMasterColumn: options => true,
     showTestCaseColumn: options => true,
     sortColumn: options => options.sortColumn || 'revisions',
