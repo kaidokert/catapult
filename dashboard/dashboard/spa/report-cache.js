@@ -177,12 +177,25 @@ tr.exportTo('cp', () => {
 
       const request = this.createRequest_();
       const fullUrl = location.origin + request.url_;
+      const listener = new cp.ServiceWorkerListener(fullUrl);
 
       this.onStartRequest_(request);
       const response = await request.response;
 
-      this.onFinishRequest_(response);
-      yield response;
+      // Cached results will first yield with an empty object then send the
+      // actual result through a BroadcastChannel to avoid useless JSON parsing.
+      // ServiceWorkerListener is listening for messages received on the
+      // BroadcastChannel.
+      if (response) {
+        this.onFinishRequest_(response);
+        yield response;
+      }
+
+      // Wait for the Service Worker to finish all it's tasks.
+      for await (const update of listener) {
+        this.onFinishRequest_(update);
+        yield update;
+      }
     }
   }
 
@@ -247,5 +260,6 @@ tr.exportTo('cp', () => {
 
   return {
     ReportReader,
+    ReportRequest,
   };
 });
