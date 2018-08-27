@@ -493,7 +493,7 @@ tr.exportTo('cp', () => {
       }
 
       // Avoid triggering render too rapidly by batching responses.
-      const batchIterator = cp.RequestBase.batchResponses(readers);
+      const batchIterator = cp.batchResponses(readers);
 
       for await (const { results, errors } of batchIterator) {
         if (errors.length > 0) {
