@@ -27,7 +27,7 @@ class GoogleAnalytics {
     this.clientId = undefined;
 
     // Used for queueing requests until GA is initialized.
-    this.paramsQueue = [];
+    this.formQueue = [];
   }
 
   // Configure Google Analytics. Any events sent before this function is called
@@ -36,75 +36,66 @@ class GoogleAnalytics {
     this.trackingId = trackingId;
     this.clientId = clientId;
 
-    // Send out all pending requests.
-    for (const params of this.paramsQueue) {
-      this.sendRequest_(params);
+    // Send out all pending beacons.
+    for (const form of this.formQueue) {
+      this.sendBeacon_(form);
     }
-    this.paramsQueue = [];
+    this.formQueue = [];
   }
 
   sendEvent(category, action, label, value) {
-    const params = this.createParams_();
-    params.set('t', HIT_TYPE_EVENT);
-    params.set('ec', category);
-    params.set('ea', action);
-    params.set('ev', value);
+    const form = this.createForm_();
+    form.set('t', HIT_TYPE_EVENT);
+    form.set('ec', category);
+    form.set('ea', action);
+    form.set('ev', value);
     if (label) {
-      params.set('el', label);
+      form.set('el', label);
     }
-    this.send_(params);
+    this.send_(form);
   }
 
   sendTiming(category, action, duration, label) {
-    const params = this.createParams_();
+    const form = this.createForm_();
     const roundedDuration = Math.round(duration);
-    params.set('t', HIT_TYPE_TIMING);
-    params.set('utc', category);
-    params.set('utv', action);
-    params.set('utt', roundedDuration);
+    form.set('t', HIT_TYPE_TIMING);
+    form.set('utc', category);
+    form.set('utv', action);
+    form.set('utt', roundedDuration);
     if (label) {
-      params.set('utl', label);
+      form.set('utl', label);
     }
-    this.send_(params);
+    this.send_(form);
   }
 
   sendException(description, fatal = true) {
-    const params = this.createParams_();
-    params.set('t', HIT_TYPE_EXCEPTION);
-    params.set('exd', description);
-    params.set('exf', fatal);
-    this.send_(params);
+    const form = this.createForm_();
+    form.set('t', HIT_TYPE_EXCEPTION);
+    form.set('exd', description);
+    form.set('exf', fatal);
+    this.send_(form);
   }
 
-  createParams_() {
-    const params = new URLSearchParams();
-    params.set('v', VERSION_NUMBER);
-    params.set('ds', DATA_SOURCE);
-    params.set('cid', GoogleAnalytics.clientId);
-    params.set('tid', GoogleAnalytics.trackingId);
-    return params;
+  createForm_() {
+    const form = new FormData();
+    form.set('v', VERSION_NUMBER);
+    form.set('ds', DATA_SOURCE);
+    form.set('cid', GoogleAnalytics.clientId);
+    form.set('tid', GoogleAnalytics.trackingId);
+    return form;
   }
 
-  send_(params) {
+  send_(form) {
     if (!this.clientId || !this.trackingId) {
-      // `GoogleAnalytics#configure` has not been called yet. There is not
-      // enough information to send these parameters to GA.
-      this.paramsQueue.push(params);
+      // Google Analytics configuration variables not setup. Try again later.
+      this.formQueue.push(form);
     } else {
-      this.sendRequest_(params);
+      this.sendBeacon_(form);
     }
   }
 
-  async sendRequest_(params) {
-    const response = await fetch('https://www.google-analytics.com/collect', {
-      method: 'POST',
-      body: params.toString(),
-    });
-
-    if (!response.ok) {
-      const text = await response.text();
-      throw new Error(`Bad response from Google Analytics:\n${text}`);
-    }
+  async sendBeacon_(form) {
+    self.navigator.sendBeacon('https://www.google-analytics.com/collect', form);
   }
 }
 
