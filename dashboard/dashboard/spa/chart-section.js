@@ -984,8 +984,7 @@ tr.exportTo('cp', () => {
   };
 
   ChartSection.createLineDescriptors = ({
-    testSuiteses, measurements, botses, testCaseses, statistics,
-    buildTypes,
+    testSuiteses, measurements, botses, testCaseses, statistics, buildTypes,
   }) => {
     const lineDescriptors = [];
     for (const testSuites of testSuiteses) {

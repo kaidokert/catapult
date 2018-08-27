@@ -1,0 +1,20 @@
+{
+  "author": {
+    "name": "Jake Archibald"
+  },
+  "browser": "idb.js",
+  "bugs": {
+    "url": "https://github.com/jakearchibald/indexeddb-promised/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "IndexedDB but with promises",
+  "homepage": "https://github.com/jakearchibald/indexeddb-promised#readme",
+  "license": "ISC",
+  "name": "idb",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jakearchibald/indexeddb-promised.git"
+  },
+  "version": "2.1.3"
+}
