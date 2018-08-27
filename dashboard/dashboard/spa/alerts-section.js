@@ -143,7 +143,7 @@ tr.exportTo('cp', () => {
         revs.addValue(parseInt(1e6 * Math.random()));
         revs.addValue(parseInt(1e6 * Math.random()));
         let bugId = undefined;
-        if (this.bugId !== '' && (Math.random() > 0.5)) {
+        if (Math.random() > 0.5) {
           if (Math.random() > 0.5) {
             bugId = -1;
           } else {
@@ -478,7 +478,6 @@ tr.exportTo('cp', () => {
     }),
     showingImprovements: options => options.showingImprovements || false,
     showingRecentlyModifiedBugs: options => false,
-    showingTriaged: options => options.showingTriaged || false,
     triagedBugId: options => 0,
   };
 
@@ -510,12 +509,6 @@ tr.exportTo('cp', () => {
           alertGroupIndex,
           alertIndex,
         });
-        /*
-        dispatch(Redux.UPDATE(`${statePath}.preview`, {
-          lineDescriptors: [AlertsSection.computeLineDescriptor(alert)],
-          minTimestampMs: new Date() - MS_PER_MONTH,
-        }));
-        */
       },
 
     authChange: statePath => async(dispatch, getState) => {
@@ -816,10 +809,6 @@ tr.exportTo('cp', () => {
           const options = {sheriff, limit: 500, ...revisions};
           if (!state.showingImprovements) {
             options.is_improvement = 'false';
-          }
-          if (!state.showingTriaged) {
-            options.bug_id = '';
-            options.recovered = 'false';
           }
           return options;
         }),
@@ -1153,11 +1142,16 @@ tr.exportTo('cp', () => {
         };
       }
 
-      let alertGroups = d.groupAlerts(action.alerts);
+      let alertGroups = d.groupAlerts(action.alerts, state.showingTriaged);
       alertGroups = alertGroups.map((alerts, groupIndex) => {
+        alerts = alerts.map(AlertsSection.transformAlert);
         return {
           isExpanded: false,
-          alerts: alerts.map(AlertsSection.transformAlert),
+          alerts,
+          triaged: {
+            isExpanded: false,
+            count: alerts.filter(a => a.bugId).length,
+          }
         };
       });
 
@@ -1167,25 +1161,33 @@ tr.exportTo('cp', () => {
       // Don't automatically select the first group. Users often want to sort
       // the table by some column before previewing any alerts.
 
-      // Hide the Bug, Master, and Test Case columns if they're boring.
-      const bugs = new Set();
+      // Hide the Triaged, Bug, Master, and Test Case columns if they're boring.
+      let showBugColumn = false;
+      let showTriagedColumn = false;
       const masters = new Set();
       const testCases = new Set();
       for (const group of alertGroups) {
+        if (group.triaged && group.triaged.count) {
+          showTriagedColumn = true;
+        }
         for (const alert of group.alerts) {
-          bugs.add(alert.bugId);
+          if (alert.bugId) {
+            showBugColumn = true;
+          }
           masters.add(alert.master);
           testCases.add(alert.testCase);
         }
       }
+      if (state.showingTriaged) showTriagedColumn = false;
 
       return {
         ...state,
         alertGroups,
         areAlertGroupsPlaceholders: false,
-        showBugColumn: bugs.size > 1,
+        showBugColumn,
         showMasterColumn: masters.size > 1,
         showTestCaseColumn: testCases.size > 1,
+        showTriagedColumn,
       };
     },
 
@@ -1289,6 +1291,10 @@ tr.exportTo('cp', () => {
       alertGroups = [...alertGroups];
       alertGroups.sort((groupA, groupB) =>
         factor * (groupA.alerts.length - groupB.alerts.length));
+    } else if (sortColumn === 'triaged') {
+      alertGroups = [...alertGroups];
+      alertGroups.sort((groupA, groupB) =>
+        factor * (groupA.triaged.count - groupB.triaged.count));
     } else {
       alertGroups = alertGroups.map(group => {
         const alerts = Array.from(group.alerts);
