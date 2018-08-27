@@ -16,6 +16,177 @@
       "revId": "3adf804d6dbb03645897e65e0148fb907392a5d9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b845b021_bf373fe9",
+        "filename": "dashboard/dashboard/spa/index.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-27T22:31:21Z",
+      "side": 1,
+      "message": "prevent vulcanize from inlining a remote script",
+      "range": {
+        "startLine": 28,
+        "startChar": 69,
+        "endLine": 29,
+        "endChar": 45
+      },
+      "revId": "3adf804d6dbb03645897e65e0148fb907392a5d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5acf1543_f80d4501",
+        "filename": "dashboard/dashboard/spa/index.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-27T22:31:21Z",
+      "side": 1,
+      "message": "If this is only used inside the async arrow function, then it can be a const inside that function instead of being exported to the window.",
+      "revId": "3adf804d6dbb03645897e65e0148fb907392a5d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff003004_e70c83d0",
+        "filename": "dashboard/dashboard/spa/service-worker-listener.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-27T22:31:21Z",
+      "side": 1,
+      "message": "We usually bind() listeners:\n\nconstructor(url) {\n  ...\n  // removeEventListener requires exactly the same listener object as is passed to addEventListener. \n  this.handleMessage_ \u003d this.handleMessage_.bind(this);\n  this.channel_.addEventListener(\u0027message\u0027, this.handleMessage_);\n}\n\nhandleMessage_(event) {\n  ...\n  this.channel_.removeEventListener(\u0027message\u0027, this.handleMessage_);\n}",
+      "revId": "3adf804d6dbb03645897e65e0148fb907392a5d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "754ac358_b787674d",
+        "filename": "dashboard/dashboard/spa/service-worker-listener.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-27T22:31:21Z",
+      "side": 1,
+      "message": "Please check that there are blank lines between all methods, but not at beginnings or ends of blocks.",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 23
+      },
+      "revId": "3adf804d6dbb03645897e65e0148fb907392a5d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc603fd3_bcae16da",
+        "filename": "dashboard/dashboard/spa/service-worker-listener.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-27T22:31:21Z",
+      "side": 1,
+      "message": "Feel free to deconstruct in the declaration.\n\nhandleMessage_({type, payload})",
+      "revId": "3adf804d6dbb03645897e65e0148fb907392a5d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d410308_17249009",
+        "filename": "dashboard/dashboard/spa/service-worker-listener.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-27T22:31:21Z",
+      "side": 1,
+      "message": "Please remove spaces from all single-line object literals.\n{done: true}",
+      "range": {
+        "startLine": 51,
+        "startChar": 31,
+        "endLine": 51,
+        "endChar": 45
+      },
+      "revId": "3adf804d6dbb03645897e65e0148fb907392a5d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "474eccdf_087448f6",
+        "filename": "dashboard/dashboard/spa/service-worker-listener.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-27T22:31:21Z",
+      "side": 1,
+      "message": "Would something like this work?\n\nconstructor(...) {\n  ...\n  this.queueResult_ \u003d result \u003d\u003e this.messageQueue_.push(result);\n  this.resolve_ \u003d this.queueResult_;\n}\n\nhandleMessage_({type, payload}) {\n  ...\n  this.resolve_({done: ..., value: ...});\n}\n\nasync next() {\n  if (this.messageQueue_.length) return this.messageQueue_.shift();\n  const result \u003d await new Promise(resolve \u003d\u003e {this.resolve_ \u003d resolve;});\n  this.resolve_ \u003d this.queueResult_;\n  return result;\n}",
+      "revId": "3adf804d6dbb03645897e65e0148fb907392a5d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2111031c_daa5d630",
+        "filename": "dashboard/dashboard/spa/sw-utils/timing.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-27T22:31:21Z",
+      "side": 1,
+      "message": "Are any of these used outside of this class or can you make them private by appending an underscore?",
+      "revId": "3adf804d6dbb03645897e65e0148fb907392a5d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a0efc87_66a9cd7c",
+        "filename": "third_party/idb/package.json",
+        "patchSetId": 35
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-27T22:31:21Z",
+      "side": 1,
+      "message": "If this file is necessary, please send out another CL to add it on master branch. If not, please remove it.",
+      "revId": "3adf804d6dbb03645897e65e0148fb907392a5d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
