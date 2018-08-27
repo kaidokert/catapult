@@ -43,13 +43,43 @@ tr.exportTo('cp', () => {
       return cp.AlertsSection.breakWords(str);
     }
 
-    shouldDisplayAlert_(alertGroup, alertIndex) {
-      return alertGroup.isExpanded || (alertIndex === 0);
+    isExpandedGroup_(groupIsExpanded, triagedIsExpanded) {
+      return groupIsExpanded || triagedIsExpanded;
     }
 
-    shouldDisplayExpandGroupButton_(alertGroup, alertIndex) {
-      if (alertIndex !== 0) return false;
-      return alertGroup.alerts.length > 1;
+    shouldDisplayAlert_(
+        showingTriaged, alertGroup, alertIndex, triagedExpanded) {
+      if (showingTriaged) return alertGroup.isExpanded || (alertIndex === 0);
+
+      if (!alertGroup.alerts[alertIndex]) return false;
+      const isTriaged = alertGroup.alerts[alertIndex].bugId;
+      const firstUntriagedIndex = alertGroup.alerts.findIndex(a => !a.bugId);
+      if (alertGroup.isExpanded) {
+        return !isTriaged || triagedExpanded || (
+          alertIndex === firstUntriagedIndex);
+      }
+      if (isTriaged) return triagedExpanded;
+      return alertIndex === firstUntriagedIndex;
+    }
+
+    shouldDisplayExpandGroupButton_(
+        alertGroup, alertIndex, showingTriaged, sortColumn, sortDescending) {
+      if (showingTriaged) {
+        return (alertIndex === 0) && alertGroup.alerts.length > 1;
+      }
+      return (alertIndex === alertGroup.alerts.findIndex(a => !a.bugId)) && (
+        alertGroup.alerts.length > (1 + alertGroup.triaged.count));
+    }
+
+    getExpandGroupButtonLabel_(alertGroup, showingTriaged) {
+      if (showingTriaged) return alertGroup.alerts.length;
+      return alertGroup.alerts.length - alertGroup.triaged.count;
+    }
+
+    shouldDisplayExpandTriagedButton_(
+        showingTriaged, alertGroup, alertIndex, sortColumn, sortDescending) {
+      if (showingTriaged || (alertGroup.triaged.count === 0)) return false;
+      return alertIndex === alertGroup.alerts.findIndex(a => !a.bugId);
     }
 
     isAlertIgnored_(bugId) {
@@ -129,6 +159,8 @@ tr.exportTo('cp', () => {
     showBugColumn: options => true,
     showMasterColumn: options => true,
     showTestCaseColumn: options => true,
+    showTriagedColumn: options => true,
+    showingTriaged: options => options.showingTriaged || false,
     sortColumn: options => options.sortColumn || 'revisions',
     sortDescending: options => options.sortDescending || false,
   };
