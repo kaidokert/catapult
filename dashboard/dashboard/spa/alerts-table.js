@@ -48,8 +48,11 @@ tr.exportTo('cp', () => {
     }
 
     shouldDisplayExpandGroupButton_(alertGroup, alertIndex) {
-      if (alertIndex !== 0) return false;
-      return alertGroup.alerts.length > 1;
+      return alertIndex === 0 && alertGroup.alerts.length > 1;
+    }
+
+    shouldDisplayExpandTriagedButton_(alertGroup, alertIndex) {
+      return alertIndex === 0 && alertGroup.triaged.count > 0;
     }
 
     isAlertIgnored_(bugId) {
@@ -127,6 +130,7 @@ tr.exportTo('cp', () => {
     alertGroups: options => AlertsTable.PLACEHOLDER_ALERT_GROUPS,
     areAlertGroupsPlaceholders: options => true,
     showBugColumn: options => true,
+    showTriagedColumn: options => true,
     showMasterColumn: options => true,
     showTestCaseColumn: options => true,
     sortColumn: options => options.sortColumn || 'revisions',

@@ -104,6 +104,18 @@ found in the LICENSE file.
                 </column-head>
               </th>
 
+              <template is="dom-if" if="[[showTriagedColumn]]">
+                <th>
+                  <column-head
+                      name="triaged"
+                      sort-column="[[sortColumn]]"
+                      sort-descending="[[sortDescending]]"
+                      on-click="onSort_">
+                    Triaged
+                  </column-head>
+                </th>
+              </template>
+
               <th class="checkbox">
                 <cp-checkbox
                     checked="[[anySelectedAlerts_(alertGroups)]]"
@@ -223,6 +235,16 @@ found in the LICENSE file.
                         </expand-button>
                       </template>
                     </td>
+
+                    <template is="dom-if" if="[[showTriagedColumn]]">
+                      <td>
+                        <template is="dom-if" if="[[shouldDisplayExpandTriagedButton_(alertGroup, alertIndex)]]">
+                          <expand-button state-path="[[statePath]].alertGroups.[[alertGroupIndex]].triaged">
+                            [[alertGroup.triaged.count]]
+                          </expand-button>
+                        </template>
+                      </td>
+                    </template>
 
                     <td>
                       <cp-checkbox
