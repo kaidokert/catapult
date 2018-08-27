@@ -283,6 +283,24 @@
     },
     {
       "key": {
+        "uuid": "77ae2068_b1f0a49c",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-27T21:50:07Z",
+      "side": 1,
+      "message": "Oh! In that case, I think the helper function lgtm, but let\u0027s check with Ethan.",
+      "parentUuid": "027a8523_6a7583e4",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "95e0d210_5dc5a705",
         "filename": "dashboard/dashboard/spa/chart-timeseries.js",
         "patchSetId": 27

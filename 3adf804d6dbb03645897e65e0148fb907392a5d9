@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aad928d3_1d8aa593",
+        "filename": "dashboard/bin/deploy_v2spa",
+        "patchSetId": 35
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-27T21:50:07Z",
+      "side": 1,
+      "message": "This should only indent by 2 spaces.",
+      "revId": "3adf804d6dbb03645897e65e0148fb907392a5d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
