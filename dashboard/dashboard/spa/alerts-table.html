@@ -104,6 +104,18 @@ found in the LICENSE file.
                 </column-head>
               </th>
 
+              <template is="dom-if" if="[[showTriagedColumn]]">
+                <th>
+                  <column-head
+                      name="triaged"
+                      sort-column="[[sortColumn]]"
+                      sort-descending="[[sortDescending]]"
+                      on-click="onSort_">
+                    Triaged
+                  </column-head>
+                </th>
+              </template>
+
               <th class="checkbox">
                 <cp-checkbox
                     checked="[[anySelectedAlerts_(alertGroups)]]"
@@ -211,18 +223,30 @@ found in the LICENSE file.
           </thead>
 
           <template is="dom-repeat" items="[[alertGroups]]" as="alertGroup" index-as="alertGroupIndex">
-            <tbody expandedGroup$="[[alertGroup.isExpanded]]">
+            <tbody expandedGroup$="[[isExpandedGroup_(alertGroup.isExpanded, alertGroup.triaged.isExpanded)]]">
               <template is="dom-repeat" items="[[alertGroup.alerts]]" as="alert" index-as="alertIndex">
-                <template is="dom-if" if="[[shouldDisplayAlert_(alertGroup, alertIndex)]]">
-                  <tr style$="color: [[alert.color]];"
-                      on-click="onRowTap_">
+                <template is="dom-if" if="[[shouldDisplayAlert_(showingTriaged, alertGroup, alertIndex, alertGroup.triaged.isExpanded)]]">
+                  <tr style$="color: [[alert.color]];" on-click="onRowTap_">
+
                     <td>
-                      <template is="dom-if" if="[[shouldDisplayExpandGroupButton_(alertGroup, alertIndex)]]">
+                      <template is="dom-if"
+                        if="[[shouldDisplayExpandGroupButton_(alertGroup,
+                        alertIndex, showingTriaged, sortColumn, sortDescending)]]">
                         <expand-button state-path="[[statePath]].alertGroups.[[alertGroupIndex]]">
-                          [[_len(alertGroup.alerts)]]
+                          [[getExpandGroupButtonLabel_(alertGroup, showingTriaged)]]
                         </expand-button>
                       </template>
                     </td>
+
+                    <template is="dom-if" if="[[showTriagedColumn]]">
+                      <td>
+                        <template is="dom-if" if="[[shouldDisplayExpandTriagedButton_(showingTriaged, alertGroup, alertIndex, sortColumn, sortDescending)]]">
+                          <expand-button state-path="[[statePath]].alertGroups.[[alertGroupIndex]].triaged">
+                            [[alertGroup.triaged.count]]
+                          </expand-button>
+                        </template>
+                      </td>
+                    </template>
 
                     <td>
                       <cp-checkbox
