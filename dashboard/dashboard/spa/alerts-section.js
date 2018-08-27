@@ -588,11 +588,11 @@ tr.exportTo('cp', () => {
     },
 
     loadReportNames: statePath => async(dispatch, getState) => {
-      const reportTemplateIds = await cp.ReadReportNames()(dispatch, getState);
+      const reportTempateInfos = await cp.ReadReportNames()(dispatch, getState);
       const rootState = getState();
       const teamFilter = cp.TeamFilter.get(rootState.teamName);
       const reportNames = await teamFilter.reportNames(
-          reportTemplateIds.map(t => t.name));
+          reportTemplateInfos.map(t => t.name));
       dispatch(Redux.UPDATE(statePath + '.report', {
         options: cp.OptionGroup.groupValues(reportNames),
         label: `Reports (${reportNames.length})`,
@@ -828,9 +828,9 @@ tr.exportTo('cp', () => {
         }),
       ];
       if (state.report.selectedOptions.length) {
-        const reportTemplateIds = await dispatch(cp.ReadReportNames());
+        const reportTempateInfos = await dispatch(cp.ReadReportNames());
         for (const name of state.report.selectedOptions) {
-          for (const reportId of reportTemplateIds) {
+          for (const reportId of reportTempateInfos) {
             if (reportId.name === name) {
               sources.push({report: reportId.id, ...revisions});
               break;
