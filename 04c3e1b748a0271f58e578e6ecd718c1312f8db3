@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2a16e813_1e7e76f8",
+        "filename": "dashboard/dashboard/spa/request-base.js",
+        "patchSetId": 33
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-27T19:45:39Z",
+      "side": 1,
+      "message": "I messed up a rebase and accidentally kept this here. Instead of reworking this CL to use the old `batchResponses`, which would be a bunch of work, I opted for simply creating another CL (CL 1178572) on top of this to move it where it belongs, in `utils.js`. Would you like to see that CL merged into this one?",
+      "parentUuid": "bb1e78ac_2d47e0fc",
+      "revId": "04c3e1b748a0271f58e578e6ecd718c1312f8db3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "866ae512_944e5734",
         "filename": "dashboard/dashboard/spa/service-worker-listener.js",
         "patchSetId": 33
@@ -33,6 +51,24 @@
       "revId": "04c3e1b748a0271f58e578e6ecd718c1312f8db3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17c17a2e_5bb92890",
+        "filename": "dashboard/dashboard/spa/service-worker-listener.js",
+        "patchSetId": 33
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-27T19:45:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "866ae512_944e5734",
+      "revId": "04c3e1b748a0271f58e578e6ecd718c1312f8db3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "8cfdd6c3_670fa486",
+        "filename": "dashboard/dashboard/spa/service-worker-listener.js",
+        "patchSetId": 33
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-27T19:45:39Z",
+      "side": 1,
+      "message": "You\u0027re right! Check my latest patch set to see what buffering would look like.",
+      "parentUuid": "bd2a23bd_a3017a8c",
+      "revId": "04c3e1b748a0271f58e578e6ecd718c1312f8db3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa5b4c1d_15ddba64",
         "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
         "patchSetId": 33
@@ -67,6 +121,24 @@
       "revId": "04c3e1b748a0271f58e578e6ecd718c1312f8db3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0fc7778_5633c19e",
+        "filename": "dashboard/dashboard/spa/sw-utils/cache-request-base.js",
+        "patchSetId": 33
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-27T19:45:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa5b4c1d_15ddba64",
+      "revId": "04c3e1b748a0271f58e578e6ecd718c1312f8db3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

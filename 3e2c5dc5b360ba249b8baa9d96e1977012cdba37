@@ -265,6 +265,24 @@
     },
     {
       "key": {
+        "uuid": "027a8523_6a7583e4",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-27T19:45:39Z",
+      "side": 1,
+      "message": "That would look clean, but TimeseriesReader is an alias for\n\n  new TimeseriesCache().reader()\n\nwhich calls an asynchronous generator method on TimeseriesCache. I am unable to cleanly assign a completion method to the reader. The solution would be to either create a new class or modify TimeseriesCache to satisfy the async iterator interface.",
+      "parentUuid": "1345720d_72071e8f",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "95e0d210_5dc5a705",
         "filename": "dashboard/dashboard/spa/chart-timeseries.js",
         "patchSetId": 27
@@ -2107,6 +2125,24 @@
     },
     {
       "key": {
+        "uuid": "0f77f896_d03ef824",
+        "filename": "dashboard/dashboard/spa/sw-utils/google-analytics.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-27T19:45:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61dd5c60_fc71a5ac",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "af8054ce_d69de98b",
         "filename": "dashboard/dashboard/spa/sw-utils/google-analytics.js",
         "patchSetId": 27
@@ -3295,6 +3331,24 @@
       "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95317726_0395f6fc",
+        "filename": "dashboard/dashboard/spa/sw-utils/timing.js",
+        "patchSetId": 27
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-27T19:45:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "931021f9_a3faa651",
+      "revId": "3e2c5dc5b360ba249b8baa9d96e1977012cdba37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
