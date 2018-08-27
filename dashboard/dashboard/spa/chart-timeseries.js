@@ -492,7 +492,7 @@ tr.exportTo('cp', () => {
     }
 
     // Batch responses together to avoid rendering too many times.
-    const batchIterator = cp.RequestBase.batchResponses(readers);
+    const batchIterator = cp.batchResponses(readers);
 
     // Process each batch of timeseries data.
     for await (const {results, errors} of batchIterator) {
