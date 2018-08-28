@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3519a787_a40152f7",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-28T10:58:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "138b30cc_1fd9d3bf",
+      "revId": "e3626a278a81ff5bb5dd7c560cfbced28c49ca12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ed98a86a_745ad6cf",
         "filename": "experimental/v8_tools/app.js",
         "patchSetId": 6
@@ -33,6 +51,24 @@
       "revId": "e3626a278a81ff5bb5dd7c560cfbced28c49ca12",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3854cb7d_2d676b02",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-28T10:58:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed98a86a_745ad6cf",
+      "revId": "e3626a278a81ff5bb5dd7c560cfbced28c49ca12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "5202a96d_489fb02c",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-28T10:58:52Z",
+      "side": 1,
+      "message": "I can\u0027t rename it because it\u0027s a watcher and it is mandatory to take the name of the value that is watched: in our case we watch globalDiagnostic (and whenever something happens with this one, the watcher with the same name is called). So the single option would be to change the name of globalDiagnostic instead, but I think this one is generic enough, isn\u0027t  it?",
+      "parentUuid": "b9e1dd29_03e4d1ff",
+      "revId": "e3626a278a81ff5bb5dd7c560cfbced28c49ca12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c6bd424e_6e70e9e0",
         "filename": "experimental/v8_tools/app.js",
         "patchSetId": 6
@@ -67,6 +121,24 @@
       "revId": "e3626a278a81ff5bb5dd7c560cfbced28c49ca12",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9132d2a_bbe3514f",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-28T10:58:52Z",
+      "side": 1,
+      "message": "Yes, it is a good name actually because it\u0027s a map of metrics with all sample values for all diagnostics.",
+      "parentUuid": "c6bd424e_6e70e9e0",
+      "revId": "e3626a278a81ff5bb5dd7c560cfbced28c49ca12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "2ddc8333_09f8ac49",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-28T10:58:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff6e2f76_7059040b",
+      "revId": "e3626a278a81ff5bb5dd7c560cfbced28c49ca12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bde3bfef_1f79635b",
         "filename": "experimental/v8_tools/app.js",
         "patchSetId": 6
@@ -101,6 +191,24 @@
       "revId": "e3626a278a81ff5bb5dd7c560cfbced28c49ca12",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9afabc3_98eed506",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-28T10:58:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bde3bfef_1f79635b",
+      "revId": "e3626a278a81ff5bb5dd7c560cfbced28c49ca12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "b49c5f5e_9bf8171a",
+        "filename": "experimental/v8_tools/table_component.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-28T10:58:52Z",
+      "side": 1,
+      "message": "Unfortunately yes. It might be either a number or a single string in array.",
+      "parentUuid": "493c647e_6ebca02a",
+      "revId": "e3626a278a81ff5bb5dd7c560cfbced28c49ca12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "04b12379_8988e3b1",
         "filename": "experimental/v8_tools/table_component.js",
         "patchSetId": 6
@@ -138,6 +264,24 @@
     },
     {
       "key": {
+        "uuid": "75931463_f2211e1d",
+        "filename": "experimental/v8_tools/table_component.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-28T10:58:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04b12379_8988e3b1",
+      "revId": "e3626a278a81ff5bb5dd7c560cfbced28c49ca12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "09eac0db_01a4f182",
         "filename": "experimental/v8_tools/table_component.js",
         "patchSetId": 6
@@ -152,6 +296,24 @@
       "revId": "e3626a278a81ff5bb5dd7c560cfbced28c49ca12",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5eae9ee8_6e56cc5c",
+        "filename": "experimental/v8_tools/table_component.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-08-28T10:58:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "09eac0db_01a4f182",
+      "revId": "e3626a278a81ff5bb5dd7c560cfbced28c49ca12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
