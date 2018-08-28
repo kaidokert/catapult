@@ -212,63 +212,146 @@ tr.exportTo('cp', () => {
     return state;
   }
 
-  /* Processing results can be costly. Help callers batch process
-   * results by waiting a bit to see if more promises resolve.
-   * This is similar to Polymer.Debouncer, but as an async generator.
+  /**
+   * BatchIterator reduces processing costs by batching results and errors
+   * from an array of tasks. A task can either be a promise or an asynchronous
+   * iterator. In other words, use this class when it is costly to iteratively
+   * process the output of each task (e.g. when rendering to DOM).
+   *
+   *   const tasks = urls.map(fetch);
+   *   for await (const {results, errors} of new BatchIterator(tasks)) {
+   *     if (errors.length > 0) throw errors[0];
+   *     render(results);
+   *   }
+   */
+  class BatchIterator {
+    /**
+     * type tasks = [task]
+     * type task = Promise | AsyncIterator
+     * type AsyncIterator = { next: () => Promise }
+     */
+    constructor(tasks) {
+      this.results_ = [];
+      this.errors_ = [];
+      this.promises_ = [];
+      this.timeSinceLastCalled_ = undefined;
+
+      for (const task of tasks) {
+        const isIterator = typeof task.next === 'function';
+        const isPromise = task instanceof Promise;
+        if (!isIterator && !isPromise) {
+          throw new TypeError(`Task is of invalid type: ${typeof task}`);
+        }
+
+        this.promises_.push(this.autoRemove_(this.aggregate_(task)));
+      }
+    }
+
+    // A task can be either a promise or an async iterator. `aggregate` wraps a
+    // task to resolve when the task resolves then collects the result or error.
+    // A promise will be returned if the the task is an async iterator and the
+    // iterator isn't done yielding responses.
+    async aggregate_(task) {
+      try {
+        if (task instanceof Promise) {
+          this.results_.push(await task);
+          return;
+        }
+
+        // Task must be an asynchronous iterator.
+        const { value, done } = await task.next();
+        if (!done) {
+          this.results_.push(value);
+          return this.aggregate_(task);
+        }
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.error(err);
+        this.errors_.push(err);
+      }
+    }
+
+    // Promises need to remove themselves from the above `promises` array so we
+    // don't race them again.
+    autoRemove_(promise) {
+      const self = (async() => {
+        const next = await promise;
+        if (next) {
+          this.promises_.push(removeSelf(next));
+        }
+        const index = this.promises_.indexOf(self);
+        this.promises_.splice(index, 1);
+      })();
+      return self;
+    }
+
+    [Symbol.asyncIterator]() {
+      return this;
+    }
+
+    async next() {
+      if (!this.promises_.length && !this.results_.length &&
+          !this.errors_.length) {
+        return { done: true };
+      }
+
+      if (this.timeSinceLastCalled_) {
+        const timeToProcessInMs = performance.now() - this.timeSinceLastCalled_;
+        await Promise.race([
+          timeout(timeToProcessInMs),
+          Promise.all(this.promises_)
+        ]);
+      } else {
+        await Promise.race(this.promises_);
+      }
+
+      // The delay promise resolved, indiciating we need to send out results.
+      // Measure how long it takes the caller to process yielded results to
+      // avoid overloading the caller the next time around.
+      this.timeSinceLastCalled_ = performance.now();
+
+      const response = {
+        value: {
+          results: this.results_,
+          errors: this.errors_
+        },
+        done: false
+      };
+
+      this.results_ = [];
+      this.errors_ = [];
+      return response;
+    }
+  }
+
+  /**
+   * Processing results can be costly. Help callers batch process results by
+   * waiting a bit to see if more promises resolve. This is similar to
+   * Polymer.Debouncer, but as an async generator.
+   *
    * Usage:
    * async function fetchThings(things) {
    *   const responses = things.map(thing => new ThingRequest(thing).response);
    *   for await (const {results, errors} of cp.batchResponses(responses)) {
    *     dispatch({
-   *       type: ...mergeAndDisplayThings.name,
+   *       type: ...mergeAndDisplayThings.typeName,
    *       results, errors,
    *     });
    *   }
    *   dispatch({
-   *     type: ...doneReceivingThings.name,
+   *     type: ...doneReceivingThings.typeName,
    *   });
    * }
    *
-   * |promises| can be any promise, need not be RequestBase.response.
+   * |tasks| is expected to be an array of promises or asynchronous iterators.
+   * Promises do not have to be cp.RequestBase.response.
+   *
+   * type tasks = [task]
+   * type task = Promise | AsyncIterator
+   * type AsyncIterator = { next: () => Promise }
    */
-  async function* batchResponses(promises, opt_getDelayPromise) {
-    const getDelayPromise = opt_getDelayPromise || (() =>
-      cp.timeout(500));
-    let delay;
-    let results = [];
-    let errors = [];
-    promises = promises.map(narcissus => {
-      const socrates = (async() => {
-        try {
-          results.push(await narcissus);
-        } catch (err) {
-          errors.push(err);
-        } finally {
-          promises.splice(promises.indexOf(socrates), 1);
-        }
-      })();
-      return socrates;
-    });
-
-    while (promises.length) {
-      if (delay) {
-        await Promise.race([delay, ...promises]);
-        if (delay.isResolved) {
-          yield {results, errors};
-          results = [];
-          errors = [];
-          delay = undefined;
-        }
-      } else {
-        await Promise.race(promises);
-        delay = (async() => {
-          await getDelayPromise();
-          delay.isResolved = true;
-        })();
-        delay.isResolved = false;
-      }
-    }
-    yield {results, errors};
+  async function* batchResponses(tasks) {
+    return new BatchIterator(tasks);
   }
 
   function timeEventListeners(cls) {
@@ -340,6 +423,7 @@ tr.exportTo('cp', () => {
   return {
     afterRender,
     animationFrame,
+    BatchIterator,
     batchResponses,
     buildProperties,
     buildState,
