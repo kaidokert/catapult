@@ -29,15 +29,6 @@ class FuchsiaForwarder(Forwarder):
     self._forwarder.Unmap(self._local_port, self._remote_port, self._reverse)
     super(FuchsiaForwarder, self).Close()
 
-  def ForwardLocalPortAndGetRemote(self, local_port):
-    self._forwarder.Map([(0, local_port)])
-    return self._forwarder.GetDevicePortForHostPort(local_port)
-
-  def ForwardAvailablePort(self):
-    local = util.GetUnreservedAvailableLocalPort()
-    remote = self.ForwardLocalPortAndGetRemote(local)
-    return local, remote
-
 
 class FuchsiaForwarderFactory(ForwarderFactory):
 

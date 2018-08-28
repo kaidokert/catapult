@@ -38,7 +38,7 @@ class BrowserFinderOptions(optparse.Values):
     self.device = None
     self.cros_ssh_identity = None
 
-    self.cros_remote = None
+    self.remote = None
 
     self.verbosity = 0
 
@@ -91,14 +91,14 @@ class BrowserFinderOptions(optparse.Values):
         'CHROMIUM_OUTPUT_DIR.')
     group.add_option(
         '--remote',
-        dest='cros_remote',
-        help='The hostname of a remote ChromeOS device to use.')
+        dest='remote',
+        help='The hostname of a remote device to use.')
     group.add_option(
         '--remote-ssh-port',
         type=int,
         default=socket.getservbyname('ssh'),
-        dest='cros_remote_ssh_port',
-        help='The SSH port of the remote ChromeOS device (requires --remote).')
+        dest='remote_ssh_port',
+        help='The SSH port of the remote device (requires --remote).')
     parser.add_option(
         '--compatibility-mode',
         action='append',
@@ -110,6 +110,21 @@ class BrowserFinderOptions(optparse.Values):
         default=[],
         help='Select the compatibility change that you want to enforce when '
              'running benchmarks')
+    parser.add_option(
+        '--discover-fuchsia',
+        action='store_true',
+        dest='discover_fuchsia',
+        help='Discover fuchsia devices via the netaddr utility. This requires '
+             'the .gclient file to have `target_os=["fuchsia"`] within it.')
+    parser.add_option(
+        '--fuchsia-out-dir-suffix',
+        type=str,
+        dest='fuchsia_out_dir_suffix',
+        help='The suffix to be appended to the chromium/src directory to find '
+             'the build directory for fuchsia, containing browser binaries and '
+             'the ssh config.'
+    )
+
     identity = None
     testing_rsa = os.path.join(
         util.GetTelemetryThirdPartyDir(), 'chromite', 'ssh_keys', 'testing_rsa')
@@ -120,6 +135,11 @@ class BrowserFinderOptions(optparse.Values):
         dest='cros_ssh_identity',
         default=identity,
         help='The identity file to use when ssh\'ing into the ChromeOS device')
+    group.add_option(
+        '--ssh_config',
+        type=str,
+        default=None,
+        help='The path to the ssh_config file to be used for remote devices')
     parser.add_option_group(group)
 
     # Debugging options
