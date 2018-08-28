@@ -38,38 +38,6 @@ group("telemetry_chrome_test_support") {
   ]
 
   data += [
-    "common/OWNERS",
-    "common/bin/",
-    "common/eslint/",
-    "common/lab/",
-    "common/py_trace_event/",
-    "common/py_utils/",
-    "common/py_vulcanize/",
-  ]
-
-  data += [
-    "tracing/BUILD.gn",
-    "tracing/LICENSE",
-    "tracing/OWNERS",
-    "tracing/PRESUBMIT.py",
-    "tracing/README.md",
-    "tracing/app.yaml",
-    "tracing/bower.json",
-    "tracing/package.json",
-    "tracing/trace_viewer.gyp",
-    "tracing/trace_viewer.gypi",
-    "tracing/tracing_project.py",
-    "tracing/bin/",
-    "tracing/docs/",
-    "tracing/images/",
-    "tracing/skp_data/",
-    "tracing/third_party/",
-    "tracing/tracing/",
-    "tracing/tracing_build/",
-    "tracing/tracing_examples/",
-  ]
-
-  data += [
     "third_party/WebOb/",
     "third_party/apiclient/",
     "third_party/beautifulsoup4/",
@@ -107,6 +75,28 @@ group("telemetry_chrome_test_support") {
   ]
 
   data += [
+    "tracing/BUILD.gn",
+    "tracing/LICENSE",
+    "tracing/OWNERS",
+    "tracing/PRESUBMIT.py",
+    "tracing/README.md",
+    "tracing/app.yaml",
+    "tracing/bower.json",
+    "tracing/package.json",
+    "tracing/trace_viewer.gyp",
+    "tracing/trace_viewer.gypi",
+    "tracing/tracing_project.py",
+    "tracing/bin/",
+    "tracing/docs/",
+    "tracing/images/",
+    "tracing/skp_data/",
+    "tracing/third_party/",
+    "tracing/tracing/",
+    "tracing/tracing_build/",
+    "tracing/tracing_examples/",
+  ]
+
+  data += [
     "telemetry/BUILD.gn",
     "telemetry/OWNERS",
     "telemetry/PRESUBMIT.py",
@@ -123,6 +113,16 @@ group("telemetry_chrome_test_support") {
     "telemetry/docs/",
     "telemetry/examples/",
     "telemetry/third_party/",
+  ]
+
+  data += [
+    "common/OWNERS",
+    "common/bin/",
+    "common/eslint/",
+    "common/lab/",
+    "common/py_trace_event/",
+    "common/py_utils/",
+    "common/py_vulcanize/",
   ]
 
   data += [
@@ -158,14 +158,6 @@ group("telemetry_chrome_test_support") {
   ]
 
   data += [
-    "common/node_runner/node_runner/__init__.py",
-    "common/node_runner/node_runner/minify",
-    "common/node_runner/node_runner/node_binaries.json",
-    "common/node_runner/node_runner/node_util.py",
-    "common/node_runner/node_runner/package.json",
-  ]
-
-  data += [
     "third_party/vinn/third_party/parse5/",
   ]
 
@@ -190,6 +182,14 @@ group("telemetry_chrome_test_support") {
   ]
 
   data += [
+    "common/node_runner/node_runner/__init__.py",
+    "common/node_runner/node_runner/minify",
+    "common/node_runner/node_runner/node_binaries.json",
+    "common/node_runner/node_runner/node_util.py",
+    "common/node_runner/node_runner/package.json",
+  ]
+
+  data += [
     "third_party/vinn/third_party/v8/LICENSE",
     "third_party/vinn/third_party/v8/LICENSE.strongtalk",
     "third_party/vinn/third_party/v8/LICENSE.v8",
@@ -197,12 +197,20 @@ group("telemetry_chrome_test_support") {
     "third_party/vinn/third_party/v8/README.chromium",
   ]
 
+  if (is_win) {
+    data += [ "third_party/vinn/third_party/v8/win/" ]
+  }
+
   if (is_mac) {
     data += [ "third_party/vinn/third_party/v8/mac/" ]
   }
 
-  if (is_win) {
-    data += [ "third_party/vinn/third_party/v8/win/" ]
+  if (is_chromeos) {
+    data += [ "third_party/vinn/third_party/v8/linux/mips/" ]
+  }
+
+  if (is_linux || is_android) {
+    data += [ "third_party/vinn/third_party/v8/linux/x86_64/" ]
   }
 
   if (is_chromeos) {
@@ -210,15 +218,7 @@ group("telemetry_chrome_test_support") {
   }
 
   if (is_chromeos) {
-    data += [ "third_party/vinn/third_party/v8/linux/mips/" ]
-  }
-
-  if (is_chromeos) {
     data += [ "third_party/vinn/third_party/v8/linux/mips64/" ]
-  }
-
-  if (is_linux || is_android) {
-    data += [ "third_party/vinn/third_party/v8/linux/x86_64/" ]
   }
 
 }
