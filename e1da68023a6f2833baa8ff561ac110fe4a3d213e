@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2efe83f7_335de5b1",
+        "filename": "BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-08-28T22:44:36Z",
+      "side": 1,
+      "message": "We shouldn\u0027t need these files",
+      "revId": "e1da68023a6f2833baa8ff561ac110fe4a3d213e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
