@@ -38,38 +38,6 @@ group("telemetry_chrome_test_support") {
   ]
 
   data += [
-    "common/OWNERS",
-    "common/bin/",
-    "common/eslint/",
-    "common/lab/",
-    "common/py_trace_event/",
-    "common/py_utils/",
-    "common/py_vulcanize/",
-  ]
-
-  data += [
-    "tracing/BUILD.gn",
-    "tracing/LICENSE",
-    "tracing/OWNERS",
-    "tracing/PRESUBMIT.py",
-    "tracing/README.md",
-    "tracing/app.yaml",
-    "tracing/bower.json",
-    "tracing/package.json",
-    "tracing/trace_viewer.gyp",
-    "tracing/trace_viewer.gypi",
-    "tracing/tracing_project.py",
-    "tracing/bin/",
-    "tracing/docs/",
-    "tracing/images/",
-    "tracing/skp_data/",
-    "tracing/third_party/",
-    "tracing/tracing/",
-    "tracing/tracing_build/",
-    "tracing/tracing_examples/",
-  ]
-
-  data += [
     "third_party/WebOb/",
     "third_party/apiclient/",
     "third_party/beautifulsoup4/",
@@ -93,6 +61,7 @@ group("telemetry_chrome_test_support") {
     "third_party/pipeline/",
     "third_party/polymer/",
     "third_party/polymer3/",
+    "third_party/py_vulcanize/",
     "third_party/pyfakefs/",
     "third_party/pyserial/",
     "third_party/python_gflags/",
@@ -126,6 +95,39 @@ group("telemetry_chrome_test_support") {
   ]
 
   data += [
+    "tracing/BUILD.gn",
+    "tracing/LICENSE",
+    "tracing/OWNERS",
+    "tracing/PRESUBMIT.py",
+    "tracing/README.md",
+    "tracing/app.yaml",
+    "tracing/bower.json",
+    "tracing/package.json",
+    "tracing/trace_viewer.gyp",
+    "tracing/trace_viewer.gypi",
+    "tracing/tracing_project.py",
+    "tracing/bin/",
+    "tracing/docs/",
+    "tracing/images/",
+    "tracing/skp_data/",
+    "tracing/third_party/",
+    "tracing/tracing/",
+    "tracing/tracing_build/",
+    "tracing/tracing_examples/",
+  ]
+
+  data += [
+    "common/OWNERS",
+    "common/battor/",
+    "common/bin/",
+    "common/eslint/",
+    "common/lab/",
+    "common/py_trace_event/",
+    "common/py_utils/",
+    "common/py_vulcanize/",
+  ]
+
+  data += [
     "third_party/vinn/OWNERS",
     "third_party/vinn/bin/",
     "third_party/vinn/vinn/",
@@ -147,6 +149,7 @@ group("telemetry_chrome_test_support") {
     "telemetry/telemetry/telemetry_unittest_deps.json",
     "telemetry/telemetry/android/",
     "telemetry/telemetry/core/",
+    "telemetry/telemetry/data/",
     "telemetry/telemetry/page/",
     "telemetry/telemetry/story/",
     "telemetry/telemetry/testing/",
@@ -155,14 +158,6 @@ group("telemetry_chrome_test_support") {
     "telemetry/telemetry/value/",
     "telemetry/telemetry/web_perf/",
     "telemetry/telemetry/wpr/",
-  ]
-
-  data += [
-    "common/node_runner/node_runner/__init__.py",
-    "common/node_runner/node_runner/minify",
-    "common/node_runner/node_runner/node_binaries.json",
-    "common/node_runner/node_runner/node_util.py",
-    "common/node_runner/node_runner/package.json",
   ]
 
   data += [
@@ -190,6 +185,14 @@ group("telemetry_chrome_test_support") {
   ]
 
   data += [
+    "common/node_runner/node_runner/__init__.py",
+    "common/node_runner/node_runner/minify",
+    "common/node_runner/node_runner/node_binaries.json",
+    "common/node_runner/node_runner/node_util.py",
+    "common/node_runner/node_runner/package.json",
+  ]
+
+  data += [
     "third_party/vinn/third_party/v8/LICENSE",
     "third_party/vinn/third_party/v8/LICENSE.strongtalk",
     "third_party/vinn/third_party/v8/LICENSE.v8",
@@ -210,15 +213,15 @@ group("telemetry_chrome_test_support") {
   }
 
   if (is_chromeos) {
-    data += [ "third_party/vinn/third_party/v8/linux/mips/" ]
-  }
-
-  if (is_chromeos) {
     data += [ "third_party/vinn/third_party/v8/linux/mips64/" ]
   }
 
   if (is_linux || is_android) {
     data += [ "third_party/vinn/third_party/v8/linux/x86_64/" ]
+  }
+
+  if (is_chromeos) {
+    data += [ "third_party/vinn/third_party/v8/linux/mips/" ]
   }
 
 }
