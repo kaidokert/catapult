@@ -236,6 +236,24 @@
     },
     {
       "key": {
+        "uuid": "f881546c_b78024be",
+        "filename": "dashboard/dashboard/spa/service-worker-listener.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-28T21:47:04Z",
+      "side": 1,
+      "message": "Yes, please.\n\nhandleMessage_({data: {type, payload}})",
+      "parentUuid": "117f11b4_1fd591ed",
+      "revId": "3adf804d6dbb03645897e65e0148fb907392a5d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9d410308_17249009",
         "filename": "dashboard/dashboard/spa/service-worker-listener.js",
         "patchSetId": 35
@@ -312,6 +330,24 @@
       "side": 1,
       "message": "That would work as long as there isn\u0027t several callers to `next()` in parallel. For example,\n\n  const asyncMap \u003d\u003e (listener) \u003d\u003e async(func) \u003d\u003e {\n    for await (const result of listener) {\n      func(result);\n    }\n  }\n\n  const listener \u003d new ServiceWorkerListener(url);\n  asyncMap(listener)(result \u003d\u003e console.log(result)); // won\u0027t console.log anything\n  asyncMap(listener)(result \u003d\u003e analytics.sendEvent(...));\n\nHowever, the code suggested would work with our current use case since we\u0027re only listening once per ServiceWorkerListener.",
       "parentUuid": "474eccdf_087448f6",
+      "revId": "3adf804d6dbb03645897e65e0148fb907392a5d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d2814ae_4d077cbf",
+        "filename": "dashboard/dashboard/spa/service-worker-listener.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-28T21:47:04Z",
+      "side": 1,
+      "message": "I think that awaiting the same promise in multiple places is common enough that we can support it here.\n\nconstructor(...) {\n  ...\n  this.nextPromise_ \u003d undefined;\n}\nasync next() {\n  if (this.nextPromise_) return await this.nextPromise_;\n  if (this.messageQueue_.length) return this.messageQueue_.shift();\n  this.nextPromise_ \u003d new Promise(resolve \u003d\u003e {this.resolve_ \u003d resolve;});\n  const result \u003d await this.nextPromise_;\n  this.resolve_ \u003d this.queueResult_;\n  this.nextPromise_ \u003d undefined;\n  return result;\n}",
+      "parentUuid": "8b83f43c_9a53c8f4",
       "revId": "3adf804d6dbb03645897e65e0148fb907392a5d9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
