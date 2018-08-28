@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baed142c_7297fd77",
+        "filename": "experimental/v8_tools/table_component.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-28T13:50:04Z",
+      "side": 1,
+      "message": "I guess you forgot to remove else :)",
+      "revId": "88d47d95a60376b34254833a8eb097d2fbb7d416",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
