@@ -34,6 +34,24 @@
       "revId": "27fe376d4b52c5231b8cab804546c19f6335659a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94c904cc_d26006af",
+        "filename": "experimental/v8_tools/graph_data.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-28T10:13:10Z",
+      "side": 1,
+      "message": "Sorry, I misunderstood the comment then. I thought by processing you meant the processing happening when we filter the data (currently we do nothing) before passing it onto the graph plotter. Since they are two different components, I suggested using a global id. Within the graph plotter maintaining the original index of data is sounds good to me.",
+      "parentUuid": "e6aebccf_818ab5e9",
+      "revId": "27fe376d4b52c5231b8cab804546c19f6335659a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
