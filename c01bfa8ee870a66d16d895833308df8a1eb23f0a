@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b896426e_24776be1",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-28T10:40:50Z",
+      "side": 1,
+      "message": "move this to inside chosenPlot \u003d\u003d\u003d \u0027Dot plot\u0027. We don\u0027t need it for cumulativeFrequencyPlot right?. Not for this cl, but in future, we may want to combine computing target and traces into one pass for better efficiency. That is not a high priority one though.",
+      "revId": "c01bfa8ee870a66d16d895833308df8a1eb23f0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
