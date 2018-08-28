@@ -15,7 +15,7 @@ from telemetry.testing import options_for_unittests
 class CrOSTestCase(unittest.TestCase):
   def setUp(self):
     options = options_for_unittests.GetCopy()
-    self._cri = cros_interface.CrOSInterface(options.cros_remote,
+    self._cri = cros_interface.CrOSInterface(options.remote,
                                              options.cros_remote_ssh_port,
                                              options.cros_ssh_identity)
     self._is_guest = options.browser_type == 'cros-chrome-guest'

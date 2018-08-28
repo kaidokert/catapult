@@ -137,7 +137,6 @@ class RunTestsCommand(command_line.OptparseCommand):
     else:
       possible_browser = browser_finder.FindBrowser(args)
       platform = possible_browser.platform
-
     fetch_reference_chrome_binary = False
     # Fetch all binaries needed by telemetry before we run the benchmark.
     if possible_browser and possible_browser.browser_type == 'reference':
