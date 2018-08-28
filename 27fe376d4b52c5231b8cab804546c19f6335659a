@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b230779b_a568fff5",
+        "filename": "experimental/v8_tools/graph_data.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-28T09:06:38Z",
+      "side": 1,
+      "message": "This is good since we don\u0027t do any processing on the data once the data is given to the plotter. If we need it for some reason (I can\u0027t think of any), I think maintaining a unique identifier and a map from the unique_id to all its data might be easier.",
+      "revId": "27fe376d4b52c5231b8cab804546c19f6335659a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
