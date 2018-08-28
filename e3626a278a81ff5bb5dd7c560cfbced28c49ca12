@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "138b30cc_1fd9d3bf",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-28T10:08:15Z",
+      "side": 1,
+      "message": "additionalColums -\u003e diagnosticColums / columnsForChosenDiagnostic or something similar?",
+      "revId": "e3626a278a81ff5bb5dd7c560cfbced28c49ca12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed98a86a_745ad6cf",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-28T10:08:15Z",
+      "side": 1,
+      "message": "May we can use the diagnostic name for the title.",
+      "revId": "e3626a278a81ff5bb5dd7c560cfbced28c49ca12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9e1dd29_03e4d1ff",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-28T10:08:15Z",
+      "side": 1,
+      "message": "rename to: computeDataForSelectedDiagnostic or something similar?",
+      "revId": "e3626a278a81ff5bb5dd7c560cfbced28c49ca12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6bd424e_6e70e9e0",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-28T10:08:15Z",
+      "side": 1,
+      "message": "content is a map from the metric name to a map of diagnostic to value right? I can\u0027t think of a good name, but can we name it something like metricTodiagnoticValuesMap?",
+      "revId": "e3626a278a81ff5bb5dd7c560cfbced28c49ca12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff6e2f76_7059040b",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-28T10:08:15Z",
+      "side": 1,
+      "message": "May be diagnostic -\u003e diagnosticValue/currentDiagnostic to differentiate between the actual value of diagnostic and the the diagnostic name.",
+      "revId": "e3626a278a81ff5bb5dd7c560cfbced28c49ca12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bde3bfef_1f79635b",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-28T10:08:15Z",
+      "side": 1,
+      "message": "else not required since there is continue in the if statement.",
+      "revId": "e3626a278a81ff5bb5dd7c560cfbced28c49ca12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "493c647e_6ebca02a",
+        "filename": "experimental/v8_tools/table_component.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-28T10:08:15Z",
+      "side": 1,
+      "message": "can nameOfStory be number?",
+      "revId": "e3626a278a81ff5bb5dd7c560cfbced28c49ca12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04b12379_8988e3b1",
+        "filename": "experimental/v8_tools/table_component.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-28T10:08:15Z",
+      "side": 1,
+      "message": "no need of else since if has continue.",
+      "revId": "e3626a278a81ff5bb5dd7c560cfbced28c49ca12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09eac0db_01a4f182",
+        "filename": "experimental/v8_tools/table_component.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-28T10:08:15Z",
+      "side": 1,
+      "message": "Checking if a value is available in map and adding it or updating the existing entry seems to be  a common pattern, May be we can add a utility function for this. Not in this cl though.",
+      "revId": "e3626a278a81ff5bb5dd7c560cfbced28c49ca12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
