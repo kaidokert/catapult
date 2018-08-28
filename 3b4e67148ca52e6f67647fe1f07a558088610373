@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "cb991198_e62fe3d3",
+        "filename": "dashboard/dashboard/spa/cp-tab.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-08-28T23:39:05Z",
+      "side": 1,
+      "message": "I meant that I think adding border-left/right might help, but it\u0027s probably fine as is.",
+      "parentUuid": "0704b668_8516b8ad",
+      "revId": "3b4e67148ca52e6f67647fe1f07a558088610373",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "36a81989_08e7a09e",
         "filename": "dashboard/dashboard/spa/cp-tab.html",
         "patchSetId": 1
@@ -141,6 +159,24 @@
       "revId": "3b4e67148ca52e6f67647fe1f07a558088610373",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0908060d_b6af4791",
+        "filename": "dashboard/dashboard/spa/cp-tab.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-08-28T23:39:05Z",
+      "side": 1,
+      "message": "LGTM",
+      "parentUuid": "68e585dc_5d9b2816",
+      "revId": "3b4e67148ca52e6f67647fe1f07a558088610373",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
