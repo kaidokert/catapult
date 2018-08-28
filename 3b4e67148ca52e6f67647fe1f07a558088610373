@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "0704b668_8516b8ad",
+        "filename": "dashboard/dashboard/spa/cp-tab.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-28T23:32:49Z",
+      "side": 1,
+      "message": "Sorry, I\u0027m not sure I understand. Can you elaborate?",
+      "parentUuid": "4ad4af96_70048ac4",
+      "revId": "3b4e67148ca52e6f67647fe1f07a558088610373",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "36a81989_08e7a09e",
         "filename": "dashboard/dashboard/spa/cp-tab.html",
         "patchSetId": 1
@@ -102,6 +120,24 @@
       "side": 1,
       "message": "Unfortunately, I don\u0027t think this is a problem with a super clean solution. One of the simpler solutions I\u0027ve seen is using text-shadow to bold the text instead of bolding. (ie: https://justmarkup.com/log/2015/11/quick-tip-using-text-shadow-instead-of-font-weight-bold-to-avoid-jumping/ ) \n\nI think you can also solve this with some shenanigans involving :after, but that seems unideal.",
       "parentUuid": "b976c3c0_2dd954a1",
+      "revId": "3b4e67148ca52e6f67647fe1f07a558088610373",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68e585dc_5d9b2816",
+        "filename": "dashboard/dashboard/spa/cp-tab.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-28T23:32:49Z",
+      "side": 1,
+      "message": "text-shadow seems to work well, thanks!",
+      "parentUuid": "005cabba_a984be3e",
       "revId": "3b4e67148ca52e6f67647fe1f07a558088610373",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
