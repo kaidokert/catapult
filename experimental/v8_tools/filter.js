@@ -145,25 +145,6 @@ const menu = new Vue({
   }
 });
 
-//  A row from the default table.
-class TableRow {
-  constructor(id, metric, averageSampleValues) {
-    this.id = id;
-    this.metric = metric;
-    this.averageSampleValues = averageSampleValues;
-  }
-}
-
-//  A row after expanding a specific metric. This includes
-//  all the stories from that metric plus the sample values
-//  in the initial form, not the average.
-class StoryRow {
-  constructor(story, sample) {
-    this.story = story;
-    this.sample = sample;
-  }
-}
-
 function average(arr) {
   return _.reduce(arr, function(memo, num) {
     return memo + num;
@@ -205,9 +186,11 @@ function readSingleFile(e) {
     const tableElems = [];
     let id = 1;
     for (const [key, value] of metricAverage.entries()) {
-      tableElems.push(
-          new TableRow(id++, key, average(value))
-      );
+      tableElems.push({
+        id: id++,
+        metric: key,
+        averageSampleValues: average(value)
+      });
     }
     app.gridData = tableElems;
     app.sampleArr = sampleArr;
@@ -216,7 +199,6 @@ function readSingleFile(e) {
     let metricNames = [];
     sampleArr.map(e => metricNames.push(e.name));
     metricNames = _.uniq(metricNames);
-
     const result = parseAllMetrics(metricNames);
     menu.sampelArr = sampleArr;
     menu.guidValueInfo = guidValueInfo;
