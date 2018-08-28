@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e348bde2_92c18d30",
+        "filename": "dashboard/bin/deploy_v2spa",
+        "patchSetId": 35
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-28T17:36:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aad928d3_1d8aa593",
+      "revId": "3adf804d6dbb03645897e65e0148fb907392a5d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b845b021_bf373fe9",
         "filename": "dashboard/dashboard/spa/index.js",
         "patchSetId": 35
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "1163a821_75367ca8",
+        "filename": "dashboard/dashboard/spa/index.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-28T17:36:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b845b021_bf373fe9",
+      "range": {
+        "startLine": 28,
+        "startChar": 69,
+        "endLine": 29,
+        "endChar": 45
+      },
+      "revId": "3adf804d6dbb03645897e65e0148fb907392a5d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5acf1543_f80d4501",
         "filename": "dashboard/dashboard/spa/index.js",
         "patchSetId": 35
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "6b7a210f_77f289b9",
+        "filename": "dashboard/dashboard/spa/index.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-28T17:36:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5acf1543_f80d4501",
+      "revId": "3adf804d6dbb03645897e65e0148fb907392a5d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff003004_e70c83d0",
         "filename": "dashboard/dashboard/spa/service-worker-listener.js",
         "patchSetId": 35
@@ -73,6 +133,24 @@
       "revId": "3adf804d6dbb03645897e65e0148fb907392a5d9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3edc9ac2_5c27e6e4",
+        "filename": "dashboard/dashboard/spa/service-worker-listener.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-28T17:36:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff003004_e70c83d0",
+      "revId": "3adf804d6dbb03645897e65e0148fb907392a5d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -99,6 +177,30 @@
     },
     {
       "key": {
+        "uuid": "43c5e57a_8436255c",
+        "filename": "dashboard/dashboard/spa/service-worker-listener.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-28T17:36:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "754ac358_b787674d",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 23
+      },
+      "revId": "3adf804d6dbb03645897e65e0148fb907392a5d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dc603fd3_bcae16da",
         "filename": "dashboard/dashboard/spa/service-worker-listener.js",
         "patchSetId": 35
@@ -110,6 +212,24 @@
       "writtenOn": "2018-08-27T22:31:21Z",
       "side": 1,
       "message": "Feel free to deconstruct in the declaration.\n\nhandleMessage_({type, payload})",
+      "revId": "3adf804d6dbb03645897e65e0148fb907392a5d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "117f11b4_1fd591ed",
+        "filename": "dashboard/dashboard/spa/service-worker-listener.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-28T17:36:53Z",
+      "side": 1,
+      "message": "It would be a bit more complex because I am destructuring `event.data`:\n\n  handleMessage_({ data: { type, payload } })\n\nI\u0027ve avoided nested destructuring for the sake of readability; would you still like me to make this change?",
+      "parentUuid": "dc603fd3_bcae16da",
       "revId": "3adf804d6dbb03645897e65e0148fb907392a5d9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -139,6 +259,30 @@
     },
     {
       "key": {
+        "uuid": "585450b5_e72bd3f2",
+        "filename": "dashboard/dashboard/spa/service-worker-listener.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-28T17:36:53Z",
+      "side": 1,
+      "message": "Sorry! It\u0027s hard to teach an old dog new tricks.",
+      "parentUuid": "9d410308_17249009",
+      "range": {
+        "startLine": 51,
+        "startChar": 31,
+        "endLine": 51,
+        "endChar": 45
+      },
+      "revId": "3adf804d6dbb03645897e65e0148fb907392a5d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "474eccdf_087448f6",
         "filename": "dashboard/dashboard/spa/service-worker-listener.js",
         "patchSetId": 35
@@ -150,6 +294,24 @@
       "writtenOn": "2018-08-27T22:31:21Z",
       "side": 1,
       "message": "Would something like this work?\n\nconstructor(...) {\n  ...\n  this.queueResult_ \u003d result \u003d\u003e this.messageQueue_.push(result);\n  this.resolve_ \u003d this.queueResult_;\n}\n\nhandleMessage_({type, payload}) {\n  ...\n  this.resolve_({done: ..., value: ...});\n}\n\nasync next() {\n  if (this.messageQueue_.length) return this.messageQueue_.shift();\n  const result \u003d await new Promise(resolve \u003d\u003e {this.resolve_ \u003d resolve;});\n  this.resolve_ \u003d this.queueResult_;\n  return result;\n}",
+      "revId": "3adf804d6dbb03645897e65e0148fb907392a5d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b83f43c_9a53c8f4",
+        "filename": "dashboard/dashboard/spa/service-worker-listener.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-28T17:36:53Z",
+      "side": 1,
+      "message": "That would work as long as there isn\u0027t several callers to `next()` in parallel. For example,\n\n  const asyncMap \u003d\u003e (listener) \u003d\u003e async(func) \u003d\u003e {\n    for await (const result of listener) {\n      func(result);\n    }\n  }\n\n  const listener \u003d new ServiceWorkerListener(url);\n  asyncMap(listener)(result \u003d\u003e console.log(result)); // won\u0027t console.log anything\n  asyncMap(listener)(result \u003d\u003e analytics.sendEvent(...));\n\nHowever, the code suggested would work with our current use case since we\u0027re only listening once per ServiceWorkerListener.",
+      "parentUuid": "474eccdf_087448f6",
       "revId": "3adf804d6dbb03645897e65e0148fb907392a5d9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -173,6 +335,24 @@
     },
     {
       "key": {
+        "uuid": "341cf4f4_841ec4bb",
+        "filename": "dashboard/dashboard/spa/sw-utils/timing.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-28T17:36:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2111031c_daa5d630",
+      "revId": "3adf804d6dbb03645897e65e0148fb907392a5d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a0efc87_66a9cd7c",
         "filename": "third_party/idb/package.json",
         "patchSetId": 35
@@ -187,6 +367,24 @@
       "revId": "3adf804d6dbb03645897e65e0148fb907392a5d9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a23d37ab_287a65e4",
+        "filename": "third_party/idb/package.json",
+        "patchSetId": 35
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-08-28T17:36:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a0efc87_66a9cd7c",
+      "revId": "3adf804d6dbb03645897e65e0148fb907392a5d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
