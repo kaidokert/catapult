@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "323b6953_89ad3646",
+        "filename": "BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1003154
+      },
+      "writtenOn": "2018-08-28T23:45:29Z",
+      "side": 1,
+      "message": "I\u0027ll look into remove this in a separate CL because I vaguely remember in my previous tests, this is somehow needed.",
+      "range": {
+        "startLine": 161,
+        "startChar": 5,
+        "endLine": 161,
+        "endChar": 11
+      },
+      "revId": "93783097021dd517339b64289b8b736486181a6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
