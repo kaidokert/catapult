@@ -82,6 +82,8 @@ class CrOSBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     py_utils.WaitFor(lambda: self.oobe_exists, 30)
 
     if self.browser_options.auto_login:
+      # Wait login_delay seconds before autologging in. Default is 0.
+      time.sleep(self.browser_options.login_delay)
       if self._is_guest:
         pid = self.pid
         self.oobe.NavigateGuestLogin()
@@ -96,9 +98,6 @@ class CrOSBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       elif self.browser_options.gaia_login:
         self.oobe.NavigateGaiaLogin(self._username, self._password)
       else:
-        # Wait for few seconds(the time of password typing) to have mini ARC
-        # container up and running. Default is 0.
-        time.sleep(self.browser_options.login_delay)
         self.oobe.NavigateFakeLogin(
             self._username, self._password, self._gaia_id,
             not self.browser_options.disable_gaia_services)
