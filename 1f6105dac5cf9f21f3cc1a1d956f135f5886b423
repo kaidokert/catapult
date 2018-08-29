@@ -16,6 +16,24 @@
       "revId": "1f6105dac5cf9f21f3cc1a1d956f135f5886b423",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "baca3c3b_4e6f0469",
+        "filename": "BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1293423
+      },
+      "writtenOn": "2018-08-29T09:30:10Z",
+      "side": 1,
+      "message": "No, I\u0027m not sure if you saw it but I left a comment about this, I\u0027ll paste it here in case not:\n\u0027\u0027\u0027\nAlso, I\u0027m having a problem with this CL, so I\u0027ve uploaded it to give some context. As you can see the BUILd.gn file has been modified. I had to do this to let me upload due to the presubmit script outputting this:\n\u0027\u0027\u0027\nRunning presubmit upload checks ...\nERROR:root:Diff found. Please rerun generate_telemetry_build.py.\n\n** Presubmit ERRORS **\nBUILD.gn needs to be re-generated. Please run /usr/local/google/home/anthonyalridge/catapult/generate_telemetry_build.py and include the changes in this CL\n\u0027\u0027\u0027\nAs far as I can tell this is related to changes introduced here (https://chromium-review.googlesource.com/1186132) and here ( https://chromium-review.googlesource.com/1188386).\n\nBased on the presubmit script message it seems like it\u0027s okay to do this but I\u0027m hesitant as I\u0027m not sure why this was necessary (it doesn\u0027t seem to add/remove anything it just reorders the existing stuff, so far as I can tell).\n\u0027\u0027\u0027\n\nI tried creating a new branch and uploading a random change (just a comment in a random, non v8 tools file) and I still had to generate the BUILD.gn so it\u0027s not a rebase/merge thing so far as I can tell.",
+      "parentUuid": "40467e4f_e80282e2",
+      "revId": "1f6105dac5cf9f21f3cc1a1d956f135f5886b423",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
