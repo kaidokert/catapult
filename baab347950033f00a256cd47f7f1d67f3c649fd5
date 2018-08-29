@@ -1,0 +1,330 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4d82d8f7_832a2ed5",
+        "filename": "dashboard/dashboard/spa/report-section.js",
+        "patchSetId": 40
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-29T20:03:14Z",
+      "side": 1,
+      "message": "Please remove.",
+      "revId": "baab347950033f00a256cd47f7f1d67f3c649fd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e01279f_b48d4f3e",
+        "filename": "dashboard/dashboard/spa/service-worker-listener.js",
+        "patchSetId": 40
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-29T20:03:14Z",
+      "side": 1,
+      "message": "This should be clear enough from the API and the callers that I think we don\u0027t need these comments.",
+      "range": {
+        "startLine": 9,
+        "startChar": 41,
+        "endLine": 10,
+        "endChar": 71
+      },
+      "revId": "baab347950033f00a256cd47f7f1d67f3c649fd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6273794_3bce4c92",
+        "filename": "dashboard/dashboard/spa/service-worker.js",
+        "patchSetId": 40
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-29T20:03:14Z",
+      "side": 1,
+      "message": "makeFakeResponse seems simple enough that I think you can inline it:\n\nevent.respondWith(new Response(new Blob([\u0027null\u0027], {type: \u0027application/json\u0027})));",
+      "revId": "baab347950033f00a256cd47f7f1d67f3c649fd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a15d5b3_a97c5cf4",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request.js",
+        "patchSetId": 40
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-29T20:03:14Z",
+      "side": 1,
+      "message": "Can you merge this into the findIndex callback?",
+      "revId": "baab347950033f00a256cd47f7f1d67f3c649fd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0148d812_fdb45231",
+        "filename": "dashboard/dashboard/spa/sw-utils/timeseries-cache-request.js",
+        "patchSetId": 40
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-29T20:03:14Z",
+      "side": 1,
+      "message": "Can you merge this desctructure into the function signature?",
+      "range": {
+        "startLine": 356,
+        "startChar": 2,
+        "endLine": 358,
+        "endChar": 14
+      },
+      "revId": "baab347950033f00a256cd47f7f1d67f3c649fd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0310f084_1f26bcbd",
+        "filename": "dashboard/dashboard/spa/test-suite-descriptors.js",
+        "patchSetId": 40
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-29T20:03:14Z",
+      "side": 1,
+      "message": "Please remove.",
+      "revId": "baab347950033f00a256cd47f7f1d67f3c649fd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97faa5ae_57fa3bff",
+        "filename": "dashboard/dashboard/spa/timeseries-cache.js",
+        "patchSetId": 40
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-29T20:03:14Z",
+      "side": 1,
+      "message": "const ranges \u003d {};\nfor (const lod Object.values(LEVEL_OF_DETAIL)) {\n  ranges[lod] \u003d [];\n}",
+      "range": {
+        "startLine": 512,
+        "startChar": 5,
+        "endLine": 517,
+        "endChar": 13
+      },
+      "revId": "baab347950033f00a256cd47f7f1d67f3c649fd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6b6a5da_e0c6e548",
+        "filename": "dashboard/dashboard/spa/timeseries-cache.js",
+        "patchSetId": 40
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-29T20:03:14Z",
+      "side": 1,
+      "message": "Please remove these comments.",
+      "range": {
+        "startLine": 570,
+        "startChar": 15,
+        "endLine": 573,
+        "endChar": 36
+      },
+      "revId": "baab347950033f00a256cd47f7f1d67f3c649fd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b53ed1a6_b07efd0f",
+        "filename": "dashboard/dashboard/spa/timeseries-cache.js",
+        "patchSetId": 40
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-29T20:03:14Z",
+      "side": 1,
+      "message": "You can remove currRanges and nextRanges and inline this here:\n\nrangeReceived.mergeIntoArray(entry.ranges[lod])",
+      "range": {
+        "startLine": 610,
+        "startChar": 31,
+        "endLine": 610,
+        "endChar": 41
+      },
+      "revId": "baab347950033f00a256cd47f7f1d67f3c649fd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44e62f66_e3fb3211",
+        "filename": "dashboard/dashboard/spa/utils.js",
+        "patchSetId": 40
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-29T20:03:14Z",
+      "side": 1,
+      "message": "this.promises_ \u003d tasks.map(task \u003d\u003e ((task instanceof Promise) ? this.wrapPromise_(task) : this.wrapIterator(task)));",
+      "revId": "baab347950033f00a256cd47f7f1d67f3c649fd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07e0c013_dcf66390",
+        "filename": "dashboard/dashboard/spa/utils.js",
+        "patchSetId": 40
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-29T20:03:14Z",
+      "side": 1,
+      "message": "Please remove.",
+      "range": {
+        "startLine": 240,
+        "startChar": 0,
+        "endLine": 244,
+        "endChar": 9
+      },
+      "revId": "baab347950033f00a256cd47f7f1d67f3c649fd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd488d0a_12824663",
+        "filename": "dashboard/dashboard/spa/utils.js",
+        "patchSetId": 40
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-29T20:03:14Z",
+      "side": 1,
+      "message": "{value, done}",
+      "range": {
+        "startLine": 262,
+        "startChar": 14,
+        "endLine": 262,
+        "endChar": 29
+      },
+      "revId": "baab347950033f00a256cd47f7f1d67f3c649fd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f7a524b_97fdf233",
+        "filename": "dashboard/dashboard/spa/utils.js",
+        "patchSetId": 40
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-29T20:03:14Z",
+      "side": 1,
+      "message": "wrapPromise_(promise) {\n  const self \u003d (async() \u003d\u003e {\n    try {\n      this.results_.push(await promise);\n    } catch (err) {\n      this.errors_.push(err);\n    } finally {\n      this.promises_.splice(this.promises_.indexOf(self), 1);\n    }\n  })();\n  return self;\n}\n\nwrapIterator_(asyncIter) {\n  while (true) {\n    const promise \u003d asyncIter.next();\n    this.promises_.push(this.wrapPromise_(promise));\n    const {done} \u003d await promise;\n    if (done) break;\n  }\n}",
+      "range": {
+        "startLine": 262,
+        "startChar": 8,
+        "endLine": 266,
+        "endChar": 9
+      },
+      "revId": "baab347950033f00a256cd47f7f1d67f3c649fd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67b8b292_4b54d4c4",
+        "filename": "dashboard/dashboard/spa/utils.js",
+        "patchSetId": 40
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-29T20:03:14Z",
+      "side": 1,
+      "message": "removeSelf?",
+      "revId": "baab347950033f00a256cd47f7f1d67f3c649fd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6cad0b78_4c3a9344",
+        "filename": "dashboard/dashboard/spa/utils.js",
+        "patchSetId": 40
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-29T20:03:14Z",
+      "side": 1,
+      "message": "{done: true}",
+      "range": {
+        "startLine": 295,
+        "startChar": 15,
+        "endLine": 295,
+        "endChar": 29
+      },
+      "revId": "baab347950033f00a256cd47f7f1d67f3c649fd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d205ecf_a7a726ec",
+        "filename": "dashboard/dashboard/spa/utils.js",
+        "patchSetId": 40
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-29T20:03:14Z",
+      "side": 1,
+      "message": "Please remove.",
+      "revId": "baab347950033f00a256cd47f7f1d67f3c649fd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
