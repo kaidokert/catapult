@@ -34,6 +34,24 @@
       "revId": "1f6105dac5cf9f21f3cc1a1d956f135f5886b423",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "479d0b5c_1ae93117",
+        "filename": "BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-29T13:31:02Z",
+      "side": 1,
+      "message": "This is strange. I couldn\u0027t reproduce the problem. And this seems to be just sorting the sections in a different order?\n\n+zmo, this seems to be due to your recent changes. Any clue what could be going on?",
+      "parentUuid": "baca3c3b_4e6f0469",
+      "revId": "1f6105dac5cf9f21f3cc1a1d956f135f5886b423",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
