@@ -52,6 +52,24 @@
       "revId": "2c22efd5439b43b24e7f090245d3b1909d30d1d3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "380c3dd9_0222d3eb",
+        "filename": "dashboard/bin/run_wct_tests",
+        "patchSetId": 7
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-29T13:20:04Z",
+      "side": 1,
+      "message": "We spoke offline, just recapping here. Feel like that\u0027s preferable to having each binary in catapult try to request what it needs. One thing that was brought up, catapult already does some magic downloading of chrome versions via it\u0027s own binary_manager, should talk in services when everyone is back on what the plan is for the 2 different ways of getting chrome.",
+      "parentUuid": "f23b05d7_17ac46db",
+      "revId": "2c22efd5439b43b24e7f090245d3b1909d30d1d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

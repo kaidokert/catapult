@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d4b38ccd_1d724897",
+        "filename": "dashboard/bin/run_wct_tests",
+        "patchSetId": 13
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-29T13:20:04Z",
+      "side": 1,
+      "message": "I think every executable /bin file we\u0027ve had in catapult has been in python",
+      "range": {
+        "startLine": 1,
+        "startChar": 3,
+        "endLine": 1,
+        "endChar": 6
+      },
+      "revId": "41e17332d3f0e0e4821f1bc22b70f57afb30377e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49a33faa_9208d3fe",
+        "filename": "dashboard/dashboard_build/dashboard_dev_server_config.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-29T13:20:04Z",
+      "side": 1,
+      "message": "Put an explainer here as to why you\u0027re excluding these paths",
+      "range": {
+        "startLine": 24,
+        "startChar": 32,
+        "endLine": 24,
+        "endChar": 35
+      },
+      "revId": "41e17332d3f0e0e4821f1bc22b70f57afb30377e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
