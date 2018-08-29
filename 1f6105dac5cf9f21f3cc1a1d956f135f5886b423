@@ -52,6 +52,24 @@
       "revId": "1f6105dac5cf9f21f3cc1a1d956f135f5886b423",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f047b7a8_d4137cba",
+        "filename": "BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1003154
+      },
+      "writtenOn": "2018-08-29T17:08:22Z",
+      "side": 1,
+      "message": "I fixed the issue. Please rebase your CL, and run generate_telemetry_build.py again. After that, changes in this file should disappear.",
+      "parentUuid": "479d0b5c_1ae93117",
+      "revId": "1f6105dac5cf9f21f3cc1a1d956f135f5886b423",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
