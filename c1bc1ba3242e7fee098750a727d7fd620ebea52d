@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e85c043a_e0a4e331",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/job-chart.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-29T09:02:32Z",
+      "side": 1,
+      "message": "super tiny nit: for the negative case, can you use a \"minus sign\" [1] rather than the \"hyphen\" that we tend to get by default? (This makes it so that both \"+\" and \"−\" have the same width, otherwise the minus is a bit shorter.)\n\n[1]: https://www.fileformat.info/info/unicode/char/2212/index.htm",
+      "revId": "c1bc1ba3242e7fee098750a727d7fd620ebea52d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
