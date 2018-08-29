@@ -80,15 +80,6 @@ class ReportQuery(object):
         futures.append(self._GetRow(tri, table_row['data'], desc))
     yield futures
 
-    # _GetRow can't know whether a datum will be merged until all the data have
-    # been fetched, so post-process.
-    for tri, table_row in enumerate(self._report['rows']):
-      self._IgnoreStaleData(tri, table_row)
-      self._IgnoreIncomparableData(table_row)
-      self._SetRowUnits(table_row)
-      self._IgnoreDataWithWrongUnits(table_row)
-      self._MergeData(table_row)
-
     raise ndb.Return(self._report)
 
   def _IgnoreStaleData(self, tri, table_row):
