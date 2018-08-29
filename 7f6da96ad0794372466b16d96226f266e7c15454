@@ -22,6 +22,30 @@
       "revId": "7f6da96ad0794372466b16d96226f266e7c15454",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "212f6682_db746e40",
+        "filename": "dashboard/dashboard/pinpoint/models/isolate.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-08-29T18:21:10Z",
+      "side": 1,
+      "message": "There are 6 total. Android, Linux, Mac, Win, and 32-bit for Android and Win. So not too many, and we\u0027ll remove this before too long anyway.",
+      "parentUuid": "394d9477_3e1172e4",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 17
+      },
+      "revId": "7f6da96ad0794372466b16d96226f266e7c15454",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
