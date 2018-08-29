@@ -212,63 +212,105 @@ tr.exportTo('cp', () => {
     return state;
   }
 
-  /* Processing results can be costly. Help callers batch process
-   * results by waiting a bit to see if more promises resolve.
-   * This is similar to Polymer.Debouncer, but as an async generator.
-   * Usage:
-   * async function fetchThings(things) {
-   *   const responses = things.map(thing => new ThingRequest(thing).response);
-   *   for await (const {results, errors} of cp.batchResponses(responses)) {
-   *     dispatch({
-   *       type: ...mergeAndDisplayThings.name,
-   *       results, errors,
-   *     });
-   *   }
-   *   dispatch({
-   *     type: ...doneReceivingThings.name,
-   *   });
-   * }
+  /**
+   * BatchIterator reduces processing costs by batching results and errors
+   * from an array of tasks. A task can either be a promise or an asynchronous
+   * iterator. In other words, use this class when it is costly to iteratively
+   * process the output of each task (e.g. when rendering to DOM).
    *
-   * |promises| can be any promise, need not be RequestBase.response.
+   *   const tasks = urls.map(fetch);
+   *   for await (const {results, errors} of new BatchIterator(tasks)) {
+   *     render(results);
+   *     renderErrors(errors);
+   *   }
    */
-  async function* batchResponses(promises, opt_getDelayPromise) {
-    const getDelayPromise = opt_getDelayPromise || (() =>
-      cp.timeout(500));
-    let delay;
-    let results = [];
-    let errors = [];
-    promises = promises.map(narcissus => {
-      const socrates = (async() => {
-        try {
-          results.push(await narcissus);
-        } catch (err) {
-          errors.push(err);
-        } finally {
-          promises.splice(promises.indexOf(socrates), 1);
-        }
-      })();
-      return socrates;
-    });
+  class BatchIterator {
+    /**
+     * type tasks = [task]
+     * type task = Promise | AsyncIterator
+     * type AsyncIterator = {
+     *   next: () => Promise
+     * }
+     */
+    constructor(tasks) {
+      this.results_ = [];
+      this.errors_ = [];
+      this.timeSinceLastCalled_ = undefined;
+      this.promises_ = [];
 
-    while (promises.length) {
-      if (delay) {
-        await Promise.race([delay, ...promises]);
-        if (delay.isResolved) {
-          yield {results, errors};
-          results = [];
-          errors = [];
-          delay = undefined;
+      for (const task of tasks) {
+        if (task instanceof Promise) {
+          this.promises_.push(this.wrapPromise_(task));
+        } else {
+          this.wrapIterator_(task);
         }
-      } else {
-        await Promise.race(promises);
-        delay = (async() => {
-          await getDelayPromise();
-          delay.isResolved = true;
-        })();
-        delay.isResolved = false;
       }
     }
-    yield {results, errors};
+
+    wrapPromise_(promise, isAsyncIter = false) {
+      const self = (async() => {
+        try {
+          let result = await promise;
+          if (isAsyncIter) {
+            if (result.done) return;
+            result = result.value;
+          }
+          this.results_.push(result);
+        } catch (err) {
+          this.errors_.push(err);
+        } finally {
+          this.promises_.splice(this.promises_.indexOf(self), 1);
+        }
+      })();
+      return self;
+    }
+
+    async wrapIterator_(asyncIter) {
+      while (true) {
+        const promise = asyncIter.next();
+        this.promises_.push(this.wrapPromise_(promise, true));
+        const {done} = await promise;
+        if (done) break;
+      }
+    }
+
+    [Symbol.asyncIterator]() {
+      return this;
+    }
+
+    async next() {
+      if (!this.promises_.length && !this.results_.length &&
+          !this.errors_.length) {
+        return {done: true};
+      }
+
+      if (this.timeSinceLastCalled_) {
+        const timeToProcessInMs = performance.now() - this.timeSinceLastCalled_;
+        await Promise.race([
+          timeout(timeToProcessInMs),
+          Promise.all(this.promises_)
+        ]);
+      } else {
+        await Promise.race(this.promises_);
+      }
+
+      // The delay promise resolved, indiciating we need to send out results.
+      // Measure how long it takes the caller to process yielded results to
+      // avoid overloading the caller the next time around.
+      this.timeSinceLastCalled_ = performance.now();
+
+      const response = {
+        value: {
+          results: this.results_,
+          errors: this.errors_
+        },
+        done: false
+      };
+
+      this.results_ = [];
+      this.errors_ = [];
+      return response;
+    }
   }
 
   function timeEventListeners(cls) {
@@ -340,7 +382,7 @@ tr.exportTo('cp', () => {
   return {
     afterRender,
     animationFrame,
-    batchResponses,
+    BatchIterator,
     buildProperties,
     buildState,
     deepFreeze,
