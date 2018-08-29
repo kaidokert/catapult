@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bb666a1e_c9b9f036",
+        "filename": "tracing/tracing/metrics/rendering/latency.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-29T21:28:27Z",
+      "side": 1,
+      "message": "Please reduce indentation by inverting this condition and using `continue;`",
+      "revId": "53e4d25805d3fb48e2309b52f3f9850d94c9426d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44de3114_96f90cba",
+        "filename": "tracing/tracing/metrics/rendering/latency.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-29T21:28:27Z",
+      "side": 1,
+      "message": "This looks similar to InputLatencyAsyncSlice.inputLatency. Can you extend and use that?\nhttps://github.com/catapult-project/catapult/blob/11513e359cd60e369bbbd1f4f2ef648c1bccabd0/tracing/tracing/extras/chrome/cc/input_latency_async_slice.html#L569",
+      "revId": "53e4d25805d3fb48e2309b52f3f9850d94c9426d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6123c619_f97c976f",
+        "filename": "tracing/tracing/metrics/rendering/latency.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-29T21:28:27Z",
+      "side": 1,
+      "message": "Please use tr.b.convertUnit",
+      "range": {
+        "startLine": 70,
+        "startChar": 46,
+        "endLine": 70,
+        "endChar": 53
+      },
+      "revId": "53e4d25805d3fb48e2309b52f3f9850d94c9426d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8b9a197_8a53d657",
+        "filename": "tracing/tracing/metrics/rendering/rendering_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-29T21:28:27Z",
+      "side": 1,
+      "message": "You can use an arrow function.\n\nsegments.sort((x, y) \u003d\u003e x.start - y.start);",
+      "revId": "53e4d25805d3fb48e2309b52f3f9850d94c9426d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
