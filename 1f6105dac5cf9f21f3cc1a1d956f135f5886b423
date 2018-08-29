@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "40467e4f_e80282e2",
+        "filename": "BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-29T08:52:17Z",
+      "side": 1,
+      "message": "Are these changes intended? Are is it a problem with rebase?",
+      "revId": "1f6105dac5cf9f21f3cc1a1d956f135f5886b423",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
