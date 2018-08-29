@@ -184,7 +184,7 @@ class BrowserLoggingTest(browser_test_case.BrowserTestCase):
   def CustomizeBrowserOptions(cls, options):
     options.logging_verbosity = options.VERBOSE_LOGGING
 
-  @decorators.Disabled('chromeos', 'android')
+  @decorators.Disabled('chromeos', 'android', 'fuchsia')
   def testLogFileExist(self):
     self.assertTrue(
         os.path.isfile(self._browser._browser_backend.log_file_path))

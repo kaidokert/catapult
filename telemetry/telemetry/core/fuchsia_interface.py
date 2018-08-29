@@ -8,14 +8,12 @@ Fuchsia"""
 # Necessary path changes to access Fuchsia utilities in chromium repo
 import os
 import sys
+FUCHSIA_IMPORT_SUCCESS = False
 if os.path.basename(os.getcwd()) == 'src':
   build_dir = os.path.join(os.getcwd(), 'build')
   if os.path.exists(build_dir):
     sys.path.append(build_dir)
     FUCHSIA_IMPORT_SUCCESS = True
-  else:
-    FUCHSIA_IMPORT_SUCCESS = False
-
 
 if FUCHSIA_IMPORT_SUCCESS:
   from fuchsia import device_target
