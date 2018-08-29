@@ -1,0 +1,27 @@
+#!/usr/bin/python
+# Copyright 2018 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import os
+import sys
+
+CATAPULT_PATH = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), '..', '..'))
+
+
+def _AddToPathIfNeeded(path):
+  if path not in sys.path:
+    sys.path.insert(0, path)
+
+
+if __name__ == '__main__':
+  _AddToPathIfNeeded(CATAPULT_PATH)
+  from catapult_build import run_wct
+  sys.exit(run_wct.RunWct(os.path.join(CATAPULT_PATH, 'dashboard'), [
+      os.path.join(CATAPULT_PATH, 'third_party', 'polymer2'),
+      os.path.join(CATAPULT_PATH, 'tracing', 'third_party'),
+      os.path.join(
+        CATAPULT_PATH, 'tracing', 'third_party', 'gl-matrix', 'dist'),
+      os.path.join(CATAPULT_PATH, 'tracing', 'tracing'),
+  ]))
