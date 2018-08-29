@@ -8,6 +8,7 @@ from google.appengine.ext import ndb
 
 from dashboard.common import bot_configurations
 from dashboard.common import descriptor
+from dashboard.common import timing
 from dashboard.common import utils
 from dashboard.models import graph_data
 from tracing.value import histogram as histogram_module
@@ -82,89 +83,95 @@ class ReportQuery(object):
 
     # _GetRow can't know whether a datum will be merged until all the data have
     # been fetched, so post-process.
-    for tri, table_row in enumerate(self._report['rows']):
-      self._IgnoreStaleData(tri, table_row)
-      self._IgnoreIncomparableData(table_row)
-      self._SetRowUnits(table_row)
-      self._IgnoreDataWithWrongUnits(table_row)
-      self._MergeData(table_row)
+    with timing.WallTimeLogger('PostProcess'), timing.CpuTimeLogger('PostProcess'):
+      for tri, table_row in enumerate(self._report['rows']):
+        self._IgnoreStaleData(tri, table_row)
+        self._IgnoreIncomparableData(table_row)
+        self._SetRowUnits(table_row)
+        self._IgnoreDataWithWrongUnits(table_row)
+        self._MergeData(table_row)
 
     raise ndb.Return(self._report)
 
   def _IgnoreStaleData(self, tri, table_row):
     # Ignore data from test cases that were removed.
-    for rev, data in table_row['data'].iteritems():
-      new_data = []
-      for datum in data:
-        max_rev_key = (
-            datum['descriptor'].test_suite, datum['descriptor'].bot, tri, rev)
-        if datum['revision'] == self._max_revs[max_rev_key]:
-          new_data.append(datum)
-      table_row['data'][rev] = new_data
+    with timing.WallTimeLogger('IgnoreStaleData'), timing.CpuTimeLogger('IgnoreStaleData'):
+      for rev, data in table_row['data'].iteritems():
+        new_data = []
+        for datum in data:
+          max_rev_key = (
+              datum['descriptor'].test_suite, datum['descriptor'].bot, tri, rev)
+          if datum['revision'] == self._max_revs[max_rev_key]:
+            new_data.append(datum)
+        table_row['data'][rev] = new_data
 
   def _IgnoreIncomparableData(self, table_row):
     # Ignore data from test cases that are not present for every rev.
-    for rev, data in table_row['data'].iteritems():
-      new_data = []
-      for datum in data:
-        all_revs = True
-        for other_data in table_row['data'].itervalues():
-          any_desc = False
-          for other_datum in other_data:
-            if other_datum['descriptor'] == datum['descriptor']:
-              any_desc = True
+    with timing.WallTimeLogger('IgnoreIncomparableData'), timing.CpuTimeLogger('IgnoreIncomparableData'):
+      for rev, data in table_row['data'].iteritems():
+        new_data = []
+        for datum in data:
+          all_revs = True
+          for other_data in table_row['data'].itervalues():
+            any_desc = False
+            for other_datum in other_data:
+              if other_datum['descriptor'] == datum['descriptor']:
+                any_desc = True
+                break
+
+            if not any_desc:
+              all_revs = False
               break
 
-          if not any_desc:
-            all_revs = False
-            break
+          if all_revs:
+            new_data.append(datum)
 
-        if all_revs:
-          new_data.append(datum)
-
-      table_row['data'][rev] = new_data
+        table_row['data'][rev] = new_data
 
   def _SetRowUnits(self, table_row):
     # Copy units from the first datum to the table_row.
     # Sort data first so this is deterministic.
-    for rev in self._revisions:
-      data = table_row['data'][rev] = sorted(
-          table_row['data'][rev], key=lambda datum: datum['descriptor'])
-      if data:
-        table_row['units'] = data[0]['units']
-        table_row['improvement_direction'] = data[0]['improvement_direction']
-        break
+    with timing.WallTimeLogger('SetRowUnits'), timing.CpuTimeLogger('SetRowUnits'):
+      for rev in self._revisions:
+        data = table_row['data'][rev] = sorted(
+            table_row['data'][rev], key=lambda datum: datum['descriptor'])
+        if data:
+          table_row['units'] = data[0]['units']
+          table_row['improvement_direction'] = data[0]['improvement_direction']
+          break
 
   def _IgnoreDataWithWrongUnits(self, table_row):
-    for rev, data in table_row['data'].iteritems():
-      new_data = []
-      for datum in data:
-        if datum['units'] == table_row['units']:
-          new_data.append(datum)
-        else:
-          logging.warn('Expected units=%r; %r', table_row['units'], datum)
-      table_row['data'][rev] = new_data
+    with timing.WallTimeLogger('IgnoreDataWithWrongUnits'), timing.CpuTimeLogger('IgnoreDataWithWrongUnits'):
+      for rev, data in table_row['data'].iteritems():
+        new_data = []
+        for datum in data:
+          if datum['units'] == table_row['units']:
+            new_data.append(datum)
+          else:
+            logging.warn('Expected units=%r; %r', table_row['units'], datum)
+        table_row['data'][rev] = new_data
 
   def _MergeData(self, table_row):
-    for rev, data in table_row['data'].iteritems():
-      statistics = histogram_module.RunningStatistics()
-      for datum in data:
-        statistics = statistics.Merge(datum['statistics'])
-      revision = rev
-      if data:
-        revision = data[0]['revision']
-      table_row['data'][rev] = {
-          'statistics': statistics.AsDict(),
-          'descriptors': [
-              {
-                  'testSuite': datum['descriptor'].test_suite,
-                  'bot': datum['descriptor'].bot,
-                  'testCase': datum['descriptor'].test_case,
-              }
-              for datum in data
-          ],
-          'revision': revision,
-      }
+    with timing.WallTimeLogger('MergeData'), timing.CpuTimeLogger('MergeData'):
+      for rev, data in table_row['data'].iteritems():
+        statistics = histogram_module.RunningStatistics()
+        for datum in data:
+          statistics = statistics.Merge(datum['statistics'])
+        revision = rev
+        if data:
+          revision = data[0]['revision']
+        table_row['data'][rev] = {
+            'statistics': statistics.AsDict(),
+            'descriptors': [
+                {
+                    'testSuite': datum['descriptor'].test_suite,
+                    'bot': datum['descriptor'].bot,
+                    'testCase': datum['descriptor'].test_case,
+                }
+                for datum in data
+            ],
+            'revision': revision,
+        }
 
   @ndb.tasklet
   def _GetRow(self, tri, table_row, desc):
