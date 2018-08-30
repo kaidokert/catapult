@@ -117,6 +117,8 @@ class FastbootUtilsEnableFastbootMode(FastbootUtilsTest):
         self.call.fastboot._device.EnableRoot(),
         self.call.fastboot._device.adb.Reboot(to_bootloader=True),
         self.call.fastboot.WaitForFastbootMode()):
+      # This seems to be a false positive.
+      # pylint: disable=not-callable
       self.fastboot.EnableFastbootMode()
 
 

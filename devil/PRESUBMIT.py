@@ -23,20 +23,44 @@ def _RunUnitTests(input_api, output_api):
   test_env = dict(input_api.environ)
   test_env.update({
     'PYTHONDONTWRITEBYTECODE': '1',
-    'PYTHONPATH': ':'.join([J(), J('..')]),
+    'PYTHONPATH': ':'.join([J()]),
   })
 
   message_type = (output_api.PresubmitError if input_api.is_committing
                   else output_api.PresubmitPromptWarning)
 
-  return input_api.RunTests([
-      input_api.Command(
-          name='devil/bin/run_py_tests',
-          cmd=[
-            input_api.os_path.join(
-                input_api.PresubmitLocalPath(), 'bin', 'run_py_tests')],
-          kwargs={'env': test_env},
-          message=message_type)])
+  errors = []
+  errors.extend(
+      input_api.RunTests([
+          input_api.Command(
+              name='devil/bin/run_py_tests',
+              cmd=[
+                input_api.os_path.join(
+                    input_api.PresubmitLocalPath(), 'bin', 'run_py_tests')],
+              kwargs={'env': test_env},
+              message=message_type)]))
+
+  # Our vendored version of pymock is old and doesn't have many of
+  # the functions available in newer versions. Because of how mocking
+  # is implemented, attempting to call these functions silently does
+  # nothing rather than throwing an exception. We rerun tests with
+  # a custom implementation of mock that hard fails if any of the
+  # functions are used.
+  test_env['PYTHONPATH'] = ':'.join([
+      test_env['PYTHONPATH'],
+      J('utils', 'hostile_mock'),
+  ])
+  errors.extend(
+      input_api.RunTests([
+          input_api.Command(
+              name='devil/bin/run_py_tests',
+              cmd=[
+                input_api.os_path.join(
+                    input_api.PresubmitLocalPath(), 'bin', 'run_py_tests')],
+              kwargs={'env': test_env},
+              message=message_type)]))
+
+  return errors
 
 
 def _EnsureNoPylibUse(input_api, output_api):
