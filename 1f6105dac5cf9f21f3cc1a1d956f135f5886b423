@@ -70,6 +70,24 @@
       "revId": "1f6105dac5cf9f21f3cc1a1d956f135f5886b423",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0177405f_3fd7c3e5",
+        "filename": "BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1293423
+      },
+      "writtenOn": "2018-08-30T08:39:40Z",
+      "side": 1,
+      "message": "Yep that worked, thanks for your help :)",
+      "parentUuid": "f047b7a8_d4137cba",
+      "revId": "1f6105dac5cf9f21f3cc1a1d956f135f5886b423",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
