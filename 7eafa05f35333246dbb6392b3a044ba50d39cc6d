@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b8d8425_5bc03dcb",
+        "filename": "devil/devil/android/perf/perf_control.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-30T08:30:49Z",
+      "side": 1,
+      "message": "Two requests:\n\n- Instead of a static method, make this a (private) module level function.\n- Can you make it so that even if this function is called multiple times, the atexit warning is only added once?",
+      "revId": "7eafa05f35333246dbb6392b3a044ba50d39cc6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c732c51_02b8a6be",
+        "filename": "devil/devil/android/perf/perf_control.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-30T08:30:49Z",
+      "side": 1,
+      "message": "shouldn\u0027t this case also SetScalingGovernor(\u0027performance\u0027)?",
+      "revId": "7eafa05f35333246dbb6392b3a044ba50d39cc6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9844bff7_9a285ccd",
+        "filename": "devil/devil/android/perf/perf_control.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-30T08:30:49Z",
+      "side": 1,
+      "message": "why do we want to force this? Can\u0027t we also fall back to \"ondemand\" as default?",
+      "revId": "7eafa05f35333246dbb6392b3a044ba50d39cc6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "602a134a_33fe373f",
+        "filename": "devil/devil/android/perf/perf_control.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-30T08:30:49Z",
+      "side": 1,
+      "message": "Thanks for adding this!",
+      "revId": "7eafa05f35333246dbb6392b3a044ba50d39cc6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4dae196d_4970d4e9",
+        "filename": "devil/devil/android/perf/perf_control_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-30T08:30:49Z",
+      "side": 1,
+      "message": "wondering if this is mocking too low level? Maybe mock GetCpuInfo and split the current PerfControl.__init__ into a couple more mockable parts?",
+      "revId": "7eafa05f35333246dbb6392b3a044ba50d39cc6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
