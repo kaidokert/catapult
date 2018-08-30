@@ -1,81 +1,78 @@
-# Copyright 2015 The Chromium Authors. All rights reserved.
+# Copyright 2018 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-from google.appengine.datastore import datastore_query
+import logging
+
 from google.appengine.ext import deferred
 from google.appengine.ext import ndb
 
+from dashboard.common import datastore_hooks
+from dashboard.common import utils
 from dashboard.models import anomaly
 from dashboard.models import graph_data
 
-# Number of Row entities to process at once.
-_MAX_ROWS_TO_PUT = 25
 
-# Number of TestMetadata entities to process at once.
-_MAX_TESTS_TO_PUT = 25
-
-# Which queue to use for tasks started by this handler. Must be in queue.yaml.
-_QUEUE_NAME = 'migrate-queue'
+# These functions are not called anywhere -- admins run them in dev_console.
 
 
-# This function is not called anywhere except dev_console:
-# https://chromeperf.appspot.com/_ah/dev_console/interactive
-# from dashboard.change_internal_only import ChangeInternalOnly
-# ChangeInternalOnly(False, [bot_names])
-def ChangeInternalOnly(internal_only=True, bot_names=()):
-  for bot_name in bot_names:
-    deferred.defer(_UpdateBot, bot_name, internal_only, _queue=_QUEUE_NAME)
+QUEUE_NAME = 'migrate-queue'
 
 
-def _UpdateBot(bot_name, internal_only, cursor=None):
-  """Starts updating internal_only for the given bot and associated data."""
-  master, bot = bot_name.split('/')
-  bot_key = ndb.Key('Master', master, 'Bot', bot)
+def UpdateBots(master_bots, internal_only, skip_correct=True):
+  ndb.Future.wait_all(UpdateBotAsync(master, bot, internal_only, skip_correct)
+                      for master, bot in master_bots)
 
-  if not cursor:
-    # First time updating for this Bot.
-    bot_entity = bot_key.get()
-    if bot_entity.internal_only != internal_only:
-      bot_entity.internal_only = internal_only
-      bot_entity.put()
-  else:
-    cursor = datastore_query.Cursor(urlsafe=cursor)
 
-  # Fetch a certain number of TestMetadata entities starting from cursor. See:
-  # https://developers.google.com/appengine/docs/python/ndb/queryclass
+@ndb.tasklet
+def UpdateBotAsync(master, bot, internal_only, skip_correct=True):
+  bot_entity = yield ndb.Key('Master', master, 'Bot', bot).get_async()
+  bot_entity.internal_only = internal_only
+  yield bot_entity.put_async()
+  deferred.defer(UpdateTests, master, bot, start_cursor=None,
+                 skip_correct=skip_correct, _queue=QUEUE_NAME)
 
-  # Start update tasks for each existing subordinate TestMetadata.
-  test_query = graph_data.TestMetadata.query(
+
+def UpdateBotSync(master, bot, internal_only, skip_correct=True):
+  UpdateBotAsync(master, bot, internal_only, skip_correct).get_result()
+
+
+def UpdateTests(master, bot, start_cursor=None, skip_correct=True):
+  datastore_hooks.SetPrivilegedRequest()
+  internal_only = ndb.Key('Master', master, 'Bot', bot).get().internal_only
+  logging.info('%s/%s internal_only=%s', master, bot, internal_only)
+
+  @ndb.tasklet
+  def HandleTest(test):
+    deferred.defer(UpdateAnomalies, test.test_path, _queue=QUEUE_NAME)
+    if test.internal_only != internal_only:
+      test.internal_only = internal_only
+      yield test.put_async()
+
+  query = graph_data.TestMetadata.query(
       graph_data.TestMetadata.master_name == master,
       graph_data.TestMetadata.bot_name == bot)
-  test_keys, next_cursor, more = test_query.fetch_page(
-      _MAX_TESTS_TO_PUT, start_cursor=cursor, keys_only=True)
+  if skip_correct:
+    query = query.filter(
+        graph_data.TestMetadata.internal_only == (not internal_only))
+  count, next_cursor = utils.IterateQueryAsync(
+      query, start_cursor, HandleTest).get_result()
+  logging.info('%d tests', count)
 
-  for test_key in test_keys:
-    deferred.defer(_UpdateTest, test_key.urlsafe(), internal_only,
-                   _queue=_QUEUE_NAME)
-
-  if more:
-    deferred.defer(_UpdateBot, bot_name, internal_only,
-                   cursor=next_cursor.urlsafe(), _queue=_QUEUE_NAME)
+  if next_cursor:
+    logging.info('continuing')
+    deferred.defer(UpdateTests, master, bot, next_cursor, _queue=QUEUE_NAME)
 
 
-def _UpdateTest(test_key_urlsafe, internal_only):
-  """Updates the given TestMetadata and associated Row entities."""
-  test_key = ndb.Key(urlsafe=test_key_urlsafe)
-
-  # First time updating for this TestMetadata.
-  test_entity = test_key.get()
-  if test_entity.internal_only != internal_only:
-    test_entity.internal_only = internal_only
-    test_entity.put()
-
-  # Update all of the Anomaly entities for this test.
-  # Assuming that this should be fast enough to do in one request
-  # for any one test.
-  anomalies, _, _ = anomaly.Anomaly.QueryAsync(test=test_key).get_result()
-  for anomaly_entity in anomalies:
-    if anomaly_entity.internal_only != internal_only:
-      anomaly_entity.internal_only = internal_only
+def UpdateAnomalies(test_path):
+  datastore_hooks.SetPrivilegedRequest()
+  test = utils.TestKey(test_path).get()
+  bot = ndb.Key('Master', test.master_name, 'Bot', test.bot_name).get()
+  logging.info('UpdateAnomalies %r internal_only=%r',
+               test_path, bot.internal_only)
+  anomalies, _, _ = anomaly.Anomaly.QueryAsync(
+      test=test_path, internal_only=not bot.internal_only).get_result()
+  for entity in anomalies:
+    entity.internal_only = bot.internal_only
   ndb.put_multi(anomalies)
+  logging.info('updated %d anomalies', len(anomalies))
