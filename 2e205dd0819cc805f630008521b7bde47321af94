@@ -70,6 +70,30 @@
       "revId": "2e205dd0819cc805f630008521b7bde47321af94",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85d54bd7_061bbc8e",
+        "filename": "BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2018-08-30T17:46:25Z",
+      "side": 1,
+      "message": "Yep, latest revision is d539d9382241310ff2cc7c8a33f27222d1ab748e, which is the current ToT for Catapult.",
+      "parentUuid": "e3da4d42_eafb874e",
+      "range": {
+        "startLine": 42,
+        "startChar": 4,
+        "endLine": 42,
+        "endChar": 21
+      },
+      "revId": "2e205dd0819cc805f630008521b7bde47321af94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
