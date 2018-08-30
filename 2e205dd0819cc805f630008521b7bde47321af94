@@ -46,6 +46,30 @@
       "revId": "2e205dd0819cc805f630008521b7bde47321af94",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3da4d42_eafb874e",
+        "filename": "BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-08-30T16:38:27Z",
+      "side": 1,
+      "message": "Are you sure you\u0027re synced to HEAD? I can\u0027t figure out any way that it would be suggesting this, given that the directory no longer exists and there aren\u0027t any remaining text references to \"BattOr\" in Catapult",
+      "parentUuid": "8252a77d_515d4d9f",
+      "range": {
+        "startLine": 42,
+        "startChar": 4,
+        "endLine": 42,
+        "endChar": 21
+      },
+      "revId": "2e205dd0819cc805f630008521b7bde47321af94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
