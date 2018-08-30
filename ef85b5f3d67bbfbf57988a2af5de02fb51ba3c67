@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0b928be3_b10c20e2",
+        "filename": "devil/devil/utils/hostile_mock/mock.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2018-08-30T19:15:00Z",
+      "side": 1,
+      "message": "We\u0027ve a wheel of mock 2.0.0. WDYT about vpython\u0027ing all the presubmit tests here and adding the wheel to catapult\u0027s vpython spec? IIUC, that would make all this unnecessary?",
+      "revId": "ef85b5f3d67bbfbf57988a2af5de02fb51ba3c67",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
