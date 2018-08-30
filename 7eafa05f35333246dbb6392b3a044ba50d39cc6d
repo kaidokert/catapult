@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f5a8b200_9391fab9",
+        "filename": "devil/devil/android/perf/perf_control.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-08-30T10:06:41Z",
+      "side": 1,
+      "message": "\u003e Two requests:\n\u003e \n\u003e - Instead of a static method, make this a (private) module level function.\n\u003e - Can you make it so that even if this function is called multiple times, the atexit warning is only added once?\n\nDone, but not too happy about adding yet another global here, the style discourages them, right?",
+      "parentUuid": "4b8d8425_5bc03dcb",
+      "revId": "7eafa05f35333246dbb6392b3a044ba50d39cc6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0c732c51_02b8a6be",
         "filename": "devil/devil/android/perf/perf_control.py",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "99cbb36c_1d81113a",
+        "filename": "devil/devil/android/perf/perf_control.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-08-30T10:06:41Z",
+      "side": 1,
+      "message": "yes indeed, Done, thank you!",
+      "parentUuid": "0c732c51_02b8a6be",
+      "revId": "7eafa05f35333246dbb6392b3a044ba50d39cc6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9844bff7_9a285ccd",
         "filename": "devil/devil/android/perf/perf_control.py",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2018-08-30T08:30:49Z",
       "side": 1,
       "message": "why do we want to force this? Can\u0027t we also fall back to \"ondemand\" as default?",
+      "revId": "7eafa05f35333246dbb6392b3a044ba50d39cc6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36d30688_07df1910",
+        "filename": "devil/devil/android/perf/perf_control.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-08-30T10:06:41Z",
+      "side": 1,
+      "message": "Two thoughts made me choose this: (1) one could forget to put the governor rule, (2) the rules have a few differences. Hence it seems \u0027likely\u0027 that while forgetting to put the rule the default we would set today would be incorrect.\n\nI\u0027m not feeling too strongly about it, can do either way.",
+      "parentUuid": "9844bff7_9a285ccd",
       "revId": "7eafa05f35333246dbb6392b3a044ba50d39cc6d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -81,6 +135,24 @@
       "writtenOn": "2018-08-30T08:30:49Z",
       "side": 1,
       "message": "wondering if this is mocking too low level? Maybe mock GetCpuInfo and split the current PerfControl.__init__ into a couple more mockable parts?",
+      "revId": "7eafa05f35333246dbb6392b3a044ba50d39cc6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a329b8db_d9c9dcf6",
+        "filename": "devil/devil/android/perf/perf_control_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-08-30T10:06:41Z",
+      "side": 1,
+      "message": "Yeah, this injects a bit too low for easy reading. Though I think it is reasonable at this point.\n\nThe main assertions the test cares about below are more high level (they check the methods called on PerfControl object). This _ShellCommandHandler just allows to inject inputs to the class. While not beautiful, I like how it does not add more injection points in __init__, simplifying the class (yeah, by making the test more complicated). The \u0027assert False\u0027 here is to make sure that we don\u0027t miss inputs requested by the class, but it is not very essential.\n\nAlternatively we would create something like \u0027class PerCpuOperation\u0027 with _ForEachCpu, _AllCpusAreOnline, ForceAllCpusOnline and such, and would just replace it with a mock in the test. That is not unreasonable, but a bigger change than what I was ready for :)\n\nBy the way, there are two places where we do \u0027cat \"$CPU/online\"\u0027: GetCpuInfo() and _AllCpusAreOnline(), this part of the design is also not shiny. Design issues everywhere!",
+      "parentUuid": "4dae196d_4970d4e9",
       "revId": "7eafa05f35333246dbb6392b3a044ba50d39cc6d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
