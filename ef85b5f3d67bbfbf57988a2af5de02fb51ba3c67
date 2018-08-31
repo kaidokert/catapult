@@ -16,6 +16,24 @@
       "revId": "ef85b5f3d67bbfbf57988a2af5de02fb51ba3c67",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "325610f6_eb785aea",
+        "filename": "devil/devil/utils/hostile_mock/mock.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-31T08:52:36Z",
+      "side": 1,
+      "message": "Maybe revive crbug.com/777865 ? I would love if that happens.",
+      "parentUuid": "0b928be3_b10c20e2",
+      "revId": "ef85b5f3d67bbfbf57988a2af5de02fb51ba3c67",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
