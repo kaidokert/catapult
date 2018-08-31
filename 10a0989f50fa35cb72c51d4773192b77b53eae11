@@ -19,6 +19,29 @@
     },
     {
       "key": {
+        "uuid": "1b8f87df_722c603e",
+        "filename": "dashboard/dashboard/spa/utils.js",
+        "patchSetId": 42
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-31T20:57:11Z",
+      "side": 1,
+      "message": "If you want to try merging wrapPromise_ with wrapIterator_ instead of defining allIterators_:\n\n    wrapTask_(task) {\n      const promise \u003d task instanceof Promise ? task : task.next()\n      const self \u003d (async() \u003d\u003e {\n        try {\n          let result \u003d await promise;\n          if (!(task instanceof Promise)) {\n            if (result.done) return;\n            this.promises_.push(this.wrapTask_(task));\n            result \u003d result.value;\n          }\n          this.results_.push(result);\n        } catch (err) {\n          this.errors_.push(err);\n        } finally {\n          this.promises_.splice(this.promises_.indexOf(self), 1);\n        }\n      })();\n      return self;\n    }",
+      "range": {
+        "startLine": 250,
+        "startChar": 1,
+        "endLine": 275,
+        "endChar": 5
+      },
+      "revId": "10a0989f50fa35cb72c51d4773192b77b53eae11",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a0421b35_d005a16e",
         "filename": "dashboard/dashboard/spa/utils.js",
         "patchSetId": 42
