@@ -2,32 +2,12 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-import pickle
 import unittest
 
 import mock
 
+from services import request
 from soundwave import dashboard_api
-
-
-class TestRequestErrors(unittest.TestCase):
-  def testClientErrorPickleable(self):
-    error = dashboard_api.ClientError(
-        'api', {'status': '400'}, 'You made a bad request!')
-    error = pickle.loads(pickle.dumps(error))
-    self.assertIsInstance(error, dashboard_api.ClientError)
-    self.assertEqual(error.request, 'api')
-    self.assertEqual(error.response, {'status': '400'})
-    self.assertEqual(error.content, 'You made a bad request!')
-
-  def testServerErrorPickleable(self):
-    error = dashboard_api.ServerError(
-        'api', {'status': '500'}, 'Oops, I had a problem!')
-    error = pickle.loads(pickle.dumps(error))
-    self.assertIsInstance(error, dashboard_api.ServerError)
-    self.assertEqual(error.request, 'api')
-    self.assertEqual(error.response, {'status': '500'})
-    self.assertEqual(error.content, 'Oops, I had a problem!')
 
 
 class _FakeCommunicator(dashboard_api.PerfDashboardCommunicator):
@@ -46,14 +26,14 @@ class TestDashboardCommunicator(unittest.TestCase):
     self.assertEqual(self.api.GetTimeseries('test_path'), {'some': 'data'})
 
   def testGetTimeseries_missingPathReturnsNone(self):
-    self.api._MakeApiRequest.side_effect = dashboard_api.ClientError(
+    self.api._MakeApiRequest.side_effect = request.ClientError(
         'api', {'status': '400'}, '{"error": "Invalid test_path foo"}')
     self.assertIsNone(self.api.GetTimeseries('foo'))
 
   def testGetTimeseries_serverErrorRaises(self):
-    self.api._MakeApiRequest.side_effect = dashboard_api.ServerError(
+    self.api._MakeApiRequest.side_effect = request.ServerError(
         'api', {'status': '500'}, 'Something went wrong. :-(')
-    with self.assertRaises(dashboard_api.ServerError):
+    with self.assertRaises(request.ServerError):
       self.api.GetTimeseries('bar')
 
 
