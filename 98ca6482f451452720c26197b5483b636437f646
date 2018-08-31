@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "70f697f6_c5ffc447",
+        "filename": "dashboard/dashboard/spa/report-cache.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-31T22:50:00Z",
+      "side": 1,
+      "message": "return this.readFromCache_() !\u003d\u003d undefined;",
+      "revId": "98ca6482f451452720c26197b5483b636437f646",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f7c80d6_6cea3fee",
+        "filename": "dashboard/dashboard/spa/report-cache.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-31T22:50:00Z",
+      "side": 1,
+      "message": "async readFromCache_() {\n  return await Polymer.Path.get(this.rootState, `${this.cacheStatePath_}.${this.cacheKey_}.response`);\n}",
+      "revId": "98ca6482f451452720c26197b5483b636437f646",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc8437bb_4a10d4c2",
+        "filename": "dashboard/dashboard/spa/report-cache.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-31T22:50:00Z",
+      "side": 1,
+      "message": "Redux.UPDATE(`${this.cacheStatePath_}.${this.cacheKey_}`, request.response);",
+      "revId": "98ca6482f451452720c26197b5483b636437f646",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f6e6328_448efbc3",
+        "filename": "dashboard/dashboard/spa/report-cache.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-31T22:50:00Z",
+      "side": 1,
+      "message": "Redux.UPDATE(`${this.cacheStatePath_}.${this.cacheKey_}`, response);",
+      "revId": "98ca6482f451452720c26197b5483b636437f646",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "310af67d_9a9d4155",
+        "filename": "dashboard/dashboard/spa/report-cache.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-31T22:50:00Z",
+      "side": 1,
+      "message": "This doesn\u0027t need to be a generator, so can you see if it can re-use CacheBase.read()?",
+      "revId": "98ca6482f451452720c26197b5483b636437f646",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69bdda6c_1e337da2",
+        "filename": "dashboard/dashboard/spa/report-cache.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-31T22:50:00Z",
+      "side": 1,
+      "message": "statePath: `reports.${cacheKey}`,\n\nrequest: (state, {request}, rootState) \u003d\u003e {\n  return {request};\n}",
+      "revId": "98ca6482f451452720c26197b5483b636437f646",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "478c9203_f9557561",
+        "filename": "dashboard/dashboard/spa/report-cache.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-31T22:50:00Z",
+      "side": 1,
+      "message": "Unused?",
+      "revId": "98ca6482f451452720c26197b5483b636437f646",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19c645ac_c697cb66",
+        "filename": "dashboard/dashboard/spa/report-cache.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-31T22:50:00Z",
+      "side": 1,
+      "message": "add statePathReducer\n\non second thought, you can use Redux.UPDATE instead of these reducers.",
+      "revId": "98ca6482f451452720c26197b5483b636437f646",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
