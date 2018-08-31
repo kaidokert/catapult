@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "73182238_2545f563",
+        "filename": "devil/devil/android/perf/perf_control.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-31T09:12:12Z",
+      "side": 1,
+      "message": "can we keep the original methods, just add an optional cpu_list\u003dNone, so if the list is not provided we default to self._cpu_file_list ?",
+      "revId": "38304013652bc23ecbfff33689882ba8d90080ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
