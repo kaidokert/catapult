@@ -49,8 +49,8 @@ found in the LICENSE file.
         align-self: flex-start;
         cursor: pointer;
         flex-shrink: 0;
-        height: var(--icon-size);
-        width: var(--icon-size);
+        height: var(--icon-size, 1em);
+        width: var(--icon-size, 1em);
       }
 
       #tables {
@@ -103,8 +103,8 @@ found in the LICENSE file.
         flex-shrink: 0;
         margin: 0 0 0 8px;
         padding: 0;
-        width: var(--icon-size);
-        height: var(--icon-size);
+        width: var(--icon-size, 1em);
+        height: var(--icon-size, 1em);
       }
 
       .report_name span {
@@ -147,8 +147,8 @@ found in the LICENSE file.
 
       .template_row_button iron-icon {
         cursor: pointer;
-        height: var(--icon-size);
-        width: var(--icon-size);
+        height: var(--icon-size, 1em);
+        width: var(--icon-size, 1em);
       }
 
       #scratch {
@@ -225,14 +225,14 @@ found in the LICENSE file.
       <cp-input
           id="min_revision"
           value="[[minRevisionInput]]"
-          placeholder="min revision"
+          placeholder="Min Revision"
           on-keyup="onMinRevisionKeyup_">
       </cp-input>
 
       <cp-input
           id="max_revision"
           value="[[maxRevisionInput]]"
-          placeholder="max revision"
+          placeholder="Max Revision"
           on-keyup="onMaxRevisionKeyup_">
       </cp-input>
 
