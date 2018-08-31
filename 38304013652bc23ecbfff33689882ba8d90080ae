@@ -16,6 +16,24 @@
       "revId": "38304013652bc23ecbfff33689882ba8d90080ae",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca24fe3d_20b213ff",
+        "filename": "devil/devil/android/perf/perf_control.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-08-31T10:10:22Z",
+      "side": 1,
+      "message": "Explicitly naming the function to accept another argument is less error-prone than optional parameters - those args could be accidentally forgotten. Sometimes a few optional parameters make the code shorter and more concise, in such cases I\u0027d use them. In this case removing this optional only forwards the call, with only a couple more params to forward - simple.\n\nIn C++ due to complex overloading/casting rules we discourage default arguments, here it is not as bad. Also I don\u0027t know majority of catapult code: if optional args are somewhat consistently more preferred, that\u0027s your call, I can change it to optional.",
+      "parentUuid": "73182238_2545f563",
+      "revId": "38304013652bc23ecbfff33689882ba8d90080ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
