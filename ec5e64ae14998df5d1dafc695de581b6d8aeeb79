@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b748fedf_3ec2ae97",
+        "filename": "catapult_build/run_wct.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-08-31T16:50:13Z",
+      "side": 1,
+      "message": "Maybe these instructions should get printed",
+      "range": {
+        "startLine": 25,
+        "startChar": 8,
+        "endLine": 25,
+        "endChar": 11
+      },
+      "revId": "ec5e64ae14998df5d1dafc695de581b6d8aeeb79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
