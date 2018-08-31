@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f1d299bb_ec4f2d24",
+        "filename": "dashboard/dashboard/spa/utils.js",
+        "patchSetId": 42
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-31T20:47:02Z",
+      "side": 1,
+      "message": "const iterators \u003d [];\nfor (const task of tasks) {\n  if (task instanceof Promise) {\n    this.promises_.push(this.wrapPromise_(task));\n  } else {\n    iterators.push(this.wrapIterator(task));\n  }\n}\nthis.allIterators_ \u003d Promise.all(iterators);",
+      "revId": "10a0989f50fa35cb72c51d4773192b77b53eae11",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0421b35_d005a16e",
+        "filename": "dashboard/dashboard/spa/utils.js",
+        "patchSetId": 42
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-31T20:47:02Z",
+      "side": 1,
+      "message": "Promise.all([this.allIterators_, ...this.promises_])",
+      "range": {
+        "startLine": 291,
+        "startChar": 10,
+        "endLine": 291,
+        "endChar": 37
+      },
+      "revId": "10a0989f50fa35cb72c51d4773192b77b53eae11",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
