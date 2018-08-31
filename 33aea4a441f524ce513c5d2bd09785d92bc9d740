@@ -60,6 +60,24 @@
     },
     {
       "key": {
+        "uuid": "79701268_36d2c546",
+        "filename": "dashboard/dashboard/spa/cp-input.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-08-31T23:14:19Z",
+      "side": 1,
+      "message": "Neat! I admit at first glance the new inputs don\u0027t visually register register as being input fields to me. Perhaps it\u0027d help to have a dark grey bottom border similar to the examples in the spec? https://material.io/design/components/text-fields.html \n\nUnrelated: Looking at the spec, I think I\u0027m slightly more partial to the second version of the field with the outlines, but this is just a personal preference thing, I think.",
+      "parentUuid": "83ef8ba7_79f48ff2",
+      "revId": "33aea4a441f524ce513c5d2bd09785d92bc9d740",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "19dbce7d_c8b04ea5",
         "filename": "dashboard/dashboard/spa/cp-input.html",
         "patchSetId": 1
