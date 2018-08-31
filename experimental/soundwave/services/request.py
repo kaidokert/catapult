@@ -71,7 +71,7 @@ def BuildRequestError(request, response, content):
 
 
 @retry_util.RetryOnException(ServerError, retries=3)
-def Request(url, params=None, credentials=None, retries=None):
+def Request(url, method='GET', params=None, credentials=None, retries=None):
   del retries  # Handled by the decorator.
 
   if params:
@@ -85,7 +85,7 @@ def Request(url, params=None, credentials=None, retries=None):
 
   logging.info('Making API request: %s', url)
   response, content = http.request(
-      url, method='POST', headers={'Content-length': 0})
+      url, method=method, headers={'Content-length': '0'})
   if response.status != 200:
     raise BuildRequestError(url, response, content)
   return content
