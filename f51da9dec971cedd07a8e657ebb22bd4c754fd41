@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da149e1b_1d38336b",
+        "filename": "BUILD.gn",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-08-31T13:27:33Z",
+      "side": 0,
+      "message": "zmo@ This gets removed which doesn\u0027t seeem related to this cl. It was added in this cl [1]. Do you think it could be a problem with generator again?\n\n[1] https://chromium-review.googlesource.com/c/catapult/+/1197749",
+      "revId": "f51da9dec971cedd07a8e657ebb22bd4c754fd41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
