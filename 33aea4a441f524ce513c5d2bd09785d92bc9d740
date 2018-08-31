@@ -42,6 +42,24 @@
     },
     {
       "key": {
+        "uuid": "83ef8ba7_79f48ff2",
+        "filename": "dashboard/dashboard/spa/cp-input.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-31T21:57:27Z",
+      "side": 1,
+      "message": "I went back to look over MD2 again and redesigned this and cp-textarea. PTAL? https://dev-benjhayden-v2spa-dot-chromeperf.appspot.com",
+      "parentUuid": "f7b5c1a1_25926d74",
+      "revId": "33aea4a441f524ce513c5d2bd09785d92bc9d740",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "19dbce7d_c8b04ea5",
         "filename": "dashboard/dashboard/spa/cp-input.html",
         "patchSetId": 1
@@ -93,6 +111,30 @@
       "writtenOn": "2018-08-30T23:48:48Z",
       "side": 1,
       "message": "Random question: What case does this handle that running this.nativeInput.focus() doesn\u0027t?",
+      "range": {
+        "startLine": 23,
+        "startChar": 6,
+        "endLine": 23,
+        "endChar": 58
+      },
+      "revId": "33aea4a441f524ce513c5d2bd09785d92bc9d740",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "467c6b50_d006e276",
+        "filename": "dashboard/dashboard/spa/cp-input.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-08-31T21:57:27Z",
+      "side": 1,
+      "message": "Commented. Sometimes focus() doesn\u0027t take if there\u0027s a lot of rendering work happening, so it has to try again.",
+      "parentUuid": "5d1ae99e_431f4da2",
       "range": {
         "startLine": 23,
         "startChar": 6,
