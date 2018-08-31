@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "daa1db13_2a00bb2e",
+        "filename": "devil/devil/android/perf/perf_control.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-31T09:07:53Z",
+      "side": 1,
+      "message": "Yeah, but I think it\u0027s a step in the right direction. We have tons of spammy warnings that kick off atexit. Maybe later we could encapsulate that functionality and reuse in other places too.",
+      "parentUuid": "f5a8b200_9391fab9",
+      "revId": "7eafa05f35333246dbb6392b3a044ba50d39cc6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0c732c51_02b8a6be",
         "filename": "devil/devil/android/perf/perf_control.py",
         "patchSetId": 1
@@ -107,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "c3ab13d0_1abc761d",
+        "filename": "devil/devil/android/perf/perf_control.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-31T09:07:53Z",
+      "side": 1,
+      "message": "Fine. Not too strong opinions either.",
+      "parentUuid": "36d30688_07df1910",
+      "revId": "7eafa05f35333246dbb6392b3a044ba50d39cc6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "602a134a_33fe373f",
         "filename": "devil/devil/android/perf/perf_control.py",
         "patchSetId": 1
@@ -153,6 +189,24 @@
       "side": 1,
       "message": "Yeah, this injects a bit too low for easy reading. Though I think it is reasonable at this point.\n\nThe main assertions the test cares about below are more high level (they check the methods called on PerfControl object). This _ShellCommandHandler just allows to inject inputs to the class. While not beautiful, I like how it does not add more injection points in __init__, simplifying the class (yeah, by making the test more complicated). The \u0027assert False\u0027 here is to make sure that we don\u0027t miss inputs requested by the class, but it is not very essential.\n\nAlternatively we would create something like \u0027class PerCpuOperation\u0027 with _ForEachCpu, _AllCpusAreOnline, ForceAllCpusOnline and such, and would just replace it with a mock in the test. That is not unreasonable, but a bigger change than what I was ready for :)\n\nBy the way, there are two places where we do \u0027cat \"$CPU/online\"\u0027: GetCpuInfo() and _AllCpusAreOnline(), this part of the design is also not shiny. Design issues everywhere!",
       "parentUuid": "4dae196d_4970d4e9",
+      "revId": "7eafa05f35333246dbb6392b3a044ba50d39cc6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3cf09dd3_1be44736",
+        "filename": "devil/devil/android/perf/perf_control_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-08-31T09:07:53Z",
+      "side": 1,
+      "message": "Ok, not thrilled about it, but seems fine for now.",
+      "parentUuid": "a329b8db_d9c9dcf6",
       "revId": "7eafa05f35333246dbb6392b3a044ba50d39cc6d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
