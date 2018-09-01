@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8520c8f0_93e02258",
+        "filename": "dashboard/dashboard/spa/report-cache.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-09-01T00:03:03Z",
+      "side": 1,
+      "message": "Neat trick. Done.",
+      "parentUuid": "70f697f6_c5ffc447",
+      "revId": "98ca6482f451452720c26197b5483b636437f646",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4f7c80d6_6cea3fee",
         "filename": "dashboard/dashboard/spa/report-cache.js",
         "patchSetId": 13
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "4b612be8_a9eec8b5",
+        "filename": "dashboard/dashboard/spa/report-cache.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-09-01T00:03:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f7c80d6_6cea3fee",
+      "revId": "98ca6482f451452720c26197b5483b636437f646",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fc8437bb_4a10d4c2",
         "filename": "dashboard/dashboard/spa/report-cache.js",
         "patchSetId": 13
@@ -47,6 +83,42 @@
       "writtenOn": "2018-08-31T22:50:00Z",
       "side": 1,
       "message": "Redux.UPDATE(`${this.cacheStatePath_}.${this.cacheKey_}`, request.response);",
+      "revId": "98ca6482f451452720c26197b5483b636437f646",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffe3d1fd_4fc0e4bc",
+        "filename": "dashboard/dashboard/spa/report-cache.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-09-01T00:03:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc8437bb_4a10d4c2",
+      "revId": "98ca6482f451452720c26197b5483b636437f646",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6450b09f_62ac5ef8",
+        "filename": "dashboard/dashboard/spa/report-cache.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-09-01T00:03:03Z",
+      "side": 1,
+      "message": "This does not work as expected; Redux.UPDATE requires an object as a second parameter. This is due to the implementation of setImmutable. The following works though:\n\n  this.dispatch_(Redux.UPDATE(this.cacheStatePath_, {\n    [this.cacheKey_]: request.response\n  }));",
+      "parentUuid": "fc8437bb_4a10d4c2",
       "revId": "98ca6482f451452720c26197b5483b636437f646",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -70,6 +142,42 @@
     },
     {
       "key": {
+        "uuid": "1f04e112_bb9acca0",
+        "filename": "dashboard/dashboard/spa/report-cache.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-09-01T00:03:03Z",
+      "side": 1,
+      "message": "This does not work as expected; Redux.UPDATE requires an object as a second parameter. This is due to the implementation of setImmutable. The following works though:\n\n  this.dispatch_(Redux.UPDATE(this.cacheStatePath_, {\n    [this.cacheKey_]: request.response\n  }));",
+      "parentUuid": "2f6e6328_448efbc3",
+      "revId": "98ca6482f451452720c26197b5483b636437f646",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89cc28c9_a64516de",
+        "filename": "dashboard/dashboard/spa/report-cache.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-09-01T00:03:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f6e6328_448efbc3",
+      "revId": "98ca6482f451452720c26197b5483b636437f646",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "310af67d_9a9d4155",
         "filename": "dashboard/dashboard/spa/report-cache.js",
         "patchSetId": 13
@@ -84,6 +192,24 @@
       "revId": "98ca6482f451452720c26197b5483b636437f646",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "495dbbf5_d94af2a9",
+        "filename": "dashboard/dashboard/spa/report-cache.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-09-01T00:03:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "310af67d_9a9d4155",
+      "revId": "98ca6482f451452720c26197b5483b636437f646",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -104,6 +230,42 @@
     },
     {
       "key": {
+        "uuid": "9d9ae2bb_55569875",
+        "filename": "dashboard/dashboard/spa/report-cache.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-09-01T00:03:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69bdda6c_1e337da2",
+      "revId": "98ca6482f451452720c26197b5483b636437f646",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5b5717dc_6013fb1a",
+        "filename": "dashboard/dashboard/spa/report-cache.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-09-01T00:03:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69bdda6c_1e337da2",
+      "revId": "98ca6482f451452720c26197b5483b636437f646",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "478c9203_f9557561",
         "filename": "dashboard/dashboard/spa/report-cache.js",
         "patchSetId": 13
@@ -121,6 +283,24 @@
     },
     {
       "key": {
+        "uuid": "f3f3bf25_078eb307",
+        "filename": "dashboard/dashboard/spa/report-cache.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-09-01T00:03:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "478c9203_f9557561",
+      "revId": "98ca6482f451452720c26197b5483b636437f646",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "19c645ac_c697cb66",
         "filename": "dashboard/dashboard/spa/report-cache.js",
         "patchSetId": 13
@@ -135,6 +315,24 @@
       "revId": "98ca6482f451452720c26197b5483b636437f646",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "233b3712_b43b5917",
+        "filename": "dashboard/dashboard/spa/report-cache.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-09-01T00:03:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19c645ac_c697cb66",
+      "revId": "98ca6482f451452720c26197b5483b636437f646",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
