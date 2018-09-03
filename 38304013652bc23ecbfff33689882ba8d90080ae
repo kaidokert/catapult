@@ -52,6 +52,24 @@
       "revId": "38304013652bc23ecbfff33689882ba8d90080ae",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "baeb7244_18aac356",
+        "filename": "devil/devil/android/perf/perf_control.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-09-03T12:25:56Z",
+      "side": 1,
+      "message": "Done: now we have a single _ForEachCpu with optional |cpu_list|",
+      "parentUuid": "a51198b0_5dee768f",
+      "revId": "38304013652bc23ecbfff33689882ba8d90080ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
