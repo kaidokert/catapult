@@ -10,6 +10,7 @@ class MetricSignificance {
      * The default p value below which the null hypothesis will be rejected.
      */
     this.criticalPValue_ = 0.05;
+    this.referenceColumn_ = undefined;
   }
   /**
    * Adds the given values to an entry for the supplied metric and
@@ -21,6 +22,9 @@ class MetricSignificance {
    * @param {Array<number>} value
    */
   add(metric, label, story, value) {
+    if (this.referenceColumn_ === undefined) {
+      this.referenceColumn_ = label;
+    }
     if (!this.data_[metric]) {
       this.data_[metric] = {};
     }
@@ -32,6 +36,10 @@ class MetricSignificance {
     }
     const values = this.data_[metric][label][story];
     this.data_[metric][label][story] = values.concat(value);
+  }
+
+  get referenceColumn() {
+    return this.referenceColumn_;
   }
 
   mostSignificantStories_(metricData) {
@@ -77,7 +85,14 @@ class MetricSignificance {
       }
       const xs = this.getAllData_(metricData, labels[0]);
       const ys = this.getAllData_(metricData, labels[1]);
-      const evidence = mannwhitneyu.test(xs, ys);
+      let evidence = mannwhitneyu.test(xs, ys, 'greater');
+      evidence.type = 'regression';
+      if (evidence.p >= this.criticalPValue_) {
+        // There isn't evidence for a regression in ys, so check for an
+        // improvement.
+        evidence = mannwhitneyu.test(xs, ys, 'less');
+        evidence.type = 'improvement';
+      }
       const stories = this.mostSignificantStories_(metricData);
       if (evidence.p < this.criticalPValue_) {
         significantChanges.push({
