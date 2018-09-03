@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c8ed60f5_b65d187e",
+        "filename": "dashboard/dashboard/spa/report-cache.js",
+        "patchSetId": 14
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-03T04:54:42Z",
+      "side": 1,
+      "message": "This could be a promise set in onStartRequest_, so this needs use async/await, right?",
+      "revId": "900e0f08aec4c26382993bcfad9626a69a6c67b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
