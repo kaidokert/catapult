@@ -88,6 +88,24 @@
       "revId": "38304013652bc23ecbfff33689882ba8d90080ae",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f1e4959_96e48564",
+        "filename": "devil/devil/android/perf/perf_control.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-09-03T13:54:49Z",
+      "side": 1,
+      "message": "Yeah, tracking a missing argument may be annoying. On the other hand, this list only contains 3 elements, and I\u0027m buying the argument of having only one place to document the behavior of the method. I saw both styles in the codebase and was curious whether there was a plan to eventually arrive to one or another. Now seeing that there is no global preference, I\u0027d prefer to go with the lazy approach :)",
+      "parentUuid": "de660832_8f64ecdc",
+      "revId": "38304013652bc23ecbfff33689882ba8d90080ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
