@@ -78,6 +78,24 @@
     },
     {
       "key": {
+        "uuid": "55b1b4be_d2a80224",
+        "filename": "dashboard/dashboard/spa/cp-input.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-03T04:36:20Z",
+      "side": 1,
+      "message": "No, you\u0027re right, Sam also mentioned that the underlined text fields look too much like buttons, so I switched them to the outlined text fields. PTAL?\nhttps://v2spa-dot-chromeperf.appspot.com",
+      "parentUuid": "79701268_36d2c546",
+      "revId": "33aea4a441f524ce513c5d2bd09785d92bc9d740",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "19dbce7d_c8b04ea5",
         "filename": "dashboard/dashboard/spa/cp-input.html",
         "patchSetId": 1
