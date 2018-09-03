@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9d4798dc_d22da0ff",
+        "filename": "devil/devil/android/perf/perf_control.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-09-03T14:00:57Z",
+      "side": 1,
+      "message": "nits: I would avoid the regex by:\nif \u0027..\u0027 in key:\n  range_min, range_max \u003d key.split(\u0027..\u0027)\n  range_min, range_max \u003d int(range_min), int(range_max)\nelse:\n  range_min \u003d range_max \u003d int(key)",
+      "revId": "37db07f9dcbee04bbaa7ca23895da256f7b4ede0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
