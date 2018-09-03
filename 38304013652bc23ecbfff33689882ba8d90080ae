@@ -70,6 +70,24 @@
       "revId": "38304013652bc23ecbfff33689882ba8d90080ae",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de660832_8f64ecdc",
+        "filename": "devil/devil/android/perf/perf_control.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-09-03T13:06:06Z",
+      "side": 1,
+      "message": "I actually side with Pasko on not setting defaut params here, especially for private methods that are only meant to be called by other methods.\n\nI have dealt with situation that it\u0027s very painful to trace what are the actual value of a default param since it\u0027s some callers set them and some don\u0027t :-/\n\nThough I left it to Pasko to decide whether to keep the latest CL as-is",
+      "parentUuid": "baeb7244_18aac356",
+      "revId": "38304013652bc23ecbfff33689882ba8d90080ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
