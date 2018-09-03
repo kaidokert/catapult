@@ -16,6 +16,24 @@
       "revId": "f51da9dec971cedd07a8e657ebb22bd4c754fd41",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e480ffd6_08c4b86f",
+        "filename": "BUILD.gn",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1293423
+      },
+      "writtenOn": "2018-09-03T09:17:11Z",
+      "side": 0,
+      "message": "I\u0027ve rebased and the BUILd.gn changes are gone now (I think the other CL with the changes has been merged) so it seems like this is resolved.",
+      "parentUuid": "da149e1b_1d38336b",
+      "revId": "f51da9dec971cedd07a8e657ebb22bd4c754fd41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
