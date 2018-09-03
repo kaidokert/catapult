@@ -16,6 +16,24 @@
       "revId": "37db07f9dcbee04bbaa7ca23895da256f7b4ede0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "380e1aee_cb422496",
+        "filename": "devil/devil/android/perf/perf_control.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-09-03T15:07:53Z",
+      "side": 1,
+      "message": "ouch, I did not know that split() can accept a sequence of characters, good to know! Done.",
+      "parentUuid": "9d4798dc_d22da0ff",
+      "revId": "37db07f9dcbee04bbaa7ca23895da256f7b4ede0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
