@@ -476,12 +476,12 @@ tr.exportTo('cp', () => {
       const requestedReports = new Set(state.source.selectedOptions);
       const revisions = [state.minRevision, state.maxRevision];
       const reportTemplateIds = await cp.ReadReportNames()(dispatch, getState);
-      const promises = [];
+      const readers = [];
 
       for (const name of names) {
         for (const templateId of reportTemplateIds) {
           if (templateId.name === name) {
-            promises.push(cp.ReadReport({
+            readers.push(cp.ReportReader({
               ...templateId,
               revisions,
               dispatch,
@@ -492,7 +492,7 @@ tr.exportTo('cp', () => {
       }
 
       // Avoid triggering render too rapidly by batching responses.
-      const batchIterator = new cp.BatchIterator(promises);
+      const batchIterator = new cp.BatchIterator(readers);
 
       for await (const {results, errors} of batchIterator) {
         rootState = getState();
