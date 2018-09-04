@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/base/unit.html">
+<link rel="import" href="/tracing/metrics/metric_registry.html">
+<link rel="import" href="/tracing/value/histogram.html">
+
+<script>
+'use strict';
+
+tr.exportTo('tr.metrics.console', function() {
+  const COUNT_BOUNDARIES = tr.v.HistogramBinBoundaries.createExponential(
+      1, 1e4, 30);
+  // We store a single value, so we only need one of the statistics to keep
+  // track. We choose the average for that.
+  const SUMMARY_OPTIONS = tr.v.Histogram.AVERAGE_ONLY_SUMMARY_OPTIONS;
+
+  function consoleErrorMetric(histograms, model) {
+    const consoleErrorCount = new tr.v.Histogram(
+        'console_error', tr.b.Unit.byName.count_smallerIsBetter,
+        COUNT_BOUNDARIES);
+    consoleErrorCount.description = 'Number of console error messages';
+    consoleErrorCount.customizeSummaryOptions(SUMMARY_OPTIONS);
+    let numberOfConsoleErrors = 0;
+    for (const slice of model.findTopmostSlicesNamed('ConsoleError')) {
+      numberOfConsoleErrors++;
+    }
+    consoleErrorCount.addSample(numberOfConsoleErrors);
+    histograms.addHistogram(consoleErrorCount);
+  }
+
+  tr.metrics.MetricRegistry.register(consoleErrorMetric);
+
+  return {
+    consoleErrorMetric,
+  };
+});
+</script>
