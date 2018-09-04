@@ -96,10 +96,11 @@ tr.b.unittest.testSuite(function() {
     this.addHTMLOutput(viewEl);
     tr.b.forceAllPendingTasksToRunForTest();
     const rows = viewEl.$.table.tableRows;
-    assert.lengthOf(rows, 18);
+    assert.lengthOf(rows, 19);
     assert.deepEqual(rows.map(r => r.time), [
       5286,
       loadIcMiss[1],
+      0,
       optimizeCode[1],
       compileBackground[1],
       compileFullCode[1],
@@ -128,10 +129,11 @@ tr.b.unittest.testSuite(function() {
     this.addHTMLOutput(viewEl);
     tr.b.forceAllPendingTasksToRunForTest();
     const rows = viewEl.$.table.tableRows;
-    assert.lengthOf(rows, 18);
+    assert.lengthOf(rows, 19);
     assert.deepEqual(rows.map(r => r.time), [
       10269,
       loadIcMiss[1] * 2,
+      0,
       optimizeCode[1] * 2,
       compileBackground[1],
       compileFullCode[1] * 2,
@@ -181,10 +183,11 @@ tr.b.unittest.testSuite(function() {
     this.addHTMLOutput(viewEl);
     tr.b.forceAllPendingTasksToRunForTest();
     const rows = viewEl.$.table.tableRows;
-    assert.lengthOf(rows, 18);
+    assert.lengthOf(rows, 19);
     assert.deepEqual(rows.map(r => r.time), [
       333,
       333,
+      0,
       0,
       0,
       0,
@@ -206,6 +209,7 @@ tr.b.unittest.testSuite(function() {
     assert.deepEqual(rows.map(r => r.entries_.size), [
       0,
       2,
+      0,
       0,
       0,
       0,
