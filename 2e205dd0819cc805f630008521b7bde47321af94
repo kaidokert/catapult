@@ -94,6 +94,30 @@
       "revId": "2e205dd0819cc805f630008521b7bde47321af94",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03431964_d1ea19cc",
+        "filename": "BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2018-09-04T17:23:50Z",
+      "side": 1,
+      "message": "Looks like my checkout got into a weird state somehow - common/battor still existed, but was neither known to git nor listed as an untracked directory. Deleting it and regenerating fixed the issue.",
+      "parentUuid": "85d54bd7_061bbc8e",
+      "range": {
+        "startLine": 42,
+        "startChar": 4,
+        "endLine": 42,
+        "endChar": 21
+      },
+      "revId": "2e205dd0819cc805f630008521b7bde47321af94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
