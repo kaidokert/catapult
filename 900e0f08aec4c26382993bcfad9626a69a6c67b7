@@ -16,6 +16,24 @@
       "revId": "900e0f08aec4c26382993bcfad9626a69a6c67b7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8f167d6_ff5aacdc",
+        "filename": "dashboard/dashboard/spa/report-cache.js",
+        "patchSetId": 14
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1290511
+      },
+      "writtenOn": "2018-09-04T17:57:47Z",
+      "side": 1,
+      "message": "It doesn\u0027t have to be since it\u0027s being await\u0027ed in read(), but using async/await would be more clear. Done.",
+      "parentUuid": "c8ed60f5_b65d187e",
+      "revId": "900e0f08aec4c26382993bcfad9626a69a6c67b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
