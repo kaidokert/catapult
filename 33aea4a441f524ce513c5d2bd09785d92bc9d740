@@ -96,6 +96,24 @@
     },
     {
       "key": {
+        "uuid": "235f5d0c_dbb8a117",
+        "filename": "dashboard/dashboard/spa/cp-input.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-09-04T17:27:15Z",
+      "side": 1,
+      "message": "That\u0027s good to know! Thanks for changing this; I think the outlined version will work better with Monorail\u0027s UI maybe, too. \n\nI think the outlined version looks a lot better, but one nit: Alas, it seems like the input changes in size ever so slightly when focused because of the thicker bold  outline, which makes stuff shuffle around a bit. I don\u0027t know the best solution for this off the top of my head, unfortunately. :( Perhaps swapping border pixels for margins or something of the like.",
+      "parentUuid": "55b1b4be_d2a80224",
+      "revId": "33aea4a441f524ce513c5d2bd09785d92bc9d740",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "19dbce7d_c8b04ea5",
         "filename": "dashboard/dashboard/spa/cp-input.html",
         "patchSetId": 1
