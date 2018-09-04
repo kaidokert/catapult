@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fe9b0135_d6520bbc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2018-09-04T17:10:44Z",
+      "side": 1,
+      "message": "Prob want to link 777865 as well.",
+      "revId": "1a58d5d919fe4ef28631c51c2281b293ab61116a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19670bbc_1d5abd1b",
+        "filename": "common/py_utils/py_utils/cloud_storage_unittest.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2018-09-04T17:10:44Z",
+      "side": 1,
+      "message": "Is this file going to get cleaned up after the test?",
+      "range": {
+        "startLine": 298,
+        "startChar": 29,
+        "endLine": 298,
+        "endChar": 38
+      },
+      "revId": "1a58d5d919fe4ef28631c51c2281b293ab61116a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
