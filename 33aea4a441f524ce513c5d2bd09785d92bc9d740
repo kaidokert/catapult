@@ -114,6 +114,24 @@
     },
     {
       "key": {
+        "uuid": "6df759ec_e053920c",
+        "filename": "dashboard/dashboard/spa/cp-input.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-04T18:06:27Z",
+      "side": 1,
+      "message": "It was already swapping border pixels with margins, but sometimes parent elements will set margins, like report-section was setting margin-right: 8px on the Min Revision field, so cp-input\u0027s focused margin:0 wasn\u0027t taking effect.\nI changed it to swap the border pixels with padding instead.\n\nThanks for pointing it out!",
+      "parentUuid": "235f5d0c_dbb8a117",
+      "revId": "33aea4a441f524ce513c5d2bd09785d92bc9d740",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "19dbce7d_c8b04ea5",
         "filename": "dashboard/dashboard/spa/cp-input.html",
         "patchSetId": 1
