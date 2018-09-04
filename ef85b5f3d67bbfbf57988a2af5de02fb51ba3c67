@@ -34,6 +34,24 @@
       "revId": "ef85b5f3d67bbfbf57988a2af5de02fb51ba3c67",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b31a8ac_b6dac9e3",
+        "filename": "devil/devil/utils/hostile_mock/mock.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-09-04T13:35:01Z",
+      "side": 1,
+      "message": "Hm, good point. Switching everything to vpython and deleting third_party/mock in https://chromium-review.googlesource.com/c/catapult/+/1199813. Closing out this CL.",
+      "parentUuid": "325610f6_eb785aea",
+      "revId": "ef85b5f3d67bbfbf57988a2af5de02fb51ba3c67",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
