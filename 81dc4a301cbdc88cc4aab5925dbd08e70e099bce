@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5e59fb4e_43150e76",
+        "filename": "experimental/long_term_health/long_term_health/aggregate_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-04T16:39:40Z",
+      "side": 1,
+      "message": "Why do you need them?",
+      "revId": "81dc4a301cbdc88cc4aab5925dbd08e70e099bce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34eaa87a_162ef93b",
+        "filename": "experimental/long_term_health/long_term_health/aggregate_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-04T16:39:40Z",
+      "side": 1,
+      "message": "can we just create a temporary file instead of creating a directory. Or is there a reason we need a directory?",
+      "revId": "81dc4a301cbdc88cc4aab5925dbd08e70e099bce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3a4e754_477b6fe9",
+        "filename": "experimental/long_term_health/long_term_health/aggregate_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-04T16:39:40Z",
+      "side": 1,
+      "message": "Can\u0027t we just create the run_lable_path/csv instead of creating a temp_dir and then copying it over?",
+      "revId": "81dc4a301cbdc88cc4aab5925dbd08e70e099bce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
