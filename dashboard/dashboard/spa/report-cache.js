@@ -158,6 +158,39 @@ tr.exportTo('cp', () => {
         [this.cacheKey_]: response
       }));
     }
+
+    async* reader() {
+      this.ensureCacheState_();
+      this.cacheKey_ = this.computeCacheKey_();
+
+      // Check if we already have all the data in Redux
+      if (this.isInCache_) {
+        yield await this.readFromCache_();
+        return;
+      }
+
+      const request = this.createRequest_();
+      const fullUrl = location.origin + request.url_;
+      const listener = new cp.ServiceWorkerListener(fullUrl);
+
+      this.onStartRequest_(request);
+      const response = await request.response;
+
+      // Cached results will first yield with an empty object then send the
+      // actual result through a BroadcastChannel to avoid useless JSON parsing.
+      // ServiceWorkerListener is listening for messages received on the
+      // BroadcastChannel.
+      if (response) {
+        this.onFinishRequest_(response);
+        yield response;
+      }
+
+      // Wait for the Service Worker to finish all it's tasks.
+      for await (const update of listener) {
+        this.onFinishRequest_(update);
+        yield update;
+      }
+    }
   }
 
   /*
@@ -168,10 +201,11 @@ tr.exportTo('cp', () => {
    *   revisions: [number|"latest"],
    * }
    */
-  const ReadReport = ({dispatch, getState, ...options}) =>
-    new ReportCache(options, dispatch, getState).read();
+  const ReportReader = ({dispatch, getState, ...options}) =>
+    new ReportCache(options, dispatch, getState).reader();
 
   return {
-    ReadReport,
+    ReportReader,
+    ReportRequest,
   };
 });
