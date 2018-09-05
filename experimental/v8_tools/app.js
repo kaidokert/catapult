@@ -55,11 +55,14 @@ const app = new Vue({
 
     //  Draw a cumulative frequency plot depending on the target value.
     //  This is mainly for the results from the table.
-    plotCumulativeFrequencyPlot(target, story) {
+    plotCumulativeFrequencyPlot(target, story, traces) {
+      const openTrace = (label, index) => {
+        window.open(traces[label][index]);
+      };
       this.graph.yAxis('Cumulative frequency')
           .xAxis('Memory used (MiB)')
           .title(story)
-          .setData(target)
+          .setData(target, openTrace)
           .plotCumulativeFrequency();
     },
 
@@ -115,7 +118,13 @@ const app = new Vue({
     plotSingleMetricWithAllSubdiagnostics(metric, story, diagnostic) {
       const obj = this.getSubdiagnostics(
           this.getSampleValues, metric, story, diagnostic);
-      this.plotCumulativeFrequencyPlot(obj, story);
+      const getTraceLinks = (sample) => {
+        const traceId = sample.diagnostics.traceUrls;
+        return this.guidValue.get(traceId);
+      };
+      const traces = this.targetForMultipleDiagnostics(
+          getTraceLinks, metric, story, diagnostic);
+      this.plotCumulativeFrequencyPlot(obj, story, traces);
     },
 
     //  Draw a plot depending on the target value which is made
@@ -125,16 +134,16 @@ const app = new Vue({
         diagnostics, chosenPlot) {
       const target = this.targetForMultipleDiagnostics(
           this.getSampleValues, metric, story, diagnostic, diagnostics);
+      const getTraceLinks = (sample) => {
+        const traceId = sample.diagnostics.traceUrls;
+        return this.guidValue.get(traceId);
+      };
+      const traces = this.targetForMultipleDiagnostics(
+          getTraceLinks, metric, story, diagnostic, diagnostics);
       if (chosenPlot === 'Dot plot') {
-        const getTraceLinks = (sample) => {
-          const traceId = sample.diagnostics.traceUrls;
-          return this.guidValue.get(traceId);
-        };
-        const traces = this.targetForMultipleDiagnostics(
-            getTraceLinks, metric, story, diagnostic, diagnostics);
         this.plotDotPlot(target, story, traces);
       } else {
-        this.plotCumulativeFrequencyPlot(target, story);
+        this.plotCumulativeFrequencyPlot(target, story, traces);
       }
     },
 
