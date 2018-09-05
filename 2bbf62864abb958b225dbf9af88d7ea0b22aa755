@@ -16,6 +16,24 @@
       "revId": "2bbf62864abb958b225dbf9af88d7ea0b22aa755",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4555812c_5aacdb33",
+        "filename": "tracing/tracing/metrics/console_error_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2018-09-05T13:55:09Z",
+      "side": 1,
+      "message": "I am enabling \u0027average\u0027 only using the summary options (line 30).\nIs \u0027sum\u0027 preferred over \u0027average\u0027?",
+      "parentUuid": "2ffa7ff5_aedc7e64",
+      "revId": "2bbf62864abb958b225dbf9af88d7ea0b22aa755",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
