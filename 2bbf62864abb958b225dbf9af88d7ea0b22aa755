@@ -52,6 +52,64 @@
       "revId": "2bbf62864abb958b225dbf9af88d7ea0b22aa755",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "183a0d30_d4f13cb1",
+        "filename": "tracing/tracing/metrics/console_error_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-05T16:23:02Z",
+      "side": 1,
+      "message": "Single-sample Histograms\u0027 sums are equal to their averages, yes, however, Histograms are merged across storyset repeats and across stories before being uploaded to the chromeperf dashboard, and can be merged across many different axes in results.html. If this metric is run by a benchmark with more than 1 story or with storyset_repeat\u003e1, then there will be multiple samples in these Histograms, so their sums will be different from their averages.\nDo you want to monitor the average number of errors per trace? Or the total number of errors across each story and across the entire benchmark?",
+      "parentUuid": "79a3f932_3719d5fa",
+      "revId": "2bbf62864abb958b225dbf9af88d7ea0b22aa755",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf801eda_cbeaa3d0",
+        "filename": "tracing/tracing/metrics/console_error_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-05T16:23:02Z",
+      "side": 1,
+      "message": "You can simplify this and remove the createHistogram helper function using this:\n\nhistograms.createHistogram(`console:error:${source}`, tr.b.Unit.byName.count_smallerIsBetter, counts[source], {description: `Number of ${source} console error messages`, summaryOptions: SUMMARY_OPTIONS});",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 41
+      },
+      "revId": "2bbf62864abb958b225dbf9af88d7ea0b22aa755",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1655b2cd_10aed9ec",
+        "filename": "tracing/tracing/metrics/console_error_metric_unittest.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-05T16:23:02Z",
+      "side": 1,
+      "message": "This doesn\u0027t appear to be necessary.",
+      "revId": "2bbf62864abb958b225dbf9af88d7ea0b22aa755",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
