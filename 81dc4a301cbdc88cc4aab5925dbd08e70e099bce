@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3dfa62d2_0e0551a8",
+        "filename": "experimental/long_term_health/long_term_health/aggregate_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-09-05T08:43:08Z",
+      "side": 1,
+      "message": "This is to keep the catapult presubmit script happy. Otherwise, it will say unable to import pandas.",
+      "parentUuid": "5e59fb4e_43150e76",
+      "revId": "81dc4a301cbdc88cc4aab5925dbd08e70e099bce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "34eaa87a_162ef93b",
         "filename": "experimental/long_term_health/long_term_health/aggregate_results.py",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "085f6cc9_d0a7dc38",
+        "filename": "experimental/long_term_health/long_term_health/aggregate_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-09-05T08:43:08Z",
+      "side": 1,
+      "message": "Yeah, you\u0027re right we don\u0027t need the directory here. I\u0027ve removed the directory in the new patch.",
+      "parentUuid": "34eaa87a_162ef93b",
+      "revId": "81dc4a301cbdc88cc4aab5925dbd08e70e099bce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d3a4e754_477b6fe9",
         "filename": "experimental/long_term_health/long_term_health/aggregate_results.py",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2018-09-04T16:39:40Z",
       "side": 1,
       "message": "Can\u0027t we just create the run_lable_path/csv instead of creating a temp_dir and then copying it over?",
+      "revId": "81dc4a301cbdc88cc4aab5925dbd08e70e099bce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f967a32_5f271ba5",
+        "filename": "experimental/long_term_health/long_term_health/aggregate_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-09-05T08:43:08Z",
+      "side": 1,
+      "message": "The reason is to avoid the `csv` directory to be listed when we call `os.listdir`. If we create this inside run_label_path, it would be listed and iterate over. So we might need some extra logic to pick all the directories other than `csv`.",
+      "parentUuid": "d3a4e754_477b6fe9",
       "revId": "81dc4a301cbdc88cc4aab5925dbd08e70e099bce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
