@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "43163f1c_73c9363b",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-05T09:43:52Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we have sent sampleValues in the earlier cl as well. I am bit suprised because getSubDiagnostics hasn\u0027t changed. Was it an error in earlier?",
+      "revId": "67945289220b5c549ef92e70acb88dd975638324",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6c7aa26_cb863878",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-05T09:43:52Z",
+      "side": 1,
+      "message": "Also add more details about the map. I think it is a map from metric_name to map of labels to sample value right?\nmap: [metric_name] -\u003e [map: [lable] -\u003e sampleValue]. The sampleValue is the average over all stories and story set repeats.",
+      "revId": "67945289220b5c549ef92e70acb88dd975638324",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8bae796d_fc6ea2d2",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-05T09:43:52Z",
+      "side": 1,
+      "message": "May be name this getLabelsAndMetricToLableMap or getMetricToLabelMap. I don\u0027t like either of my suggestions :). If you can come up with something better please change it.",
+      "revId": "67945289220b5c549ef92e70acb88dd975638324",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57c0044b_98a8bde8",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-05T09:43:52Z",
+      "side": 1,
+      "message": "If we do the way I suggested later, we won\u0027t need this if else. We can simply do \ncurrentDiagnostic \u003d guidValueInfo.get(elem.diagnostics.labels);",
+      "revId": "67945289220b5c549ef92e70acb88dd975638324",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b960e9d6_fa999f94",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-05T09:43:52Z",
+      "side": 1,
+      "message": "We can change this to elem.diagnostics.labels \u003d e.diagnostics.benchmarkStart. This way we won\u0027t need any special processing at other places.",
+      "revId": "67945289220b5c549ef92e70acb88dd975638324",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0404d1a_2af3cbb1",
+        "filename": "experimental/v8_tools/table_component.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-05T09:43:52Z",
+      "side": 1,
+      "message": "We wouldn\u0027t need this if-else as well. If we change as I suggested earlier in filter.js.",
+      "revId": "67945289220b5c549ef92e70acb88dd975638324",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
