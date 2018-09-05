@@ -24,9 +24,6 @@ class MetricSignificance {
    * @param {Array<number>} value
    */
   add(metric, label, story, value) {
-    if (this.referenceColumn_ === undefined) {
-      this.referenceColumn_ = label;
-    }
     if (!this.data_[metric]) {
       this.data_[metric] = {};
     }

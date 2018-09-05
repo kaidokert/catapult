@@ -209,7 +209,6 @@ _SPECIAL_ROOT_DEVICE_LIST = [
     'marlin', # Pixel XL
     'sailfish', # Pixel
     'taimen', # Pixel 2 XL
-    'vega', # Lenovo Mirage Solo
     'walleye', # Pixel 2
 ]
 _IMEI_RE = re.compile(r'  Device ID = (.+)$')
