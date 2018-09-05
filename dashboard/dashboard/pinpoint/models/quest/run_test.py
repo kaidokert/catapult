@@ -18,11 +18,7 @@ from dashboard.pinpoint.models.quest import quest
 from dashboard.services import swarming
 
 
-_DEFAULT_EXTRA_ARGS = [
-    '--isolated-script-test-output', '${ISOLATED_OUTDIR}/output.json',
-    '--isolated-script-test-chartjson-output',
-    '${ISOLATED_OUTDIR}/chartjson-output.json',
-]
+_DEFAULT_EXTRA_ARGS = []
 
 
 class RunTestError(Exception):
