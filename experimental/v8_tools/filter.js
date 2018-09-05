@@ -138,36 +138,63 @@ const menu = new Vue({
       if (_.uniq(metrics).length === 0) {
         alert('No metrics found');
       } else {
-        alert('You can pick a metric from drop-down');
         app.parsedMetrics = _.uniq(metrics);
       }
     }
   }
 });
 
-//  A row from the default table.
-class TableRow {
-  constructor(id, metric, averageSampleValues) {
-    this.id = id;
-    this.metric = metric;
-    this.averageSampleValues = averageSampleValues;
-  }
-}
-
-//  A row after expanding a specific metric. This includes
-//  all the stories from that metric plus the sample values
-//  in the initial form, not the average.
-class StoryRow {
-  constructor(story, sample) {
-    this.story = story;
-    this.sample = sample;
-  }
-}
-
 function average(arr) {
   return _.reduce(arr, function(memo, num) {
     return memo + num;
   }, 0) / arr.length;
+}
+
+//  This function returns an object containing:
+//  all the names of labels plus a map with all
+//  the sample values for a specific metric and
+//  a specific label.
+function getLabels(sampleArr, guidValueInfo) {
+  const newDiagnostics = new Set();
+  const metricToDiagnosticValuesMap = new Map();
+  for (const elem of sampleArr) {
+    let currentDiagnostic = '';
+    if (elem.diagnostics.hasOwnProperty('labels')) {
+      currentDiagnostic = guidValueInfo.
+          get(elem.diagnostics.labels);
+    } else {
+      currentDiagnostic = guidValueInfo.
+          get(elem.diagnostics.benchmarkStart);
+    }
+    if (currentDiagnostic === undefined) {
+      continue;
+    }
+    if (currentDiagnostic !== 'number') {
+      currentDiagnostic = currentDiagnostic[0];
+    }
+    newDiagnostics.add(currentDiagnostic);
+
+    if (!metricToDiagnosticValuesMap.has(elem.name)) {
+      const map = new Map();
+      map.set(currentDiagnostic, [average(elem.sampleValues)]);
+      metricToDiagnosticValuesMap.set(elem.name, map);
+    } else {
+      const map = metricToDiagnosticValuesMap.get(elem.name);
+      if (map.has(currentDiagnostic)) {
+        const array = map.get(currentDiagnostic);
+        array.push(average(elem.sampleValues));
+        map.set(currentDiagnostic, array);
+        metricToDiagnosticValuesMap.set(elem.name, map);
+      } else {
+        map.set(currentDiagnostic, [average(elem.sampleValues)]);
+        metricToDiagnosticValuesMap.set(elem.name, map);
+      }
+    }
+  }
+  return {
+    labelNames: Array.from(newDiagnostics),
+    mapLabelToValues: metricToDiagnosticValuesMap
+  };
 }
 
 
@@ -187,7 +214,6 @@ function readSingleFile(e) {
     const contents = extractData(e.target.result);
     const sampleArr = contents.sampleValueArray;
     const guidValueInfo = contents.guidValueInfo;
-    const metricAverage = new Map();
     const significanceTester = new MetricSignificance();
     for (const e of sampleArr) {
       const { name, sampleValues, diagnostics } = e;
@@ -199,33 +225,47 @@ function readSingleFile(e) {
         const label = guidValueInfo.get(labels)[0];
         significanceTester.add(name, label, sampleValues);
       }
-      if (metricAverage.has(e.name)) {
-        const aux = metricAverage.get(e.name);
-        aux.push(average(e.sampleValues));
-        metricAverage.set(e.name, aux);
-      } else {
-        metricAverage.set(e.name, [average(e.sampleValues)]);
-      }
     }
     menu.testResults = significanceTester.mostSignificant();
+    let metricNames = [];
+    sampleArr.map(e => metricNames.push(e.name));
+    metricNames = _.uniq(metricNames);
+
+
     //  The content for the default table: with name
     //  of the mtric, the average value of the sample values
     //  plus an id. The latest is used to expand the row.
     // It may disappear later.
     const tableElems = [];
     let id = 1;
-    for (const [key, value] of metricAverage.entries()) {
-      tableElems.push(
-          new TableRow(id++, key, average(value))
-      );
+    for (const name of metricNames) {
+      tableElems.push({
+        id: id++,
+        metric: name
+      });
     }
+
+    const labelsResult = getLabels(sampleArr, guidValueInfo);
+    const columnsForChosenDiagnostic = labelsResult.labelNames;
+    const metricToDiagnosticValuesMap = labelsResult.mapLabelToValues;
+    for (const elem of tableElems) {
+      if (metricToDiagnosticValuesMap.get(elem.metric) === undefined) {
+        continue;
+      }
+      for (const diagnostic of columnsForChosenDiagnostic) {
+        if (!metricToDiagnosticValuesMap.get(elem.metric).has(diagnostic)) {
+          continue;
+        }
+        elem[diagnostic] = average(metricToDiagnosticValuesMap
+            .get(elem.metric).get(diagnostic));
+      }
+    }
+
+
     app.gridData = tableElems;
     app.sampleArr = sampleArr;
     app.guidValue = guidValueInfo;
-
-    let metricNames = [];
-    sampleArr.map(e => metricNames.push(e.name));
-    metricNames = _.uniq(metricNames);
+    app.columnsForChosenDiagnostic = columnsForChosenDiagnostic;
 
     const result = parseAllMetrics(metricNames);
     menu.sampelArr = sampleArr;
@@ -263,7 +303,30 @@ function extractData(contents) {
   for (const element of result) {
     const e = JSON.parse(element);
     if (e.hasOwnProperty('sampleValues')) {
-      sampleValue.push(e);
+      const elem = {
+        name: e.name,
+        sampleValues: e.sampleValues,
+        unit: e.unit,
+        guid: e.guid,
+        diagnostics: {}
+      };
+      if (e.diagnostics.hasOwnProperty('traceUrls')) {
+        elem.diagnostics.traceUrls = e.diagnostics.traceUrls;
+      }
+      if (e.diagnostics.hasOwnProperty('labels')) {
+        elem.diagnostics.labels = e.diagnostics.labels;
+      } else {
+        if (e.diagnostics.hasOwnProperty('benchmarkStart')) {
+          elem.diagnostics.benchmarkStart = e.diagnostics.benchmarkStart;
+        }
+      }
+      if (e.diagnostics.hasOwnProperty('stories')) {
+        elem.diagnostics.stories = e.diagnostics.stories;
+      }
+      if (e.diagnostics.hasOwnProperty('storysetRepeats')) {
+        elem.diagnostics.storysetRepeats = e.diagnostics.storysetRepeats;
+      }
+      sampleValue.push(elem);
     } else {
       if (e.type === 'GenericSet') {
         guidValueInfoMap.set(e.guid, e.values);
