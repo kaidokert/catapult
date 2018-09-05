@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7d721282_477ed818",
+        "filename": "BUILD.gn",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2018-09-05T13:26:26Z",
+      "side": 1,
+      "message": "This is unrelated change forced by the upload script.",
+      "range": {
+        "startLine": 27,
+        "startChar": 5,
+        "endLine": 27,
+        "endChar": 21
+      },
+      "revId": "d3fce4b99e3f46390337ad6c4af2fd24610d5c5b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
