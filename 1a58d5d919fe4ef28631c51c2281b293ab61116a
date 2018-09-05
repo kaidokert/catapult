@@ -39,6 +39,30 @@
       "revId": "1a58d5d919fe4ef28631c51c2281b293ab61116a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17b9e4a7_6d704f72",
+        "filename": "common/py_utils/py_utils/cloud_storage_unittest.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-09-05T23:25:30Z",
+      "side": 1,
+      "message": "This is left over from me diagnosing issues with this test.\n\nThat said, yes, I believe this file never actually exists on disk b/c this uses pyfakefs (which I had not previously heard of).",
+      "parentUuid": "19670bbc_1d5abd1b",
+      "range": {
+        "startLine": 298,
+        "startChar": 29,
+        "endLine": 298,
+        "endChar": 38
+      },
+      "revId": "1a58d5d919fe4ef28631c51c2281b293ab61116a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
