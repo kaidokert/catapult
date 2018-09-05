@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/core/test_utils.html">
+<link rel="import" href="/tracing/extras/importer/trace_event_importer.html">
+<link rel="import" href="/tracing/metrics/console_error_metric.html">
+<link rel="import" href="/tracing/value/histogram_set.html">
+
+<script>
+'use strict';
+
+tr.b.unittest.testSuite(function() {
+  function makeModel(events) {
+    return tr.c.TestUtils.newModelWithEvents([events]);
+  }
+
+  function makeEvent(name, source, timestamp) {
+    return {
+      name,
+      args: {source},
+      pid: 52,
+      ts: timestamp,
+      cat: 'blink.console',
+      tid: 53,
+      ph: 'B'
+    };
+  }
+
+  test('consoleErrorMetric_noErrors', function() {
+    const histograms = new tr.v.HistogramSet();
+    const events = [
+      makeEvent('foo', '', 10),
+      makeEvent('bar', '', 20)
+    ];
+    tr.metrics.console.consoleErrorMetric(histograms, makeModel(events));
+    const all = histograms.getHistogramNamed('console:error:all').running;
+    assert.strictEqual(all.count, 1);
+    assert.strictEqual(all.mean, 0);
+    const js = histograms.getHistogramNamed('console:error:js').running;
+    assert.strictEqual(js.count, 1);
+    assert.strictEqual(js.mean, 0);
+    const net = histograms.getHistogramNamed('console:error:network').running;
+    assert.strictEqual(net.count, 1);
+    assert.strictEqual(net.mean, 0);
+  });
+
+  test('consoleErrorMetric_Errors', function() {
+    const histograms = new tr.v.HistogramSet();
+    const events = [
+      makeEvent('foo', '', 10),
+      makeEvent('ConsoleErrorMessage', 'XML', 20),
+      makeEvent('bar', '', 30),
+      makeEvent('ConsoleErrorMessage', 'Network', 40),
+      makeEvent('ConsoleErrorMessage', 'JS', 50),
+      makeEvent('ConsoleErrorMessage', 'Network', 60),
+      makeEvent('ConsoleErrorMessage', 'Network', 70),
+      makeEvent('ConsoleErrorMessage', 'JS', 80),
+      makeEvent('ConsoleErrorMessage', 'Network', 90),
+      makeEvent('bar', '', 300)
+    ];
+    tr.metrics.console.consoleErrorMetric(histograms, makeModel(events));
+    const all = histograms.getHistogramNamed('console:error:all').running;
+    assert.strictEqual(all.count, 1);
+    assert.strictEqual(all.mean, 7);
+    const js = histograms.getHistogramNamed('console:error:js').running;
+    assert.strictEqual(js.count, 1);
+    assert.strictEqual(js.mean, 2);
+    const net = histograms.getHistogramNamed('console:error:network').running;
+    assert.strictEqual(net.count, 1);
+    assert.strictEqual(net.mean, 4);
+  });
+});
+</script>
