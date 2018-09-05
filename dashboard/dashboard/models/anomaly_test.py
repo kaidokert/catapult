@@ -7,6 +7,7 @@ import unittest
 
 from google.appengine.ext import ndb
 
+from dashboard.common import datastore_hooks
 from dashboard.common import testing_common
 from dashboard.common import utils
 from dashboard.models import anomaly
