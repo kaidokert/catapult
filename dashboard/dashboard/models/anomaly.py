@@ -10,6 +10,7 @@ import time
 
 from google.appengine.ext import ndb
 
+from dashboard.common import datastore_hooks
 from dashboard.common import timing
 from dashboard.common import utils
 from dashboard.models import internal_only_model
@@ -168,6 +169,12 @@ class Anomaly(internal_only_model.InternalOnlyModel):
     return utils.TestMetadataKey(self.test)
 
   @classmethod
+  @ndb.synctasklet
+  def QuerySync(cls, *args, **kwargs):
+    (results, start_cursor, count) = yield cls.QueryAsync(*args, **kwargs)
+    raise ndb.Return((results, start_cursor, count))
+
+  @classmethod
   @ndb.tasklet
   def QueryAsync(
       cls,
@@ -176,6 +183,7 @@ class Anomaly(internal_only_model.InternalOnlyModel):
       count_limit=0,
       deadline_seconds=50,
       inequality_property=None,
+      internal_only=None,
       is_improvement=None,
       key=None,
       keys_only=False,
@@ -206,6 +214,11 @@ class Anomaly(internal_only_model.InternalOnlyModel):
     deadline = time.time() + deadline_seconds
     while not results and time.time() < deadline:
       query = cls.query()
+      if (internal_only is not None and
+          datastore_hooks.IsUnalteredQueryPermitted()):
+        # Callers may only filter by internal_only explicitly if they are
+        # permitted.
+        query = query.filter(cls.internal_only == internal_only)
       if sheriff is not None:
         sheriff_key = ndb.Key('Sheriff', sheriff)
         sheriff_entity = yield sheriff_key.get_async()
