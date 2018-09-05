@@ -30,8 +30,7 @@ Vue.component('data-table', {
       chosen_plot: '',
       markedTableMetrics: [],
       markedTableStories: [],
-      markedTableDiagnostics: [],
-      checkedDiagnostic: null
+      markedTableDiagnostics: []
     };
   },
   computed: {
@@ -159,8 +158,14 @@ Vue.component('data-table', {
         if (typeof nameOfStory !== 'number') {
           nameOfStory = nameOfStory[0];
         }
-        let diagnostic = guidValue.
-            get(e.diagnostics[globalDiag]);
+        let diagnostic = '';
+        if (e.diagnostics.hasOwnProperty(globalDiag)) {
+          diagnostic = guidValue.
+              get(e.diagnostics[globalDiag]);
+        } else {
+          diagnostic = guidValue.
+              get(e.diagnostics.benchmarkStart);
+        }
         if (diagnostic === undefined) {
           continue;
         }
@@ -187,8 +192,8 @@ Vue.component('data-table', {
       return diagValues;
     },
 
-    getSamplesByStory(entry, sampleArr, guidValue) {
-      const storiesAverage = new Map();
+    getStoriesByMetric(entry, sampleArr, guidValue) {
+      const stories = [];
       for (const e of sampleArr) {
         if (e.name !== entry.metric) {
           continue;
@@ -200,16 +205,9 @@ Vue.component('data-table', {
         if (typeof nameOfStory !== 'number') {
           nameOfStory = nameOfStory[0];
         }
-        if (storiesAverage.has(nameOfStory)) {
-          const current = storiesAverage.get(nameOfStory);
-          current.push(average(e.sampleValues));
-          storiesAverage.set(nameOfStory, current);
-        } else {
-          const current = [average(e.sampleValues)];
-          storiesAverage.set(nameOfStory, current);
-        }
+        stories.push(nameOfStory);
       }
-      return storiesAverage;
+      return _.uniq(stories);
     },
 
     //  This method will be called when the user clicks a specific
@@ -228,18 +226,18 @@ Vue.component('data-table', {
       const addCol = this.$parent.columnsForChosenDiagnostic;
       const storiesEntries = [];
 
-      const storiesAverage = this
-          .getSamplesByStory(entry, sampleArr, guidValue);
-      for (const [key, value] of storiesAverage.entries()) {
+
+      const stories = this
+          .getStoriesByMetric(entry, sampleArr, guidValue);
+      for (const key of stories) {
         storiesEntries.push({
-          story: key,
-          sample: average(value)
+          story: key
         });
       }
       if (addCol !== null) {
         const diagValues = this
             .getSampleByStoryBySubdiagnostics(entry,
-                sampleArr, guidValue, globalDiag);
+                sampleArr, guidValue, 'labels');
         for (const e of storiesEntries) {
           for (const diag of addCol) {
             e[diag] = average(diagValues.get(e.story).get(diag));
@@ -332,7 +330,7 @@ Vue.component('data-table', {
         const globalDiag = this.$parent.globalDiagnostic;
         const map = this
             .getSampleByStoryBySubdiagnostics(this.metric,
-                sampleArr, guidValue, globalDiag);
+                sampleArr, guidValue, 'labels');
         const data = {};
         for (const e of this.markedTableDiagnostics) {
           const obj = {};
@@ -390,7 +388,6 @@ Vue.component('data-table', {
     //  not available.
     metric() {
       this.markedTableDiagnostics = [];
-      this.checkedDiagnostic = false;
     }
   }
 });
