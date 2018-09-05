@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c05e9dc7_23046626",
+        "filename": "netlog_viewer/netlog_viewer/log_view_painter_test.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1002844
+      },
+      "writtenOn": "2018-09-05T22:07:08Z",
+      "side": 1,
+      "message": "manual (just whitespace)",
+      "revId": "0f8716467c3bf84aa15aa43fa95356d142718ff2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d4881f8_efda97d2",
+        "filename": "netlog_viewer/netlog_viewer/main.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002844
+      },
+      "writtenOn": "2018-09-05T22:07:08Z",
+      "side": 1,
+      "message": "main.js had some manual merges:\n\ndifferent comment on the first diff\n\nno stopCapturing function in catapult",
+      "revId": "0f8716467c3bf84aa15aa43fa95356d142718ff2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6187dfd_83888904",
+        "filename": "netlog_viewer/netlog_viewer/main_test.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1002844
+      },
+      "writtenOn": "2018-09-05T22:07:08Z",
+      "side": 1,
+      "message": "manual (false instead of true)",
+      "revId": "0f8716467c3bf84aa15aa43fa95356d142718ff2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c256585_e8bd322c",
+        "filename": "netlog_viewer/netlog_viewer/netlog_viewer.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002844
+      },
+      "writtenOn": "2018-09-05T22:07:08Z",
+      "side": 1,
+      "message": "these are manual",
+      "revId": "0f8716467c3bf84aa15aa43fa95356d142718ff2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95ea4756_778302f8",
+        "filename": "netlog_viewer/netlog_viewer/quic_view.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002844
+      },
+      "writtenOn": "2018-09-05T22:07:08Z",
+      "side": 1,
+      "message": "quic_view changes were manual",
+      "revId": "0f8716467c3bf84aa15aa43fa95356d142718ff2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c297c16a_e7c2a568",
+        "filename": "netlog_viewer/netlog_viewer/quic_view.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002844
+      },
+      "writtenOn": "2018-09-05T22:07:08Z",
+      "side": 1,
+      "message": "quic_view changes were manual",
+      "revId": "0f8716467c3bf84aa15aa43fa95356d142718ff2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74e95bf5_addf2671",
+        "filename": "netlog_viewer/netlog_viewer/reporting_view.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1002844
+      },
+      "writtenOn": "2018-09-05T22:07:08Z",
+      "side": 1,
+      "message": "the polymer wrapper stuff here is manual",
+      "revId": "0f8716467c3bf84aa15aa43fa95356d142718ff2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d192a6b_c0db4b0f",
+        "filename": "netlog_viewer/netlog_viewer/tab_views.css",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1002844
+      },
+      "writtenOn": "2018-09-05T22:07:08Z",
+      "side": 1,
+      "message": "these are manual (originally in reporting_view.html)",
+      "revId": "0f8716467c3bf84aa15aa43fa95356d142718ff2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

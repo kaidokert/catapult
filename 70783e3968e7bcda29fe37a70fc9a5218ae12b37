@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fc2d2ba3_4c1bd3ca",
+        "filename": "netlog_viewer/netlog_viewer/events_view_test.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1002844
+      },
+      "writtenOn": "2018-09-05T22:07:08Z",
+      "side": 0,
+      "message": "all the chain.assert things are manual merges",
+      "revId": "70783e3968e7bcda29fe37a70fc9a5218ae12b37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9c9ddde_f7e0d4b5",
+        "filename": "netlog_viewer/netlog_viewer/events_view_test.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1002844
+      },
+      "writtenOn": "2018-09-05T22:07:08Z",
+      "side": 0,
+      "message": "the remaining changes in this file were manual merges just due to whitespace",
+      "revId": "70783e3968e7bcda29fe37a70fc9a5218ae12b37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61661934_8720a5c4",
+        "filename": "netlog_viewer/netlog_viewer/log_view_painter_test.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1002844
+      },
+      "writtenOn": "2018-09-05T22:07:08Z",
+      "side": 0,
+      "message": "manual",
+      "revId": "70783e3968e7bcda29fe37a70fc9a5218ae12b37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e621be0e_6d580fad",
+        "filename": "netlog_viewer/netlog_viewer/log_view_painter_test.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1002844
+      },
+      "writtenOn": "2018-09-05T22:07:08Z",
+      "side": 0,
+      "message": "manual (just whitespace)",
+      "revId": "70783e3968e7bcda29fe37a70fc9a5218ae12b37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3870f3d3_66174be2",
+        "filename": "netlog_viewer/netlog_viewer/net_internals_test.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1002844
+      },
+      "writtenOn": "2018-09-05T22:07:08Z",
+      "side": 0,
+      "message": "all the chain.assert stuff here is manual too.",
+      "revId": "70783e3968e7bcda29fe37a70fc9a5218ae12b37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
