@@ -178,6 +178,24 @@
     },
     {
       "key": {
+        "uuid": "5ff245d9_ceb172ba",
+        "filename": "dashboard/dashboard/change_internal_only.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-09-05T17:40:32Z",
+      "side": 1,
+      "message": "Just checking if it was useful to you.",
+      "parentUuid": "6fb22a43_d8c6384b",
+      "revId": "0c857660f00c7f4890b34ef72098e0d0dce86f6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ebe03d53_32f51c20",
         "filename": "dashboard/dashboard/change_internal_only.py",
         "patchSetId": 24
