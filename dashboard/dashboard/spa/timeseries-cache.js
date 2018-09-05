@@ -283,8 +283,8 @@ tr.exportTo('cp', () => {
       this.fetchDescriptor_ = this.options_.fetchDescriptor;
       this.refStatePath_ = this.options_.refStatePath;
 
-      this.minRevision_ = this.options_.minRevision;
-      this.maxRevision_ = this.options_.maxRevision;
+      this.minRevision_ = this.fetchDescriptor_.minRevision;
+      this.maxRevision_ = this.fetchDescriptor_.maxRevision;
 
       this.levelOfDetail_ = this.fetchDescriptor_.levelOfDetail;
       this.columns_ = getColumnsByLevelOfDetail(
@@ -419,7 +419,10 @@ tr.exportTo('cp', () => {
       // If we already have all the data in Redux, we don't need to make an
       // outgoing request; instead, yield the data we have.
       if (this.isInCache_) {
-        yield await this.readFromCache_();
+        yield {
+          timeseries: await this.readFromCache_(),
+          lineDescriptor: this.lineDescriptor_,
+        };
         return;
       }
 
@@ -446,6 +449,7 @@ tr.exportTo('cp', () => {
       for await (const update of listener) {
         this.onFinishRequest_(update);
         const timeseries = await this.readFromCache_();
+        console.log('TimeseriesReader', this.lineDescriptor_.bots, performance.now(), timeseries);
         yield {
           timeseries,
           lineDescriptor: this.lineDescriptor_,

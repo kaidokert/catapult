@@ -257,6 +257,8 @@ tr.exportTo('cp', () => {
           }
           this.results_.push(result);
         } catch (err) {
+          // eslint-disable-next-line no-console
+          console.error(err);
           this.errors_.push(err);
         } finally {
           this.promises_.splice(this.promises_.indexOf(self), 1);
@@ -279,29 +281,37 @@ tr.exportTo('cp', () => {
     }
 
     async next() {
-      if (this.promises_.length === 0 && this.results_.length === 0 &&
-          this.errors_.length === 0) {
-        return {done: true};
+      if (this.results_.length === 0 && this.errors_.length === 0) {
+        if (this.promises_.length === 0) {
+          console.log('DONE');
+          return {done: true};
+        }
+
+        const timeToProcess = performance.now() - this.timeSinceLastCalled_;
+
+        await Promise.race(this.promises_);
+
+        if (timeToProcess) {
+          console.log('timeToProcess', timeToProcess);
+          await Promise.race([
+            await timeout(timeToProcess),
+            await Promise.all(this.promises_)
+          ]);
+        }
       }
 
-      await Promise.race(this.promises_);
+      // Measure how long it takes the caller to process yielded results to
+      // avoid overloading the caller the next time around.
+      this.timeSinceLastCalled_ = performance.now();
 
-      if (this.timeSinceLastCalled_) {
-        const timeToProcess = performance.now() - this.timeSinceLastCalled_;
-        await Promise.race([
-          await timeout(timeToProcess),
-          await Promise.all(this.promises_)
-        ]);
+      if (this.results_[0] && this.results_[0].lineDescriptor) {
+        console.log('BatchIterator', this.results_.map(r => r.lineDescriptor.bots[0]), performance.now());
       }
 
       const results = this.results_;
       const errors = this.errors_;
       this.results_ = [];
       this.errors_ = [];
-
-      // Measure how long it takes the caller to process yielded results to
-      // avoid overloading the caller the next time around.
-      this.timeSinceLastCalled_ = performance.now();
 
       return {
         done: false,
