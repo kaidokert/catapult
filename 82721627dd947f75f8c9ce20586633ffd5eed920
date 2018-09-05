@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6b4323e0_36157a34",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-05T13:54:50Z",
+      "side": 1,
+      "message": "Is there a reason why we use parts.length - 2 and parts.length -1 instead of 5 and 6. Is it because different metrics have different number of levels? If so just add a comment so people dont change it accidentally.",
+      "revId": "82721627dd947f75f8c9ce20586633ffd5eed920",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
