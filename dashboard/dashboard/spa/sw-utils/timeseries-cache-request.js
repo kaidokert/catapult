@@ -125,10 +125,14 @@ export default class TimeseriesCacheRequest extends CacheRequestBase {
 
     if (!ranges) {
       // Nothing has been cached for this level-of-detail yet.
+      console.log('Nothing cached yet');
       return;
     }
 
-    if (!this.containsRelevantRanges_(ranges)) return;
+    if (!this.containsRelevantRanges_(ranges)) {
+      console.log('No relevant ranges');
+      return;
+    }
 
     const dataPoints = await dataPointsPromise;
     const data = this.denormalize_(dataPoints);

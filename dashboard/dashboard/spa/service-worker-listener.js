@@ -27,6 +27,7 @@ tr.exportTo('cp', () => {
 
       this.handleMessage_ = this.handleMessage_.bind(this);
       this.channel_ = new BroadcastChannel(url);
+      this.url = url;
       this.channel_.addEventListener('message', this.handleMessage_);
     }
 
