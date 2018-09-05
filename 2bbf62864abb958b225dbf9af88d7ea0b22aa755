@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ffa7ff5_aedc7e64",
+        "filename": "tracing/tracing/metrics/console_error_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-09-05T13:47:54Z",
+      "side": 1,
+      "message": "We may want to track only the the \u0027sum\u0027 of these histogram. You can do so by set the summaryOptions of the histogram",
+      "revId": "2bbf62864abb958b225dbf9af88d7ea0b22aa755",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
