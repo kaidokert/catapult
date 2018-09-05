@@ -118,6 +118,30 @@
       "revId": "2e205dd0819cc805f630008521b7bde47321af94",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f7af8c9_35835cbb",
+        "filename": "BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1128909
+      },
+      "writtenOn": "2018-09-05T01:19:59Z",
+      "side": 1,
+      "message": "Glad to hear that you figured it out!",
+      "parentUuid": "03431964_d1ea19cc",
+      "range": {
+        "startLine": 42,
+        "startChar": 4,
+        "endLine": 42,
+        "endChar": 21
+      },
+      "revId": "2e205dd0819cc805f630008521b7bde47321af94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
