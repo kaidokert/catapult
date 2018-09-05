@@ -34,6 +34,24 @@
       "revId": "2bbf62864abb958b225dbf9af88d7ea0b22aa755",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79a3f932_3719d5fa",
+        "filename": "tracing/tracing/metrics/console_error_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-09-05T14:02:56Z",
+      "side": 1,
+      "message": "Actually it seems like you only add 1 sample per error source, so I think it may not matter much whether to pick sum or average :-P",
+      "parentUuid": "4555812c_5aacdb33",
+      "revId": "2bbf62864abb958b225dbf9af88d7ea0b22aa755",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
