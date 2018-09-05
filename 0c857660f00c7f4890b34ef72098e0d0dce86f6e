@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3f0bc8a4_1d39e7e8",
+        "filename": "dashboard/dashboard/change_internal_only.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-05T17:35:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3590de57_0667ad19",
+      "range": {
+        "startLine": 22,
+        "startChar": 4,
+        "endLine": 22,
+        "endChar": 14
+      },
+      "revId": "0c857660f00c7f4890b34ef72098e0d0dce86f6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cc14335e_35f78519",
         "filename": "dashboard/dashboard/change_internal_only.py",
         "patchSetId": 24
@@ -45,6 +69,30 @@
       "revId": "0c857660f00c7f4890b34ef72098e0d0dce86f6e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3903f9c7_d5837046",
+        "filename": "dashboard/dashboard/change_internal_only.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-05T17:35:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc14335e_35f78519",
+      "range": {
+        "startLine": 23,
+        "startChar": 6,
+        "endLine": 23,
+        "endChar": 12
+      },
+      "revId": "0c857660f00c7f4890b34ef72098e0d0dce86f6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "d2c686c5_8f2c471f",
+        "filename": "dashboard/dashboard/change_internal_only.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-05T17:35:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80ede4ea_9476762a",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 17
+      },
+      "revId": "0c857660f00c7f4890b34ef72098e0d0dce86f6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "99fa8376_14111997",
         "filename": "dashboard/dashboard/change_internal_only.py",
         "patchSetId": 24
@@ -82,6 +154,24 @@
       "writtenOn": "2018-09-04T18:46:08Z",
       "side": 1,
       "message": "do you need these logging statements with \"continuing\"",
+      "revId": "0c857660f00c7f4890b34ef72098e0d0dce86f6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fb22a43_d8c6384b",
+        "filename": "dashboard/dashboard/change_internal_only.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-05T17:35:11Z",
+      "side": 1,
+      "message": "I like being able to monitor the logs after running UpdateBots so I can update the request bug when the job is complete. I just added logging.info(\u0027complete\u0027), so I could remove either the continuing or the complete logging if you want.",
+      "parentUuid": "99fa8376_14111997",
       "revId": "0c857660f00c7f4890b34ef72098e0d0dce86f6e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "19fb0f6b_f57b278f",
+        "filename": "dashboard/dashboard/change_internal_only.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-05T17:35:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ebe03d53_32f51c20",
+      "range": {
+        "startLine": 63,
+        "startChar": 46,
+        "endLine": 63,
+        "endChar": 56
+      },
+      "revId": "0c857660f00c7f4890b34ef72098e0d0dce86f6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dbee8210_d36ded74",
         "filename": "dashboard/dashboard/models/anomaly.py",
         "patchSetId": 24
@@ -122,6 +236,30 @@
       "writtenOn": "2018-09-04T18:46:08Z",
       "side": 1,
       "message": "This one is a little strange because datastore_hooks adds it automatically, not sure what to do here if it\u0027s not running under privileged, maybe disallow this arg?",
+      "range": {
+        "startLine": 210,
+        "startChar": 9,
+        "endLine": 210,
+        "endChar": 22
+      },
+      "revId": "0c857660f00c7f4890b34ef72098e0d0dce86f6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f639d27e_b3778323",
+        "filename": "dashboard/dashboard/models/anomaly.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-05T17:35:11Z",
+      "side": 1,
+      "message": "I noticed that UpdateTests and UpdateAnomalies were very similar, so I merged them to use ndb.Query, rendering this change unnecessary. PTAL",
+      "parentUuid": "dbee8210_d36ded74",
       "range": {
         "startLine": 210,
         "startChar": 9,
