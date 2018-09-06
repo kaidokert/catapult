@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "769355d5_3d4c3932",
+        "filename": "dashboard/dashboard/common/utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-09-06T15:31:25Z",
+      "side": 1,
+      "message": "Would be nice if we could do this async, although it\u0027s also possible that UpdateSheriff will go away -- what if the alerting pipeline just queried for the diagnostics directly?",
+      "revId": "39da781af1dca707fb7903361d240b6e92ded67c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
