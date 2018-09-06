@@ -103,7 +103,12 @@ class Tab(web_contents.WebContents):
     """
     if keep_one and len(self._tab_list_backend) <= 1:
       self._tab_list_backend.New(timeout)
+    # TODO: How to propagate the log entries to back to the shared_page_state?
+    print self.GetLogEntries()
     self._tab_list_backend.CloseTab(self.id, timeout)
+
+  def GetLogEntries(self):
+    return self._inspector_backend.GetLogEntries()
 
   @property
   def screenshot_supported(self):

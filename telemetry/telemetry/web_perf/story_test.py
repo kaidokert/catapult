@@ -28,7 +28,7 @@ class StoryTest(object):
     """
     raise NotImplementedError()
 
-  def Measure(self, platform, results):
+  def Measure(self, platform, log_entries, results):
     """Override to take the measurement.
 
     This is run only if state.RunStory is successful.

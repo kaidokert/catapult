@@ -125,7 +125,7 @@ def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
       story.wpr_mode = state.wpr_mode
       state.RunStory(results)
       if isinstance(test, story_test.StoryTest):
-        test.Measure(state.platform, results)
+        test.Measure(state.platform, state.GetLogEntries(), results)
     except (legacy_page_test.Failure, exceptions.TimeoutException,
             exceptions.LoginException, py_utils.TimeoutException) as exc:
       ProcessError(exc, log_message='Handleable error')

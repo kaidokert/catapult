@@ -58,6 +58,7 @@ class SharedPageState(story_module.SharedState):
     self._previous_page = None
     self._current_page = None
     self._current_tab = None
+    self._log_entries = []
 
     self._test.SetOptions(self._finder_options)
 
@@ -129,7 +130,12 @@ class SharedPageState(story_module.SharedState):
     else:
       logging.warning('Taking screenshots upon failures disabled.')
 
+  def GetLogEntries(self):
+    return self._log_entries
+
   def DidRunStory(self, results):
+    for tab in self.browser.tabs:
+      self._log_entries += tab.GetLogEntries()
     self._AllowInteractionForStage('after-run-story')
     try:
       self._previous_page = None
