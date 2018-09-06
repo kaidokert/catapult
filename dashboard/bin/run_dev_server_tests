@@ -11,4 +11,22 @@ if __name__ == '__main__':
                                  '..', '..'))
   sys.path.append(catapult_path)
   from catapult_build import run_dev_server_tests
+
+  print os.sep
+  sys.path.append(os.path.join(catapult_path, 'dashboard'))
+  import dashboard_project
+  project = dashboard_project.DashboardProject()
+  test_relpaths = []
+  for test in project.FindAllTestModuleRelPaths():
+    test = test.replace(os.sep, '/')
+    if '/spa/' in test:
+      # Tests in spa/ are run by run_wct_tests, so don't run them here.
+      continue
+    test_relpaths.append(test)
+  print '\n'.join(test_relpaths)
+  sys.stdout.flush()
+  for i in range(100):
+    print
+  sys.stdout.flush()
+
   sys.exit(run_dev_server_tests.Main(sys.argv + ['--tests=dashboard']))
