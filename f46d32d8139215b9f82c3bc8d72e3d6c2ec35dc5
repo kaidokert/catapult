@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "63ee4882_38dc18a6",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-06T13:50:21Z",
+      "side": 1,
+      "message": "metricsSelectedOnGrid?",
+      "revId": "f46d32d8139215b9f82c3bc8d72e3d6c2ec35dc5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8afc9107_11a63305",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-06T13:50:21Z",
+      "side": 1,
+      "message": "if (!storiesName.includes(nameofStory)) continue;",
+      "revId": "f46d32d8139215b9f82c3bc8d72e3d6c2ec35dc5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a667acb6_b614aaeb",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-06T13:50:21Z",
+      "side": 1,
+      "message": "is this a reason to use _ before and after? we have obj, obj_ and _obj_ which makes it a bit confusing. can we have different name. may be metricToValueObj?",
+      "revId": "f46d32d8139215b9f82c3bc8d72e3d6c2ec35dc5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41182352_88df8973",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-06T13:50:21Z",
+      "side": 1,
+      "message": "may be we can reuse some of this code like:\nif (obj.has..) {\n  obj_ \u003d obj[..];\n} else {\n  obj_ \u003d {};\n}\n...\nobj[currentDiagnostic] \u003d obj_;\nAlso, I think using different names instead of obj_ and _obj_ would be good.",
+      "revId": "f46d32d8139215b9f82c3bc8d72e3d6c2ec35dc5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2090316f_a12fd230",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-06T13:50:21Z",
+      "side": 1,
+      "message": "why do we need defaultGridData, since it is same as gridData",
+      "revId": "f46d32d8139215b9f82c3bc8d72e3d6c2ec35dc5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
