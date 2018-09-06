@@ -22,6 +22,30 @@
       "revId": "0fbe6bc81cd08136425bd7694f4adbace8b4b16b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3fd5ca3b_3d98d74d",
+        "filename": "dashboard/dashboard/deprecate_tests.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-06T23:08:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aec646a6_ec88aea7",
+      "range": {
+        "startLine": 237,
+        "startChar": 16,
+        "endLine": 237,
+        "endChar": 35
+      },
+      "revId": "0fbe6bc81cd08136425bd7694f4adbace8b4b16b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
