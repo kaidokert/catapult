@@ -39,6 +39,7 @@ group("telemetry_chrome_test_support") {
 
   data += [
     "common/OWNERS",
+    "common/battor/",
     "common/bin/",
     "common/eslint/",
     "common/lab/",
@@ -90,6 +91,7 @@ group("telemetry_chrome_test_support") {
     "third_party/pipeline/",
     "third_party/polymer/",
     "third_party/polymer3/",
+    "third_party/py_vulcanize/",
     "third_party/pyfakefs/",
     "third_party/pyserial/",
     "third_party/python_gflags/",
