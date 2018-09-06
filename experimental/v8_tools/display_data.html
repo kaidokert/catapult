@@ -16,6 +16,7 @@
     <script src="./stat_test_summary.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="./bar_plotter.js"></script>
+    <script src="./stacked_bar_plotter.js"></script>
 </head>
 
 <body>
@@ -103,9 +104,8 @@
 <!-- Template for stats_test_summary_component.js -->
 <script type="text/x-template" id="stat-test-summary-template">
   'use strict';
-  <div id="statistical-sig">
+  <div id='statistical-sig'>
     <div v-if="testResults.length">
-        <p> Reference Column: {{referenceColumn}}</p>
         <p>Statistically significant metrics:</p>
         <ol>
           <li v-for="result in testResults">
@@ -117,7 +117,7 @@
             <p>
               p: {{result.evidence.p}}
             </p>
-            <div v-if="result.stories.length">
+            <div v-if='result.stories.length'>
               <p>Stories</p>
               <ol>
                 <li v-for="story in result.stories">
