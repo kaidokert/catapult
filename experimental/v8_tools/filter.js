@@ -110,22 +110,26 @@ const menu = new Vue({
       this.subsubcomponent = null;
     },
 
-    referenceColumn() {
-      if (this.referenceColumn === null) {
-        this.testResults = [];
-        return;
-      }
-      this.significanceTester.referenceColumn = this.referenceColumn;
-      this.testResults = this.significanceTester.mostSignificant();
-    }
-
   },
   methods: {
     //  Build the available metrics upon the chosen items.
     //  The method applies an intersection for all of them and
     //  return the result as a collection of metrics that matched.
+    //  Also the metric that exactly matches the menu selected items
+    //  will be the first one in array and the first row in table.
     apply() {
-      const metrics = [];
+      let nameOfMetric = 'memory:' +
+        this.browser + ':' +
+        this.subprocess + ':' +
+        this.probe + ':' +
+        this.component;
+      if (this.subcomponent !== null) {
+        nameOfMetric += ':' + this.subcomponent;
+      }
+      if (this.subsubcomponent !== null) {
+        nameOfMetric += ':' + this.subsubcomponent;
+      }
+      let metrics = [];
       for (const name of this.metricNames) {
         if (this.browser !== null && name.includes(this.browser) &&
           this.subprocess !== null && name.includes(this.subprocess) &&
@@ -147,10 +151,14 @@ const menu = new Vue({
           }
         }
       }
+      nameOfMetric += ':' + this.size;
       if (_.uniq(metrics).length === 0) {
         alert('No metrics found');
       } else {
-        app.parsedMetrics = _.uniq(metrics);
+        metrics = _.uniq(metrics);
+        metrics.splice(metrics.indexOf(nameOfMetric), 1);
+        metrics.unshift(nameOfMetric);
+        app.parsedMetrics = metrics;
       }
     },
 
@@ -265,6 +273,10 @@ function getMetricStoriesLabelsToValuesMap(sampleArr, guidValueInfo) {
   };
 }
 
+function fromBytesToMiB(value) {
+  return (value / MiB).toFixed(5);
+}
+
 
 //   Load the content of the file and further display the data.
 function readSingleFile(e) {
@@ -328,13 +340,14 @@ function readSingleFile(e) {
         if (!metricToDiagnosticValuesMap.get(elem.metric).has(diagnostic)) {
           continue;
         }
-        elem[diagnostic] = average(metricToDiagnosticValuesMap
-            .get(elem.metric).get(diagnostic));
+        elem[diagnostic] = fromBytesToMiB(average(metricToDiagnosticValuesMap
+            .get(elem.metric).get(diagnostic)));
       }
     }
 
 
     app.gridData = tableElems;
+    app.defaultGridData = tableElems;
     app.sampleArr = sampleArr;
     app.guidValue = guidValueInfo;
     app.columnsForChosenDiagnostic = columnsForChosenDiagnostic;
