@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aec646a6_ec88aea7",
+        "filename": "dashboard/dashboard/deprecate_tests.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-09-06T22:59:44Z",
+      "side": 1,
+      "message": "I think you can just remove this logging statement, looks like a stray debugging statement.",
+      "range": {
+        "startLine": 237,
+        "startChar": 16,
+        "endLine": 237,
+        "endChar": 35
+      },
+      "revId": "0fbe6bc81cd08136425bd7694f4adbace8b4b16b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
