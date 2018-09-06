@@ -56,6 +56,9 @@ def BuildArgumentParser(args):
   parser.add_argument('--run-label',
                       help='the label of this run, it will use a sensible '
                            'default if no value is provided')
+  parser.add_argument('--swarming', action='store_true',
+                      help='run the benchmark on swarming, this will make the '
+                           'run faster')
   return parser.parse_args(args)
 
 
@@ -100,14 +103,17 @@ def main(args):
         args.from_milestone, args.to_milestone, datetime.now().isoformat())
 
   try:
+    task_id_dict = {}
     for milestone in range(args.from_milestone, args.to_milestone + 1):
       print utils.ColoredStr(
           'Getting the path of the APK for milestone %d.' % milestone)
       path_to_apk = apk_finder.GetAPK(
           milestone, args.output_path, milestone_info)
       print utils.ColoredStr('Running benchmark for milestone %d:' % milestone)
-      test_runner.RunBenchmark(path_to_apk, args.run_label)
+      task_id_dict[str(milestone)] = test_runner.RunBenchmark(
+          path_to_apk, args.run_label, args.swarming)
 
+    test_runner.CollectResults(task_id_dict, args.run_label)
     aggregate_results.AggregateResults(args.run_label)
 
     return 0
