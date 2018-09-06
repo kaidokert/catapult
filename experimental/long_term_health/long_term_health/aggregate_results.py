@@ -33,6 +33,7 @@ def JSONToHTML(path_to_json, path_to_output_html):
 
 
 def JSONToCSV(path_to_json, path_to_output_csv):
+  print [JSON_TO_CSV, path_to_json, path_to_output_csv]
   subprocess.call([JSON_TO_CSV, path_to_json, path_to_output_csv])
 
 
@@ -61,14 +62,26 @@ def AggregateResults(run_label):
   Args:
     run_label(string): the run label that the user supplied when the start the
     tool, it will just be the directory name for this run
+
+  Raises:
+    Exception: this will be raised if neither `perf_results.json` nor
+    `results.html` is present
   """
   temp_dir = tempfile.mkdtemp()
   run_label_path = os.path.join(utils.APP_ROOT, 'results', run_label)
 
   for directory in os.listdir(run_label_path):
     result_html_path = os.path.join(run_label_path, directory, 'results.html')
+    result_json_path = os.path.join(
+        run_label_path, directory, 'perf_results.json')
     csv_path = os.path.join(temp_dir, '%s.csv' % directory)
-    HTMLToCSV(result_html_path, csv_path)
+    if os.path.isfile(result_html_path):  # result from local run
+      HTMLToCSV(result_html_path, csv_path)
+    elif os.path.isfile(result_json_path):  # result from swarming
+      JSONToCSV(result_json_path, csv_path)
+    else:
+      raise Exception(
+          'neither `perf_results.json` nor `results.html` is present.')
 
   shutil.copytree(temp_dir, os.path.join(run_label_path, 'csv'))
   AggregateCSVs(temp_dir, os.path.join(run_label_path, 'results.csv'))
