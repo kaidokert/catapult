@@ -414,7 +414,7 @@ class StoryRunnerTest(unittest.TestCase):
       def WillRunStory(self, platform):
         pass
 
-      def Measure(self, platform, results):
+      def Measure(self, platform, log_entries, results):
         pass
 
       def DidRunStory(self, platform, results):

@@ -254,10 +254,12 @@ class TimelineBasedMeasurement(story_test.StoryTest):
       chrome_config.category_filter.AddIncludedCategory('blink.console')
     platform.tracing_controller.StartTracing(self._tbm_options.config)
 
-  def Measure(self, platform, results):
+  def Measure(self, platform, log_entries, results):
     """Collect all possible metrics and added them to results."""
     platform.tracing_controller.telemetry_info = results.telemetry_info
     trace_result, _ = platform.tracing_controller.StopTracing()
+    # TODO: How to inject log_entries to trace_value?
+    print log_entries
     trace_value = trace.TraceValue(
         results.current_page, trace_result,
         file_path=results.telemetry_info.trace_local_path,
