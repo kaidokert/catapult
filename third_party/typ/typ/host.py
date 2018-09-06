@@ -235,6 +235,7 @@ class Host(object):
         self.stderr = sys.stderr = self.stderr.stream
 
     def capture_output(self, divert=True):
+        divert = False
         self._tap_output()
         self._orig_logging_handlers = self.logger.handlers
         if self._orig_logging_handlers:
