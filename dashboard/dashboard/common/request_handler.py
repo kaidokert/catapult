@@ -37,10 +37,15 @@ class RequestHandler(webapp2.RequestHandler):
           values.
       status: int. HTTP status code.
     """
+    logging.error('occam %r %r %r', template_file, status, template_values)
     self.response.set_status(status)
     template = JINJA2_ENVIRONMENT.get_template(template_file)
+    logging.error('occam %r', template.filename)
+    logging.error('occam %r', len(str(template.module)))
     self.GetDynamicVariables(template_values)
-    self.response.out.write(template.render(template_values))
+    rendered = template.render(template_values)
+    logging.error('occam %r', len(rendered))
+    self.response.out.write(rendered)
 
   def RenderStaticHtml(self, filename):
     filename = os.path.join(_DASHBOARD_PYTHON_DIR, 'static', filename)
@@ -95,7 +100,7 @@ class RequestHandler(webapp2.RequestHandler):
       error_message: The message to log and send to the client.
       status: The HTTP response code to use.
     """
-    logging.error(error_message)
+    logging.error('Reporting error: %r', error_message)
     self.response.set_status(status)
     self.response.out.write('%s\nrequest_id:%s\n' %
                             (error_message, utils.GetRequestId()))
@@ -107,7 +112,7 @@ class RequestHandler(webapp2.RequestHandler):
       warning_message: The warning message to log (as an error).
       status: The http response code to use.
     """
-    logging.warning(warning_message)
+    logging.warning('Reporting warning: %r', warning_message)
     self.response.set_status(status)
     self.response.out.write('%s\nrequest_id:%s\n' %
                             (warning_message, utils.GetRequestId()))
