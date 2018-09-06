@@ -36,6 +36,23 @@
     },
     {
       "key": {
+        "uuid": "b4e8ec3d_a9ed4111",
+        "filename": "experimental/long_term_health/long_term_health/test_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-09-06T16:06:09Z",
+      "side": 1,
+      "message": "This is mixing the internal swarming server with the public isolate server, which we generally shouldn\u0027t be doing. Use https://chrome-isolated.appspot.com instead.",
+      "revId": "8a671724b94370dd1e1c14ebc0d44607f06bd307",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "671df6e7_c7b0c587",
         "filename": "experimental/long_term_health/long_term_health/test_runner.py",
         "patchSetId": 3
