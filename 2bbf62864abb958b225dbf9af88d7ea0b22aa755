@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "1d59b228_58ee8fd0",
+        "filename": "tracing/tracing/metrics/console_error_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2018-09-06T16:24:17Z",
+      "side": 1,
+      "message": "I prefer averaging in that case since that will be more user friendly (similar numbers independent of number of runs).",
+      "parentUuid": "79a3f932_3719d5fa",
+      "revId": "2bbf62864abb958b225dbf9af88d7ea0b22aa755",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bf801eda_cbeaa3d0",
         "filename": "tracing/tracing/metrics/console_error_metric.html",
         "patchSetId": 5
@@ -96,6 +114,30 @@
     },
     {
       "key": {
+        "uuid": "4bfb0b83_5e07e0bc",
+        "filename": "tracing/tracing/metrics/console_error_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2018-09-06T16:24:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf801eda_cbeaa3d0",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 41
+      },
+      "revId": "2bbf62864abb958b225dbf9af88d7ea0b22aa755",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1655b2cd_10aed9ec",
         "filename": "tracing/tracing/metrics/console_error_metric_unittest.html",
         "patchSetId": 5
@@ -110,6 +152,24 @@
       "revId": "2bbf62864abb958b225dbf9af88d7ea0b22aa755",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec5655a9_c3b50f6b",
+        "filename": "tracing/tracing/metrics/console_error_metric_unittest.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2018-09-06T16:24:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1655b2cd_10aed9ec",
+      "revId": "2bbf62864abb958b225dbf9af88d7ea0b22aa755",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
