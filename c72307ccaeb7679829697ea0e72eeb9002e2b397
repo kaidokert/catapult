@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "81dd9abc_f4f852b2",
+        "filename": "telemetry/telemetry/web_perf/timeline_based_measurement.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-09-06T14:47:58Z",
+      "side": 1,
+      "message": "yeah, this is the part that\u0027s problematic :-)",
+      "revId": "c72307ccaeb7679829697ea0e72eeb9002e2b397",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
