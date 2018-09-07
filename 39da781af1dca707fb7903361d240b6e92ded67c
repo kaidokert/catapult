@@ -16,6 +16,24 @@
       "revId": "39da781af1dca707fb7903361d240b6e92ded67c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31e78960_642b645f",
+        "filename": "dashboard/dashboard/common/utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-09-07T14:19:11Z",
+      "side": 1,
+      "message": "I\u0027d like to hold off on that because there are other places that query on the sheriff field, we\u0027d have to go change those.",
+      "parentUuid": "769355d5_3d4c3932",
+      "revId": "39da781af1dca707fb7903361d240b6e92ded67c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
