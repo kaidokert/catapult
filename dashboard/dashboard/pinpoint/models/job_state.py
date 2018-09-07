@@ -255,15 +255,15 @@ class JobState(object):
       values_b = tuple(_Mean(execution.result_values)
                        for execution in executions_b if execution.result_values)
       if values_a and values_b:
-        max_iqr = max(_IQR(values_a), _IQR(values_b))
-        if max_iqr == 0:
-          comparison_magnitude = 1000  # Something very large.
-        else:
-          if (hasattr(self, '_comparison_magnitude') and
-              self._comparison_magnitude):
+        if (hasattr(self, '_comparison_magnitude') and
+            self._comparison_magnitude):
+          max_iqr = max(_IQR(values_a), _IQR(values_b))
+          if max_iqr:
             comparison_magnitude = abs(self._comparison_magnitude / max_iqr)
           else:
-            comparison_magnitude = 1.0
+            comparison_magnitude = 1000  # Something very large.
+        else:
+          comparison_magnitude = 1.0
         comparison = compare.Compare(values_a, values_b, attempt_count,
                                      PERFORMANCE, comparison_magnitude)
         if comparison == compare.DIFFERENT:
@@ -318,6 +318,8 @@ def _Percentile(values, percentile):
   index = (len(values) - 1) * percentile
   floor = math.floor(index)
   ceil = math.ceil(index)
+  if floor == ceil:
+    return values[int(index)]
   low = values[int(floor)] * (ceil - index)
   high = values[int(ceil)] * (index - floor)
   return low + high
