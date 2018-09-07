@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f7ef2beb_aa650724",
+        "filename": "dashboard/dashboard/mark_recovered_alerts.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-09-07T15:59:17Z",
+      "side": 1,
+      "message": "Delete?",
+      "revId": "f9f95f8a8d8518cb6c0615e987bea7da60a32282",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
