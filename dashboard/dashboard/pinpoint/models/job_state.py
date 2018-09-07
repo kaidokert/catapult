@@ -318,6 +318,8 @@ def _Percentile(values, percentile):
   index = (len(values) - 1) * percentile
   floor = math.floor(index)
   ceil = math.ceil(index)
+  if floor == ceil:
+    return values[int(index)]
   low = values[int(floor)] * (ceil - index)
   high = values[int(ceil)] * (index - floor)
   return low + high
