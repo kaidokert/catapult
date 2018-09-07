@@ -136,6 +136,7 @@
       'tracing/extras/importer/linux_perf/regulator_parser.html',
       'tracing/extras/importer/linux_perf/sched_parser.html',
       'tracing/extras/importer/linux_perf/sync_parser.html',
+      'tracing/extras/importer/linux_perf/v4l2_parser.html',
       'tracing/extras/importer/linux_perf/workqueue_parser.html',
       'tracing/extras/importer/oboe.html',
       'tracing/extras/importer/pako.html',
