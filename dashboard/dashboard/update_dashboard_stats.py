@@ -164,7 +164,6 @@ def _ProcessAlerts():
   q = q.order(-anomaly.Anomaly.timestamp)
 
   alerts = yield q.fetch_async()
-  print alerts
   if not alerts:
     raise ndb.Return()
 
