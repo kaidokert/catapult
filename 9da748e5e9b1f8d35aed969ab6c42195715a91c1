@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "acd2b58f_2954420d",
+        "filename": "generate_telemetry_build.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2018-09-07T21:11:40Z",
+      "side": 1,
+      "message": "It probably matches unambiguous prefixes of command line arguments. Anyway, thanks for fixing.",
+      "parentUuid": "7bca5665_f2d69e4d",
+      "revId": "9da748e5e9b1f8d35aed969ab6c42195715a91c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "73f84746_f83eaca1",
         "filename": "generate_telemetry_build.py",
         "patchSetId": 2
@@ -69,6 +87,24 @@
       "revId": "9da748e5e9b1f8d35aed969ab6c42195715a91c1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "120d241b_91c9ef1d",
+        "filename": "generate_telemetry_build.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2018-09-07T21:11:40Z",
+      "side": 1,
+      "message": "OK.",
+      "parentUuid": "45be3b3c_798099ba",
+      "revId": "9da748e5e9b1f8d35aed969ab6c42195715a91c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
