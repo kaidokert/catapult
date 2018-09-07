@@ -152,6 +152,11 @@ tr.exportTo('tr.metrics.sh', function() {
     return samples;
   }
 
+  function getEventsAfterNavStartInInterestingPage(rendererHelper, category,
+      eventName, frameToNavStartEvents) {
+    return findAllEvents(rendererHelper, category, eventName);
+  }
+
   function addFirstMeaningfulPaintSample(samples, rendererHelper,
       navigationStart, fmpMarkerEvent, url) {
     const navStartToFMPRange = tr.b.math.Range.fromExplicitRange(
@@ -270,12 +275,25 @@ tr.exportTo('tr.metrics.sh', function() {
     const onLoadSamples = collectTimeToEvent(
         'blink.user_timing', 'loadEventStart',
         rendererHelper, frameToNavStartEvents);
+    const recordTextEvents = getEventsAfterNavStartInInterestingPage(
+        rendererHelper, 'loading', 'TextPaintTimingDetector::RecordText',
+        frameToNavStartEvents);
+
+    let recordTextCostSamples;
+    if (recordTextEvents.length > 0) {
+      recordTextCostSamples =
+          [recordTextEvents.reduce((acc, cur)=> acc+cur.duration, 0)]
+              .map(value=>{return {value}});
+    } else {
+      recordTextCostSamples = [];
+    }
 
     return {
       frameToNavStartEvents,
       firstPaintSamples,
       firstContentfulPaintSamples,
       onLoadSamples,
+      recordTextCostSamples,
     };
   }
 
@@ -408,6 +426,12 @@ tr.exportTo('tr.metrics.sh', function() {
           description: 'Time to First CPU Idle',
           summaryOptions: SUMMARY_OPTIONS,
         });
+    const recordTextCostHistogram = histograms.createHistogram(
+        'recordTextCostHistogram', timeDurationInMs_smallerIsBetter, [], {
+          binBoundaries: TIME_TO_INTERACTIVE_BOUNDARIES,
+          description: 'Extra duration to record texts',
+          summaryOptions: SUMMARY_OPTIONS,
+        });
 
     const chromeHelper = model.getOrCreateHelper(
         tr.model.helpers.ChromeModelHelper);
@@ -418,6 +442,8 @@ tr.exportTo('tr.metrics.sh', function() {
       const samplesSet =
           collectLoadingMetricsForRenderer(rendererHelper);
 
+      addSamplesToHistogram(
+          samplesSet.recordTextCostSamples, recordTextCostHistogram, histograms);
       addSamplesToHistogram(
           samplesSet.firstPaintSamples, firstPaintHistogram, histograms);
       addSamplesToHistogram(
