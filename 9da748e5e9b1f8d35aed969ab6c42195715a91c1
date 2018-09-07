@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7bca5665_f2d69e4d",
+        "filename": "generate_telemetry_build.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-09-07T18:19:18Z",
+      "side": 1,
+      "message": "Done.\n\nCrazily, \"git ls-files --others --exclude-standar --directory --full-name\" does work the same as \"git ls-files --others --exclude-standard --directory --full-name\"\n\no_O",
+      "parentUuid": "9aec0777_04b3ec19",
+      "revId": "9da748e5e9b1f8d35aed969ab6c42195715a91c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "73f84746_f83eaca1",
         "filename": "generate_telemetry_build.py",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2018-09-07T18:13:02Z",
       "side": 1,
       "message": "This looks pretty expensive; does it slow down this script much? Can you think of a more efficient way to do it? Can it just check for the presence of full_path in untracked_paths, or does that not work because of recursive descent? I think that approach should filter out unknown directories.",
+      "revId": "9da748e5e9b1f8d35aed969ab6c42195715a91c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45be3b3c_798099ba",
+        "filename": "generate_telemetry_build.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-09-07T18:19:18Z",
+      "side": 1,
+      "message": "Since size of untracked_paths is usually \u003c 3, so this run pretty fast. \n\nI use the sub directory check since it\u0027s less fragile than checking the presence of full_path in untracked_path",
+      "parentUuid": "73f84746_f83eaca1",
       "revId": "9da748e5e9b1f8d35aed969ab6c42195715a91c1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
