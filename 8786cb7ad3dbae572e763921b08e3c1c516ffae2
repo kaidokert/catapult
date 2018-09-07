@@ -22,6 +22,30 @@
       "revId": "8786cb7ad3dbae572e763921b08e3c1c516ffae2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4c7da4d_459809ae",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-09-07T19:20:52Z",
+      "side": 1,
+      "message": "Done. I did not do the \"NaN\" stuff that the other functions in math_utils.py do, since I think it\u0027s prone to hiding real errors.",
+      "parentUuid": "fdf19fa4_556ffa9c",
+      "range": {
+        "startLine": 307,
+        "startChar": 4,
+        "endLine": 307,
+        "endChar": 8
+      },
+      "revId": "8786cb7ad3dbae572e763921b08e3c1c516ffae2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
