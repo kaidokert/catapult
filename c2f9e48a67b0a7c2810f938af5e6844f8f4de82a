@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "79ee524f_8dc682ac",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-09-07T11:22:07Z",
+      "side": 1,
+      "message": "Yes, I really like it.\nMaybe even shorter.",
+      "parentUuid": "adf5d42d_2686b919",
+      "revId": "c2f9e48a67b0a7c2810f938af5e6844f8f4de82a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f7910a38_5ba8bedd",
         "filename": "experimental/v8_tools/app.js",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "96a419e8_8642ec41",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-09-07T11:22:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7910a38_5ba8bedd",
+      "revId": "c2f9e48a67b0a7c2810f938af5e6844f8f4de82a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa69082e_7c3b37fc",
         "filename": "experimental/v8_tools/display_data.html",
         "patchSetId": 3
@@ -50,6 +86,24 @@
       "revId": "c2f9e48a67b0a7c2810f938af5e6844f8f4de82a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e312c6e8_df342cf4",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-09-07T11:22:07Z",
+      "side": 1,
+      "message": "This was the solution to avoid that stop after the user resets the data from table. Otherwise this disappears. As soon as I find another option, I will try to extract it from the form.",
+      "parentUuid": "fa69082e_7c3b37fc",
+      "revId": "c2f9e48a67b0a7c2810f938af5e6844f8f4de82a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
