@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fdf19fa4_556ffa9c",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-09-07T13:56:39Z",
+      "side": 1,
+      "message": "Move these to dashboard/common/math_utils.py and add tests?",
+      "range": {
+        "startLine": 307,
+        "startChar": 4,
+        "endLine": 307,
+        "endChar": 8
+      },
+      "revId": "8786cb7ad3dbae572e763921b08e3c1c516ffae2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
