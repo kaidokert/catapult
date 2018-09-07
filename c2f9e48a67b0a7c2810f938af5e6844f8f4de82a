@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "adf5d42d_2686b919",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-07T10:42:38Z",
+      "side": 1,
+      "message": "how about changing this to \nif (obj.hasOwnProperty(currentDiagnostic)) {\n  storyToMetricValues \u003d obj[currentDiagnostic];\n} else {\n  storyToMetricValues \u003d {};\n}\n\nif (storyToMetricValues.hasOwnProperty(nameOfStory) {\n  metricToSampleValues \u003d storyToMetricValues[nameOfStory];\n} else {\n  metricToSampleValues \u003d {};\n}\n\nif (metricToSampleValues.hasOwnProperty(elem.name)) {\n  array \u003d metricToSampleValues[elem.name];\n} else {\n  array \u003d [];\n}\n\narray \u003d array.concat(average(elem.sampleValues));\nmetricToSampleValues[elem.name] \u003d array;\nstoryToMetricValues[nameOfStory] \u003d metricToSampleValues;\nobj[currentDiagnostic] \u003d storyToMetricValues;",
+      "revId": "c2f9e48a67b0a7c2810f938af5e6844f8f4de82a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7910a38_5ba8bedd",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-07T10:42:38Z",
+      "side": 1,
+      "message": "What does this.gridData contain? I am wondering if we need a loop over sampleArray at all. If we want to just get the list of metrics in the grid, then it might be better to split this into two loops instead of nested loops. like:\nfor (const e of this.gridData) {\n  metricsOnGird.push(e.metric);\n}\n\nfor (const metric of this.sampleArray) {\n  // if metric is in metricsOnGrid \n  //    do some processing.\n}",
+      "revId": "c2f9e48a67b0a7c2810f938af5e6844f8f4de82a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa69082e_7c3b37fc",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-07T10:42:38Z",
+      "side": 1,
+      "message": "Should this be a part of form?",
+      "revId": "c2f9e48a67b0a7c2810f938af5e6844f8f4de82a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
