@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1ab736c8_e0b911f1",
+        "filename": "BUILD.gn",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-07T12:31:49Z",
+      "side": 0,
+      "message": "Ned / zmo, Does this change look fine? I am not sure why this was required. The files in this cl are not related to this.",
+      "revId": "ba899263ad47064b0f0c3753e5a0d1c28a6f7f47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
