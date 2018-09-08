@@ -26,9 +26,6 @@ from devil.utils import cmd_helper
 from devil.utils import lazy
 from devil.utils import timeout_retry
 
-with devil_env.SysPath(devil_env.DEPENDENCY_MANAGER_PATH):
-  import dependency_manager  # pylint: disable=import-error
-
 logger = logging.getLogger(__name__)
 
 
@@ -68,21 +65,8 @@ def _CreateAdbEnvironment():
 
 
 def _FindAdb():
-  try:
-    return devil_env.config.LocalPath('adb')
-  except dependency_manager.NoPathFoundError:
-    pass
-
-  try:
-    return os.path.join(devil_env.config.LocalPath('android_sdk'),
-                        'platform-tools', 'adb')
-  except dependency_manager.NoPathFoundError:
-    pass
-
-  try:
-    return devil_env.config.FetchPath('adb')
-  except dependency_manager.NoPathFoundError:
-    raise device_errors.NoAdbError()
+  # TODO: Use specifically configured adb, then sdk adb, then default adb.
+  return devil_env.config.LocalPath('adb')
 
 
 def _GetVersion():

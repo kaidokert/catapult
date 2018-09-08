@@ -7,22 +7,10 @@ import os
 from devil import devil_env
 from devil.utils import lazy
 
-with devil_env.SysPath(devil_env.DEPENDENCY_MANAGER_PATH):
-  import dependency_manager  # pylint: disable=import-error
-
 
 def GetPath(build_tool):
-  try:
-    return devil_env.config.LocalPath(build_tool)
-  except dependency_manager.NoPathFoundError:
-    pass
-
-  try:
-    return _PathInLocalSdk(build_tool)
-  except dependency_manager.NoPathFoundError:
-    pass
-
-  return devil_env.config.FetchPath(build_tool)
+  # Use a specifically configured tool, then the SDK version, then the default version?
+  return devil_env.config.LocalPath(build_tool)
 
 
 def _PathInLocalSdk(build_tool):

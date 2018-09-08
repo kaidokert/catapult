@@ -1,0 +1,7 @@
+# Copyright 2018 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+@Subdir bin/deps2/${os=linux}/${arch}
+chromium/third_party/android_sdk/public/build-tools     version:27.0.3-cr0
+chromium/third_party/android_sdk/public/platform-tools  version:27.0.1-cr0

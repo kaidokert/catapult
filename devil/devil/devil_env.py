@@ -13,8 +13,6 @@ import threading
 
 CATAPULT_ROOT_PATH = os.path.abspath(os.path.join(
     os.path.dirname(__file__), '..', '..'))
-DEPENDENCY_MANAGER_PATH = os.path.join(
-    CATAPULT_ROOT_PATH, 'dependency_manager')
 PYMOCK_PATH = os.path.join(
     CATAPULT_ROOT_PATH, 'third_party', 'mock')
 
@@ -28,8 +26,6 @@ def SysPath(path):
   else:
     sys.path.pop()
 
-with SysPath(DEPENDENCY_MANAGER_PATH):
-  import dependency_manager  # pylint: disable=import-error
 
 _ANDROID_BUILD_TOOLS = {'aapt', 'dexdump', 'split-select'}
 
@@ -84,8 +80,8 @@ def _GetEnvironmentVariableConfig():
 class _Environment(object):
 
   def __init__(self):
-    self._dm_init_lock = threading.Lock()
-    self._dm = None
+    self._config_init_lock = threading.Lock()
+    self._config = None
     self._logging_init_lock = threading.Lock()
     self._logging_initialized = False
 
@@ -102,44 +98,43 @@ class _Environment(object):
       config_files: An optional list of files to load
     """
 
-    # Make sure we only initialize self._dm once.
-    with self._dm_init_lock:
-      if self._dm is None:
-        if configs is None:
-          configs = []
+    with self._config_init_lock:
 
-        env_config = _GetEnvironmentVariableConfig()
-        if env_config:
-          configs.insert(0, env_config)
-        self._InitializeRecursive(
-            configs=configs,
-            config_files=config_files)
-        assert self._dm is not None, 'Failed to create dependency manager.'
+      self._config = {}
 
-  def _InitializeRecursive(self, configs=None, config_files=None):
-    # This recurses through configs to create temporary files for each and
-    # take advantage of context managers to appropriately close those files.
-    # TODO(jbudorick): Remove this recursion if/when dependency_manager
-    # supports loading configurations directly from a dict.
-    if configs:
-      with tempfile.NamedTemporaryFile(delete=False) as next_config_file:
-        try:
-          next_config_file.write(json.dumps(configs[0]))
-          next_config_file.close()
-          self._InitializeRecursive(
-              configs=configs[1:],
-              config_files=[next_config_file.name] + (config_files or []))
-        finally:
-          if os.path.exists(next_config_file.name):
-            os.remove(next_config_file.name)
-    else:
-      config_files = config_files or []
+      if configs is None:
+        configs = []
+
+      if config_files is None:
+        config_files = []
+
       if 'DEVIL_ENV_CONFIG' in os.environ:
         config_files.append(os.environ.get('DEVIL_ENV_CONFIG'))
       config_files.append(_DEVIL_DEFAULT_CONFIG)
 
-      self._dm = dependency_manager.DependencyManager(
-          [dependency_manager.BaseConfig(c) for c in config_files])
+      import pdb; pdb.set_trace()
+
+      for cf in config_files or []:
+        with open(cf) as config_json_file:
+          config = json.load(config_json_file)
+          for value in config.get('dependencies').itervalues():
+            for platform_info in value.get('file_info', {}).itervalues():
+              platform_info['local_paths'] = [
+                  os.path.realpath(os.path.join(os.path.dirname(cf), lp))
+                  for lp in platform_info.get('local_paths', [])]
+          configs.append(config)
+
+      env_config = _GetEnvironmentVariableConfig()
+      if env_config:
+        configs.insert(0, env_config)
+
+      for c in reversed(configs):
+        for dep_name, dep_info in c.get('dependencies', {}).iteritems():
+          fi = dep_info.get('file_info', {})
+          for platform_name, platform_info in fi.iteritems():
+            local_paths = platform_info.get('local_paths')
+            if local_paths:
+              self._config[dep_name][platform_name] = local_paths[0]
 
   def InitializeLogging(self, log_level, formatter=None, handler=None):
     if self._logging_initialized:
@@ -168,20 +163,19 @@ class _Environment(object):
       self._logging_initialized = True
 
   def FetchPath(self, dependency, arch=None, device=None):
-    if self._dm is None:
-      self.Initialize()
-    if dependency in _ANDROID_BUILD_TOOLS:
-      self.FetchPath('android_build_tools_libc++', arch=arch, device=device)
-    return self._dm.FetchPath(dependency, GetPlatform(arch, device))
+    return self._GetPath(dependency, arch=arch, device=device)
 
   def LocalPath(self, dependency, arch=None, device=None):
-    if self._dm is None:
+    return self._GetPath(dependency, arch=arch, device=device)
+
+  def _GetPath(self, dependency, arch=None, device=None):
+    if self._config is None:
       self.Initialize()
-    return self._dm.LocalPath(dependency, GetPlatform(arch, device))
+    return self._config.get(dependency, {}).get(GetPlatform(arch, device))
 
   def PrefetchPaths(self, dependencies=None, arch=None, device=None):
-    return self._dm.PrefetchPaths(
-        GetPlatform(arch, device), dependencies=dependencies)
+    # Deprecated.
+    pass
 
 
 def GetPlatform(arch=None, device=None):
