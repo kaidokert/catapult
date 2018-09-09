@@ -4,13 +4,19 @@ Copyright 2018 The Chromium Authors. All rights reserved.
 Use of this source code is governed by a BSD-style license that can be
 found in the LICENSE file.
 -->
+
 <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 <script src="/bower_components/web-component-tester/browser.js"></script>
+<link rel="import" href="/dashboard/spa/session-ids.html">
+
 <script>
 'use strict';
-WCT.loadSuites([
-  '/dashboard/spa/utils-test.html',
-  '/dashboard/spa/session-ids-test.html',
-]);
+suite('session ids', function() {
+  test('cache', async function() {
+    const store = Redux.createSimpleStore();
+    const sessionId = await store.dispatch(
+        cp.readSessionId({sessionState: {}}));
+    assert.strictEqual('', sessionId);
+  });
+});
 </script>
-<script src="/wct-monkeypatch.js"></script>
