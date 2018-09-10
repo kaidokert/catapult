@@ -16,6 +16,24 @@
       "revId": "d8eb73c449274fd61a37d932041bed2ae73c7bd5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f143a2d4_e61bbc8d",
+        "filename": "devil/devil/android/perf/surface_stats_collector.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-09-10T18:12:30Z",
+      "side": 1,
+      "message": "I think so. I ran a pinpoint job on a nexus 5x bot to make sure it doesn\u0027t break old perf bots, and the result was OK (linked from the CL description).\n\nThere is a discussion about this issue in https://b.corp.google.com/issues/37112220. In particular, one comment says:\n\n\"...We\u0027ve verified that the dumpsys commands continues to work correctly if it\u0027s passed the correct layer name. The tool/app needs to be updated to continue using this. The SurfaceFlinger dumpsys functionality is a debugging tool, it\u0027s not part of the Android API. There is no guarantee of backward compatibility for it. Tools/apps should not depend on this being a stable interface.\"\n\nMy impression is that this fix will be backward compatible. But, we should change the way we get SF data altogether in the future and do not rely on dumpsys.",
+      "parentUuid": "7be92798_265d7dc0",
+      "revId": "d8eb73c449274fd61a37d932041bed2ae73c7bd5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
