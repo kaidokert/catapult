@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bbd07c68_40917b2f",
+        "filename": "dashboard/dashboard/spa/utils-test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-10T18:11:55Z",
+      "side": 1,
+      "message": "Can you say more about why that\u0027s necessary?\nI wouldn\u0027t be able to do that for measureText.",
+      "parentUuid": "6bdd135c_3a1cfa44",
+      "range": {
+        "startLine": 86,
+        "startChar": 10,
+        "endLine": 86,
+        "endChar": 24
+      },
+      "revId": "ab6e079f1f13a7b693a82d76bc2184f149a33c61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "78583f6e_f9e93a21",
         "filename": "dashboard/dashboard/spa/utils-test.html",
         "patchSetId": 2
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "948341dc_d87417b2",
+        "filename": "dashboard/dashboard/spa/utils-test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-10T18:11:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78583f6e_f9e93a21",
+      "revId": "ab6e079f1f13a7b693a82d76bc2184f149a33c61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a466c076_a3ecd274",
         "filename": "dashboard/dashboard/spa/utils.js",
         "patchSetId": 2
@@ -53,6 +95,30 @@
       "writtenOn": "2018-09-10T16:36:44Z",
       "side": 1,
       "message": "Sorry, js ignorance is showing, what do these measureText.CACHE/HOST lines do?",
+      "range": {
+        "startLine": 145,
+        "startChar": 2,
+        "endLine": 145,
+        "endChar": 13
+      },
+      "revId": "ab6e079f1f13a7b693a82d76bc2184f149a33c61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd0dc58e_d4726600",
+        "filename": "dashboard/dashboard/spa/utils.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-10T18:11:55Z",
+      "side": 1,
+      "message": "Added comments, PTAL?",
+      "parentUuid": "a466c076_a3ecd274",
       "range": {
         "startLine": 145,
         "startChar": 2,
