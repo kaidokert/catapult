@@ -20,7 +20,8 @@ _ERROR_TAGS_DICT = 'Tags must be a dict of key/value string pairs.'
 class New(api_request_handler.ApiRequestHandler):
   """Handler that cooks up a fresh Pinpoint job."""
 
-  def AuthorizedPost(self):
+  def PrivilegedPost(self):
+    print utils.IsInternalUser
     try:
       job = _CreateJob(self.request)
       job.Start()
@@ -30,6 +31,8 @@ class New(api_request_handler.ApiRequestHandler):
           'jobUrl': job.url,
       }
     except (KeyError, TypeError, ValueError) as e:
+      import traceback
+      print traceback.format_exc(e)
       raise api_request_handler.BadRequestError(e.message)
 
 
