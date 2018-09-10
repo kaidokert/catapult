@@ -16,6 +16,24 @@
       "revId": "b06d8a7c60975a090d925cf2f076779c53e564e6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f03e0095_bef379ef",
+        "filename": "dashboard/dashboard/spa/utils-test.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-10T19:38:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aca340ec_d0175598",
+      "revId": "b06d8a7c60975a090d925cf2f076779c53e564e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
