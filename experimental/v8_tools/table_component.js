@@ -8,13 +8,14 @@ Vue.component('data-table', {
     data: Array,
     columns: Array,
     filterKey: String,
-    additional: Array
+    additional: Array,
+    plot: String
   },
   mounted() {
     // TODO(anthonyalridge): Should also update table state.
     // TODO(anthonyalridge): Create route back to bar plots.
     const jumpToStory = (story) => {
-      this.chosen_plot = this.plot_kinds[0];
+      this.plot = 'Cumulative frequency plot';
       // TODO(anthonyalridge): This should be a field on one of the vue
       // components (or may not in fact be needed at all)
       // once the row based diagnostic selection is removed.
@@ -24,7 +25,7 @@ Vue.component('data-table', {
           story,
           activeDiagnostic,
           this.markedTableDiagnostics,
-          this.chosen_plot);
+          this.plot);
     };
     app.$on('bar_clicked', jumpToStory);
   },
@@ -39,13 +40,10 @@ Vue.component('data-table', {
       openedMetric: [],
       openedStory: [],
       storiesEntries: null,
-      diagnosticsEntries: null,
       metric: null,
       story: null,
-      diagnostic: null,
+      diagnostic: 'storysetRepeats',
       selected_diagnostics: [],
-      plot_kinds: ['Cumulative frequency plot', 'Dot plot'],
-      chosen_plot: '',
       markedTableMetrics: [],
       markedTableStories: [],
       markedTableDiagnostics: []
@@ -79,22 +77,7 @@ Vue.component('data-table', {
     //  has already chosen a specific diagnostic and all the
     //  options for that one are now available.
     seen_diagnostics() {
-      if (this.diagnostics_options !== null &&
-        this.diagnostics_options !== undefined &&
-        this.diagnostics_options.length !== 0) {
-        return this.diagnostics_options.length > 0 ? true : false;
-      }
-    },
-
-    //  All the options for plots must be visible after the user
-    //  has already chosen all the necessary items for displaying
-    //  a plot.
-    seen_plot() {
-      if (this.selected_diagnostics !== null &&
-        this.selected_diagnostics !== undefined &&
-        this.selected_diagnostics.length !== 0) {
-        return this.selected_diagnostics.length > 0 ? true : false;
-      }
+      return this.diagnostics_options.length > 0 ? true : false;
     },
 
     //  Compute all the options for sub-diagnostics after the user
@@ -147,6 +130,14 @@ Vue.component('data-table', {
   },
 
   methods: {
+
+    uncheckLabelsButtons() {
+      const checkboxes = document.getElementsByClassName('checkbox-head');
+      Array.prototype.map.call(checkboxes, function(checkbox) {
+        checkbox.checked = false;
+      });
+      this.markedTableDiagnostics = [];
+    },
     //  Sort by key where the key is a title head in table.
     sortBy(key) {
       this.sortKey = key;
@@ -207,7 +198,7 @@ Vue.component('data-table', {
     getStoriesByMetric(entry, sampleArr, guidValue) {
       const stories = [];
       for (const e of sampleArr) {
-        if (e.name !== entry.metric) {
+        if (e.name !== entry) {
           continue;
         }
         let nameOfStory = guidValue.get(e.diagnostics.stories);
@@ -240,7 +231,7 @@ Vue.component('data-table', {
 
 
       const stories = this
-          .getStoriesByMetric(entry, sampleArr, guidValue);
+          .getStoriesByMetric(entry.metric, sampleArr, guidValue);
       for (const key of stories) {
         storiesEntries.push({
           story: key
@@ -257,9 +248,9 @@ Vue.component('data-table', {
           }
         }
       }
+      this.uncheckLabelsButtons();
       this.storiesEntries = storiesEntries;
       this.metric = entry;
-      this.diagnostic = null;
       this.empty();
     },
 
@@ -282,20 +273,29 @@ Vue.component('data-table', {
                   story.story);
       const allDiagnostic = [];
       result.map(val => allDiagnostic.push(Object.keys(val.diagnostics)));
-      this.diagnosticsEntries = _.union.apply(this, allDiagnostic);
       this.story = story;
-      this.diagnostic = null;
+      app.plotSingleMetricWithAllSubdiagnostics(this.metric.metric,
+          this.story.story, this.diagnostic);
       this.empty();
     },
 
     createPlot() {
-      if (this.selected_diagnostics !== null &&
-        this.selected_diagnostics.length !== 0 &&
-        this.diagnostic !== null) {
+      if (this.markedTableDiagnostics.length !== 0) {
+        app.plotSingleMetric(this.metric.metric,
+            this.story.story, 'labels',
+            this.markedTableDiagnostics,
+            this.plot);
+      } else
+      if (this.selected_diagnostics.length !== 0) {
         app.plotSingleMetric(this.metric.metric,
             this.story.story, this.diagnostic,
             this.selected_diagnostics,
-            this.chosen_plot);
+            this.plot);
+      } else {
+        app.plotSingleMetric(this.metric.metric,
+            this.story.story, this.diagnostic,
+            this.diagnostics_options,
+            this.plot);
       }
     },
 
@@ -340,7 +340,6 @@ Vue.component('data-table', {
       if (this.markedTableDiagnostics.length !== 0) {
         const sampleArr = this.$parent.sampleArr;
         const guidValue = this.$parent.guidValue;
-        const globalDiag = this.$parent.globalDiagnostic;
         const map = this
             .getSampleByStoryBySubdiagnostics(this.metric,
                 sampleArr, guidValue, 'labels');
@@ -354,6 +353,41 @@ Vue.component('data-table', {
         }
         app.plotBarChart(data);
       }
+    },
+
+    //  When the user selects a specific row from the table
+    //  this does not mean that it is the only one metric
+    //  with that name, so we have to extract all available
+    //  metrics from sampleValues.
+    getAllMetricsFromMetricRow() {
+      const sampleArr = this.$parent.sampleArr;
+      const markedMetrics = [];
+      for (const metric of sampleArr) {
+        for (const e of this.markedTableMetrics) {
+          if (metric.name === e) {
+            markedMetrics.push(metric);
+          }
+        }
+      }
+      return markedMetrics;
+    },
+
+    //  The metrics from grid are the ones that come
+    //  after selecting items from tree-menu.
+    //  We need to filter just that metrics from the total
+    //  sampleValues metrics.
+    getMetricsFromGrid() {
+      const sampleArr = this.$parent.sampleArr;
+      const gridData = this.$parent.gridData;
+      const metricsDependingOnGrid = [];
+      for (const metric of sampleArr) {
+        for (const e of gridData) {
+          if (metric.name === e.metric) {
+            metricsDependingOnGrid.push(metric);
+          }
+        }
+      }
+      return metricsDependingOnGrid;
     }
   },
 
@@ -362,13 +396,19 @@ Vue.component('data-table', {
     //  is replotted because these are displayed in the same plot
     //  by comparison and it should be updated.
     selected_diagnostics() {
-      this.createPlot();
+      if (this.selected_diagnostics.length !== 0) {
+        this.uncheckLabelsButtons();
+        this.createPlot();
+      }
     },
 
     //  Whenever the chosen plot is changed by the user it has to
     //  be created another type of plot with the same specifications.
-    chosen_plot() {
-      this.createPlot();
+    plot() {
+      if (this.plot === 'Cumulative frequency plot' ||
+        this.plot === 'Dot plot') {
+        this.createPlot();
+      }
     },
 
     //  Whenever the top level diagnostic is changed all the previous
@@ -382,18 +422,76 @@ Vue.component('data-table', {
     },
 
     //  Whenever a new subdiagnostic from table columns is chosen
-    //  it is added the to bar chart. Depending on the main diagnostic
+    //  it is added to the chart. Depending on the main diagnostic
     //  and its subdiagnostics, all the sample values for a particular
     //  metric, multiple stories, a single main diagnostic and multiple
     //  subdiagnostics are computed. The plot is drawn using this data.
     markedTableDiagnostics() {
-      this.plotMultipleStoriesMultipleDiag();
+      if (this.markedTableDiagnostics.length !== 0) {
+        const sampleArr = this.$parent.sampleArr;
+        const guidValue = this.$parent.guidValue;
+        if (this.markedTableMetrics.length === 0) {
+          if (this.$parent.chosenTypeOfPlot === 'Stacked bar plot') {
+            const markedMetrics = this.getMetricsFromGrid();
+            const stories = this.getStoriesByMetric(app
+                .gridData[0].metric, sampleArr, guidValue);
+            const obj = app.computeDataForStackPlot(markedMetrics,
+                stories, this.markedTableDiagnostics);
+            const string = 'Stacked plot';
+            app.plotStackBar(obj, string);
+          } else
+          if (this.$parent.chosenTypeOfPlot === 'Bar chart plot') {
+            this.plotMultipleStoriesMultipleDiag();
+          } else {
+            this.createPlot();
+            this.selected_diagnostics = [];
+          }
+        } else {
+          const markedMetrics = this.getAllMetricsFromMetricRow();
+          let stories = [];
+          if (this.markedTableStories.length === 0) {
+            stories = this.getStoriesByMetric(app
+                .gridData[0].metric, sampleArr, guidValue);
+          } else {
+            stories = this.markedTableStories;
+          }
+          const obj = app.computeDataForStackPlot(markedMetrics,
+              stories, this.markedTableDiagnostics);
+          const string = 'Stacked plot';
+          app.plotStackBar(obj, string);
+        }
+      }
     },
 
     //  Whenever a new story from table is chosen it has to be added
-    //  in the final bar chart.
+    //  in the final chart. The chart that should be updated might be
+    //  a stacked chart or a bar chart in this particular case.
     markedTableStories() {
-      this.plotMultipleStoriesMultipleDiag();
+      if (this.markedTableMetrics.length === 0) {
+        //  In this case the user wants to change the stories for
+        //  the initial stacked plot obtained using all the metrics
+        //  from grid, all the stories from top level metric and
+        //  all the available options.
+        if (this.$parent.chosenTypeOfPlot === 'Stacked bar plot') {
+          const markedMetrics = this.getMetricsFromGrid();
+          const labelsName = this.$parent.columnsForChosenDiagnostic;
+          const obj = app.computeDataForStackPlot(markedMetrics,
+              this.markedTableStories, labelsName);
+          const string = 'Stacked plot';
+          app.plotStackBar(obj, string);
+        } else {
+          this.plotMultipleStoriesMultipleDiag();
+        }
+      } else {
+        //  The user wants to change the stories after having
+        //  some selected metrics.
+        const markedMetrics = this.getAllMetricsFromMetricRow();
+        const labelsName = this.$parent.columnsForChosenDiagnostic;
+        const obj = app.computeDataForStackPlot(markedMetrics,
+            this.markedTableStories, labelsName);
+        const string = 'Stacked plot';
+        app.plotStackBar(obj, string);
+      }
     },
 
     //  Whenever the main selected metric from the table is changed
@@ -401,6 +499,31 @@ Vue.component('data-table', {
     //  not available.
     metric() {
       this.markedTableDiagnostics = [];
+    },
+
+    //  Whenever a new metric is selected the stacked chart should
+    //  be updated.
+    markedTableMetrics() {
+      const sampleArr = this.$parent.sampleArr;
+      const guidValue = this.$parent.guidValue;
+      //  As sources for final objet:
+      //  1) the metrics are taken from sampleValues; these
+      //  should have the same same as the selected row;
+      const markedMetrics = this.getAllMetricsFromMetricRow();
+      //  2) the stories are the ones from the top level metric;
+      const stories = this.getStoriesByMetric(app
+          .gridData[0].metric, sampleArr, guidValue);
+      //  3) the labels are all the available labels;
+      let labelsName = [];
+      if (this.markedTableDiagnostics.length !== 0) {
+        labelsName = this.markedTableDiagnostics;
+      } else {
+        labelsName = this.$parent.columnsForChosenDiagnostic;
+      }
+      const obj = app.computeDataForStackPlot(markedMetrics,
+          stories, labelsName);
+      const string = 'Stacked plot';
+      app.plotStackBar(obj, string);
     }
   }
 });
