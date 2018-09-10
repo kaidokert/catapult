@@ -354,7 +354,6 @@ function readSingleFile(e) {
       }
     }
 
-
     app.gridData = tableElems;
     app.defaultGridData = tableElems;
     app.sampleArr = sampleArr;
