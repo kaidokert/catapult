@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "8bb9fa69_fe4c7f14",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_browser_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2018-09-10T21:17:49Z",
+      "side": 1,
+      "message": "Ack. I\u0027ll submit a follow-up that adds argument parsing here and unit test coverage for it.",
+      "parentUuid": "18c98a2c_7b54264c",
+      "range": {
+        "startLine": 19,
+        "startChar": 4,
+        "endLine": 20,
+        "endChar": 16
+      },
+      "revId": "d7dc074a77e9be01fb87d11bb9b10d57621e0e46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bf16c5d3_17b870cb",
         "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
         "patchSetId": 1
@@ -63,6 +87,24 @@
       "revId": "d7dc074a77e9be01fb87d11bb9b10d57621e0e46",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5577668_a349f8a2",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2018-09-10T21:17:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf16c5d3_17b870cb",
+      "revId": "d7dc074a77e9be01fb87d11bb9b10d57621e0e46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
