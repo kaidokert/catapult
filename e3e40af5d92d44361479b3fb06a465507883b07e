@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "15f1253e_cc3b691f",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-10T15:59:00Z",
+      "side": 1,
+      "message": "Not for this cl, but would it be easier if we parse it once while initializing guidValue, so when we use it is it is cleaner?",
+      "revId": "e3e40af5d92d44361479b3fb06a465507883b07e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95ef33cd_0bbdb772",
+        "filename": "experimental/v8_tools/table_component.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-10T15:59:00Z",
+      "side": 1,
+      "message": "how about \ndiagnostic \u003d \u0027labels\u0027\nif (this.markedTableDiagnostics.length !\u003d\u003d 0)\n  diagnostic \u003d this.markedTableDiagnostics;\nselected_diagnostics \u003d this.selected_diagnostics;\nif (selected_diagnostics.length \u003d\u003d\u003d 0) \n   selected_diagnostics \u003d this.diagnostics_options;\napp.plotSingle....",
+      "revId": "e3e40af5d92d44361479b3fb06a465507883b07e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f91b5635_46300444",
+        "filename": "experimental/v8_tools/table_component.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-10T15:59:00Z",
+      "side": 1,
+      "message": "else if in the same line",
+      "revId": "e3e40af5d92d44361479b3fb06a465507883b07e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24fe111e_0dba16c7",
+        "filename": "experimental/v8_tools/table_component.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-10T15:59:00Z",
+      "side": 1,
+      "message": "I think this else can be merged with the initial if. something like this\nif (parent.chosenPlot \u003d\u003d StackedPlot) {\n  if (this.markedTableMetrics.lenght \u003d\u003d\u003d 0) {\n    markedMetrics \u003d this.getMetricsFromGrid()\n  } else {\n    markedMetrics \u003d this.getAllMetrics...();\n  }\n  // Code for plotting stacked plot\n} else if (chosenPlot \u003d\u003d BarPLot) {\n} else {\n}",
+      "revId": "e3e40af5d92d44361479b3fb06a465507883b07e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
