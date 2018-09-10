@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aca340ec_d0175598",
+        "filename": "dashboard/dashboard/spa/utils-test.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-09-10T18:49:28Z",
+      "side": 1,
+      "message": "nit: test cached and uncached?",
+      "revId": "b06d8a7c60975a090d925cf2f076779c53e564e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "80ad6828_6df128a3",
+        "filename": "dashboard/dashboard/spa/utils-test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-09-10T18:49:28Z",
+      "side": 1,
+      "message": "It\u0027s not necessary, just trying to think of how to better test it. From the cl\u0027s description, that these basically wrap calls to that function, thought maybe the most straightforward way to test these properly was to just test that they do indeed call through with the expected params. Will defer to your judgement on it.",
+      "parentUuid": "bbd07c68_40917b2f",
+      "range": {
+        "startLine": 86,
+        "startChar": 10,
+        "endLine": 86,
+        "endChar": 24
+      },
+      "revId": "ab6e079f1f13a7b693a82d76bc2184f149a33c61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "78583f6e_f9e93a21",
         "filename": "dashboard/dashboard/spa/utils-test.html",
         "patchSetId": 2
@@ -119,6 +143,30 @@
       "side": 1,
       "message": "Added comments, PTAL?",
       "parentUuid": "a466c076_a3ecd274",
+      "range": {
+        "startLine": 145,
+        "startChar": 2,
+        "endLine": 145,
+        "endChar": 13
+      },
+      "revId": "ab6e079f1f13a7b693a82d76bc2184f149a33c61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7afbd1e_6e03a87f",
+        "filename": "dashboard/dashboard/spa/utils.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-09-10T18:49:28Z",
+      "side": 1,
+      "message": "Thanks, got it now.",
+      "parentUuid": "fd0dc58e_d4726600",
       "range": {
         "startLine": 145,
         "startChar": 2,
