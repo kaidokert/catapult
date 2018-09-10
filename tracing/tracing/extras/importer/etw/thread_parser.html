@@ -143,8 +143,10 @@ tr.exportTo('tr.e.importer.etw', function() {
     },
 
     decodeCSwitchFields(header, decoder) {
-      if (header.version !== 2) {
-        throw new Error('Incompatible Thread event version ' +
+      // The extra fields in versions 3 and 4 are unknown but can be safely
+      // ignored.
+      if (header.version < 2 || header.version > 4) {
+        throw new Error('Incompatible cswitch event version ' +
                         header.version + '.');
       }
 
