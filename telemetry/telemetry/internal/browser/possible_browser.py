@@ -4,6 +4,7 @@
 
 import contextlib
 import logging
+import time
 
 from telemetry.internal.app import possible_app
 
@@ -70,11 +71,21 @@ class PossibleBrowser(possible_app.PossibleApp):
         paths_to_flush):
       for path in paths_to_flush:
         self.platform.FlushSystemCacheForDirectory(path)
+      self._WaitForPageCacheToBeDropped()
     elif self.platform.SupportFlushEntireSystemCache():
       self.platform.FlushEntireSystemCache()
+      self._WaitForPageCacheToBeDropped()
     else:
       logging.warning(
           'Flush system cache is not supported. Did not flush OS page cache.')
+
+  def _WaitForPageCacheToBeDropped(self):
+    # There seems to be no reliable way to wait for all pages to be dropped from
+    # the page cache. There is no moment in time when everything is out of page
+    # cache. A number of pages will be reused before other pages are evicted.
+    # Individual files can be watched in limited ways. Instead we choose not to
+    # be clever.
+    time.sleep(2)
 
   def _ClearCachesOnStart(self):
     """Clear DNS caches and OS page caches if the corresponding option is set.
