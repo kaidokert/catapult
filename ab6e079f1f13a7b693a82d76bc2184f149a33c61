@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6bdd135c_3a1cfa44",
+        "filename": "dashboard/dashboard/spa/utils-test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-09-10T16:36:44Z",
+      "side": 1,
+      "message": "Should the test here basically mock out getBoundingClientRect and check that\u0027s called?",
+      "range": {
+        "startLine": 86,
+        "startChar": 10,
+        "endLine": 86,
+        "endChar": 24
+      },
+      "revId": "ab6e079f1f13a7b693a82d76bc2184f149a33c61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78583f6e_f9e93a21",
+        "filename": "dashboard/dashboard/spa/utils-test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-09-10T16:36:44Z",
+      "side": 1,
+      "message": "authorizationHeaders is untested",
+      "revId": "ab6e079f1f13a7b693a82d76bc2184f149a33c61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a466c076_a3ecd274",
+        "filename": "dashboard/dashboard/spa/utils.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-09-10T16:36:44Z",
+      "side": 1,
+      "message": "Sorry, js ignorance is showing, what do these measureText.CACHE/HOST lines do?",
+      "range": {
+        "startLine": 145,
+        "startChar": 2,
+        "endLine": 145,
+        "endChar": 13
+      },
+      "revId": "ab6e079f1f13a7b693a82d76bc2184f149a33c61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
