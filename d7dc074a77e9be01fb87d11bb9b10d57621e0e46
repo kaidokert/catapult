@@ -22,6 +22,47 @@
       "revId": "d7dc074a77e9be01fb87d11bb9b10d57621e0e46",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18c98a2c_7b54264c",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_browser_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-09-10T20:49:21Z",
+      "side": 1,
+      "message": "No strict rule, but things in \"arguments\" get their own input box when starting a new job. So if it\u0027s a required argument or something that the user will commonly want to specify (e.g. --test-filter), it should be a top-level argument. Optional and advanced features (e.g. --verbose, --disable-gpu-rasterization) can be specified with extra_test_args.",
+      "parentUuid": "170c1cd3_3cb41ef6",
+      "range": {
+        "startLine": 19,
+        "startChar": 4,
+        "endLine": 20,
+        "endChar": 16
+      },
+      "revId": "d7dc074a77e9be01fb87d11bb9b10d57621e0e46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf16c5d3_17b870cb",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-09-10T20:49:21Z",
+      "side": 1,
+      "message": "Not needed anymore, just remove.",
+      "revId": "d7dc074a77e9be01fb87d11bb9b10d57621e0e46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
