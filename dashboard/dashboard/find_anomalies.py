@@ -11,6 +11,7 @@ new Anomaly entities.
 
 import logging
 
+from google.appengine.ext import deferred
 from google.appengine.ext import ndb
 
 from dashboard import email_sheriff
@@ -71,6 +72,14 @@ def _ProcessTest(test_key):
         config, sheriff, test, s, rows, ref_rows_by_stat.get(s))
 
 
+def _EmailSheriff(sheriff_key, test_key, anomaly_key):
+  sheriff_entity = sheriff_key.get()
+  test_entity = test_key.get()
+  anomaly_entity = anomaly_key.get()
+
+  email_sheriff.EmailSheriff(sheriff_entity, test_entity, anomaly_entity)
+
+
 @ndb.tasklet
 def _ProcesssTestStat(config, sheriff, test, stat, rows, ref_rows):
   test_key = test.key
@@ -113,9 +122,7 @@ def _ProcesssTestStat(config, sheriff, test, stat, rows, ref_rows):
 
   # Update the last_alerted_revision property of the test.
   test.last_alerted_revision = anomalies[-1].end_revision
-  yield test.put_async()
-
-  yield ndb.put_multi_async(anomalies)
+  yield (test.put_async(), ndb.put_multi_async(anomalies))
 
   # TODO(simonhatch): email_sheriff.EmailSheriff() isn't a tasklet yet, so this
   # code will run serially.
@@ -124,7 +131,7 @@ def _ProcesssTestStat(config, sheriff, test, stat, rows, ref_rows):
     if (anomaly_entity.bug_id is None and
         not anomaly_entity.is_improvement and
         not sheriff.summarize):
-      email_sheriff.EmailSheriff(sheriff, test, anomaly_entity)
+      deferred.defer(_EmailSheriff, sheriff.key, test.key, anomaly_entity.key)
 
 
 @ndb.tasklet
