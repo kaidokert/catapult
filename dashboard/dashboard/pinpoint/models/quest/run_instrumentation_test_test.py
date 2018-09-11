@@ -23,3 +23,31 @@ class FromDictTest(unittest.TestCase):
     expected = run_instrumentation_test.RunInstrumentationTest(
         'server', {'key': 'value'}, _BASE_EXTRA_ARGS)
     self.assertEqual(quest, expected)
+
+  def testAllArguments(self):
+    arguments = dict(_BASE_ARGUMENTS)
+    filter_string = 'InstrumentationClass#SomeTestCase'
+    arguments['test-filter'] = filter_string
+    arguments['num-retries'] = '0'
+    arguments['num-repeats'] = '1'
+    quest = run_instrumentation_test.RunInstrumentationTest.FromDict(arguments)
+
+    extra_args = [
+        '--test-filter', filter_string,
+        '--num-retries', '0',
+        '--repeat', '1'] + _BASE_EXTRA_ARGS
+    expected = run_instrumentation_test.RunInstrumentationTest(
+        'server', {'key': 'value'}, extra_args)
+    self.assertEqual(quest, expected)
+
+  def testNegativeRetries(self):
+    arguments = dict(_BASE_ARGUMENTS)
+    arguments['num-retries'] = '-1'
+    with self.assertRaises(TypeError):
+      run_instrumentation_test.RunInstrumentationTest.FromDict(arguments)
+
+  def testNegativeRepeats(self):
+    arguments = dict(_BASE_ARGUMENTS)
+    arguments['num-repeats'] = '-1'
+    with self.assertRaises(TypeError):
+      run_instrumentation_test.RunInstrumentationTest.FromDict(arguments)
