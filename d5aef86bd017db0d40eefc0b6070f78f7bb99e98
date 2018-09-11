@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "34fa417f_535953a7",
+        "filename": "tracing/tracing/value/legacy_json_converter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-09-11T17:26:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85743c7c_b8ff3161",
+      "revId": "d5aef86bd017db0d40eefc0b6070f78f7bb99e98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ad977ec5_7d67d4bc",
         "filename": "tracing/tracing/value/legacy_json_converter_unittest.py",
         "patchSetId": 1
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "cc15f930_a5b4f2f5",
+        "filename": "tracing/tracing/value/legacy_json_converter_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-09-11T17:26:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad977ec5_7d67d4bc",
+      "range": {
+        "startLine": 68,
+        "startChar": 9,
+        "endLine": 68,
+        "endChar": 29
+      },
+      "revId": "d5aef86bd017db0d40eefc0b6070f78f7bb99e98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "127e82d1_2cc0aad8",
         "filename": "tracing/tracing/value/legacy_json_converter_unittest.py",
         "patchSetId": 1
@@ -56,6 +98,24 @@
       "revId": "d5aef86bd017db0d40eefc0b6070f78f7bb99e98",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6bd84b20_22d887c2",
+        "filename": "tracing/tracing/value/legacy_json_converter_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1116849
+      },
+      "writtenOn": "2018-09-11T17:26:21Z",
+      "side": 1,
+      "message": "Done. Currently this just uses the point ID in that case, but we can modify this behavior if need be, e.g. for Chrome OS.",
+      "parentUuid": "127e82d1_2cc0aad8",
+      "revId": "d5aef86bd017db0d40eefc0b6070f78f7bb99e98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
