@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import gae_ts_mon
 import logging
 import time
 
@@ -11,6 +12,8 @@ class WallTimeLogger(object):
     self._label = label
     self._start = None
     self.seconds = 0
+    self._metric = gae_ts_mon.FloatMetric(
+        label + ':' + self._Suffix(), '', [], 's')
 
   def _Now(self):
     return time.time()
@@ -24,6 +27,7 @@ class WallTimeLogger(object):
   def __exit__(self, *unused_args):
     self.seconds = self._Now() - self._start
     logging.info('%s:%s=%f', self._label, self._Suffix(), self.seconds)
+    self._metric.set(self.seconds)
 
 
 class CpuTimeLogger(WallTimeLogger):
