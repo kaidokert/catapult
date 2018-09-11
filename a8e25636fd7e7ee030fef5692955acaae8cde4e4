@@ -16,6 +16,24 @@
       "revId": "a8e25636fd7e7ee030fef5692955acaae8cde4e4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba9b6434_83a1107f",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_browser_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2018-09-11T17:34:34Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "b15d393e_3eae7cf3",
+      "revId": "a8e25636fd7e7ee030fef5692955acaae8cde4e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
