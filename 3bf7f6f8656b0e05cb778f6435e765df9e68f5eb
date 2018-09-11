@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "93c8cf31_5a3ccc1b",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_log.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-09-11T21:13:13Z",
+      "side": 1,
+      "message": "nits: remove the blank line here",
+      "revId": "3bf7f6f8656b0e05cb778f6435e765df9e68f5eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
