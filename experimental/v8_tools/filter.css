@@ -43,6 +43,10 @@
   padding: 3px;
 }
 
+text {
+  font-size: 14px;
+}
+
 #select_run {
   width: 30em;
   align-content: center;
