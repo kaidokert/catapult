@@ -29,7 +29,7 @@ found in the LICENSE file.
   teardown(function() {
   });
 
-  suite('basic tests', function() {
+  suite('utils', function() {
     test('setImmutable', function() {
       assert.deepEqual({a: [{b: 'c'}]}, cp.setImmutable(
           {a: []}, 'a.0.b', 'c'));
