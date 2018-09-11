@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b15d393e_3eae7cf3",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_browser_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-09-11T05:33:19Z",
+      "side": 1,
+      "message": "We\u0027ve generally preferred to let Pinpoint manage running retries and repeats (1 iteration per Attempt). There are a few reasons:\n* Perf tests (and flaky tests) are frequently not independent. We want each repeat to run in a separate Swarming task to separate them.\n* We can shard/parallelize the tasks.\n* We can amortize the bias of individual devices across the larger pool.\n* Error handling is simpler. Pinpoint doesn\u0027t have a notion of \"this Execution partially failed and partially passed.\"",
+      "revId": "a8e25636fd7e7ee030fef5692955acaae8cde4e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
