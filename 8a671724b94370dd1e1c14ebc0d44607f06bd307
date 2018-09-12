@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "f76fa3a5_07cb1ad3",
+        "filename": "experimental/long_term_health/bin/long_term_health",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-09-12T09:58:08Z",
+      "side": 1,
+      "message": "Running all milestones in the same device will likely time out the device, so it might not be feasible to do so. And for the story sharding, my next CL will be about this, i.e. the same story group will always be ran on the same device. This is just the first version, so I ignored the variables introduced by the device difference.",
+      "parentUuid": "bc281440_07d92a9d",
+      "revId": "8a671724b94370dd1e1c14ebc0d44607f06bd307",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "08b49177_9782cb58",
         "filename": "experimental/long_term_health/long_term_health/aggregate_results.py",
         "patchSetId": 3
