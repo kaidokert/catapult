@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "bc281440_07d92a9d",
+        "filename": "experimental/long_term_health/bin/long_term_health",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-12T09:16:53Z",
+      "side": 1,
+      "message": "The reason I asked was, we may want to run all the milestones on the same device to be sure there aren\u0027t any device specific issues. Thinking again, even if we use the same device I am not sure there won\u0027t be some secondary impacts (like temperature etc.,). So I feel, as long as all devices have exact configuration then may be it is OK. Or may be we could shard them on story. i.e. different stories run on different devices but for a particular story all milestones run on the same device.\n\n+juan for his thoughts.",
+      "parentUuid": "c1248fa7_d87c0103",
+      "revId": "8a671724b94370dd1e1c14ebc0d44607f06bd307",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "08b49177_9782cb58",
         "filename": "experimental/long_term_health/long_term_health/aggregate_results.py",
         "patchSetId": 3
