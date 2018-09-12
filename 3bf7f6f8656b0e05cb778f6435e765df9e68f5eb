@@ -16,6 +16,24 @@
       "revId": "3bf7f6f8656b0e05cb778f6435e765df9e68f5eb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c450377_9af81ce9",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_log.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2018-09-12T09:25:12Z",
+      "side": 1,
+      "message": "This is required by the pylint. Without it I get \"Final newline missing (missing-final-newline)\"",
+      "parentUuid": "93c8cf31_5a3ccc1b",
+      "revId": "3bf7f6f8656b0e05cb778f6435e765df9e68f5eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
