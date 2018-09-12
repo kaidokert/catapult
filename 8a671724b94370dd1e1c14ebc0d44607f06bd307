@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c1248fa7_d87c0103",
+        "filename": "experimental/long_term_health/bin/long_term_health",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-09-12T08:56:16Z",
+      "side": 1,
+      "message": "I think it won\u0027t run on the same device in most cases, which device to use is up to the choice of the swarming system. I could add a check to ensure that it is not running on the same device, but it might end up make it slower. Because we might be busy waiting for the different devices while the previous device is already available.",
+      "parentUuid": "8702bb4a_bf63b034",
+      "revId": "8a671724b94370dd1e1c14ebc0d44607f06bd307",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "08b49177_9782cb58",
         "filename": "experimental/long_term_health/long_term_health/aggregate_results.py",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2018-09-06T13:03:21Z",
       "side": 1,
       "message": "Is this required or was it only for debugging?",
+      "revId": "8a671724b94370dd1e1c14ebc0d44607f06bd307",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "168da530_54d77f1a",
+        "filename": "experimental/long_term_health/long_term_health/aggregate_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-09-12T08:56:16Z",
+      "side": 1,
+      "message": "That\u0027s just for debugging. :)",
+      "parentUuid": "08b49177_9782cb58",
       "revId": "8a671724b94370dd1e1c14ebc0d44607f06bd307",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "46b2d01b_e66a73b4",
+        "filename": "experimental/long_term_health/long_term_health/test_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-09-12T08:56:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4e8ec3d_a9ed4111",
+      "revId": "8a671724b94370dd1e1c14ebc0d44607f06bd307",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "671df6e7_c7b0c587",
         "filename": "experimental/long_term_health/long_term_health/test_runner.py",
         "patchSetId": 3
@@ -67,6 +121,24 @@
       "revId": "8a671724b94370dd1e1c14ebc0d44607f06bd307",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9ea4d68_05954ba8",
+        "filename": "experimental/long_term_health/long_term_health/test_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-09-12T08:56:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "671df6e7_c7b0c587",
+      "revId": "8a671724b94370dd1e1c14ebc0d44607f06bd307",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
