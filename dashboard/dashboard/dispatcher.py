@@ -6,6 +6,7 @@
 
 import gae_ts_mon
 import webapp2
+from dashboard import revs
 
 from dashboard import add_histograms
 from dashboard import add_histograms_queue
