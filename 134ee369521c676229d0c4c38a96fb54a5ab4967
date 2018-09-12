@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff15743e_e024e5b9",
+        "filename": "dashboard/dashboard/find_anomalies.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-09-12T19:49:29Z",
+      "side": 0,
+      "message": "Don\u0027t think I\u0027ve ever removed points before, so this felt like an unnecessary check.",
+      "range": {
+        "startLine": 91,
+        "startChar": 4,
+        "endLine": 91,
+        "endChar": 15
+      },
+      "revId": "134ee369521c676229d0c4c38a96fb54a5ab4967",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
