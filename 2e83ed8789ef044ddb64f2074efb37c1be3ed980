@@ -22,6 +22,30 @@
       "revId": "2e83ed8789ef044ddb64f2074efb37c1be3ed980",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8aa57a65_8d497d29",
+        "filename": "tracing/tracing/metrics/vr/frame_cycle_duration_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1280977
+      },
+      "writtenOn": "2018-09-12T18:40:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e3953e8_6595a1e0",
+      "range": {
+        "startLine": 39,
+        "startChar": 25,
+        "endLine": 39,
+        "endChar": 43
+      },
+      "revId": "2e83ed8789ef044ddb64f2074efb37c1be3ed980",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
