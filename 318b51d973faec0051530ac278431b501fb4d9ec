@@ -108,6 +108,24 @@
     },
     {
       "key": {
+        "uuid": "ae84280b_f6eda1da",
+        "filename": "telemetry/telemetry/internal/actions/wait.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-09-12T15:40:04Z",
+      "side": 1,
+      "message": "It\u0027s ok. I tried to wrap them all with parentheses locally but it modified the error stack output \u0026 doesn\u0027t include the original error message (weird :-/)\n\n**** Way 1 ****\nimport sys\n\ndef bar():\n  print 1/0\n\n\ndef foo():\n  try:\n    bar()\n  except Exception as err:\n    raise (ValueError, ValueError(\u0027foo\u0027), sys.exc_info()[2])\n\nfoo() print:\n\nTraceback (most recent call last):\n  File \"test.py\", line 13, in \u003cmodule\u003e\n    foo()\n  File \"test.py\", line 11, in foo\n    raise (ValueError, ValueError(\u0027foo\u0027), sys.exc_info()[2])\nValueError\n\n**** Way 2 ****\nimport sys\n\ndef bar():\n  print 1/0\n\n\ndef foo():\n  try:\n    bar()\n  except Exception as err:\n    raise ValueError, ValueError(\u0027foo\u0027), sys.exc_info()[2]\n\nfoo() print:\n\nTraceback (most recent call last):\n  File \"test.py\", line 13, in \u003cmodule\u003e\n    foo()\n  File \"test.py\", line 9, in foo   # \u003c- this is nice because it shows original stack in bar\n    bar()\n  File \"test.py\", line 4, in bar\n    print 1/0\nValueError: foo",
+      "parentUuid": "34391a58_a1442ef6",
+      "revId": "318b51d973faec0051530ac278431b501fb4d9ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "db433076_d684e041",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend.py",
         "patchSetId": 3
