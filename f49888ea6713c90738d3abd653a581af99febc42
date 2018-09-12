@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "50a185b8_a1d0ff54",
+        "filename": "telemetry/telemetry/story/story_set.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-09-12T11:27:36Z",
+      "side": 1,
+      "message": "I would prefer you avoid adding a new API here. Instead, can you move this implementation to story_runner?",
+      "revId": "f49888ea6713c90738d3abd653a581af99febc42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
