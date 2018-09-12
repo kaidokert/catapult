@@ -16,6 +16,24 @@
       "revId": "f49888ea6713c90738d3abd653a581af99febc42",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6192872c_26284a6d",
+        "filename": "telemetry/telemetry/story/story_set.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1179424
+      },
+      "writtenOn": "2018-09-12T14:30:39Z",
+      "side": 1,
+      "message": "Is it OK to access _serving_dirs in story_runner directly?\nAn alternative is to add a property to get a copy of _serving_dirs.",
+      "parentUuid": "50a185b8_a1d0ff54",
+      "revId": "f49888ea6713c90738d3abd653a581af99febc42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
