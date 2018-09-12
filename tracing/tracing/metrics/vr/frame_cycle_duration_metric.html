@@ -27,22 +27,29 @@ tr.exportTo('tr.metrics.vr', function() {
 
   function frameCycleDurationMetric(histograms, model, opt_options) {
     const histogramsByEventTitle = new Map();
-    histogramsByEventTitle.set('VrShellGl::DrawFrame',
+    histogramsByEventTitle.set('Draw VR frame',
         createHistograms(histograms, 'draw_frame',
             {description: 'Duration to render one frame'}, true));
-    histogramsByEventTitle.set('VrShellGl::AcquireFrame',
+    histogramsByEventTitle.set('Acquire GVR frame',
         createHistograms(histograms, 'acquire_frame',
             {description: 'Duration acquire a frame from GVR'}, true));
     histogramsByEventTitle.set(
-        'VrShellGl::UpdateController',
+        'Process controller input',
         createHistograms(
-            histograms, 'update_controller',
+            histograms, 'process_controller',
             {description: 'Duration to query input from the controller'},
             true));
-    histogramsByEventTitle.set('VrShellGl::DrawFrameSubmitNow',
+    histogramsByEventTitle.set(
+        'Process controller input for WebXR',
+        createHistograms(
+            histograms, 'process_controller_webxr',
+            {description: 'Duration to query input from the controller ' +
+                'for WebXR'},
+            true));
+    histogramsByEventTitle.set('Submit drawn frame now',
         createHistograms(histograms, 'submit_frame',
             {description: 'Duration to submit a frame to GVR'}, true));
-    histogramsByEventTitle.set('VrShellGl::PostSubmitDrawOnGpu',
+    histogramsByEventTitle.set('Post drawn frame on GPU',
         createHistograms(histograms, 'post_submit_draw_on_gpu',
             {description: 'Duration to draw a frame on GPU post submit to ' +
                 'GVR. Note this duration may include time spent on ' +
