@@ -6,6 +6,7 @@ import inspect
 import os
 
 from telemetry.story import story as story_module
+from telemetry.story import story_filter
 from telemetry.wpr import archive_info
 
 
@@ -73,6 +74,15 @@ class StorySet(object):
       if story.serving_dir:
         all_serving_dirs.add(story.serving_dir)
     return all_serving_dirs
+
+  @property
+  def filtered_serving_dirs(self):
+    stories = story_filter.StoryFilter.FilterStorySet(self)
+    filtered_serving_dirs = self._serving_dirs.copy()
+    for story in stories:
+      if story.serving_dir:
+        filtered_serving_dirs.add(story.serving_dir)
+    return filtered_serving_dirs
 
   @property
   def archive_data_file(self):

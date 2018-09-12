@@ -180,7 +180,7 @@ def Run(test, story_set, finder_options, results, max_failures=None,
 
   if (not finder_options.use_live_sites and
       finder_options.browser_options.wpr_mode != wpr_modes.WPR_RECORD):
-    serving_dirs = story_set.serving_dirs
+    serving_dirs = story_set.filtered_serving_dirs
     if story_set.bucket:
       for directory in serving_dirs:
         cloud_storage.GetFilesInDirectoryIfChanged(directory,
