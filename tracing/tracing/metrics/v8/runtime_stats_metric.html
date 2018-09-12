@@ -163,7 +163,7 @@ tr.exportTo('tr.metrics.v8', function() {
   function addDurationHistogram(railStageName, runtimeGroupName, sampleValue,
       histograms, durationRelatedHistsByGroupName) {
     const durationHistogram = histograms.createHistogram(
-        `${railStageName}_${runtimeGroupName}:duration`,
+        `${railStageName.toLowerCase()}:${runtimeGroupName}:duration`,
         tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
         convertMicroToMilli_(sampleValue), {
           binBoundaries: DURATION_CUSTOM_BOUNDARIES,
@@ -186,7 +186,7 @@ tr.exportTo('tr.metrics.v8', function() {
   function addCountHistogram(railStageName, runtimeGroupName, sampleValue,
       histograms, countRelatedHistsByGroupName) {
     const countHistogram = histograms.createHistogram(
-        `${railStageName}_${runtimeGroupName}:count`,
+        `${railStageName.toLowerCase()}:${runtimeGroupName}:count`,
         tr.b.Unit.byName.count_smallerIsBetter, sampleValue, {
           binBoundaries: COUNT_CUSTOM_BOUNDARIES,
           summaryOptions: SUMMARY_OPTIONS,
@@ -282,12 +282,6 @@ tr.exportTo('tr.metrics.v8', function() {
               histograms, countRelatedHistsByGroupName);
         }
       }
-
-      // Add V8 only time that is Total - Blink C++ duration.
-      addDurationHistogram(name, 'V8-Only', overallV8Time, histograms,
-          durationRelatedHistsByGroupName);
-      addCountHistogram(name, 'V8-Only', overallV8Count, histograms,
-          countRelatedHistsByGroupName);
     }
 
     // Add the runtimeStats for all the samples. Please note, the values in

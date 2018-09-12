@@ -69,40 +69,61 @@ tr.exportTo('tr.e.v8', function() {
   class RuntimeStatsGroupCollection {
     constructor() {
       this.blink_cpp_group_ =
-        new RuntimeStatsGroup('Blink C++', /.*Callback.*/);
-      this.api_group_ = new RuntimeStatsGroup('API', /.*API.*/);
+        new RuntimeStatsGroup('total:blink:blink C++', /.*Callback.*/);
+      this.api_group_ = new RuntimeStatsGroup('total:blink:api', /.*API.*/);
 
       this.groups_ = [
-        new RuntimeStatsGroup('Total'),
-        new RuntimeStatsGroup('IC', /.*IC_.*/),
-        new RuntimeStatsGroup('Optimize-Background',
+        // Move this to computed group
+        new RuntimeStatsGroup('total'),
+        new RuntimeStatsGroup('total:v8:ic', /.*IC_.*/),
+        new RuntimeStatsGroup('total:v8:optimize:background',
             /(.*OptimizeConcurrent.*)|RecompileConcurrent.*/),
-        new RuntimeStatsGroup('Optimize',
+        new RuntimeStatsGroup('total:v8:optimize:main_thread',
             /StackGuard|.*Optimize.*|.*Deoptimize.*|Recompile.*/),
-        new RuntimeStatsGroup('Compile-Background',
+        new RuntimeStatsGroup('total:v8:compile:background',
             /(.*CompileBackground.*)/),
-        new RuntimeStatsGroup('Compile', /(^Compile.*)|(.*_Compile.*)/),
-        new RuntimeStatsGroup('Parse-Background', /.*ParseBackground.*/),
-        new RuntimeStatsGroup('Parse', /.*Parse.*/),
+        new RuntimeStatsGroup('total:v8:compile:main_thread',
+            /(^Compile.*)|(.*_Compile.*)/),
+        new RuntimeStatsGroup('total:v8:parse:background',
+            /.*ParseBackground.*/),
+        new RuntimeStatsGroup('total:v8:parse:main_thread', /.*Parse.*/),
         this.blink_cpp_group_,
         this.api_group_,
-        new RuntimeStatsGroup('GC-Background-Marking',
+        new RuntimeStatsGroup('total:v8:gc:background:marking',
             /.*GC.MC.BACKGROUND.*MARKING.*/),
-        new RuntimeStatsGroup('GC-Background-Sweeping',
+        new RuntimeStatsGroup('total:v8:gc:background:sweeping',
             /.*GC.MC.BACKGROUND.*SWEEPING.*/),
-        new RuntimeStatsGroup('GC-Background-Scavenger',
+        new RuntimeStatsGroup('total:v8:gc:background:scavenger',
             /.*GC.SCAVENGER.BACKGROUND.*/),
-        new RuntimeStatsGroup('GC-Background-MinorMC',
+        new RuntimeStatsGroup('total:v8:gc:background:minor_mC',
             /.*GC.MINOR_MC.BACKGROUND.*/),
-        new RuntimeStatsGroup('GC-Background-MajorMC',
+        new RuntimeStatsGroup('total:v8:gc:background:major_mC',
             /.*GC.MC.BACKGROUND.*/),
-        new RuntimeStatsGroup('GC-Background-Other', /.*GC.*BACKGROUND.*/),
-        new RuntimeStatsGroup('GC', /GC|AllocateInTargetSpace/),
-        new RuntimeStatsGroup('JavaScript', /JS_Execution/),
-        new RuntimeStatsGroup('V8 C++', /.*/)
+        new RuntimeStatsGroup('total:v8:gc:background:other',
+            /.*GC.*BACKGROUND.*/),
+        new RuntimeStatsGroup('total:v8:gc:main_thread',
+            /GC|AllocateInTargetSpace/),
+        new RuntimeStatsGroup('total:v8:javascript', /JS_Execution/),
+        new RuntimeStatsGroup('total:v8:v8_c++', /.*/)
+      ];
+
+      this.computed_groups_ = [
+        new RuntimeStatsGroup('total:v8:optimize'),
+        new RuntimeStatsGroup('total:v8:compile'),
+        new RuntimeStatsGroup('total:v8:parse'),
+        new RuntimeStatsGroup('total:blink'),
+        new RuntimeStatsGroup('total:v8:gc:background'),
+        new RuntimeStatsGroup('total:v8:gc'),
+        new RuntimeStatsGroup('total:v8'),
       ];
 
       this.blink_group_collection_ = null;
+    }
+
+    addEntriesToGroup(group, entries) {
+      for (const entry of entries) {
+        group.add(entry);
+      }
     }
 
     addSlices(slices) {
@@ -128,7 +149,6 @@ tr.exportTo('tr.e.v8', function() {
             continue;
           }
 
-          // Skip the 'Total' group
           for (let i = 1; i < this.groups_.length; ++i) {
             if (this.groups_[i].match(name)) {
               if (stat.length !== 2) break;
@@ -137,6 +157,16 @@ tr.exportTo('tr.e.v8', function() {
               this.groups_[i].add(entry);
               break;
             }
+          }
+        }
+      }
+
+      for (let i = 0; i < this.computed_groups_.length; ++i) {
+        const name = this.computed_groups_[i].name + ':';
+        for (let j = 0; j < this.groups_.length; ++j) {
+          if (this.groups_[j].name.startsWith(name)) {
+            this.addEntriesToGroup(this.computed_groups_[i],
+                this.groups_[j].values);
           }
         }
       }
@@ -154,7 +184,7 @@ tr.exportTo('tr.e.v8', function() {
     }
 
     get runtimeGroups() {
-      return this.groups_;
+      return this.groups_.concat(this.computed_groups_);
     }
 
     get blinkRCSGroupCollection() {
