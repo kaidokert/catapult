@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fc7f0afd_8fc31ec4",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1251641
+      },
+      "writtenOn": "2018-09-12T01:36:20Z",
+      "side": 1,
+      "message": "Fix the indentation",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 2
+      },
+      "revId": "4574583370a5cf3d9e2643fb123be878e35ff7ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3c9b685_8ff9d86f",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1251641
+      },
+      "writtenOn": "2018-09-12T01:36:20Z",
+      "side": 1,
+      "message": "I realize that this line will induce some amount of overhead on WPR, and lead to some degree of variability. Please let me know if I should place this call behind a flag.",
+      "range": {
+        "startLine": 174,
+        "startChar": 8,
+        "endLine": 174,
+        "endChar": 54
+      },
+      "revId": "4574583370a5cf3d9e2643fb123be878e35ff7ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
