@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "12740eaa_0afb6525",
+        "filename": "tracing/tracing/extras/v8/runtime_stats_entry.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-12T15:26:29Z",
+      "side": 1,
+      "message": "I added these additional categories to have a clean hierarchy. For ex: total:v8:optimize \u003d total:v8:optimize:background + total:v8:optimize:main_thread.",
+      "revId": "1b8c69133734a8e781358263aa4e8c30fa0a49b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
