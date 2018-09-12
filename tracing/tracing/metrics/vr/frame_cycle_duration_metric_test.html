@@ -46,12 +46,12 @@ tr.b.unittest.testSuite(function() {
   test('frameCycleDurationMetric', function() {
     const durations = [
       {
-        title: 'VrShellGl::DrawFrame',
+        title: 'Draw VR frame',
         wall: 390,
         cpu: 340,
         sub: [
-          {title: 'VrShellGl::AcquireFrame', wall: 2, cpu: 2},
-          {title: 'VrShellGl::AcquireFrame', wall: 2.5, cpu: 1.5},
+          {title: 'Acquire GVR frame', wall: 2, cpu: 2},
+          {title: 'Acquire GVR frame', wall: 2.5, cpu: 1.5},
           {
             title: 'UiScene::OnBeginFrame.UpdateAnimationsAndOpacity',
             wall: 3,
@@ -76,8 +76,10 @@ tr.b.unittest.testSuite(function() {
             wall: 2,
             cpu: 1
           },
-          {title: 'VrShellGl::UpdateController', wall: 1, cpu: 0.5},
-          {title: 'VrShellGl::UpdateController', wall: 0.5, cpu: 0.4},
+          {title: 'Process controller input', wall: 1, cpu: 0.5},
+          {title: 'Process controller input', wall: 0.5, cpu: 0.4},
+          {title: 'Process controller input for WebXR', wall: 1, cpu: 0.5},
+          {title: 'Process controller input for WebXR', wall: 1.5, cpu: 0.6},
           {
             title: 'UiRenderer::DrawUiView',
             wall: 250,
@@ -134,19 +136,19 @@ tr.b.unittest.testSuite(function() {
               {title: 'UiElementRenderer::DrawKeyboard', wall: 11, cpu: 10},
             ]
           },
-          {title: 'VrShellGl::DrawFrameSubmitNow', wall: 3, cpu: 0.5},
+          {title: 'Submit drawn frame now', wall: 3, cpu: 0.5},
           {
-            title: 'VrShellGl::DrawFrameSubmitNow',
+            title: 'Submit drawn frame now',
             wall: 3.5,
             cpu: 0.5
           },
-          {title: 'VrShellGl::PostSubmitDrawOnGpu', wall: 3},
-          {title: 'VrShellGl::PostSubmitDrawOnGpu', wall: 4},
+          {title: 'Post drawn frame on GPU', wall: 3},
+          {title: 'Post drawn frame on GPU', wall: 4},
         ]
       },
-      {title: 'VrShellGl::DrawFrame', wall: 20, cpu: 10},
+      {title: 'Draw VR frame', wall: 20, cpu: 10},
       // This event should be filtered out by the user expecation.
-      {title: 'VrShellGl::DrawFrame', wall: 20, cpu: 10},
+      {title: 'Draw VR frame', wall: 20, cpu: 10},
     ];
     const histograms = new tr.v.HistogramSet();
     const model = tr.c.TestUtils.newModel(function(model) {
@@ -187,6 +189,13 @@ tr.b.unittest.testSuite(function() {
     assert.closeTo(
         histograms.getHistogramNamed('update_controller_cpu').average,
         0.45, TOLERANCE);
+
+    assert.closeTo(
+        histograms.getHistogramNamed('update_controller_webxr_wall').average,
+        1.25, TOLERANCE);
+    assert.closeTo(
+        histograms.getHistogramNamed('update_controller_webxr_cpu').average,
+        0.55, TOLERANCE);
 
     assert.closeTo(histograms.getHistogramNamed('submit_frame_wall').average,
         3.25, TOLERANCE);
