@@ -385,36 +385,6 @@ class ProcessAlertsTest(testing_common.TestCase):
     self.assertEqual(241536, new_anomalies[0].start_revision)
     self.assertEqual(241537, new_anomalies[0].end_revision)
 
-  @mock.patch('logging.error')
-  def testProcessTest_LastAlertedRevisionTooHigh_PropertyReset(
-      self, mock_logging_error):
-    # If the last_alerted_revision property of the TestMetadata is too high,
-    # then the property should be reset and an error should be logged.
-    self._AddDataForTests()
-    test = utils.TestKey(
-        'ChromiumGPU/linux-release/scrolling_benchmark/ref').get()
-
-    sheriff.Sheriff(
-        email='a@google.com', id='sheriff', patterns=[test.test_path]).put()
-
-    test.last_alerted_revision = 1234567890
-    test.UpdateSheriff()
-    test.put()
-    find_anomalies.ProcessTests([test.key])
-    self.assertIsNone(test.key.get().last_alerted_revision)
-    calls = [
-        mock.call(
-            'last_alerted_revision %d is higher than highest rev %d for test '
-            '%s; setting last_alerted_revision to None.',
-            1234567890,
-            10066,
-            'ChromiumGPU/linux-release/scrolling_benchmark/ref'),
-        mock.call(
-            'No rows fetched for %s',
-            'ChromiumGPU/linux-release/scrolling_benchmark/ref')
-    ]
-    mock_logging_error.assert_has_calls(calls, any_order=True)
-
   def testMakeAnomalyEntity_NoRefBuild(self):
     testing_common.AddTests(
         ['ChromiumPerf'],
