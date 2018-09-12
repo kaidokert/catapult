@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2e7ffa3f_cb9c9e3c",
+        "filename": "telemetry/telemetry/internal/actions/wait.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-09-12T14:29:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f55a3e1c_56e10846",
+      "revId": "318b51d973faec0051530ac278431b501fb4d9ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ca224ca2_042ed952",
         "filename": "telemetry/telemetry/internal/actions/wait.py",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2018-09-12T13:47:08Z",
       "side": 1,
       "message": "also use hanging parentheses here",
+      "revId": "318b51d973faec0051530ac278431b501fb4d9ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f395bb4_f3bc753c",
+        "filename": "telemetry/telemetry/internal/actions/wait.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-09-12T14:29:34Z",
+      "side": 1,
+      "message": "Maybe I missed something here:\nraise needs the 3 separate arguments and there is no parenthesized version (I\u0027d say it\u0027s similar to the with example in the style guide).",
+      "parentUuid": "ca224ca2_042ed952",
       "revId": "318b51d973faec0051530ac278431b501fb4d9ec",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
