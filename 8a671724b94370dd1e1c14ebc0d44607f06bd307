@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "e3edc5d8_c29e3a37",
+        "filename": "experimental/long_term_health/bin/long_term_health",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-12T16:36:52Z",
+      "side": 1,
+      "message": "Yes, story sharding, like Mythi suggested, is planned for follow up CLs.",
+      "parentUuid": "f76fa3a5_07cb1ad3",
+      "revId": "8a671724b94370dd1e1c14ebc0d44607f06bd307",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "08b49177_9782cb58",
         "filename": "experimental/long_term_health/long_term_health/aggregate_results.py",
         "patchSetId": 3

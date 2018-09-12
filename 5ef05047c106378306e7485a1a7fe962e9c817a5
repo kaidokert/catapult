@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44523ddb_1cb2aa18",
+        "filename": "experimental/long_term_health/bin/long_term_health",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-12T16:36:52Z",
+      "side": 1,
+      "message": "I think we need some refactoring here. To integrate this more neatly with swarming world, I think it makes more sense to split this into:\n\na) Get inputs:\n- Get all needed APKs.\n- [Swarming only] Create a single isolate which already contains all APKs.\n\nb) Run jobs:\n- Run all benchmark jobs (or schedule them to run in swarming).\n\nc) Process results:\n- [Swarming only] Wait for and collect results.\n- Post-process results if needed.\n\nIt should also be possible, e.g., to do these three steps independently of each other (e.g. just create the isolate, but don\u0027t schedule anything yet); or skip steps if already done by previous runs of the script (e.g. if the isolate already exists, use that one, and just start running jobs).\n\nLet\u0027s break this CL into smaller ones, implementing each of the three above separately.",
+      "revId": "5ef05047c106378306e7485a1a7fe962e9c817a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36d50e5f_5f1737ed",
+        "filename": "experimental/long_term_health/long_term_health/aggregate_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-12T16:36:52Z",
+      "side": 1,
+      "message": "Can you split this off to a separate CL? Looks unrelated to the rest of the change.",
+      "revId": "5ef05047c106378306e7485a1a7fe962e9c817a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8e091e7_74c60c0c",
+        "filename": "experimental/long_term_health/long_term_health/test_runner.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-12T16:36:52Z",
+      "side": 1,
+      "message": "The part of the script that creates the isolate should take care of #2.",
+      "revId": "5ef05047c106378306e7485a1a7fe962e9c817a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e341b80f_499e0034",
+        "filename": "experimental/long_term_health/long_term_health/test_runner.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-12T16:36:52Z",
+      "side": 1,
+      "message": "As we discussed we probably want to be more specific here and pick a google gobo device. (Later also add options to choose other devices.)",
+      "revId": "5ef05047c106378306e7485a1a7fe962e9c817a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
