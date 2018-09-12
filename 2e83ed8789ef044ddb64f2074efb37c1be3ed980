@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e3953e8_6595a1e0",
+        "filename": "tracing/tracing/metrics/vr/frame_cycle_duration_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2018-09-12T18:36:00Z",
+      "side": 1,
+      "message": "Renaming this will discontinue the graph. Can we keep update_controller?",
+      "range": {
+        "startLine": 39,
+        "startChar": 25,
+        "endLine": 39,
+        "endChar": 43
+      },
+      "revId": "2e83ed8789ef044ddb64f2074efb37c1be3ed980",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
