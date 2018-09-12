@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b3df0b1_c7e76c6c",
+        "filename": "dashboard/dashboard/spa/chart-legend.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-09-12T01:42:55Z",
+      "side": 1,
+      "message": "Neat! I didn\u0027t realize element recursion was a thing.",
+      "revId": "06832a1a990d661f240347e8c10c8d134e88e9a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
