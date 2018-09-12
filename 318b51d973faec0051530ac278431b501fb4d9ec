@@ -90,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "34391a58_a1442ef6",
+        "filename": "telemetry/telemetry/internal/actions/wait.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-09-12T15:25:45Z",
+      "side": 1,
+      "message": "Is this ok then, or do we have another way to make this look nicer?",
+      "parentUuid": "c76335aa_973b7cdb",
+      "revId": "318b51d973faec0051530ac278431b501fb4d9ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "db433076_d684e041",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend.py",
         "patchSetId": 3
