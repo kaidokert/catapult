@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f55a3e1c_56e10846",
+        "filename": "telemetry/telemetry/internal/actions/wait.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-09-12T13:47:08Z",
+      "side": 1,
+      "message": "the import sys should be moved to the top of the file",
+      "revId": "318b51d973faec0051530ac278431b501fb4d9ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca224ca2_042ed952",
+        "filename": "telemetry/telemetry/internal/actions/wait.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-09-12T13:47:08Z",
+      "side": 1,
+      "message": "also use hanging parentheses here",
+      "revId": "318b51d973faec0051530ac278431b501fb4d9ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db433076_d684e041",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-09-12T13:47:08Z",
+      "side": 1,
+      "message": "nits: using hanging parentheses for new line (see https://github.com/google/styleguide/blob/gh-pages/pyguide.md#32-line-length)",
+      "revId": "318b51d973faec0051530ac278431b501fb4d9ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

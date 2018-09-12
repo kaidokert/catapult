@@ -16,6 +16,24 @@
       "revId": "c80faf456d4ca70b4782073e999f90a47c0598c9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ead6cae_850e8523",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-09-12T13:47:08Z",
+      "side": 0,
+      "message": "Occasionally this succeed. My impression is most of our tests are timed out due to renderer crash/network timed out and not the js error so that may be why this rarely shows anything useful",
+      "parentUuid": "12b77198_8366e12f",
+      "revId": "c80faf456d4ca70b4782073e999f90a47c0598c9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
