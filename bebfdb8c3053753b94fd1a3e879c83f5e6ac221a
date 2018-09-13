@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "32a3f83f_29d84fdc",
+        "filename": "telemetry/telemetry/wpr/archive_info.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-09-13T11:38:26Z",
+      "side": 1,
+      "message": "Hmhh, I think we may not need line 195 to 217 with this new logic? Those line was to parse the highest existing index number, which we now no longer need.",
+      "revId": "bebfdb8c3053753b94fd1a3e879c83f5e6ac221a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3553cb8_6dc09f93",
+        "filename": "telemetry/telemetry/wpr/archive_info.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-09-13T11:38:26Z",
+      "side": 1,
+      "message": "why not just simplify this to \u0027%s_%s.%s\u0027% (base, file_hash[:8], extension) ?",
+      "revId": "bebfdb8c3053753b94fd1a3e879c83f5e6ac221a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
