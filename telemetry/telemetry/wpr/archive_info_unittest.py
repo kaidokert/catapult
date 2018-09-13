@@ -20,28 +20,28 @@ class MockPage(page.Page):
     super(MockPage, self).__init__(url, None, name=name)
     self._platform_specific = platform_specific
 
-page1 = MockPage('http://www.foo.com/', 'Foo')
-page2 = MockPage('http://www.bar.com/', 'Bar', True)
-page3 = MockPage('http://www.baz.com/', 'Baz', platform_specific=True)
-pageNew1 = MockPage('http://www.new.com/', 'New')
-pageNew2 = MockPage('http://www.newer.com/', 'Newer', True)
-recording1 = 'data_001.wprgo'
-recording2 = 'data_002.wprgo'
-recording3 = 'data_003.wprgo'
-recording4 = 'data_004.wprgo'
-recording5 = 'data_005.wprgo'
+page1 = MockPage('http://www.page1.com/', 'Page1')
+page2 = MockPage('http://www.page2.com/', 'Page2', platform_specific=True)
+page3 = MockPage('http://www.page3.com/', 'Page3', platform_specific=True)
+pageNew1 = MockPage('http://www.new1.com/', 'New1')
+pageNew2 = MockPage('http://www.new2.com/', 'New2', platform_specific=True)
+recording1 = 'data_filehash_001.wprgo'
+recording2 = 'data_filehash_002.wprgo'
+recording3 = 'data_filehash_003.wprgo'
+recording4 = 'data_filehash_004.wprgo'
+recording5 = 'data_filehash_005.wprgo'
 _DEFAULT_PLATFORM = archive_info._DEFAULT_PLATFORM
 
 default_archives_info_contents_dict = {
     "platform_specific": True,
     "archives": {
-        "Foo": {
+        "Page1": {
             _DEFAULT_PLATFORM: recording1
         },
-        "Bar": {
+        "Page2": {
             _DEFAULT_PLATFORM: recording2
         },
-        "Baz": {
+        "Page3": {
             _DEFAULT_PLATFORM: recording1,
             "win": recording2,
             "mac": recording3,
@@ -53,8 +53,9 @@ default_archives_info_contents_dict = {
 
 default_archive_info_contents = json.dumps(default_archives_info_contents_dict)
 default_wpr_files = [
-    'data_001.wprgo', 'data_002.wprgo', 'data_003.wprgo', 'data_004.wprgo',
-    'data_005.wprgo']
+    'data_filehash_001.wprgo', 'data_filehash_002.wprgo',
+    'data_filehash_003.wprgo', 'data_filehash_004.wprgo',
+    'data_filehash_005.wprgo']
 _BASE_ARCHIVE = {
     u'platform_specific': True,
     u'description': (u'Describes the Web Page Replay archives for a'
@@ -70,6 +71,7 @@ class WprArchiveInfoTest(unittest.TestCase):
     # Set file for the metadata.
     self.story_set_archive_info_file = os.path.join(
         self.tmp_dir, 'info.json')
+    self.maxDiff = None
 
   def tearDown(self):
     shutil.rmtree(self.tmp_dir)
@@ -118,7 +120,7 @@ class WprArchiveInfoTest(unittest.TestCase):
   @mock.patch('telemetry.wpr.archive_info.cloud_storage.GetIfChanged')
   def testDownloadArchivesIfNeededWithStoryNames(self, get_mock):
     test_archive_info = self.createArchiveInfo()
-    story_names = ['Foo', 'Bar', 'Not_used']
+    story_names = ['Page1', 'Page2', 'Not_used']
 
     test_archive_info.DownloadArchivesIfNeeded(story_names=story_names)
     expected_calls = [
@@ -133,14 +135,14 @@ class WprArchiveInfoTest(unittest.TestCase):
     data = {
         'platform_specific': True,
         'archives': {
-            'http://www.baz.com/': {
-                _DEFAULT_PLATFORM: 'data_001.wprgo',
-                'win': 'data_002.wprgo',
-                'linux': 'data_004.wprgo',
-                'mac': 'data_003.wprgo',
-                'android': 'data_005.wprgo'},
-            'Foo': {_DEFAULT_PLATFORM: 'data_003.wprgo'},
-            'Bar': {_DEFAULT_PLATFORM: 'data_002.wprgo'}
+            'http://www.page3.com/': {
+                _DEFAULT_PLATFORM: 'data_filehash_001.wprgo',
+                'win': 'data_filehash_002.wprgo',
+                'linux': 'data_filehash_004.wprgo',
+                'mac': 'data_filehash_003.wprgo',
+                'android': 'data_filehash_005.wprgo'},
+            'Page1': {_DEFAULT_PLATFORM: 'data_filehash_003.wprgo'},
+            'Page2': {_DEFAULT_PLATFORM: 'data_filehash_002.wprgo'}
         }
     }
     test_archive_info = self.createArchiveInfo(
@@ -235,10 +237,9 @@ class WprArchiveInfoTest(unittest.TestCase):
       return_value='filehash')
   def testAddRecordedStoriesDefault(self, hash_mock):
     test_archive_info = self.createArchiveInfo()
-    self.assertWprFileDoesNotExist('data_006.wprgo')
+    self.assertWprFileDoesNotExist('data_filehash_006.wprgo')
 
     new_temp_recording = os.path.join(self.tmp_dir, 'recording.wprgo')
-    expected_archive_file_path = os.path.join(self.tmp_dir, 'data_006.wprgo')
 
     with open(new_temp_recording, 'w') as f:
       f.write('wpr data')
@@ -255,10 +256,10 @@ class WprArchiveInfoTest(unittest.TestCase):
             _DEFAULT_PLATFORM: recording1
         },
         page2.name: {
-            _DEFAULT_PLATFORM: 'data_006.wprgo'
+            _DEFAULT_PLATFORM: 'data_filehash_006.wprgo'
         },
         page3.name: {
-            _DEFAULT_PLATFORM: u'data_006.wprgo',
+            _DEFAULT_PLATFORM: 'data_filehash_006.wprgo',
             'linux': recording4,
             'mac': recording3,
             'win': recording2,
@@ -271,18 +272,17 @@ class WprArchiveInfoTest(unittest.TestCase):
     with open(self.story_set_archive_info_file, 'rU') as f:
       for line in f:
         self.assertFalse(line.rstrip('\n').endswith(' '))
-    self.assertWprFileDoesExist('data_006.wprgo')
+    self.assertWprFileDoesExist('data_filehash_006.wprgo')
     self.assertEquals(hash_mock.call_count, 1)
-    hash_mock.assert_called_with(expected_archive_file_path)
+    hash_mock.assert_called_with(new_temp_recording)
 
   @mock.patch(
       'telemetry.wpr.archive_info.cloud_storage.CalculateHash',
       return_value='filehash')
   def testAddRecordedStoriesNotDefault(self, hash_mock):
     test_archive_info = self.createArchiveInfo()
-    self.assertWprFileDoesNotExist('data_006.wprgo')
+    self.assertWprFileDoesNotExist('data_filehash_006.wprgo')
     new_temp_recording = os.path.join(self.tmp_dir, 'recording.wprgo')
-    expected_archive_file_path = os.path.join(self.tmp_dir, 'data_006.wprgo')
 
     with open(new_temp_recording, 'w') as f:
       f.write('wpr data')
@@ -300,14 +300,14 @@ class WprArchiveInfoTest(unittest.TestCase):
         },
         page2.name: {
             _DEFAULT_PLATFORM: recording2,
-            'android': 'data_006.wprgo'
+            'android': 'data_filehash_006.wprgo'
         },
         page3.name: {
             _DEFAULT_PLATFORM: recording1,
             'linux': recording4,
             'mac': recording3,
             'win': recording2,
-            'android': 'data_006.wprgo'
+            'android': 'data_filehash_006.wprgo'
         },
     }
 
@@ -316,73 +316,68 @@ class WprArchiveInfoTest(unittest.TestCase):
     with open(self.story_set_archive_info_file, 'rU') as f:
       for line in f:
         self.assertFalse(line.rstrip('\n').endswith(' '))
-    self.assertWprFileDoesExist('data_006.wprgo')
+    self.assertWprFileDoesExist('data_filehash_006.wprgo')
     self.assertEqual(hash_mock.call_count, 1)
-    hash_mock.assert_called_with(expected_archive_file_path)
+    hash_mock.assert_called_with(new_temp_recording)
 
   def testAddRecordedStoriesNewPage(self):
     test_archive_info = self.createArchiveInfo()
-    self.assertWprFileDoesNotExist('data_006.wprgo')
-    self.assertWprFileDoesNotExist('data_007.wprgo')
+    self.assertWprFileDoesNotExist('data_filehash_006.wprgo')
+    self.assertWprFileDoesNotExist('data_filehash_007.wprgo')
     new_temp_recording = os.path.join(self.tmp_dir, 'recording.wprgo')
-    expected_archive_file_path1 = os.path.join(self.tmp_dir, 'data_006.wprgo')
-    expected_archive_file_path2 = os.path.join(self.tmp_dir, 'data_007.wprgo')
-    hash_dictionary = {
-        expected_archive_file_path1: 'filehash',
-        expected_archive_file_path2: 'filehash2'
-    }
-
-    def hash_side_effect(file_path):
-      return hash_dictionary[file_path]
 
     with mock.patch('telemetry.wpr.archive_info.cloud_storage.CalculateHash',
-                    side_effect=hash_side_effect) as hash_mock:
-
+                    return_value='filehash_LONG_1') as hash_mock:
       with open(new_temp_recording, 'w') as f:
         f.write('wpr data')
       test_archive_info.AddNewTemporaryRecording(new_temp_recording)
+      self.assertEqual(hash_mock.call_count, 0)
       test_archive_info.AddRecordedStories([pageNew1])
+      hash_mock.assert_any_call(new_temp_recording)
+      self.assertEqual(hash_mock.call_count, 1)
 
+    with mock.patch('telemetry.wpr.archive_info.cloud_storage.CalculateHash',
+                    return_value='filehash_LONG_2') as hash_mock:
       with open(new_temp_recording, 'w') as f:
         f.write('wpr data2')
       test_archive_info.AddNewTemporaryRecording(new_temp_recording)
+      self.assertEqual(hash_mock.call_count, 0)
       test_archive_info.AddRecordedStories([pageNew2],
                                            target_platform='android')
+      hash_mock.assert_any_call(new_temp_recording)
+      self.assertEqual(hash_mock.call_count, 1)
 
-      with open(self.story_set_archive_info_file, 'r') as f:
-        archive_file_contents = json.load(f)
+    with open(self.story_set_archive_info_file, 'r') as f:
+      archive_file_contents = json.load(f)
 
-      expected_archive_contents = _BASE_ARCHIVE.copy()
-      expected_archive_contents['archives'] = {
-          page1.name: {
-              _DEFAULT_PLATFORM: recording1
-          },
-          page2.name: {
-              _DEFAULT_PLATFORM: recording2,
-          },
-          page3.name: {
-              _DEFAULT_PLATFORM: recording1,
-              'linux': recording4,
-              'mac': recording3,
-              'win': recording2,
-              'android': recording5
-          },
-          pageNew1.name: {
-              _DEFAULT_PLATFORM: 'data_006.wprgo'
-          },
-          pageNew2.name: {
-              _DEFAULT_PLATFORM: 'data_007.wprgo',
-              'android': 'data_007.wprgo'
-          }
-      }
+    expected_archive_contents = _BASE_ARCHIVE.copy()
+    expected_archive_contents['archives'] = {
+        page1.name: {
+            _DEFAULT_PLATFORM: recording1
+        },
+        page2.name: {
+            _DEFAULT_PLATFORM: recording2,
+        },
+        page3.name: {
+            _DEFAULT_PLATFORM: recording1,
+            'linux': recording4,
+            'mac': recording3,
+            'win': recording2,
+            'android': recording5
+        },
+        pageNew1.name: {
+            _DEFAULT_PLATFORM: 'data_filehash_006.wprgo'
+        },
+        pageNew2.name: {
+            _DEFAULT_PLATFORM: 'data_filehash_007.wprgo',
+            'android': 'data_filehash_007.wprgo'
+        }
+    }
 
-      self.assertDictEqual(expected_archive_contents, archive_file_contents)
-      # Ensure the saved JSON does not contain trailing spaces.
-      with open(self.story_set_archive_info_file, 'rU') as f:
-        for line in f:
-          self.assertFalse(line.rstrip('\n').endswith(' '))
-      self.assertWprFileDoesExist('data_006.wprgo')
-      self.assertWprFileDoesExist('data_007.wprgo')
-      self.assertEqual(hash_mock.call_count, 2)
-      hash_mock.assert_any_call(expected_archive_file_path1)
-      hash_mock.assert_any_call(expected_archive_file_path2)
+    self.assertDictEqual(expected_archive_contents, archive_file_contents)
+    # Ensure the saved JSON does not contain trailing spaces.
+    with open(self.story_set_archive_info_file, 'rU') as f:
+      for line in f:
+        self.assertFalse(line.rstrip('\n').endswith(' '))
+    self.assertWprFileDoesExist('data_filehash_006.wprgo')
+    self.assertWprFileDoesExist('data_filehash_007.wprgo')
