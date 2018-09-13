@@ -1,5 +1,5 @@
 #app {
-  max-width: 120em;
+  max-width: 600em;
   max-height: 10000000em;
   height: 10000000px;
   margin-top: +10px;
@@ -183,7 +183,7 @@
 }
 
 #canvas {
-  max-width: 100em;
+  max-width: 800em;
   max-height: 60em;
   margin-top: +10px;
   margin-bottom: 15px;
