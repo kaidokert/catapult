@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "76047707_803b5f1f",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1095,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-09-13T17:01:21Z",
+      "side": 1,
+      "message": "This won\u0027t actually do what you want. We\u0027re already in a timeout thread by the time we get here, so we won\u0027t create another one w/ adb_timeout (https://codesearch.chromium.org/chromium/src/third_party/catapult/devil/devil/android/decorators.py?rcl\u003d994bb1389b1d8ad8333b0de5d7a524ec38fed99f\u0026l\u003d50). The timeout passed to GetCmdStatusAndOutputWithTimeout will be whatever timeout was passed to RunShellCommand (https://codesearch.chromium.org/chromium/src/third_party/catapult/devil/devil/android/sdk/adb_wrapper.py?rcl\u003d994bb1389b1d8ad8333b0de5d7a524ec38fed99f\u0026l\u003d265).\n\nIf you want to have that terminate before the timeout thread kills it, I think you\u0027d instead want to change adb_wrapper to always pass a timeout to GetCmdStatusAndOutputWithTimeout that\u0027s slightly shorter than the current timeout thread group\u0027s remaining time. I think you\u0027d want to do that all the time rather than exposing it as an option.",
+      "revId": "83568ae2d0b6f5ea594840e9f74db344a66a4137",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
