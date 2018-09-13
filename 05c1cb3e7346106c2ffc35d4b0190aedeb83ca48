@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c82ab917_05b1d12c",
+        "filename": "tracing/tracing/metrics/rendering/pipeline_test.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-09-13T14:35:40Z",
+      "side": 1,
+      "message": "nit: opt_args",
+      "range": {
+        "startLine": 54,
+        "startChar": 64,
+        "endLine": 54,
+        "endChar": 68
+      },
+      "revId": "05c1cb3e7346106c2ffc35d4b0190aedeb83ca48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
