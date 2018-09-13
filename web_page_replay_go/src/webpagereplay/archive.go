@@ -26,7 +26,7 @@ var ErrNotFound = errors.New("not found")
 // ArchivedRequest contains a single request and its response.
 // Immutable after creation.
 type ArchivedRequest struct {
-	SerializedRequest  []byte
+	SerializedRequest	[]byte
 	SerializedResponse []byte // if empty, the request failed
 }
 
@@ -195,8 +195,8 @@ func (a *Archive) FindRequest(req *http.Request, scheme string) (*http.Request, 
 
 	// For all URLs with a matching path, pick the URL that has the most matching query parameters.
 	// The match ratio is defined to be 2*M/T, where
-	//   M = number of matches x where a.Query[x]=b.Query[x]
-	//   T = sum(len(a.Query)) + sum(len(b.Query))
+	//	 M = number of matches x where a.Query[x]=b.Query[x]
+	//	 T = sum(len(a.Query)) + sum(len(b.Query))
 	aq := req.URL.Query()
 
 	var bestURL string
@@ -315,7 +315,7 @@ func (a *Archive) Serialize(w io.Writer) error {
 // The file is not flushed until Close is called. All methods are thread-safe.
 type WritableArchive struct {
 	Archive
-	f  *os.File
+	f	*os.File
 	mu sync.Mutex
 }
 
