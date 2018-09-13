@@ -40,7 +40,12 @@ def ConvertLegacyDicts(dicts):
     assert 'units' not in d
     # TODO(861822): Port this to CreateHistogram
     h = histogram.Histogram(name, 'unitless')
-    h.AddSample(d['value'])
+    value = d.get('value')
+    error = d.get('error')
+    if error is not None:
+      h.AddMeanAndError(value, error)
+    else:
+      h.AddSample(value)
     # TODO(876379): Support more than three components
     if len(test_parts) == 3:
       h.diagnostics[reserved_infos.STORIES.name] = generic_set.GenericSet(

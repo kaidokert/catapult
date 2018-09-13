@@ -141,6 +141,16 @@ class RunningStatisticsUnittest(unittest.TestCase):
     Compare([1, 2, 3], [10, 20, 100])
     Compare([1, 1, 1, 1, 1], [10, 20, 10, 40])
 
+  def testCreateForSingleSample(self):
+    running = histogram.RunningStatistics.CreateForSingleSample({
+        'avg': 42,
+        'std': 20
+    })
+    self.assertEqual(running.mean, 42)
+    self.assertAlmostEqual(running.stddev, 20)
+    self.assertEqual(running.count, histogram.RUNNING_STATS_FAKE_COUNT)
+    self.assertEqual(running.max, 42)
+    self.assertEqual(running.min, 42)
 
 def ToJSON(x):
   return json.dumps(x, separators=(',', ':'))
@@ -256,6 +266,13 @@ class HistogramUnittest(unittest.TestCase):
     hist.AddSample(None)
     hist.AddSample(float('nan'))
     self.assertEqual(hist.num_nans, 2)
+
+  def testAddMeanAndError(self):
+    hist = histogram.Histogram('', 'unitless', self.TEST_BOUNDARIES)
+    hist.AddMeanAndError(42, 20)
+    self.assertEqual(hist.num_values, histogram.RUNNING_STATS_FAKE_COUNT)
+    self.assertEqual(hist.sample_values, [42])
+    self.assertAlmostEqual(hist.standard_deviation, 20)
 
   def testAddHistogramValid(self):
     hist0 = histogram.Histogram('', 'unitless', self.TEST_BOUNDARIES)

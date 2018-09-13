@@ -22,7 +22,7 @@ from tracing.value.diagnostics import reserved_infos
 # between platforms, whereas ECMA Script specifies this value for all platforms.
 # The specific value should not matter in normal practice.
 JS_MAX_VALUE = 1.7976931348623157e+308
-
+RUNNING_STATS_FAKE_COUNT = 10
 
 # Converts the given percent to a string in the following format:
 # 0.x produces '0x0',
@@ -307,6 +307,33 @@ class RunningStatistics(object):
         result._meanlogs = (self._count * self._meanlogs +
                             other._count * other._meanlogs) / result._count
     return result
+
+  @staticmethod
+  def CreateForSingleSample(statistics):
+    """Computes a dummy running statistics for a single sample.
+
+    Data which exist natively as Rows, and data from legacy test harnesses, only
+    record an average and an error (standard deviation), without any further
+    information about samples. In order to represent such points using histograms,
+    we need to fudge the running statistics for the other values.
+
+    Args:
+      statistics: a RunningStatistics dict with optinal avg/count/std/etc. fields
+    Returns:
+      A RunningStatistics object reflecting the passed values.
+    """
+    if statistics.get('avg') is None:
+      return None
+    count = statistics.get('count', RUNNING_STATS_FAKE_COUNT)
+    std = statistics.get('std', 0)
+    return RunningStatistics.FromDict([
+        count,
+        statistics.get('max', statistics['avg']),
+        0,  # meanlogs for geometricMean
+        statistics['avg'],
+        statistics.get('min', statistics['avg']),
+        statistics.get('sum', statistics['avg'] * count),
+        std * std * (count - 1)])
 
   def AsDict(self):
     if self._count == 0:
@@ -1051,6 +1078,16 @@ class Histogram(object):
     return self._bins[self.GetBinIndexForValue(value)]
 
   def AddSample(self, value, diagnostic_map=None):
+    self._AddSampleImpl(value, diagnostic_map)
+
+  def AddMeanAndError(self, mean, error):
+    running = RunningStatistics.CreateForSingleSample({
+        'avg': mean,
+        'std': error
+    })
+    self._AddSampleImpl(mean, None, running)
+
+  def _AddSampleImpl(self, value, diagnostic_map, running=None):
     if (diagnostic_map is not None and
         not isinstance(diagnostic_map, DiagnosticMap)):
       diagnostic_map = DiagnosticMap(diagnostic_map)
@@ -1061,16 +1098,23 @@ class Histogram(object):
         UniformlySampleStream(self._nan_diagnostic_maps, self.num_nans,
                               diagnostic_map, MAX_DIAGNOSTIC_MAPS)
     else:
-      if self._running is None:
-        self._running = RunningStatistics()
-      self._running.Add(value)
+      if not running:
+        if self._running is None:
+          self._running = RunningStatistics()
+        self._running.Add(value)
+      else:
+        self._running = running
 
       bin_index = self.GetBinIndexForValue(value)
       hbin = self._bins[bin_index]
       if hbin.count == 0:
         hbin = HistogramBin(hbin.range)
         self._bins[bin_index] = hbin
-      hbin.AddSample(value)
+      if not running:
+        hbin.AddSample(value)
+      else:
+        for _ in xrange(RUNNING_STATS_FAKE_COUNT):
+          hbin.AddSample(value)
       if diagnostic_map:
         hbin.AddDiagnosticMap(diagnostic_map)
 

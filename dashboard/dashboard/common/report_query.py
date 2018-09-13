@@ -204,7 +204,8 @@ class ReportQuery(object):
         units=test.units,
         improvement_direction=test.improvement_direction,
         revision=data_row.revision,
-        statistics=_MakeRunningStatistics(statistics))
+        statistics=histogram_module.RunningStatistics.CreateForSingleSample(
+            statistics))
     table_row[rev].append(datum)
 
     max_rev_key = (desc.test_suite, desc.bot, tri, rev)
@@ -224,7 +225,8 @@ class ReportQuery(object):
       raise ndb.Return()
 
     table_row[rev].append(datum)
-    datum['statistics'] = _MakeRunningStatistics(statistics)
+    stats = histogram_module.RunningStatistics.CreateForSingleSample(statistics)
+    datum['statistics'] = stats
 
     max_rev_key = (desc.test_suite, desc.bot, tri, rev)
     self._max_revs[max_rev_key] = max(
@@ -278,17 +280,3 @@ class ReportQuery(object):
     data_row = yield query.get_async()
     raise ndb.Return(data_row)
 
-
-def _MakeRunningStatistics(statistics):
-  if statistics.get('avg') is None:
-    return None
-  count = statistics.get('count', 10)
-  std = statistics.get('std', 0)
-  return histogram_module.RunningStatistics.FromDict([
-      count,
-      statistics.get('max', statistics['avg']),
-      0,  # meanlogs for geometricMean
-      statistics['avg'],
-      statistics.get('min', statistics['avg']),
-      statistics.get('sum', statistics['avg'] * count),
-      std * std * (count - 1)])

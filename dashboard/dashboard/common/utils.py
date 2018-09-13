@@ -23,6 +23,7 @@ import httplib2
 from oauth2client import client
 
 from dashboard.common import stored_object
+from tracing.value import histogram as histogram_module
 
 SHERIFF_DOMAINS_KEY = 'sheriff_domains_key'
 IP_WHITELIST_KEY = 'ip_whitelist'
@@ -34,7 +35,6 @@ OAUTH_SCOPES = (
     'https://www.googleapis.com/auth/userinfo.email',
 )
 OAUTH_ENDPOINTS = ['/api/', '/add_histograms']
-
 
 def _GetNowRfc3339():
   """Returns the current time formatted per RFC 3339."""
@@ -619,9 +619,11 @@ def GetLogdogLogUriFromStdioLink(stdio_link):
       master, bot, buildnumber, step), safe='')
   return 'https://luci-logdog.appspot.com/v/?s=%s' % s_param
 
+
 def GetRowKey(testmetadata_key, revision):
   test_container_key = GetTestContainerKey(testmetadata_key)
   return ndb.Key('Row', revision, parent=test_container_key)
+
 
 def GetSheriffForAutorollCommit(commit_info):
   if not commit_info:
