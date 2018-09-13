@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f20f0c57_a4a645a4",
+        "filename": "telemetry/telemetry/timeline/chrome_trace_category_filter.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-09-13T10:05:38Z",
+      "side": 1,
+      "message": "can you add:\nif \",\" in category:\n  raise ValueError(\u0027...\u0027)?",
+      "revId": "e9ec13cb733a3706223cef40aed42b385fdac08c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
