@@ -1020,7 +1020,7 @@ class DeviceUtils(object):
   def RunShellCommand(self, cmd, shell=False, check_return=False, cwd=None,
                       env=None, run_as=None, as_root=False, single_line=False,
                       large_output=False, raw_output=False, timeout=None,
-                      retries=None):
+                      retries=None, adb_timeout=None):
     """Run an ADB shell command.
 
     The command to run |cmd| should be a sequence of program arguments
@@ -1065,6 +1065,11 @@ class DeviceUtils(object):
           (no splitting into lines).
       timeout: timeout in seconds
       retries: number of retries
+      adb_timeout: Timeout to be enforced by the adb_wrapper library. Setting
+        this parameter to a slightly smaller value than the `timeout` parameter
+        above allows to generate CommandTimeoutError exception with the output
+        property set. However, should adb_wrapper hang, the above timeout is
+        still enforced and the thread that has access to the output is abadoned.
 
     Returns:
       If single_line is False, the output of the command as a list of lines,
@@ -1086,7 +1091,10 @@ class DeviceUtils(object):
       return '%s=%s' % (key, cmd_helper.DoubleQuote(value))
 
     def run(cmd):
-      return self.adb.Shell(cmd)
+      if adb_timeout:
+        return self.adb.Shell(cmd, timeout=adb_timeout)
+      else:
+        return self.adb.Shell(cmd)
 
     def handle_check_return(cmd):
       try:
