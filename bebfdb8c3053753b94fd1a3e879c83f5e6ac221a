@@ -33,6 +33,24 @@
       "revId": "bebfdb8c3053753b94fd1a3e879c83f5e6ac221a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d812063d_5fcc54a0",
+        "filename": "telemetry/telemetry/wpr/archive_info.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-09-13T12:00:40Z",
+      "side": 1,
+      "message": "we could do that... I\u0027m somewhat worried about getting a collision just by the hash :P",
+      "parentUuid": "c3553cb8_6dc09f93",
+      "revId": "bebfdb8c3053753b94fd1a3e879c83f5e6ac221a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
