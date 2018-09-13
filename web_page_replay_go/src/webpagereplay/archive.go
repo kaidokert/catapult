@@ -28,6 +28,15 @@ var ErrNotFound = errors.New("not found")
 type ArchivedRequest struct {
 	SerializedRequest  []byte
 	SerializedResponse []byte // if empty, the request failed
+  Served bool
+}
+
+// RequestMatch represents a match when querying the archive for responses to a request
+type RequestMatch struct {
+  Match *ArchivedRequest
+  Request *http.Request
+  Response *http.Response
+  MatchRatio float64
 }
 
 func serializeRequest(req *http.Request, resp *http.Response) (*ArchivedRequest, error) {
@@ -79,6 +88,8 @@ type Archive struct {
 	NegotiatedProtocol map[string]string
 	// The time seed that was used to initialize deterministic.js.
 	DeterministicTimeSeedMs int64
+  // Whether to prefer unserved matches over previously served matches.
+  PreferUnservedMatches bool
 }
 
 func newArchive() Archive {
@@ -157,8 +168,8 @@ func (a *Archive) FindRequest(req *http.Request, scheme string) (*http.Request, 
 	}
 	var bestRatio float64
 	if len(hostMap[u.String()]) > 0 {
-		var bestRequest *http.Request
-		var bestResponse *http.Response
+		var bestUnservedMatch RequestMatch
+    var bestMatch RequestMatch
 		// There can be multiple requests with the same URL string. If that's the case,
 		// break the tie by the number of headers that match.
 		for _, r := range hostMap[u.String()] {
@@ -182,15 +193,26 @@ func (a *Archive) FindRequest(req *http.Request, scheme string) (*http.Request, 
 			ratio := 2 * float64(m) / float64(t)
 			// Note that since |m| starts from 1. The ratio will be more than 0
 			// even if no header matches.
-			if ratio > bestRatio {
-				bestRequest = curReq
-				bestResponse = curResp
-				bestRatio = ratio
-			}
+			if a.PreferUnservedMatches && !r.Served && ratio > bestUnservedMatch.MatchRatio {
+        bestUnservedMatch.Match = r
+        bestUnservedMatch.Request = curReq
+        bestUnservedMatch.Response = curResp
+        bestUnservedMatch.MatchRatio = ratio
+      }
+      if ratio > bestMatch.MatchRatio {
+        bestMatch.Match = r
+        bestMatch.Request = curReq
+        bestMatch.Response = curResp
+        bestMatch.MatchRatio = ratio
+      }
 		}
-		if bestRequest != nil && bestResponse != nil {
-			return bestRequest, bestResponse, nil
-		}
+		if a.PreferUnservedMatches && bestUnservedMatch.Match != nil {
+      bestUnservedMatch.Match.Served = true
+      return bestUnservedMatch.Request, bestUnservedMatch.Response, nil
+    } else if bestMatch.Match != nil {
+      bestMatch.Match.Served = true;
+      return bestMatch.Request, bestMatch.Response, nil
+    }
 	}
 
 	// For all URLs with a matching path, pick the URL that has the most matching query parameters.
