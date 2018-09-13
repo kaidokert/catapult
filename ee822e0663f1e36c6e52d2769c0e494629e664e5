@@ -52,6 +52,24 @@
       "revId": "ee822e0663f1e36c6e52d2769c0e494629e664e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34acc731_339c3ce4",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1179424
+      },
+      "writtenOn": "2018-09-13T14:04:39Z",
+      "side": 1,
+      "message": "The parameter serving_dirs of StorySet\u0027s constructor is still used by some tests, so it\u0027s not trivial to remove it.\nhttps://cs.chromium.org/search/?q\u003dfile:src/tools/perf+\"serving_dirs%3D\"",
+      "parentUuid": "3bf114cc_09b1075e",
+      "revId": "ee822e0663f1e36c6e52d2769c0e494629e664e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
