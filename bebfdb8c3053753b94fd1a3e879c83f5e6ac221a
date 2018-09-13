@@ -51,6 +51,24 @@
       "revId": "bebfdb8c3053753b94fd1a3e879c83f5e6ac221a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "272d6951_d95ef729",
+        "filename": "telemetry/telemetry/wpr/archive_info.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-09-13T12:01:55Z",
+      "side": 1,
+      "message": "I think let\u0027s add an assertion that there is no collision. If anyone encounter that, we can just extend the hash to file_hash[10] :D",
+      "parentUuid": "d812063d_5fcc54a0",
+      "revId": "bebfdb8c3053753b94fd1a3e879c83f5e6ac221a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
