@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "7bed868d_f2bfdf9b",
+        "filename": "telemetry/telemetry/wpr/archive_info.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-09-13T13:24:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e06ed3a4_715cc3de",
+      "revId": "bebfdb8c3053753b94fd1a3e879c83f5e6ac221a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c3553cb8_6dc09f93",
         "filename": "telemetry/telemetry/wpr/archive_info.py",
         "patchSetId": 5
@@ -105,6 +123,24 @@
       "revId": "bebfdb8c3053753b94fd1a3e879c83f5e6ac221a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a0f729d_0e6a024a",
+        "filename": "telemetry/telemetry/wpr/archive_info.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-09-13T13:24:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8b09f30_f7f89b8e",
+      "revId": "bebfdb8c3053753b94fd1a3e879c83f5e6ac221a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
