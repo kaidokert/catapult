@@ -55,7 +55,7 @@ const app = new Vue({
       if (currentDiagnostic === undefined) {
         return undefined;
       }
-      if (currentDiagnostic !== 'number') {
+      if (typeof currentDiagnostic !== 'number') {
         currentDiagnostic = currentDiagnostic[0];
       }
       return currentDiagnostic;
@@ -177,9 +177,17 @@ const app = new Vue({
       }
       const obj = {};
       for (const [key, value] of content.entries()) {
+        let key_ = key;
+        if (diagnostics !== undefined) {
+          if (typeof diagnostics[0] === 'number') {
+            key_ = Number(key_);
+          } else {
+            key_ = key_.toString();
+          }
+        }
         if (diagnostics === undefined ||
-          diagnostics.includes(key.toString())) {
-          obj[key] = value;
+          diagnostics.includes(key_)) {
+          obj[key_] = value;
         }
       }
       return obj;
@@ -259,46 +267,32 @@ const app = new Vue({
     //  metric and all labels.
     parsedMetrics() {
       const newGridData = [];
+      const gridMetricsName = [];
       for (const metric of this.parsedMetrics) {
         for (const elem of this.defaultGridData) {
           if (elem.metric === metric) {
             newGridData.push(elem);
+            gridMetricsName.push(elem.metric);
           }
         }
       }
       this.gridData = newGridData;
 
-      //  We select from sampleValues all the metrics thath
-      //  corespond to the result from tree menu (gridData)
-      const metricsDependingOnGrid = [];
-      const gridMetricsName = [];
-
-      for (const metric of this.gridData) {
-        gridMetricsName.push(metric.metric);
-      }
-
-      for (const metric of this.sampleArr) {
-        if (gridMetricsName.includes(metric.name)) {
-          metricsDependingOnGrid.push(metric);
-        }
-      }
       //  The top level metric is taken as source in
       //  computing stories.
       const storiesName = this.getStoriesByMetric(this
           .gridData[0].metric);
       const labelsName = this.columnsForChosenDiagnostic;
-      const obj = this.computeDataForStackPlot(metricsDependingOnGrid,
-          storiesName, labelsName);
-      this.plotStackBar(obj, newGridData[0].metric);
-      //  From now on the user will be aible to switch between
-      //  this 2 types of plot (taking into consideration that
-      //  the scope of the tree-menu is to analyse using the
-      //  the stacked plot and bar plot, we avoid for the moment
-      //  other types of plot that should be actually used without
-      //  using the tree menu)
-      this.typesOfPlot = ['Bar chart plot', 'Stacked bar plot',
-        'Cumulative frequency plot', 'Dot plot'];
-      this.chosenTypeOfPlot = 'Stacked bar plot';
+
+      this.$refs.tableComponent.markedTableMetrics = gridMetricsName;
+      this.$refs.tableComponent.markedTableStories = storiesName;
+      this.$refs.tableComponent.markedTableDiagnostics = labelsName;
+
+      this.typesOfPlot = ['Cumulative frequency plot', 'Dot plot'];
+
+      this.$refs.tableComponent.setCheckBoxes(true, 'checkbox-metric');
+      this.$refs.tableComponent.setCheckBoxes(true, 'checkbox-head');
+      this.$refs.tableComponent.setCheckBoxes(true, 'checkbox-story');
     }
   }
 });
