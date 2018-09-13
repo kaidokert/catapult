@@ -34,6 +34,24 @@
       "revId": "ee822e0663f1e36c6e52d2769c0e494629e664e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3bf114cc_09b1075e",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-09-13T10:25:08Z",
+      "side": 1,
+      "message": "Ah. Actually I believe this is probably never set in story_set\u0027s instructor, so it\u0027s effectively deadcode.\n\nCan you file a but about removing serving_dirs in story_set\u0027s constructor \u0026 add a TODO(crbug/...) here about initializing serving_dirs at line 184 to just a set?\n\nOther than that, this CL is good to land",
+      "parentUuid": "d1ea4a31_41f446a1",
+      "revId": "ee822e0663f1e36c6e52d2769c0e494629e664e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
