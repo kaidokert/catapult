@@ -22,6 +22,30 @@
       "revId": "30fa17b0ad71b66365649743673a07476d7f48bd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8f4b2dc_7869eca7",
+        "filename": "catapult_build/run_wct.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-13T19:24:56Z",
+      "side": 1,
+      "message": "Without -persist, wct closes chrome as soon as tests finish. This makes it difficult to debug failing tests.\nThe infra repo uses Makefiles with 2 phony targets: \u0027wct\u0027 omits -persist, \u0027wct_debug\u0027 includes -persist.",
+      "parentUuid": "74984f50_a2facf31",
+      "range": {
+        "startLine": 48,
+        "startChar": 5,
+        "endLine": 48,
+        "endChar": 12
+      },
+      "revId": "30fa17b0ad71b66365649743673a07476d7f48bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
