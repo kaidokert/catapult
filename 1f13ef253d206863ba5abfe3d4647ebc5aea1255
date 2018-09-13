@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e83a500b_73274817",
+        "filename": "experimental/long_term_health/long_term_health/test_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-13T09:48:10Z",
+      "side": 1,
+      "message": "Don\u0027t hard code this path relative to home. People may have this checked out in other locations.\n\nInstead is not as terrible if figure out first CATAPULT_ROOT (from the location of this file), and then assume that CHROMIUM_ROOT is two levels up (i.e. /third_party/catapult/../..)",
+      "revId": "1f13ef253d206863ba5abfe3d4647ebc5aea1255",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f170b3d3_e3808279",
+        "filename": "experimental/long_term_health/long_term_health/test_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-13T09:48:10Z",
+      "side": 1,
+      "message": "Let\u0027s not include constants which aren\u0027t used yet (e.g. SWARMING and ISOLATE_SERVER). We\u0027ll add them later when we first use them.",
+      "revId": "1f13ef253d206863ba5abfe3d4647ebc5aea1255",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de8a8f9d_10794026",
+        "filename": "experimental/long_term_health/long_term_health/test_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-13T09:48:10Z",
+      "side": 1,
+      "message": "should this just be PATH_TO_APKS?",
+      "revId": "1f13ef253d206863ba5abfe3d4647ebc5aea1255",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f96ff9e1_1c06dda1",
+        "filename": "experimental/long_term_health/long_term_health/test_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-13T09:48:10Z",
+      "side": 1,
+      "message": "use os.path.basename",
+      "revId": "1f13ef253d206863ba5abfe3d4647ebc5aea1255",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ac34122_49b5e20b",
+        "filename": "experimental/long_term_health/long_term_health/test_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-13T09:48:10Z",
+      "side": 1,
+      "message": "Let\u0027s not kill the directory if it\u0027s already there. We may (or not) want to call this method multiple times to add multiple APKs. But do create it if it doesn\u0027t exist.",
+      "revId": "1f13ef253d206863ba5abfe3d4647ebc5aea1255",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
