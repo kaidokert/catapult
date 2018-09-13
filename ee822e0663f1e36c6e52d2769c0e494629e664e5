@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2138daee_cad1042c",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-09-13T10:08:47Z",
+      "side": 1,
+      "message": "Why not access the public version of serving_dirs? https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/story/story_set.py?rcl\u003d03b5af992bf7cfcec88147b0cf1a793c5ab1df4c\u0026l\u003d70",
+      "revId": "ee822e0663f1e36c6e52d2769c0e494629e664e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
