@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a44de0d_94954c3b",
+        "filename": "telemetry/telemetry/wpr/archive_info.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-09-13T14:17:00Z",
+      "side": 1,
+      "message": "I think we don\u0027t even need this. Just always use \"base \u003d os.path.splitext(os.path.basename(self._file_path))[0]\" instead",
+      "range": {
+        "startLine": 198,
+        "startChar": 0,
+        "endLine": 216,
+        "endChar": 16
+      },
+      "revId": "d1f7f493a3c60e0bacbff3528aafc6b1683c16c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
