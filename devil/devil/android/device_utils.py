@@ -1020,7 +1020,7 @@ class DeviceUtils(object):
   def RunShellCommand(self, cmd, shell=False, check_return=False, cwd=None,
                       env=None, run_as=None, as_root=False, single_line=False,
                       large_output=False, raw_output=False, timeout=None,
-                      retries=None):
+                      retries=None, adb_timeout=None):
     """Run an ADB shell command.
 
     The command to run |cmd| should be a sequence of program arguments
@@ -1065,6 +1065,10 @@ class DeviceUtils(object):
           (no splitting into lines).
       timeout: timeout in seconds
       retries: number of retries
+      adb_timeout: Timeout to be enforced by the adb tool itself. Setting this
+        parameter to a slightly smaller than `timeout` parameter above prevents
+        ReraiserThread from killing the ADB thread and ensures that the output
+        from the command is available in the generated exception.
 
     Returns:
       If single_line is False, the output of the command as a list of lines,
@@ -1086,7 +1090,7 @@ class DeviceUtils(object):
       return '%s=%s' % (key, cmd_helper.DoubleQuote(value))
 
     def run(cmd):
-      return self.adb.Shell(cmd)
+      return self.adb.Shell(cmd, timeout=adb_timeout)
 
     def handle_check_return(cmd):
       try:
