@@ -123,6 +123,11 @@ class FooStoryState(TestSharedPageState):
   pass
 
 
+class DoNothingSharedState(TestSharedState):
+  def RunStory(self, results):
+    pass
+
+
 class DummyTest(legacy_page_test.LegacyPageTest):
   def RunPage(self, *_):
     pass
@@ -1534,10 +1539,6 @@ class StoryRunnerTest(unittest.TestCase):
 
   def testRunBenchmarkReturnCodeSuccessfulRun(self):
 
-    class DoNothingSharedState(TestSharedState):
-      def RunStory(self, results):
-        pass
-
     class TestBenchmark(benchmark.Benchmark):
       test = DummyTest
       def CreateStorySet(self, options):
@@ -1607,6 +1608,36 @@ class StoryRunnerTest(unittest.TestCase):
         unhandled_failure_benchmark, options)
     self.assertEquals(2, return_code)
 
+  def testDownloadMinimalServingDirs(self):
+    foo_page = page_module.Page(
+        'file://foo/foo', name='foo', tags=['foo'],
+        shared_page_state_class=DoNothingSharedState)
+    bar_page = page_module.Page(
+        'file://bar/bar', name='bar', tags=['bar'],
+        shared_page_state_class=DoNothingSharedState)
+    bucket = cloud_storage.PUBLIC_BUCKET
+
+    class TestBenchmark(benchmark.Benchmark):
+      test = DummyTest
+      def CreateStorySet(self, options):
+        story_set = story_module.StorySet(cloud_storage_bucket=bucket)
+        story_set.AddStory(foo_page)
+        story_set.AddStory(bar_page)
+        return story_set
+
+    def options_callback(options):
+      options.story_tag_filter = 'foo'
+
+    test_benchmark = TestBenchmark()
+    options = _GenerateBaseBrowserFinderOptions(options_callback)
+    options.output_dir = '/does/not/exist'
+    options.output_formats = ['none']
+    patch_method = 'py_utils.cloud_storage.GetFilesInDirectoryIfChanged'
+    with mock.patch(patch_method) as cloud_patch:
+      story_runner.RunBenchmark(test_benchmark, options)
+      # Foo is the only included story serving dir
+      self.assertEqual(cloud_patch.call_count, 1)
+      cloud_patch.assert_called_once_with(foo_page.serving_dir, bucket)
 
 class BenchmarkJsonResultsTest(unittest.TestCase):
 
