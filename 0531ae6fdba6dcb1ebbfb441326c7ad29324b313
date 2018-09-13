@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "29780f3e_f34ea963",
+        "filename": "experimental/long_term_health/long_term_health/test_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-13T11:45:58Z",
+      "side": 1,
+      "message": "on both of these, use os.path.normpath on the result so the \u0027..\u0027 get resolved away.",
+      "revId": "0531ae6fdba6dcb1ebbfb441326c7ad29324b313",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
