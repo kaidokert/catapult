@@ -70,6 +70,24 @@
       "revId": "ee822e0663f1e36c6e52d2769c0e494629e664e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2545eec3_25443c5f",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-09-13T14:14:19Z",
+      "side": 1,
+      "message": "There are only 3 places https://cs.chromium.org/search/?q\u003dfile:src/tools/perf+%22serving_dirs%3D%22\u0026type\u003dcs and they can all be moved to page level, not story_set level specification.",
+      "parentUuid": "34acc731_339c3ce4",
+      "revId": "ee822e0663f1e36c6e52d2769c0e494629e664e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
