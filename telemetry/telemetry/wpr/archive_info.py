@@ -140,7 +140,10 @@ class WprArchiveInfo(object):
       os.remove(self.temp_target_wpr_file_path)
       return
 
-    (target_wpr_file, target_wpr_file_path) = self._NextWprFileName()
+    target_wpr_file_hash = cloud_storage.CalculateHash(
+        self.temp_target_wpr_file_path)
+    (target_wpr_file, target_wpr_file_path) = self._NextWprFileName(
+        target_wpr_file_hash)
     for story in stories:
       # Check to see if the platform has been manually overrided.
       if not story.platform_specific:
@@ -152,7 +155,6 @@ class WprArchiveInfo(object):
     shutil.move(self.temp_target_wpr_file_path, target_wpr_file_path)
 
     # Update the hash file.
-    target_wpr_file_hash = cloud_storage.CalculateHash(target_wpr_file_path)
     with open(target_wpr_file_path + '.sha1', 'wb') as f:
       f.write(target_wpr_file_hash)
       f.flush()
@@ -188,7 +190,7 @@ class WprArchiveInfo(object):
   def _WprFileNameToPath(self, wpr_file):
     return os.path.abspath(os.path.join(self._base_dir, wpr_file))
 
-  def _NextWprFileName(self):
+  def _NextWprFileName(self, file_hash):
     """Creates a new file name for a wpr archive file."""
     # The names are of the format "some_thing_number.wpr" or
     # "some_thing_number.wprgo". Read the numbers.
@@ -199,11 +201,13 @@ class WprArchiveInfo(object):
     for story in self._data['archives']:
       for p in self._data['archives'][story]:
         wpr_files.append(self._data['archives'][story][p])
-
+    # Match new archive names which include a shortened hash and older names
+    # which only have a sequence number.
+    pattern = re.compile(
+        ('(?P<BASE>.*?)(_([a-z0-9]{{8}}))?_(?P<NUMBER>[0-9]+).{extension}'
+         .format(extension=extension)))
     for wpr_file in wpr_files:
-      pattern = r'(?P<BASE>.*)_(?P<NUMBER>[0-9]+).{extension}'.format(
-          extension=extension)
-      match = re.match(pattern, wpr_file)
+      match = pattern.match(wpr_file)
       if not match:
         raise Exception('Illegal wpr file name ' + wpr_file)
       highest_number = max(int(match.groupdict()['NUMBER']), highest_number)
@@ -215,7 +219,8 @@ class WprArchiveInfo(object):
       # If we're creating a completely new info file, use the base name of the
       # story set file.
       base = os.path.splitext(os.path.basename(self._file_path))[0]
-    new_filename = '%s_%03d.%s' % (base, highest_number + 1, extension)
+    new_filename = '%s_%s_%03d.%s' % (base, file_hash[:8], highest_number + 1,
+                                      extension)
     return new_filename, self._WprFileNameToPath(new_filename)
 
   def _SetWprFileForStory(self, story_name, wpr_file, target_platform):
