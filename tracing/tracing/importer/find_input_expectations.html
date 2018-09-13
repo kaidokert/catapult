@@ -1227,9 +1227,20 @@ tr.exportTo('tr.importer', function() {
 
         // Move the animation start to the response end.
         ape.start = rpe.end;
+        // Remove any frames that were part of the animation but are now before
+        // the animation.
+        if (ape.associatedEvents !== undefined) {
+          ape.associatedEvents = ape.associatedEvents.filter(
+              e => (!isFrameEvent(e) || e.start >= ape.start));
+        }
       });
     });
     return protoExpectations;
+  }
+
+  function isFrameEvent(event) {
+    return event.title === tr.model.helpers.IMPL_RENDERING_STATS ||
+        event.title === tr.model.helpers.MAIN_FRAMETIME_TYPE;
   }
 
   /**
