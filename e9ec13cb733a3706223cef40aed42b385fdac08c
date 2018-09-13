@@ -16,6 +16,24 @@
       "revId": "e9ec13cb733a3706223cef40aed42b385fdac08c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5735a044_b1f455cd",
+        "filename": "telemetry/telemetry/timeline/chrome_trace_category_filter.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-09-13T11:10:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f20f0c57_a4a645a4",
+      "revId": "e9ec13cb733a3706223cef40aed42b385fdac08c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
