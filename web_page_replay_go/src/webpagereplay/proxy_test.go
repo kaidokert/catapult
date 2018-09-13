@@ -272,3 +272,48 @@ func TestUpdateDates(t *testing.T) {
                 t.Errorf("got: %v\nwant: %v\n", responseHeader, wantHeader)
         }
 }
+
+func TestContentSecurityPolicy(t *testing.T) {
+	const (
+		oldPolicy              = "script-src 'self' https://foo.com;"
+		newPolicy              = "script-src 'unsafe-inline' 'self' https://foo.com ; "
+		oldPolicyWithNouce     = "script-src 'strict-dynamic' 'nonce-2726c7f26c'"
+		newPolicyWithoutNounce = "script-src 'unsafe-inline' "
+		oldPolicyWithHash1     = "script-src " +
+		                         "'sha256-pwltXkdHyMvChFSLNauyy5WItOFOm+iDDsgqRTr8peI='"
+		oldPolicyWithHash2     = "script-src " +
+		                         "'sha384-oqVuAfXRKap7fdgcCY5uykM6+R9GqQ8K/uxy9rx7HNQlGYl1kPzQho1wx4JwY8wC'"
+		oldPolicyWithHash3     = "script-src " +
+		                         "'sha512-cLuU6nVzrYJlo7rUa6TMmz3nylPFrPQrEUpOHllb5ic='"
+		newPolicyWithoutHash   = "script-src 'unsafe-inline' "
+	)
+	inputContentSecurityPolicyHeaders := []string{
+		oldPolicy,
+		oldPolicyWithNouce,
+		oldPolicyWithHash1,
+		oldPolicyWithHash2,
+		oldPolicyWithHash3,
+	}
+	expectedOutputContentSecurityPolicyHeaders := []string{
+		newPolicy,
+		newPolicyWithoutNounce,
+		newPolicyWithoutHash,
+		newPolicyWithoutHash,
+		newPolicyWithoutHash,
+	}
+
+	for i := 0; i < len(inputContentSecurityPolicyHeaders); i++ {
+		responseHeader := http.Header {
+			"Content-Security-Policy": {inputContentSecurityPolicyHeaders[i]},
+		}
+		expectedHeader := http.Header{
+			"Content-Security-Policy": {expectedOutputContentSecurityPolicyHeaders[i]},
+		}
+
+		updateContentSecurityPolicy(responseHeader)
+		// Compare the output with the expected output
+		if !reflect.DeepEqual(responseHeader, expectedHeader) {
+			t.Errorf("got: %v\nexpected: %v\n", responseHeader, expectedHeader)
+		}
+	}
+}
