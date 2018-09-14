@@ -51,6 +51,24 @@
       "revId": "538b5781ab0508cde405aac2e8f57bdb903ac2b2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3077ee19_48b62cf8",
+        "filename": "telemetry/telemetry/core/platform.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-09-14T13:27:25Z",
+      "side": 1,
+      "message": "\u003e Also, methods in PlatformBackend are mostly not commented, so it is not clear\n\u003e whether it was just not thorough or the methods are supposed to do as little\n\u003e as possible, the latter would contradict the approach (2).\n\nSorry, I wanted to say s/2/1/. That is, when platform backend methods are\nsupposed to each do something small and simple, then it contradicts with the\nidea of keeping the class Platform thin.",
+      "parentUuid": "0f4647b1_49959783",
+      "revId": "538b5781ab0508cde405aac2e8f57bdb903ac2b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
