@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "47097e6a_1b6a0bf5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-09-14T16:06:25Z",
+      "side": 1,
+      "message": "I found the generator to be prone to mistakes, because you can\u0027t take its len() or iterate through it twice.",
+      "parentUuid": "01d0bd13_aeea9766",
+      "revId": "987026ee8d1c38283a2a526e4bada764f8824bcc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2fce97bd_a9afbb0d",
         "filename": "/COMMIT_MSG",
         "patchSetId": 2
