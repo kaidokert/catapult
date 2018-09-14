@@ -16,6 +16,24 @@
       "revId": "e81054c95ce95fb04f84197759730dde6e8981b0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2745d5f4_39b97df1",
+        "filename": "tracing/tracing/importer/find_input_expectations.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 1243,
+      "author": {
+        "id": 1303548
+      },
+      "writtenOn": "2018-09-14T15:29:00Z",
+      "side": 1,
+      "message": "Taking a closer look: There are calls to rendererHelper.getFrameEventsInRange that request IMPL frames only. So, IMPL is the only type of frame event that\u0027s relevant here, and MAIN is not required to be in isFrameEvent. Then, causedFrame can call isFrameEvent. Tests still pass after the removing checking for MAIN frames.\n\nThere was also check for frame events in checkAllInputEventsHandled which I\u0027ve now updated.",
+      "parentUuid": "4452ca59_d5189259",
+      "revId": "e81054c95ce95fb04f84197759730dde6e8981b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
