@@ -142,6 +142,7 @@ def _FindMonitoredStatsForTest(test):
   raise ndb.Return(['avg'])
 
 
+
 @ndb.synctasklet
 def GetRowsToAnalyze(test, max_num_rows):
   """Gets the Row entities that we want to analyze.
