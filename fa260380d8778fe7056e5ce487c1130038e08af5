@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eae31062_0fe7a58a",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-09-14T15:13:29Z",
+      "side": 1,
+      "message": "move this (and the other arrays of typesOfPlot) to constants with appropriate names, e.g.\n\nconst DEFAULT_PLOTS \u003d [\u0027Cumulative frequency plot\u0027, \u0027Dot plot\u0027]\nconst SINGLE_METRIC_PLOTS \u003d [ ... ]\n\nalternatively, make typesOfPlot a computed field based on e.g. number of selected metrics \u0026 stories.",
+      "range": {
+        "startLine": 16,
+        "startChar": 17,
+        "endLine": 16,
+        "endChar": 58
+      },
+      "revId": "fa260380d8778fe7056e5ce487c1130038e08af5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e665aad_fcc9083d",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1175774
+      },
+      "writtenOn": "2018-09-14T15:13:29Z",
+      "side": 1,
+      "message": "I\u0027m guessing you tried using v-model for this?",
+      "range": {
+        "startLine": 47,
+        "startChar": 34,
+        "endLine": 47,
+        "endChar": 41
+      },
+      "revId": "fa260380d8778fe7056e5ce487c1130038e08af5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
