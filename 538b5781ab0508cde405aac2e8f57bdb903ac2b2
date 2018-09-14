@@ -33,6 +33,24 @@
       "revId": "538b5781ab0508cde405aac2e8f57bdb903ac2b2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f4647b1_49959783",
+        "filename": "telemetry/telemetry/core/platform.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-09-14T11:46:31Z",
+      "side": 1,
+      "message": "Yeah same thoughts. If we aim at making this class thinner, then (1) comes to mind. Not all methods here are just forwarders, but it could be just the current state in the midst of transition (I don\u0027t know which).\n\nThe (2) is the choice if we want to avoid repeating the logic multiple times, even though the loop is trivial (not sure I should explain, just want to put all things on the table: repeating comes with bugfixes being more error-prone, leads to forgetting to fix some of the copies). Also, methods in PlatformBackend are mostly not commented, so it is not clear whether it was just not thorough or the methods are supposed to do as little as possible, the latter would contradict the approach (2).\n\nFrankly, I chose the path of least change - too many unknowns to take the right call.\n\nIf you are leaning towards (1), that\u0027s good, I\u0027ll do it this way in a few moments. Let me know if you prefer being asked before sending a change like this. That would work for me equally well.",
+      "parentUuid": "d7fb4d5e_2dcdde7d",
+      "revId": "538b5781ab0508cde405aac2e8f57bdb903ac2b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
