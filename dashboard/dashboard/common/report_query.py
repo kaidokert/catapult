@@ -8,6 +8,7 @@ from google.appengine.ext import ndb
 
 from dashboard.common import bot_configurations
 from dashboard.common import descriptor
+from dashboard.common import stored_object
 from dashboard.common import utils
 from dashboard.models import graph_data
 from tracing.value import histogram as histogram_module
@@ -16,7 +17,8 @@ from tracing.value import histogram as histogram_module
 def TableRowDescriptors(table_row):
   for test_suite in table_row['testSuites']:
     for bot in table_row['bots']:
-      for case in table_row['testCases']:
+      #table_row['testCases'] = table_row['testCases'][:20]
+      for i,case in enumerate(table_row['testCases']):
         yield descriptor.Descriptor(
             test_suite, table_row['measurement'], bot, case)
       if not table_row['testCases']:
@@ -67,6 +69,7 @@ class ReportQuery(object):
       for rev in self._revisions:
         row['data'][rev] = []
       self._report['rows'].append(row)
+      break#XXX just one row for faster debugging
 
   def FetchSync(self):
     return self.FetchAsync().get_result()
@@ -74,6 +77,7 @@ class ReportQuery(object):
   @ndb.tasklet
   def FetchAsync(self):
     yield [bot_configurations.Prefetch(), descriptor.PrefetchConfiguration()]
+    yield self._ResolveCommitPositions()
 
     # Get data for each descriptor in each table row in parallel.
     futures = []
@@ -92,6 +96,110 @@ class ReportQuery(object):
       self._MergeData(table_row)
 
     raise ndb.Return(self._report)
+
+  @ndb.tasklet
+  def _ResolveCommitPositions(self):
+    commit_pos_bots, chromium_commit_pos_bots = yield [
+        stored_object.GetCachedAsync('bots_with_different_r_commit_pos'),
+        stored_object.GetCachedAsync(
+            'bots_with_different_r_chromium_commit_pos')]
+    self._commit_pos_bots, self._chromium_commit_pos_bots = (
+        commit_pos_bots, chromium_commit_pos_bots)
+
+    # Resolve revisions for each bot+suite in parallel before fetching data.
+    # Multiple rows might need the same revisions, so speed things up by
+    # resolving them only once.
+    descriptors_by_bot_suite = {}
+    for tri, table_row in enumerate(self._report['rows']):
+      for desc in TableRowDescriptors(table_row):
+        prop_name = None
+        if desc.bot in commit_pos_bots:
+          prop_name = 'r_commit_pos'
+        elif desc.bot in chromium_commit_pos_bots:
+          prop_name = 'r_chromium_commit_pos'
+        if prop_name is None:
+          continue
+        bot_suite = (desc.bot, desc.test_suite)
+        descriptors_by_bot_suite.setdefault(bot_suite, []).append(desc)
+
+    self._revisions_by_bot_suite = {}
+    futures = []
+    for bot_suite, descriptors in descriptors_by_bot_suite.iteritems():
+      futures.extend([self._ResolveCommitPosition(descriptors, rev, prop_name)
+                      for rev in self._revisions
+                      if rev != 'latest'])
+    yield futures
+
+  @ndb.tasklet
+  def _ResolveCommitPosition(self, descriptors, cr_commit_pos, property_name):
+    for desc in descriptors:
+      desc = desc.Clone()
+      desc.statistic = 'avg'
+      test_paths = yield desc.ToTestPathsAsync()
+      test_keys = [
+          utils.TestMetadataKey(test_path) for test_path in test_paths] + [
+          utils.OldStyleTestKey(test_path) for test_path in test_paths]
+      data_rows = yield [
+          self._BisectRevision(test_key, cr_commit_pos, property_name)
+          for test_key in test_keys]
+
+      closest = None
+      for data_row in data_rows:
+        if data_row is None:
+          continue
+        if closest is None or (
+            abs(getattr(data_row, property_name) - cr_commit_pos) <
+            abs(getattr(closest, property_name) - cr_commit_pos)):
+          closest = data_row
+
+      if data_row:
+        bot_suite = (desc.bot, desc.test_suite)
+        self._revisions_by_bot_suite.setdefault(bot_suite, {})[
+            cr_commit_pos] = data_row.revision
+        break
+
+  @ndb.tasklet
+  def _BisectRevision(self, test_key, cr_commit_pos, property_name):
+    # cr_commit_pos is the target chromium commit position requested by the
+    # frontend.
+    # property_name is one of 'r_commit_pos' or 'r_chromium_commit_pos'.
+    [min_row, max_row] = yield [
+        graph_data.Row.query(graph_data.Row.parent_test == test_key).order(
+            graph_data.Row.revision).get_async(),
+        graph_data.Row.query(graph_data.Row.parent_test == test_key).order(
+            -graph_data.Row.revision).get_async(),
+    ]
+    logging.info('_BisectRevision start tp=%r rcp=%r i.r=%r i.rcp=%r a.r=%r a.rcp=%r',
+        utils.TestPath(test_key),
+        cr_commit_pos,
+        min_row.revision if min_row else None,
+        (getattr(min_row, property_name) if min_row else None),
+        max_row.revision if max_row else None,
+        (getattr(max_row, property_name) if max_row else None))
+    if min_row is None or max_row is None:
+      raise ndb.Return(None)
+    if int(getattr(min_row, property_name)) > cr_commit_pos:
+      raise ndb.Return(None)
+    if int(getattr(max_row, property_name)) < cr_commit_pos:
+      raise ndb.Return(None)
+    min_revision = min_row.revision
+    max_revision = max_row.revision
+    while min_revision < max_revision:
+      mid_revision = (min_revision + max_revision) / 2
+      data_row = yield self._GetDataRowAtRevision(test_key, mid_revision)
+      current_commit_pos = int(getattr(data_row, property_name))
+      if current_commit_pos == cr_commit_pos:
+        break
+      elif current_commit_pos > cr_commit_pos:
+        max_revision = mid_revision - 1
+      else:
+        min_revision = mid_revision + 1
+    logging.info('_BisectRevision done %r %r %r %r',
+        utils.TestPath(test_key),
+        cr_commit_pos,
+        getattr(data_row, property_name),
+        data_row.revision)
+    raise ndb.Return(data_row)
 
   def _IgnoreStaleData(self, tri, table_row):
     # Ignore data from test cases that were removed.
@@ -189,7 +297,7 @@ class ReportQuery(object):
 
   @ndb.tasklet
   def _GetUnsuffixedCell(self, tri, table_row, desc, test, test_path, rev):
-    data_row = yield self._GetDataRow(test_path, rev)
+    data_row = yield self._GetDataRow(test_path, rev, desc)
     if data_row is None:
       # Fall back to suffixed tests.
       yield self._GetSuffixedCell(tri, table_row, desc, rev)
@@ -253,7 +361,7 @@ class ReportQuery(object):
         datum['units'] = test.units
         datum['improvement_direction'] = test.improvement_direction
       test_path = utils.TestPath(test.key)
-      data_row = yield self._GetDataRow(test_path, rev)
+      data_row = yield self._GetDataRow(test_path, rev, desc)
       if not data_row:
         continue
       if not last_data_row or data_row.revision > last_data_row.revision:
@@ -264,10 +372,10 @@ class ReportQuery(object):
     raise ndb.Return(last_data_row.value)
 
   @ndb.tasklet
-  def _GetDataRow(self, test_path, rev):
+  def _GetDataRow(self, test_path, rev, desc):
     entities = yield [
-        self._GetDataRowForKey(utils.TestMetadataKey(test_path), rev),
-        self._GetDataRowForKey(utils.OldStyleTestKey(test_path), rev)]
+        self._GetDataRowForKey(utils.TestMetadataKey(test_path), rev, desc),
+        self._GetDataRowForKey(utils.OldStyleTestKey(test_path), rev, desc)]
     entities = [e for e in entities if e]
     if not entities:
       raise ndb.Return(None)
@@ -277,12 +385,51 @@ class ReportQuery(object):
     raise ndb.Return(entities[0])
 
   @ndb.tasklet
-  def _GetDataRowForKey(self, test_key, rev):
+  def _GetDataRowForKey(self, test_key, rev, desc):
+    # The frontend sets rev to 6-digit chromium commit positions.
+    # Some bot+suites have chromium commit positions in r_commit_pos, some in
+    # r_chromium_commit_pos. Whitelist them for bisection, fall back to querying
+    # Row.revision for other bot+suites.
+    if rev == 'latest':
+      data_row = yield self._GetDataRowAtRevision(test_key, None)
+    elif rev in self._revisions_by_bot_suite.get(
+        (desc.bot, desc.test_suite), {}):
+      rev = self._revisions_by_bot_suite[desc.bot, desc.test_suite][rev]
+      data_row = yield self._GetDataRowAtRevision(test_key, rev)
+    elif desc.bot in self._commit_pos_bots:
+      data_row = yield self._BisectRevision(test_key, rev, 'r_commit_pos')
+      logging.info('_GetDataRowForKey tp=%r rev=%r .r=%r .rcp=%r rbs=%r',
+          utils.TestPath(test_key),
+          rev,
+          (data_row.revision if data_row else None),
+          (getattr(data_row, 'r_commit_pos') if data_row else None),
+          self._revisions_by_bot_suite.get((desc.bot, desc.test_suite), {}))
+      if data_row and (rev in self._revisions_by_bot_suite.get(
+          (desc.bot, desc.test_suite), {})):
+        rev = self._revisions_by_bot_suite[desc.bot, desc.test_suite][rev]
+        if rev != data_row.revision:
+          logging.warn('_GetDataRowForKey difference %r %r', data_row.revision, rev)
+          data_row = None
+    elif desc.bot in self._chromium_commit_pos_bots:
+      data_row = yield self._BisectRevision(test_key, rev, 'r_chromium_commit_pos')
+    else:
+      data_row = yield self._GetDataRowAtRevision(
+          test_key, None if rev == 'latest' else rev)
+    raise ndb.Return(data_row)
+
+  @ndb.tasklet
+  def _GetDataRowAtRevision(self, test_key, rev):
     query = graph_data.Row.query(graph_data.Row.parent_test == test_key)
-    if rev != 'latest':
+    if rev is not None:
       query = query.filter(graph_data.Row.revision <= rev)
     query = query.order(-graph_data.Row.revision)
     data_row = yield query.get_async()
+    rcp = None
+    if data_row:
+      rcp = getattr(data_row, 'r_commit_pos')
+    #logging.info('_GetDataRowAtRevision rev=%r rcp=%r .r=%r tp=%r',
+    #    rev, rcp, (data_row.revision if data_row else None),
+    #    utils.TestPath(test_key))
     raise ndb.Return(data_row)
 
 
