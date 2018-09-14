@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b7183721_3b0775e2",
+        "filename": "cr-buildbucket.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1002080
+      },
+      "writtenOn": "2018-09-14T17:57:24Z",
+      "side": 1,
+      "message": "Also add:\n\ndimensions: \"device_type:bullhead\"\n\nIt\u0027s a dimension I made up for these special cases\n\nhttps://chrome-internal.googlesource.com/infradata/config/+/master/configs/chromium-swarm/bots.cfg#761",
+      "revId": "9b07fefdbff824c25fd1e9e7ea67e7b1d47dbdc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
