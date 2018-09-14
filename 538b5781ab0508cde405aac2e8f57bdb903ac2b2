@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cc02ea27_14c3b852",
+        "filename": "telemetry/telemetry/core/platform.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-14T10:42:12Z",
+      "side": 1,
+      "message": "+1 to this change in the API, this is what calles actually want to do.",
+      "revId": "538b5781ab0508cde405aac2e8f57bdb903ac2b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7fb4d5e_2dcdde7d",
+        "filename": "telemetry/telemetry/core/platform.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-14T10:42:12Z",
+      "side": 1,
+      "message": "This bit, I\u0027m not totally sure whether _WaitForPageCacheToBeDropped should be added here, or whether that should be a responsibility of each _platform_backend to implement. I can see arguments either way:\n\n(1) It\u0027s an implementation detail that this class shouldn\u0027t care about; this class should only be a thin wrapper forwarding calls to individual platform_backend implementations.\n\n(2) It\u0027s easier/cleaner to apply the change here, so it applies to all platforms.\n\nI\u0027m slightly leaning towards 1. Do you have any thoughts?",
+      "revId": "538b5781ab0508cde405aac2e8f57bdb903ac2b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
