@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "01d0bd13_aeea9766",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-14T11:02:37Z",
+      "side": 1,
+      "message": "Why this change? It sounds like we\u0027re going from something more to less generic?",
+      "revId": "987026ee8d1c38283a2a526e4bada764f8824bcc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fce97bd_a9afbb0d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-14T11:02:37Z",
+      "side": 1,
+      "message": "+1 to this, looks a lot better.",
+      "revId": "987026ee8d1c38283a2a526e4bada764f8824bcc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
