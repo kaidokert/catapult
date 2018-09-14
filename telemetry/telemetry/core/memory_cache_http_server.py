@@ -6,6 +6,7 @@ import BaseHTTPServer
 from collections import namedtuple
 import errno
 import gzip
+import logging
 import mimetypes
 import os
 import SimpleHTTPServer
@@ -206,6 +207,9 @@ class _MemoryCacheHTTPServerImpl(SocketServer.ThreadingMixIn,
       dir_path = os.path.dirname(file_path)
       self.resource_map[dir_path] = self.resource_map[file_path]
 
+  def handle_error(self, request, client_address):
+    logging.warning("An error occured in socket %s", request.getsockname())
+    request.close()
 
 class MemoryCacheHTTPServerBackend(local_server.LocalServerBackend):
 
