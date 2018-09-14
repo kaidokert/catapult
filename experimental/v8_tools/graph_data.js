@@ -92,6 +92,9 @@ class GraphData {
     this.callInteractiveCallback_(story, key);
   }
 
+  interactiveCallbackForCategory(category) {
+    this.callInteractiveCallback_(category);
+  }
   callInteractiveCallback_(...args) {
     if (this.interactiveCallback_ !== undefined) {
       this.interactiveCallback_(...args);
