@@ -46,6 +46,30 @@
       "revId": "134ee369521c676229d0c4c38a96fb54a5ab4967",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7dbfd18a_c50da239",
+        "filename": "dashboard/dashboard/find_anomalies.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-09-14T17:16:34Z",
+      "side": 0,
+      "message": "Yeah, and those were select points as well, not just the last N. I think if we do some sort of mass point deletion, we can just make sure alerts go with them.",
+      "parentUuid": "dcb52b29_797a2836",
+      "range": {
+        "startLine": 91,
+        "startChar": 4,
+        "endLine": 91,
+        "endChar": 15
+      },
+      "revId": "134ee369521c676229d0c4c38a96fb54a5ab4967",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

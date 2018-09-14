@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c7196c4a_bdc85e85",
+        "filename": "dashboard/dashboard/find_anomalies.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-09-14T17:16:34Z",
+      "side": 1,
+      "message": "Nice, really surprised no tests covered that path. Added some.",
+      "parentUuid": "b9efe795_1db4d048",
+      "range": {
+        "startLine": 135,
+        "startChar": 19,
+        "endLine": 135,
+        "endChar": 29
+      },
+      "revId": "40ecc75e8438bf21c6cd4de74e4e07729eaac5c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d2b37c79_31d71635",
         "filename": "dashboard/dashboard/find_anomalies.py",
         "patchSetId": 1
@@ -36,6 +60,24 @@
       "writtenOn": "2018-09-13T19:53:27Z",
       "side": 1,
       "message": "I thought you needed to yield an array of futures in order for them to happen in parallel?\nstats, futures \u003d zip(*results.items())\nalerts \u003d yield futures\nresults \u003d zip(stats, alerts)",
+      "revId": "40ecc75e8438bf21c6cd4de74e4e07729eaac5c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b71f1c29_c8bc50d6",
+        "filename": "dashboard/dashboard/find_anomalies.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-09-14T17:16:34Z",
+      "side": 1,
+      "message": "I *think* you would vs if you were to do multiple yields on functions that both initiate the request, and then yield on it.\n\nie.\na \u003d yield q1.fetch_async()\nb \u003d yield q2.fetch_async()\n\nvs\n\na, b \u003d yield [q1.fetch_async(), q2.fetch_async()]",
+      "parentUuid": "d2b37c79_31d71635",
       "revId": "40ecc75e8438bf21c6cd4de74e4e07729eaac5c3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
