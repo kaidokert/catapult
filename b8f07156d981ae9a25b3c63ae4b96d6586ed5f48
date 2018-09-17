@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "92765456_7f9a77ec",
+        "filename": "dashboard/dashboard/spa/column-head.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-09-17T22:59:55Z",
+      "side": 1,
+      "message": "Ahh, I see. That makes sense; thanks for explaining. I think leaving the gap for the icon makes sense. Perhaps adding more space to table headers or cells might help? The more general UX concern I have here is that, at first glance, I found myself a bit confused at which table headers mapped to which columns. (specifically, Bugs vs Revisions was confusing to me at first).",
+      "parentUuid": "94a3d802_acd1817c",
+      "revId": "b8f07156d981ae9a25b3c63ae4b96d6586ed5f48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f12c5473_1c4b375f",
         "filename": "dashboard/dashboard/spa/column-head.html",
         "patchSetId": 2
