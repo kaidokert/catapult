@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "7a631b68_dcebe909",
+        "filename": "dashboard/dashboard/spa/column-head.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-17T23:07:38Z",
+      "side": 1,
+      "message": "I reverted isIconHidden_ and set the th padding to 8px.",
+      "parentUuid": "92765456_7f9a77ec",
+      "revId": "b8f07156d981ae9a25b3c63ae4b96d6586ed5f48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f12c5473_1c4b375f",
         "filename": "dashboard/dashboard/spa/column-head.html",
         "patchSetId": 2
