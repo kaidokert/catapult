@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "94a3d802_acd1817c",
+        "filename": "dashboard/dashboard/spa/column-head.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-17T22:36:44Z",
+      "side": 1,
+      "message": "The Bug and Revisions columns just contain data that is not very long, and the icon still takes up space even when the table is not sorting by that column, pushing the column-head label to the right.\nI changed it to hide the icon when the table is not sorting by that column, but now the label jumps around when you change the sortColumn.\nWDYT?",
+      "parentUuid": "ee73fb2e_5cac9e20",
+      "revId": "b8f07156d981ae9a25b3c63ae4b96d6586ed5f48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f12c5473_1c4b375f",
         "filename": "dashboard/dashboard/spa/column-head.html",
         "patchSetId": 2
@@ -39,6 +57,30 @@
       "revId": "b8f07156d981ae9a25b3c63ae4b96d6586ed5f48",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a09c29f3_41e4d232",
+        "filename": "dashboard/dashboard/spa/column-head.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-17T22:36:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f12c5473_1c4b375f",
+      "range": {
+        "startLine": 17,
+        "startChar": 8,
+        "endLine": 17,
+        "endChar": 24
+      },
+      "revId": "b8f07156d981ae9a25b3c63ae4b96d6586ed5f48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
