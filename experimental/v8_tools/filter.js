@@ -28,9 +28,79 @@ const menu = new Vue({
     testResults: [],
     referenceColumn: '',
     significanceTester: new MetricSignificance(),
+
+    durationComponents: null,
+    firstDuration: null,
+    secondDuration: null,
+    thirdDuration: null,
+    fourthDuration: null,
+    fifthDuration: null
   },
 
   computed: {
+    seenDurationTree() {
+      return this.durationComponents !== null &&
+        Object.getOwnPropertyNames(this
+            .durationComponents).length > 1 ? true : false;
+    },
+
+    optionsFirstDuration() {
+      if (this.durationComponents !== null) {
+        return Object.getOwnPropertyNames(this.durationComponents);
+      }
+    },
+
+    optionsSecondDuration() {
+      if (this.durationComponents === null ||
+        this.firstDuration === null) {
+        return undefined;
+      }
+      return Object.getOwnPropertyNames(this
+          .durationComponents[this.firstDuration]);
+    },
+
+    optionsThirdDuration() {
+      if (this.durationComponents === null ||
+        this.firstDuration === null ||
+        this.secondDuration === null) {
+        return undefined;
+      }
+      return Object.getOwnPropertyNames(this
+          .durationComponents[this
+              .firstDuration][this
+              .secondDuration]);
+    },
+
+    optionsFourthDuration() {
+      if (this.durationComponents === null ||
+        this.firstDuration === null ||
+        this.secondDuration === null ||
+        this.thirdDuration === null) {
+        return undefined;
+      }
+      return Object.getOwnPropertyNames(this
+          .durationComponents[this
+              .firstDuration][this
+              .secondDuration][this
+              .thirdDuration]);
+    },
+
+    optionsFifthDuration() {
+      if (this.durationComponents === null ||
+        this.firstDuration === null ||
+        this.secondDuration === null ||
+        this.thirdDuration === null ||
+        this.fourthDuration === null) {
+        return undefined;
+      }
+      return Object.getOwnPropertyNames(this
+          .durationComponents[this
+              .firstDuration][this
+              .secondDuration][this
+              .thirdDuration][this
+              .fourthDuration]);
+    },
+
     //  Compute size options. The user will be provided with all
     //  sizes and the probe will be auto detected from it.
     sizeOptions() {
@@ -126,7 +196,7 @@ const menu = new Vue({
     //  return the result as a collection of metrics that matched.
     //  Also the metric that exactly matches the menu selected items
     //  will be the first one in array and the first row in table.
-    apply() {
+    applyMemoryMetrics() {
       let nameOfMetric = 'memory:' +
         this.browser + ':' +
         this.subprocess + ':' +
@@ -170,6 +240,34 @@ const menu = new Vue({
         app.parsedMetrics = metrics;
       }
     },
+
+    applyDurationMetrics() {
+      let metrics = [];
+      if (this.firstDuration !== null) {
+        metrics = this.metricNames.filter(name => name
+            .startsWith(this.firstDuration));
+        if (this.secondDuration !== null) {
+          metrics = metrics.filter(name => name.includes(this.secondDuration));
+          if (this.thirdDuration !== null) {
+            metrics = metrics.filter(name => name.includes(this.thirdDuration));
+            if (this.fourthDuration !== null) {
+              metrics = metrics.filter(name => name
+                  .includes(this.fourthDuration));
+              if (this.fifthDuration !== null) {
+                metrics = metrics.filter(name => name
+                    .includes(this.fifthDuration));
+              }
+            }
+          }
+        }
+      }
+      if (_.uniq(metrics).length === 0) {
+        alert('No metrics found');
+      } else {
+        app.parsedMetrics = _.uniq(metrics);
+      }
+    },
+
 
     /**
      * Splits a memory metric into it's heirarchical data and
@@ -249,13 +347,10 @@ function getMetricStoriesLabelsToValuesMap(sampleArr, guidValueInfo) {
   const newDiagnostics = new Set();
   const metricToDiagnosticValuesMap = new Map();
   for (const elem of sampleArr) {
-    let currentDiagnostic = guidValueInfo.
+    const currentDiagnostic = guidValueInfo.
         get(elem.diagnostics.labels);
     if (currentDiagnostic === undefined) {
       continue;
-    }
-    if (currentDiagnostic !== 'number') {
-      currentDiagnostic = currentDiagnostic[0];
     }
     newDiagnostics.add(currentDiagnostic);
 
@@ -303,7 +398,6 @@ function readSingleFile(e) {
     const contents = extractData(e.target.result);
     const sampleArr = contents.sampleValueArray;
     const guidValueInfo = contents.guidValueInfo;
-    const metricAverage = new Map();
     const allLabels = new Set();
     for (const e of sampleArr) {
       // This version of the tool focuses on analysing memory
@@ -369,6 +463,8 @@ function readSingleFile(e) {
     menu.componentMap = result.components;
     menu.sizeMap = result.sizes;
     menu.metricNames = result.names;
+
+    menu.durationComponents = result.duration;
   };
   reader.readAsText(file);
 }
@@ -423,15 +519,24 @@ function extractData(contents) {
       sampleValue.push(elem);
     } else {
       if (e.type === 'GenericSet') {
-        guidValueInfoMap.set(e.guid, e.values);
+        if (typeof e.values !== 'number') {
+          //  Here it can be either a number or a string.
+          guidValueInfoMap.set(e.guid, e.values[0]);
+        } else {
+          guidValueInfoMap.set(e.guid, e.values);
+        }
       } else if (e.type === 'DateRange') {
-        guidValueInfoMap.set(e.guid, e.min);
+        if (typeof e.min !== 'number') {
+          // Here it can be either a number or a string.
+          guidValueInfoMap.set(e.guid, e.min[0]);
+        } else {
+          guidValueInfoMap.set(e.guid, e.min);
+        }
       } else {
         other.push(e);
       }
     }
   }
-
   return {
     guidValueInfo: guidValueInfoMap,
     guidMinInfo: dateRangeMap,

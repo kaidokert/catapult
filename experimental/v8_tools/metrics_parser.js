@@ -11,6 +11,7 @@ function parseAllMetrics(metricNames) {
   let subprocessesOptions = [];
   const componentsTree = new Map();
   const sizeMap = new Map();
+  const durationTree = {};
   for (let element of metricNames) {
     if (element.includes('process_count') ||
       element.includes('dump_count')) {
@@ -40,17 +41,28 @@ function parseAllMetrics(metricNames) {
           map = map.get(element[i]);
         }
       }
+    } else if (element.startsWith('Total')) {
+      element = element.split(':');
+      let map = durationTree;
+      for (const word of element) {
+        if (!map.hasOwnProperty(word)) {
+          const newMap = {};
+          map[word] = newMap;
+          map = newMap;
+        } else {
+          map = map[word];
+        }
+      }
     }
   }
-
   browsersOptions = _.uniq(browsersOptions);
   subprocessesOptions = _.uniq(subprocessesOptions);
-
   return {
     browsers: browsersOptions,
     subprocesses: subprocessesOptions,
     components: componentsTree,
     sizes: sizeMap,
-    names: metricNames
+    names: metricNames,
+    duration: durationTree
   };
 }
