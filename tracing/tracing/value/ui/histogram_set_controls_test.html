@@ -111,16 +111,22 @@ tr.b.unittest.testSuite(function() {
     assert.strictEqual(search.value, 'foo');
   });
 
-  test('controlSearchQuery', function() {
+  test('controlSearchQuery', async function() {
     const controls = buildControls(this);
     const search = tr.ui.b.findDeepElementMatching(controls, '#search');
     search.value = 'x';
     const keyupEvent = document.createEvent('KeyboardEvent');
     keyupEvent.initEvent('keyup');
     search.dispatchEvent(keyupEvent);
+
+    const wait = ms => new Promise((r, j) => setTimeout(r, ms));
+    // Wait some time for the search input change to propagate as it is
+    // debounced.
+    await wait(400);
     assert.strictEqual(controls.viewState.searchQuery, 'x');
 
     controls.clearSearch_();
+    await wait(400);
     assert.strictEqual(controls.viewState.searchQuery, '');
   });
 

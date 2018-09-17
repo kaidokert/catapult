@@ -193,7 +193,7 @@ tr.exportTo('tr.v.ui', function() {
       searchQuery: {
         type: String,
         value: '',
-        observer: 'onUserChange_',
+        observer: 'onSearchQueryChange_',
       },
       showAll: {
         type: Boolean,
@@ -250,6 +250,11 @@ tr.exportTo('tr.v.ui', function() {
       // It would be arduous to construct a delta and call viewStateListener_
       // here in case vs contains non-default values, so callers must set
       // viewState first and then update it.
+    },
+
+    async onSearchQueryChange_() {
+      // Limit the update rate for instance caused by typing in a search.
+      this.debounce('onSearchQueryDebounce', this.onUserChange_, 200);
     },
 
     async onUserChange_() {
