@@ -32,7 +32,10 @@ found in the LICENSE file.
     </template>
 
     <template is="dom-if" if="[[getComplete(status)]]">
-      <iframe src="[[status.url]]"></iframe>
+      <script>
+        'use strict';
+        window.location.href = '[[status.url]]';
+      </script>
     </template>
   </template>
 
