@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee73fb2e_5cac9e20",
+        "filename": "dashboard/dashboard/spa/column-head.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-09-17T18:36:35Z",
+      "side": 1,
+      "message": "Possibly a bug: It looks like the styling here is meant to make this header centered, but for some table oclumns (ie: Bug), the text seems to be right aligned?",
+      "revId": "b8f07156d981ae9a25b3c63ae4b96d6586ed5f48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f12c5473_1c4b375f",
+        "filename": "dashboard/dashboard/spa/column-head.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-09-17T18:36:35Z",
+      "side": 1,
+      "message": "Nit: would it be possible to make ths cursor only a pointer when the column is clickable (ie: when you can sort?).",
+      "range": {
+        "startLine": 17,
+        "startChar": 8,
+        "endLine": 17,
+        "endChar": 24
+      },
+      "revId": "b8f07156d981ae9a25b3c63ae4b96d6586ed5f48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
