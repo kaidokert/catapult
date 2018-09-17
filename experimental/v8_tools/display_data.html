@@ -41,9 +41,7 @@
           </th>
         </template>
         <template v-for='add in additional'>
-            <th
-            @click="sortBy(add)"
-            :class="{ active: sortKey == add }">
+            <th>
             <input type='checkbox' @click='pickHeadTable(add)' class='checkbox-head'/>&nbsp;
             {{ add | capitalize }}
             <span class="arrow" :class="sortOrders[add] > 0 ? 'asc' : 'dsc'">
@@ -73,7 +71,7 @@
                 id ='story-row'>
                 <td id='story-story' @click.self='toggleStory(story)' 
                   :class='{openedStory: openedStory.includes(story.story)}'>
-                  <input type='checkbox'@click='pickTableStory(story)' class='checkbox-story'/>&nbsp;
+                  <input type='checkbox' checked='true' @click='pickTableStory(story)' class='checkbox-story'/>&nbsp;
                    {{ story.story }}
                 </td>
                 <template v-for='el of additional'>
@@ -98,7 +96,7 @@
 
 <!-- Template for stats_test_summary_component.js -->
 <script type="text/x-template" id="stat-test-summary-template">
-  'use strict';
+   'use strict';
   <div id="statistical-sig">
     <div v-if="testResults.length">
         <p> Reference Column: {{referenceColumn}}</p>
@@ -171,10 +169,44 @@
           v-model='subsubcomponent'
           :options='secondSubcompOptions'
           ></v-select>
-      <button v-on:click="apply"
+      <button v-on:click="applyMemoryMetrics"
               id='apply_button'>
               Apply</button>
     </div>
+
+    <sup v-if="seenDurationTree" >Duration metrics</sup>
+    <v-select 
+      v-if="seenDurationTree"
+      :options = 'optionsFirstDuration'
+      v-model='firstDuration'
+      id='filterBox'></v-select>
+    <v-select 
+      v-if="seenDurationTree"
+      :options = 'optionsSecondDuration'
+      v-model='secondDuration'
+      id='filterBox'></v-select>
+    <v-select
+      v-if="seenDurationTree" 
+      :options = 'optionsThirdDuration'
+      v-model='thirdDuration'
+      id='filterBox'></v-select>
+    <v-select
+      v-if="seenDurationTree" 
+      :options = 'optionsFourthDuration'
+      v-model='fourthDuration'
+      id='filterBox'></v-select>
+    <v-select 
+      v-if="seenDurationTree"
+      :options = 'optionsFifthDuration'
+      v-model='fifthDuration'
+      id='filterBox'></v-select>
+    <button
+      v-if="seenDurationTree" 
+      v-on:click="applyDurationMetrics"
+      id='apply_button'>
+      Apply</button>
+    
+    
     <v-select placeholder="Please select a reference column"
         :options="allLabels"
         v-model="referenceColumn"></v-select>
