@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c9aa4824_3e628e8d",
+        "filename": "dashboard/dashboard/spa/column-head.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-09-17T23:11:34Z",
+      "side": 1,
+      "message": "These :not([disabled]) styles seem to not be getting applied now. I think you might need to wrap :not around parentheses when using with :host?",
+      "range": {
+        "startLine": 21,
+        "startChar": 6,
+        "endLine": 21,
+        "endChar": 27
+      },
+      "revId": "b1056fd4e1b423c662bb2956a9dbda888ba7eefb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

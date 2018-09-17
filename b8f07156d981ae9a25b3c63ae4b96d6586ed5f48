@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "d0ff6650_66b71b5c",
+        "filename": "dashboard/dashboard/spa/column-head.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-09-17T23:11:34Z",
+      "side": 1,
+      "message": "I think that helps. Thanks!",
+      "parentUuid": "7a631b68_dcebe909",
+      "revId": "b8f07156d981ae9a25b3c63ae4b96d6586ed5f48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f12c5473_1c4b375f",
         "filename": "dashboard/dashboard/spa/column-head.html",
         "patchSetId": 2
