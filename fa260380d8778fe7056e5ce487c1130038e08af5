@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9b49e5ad_5940feff",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-09-17T11:06:45Z",
+      "side": 1,
+      "message": "This is fixed in the followup.",
+      "parentUuid": "eae31062_0fe7a58a",
+      "range": {
+        "startLine": 16,
+        "startChar": 17,
+        "endLine": 16,
+        "endChar": 58
+      },
+      "revId": "fa260380d8778fe7056e5ce487c1130038e08af5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e665aad_fcc9083d",
         "filename": "experimental/v8_tools/display_data.html",
         "patchSetId": 12
@@ -45,6 +69,30 @@
       "revId": "fa260380d8778fe7056e5ce487c1130038e08af5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "917068a5_36e45f82",
+        "filename": "experimental/v8_tools/display_data.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-09-17T11:06:45Z",
+      "side": 1,
+      "message": "Yes, but it didn\u0027t work properly for all cases because it means just one binding for multiple checkboxes. But I also have a different approach in the followup.",
+      "parentUuid": "8e665aad_fcc9083d",
+      "range": {
+        "startLine": 47,
+        "startChar": 34,
+        "endLine": 47,
+        "endChar": 41
+      },
+      "revId": "fa260380d8778fe7056e5ce487c1130038e08af5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
