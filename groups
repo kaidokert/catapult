@@ -4,3 +4,4 @@
 cria:project-catapult-committers        	cria/project-catapult-committers
 global:Registered-Users                 	Logged-in Public Users
 mdb:chrome-git-admins                   	mdb/chrome-git-admins
+global:Change-Owner                     	Change Owner
