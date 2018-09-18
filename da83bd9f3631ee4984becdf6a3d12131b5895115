@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "36382e00_4bfcfbb9",
+        "filename": "experimental/long_term_health/long_term_health/test_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-09-18T13:28:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0521d02e_73b17ad7",
+      "revId": "da83bd9f3631ee4984becdf6a3d12131b5895115",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e63c9265_2cde8b5d",
         "filename": "experimental/long_term_health/long_term_health/test_runner.py",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "2524157e_d230fca8",
+        "filename": "experimental/long_term_health/long_term_health/test_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-09-18T13:28:24Z",
+      "side": 1,
+      "message": "Yeah you\u0027re right, it will always be the same server. I used to think that they might be the occasion that it will use a different server, e.g. https://isolateserver.appspot.com. But seems like it will always be https://chrome-isolated.appspot.com.\nAnd I\u0027ve also renamed the constant to ISOLATE_SERVER_SCRIPT, hope this is less misleading.",
+      "parentUuid": "e63c9265_2cde8b5d",
+      "revId": "da83bd9f3631ee4984becdf6a3d12131b5895115",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d504ff62_3bedee19",
         "filename": "experimental/long_term_health/long_term_health/test_runner.py",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2018-09-18T10:34:16Z",
       "side": 1,
       "message": "I\u0027m wondering if we really want to download \"all\" files from the isolate. It might be enough if we just get the perftest-output.json, and leave somewhere a record of the isolate url (e.g. like https://chrome-isolated.appspot.com/browse?digest\u003d9bd6722e5e59b0d3eea29816d2ccd2fd1ba33533) which users can navigate to if they want to further dig down into traces or other pieces of output.\n\nWhat do you think?",
+      "revId": "da83bd9f3631ee4984becdf6a3d12131b5895115",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67a89054_0775e866",
+        "filename": "experimental/long_term_health/long_term_health/test_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1292864
+      },
+      "writtenOn": "2018-09-18T13:28:24Z",
+      "side": 1,
+      "message": "Yeah, it\u0027s cleaner if we only download the `perf_results.json`.",
+      "parentUuid": "d504ff62_3bedee19",
       "revId": "da83bd9f3631ee4984becdf6a3d12131b5895115",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
