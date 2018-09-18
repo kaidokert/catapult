@@ -16,6 +16,24 @@
       "revId": "e0fe7d4323ad73c1d0676b228976c7fcc23ee8be",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "376d18da_3e1bca0f",
+        "filename": "tracing/tracing/value/ui/histogram_set_controls.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-09-18T22:25:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f688f708_c953b73e",
+      "revId": "e0fe7d4323ad73c1d0676b228976c7fcc23ee8be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

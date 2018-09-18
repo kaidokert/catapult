@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "76da4d8d_20afb882",
+        "filename": "tracing/tracing/value/ui/histogram_set_controls.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-09-18T22:25:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df17c197_e1b0a1b5",
+      "revId": "5b47a79c7fce81911a5d0c3c368e945643d5562c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "03b0fbad_c8b8bb62",
         "filename": "tracing/tracing/value/ui/histogram_set_controls_test.html",
         "patchSetId": 3
@@ -39,6 +57,30 @@
       "revId": "5b47a79c7fce81911a5d0c3c368e945643d5562c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d620f0a2_3be9bb92",
+        "filename": "tracing/tracing/value/ui/histogram_set_controls_test.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-09-18T22:25:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03b0fbad_c8b8bb62",
+      "range": {
+        "startLine": 122,
+        "startChar": 3,
+        "endLine": 125,
+        "endChar": 20
+      },
+      "revId": "5b47a79c7fce81911a5d0c3c368e945643d5562c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
