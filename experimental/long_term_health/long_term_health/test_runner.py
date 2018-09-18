@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 """Helper function to run the benchmark.
 """
+import json
 import os
 import shutil
 import subprocess
@@ -12,12 +13,13 @@ from long_term_health.apk_finder import ChromeVersion
 
 
 SWARMING_URL = 'https://chrome-swarming.appspot.com'
-ISOLATE_URL = 'https://chrome-isolated.appspot.com'
+ISOLATE_SERVER_URL = 'https://chrome-isolated.appspot.com'
 
 CATAPULT_ROOT = os.path.normpath(os.path.join(utils.APP_ROOT, '..', '..'))
 CHROMIUM_ROOT = os.path.normpath(os.path.join(CATAPULT_ROOT, '..', '..'))
 MB = os.path.join(CHROMIUM_ROOT, 'tools', 'mb', 'mb.py')
 SWARMING_CLIENT = os.path.join(CHROMIUM_ROOT, 'tools', 'swarming_client')
+ISOLATE_SERVER_SCRIPT = os.path.join(SWARMING_CLIENT, 'isolateserver.py')
 ISOLATE = os.path.join(SWARMING_CLIENT, 'isolate.py')
 SWARMING = os.path.join(SWARMING_CLIENT, 'swarming.py')
 PATH_TO_APKS = os.path.join(CHROMIUM_ROOT, 'tools', 'perf', 'swarming_apk')
@@ -39,7 +41,7 @@ def GenerateIsolate(out_dir_path, target_name):
 
 def UploadIsolate(isolated_path):
   return subprocess.check_output(
-      [ISOLATE, 'archive', '-I', ISOLATE_URL, '-s', isolated_path])
+      [ISOLATE, 'archive', '-I', ISOLATE_SERVER_URL, '-s', isolated_path])
 
 
 def TriggerSwarmingJob(isolate_hash, isolated_apk_path):
@@ -58,7 +60,7 @@ def TriggerSwarmingJob(isolate_hash, isolated_apk_path):
       # select which swarming server to use
       '--swarming', SWARMING_URL,
       # select which isolate server to use
-      '--isolate-server', ISOLATE_URL,
+      '--isolate-server', ISOLATE_SERVER_URL,
       '--priority', '25',
       # set the task name
       '--task-name', 'long_term_health_task',
@@ -94,6 +96,49 @@ def TriggerSwarmingJob(isolate_hash, isolated_apk_path):
       bot_dimension_options + ['--', '--benchmarks'] +
       run_benchmark_options + output_options)
   return task_output.split('/')[-1].strip()  # return task hash
+
+
+def IsTaskCompleted(task_id):
+  return 'COMPLETE' in subprocess.check_output(
+      [SWARMING, 'query', 'tasks/get_states?task_id=%s' % task_id,
+       '--swarming', SWARMING_URL])
+
+
+def GetResultFromSwarming(isolate_hash, output_dir, benchmark_name):
+  """Download all the files included in the given isolate hash.
+
+  Args:
+    isolate_hash(string): the output isolate hash given by the swarming server
+    output_dir(string): the dir to put the downloaded files
+    benchmark_name(string): the benchmark that we ran
+  """
+  # download the json that contains the description of other files
+  subprocess.call([ISOLATE_SERVER_SCRIPT, 'download',
+                   '--isolate-server', ISOLATE_SERVER_URL,
+                   '--file=%s' % isolate_hash, 'files.json',
+                   '--target=%s' % output_dir,
+                  ])  # do not use the `--cache`, it will clear the directory
+
+  # files.json looks like:
+  # {...
+  # 'files': {
+  #   'system_health.memory_mobile/perf_results.json': {
+  #     'h': hash_num
+  #     }
+  #   }
+  # }
+  with open(os.path.join(output_dir, 'files.json')) as json_:
+    file_name = 'perf_results.json'
+    result_json_hash = json.load(json_)['files'][
+        '%s/%s' % (benchmark_name, file_name)]['h']
+    subprocess.call(
+        [ISOLATE_SERVER_SCRIPT, 'download',
+         '--isolate-server', ISOLATE_SERVER_URL,
+         '--file=%s' % result_json_hash, file_name,
+         '--target=%s' % output_dir,
+        ])
+
+  os.remove(os.path.join(output_dir, 'files.json'))
 
 
 def RunBenchmark(path_to_apk, run_label):
