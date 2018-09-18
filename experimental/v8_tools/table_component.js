@@ -116,13 +116,12 @@ Vue.component('data-table', {
   //  Capitalize the objects field names.
   filters: {
     capitalize(str) {
-      if (str === undefined) {
-        return undefined;
+      if (str !== undefined) {
+        if (typeof str === 'number') {
+          return str.toString();
+        }
+        return str.charAt(0).toUpperCase() + str.slice(1);
       }
-      if (typeof str === 'number') {
-        return str.toString();
-      }
-      return str.charAt(0).toUpperCase() + str.slice(1);
     }
   },
 

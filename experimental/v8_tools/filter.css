@@ -114,6 +114,15 @@
   margin-bottom: 1px;
 }
 
+#chosenBenchmark {
+  background-color:  rgb(245, 252, 245);
+  border: 2px solid #427c62;
+  border-radius: 16px;
+  margin-bottom: 15px;
+  margin-top: 25px;
+  width: 19em;
+}
+
 
 #select_item {
   width: 60em;
@@ -142,6 +151,7 @@
   padding: 4px;
   text-align: center;
   margin: 1px;
+  margin-bottom: 5px;
 }
 
 
