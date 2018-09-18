@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "efe830a8_b54f4efd",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1215729
+      },
+      "writtenOn": "2018-09-18T18:04:38Z",
+      "side": 1,
+      "message": "This seems to be outdated?",
+      "revId": "c29998c98c4396580c097abdf4650cae2f9c61f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a169e3b1_a1a35973",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1215729
+      },
+      "writtenOn": "2018-09-18T18:04:38Z",
+      "side": 1,
+      "message": "This seems to be outdated.",
+      "revId": "c29998c98c4396580c097abdf4650cae2f9c61f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
