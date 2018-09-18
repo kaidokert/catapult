@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1148ec74_c6587d25",
+        "filename": "telemetry/telemetry/web_perf/metrics/smoothness.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-09-18T20:28:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cdcf454b_13f3a6c1",
+      "range": {
+        "startLine": 182,
+        "startChar": 11,
+        "endLine": 188,
+        "endChar": 5
+      },
+      "revId": "fdf270fd1748dadd02a74269af4d69e6c73d2028",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "be814abe_9206c4a1",
         "filename": "telemetry/telemetry/web_perf/metrics/smoothness_unittest.py",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "fdf270fd1748dadd02a74269af4d69e6c73d2028",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3bc51e5_44fa0272",
+        "filename": "telemetry/telemetry/web_perf/metrics/smoothness_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-09-18T20:28:50Z",
+      "side": 1,
+      "message": "Looks like it! Removed.",
+      "parentUuid": "be814abe_9206c4a1",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 0
+      },
+      "revId": "fdf270fd1748dadd02a74269af4d69e6c73d2028",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
