@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0521d02e_73b17ad7",
+        "filename": "experimental/long_term_health/long_term_health/test_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-18T10:34:16Z",
+      "side": 1,
+      "message": "nit: maybe name this IsTaskCompleted, so it\u0027s a bit more clear that it returns a bool.",
+      "revId": "da83bd9f3631ee4984becdf6a3d12131b5895115",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e63c9265_2cde8b5d",
+        "filename": "experimental/long_term_health/long_term_health/test_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-18T10:34:16Z",
+      "side": 1,
+      "message": "we probably don\u0027t need the isoalte_server arg, it\u0027s always going to be ISOLATE_URL, right?\n\n(also the name of the arg is confusing because you also have a ISOLATE_SERVER which means a completely different thing.)",
+      "revId": "da83bd9f3631ee4984becdf6a3d12131b5895115",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d504ff62_3bedee19",
+        "filename": "experimental/long_term_health/long_term_health/test_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-18T10:34:16Z",
+      "side": 1,
+      "message": "I\u0027m wondering if we really want to download \"all\" files from the isolate. It might be enough if we just get the perftest-output.json, and leave somewhere a record of the isolate url (e.g. like https://chrome-isolated.appspot.com/browse?digest\u003d9bd6722e5e59b0d3eea29816d2ccd2fd1ba33533) which users can navigate to if they want to further dig down into traces or other pieces of output.\n\nWhat do you think?",
+      "revId": "da83bd9f3631ee4984becdf6a3d12131b5895115",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
