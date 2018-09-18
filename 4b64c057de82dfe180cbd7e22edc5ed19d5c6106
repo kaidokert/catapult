@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1b6262aa_ce57d206",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-18T14:24:34Z",
+      "side": 1,
+      "message": "Wondering whether we should have some helper method to help create these dicts? (Maybe not worth it, but just something to consider.)",
+      "revId": "4b64c057de82dfe180cbd7e22edc5ed19d5c6106",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
