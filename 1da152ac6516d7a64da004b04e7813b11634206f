@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "595235b0_fecaaa35",
+        "filename": "experimental/long_term_health/long_term_health/test_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-18T13:37:49Z",
+      "side": 1,
+      "message": "nit: for consistency, maybe also name these ISOLATE_SCRIPT and SWARMING_SCRIPT?",
+      "revId": "1da152ac6516d7a64da004b04e7813b11634206f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ee7bd6c_3a048da2",
+        "filename": "experimental/long_term_health/long_term_health/test_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-18T13:37:49Z",
+      "side": 1,
+      "message": "nit: update docstring.",
+      "revId": "1da152ac6516d7a64da004b04e7813b11634206f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "761543be_a44b2560",
+        "filename": "experimental/long_term_health/long_term_health/test_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-18T13:37:49Z",
+      "side": 1,
+      "message": "nit: make this check_call",
+      "revId": "1da152ac6516d7a64da004b04e7813b11634206f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "390f3b6d_a1a66831",
+        "filename": "experimental/long_term_health/long_term_health/test_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-18T13:37:49Z",
+      "side": 1,
+      "message": "nit: json_ -\u003e data or files or file_info or ... ?\n\n(I forgot to mention on the previous CL, those var names_ looked a bit odd.)",
+      "revId": "1da152ac6516d7a64da004b04e7813b11634206f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3fcad305_adafc4e5",
+        "filename": "experimental/long_term_health/long_term_health/test_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-18T13:37:49Z",
+      "side": 1,
+      "message": "This looks like a constant. Move to the top of the module.",
+      "revId": "1da152ac6516d7a64da004b04e7813b11634206f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
