@@ -25,6 +25,8 @@ tr.exportTo('tr.metrics.sh', function() {
   const LONG_TASK_THRESHOLD_MS = 50;
   const timeDurationInMs_smallerIsBetter =
       tr.b.Unit.byName.timeDurationInMs_smallerIsBetter;
+  const unitlessNumber_smallerIsBetter =
+      tr.b.Unit.byName.unitlessNumber_smallerIsBetter;
   const RelatedEventSet = tr.v.d.RelatedEventSet;
   const hasCategoryAndName = tr.metrics.sh.hasCategoryAndName;
   const EventFinderUtils = tr.e.chrome.EventFinderUtils;
@@ -75,6 +77,9 @@ tr.exportTo('tr.metrics.sh', function() {
   // loads. Data obtained through Cluster Telemetry analysis.
       .createExponential(1, 40e3, 35)
       .addExponentialBins(80e3, 15);
+
+  const JANK_SCORE_BOUNDARIES = tr.v.HistogramBinBoundaries
+      .createLinear(0, 50, 25);
 
   const SUMMARY_OPTIONS = {
     avg: true,
@@ -150,6 +155,18 @@ tr.exportTo('tr.metrics.sh', function() {
       });
     }
     return samples;
+  }
+
+  function getJankScoreSamples(rendererHelper) {
+    let jankScoreSample;
+    EventFinderUtils.getSortedMainThreadEventsByFrame(rendererHelper,
+        'FrameLayoutJank', 'loading').forEach((events) => {
+      const evData = events.pop().args.data;
+      if (evData.is_main_frame) {
+        jankScoreSample = {value: evData.cumulative_score};
+      }
+    });
+    return jankScoreSample ? [jankScoreSample] : [];
   }
 
   function addFirstMeaningfulPaintSample(samples, rendererHelper,
@@ -271,11 +288,13 @@ tr.exportTo('tr.metrics.sh', function() {
         'blink.user_timing', 'loadEventStart',
         rendererHelper, frameToNavStartEvents);
 
+    const jankScoreSamples = getJankScoreSamples(rendererHelper);
     return {
       frameToNavStartEvents,
       firstPaintSamples,
       firstContentfulPaintSamples,
       onLoadSamples,
+      jankScoreSamples
     };
   }
 
@@ -408,6 +427,12 @@ tr.exportTo('tr.metrics.sh', function() {
           description: 'Time to First CPU Idle',
           summaryOptions: SUMMARY_OPTIONS,
         });
+    const jankScoreHistogram = histograms.createHistogram(
+        'layoutJank_score', unitlessNumber_smallerIsBetter, [], {
+          binBoundaries: JANK_SCORE_BOUNDARIES,
+          description: 'Layout Jank Score',
+          summaryOptions: SUMMARY_OPTIONS,
+        });
 
     const chromeHelper = model.getOrCreateHelper(
         tr.model.helpers.ChromeModelHelper);
@@ -426,6 +451,8 @@ tr.exportTo('tr.metrics.sh', function() {
           histograms);
       addSamplesToHistogram(
           samplesSet.onLoadSamples, onLoadHistogram, histograms);
+      addSamplesToHistogram(
+          samplesSet.jankScoreSamples, jankScoreHistogram, histograms);
     }
 
     const samplesSet = collectMetricsFromLoadExpectations(model, chromeHelper);
