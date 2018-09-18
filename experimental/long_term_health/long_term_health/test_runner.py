@@ -3,10 +3,13 @@
 # found in the LICENSE file.
 """Helper function to run the benchmark.
 """
+import ast
+from contextlib import contextmanager
 import json
 import os
 import shutil
 import subprocess
+import tempfile
 
 from long_term_health import utils
 from long_term_health.apk_finder import ChromeVersion
@@ -23,8 +26,92 @@ ISOLATE_SERVER_SCRIPT = os.path.join(SWARMING_CLIENT, 'isolateserver.py')
 ISOLATE_SCRIPT = os.path.join(SWARMING_CLIENT, 'isolate.py')
 SWARMING_SCRIPT = os.path.join(SWARMING_CLIENT, 'swarming.py')
 PATH_TO_APKS = os.path.join(CHROMIUM_ROOT, 'tools', 'perf', 'swarming_apk')
+TEST_BUILD_GN = os.path.join(CHROMIUM_ROOT, 'chrome', 'test', 'BUILD.gn')
+GN_ISOLATE_MAP = os.path.join(
+    CHROMIUM_ROOT, 'testing', 'buildbot', 'gn_isolate_map.pyl')
+
 
 RESULT_FILE_NAME = 'perf_results.json'
+
+
+def AddNewTargetToBUILD():
+  """Add a new target to the `BUILD.gn`.
+
+  This function add a new target to the `BUILD.gn` and make a copy somewhere,
+  and return the path to the copy.
+
+  Returns:
+    string: path of the copied `BUILD.gn`, i.e. unmodified one
+  """
+  copied_build_gn_path = os.path.join(tempfile.gettempdir(), 'BUILD.gn')
+  shutil.copyfile(
+      TEST_BUILD_GN, copied_build_gn_path)
+  with open(TEST_BUILD_GN, 'a') as build_gn:
+    build_gn.write(
+        '''
+# Difference between this and performance_test_suite is that this runs a devil
+# script before the build, to remove the system chrome. See
+# //testing/buildbot/gn_isolate_map.pyl
+group("performance_system_chrome_test_suite") {
+  testonly = true
+  deps = [
+    "//chrome/test:performance_test_suite",
+  ]
+}
+        '''
+    )
+    build_gn.write('\n')  # seems like causing some strange indent problem...
+
+  return copied_build_gn_path
+
+
+def AddTargetToIsolateMap():
+  """Add a ninja target to the corresponding gn label.
+
+  It will also make a copy of the `gn_isolate_map.pyl` somewhere, and
+  return the path to the copy.
+
+  Returns:
+    string: path of the copied `gn_isolate_map.pyl`
+  """
+  copied_isolate_map_path = os.path.join(
+      tempfile.gettempdir(), 'gn_isolate_map.pyl')
+  shutil.copyfile(
+      GN_ISOLATE_MAP, copied_isolate_map_path)
+  with open(GN_ISOLATE_MAP, 'r') as content:
+    isolate_map_content = ast.literal_eval(content.read())
+
+  isolate_map_content['performance_system_chrome_test_suite'] = {
+      'label': '//chrome/test:performance_system_chrome_test_suite',
+      'type': 'script',
+      'script':
+          '//third_party/catapult/devil/devil/android/tools/system_app.py',
+      'args': [
+          'remove',
+          '--package',
+          'com.android.chrome',
+          '-v',
+          '--',
+          '../../testing/scripts/run_performance_tests.py',
+          '../../tools/perf/run_benchmark',
+      ],
+  }
+
+  with open(GN_ISOLATE_MAP, 'w') as isolate_map_file:
+    isolate_map_file.write(str(isolate_map_content))
+
+  return copied_isolate_map_path
+
+
+@contextmanager
+def AddNewTarget():
+  unmodified_build_gn_path = AddNewTargetToBUILD()
+  unmodified = AddTargetToIsolateMap()
+  yield
+  os.remove(GN_ISOLATE_MAP)
+  os.remove(TEST_BUILD_GN)
+  shutil.copyfile(unmodified, GN_ISOLATE_MAP)
+  shutil.copyfile(unmodified_build_gn_path, TEST_BUILD_GN)
 
 
 def IncludeAPKInIsolate(apk_path):
