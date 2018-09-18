@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f688f708_c953b73e",
+        "filename": "tracing/tracing/value/ui/histogram_set_controls.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-18T22:19:41Z",
+      "side": 1,
+      "message": "I\u0027m not sure this comment adds any information that isn\u0027t in the property name, so I\u0027d remove it.",
+      "revId": "e0fe7d4323ad73c1d0676b228976c7fcc23ee8be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
