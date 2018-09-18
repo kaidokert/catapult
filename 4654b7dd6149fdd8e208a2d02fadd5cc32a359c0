@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f3fa44ad_8d95ca52",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-18T11:15:09Z",
+      "side": 1,
+      "message": "Not for this cl, just for future. This is a logically a different task, so could be in a different cl. Similarly the next one as well. So we could have split this into 3:\n1. Add hierarchy for duration metrics\n2. Fix the way guidValue is parsed \n3. Handle corner cases for charts.",
+      "revId": "4654b7dd6149fdd8e208a2d02fadd5cc32a359c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bff1503_c9d06148",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-18T11:15:09Z",
+      "side": 1,
+      "message": "Use DEFAULT_PLOTS here.",
+      "revId": "4654b7dd6149fdd8e208a2d02fadd5cc32a359c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e26b5418_03fb5b0f",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-18T11:15:09Z",
+      "side": 1,
+      "message": "Don\u0027t we want to pass openTrace here? Is this an intended change?",
+      "revId": "4654b7dd6149fdd8e208a2d02fadd5cc32a359c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e53b767_ce956fab",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-18T11:15:09Z",
+      "side": 1,
+      "message": "Do we want to remove support for traces for cumulative frequency plots? Or are we adding this support differently?",
+      "revId": "4654b7dd6149fdd8e208a2d02fadd5cc32a359c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5afa81a_ad09fdb7",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-18T11:15:09Z",
+      "side": 1,
+      "message": "May be this should move to else. Since for Dot plot we calculate it within if.",
+      "revId": "4654b7dd6149fdd8e208a2d02fadd5cc32a359c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0cdfa14f_e68f7153",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-18T11:15:09Z",
+      "side": 1,
+      "message": "Instead of having a fixed hierarchy can we decide on the number of levels when parsing the metrics, instead of having a fixed hierarchy. I think you can just leave a TODO here, since you haven\u0027t got that much time I guess :).",
+      "revId": "4654b7dd6149fdd8e208a2d02fadd5cc32a359c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aef00270_87214ecd",
+        "filename": "experimental/v8_tools/table_component.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-18T11:15:09Z",
+      "side": 1,
+      "message": "if (str \u003d\u003d\u003d undefined) return;",
+      "revId": "4654b7dd6149fdd8e208a2d02fadd5cc32a359c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7d8dc78_3de5e90c",
+        "filename": "experimental/v8_tools/table_component.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-18T11:15:09Z",
+      "side": 1,
+      "message": "So, if we have only one story selected then we show them a CF/Dot plot right? What if we have one story but multiple diagnostics? Wouldn\u0027t it better to still show a stacked plot then?",
+      "revId": "4654b7dd6149fdd8e208a2d02fadd5cc32a359c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e475ea2_ff8a5d6b",
+        "filename": "experimental/v8_tools/table_component.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-18T11:15:09Z",
+      "side": 1,
+      "message": "Is this when no diagnostics are selected?",
+      "revId": "4654b7dd6149fdd8e208a2d02fadd5cc32a359c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
