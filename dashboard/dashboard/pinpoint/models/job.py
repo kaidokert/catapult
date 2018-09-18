@@ -161,6 +161,15 @@ class Job(ndb.Model):
   def url(self):
     return 'https://%s/job/%s' % (os.environ['HTTP_HOST'], self.job_id)
 
+  @property
+  def job_results_url(self):
+    if not self.task:
+      url = results2.GetCachedResults2(self)
+      if url:
+        return url
+    # Point to the default status page if no results are available.
+    return '/results2/%s' % self.job_id
+
   def AddChange(self, change):
     self.state.AddChange(change)
 
