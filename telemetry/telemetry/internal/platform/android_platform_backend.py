@@ -192,22 +192,42 @@ class AndroidPlatformBackend(
     finally:
       self._surface_stats_collector = None
     # TODO(sullivan): should this code be inline, or live elsewhere?
-    events = []
+    events = [{
+        'cat': '__metadata',
+        'name': 'process_name',
+        'ph': 'M',
+        'pid': pid,
+        'tid': pid,
+        'ts': 0,
+        'args': {
+            'name': 'SurfaceFlinger'
+        }
+    }]
     for ts in timestamps:
       events.append({
           'cat': 'SurfaceFlinger',
           'name': 'vsync_before',
-          'ts': ts,
+          'ph': 'I',
+          's': 't',
+          'ts': ts * 1000,
           'pid': pid,
           'tid': pid,
           'args': {
               'data': {
                   'frame_count': 1,
-                  'refresh_period': refresh_period,
               }
           }
       })
-    return events
+
+    return {
+        'traceEvents': events,
+        'metadata': {
+            'clock-domain': 'LINUX_CLOCK_MONOTONIC',
+            'surface_flinger': {
+                'refresh_period': refresh_period,
+            },
+        }
+    }
 
   def CanTakeScreenshot(self):
     return True
