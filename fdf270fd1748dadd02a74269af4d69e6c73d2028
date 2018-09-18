@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cdcf454b_13f3a6c1",
+        "filename": "telemetry/telemetry/web_perf/metrics/smoothness.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1116050
+      },
+      "writtenOn": "2018-09-18T12:33:01Z",
+      "side": 1,
+      "message": "Do we need to return a tuple here?",
+      "range": {
+        "startLine": 182,
+        "startChar": 11,
+        "endLine": 188,
+        "endChar": 5
+      },
+      "revId": "fdf270fd1748dadd02a74269af4d69e6c73d2028",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be814abe_9206c4a1",
+        "filename": "telemetry/telemetry/web_perf/metrics/smoothness_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1116050
+      },
+      "writtenOn": "2018-09-18T12:33:01Z",
+      "side": 1,
+      "message": "We can remove this pylint instruction now, can\u0027t we?",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 0
+      },
+      "revId": "fdf270fd1748dadd02a74269af4d69e6c73d2028",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
