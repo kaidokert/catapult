@@ -16,6 +16,24 @@
       "revId": "c1cc7ae8e1c5c209fcf5589a1b1f0c1d3ae1683d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f8b1d2d_24be2628",
+        "filename": "telemetry/telemetry/web_perf/metrics/rendering_stats.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-09-18T17:08:16Z",
+      "side": 1,
+      "message": "Done. Note that metadata is assumed to be not None when surface_flinger_process exists. Otherwise, if we cannot find the refresh_period here, I think we will fail later, similar to the old code.",
+      "parentUuid": "dd6aec64_5142fcd7",
+      "revId": "c1cc7ae8e1c5c209fcf5589a1b1f0c1d3ae1683d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
