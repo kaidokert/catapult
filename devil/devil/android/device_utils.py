@@ -1020,7 +1020,7 @@ class DeviceUtils(object):
   def RunShellCommand(self, cmd, shell=False, check_return=False, cwd=None,
                       env=None, run_as=None, as_root=False, single_line=False,
                       large_output=False, raw_output=False, timeout=None,
-                      retries=None):
+                      retries=None, keep_logs_on_timeout=False):
     """Run an ADB shell command.
 
     The command to run |cmd| should be a sequence of program arguments
@@ -1065,6 +1065,9 @@ class DeviceUtils(object):
           (no splitting into lines).
       timeout: timeout in seconds
       retries: number of retries
+      keep_logs_on_timeout: When True, will reduce specified timeout by 2
+        seconds for the internal adb command, which allows to retrive logs on
+        timeout. Note that no logs will be produced if adb command hangs.
 
     Returns:
       If single_line is False, the output of the command as a list of lines,
@@ -1086,7 +1089,10 @@ class DeviceUtils(object):
       return '%s=%s' % (key, cmd_helper.DoubleQuote(value))
 
     def run(cmd):
-      return self.adb.Shell(cmd)
+      if keep_logs_on_timeout:
+        return self.adb.Shell(cmd, timeout=timeout-3, force_adb_timeout=True)
+      else:
+        return self.adb.Shell(cmd)
 
     def handle_check_return(cmd):
       try:
