@@ -25,6 +25,7 @@ const app = new Vue({
     //  metrics.
     resetTableData() {
       this.gridData = this.defaultGridData;
+      this.typesOfPlot = ['Cumulative frequency plot', 'Dot plot'];
     },
 
     //  Get all stories for a specific metric.
@@ -120,14 +121,11 @@ const app = new Vue({
     },
 
     //  Draw a cumulative frequency plot.
-    plotCumulativeFrequencyPlot(target, story, traces) {
-      const openTrace = (label, index) => {
-        window.open(traces[label][index]);
-      };
+    plotCumulativeFrequencyPlot(target, story) {
       this.graph.yAxis('Cumulative frequency')
           .xAxis('Memory used (MiB)')
           .title(story)
-          .setData(target, openTrace)
+          .setData(target)
           .plotCumulativeFrequency();
     },
 
@@ -136,7 +134,7 @@ const app = new Vue({
       this.graph.xAxis('Stories')
           .yAxis('Memory used (MiB)')
           .title(title)
-          .setData(obj, metric => app.$emit('stack_clicked', metric))
+          .setData(obj)
           .plotStackedBar();
     },
 
@@ -194,6 +192,7 @@ const app = new Vue({
       const traceId = sample.diagnostics.traceUrls;
       return this.guidValue.get(traceId);
     },
+
 
     //  Draw a cumulative frequency plot by default with
     //  all the sub-diagnostics (labels) in the same plot.

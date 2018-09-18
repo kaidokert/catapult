@@ -1,4 +1,5 @@
 'use strict';
+const BENCHMARK_OPTIONS = ['Memory', 'Duration'];
 const MiB = 1024 * 1024;
 Vue.component('v-select', VueSelect.VueSelect);
 
@@ -8,18 +9,19 @@ const menu = new Vue({
     sampleArr: null,
     guidValueInfo: null,
 
-    browser: null,
-    subprocess: null,
+    chosenBenchmark: null,
 
-    component: null,
-    size: null,
+    firstElement: null,
+    secondElement: null,
+    thirdElement: null,
+    fourthElement: null,
+    fifthElement: null,
+    sixthElement: null,
+
     metricNames: null,
 
     browserOptions: [],
     subprocessOptions: [],
-
-    subcomponent: null,
-    subsubcomponent: null,
 
     componentMap: null,
     sizeMap: null,
@@ -29,83 +31,146 @@ const menu = new Vue({
     referenceColumn: '',
     significanceTester: new MetricSignificance(),
 
-    durationComponents: null,
-    firstDuration: null,
-    secondDuration: null,
-    thirdDuration: null,
-    fourthDuration: null,
-    fifthDuration: null
+    durationComponents: null
   },
-  mounted() {
-    app.$on('stack_clicked', this.splitMemoryMetric);
-  },
+
   computed: {
-    seenDurationTree() {
-      return this.durationComponents !== null &&
-        Object.getOwnPropertyNames(this
-            .durationComponents).length > 1 ? true : false;
+    //  Depending on the file type, the selection for
+    //  benchmarkOptions might be either memory or
+    //  duration.
+    benchmarkOptions() {
+      if (!_.isEmpty(this.durationComponents) &&
+          this.browserOptions.length !== 0) {
+        return BENCHMARK_OPTIONS;
+      }
+      if (!_.isEmpty(this.durationComponents)) {
+        return [BENCHMARK_OPTIONS[1]];
+      }
+      if (this.browserOptions.length !== 0) {
+        return [BENCHMARK_OPTIONS[0]];
+      }
+      return undefined;
     },
 
-    optionsFirstDuration() {
-      if (this.durationComponents !== null) {
+    //  Memory benchmark should have more select boxes so
+    //  we keep track checking if it is any memory metric.
+    seenMetricsTree() {
+      return this.chosenBenchmark === BENCHMARK_OPTIONS[0] ? true : false;
+    },
+
+    //  First select box might be either a browser option
+    //  (for memory metrics) or a first level component in
+    //  duration benchmark hierarchy.
+    optionsFirstElement() {
+      if (this.chosenBenchmark === null) {
+        return undefined;
+      }
+      if (this.chosenBenchmark === BENCHMARK_OPTIONS[1]) {
+        if (this.durationComponents === null) {
+          return undefined;
+        }
         return Object.getOwnPropertyNames(this.durationComponents);
       }
+      return this.browserOptions;
     },
 
-    optionsSecondDuration() {
-      if (this.durationComponents === null ||
-        this.firstDuration === null) {
+    //  Second select box might be either a subprocess
+    //  (for memory metrics) or a second level component
+    //  in duration benchmark hierarchy.
+    optionsSecondElement() {
+      if (this.chosenBenchmark === null) {
         return undefined;
       }
-      return Object.getOwnPropertyNames(this
-          .durationComponents[this.firstDuration]);
+      if (this.chosenBenchmark === BENCHMARK_OPTIONS[1]) {
+        if (this.durationComponents === null ||
+          this.firstElement === null) {
+          return undefined;
+        }
+        return Object.getOwnPropertyNames(this
+            .durationComponents[this.firstElement]);
+      }
+      return this.subprocessOptions;
     },
 
-    optionsThirdDuration() {
-      if (this.durationComponents === null ||
-        this.firstDuration === null ||
-        this.secondDuration === null) {
+    //  Third select box might be either a size (for memory
+    //  metrics) or a third level component in duration metrics
+    //  hierarchy.
+    optionsThirdElement() {
+      if (this.chosenBenchmark === null) {
         return undefined;
       }
-      return Object.getOwnPropertyNames(this
-          .durationComponents[this
-              .firstDuration][this
-              .secondDuration]);
+      if (this.chosenBenchmark === BENCHMARK_OPTIONS[1]) {
+        if (this.durationComponents === null ||
+          this.firstElement === null ||
+          this.secondElement === null) {
+          return undefined;
+        }
+        return Object.getOwnPropertyNames(this
+            .durationComponents[this
+                .firstElement][this
+                .secondElement]);
+      }
+      return this.sizeOptions;
     },
 
-    optionsFourthDuration() {
-      if (this.durationComponents === null ||
-        this.firstDuration === null ||
-        this.secondDuration === null ||
-        this.thirdDuration === null) {
+    optionsFourthElement() {
+      if (this.chosenBenchmark === null) {
         return undefined;
       }
-      return Object.getOwnPropertyNames(this
-          .durationComponents[this
-              .firstDuration][this
-              .secondDuration][this
-              .thirdDuration]);
+      if (this.chosenBenchmark === BENCHMARK_OPTIONS[1]) {
+        if (this.durationComponents === null ||
+          this.firstElement === null ||
+          this.secondElement === null ||
+          this.thirdElement === null) {
+          return undefined;
+        }
+        return Object.getOwnPropertyNames(this
+            .durationComponents[this
+                .firstElement][this
+                .secondElement][this
+                .thirdElement]);
+      }
+      return this.componentsOptions;
     },
 
-    optionsFifthDuration() {
-      if (this.durationComponents === null ||
-        this.firstDuration === null ||
-        this.secondDuration === null ||
-        this.thirdDuration === null ||
-        this.fourthDuration === null) {
+    optionsFifthElement() {
+      if (this.chosenBenchmark === null) {
         return undefined;
       }
-      return Object.getOwnPropertyNames(this
-          .durationComponents[this
-              .firstDuration][this
-              .secondDuration][this
-              .thirdDuration][this
-              .fourthDuration]);
+      if (this.chosenBenchmark === BENCHMARK_OPTIONS[1]) {
+        if (this.durationComponents === null ||
+          this.firstElement === null ||
+          this.secondElement === null ||
+          this.thirdElement === null ||
+          this.fourthElement === null) {
+          return undefined;
+        }
+        return Object.getOwnPropertyNames(this
+            .durationComponents[this
+                .firstElement][this
+                .secondElement][this
+                .thirdElement][this
+                .fourthElement]);
+      }
+      return this.firstSubcompOptions;
+    },
+
+    optionsSixthElement() {
+      if (this.chosenBenchmark === null) {
+        return undefined;
+      }
+      if (this.chosenBenchmark === BENCHMARK_OPTIONS[1]) {
+        return undefined;
+      }
+      return this.secondSubcompOptions;
     },
 
     //  Compute size options. The user will be provided with all
     //  sizes and the probe will be auto detected from it.
     sizeOptions() {
+      if (this.chosenBenchmark === BENCHMARK_OPTIONS[1]) {
+        return undefined;
+      }
       if (this.sizeMap === null) {
         return undefined;
       }
@@ -120,11 +185,14 @@ const menu = new Vue({
     //  The probe is auto detected depending on the chosen size.
     //  Then the user is provided with the first level of components.
     componentsOptions() {
-      if (this.componentMap === null || this.size === null) {
+      if (this.chosenBenchmark === BENCHMARK_OPTIONS[1]) {
+        return undefined;
+      }
+      if (this.componentMap === null || this.thirdElement === null) {
         return undefined;
       }
       for (const [key, value] of this.sizeMap.entries()) {
-        if (value.includes(this.size)) {
+        if (value.includes(this.thirdElement)) {
           this.probe = key;
         }
       }
@@ -138,48 +206,65 @@ const menu = new Vue({
     //  Compute the options for the first subcomponent depending on the probes.
     //  When the user chooses a component, it might be a hierarchical one.
     firstSubcompOptions() {
-      if (this.component === null) {
+      if (this.chosenBenchmark === BENCHMARK_OPTIONS[1]) {
+        return undefined;
+      }
+      if (this.fourthElement === null) {
         return undefined;
       }
       const subcomponent = [];
       for (const [key, value] of this
-          .componentMap.get(this.probe).get(this.component).entries()) {
+          .componentMap.get(this.probe).get(this.fourthElement).entries()) {
         subcomponent.push(key);
       }
       return subcomponent;
     },
 
-    //  In case when the component is from Chrome, the hierarchy might have more
-    //  levels.
+    //  In case when the component is from Chrome,
+    //  the hierarchy might have more levels.
     secondSubcompOptions() {
-      if (this.subcomponent === null) {
+      if (this.chosenBenchmark === BENCHMARK_OPTIONS[1]) {
+        return undefined;
+      }
+      if (this.fifthElement === null) {
         return undefined;
       }
       const subcomponent = [];
       for (const [key, value] of this
           .componentMap
           .get(this.probe)
-          .get(this.component)
-          .get(this.subcomponent).entries()) {
+          .get(this.fourthElement)
+          .get(this.fifthElement).entries()) {
         subcomponent.push(key);
       }
       return subcomponent;
     }
   },
   watch: {
-    size() {
-      this.component = null;
-      this.subcomponent = null;
-      this.subsubcomponent = null;
+    //  When the top level benchmark type is changed
+    //  all other options are aborted.
+    chosenBenchmark() {
+      this.firstElement = null;
+      this.secondElement = null;
+      this.thirdElement = null;
+      this.fourthElement = null;
+      this.fifthElement = null;
+      this.sixthElement = null;
     },
 
-    component() {
-      this.subcomponent = null;
-      this.subsubcomponent = null;
+    thirdElement() {
+      this.fourthElement = null;
+      this.fifthElement = null;
+      this.sixthElement = null;
     },
 
-    subcomponent() {
-      this.subsubcomponent = null;
+    fourthElement() {
+      this.fifthElement = null;
+      this.sixthElement = null;
+    },
+
+    fifthElement() {
+      this.sixthElement = null;
     },
 
     referenceColumn() {
@@ -198,78 +283,54 @@ const menu = new Vue({
     //  return the result as a collection of metrics that matched.
     //  Also the metric that exactly matches the menu selected items
     //  will be the first one in array and the first row in table.
-    applyMemoryMetrics() {
-      let nameOfMetric = 'memory:' +
-        this.browser + ':' +
-        this.subprocess + ':' +
-        this.probe + ':' +
-        this.component;
-      if (this.subcomponent !== null) {
-        nameOfMetric += ':' + this.subcomponent;
+    apply() {
+      if (this.chosenBenchmark === null) {
+        return undefined;
       }
-      if (this.subsubcomponent !== null) {
-        nameOfMetric += ':' + this.subsubcomponent;
-      }
-      let metrics = [];
-      for (const name of this.metricNames) {
-        if (this.browser !== null && name.includes(this.browser) &&
-          this.subprocess !== null && name.includes(this.subprocess) &&
-          this.component !== null && name.includes(this.component) &&
-          this.size !== null && name.includes(this.size) &&
-          this.probe !== null && name.includes(this.probe)) {
-          if (this.subcomponent === null) {
-            metrics.push(name);
-          } else {
-            if (name.includes(this.subcomponent)) {
-              if (this.subsubcomponent === null) {
-                metrics.push(name);
-              } else {
-                if (name.includes(this.subsubcomponent)) {
-                  metrics.push(name);
-                }
-              }
-            }
-          }
+      let metrics = this.metricNames;
+      if (this.chosenBenchmark === BENCHMARK_OPTIONS[0]) {
+        if (this.firstElement !== null) {
+          metrics = metrics.filter(name => name
+              .includes(this.firstElement));
+        }
+      } else {
+        if (this.firstElement !== null) {
+          metrics = metrics.filter(name => name
+              .startsWith(this.firstElement));
         }
       }
-      nameOfMetric += ':' + this.size;
+      if (this.secondElement !== null) {
+        metrics = metrics.filter(name => name
+            .includes(this.secondElement));
+      }
+      if (this.thirdElement !== null) {
+        metrics = metrics.filter(name => name
+            .includes(this.thirdElement));
+      }
+      if (this.fourthElement !== null) {
+        metrics = metrics.filter(name => name
+            .includes(this.fourthElement));
+      }
+      if (this.fifthElement !== null) {
+        metrics = metrics.filter(name => name
+            .includes(this.fifthElement));
+      }
+      if (this.sixthElement !== null) {
+        metrics = metrics.filter(name => name
+            .includes(this.sixthElement));
+      }
+      if (this.probe !== null && this.probe !== undefined) {
+        metrics = metrics.filter(name => name
+            .includes(this.probe));
+      }
+
       if (_.uniq(metrics).length === 0) {
         alert('No metrics found');
       } else {
         metrics = _.uniq(metrics);
-        metrics.splice(metrics.indexOf(nameOfMetric), 1);
-        metrics.unshift(nameOfMetric);
         app.parsedMetrics = metrics;
       }
     },
-
-    applyDurationMetrics() {
-      let metrics = [];
-      if (this.firstDuration !== null) {
-        metrics = this.metricNames.filter(name => name
-            .startsWith(this.firstDuration));
-        if (this.secondDuration !== null) {
-          metrics = metrics.filter(name => name.includes(this.secondDuration));
-          if (this.thirdDuration !== null) {
-            metrics = metrics.filter(name => name.includes(this.thirdDuration));
-            if (this.fourthDuration !== null) {
-              metrics = metrics.filter(name => name
-                  .includes(this.fourthDuration));
-              if (this.fifthDuration !== null) {
-                metrics = metrics.filter(name => name
-                    .includes(this.fifthDuration));
-              }
-            }
-          }
-        }
-      }
-      if (_.uniq(metrics).length === 0) {
-        alert('No metrics found');
-      } else {
-        app.parsedMetrics = _.uniq(metrics);
-      }
-    },
-
 
     /**
      * Splits a memory metric into it's heirarchical data and
@@ -298,15 +359,15 @@ const menu = new Vue({
       };
       // Assigning to these fields updates the corresponding select
       // menu in the UI.
-      this.browser = parts[heirarchyInformation.browser];
-      this.subprocess = parts[heirarchyInformation.process];
+      this.firstElement = parts[heirarchyInformation.browser];
+      this.secondElement = parts[heirarchyInformation.process];
       this.probe = parts[heirarchyInformation.probe];
-      this.size = parts[heirarchyInformation.size];
+      this.thirdElement = parts[heirarchyInformation.size];
       // The size watcher sets 'this.component' to null so we must wait for the
       // DOM to be updated. Then the size watcher is called before assigning
       // to 'this.component' and so it is not overwritten with null.
       await this.$nextTick();
-      this.component = parts[heirarchyInformation.componentStart];
+      this.fourthElement = parts[heirarchyInformation.componentStart];
       const start = heirarchyInformation.componentStart;
       const end = heirarchyInformation.componentsEnd;
       for (let i = start + 1; i <= end; i++) {
@@ -315,14 +376,14 @@ const menu = new Vue({
           case 1: {
             // See above comment (component watcher sets subcomponent to null).
             await this.$nextTick();
-            this.subcomponent = parts[i];
+            this.fifthElement = parts[i];
             break;
           }
           case 2: {
             // See above comment
             // (subcomponent watcher sets subsubcomponent to null).
             await this.$nextTick();
-            this.subsubcomponent = parts[i];
+            this.sixthElement = parts[i];
             break;
           }
           default: throw new Error('Unexpected number of subcomponents.');
