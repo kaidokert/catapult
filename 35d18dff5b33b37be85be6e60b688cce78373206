@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ee44345_beda0fde",
+        "filename": "dashboard/dashboard/pinpoint_request.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-18T10:21:09Z",
+      "side": 1,
+      "message": "Wondering whether we want the chart_name here at all. Maybe the bot_name/suite are enough?",
+      "revId": "35d18dff5b33b37be85be6e60b688cce78373206",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
