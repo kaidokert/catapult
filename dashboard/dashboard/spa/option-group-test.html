@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+<script src="/bower_components/web-component-tester/browser.js"></script>
+<link rel="import" href="/dashboard/spa/option-group.html">
+
+<test-fixture id="test">
+  <template>
+    <option-group state-path="test" root-state-path="test">
+    </option-group>
+  </template>
+</test-fixture>
+
+<script>
+'use strict';
+suite('option-group', function() {
+  test('select', async function() {
+    const optionGroup = fixture('test');
+    optionGroup.dispatch(Redux.UPDATE('', {
+      test: cp.OptionGroup.buildState({
+        options: cp.OptionGroup.groupValues(new Set([
+          'a',
+          'b:c',
+          'b:d',
+          'b:d:e',
+          'b:d:f',
+        ])),
+      }),
+    }));
+    await cp.afterRender();
+
+    const aLeaf = tr.ui.b.findDeepElementWithTextContent(chartLegend, /a/);
+    aLeaf.click();
+    await cp.afterRender();
+    assert.deepEqual(['a'], optionGroup.getState().test.selectedOptions);
+
+    aLeaf.click();
+    await cp.afterRender();
+    assert.deepEqual([], optionGroup.getState().test.selectedOptions);
+
+    const bLeaf = tr.ui.b.findDeepElementWithTextContent(chartLegend, /b/);
+    bLeaf.click();
+    await cp.afterRender();
+    assert.deepEqual(['b:c', 'b:d', 'b:d:e', 'b:d:f'],
+        optionGroup.getState().test.selectedOptions);
+
+    const dLeaf = tr.ui.b.findDeepElementWithTextContent(chartLegend, /b/);
+    dLeaf.click();
+    await cp.afterRender();
+    assert.deepEqual(['b:c', 'b:d', 'b:d:e', 'b:d:f'],
+        optionGroup.getState().test.selectedOptions);
+
+    dLeaf.click();
+    await cp.afterRender();
+    assert.deepEqual(['b:c', 'b:d', 'b:d:e', 'b:d:f'],
+        optionGroup.getState().test.selectedOptions);
+
+    dLeaf.click();
+    await cp.afterRender();
+    assert.deepEqual(['b:c', 'b:d', 'b:d:e', 'b:d:f'],
+        optionGroup.getState().test.selectedOptions);
+
+    const fLeaf = tr.ui.b.findDeepElementWithTextContent(chartLegend, /a/);
+    fLeaf.click();
+    await cp.afterRender();
+    assert.deepEqual(['b:c', 'b:d:e'],
+        optionGroup.getState().test.selectedOptions);
+  });
+});
+</script>
