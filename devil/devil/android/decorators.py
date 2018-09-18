@@ -28,7 +28,7 @@ def _TimeoutRetryWrapper(
     f: The function to wrap.
     timeout_func: A callable that returns the timeout value.
     retries_func: A callable that returns the retries value.
-    pass_values: If True, passes the values returned by |timeout_func| and
+    pass_values: if true, passes the values returned by |timeout_func| and
                  |retries_func| to the wrapped function as 'timeout' and
                  'retries' kwargs, respectively.
   Returns:
@@ -79,7 +79,7 @@ def WithTimeoutAndRetries(f):
   return _TimeoutRetryWrapper(f, get_timeout, get_retries)
 
 
-def WithTimeoutAndConditionalRetries(retry_if_func):
+def WithTimeoutAndConditionalRetries(retry_if_func, pass_values=False):
   """Returns a decorator that handles timeouts and, in some cases, retries.
 
   'timeout' and 'retries' kwargs must be passed to the function.
@@ -87,6 +87,8 @@ def WithTimeoutAndConditionalRetries(retry_if_func):
   Args:
     retry_if_func: A unary callable that takes an exception and returns
       whether failures should be retried.
+    pass_values: If True, passes the timeout and number of retries as 'timeout'
+      and 'retries' kwargs to the wrapper function.
   Returns:
     The actual decorator.
   """
@@ -94,7 +96,8 @@ def WithTimeoutAndConditionalRetries(retry_if_func):
     get_timeout = lambda *a, **kw: kw['timeout']
     get_retries = lambda *a, **kw: kw['retries']
     return _TimeoutRetryWrapper(
-        f, get_timeout, get_retries, retry_if_func=retry_if_func)
+        f, get_timeout, get_retries, retry_if_func=retry_if_func,
+        pass_values=pass_values)
   return decorator
 
 
