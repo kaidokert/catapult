@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9596d65b_e92a7840",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-09-18T12:40:01Z",
+      "side": 1,
+      "message": "Yes, I am perfectly aware about this fact and I totally agree but I kept adding things before presentation thinking that I would send this in the same day(so to be a quicker process just with one CL).",
+      "parentUuid": "f3fa44ad_8d95ca52",
+      "revId": "4654b7dd6149fdd8e208a2d02fadd5cc32a359c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2bff1503_c9d06148",
         "filename": "experimental/v8_tools/app.js",
         "patchSetId": 7
@@ -33,6 +51,24 @@
       "revId": "4654b7dd6149fdd8e208a2d02fadd5cc32a359c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62933a28_a3db70a7",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-09-18T12:40:01Z",
+      "side": 1,
+      "message": "This should have been removed actually.",
+      "parentUuid": "2bff1503_c9d06148",
+      "revId": "4654b7dd6149fdd8e208a2d02fadd5cc32a359c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "5a5c9b40_abd086fa",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-09-18T12:40:01Z",
+      "side": 1,
+      "message": "No, it\u0027s not intended. Hmm, it might be because of rebasing.",
+      "parentUuid": "e26b5418_03fb5b0f",
+      "revId": "4654b7dd6149fdd8e208a2d02fadd5cc32a359c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1e53b767_ce956fab",
         "filename": "experimental/v8_tools/app.js",
         "patchSetId": 7
@@ -67,6 +121,24 @@
       "revId": "4654b7dd6149fdd8e208a2d02fadd5cc32a359c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2df649c_57e1fa13",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-09-18T12:40:01Z",
+      "side": 1,
+      "message": "No, it should be the same.\nI did not change manually this at rebase, so the source of this change is different.",
+      "parentUuid": "1e53b767_ce956fab",
+      "revId": "4654b7dd6149fdd8e208a2d02fadd5cc32a359c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "5b1afe24_5ddc829f",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-09-18T12:40:01Z",
+      "side": 1,
+      "message": "As I see we use target in both of them.",
+      "parentUuid": "c5afa81a_ad09fdb7",
+      "revId": "4654b7dd6149fdd8e208a2d02fadd5cc32a359c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0cdfa14f_e68f7153",
         "filename": "experimental/v8_tools/filter.js",
         "patchSetId": 7
@@ -101,6 +191,24 @@
       "revId": "4654b7dd6149fdd8e208a2d02fadd5cc32a359c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28c28a8e_e4792a47",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-09-18T12:40:01Z",
+      "side": 1,
+      "message": "Ok, I already have another approach in the followup, but I understand what you say.",
+      "parentUuid": "0cdfa14f_e68f7153",
+      "revId": "4654b7dd6149fdd8e208a2d02fadd5cc32a359c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "b15e532c_fd4ac429",
+        "filename": "experimental/v8_tools/table_component.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-09-18T12:40:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aef00270_87214ecd",
+      "revId": "4654b7dd6149fdd8e208a2d02fadd5cc32a359c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c7d8dc78_3de5e90c",
         "filename": "experimental/v8_tools/table_component.js",
         "patchSetId": 7
@@ -138,6 +264,24 @@
     },
     {
       "key": {
+        "uuid": "4389d07a_7aa8f0cb",
+        "filename": "experimental/v8_tools/table_component.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-09-18T12:40:01Z",
+      "side": 1,
+      "message": "Right.\nI think the Stacked plot would be useless if we have just one metric in theory.\nFor one metric, one story, multiple diagnostics \u003d\u003e Stacked Plot (?)\n\nFor multiple diagnostics we can show all of them in CF/DP, isn\u0027t it? \nMaybe I didn\u0027t get the point.",
+      "parentUuid": "c7d8dc78_3de5e90c",
+      "revId": "4654b7dd6149fdd8e208a2d02fadd5cc32a359c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5e475ea2_ff8a5d6b",
         "filename": "experimental/v8_tools/table_component.js",
         "patchSetId": 7
@@ -152,6 +296,24 @@
       "revId": "4654b7dd6149fdd8e208a2d02fadd5cc32a359c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "830ea1e2_ccfd2769",
+        "filename": "experimental/v8_tools/table_component.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1293425
+      },
+      "writtenOn": "2018-09-18T12:40:01Z",
+      "side": 1,
+      "message": "No, it\u0027s for multiple selected metrics and (some)diagnostics. \nThis is the watcher for diagnostics so it works as long as we still have diagnostics.",
+      "parentUuid": "5e475ea2_ff8a5d6b",
+      "revId": "4654b7dd6149fdd8e208a2d02fadd5cc32a359c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
