@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 """Helper function to run the benchmark.
 """
+import json
 import os
 import shutil
 import subprocess
@@ -18,6 +19,7 @@ CATAPULT_ROOT = os.path.normpath(os.path.join(utils.APP_ROOT, '..', '..'))
 CHROMIUM_ROOT = os.path.normpath(os.path.join(CATAPULT_ROOT, '..', '..'))
 MB = os.path.join(CHROMIUM_ROOT, 'tools', 'mb', 'mb.py')
 SWARMING_CLIENT = os.path.join(CHROMIUM_ROOT, 'tools', 'swarming_client')
+ISOLATE_SERVER = os.path.join(SWARMING_CLIENT, 'isolateserver.py')
 ISOLATE = os.path.join(SWARMING_CLIENT, 'isolate.py')
 SWARMING = os.path.join(SWARMING_CLIENT, 'swarming.py')
 PATH_TO_APKS = os.path.join(CHROMIUM_ROOT, 'tools', 'perf', 'swarming_apk')
@@ -94,6 +96,41 @@ def TriggerSwarmingJob(isolate_hash, isolated_apk_path):
       bot_dimension_options + ['--', '--benchmarks'] +
       run_benchmark_options + output_options)
   return task_output.split('/')[-1].strip()  # return task hash
+
+
+def CheckComplete(task_id):
+  return 'COMPLETE' in subprocess.check_output(
+      [SWARMING, 'query', 'tasks/get_states?task_id=%s' % task_id,
+       '--swarming', SWARMING_URL])
+
+
+def GetResultFromSwarming(isolate_hash, isolate_server, output_dir):
+  """Download all the files included in the given isolate hash.
+
+  Args:
+    isolate_hash(string): the output isolate hash given by the swarming server
+    isolate_server(string): the isolate server to use for the download
+    output_dir(string): the dir to put the downloaded files
+  """
+  # download the json that contains the description of other files
+  subprocess.call([ISOLATE_SERVER, 'download',
+                   '--isolate-server', isolate_server,
+                   '--file=%s' % isolate_hash, 'files.json',
+                   '--target=%s' % output_dir,
+                  ])  # do not use the `--cache`, it will clear this directory
+  # download all the files described in the json
+  with open(os.path.join(output_dir, 'files.json')) as json_:
+    for file_, data_ in json.load(json_)['files'].iteritems():
+      subprocess.call(
+          [ISOLATE_SERVER, 'download', '--isolate-server', isolate_server,
+           # `file_` looks like system_health.memory_mobile/benchmark_log.txt,
+           # since we don't want to create a new directory, we remove the first
+           # bit, i.e. system_health.memory_mobile
+           '--file=%s' % data_['h'], file_.split('/')[-1],
+           '--target=%s' % output_dir,
+          ])
+
+  os.remove(os.path.join(output_dir, 'files.json'))
 
 
 def RunBenchmark(path_to_apk, run_label):
