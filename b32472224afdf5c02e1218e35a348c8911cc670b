@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c560f7b6_4d49a783",
+        "filename": "experimental/long_term_health/long_term_health/test_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-18T15:19:17Z",
+      "side": 1,
+      "message": "import contextlib only; then use contextlib.contextmanager below.",
+      "revId": "b32472224afdf5c02e1218e35a348c8911cc670b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8251f05_6462c795",
+        "filename": "experimental/long_term_health/long_term_health/test_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-18T15:19:17Z",
+      "side": 1,
+      "message": "I think this would be a bit more general if you implement some function to context-manage the restoring of file contents, e.g. something like:\n\nwith RestoreFileContents([TEST_BUILD_GN, GN_ISOLATE_MAP]):\n  AddLongTermHealthBuildTarget(TEST_BUILD_GN)\n  AddLongTermHealthTargetToIsolateMap(GN_ISOLATE_MAP)\n  # Other commands to generate the isolate here.\n  \nThe RestoreFileContents can:\n- Create a new temp dir (use mkdtemp)\n- Make copies of all files listed there.\n- yield\n- Remove the entire temp dir.\n\nall in a try-finally block so the temp dir is always removed.\n\nWhat do you think?",
+      "revId": "b32472224afdf5c02e1218e35a348c8911cc670b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
