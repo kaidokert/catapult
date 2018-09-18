@@ -47,7 +47,7 @@ class SmoothnessMetricUnitTest(unittest.TestCase):
     self.metric._PopulateResultsFromStats(results, stats, False, False)
     current_page_run = results.current_page_run
     self.assertTrue(current_page_run.ok)
-    expected_values_count = 11
+    expected_values_count = 8
     self.assertEquals(expected_values_count, len(current_page_run.values))
 
   def testHasEnoughFrames(self):
@@ -108,10 +108,9 @@ class SmoothnessMetricUnitTest(unittest.TestCase):
     stats = _MockRenderingStats(frame_timestamps=self.good_timestamps,
                                 input_event_latency=[[10, 20], [30, 40, 50]])
     # pylint: disable=unbalanced-tuple-unpacking
-    raw, mean_value = self.metric._ComputeLatencyMetric(
-        self.page, stats, 'input_event_latency', stats.input_event_latency)
+    raw = self.metric._ComputeLatencyMetric(
+        self.page, stats, 'input_event_latency', stats.input_event_latency)[0]
     self.assertEquals([10, 20, 30, 40, 50], raw.values)
-    self.assertEquals(30, mean_value.value)
 
   def testComputeLatencyMetricWithMissingData(self):
     stats = _MockRenderingStats(frame_timestamps=self.good_timestamps,
@@ -125,12 +124,9 @@ class SmoothnessMetricUnitTest(unittest.TestCase):
         frame_timestamps=self.not_enough_frames_timestamps,
         input_event_latency=[[], []])
     # pylint: disable=unbalanced-tuple-unpacking
-    raw, mean_value = self.metric._ComputeLatencyMetric(
-        self.page, stats, 'input_event_latency', stats.input_event_latency)
+    raw = self.metric._ComputeLatencyMetric(
+        self.page, stats, 'input_event_latency', stats.input_event_latency)[0]
     self.assertEquals(None, raw.values)
-    self.assertEquals(None, mean_value.value)
-    self.assertEquals(smoothness.NOT_ENOUGH_FRAMES_MESSAGE,
-                      mean_value.none_value_reason)
 
   def testComputeGestureScrollUpdateLatencies(self):
     stats = _MockRenderingStats(
@@ -199,24 +195,20 @@ class SmoothnessMetricUnitTest(unittest.TestCase):
   def testComputeFrameTimeMetric(self):
     stats = _MockRenderingStats(frame_timestamps=self.good_timestamps,
                                 frame_times=[[10, 20], [30, 40, 50]])
-    frame_times_value, mean_frame_time_value, percentage_smooth_value = (
+    frame_times_value, percentage_smooth_value = (
         self.metric._ComputeDisplayFrameTimeMetric(self.page, stats))
     self.assertEquals([10, 20, 30, 40, 50], frame_times_value.values)
-    self.assertEquals(30, mean_frame_time_value.value)
     self.assertEquals(20, percentage_smooth_value.value)
 
   def testComputeFrameTimeMetricWithNotEnoughFrames2(self):
     stats = _MockRenderingStats(
         frame_timestamps=self.not_enough_frames_timestamps,
         frame_times=[[10, 20], [30, 40, 50]])
-    frame_times_value, mean_frame_time_value, percentage_smooth_value = (
+    frame_times_value, percentage_smooth_value = (
         self.metric._ComputeDisplayFrameTimeMetric(self.page, stats))
     self.assertEquals(None, frame_times_value.values)
     self.assertEquals(smoothness.NOT_ENOUGH_FRAMES_MESSAGE,
                       frame_times_value.none_value_reason)
-    self.assertEquals(None, mean_frame_time_value.value)
-    self.assertEquals(smoothness.NOT_ENOUGH_FRAMES_MESSAGE,
-                      mean_frame_time_value.none_value_reason)
     self.assertEquals(None, percentage_smooth_value.value)
     self.assertEquals(smoothness.NOT_ENOUGH_FRAMES_MESSAGE,
                       percentage_smooth_value.none_value_reason)
