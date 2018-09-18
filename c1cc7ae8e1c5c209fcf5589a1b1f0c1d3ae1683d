@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dd6aec64_5142fcd7",
+        "filename": "telemetry/telemetry/web_perf/metrics/rendering_stats.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-18T16:43:29Z",
+      "side": 1,
+      "message": "_GetRefreshPeriodFromSurfaceFlingerProcess looks like it will fail if metadata is the default value, None, so do you want to add ` and metadata` to this condition?",
+      "revId": "c1cc7ae8e1c5c209fcf5589a1b1f0c1d3ae1683d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
