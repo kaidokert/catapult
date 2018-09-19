@@ -16,6 +16,24 @@
       "revId": "235df113b53f21301524608f9685d112b134a010",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92035afa_bda590f2",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1293423
+      },
+      "writtenOn": "2018-09-19T11:29:01Z",
+      "side": 1,
+      "message": "It acts as a (fairly hacky but common) way to deep clone JSON objects in js. We turn it into a string so that JSON.parse can be used, which will parse the string a new (cloned) JSON object. However, I just released that we have the underscore library imported which probably has it\u0027s own deep clone method so maybe that would be better?",
+      "parentUuid": "b332f0d5_7ef5c502",
+      "revId": "235df113b53f21301524608f9685d112b134a010",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
