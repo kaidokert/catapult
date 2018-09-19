@@ -52,6 +52,24 @@
       "revId": "235df113b53f21301524608f9685d112b134a010",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9c39443_9b406ced",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-19T14:20:45Z",
+      "side": 1,
+      "message": "Yes, I think a comment would be good. If there is a deep clone method that would be even better :).",
+      "parentUuid": "622e84c6_9a47824d",
+      "revId": "235df113b53f21301524608f9685d112b134a010",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
