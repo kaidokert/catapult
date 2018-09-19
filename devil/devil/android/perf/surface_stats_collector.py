@@ -119,6 +119,7 @@ class SurfaceStatsCollector(object):
   def _GetSurfaceViewWindowName(self):
     results = self._device.RunShellCommand(
         ['dumpsys', 'SurfaceFlinger', '--list'], check_return=True)
+    print 'results: %s' % str(results)
     for window_name in results:
       if window_name.startswith('SurfaceView'):
         return window_name
