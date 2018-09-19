@@ -100,6 +100,27 @@ tr.exportTo('tr.ui.tracks', function() {
       this.viewport.rebuildContainerToTrackMap();
     },
 
+    set visible(visible) {
+      const classList = Polymer.dom(this).classList;
+      if (visible) {
+        if (!classList.contains('hidden')) return;
+        classList.remove('hidden');
+      } else {
+        if (classList.contains('hidden')) return;
+        classList.add('hidden');
+      }
+      // Expanding and collapsing tracks is, essentially, growing and shrinking
+      // the viewport. We dispatch a change event to trigger any processing
+      // to happen.
+      this.viewport_.dispatchChangeEvent();
+
+      if (!this.processBase_) return;
+
+      this.updateContents_();
+      this.viewport.rebuildEventToTrackMap();
+      this.viewport.rebuildContainerToTrackMap();
+    },
+
     get hasVisibleContent() {
       if (this.expanded) {
         return this.children.length > 1;

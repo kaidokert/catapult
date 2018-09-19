@@ -90,7 +90,10 @@ tr.exportTo('tr.ui.tracks', function() {
       this.upperMode_ = false;
       this.annotationViews_ = [];
       this.vSyncTimes_ = [];
+      this.processViews_ = [];
     },
+
+    get processViews() { return this.processViews_; },
 
     // upperMode is true if the track is being used on the ruler.
     get upperMode() {
@@ -172,6 +175,7 @@ tr.exportTo('tr.ui.tracks', function() {
         if (!track.hasVisibleContent) continue;
 
         Polymer.dom(this).appendChild(track);
+        this.processViews_.push(track);
       }
       this.viewport_.rebuildEventToTrackMap();
       this.viewport_.rebuildContainerToTrackMap();
