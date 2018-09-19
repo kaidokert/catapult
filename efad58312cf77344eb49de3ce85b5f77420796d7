@@ -46,6 +46,30 @@
       "revId": "efad58312cf77344eb49de3ce85b5f77420796d7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f8c8324_7f5d8239",
+        "filename": "experimental/v8_tools/stacked_bar_plotter.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1293423
+      },
+      "writtenOn": "2018-09-19T15:46:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ded358ac_f75dd4a6",
+      "range": {
+        "startLine": 248,
+        "startChar": 36,
+        "endLine": 248,
+        "endChar": 51
+      },
+      "revId": "efad58312cf77344eb49de3ce85b5f77420796d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
