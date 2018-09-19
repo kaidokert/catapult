@@ -34,6 +34,24 @@
       "revId": "235df113b53f21301524608f9685d112b134a010",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "622e84c6_9a47824d",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1293423
+      },
+      "writtenOn": "2018-09-19T11:31:33Z",
+      "side": 1,
+      "message": "Also, I\u0027m not sure if it\u0027s clear here but the objects have to be deep cloned because the state will be mutated in the vue components so if we push the raw states then they will be mutated to reflect the current state rather than the history. Do you think that needs a comment?",
+      "parentUuid": "92035afa_bda590f2",
+      "revId": "235df113b53f21301524608f9685d112b134a010",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
