@@ -88,8 +88,9 @@ class StackedBarPlotter {
         bars => d3.max(bars.map(story => getBarHeight(story)));
     const maxHeightOfAllSources =
         d3.max(sources.map(({ data }) => maxHeight(data)));
+    const defaultRange = 1;
     return d3.scaleLinear()
-        .domain([maxHeightOfAllSources, 0]).nice()
+        .domain([Math.round(maxHeightOfAllSources) || defaultRange, 0]).nice()
         .range([0, chartDimensions.height]);
   }
 
@@ -235,15 +236,16 @@ class StackedBarPlotter {
     const stacks = bars[this.data_];
     const x = this.outerBandScale_(barName) + this.innerBandScale_(key);
     let totalHeight = 0;
-    stacks.forEach((stack, i) => {
+    stacks.forEach(stack => {
       const positions = stack[this.data_];
       const height =
           chartDimensions.height - this.scaleForYAxis_(positions.height);
+      const zeroValueHeight = 2;
       selection.append('rect')
           .attr('x', x)
           .attr('y', this.scaleForYAxis_(positions.height + positions.start))
           .attr('width', this.innerBandScale_.bandwidth())
-          .attr('height', height)
+          .attr('height', height || zeroValueHeight)
           .attr('fill', this.getColorForStack_(stack[this.name_]))
           .on('click', () =>
             graph.interactiveCallbackForCategory(stack[this.name_]))
