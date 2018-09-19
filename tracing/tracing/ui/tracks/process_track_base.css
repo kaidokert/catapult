@@ -22,3 +22,7 @@
 .process-track-base.expanded .process-track-name:before {
   content: '\25BE'; /* Down triangle */
 }
+
+.process-track-base.hidden {
+  display: none;
+}
