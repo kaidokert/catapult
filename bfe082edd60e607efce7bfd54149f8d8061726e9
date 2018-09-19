@@ -22,6 +22,30 @@
       "revId": "bfe082edd60e607efce7bfd54149f8d8061726e9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d90152bc_9a945f95",
+        "filename": "dashboard/dashboard/pinpoint/handlers/migrate.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-09-19T16:56:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11d12ff5_d501855e",
+      "range": {
+        "startLine": 56,
+        "startChar": 28,
+        "endLine": 56,
+        "endChar": 43
+      },
+      "revId": "bfe082edd60e607efce7bfd54149f8d8061726e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
