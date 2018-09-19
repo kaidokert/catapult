@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ba1361eb_94016dcc",
+        "filename": "tracing/tracing/ui/timeline_view.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-09-19T22:22:16Z",
+      "side": 1,
+      "message": "I had used querySelectorAll() at first, but setting \u0027checked\u0027 does not trigger the callback. So I switched to using this, which makes it much easier to update the state and make sure the callback is run at the same time.\n\nChanged the callbacks for the buttons to be as you suggested.",
+      "parentUuid": "572226c7_b306c438",
+      "revId": "0aaa2f54e56dca51de777df7d2dd82f27f21dd79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7957d515_583520d5",
         "filename": "tracing/tracing/ui/timeline_view.html",
         "patchSetId": 5
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "457c1892_d42fc67b",
+        "filename": "tracing/tracing/ui/timeline_view.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-09-19T22:22:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7957d515_583520d5",
+      "revId": "0aaa2f54e56dca51de777df7d2dd82f27f21dd79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2e392f6b_6b3832eb",
         "filename": "tracing/tracing/ui/timeline_view.html",
         "patchSetId": 5
@@ -47,6 +83,24 @@
       "writtenOn": "2018-09-19T20:50:47Z",
       "side": 1,
       "message": "Why not pass view.visible to createCheckBox\u0027s defaultValue?",
+      "revId": "0aaa2f54e56dca51de777df7d2dd82f27f21dd79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37f5d456_5b7f5a3b",
+        "filename": "tracing/tracing/ui/timeline_view.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-09-19T22:22:16Z",
+      "side": 1,
+      "message": "I tried that, and that did not work because the default-value affects things only if a \u0027settingsKey\u0027 is provided. Maybe I should use a \u0027settingsKey\u0027 here? I don\u0027t really understand what that is supposed to be though.",
+      "parentUuid": "2e392f6b_6b3832eb",
       "revId": "0aaa2f54e56dca51de777df7d2dd82f27f21dd79",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "7762fcdb_396549d8",
+        "filename": "tracing/tracing/ui/timeline_view.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-09-19T22:22:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ff5e1b8_67a7aa87",
+      "revId": "0aaa2f54e56dca51de777df7d2dd82f27f21dd79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f14ce15c_dc841c9f",
         "filename": "tracing/tracing/ui/timeline_view_test.html",
         "patchSetId": 5
@@ -84,6 +156,24 @@
       "revId": "0aaa2f54e56dca51de777df7d2dd82f27f21dd79",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd7069b5_fbb4484b",
+        "filename": "tracing/tracing/ui/timeline_view_test.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-09-19T22:22:16Z",
+      "side": 1,
+      "message": "Yep! Done.",
+      "parentUuid": "f14ce15c_dc841c9f",
+      "revId": "0aaa2f54e56dca51de777df7d2dd82f27f21dd79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "67531bea_661f2217",
+        "filename": "tracing/tracing/ui/tracks/model_track.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-09-19T22:22:16Z",
+      "side": 1,
+      "message": "Done, although I had to use .process-track-base, which feels like an internal detail of ProcessTrack. Is there a better way?",
+      "parentUuid": "df96295d_1f8ac7f9",
+      "revId": "0aaa2f54e56dca51de777df7d2dd82f27f21dd79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cdbdc9f3_49d2157c",
         "filename": "tracing/tracing/ui/tracks/process_track_base.html",
         "patchSetId": 5
@@ -118,6 +226,24 @@
       "revId": "0aaa2f54e56dca51de777df7d2dd82f27f21dd79",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0301eb57_f2c51bab",
+        "filename": "tracing/tracing/ui/tracks/process_track_base.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-09-19T22:22:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cdbdc9f3_49d2157c",
+      "revId": "0aaa2f54e56dca51de777df7d2dd82f27f21dd79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
