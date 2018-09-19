@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "572226c7_b306c438",
+        "filename": "tracing/tracing/ui/timeline_view.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-19T20:50:47Z",
+      "side": 1,
+      "message": "Why not have the All and None buttons get the checkboxes using querySelectorAll()?\nYou can also factor their listeners to a function that takes a boolean like `checked`, that All\u0027s listener would set to true and None\u0027s listener would set to false.",
+      "revId": "0aaa2f54e56dca51de777df7d2dd82f27f21dd79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7957d515_583520d5",
+        "filename": "tracing/tracing/ui/timeline_view.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-19T20:50:47Z",
+      "side": 1,
+      "message": "Please use for (const view of processViews)",
+      "revId": "0aaa2f54e56dca51de777df7d2dd82f27f21dd79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e392f6b_6b3832eb",
+        "filename": "tracing/tracing/ui/timeline_view.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-19T20:50:47Z",
+      "side": 1,
+      "message": "Why not pass view.visible to createCheckBox\u0027s defaultValue?",
+      "revId": "0aaa2f54e56dca51de777df7d2dd82f27f21dd79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ff5e1b8_67a7aa87",
+        "filename": "tracing/tracing/ui/timeline_view.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-19T20:50:47Z",
+      "side": 1,
+      "message": "I think it\u0027s more common to put these buttons at the top of the list instead of the bottom.",
+      "revId": "0aaa2f54e56dca51de777df7d2dd82f27f21dd79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f14ce15c_dc841c9f",
+        "filename": "tracing/tracing/ui/timeline_view_test.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-19T20:50:47Z",
+      "side": 1,
+      "message": "I think using filter().length would be simpler than reduce().",
+      "revId": "0aaa2f54e56dca51de777df7d2dd82f27f21dd79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df96295d_1f8ac7f9",
+        "filename": "tracing/tracing/ui/tracks/model_track.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-19T20:50:47Z",
+      "side": 1,
+      "message": "Could this use querySelectorAll()? The DOM should be the single source of truth for elements.",
+      "revId": "0aaa2f54e56dca51de777df7d2dd82f27f21dd79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cdbdc9f3_49d2157c",
+        "filename": "tracing/tracing/ui/tracks/process_track_base.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-19T20:50:47Z",
+      "side": 1,
+      "message": "These are just divs, so you should be able to set this.hidden \u003d !this.visible; without adding any css.",
+      "revId": "0aaa2f54e56dca51de777df7d2dd82f27f21dd79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
