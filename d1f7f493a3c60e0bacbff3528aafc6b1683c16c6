@@ -22,6 +22,30 @@
       "revId": "d1f7f493a3c60e0bacbff3528aafc6b1683c16c6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b6a9c3a_3a0676e8",
+        "filename": "telemetry/telemetry/wpr/archive_info.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-09-20T08:54:41Z",
+      "side": 1,
+      "message": "even better, nice!",
+      "parentUuid": "9a44de0d_94954c3b",
+      "range": {
+        "startLine": 198,
+        "startChar": 0,
+        "endLine": 216,
+        "endChar": 16
+      },
+      "revId": "d1f7f493a3c60e0bacbff3528aafc6b1683c16c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
