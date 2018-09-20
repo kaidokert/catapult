@@ -16,6 +16,24 @@
       "revId": "9635860d78529838c219b53c9f0a8e1218b9667d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c56f7c22_b0f978a5",
+        "filename": "dashboard/dashboard/pinpoint/elements/stats-page.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-09-20T06:27:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab93cae9_812fb44a",
+      "revId": "9635860d78529838c219b53c9f0a8e1218b9667d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
