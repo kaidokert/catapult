@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "521c1a03_ae12eb45",
+        "filename": "dashboard/dashboard/spa/option-group.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-20T18:30:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdaea890_a4b95bff",
+      "range": {
+        "startLine": 25,
+        "startChar": 8,
+        "endLine": 25,
+        "endChar": 25
+      },
+      "revId": "f3144c07115ae2a661d45bd85e2f46f485535b41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ad1dd04e_aab8f265",
         "filename": "dashboard/dashboard/spa/option-group.html",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2018-09-18T20:34:05Z",
       "side": 1,
       "message": "Are sub-options meant to be completely hidden if shouldStampSubOptions_ is false?",
+      "range": {
+        "startLine": 73,
+        "startChar": 8,
+        "endLine": 73,
+        "endChar": 77
+      },
+      "revId": "f3144c07115ae2a661d45bd85e2f46f485535b41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "939cba52_8fd15353",
+        "filename": "dashboard/dashboard/spa/option-group.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-20T18:30:27Z",
+      "side": 1,
+      "message": "shouldStampSubOptions_ returns true whenever isExpanded_ returns true, but the converse is not always true. I added some comments in the js file about the performance trade-off at work here.",
+      "parentUuid": "ad1dd04e_aab8f265",
       "range": {
         "startLine": 73,
         "startChar": 8,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "ef675d03_d183cb9c",
+        "filename": "dashboard/dashboard/spa/option-group.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-20T18:30:27Z",
+      "side": 1,
+      "message": "Added comments to the State and RootState objects.",
+      "parentUuid": "25451e15_66b9f38c",
+      "range": {
+        "startLine": 7,
+        "startChar": 2,
+        "endLine": 7,
+        "endChar": 43
+      },
+      "revId": "f3144c07115ae2a661d45bd85e2f46f485535b41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "11102584_0ddf5be2",
         "filename": "dashboard/dashboard/spa/option-group.js",
         "patchSetId": 2
@@ -82,6 +154,30 @@
       "writtenOn": "2018-09-18T20:34:05Z",
       "side": 1,
       "message": "Nit: Perhaps Stamp -\u003e Check? (at first I was confused what stamp meant)",
+      "range": {
+        "startLine": 8,
+        "startChar": 10,
+        "endLine": 8,
+        "endChar": 15
+      },
+      "revId": "f3144c07115ae2a661d45bd85e2f46f485535b41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "831e0664_bbb46b35",
+        "filename": "dashboard/dashboard/spa/option-group.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-20T18:30:27Z",
+      "side": 1,
+      "message": "Added comments.\n\"Stamp\" is the term that Polymer uses to mean \"create DOM elements from a template\".\nhttps://www.polymer-project.org/2.0/docs/api/elements/Polymer.DomIf",
+      "parentUuid": "11102584_0ddf5be2",
       "range": {
         "startLine": 8,
         "startChar": 10,
