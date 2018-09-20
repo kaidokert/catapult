@@ -35,6 +35,12 @@ GN_ISOLATE_MAP = os.path.join(
 RESULT_FILE_NAME = 'perf_results.json'
 
 
+def RemoveFilesByExtension(dir_path, extension):
+  for name in os.listdir(dir_path):
+    if name.endswith(extension):
+      os.remove(os.path.join(dir_path, name))
+
+
 @contextlib.contextmanager
 def RestoreFileContents(file_paths):
   """Context Manager to restore the file contents after modifications.
@@ -113,7 +119,23 @@ def IncludeAPKInIsolate(apk_path):
 
 
 def GenerateIsolate(out_dir_path, target_name):
+  """Generate the isolate for the given target.
+
+  This function will try to fetch the latest benchmark DEPs and remove sha1 file
+  before generating the isolate.
+
+  Args:
+    out_dir_path(string): the directory that you want the isolate to be in
+    target_name(string): the name of the target
+  """
   # TODO(wangge): need to make it work even if there is no `out/Debug`
+  subprocess.call(['gclient', 'sync'])  # it will fail if there is local change
+  subprocess.call(
+      ['python', os.path.join(
+          CHROMIUM_ROOT, 'tools', 'perf', 'fetch_benchmark_deps.py'),
+       'system_health.memory_mobile'])
+  RemoveFilesByExtension(os.path.join(
+      CHROMIUM_ROOT, 'tools', 'perf', 'page_sets', 'data'), '.sha1')
   with RestoreFileContents([TEST_BUILD_GN, GN_ISOLATE_MAP]):
     AddNewTargetToBUILD()
     AddTargetToIsolateMap()
@@ -121,9 +143,10 @@ def GenerateIsolate(out_dir_path, target_name):
 
 
 def UploadIsolate(isolated_path):
+  """Returns the input isolate hash."""
   return subprocess.check_output(
       [ISOLATE_SCRIPT, 'archive', '-I', ISOLATE_SERVER_URL,
-       '-s', isolated_path])
+       '-s', isolated_path]).split(' ')[0]
 
 
 def TriggerSwarmingJob(isolate_hash, isolated_apk_path):
@@ -153,7 +176,7 @@ def TriggerSwarmingJob(isolate_hash, isolated_apk_path):
   bot_dimension_options = [
       '--dimension', 'pool', 'chrome.tests.pinpoint',
       '--dimension', 'os', 'Android',
-      '--dimension', 'device_os_flavor', 'aosp',
+      '--dimension', 'device_os_flavor', 'google',
   ]
   # options provided to the `run_benchmark` script
   run_benchmark_options = [
@@ -277,17 +300,27 @@ def CollectResults(version_task_id_table, run_label, benchmark_name):
     time.sleep(300)
 
 
-def RunBenchmark(path_to_apk, run_label):
+def RunBenchmarkOnSwarming(apk_path):
+  isolated_apk_path = IncludeAPKInIsolate(apk_path)
+  GenerateIsolate(os.path.join(CHROMIUM_ROOT, 'out', 'Debug'),
+                  'performance_system_chrome_test_suite')
+  input_isolate_hash = UploadIsolate(os.path.join(
+      CHROMIUM_ROOT, 'out', 'Debug',
+      'performance_system_chrome_test_suite.isolated'))
+  return TriggerSwarmingJob(input_isolate_hash, isolated_apk_path)
+
+
+def RunBenchmarkLocally(apk_path, run_label):
   """Install the APK and run the benchmark on it.
 
   Args:
-    path_to_apk(string): the *relative* path to the APK
+    apk_path(string): the *relative* path to the APK
     run_label(string): the name of the directory to contains all the output
     from this run
   """
   # `path_to_apk` is similar to `./out/59.0.3071.132_arm_MonochromeStable.apk`
-  chrome_version = ChromeVersion(path_to_apk.split('/')[-1].split('_')[0])
-  subprocess.call(['adb', 'install', '-r', '-d', path_to_apk])
+  chrome_version = ChromeVersion(apk_path.split('/')[-1].split('_')[0])
+  subprocess.call(['adb', 'install', '-r', '-d', apk_path])
   subprocess.call([os.path.join(utils.CHROMIUM_SRC, 'tools',
                                 'perf', 'run_benchmark'),
                    '--browser=android-system-chrome',
@@ -309,3 +342,27 @@ def RunBenchmark(path_to_apk, run_label):
                        str(chrome_version.milestone)),
                    # thinking of adding an argument to the tool to set this too
                    'system_health.memory_mobile'])
+
+
+def RunBenchmark(apk_path, run_label, use_swarming):
+  """Run the benchmark.
+
+  Args:
+    apk_path(string): path to the Clank APK
+    run_label(string): the user supplied label, i.e. directory name
+    use_swarming(boolean): whether to run on swarming
+
+  Returns:
+    dict: containing the task meta info
+  """
+  task_status = {
+      'task_hash': None,
+      'completed': False,
+      'result_isolate': None,
+  }
+  if use_swarming:
+    task_status['task_hash'] = RunBenchmarkOnSwarming(apk_path)
+  else:
+    RunBenchmarkLocally(apk_path, run_label)
+    task_status['completed'] = True
+  return task_status
