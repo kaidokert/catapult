@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aeb96189_ddc4764b",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-09-20T16:58:43Z",
+      "side": 1,
+      "message": "Look like these are tab spaces. Can you update the code editor to use space instead of tab? Or possibly just run gofmt command to fix this,",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 1
+      },
+      "revId": "e103e6047dca56ea7a164816e7c065f1f0fb86b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f07df5b_a9556c73",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy_test.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-09-20T16:58:43Z",
+      "side": 1,
+      "message": "When the test fail, it would be difficult to know which test case fail with this current test structure. Can you refactor the existing code so that there is a method like:\n\nString UpdateContentSecurityPolicyForInlineScript(originalHeader String). With this, the test code can be written like:\n\nassertEqual(UpdateContentSecurityPolicyForInlineScript(\"script-src \u0027self\u0027 https://foo.com;\")\n            \"\"script-src \u0027unsafe-inline\u0027 \u0027self\u0027 https://foo.com ; \")\n\nassertEqual(.., ...)\nassertEqual(.., ...)\nassertEqual(.., ...)",
+      "revId": "e103e6047dca56ea7a164816e7c065f1f0fb86b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
