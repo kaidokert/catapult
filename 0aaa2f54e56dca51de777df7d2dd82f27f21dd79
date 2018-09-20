@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "483d4adc_bdfc1fed",
+        "filename": "tracing/tracing/ui/timeline_view.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-20T05:18:27Z",
+      "side": 1,
+      "message": "It might be useful to use settings keys here.\nImagine a user recording several traces in a single session. All of the traces will probably have mostly the same processes. If they hide the browser process in one trace, then they\u0027ll probably want to hide it in all of the traces. The settings key would store that preference in localStorage so that the user wouldn\u0027t need to manually re-hide the browser process every time they record a new trace.\nHowever, things get a bit tricky when we consider what the settings key should be exactly. It probably can\u0027t just be the process name because there can be many renderer processes, so it should probably include either the pid or the labels. PIDs change between sessions, so if a user records a new trace every day for a week, and there are 10 processes every time, then 70 new settings keys will accrue in their localStorage. Process.labels include tab titles like \u0027chrome://tracing\u0027, which are stable unlike pids. However, not all processes have labels, so you might not want to use a settings key for them.\nFeel free to either ignore settings keys for now or try to work something out. Up to you.",
+      "parentUuid": "37f5d456_5b7f5a3b",
+      "revId": "0aaa2f54e56dca51de777df7d2dd82f27f21dd79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9ff5e1b8_67a7aa87",
         "filename": "tracing/tracing/ui/timeline_view.html",
         "patchSetId": 5
@@ -206,6 +224,24 @@
       "side": 1,
       "message": "Done, although I had to use .process-track-base, which feels like an internal detail of ProcessTrack. Is there a better way?",
       "parentUuid": "df96295d_1f8ac7f9",
+      "revId": "0aaa2f54e56dca51de777df7d2dd82f27f21dd79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e09c20a_13a706be",
+        "filename": "tracing/tracing/ui/tracks/model_track.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-20T05:18:27Z",
+      "side": 1,
+      "message": "No, I think that\u0027s correct. I think it just feels weird because it\u0027s from the days before Polymer.",
+      "parentUuid": "67531bea_661f2217",
       "revId": "0aaa2f54e56dca51de777df7d2dd82f27f21dd79",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
