@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9bcc9963_acd717d3",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-20T11:42:16Z",
+      "side": 1,
+      "message": "This is not a part of this cl?",
+      "revId": "45e8bf1a59d0a153368d00b108d044facbaf3b65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ccbab5cb_7acf8c8b",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-20T11:42:16Z",
+      "side": 1,
+      "message": "I guess these changes as well. May be they will be gone when you rebase.",
+      "revId": "45e8bf1a59d0a153368d00b108d044facbaf3b65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87cbef59_206e2378",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-20T11:42:16Z",
+      "side": 1,
+      "message": "Also this one? I am not sure this was there in the previous cl though. If yes, then I guess rebase might fix it.",
+      "revId": "45e8bf1a59d0a153368d00b108d044facbaf3b65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b0167e5_d4f46467",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-20T11:42:16Z",
+      "side": 1,
+      "message": "can we do something like this for duration metrics as well? like having this.firstDurationOptions etc.,?",
+      "revId": "45e8bf1a59d0a153368d00b108d044facbaf3b65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b80be0b_fe4c2c26",
+        "filename": "experimental/v8_tools/filter.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-20T11:42:16Z",
+      "side": 1,
+      "message": "can we instead have it as an array of this.Elements and iterate over the array and keep applying the filters if this.Elements[i] is not undefined. like:\n\nfor (elements of this.Elements) {\n  if (elements \u003d\u003d\u003d undefined)\n    break;\n  metrics \u003d metrics.filter(...);\n}",
+      "revId": "45e8bf1a59d0a153368d00b108d044facbaf3b65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "011a8c7e_17a9fd27",
+        "filename": "experimental/v8_tools/table_component.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-09-20T11:42:16Z",
+      "side": 1,
+      "message": "I think if (str \u003d\u003d\u003d undefined) return undefined is good. \nOr was this change not a part of this cl?",
+      "revId": "45e8bf1a59d0a153368d00b108d044facbaf3b65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
