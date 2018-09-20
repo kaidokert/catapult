@@ -125,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "b5e3f73a_3465416f",
+        "filename": "tracing/tracing/ui/timeline_view.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-09-20T13:18:21Z",
+      "side": 1,
+      "message": "Thanks for the detailed explanation! It\u0027s not clear to me how we can use settings key here efficiently. For the Browser/Gpu processes, it is simpler, since there can only be one browser/gpu process. However, there can be many renderer/service processes, and I can\u0027t think of a way of using settings-keys for those that would be useful. So I am going to leave this as is for now. Perhaps we will get feedback from users about how we could make this work.",
+      "parentUuid": "483d4adc_bdfc1fed",
+      "revId": "0aaa2f54e56dca51de777df7d2dd82f27f21dd79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9ff5e1b8_67a7aa87",
         "filename": "tracing/tracing/ui/timeline_view.html",
         "patchSetId": 5
