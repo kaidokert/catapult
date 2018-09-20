@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "d90b24cd_23867552",
+        "filename": "dashboard/dashboard/spa/option-group.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-09-20T22:51:48Z",
+      "side": 1,
+      "message": "Awesome, thanks!",
+      "parentUuid": "939cba52_8fd15353",
+      "range": {
+        "startLine": 73,
+        "startChar": 8,
+        "endLine": 73,
+        "endChar": 77
+      },
+      "revId": "f3144c07115ae2a661d45bd85e2f46f485535b41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "25451e15_66b9f38c",
         "filename": "dashboard/dashboard/spa/option-group.js",
         "patchSetId": 2
@@ -143,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "e7e29017_f341f36f",
+        "filename": "dashboard/dashboard/spa/option-group.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-09-20T22:51:48Z",
+      "side": 1,
+      "message": "Thanks!",
+      "parentUuid": "ef675d03_d183cb9c",
+      "range": {
+        "startLine": 7,
+        "startChar": 2,
+        "endLine": 7,
+        "endChar": 43
+      },
+      "revId": "f3144c07115ae2a661d45bd85e2f46f485535b41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "11102584_0ddf5be2",
         "filename": "dashboard/dashboard/spa/option-group.js",
         "patchSetId": 2
@@ -187,6 +235,30 @@
       "revId": "f3144c07115ae2a661d45bd85e2f46f485535b41",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d69f142f_2035a91d",
+        "filename": "dashboard/dashboard/spa/option-group.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-09-20T22:51:48Z",
+      "side": 1,
+      "message": "Great, thanks for explaining! That clarifies things a lot. :)",
+      "parentUuid": "831e0664_bbb46b35",
+      "range": {
+        "startLine": 8,
+        "startChar": 10,
+        "endLine": 8,
+        "endChar": 15
+      },
+      "revId": "f3144c07115ae2a661d45bd85e2f46f485535b41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
