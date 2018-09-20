@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ab93cae9_812fb44a",
+        "filename": "dashboard/dashboard/pinpoint/elements/stats-page.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-09-20T01:25:04Z",
+      "side": 1,
+      "message": "Can you actually do 90\u0027th percentile since that\u0027s one of the chrome project health metrics?",
+      "revId": "9635860d78529838c219b53c9f0a8e1218b9667d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
