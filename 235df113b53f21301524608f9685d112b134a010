@@ -70,6 +70,24 @@
       "revId": "235df113b53f21301524608f9685d112b134a010",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62307672_0574ce17",
+        "filename": "experimental/v8_tools/app.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1293423
+      },
+      "writtenOn": "2018-09-20T09:58:36Z",
+      "side": 1,
+      "message": "Unfortunately underscore doesn\u0027t have a deep clone so I\u0027ve stuck with the JSON stuff, but I\u0027ve added the comment. Thanks :)",
+      "parentUuid": "e9c39443_9b406ced",
+      "revId": "235df113b53f21301524608f9685d112b134a010",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
