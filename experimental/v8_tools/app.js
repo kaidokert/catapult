@@ -25,6 +25,7 @@ const app = new Vue({
     //  metrics.
     resetTableData() {
       this.gridData = this.defaultGridData;
+      this.typesOfPlot = ['Cumulative frequency plot', 'Dot plot'];
     },
 
     //  Get all stories for a specific metric.
@@ -194,6 +195,7 @@ const app = new Vue({
       const traceId = sample.diagnostics.traceUrls;
       return this.guidValue.get(traceId);
     },
+
 
     //  Draw a cumulative frequency plot by default with
     //  all the sub-diagnostics (labels) in the same plot.
