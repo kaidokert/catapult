@@ -15,9 +15,19 @@ import analytics from './google-analytics.js';
  * and cache results from remote sources, such as APIs.
  */
 export class CacheRequestBase {
-  constructor(request) {
-    this.request = request;
+  constructor(fetchEvent) {
+    this.fetchEvent = fetchEvent;
     this.asyncIterator_ = this.raceCacheAndNetwork_();
+  }
+
+  async respond() {
+    this.fetchEvent.respondWith(new Response(new Blob(
+        ['null'], {type: 'application/json'})));
+    const channel = new BroadcastChannel(url);
+    for await (const response of this) {
+      channel.postMessage({type: 'RESULTS', payload: response.result});
+    }
+    channel.postMessage({type: 'DONE'});
   }
 
   get timingCategory() {
@@ -55,7 +65,7 @@ export class CacheRequestBase {
   // Child classes should use this method to record performance measures to the
   // Chrome DevTools and, if available, to Google Analytics.
   time(action) {
-    return new Timing(this.timingCategory, action, this.request.url);
+    return new Timing(this.timingCategory, action, this.fetchEvent.request.url);
   }
 
   [Symbol.asyncIterator]() {
@@ -102,10 +112,10 @@ export class CacheRequestBase {
 
   async readNetwork_() {
     let timing = this.time('Network');
-    const response = await fetch(this.request);
+    const response = await fetch(this.fetchEvent.request);
     timing.end();
 
-    timing = this.time('Network - Parse JSON');
+    timing = this.time('Parse JSON');
     const json = await response.json();
     timing.end();
 

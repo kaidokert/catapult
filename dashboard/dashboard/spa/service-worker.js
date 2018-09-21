@@ -7,70 +7,43 @@
 import analytics from './sw-utils/google-analytics.js';
 import TimeseriesCacheRequest from './sw-utils/timeseries-cache-request.js';
 import ReportCacheRequest from './sw-utils/report-cache-request.js';
+import SessionIdCacheRequest from './sw-utils/session-id-cache-request.js';
 
-// Create a communication channel between clients and the service worker to
-// allow for post-installation configuration. This is curretly used for
-// retrieving Google Analytics tracking and client ids.
 const channel = new BroadcastChannel('service-worker');
 
 function handleMessage(messageEvent) {
-  const {type, payload} = messageEvent.data;
-
-  if (type === 'GOOGLE_ANALYTICS') {
-    const {trackingId, clientId} = payload;
-    analytics.configure(trackingId, clientId);
-  } else {
-    throw new Error(`Unknown Service Worker message type: ${type}`);
+  switch (messageEvent.type) {
+    case 'GOOGLE_ANALYTICS': {
+      const {trackingId, clientId} = messageEvent.data;
+      analytics.configure(trackingId, clientId);
+      break;
+    }
+    default:
+      throw new Error(`Unknown service-worker message ${messageEvent.type}`);
   }
 }
 
-// Setup worker-specific resources such as offline caches.
-self.addEventListener('install', event => {
+self.addEventListener('install', () => {
   channel.addEventListener('message', handleMessage);
 });
 
-// Allow the worker to finish the setup and clean other worker's related
-// resources like removing old caches.
-self.addEventListener('activate', event => {
-  // Take control of uncontrolled clients. This will register the fetch event
-  // listener after install. Note that this is a time sensitive operation.
-  // Fetches called before claiming will not be intercepted.
-  event.waitUntil(self.clients.claim());
+self.addEventListener('activate', activateEvent => {
+  activateEvent.waitUntil(self.clients.claim());
 });
 
-// On fetch, use cache but update the entry with the latest contents from the
-// server.
-self.addEventListener('fetch', event => {
-  handleFetch(event, '/api/timeseries2', TimeseriesCacheRequest);
-  handleFetch(event, '/api/report/generate', ReportCacheRequest);
-});
-
-function handleFetch(event, url, CacheRequest) {
-  if (event.request.url.startsWith(location.origin + url)) {
-    const cacheRequest = new CacheRequest(event.request);
-
-    event.respondWith(new Response(new Blob(['null'],
-        {type: 'application/json'})));
-
-    event.waitUntil(broadcast(event.request.url, cacheRequest));
+function getFetchHandler(fetchEvent) {
+  switch (new URL(fetchEvent.request.url).pathname) {
+    case '/api/report/generate':
+      return new ReportCacheRequest(fetchEvent);
+    case '/api/timeseries2':
+      return new TimeseriesCacheRequest(fetchEvent);
+    case '/short_uri':
+      return new SessionIdCacheRequest(fetchEvent);
   }
 }
 
-async function broadcast(url, cacheRequest) {
-  // Open a channel for communication between clients.
-  const channel = new BroadcastChannel(url);
-
-  // Wait for all results of the CacheRequest. Inform clients of cached results
-  // and fresh results from the network.
-  for await (const response of cacheRequest) {
-    if (response) {
-      channel.postMessage({
-        type: 'RESULTS',
-        payload: response.result,
-      });
-    }
-  }
-
-  // Tell clients that the response has ended.
-  channel.postMessage({type: 'DONE'});
-}
+self.addEventListener('fetch', fetchEvent => {
+  const handler = getFetchHandler(fetchEvent);
+  if (!handler) return;
+  fetchEvent.waitUntil(handler.respond());
+});
