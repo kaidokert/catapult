@@ -67,9 +67,9 @@ const TRANSACTION_MODE_READWRITE = 'readwrite';
 
 
 export default class ReportCacheRequest extends CacheRequestBase {
-  constructor(request) {
-    super(request);
-    const {searchParams} = new URL(request.url);
+  constructor(fetchEvent) {
+    super(fetchEvent);
+    const {searchParams} = new URL(fetchEvent.url);
 
     const id = searchParams.get('id');
     if (!id) {

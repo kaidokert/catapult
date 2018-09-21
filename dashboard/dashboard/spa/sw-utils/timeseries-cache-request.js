@@ -50,9 +50,9 @@ const TRANSACTION_MODE_READWRITE = 'readwrite';
 
 
 export default class TimeseriesCacheRequest extends CacheRequestBase {
-  constructor(request) {
-    super(request);
-    const {searchParams} = new URL(request.url);
+  constructor(fetchEvent) {
+    super(fetchEvent);
+    const {searchParams} = new URL(fetchEvent.request.url);
 
     this.statistic_ = searchParams.get('statistic');
     if (!this.statistic_) {
