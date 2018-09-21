@@ -444,8 +444,7 @@ tr.exportTo('cp', () => {
     },
 
     loadSources: statePath => async(dispatch, getState) => {
-      const reportTemplateInfos = await cp.ReadReportNames()(dispatch,
-          getState);
+      const reportTemplateInfos = await cp.ReadReportNames();
       const rootState = getState();
       const teamFilter = cp.TeamFilter.get(rootState.teamName);
       const reportNames = await teamFilter.reportNames(
@@ -476,19 +475,13 @@ tr.exportTo('cp', () => {
         name !== ReportSection.CREATE);
       const requestedReports = new Set(state.source.selectedOptions);
       const revisions = [state.minRevision, state.maxRevision];
-      const reportTemplateInfos = await cp.ReadReportNames()(dispatch,
-          getState);
+      const reportTemplateInfos = await cp.ReadReportNames();
       const readers = [];
 
       for (const name of names) {
         for (const templateInfo of reportTemplateInfos) {
           if (templateInfo.name === name) {
-            readers.push(cp.ReportReader({
-              ...templateInfo,
-              revisions,
-              dispatch,
-              getState,
-            }));
+            readers.push(cp.ReportReader({...templateInfo, revisions}));
           }
         }
       }
