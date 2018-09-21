@@ -195,6 +195,7 @@ const app = new Vue({
       return this.guidValue.get(traceId);
     },
 
+
     //  Draw a cumulative frequency plot by default with
     //  all the sub-diagnostics (labels) in the same plot.
     plotSingleMetricWithAllSubdiagnostics(metric, story, diagnostic) {
