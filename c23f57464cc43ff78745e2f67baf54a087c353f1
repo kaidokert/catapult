@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d8dae351_ea23c187",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy_test.go",
+        "patchSetId": 14
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-09-21T02:45:56Z",
+      "side": 1,
+      "message": "Can you add a test case of security policy with multiple policies?\n\ne.g: \"script-src \u0027self\u0027 https://foo.com; \u0027sha512-cLuU6nVzrYJlo7rUa6TMmz3nylPFrPQrEUpOHllb5ic\u003d\u0027;\u0027strict-dynamic\u0027 \u0027nonce-2726c7f26c\u0027",
+      "revId": "c23f57464cc43ff78745e2f67baf54a087c353f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
