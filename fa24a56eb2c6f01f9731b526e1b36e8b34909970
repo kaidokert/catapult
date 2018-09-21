@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "431e1123_b034a4da",
+        "filename": "experimental/soundwave/bin/pinpoint_cli",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-09-21T23:06:39Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be required?",
+      "range": {
+        "startLine": 33,
+        "startChar": 26,
+        "endLine": 33,
+        "endChar": 32
+      },
+      "revId": "fa24a56eb2c6f01f9731b526e1b36e8b34909970",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
