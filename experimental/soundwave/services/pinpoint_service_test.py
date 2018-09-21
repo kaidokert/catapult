@@ -14,10 +14,23 @@ class TestPinpointApi(unittest.TestCase):
   def setUp(self):
     self.mock_credentials = mock.Mock()
     self.mock_request = mock.patch('services.request.Request').start()
+    self.mock_request.return_value = '{}'
     self.api = pinpoint_service.Api(self.mock_credentials)
 
   def tearDown(self):
     mock.patch.stopall()
+
+  def testJob(self):
+    self.api.Job('1234')
+    self.mock_request.assert_called_once_with(
+        self.api.SERVICE_URL + '/job/1234', params=[],
+        credentials=self.mock_credentials)
+
+  def testJob_withState(self):
+    self.api.Job('1234', with_state=True)
+    self.mock_request.assert_called_once_with(
+        self.api.SERVICE_URL + '/job/1234', params=[('o', 'STATE')],
+        credentials=self.mock_credentials)
 
   def testJobs(self):
     self.mock_request.return_value = '["job1", "job2", "job3"]'
