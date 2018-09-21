@@ -156,12 +156,16 @@ def UploadIsolate(isolated_path):
        '-s', isolated_path]).split(' ')[0]
 
 
-def TriggerSwarmingJob(isolate_hash, isolated_apk_path):
+def TriggerSwarmingJob(isolate_hash, isolated_apk_path, bot_id=None,
+                       story_begin_index=None, story_end_index=None):
   """Function to trigger the swarming job.
 
   Args:
     isolate_hash(string): the isolate hash given by the isolate server
     isolated_apk_path(string): the *relative* path to the APK in the isolate
+    bot_id(string): bot id
+    story_begin_index(int): story begin index
+    story_end_index(int): story end index
 
   Returns:
     string: swarming job task hash
@@ -185,6 +189,10 @@ def TriggerSwarmingJob(isolate_hash, isolated_apk_path):
       '--dimension', 'os', 'Android',
       '--dimension', 'device_os_flavor', 'google',
   ]
+
+  if bot_id:
+    bot_dimension_options += ['--dimension', 'id', bot_id]
+
   # options provided to the `run_benchmark` script
   run_benchmark_options = [
       'system_health.memory_mobile',
@@ -198,6 +206,14 @@ def TriggerSwarmingJob(isolate_hash, isolated_apk_path):
       '--upload-results', '--output-format', 'histograms',
       '--results-label', 'Test Run 1',
   ]
+
+  if story_begin_index:
+    run_benchmark_options += [
+        '--story-shard-begin-index', str(story_begin_index)]
+  if story_end_index:
+    run_benchmark_options += [
+        '--story-shard-end-index', str(story_end_index)]
+
   output_options = [
       '--isolated-script-test-output', '${ISOLATED_OUTDIR}/output.json',
       '--isolated-script-test-perf-output',
@@ -214,6 +230,16 @@ def IsTaskCompleted(task_id):
   return 'COMPLETE' in subprocess.check_output(
       [SWARMING_SCRIPT, 'query', 'tasks/get_states?task_id=%s' % task_id,
        '--swarming', SWARMING_URL])
+
+
+def GetBotId(task_hash):
+  output = subprocess.check_output(
+      [SWARMING_SCRIPT, 'query', 'task/%s/result' % task_hash,
+       '--swarming', SWARMING_URL])
+  print output
+  bot_dimensions = json.loads(output)['bot_dimensions']
+  # bot_dimension looks like: [{'key': 'xx', 'value': ['x', 'x', ...]}, ...]
+  return [d['value'][0] for d in bot_dimensions if d['key'] == 'id'][0]
 
 
 def GetResultFromSwarming(isolate_hash, output_dir, benchmark_name, shard_id):
@@ -307,14 +333,88 @@ def CollectResults(version_task_id_table, run_label, benchmark_name):
     time.sleep(300)
 
 
-def RunBenchmarkOnSwarming(apk_path):
+def RunBenchmarkOnSwarming(apk_path, shard_map, benchmark_name):
+  """Run the benchmark on swarming.
+
+  Args:
+    apk_path(string): path to the local APK
+    shard_map(dict): see below
+    benchmark_name(string): the name of the benchmark
+
+  Returns:
+    list of dicts: containing the task info
+  `shard_map` looks something like:
+    {
+      "0": {
+          "benchmarks": {
+              "system_health.memory_mobile": {
+                  "end": 24
+              }
+          }
+      },
+      "1": {
+          "benchmarks": {
+              "system_health.memory_mobile": {
+                  "begin": 24
+              }
+          }
+      },
+    }
+
+    if the bot id is assigned it will becomes:
+    {
+      "0": {
+          "benchmarks": {
+              "system_health.memory_mobile": {
+                  "end": 24
+                  "bot_id": xxxxxxxxx
+              }
+          }
+      },
+      "1": {
+          "benchmarks": {
+              "system_health.memory_mobile": {
+                  "begin": 24
+                  "bot_id": xxxxxxxxx
+              }
+          }
+      },
+    }
+    Modifying the shard map should be taken care of by the caller. And also,
+    when getting the bot id, you will need to wait the bot id to be assigned
+    before you can get it, so some wait might be necessary.
+  """
+
   isolated_apk_path = IncludeAPKInIsolate(apk_path)
   GenerateIsolate(os.path.join(CHROMIUM_ROOT, 'out', 'Debug'),
                   'performance_system_chrome_test_suite')
   input_isolate_hash = UploadIsolate(os.path.join(
       CHROMIUM_ROOT, 'out', 'Debug',
       'performance_system_chrome_test_suite.isolated'))
-  return TriggerSwarmingJob(input_isolate_hash, isolated_apk_path)
+
+  if shard_map is None:
+    return [{
+        'task_hash': TriggerSwarmingJob(input_isolate_hash, isolated_apk_path),
+        'completed': False,
+        'result_isolate': None,
+    }]
+
+  task_info = []
+  for shard_info in shard_map.values():
+    shard_info = shard_info['benchmarks'][benchmark_name]
+
+    task_info.append({
+        'task_hash': TriggerSwarmingJob(
+            input_isolate_hash,
+            isolated_apk_path,
+            story_begin_index=shard_info.get('begin', None),
+            story_end_index=shard_info.get('end', None),
+            bot_id=shard_info.get('bot_id', None)
+        ),
+        'completed': False,
+        'result_isolate': None,
+    })
+  return task_info
 
 
 def RunBenchmarkLocally(apk_path, run_label):
@@ -324,6 +424,9 @@ def RunBenchmarkLocally(apk_path, run_label):
     apk_path(string): the *relative* path to the APK
     run_label(string): the name of the directory to contains all the output
     from this run
+
+  Returns:
+    list of dict: contains the dummy task info
   """
   # `path_to_apk` is similar to `./out/59.0.3071.132_arm_MonochromeStable.apk`
   chrome_version = ChromeVersion(apk_path.split('/')[-1].split('_')[0])
@@ -349,26 +452,28 @@ def RunBenchmarkLocally(apk_path, run_label):
                              str(chrome_version.milestone)),
                          'system_health.memory_mobile'])
 
+  return [{
+      'task_hash': None,
+      'completed': True,
+      'result_isolate': None,
+  }]
 
-def RunBenchmark(apk_path, run_label, use_swarming):
+
+def RunBenchmark(apk_path, run_label, use_swarming, shard_map=None):
   """Run the benchmark.
 
   Args:
     apk_path(string): path to the Clank APK
     run_label(string): the user supplied label, i.e. directory name
     use_swarming(boolean): whether to run on swarming
+    shard_map(dict): the shard map
 
   Returns:
-    dict: containing the task meta info
+    list of dict: containing the task meta info
   """
-  task_status = {
-      'task_hash': None,
-      'completed': False,
-      'result_isolate': None,
-  }
+
   if use_swarming:
-    task_status['task_hash'] = RunBenchmarkOnSwarming(apk_path)
-  else:
-    RunBenchmarkLocally(apk_path, run_label)
-    task_status['completed'] = True
-  return task_status
+    return RunBenchmarkOnSwarming(
+        apk_path, shard_map, 'system_health.memory_mobile')
+
+  return RunBenchmarkLocally(apk_path, run_label)
