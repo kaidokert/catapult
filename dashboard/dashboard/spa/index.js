@@ -44,6 +44,9 @@ if ('serviceWorker' in navigator && location.hostname !== 'localhost') {
       new Promise(resolve => ga(tracker => resolve(tracker.get('clientId')))),
       navigator.serviceWorker.register('service-worker.js'),
     ]);
+    if (navigator.serviceWorker.controller === null) {
+      location.reload();
+    }
 
     swChannel.postMessage({
       type: 'GOOGLE_ANALYTICS',
