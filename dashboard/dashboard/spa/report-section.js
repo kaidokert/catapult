@@ -444,8 +444,7 @@ tr.exportTo('cp', () => {
     },
 
     loadSources: statePath => async(dispatch, getState) => {
-      const reportTemplateInfos = await cp.ReadReportNames()(dispatch,
-          getState);
+      const reportTemplateInfos = await cp.ReadReportNames();
       const rootState = getState();
       const teamFilter = cp.TeamFilter.get(rootState.teamName);
       const reportNames = await teamFilter.reportNames(
@@ -464,7 +463,7 @@ tr.exportTo('cp', () => {
       let testSuites = [];
       if (state.source.selectedOptions.includes(ReportSection.CREATE)) {
         testSuites = await cp.TeamFilter.get(rootState.teamName).testSuites(
-            await cp.ReadTestSuites()(dispatch, getState));
+            await cp.ReadTestSuites());
       }
       dispatch({
         type: ReportSection.reducers.requestReports.name,
@@ -476,19 +475,13 @@ tr.exportTo('cp', () => {
         name !== ReportSection.CREATE);
       const requestedReports = new Set(state.source.selectedOptions);
       const revisions = [state.minRevision, state.maxRevision];
-      const reportTemplateInfos = await cp.ReadReportNames()(dispatch,
-          getState);
+      const reportTemplateInfos = await cp.ReadReportNames();
       const readers = [];
 
       for (const name of names) {
         for (const templateInfo of reportTemplateInfos) {
           if (templateInfo.name === name) {
-            readers.push(cp.ReportReader({
-              ...templateInfo,
-              revisions,
-              dispatch,
-              getState,
-            }));
+            readers.push(cp.ReportReader({...templateInfo, revisions}));
           }
         }
       }
@@ -507,7 +500,7 @@ tr.exportTo('cp', () => {
         }
         if (testSuites.length === 0) {
           testSuites = await cp.TeamFilter.get(rootState.teamName).testSuites(
-              await cp.ReadTestSuites()(dispatch, getState));
+              await cp.ReadTestSuites());
         }
         dispatch({
           type: ReportSection.reducers.receiveReports.name,
@@ -626,7 +619,7 @@ tr.exportTo('cp', () => {
           type: ReportSection.reducers.templateAddRow.name,
           statePath: `${statePath}.tables.${tableIndex}`,
           rowIndex,
-          testSuites: await cp.ReadTestSuites()(dispatch, getState),
+          testSuites: await cp.ReadTestSuites(),
         });
         const path = `${statePath}.tables.${tableIndex}.rows.${rowIndex + 1}`;
         cp.ChartSection.actions.describeTestSuites(path)(dispatch, getState);
