@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9897ac55_136e2e9d",
+        "filename": "dashboard/dashboard/spa/cp-toast.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-09-21T17:37:19Z",
+      "side": 1,
+      "message": "Consider styling this based on Material Design\u0027s snackbar spec: https://material.io/design/components/snackbars.html# I think theddark background for snackbars in MD is helpful to differentiate them from the rest of the UI, so they don\u0027t blend into the rest of the UI.",
+      "revId": "dfd8bdb82b38b883f373a63568896a4924fc4945",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08ef0bb6_71dbaaca",
+        "filename": "dashboard/dashboard/spa/cp-toast.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-09-21T17:37:19Z",
+      "side": 1,
+      "message": "Using iron-collapse to animate is a neat idea! For this case, would it potentially make sense to try having this element directly extend iron-collapse? (I\u0027ve never tried this sort of thing before but AFAIK it\u0027s possible https://www.polymer-project.org/2.0/docs/devguide/custom-elements#extending-elements )",
+      "revId": "dfd8bdb82b38b883f373a63568896a4924fc4945",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56c25dca_15fe24ba",
+        "filename": "dashboard/dashboard/spa/cp-toast.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-09-21T17:37:19Z",
+      "side": 1,
+      "message": "Is autodismissing after a certain time currently handled by the parent element in the demo? I tihnk it could be helpful to have that as a setting we can specify in the element if we end up making this a shared component, but we can save that for later.",
+      "revId": "dfd8bdb82b38b883f373a63568896a4924fc4945",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
