@@ -226,9 +226,9 @@ class Benchmark(command_line.Command):
       2017, 7, 29, 'Use CreateCoreTimelineBasedMeasurementOptions instead.')
   def CreateTimelineBasedMeasurementOptions(self):
     """See CreateCoreTimelineBasedMeasurementOptions."""
-    return self.CreateCoreTimelineBasedMeasurementOptions()
+    return self.CreateCoreTimelineBasedMeasurementOptions(None)
 
-  def CreateCoreTimelineBasedMeasurementOptions(self):
+  def CreateCoreTimelineBasedMeasurementOptions(self, options):
     """Return the base TimelineBasedMeasurementOptions for this Benchmark.
 
     Additional chrome and atrace categories can be appended when running the
@@ -267,7 +267,7 @@ class Benchmark(command_line.Command):
         'and NOT also CreateTimelineBasedMeasurementOptions.')
     if class_util.IsMethodOverridden(
         Benchmark, self.__class__, 'CreateCoreTimelineBasedMeasurementOptions'):
-      tbm_options = self.CreateCoreTimelineBasedMeasurementOptions()
+      tbm_options = self.CreateCoreTimelineBasedMeasurementOptions(options)
     else:
       tbm_options = self.CreateTimelineBasedMeasurementOptions()
     if options and options.extra_chrome_categories:

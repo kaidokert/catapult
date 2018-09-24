@@ -210,7 +210,7 @@ class BenchmarkTest(unittest.TestCase):
 
   def testGetTBMOptionsSupportsNewName(self):
     class TbmBenchmark(benchmark.Benchmark):
-      def CreateCoreTimelineBasedMeasurementOptions(self):
+      def CreateCoreTimelineBasedMeasurementOptions(self, options):
         return 'New'
 
     options = TbmBenchmark(None)._GetTimelineBasedMeasurementOptions(None)
@@ -222,17 +222,46 @@ class BenchmarkTest(unittest.TestCase):
     class TbmBenchmark(benchmark.Benchmark):
       def CreateTimelineBasedMeasurementOptions(self):
         return 'Legacy'
-      def CreateCoreTimelineBasedMeasurementOptions(self):
+      def CreateCoreTimelineBasedMeasurementOptions(self, options):
         return 'New'
-
 
     with self.assertRaisesRegexp(
         AssertionError, 'Benchmarks should override'):
       TbmBenchmark(None)._GetTimelineBasedMeasurementOptions(None)
 
+  def testChromeTraceOptionsCustomTBMOptions(self):
+    class TbmBenchmark(benchmark.Benchmark):
+      def CreateCoreTimelineBasedMeasurementOptions(self, options):
+        tbm_options = timeline_based_measurement.Options(
+            chrome_trace_category_filter.ChromeTraceCategoryFilter(
+                filter_string='toplevel'))
+        if options.custom_enable_rail_metrics:
+          tbm_options.AddTraceCategoryFilter('rail')
+        return tbm_options
+
+    options = options_for_unittests.GetCopy()
+    parser = optparse.OptionParser()
+    benchmark.AddCommandLineArgs(parser)
+    options.MergeDefaultValues(parser.get_default_values())
+
+    options.custom_enable_rail_metrics = False
+    b = TbmBenchmark(None)
+    tbm = b.CreatePageTest(options)
+    self.assertEqual(
+        'toplevel',
+        tbm.tbm_options.category_filter.stable_filter_string)
+
+    # Enable additional TBM options using a flag.
+    options.custom_enable_rail_metrics = True
+    b = TbmBenchmark(None)
+    tbm = b.CreatePageTest(options)
+    self.assertEqual(
+        'rail,toplevel',
+        tbm.tbm_options.category_filter.stable_filter_string)
+
   def testChromeTraceOptionsUpdateFilterString(self):
     class TbmBenchmark(benchmark.Benchmark):
-      def CreateCoreTimelineBasedMeasurementOptions(self):
+      def CreateCoreTimelineBasedMeasurementOptions(self, options):
         tbm_options = timeline_based_measurement.Options(
             chrome_trace_category_filter.ChromeTraceCategoryFilter(
                 filter_string='rail,toplevel'))
@@ -253,7 +282,7 @@ class BenchmarkTest(unittest.TestCase):
 
   def testAtraceOptionsTurnsOnAtrace(self):
     class TbmBenchmark(benchmark.Benchmark):
-      def CreateCoreTimelineBasedMeasurementOptions(self):
+      def CreateCoreTimelineBasedMeasurementOptions(self, options):
         tbm_options = timeline_based_measurement.Options()
         tbm_options.config.atrace_config.categories = []
         return tbm_options
@@ -273,7 +302,7 @@ class BenchmarkTest(unittest.TestCase):
 
   def testAdditionalAtraceCategories(self):
     class TbmBenchmark(benchmark.Benchmark):
-      def CreateCoreTimelineBasedMeasurementOptions(self):
+      def CreateCoreTimelineBasedMeasurementOptions(self, options):
         tbm_options = timeline_based_measurement.Options()
         tbm_options.config.enable_atrace_trace = True
         tbm_options.config.atrace_config.categories = 'string,foo,stuff'
@@ -294,7 +323,7 @@ class BenchmarkTest(unittest.TestCase):
 
   def testEnableSystrace(self):
     class TbmBenchmark(benchmark.Benchmark):
-      def CreateCoreTimelineBasedMeasurementOptions(self):
+      def CreateCoreTimelineBasedMeasurementOptions(self, options):
         return timeline_based_measurement.Options()
 
     options = options_for_unittests.GetCopy()
