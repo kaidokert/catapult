@@ -16,6 +16,24 @@
       "revId": "549d39835bc52aa96febdfd9396d2491794bff07",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1806beb4_383ee9cc",
+        "filename": "telemetry/telemetry/internal/platform/network_controller_backend_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-09-24T21:26:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c309fd82_746efdbc",
+      "revId": "549d39835bc52aa96febdfd9396d2491794bff07",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
