@@ -140,17 +140,17 @@ class AndroidGoStories(story_module.StorySet):
 
 
 class AndroidGoBenchmark(benchmark.Benchmark):
-  def CreateCoreTimelineBasedMeasurementOptions(self):
+  def CreateCoreTimelineBasedMeasurementOptions(self, options):
     cat_filter = chrome_trace_category_filter.ChromeTraceCategoryFilter(
         filter_string='rail,toplevel')
 
-    options = timeline_based_measurement.Options(cat_filter)
-    options.config.enable_chrome_trace = True
-    options.SetTimelineBasedMetrics([
+    tbm_options = timeline_based_measurement.Options(cat_filter)
+    tbm_options.config.enable_chrome_trace = True
+    tbm_options.SetTimelineBasedMetrics([
         'clockSyncLatencyMetric',
         'tracingMetric',
     ])
-    return options
+    return tbm_options
 
   def CreateStorySet(self, options):
     return AndroidGoStories()
