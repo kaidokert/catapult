@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f6cb319c_15749d58",
+        "filename": "dashboard/dashboard/spa/cp-toast.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-09-24T15:02:32Z",
+      "side": 1,
+      "message": "+1\n\nAlso consider abbreviating or just having a simple \"Graph closed\" message like gmail does, instead of the long name.",
+      "parentUuid": "9897ac55_136e2e9d",
+      "revId": "dfd8bdb82b38b883f373a63568896a4924fc4945",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "08ef0bb6_71dbaaca",
         "filename": "dashboard/dashboard/spa/cp-toast.html",
         "patchSetId": 2
@@ -47,6 +65,24 @@
       "writtenOn": "2018-09-21T17:37:19Z",
       "side": 1,
       "message": "Is autodismissing after a certain time currently handled by the parent element in the demo? I tihnk it could be helpful to have that as a setting we can specify in the element if we end up making this a shared component, but we can save that for later.",
+      "revId": "dfd8bdb82b38b883f373a63568896a4924fc4945",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df27e752_53edeb2c",
+        "filename": "dashboard/dashboard/spa/cp-toast.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-09-24T15:02:32Z",
+      "side": 1,
+      "message": "Yeah can we move it here and put a nice default.",
+      "parentUuid": "56c25dca_15fe24ba",
       "revId": "dfd8bdb82b38b883f373a63568896a4924fc4945",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
