@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b462f0e2_4913a149",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-24T20:41:24Z",
+      "side": 1,
+      "message": "Please comment units for these.",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 29
+      },
+      "revId": "0f75ecbf480d60da3c3c2cdf0c96dd642dfe42f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b6eb203_4e790d78",
+        "filename": "tracing/tracing/metrics/rendering/frame_time_test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-24T20:41:24Z",
+      "side": 1,
+      "message": "Does this test PAUSE_THRESHOLD?",
+      "revId": "0f75ecbf480d60da3c3c2cdf0c96dd642dfe42f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
