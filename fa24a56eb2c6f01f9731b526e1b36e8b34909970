@@ -22,6 +22,30 @@
       "revId": "fa24a56eb2c6f01f9731b526e1b36e8b34909970",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a07cbd76_4d93fc52",
+        "filename": "experimental/soundwave/bin/pinpoint_cli",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-24T11:27:40Z",
+      "side": 1,
+      "message": "Yes, it is. Positional arguments are required by default. :)",
+      "parentUuid": "431e1123_b034a4da",
+      "range": {
+        "startLine": 33,
+        "startChar": 26,
+        "endLine": 33,
+        "endChar": 32
+      },
+      "revId": "fa24a56eb2c6f01f9731b526e1b36e8b34909970",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
