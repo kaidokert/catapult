@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6be23617_ca6dff57",
+        "filename": "experimental/soundwave/bin/pinpoint_cli",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-24T09:25:39Z",
+      "side": 1,
+      "message": "Yep, good idea. Added a --repository which defaults to chromium.",
+      "parentUuid": "9f527d39_d176114c",
+      "range": {
+        "startLine": 25,
+        "startChar": 25,
+        "endLine": 25,
+        "endChar": 33
+      },
+      "revId": "e97137f687234063d40059937bd7a7bfc6fa1172",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1ef35312_f67ff191",
         "filename": "experimental/soundwave/bin/pinpoint_cli",
         "patchSetId": 2
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "7ef1b465_5cc13209",
+        "filename": "experimental/soundwave/bin/pinpoint_cli",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-24T09:25:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1ef35312_f67ff191",
+      "revId": "e97137f687234063d40059937bd7a7bfc6fa1172",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2bdb9afa_341499b4",
         "filename": "experimental/soundwave/bin/pinpoint_cli",
         "patchSetId": 2
@@ -53,6 +95,30 @@
       "writtenOn": "2018-09-21T22:57:58Z",
       "side": 1,
       "message": "There\u0027s also a \"user\" field that\u0027d be nice to fill in since you have credentials",
+      "range": {
+        "startLine": 33,
+        "startChar": 6,
+        "endLine": 33,
+        "endChar": 10
+      },
+      "revId": "e97137f687234063d40059937bd7a7bfc6fa1172",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ff71b24_9e5f285b",
+        "filename": "experimental/soundwave/bin/pinpoint_cli",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-24T09:25:39Z",
+      "side": 1,
+      "message": "Done. Added it on the NewJob implementation, so it\u0027s always added on all calls to this API endpoint.",
+      "parentUuid": "2bdb9afa_341499b4",
       "range": {
         "startLine": 33,
         "startChar": 6,
