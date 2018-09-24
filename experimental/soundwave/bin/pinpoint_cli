@@ -5,6 +5,7 @@
 
 import argparse
 import os
+import re
 import sys
 
 import oauth2client.tools
@@ -33,9 +34,6 @@ def main():
   subparser.add_argument('job_id')
   # Subparser args for creating a new job.
   subparser = subparsers.add_parser('new-job')
-  subparser.add_argument('--repository', default='chromium')
-  subparser.add_argument('--revision', required=True)
-  subparser.add_argument('--patch', required=True)
   args = parser.parse_args()
   utils.ConfigureLogging(args.verbose)
 
@@ -45,15 +43,24 @@ def main():
   if args.action == 'job':
     print api.Job(args.job_id, with_state=True)
   elif args.action == 'new-job':
+    metric = 'memory:chrome:all_processes:reported_by_chrome:malloc:allocated_objects_size'
+    story = 'browse:media:facebook_photos'
+    tir_label = story.split(':', 1)[0]
+    story_pattern = re.sub(r'[\W_]', '.', story)
+
     print api.NewJob(
-        name='Test job from command line',
-        configuration='android-go-perf',
+        name='Bisect job created from command line',
+        bug_id='876006',
+        comparison_mode='performance',
+        statistic='avg',
+        configuration='android-nexus5x-perf',
         target='performance_test_suite',
         benchmark='system_health.memory_mobile',
-        extra_test_args='--story-tag-filter health_check',
-        repository=args.repository,
-        start_git_hash=args.revision,
-        end_git_hash=args.revision,
+        chart=metric, trace=story, story=story_pattern, tir_label=tir_label,
+        extra_test_args='--extra-test-args-here',
+        repository='chromium',
+        start_git_hash='323f860eb0cfafe56bb784b5f9674d6d6b15ea05',
+        end_git_hash='df2f20cc8e9d321b75ee1953ba6160a9125c9e3f',
         patch=args.patch)
   else:
     raise NotImplementedError(args.action)
