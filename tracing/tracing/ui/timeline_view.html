@@ -388,6 +388,9 @@ Polymer({
     dropdown.appendChild(tr.ui.b.createButton('None', () => updateAll(false)));
 
     for (const view of processViews) {
+      if (!view.process) {
+        continue;
+      }
       const cbox = tr.ui.b.createCheckBox(undefined, undefined, undefined,
           true, view.process.userFriendlyName,
           () => view.visible = cbox.checked);
