@@ -1,3 +1,5 @@
+isolate_cache
+isolate_output
 user-credentials.json
 soundwave.db
 soundwave.db-shm
