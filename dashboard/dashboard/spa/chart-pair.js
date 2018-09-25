@@ -646,13 +646,7 @@ tr.exportTo('cp', () => {
 
       const results = await Promise.all(fetchDescriptors.map(
           async fetchDescriptor => {
-            const reader = cp.TimeseriesReader({
-              lineDescriptor,
-              fetchDescriptor,
-              refStatePath,
-              dispatch,
-              getState,
-            });
+            const reader = cp.TimeseriesReader(fetchDescriptor);
             for await (const result of reader) {
               return result;
             }

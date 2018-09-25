@@ -32,6 +32,26 @@ tr.exportTo('cp', () => {
   const CLIENT_ID =
     '62121018386-rhk28ad5lbqheinh05fgau3shotl2t6c.apps.googleusercontent.com';
 
+  class SessionIdRequest extends cp.RequestBase {
+    constructor(options) {
+      super(options);
+      this.method_ = 'POST';
+      this.headers_.set('Content-type', 'application/x-www-form-urlencoded');
+      this.body_ = 'page_state=' + encodeURIComponent(options.sessionStateJson);
+    }
+
+    async localhostResponse_() {
+      return {};
+    }
+
+    get url_() {
+      return '/short_uri';
+    }
+
+    postProcess_(json) {
+      return json.sid;
+    }
+  }
   class RecentBugsRequest extends cp.RequestBase {
     constructor(options) {
       super(options);
@@ -227,11 +247,13 @@ tr.exportTo('cp', () => {
   ChromeperfApp.actions = {
     ready: (statePath, routeParams, authParams) =>
       async(dispatch, getState) => {
+        // TODO if no SW: location.reload()
+
         requestIdleCallback(() => {
-          cp.ReadTestSuites()(dispatch, getState);
+          cp.ReadTestSuites();
           cp.PrefetchTestSuiteDescriptors({
             testSuites: PRE_DESCRIBE_TEST_SUITES,
-          })(dispatch, getState);
+          });
         });
 
         dispatch(Redux.CHAIN(
@@ -325,9 +347,9 @@ tr.exportTo('cp', () => {
         userEmail: user.getBasicProfile().getEmail(),
       }));
       await Promise.all([
-        cp.ReadReportNames()(dispatch, getState),
+        cp.ReadReportNames(),
         cp.ChromeperfApp.actions.getRecentBugs()(dispatch, getState),
-        cp.ReadTestSuites()(dispatch, getState),
+        cp.ReadTestSuites(),
       ]);
     },
 
@@ -422,16 +444,13 @@ tr.exportTo('cp', () => {
     saveSession: statePath => async(dispatch, getState) => {
       const rootState = getState();
       const state = Polymer.Path.get(rootState, statePath);
-      cp.readSessionId({
-        sessionState: {
-          ...ChromeperfApp.getSessionState(state),
-          teamName: rootState.teamName,
-        },
-        sessionIdCallback: session =>
-          dispatch(Redux.UPDATE(statePath, {
-            reduxRoutePath: new URLSearchParams({session}),
-          })),
-      })(dispatch, getState);
+      const session = await new SessionIdRequest({
+        ...ChromeperfApp.getSessionState(state),
+        teamName: rootState.teamName,
+      }).response;
+      dispatch(Redux.UPDATE(statePath, {
+        reduxRoutePath: new URLSearchParams({session}),
+      }));
     },
 
     updateLocation: statePath => async(dispatch, getState) => {
