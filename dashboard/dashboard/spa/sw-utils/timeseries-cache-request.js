@@ -5,8 +5,7 @@
 'use strict';
 
 import Range from './range.js';
-import {CacheRequestBase} from './cache-request-base.js';
-
+import {CacheRequestBase, READONLY, READWRITE} from './cache-request-base.js';
 
 /**
  * Timeseries are stored in IndexedDB to optimize the speed of ranged reading.
@@ -44,15 +43,10 @@ const STORE_METADATA = 'metadata';
 const STORE_RANGES = 'ranges';
 const STORES = [STORE_DATA, STORE_METADATA, STORE_RANGES];
 
-// Constants for IndexedDB options
-const TRANSACTION_MODE_READONLY = 'readonly';
-const TRANSACTION_MODE_READWRITE = 'readwrite';
-
-
 export default class TimeseriesCacheRequest extends CacheRequestBase {
-  constructor(request) {
-    super(request);
-    const {searchParams} = new URL(request.url);
+  constructor(fetchEvent) {
+    super(fetchEvent);
+    const {searchParams} = new URL(fetchEvent.request.url);
 
     this.statistic_ = searchParams.get('statistic');
     if (!this.statistic_) {
@@ -110,7 +104,7 @@ export default class TimeseriesCacheRequest extends CacheRequestBase {
   }
 
   async read(db) {
-    const transaction = db.transaction(STORES, TRANSACTION_MODE_READONLY);
+    const transaction = db.transaction(STORES, READONLY);
 
     const dataPointsPromise = this.getDataPoints_(transaction);
     const [
@@ -249,7 +243,7 @@ export default class TimeseriesCacheRequest extends CacheRequestBase {
 
     const data = this.normalize_(networkData);
 
-    const transaction = db.transaction(STORES, TRANSACTION_MODE_READWRITE);
+    const transaction = db.transaction(STORES, READWRITE);
     await Promise.all([
       this.writeData_(transaction, data),
       this.writeRanges_(transaction, data),

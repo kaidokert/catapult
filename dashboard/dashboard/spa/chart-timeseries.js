@@ -209,14 +209,7 @@ tr.exportTo('cp', () => {
         const fetchDescriptors = ChartTimeseries.createFetchDescriptors(
             lineDescriptor);
         for (const fetchDescriptor of fetchDescriptors) {
-          const reader = cp.TimeseriesReader({
-            lineDescriptor,
-            fetchDescriptor,
-            refStatePath: statePath,
-            dispatch,
-            getState,
-          });
-          promises.push(consumeAll(reader));
+          promises.push(consumeAll(cp.TimeseriesReader(fetchDescriptor)));
         }
       }
 
@@ -490,13 +483,7 @@ tr.exportTo('cp', () => {
       const fetchDescriptors = ChartTimeseries.createFetchDescriptors(
           lineDescriptor);
       for (const fetchDescriptor of fetchDescriptors) {
-        readers.push(cp.TimeseriesReader({
-          lineDescriptor,
-          fetchDescriptor,
-          refStatePath: statePath,
-          dispatch,
-          getState,
-        }));
+        readers.push(cp.TimeseriesReader(fetchDescriptor));
       }
     }
 
