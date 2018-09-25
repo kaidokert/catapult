@@ -41,7 +41,10 @@ found in the LICENSE file.
       <tr-v-ui-histogram-set-controls id="controls">
       </tr-v-ui-histogram-set-controls>
 
-      <tr-v-ui-metrics-visualization id="metrics">
+      <tr-v-ui-metrics-visualization id="pipelineMetrics">
+      </tr-v-ui-metrics-visualization>
+
+      <tr-v-ui-metrics-visualization id="threadingMetrics">
       </tr-v-ui-metrics-visualization>
 
       <tr-v-ui-histogram-set-table id="table"></tr-v-ui-histogram-set-table>
@@ -189,16 +192,28 @@ tr.exportTo('tr.v.ui', function() {
       if (!this.metricsVisualizationLoaded_) { // Initial loading
         const histograms = event.merged ? this.$.table.leafHistograms :
           this.histograms;
-        const mainMetricNames = ['pipeline:begin_frame_transport',
+        const pipelineMetricNames = ['pipeline:begin_frame_transport',
           'pipeline:begin_frame_to_frame_submission',
           'pipeline:frame_submission_to_display',
           'pipeline:draw'];
-        this.$.metrics.build(histograms, mainMetricNames);
+        const threadingMetricNames = ['thread_browser_cpu_time_per_frame',
+          'thread_display_compositor_cpu_time_per_frame',
+          'thread_GPU_cpu_time_per_frame',
+          'thread_IO_cpu_time_per_frame',
+          'thread_other_cpu_time_per_frame',
+          'thread_raster_cpu_time_per_frame',
+          'thread_renderer_compositor_cpu_time_per_frame',
+          'thread_renderer_main_cpu_time_per_frame'];
+        this.$.pipelineMetrics.build(histograms, pipelineMetricNames);
+        this.$.threadingMetrics.build(histograms, threadingMetricNames);
         this.metricsVisualizationLoaded_ = true;
-      } else if (this.$.metrics.style.display === 'none') { // Toggle to hide
-        this.$.metrics.style.display = 'block';
+      } else if (this.$.pipelineMetrics.style.display === 'none') {
+        // Toggle to hide
+        this.$.pipelineMetrics.style.display = 'block';
+        this.$.threadingMetrics.style.display = 'block';
       } else {
-        this.$.metrics.style.display = 'none';
+        this.$.pipelineMetrics.style.display = 'none';
+        this.$.threadingMetrics.style.display = 'none';
       }
     },
   });
