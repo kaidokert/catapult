@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2af441ef_b2b46bf4",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-09-25T22:00:31Z",
+      "side": 1,
+      "message": "There\u0027s no guarantee that arguments[\u0027chart\u0027] will be the metric (for non-Telemetry or non-HistogramSet tests). Maybe a more generalized way to get it is to define a metric property on the `ReadHistogramsJsonValue` class, and get it here through `self.state.quests[-1].metric`.",
+      "revId": "174b78a42b1a5786578d6b8c76b0156a53d9b0a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b93afeb_cdd94888",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-09-25T22:00:31Z",
+      "side": 1,
+      "message": "nit: should the metric be bold? Is it more or less important than the CL title?",
+      "revId": "174b78a42b1a5786578d6b8c76b0156a53d9b0a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
