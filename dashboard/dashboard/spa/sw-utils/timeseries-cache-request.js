@@ -5,8 +5,7 @@
 'use strict';
 
 import Range from './range.js';
-import {CacheRequestBase} from './cache-request-base.js';
-
+import {CacheRequestBase, READONLY, READWRITE} from './cache-request-base.js';
 
 /**
  * Timeseries are stored in IndexedDB to optimize the speed of ranged reading.
@@ -44,15 +43,10 @@ const STORE_METADATA = 'metadata';
 const STORE_RANGES = 'ranges';
 const STORES = [STORE_DATA, STORE_METADATA, STORE_RANGES];
 
-// Constants for IndexedDB options
-const TRANSACTION_MODE_READONLY = 'readonly';
-const TRANSACTION_MODE_READWRITE = 'readwrite';
-
-
 export default class TimeseriesCacheRequest extends CacheRequestBase {
-  constructor(request) {
-    super(request);
-    const {searchParams} = new URL(request.url);
+  constructor(fetchEvent) {
+    super(fetchEvent);
+    const {searchParams} = new URL(fetchEvent.request.url);
 
     this.statistic_ = searchParams.get('statistic');
     if (!this.statistic_) {
@@ -70,11 +64,10 @@ export default class TimeseriesCacheRequest extends CacheRequestBase {
     }
     this.columns_ = columns.split(',');
 
-    const maxRevision = searchParams.get('max_revision');
-    this.maxRevision_ = parseInt(maxRevision) || undefined;
-
-    const minRevision = searchParams.get('min_revision');
-    this.minRevision_ = parseInt(minRevision) || undefined;
+    this.maxRevision_ = parseInt(searchParams.get('max_revision')) || undefined;
+    this.minRevision_ = parseInt(searchParams.get('min_revision')) || undefined;
+    this.revisionRange_ = Range.fromExplicitRange(
+        this.minRevision_ || 0, this.maxRevision_ || Number.MAX_SAFE_INTEGER);
 
     this.testSuite_ = searchParams.get('test_suite') || '';
     this.measurement_ = searchParams.get('measurement') || '';
@@ -109,8 +102,53 @@ export default class TimeseriesCacheRequest extends CacheRequestBase {
     }
   }
 
+  get raceCacheAndNetwork_() {
+    return async function* () {
+      const cacheResult = await this.readCache_();
+      let missingRanges = [this.revisionRange_];
+      if (cacheResult.result && cacheResult.result.data) {
+        yield cacheResult;
+        missingRanges = Range.findDifference(
+            this.revisionRange_, cacheResult.result.availableRange);
+      }
+
+      const networkPromises = missingRanges.map((range, index) =>
+        this.readNetwork_(range).then(result => {
+          return {result, index};
+        }));
+      while (networkPromises.length) {
+        const {result, index} = Promise.race(networkPromises);
+        networkPromises.splice(index, 1);
+        if (result) yield result;
+      }
+      CacheRequestBase.writer.enqueue(() => this.writeIDB_(res.result));
+    };
+  }
+
+  async readNetwork_(range) {
+    let url = new URL(this.fetchEvent.request.url);
+    url = url.origin + url.pathname + '?' + new URLSearchParams({
+      min_revision: range.min,
+      max_revision: range.max,
+      test_suite: this.testSuite_,
+      measurement: this.measurement_,
+      bot: this.bot_,
+      test_case: this.testCase_,
+      build_type: this.buildType_,
+    });
+    const response = await this.timePromise('Network', fetch(url, {
+      method: this.fetchEvent.request.method,
+      headers: this.fetchEvent.request.headers,
+    }));
+    const json = await this.timePromise('Parse JSON', response.json());
+    return {
+      name: 'Network',
+      result: json,
+    };
+  }
+
   async read(db) {
-    const transaction = db.transaction(STORES, TRANSACTION_MODE_READONLY);
+    const transaction = db.transaction(STORES, READONLY);
 
     const dataPointsPromise = this.getDataPoints_(transaction);
     const [
@@ -123,41 +161,24 @@ export default class TimeseriesCacheRequest extends CacheRequestBase {
       this.getRanges_(transaction),
     ]);
 
-    if (!ranges) {
-      // Nothing has been cached for this level-of-detail yet.
-      return;
-    }
-
-    if (!this.containsRelevantRanges_(ranges)) return;
-
-    const dataPoints = await dataPointsPromise;
-    const data = this.denormalize_(dataPoints);
-
+    const availableRange = this.getAvailableRange_(ranges);
+    if (availableRange.isEmpty) return;
     return {
+      availableRange,
       improvement_direction: improvementDirection,
       units,
-      data,
+      data: this.denormalize_(await dataPointsPromise),
     };
   }
 
-  containsRelevantRanges_(ranges) {
-    const requestedRange = Range.fromExplicitRange(this.minRevision_,
-        this.maxRevision_);
-
-    if (!requestedRange.isEmpty) {
-      const intersectingRangeIndex = ranges
-          .findIndex(rangeDict => {
-            const range = Range.fromDict(rangeDict);
-            const intersection = range.findIntersection(requestedRange);
-            return !intersection.isEmpty;
-          });
-
-      if (intersectingRangeIndex === -1) {
-        return false;
-      }
+  getAvailableRange_(ranges) {
+    if (!ranges) return new Range();
+    for (const rangeDict of ranges) {
+      const range = Range.fromDict(rangeDict);
+      const intersection = range.findIntersection(this.revisionRange_);
+      if (!intersection.isEmpty) return intersection;
     }
-
-    return true;
+    return new Range();
   }
 
   /**
@@ -194,19 +215,14 @@ export default class TimeseriesCacheRequest extends CacheRequestBase {
   }
 
   async getMetadata_(transaction, key) {
-    const timing = this.time('Read - Metadata');
-    const metadataStore = transaction.objectStore(STORE_METADATA);
-    const result = await metadataStore.get(key);
-    timing.end();
-    return result;
+    const store = transaction.objectStore(STORE_METADATA);
+    return await this.timePromise('Read - Metadata', store.get(key));
   }
 
   async getRanges_(transaction) {
-    const timing = this.time('Read - Ranges');
     const rangeStore = transaction.objectStore(STORE_RANGES);
-    const ranges = await rangeStore.get(this.levelOfDetail_);
-    timing.end();
-    return ranges;
+    return await this.timePromise('Read - Ranges',
+        rangeStore.get(this.levelOfDetail_));
   }
 
   async getDataPoints_(transaction) {
@@ -249,16 +265,13 @@ export default class TimeseriesCacheRequest extends CacheRequestBase {
 
     const data = this.normalize_(networkData);
 
-    const transaction = db.transaction(STORES, TRANSACTION_MODE_READWRITE);
+    const transaction = db.transaction(STORES, READWRITE);
     await Promise.all([
       this.writeData_(transaction, data),
       this.writeRanges_(transaction, data),
     ]);
     this.writeMetadata_(transaction, metadata);
-
-    const timing = this.time('Write - Queued Tasks');
-    await transaction.complete;
-    timing.end();
+    await this.timePromise('Write - Queued Tasks', transaction.complete);
   }
 
   /**
