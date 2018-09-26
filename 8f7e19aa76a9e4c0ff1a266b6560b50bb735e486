@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8cdeee7e_d1244048",
+        "filename": "tracing/tracing/metrics/rendering/cpu_utilization.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-26T16:34:51Z",
+      "side": 1,
+      "message": "Can you add a RelatedNameMap and Breakdowns pointing from the \"all\" thread category to the other thread categories?",
+      "revId": "8f7e19aa76a9e4c0ff1a266b6560b50bb735e486",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
