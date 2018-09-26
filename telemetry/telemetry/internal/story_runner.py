@@ -172,8 +172,8 @@ def Run(test, story_set, finder_options, results, max_failures=None,
   We "white list" certain exceptions for which the story runner
   can continue running the remaining stories.
   """
-  for s in story_set:
-    ValidateStory(s)
+  # for s in story_set:
+  #  ValidateStory(s)
 
   # Filter page set based on options.
   stories = story_module.StoryFilter.FilterStorySet(story_set)
