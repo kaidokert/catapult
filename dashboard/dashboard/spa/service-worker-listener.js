@@ -4,12 +4,9 @@
 */
 'use strict';
 tr.exportTo('cp', () => {
-  /**
-   * ServiceWorkerListener creates a communication channel between the
-   * application and the service worker.
-   */
   class ServiceWorkerListener {
     constructor(url) {
+      url = location.origin + url;
       if (navigator.serviceWorker.controller === null &&
           !ServiceWorkerListener.TESTING) {
         // The request is force refresh (Shift + refresh) or there is no
