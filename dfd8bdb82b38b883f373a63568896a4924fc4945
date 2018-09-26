@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "cd31af28_4f06842f",
+        "filename": "dashboard/dashboard/spa/cp-toast.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-26T18:39:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6cb319c_15749d58",
+      "revId": "dfd8bdb82b38b883f373a63568896a4924fc4945",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "08ef0bb6_71dbaaca",
         "filename": "dashboard/dashboard/spa/cp-toast.html",
         "patchSetId": 2
@@ -48,6 +66,24 @@
       "writtenOn": "2018-09-21T17:37:19Z",
       "side": 1,
       "message": "Using iron-collapse to animate is a neat idea! For this case, would it potentially make sense to try having this element directly extend iron-collapse? (I\u0027ve never tried this sort of thing before but AFAIK it\u0027s possible https://www.polymer-project.org/2.0/docs/devguide/custom-elements#extending-elements )",
+      "revId": "dfd8bdb82b38b883f373a63568896a4924fc4945",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ec1b87d_6eb51c11",
+        "filename": "dashboard/dashboard/spa/cp-toast.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-26T18:39:29Z",
+      "side": 1,
+      "message": "That sounds like a good idea, but maybe later?",
+      "parentUuid": "08ef0bb6_71dbaaca",
       "revId": "dfd8bdb82b38b883f373a63568896a4924fc4945",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -86,6 +122,24 @@
       "revId": "dfd8bdb82b38b883f373a63568896a4924fc4945",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1738822_c4407f81",
+        "filename": "dashboard/dashboard/spa/cp-toast.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-09-26T18:39:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df27e752_53edeb2c",
+      "revId": "dfd8bdb82b38b883f373a63568896a4924fc4945",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
