@@ -202,6 +202,11 @@ tr.exportTo('cp', () => {
   ChartPair.actions = {
     updateRevisions: (statePath, minRevision, maxRevision) =>
       async(dispatch, getState) => {
+        const state = Polymer.Path.get(getState(), statePath);
+        if (minRevision === state.minRevision &&
+            maxRevision === state.maxRevision) {
+          return;
+        }
         dispatch(Redux.UPDATE(statePath, {minRevision, maxRevision}));
         ChartPair.actions.load(statePath)(dispatch, getState);
       },
@@ -213,6 +218,11 @@ tr.exportTo('cp', () => {
     updateLinkedRevisions: (
         linkedStatePath, linkedMinRevision, linkedMaxRevision) =>
       async(dispatch, getState) => {
+        const state = Polymer.Path.get(getState(), linkedStatePath);
+        if (linkedMinRevision === state.linkedMinRevision &&
+            linkedMaxRevision === state.linkedMaxRevision) {
+          return;
+        }
         dispatch(Redux.UPDATE(linkedStatePath, {
           linkedMinRevision, linkedMaxRevision,
         }));
@@ -259,7 +269,6 @@ tr.exportTo('cp', () => {
         type: ChartPair.reducers.brushMinimap.name,
         statePath,
       });
-      ChartPair.actions.load(statePath)(dispatch, getState);
     },
 
     brushChart: (statePath, brushIndex, value) =>
@@ -646,31 +655,19 @@ tr.exportTo('cp', () => {
 
       const results = await Promise.all(fetchDescriptors.map(
           async fetchDescriptor => {
-            const reader = cp.TimeseriesReader({
-              lineDescriptor,
-              fetchDescriptor,
-              refStatePath,
-              dispatch,
-              getState,
-            });
-            for await (const result of reader) {
-              return result;
+            const reader = cp.TimeseriesReader(fetchDescriptor);
+            for await (const timeseries of reader) {
+              return timeseries;
             }
           }
       ));
 
-      const timeserieses = results.map(result => result.timeseries);
-
-      for (const timeseries of timeserieses) {
-        if (!timeseries || !timeseries.data) {
-          throw new Error('Timeseries data formatted incorrectly', timeseries);
-        }
-        if (timeseries.data.length) {
-          return {
-            firstNonEmptyLineDescriptor: lineDescriptor,
-            timeserieses,
-          };
-        }
+      for (const timeseries of results) {
+        if (!timeseries.length) continue;
+        return {
+          firstNonEmptyLineDescriptor: lineDescriptor,
+          timeserieses: results,
+        };
       }
     }
 
