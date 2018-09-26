@@ -646,31 +646,19 @@ tr.exportTo('cp', () => {
 
       const results = await Promise.all(fetchDescriptors.map(
           async fetchDescriptor => {
-            const reader = cp.TimeseriesReader({
-              lineDescriptor,
-              fetchDescriptor,
-              refStatePath,
-              dispatch,
-              getState,
-            });
-            for await (const result of reader) {
-              return result;
+            const reader = cp.TimeseriesReader(fetchDescriptor);
+            for await (const timeseries of reader) {
+              return timeseries;
             }
           }
       ));
 
-      const timeserieses = results.map(result => result.timeseries);
-
-      for (const timeseries of timeserieses) {
-        if (!timeseries || !timeseries.data) {
-          throw new Error('Timeseries data formatted incorrectly', timeseries);
-        }
-        if (timeseries.data.length) {
-          return {
-            firstNonEmptyLineDescriptor: lineDescriptor,
-            timeserieses,
-          };
-        }
+      for (const timeseries of results) {
+        if (!timeseries.length) continue;
+        return {
+          firstNonEmptyLineDescriptor: lineDescriptor,
+          timeserieses: results,
+        };
       }
     }
 

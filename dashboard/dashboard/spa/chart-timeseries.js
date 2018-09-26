@@ -209,14 +209,7 @@ tr.exportTo('cp', () => {
         const fetchDescriptors = ChartTimeseries.createFetchDescriptors(
             lineDescriptor);
         for (const fetchDescriptor of fetchDescriptors) {
-          const reader = cp.TimeseriesReader({
-            lineDescriptor,
-            fetchDescriptor,
-            refStatePath: statePath,
-            dispatch,
-            getState,
-          });
-          promises.push(consumeAll(reader));
+          promises.push(consumeAll(cp.TimeseriesReader(fetchDescriptor)));
         }
       }
 
@@ -377,9 +370,8 @@ tr.exportTo('cp', () => {
 
       for (const value of Object.values(action.timeseriesesByLine)) {
         const [lineDescriptor, ...timeserieses] = value;
-        const timeseriesesData = timeserieses.map(ts => ts.data);
         const data = ChartTimeseries.aggregateTimeserieses(
-            lineDescriptor, timeseriesesData, {
+            lineDescriptor, timeserieses, {
               minRevision: state.minRevision,
               maxRevision: state.maxRevision,
               minTimestamp: state.minTimestamp,
@@ -388,7 +380,7 @@ tr.exportTo('cp', () => {
 
         if (data.length === 0) return state;
 
-        let unit = timeserieses[0].unit;
+        let unit = timeserieses[0][0].unit;
         if (state.mode === 'delta') {
           unit = unit.correspondingDeltaUnit;
           const offset = data[0].y;
@@ -490,13 +482,11 @@ tr.exportTo('cp', () => {
       const fetchDescriptors = ChartTimeseries.createFetchDescriptors(
           lineDescriptor);
       for (const fetchDescriptor of fetchDescriptors) {
-        readers.push(cp.TimeseriesReader({
-          lineDescriptor,
-          fetchDescriptor,
-          refStatePath: statePath,
-          dispatch,
-          getState,
-        }));
+        readers.push((async function*() {
+          for await (const timeseries of cp.TimeseriesReader(fetchDescriptor)) {
+            yield {timeseries, lineDescriptor};
+          }
+        })());
       }
     }
 

@@ -281,7 +281,7 @@ tr.exportTo('cp', () => {
     loadTestSuites: statePath => async(dispatch, getState) => {
       const rootState = getState();
       const testSuites = await cp.TeamFilter.get(rootState.teamName).testSuites(
-          await cp.ReadTestSuites()(dispatch, getState));
+          await cp.ReadTestSuites());
       dispatch({
         type: ChartSection.reducers.receiveTestSuites.name,
         statePath,
@@ -437,7 +437,7 @@ tr.exportTo('cp', () => {
 
       // Wait to populateColumns until after the user selects a memory
       // measurement.
-      if (!state.measurement.columns &&
+      if (!state.measurement.columns.length &&
           state.measurement.selectedOptions.filter(
               m => m.startsWith('memory:')).length) {
         cp.DropdownInput.actions.populateColumns(
@@ -1289,10 +1289,10 @@ tr.exportTo('cp', () => {
     !state.measurement ||
     !state.bot ||
     !state.testCase || (
-        state.testSuite.selectedOptions.length === 0 &&
-        state.measurement.selectedOptions.length === 0 &&
-        state.bot.selectedOptions.length === 0 &&
-        state.testCase.selectedOptions.length === 0));
+      state.testSuite.selectedOptions.length === 0 &&
+      state.measurement.selectedOptions.length === 0 &&
+      state.bot.selectedOptions.length === 0 &&
+      state.testCase.selectedOptions.length === 0));
 
   ChartSection.matchesOptions = (state, options) => {
     if (!options ||
