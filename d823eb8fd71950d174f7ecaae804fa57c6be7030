@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c6a53987_795fddc4",
+        "filename": "netlog_viewer/README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1002844
+      },
+      "writtenOn": "2018-09-26T22:32:39Z",
+      "side": 1,
+      "message": "This could be avoided by putting the appengine files in the top netlog_viewer directory, but that seems ugly too. (Putting the ../netlog_viewer/ path in the app.yaml config file didn\u0027t work.)",
+      "revId": "d823eb8fd71950d174f7ecaae804fa57c6be7030",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b11ab0d_28b05ae3",
+        "filename": "netlog_viewer/README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1002844
+      },
+      "writtenOn": "2018-09-26T22:32:39Z",
+      "side": 1,
+      "message": "The Merging section is a bit unnecessary now, so I\u0027ll trim that down in a followup.",
+      "revId": "d823eb8fd71950d174f7ecaae804fa57c6be7030",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
