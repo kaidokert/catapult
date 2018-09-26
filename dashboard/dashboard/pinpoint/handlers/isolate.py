@@ -36,7 +36,7 @@ class Isolate(api_request_handler.ApiRequestHandler):
     # Get parameters.
     parameters = (
         ('builder_name', str),
-        ('change', lambda x: change_module.Change.FromDict(json.loads(x))),
+        ('change', lambda x: change_module.Change.FromRequest(json.loads(x))),
         ('target', str),
     )
     try:
@@ -81,7 +81,7 @@ class Isolate(api_request_handler.ApiRequestHandler):
     # Get parameters.
     parameters = (
         ('builder_name', str),
-        ('change', lambda x: change_module.Change.FromDict(json.loads(x))),
+        ('change', lambda x: change_module.Change.FromRequest(json.loads(x))),
         ('isolate_server', str),
         ('isolate_map', json.loads),
     )

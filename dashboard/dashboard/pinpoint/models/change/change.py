@@ -99,11 +99,33 @@ class Change(collections.namedtuple('Change', ('commits', 'patch'))):
     return result
 
   @classmethod
+  def FromRequest(cls, data):
+    if isinstance(data, basestring):
+      return cls.FromUrls(data)
+    else:
+      return cls.FromDict(data)
+
+  @classmethod
+  def FromUrls(cls, urls):
+    commits = []
+    patches = []
+    for url in urls.split():
+      try:
+        commits.append(commit_module.Commit.FromUrl(url))
+      except (KeyError, ValueError):
+        patches.append(patch_module.GerritPatch.FromUrl(url))
+    if patches:
+      if len(patches) > 1:
+        raise ValueError('Multiple patches are not supported yet.')
+      return cls(commits, patch=patches[0])
+    return cls(commits)
+
+  @classmethod
   def FromDict(cls, data):
     commits = tuple(commit_module.Commit.FromDict(commit)
                     for commit in data['commits'])
     if 'patch' in data:
-      patch = patch_module.FromDict(data['patch'])
+      patch = patch_module.GerritPatch.FromDict(data['patch'])
     else:
       patch = None
 
