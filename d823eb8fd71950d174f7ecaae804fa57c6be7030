@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "d7e69db3_f8fd6a92",
+        "filename": "netlog_viewer/README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001766
+      },
+      "writtenOn": "2018-09-27T00:23:19Z",
+      "side": 1,
+      "message": "May be worth noting that when loading logs using the \"web\" version, data is kept local and not actually uploaded.",
+      "revId": "d823eb8fd71950d174f7ecaae804fa57c6be7030",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c6a53987_795fddc4",
         "filename": "netlog_viewer/README.md",
         "patchSetId": 7
@@ -30,6 +47,23 @@
       "writtenOn": "2018-09-26T22:32:39Z",
       "side": 1,
       "message": "The Merging section is a bit unnecessary now, so I\u0027ll trim that down in a followup.",
+      "revId": "d823eb8fd71950d174f7ecaae804fa57c6be7030",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d806f1a4_80445dec",
+        "filename": "netlog_viewer/appengine/app.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1001766
+      },
+      "writtenOn": "2018-09-27T00:23:19Z",
+      "side": 1,
+      "message": "Do you know what cache headers it will use?\nWe should be able to use very aggressive caching TTLs, which will also reduce load on the server.",
       "revId": "d823eb8fd71950d174f7ecaae804fa57c6be7030",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
