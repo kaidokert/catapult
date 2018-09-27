@@ -76,6 +76,38 @@ def _GetStoryTags(b):
     story_tags.update(s.tags)
   return sorted(story_tags)
 
+def _GetStoriesWithTags(b):
+  """Finds story tags given a benchmark.
+
+  Args:
+    b: a subclass of benchmark.Benchmark
+  Returns:
+    A list of story tags as strings.
+  """
+  # Create a options object which hold default values that are expected
+  # by Benchmark.CreateStoriesWithTags(options) method.
+  parser = optparse.OptionParser()
+  b.AddBenchmarkCommandLineArgs(parser)
+  options, _ = parser.parse_args([])
+
+  # Some benchmarks require special options, such as *.cluster_telemetry.
+  # Just ignore them for now.
+  try:
+    story_set = b().CreateStorySet(options)
+  # pylint: disable=broad-except
+  except Exception as e:
+    logging.warning('Unable to get story tags for %s due to "%s"', b.Name(), e)
+    story_set = []
+
+  stories_info = list([])
+  for s in story_set:
+    story_info = {'name' : s.name}
+    story_info['story_tags'] = list()
+    for tag in s.tags:
+      story_info['story_tags'].append(tag)
+    stories_info.append(story_info);
+  return sorted(stories_info)
+
 
 def PrintBenchmarkList(
     benchmarks, possible_browser, expectations_file, output_pipe=sys.stdout,
@@ -125,6 +157,7 @@ def PrintBenchmarkList(
         not possible_browser or
         _IsBenchmarkEnabled(b, possible_browser, expectations_file))
     benchmark_info['story_tags'] = _GetStoryTags(b)
+    benchmark_info['stories'] = _GetStoriesWithTags(b)
     all_benchmark_info.append(benchmark_info)
 
   # Align the benchmark names to the longest one.
