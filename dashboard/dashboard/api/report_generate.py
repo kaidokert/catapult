@@ -8,13 +8,7 @@ import dashboard.common.system_health_report # pylint: disable=unused-import
 from dashboard.models import report_template
 
 
-CACHE_SECONDS = 60 * 60 * 20
-
-
 class ReportGenerateHandler(api_request_handler.ApiRequestHandler):
-
-  def get(self):
-    self.post()
 
   def _AllowAnonymous(self):
     return True
@@ -44,7 +38,4 @@ class ReportGenerateHandler(api_request_handler.ApiRequestHandler):
       raise api_request_handler.NotFoundError
     if report is None:
       raise api_request_handler.NotFoundError
-
-    self.response.headers['Cache-Control'] = '%s, max-age=%d' % (
-        'private' if report['internal'] else 'public', CACHE_SECONDS)
     return report

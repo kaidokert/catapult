@@ -159,6 +159,7 @@ tr.exportTo('cp', () => {
     zeroYAxis: options => false,
     fixedXAxis: options => false,
     mode: options => 'normalizeUnit',
+    levelOfDetail: options => options.levelOfDetail || cp.LEVEL_OF_DETAIL.XY,
   };
 
   ChartTimeseries.properties = cp.buildProperties(
@@ -207,16 +208,9 @@ tr.exportTo('cp', () => {
 
       for (const lineDescriptor of lineDescriptors) {
         const fetchDescriptors = ChartTimeseries.createFetchDescriptors(
-            lineDescriptor);
+            lineDescriptor, cp.LEVEL_OF_DETAIL.XY);
         for (const fetchDescriptor of fetchDescriptors) {
-          const reader = cp.TimeseriesReader({
-            lineDescriptor,
-            fetchDescriptor,
-            refStatePath: statePath,
-            dispatch,
-            getState,
-          });
-          promises.push(consumeAll(reader));
+          promises.push(consumeAll(cp.TimeseriesReader(fetchDescriptor)));
         }
       }
 
@@ -377,9 +371,8 @@ tr.exportTo('cp', () => {
 
       for (const value of Object.values(action.timeseriesesByLine)) {
         const [lineDescriptor, ...timeserieses] = value;
-        const timeseriesesData = timeserieses.map(ts => ts.data);
         const data = ChartTimeseries.aggregateTimeserieses(
-            lineDescriptor, timeseriesesData, {
+            lineDescriptor, timeserieses, {
               minRevision: state.minRevision,
               maxRevision: state.maxRevision,
               minTimestamp: state.minTimestamp,
@@ -388,7 +381,7 @@ tr.exportTo('cp', () => {
 
         if (data.length === 0) return state;
 
-        let unit = timeserieses[0].unit;
+        let unit = timeserieses[0][0].unit;
         if (state.mode === 'delta') {
           unit = unit.correspondingDeltaUnit;
           const offset = data[0].y;
@@ -484,19 +477,24 @@ tr.exportTo('cp', () => {
     dispatch,
     getState
   ) => {
+    const state = Polymer.Path.get(getState(), statePath);
+    const revisionOptions = {
+      minRevision: state.minRevision,
+      maxRevision: state.maxRevision,
+      minTimestamp: state.minTimestamp,
+      maxTimestamp: state.maxTimestamp,
+    };
     const readers = [];
-
     for (const lineDescriptor of lineDescriptors) {
       const fetchDescriptors = ChartTimeseries.createFetchDescriptors(
-          lineDescriptor);
+          lineDescriptor, state.levelOfDetail);
       for (const fetchDescriptor of fetchDescriptors) {
-        readers.push(cp.TimeseriesReader({
-          lineDescriptor,
-          fetchDescriptor,
-          refStatePath: statePath,
-          dispatch,
-          getState,
-        }));
+        const fetchOptions = {...fetchDescriptor, ...revisionOptions};
+        readers.push((async function*() {
+          for await (const timeseries of cp.TimeseriesReader(fetchOptions)) {
+            yield {timeseries, lineDescriptor};
+          }
+        })());
       }
     }
 
@@ -549,7 +547,7 @@ tr.exportTo('cp', () => {
     return timeseriesesByLine;
   }
 
-  ChartTimeseries.createFetchDescriptors = (lineDescriptor) => {
+  ChartTimeseries.createFetchDescriptors = (lineDescriptor, levelOfDetail) => {
     let testCases = lineDescriptor.testCases;
     if (testCases.length === 0) testCases = [undefined];
     const fetchDescriptors = [];
@@ -563,7 +561,7 @@ tr.exportTo('cp', () => {
             testCase,
             statistic: lineDescriptor.statistic,
             buildType: lineDescriptor.buildType,
-            levelOfDetail: cp.LEVEL_OF_DETAIL.XY,
+            levelOfDetail,
           });
         }
       }
