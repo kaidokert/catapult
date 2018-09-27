@@ -47,9 +47,9 @@ tr.b.unittest.testSuite(function() {
 
   test('topEvents', function() {
     const events = {
-      'BlinkGC.AtomicPhaseMarking': 'blink-gc-marking',
+      'BlinkGC.AtomicPhase': 'blink-gc-atomic-phase',
       'BlinkGC.CompleteSweep': 'blink-gc-complete-sweep',
-      'BlinkGC.LazySweepInIdle': 'blink-gc-idle-lazy-sweep'
+      'BlinkGC.LazySweepInIdle': 'blink-gc-lazy-sweep-idle'
     };
     for (const [timelineName, telemetryName] of Object.entries(events)) {
       const slices = [
@@ -93,29 +93,30 @@ tr.b.unittest.testSuite(function() {
         cpuStart: 100, cpuEnd: 200
       },
       {
-        title: 'BlinkGC.AtomicPhaseMarking', args: {}, start: 110, end: 190,
+        title: 'BlinkGC.AtomicPhase', args: {}, start: 110, end: 190,
         cpuStart: 110, cpuEnd: 190
       }
     ];
     const actual = run(slices);
 
-    let value = actual.getHistogramNamed('blink-gc-marking');
+    let value = actual.getHistogramNamed('blink-gc-atomic-phase');
     assert.strictEqual(value.running.sum, 80);
     assert.strictEqual(value.numValues, 1);
     assert.strictEqual(value.average, 80);
     assert.strictEqual(value.running.max, 80);
 
-    value = actual.getHistogramNamed('blink-gc-marking_idle_deadline_overrun');
+    value = actual.getHistogramNamed(
+        'blink-gc-atomic-phase_idle_deadline_overrun');
     assert.strictEqual(value.running.sum, 0);
     assert.strictEqual(value.average, 0);
     assert.strictEqual(value.running.max, 0);
 
-    value = actual.getHistogramNamed('blink-gc-marking_outside_idle');
+    value = actual.getHistogramNamed('blink-gc-atomic-phase_outside_idle');
     assert.strictEqual(value.running.sum, 0);
     assert.strictEqual(value.average, 0);
     assert.strictEqual(value.running.max, 0);
 
-    value = actual.getHistogramNamed('blink-gc-marking_percentage_idle');
+    value = actual.getHistogramNamed('blink-gc-atomic-phase_percentage_idle');
     assert.strictEqual(value.average, 1);
   });
 
@@ -128,37 +129,38 @@ tr.b.unittest.testSuite(function() {
         cpuStart: 100, cpuEnd: 200
       },
       {
-        title: 'BlinkGC.AtomicPhaseMarking', args: {}, start: 110, end: 190,
+        title: 'BlinkGC.AtomicPhase', args: {}, start: 110, end: 190,
         cpuStart: 110, cpuEnd: 190
       }
     ];
     const actual = run(slices);
 
-    let value = actual.getHistogramNamed('blink-gc-marking');
+    let value = actual.getHistogramNamed('blink-gc-atomic-phase');
     assert.strictEqual(value.running.sum, 80);
     assert.strictEqual(value.numValues, 1);
     assert.strictEqual(value.average, 80);
     assert.strictEqual(value.running.max, 80);
 
-    value = actual.getHistogramNamed('blink-gc-marking_idle_deadline_overrun');
+    value = actual.getHistogramNamed(
+        'blink-gc-atomic-phase_idle_deadline_overrun');
     assert.strictEqual(value.running.sum, 70);
     assert.strictEqual(value.average, 70);
     assert.strictEqual(value.running.max, 70);
 
-    value = actual.getHistogramNamed('blink-gc-marking_outside_idle');
+    value = actual.getHistogramNamed('blink-gc-atomic-phase_outside_idle');
     assert.strictEqual(value.running.sum, 70);
     assert.strictEqual(value.average, 70);
     assert.strictEqual(value.running.max, 70);
 
-    value = actual.getHistogramNamed('blink-gc-marking_percentage_idle');
+    value = actual.getHistogramNamed('blink-gc-atomic-phase_percentage_idle');
     assert.closeTo(value.average, 1 / 8, 1e-6);
   });
 
-  test('total', function() {
+  test('totalTimeForBlinkGC', function() {
     const histograms = new tr.v.HistogramSet();
     const slices = [
       {
-        title: 'BlinkGC.AtomicPhaseMarking', args: {}, start: 100, end: 200,
+        title: 'BlinkGC.AtomicPhase', args: {}, start: 100, end: 200,
         cpuStart: 100, cpuEnd: 200
       },
       {
@@ -186,6 +188,27 @@ tr.b.unittest.testSuite(function() {
 
     value = actual.getHistogramNamed('blink-gc-total_percentage_idle');
     assert.strictEqual(value.average, 0);
+  });
+
+  test('totalTimeForUnifiedGC', function() {
+    const histograms = new tr.v.HistogramSet();
+    const slices = [
+      {
+        title: 'V8.GCFinalizeMC', args: {},
+        start: 100, end: 300, cpuStart: 100, cpuEnd: 300
+      },
+      {
+        title: 'BlinkGC.AtomicPhase', args: {},
+        start: 310, end: 410, cpuStart: 310, cpuEnd: 410
+      }
+    ];
+    const actual = run(slices);
+
+    const value = actual.getHistogramNamed('unified-gc-total');
+    assert.strictEqual(value.running.sum, 300);
+    assert.strictEqual(value.numValues, 2);
+    assert.strictEqual(value.average, 150);
+    assert.strictEqual(value.running.max, 200);
   });
 });
 </script>
