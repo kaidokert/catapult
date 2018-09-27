@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f68cea1c_ba210370",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-09-27T18:23:03Z",
+      "side": 1,
+      "message": "nit: the word job seems redundant (job_id is just because \"id\" is a reserved keyword in Python)",
+      "range": {
+        "startLine": 383,
+        "startChar": 32,
+        "endLine": 383,
+        "endChar": 47
+      },
+      "revId": "cf561a2342eae716cefbc5b85d6dad38e4a90f06",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
