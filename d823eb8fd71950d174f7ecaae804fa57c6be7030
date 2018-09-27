@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3fa7bbb4_b45951b8",
+        "filename": "netlog_viewer/README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1002844
+      },
+      "writtenOn": "2018-09-27T18:48:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7e69db3_f8fd6a92",
+      "revId": "d823eb8fd71950d174f7ecaae804fa57c6be7030",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c6a53987_795fddc4",
         "filename": "netlog_viewer/README.md",
         "patchSetId": 7
@@ -67,6 +85,24 @@
       "revId": "d823eb8fd71950d174f7ecaae804fa57c6be7030",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7146537b_c5bc0048",
+        "filename": "netlog_viewer/appengine/app.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1002844
+      },
+      "writtenOn": "2018-09-27T18:48:08Z",
+      "side": 1,
+      "message": "Default is 10 min. Changed to 1 week.",
+      "parentUuid": "d806f1a4_80445dec",
+      "revId": "d823eb8fd71950d174f7ecaae804fa57c6be7030",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
