@@ -34,6 +34,24 @@
       "revId": "495421d520aac5d50f8e56b0991b46abfa0a1a1d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c07aa4f3_cf25facd",
+        "filename": "dashboard/dashboard/pinpoint/models/compare/thresholds_performance.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-09-27T22:01:14Z",
+      "side": 1,
+      "message": "These are essentially determined by guessing! I run this script with N\u003d10,000 and see how many samples are needed to get p_value \u003c P_VALUE. I don\u0027t know the actual correct values for these or how to calculate them.",
+      "parentUuid": "7acd6da6_1be891f2",
+      "revId": "495421d520aac5d50f8e56b0991b46abfa0a1a1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
