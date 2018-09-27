@@ -16,6 +16,24 @@
       "revId": "495421d520aac5d50f8e56b0991b46abfa0a1a1d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7acd6da6_1be891f2",
+        "filename": "dashboard/dashboard/pinpoint/models/compare/thresholds_performance.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-09-27T15:21:36Z",
+      "side": 1,
+      "message": "+1 to docs and scripts checked in somewhere that can calculate all these.",
+      "parentUuid": "fa497b40_355b1dfd",
+      "revId": "495421d520aac5d50f8e56b0991b46abfa0a1a1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
