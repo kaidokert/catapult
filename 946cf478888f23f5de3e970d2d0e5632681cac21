@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6f639e5d_34e3eef1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-27T11:01:03Z",
+      "side": 1,
+      "message": "I like very much the power that comes from:\n\n  commit.FromUrl and patch.FromUrl\n\nI also like the *.FromRequest methods, although the name is not great. Maybe FromAny, FromData?\n\nOther alternatives for naming:\n\n- Keep AsDict only, but on commit/patch the AsDict is magical and if passed a string it will try to parse it as a URL.\n- Keep a single public AsData only (or something like that), which calls private _FromUrl or _FromDict as needed.\n\n\u003d\u003d\u003d\u003d\n\nThe one I do not like very much is change.FromUrls, or any functionality like that that tries to build a change with multiple commits/patches from a single unstructured string. A change.FromUrl would be fine, but if a client needs to supply multiple urls at that point they should probably supply a dict with more explicit structure instead, right? Wdyt?",
+      "revId": "946cf478888f23f5de3e970d2d0e5632681cac21",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d5cf62f_43690eed",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-27T11:01:03Z",
+      "side": 1,
+      "message": "this refactor turned out neat!",
+      "revId": "946cf478888f23f5de3e970d2d0e5632681cac21",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
