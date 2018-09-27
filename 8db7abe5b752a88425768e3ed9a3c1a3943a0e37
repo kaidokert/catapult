@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c27aa112_74ad56cd",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1171009
+      },
+      "writtenOn": "2018-09-27T20:32:34Z",
+      "side": 1,
+      "message": "Just to confirm: List of stories with story tags info is enough for you?",
+      "parentUuid": "59c08aba_e31f025d",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 27
+      },
+      "revId": "8db7abe5b752a88425768e3ed9a3c1a3943a0e37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cd06f26a_52c25e60",
         "filename": "telemetry/telemetry/benchmark_runner.py",
         "patchSetId": 1
