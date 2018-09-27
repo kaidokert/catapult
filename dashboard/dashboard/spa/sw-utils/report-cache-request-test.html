@@ -138,21 +138,12 @@ tr.b.unittest.testSuite(() => {
     return row;
   }
 
-  function mockFetch(response, {
-    delay = 50,
-    status = 200,
-  } = {}) {
+  function mockFetch(response) {
     const actualFetch = global.fetch;
-    global.fetch = () => new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const blob = new Blob([JSON.stringify(response, null, 2)], {
-          type: 'application/json',
-        });
-        const res = new Response(blob, {status});
-        resolve(res);
-        global.fetch = actualFetch;
-      }, delay);
-    });
+    global.fetch = async() => {
+      global.fetch = actualFetch;
+      return testUtils.jsonResponse(response);
+    };
   }
 
 
