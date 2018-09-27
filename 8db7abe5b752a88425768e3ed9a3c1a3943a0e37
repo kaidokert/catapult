@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "59c08aba_e31f025d",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2018-09-27T18:44:45Z",
+      "side": 1,
+      "message": "You won\u0027t need this anymore.",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 27
+      },
+      "revId": "8db7abe5b752a88425768e3ed9a3c1a3943a0e37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd06f26a_52c25e60",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2018-09-27T18:44:45Z",
+      "side": 1,
+      "message": "Maybe just \"tags\"?",
+      "range": {
+        "startLine": 105,
+        "startChar": 16,
+        "endLine": 105,
+        "endChar": 26
+      },
+      "revId": "8db7abe5b752a88425768e3ed9a3c1a3943a0e37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e120de8f_0501583c",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2018-09-27T18:44:45Z",
+      "side": 1,
+      "message": "YAGNI",
+      "range": {
+        "startLine": 159,
+        "startChar": 3,
+        "endLine": 159,
+        "endChar": 51
+      },
+      "revId": "8db7abe5b752a88425768e3ed9a3c1a3943a0e37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
