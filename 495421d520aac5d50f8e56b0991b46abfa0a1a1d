@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa497b40_355b1dfd",
+        "filename": "dashboard/dashboard/pinpoint/models/compare/thresholds_performance.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-27T09:44:21Z",
+      "side": 1,
+      "message": "How are these determined?",
+      "revId": "495421d520aac5d50f8e56b0991b46abfa0a1a1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
