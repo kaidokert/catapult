@@ -67,12 +67,13 @@ def RenderHistogramsViewer(histogram_dicts, output_stream, reset_results=False,
 
   output_stream.write(vulcanized_html)
 
-  output_stream.write('<div style="display:none;">')
+  output_stream.write(
+      '<div id="histogram-json-data" style="display:none;"><!--')
   json_tag_newline = '\n%s' % _JSON_TAG
   for histogram in histogram_dicts:
     hist_json = json.dumps(histogram, separators=(',', ':'))
     output_stream.write(json_tag_newline % cgi.escape(hist_json))
-  output_stream.write('\n</div>\n')
+  output_stream.write('\n--!></div>\n')
 
   # If the output file already existed and was longer than the new contents,
   # discard the old contents after this point.

@@ -26,20 +26,15 @@ tr.b.unittest.testSuite(function() {
       sum: false,
     });
     const htmlString = '<script>throw new Error("oops");<' + '/script>';
-    hist.diagnostics.set('html', new tr.v.d.GenericSet([
-      // RenderHistogramsViewer escapes html characters.
-      htmlString.replace(/</g, '&lt;').replace(/>/g, '&gt;'),
-    ]));
-    const jsonEl = document.createElement('div');
-    jsonEl.innerHTML = JSON.stringify(hist.asDict());
-    jsonEl.style.display = 'none';
-    this.addHTMLOutput(jsonEl);
+    hist.diagnostics.set('html', new tr.v.d.GenericSet([htmlString]));
+    const histogramData =
+      `<histogram-json>${JSON.stringify(hist.asDict())}</histogram-json>`;
 
     const view = document.createElement('tr-v-ui-histogram-set-view');
     view.style.display = 'none';
     this.addHTMLOutput(view);
 
-    return importer.importHistograms([jsonEl], view).then(() => {
+    return importer.importHistograms(histogramData, view).then(() => {
       assert.strictEqual('none', loadingEl.style.display);
       assert.strictEqual('block', view.style.display);
       assert.lengthOf(view.histograms, 1);
