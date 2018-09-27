@@ -8,6 +8,11 @@ import idb from '/idb/idb.js';
 import Timing from './timing.js';
 import analytics from './google-analytics.js';
 
+export const READONLY = 'readonly';
+export const READWRITE = 'readwrite';
+
+export const jsonResponse = response => new Response(new Blob(
+    [JSON.stringify(response)], {type: 'application/json'}))
 
 /**
  * CacheRequestBase handles all operations for starting a data race between
@@ -15,47 +20,55 @@ import analytics from './google-analytics.js';
  * and cache results from remote sources, such as APIs.
  */
 export class CacheRequestBase {
-  constructor(request) {
-    this.request = request;
+  constructor(fetchEvent) {
+    this.fetchEvent = fetchEvent;
     this.asyncIterator_ = this.raceCacheAndNetwork_();
+  }
+
+  async respond() {
+    this.fetchEvent.respondWith(new Response(new Blob(
+        ['null'], {type: 'application/json'})));
+    const channel = new BroadcastChannel(this.fetchEvent.request.url);
+    for await (const payload of this) {
+      channel.postMessage({type: 'RESULTS', payload});
+    }
+    channel.postMessage({type: 'DONE'});
   }
 
   get timingCategory() {
     // e.g. 'Timeseries', 'Reports', 'FullHistograms'
-    throw new Error(`${this.constructor.name} didn't overwrite timingCategory`);
+    throw new Error(`${this.constructor.name} must override timingCategory`);
   }
 
   get databaseName() {
     // e.g. `reports/${this.uniqueIdentifier}`
-    throw new Error(`${this.constructor.name} didn't overwrite databaseName`);
+    throw new Error(`${this.constructor.name} must override databaseName`);
   }
 
   get databaseVersion() {
     // e.g. 1, 2, 3
     throw new Error(
-        `${this.constructor.name} didn't overwrite databaseVersion`
-    );
+        `${this.constructor.name} must override databaseVersion`);
   }
 
   async upgradeDatabase(database) {
     // See https://github.com/jakearchibald/idb#upgrading-existing-db
     throw new Error(
-        `${this.constructor.name} didn't overwrite upgradeDatabase`
-    );
+        `${this.constructor.name} must override upgradeDatabase`);
   }
 
   async read(database) {
-    throw new Error(`${this.constructor.name} didn't overwrite read`);
+    throw new Error(`${this.constructor.name} must override read`);
   }
 
   async write(database, networkResults) {
-    throw new Error(`${this.constructor.name} didn't overwrite write`);
+    throw new Error(`${this.constructor.name} must override write`);
   }
 
   // Child classes should use this method to record performance measures to the
   // Chrome DevTools and, if available, to Google Analytics.
   time(action) {
-    return new Timing(this.timingCategory, action, this.request.url);
+    return new Timing(this.timingCategory, action, this.fetchEvent.request.url);
   }
 
   [Symbol.asyncIterator]() {
@@ -75,11 +88,11 @@ export class CacheRequestBase {
       const winner = await Promise.race([cachePromise, networkPromise]);
 
       if (winner.name === 'IndexedDB' && winner.result) {
-        yield winner;
+        yield winner.result;
       }
 
       const res = await networkPromise;
-      yield res;
+      yield res.result;
       CacheRequestBase.writer.enqueue(() => this.writeIDB_(res.result));
     };
   }
@@ -100,12 +113,21 @@ export class CacheRequestBase {
     };
   }
 
+  async timePromise(name, promise) {
+    const timing = this.time(name);
+    try {
+      return await promise;
+    } finally {
+      timing.end();
+    }
+  }
+
   async readNetwork_() {
     let timing = this.time('Network');
-    const response = await fetch(this.request);
+    const response = await fetch(this.fetchEvent.request);
     timing.end();
 
-    timing = this.time('Network - Parse JSON');
+    timing = this.time('Parse JSON');
     const json = await response.json();
     timing.end();
 
@@ -177,7 +199,7 @@ class WritingQueue {
       try {
         await writeFunc();
       } catch (err) {
-        ga.sendException(err);
+        analytics.sendException(err);
       }
     })());
 
@@ -238,4 +260,5 @@ export default {
   disableAutomaticWritingForTest,
   flushWriterForTest,
   CacheRequestBase,
+  jsonResponse,
 };
