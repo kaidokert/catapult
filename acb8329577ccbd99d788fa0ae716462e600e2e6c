@@ -34,6 +34,23 @@
       "revId": "acb8329577ccbd99d788fa0ae716462e600e2e6c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c38c3af9_3a54c123",
+        "filename": "experimental/soundwave/job_configs/v8.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1002763
+      },
+      "writtenOn": "2018-09-27T16:18:38Z",
+      "side": 1,
+      "message": "We don\u0027t really want to test site isolation for our okrs. I can come up with a config for our Q4 memory metrics though, or our Q3 page load one if we want Q3 for village hall?",
+      "revId": "acb8329577ccbd99d788fa0ae716462e600e2e6c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
