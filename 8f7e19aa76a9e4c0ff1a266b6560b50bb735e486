@@ -16,6 +16,24 @@
       "revId": "8f7e19aa76a9e4c0ff1a266b6560b50bb735e486",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96431a3e_5f04dc52",
+        "filename": "tracing/tracing/metrics/rendering/cpu_utilization.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-09-28T20:56:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8cdeee7e_d1244048",
+      "revId": "8f7e19aa76a9e4c0ff1a266b6560b50bb735e486",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
