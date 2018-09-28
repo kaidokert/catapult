@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "21280474_c0d1d39d",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2018-09-28T00:04:45Z",
+      "side": 1,
+      "message": "Maybe \"a list of strings\"?",
+      "range": {
+        "startLine": 57,
+        "startChar": 49,
+        "endLine": 57,
+        "endChar": 56
+      },
+      "revId": "9d61bc086929e32aca372bbdc0ea0625064f6fc7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
