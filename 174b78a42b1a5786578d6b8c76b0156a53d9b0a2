@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "65677369_0676ac70",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-09-28T02:47:45Z",
+      "side": 1,
+      "message": "I think I have done what you suggest here, although it\u0027s kind of difficult since I don\u0027t know how I can  test this locally.",
+      "parentUuid": "2af441ef_b2b46bf4",
+      "revId": "174b78a42b1a5786578d6b8c76b0156a53d9b0a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9b93afeb_cdd94888",
         "filename": "dashboard/dashboard/pinpoint/models/job.py",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "174b78a42b1a5786578d6b8c76b0156a53d9b0a2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3fccc9ef_926520d0",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-09-28T02:47:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b93afeb_cdd94888",
+      "revId": "174b78a42b1a5786578d6b8c76b0156a53d9b0a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
