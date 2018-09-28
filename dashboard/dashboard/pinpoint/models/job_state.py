@@ -62,6 +62,10 @@ class JobState(object):
   def comparison_mode(self):
     return self._comparison_mode
 
+  @property
+  def metric(self):
+    return self._quests[-1] and self._quests[-1].metric
+
   def AddAttempts(self, change):
     if not hasattr(self, '_pin'):
       # TODO: Remove after data migration.
