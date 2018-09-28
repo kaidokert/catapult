@@ -70,6 +70,24 @@
       "revId": "495421d520aac5d50f8e56b0991b46abfa0a1a1d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d8c9206_9e6fe067",
+        "filename": "dashboard/dashboard/pinpoint/models/compare/thresholds_performance.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-09-28T08:52:30Z",
+      "side": 1,
+      "message": "Awesome, thanks!",
+      "parentUuid": "ba5490c3_54cb3f9c",
+      "revId": "495421d520aac5d50f8e56b0991b46abfa0a1a1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
