@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a44f43d2_e282a87d",
+        "filename": "experimental/soundwave/services/isolate_service.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-09-28T16:26:51Z",
+      "side": 1,
+      "message": "nit: might be a little neater to do\n\ncontent \u003d _RetrieveCached(digest)\nif content:\n  return content\n\ncontent \u003d _RetrieveCompresed(digest)\nwrite()\nreturn content",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 14
+      },
+      "revId": "7497d4ea22429ce708ec5370d5ade0852d4c110c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
