@@ -48,8 +48,10 @@ tr.exportTo('tr.b', function() {
     }
 
     get endMark() {
-      return this.endMark_ || tr.b.getOnlyElement(
-          window.performance.getEntriesByName(this.endMarkName_));
+      if (this.endMark_) return this.endMark_;
+      const marks = window.performance.getEntriesByName(this.endMarkName_);
+      if (marks.length !== 1) console.error('wtf', this.endMarkName_);
+      return marks[marks.length - 1];
     }
 
     get durationMs() {
