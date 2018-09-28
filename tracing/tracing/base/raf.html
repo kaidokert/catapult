@@ -39,8 +39,15 @@ tr.exportTo('tr.b', function() {
         throw e;
       });
     } else {
+      // Use rAF callbacks if the document is visible. If the document is
+      // hidden, then it is possible that the user-agent will slow down the
+      // rAF callbacks. So use a timeout callback in those cases.
       if (window.requestAnimationFrame) {
-        window.requestAnimationFrame(processRequests.bind(this, false));
+        if (window.document.visibilityState === 'visible') {
+          window.requestAnimationFrame(processRequests.bind(this, false));
+        } else {
+          window.setTimeout(processRequests.bind(this, false), 17);
+        }
       } else {
         const delta = Date.now() - window.performance.now();
         window.webkitRequestAnimationFrame(function(domTimeStamp) {
