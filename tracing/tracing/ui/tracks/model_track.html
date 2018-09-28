@@ -364,6 +364,10 @@ tr.exportTo('tr.ui.tracks', function() {
       // processes are collapsed, bug #931.
       if (startTrack === undefined || endTrack === undefined) return;
 
+      const trackHidden =
+          (track) => track && (track.hidden || trackHidden(track.parentNode));
+      if (trackHidden(startTrack) || trackHidden(endTrack)) return;
+
       const startBounds = startTrack.getBoundingClientRect();
       const endBounds = endTrack.getBoundingClientRect();
 
