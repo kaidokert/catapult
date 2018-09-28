@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c507cea7_59a409d1",
+        "filename": "experimental/soundwave/bin/pinpoint_cli",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-09-28T17:05:43Z",
+      "side": 1,
+      "message": "Might want to consider moving this to a helpers or utils file or something in the main directory, keep this cli file mostly about setting up parsers.",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 27
+      },
+      "revId": "fb14a7e6fd19685deba598b8e26009a24c4f1f88",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3d6ded9_48e38242",
+        "filename": "experimental/soundwave/pinpoint_cli/histograms_df_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-09-28T17:05:43Z",
+      "side": 1,
+      "message": "nit: extra line above",
+      "range": {
+        "startLine": 2,
+        "startChar": 1,
+        "endLine": 2,
+        "endChar": 2
+      },
+      "revId": "fb14a7e6fd19685deba598b8e26009a24c4f1f88",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
