@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fc274e59_d740bfa5",
+        "filename": "dashboard/dashboard/spa/option-group-test.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-01T21:06:20Z",
+      "side": 1,
+      "message": "Added a test for groupValues",
+      "parentUuid": "8de8e4a8_11a20b86",
+      "revId": "5a9d94ae69e61ebe8c6bcd00cbd81c7ac62bc55d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "71867744_94453054",
         "filename": "dashboard/dashboard/spa/option-group.js",
         "patchSetId": 5
@@ -30,6 +48,30 @@
       "writtenOn": "2018-09-27T00:05:11Z",
       "side": 1,
       "message": "maybe a descriptive constant, FOO_THRESHOLD or something",
+      "range": {
+        "startLine": 19,
+        "startChar": 34,
+        "endLine": 19,
+        "endChar": 36
+      },
+      "revId": "5a9d94ae69e61ebe8c6bcd00cbd81c7ac62bc55d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9b38f94_e0111ee8",
+        "filename": "dashboard/dashboard/spa/option-group.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-01T21:06:20Z",
+      "side": 1,
+      "message": "Added TOO_MANY_OPTIONS",
+      "parentUuid": "71867744_94453054",
       "range": {
         "startLine": 19,
         "startChar": 34,
