@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ab46e4e_8ea875cc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-10-01T14:18:39Z",
+      "side": 1,
+      "message": "Maybe add a sheriff\u0027s warning note? I guess this is likely to move some metrics?",
+      "revId": "6ccda8084d441d70f0fe5f0539e2d14f2d19c7b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
