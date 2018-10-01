@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3377ea55_e9f81c8d",
+        "filename": "tracing/tracing/value/histogram_importer.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-01T20:20:02Z",
+      "side": 1,
+      "message": "Does bumping this from 100 to 1000 not make the animation feel slow on lower-end laptops?\nIt\u0027s inside of the do..while, so it only controls how often performance.now() is called.\nIf performance.now() is fast enough, then it seems like it should be safe to call it more often.",
+      "revId": "c08fc9564892dcf7a6807cf2e0b2f0110c5ebf19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c9549ad_5d6406e6",
+        "filename": "tracing/tracing_build/histograms_viewer.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-01T20:20:02Z",
+      "side": 1,
+      "message": "Uncaught ReferenceError: $ is not defined\n\nThis viewer does not include jquery.",
+      "revId": "c08fc9564892dcf7a6807cf2e0b2f0110c5ebf19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dddb48cc_e3e7bce3",
+        "filename": "tracing/tracing_build/render_histograms_viewer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-01T20:20:02Z",
+      "side": 1,
+      "message": "s/the all the/all the/",
+      "revId": "c08fc9564892dcf7a6807cf2e0b2f0110c5ebf19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c82e4d43_898793ab",
+        "filename": "tracing/tracing_build/render_histograms_viewer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-01T20:20:02Z",
+      "side": 1,
+      "message": "If the data is going to be in a comment, then we might be able to simplify even further.\nInstead of using a div with a special id to contain the comment, could it just always be the last node in document.body.childNodes?\nAnd instead of surrounding histograms with an html tag, could they just be separated by a newline? I do still occasionally grep/head/tail results.html for quick sanity checking.",
+      "revId": "c08fc9564892dcf7a6807cf2e0b2f0110c5ebf19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
