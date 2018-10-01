@@ -16,6 +16,24 @@
       "revId": "6ccda8084d441d70f0fe5f0539e2d14f2d19c7b2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d932a36_df007080",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-10-01T15:14:28Z",
+      "side": 1,
+      "message": "oh good point! I should have thought about this. Changed.",
+      "parentUuid": "3ab46e4e_8ea875cc",
+      "revId": "6ccda8084d441d70f0fe5f0539e2d14f2d19c7b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
