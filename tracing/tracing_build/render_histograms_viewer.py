@@ -19,7 +19,9 @@ def ExtractJSON(results_html, json_tag):
     try:
       results.append(json.loads(match.group(1)))
     except ValueError:
-      logging.warn('Found existing results json, but failed to parse it.')
+      logging.warn(
+          'Found existing results json, but failed to parse it: %s',
+          match.group(1))
       return []
   return results
 
@@ -66,13 +68,15 @@ def RenderHistogramsViewer(histogram_dicts, output_stream, reset_results=False,
     histogram_dicts += ReadExistingResults(results_html)
 
   output_stream.write(vulcanized_html)
-
-  output_stream.write('<div style="display:none;">')
+  # Put the all the serialized histograms nodes inside an html comment to avoid
+  # unecessary stress on html parsing and avoid creating throw-away dom nodes.
+  output_stream.write(
+      '<div id="histogram-json-data" style="display:none;"><!--')
   json_tag_newline = '\n%s' % _JSON_TAG
   for histogram in histogram_dicts:
     hist_json = json.dumps(histogram, separators=(',', ':'))
     output_stream.write(json_tag_newline % cgi.escape(hist_json))
-  output_stream.write('\n</div>\n')
+  output_stream.write('\n--!></div>\n')
 
   # If the output file already existed and was longer than the new contents,
   # discard the old contents after this point.
