@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "07e898a1_9436e3f0",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2018-10-01T09:57:12Z",
+      "side": 1,
+      "message": "This changes the names on chromeperf. I think this is ok as we have no alerts on them and only use them manually right now. (I think it\u0027s mostly me that is looking)",
+      "range": {
+        "startLine": 20,
+        "startChar": 13,
+        "endLine": 20,
+        "endChar": 24
+      },
+      "revId": "c891cd27c672e73dc460be6f29e8216c9471c11a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
