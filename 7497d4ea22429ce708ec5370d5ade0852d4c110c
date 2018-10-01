@@ -22,6 +22,30 @@
       "revId": "7497d4ea22429ce708ec5370d5ade0852d4c110c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56b7de5c_92b72cd8",
+        "filename": "experimental/soundwave/services/isolate_service.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-10-01T08:41:12Z",
+      "side": 1,
+      "message": "I gave that a try but it made things look a bit more awkward, having to recompute the cache_file in multiple places. However, I did flip the order of the branches, as in your example with the positive first, and I think that makes it already more natural and readable.",
+      "parentUuid": "a44f43d2_e282a87d",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 14
+      },
+      "revId": "7497d4ea22429ce708ec5370d5ade0852d4c110c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
