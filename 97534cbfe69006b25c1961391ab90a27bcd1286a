@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0101a07b_68f5a06b",
+        "filename": "tracing/bin/add_reserved_diagnostics",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-10-01T21:08:59Z",
+      "side": 1,
+      "message": "why do we need this flag? It seems to me that it should always be set to \u0027Build Status\u0027 which seems a bit redundant.",
+      "revId": "97534cbfe69006b25c1961391ab90a27bcd1286a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
