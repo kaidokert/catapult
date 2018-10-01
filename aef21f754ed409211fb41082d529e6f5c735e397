@@ -16,6 +16,24 @@
       "revId": "aef21f754ed409211fb41082d529e6f5c735e397",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99c384ea_cc62ef1b",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2018-10-01T18:16:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eef480a7_f15f3456",
+      "revId": "aef21f754ed409211fb41082d529e6f5c735e397",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
