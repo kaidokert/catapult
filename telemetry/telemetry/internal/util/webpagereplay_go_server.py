@@ -221,7 +221,7 @@ class ReplayServer(object):
     is_posix = sys.platform.startswith('linux') or sys.platform == 'darwin'
     logging.info('Starting Web-Page-Replay: %s', self._cmd_line)
     self._CreateTempLogFilePath()
-    with open(self._temp_log_file_path, 'w') as log_fh:
+    with self._OpenLogFile() as log_fh:
       self.replay_process = subprocess.Popen(
           self._cmd_line, stdout=log_fh, stderr=subprocess.STDOUT,
           preexec_fn=(_ResetInterruptHandler if is_posix else None))
@@ -252,6 +252,7 @@ class ReplayServer(object):
     if self._IsReplayProcessStarted():
       self._StopReplayProcess()
     wpr_log_output = ''.join(self._LogLines())
+    logging.warning("WPR Log Output: %s", wpr_log_output)
     self._CleanUpTempLogFilePath()
     return wpr_log_output
 
