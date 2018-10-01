@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fd884126_d1879df5",
+        "filename": "tracing/tracing/ui/tracks/model_track.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-01T21:18:55Z",
+      "side": 1,
+      "message": "When a process is not hidden, this will recurse all the way up to document.\nWould it be more efficient to make trackForEvent return undefined when the ProcessBase track is hidden?",
+      "revId": "abf419471eb18aac4bd9b71de563247e507b4a52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
