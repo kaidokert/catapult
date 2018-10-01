@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e483cc7f_8b5fe802",
+        "filename": "telemetry/telemetry/internal/util/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-10-01T17:00:09Z",
+      "side": 1,
+      "message": "see line 308, that\u0027s apparently the way to check for the active logging level.",
+      "parentUuid": "b322e4e8_126ee852",
+      "revId": "63349124ffcbf5c76689eefdd9e3f3bdaee47d5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "843b3012_ba1a99c3",
         "filename": "telemetry/telemetry/internal/util/webpagereplay_go_server.py",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2018-10-01T16:05:30Z",
       "side": 1,
       "message": "is it too spammy if we just log always?",
+      "revId": "63349124ffcbf5c76689eefdd9e3f3bdaee47d5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9412fbc5_d20b22af",
+        "filename": "telemetry/telemetry/internal/util/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-10-01T17:00:09Z",
+      "side": 1,
+      "message": "This is the second lowest default log level (DEBUG is the next one if I understood correctly) so this is only shown with --verbose.\n\nI can move it to DEBUG as well.",
+      "parentUuid": "843b3012_ba1a99c3",
       "revId": "63349124ffcbf5c76689eefdd9e3f3bdaee47d5e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
