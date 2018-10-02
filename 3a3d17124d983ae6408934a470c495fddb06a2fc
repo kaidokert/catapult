@@ -22,6 +22,30 @@
       "revId": "3a3d17124d983ae6408934a470c495fddb06a2fc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4570bd2f_668c6a81",
+        "filename": "telemetry/telemetry/internal/actions/click.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1003154
+      },
+      "writtenOn": "2018-10-02T21:57:30Z",
+      "side": 1,
+      "message": "I think so. We have a test case in action_runner_unittest.py that makes sure if the element isn\u0027t located, an exception is thrown.",
+      "parentUuid": "7c999425_0d14d714",
+      "range": {
+        "startLine": 46,
+        "startChar": 25,
+        "endLine": 46,
+        "endChar": 52
+      },
+      "revId": "3a3d17124d983ae6408934a470c495fddb06a2fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
