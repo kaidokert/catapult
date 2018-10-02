@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "445262fe_a0db30f5",
+        "filename": "tracing/tracing/value/histogram_importer.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-02T04:06:25Z",
+      "side": 1,
+      "message": "Is this necessary? If update_() doesn\u0027t await anything, then it effectively returns a resolved promise.",
+      "range": {
+        "startLine": 43,
+        "startChar": 6,
+        "endLine": 44,
+        "endChar": 32
+      },
+      "revId": "4aabc4a515625ca5de5657ab35589c6e6476f002",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
