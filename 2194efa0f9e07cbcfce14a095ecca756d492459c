@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4bdd826b_77edd62b",
+        "filename": "tracing/tracing/ui/tracks/model_track.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-02T04:14:00Z",
+      "side": 1,
+      "message": "Better, thanks!\nWould it be possible to use a simple loop instead of recursion? Chrome does not TCO: https://bugs.chromium.org/p/v8/issues/detail?id\u003d4698\n\nwhile (!Polymer.dom(track).classList.contains(\u0027process-track-base\u0027)) track \u003d track.parentNode;\n\nOr would it be easy enough to make tracks have a pointer directly to their process-track-base?",
+      "revId": "2194efa0f9e07cbcfce14a095ecca756d492459c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
