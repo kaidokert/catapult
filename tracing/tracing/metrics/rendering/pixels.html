@@ -81,14 +81,18 @@ tr.exportTo('tr.metrics.rendering', function() {
     histograms.createHistogram(
         'mean_pixels_approximated_tbmv2',
         tr.b.Unit.byName.normalizedPercentage_smallerIsBetter,
-        tr.b.math.Statistics.mean(approximatedPixelPercentages),
-        { description: 'Percentage of pixels that were approximated ' +
-                       '(checkerboarding, low-resolution tiles, etc.).' });
+        tr.b.math.Statistics.mean(approximatedPixelPercentages), {
+          description: 'Percentage of pixels that were approximated ' +
+                       '(checkerboarding, low-resolution tiles, etc.).',
+          summaryOptions: tr.v.Histogram.AVERAGE_ONLY_SUMMARY_OPTIONS
+        });
     histograms.createHistogram(
         'mean_pixels_checkerboarded_tbmv2',
         tr.b.Unit.byName.normalizedPercentage_smallerIsBetter,
-        tr.b.math.Statistics.mean(checkerboardedPixelPercentages),
-        { description: 'Percentage of pixels that were checkerboarded.' });
+        tr.b.math.Statistics.mean(checkerboardedPixelPercentages), {
+          description: 'Percentage of pixels that were checkerboarded.',
+          summaryOptions: tr.v.Histogram.AVERAGE_ONLY_SUMMARY_OPTIONS
+        });
   }
 
   return {

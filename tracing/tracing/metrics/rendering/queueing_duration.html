@@ -72,7 +72,8 @@ tr.exportTo('tr.metrics.rendering', function() {
             tr.v.HistogramBinBoundaries.createExponential(0.01, 2, 20),
           description: 'Time between ScheduledActionSendBeginMainFrame in ' +
                        'the compositor thread and the corresponding ' +
-                       'BeginMainFrame in the main thread.'
+                       'BeginMainFrame in the main thread.',
+          summaryOptions: tr.v.Histogram.AVERAGE_ONLY_SUMMARY_OPTIONS
         });
   }
 
