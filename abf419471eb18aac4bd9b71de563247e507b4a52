@@ -16,6 +16,24 @@
       "revId": "abf419471eb18aac4bd9b71de563247e507b4a52",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbd5f137_45bc831e",
+        "filename": "tracing/tracing/ui/tracks/model_track.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-10-02T04:05:07Z",
+      "side": 1,
+      "message": "Good point! I kept the change here, but updated the callback to walk up only to the process-track, so that it doesn\u0027t walk all the way up to the document. (doing the change in trackForEvent() I think would look pretty similar, and I wasn\u0027t sure about its other usages).",
+      "parentUuid": "fd884126_d1879df5",
+      "revId": "abf419471eb18aac4bd9b71de563247e507b4a52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
