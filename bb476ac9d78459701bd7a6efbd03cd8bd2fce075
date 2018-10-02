@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a61286ed_40582c3d",
+        "filename": "telemetry/telemetry/internal/util/webpagereplay_go_server.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-10-02T12:11:14Z",
+      "side": 1,
+      "message": "I think it\u0027s a bit awkward to capture the output from all the way down where it was being logged, just to pluck it here into some other error message. Why not make the flag instead raise the level at which the output is logged?\n\nE.g. call the option log_level, by default log_level\u003dDEBUG; but from this caller you can set log_level\u003dERROR.",
+      "revId": "bb476ac9d78459701bd7a6efbd03cd8bd2fce075",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "792b8ee1_ad22ef37",
+        "filename": "telemetry/telemetry/internal/util/webpagereplay_go_server.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-10-02T12:11:14Z",
+      "side": 1,
+      "message": "nit: for consistency use single quotes.",
+      "revId": "bb476ac9d78459701bd7a6efbd03cd8bd2fce075",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
