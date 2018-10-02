@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7c999425_0d14d714",
+        "filename": "telemetry/telemetry/internal/actions/click.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2018-10-02T21:50:49Z",
+      "side": 1,
+      "message": "Are the error cases in the JavaScript code above translated into Python exceptions, so that we don\u0027t fall through and attempt to execute clicks against an invalid point?",
+      "range": {
+        "startLine": 46,
+        "startChar": 25,
+        "endLine": 46,
+        "endChar": 52
+      },
+      "revId": "3a3d17124d983ae6408934a470c495fddb06a2fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
