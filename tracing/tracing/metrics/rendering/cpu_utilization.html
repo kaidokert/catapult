@@ -88,6 +88,7 @@ tr.exportTo('tr.metrics.rendering', function() {
             binBoundaries:
                 tr.v.HistogramBinBoundaries.createExponential(1, 50, 20),
             description: `CPU cores per ${segmentName} of a thread group`,
+            summaryOptions: tr.v.Histogram.AVERAGE_ONLY_SUMMARY_OPTIONS,
           });
       histogramMap.set(category, histogram);
     }

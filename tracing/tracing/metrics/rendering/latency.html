@@ -103,7 +103,8 @@ tr.exportTo('tr.metrics.rendering', function() {
         tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
         inputEventLatencies,
         { binBoundaries: tr.v.HistogramBinBoundaries.createLinear(0, 50, 20),
-          description: 'Input event latencies.' });
+          description: 'Input event latencies.',
+          summaryOptions: tr.v.Histogram.AVERAGE_ONLY_SUMMARY_OPTIONS });
 
     const mainThreadScrollLatencies = [...iterAsyncEvents_(
         Object.values(modelHelper.rendererHelpers), ranges,
@@ -113,7 +114,8 @@ tr.exportTo('tr.metrics.rendering', function() {
         tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
         mainThreadScrollLatencies,
         { binBoundaries: tr.v.HistogramBinBoundaries.createLinear(0, 50, 50),
-          description: 'Main thread scroll latencies.' });
+          description: 'Main thread scroll latencies.',
+          summaryOptions: tr.v.Histogram.AVERAGE_ONLY_SUMMARY_OPTIONS });
 
     const gestureScrollUpdateLatencies = [...iterAsyncEvents_(
         modelHelper.browserHelpers, ranges,
@@ -124,7 +126,8 @@ tr.exportTo('tr.metrics.rendering', function() {
           tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
           gestureScrollUpdateLatencies[0][1],
           { binBoundaries: tr.v.HistogramBinBoundaries.createLinear(0, 50, 20),
-            description: 'Latency of the first gesture scroll update.' });
+            description: 'Latency of the first gesture scroll update.',
+            summaryOptions: tr.v.Histogram.AVERAGE_ONLY_SUMMARY_OPTIONS });
     }
   }
 
