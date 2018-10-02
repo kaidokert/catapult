@@ -34,6 +34,24 @@
       "revId": "2194efa0f9e07cbcfce14a095ecca756d492459c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53c3d45b_e96721bc",
+        "filename": "tracing/tracing/ui/tracks/model_track.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-02T04:52:50Z",
+      "side": 1,
+      "message": "Yeah, I\u0027m not super familiar with the tracks, so I wasn\u0027t sure exactly how that direct pointer would work. I just noticed a finding algorithm at the top of a hot method (when the trace has thousands of flow events and they are enabled, this could be called thousands of times per animation frame), and pattern-matched that direct pointers would trade off a little memory for a little speed, and could be simpler or more complex depending on the object relationships involved. If it would be awkward or fragile, then don\u0027t worry about it. It\u0027s probably not worth breaking encapsulations over. It might be worth doing the experiment if you\u0027re up for it, either now or in a followup CL.",
+      "parentUuid": "ef1ec696_81357681",
+      "revId": "2194efa0f9e07cbcfce14a095ecca756d492459c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

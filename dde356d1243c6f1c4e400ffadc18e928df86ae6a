@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1b03f12a_906347f5",
+        "filename": "tracing/tracing/ui/tracks/model_track.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-02T04:52:50Z",
+      "side": 1,
+      "message": "It might be worth documenting the assumption that all flow events start and end in tracks under ProcessTrackBases. This is currently true afaik, and I know of no plans to change it, but if that assumption doesn\u0027t always hold, then this will either throw an exception or loop infinitely.",
+      "revId": "dde356d1243c6f1c4e400ffadc18e928df86ae6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
