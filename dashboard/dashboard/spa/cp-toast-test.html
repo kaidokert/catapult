@@ -48,6 +48,9 @@ suite('cp-toast', function() {
     }));
     assert.isTrue(toast.opened);
 
+    // Wait a bit to make sure that the timestamps are different.
+    await cp.timeout(2);
+
     let finishSecond;
     const secondPromise = toast.open(new Promise(resolve => {
       finishSecond = resolve;
