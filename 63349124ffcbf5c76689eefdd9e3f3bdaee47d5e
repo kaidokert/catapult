@@ -87,6 +87,24 @@
       "revId": "63349124ffcbf5c76689eefdd9e3f3bdaee47d5e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc3169aa_be64ed99",
+        "filename": "telemetry/telemetry/internal/util/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-10-02T11:47:22Z",
+      "side": 1,
+      "message": "ah true, I think this is good enough, I\u0027ll refactor this CL to only return the contents conditionally",
+      "parentUuid": "20534763_32fa7e7c",
+      "revId": "63349124ffcbf5c76689eefdd9e3f3bdaee47d5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
