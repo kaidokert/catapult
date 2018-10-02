@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8da5f9b5_1da01c75",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-10-02T16:55:09Z",
+      "side": 1,
+      "message": "if self._comparison mode \u003d\u003d \u0027functional\u0027:\n  return \u0027Failure rate\u0027\n\nand style nit: `if self._quests` instead of `if len(self._quests) \u003e 0`",
+      "revId": "74f418fd7fc1ad12471b868fea9dddf384a833cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
