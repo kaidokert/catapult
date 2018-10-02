@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "088d5654_8c6b87cc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-10-02T01:01:08Z",
+      "side": 1,
+      "message": "I think we\u0027re hamstrung by the fact that Pinpoint\u0027s frontend and backend both only use form-encoded requests. So the frontend isn\u0027t be able to create a more structured request.\n\nThe long-term fix would be to convert to a JSON-encoded API. For now, I\u0027ll just remove the multiple URLs functionality.",
+      "parentUuid": "6f639e5d_34e3eef1",
+      "revId": "946cf478888f23f5de3e970d2d0e5632681cac21",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2d5cf62f_43690eed",
         "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
         "patchSetId": 3
