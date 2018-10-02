@@ -364,6 +364,14 @@ tr.exportTo('tr.ui.tracks', function() {
       // processes are collapsed, bug #931.
       if (startTrack === undefined || endTrack === undefined) return;
 
+      const trackHidden = (track) => {
+        if (Polymer.dom(track).classList.contains('process-track-base')) {
+          return track.hidden;
+        }
+        return trackHidden(track.parentNode);
+      };
+      if (trackHidden(startTrack) || trackHidden(endTrack)) return;
+
       const startBounds = startTrack.getBoundingClientRect();
       const endBounds = endTrack.getBoundingClientRect();
 
