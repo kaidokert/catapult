@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0cf3b9a2_b1bfbda2",
+        "filename": "tracing/tracing/value/histogram_importer.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-10-02T11:20:52Z",
+      "side": 1,
+      "message": "reverted to 100.",
+      "parentUuid": "3377ea55_e9f81c8d",
+      "revId": "c08fc9564892dcf7a6807cf2e0b2f0110c5ebf19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2c9549ad_5d6406e6",
         "filename": "tracing/tracing_build/histograms_viewer.html",
         "patchSetId": 4
@@ -33,6 +51,24 @@
       "revId": "c08fc9564892dcf7a6807cf2e0b2f0110c5ebf19",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd6b1619_f8187396",
+        "filename": "tracing/tracing_build/histograms_viewer.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-10-02T11:20:52Z",
+      "side": 1,
+      "message": "humm interesting, the presubmit tells me to use $ :P will switch back.",
+      "parentUuid": "2c9549ad_5d6406e6",
+      "revId": "c08fc9564892dcf7a6807cf2e0b2f0110c5ebf19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "e0b07299_ff690e60",
+        "filename": "tracing/tracing_build/render_histograms_viewer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-10-02T11:20:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dddb48cc_e3e7bce3",
+      "revId": "c08fc9564892dcf7a6807cf2e0b2f0110c5ebf19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c82e4d43_898793ab",
         "filename": "tracing/tracing_build/render_histograms_viewer.py",
         "patchSetId": 4
@@ -64,6 +118,24 @@
       "writtenOn": "2018-10-01T20:20:02Z",
       "side": 1,
       "message": "If the data is going to be in a comment, then we might be able to simplify even further.\nInstead of using a div with a special id to contain the comment, could it just always be the last node in document.body.childNodes?\nAnd instead of surrounding histograms with an html tag, could they just be separated by a newline? I do still occasionally grep/head/tail results.html for quick sanity checking.",
+      "revId": "c08fc9564892dcf7a6807cf2e0b2f0110c5ebf19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "187ad87d_e723322f",
+        "filename": "tracing/tracing_build/render_histograms_viewer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-10-02T11:20:52Z",
+      "side": 1,
+      "message": "I kept it this way to make sure we stay somewhat backwards compatible with the histogram extraction tools.\nIt would definitely be a bit faster and more compact to just assume newlines as separators. I presume the histograms themselves cannot contain newlines?",
+      "parentUuid": "c82e4d43_898793ab",
       "revId": "c08fc9564892dcf7a6807cf2e0b2f0110c5ebf19",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
