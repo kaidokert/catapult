@@ -34,6 +34,24 @@
       "revId": "95cbce2221ea8c48ae4bbd330502bb74f7650de3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "daaf22b7_e4738f4a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-10-03T03:52:31Z",
+      "side": 1,
+      "message": "I sometimes use all of _min, _max, _std (see, for example, [1]). I don\u0027t look at them (or monitor) in the dashboard usually, but in the results (e.g. local runs, or pinpoint results). We also removed some _discrepancy metrics since we get the _std results anyway.\n\nI don\u0027t find the extra entries in the dashboard dropdown distracting, to be honest (perhaps I have just got used to them). And the new dashboard [2] does not even list them separately. So I don\u0027t think having these extra entries is a problem we need to address.\n\n[1] https://chromium-review.googlesource.com/c/chromium/src/+/1255152#message-3f28ace10d2e8c011016e02f9d18a91cbfd40985\n[2] https://v2spa-dot-chromeperf.appspot.com",
+      "parentUuid": "6fcf5037_36b74843",
+      "revId": "95cbce2221ea8c48ae4bbd330502bb74f7650de3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
