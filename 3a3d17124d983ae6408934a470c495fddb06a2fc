@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "fd0c45f4_9c9adb34",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1003154
+      },
+      "writtenOn": "2018-10-03T01:09:22Z",
+      "side": 1,
+      "message": "Done. It\u0027s worth pointing out though, DevTools defaults to 0: https://chromedevtools.github.io/devtools-protocol/tot/Input",
+      "parentUuid": "e11bb304_7b1e71ac",
+      "range": {
+        "startLine": 483,
+        "startChar": 6,
+        "endLine": 483,
+        "endChar": 17
+      },
+      "revId": "3a3d17124d983ae6408934a470c495fddb06a2fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e1cb596e_81bcb711",
         "filename": "telemetry/telemetry/internal/browser/web_contents.py",
         "patchSetId": 1
@@ -92,6 +116,30 @@
       "revId": "3a3d17124d983ae6408934a470c495fddb06a2fc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "392a273d_e4ceda49",
+        "filename": "telemetry/telemetry/internal/browser/web_contents.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1003154
+      },
+      "writtenOn": "2018-10-03T01:09:22Z",
+      "side": 1,
+      "message": "Ditto",
+      "parentUuid": "e1cb596e_81bcb711",
+      "range": {
+        "startLine": 420,
+        "startChar": 65,
+        "endLine": 420,
+        "endChar": 72
+      },
+      "revId": "3a3d17124d983ae6408934a470c495fddb06a2fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
