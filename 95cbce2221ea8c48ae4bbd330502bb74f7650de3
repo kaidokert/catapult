@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eea23f46_47815d95",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-10-03T02:33:34Z",
+      "side": 1,
+      "message": "I often find these useful. Why would we want to remove these?",
+      "revId": "95cbce2221ea8c48ae4bbd330502bb74f7650de3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
