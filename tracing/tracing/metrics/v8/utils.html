@@ -130,19 +130,21 @@ tr.exportTo('tr.metrics.v8.utils', function() {
   }
 
   function isCompileOptimizeRCSCategory(name) {
-    return name === 'Optimize';
+    return name === 'jsruntime:v8:optimize:main_thread';
   }
 
   function isCompileUnoptimizeRCSCategory(name) {
-    return name === 'Compile';
+    return name === 'jsruntime:v8:compile:main_thread';
   }
 
   function isCompileParseRCSCategory(name) {
-    return name === 'Parse';
+    return name === 'jsruntime:v8:parse:main_thread';
   }
 
   function isCompileRCSCategory(name) {
-    return name === 'Compile' || name === 'Optimize' || name === 'Parse';
+    return name === 'jsruntime:v8:compile:main_thread' ||
+           name === 'jsruntime:v8:optimize:main_thread' ||
+           name === 'jsruntime:v8:parse:main_thread';
   }
 
   function isV8RCSEvent(event) {

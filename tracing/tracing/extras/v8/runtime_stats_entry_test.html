@@ -105,27 +105,35 @@ tr.b.unittest.testSuite(function() {
     groupCollection.addSlices(slices);
     assert.strictEqual(groupCollection.totalTime, 1195);
 
-    const groups = groupCollection.runtimeGroups;
-    assert.deepEqual(groups.length, 19);
-    checkRuntimeGroup_(groups[0], 'Total', 110, 1195);
-    checkRuntimeGroup_(groups[1], 'IC', 9, 99);
-    checkRuntimeGroup_(groups[2], 'Optimize-Background', 15, 150);
-    checkRuntimeGroup_(groups[3], 'Optimize', 13, 143);
-    checkRuntimeGroup_(groups[4], 'Compile-Background', 3, 33);
-    checkRuntimeGroup_(groups[5], 'Compile', 7, 77);
-    checkRuntimeGroup_(groups[6], 'Parse-Background', 2, 22);
-    checkRuntimeGroup_(groups[7], 'Parse', 11, 121);
-    checkRuntimeGroup_(groups[8], 'Blink C++', 15, 165);
-    checkRuntimeGroup_(groups[9], 'API', 10, 110);
-    checkRuntimeGroup_(groups[10], 'GC-Background-Marking', 0, 0);
-    checkRuntimeGroup_(groups[11], 'GC-Background-Sweeping', 0, 0);
-    checkRuntimeGroup_(groups[12], 'GC-Background-Scavenger', 0, 0);
-    checkRuntimeGroup_(groups[13], 'GC-Background-MinorMC', 0, 0);
-    checkRuntimeGroup_(groups[14], 'GC-Background-MajorMC', 0, 0);
-    checkRuntimeGroup_(groups[15], 'GC-Background-Other', 0, 0);
-    checkRuntimeGroup_(groups[16], 'GC', 17, 187);
-    checkRuntimeGroup_(groups[17], 'JavaScript', 3, 33);
-    checkRuntimeGroup_(groups[18], 'V8 C++', 5, 55);
+    const groups = groupCollection.runtimeGroupHierarchy;
+    assert.deepEqual(groups.length, 26);
+    checkRuntimeGroup_(groups[0], 'jsruntime', 110, 1195);
+    checkRuntimeGroup_(groups[1], 'jsruntime:v8:ic', 9, 99);
+    checkRuntimeGroup_(groups[2], 'jsruntime:v8:optimize:background', 15, 150);
+    checkRuntimeGroup_(groups[3], 'jsruntime:v8:optimize:main_thread', 13, 143);
+    checkRuntimeGroup_(groups[4], 'jsruntime:v8:compile:background', 3, 33);
+    checkRuntimeGroup_(groups[5], 'jsruntime:v8:compile:main_thread', 7, 77);
+    checkRuntimeGroup_(groups[6], 'jsruntime:v8:parse:background', 2, 22);
+    checkRuntimeGroup_(groups[7], 'jsruntime:v8:parse:main_thread', 11, 121);
+    checkRuntimeGroup_(groups[8], 'jsruntime:blink:blink_c++', 15, 165);
+    checkRuntimeGroup_(groups[9], 'jsruntime:blink:api', 10, 110);
+    checkRuntimeGroup_(groups[10], 'jsruntime:v8:gc:background:marking', 0, 0);
+    checkRuntimeGroup_(groups[11], 'jsruntime:v8:gc:background:sweeping', 0, 0);
+    checkRuntimeGroup_(
+        groups[12], 'jsruntime:v8:gc:background:scavenger', 0, 0);
+    checkRuntimeGroup_(groups[13], 'jsruntime:v8:gc:background:minor_mc', 0, 0);
+    checkRuntimeGroup_(groups[14], 'jsruntime:v8:gc:background:major_mc', 0, 0);
+    checkRuntimeGroup_(groups[15], 'jsruntime:v8:gc:background:other', 0, 0);
+    checkRuntimeGroup_(groups[16], 'jsruntime:v8:gc:main_thread', 17, 187);
+    checkRuntimeGroup_(groups[17], 'jsruntime:v8:javascript', 3, 33);
+    checkRuntimeGroup_(groups[18], 'jsruntime:v8:v8_c++', 5, 55);
+    checkRuntimeGroup_(groups[19], 'jsruntime:v8:optimize', 28, 293);
+    checkRuntimeGroup_(groups[20], 'jsruntime:v8:compile', 10, 110);
+    checkRuntimeGroup_(groups[21], 'jsruntime:v8:parse', 13, 143);
+    checkRuntimeGroup_(groups[22], 'jsruntime:blink', 25, 275);
+    checkRuntimeGroup_(groups[23], 'jsruntime:v8:gc:background', 0, 0);
+    checkRuntimeGroup_(groups[24], 'jsruntime:v8:gc', 17, 187);
+    checkRuntimeGroup_(groups[25], 'jsruntime:v8', 85, 920);
   });
 
   test('BlinkRuntimeStatsGroupCollection', function() {
@@ -213,27 +221,35 @@ tr.b.unittest.testSuite(function() {
     groupCollection.addSlices(slices);
     assert.strictEqual(groupCollection.totalTime, 1195);
 
-    const groups = groupCollection.runtimeGroups;
-    assert.deepEqual(groups.length, 19);
-    checkRuntimeGroup_(groups[0], 'Total', 110, 1195);
-    checkRuntimeGroup_(groups[1], 'IC', 9, 99);
-    checkRuntimeGroup_(groups[2], 'Optimize-Background', 15, 150);
-    checkRuntimeGroup_(groups[3], 'Optimize', 13, 143);
-    checkRuntimeGroup_(groups[4], 'Compile-Background', 3, 33);
-    checkRuntimeGroup_(groups[5], 'Compile', 7, 77);
-    checkRuntimeGroup_(groups[6], 'Parse-Background', 2, 22);
-    checkRuntimeGroup_(groups[7], 'Parse', 11, 121);
-    checkRuntimeGroup_(groups[8], 'Blink C++', 15, 165);
-    checkRuntimeGroup_(groups[9], 'API', 10, 110);
-    checkRuntimeGroup_(groups[10], 'GC-Background-Marking', 0, 0);
-    checkRuntimeGroup_(groups[11], 'GC-Background-Sweeping', 0, 0);
-    checkRuntimeGroup_(groups[12], 'GC-Background-Scavenger', 0, 0);
-    checkRuntimeGroup_(groups[13], 'GC-Background-MinorMC', 0, 0);
-    checkRuntimeGroup_(groups[14], 'GC-Background-MajorMC', 0, 0);
-    checkRuntimeGroup_(groups[15], 'GC-Background-Other', 0, 0);
-    checkRuntimeGroup_(groups[16], 'GC', 17, 187);
-    checkRuntimeGroup_(groups[17], 'JavaScript', 3, 33);
-    checkRuntimeGroup_(groups[18], 'V8 C++', 5, 55);
+    const groups = groupCollection.runtimeGroupHierarchy;
+    assert.deepEqual(groups.length, 26);
+    checkRuntimeGroup_(groups[0], 'jsruntime', 110, 1195);
+    checkRuntimeGroup_(groups[1], 'jsruntime:v8:ic', 9, 99);
+    checkRuntimeGroup_(groups[2], 'jsruntime:v8:optimize:background', 15, 150);
+    checkRuntimeGroup_(groups[3], 'jsruntime:v8:optimize:main_thread', 13, 143);
+    checkRuntimeGroup_(groups[4], 'jsruntime:v8:compile:background', 3, 33);
+    checkRuntimeGroup_(groups[5], 'jsruntime:v8:compile:main_thread', 7, 77);
+    checkRuntimeGroup_(groups[6], 'jsruntime:v8:parse:background', 2, 22);
+    checkRuntimeGroup_(groups[7], 'jsruntime:v8:parse:main_thread', 11, 121);
+    checkRuntimeGroup_(groups[8], 'jsruntime:blink:blink_c++', 15, 165);
+    checkRuntimeGroup_(groups[9], 'jsruntime:blink:api', 10, 110);
+    checkRuntimeGroup_(groups[10], 'jsruntime:v8:gc:background:marking', 0, 0);
+    checkRuntimeGroup_(groups[11], 'jsruntime:v8:gc:background:sweeping', 0, 0);
+    checkRuntimeGroup_(
+        groups[12], 'jsruntime:v8:gc:background:scavenger', 0, 0);
+    checkRuntimeGroup_(groups[13], 'jsruntime:v8:gc:background:minor_mc', 0, 0);
+    checkRuntimeGroup_(groups[14], 'jsruntime:v8:gc:background:major_mc', 0, 0);
+    checkRuntimeGroup_(groups[15], 'jsruntime:v8:gc:background:other', 0, 0);
+    checkRuntimeGroup_(groups[16], 'jsruntime:v8:gc:main_thread', 17, 187);
+    checkRuntimeGroup_(groups[17], 'jsruntime:v8:javascript', 3, 33);
+    checkRuntimeGroup_(groups[18], 'jsruntime:v8:v8_c++', 5, 55);
+    checkRuntimeGroup_(groups[19], 'jsruntime:v8:optimize', 28, 293);
+    checkRuntimeGroup_(groups[20], 'jsruntime:v8:compile', 10, 110);
+    checkRuntimeGroup_(groups[21], 'jsruntime:v8:parse', 13, 143);
+    checkRuntimeGroup_(groups[22], 'jsruntime:blink', 25, 275);
+    checkRuntimeGroup_(groups[23], 'jsruntime:v8:gc:background', 0, 0);
+    checkRuntimeGroup_(groups[24], 'jsruntime:v8:gc', 17, 187);
+    checkRuntimeGroup_(groups[25], 'jsruntime:v8', 85, 920);
 
     const blinkGroupCollection = groupCollection.blinkRCSGroupCollection;
     const blinkGroups = blinkGroupCollection.runtimeGroups;
@@ -294,29 +310,45 @@ tr.b.unittest.testSuite(function() {
     groupCollection.addSlices(slices);
     assert.strictEqual(groupCollection.totalTime, 28000 + 2800 + 10);
 
-    const groups = groupCollection.runtimeGroups;
-    assert.deepEqual(groups.length, 19);
-    checkRuntimeGroup_(groups[0], 'Total', 2800 + 280 + 1, 28000 + 2800 + 10);
-    checkRuntimeGroup_(groups[1], 'IC', 0, 0);
-    checkRuntimeGroup_(groups[2], 'Optimize-Background', 0, 0);
-    checkRuntimeGroup_(groups[3], 'Optimize', 0, 0);
-    checkRuntimeGroup_(groups[4], 'Compile-Background', 0, 0);
-    checkRuntimeGroup_(groups[5], 'Compile', 0, 0);
-    checkRuntimeGroup_(groups[6], 'Parse-Background', 0, 0);
-    checkRuntimeGroup_(groups[7], 'Parse', 0, 0);
-    checkRuntimeGroup_(groups[8], 'Blink C++', 0, 0);
-    checkRuntimeGroup_(groups[9], 'API', 0, 0);
-    checkRuntimeGroup_(groups[10], 'GC-Background-Marking', 440, 4400);
-    checkRuntimeGroup_(groups[11], 'GC-Background-Sweeping', 550, 5500);
-    checkRuntimeGroup_(groups[12], 'GC-Background-Scavenger', 110, 1100);
-    checkRuntimeGroup_(groups[13], 'GC-Background-MinorMC',
+    const groups = groupCollection.runtimeGroupHierarchy;
+    assert.deepEqual(groups.length, 26);
+    checkRuntimeGroup_(
+        groups[0], 'jsruntime', 2800 + 280 + 1, 28000 + 2800 + 10);
+    checkRuntimeGroup_(groups[1], 'jsruntime:v8:ic', 0, 0);
+    checkRuntimeGroup_(groups[2], 'jsruntime:v8:optimize:background', 0, 0);
+    checkRuntimeGroup_(groups[3], 'jsruntime:v8:optimize:main_thread', 0, 0);
+    checkRuntimeGroup_(groups[4], 'jsruntime:v8:compile:background', 0, 0);
+    checkRuntimeGroup_(groups[5], 'jsruntime:v8:compile:main_thread', 0, 0);
+    checkRuntimeGroup_(groups[6], 'jsruntime:v8:parse:background', 0, 0);
+    checkRuntimeGroup_(groups[7], 'jsruntime:v8:parse:main_thread', 0, 0);
+    checkRuntimeGroup_(groups[8], 'jsruntime:blink:blink_c++', 0, 0);
+    checkRuntimeGroup_(groups[9], 'jsruntime:blink:api', 0, 0);
+    checkRuntimeGroup_(
+        groups[10], 'jsruntime:v8:gc:background:marking', 440, 4400);
+    checkRuntimeGroup_(
+        groups[11], 'jsruntime:v8:gc:background:sweeping', 550, 5500);
+    checkRuntimeGroup_(
+        groups[12], 'jsruntime:v8:gc:background:scavenger', 110, 1100);
+    checkRuntimeGroup_(groups[13], 'jsruntime:v8:gc:background:minor_mc',
         300 + 200 + 30 + 20, 3000 + 2000 + 300 + 200);
-    checkRuntimeGroup_(groups[14], 'GC-Background-MajorMC',
+    checkRuntimeGroup_(groups[14], 'jsruntime:v8:gc:background:major_mc',
         700 + 600 + 70 + 60, 7000 + 6000 + 700 + 600);
-    checkRuntimeGroup_(groups[15], 'GC-Background-Other', 1, 10);
-    checkRuntimeGroup_(groups[16], 'GC', 0, 0);
-    checkRuntimeGroup_(groups[17], 'JavaScript', 0, 0);
-    checkRuntimeGroup_(groups[18], 'V8 C++', 0, 0);
+    checkRuntimeGroup_(groups[15], 'jsruntime:v8:gc:background:other', 1, 10);
+    checkRuntimeGroup_(groups[16], 'jsruntime:v8:gc:main_thread', 0, 0);
+    checkRuntimeGroup_(groups[17], 'jsruntime:v8:javascript', 0, 0);
+    checkRuntimeGroup_(groups[18], 'jsruntime:v8:v8_c++', 0, 0);
+    checkRuntimeGroup_(groups[19], 'jsruntime:v8:optimize', 0, 0);
+    checkRuntimeGroup_(groups[20], 'jsruntime:v8:compile', 0, 0);
+    checkRuntimeGroup_(groups[21], 'jsruntime:v8:parse', 0, 0);
+    checkRuntimeGroup_(groups[22], 'jsruntime:blink', 0, 0);
+    checkRuntimeGroup_(
+        groups[23], 'jsruntime:v8:gc:background',
+        2800 + 280 + 1, 28000 + 2800 + 10);
+    checkRuntimeGroup_(
+        groups[24], 'jsruntime:v8:gc',
+        2800 + 280 + 1, 28000 + 2800 + 10);
+    checkRuntimeGroup_(
+        groups[25], 'jsruntime:v8', 2800 + 280 + 1, 28000 + 2800 + 10);
   });
 });
 </script>

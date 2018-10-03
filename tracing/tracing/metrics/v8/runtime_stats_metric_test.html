@@ -237,14 +237,15 @@ tr.b.unittest.testSuite(function() {
 
     const histograms = new tr.v.HistogramSet();
     tr.metrics.v8.runtimeStatsMetric(histograms, model);
-    assert.strictEqual(histograms.length, 54);
-    assert.strictEqual(histograms.sourceHistograms.length, 52);
+    assert.strictEqual(histograms.length, 68);
+    assert.strictEqual(histograms.sourceHistograms.length, 66);
 
     // A few of the top level ones.
-    checkRuntimeHistogram_(histograms, 'IC', 8, 0.088);
-    checkRuntimeHistogram_(histograms, 'API', 18, 0.198);
-    checkRuntimeHistogram_(histograms, 'Compile', 6, 0.066);
-    checkRuntimeHistogram_(histograms, 'Total', 95, 1.045);
+    checkRuntimeHistogram_(histograms, 'jsruntime:v8:ic', 8, 0.088);
+    checkRuntimeHistogram_(histograms, 'jsruntime:blink:api', 18, 0.198);
+    checkRuntimeHistogram_(
+        histograms, 'jsruntime:v8:compile:main_thread', 6, 0.066);
+    checkRuntimeHistogram_(histograms, 'jsruntime', 95, 1.045);
     // Lower level one for Blink.
     checkRuntimeHistogram_(histograms, 'Blink_UpdateLayout', 15, 0.06);
   });
@@ -351,14 +352,14 @@ tr.b.unittest.testSuite(function() {
 
     const histograms = new tr.v.HistogramSet();
     tr.metrics.v8.runtimeStatsMetric(histograms, model);
-    assert.strictEqual(histograms.length, 38);
-    assert.strictEqual(histograms.sourceHistograms.length, 38);
+    assert.strictEqual(histograms.length, 52);
+    assert.strictEqual(histograms.sourceHistograms.length, 52);
 
     // A few of the top level ones.
-    checkRuntimeHistogram_(histograms, 'IC', 8, 0.088);
-    checkRuntimeHistogram_(histograms, 'API', 18, 0.198);
-    checkRuntimeHistogram_(histograms, 'Compile', 6, 0.066);
-    checkRuntimeHistogram_(histograms, 'Total', 90, 0.99);
+    checkRuntimeHistogram_(histograms, 'jsruntime:v8:ic', 8, 0.088);
+    checkRuntimeHistogram_(histograms, 'jsruntime:blink:api', 18, 0.198);
+    checkRuntimeHistogram_(histograms, 'jsruntime:v8:compile', 6, 0.066);
+    checkRuntimeHistogram_(histograms, 'jsruntime', 90, 0.99);
   });
 
   test('runtimeStatsMetricBucketOnUE', function() {
@@ -576,35 +577,36 @@ tr.b.unittest.testSuite(function() {
 
     const histograms = new tr.v.HistogramSet();
     tr.metrics.v8.runtimeStatsTotalMetric(histograms, model);
-    assert.strictEqual(histograms.length, 270);
+    assert.strictEqual(histograms.length, 330);
 
     // Check total:
-    checkRuntimeHistogram_(histograms, 'IC', 20, 0.109);
-    checkRuntimeHistogram_(histograms, 'API', 45, 0.234);
-    checkRuntimeHistogram_(histograms, 'Total', 225, 1.21);
-    checkRuntimeHistogram_(histograms, 'Blink C++', 35, 0.184);
-    checkRuntimeHistogram_(histograms, 'V8-Only', 190, 1.026);
+    checkRuntimeHistogram_(histograms, 'jsruntime:v8:ic', 20, 0.109);
+    checkRuntimeHistogram_(histograms, 'jsruntime:blink:api', 45, 0.234);
+    checkRuntimeHistogram_(histograms, 'jsruntime', 225, 1.21);
+    checkRuntimeHistogram_(histograms, 'jsruntime:blink:blink_c++', 35, 0.184);
     checkRuntimeHistogram_(histograms, 'Blink_Layout', 62, 0.67);
 
     // Check Load bucket:
-    checkRuntimeHistogram_(histograms, 'Load_Parse', 5, 0.014);
-    checkRuntimeHistogram_(histograms, 'Load_JavaScript', 1, 0.01);
-    checkRuntimeHistogram_(histograms, 'Load_Blink C++', 7, 0.016);
-    checkRuntimeHistogram_(histograms, 'Load_V8-Only', 38, 0.11);
-    checkRuntimeHistogram_(histograms, 'Load_Blink_Style', 20, 0.1);
+    checkRuntimeHistogram_(histograms, 'load:jsruntime:v8:parse', 5, 0.014);
+    checkRuntimeHistogram_(histograms, 'load:jsruntime:v8:javascript', 1, 0.01);
+    checkRuntimeHistogram_(
+        histograms, 'load:jsruntime:blink:blink_c++', 7, 0.016);
+    checkRuntimeHistogram_(histograms, 'load:Blink_Style', 20, 0.1);
 
     // Check Response bucket:
-    checkRuntimeHistogram_(histograms, 'Response_Parse', 10, 0.06);
-    checkRuntimeHistogram_(histograms, 'Response_Compile', 6, 0.04);
-    checkRuntimeHistogram_(histograms, 'Response_Blink_Layout', 11, 0.31);
+    checkRuntimeHistogram_(histograms, 'response:jsruntime:v8:parse', 10, 0.06);
+    checkRuntimeHistogram_(
+        histograms, 'response:jsruntime:v8:compile', 6, 0.04);
+    checkRuntimeHistogram_(histograms, 'response:Blink_Layout', 11, 0.31);
 
     // Check Animation bucket:
-    checkRuntimeHistogram_(histograms, 'Animation_Parse', 10, 0.01);
-    checkRuntimeHistogram_(histograms, 'Animation_Blink_Style', 16, 0.16);
+    checkRuntimeHistogram_(
+        histograms, 'animation:jsruntime:v8:parse', 10, 0.01);
+    checkRuntimeHistogram_(histograms, 'animation:Blink_Style', 16, 0.16);
 
     // Check Idle bucket:
-    checkRuntimeHistogram_(histograms, 'Idle_Parse', 5, 0.055);
-    checkRuntimeHistogram_(histograms, 'Idle_Blink_Parsing', 0, 0);
+    checkRuntimeHistogram_(histograms, 'idle:jsruntime:v8:parse', 5, 0.055);
+    checkRuntimeHistogram_(histograms, 'idle:Blink_Parsing', 0, 0);
   });
 
   test('runtimeStatsMetricTotalNoUE', function() {
@@ -702,15 +704,14 @@ tr.b.unittest.testSuite(function() {
 
     const histograms = new tr.v.HistogramSet();
     tr.metrics.v8.runtimeStatsTotalMetric(histograms, model);
-    assert.strictEqual(histograms.length, 54);
+    assert.strictEqual(histograms.length, 66);
 
     // Check total:
-    checkRuntimeHistogram_(histograms, 'IC', 8, 0.057);
-    checkRuntimeHistogram_(histograms, 'API', 18, 0.117);
-    checkRuntimeHistogram_(histograms, 'Parse', 10, 0.069);
-    checkRuntimeHistogram_(histograms, 'Total', 90, 0.621);
-    checkRuntimeHistogram_(histograms, 'Blink C++', 14, 0.093);
-    checkRuntimeHistogram_(histograms, 'V8-Only', 76, 0.528);
+    checkRuntimeHistogram_(histograms, 'jsruntime:v8:ic', 8, 0.057);
+    checkRuntimeHistogram_(histograms, 'jsruntime:blink:api', 18, 0.117);
+    checkRuntimeHistogram_(histograms, 'jsruntime:v8:parse', 10, 0.069);
+    checkRuntimeHistogram_(histograms, 'jsruntime', 90, 0.621);
+    checkRuntimeHistogram_(histograms, 'jsruntime:blink:blink_c++', 14, 0.093);
     checkRuntimeHistogram_(histograms, 'Blink_Layout', 15, 0.3);
     checkRuntimeHistogram_(histograms, 'Blink_Style', 12, 0.15);
   });

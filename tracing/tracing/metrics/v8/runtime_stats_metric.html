@@ -138,7 +138,7 @@ tr.exportTo('tr.metrics.v8', function() {
       });
     }
 
-    for (const runtimeGroup of runtimeGroupCollection.runtimeGroups) {
+    for (const runtimeGroup of runtimeGroupCollection.runtimeGroupHierarchy) {
       addHistogramsForRuntimeGroup(runtimeGroup);
     }
 
@@ -163,7 +163,7 @@ tr.exportTo('tr.metrics.v8', function() {
   function addDurationHistogram(railStageName, runtimeGroupName, sampleValue,
       histograms, durationRelatedHistsByGroupName) {
     const durationHistogram = histograms.createHistogram(
-        `${railStageName}_${runtimeGroupName}:duration`,
+        `${railStageName.toLowerCase()}:${runtimeGroupName}:duration`,
         tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
         convertMicroToMilli_(sampleValue), {
           binBoundaries: DURATION_CUSTOM_BOUNDARIES,
@@ -186,7 +186,7 @@ tr.exportTo('tr.metrics.v8', function() {
   function addCountHistogram(railStageName, runtimeGroupName, sampleValue,
       histograms, countRelatedHistsByGroupName) {
     const countHistogram = histograms.createHistogram(
-        `${railStageName}_${runtimeGroupName}:count`,
+        `${railStageName.toLowerCase()}:${runtimeGroupName}:count`,
         tr.b.Unit.byName.count_smallerIsBetter, sampleValue, {
           binBoundaries: COUNT_CUSTOM_BOUNDARIES,
           summaryOptions: SUMMARY_OPTIONS,
@@ -256,20 +256,11 @@ tr.exportTo('tr.metrics.v8', function() {
       const runtimeGroupCollection = new tr.e.v8.RuntimeStatsGroupCollection();
       runtimeGroupCollection.addSlices(slicesUE);
 
-      let overallV8Time = runtimeGroupCollection.totalTime;
-      let overallV8Count = runtimeGroupCollection.totalCount;
-      for (const runtimeGroup of runtimeGroupCollection.runtimeGroups) {
+      for (const runtimeGroup of runtimeGroupCollection.runtimeGroupHierarchy) {
         addDurationHistogram(name, runtimeGroup.name, runtimeGroup.time,
             histograms, durationRelatedHistsByGroupName);
-        if (runtimeGroup.name === 'Blink C++') {
-          overallV8Time -= runtimeGroup.time;
-        }
-
         addCountHistogram(name, runtimeGroup.name, runtimeGroup.count,
             histograms, countRelatedHistsByGroupName);
-        if (runtimeGroup.name === 'Blink C++') {
-          overallV8Count -= runtimeGroup.count;
-        }
       }
 
       if (runtimeGroupCollection.blinkRCSGroupCollection.totalTime > 0) {
@@ -282,12 +273,6 @@ tr.exportTo('tr.metrics.v8', function() {
               histograms, countRelatedHistsByGroupName);
         }
       }
-
-      // Add V8 only time that is Total - Blink C++ duration.
-      addDurationHistogram(name, 'V8-Only', overallV8Time, histograms,
-          durationRelatedHistsByGroupName);
-      addCountHistogram(name, 'V8-Only', overallV8Count, histograms,
-          countRelatedHistsByGroupName);
     }
 
     // Add the runtimeStats for all the samples. Please note, the values in
@@ -296,20 +281,11 @@ tr.exportTo('tr.metrics.v8', function() {
     const runtimeGroupCollection = new tr.e.v8.RuntimeStatsGroupCollection();
     runtimeGroupCollection.addSlices(slices);
 
-    let overallV8Time = runtimeGroupCollection.totalTime;
-    let overallV8Count = runtimeGroupCollection.totalCount;
-    for (const runtimeGroup of runtimeGroupCollection.runtimeGroups) {
+    for (const runtimeGroup of runtimeGroupCollection.runtimeGroupHierarchy) {
       addTotalDurationHistogram(runtimeGroup.name, runtimeGroup.time,
           histograms, durationRelatedHistsByGroupName);
-      if (runtimeGroup.name === 'Blink C++') {
-        overallV8Time -= runtimeGroup.time;
-      }
-
       addTotalCountHistogram(runtimeGroup.name, runtimeGroup.count,
           histograms, countRelatedHistsByGroupName);
-      if (runtimeGroup.name === 'Blink C++') {
-        overallV8Count -= runtimeGroup.count;
-      }
     }
 
     if (runtimeGroupCollection.blinkRCSGroupCollection.totalTime > 0) {
@@ -322,12 +298,6 @@ tr.exportTo('tr.metrics.v8', function() {
             histograms, countRelatedHistsByGroupName);
       }
     }
-
-    // Add V8 only time that is Total - Blink C++ duration.
-    addTotalDurationHistogram('V8-Only', overallV8Time, histograms,
-        durationRelatedHistsByGroupName);
-    addTotalCountHistogram('V8-Only', overallV8Count, histograms,
-        countRelatedHistsByGroupName);
   }
 
   function runtimeStatsTotalMetric(histograms, model) {
