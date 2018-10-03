@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "59914ea5_4f7cc80d",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1115999
+      },
+      "writtenOn": "2018-10-03T01:13:55Z",
+      "side": 1,
+      "message": "Yes, I know it and I don\u0027t like it. So I suggested fixing it here to contain.",
+      "parentUuid": "fd0c45f4_9c9adb34",
+      "range": {
+        "startLine": 483,
+        "startChar": 6,
+        "endLine": 483,
+        "endChar": 17
+      },
+      "revId": "3a3d17124d983ae6408934a470c495fddb06a2fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e1cb596e_81bcb711",
         "filename": "telemetry/telemetry/internal/browser/web_contents.py",
         "patchSetId": 1
