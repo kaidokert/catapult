@@ -13,6 +13,7 @@ from google.appengine.api import taskqueue
 from google.appengine.ext import ndb
 from google.appengine.runtime import apiproxy_errors
 
+from dashboard import update_bug_with_results
 from dashboard.common import utils
 from dashboard.models import histogram
 from dashboard.pinpoint.models import job_state
@@ -240,8 +241,19 @@ class Job(ndb.Model):
       difference_details.append(difference)
 
     # Header.
+    merge_details = {}
+    commit_cache_key = None
     if len(differences) == 1:
       status = 'Found a significant difference after 1 commit.'
+      commit_cache_key = update_bug_with_results._GetCommitHashCacheKey(
+          commit_info['git_hash'])
+
+      issue_tracker = issue_tracker_service.IssueTrackerService(
+          utils.ServiceAccountHttp())
+      merge_details = update_bug_with_results.GetMergeIssueDetails(
+          issue_tracker, commit_cache_key)
+      if merge_details['id']:
+        cc_list = []
     else:
       status = ('Found significant differences after each of %d commits.' %
                 len(differences))
@@ -270,10 +282,16 @@ class Job(ndb.Model):
         current_bug_status in ['Untriaged', 'Unconfirmed', 'Available']):
       # Set the bug status and owner if this bug is opened and unowned.
       self._PostBugComment(comment, status='Assigned',
-                           cc_list=sorted(cc_list), owner=owner)
+                           cc_list=sorted(cc_list), owner=owner,
+                           merge_issue=merge_details.get('id'))
     else:
       # Only update the comment and cc list if this bug is assigned or closed.
-      self._PostBugComment(comment, cc_list=sorted(cc_list))
+      self._PostBugComment(comment, cc_list=sorted(cc_list),
+                           merge_issue=merge_details.get('id'))
+
+    update_bug_with_results.UpdateMergeIssue(
+        commit_cache_key, merge_details, self.bug_id)
+
 
   def _FormatDocumentationUrls(self):
     if not self.tags:
