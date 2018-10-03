@@ -301,11 +301,21 @@ tr.exportTo('tr.ui.b', function() {
       let height = 0;
       if (this.hideLegend) return {width, height};
 
-      for (const series of this.seriesByKey_.values()) {
-        const textSize = getSVGTextSize(this, series.key);
-        width = Math.max(width, textSize.width + 20);
+      let seriesLegend;
+      let series = [...this.seriesByKey_.values()];
+      if (this.showTitleInLegend) {
+        series = series.filter(series => series.title !== '');
+        seriesLegend = series => series.title;
+      } else {
+        seriesLegend = series => series.key;
+      }
+
+      for (const seriesEntry of series) {
+        const textSize = getSVGTextSize(this, seriesLegend(seriesEntry));
+        width = Math.max(width, textSize.width + 30);
         height += textSize.height;
       }
+
       return {width, height};
     },
 
