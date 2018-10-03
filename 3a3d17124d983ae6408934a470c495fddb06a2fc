@@ -46,6 +46,52 @@
       "revId": "3a3d17124d983ae6408934a470c495fddb06a2fc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e11bb304_7b1e71ac",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1115999
+      },
+      "writtenOn": "2018-10-03T00:57:21Z",
+      "side": 1,
+      "message": "I would make the default \u003d1 here to avoid confusion.",
+      "range": {
+        "startLine": 483,
+        "startChar": 6,
+        "endLine": 483,
+        "endChar": 17
+      },
+      "revId": "3a3d17124d983ae6408934a470c495fddb06a2fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1cb596e_81bcb711",
+        "filename": "telemetry/telemetry/internal/browser/web_contents.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1115999
+      },
+      "writtenOn": "2018-10-03T00:57:21Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 420,
+        "startChar": 65,
+        "endLine": 420,
+        "endChar": 72
+      },
+      "revId": "3a3d17124d983ae6408934a470c495fddb06a2fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
