@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e878afc5_1c9888ba",
+        "filename": "tracing/tracing_build/render_histograms_viewer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-04T18:46:28Z",
+      "side": 1,
+      "message": "Would it not be simpler to find the start tag, find the end tag, take the data in between, and split on newlines, like HistogramImporter?\nUsing the \u0027^\u0027 in the pattern regex allows it to support the pathological case where the string \u0027--!\u003e\u003c/div\u003e\u0027 is embedded in the data, but the browser isn\u0027t going to support that, so we should either prevent that from happening or not worry about it at all.",
+      "revId": "808a761d858ac2e8b7ce1a2c9328b6b0a6d734c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
