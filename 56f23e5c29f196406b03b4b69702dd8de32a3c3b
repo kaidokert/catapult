@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "658584c9_8ce4280f",
+        "filename": "tracing/tracing/extras/chrome/event_finder_utils.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-04T17:33:16Z",
+      "side": 1,
+      "message": "It looks like both callers just iterate over the result, so would it make sense to make this function a generator? That would be a bit faster and consume a bit less memory. If any callers really need an array, they can collect results using [...getMainThreadEvents(...)].",
+      "revId": "56f23e5c29f196406b03b4b69702dd8de32a3c3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6efb3877_aec113bc",
+        "filename": "tracing/tracing/extras/chrome/event_finder_utils.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-04T17:33:16Z",
+      "side": 1,
+      "message": "This is unused.",
+      "revId": "56f23e5c29f196406b03b4b69702dd8de32a3c3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
