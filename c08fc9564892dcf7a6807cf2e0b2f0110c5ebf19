@@ -139,6 +139,24 @@
       "revId": "c08fc9564892dcf7a6807cf2e0b2f0110c5ebf19",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36408978_6893c164",
+        "filename": "tracing/tracing_build/render_histograms_viewer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-04T04:52:42Z",
+      "side": 1,
+      "message": "render_histograms_viewer.ReadExistingResults in python and HistogramImporter in JS should be the only things that extract histograms from results.html files. If somebody wrote their own script, then I wouldn\u0027t feel too bad about breaking it since this HTML format is unspecified.\nThe histograms themselves are JSON, which escapes newlines.",
+      "parentUuid": "187ad87d_e723322f",
+      "revId": "c08fc9564892dcf7a6807cf2e0b2f0110c5ebf19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
