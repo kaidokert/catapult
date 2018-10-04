@@ -15,7 +15,7 @@
     async open(wait = 10000) {
       this.opened = true;
       if (!wait) return;
-      const start = this.openedTimestamp_ = performance.now();
+      const start = this.openedTimestamp_ = tr.b.GUID.allocateSimple();
       if (typeof wait === 'number') wait = cp.timeout(wait);
       await wait;
       if (this.openedTimestamp_ !== start) return;
