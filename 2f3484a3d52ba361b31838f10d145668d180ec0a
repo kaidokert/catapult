@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c48d8359_4fb13165",
+        "filename": "tracing/tracing/ui/base/chart_base.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-04T17:46:44Z",
+      "side": 1,
+      "message": "This would be clearer without the seriesLegend polymorphic function. You can check this.showTitleInLegend in the loop. You can say `if (!series.title) continue;`\n\nPlease refactor this.",
+      "range": {
+        "startLine": 303,
+        "startChar": 0,
+        "endLine": 317,
+        "endChar": 7
+      },
+      "revId": "2f3484a3d52ba361b31838f10d145668d180ec0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0bc7b26_71309d8e",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-04T17:46:44Z",
+      "side": 1,
+      "message": "Please add newlines after the open brackets for the values:\n\nconst METRICS \u003d new Map([\n  [\u0027Pipeline\u0027, [\n    \u0027pipeline:begin_frame_transport\u0027,",
+      "revId": "2f3484a3d52ba361b31838f10d145668d180ec0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4027881b_a8e4de17",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-04T17:46:44Z",
+      "side": 1,
+      "message": "Please use querySelector(\u0027.start\u0027) or querySelector(\u0027#start\u0027) instead of children[].",
+      "range": {
+        "startLine": 373,
+        "startChar": 0,
+        "endLine": 374,
+        "endChar": 35
+      },
+      "revId": "2f3484a3d52ba361b31838f10d145668d180ec0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efb6162c_701461c9",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-04T17:46:44Z",
+      "side": 1,
+      "message": "Please use querySelector() instead of children[]",
+      "range": {
+        "startLine": 506,
+        "startChar": 28,
+        "endLine": 506,
+        "endChar": 59
+      },
+      "revId": "2f3484a3d52ba361b31838f10d145668d180ec0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
