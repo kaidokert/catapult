@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2280e27d_0dd1fbee",
+        "filename": "dashboard/dashboard/spa/cache-request-base.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2018-10-04T23:18:52Z",
+      "side": 1,
+      "message": "Are there tests for this code? It looks complicated.",
+      "revId": "4ff8e7944a783cf25032bc0cd9c5a7337547bc10",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6cb11f8c_aba0268c",
+        "filename": "dashboard/dashboard/spa/webpack.config.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2018-10-04T23:18:52Z",
+      "side": 1,
+      "message": "Is uglify necessary?  Asking because extra build steps are new places for things to randomly break, and even with sourcemaps, obfuscation can make debugging harder. We should be sure the gains are clear and worth extra complexity cost. (e.g. it turns out that loading and parsing JS is a significant page load bottleneck)",
+      "range": {
+        "startLine": 19,
+        "startChar": 21,
+        "endLine": 19,
+        "endChar": 35
+      },
+      "revId": "4ff8e7944a783cf25032bc0cd9c5a7337547bc10",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
