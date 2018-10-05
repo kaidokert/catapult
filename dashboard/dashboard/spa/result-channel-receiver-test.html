@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+<script src="/bower_components/web-component-tester/browser.js"></script>
+
+<link rel="import" href="/dashboard/spa/result-channel-receiver.html">
+
+<script>
+'use strict';
+suite('ResultChannelReceiver', function() {
+  setup(function() {
+    cp.ResultChannelReceiver.TESTING = true;
+  });
+
+  teardown(function() {
+    cp.ResultChannelReceiver.TESTING = false;
+  });
+
+  test('receives_single_queued_message', async() => {
+    const url = 'receives_single_queued_message';
+    const channel = new BroadcastChannel(location.origin + url);
+    const listener = new cp.ResultChannelReceiver(url);
+
+    channel.postMessage({type: 'RESULT', payload: 'Hello world!'});
+    channel.postMessage({type: 'DONE'});
+
+    const results = [];
+    for await (const result of listener) {
+      results.push(result);
+    }
+
+    assert.deepEqual(results, ['Hello world!']);
+  });
+
+  test('receives_two_queued_messages', async() => {
+    const url = 'receives_two_queued_messages';
+    const channel = new BroadcastChannel(location.origin + url);
+    const listener = new cp.ResultChannelReceiver(url);
+
+    channel.postMessage({ type: 'RESULT', payload: 'foo' });
+    channel.postMessage({ type: 'RESULT', payload: 'bar' });
+    channel.postMessage({ type: 'DONE' });
+
+    const results = [];
+    for await (const result of listener) {
+      results.push(result);
+    }
+
+    assert.deepEqual(results, ['foo', 'bar']);
+  });
+
+  test('receives_single_delayed_message', async() => {
+    const url = 'receives_single_queued_message';
+    const listener = new cp.ResultChannelReceiver(url);
+    const channel = new BroadcastChannel(location.origin + url);
+    const results = [];
+
+    let promise = listener.next().then(result => result.value);
+    channel.postMessage({ type: 'RESULT', payload: 'Hello world!' });
+    results.push(await promise);
+
+    promise = listener.next().then(result => result.value);
+    channel.postMessage({ type: 'DONE' });
+    await promise;
+
+    assert.deepEqual(results, ['Hello world!']);
+  });
+
+  test('receives_two_delayed_messages', async() => {
+    const url = 'receives_two_queued_messages';
+    const listener = new cp.ResultChannelReceiver(url);
+    const channel = new BroadcastChannel(location.origin + url);
+    const results = [];
+
+    let promise = listener.next().then(result => result.value);
+    channel.postMessage({ type: 'RESULT', payload: 'foo' });
+    results.push(await promise);
+
+    promise = listener.next().then(result => result.value);
+    channel.postMessage({ type: 'RESULT', payload: 'bar' });
+    results.push(await promise);
+
+    promise = listener.next().then(result => result.value);
+    channel.postMessage({ type: 'DONE' });
+    await promise;
+
+    assert.deepEqual(results, ['foo', 'bar']);
+  });
+
+  test('receives_one_delayed_message_and_one_queued_message', async() => {
+    const url = 'receives_two_queued_messages';
+    const listener = new cp.ResultChannelReceiver(url);
+    const channel = new BroadcastChannel(location.origin + url);
+    const results = [];
+
+    let promise = listener.next().then(result => result.value);
+    channel.postMessage({ type: 'RESULT', payload: 'foo' });
+    channel.postMessage({ type: 'RESULT', payload: 'bar' });
+    results.push(await promise);
+
+    promise = listener.next().then(result => result.value);
+    results.push(await promise);
+
+    promise = listener.next().then(result => result.value);
+    channel.postMessage({ type: 'DONE' });
+    await promise;
+
+    assert.deepEqual(results, ['foo', 'bar']);
+  });
+});
+</script>
