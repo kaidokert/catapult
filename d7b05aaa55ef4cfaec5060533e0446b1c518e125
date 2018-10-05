@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b4e3fd75_79a7a2a9",
+        "filename": "experimental/soundwave/bin/pinpoint_cli",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-10-05T15:36:42Z",
+      "side": 1,
+      "message": "nit: comment should reflect one or more id\u0027s",
+      "range": {
+        "startLine": 41,
+        "startChar": 12,
+        "endLine": 41,
+        "endChar": 14
+      },
+      "revId": "d7b05aaa55ef4cfaec5060533e0446b1c518e125",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "753e420f_67ff5773",
+        "filename": "experimental/soundwave/pinpoint_cli/commands.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-10-05T15:36:42Z",
+      "side": 1,
+      "message": "Would it be useful to have a column or reference somewhere to which job this came from?",
+      "revId": "d7b05aaa55ef4cfaec5060533e0446b1c518e125",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
