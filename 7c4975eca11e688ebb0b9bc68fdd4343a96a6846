@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8beb2505_15ab8630",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-10-05T20:04:10Z",
+      "side": 1,
+      "message": "This method is getting unwieldy, and mixes a bunch of different functionality together. How about we split out all the comment string stuff to a separate method?",
+      "revId": "7c4975eca11e688ebb0b9bc68fdd4343a96a6846",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
