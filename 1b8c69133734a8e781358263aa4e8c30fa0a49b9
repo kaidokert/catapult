@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "06a2821f_9e626d34",
+        "filename": "tracing/tracing/extras/v8/runtime_stats_entry.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-10-05T13:31:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80fe2ee6_7886b4ac",
+      "revId": "1b8c69133734a8e781358263aa4e8c30fa0a49b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "455403d6_ff6abfed",
         "filename": "tracing/tracing/extras/v8/runtime_stats_entry.html",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "1b8c69133734a8e781358263aa4e8c30fa0a49b9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79964d85_4c9462c5",
+        "filename": "tracing/tracing/extras/v8/runtime_stats_entry.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-10-05T13:31:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "455403d6_ff6abfed",
+      "revId": "1b8c69133734a8e781358263aa4e8c30fa0a49b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +101,24 @@
       "side": 1,
       "message": "Nice!\nAre these already tested somewhere?",
       "parentUuid": "12740eaa_0afb6525",
+      "revId": "1b8c69133734a8e781358263aa4e8c30fa0a49b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8fd668c0_b11645e4",
+        "filename": "tracing/tracing/extras/v8/runtime_stats_entry.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-10-05T13:31:12Z",
+      "side": 1,
+      "message": "I ran a pinpoint job, which seems to run fine. Also I ran it locally which looks fine. Here are the results from pinpoint job: https://pinpoint-dot-chromeperf.appspot.com/job/131f8022e40000",
+      "parentUuid": "b16ab9ae_f159b34c",
       "revId": "1b8c69133734a8e781358263aa4e8c30fa0a49b9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true

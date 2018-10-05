@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ceea66ae_bea48312",
+        "filename": "tracing/tracing/extras/v8/runtime_stats_entry.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-10-05T13:31:12Z",
+      "side": 1,
+      "message": "We need this because, the computed_groups_ are not mutually exclusive with other groups. So in the trace viewer, the table view gets complicated since the events can be in multiple places. I guess adding a hierarchy there is not that important. I am not sure if moving the computed groups to the runtime_stats_metric would be better.",
+      "revId": "c9d703e71f58d9af2fba90ab4915a964fe681c7b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
