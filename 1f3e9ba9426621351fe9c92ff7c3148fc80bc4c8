@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "63c81936_a36a89ad",
+        "filename": "dashboard/dashboard/spa/result-channel-receiver-test.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-10-05T19:34:27Z",
+      "side": 1,
+      "message": "We spoke offline, having a lot of trouble grokking what\u0027s happening in these tests.",
+      "revId": "1f3e9ba9426621351fe9c92ff7c3148fc80bc4c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd854efb_118b04bd",
+        "filename": "dashboard/dashboard/spa/result-channel-sender.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-10-05T19:34:27Z",
+      "side": 1,
+      "message": "tests?",
+      "range": {
+        "startLine": 12,
+        "startChar": 8,
+        "endLine": 12,
+        "endChar": 12
+      },
+      "revId": "1f3e9ba9426621351fe9c92ff7c3148fc80bc4c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
