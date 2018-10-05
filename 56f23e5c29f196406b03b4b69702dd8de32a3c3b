@@ -33,6 +33,23 @@
       "revId": "56f23e5c29f196406b03b4b69702dd8de32a3c3b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6730f126_5f1e3a06",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2018-10-05T13:21:00Z",
+      "side": 1,
+      "message": "I think this should be fine for us. If I understand correctly, it makes it more accurate when navigationId is available or fallback on the last NavStart event for that frame right. I think Kouhei knows more, so I am fine as long as he is happy. \n\n+ dproy@ who also knows about this metric.",
+      "revId": "56f23e5c29f196406b03b4b69702dd8de32a3c3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
