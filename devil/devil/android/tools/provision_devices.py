@@ -43,8 +43,10 @@ from devil.android.sdk import shared_prefs
 from devil.android.sdk import version_codes
 from devil.android.tools import script_common
 from devil.constants import exit_codes
+from devil.utils import cmd_helper
 from devil.utils import logging_common
 from devil.utils import timeout_retry
+
 
 logger = logging.getLogger(__name__)
 
@@ -559,7 +561,6 @@ def StandaloneVrDeviceSetup(device):
   shared_pref.SetBoolean('UseAutomatedController', True)
   shared_pref.Commit()
 
-
 def main(raw_args):
   # Recommended options on perf bots:
   # --disable-network
@@ -645,13 +646,15 @@ def main(raw_args):
       '-t', '--target',
       help=argparse.SUPPRESS)
 
+  parser.add_argument('command', nargs='*')
+
   args = parser.parse_args(raw_args)
 
   logging_common.InitializeLogging(args)
   script_common.InitializeEnvironment(args)
 
   try:
-    return ProvisionDevices(
+    provision_result = ProvisionDevices(
         args.devices,
         args.blacklist_file,
         adb_key_files=args.adb_key_files,
@@ -669,6 +672,9 @@ def main(raw_args):
         system_app_remove_list=args.system_app_remove_list,
         system_package_remove_list=args.system_package_remove_list,
         wipe=not args.skip_wipe and not args.emulators)
+    if args.command:
+      return cmd_helper.Call(args.command)
+    return provision_result
   except (device_errors.DeviceUnreachableError, device_errors.NoDevicesError):
     logging.exception('Unable to provision local devices.')
     return exit_codes.INFRA
