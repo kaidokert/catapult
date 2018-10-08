@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e43a4d70_2d498140",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2018-10-08T19:31:13Z",
+      "side": 1,
+      "message": "This is a new implementation based on rendererHelper.",
+      "range": {
+        "startLine": 214,
+        "startChar": 2,
+        "endLine": 214,
+        "endChar": 45
+      },
+      "revId": "61fe6027d89a72c94e356835d6456244217c83b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9d39cb9_b42c9051",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2018-10-08T19:31:13Z",
+      "side": 1,
+      "message": "The window size of 100ms is an arbitrary choice. I am open for other suggestions.",
+      "range": {
+        "startLine": 221,
+        "startChar": 9,
+        "endLine": 221,
+        "endChar": 12
+      },
+      "revId": "61fe6027d89a72c94e356835d6456244217c83b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34d4ef44_8e83c8e7",
+        "filename": "tracing/tracing/metrics/v8/utils.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2018-10-08T19:31:13Z",
+      "side": 1,
+      "message": "This is restored without changes (except for using new class syntax)",
+      "range": {
+        "startLine": 276,
+        "startChar": 2,
+        "endLine": 276,
+        "endChar": 22
+      },
+      "revId": "61fe6027d89a72c94e356835d6456244217c83b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2a922d0_35fd29bd",
+        "filename": "tracing/tracing/metrics/v8/utils.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2018-10-08T19:31:13Z",
+      "side": 1,
+      "message": "This is restored without changes modulo var \u003d\u003e const/let changes.",
+      "range": {
+        "startLine": 332,
+        "startChar": 2,
+        "endLine": 332,
+        "endChar": 29
+      },
+      "revId": "61fe6027d89a72c94e356835d6456244217c83b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76768098_7d711c3c",
+        "filename": "tracing/tracing/metrics/v8/utils.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2018-10-08T19:31:13Z",
+      "side": 1,
+      "message": "This is a new implementation",
+      "range": {
+        "startLine": 397,
+        "startChar": 2,
+        "endLine": 397,
+        "endChar": 32
+      },
+      "revId": "61fe6027d89a72c94e356835d6456244217c83b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f592bec1_e5986791",
+        "filename": "tracing/tracing/metrics/v8/utils_test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2018-10-08T19:31:13Z",
+      "side": 1,
+      "message": "Everything in this file is restored without changes modulo var \u003d\u003e const/let changes.",
+      "range": {
+        "startLine": 24,
+        "startChar": 2,
+        "endLine": 24,
+        "endChar": 64
+      },
+      "revId": "61fe6027d89a72c94e356835d6456244217c83b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

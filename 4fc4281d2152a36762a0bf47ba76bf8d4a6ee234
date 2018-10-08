@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6b47c646_b4e23ca3",
+        "filename": "tracing/tracing/metrics/v8/gc_metric_test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2018-10-08T19:31:13Z",
+      "side": 0,
+      "message": "Drive-by fix.",
+      "range": {
+        "startLine": 78,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 47
+      },
+      "revId": "4fc4281d2152a36762a0bf47ba76bf8d4a6ee234",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
