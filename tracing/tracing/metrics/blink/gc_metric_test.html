@@ -246,7 +246,7 @@ tr.b.unittest.testSuite(function() {
     assert.strictEqual(value.running.max, 200);
   });
 
-  test('eventsInForcedV8GCAreIgnored', function() {
+  test('ignoreForcedV8GCEvents', function() {
     // Any events nested in a forced GC should be ignored.
     const histograms = new tr.v.HistogramSet();
     const slices = [
@@ -278,6 +278,38 @@ tr.b.unittest.testSuite(function() {
     const value = actual.getHistogramNamed('unified-gc-total');
     assert.strictEqual(value.running.sum, 10);
     assert.strictEqual(value.numValues, 1);
+    assert.strictEqual(value.average, 10);
+    assert.strictEqual(value.running.max, 10);
+  });
+
+  test('ignoreForcedBlinkGCEvents', function() {
+    // Any forced Blink GC events should be ignored.
+    const histograms = new tr.v.HistogramSet();
+    const slices = [
+      // Following nested events should be ignored.
+      {
+        title: 'BlinkGC.CompleteSweep', args: {'forced': true},
+        start: 200, end: 270, cpuStart: 200, cpuEnd: 270
+      },
+      {
+        title: 'BlinkGC.AtomicPhase', args: {'forced': true},
+        start: 280, end: 290, cpuStart: 280, cpuEnd: 290
+      },
+      // Next events are not forced and should be accounted for.
+      {
+        title: 'BlinkGC.AtomicPhase', args: {},
+        start: 310, end: 320, cpuStart: 310, cpuEnd: 320
+      },
+      {
+        title: 'BlinkGC.AtomicPhase', args: {'forced': false},
+        start: 320, end: 330, cpuStart: 320, cpuEnd: 330
+      },
+    ];
+    const actual = run(slices);
+
+    const value = actual.getHistogramNamed('unified-gc-total');
+    assert.strictEqual(value.running.sum, 20);
+    assert.strictEqual(value.numValues, 2);
     assert.strictEqual(value.average, 10);
     assert.strictEqual(value.running.max, 10);
   });
