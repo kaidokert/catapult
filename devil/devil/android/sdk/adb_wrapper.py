@@ -257,13 +257,15 @@ class AdbWrapper(object):
   @classmethod
   @decorators.WithTimeoutAndConditionalRetries(_ShouldRetryAdbCmd)
   def _RunAdbCmd(cls, args, timeout=None, retries=None, device_serial=None,
-                 check_error=True, cpu_affinity=None):
-    # pylint: disable=no-member
+                 check_error=True, cpu_affinity=None,
+                 reduced_adb_timeout=False):
+    timeout = timeout_retry.CurrentTimeoutThreadGroup().GetRemainingTime()
+    if reduced_adb_timeout:
+      timeout = 0.95 * timeout
     try:
       status, output = cmd_helper.GetCmdStatusAndOutputWithTimeout(
           cls._BuildAdbCmd(args, device_serial, cpu_affinity=cpu_affinity),
-          timeout_retry.CurrentTimeoutThreadGroup().GetRemainingTime(),
-          env=cls._ADB_ENV)
+          timeout, env=cls._ADB_ENV)
     except OSError as e:
       if e.errno in (errno.ENOENT, errno.ENOEXEC):
         raise device_errors.NoAdbError(msg=str(e))
@@ -287,7 +289,9 @@ class AdbWrapper(object):
     return output
   # pylint: enable=unused-argument
 
-  def _RunDeviceAdbCmd(self, args, timeout, retries, check_error=True):
+  def _RunDeviceAdbCmd(
+      self, args, timeout, retries, check_error=True,
+      reduced_adb_timeout=False):
     """Runs an adb command on the device associated with this object.
 
     Args:
@@ -302,7 +306,8 @@ class AdbWrapper(object):
     """
     return self._RunAdbCmd(args, timeout=timeout, retries=retries,
                            device_serial=self._device_serial,
-                           check_error=check_error)
+                           check_error=check_error,
+                           reduced_adb_timeout=reduced_adb_timeout)
 
   def _IterRunDeviceAdbCmd(self, args, iter_timeout, timeout):
     """Runs an adb command and returns an iterator over its output lines.
@@ -498,7 +503,7 @@ class AdbWrapper(object):
         self._BuildAdbCmd(['shell'] + cmd, self._device_serial))
 
   def Shell(self, command, expect_status=0, timeout=DEFAULT_TIMEOUT,
-            retries=DEFAULT_RETRIES):
+            retries=DEFAULT_RETRIES, reduced_adb_timeout=False):
     """Runs a shell command on the device.
 
     Args:
@@ -507,6 +512,8 @@ class AdbWrapper(object):
         this value. Default is 0. If set to None the test is skipped.
       timeout: (optional) Timeout per try in seconds.
       retries: (optional) Number of retries to attempt.
+      reduced_adb_timeout: If True, will use a timeout that is 5% smaller than
+        the remaining time on the thread watchdog for the internal adb command.
 
     Returns:
       The output of the shell command as a string.
@@ -519,7 +526,9 @@ class AdbWrapper(object):
       args = ['shell', command]
     else:
       args = ['shell', '( %s );echo %%$?' % command.rstrip()]
-    output = self._RunDeviceAdbCmd(args, timeout, retries, check_error=False)
+    output = self._RunDeviceAdbCmd(
+        args, timeout, retries, check_error=False,
+        reduced_adb_timeout=reduced_adb_timeout)
     if expect_status is not None:
       output_end = output.rfind('%')
       if output_end < 0:
