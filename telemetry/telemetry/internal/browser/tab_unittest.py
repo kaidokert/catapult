@@ -231,6 +231,7 @@ class MediaRouterDialogTabTest(tab_test_case.TabTestCase):
   @classmethod
   def CustomizeBrowserOptions(cls, options):
     options.AppendExtraBrowserArgs('--media-router=1')
+    options.AppendExtraBrowserArgs('--disable-features=ViewsCastDialog')
 
   # There is no media router dialog on android/chromeos, it is a desktop-only
   # feature.
