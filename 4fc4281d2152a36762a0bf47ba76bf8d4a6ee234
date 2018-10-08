@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f2e88773_9a0d8191",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 1089,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-10-08T15:47:01Z",
+      "side": 0,
+      "message": "Can this just be \n\n  return self.adb.Shell(cmd, reduced_adb_timeout\u003dkeep_logs_on_timeout)\n\n?",
+      "revId": "4fc4281d2152a36762a0bf47ba76bf8d4a6ee234",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
