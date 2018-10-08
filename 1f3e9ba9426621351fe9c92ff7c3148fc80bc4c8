@@ -37,6 +37,46 @@
     },
     {
       "key": {
+        "uuid": "742ba9a3_710e6ccf",
+        "filename": "dashboard/dashboard/spa/result-channel-receiver.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2018-10-08T17:05:52Z",
+      "side": 1,
+      "message": "Possibly dumb question: IIUC, this.handleMessage_ should already bound to the instance (just as a result of instantiating the class). Does this do something else, or is that assumption not the case?",
+      "revId": "1f3e9ba9426621351fe9c92ff7c3148fc80bc4c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b9500ae_122a4463",
+        "filename": "dashboard/dashboard/spa/result-channel-receiver.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2018-10-08T17:05:52Z",
+      "side": 1,
+      "message": "or is the above bind() call necessary to make this handler work (without an arrow function, eg)?",
+      "range": {
+        "startLine": 27,
+        "startChar": 48,
+        "endLine": 27,
+        "endChar": 67
+      },
+      "revId": "1f3e9ba9426621351fe9c92ff7c3148fc80bc4c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cd854efb_118b04bd",
         "filename": "dashboard/dashboard/spa/result-channel-sender.js",
         "patchSetId": 1
