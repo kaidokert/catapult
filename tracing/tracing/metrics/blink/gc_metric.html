@@ -25,13 +25,18 @@ tr.exportTo('tr.metrics.blink', function() {
     'BlinkGC.LazySweepOnAllocation': 'blink-gc-lazy-sweep-allocation'
   };
 
-  function isBlinkGarbageCollectionEvent(event) {
-    return event.title in BLINK_TOP_GC_EVENTS &&
-           !tr.metrics.v8.utils.isForcedGarbageCollectionEvent(event);
-  }
-
   function blinkGarbageCollectionEventName(event) {
     return BLINK_TOP_GC_EVENTS[event.title];
+  }
+
+  function isNonForcedGarbageCollectionEvent(event) {
+    return event.title in BLINK_TOP_GC_EVENTS &&
+           (!event.args || !event.args.forced);
+  }
+
+  function isBlinkGarbageCollectionEvent(event) {
+    return isNonForcedGarbageCollectionEvent(event) &&
+           !tr.metrics.v8.utils.isForcedGarbageCollectionEvent(event);
   }
 
   function isNonNestedBlinkGarbageCollectionEvent(event) {
