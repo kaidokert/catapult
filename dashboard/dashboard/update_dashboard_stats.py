@@ -191,6 +191,9 @@ def _ProcessAlertsForBot(bot_name, alerts):
   for s, c in count_by_suite.iteritems():
     hists_by_suite[s] = _CreateHistogram(
         'chromium.perf.alerts', 'count', story=s)
+    hists_by_suite[s].CustomizeSummaryOptions({
+        'sum': True
+    })
     hists_by_suite[s].AddSample(c)
 
   hs = _CreateHistogramSet(
