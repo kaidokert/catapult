@@ -33,6 +33,24 @@
       "revId": "f6d01881a4774a3ba040bff4cc2a491b1bdb1545",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "038e4eb6_583a96ad",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-10-09T12:59:59Z",
+      "side": 1,
+      "message": "I would also name this option the same everywhere (in adb_wrapper, and in device_utils), so its purpose is clear. Maybe \"ensure_logs_on_timeout\" ?",
+      "parentUuid": "68b9f04f_aec82c9d",
+      "revId": "f6d01881a4774a3ba040bff4cc2a491b1bdb1545",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

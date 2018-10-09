@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "eb75add0_53c3bd3a",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 1068,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-10-09T12:59:59Z",
+      "side": 1,
+      "message": "Ack. I think this is good.",
+      "parentUuid": "c7d46ce9_e96cfdd4",
+      "range": {
+        "startLine": 1068,
+        "startChar": 48,
+        "endLine": 1068,
+        "endChar": 64
+      },
+      "revId": "9fca50bf90b414255d8a6c40ce57f44f85195b1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "70dfce6c_d5dab2b1",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 18
@@ -36,6 +60,24 @@
       "writtenOn": "2018-10-08T15:16:10Z",
       "side": 1,
       "message": "Although this could be written as\n\n  self.adb.Shell(cmd, reduced_adb_timeout\u003dkeep_logs_on_time)\n\nit would require updating tons and tons of call expectations in device_utils_test.py. If you\u0027d like me to update them all, please let me know and I\u0027ll do that.",
+      "revId": "9fca50bf90b414255d8a6c40ce57f44f85195b1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "23ba34c1_fe3df87e",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 1096,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-10-09T12:59:59Z",
+      "side": 1,
+      "message": "Ouch. That\u0027s annoying. An alternative could be:\n\n  kwargs \u003d {}\n  if keep_logs_on_timeout:\n    kwargs[\u0027reduced_adb_timeout\u0027] \u003d True\n  self.adb.Shell(cmd, **kwargs)\n\nAlthough is not much better than what you have. :-/ I would also be fine keeping it like this, just add a comment explaining why.",
+      "parentUuid": "70dfce6c_d5dab2b1",
       "revId": "9fca50bf90b414255d8a6c40ce57f44f85195b1a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
