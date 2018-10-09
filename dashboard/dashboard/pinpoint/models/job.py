@@ -13,6 +13,7 @@ from google.appengine.api import taskqueue
 from google.appengine.ext import ndb
 from google.appengine.runtime import apiproxy_errors
 
+from dashboard import update_bug_with_results
 from dashboard.common import utils
 from dashboard.models import histogram
 from dashboard.pinpoint.models import job_state
@@ -202,6 +203,53 @@ class Job(ndb.Model):
     self._FormatAndPostBugCommentOnComplete()
     self._UpdateGerritIfNeeded()
 
+  def _GetStatusForCompletedJob(self, differences):
+    if len(differences) == 1:
+      return 'Found a significant difference after 1 commit.'
+    else:
+      return ('Found significant differences after each of %d commits.' %
+              len(differences))
+
+  def _GetDifferenceDetails(self, differences):
+    difference_details = []
+    commit_infos = []
+    for change_a, change_b in differences:
+      if change_b.patch:
+        commit_info = change_b.patch.AsDict()
+      else:
+        commit_info = change_b.last_commit.AsDict()
+
+      values_a = self.state.ResultValues(change_a)
+      values_b = self.state.ResultValues(change_b)
+      difference = _FormatDifferenceForBug(commit_info, values_a, values_b,
+                                           self.state.metric)
+      difference_details.append(difference)
+      commit_infos.append(commit_info)
+    return difference_details, commit_infos
+
+  def _GetOwnerSheriffCCListFromCommits(self, commit_infos):
+    # TODO: Assign the largest difference, not the last one.
+    owner = commit_infos[-1]['author']
+    sheriff = utils.GetSheriffForAutorollCommit(commit_infos[-1])
+    cc_list = set(c['author'] for c in commit_infos)
+
+    return owner, sheriff, cc_list
+
+  def _GetMergeDetails(self, commit_cache_key):
+    if not commit_cache_key:
+      return {}
+    issue_tracker = issue_tracker_service.IssueTrackerService(
+        utils.ServiceAccountHttp())
+    merge_details = update_bug_with_results.GetMergeIssueDetails(
+        issue_tracker, commit_cache_key)
+    return merge_details
+
+  def _GetCommitHashCacheKey(self, commit_infos):
+    if len(commit_infos) == 1:
+      return update_bug_with_results._GetCommitHashCacheKey(
+          commit_infos[0]['git_hash'])
+    return None
+
   def _FormatAndPostBugCommentOnComplete(self):
     if not self.comparison_mode:
       # There is no comparison metric.
@@ -218,33 +266,18 @@ class Job(ndb.Model):
       return
 
     # Include list of Changes.
-    owner = None
-    sheriff = None
-    cc_list = set()
-    difference_details = []
-    for change_a, change_b in differences:
-      if change_b.patch:
-        commit_info = change_b.patch.AsDict()
-      else:
-        commit_info = change_b.last_commit.AsDict()
+    difference_details, commit_infos = self._GetDifferenceDetails(differences)
+    owner, sheriff, cc_list = self._GetOwnerSheriffCCListFromCommits(
+        commit_infos)
 
-      # TODO: Assign the largest difference, not the last one.
-      owner = commit_info['author']
-      sheriff = utils.GetSheriffForAutorollCommit(commit_info)
-      cc_list.add(commit_info['author'])
-
-      values_a = self.state.ResultValues(change_a)
-      values_b = self.state.ResultValues(change_b)
-      difference = _FormatDifferenceForBug(commit_info, values_a, values_b,
-                                           self.state.metric)
-      difference_details.append(difference)
+    commit_cache_key = self._GetCommitHashCacheKey(commit_infos)
 
     # Header.
-    if len(differences) == 1:
-      status = 'Found a significant difference after 1 commit.'
-    else:
-      status = ('Found significant differences after each of %d commits.' %
-                len(differences))
+    status = self._GetStatusForCompletedJob(differences)
+    merge_details = self._GetMergeDetails(commit_cache_key)
+
+    if merge_details and merge_details['id']:
+      cc_list = []
 
     title = '<b>%s %s</b>' % (_ROUND_PUSHPIN, status)
     header = '\n'.join((title, self.url))
@@ -254,7 +287,7 @@ class Job(ndb.Model):
     if sheriff:
       owner = sheriff
       body += '\n\nAssigning to sheriff %s because "%s" is a roll.' % (
-          sheriff, commit_info['subject'])
+          sheriff, commit_infos[-1]['subject'])
 
     # Footer.
     footer = ('Understanding performance regressions:\n'
@@ -270,10 +303,16 @@ class Job(ndb.Model):
         current_bug_status in ['Untriaged', 'Unconfirmed', 'Available']):
       # Set the bug status and owner if this bug is opened and unowned.
       self._PostBugComment(comment, status='Assigned',
-                           cc_list=sorted(cc_list), owner=owner)
+                           cc_list=sorted(cc_list), owner=owner,
+                           merge_issue=merge_details.get('id'))
     else:
       # Only update the comment and cc list if this bug is assigned or closed.
-      self._PostBugComment(comment, cc_list=sorted(cc_list))
+      self._PostBugComment(comment, cc_list=sorted(cc_list),
+                           merge_issue=merge_details.get('id'))
+
+    update_bug_with_results.UpdateMergeIssue(
+        commit_cache_key, merge_details, self.bug_id)
+
 
   def _FormatDocumentationUrls(self):
     if not self.tags:
