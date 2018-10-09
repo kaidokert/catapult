@@ -16,6 +16,24 @@
       "revId": "407a1db86ed35a4380e625c2ac33d2eb7aaf4ea3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa35c44f_521e5d71",
+        "filename": "dashboard/dashboard/update_dashboard_stats.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-10-09T18:00:07Z",
+      "side": 1,
+      "message": "Ok so we just need changes on the FE to make this work?",
+      "parentUuid": "c456c882_a3f0514e",
+      "revId": "407a1db86ed35a4380e625c2ac33d2eb7aaf4ea3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
