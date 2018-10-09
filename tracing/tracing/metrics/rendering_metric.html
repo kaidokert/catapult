@@ -272,6 +272,70 @@ tr.exportTo('tr.metrics.rendering', function() {
     return browserHelper.process.findAtMostOneThreadNamed('CrBrowserMain');
   }
 
+  function addLayerDetails(histograms, model, segments) {
+    const allPics = [];
+    const procPics = [];
+    const surfaceLayers = [];
+    const minBranchingFactor = [];
+    const maxBranchingFactor = [];
+    const avgBranchingFactor = [];
+    const treeHeights = [];
+    for (const thread of model.getAllThreads()) {
+      thread.sliceGroup.slices.forEach(
+          slice => {
+            if (slice.title !== 'PictureLayerCount') return;
+            for (const segment of segments) {
+              if (segment.boundsRange.containsExplicitRangeInclusive(
+                  slice.start, slice.end)) {
+                allPics.push(slice.args.all_picture_layers);
+                procPics.push(slice.args.visible_picture_layers);
+                surfaceLayers.push(slice.args.visible_surface_layers);
+                minBranchingFactor.push(slice.args.min_branching_factor);
+                maxBranchingFactor.push(slice.args.max_branching_factor);
+                avgBranchingFactor.push(slice.args.avg_branching_factor);
+                treeHeights.push(slice.args.treeHeight);
+              }
+            }
+          }
+      );
+    }
+
+    histograms.createHistogram(
+        'layers:all_picture_layers',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        allPics, { description: 'All picture layers.', });
+    histograms.createHistogram(
+        'layers:visible_picture_layers',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        procPics, { description: 'All visible picture layers.', });
+    histograms.createHistogram(
+        'layers:visible_surface_layers',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        surfaceLayers, { description: 'All surface layers.', });
+    histograms.createHistogram(
+        'layers:min_branching_factor',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        minBranchingFactor, {
+          description: 'min_branching_factor of layerTree',
+        });
+    histograms.createHistogram(
+        'layers:max_branching_factor',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        maxBranchingFactor, {
+          description: 'max_branching_factor of layerTree',
+        });
+    histograms.createHistogram(
+        'layers:avg_branching_factor',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        avgBranchingFactor, {
+          description: 'avg_branching_factor of layerTree',
+        });
+    histograms.createHistogram(
+        'layers:treeHeight',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        treeHeights, { description: 'height of layerTree', });
+  }
+
   function addPipelineHistograms(histograms, model, segments) {
     let events = [];
     for (const thread of model.getAllThreads()) {
@@ -437,6 +501,7 @@ tr.exportTo('tr.metrics.rendering', function() {
     addCoresPerSecondHistograms(histograms, model, segments);
     addFrameTimeHistograms(histograms, model, segments);
     addPipelineHistograms(histograms, model, segments);
+    addLayerDetails(histograms, model, segments);
   }
 
   tr.metrics.MetricRegistry.register(renderingMetric);
