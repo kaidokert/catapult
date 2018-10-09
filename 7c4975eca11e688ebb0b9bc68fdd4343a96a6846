@@ -16,6 +16,24 @@
       "revId": "7c4975eca11e688ebb0b9bc68fdd4343a96a6846",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "071c868d_b235644b",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-10-09T17:20:50Z",
+      "side": 1,
+      "message": "Split off a bunch of things into helpers",
+      "parentUuid": "8beb2505_15ab8630",
+      "revId": "7c4975eca11e688ebb0b9bc68fdd4343a96a6846",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
