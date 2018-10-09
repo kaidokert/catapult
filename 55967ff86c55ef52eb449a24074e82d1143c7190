@@ -34,6 +34,24 @@
       "revId": "55967ff86c55ef52eb449a24074e82d1143c7190",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2a83b23_e6d54a2c",
+        "filename": "telemetry/telemetry/web_perf/metrics/smoothness.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-09T19:40:51Z",
+      "side": 1,
+      "message": "none value reason has not been needed in TBM2, and we want to remove telemetry\u0027s Value system, so removing none_value_reason here sgtm.\nIf TBM2 metrics want to display a reason for why a sample is undefined, they can use a GenericSet diagnostic.",
+      "parentUuid": "299e0bee_e0316c69",
+      "revId": "55967ff86c55ef52eb449a24074e82d1143c7190",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
