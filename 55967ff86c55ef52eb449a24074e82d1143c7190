@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c947a1fd_990cee53",
+        "filename": "telemetry/telemetry/web_perf/metrics/smoothness.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1116061
+      },
+      "writtenOn": "2018-10-09T15:17:43Z",
+      "side": 1,
+      "message": "Is it intentional to drop the value, instead of recording a none_value_reason?",
+      "revId": "55967ff86c55ef52eb449a24074e82d1143c7190",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
