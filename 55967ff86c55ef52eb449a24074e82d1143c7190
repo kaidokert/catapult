@@ -16,6 +16,24 @@
       "revId": "55967ff86c55ef52eb449a24074e82d1143c7190",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "299e0bee_e0316c69",
+        "filename": "telemetry/telemetry/web_perf/metrics/smoothness.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-10-09T19:30:56Z",
+      "side": 1,
+      "message": "I\u0027m was not sure about this, but, the difference that I see between dropping a value and passing None with none_value_reason is:\n\n- When I run a single story once: former shows \"(missing)\"; latter shows \"(empty)\". I cannot find the none_value_reason text anywhere in the result.html.\n\n- When I run multiple times, and sometimes we have a valid value and sometimes we either drop or pass None: former shows the histogram of valid values only; latter shows \"(empty)\", even when there are some valid values. Again, I cannot find the none_value_reason text in the result.html.\n\nAm I missing something?\n\nGiven the above-mentioned observations, I thought dropping None values is better and simpler than passing None values.",
+      "parentUuid": "c947a1fd_990cee53",
+      "revId": "55967ff86c55ef52eb449a24074e82d1143c7190",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
