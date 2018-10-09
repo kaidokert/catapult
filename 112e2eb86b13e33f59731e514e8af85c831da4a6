@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ed09ef59_7afddd68",
+        "filename": "telemetry/telemetry/internal/browser/tab_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-10-09T02:15:38Z",
+      "side": 1,
+      "message": "can you add comment explaining why this disable is needed?",
+      "revId": "112e2eb86b13e33f59731e514e8af85c831da4a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
