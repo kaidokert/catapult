@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c456c882_a3f0514e",
+        "filename": "dashboard/dashboard/update_dashboard_stats.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-09T17:57:55Z",
+      "side": 1,
+      "message": "Sorry, nevermind, this is already the default, and the sum statistic is already available:\nhttps://chromeperf.appspot.com/report?sid\u003d5c1589eba16441aed44ab92c9eec64ad3ff6d890085a5c4f2c533ef8452620fb\nhttps://github.com/catapult-project/catapult/blob/master/tracing/tracing/value/histogram.py#L837",
+      "revId": "407a1db86ed35a4380e625c2ac33d2eb7aaf4ea3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
