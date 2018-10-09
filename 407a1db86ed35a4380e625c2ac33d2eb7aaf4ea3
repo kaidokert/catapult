@@ -34,6 +34,24 @@
       "revId": "407a1db86ed35a4380e625c2ac33d2eb7aaf4ea3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b89448e3_670b7410",
+        "filename": "dashboard/dashboard/update_dashboard_stats.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-09T20:52:51Z",
+      "side": 1,
+      "message": "Yeah, I just needed to add \u0027sum\u0027 to the statistics menu and fix mergeData() to sum them up.\nhttps://v2spa-dot-chromeperf.appspot.com/#session\u003da148d749ba6d15acd423bf2e22ae5b06df98332ba5deb9bdd8ec5a53cb081d98",
+      "parentUuid": "aa35c44f_521e5d71",
+      "revId": "407a1db86ed35a4380e625c2ac33d2eb7aaf4ea3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
