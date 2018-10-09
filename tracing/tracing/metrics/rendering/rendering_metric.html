@@ -69,8 +69,11 @@ tr.exportTo('tr.metrics.rendering', function() {
         for (const gestureEvent of gestureEvents) {
           if (ir.boundsRange.intersectsRangeInclusive(
               gestureEvent.boundsRange)) {
+            // Include upto the end of the entire interaction range, because
+            // the gesture event does not always include all the traces that
+            // result from the gesture event.
             segments.push(new tr.model.um.Segment(
-                gestureEvent.start, gestureEvent.duration));
+                gestureEvent.start, ir.end - gestureEvent.start));
             gestureEventFound = true;
             break;
           }

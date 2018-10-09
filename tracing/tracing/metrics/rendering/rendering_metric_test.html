@@ -48,14 +48,14 @@ tr.b.unittest.testSuite(function() {
     const histograms = new tr.v.HistogramSet();
     tr.metrics.rendering.renderingMetric(histograms, model);
 
-    // The gesture interaction record should be adjusted to [10, 15]. So, the
-    // first two frames and the fifth frame are outside the interaction record
-    // and should be discarded. The remaining frames are 11 and 13 which result
-    // in a single frame time of 2 = 13 - 11.
+    // The gesture interaction record should be adjusted to [10, 20]. So, the
+    // first two frames are outside the interaction record and should be
+    // discarded. The remaining frames are 11, 13, and 16 which result in two
+    // frame times of 2 (= 13 - 11) and 3 (= 16 - 13).
     const hist = histograms.getHistogramNamed('frame_times_tbmv2');
     assert.closeTo(2, hist.min, 1e-6);
-    assert.closeTo(2, hist.max, 2e-6);
-    assert.closeTo(2, hist.average, 1e-6);
+    assert.closeTo(3, hist.max, 2e-6);
+    assert.closeTo(2.5, hist.average, 1e-6);
   });
 });
 </script>
