@@ -309,7 +309,8 @@ class ReplayServer(object):
             f.read(),
             '************************** END OF WPR LOG **********************'])
       logging.debug(wpr_log_content)
-    os.remove(self._temp_log_file_path)
+    #os.remove(self._temp_log_file_path)
+    logging.error('WPR log file is at %s', self._temp_log_file_path)
     self._temp_log_file_path = None
 
   def __enter__(self):
