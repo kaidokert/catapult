@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "34362032_16987de2",
+        "filename": "devil/devil/android/perf/perf_control.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-10-10T21:31:01Z",
+      "side": 1,
+      "message": "nit: it would be nice to add a comment explaining which flavor(s) of Fire TV this is.",
+      "range": {
+        "startLine": 27,
+        "startChar": 3,
+        "endLine": 27,
+        "endChar": 12
+      },
+      "revId": "9ba530963144ba6d61581ed4687ec9a5e57da1cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
