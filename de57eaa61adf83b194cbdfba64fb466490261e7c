@@ -16,6 +16,24 @@
       "revId": "de57eaa61adf83b194cbdfba64fb466490261e7c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16223564_bfc9986f",
+        "filename": "dashboard/bin/deploy_v2spa",
+        "patchSetId": 13
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-10T17:22:08Z",
+      "side": 1,
+      "message": "I refactored this file to use node_util, which automates running npm install.\nThis script still requires a bit of manual setup to symlink a few things into dashboard/ and update the un-overrideable ecmaVersion in hydrolysis/lib/ast-utils/js-parse.js (part of vulcanize, which is deprecated so probably not accepting patches), but those steps won\u0027t be necessary when vulcanize is replaced with webpack.",
+      "parentUuid": "77407b0e_69a89be5",
+      "revId": "de57eaa61adf83b194cbdfba64fb466490261e7c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
