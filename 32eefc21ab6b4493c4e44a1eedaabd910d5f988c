@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b57d7898_51187aab",
+        "filename": "dashboard/bin/deploy_v2spa",
+        "patchSetId": 14
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-10-10T17:27:46Z",
+      "side": 1,
+      "message": "You might consider migrating these into appengine_deploy or somewhere else common at a later date, in case anybody else wants to use them.",
+      "revId": "32eefc21ab6b4493c4e44a1eedaabd910d5f988c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

@@ -34,6 +34,24 @@
       "revId": "de57eaa61adf83b194cbdfba64fb466490261e7c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "914ca873_a884c0c8",
+        "filename": "dashboard/bin/deploy_v2spa",
+        "patchSetId": 13
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-10-10T17:27:46Z",
+      "side": 1,
+      "message": "That\u0027s fine. For reference I\u0027m fine if you have to install things on the side, just that it should be explicit with instructions and maybe an error if you don\u0027t have the right things.",
+      "parentUuid": "16223564_bfc9986f",
+      "revId": "de57eaa61adf83b194cbdfba64fb466490261e7c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
