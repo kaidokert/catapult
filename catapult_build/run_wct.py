@@ -41,10 +41,12 @@ def RunWct(base_dir, dep_dirs, persist=False, chrome_channel='stable'):
 
   user_data_dir = tempfile.mkdtemp()
 
+  os.chdir(base_dir)
+
   command = [wct_bin]
   command += ['-chrome', chrome_bin]
   command += ['-dir', user_data_dir]
-  command += ['-base', base_dir]
+  command += ['-prefix', 'dashboard/spa']
   if persist:
     command += ['-persist']
   for dep in dep_dirs:
