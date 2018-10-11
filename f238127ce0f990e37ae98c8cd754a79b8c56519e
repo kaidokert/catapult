@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f1733839_6141a8c5",
+        "filename": "dashboard/dashboard/spa/cache-request-base.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-10-11T16:48:48Z",
+      "side": 1,
+      "message": "This class should probably get it\u0027s own test coverage",
+      "revId": "f238127ce0f990e37ae98c8cd754a79b8c56519e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06d8f6c4_97fc3a56",
+        "filename": "dashboard/dashboard/spa/cache-request-base.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-10-11T16:48:48Z",
+      "side": 1,
+      "message": "bikeshed: Maybe this should be called BATCHED_WRITE_QUEUE or something",
+      "range": {
+        "startLine": 24,
+        "startChar": 6,
+        "endLine": 24,
+        "endChar": 24
+      },
+      "revId": "f238127ce0f990e37ae98c8cd754a79b8c56519e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc7a81fe_1a2b6fe8",
+        "filename": "dashboard/dashboard/spa/cache-request-base.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-10-11T16:48:48Z",
+      "side": 1,
+      "message": "This seems to be the only reference to this.",
+      "range": {
+        "startLine": 31,
+        "startChar": 14,
+        "endLine": 31,
+        "endChar": 28
+      },
+      "revId": "f238127ce0f990e37ae98c8cd754a79b8c56519e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aed193d9_6de99f36",
+        "filename": "dashboard/dashboard/spa/cache-request-base.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-10-11T16:48:48Z",
+      "side": 1,
+      "message": "How do you get back in here so that this guard is necessary?",
+      "revId": "f238127ce0f990e37ae98c8cd754a79b8c56519e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2561ba6_5b065bad",
+        "filename": "dashboard/dashboard/spa/key-value-cache-request.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-10-11T16:48:48Z",
+      "side": 1,
+      "message": "nit: put this at the top?",
+      "range": {
+        "startLine": 34,
+        "startChar": 11,
+        "endLine": 34,
+        "endChar": 13
+      },
+      "revId": "f238127ce0f990e37ae98c8cd754a79b8c56519e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
