@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "b59fc064_1ac72bf7",
+        "filename": "telemetry/telemetry/testing/run_tests.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2018-10-11T23:41:42Z",
+      "side": 1,
+      "message": "Currently the usage is super confusing. You have to say \n\nUsage is either\n\n[\u003ctest_name\u003e ...] [\u003coptions\u003e]\n\nor \n\n--test-filter\u003d\u003ctest_name\u003e::\u003ctest_name\u003e::... [\u003coptions\u003e]\n\nand --test-filter is exclusive with positional arguments. So you need to explain this and put a TODO in to fix the usage once it is simplified. The TODO is optional, but fixing the usage is necessary.\n\nOr maybe I\u0027m confused about how this code works?",
+      "parentUuid": "42355fe8_cb266280",
+      "range": {
+        "startLine": 32,
+        "startChar": 11,
+        "endLine": 32,
+        "endChar": 26
+      },
+      "revId": "2758b4bc927f7bb0704f0b4b6c2cf09d5db9cbb7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "113ef93f_4400c834",
         "filename": "telemetry/telemetry/testing/run_tests.py",
         "patchSetId": 3
