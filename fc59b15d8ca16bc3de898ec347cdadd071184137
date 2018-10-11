@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0fe868c2_4fcc7c2f",
+        "filename": "tracing/tracing/metrics/rendering/pipeline.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-11T19:36:16Z",
+      "side": 1,
+      "message": "Consider changing to an ES6 Map?",
+      "revId": "fc59b15d8ca16bc3de898ec347cdadd071184137",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea479a84_9f63af67",
+        "filename": "tracing/tracing/metrics/rendering/pipeline.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-11T19:36:16Z",
+      "side": 1,
+      "message": "It looks like renderingMetric is taking 160ms on average, up to several hundred ms. If metric computation latency is a concern, I\u0027d recommend considering merging these two loops if possible.",
+      "revId": "fc59b15d8ca16bc3de898ec347cdadd071184137",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
