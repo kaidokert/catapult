@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "540ae828_5471a455",
+        "filename": "tracing/tracing/metrics/rendering/pipeline_test.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-10-11T15:31:35Z",
+      "side": 1,
+      "message": "This might fail at some point since RCF should happen before SA. Perhaps we could bump SurfaceAggregation to 15, and add another segment that includes that time?",
+      "revId": "a3c9aca09d14016d968eb1bb31a9765153ad8196",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
