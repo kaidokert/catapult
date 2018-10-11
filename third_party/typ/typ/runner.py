@@ -354,6 +354,7 @@ class Runner(object):
 
         try:
             names = self._name_list_from_args(args)
+            add validate names
             classifier = self.classifier or _default_classifier(args)
 
             for name in names:
@@ -733,8 +734,12 @@ def _matches(name, globs):
 
 
 def _default_classifier(args):
+    exact_test_filter = args.exact_tests_filter.split('::')
     def default_classifier(test_set, test):
         name = test.id()
+        if exact_tests_filter and name not in exact_tests_filter:
+            test_set.tests_to_skip.append(
+                TestInput(name, "doesn't match test filter"))
         if not args.all and _matches(name, args.skip):
             test_set.tests_to_skip.append(TestInput(name,
                                                     'skipped by request'))

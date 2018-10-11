@@ -65,6 +65,10 @@ class ArgumentParser(argparse.ArgumentParser):
                               action='append',
                               help=('Globs of tests to run in isolation '
                                     '(serially).'))
+            self.add_argument('--exact-test-filter', metavar='TEST_NAMES',
+                              help=('a double-colon-separated ("::") list of'
+                                    'exact test names, to run just that subset'
+                                    'of tests'))
             self.add_argument('--skip', metavar='glob', default=[],
                               action='append',
                               help=('Globs of test names to skip ('
@@ -74,7 +78,6 @@ class ArgumentParser(argparse.ArgumentParser):
                               help=('Globs of test filenames to look for ('
                                     'can specify multiple times; defaults '
                                     'to %s).' % DEFAULT_SUFFIXES))
-
         if reporting:
             self.add_argument('--builder-name',
                               help=('Builder name to include in the '
