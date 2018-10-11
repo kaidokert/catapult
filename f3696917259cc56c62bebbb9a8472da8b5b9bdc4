@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "71dac37d_427b31c3",
+        "filename": "dashboard/dashboard/spa/cache-request-base.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-10-11T21:28:17Z",
+      "side": 1,
+      "message": "This is an async function with an await on the filter, seems like it\u0027s possible to mutate this while running in a way that it could return an unexpected result. Does that matter?\n\nie. if you await on the filter, and the next item in the list is an in-progress request that would have matched, but completes and gets removed, is that fine?",
+      "range": {
+        "startLine": 50,
+        "startChar": 24,
+        "endLine": 50,
+        "endChar": 44
+      },
+      "revId": "f3696917259cc56c62bebbb9a8472da8b5b9bdc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
