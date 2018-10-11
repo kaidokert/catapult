@@ -16,6 +16,24 @@
       "revId": "2758b4bc927f7bb0704f0b4b6c2cf09d5db9cbb7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37c5ffaf_d9cb0b46",
+        "filename": "telemetry/telemetry/testing/run_tests.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-10-11T21:09:33Z",
+      "side": 1,
+      "message": "For substring matches, one can already use positional args.\n\nFor glob match, we support skip (below), but not matching. AFAICT, no one has been asking for glob matches on test names in the last few years. The substrings matches is the most commonly used.",
+      "parentUuid": "113ef93f_4400c834",
+      "revId": "2758b4bc927f7bb0704f0b4b6c2cf09d5db9cbb7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
