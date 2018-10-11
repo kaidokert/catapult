@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "113ef93f_4400c834",
+        "filename": "telemetry/telemetry/testing/run_tests.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2018-10-11T21:07:03Z",
+      "side": 1,
+      "message": "In this harness, is there going to be a way to do substring or glob matches on test names in the long run?",
+      "revId": "2758b4bc927f7bb0704f0b4b6c2cf09d5db9cbb7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
