@@ -19,7 +19,8 @@ found in the LICENSE file.
  */
 tr.exportTo('tr.metrics.rendering', function() {
   function eventIsValidGraphicsEvent_(event, eventMap) {
-    if (!event.bindId || !event.args || !event.args.step) {
+    if (event.title !== 'Graphics.Pipeline' || !event.bindId || !event.args ||
+        !event.args.step) {
       return false;
     }
     const bindId = event.bindId;
@@ -86,30 +87,22 @@ tr.exportTo('tr.metrics.rendering', function() {
   }
 
   function addPipelineHistograms(histograms, model, segments) {
-    let events = [];
-    for (const thread of model.getAllThreads()) {
-      const graphicsEvents = thread.sliceGroup.slices.filter(
-          slice => {
-            if (slice.title !== 'Graphics.Pipeline') return false;
-            for (const segment of segments) {
-              if (segment.boundsRange.containsExplicitRangeInclusive(
-                  slice.start, slice.end)) {
-                return true;
-              }
-            }
-            return false;
-          }
-      );
-      events = events.concat(graphicsEvents);
-    }
+    const ranges = segments.map(s => s.boundsRange);
     const bindEvents = {};
-    for (const event of events) {
-      if (!eventIsValidGraphicsEvent_(event, bindEvents)) continue;
-      const bindId = event.bindId;
-      if (!(bindId in bindEvents)) {
-        bindEvents[bindId] = {};
+    for (const thread of model.getAllThreads()) {
+      const slices = thread.sliceGroup;
+      for (const event of slices.getDescendantEventsInSortedRanges(ranges)) {
+        if (!eventIsValidGraphicsEvent_(event, {})) continue;
+        if (!(event.bindId in bindEvents)) bindEvents[event.bindId] = {};
       }
-      bindEvents[bindId][event.args.step] = event;
+    }
+    for (const thread of model.getAllThreads()) {
+      for (const event of thread.sliceGroup.childEvents()) {
+        if (eventIsValidGraphicsEvent_(event, bindEvents) &&
+            (event.bindId in bindEvents)) {
+          bindEvents[event.bindId][event.args.step] = event;
+        }
+      }
     }
 
     const dcThread = getDisplayCompositorThread_(model);
