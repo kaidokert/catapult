@@ -34,6 +34,24 @@
       "revId": "2758b4bc927f7bb0704f0b4b6c2cf09d5db9cbb7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "415c574f_63fd4133",
+        "filename": "telemetry/telemetry/testing/run_tests.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2018-10-11T21:12:01Z",
+      "side": 1,
+      "message": "Thanks for this info. In the GPU tests\u0027 harness, substring matches are frequently used, so was curious whether that was still going to be supported in this harness.",
+      "parentUuid": "37c5ffaf_d9cb0b46",
+      "revId": "2758b4bc927f7bb0704f0b4b6c2cf09d5db9cbb7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
