@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "42355fe8_cb266280",
+        "filename": "telemetry/telemetry/testing/run_tests.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-10-11T23:24:54Z",
+      "side": 1,
+      "message": "Can you clarify what TODO?",
+      "parentUuid": "b7e7faa5_dc48dbeb",
+      "range": {
+        "startLine": 32,
+        "startChar": 11,
+        "endLine": 32,
+        "endChar": 26
+      },
+      "revId": "2758b4bc927f7bb0704f0b4b6c2cf09d5db9cbb7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "113ef93f_4400c834",
         "filename": "telemetry/telemetry/testing/run_tests.py",
         "patchSetId": 3
