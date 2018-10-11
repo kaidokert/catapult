@@ -22,6 +22,30 @@
       "revId": "f3696917259cc56c62bebbb9a8472da8b5b9bdc4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52bc209e_d15ca346",
+        "filename": "dashboard/dashboard/spa/cache-request-base.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-11T21:56:59Z",
+      "side": 1,
+      "message": "Yes, that\u0027s fine. Requests are not removed from IN_PROGRESS_REQUESTS until they finish writing to the database, so if request A doesn\u0027t find any in-progress requests because request B just finished, then A will find B\u0027s results in the database.\nIf findInProgressRequest returns a request object that was removed from IN_PROGRESS_REQUESTS while waiting for the filter, that\u0027s ok, too, because the request\u0027s responsePromise still contains its response, so it\u0027s ok for the calling request to use it even though that data has already been written to the database.\nIn practice, it\u0027s not generally possible for a request to complete in the time between filter() is called and when it resolves. In the case of KeyValueCacheRequest, for example, filter() awaits databaseKeyPromise, and getResponse() awaits databaseKeyPromise and then some other stuff. So, if filter is called before other.databaseKeyPromise has resolved, then filter will wait for databaseKeyPromise then return other, but other.getResponse() still needs to read from the database and fetch() and write to the database before it is removed from IN_PROGRESS_REQUESTS.\nLet me know if I should draw some swim-lane diagrams.",
+      "parentUuid": "71dac37d_427b31c3",
+      "range": {
+        "startLine": 50,
+        "startChar": 24,
+        "endLine": 50,
+        "endChar": 44
+      },
+      "revId": "f3696917259cc56c62bebbb9a8472da8b5b9bdc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
