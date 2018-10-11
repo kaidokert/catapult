@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a4da03b1_dea44eee",
+        "filename": "dashboard/dashboard/common/timing.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2018-10-11T01:20:20Z",
+      "side": 1,
+      "message": "watch out for cardinality of metric names. Can the label or the suffix be a field instead of part of the metric name?",
+      "range": {
+        "startLine": 16,
+        "startChar": 8,
+        "endLine": 16,
+        "endChar": 36
+      },
+      "revId": "4ada6cc87c6a38a9e9bb317102f5d4db730b93d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
