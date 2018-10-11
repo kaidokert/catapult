@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "b7e7faa5_dc48dbeb",
+        "filename": "telemetry/telemetry/testing/run_tests.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2018-10-11T22:54:06Z",
+      "side": 1,
+      "message": "This usage is soon to be out of date since we don\u0027t support both --test_filter and positional args in a single run. Update this usage please. Also add a TODO.",
+      "range": {
+        "startLine": 32,
+        "startChar": 11,
+        "endLine": 32,
+        "endChar": 26
+      },
+      "revId": "2758b4bc927f7bb0704f0b4b6c2cf09d5db9cbb7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "113ef93f_4400c834",
         "filename": "telemetry/telemetry/testing/run_tests.py",
         "patchSetId": 3
