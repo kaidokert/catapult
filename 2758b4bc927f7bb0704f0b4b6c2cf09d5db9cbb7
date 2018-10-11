@@ -52,6 +52,24 @@
       "revId": "2758b4bc927f7bb0704f0b4b6c2cf09d5db9cbb7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "07fc221e_fcf25cc2",
+        "filename": "telemetry/telemetry/testing/run_tests.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-10-11T21:13:24Z",
+      "side": 1,
+      "message": "Yes it will. The substring match of positional args is so convenient that I am also a big fan :)",
+      "parentUuid": "415c574f_63fd4133",
+      "revId": "2758b4bc927f7bb0704f0b4b6c2cf09d5db9cbb7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
