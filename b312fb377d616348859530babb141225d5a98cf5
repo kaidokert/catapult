@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "42100cb7_aa7668fe",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-10-11T17:18:57Z",
+      "side": 1,
+      "message": "I guess this isn\u0027t really what I was looking for, more like one method that produces only the comment string as a return value, and another that computes the assigning, CCing, and merging. That way we\u0027ve divided up the responsibilities along clear boundaries.",
+      "revId": "b312fb377d616348859530babb141225d5a98cf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
