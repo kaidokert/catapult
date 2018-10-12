@@ -39,6 +39,23 @@
       "revId": "0e46805df788f12d3c910670eabbc798deae3660",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63ac9295_decda597",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-10-12T01:29:44Z",
+      "side": 1,
+      "message": "what does it mean by executing s.t like \"var x \u003d ...\" that is initiated by user in the UI?",
+      "revId": "0e46805df788f12d3c910670eabbc798deae3660",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
