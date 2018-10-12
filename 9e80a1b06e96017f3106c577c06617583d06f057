@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4152ee6b_52f20841",
+        "filename": "experimental/soundwave/data/system_health_stories.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-10-12T10:18:52Z",
+      "side": 1,
+      "message": "This can be obtained running e.g.: ./run_benchmark list system_health.memory_mobile --json foo.json\n\nbut the command is a bit awkward to run and takes a long time (in addition to listing it\u0027s also trying to figure out which apks are available locally and on devices, and a bunch of other unrelated things), so better just stash this here for now.",
+      "revId": "9e80a1b06e96017f3106c577c06617583d06f057",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
