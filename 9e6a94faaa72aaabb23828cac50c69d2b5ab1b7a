@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2271b6da_6b868fb6",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-10-12T20:07:25Z",
+      "side": 1,
+      "message": "Unused",
+      "revId": "9e6a94faaa72aaabb23828cac50c69d2b5ab1b7a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "933960de_7c447504",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-10-12T20:07:25Z",
+      "side": 1,
+      "message": "nit: Helper methods go after the calling method. (Most important methods come first.)",
+      "revId": "9e6a94faaa72aaabb23828cac50c69d2b5ab1b7a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bae8b888_b4f2fd50",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-10-12T20:07:25Z",
+      "side": 1,
+      "message": "nit: these comments seem outdated.",
+      "revId": "9e6a94faaa72aaabb23828cac50c69d2b5ab1b7a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
