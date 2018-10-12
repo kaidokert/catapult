@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "63d2cf35_2715e419",
+        "filename": "experimental/soundwave/bin/soundwave",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-12T15:49:23Z",
+      "side": 1,
+      "message": "Eh, I\u0027m already sort of trying to redefine \"report\" away from chromeperf.appspot.com/report towards v2spa reports, so this new type of \"report\" might be even more confusing.\nHow are these new reports different from v2spa\u0027s /api/report/generate?",
+      "revId": "9e80a1b06e96017f3106c577c06617583d06f057",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4152ee6b_52f20841",
         "filename": "experimental/soundwave/data/system_health_stories.json",
         "patchSetId": 1
@@ -31,6 +48,24 @@
       "side": 1,
       "message": "Can we have a test somewhere that this is still up-to-date?",
       "parentUuid": "4152ee6b_52f20841",
+      "revId": "9e80a1b06e96017f3106c577c06617583d06f057",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2a4427f_93eda54c",
+        "filename": "experimental/soundwave/data/system_health_stories.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-12T15:49:23Z",
+      "side": 1,
+      "message": "Why not just hit chromeperf.appspot.com/api/describe?\nSet `test_suite\u003dsystem_health.memory_mobile`, it will do a single datastore get and return a json object like {bots, measurements, cases, caseTags}.\nYou don\u0027t even need to pass an oauth token unless you need internal bots.",
+      "parentUuid": "ff4097d5_ae175ad2",
       "revId": "9e80a1b06e96017f3106c577c06617583d06f057",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
