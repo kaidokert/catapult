@@ -71,9 +71,12 @@ tr.exportTo('tr.e.importer.linux_perf', function() {
       if (eventBase.tgid !== undefined) {
         const tgid = parseInt(eventBase.tgid);
         const process = this.importer.model_.getOrCreateProcess(tgid);
-        if (!process.getThread(pid)) {
+        const storedThread = process.getThread(pid);
+        if (!storedThread) {
           const thread = process.getOrCreateThread(pid);
           thread.name = eventBase.threadName;
+        } else if (storedThread.name === '<...>') {
+          storedThread.name = eventBase.threadName;
         }
       }
 
