@@ -6,57 +6,8 @@
 
 import Range from './range.js';
 import {CacheRequestBase, READONLY, READWRITE} from './cache-request-base.js';
+import ResultChannelSender from './result-channel-sender.js';
 
-
-/**
- * Timeseries are stored in IndexedDB to optimize the speed of ranged reading.
- * Here is the structure in TypeScript:
- *
- *   type ReportDatabase = {
- *     // Reports for each row, indexed by revision
- *     reports: {
- *       [revision: number]: [Report]
- *     },
- *
- *     // Data that doesn't change between revisions
- *     metadata: {
- *       rows: [Row],    // List of rows for this template
- *       modified: Date, // If this doesn't match, get rid of existing data.
- *
- *       // General data for the template
- *       editable: boolean,
- *       name: string,
- *       internal: boolean,
- *       owners: [string],
- *       statistics: [string]
- *     }
- *   }
- *
- *   type Row = {
- *     bots: [string],
- *     improvement_direction: number,
- *     label: string,
- *     measurement: string,
- *     testCases: [string],
- *     testSuites: [string],
- *     units: string
- *   }
- *
- *   type Report = {
- *     descriptors: [Descriptor],
- *     statistics: any, // see RunningStatistics.fromDict()
- *     // revision: number, // not being used
- *   }
- *
- *   type Descriptor = {
- *     bot: string,
- *     testCase: string,
- *     testSuite: string
- *   }
- *
- */
-
-// Constants for the database structure
 const STORE_REPORTS = 'reports';
 const STORE_METADATA = 'metadata';
 const STORES = [STORE_REPORTS, STORE_METADATA];
@@ -67,9 +18,7 @@ export default class ReportCacheRequest extends CacheRequestBase {
     const {searchParams} = new URL(fetchEvent.request.url);
 
     const id = searchParams.get('id');
-    if (!id) {
-      throw new Error('ID is not specified for this report request!');
-    }
+    if (!id) throw new Error('ID is not specified for this report request!');
 
     this.templateId_ = parseInt(id);
     if (isNaN(this.templateId_)) {
@@ -96,8 +45,60 @@ export default class ReportCacheRequest extends CacheRequestBase {
     this.isTemplateDifferent_ = false;
   }
 
-  get timingCategory() {
-    return 'Reports';
+  respond() {
+    super.respond();
+    const sender = new ResultChannelSender(this.fetchEvent.request.url);
+    this.fetchEvent.waitUntil(sender.send(this.generateResults()));
+  }
+
+  async* generateResults() {
+    TODO`race readDatabase with readNetwork`;
+  }
+
+  async readCache_() {
+    const timing = this.time('Cache');
+    const response = await this.readIDB_();
+
+    if (response) {
+      timing.end();
+    } else {
+      timing.remove();
+    }
+
+    return {
+      name: 'IndexedDB',
+      result: response,
+    };
+  }
+
+  async readIDB_() {
+    const database = await this.openIDB_(this.databaseName);
+    const timing = this.time('Read');
+    const results = await this.read(database);
+    timing.end();
+    return results;
+  }
+
+  async writeIDB_(networkResults) {
+    const database = await this.openIDB_(this.databaseName);
+    const timing = this.time('Write');
+    const results = await this.write(database, networkResults);
+    timing.end();
+    return results;
+  }
+  async readNetwork_() {
+    let timing = this.time('Network');
+    const response = await fetch(this.fetchEvent.request);
+    timing.end();
+
+    timing = this.time('Parse JSON');
+    const json = await response.json();
+    timing.end();
+
+    return {
+      name: 'Network',
+      result: json,
+    };
   }
 
   get databaseName() {
