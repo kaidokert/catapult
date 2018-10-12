@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4e177a67_23e3c8f2",
+        "filename": "telemetry/telemetry/internal/actions/page_action.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1003154
+      },
+      "writtenOn": "2018-10-12T01:38:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02eb653d_e817cb4c",
+      "range": {
+        "startLine": 73,
+        "startChar": 57,
+        "endLine": 73,
+        "endChar": 68
+      },
+      "revId": "0e46805df788f12d3c910670eabbc798deae3660",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f1c16632_09cbd088",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend.py",
         "patchSetId": 1
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "a244adae_84049c66",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1003154
+      },
+      "writtenOn": "2018-10-12T01:38:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f1c16632_09cbd088",
+      "revId": "0e46805df788f12d3c910670eabbc798deae3660",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "63ac9295_decda597",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend.py",
         "patchSetId": 1
@@ -56,6 +98,24 @@
       "revId": "0e46805df788f12d3c910670eabbc798deae3660",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17e0870f_8b49c810",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1003154
+      },
+      "writtenOn": "2018-10-12T01:38:51Z",
+      "side": 1,
+      "message": "That\u0027s a question for DevTools folks as that\u0027s a public API option:\n\nhttps://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-evaluate\n\nMy understanding is that if the code has anything like click() or play() or goFullscreen(), etc, that requires it to be initiated by a user, then this bit will make a difference.",
+      "parentUuid": "63ac9295_decda597",
+      "revId": "0e46805df788f12d3c910670eabbc798deae3660",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
