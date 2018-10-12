@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1adcc5fc_c56eb971",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-10-12T10:34:45Z",
+      "side": 1,
+      "message": "Done. Preventing potential failures is very helpful, thank you!",
+      "parentUuid": "b86ebfb0_707ee6f3",
+      "revId": "cdbcbd6b917dc2d84722673d4b9f5529af336af6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bdbe9af1_8c219b0d",
         "filename": "tracing/tracing/metrics/android_startup_metric.html",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2018-10-11T18:31:04Z",
       "side": 1,
       "message": "Do you want to add startEvent to this RelatedEventSet?",
+      "revId": "cdbcbd6b917dc2d84722673d4b9f5529af336af6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c44bc469_6ca20097",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-10-12T10:34:45Z",
+      "side": 1,
+      "message": "OK, good idea, Done.",
+      "parentUuid": "bdbe9af1_8c219b0d",
       "revId": "cdbcbd6b917dc2d84722673d4b9f5529af336af6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
