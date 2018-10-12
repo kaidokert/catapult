@@ -1,0 +1,453 @@
+[
+  {
+    "name": "background:media:imgur",
+    "tags": [
+      "2016",
+      "health_check"
+    ]
+  },
+  {
+    "name": "background:news:nytimes",
+    "tags": [
+      "javascript_heavy",
+      "2016"
+    ]
+  },
+  {
+    "name": "background:search:google",
+    "tags": [
+      "2016",
+      "health_check"
+    ]
+  },
+  {
+    "name": "background:social:facebook",
+    "tags": [
+      "2016"
+    ]
+  },
+  {
+    "name": "background:tools:gmail",
+    "tags": [
+      "2016",
+      "health_check"
+    ]
+  },
+  {
+    "name": "browse:chrome:newtab",
+    "tags": [
+      "emerging_market",
+      "2016"
+    ]
+  },
+  {
+    "name": "browse:chrome:omnibox",
+    "tags": [
+      "emerging_market",
+      "2016"
+    ]
+  },
+  {
+    "name": "browse:media:facebook_photos",
+    "tags": [
+      "emerging_market",
+      "2016"
+    ]
+  },
+  {
+    "name": "browse:media:flickr_infinite_scroll",
+    "tags": [
+      "2016",
+      "infinite_scroll"
+    ]
+  },
+  {
+    "name": "browse:media:imgur",
+    "tags": [
+      "emerging_market",
+      "2016"
+    ]
+  },
+  {
+    "name": "browse:media:youtube",
+    "tags": [
+      "javascript_heavy",
+      "emerging_market",
+      "health_check",
+      "2016"
+    ]
+  },
+  {
+    "name": "browse:news:cnn",
+    "tags": [
+      "javascript_heavy",
+      "health_check",
+      "2016"
+    ]
+  },
+  {
+    "name": "browse:news:cnn:2018",
+    "tags": [
+      "javascript_heavy",
+      "health_check",
+      "2018"
+    ]
+  },
+  {
+    "name": "browse:news:cricbuzz",
+    "tags": [
+      "emerging_market",
+      "2016"
+    ]
+  },
+  {
+    "name": "browse:news:globo",
+    "tags": [
+      "emerging_market",
+      "2016"
+    ]
+  },
+  {
+    "name": "browse:news:qq",
+    "tags": [
+      "international",
+      "health_check",
+      "2016"
+    ]
+  },
+  {
+    "name": "browse:news:reddit",
+    "tags": [
+      "2016"
+    ]
+  },
+  {
+    "name": "browse:news:toi",
+    "tags": [
+      "emerging_market",
+      "2016"
+    ]
+  },
+  {
+    "name": "browse:news:washingtonpost",
+    "tags": [
+      "2016"
+    ]
+  },
+  {
+    "name": "browse:shopping:amazon",
+    "tags": [
+      "emerging_market",
+      "2016"
+    ]
+  },
+  {
+    "name": "browse:shopping:avito",
+    "tags": [
+      "2016",
+      "emerging_market",
+      "health_check"
+    ]
+  },
+  {
+    "name": "browse:shopping:flipkart",
+    "tags": [
+      "emerging_market",
+      "2016"
+    ]
+  },
+  {
+    "name": "browse:shopping:lazada",
+    "tags": [
+      "emerging_market",
+      "2016"
+    ]
+  },
+  {
+    "name": "browse:social:facebook",
+    "tags": [
+      "emerging_market",
+      "2016"
+    ]
+  },
+  {
+    "name": "browse:social:facebook_infinite_scroll",
+    "tags": [
+      "2016"
+    ]
+  },
+  {
+    "name": "browse:social:facebook_infinite_scroll:2018",
+    "tags": [
+      "2018"
+    ]
+  },
+  {
+    "name": "browse:social:instagram",
+    "tags": [
+      "emerging_market",
+      "2016"
+    ]
+  },
+  {
+    "name": "browse:social:pinterest_infinite_scroll",
+    "tags": [
+      "2016",
+      "infinite_scroll"
+    ]
+  },
+  {
+    "name": "browse:social:tumblr_infinite_scroll",
+    "tags": [
+      "javascript_heavy",
+      "infinite_scroll",
+      "2016"
+    ]
+  },
+  {
+    "name": "browse:social:twitter",
+    "tags": [
+      "2016"
+    ]
+  },
+  {
+    "name": "browse:tech:discourse_infinite_scroll",
+    "tags": [
+      "2016",
+      "infinite_scroll"
+    ]
+  },
+  {
+    "name": "browse:tech:discourse_infinite_scroll:2018",
+    "tags": [
+      "infinite_scroll",
+      "2018"
+    ]
+  },
+  {
+    "name": "browse:tools:maps",
+    "tags": [
+      "emerging_market",
+      "2016"
+    ]
+  },
+  {
+    "name": "load:chrome:blank",
+    "tags": [
+      "2016",
+      "health_check"
+    ]
+  },
+  {
+    "name": "load:games:bubbles",
+    "tags": [
+      "2016",
+      "health_check"
+    ]
+  },
+  {
+    "name": "load:games:lazors",
+    "tags": [
+      "2016",
+      "health_check"
+    ]
+  },
+  {
+    "name": "load:games:spychase",
+    "tags": [
+      "2016",
+      "health_check"
+    ]
+  },
+  {
+    "name": "load:media:dailymotion",
+    "tags": [
+      "2016"
+    ]
+  },
+  {
+    "name": "load:media:facebook_photos",
+    "tags": [
+      "emerging_market",
+      "2016"
+    ]
+  },
+  {
+    "name": "load:media:google_images",
+    "tags": [
+      "2016",
+      "health_check"
+    ]
+  },
+  {
+    "name": "load:media:imgur",
+    "tags": [
+      "2016",
+      "health_check"
+    ]
+  },
+  {
+    "name": "load:media:soundcloud",
+    "tags": [
+      "2016"
+    ]
+  },
+  {
+    "name": "load:media:youtube",
+    "tags": [
+      "2016",
+      "emerging_market",
+      "health_check"
+    ]
+  },
+  {
+    "name": "load:news:cnn",
+    "tags": [
+      "javascript_heavy",
+      "2016"
+    ]
+  },
+  {
+    "name": "load:news:irctc",
+    "tags": [
+      "2016",
+      "emerging_market",
+      "health_check"
+    ]
+  },
+  {
+    "name": "load:news:nytimes",
+    "tags": [
+      "2016",
+      "health_check"
+    ]
+  },
+  {
+    "name": "load:news:qq",
+    "tags": [
+      "international",
+      "2016"
+    ]
+  },
+  {
+    "name": "load:news:reddit",
+    "tags": [
+      "2016",
+      "health_check"
+    ]
+  },
+  {
+    "name": "load:news:washingtonpost",
+    "tags": [
+      "2016",
+      "health_check"
+    ]
+  },
+  {
+    "name": "load:news:wikipedia",
+    "tags": [
+      "emerging_market",
+      "2016"
+    ]
+  },
+  {
+    "name": "load:search:baidu",
+    "tags": [
+      "international",
+      "health_check",
+      "2016"
+    ]
+  },
+  {
+    "name": "load:search:ebay",
+    "tags": [
+      "2016",
+      "health_check"
+    ]
+  },
+  {
+    "name": "load:search:google",
+    "tags": [
+      "2016"
+    ]
+  },
+  {
+    "name": "load:search:taobao",
+    "tags": [
+      "international",
+      "health_check",
+      "2016"
+    ]
+  },
+  {
+    "name": "load:search:yahoo",
+    "tags": [
+      "2016"
+    ]
+  },
+  {
+    "name": "load:search:yandex",
+    "tags": [
+      "international",
+      "2016"
+    ]
+  },
+  {
+    "name": "load:social:twitter",
+    "tags": [
+      "2016"
+    ]
+  },
+  {
+    "name": "load:tools:docs",
+    "tags": [
+      "2016",
+      "health_check"
+    ]
+  },
+  {
+    "name": "load:tools:drive",
+    "tags": [
+      "javascript_heavy",
+      "2016"
+    ]
+  },
+  {
+    "name": "load:tools:dropbox",
+    "tags": [
+      "2016"
+    ]
+  },
+  {
+    "name": "load:tools:gmail",
+    "tags": [
+      "2016"
+    ]
+  },
+  {
+    "name": "load:tools:stackoverflow",
+    "tags": [
+      "2016",
+      "health_check"
+    ]
+  },
+  {
+    "name": "load:tools:weather",
+    "tags": [
+      "javascript_heavy",
+      "2016"
+    ]
+  },
+  {
+    "name": "long_running:tools:gmail-background",
+    "tags": [
+      "2016"
+    ]
+  },
+  {
+    "name": "long_running:tools:gmail-foreground",
+    "tags": [
+      "2016"
+    ]
+  }
+]

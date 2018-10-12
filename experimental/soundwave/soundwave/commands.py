@@ -8,6 +8,7 @@ import sqlite3
 
 from soundwave import dashboard_api
 from soundwave import pandas_sqlite
+from soundwave import reports
 from soundwave import tables
 from soundwave import worker_pool
 
@@ -126,6 +127,8 @@ def FetchTimeseriesData(args):
       test_paths = api.ListTestPaths(args.benchmark, sheriff=args.sheriff)
     elif args.input_file is not None:
       test_paths = list(_ReadTestPathsFromFile(args.input_file))
+    elif args.report is not None:
+      test_paths = list(reports.IterTestPaths(args.report))
     else:
       raise NotImplementedError('Expected --benchmark or --input-file')
 
