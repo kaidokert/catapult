@@ -22,4 +22,4 @@ class ClickElementAction(page_action.PageAction):
         }'''
     page_action.EvaluateCallbackWithElement(
         tab, code, selector=self.selector, text=self.text,
-        element_function=self.element_function)
+        element_function=self.element_function, user_gesture=True)
