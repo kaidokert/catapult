@@ -16,6 +16,24 @@
       "revId": "9a90929ce83738bfc85d771b9e134abc5395203f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2faae02d_f30ba672",
+        "filename": "dashboard/dashboard/spa/key-value-cache-request.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-12T21:36:29Z",
+      "side": 1,
+      "message": "Yep, clarified.",
+      "parentUuid": "1390d264_8f1c3204",
+      "revId": "9a90929ce83738bfc85d771b9e134abc5395203f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
