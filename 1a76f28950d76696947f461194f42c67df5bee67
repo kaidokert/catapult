@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d185dce_38cb6487",
+        "filename": "dashboard/dashboard/spa/test-suites-cache-request.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2018-10-12T14:43:50Z",
+      "side": 1,
+      "message": "This headers, maybe auth check is repeated a lot, might consider just making a function out of it.",
+      "range": {
+        "startLine": 11,
+        "startChar": 10,
+        "endLine": 11,
+        "endChar": 17
+      },
+      "revId": "1a76f28950d76696947f461194f42c67df5bee67",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
