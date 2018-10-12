@@ -199,15 +199,9 @@ tr.b.unittest.testSuite(function() {
       mainThread.name = 'CrRendererMain';
       mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
         cat: 'toplevel',
-        title: 'ThreadControllerImpl::DoWork',
+        title: 'ThreadControllerImpl::RunTask',
         start: 10,
         duration: 1,
-      }));
-      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
-        cat: 'toplevel',
-        title: 'TaskQueueManager::ProcessTaskFromWorkQueue',
-        start: 20,
-        duration: 2,
       }));
       mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
         cat: 'toplevel',
@@ -223,13 +217,10 @@ tr.b.unittest.testSuite(function() {
     const tasks = EventFinderUtils.findToplevelSchedulerTasks(
         rendererHelper.mainThread);
 
-    assert.strictEqual(tasks.length, 2);
-    assert.strictEqual(tasks[0].title, 'ThreadControllerImpl::DoWork');
+    assert.strictEqual(tasks.length, 1);
+    assert.strictEqual(tasks[0].title, 'ThreadControllerImpl::RunTask');
     assert.strictEqual(tasks[0].start, 10);
     assert.strictEqual(tasks[0].duration, 1);
-    assert.strictEqual(tasks[1].title,
-        'TaskQueueManager::ProcessTaskFromWorkQueue');
-    assert.strictEqual(tasks[1].duration, 2);
   });
 });
 </script>
