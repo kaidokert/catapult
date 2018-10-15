@@ -24,13 +24,6 @@ tr.exportTo('cp', () => {
       this.queryParams_.set('revisions', this.revisions_);
     }
 
-    async* reader() {
-      const listener = new cp.ResultChannelReceiver(this.url_);
-      const response = await this.response;
-      if (response) yield response;
-      for await (const update of listener) yield update;
-    }
-
     get url_() {
       return `/api/report/generate?${this.queryParams_}`;
     }
@@ -106,20 +99,7 @@ tr.exportTo('cp', () => {
     }
   }
 
-  /*
-   * type options = {
-   *   id: number,
-   *   name: string,
-   *   modified: Date,
-   *   revisions: [number|"latest"],
-   * }
-   */
-  const ReportReader = options => new ReportRequest(options).reader();
-  // TODO remove this shortcut
-  // TODO rename this file to ReportRequest
-
   return {
-    ReportReader,
     ReportRequest,
   };
 });
