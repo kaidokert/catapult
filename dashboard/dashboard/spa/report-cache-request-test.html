@@ -7,54 +7,36 @@ found in the LICENSE file.
 
 <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 <script src="/bower_components/web-component-tester/browser.js"></script>
-<link rel="import" href="/dashboard/spa/report-cache.html">
+<link rel="import" href="/dashboard/spa/report-request.html">
 <link rel="import" href="/dashboard/spa/simple-redux.html">
-
 <script type="module" src="/dashboard/spa/cache-request-base.js"></script>
 <script type="module" src="/dashboard/spa/report-cache-request.js"></script>
 <script type="module">
 'use strict';
-import cacheRequest from './cache-request-base.js';
+import testUtils from './cache-request-base.js';
 import ReportCacheRequest from './report-cache-request.js';
-
-global.testUtils = cacheRequest;
-global.ReportCacheRequest = ReportCacheRequest;
-</script>
-
-<script>
-'use strict';
 suite('ReportCacheRequest', function() {
-  /**
-   * mockRequest returns a `Request`[1] object mimicking a typical request to
-   * the "/api/timeseries2" endpoint. The request is later used by `fetch`.
-   * [1]: https://developer.mozilla.org/en-US/docs/Web/API/Request
-   *
-   *   type parameters = {
-   *     id: number,
-   *     name: string,
-   *     modified: Date,
-   *     revisions: [number|"latest"],
-   *   }
-   */
-  function mockRequest(parameters) {
-    const url = new cp.ReportRequest(parameters).url_;
-    return new Request(url);
+  class MockFetchEvent {
+    constructor(parameters) {
+      this.request = {
+        url: 'http://example.com/path',
+        clone() {
+          return this;
+        },
+        async formData() {
+          return new Map([
+            ['id', parameters.id],
+            ['modified', parameters.modified.getTime()],
+            ['revisions', parameters.revisions.join(',')],
+          ]);
+        }
+      };
+    }
+
+    waitUntil() {
+    }
   }
 
-  /**
-   * mockApiResponse differs from cp.RequestBase#localhostResponse_ by
-   * being simpler, predictable, and tunable.
-   *
-   *   type parameters = {
-   *     id: number,
-   *     name: string,
-   *     modified: Date,
-   *     revisions: [number|"latest"],
-   *     editable?: boolean,
-   *     internal?: boolean,
-   *     owners?: [string],
-   *   }
-   */
   function mockApiResponse(parameters) {
     const {
       id,
@@ -163,7 +145,6 @@ suite('ReportCacheRequest', function() {
       revisions: [1, 2, 3],
     };
 
-    const request = mockRequest(parameters);
     const response = mockApiResponse(parameters);
 
     assert.isObject(response);
@@ -194,18 +175,16 @@ suite('ReportCacheRequest', function() {
     };
 
     const databaseName = ReportCacheRequest.databaseName(parameters);
-    testUtils.disableAutomaticWritingForTest();
     await testUtils.flushWriterForTest();
     await testUtils.deleteDatabaseForTest(databaseName);
 
     const response = mockApiResponse(parameters);
     mockFetch(response);
 
-    const request = mockRequest(parameters);
-    const race = new ReportCacheRequest({request});
+    const request = new ReportCacheRequest(new MockFetchEvent(parameters));
     const results = [];
-    for await (const contestant of race) {
-      results.push(contestant);
+    for await (const result of request.generateResults()) {
+      results.push(result);
     }
 
     assert.lengthOf(results, 1);
@@ -223,18 +202,16 @@ suite('ReportCacheRequest', function() {
     };
 
     const databaseName = ReportCacheRequest.databaseName(parameters);
-    testUtils.disableAutomaticWritingForTest();
     await testUtils.flushWriterForTest();
     await testUtils.deleteDatabaseForTest(databaseName);
 
     const response = mockApiResponse(parameters);
     mockFetch(response);
 
-    const request = mockRequest(parameters);
-    let race = new ReportCacheRequest({request});
+    let request = new ReportCacheRequest(new MockFetchEvent(parameters));
     let results = [];
-    for await (const contestant of race) {
-      results.push(contestant);
+    for await (const result of request.generateResults()) {
+      results.push(result);
     }
 
     assert.lengthOf(results, 1);
@@ -242,10 +219,10 @@ suite('ReportCacheRequest', function() {
 
     mockFetch(response);
     await testUtils.flushWriterForTest();
-    race = new ReportCacheRequest({request});
+    request = new ReportCacheRequest(new MockFetchEvent(parameters));
     results = [];
-    for await (const contestant of race) {
-      results.push(contestant);
+    for await (const result of request.generateResults()) {
+      results.push(result);
     }
 
     assert.lengthOf(results, 2);
@@ -272,7 +249,6 @@ suite('ReportCacheRequest', function() {
 
     const databaseNameA = ReportCacheRequest.databaseName(parameters.a);
     const databaseNameB = ReportCacheRequest.databaseName(parameters.b);
-    testUtils.disableAutomaticWritingForTest();
     await testUtils.flushWriterForTest();
     await testUtils.deleteDatabaseForTest(databaseNameA);
     await testUtils.deleteDatabaseForTest(databaseNameB);
@@ -280,11 +256,10 @@ suite('ReportCacheRequest', function() {
     const responseA = mockApiResponse(parameters.a);
     mockFetch(responseA);
 
-    const requestA = mockRequest(parameters.a);
-    let race = new ReportCacheRequest({request: requestA});
+    let request = new ReportCacheRequest(new MockFetchEvent(parameters.a));
     let results = [];
-    for await (const contestant of race) {
-      results.push(contestant);
+    for await (const result of request.generateResults()) {
+      results.push(result);
     }
 
     assert.lengthOf(results, 1);
@@ -296,12 +271,11 @@ suite('ReportCacheRequest', function() {
     mockFetch(responseB);
 
     // Request a report with a different id.
-    const requestB = mockRequest(parameters.b);
     mockFetch(responseB);
-    race = new ReportCacheRequest({request: requestB});
+    request = new ReportCacheRequest(new MockFetchEvent(parameters.b));
     results = [];
-    for await (const contestant of race) {
-      results.push(contestant);
+    for await (const result of request.generateResults()) {
+      results.push(result);
     }
 
     // Only results from the network should be returned since the revision range
@@ -321,18 +295,16 @@ suite('ReportCacheRequest', function() {
     };
 
     const databaseName = ReportCacheRequest.databaseName(parameters);
-    testUtils.disableAutomaticWritingForTest();
     await testUtils.flushWriterForTest();
     await testUtils.deleteDatabaseForTest(databaseName);
 
     let response = mockApiResponse(parameters);
     mockFetch(response);
 
-    let request = mockRequest(parameters);
-    let race = new ReportCacheRequest({request});
+    let request = new ReportCacheRequest(new MockFetchEvent(parameters));
     let results = [];
-    for await (const contestant of race) {
-      results.push(contestant);
+    for await (const result of request.generateResults()) {
+      results.push(result);
     }
 
     assert.lengthOf(results, 1);
@@ -345,11 +317,10 @@ suite('ReportCacheRequest', function() {
     response = mockApiResponse(parameters);
     mockFetch(response);
 
-    request = mockRequest(parameters);
-    race = new ReportCacheRequest({request});
+    request = new ReportCacheRequest(new MockFetchEvent(parameters));
     results = [];
-    for await (const contestant of race) {
-      results.push(contestant);
+    for await (const result of request.generateResults()) {
+      results.push(result);
     }
 
     assert.lengthOf(results, 1);
@@ -359,10 +330,10 @@ suite('ReportCacheRequest', function() {
 
     // Similar "modified" dates should return the same results.
     mockFetch(response);
-    race = new ReportCacheRequest({request});
+    request = new ReportCacheRequest(new MockFetchEvent(parameters));
     results = [];
-    for await (const contestant of race) {
-      results.push(contestant);
+    for await (const result of request.generateResults()) {
+      results.push(result);
     }
 
     assert.lengthOf(results, 2);
@@ -380,18 +351,16 @@ suite('ReportCacheRequest', function() {
     };
 
     const databaseName = ReportCacheRequest.databaseName(parameters);
-    testUtils.disableAutomaticWritingForTest();
     await testUtils.flushWriterForTest();
     await testUtils.deleteDatabaseForTest(databaseName);
 
-    let request = mockRequest(parameters);
     let response = mockApiResponse(parameters);
 
     mockFetch(response);
-    let race = new ReportCacheRequest({request});
+    let request = new ReportCacheRequest(new MockFetchEvent(parameters));
     let results = [];
-    for await (const contestant of race) {
-      results.push(contestant);
+    for await (const result of request.generateResults()) {
+      results.push(result);
     }
 
     assert.lengthOf(results, 1);
@@ -402,12 +371,11 @@ suite('ReportCacheRequest', function() {
     response = mockApiResponse(parameters);
     mockFetch(response);
 
-    request = mockRequest(parameters);
     await testUtils.flushWriterForTest();
-    race = new ReportCacheRequest({request});
+    request = new ReportCacheRequest(new MockFetchEvent(parameters));
     results = [];
-    for await (const contestant of race) {
-      results.push(contestant);
+    for await (const result of request.generateResults()) {
+      results.push(result);
     }
 
     assert.lengthOf(results, 1);
