@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e8163951_6cb920a4",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2018-10-15T22:00:53Z",
+      "side": 1,
+      "message": "Does this need to be added to an argument parser (above, perhaps)?",
+      "revId": "23c5ed71ff89c18dee3e445caa04ae9e9f03e5dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
