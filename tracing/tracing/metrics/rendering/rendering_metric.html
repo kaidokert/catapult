@@ -91,6 +91,7 @@ tr.exportTo('tr.metrics.rendering', function() {
     tr.metrics.rendering.addPixelsHistograms(histograms, model, segments);
     tr.metrics.rendering.addQueueingDurationHistograms(
         histograms, model, segments);
+    tr.metrics.rendering.addLayerDetails(histograms, model, segments);
 
     if (uiSegments.length === 0) return;
     uiSegments.sort((x, y) => x.start - y.start);
