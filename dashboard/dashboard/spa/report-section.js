@@ -14,6 +14,7 @@ tr.exportTo('cp', () => {
     68: 561733,
     69: 576753,
     70: 587811,
+    71: 599034,
   };
   const CURRENT_MILESTONE = tr.b.math.Statistics.max(
       Object.keys(CHROMIUM_MILESTONES));
@@ -497,7 +498,8 @@ tr.exportTo('cp', () => {
       for (const name of names) {
         for (const templateInfo of reportTemplateInfos) {
           if (templateInfo.name === name) {
-            readers.push(cp.ReportReader({...templateInfo, revisions}));
+            readers.push(new cp.ReportRequest(
+                {...templateInfo, revisions}).reader());
           }
         }
       }
@@ -506,6 +508,8 @@ tr.exportTo('cp', () => {
       const batchIterator = new cp.BatchIterator(readers);
 
       for await (const {results, errors} of batchIterator) {
+        // eslint-disable-next-line no-console
+        console.log('occam', results);
         rootState = getState();
         state = Polymer.Path.get(rootState, statePath);
         if (!tr.b.setsEqual(requestedReports, new Set(
