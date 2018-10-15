@@ -135,11 +135,30 @@ export function clearInProgressForTest() {
   IN_PROGRESS_REQUESTS.clear();
 }
 
+async function clearObjectStoreForTest(databaseName, objectStoreName) {
+  const db = await idb.open(databaseName, 1, db =>
+    db.createObjectStore(objectStoreName));
+  const transaction = db.transaction([objectStoreName], 'readwrite');
+  const dataStore = transaction.objectStore(objectStoreName);
+  await dataStore.clear();
+}
+
+export async function deleteDatabaseForTest(databaseName) {
+  if (CONNECTION_POOL.has(databaseName)) {
+    await CONNECTION_POOL.get(databaseName).close();
+    CONNECTION_POOL.delete(databaseName);
+  }
+
+  await idb.delete(databaseName);
+}
+
 export default {
   CacheRequestBase,
   READONLY,
   READWRITE,
   clearInProgressForTest,
+  clearObjectStoreForTest,
+  deleteDatabaseForTest,
   flushWriterForTest,
   jsonResponse,
 };

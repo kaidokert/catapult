@@ -34,13 +34,6 @@ class TestCacheRequest extends KeyValueCacheRequest {
   }
 }
 
-async function clearData() {
-  const db = await idb.open('keyvalue', 1, db => db.createObjectStore('data'));
-  const transaction = db.transaction(['data'], 'readwrite');
-  const dataStore = transaction.objectStore('data');
-  await dataStore.clear();
-}
-
 suite('KeyValueCacheRequest', function() {
   let originalFetch;
   setup(() => {
@@ -51,7 +44,7 @@ suite('KeyValueCacheRequest', function() {
   });
 
   test('miss', async() => {
-    await clearData();
+    await testUtils.clearObjectStoreForTest('keyvalue', 'data');
     window.fetch = async() => testUtils.jsonResponse('miss value');
     const cacheRequest = new TestCacheRequest('miss key');
     const response = await cacheRequest.responsePromise;
@@ -68,7 +61,7 @@ suite('KeyValueCacheRequest', function() {
   });
 
   test('hit', async() => {
-    await clearData();
+    await testUtils.clearObjectStoreForTest('keyvalue', 'data');
     window.fetch = async() => {
       throw new Error('fetch was unexpectedly called');
     };
@@ -88,7 +81,7 @@ suite('KeyValueCacheRequest', function() {
 
   test('in progress', async() => {
     testUtils.clearInProgressForTest();
-    await clearData();
+    await testUtils.clearObjectStoreForTest('keyvalue', 'data');
     // Start two requests at the same time. Only one of them should call
     // fetch().
     window.fetch = async() => {
