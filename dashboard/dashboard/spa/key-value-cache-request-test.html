@@ -51,7 +51,7 @@ suite('KeyValueCacheRequest', function() {
   });
 
   test('miss', async() => {
-    await clearData();
+    await testUtils.clearData();
     window.fetch = async() => testUtils.jsonResponse('miss value');
     const cacheRequest = new TestCacheRequest('miss key');
     const response = await cacheRequest.responsePromise;
@@ -68,7 +68,7 @@ suite('KeyValueCacheRequest', function() {
   });
 
   test('hit', async() => {
-    await clearData();
+    await testUtils.clearData();
     window.fetch = async() => {
       throw new Error('fetch was unexpectedly called');
     };
@@ -88,7 +88,7 @@ suite('KeyValueCacheRequest', function() {
 
   test('in progress', async() => {
     testUtils.clearInProgressForTest();
-    await clearData();
+    await testUtils.clearData();
     // Start two requests at the same time. Only one of them should call
     // fetch().
     window.fetch = async() => {
