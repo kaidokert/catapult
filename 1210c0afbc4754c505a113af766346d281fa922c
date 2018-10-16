@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "84bb7c4e_005750b3",
+        "filename": "tracing/tracing/base/unit.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-16T19:25:11Z",
+      "side": 1,
+      "message": "bandwidthInBytesPerSecond?",
+      "range": {
+        "startLine": 384,
+        "startChar": 19,
+        "endLine": 384,
+        "endChar": 33
+      },
+      "revId": "1210c0afbc4754c505a113af766346d281fa922c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47289523_ec57a652",
+        "filename": "tracing/tracing/base/unit.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-16T19:25:11Z",
+      "side": 1,
+      "message": "Please add a unitScale based on MEMORY.AUTO that formats like KiB/s, MiB/s, etc.",
+      "range": {
+        "startLine": 383,
+        "startChar": 2,
+        "endLine": 390,
+        "endChar": 5
+      },
+      "revId": "1210c0afbc4754c505a113af766346d281fa922c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "103cad20_0d857d88",
+        "filename": "tracing/tracing/base/unit.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-16T19:25:11Z",
+      "side": 1,
+      "message": "The English spelling has a \u0027t\u0027: Potential.",
+      "range": {
+        "startLine": 420,
+        "startChar": 27,
+        "endLine": 420,
+        "endChar": 36
+      },
+      "revId": "1210c0afbc4754c505a113af766346d281fa922c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
