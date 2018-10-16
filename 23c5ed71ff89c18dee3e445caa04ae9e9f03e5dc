@@ -119,6 +119,24 @@
     },
     {
       "key": {
+        "uuid": "a3f869f5_0741b491",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-10-16T20:58:36Z",
+      "side": 1,
+      "message": "Ah, you\u0027re right. That\u0027s confusing. Let me stare at this a bit more and see if I have suggestions.",
+      "parentUuid": "c9dfa892_a5ae9122",
+      "revId": "23c5ed71ff89c18dee3e445caa04ae9e9f03e5dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ef1d4c54_0888a9e1",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 2
