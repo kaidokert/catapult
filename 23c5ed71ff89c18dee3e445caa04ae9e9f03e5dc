@@ -37,6 +37,29 @@
     },
     {
       "key": {
+        "uuid": "8957def8_72edf0fb",
+        "filename": "third_party/typ/typ/arg_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2018-10-16T20:48:41Z",
+      "side": 1,
+      "message": "Question about the flag name, will there be another change at somewhere else (maybe in trampoline scripts?) to add aliases Findit will use? For example for this flag, Findit will use \u0027--isolated-script-test-repeat\u0027.",
+      "range": {
+        "startLine": 147,
+        "startChar": 39,
+        "endLine": 147,
+        "endChar": 45
+      },
+      "revId": "23c5ed71ff89c18dee3e445caa04ae9e9f03e5dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "21775392_88b99b6a",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 2
