@@ -45,10 +45,16 @@ def main():
   subparser.add_argument('--repository', default='chromium')
   subparser.add_argument('--revision', required=True)
   subparser.add_argument('--patch', required=True)
+
+  subparsers.add_parser('test')
   args = parser.parse_args()
   utils.ConfigureLogging(args.verbose)
 
   api = services.UserServices(args)
+
+  from trinkets import ezjson
+  print ezjson.dumps(api.dashboard.Describe('system_health.memory_mobile'))
+  return
 
   if args.action == 'get-csv':
     return commands.DownloadJobResultsAsCsv(api, args.job_ids, args.output)
