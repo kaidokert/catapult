@@ -34,6 +34,40 @@
       "revId": "23c5ed71ff89c18dee3e445caa04ae9e9f03e5dc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "21775392_88b99b6a",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-10-16T20:21:55Z",
+      "side": 1,
+      "message": "This will end up stomping on full_results, so the \"full\" results will only be the results from the last iteration, not the union of all N iterations.\n\nAlso, I think test_set should be readonly at this point (i.e., not modified by run_tests) and so you shouldn\u0027t need the copy?",
+      "revId": "23c5ed71ff89c18dee3e445caa04ae9e9f03e5dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef1d4c54_0888a9e1",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-10-16T20:21:55Z",
+      "side": 1,
+      "message": "You will probably want to lift the --list-only block out of this routine, else you\u0027ll get the list printed N times. I suspect that\u0027s not what we want to have happen, but maybe it is ...",
+      "revId": "23c5ed71ff89c18dee3e445caa04ae9e9f03e5dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
