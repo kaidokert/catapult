@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "c9dfa892_a5ae9122",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-10-16T20:30:57Z",
+      "side": 1,
+      "message": "Looks like results_set is what \"memorize\" the state of the results, so the full_results does turn out to be corerct.\n\nFor the test_set, the reason I make a copy is because we does mutate the test_set below (pop out test that have been run from the test, \"test_inputs.pop(0)\" at line 550). So after a single run, the test_set is empty \u0026 the next repeat run doesn\u0027t result in tests being executed. I think we have a few choices here:\n1) Make the test_set.copy() here\n2) Modify the execution code below to not pop up the test already run\n3) Change test_set to a test_list or test_dict \u0026 enable it to store duplicated instances of tests to be run\n\nLemme know which option you prefer (or any other option)",
+      "parentUuid": "21775392_88b99b6a",
+      "revId": "23c5ed71ff89c18dee3e445caa04ae9e9f03e5dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ef1d4c54_0888a9e1",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 2
