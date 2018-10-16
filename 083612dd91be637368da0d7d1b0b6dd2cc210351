@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a447b6f_e9a1abfb",
+        "filename": "telemetry/telemetry/internal/actions/action_runner_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2018-10-16T16:54:49Z",
+      "side": 1,
+      "message": "I\u0027m not sure that action_runner\u0027s EnterText should still simply do \n\n    for c in text:\n      self.PressKey(c, repeat_delay_ms\u003dcharacter_delay_ms, timeout\u003dtimeout)\n\nThe issue is that for unicode the PressKey metaphor breaks down. Unicode characters do not correspond to key presses exactly.\n\nIf EnterText didn\u0027t use KeyPressAction, then it might clean up some of your logic.",
+      "range": {
+        "startLine": 461,
+        "startChar": 18,
+        "endLine": 461,
+        "endChar": 27
+      },
+      "revId": "083612dd91be637368da0d7d1b0b6dd2cc210351",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
