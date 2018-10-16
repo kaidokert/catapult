@@ -18,6 +18,7 @@ sys.path.append(PY_UTILS_PATH)
 
 from common import utils
 from soundwave import commands
+from soundwave import reports
 
 # For help creating service account credentials see:
 # https://developers.google.com/api-client-library/python/auth/service-accounts#creatinganaccount
@@ -62,6 +63,9 @@ def Main():
   group = subparser.add_mutually_exclusive_group(required=True)
   group.add_argument(
       '-b', '--benchmark', help='Fetch timeseries for this benchmark.')
+  group.add_argument(
+      '--report', choices=reports.NAMES,
+      help='Fetch timeseries needed for a specific report.')
   group.add_argument(
       '-i', '--input-file',
       help='Fetch timeseries for test paths listed in this file, one path '
