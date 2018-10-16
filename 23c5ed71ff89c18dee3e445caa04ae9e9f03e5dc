@@ -60,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "04d4546b_d3f1232b",
+        "filename": "third_party/typ/typ/arg_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-10-16T20:55:06Z",
+      "side": 1,
+      "message": "Yes, it would be in the trampoline script (see https://chromium-review.googlesource.com/c/chromium/src/+/1281170 for example)",
+      "parentUuid": "8957def8_72edf0fb",
+      "range": {
+        "startLine": 147,
+        "startChar": 39,
+        "endLine": 147,
+        "endChar": 45
+      },
+      "revId": "23c5ed71ff89c18dee3e445caa04ae9e9f03e5dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "21775392_88b99b6a",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 2
