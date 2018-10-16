@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f1592d8_ff6b819a",
+        "filename": "telemetry/telemetry/core/memory_cache_http_server.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2018-10-16T20:27:48Z",
+      "side": 1,
+      "message": "Please add docstring explaining that this overrides the parent\u0027s version and why you are doing it. Explain the race condition, etc.",
+      "range": {
+        "startLine": 211,
+        "startChar": 2,
+        "endLine": 211,
+        "endChar": 50
+      },
+      "revId": "5f970dd26e180af1e2646da91d5e44a1b87547a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
