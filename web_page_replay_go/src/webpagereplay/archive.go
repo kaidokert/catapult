@@ -18,6 +18,7 @@ import (
 	"net/url"
 	"os"
 	"reflect"
+	"strings"
 	"sync"
 )
 
@@ -26,8 +27,18 @@ var ErrNotFound = errors.New("not found")
 // ArchivedRequest contains a single request and its response.
 // Immutable after creation.
 type ArchivedRequest struct {
-	SerializedRequest  []byte
+	SerializedRequest	[]byte
 	SerializedResponse []byte // if empty, the request failed
+	Served bool
+}
+
+// RequestMatch represents a match when querying the archive for responses to a request
+type RequestMatch struct {
+	Match *ArchivedRequest
+	Request *http.Request
+	Response *http.Response
+	MatchRatio float64
+	Index int
 }
 
 func serializeRequest(req *http.Request, resp *http.Response) (*ArchivedRequest, error) {
@@ -79,6 +90,8 @@ type Archive struct {
 	NegotiatedProtocol map[string]string
 	// The time seed that was used to initialize deterministic.js.
 	DeterministicTimeSeedMs int64
+	// Whether to prefer unserved matches over previously served matches.
+	PreferUnservedMatches bool
 }
 
 func newArchive() Archive {
@@ -157,11 +170,14 @@ func (a *Archive) FindRequest(req *http.Request, scheme string) (*http.Request, 
 	}
 	var bestRatio float64
 	if len(hostMap[u.String()]) > 0 {
-		var bestRequest *http.Request
-		var bestResponse *http.Response
+		var bestUnservedMatch RequestMatch
+		var bestMatch RequestMatch
 		// There can be multiple requests with the same URL string. If that's the case,
-		// break the tie by the number of headers that match.
-		for _, r := range hostMap[u.String()] {
+		// break the tie by the number of headers that match, and in the case of a POST,
+		// PUT or a PATCH request, also by the number of data entries that match.
+		parseForm(req);
+
+		for index, r := range hostMap[u.String()] {
 			curReq, curResp, err := r.unmarshal()
 			if err != nil {
 				log.Println("Error unmarshaling request")
@@ -170,26 +186,45 @@ func (a *Archive) FindRequest(req *http.Request, scheme string) (*http.Request, 
 			if curReq.Method != req.Method {
 				continue
 			}
+			parseForm(curReq)
 			rh := curReq.Header
 			reqh := req.Header
 			m := 1
-			t := len(rh) + len(reqh)
+			t := len(rh) + len(reqh) + len(curReq.PostForm) + len (req.PostForm)
 			for k, v := range rh {
 				if reflect.DeepEqual(v, reqh[k]) {
+					m++
+				}
+			}
+			for k, v := range curReq.PostForm {
+				if reflect.DeepEqual(v, req.PostForm[k]) {
 					m++
 				}
 			}
 			ratio := 2 * float64(m) / float64(t)
 			// Note that since |m| starts from 1. The ratio will be more than 0
 			// even if no header matches.
-			if ratio > bestRatio {
-				bestRequest = curReq
-				bestResponse = curResp
-				bestRatio = ratio
+			if a.PreferUnservedMatches && !r.Served && ratio > bestUnservedMatch.MatchRatio {
+				bestUnservedMatch.Match = r
+				bestUnservedMatch.Request = curReq
+				bestUnservedMatch.Response = curResp
+				bestUnservedMatch.MatchRatio = ratio
+				bestUnservedMatch.Index = index
+			}
+			if ratio > bestMatch.MatchRatio {
+				bestMatch.Match = r
+				bestMatch.Request = curReq
+				bestMatch.Response = curResp
+				bestMatch.MatchRatio = ratio
+				bestMatch.Index = index
 			}
 		}
-		if bestRequest != nil && bestResponse != nil {
-			return bestRequest, bestResponse, nil
+		if a.PreferUnservedMatches && bestUnservedMatch.Match != nil {
+			bestUnservedMatch.Match.Served = true
+			return bestUnservedMatch.Request, bestUnservedMatch.Response, nil
+		} else if bestMatch.Match != nil {
+			bestMatch.Match.Served = true;
+			return bestMatch.Request, bestMatch.Response, nil
 		}
 	}
 
@@ -232,6 +267,43 @@ func (a *Archive) FindRequest(req *http.Request, scheme string) (*http.Request, 
 	}
 
 	return nil, nil, ErrNotFound
+}
+
+func parseForm(r *http.Request) {
+	r.ParseForm()
+	method := strings.ToUpper(r.Method)
+	// Custom parser. Golang's http.Request class's ParseForm function can only handle
+	// a limited set of data content types. The following section implement a number of
+	// customize parsers for custom data content types
+	if len(r.PostForm) == 0 && method == "POST" {
+		// Limit the amount of data to read to 2 MB.
+		maxFormSize := int64(2 << 20)
+		switch ct := r.Header.Get("Content-Type"); ct {
+		// Some sites, notably Gap, Banana Republic and Old Navy, issue post requests
+		// in plain text using the new-line character as a delimiter.
+		case "text/plain":
+			var reader io.Reader = io.LimitReader(r.Body, maxFormSize + 1)
+			b, e := ioutil.ReadAll(reader)
+			if e != nil {
+				return
+			}
+			r.PostForm, e = url.ParseQuery(strings.Replace(string(b), "\n", "&", -1))
+		// Some sites, such as Herschel, issue post requests in JSON.
+		//case "application/json":
+		//	decoder := json.NewDecoder(r.Body)
+		//	var j map[string]interface{}
+		//	err := decoder.Decode(&j)
+
+		// All else failing, insert a single entry with the entire POST text.
+		default:
+			var reader io.Reader = io.LimitReader(r.Body, maxFormSize + 1)
+			b, e := ioutil.ReadAll(reader)
+			if e != nil {
+				return
+			}
+			r.PostForm["raw"] = append(r.PostForm["raw"], string(b))
+		}
+	}
 }
 
 // findExactMatch returns the first request that exactly matches the given request method.
