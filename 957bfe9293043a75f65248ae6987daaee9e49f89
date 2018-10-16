@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8dd2ecdf_940c1882",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-16T19:42:30Z",
+      "side": 1,
+      "message": "Would it be possible to change this file to use for..of instead of forEach?",
+      "revId": "957bfe9293043a75f65248ae6987daaee9e49f89",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
