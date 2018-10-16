@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "66ad1248_ac9876d2",
+        "filename": "tracing/tracing/extras/importer/linux_perf/sched_parser.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-16T19:52:15Z",
+      "side": 1,
+      "message": "Please add a test for this new logic.",
+      "revId": "5d30dc510a119ab39e611d2faf1850ea5da5b836",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23aa0646_ea2511fc",
+        "filename": "tracing/tracing/extras/importer/linux_perf/sched_parser.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-16T19:52:15Z",
+      "side": 1,
+      "message": "Please use a constant for this.",
+      "range": {
+        "startLine": 78,
+        "startChar": 41,
+        "endLine": 78,
+        "endChar": 48
+      },
+      "revId": "5d30dc510a119ab39e611d2faf1850ea5da5b836",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
