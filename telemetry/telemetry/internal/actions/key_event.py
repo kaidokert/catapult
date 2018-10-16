@@ -74,10 +74,16 @@ class KeyPressAction(page_action.PageAction):
 
   def __init__(self, dom_key, timeout=60):
     super(KeyPressAction, self).__init__()
+    if len(dom_key) != 1:
+      raise ValueError('Expected single char key, but got: %s' % dom_key)
+    char_code = ord(dom_key)
     self._dom_key = dom_key
-    if dom_key not in _KEY_MAP:
-      raise ValueError('No mapping for key: %s' % dom_key)
-    self._windows_virtual_key_code, self._text = _KEY_MAP[dom_key]
+    # Check that ascii chars are allowed.
+    if char_code < 128 and dom_key not in _KEY_MAP:
+      raise ValueError('No mapping for key: %s (code=%s)' % (
+          dom_key, char_code))
+    self._windows_virtual_key_code, self._text = _KEY_MAP.get(
+        dom_key, ('', dom_key))
     self._timeout = timeout
 
   def RunAction(self, tab):
