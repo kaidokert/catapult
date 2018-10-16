@@ -6,6 +6,7 @@ import BaseHTTPServer
 from collections import namedtuple
 import errno
 import gzip
+import logging
 import mimetypes
 import os
 import SimpleHTTPServer
@@ -13,6 +14,7 @@ import socket
 import SocketServer
 import StringIO
 import sys
+import traceback
 import urlparse
 
 from telemetry.core import local_server
@@ -205,6 +207,10 @@ class _MemoryCacheHTTPServerImpl(SocketServer.ThreadingMixIn,
     if os.path.basename(file_path) == index:
       dir_path = os.path.dirname(file_path)
       self.resource_map[dir_path] = self.resource_map[file_path]
+
+  def handle_error(self, request, client_address):
+    logging.error('Exception happened during processing of request from '
+                  '%s\n%s%s', client_address, traceback.format_exc(), '-'*80)
 
 
 class MemoryCacheHTTPServerBackend(local_server.LocalServerBackend):
