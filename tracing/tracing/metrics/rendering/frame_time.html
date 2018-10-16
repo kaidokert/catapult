@@ -99,10 +99,22 @@ tr.exportTo('tr.metrics.rendering', function() {
         DISPLAY_EVENT)];
   }
 
+  function isUIPresentationEvent_(event) {
+    if (event.title !== COMPOSITOR_FRAME_PRESENTED_EVENT) return false;
+
+    // For chrome versions before crrev.com/c/1282039.
+    if (!('environment' in event.args)) return true;
+
+    // TODO(chiniforooshan): The following line selects events emitted from
+    // ui::compositor used by the browser. We can look at other values, like
+    // 'ash', to measure frame times of other users of ui::compositor.
+    return event.args.environment === 'browser';
+  }
+
   function getUIPresentationEvents_(modelHelper) {
     if (!modelHelper || !modelHelper.browserProcess) return [];
-    return [...modelHelper.browserProcess.findTopmostSlicesNamed(
-        COMPOSITOR_FRAME_PRESENTED_EVENT)];
+    return [...modelHelper.browserProcess.findTopmostSlices(
+        isUIPresentationEvent_)];
   }
 
   function addSurfaceFlingerHistograms_(
