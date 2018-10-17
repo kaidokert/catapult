@@ -16,6 +16,24 @@
       "revId": "957bfe9293043a75f65248ae6987daaee9e49f89",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "096363d6_137ea4e1",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2018-10-17T12:22:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8dd2ecdf_940c1882",
+      "revId": "957bfe9293043a75f65248ae6987daaee9e49f89",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
