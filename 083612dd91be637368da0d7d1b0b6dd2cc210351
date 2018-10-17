@@ -22,6 +22,30 @@
       "revId": "083612dd91be637368da0d7d1b0b6dd2cc210351",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed8e0ba3_36383b71",
+        "filename": "telemetry/telemetry/internal/actions/action_runner_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-10-17T09:14:40Z",
+      "side": 1,
+      "message": "EnterText has to use KeyPressAction since otherwise you don\u0027t get all the detailed key events which breaks input on many websites.\n\nThis works reasonably well for many cases I think (sure not always) and definitely it can handle non-ascii input.\n\nI\u0027d be pragmatic here and chose a slightly imperfect solution that will work in many cases.\n\nFor my intended use-case in https://crrev.com/c/1283074 I could manually circumvent it by directly setting the values.",
+      "parentUuid": "5a447b6f_e9a1abfb",
+      "range": {
+        "startLine": 461,
+        "startChar": 18,
+        "endLine": 461,
+        "endChar": 27
+      },
+      "revId": "083612dd91be637368da0d7d1b0b6dd2cc210351",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
