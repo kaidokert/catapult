@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bcdab610_3d4a3003",
+        "filename": "systrace/systrace/tracing_agents/atrace_from_file_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1002871
+      },
+      "writtenOn": "2018-10-17T22:36:48Z",
+      "side": 1,
+      "message": "I\u0027d make the check_if_perfetto seek back the file",
+      "range": {
+        "startLine": 26,
+        "startChar": 7,
+        "endLine": 26,
+        "endChar": 58
+      },
+      "revId": "6d5b2bedb42b75c5bf1b06c3e1b31a94d8a5cdc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bbec5b7_415f6fbd",
+        "filename": "systrace/systrace/tracing_agents/atrace_from_file_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1002871
+      },
+      "writtenOn": "2018-10-17T22:36:48Z",
+      "side": 1,
+      "message": "I think you want to do also here the with open as f_out",
+      "range": {
+        "startLine": 27,
+        "startChar": 7,
+        "endLine": 27,
+        "endChar": 43
+      },
+      "revId": "6d5b2bedb42b75c5bf1b06c3e1b31a94d8a5cdc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1c91638_584867c1",
+        "filename": "systrace/systrace/tracing_agents/atrace_from_file_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1002871
+      },
+      "writtenOn": "2018-10-17T22:36:48Z",
+      "side": 1,
+      "message": "for field ID\u003d1 (TracePacket)",
+      "range": {
+        "startLine": 38,
+        "startChar": 27,
+        "endLine": 38,
+        "endChar": 28
+      },
+      "revId": "6d5b2bedb42b75c5bf1b06c3e1b31a94d8a5cdc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2be3bac_2f41ff26",
+        "filename": "systrace/systrace/tracing_agents/atrace_from_file_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1002871
+      },
+      "writtenOn": "2018-10-17T22:36:48Z",
+      "side": 1,
+      "message": "I\u0027d check that at this point we have another packet starting with 0x0a",
+      "range": {
+        "startLine": 51,
+        "startChar": 42,
+        "endLine": 51,
+        "endChar": 43
+      },
+      "revId": "6d5b2bedb42b75c5bf1b06c3e1b31a94d8a5cdc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
