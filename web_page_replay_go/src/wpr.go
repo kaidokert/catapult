@@ -79,6 +79,8 @@ type ReplayCommand struct {
 
 	// Custom flags for replay.
 	rulesFile string
+	// Whether to prefer a previously unserved response over a served one.
+	preferUnservedMatches bool
 }
 
 type RootCACommand struct {
@@ -193,6 +195,14 @@ func (r *ReplayCommand) Flags() []cli.Flag {
 			Value:       "",
 			Usage:       "File containing rules to apply to responses during replay",
 			Destination: &r.rulesFile,
+		},
+		cli.BoolFlag{
+			Name:        "prefer_unserved_matches",
+			Usage:       "When looking a matching response during replay, prefer " +
+			             "a previously unserved response over a served response. " +
+			             "Only relevant when replaying a complicated interactive " +
+			             "scenario locally.",
+			Destination: &r.preferUnservedMatches,
 		})
 }
 
@@ -371,6 +381,7 @@ func (r *ReplayCommand) Run(c *cli.Context) {
 	}
 	log.Printf("Opened archive %s", archiveFileName)
 
+	archive.PreferUnservedMatches = r.preferUnservedMatches
 	timeSeedMs := archive.DeterministicTimeSeedMs
 	if timeSeedMs == 0 {
 		// The time seed hasn't been set in the archive. Time seeds used to not be
