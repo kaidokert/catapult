@@ -16,6 +16,24 @@
       "revId": "808a761d858ac2e8b7ce1a2c9328b6b0a6d734c1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d834281_e78a34f4",
+        "filename": "tracing/tracing_build/render_histograms_viewer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-10-17T09:15:35Z",
+      "side": 1,
+      "message": "I prefer not walking over the data twice.\nAlso, I think with the \u0027^\u0027 we only match at the line start combined with newlines being escaped I don\u0027t think we can match anything in between (maybe I missed something).\nThis can only happen in the case where we embed custom html anyway.",
+      "parentUuid": "e878afc5_1c9888ba",
+      "revId": "808a761d858ac2e8b7ce1a2c9328b6b0a6d734c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
