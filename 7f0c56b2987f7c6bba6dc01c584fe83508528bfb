@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2a08ed86_1326d4d8",
+        "filename": "tracing/tracing/base/unit.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-17T17:10:31Z",
+      "side": 1,
+      "message": "Please add tests for all new units to tracing/tracing/base/unit_test.html",
+      "revId": "7f0c56b2987f7c6bba6dc01c584fe83508528bfb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51982868_0beca8c1",
+        "filename": "tracing/tracing/base/unit.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-17T17:10:31Z",
+      "side": 1,
+      "message": "This formatSpec looks exactly like sizeInBytes\u0027 formatSpec, so scalars with this unit will look exactly like sizeInBytes scalars, which is not what you want. You want this formatSpec to re-use MEMORY.AUTO, but append \u0027/s\u0027, right?\nHere\u0027s how you can play around with this code to make sure it does what you want, and run tests for it:\n./bin/run_dev_server\nOpen http://localhost:8003/tracing/tests.html?testSuiteName\u003dtracing.base.unit_test\nOpen the chrome dev console\ntr.b.Unit.byName.bandwidthInBytesPerSecond.format(1e5)",
+      "revId": "7f0c56b2987f7c6bba6dc01c584fe83508528bfb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
