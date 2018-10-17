@@ -16,6 +16,24 @@
       "revId": "a94bcb9a218c01f198f2b037c11d7dc41055ab6a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8fd9b3b8_fa4c7d16",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-10-17T17:36:29Z",
+      "side": 1,
+      "message": "That\u0027s a good point. I think that will work for the rendering benchmark; but, if we move away from interaction records to user expectations in future, that won\u0027t work. Should I do that? In terms of correctness, which version do you think make more sense (aggregating queueing_durations from all processes vs the main page only)?",
+      "parentUuid": "1866c4c7_28acbe71",
+      "revId": "a94bcb9a218c01f198f2b037c11d7dc41055ab6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
