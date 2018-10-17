@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "466360f3_59f1313e",
+        "filename": "tracing/tracing/value/ui/histogram_importer_test.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-17T16:59:30Z",
+      "side": 1,
+      "message": "Could you use async/await instead?\ntest(\u0027importZeroHistograms\u0027, async() \u003d\u003e {\n  setup...\n  await importer.importHistograms(histogramData, view);\n  assert...\n});",
+      "revId": "808a761d858ac2e8b7ce1a2c9328b6b0a6d734c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e878afc5_1c9888ba",
         "filename": "tracing/tracing_build/render_histograms_viewer.py",
         "patchSetId": 6
@@ -34,6 +51,24 @@
       "revId": "808a761d858ac2e8b7ce1a2c9328b6b0a6d734c1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "696cc9cb_09a8ad1a",
+        "filename": "tracing/tracing_build/render_histograms_viewer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-17T16:59:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2d834281_e78a34f4",
+      "revId": "808a761d858ac2e8b7ce1a2c9328b6b0a6d734c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
