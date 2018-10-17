@@ -4,6 +4,7 @@
 
 import os
 import re
+import subprocess
 
 import py_utils
 
@@ -20,10 +21,35 @@ ADB_IGNORE_REGEXP = r'^capturing trace\.\.\. done|^capturing trace\.\.\.'
 
 def try_create_agent(options):
   if options.from_file is not None:
+    with open(options.from_file, "rb") as f_in:
+      if check_if_perfetto(f_in):
+        f_in.seek(0) # Go back and read from the beginning
+        f_out = open("trace.systrace", "w")
+        p = os.path.abspath(os.path.join(os.path.dirname(__file__),
+                                         '../trace_to_text'))
+        subprocess.call([p, "systrace"], stdin=f_in, stdout=f_out)
+        options.from_file = "trace.systrace"
     return AtraceFromFileAgent(options)
   else:
     return False
 
+def check_if_perfetto(from_file):
+  for _ in range(10): # Check the first 10 packets are structured correctly
+    # Starts with a preamble
+    if not ord(from_file.read(1)) == 0x0a:
+      return False
+    # Then a var int that specifies field size
+    field_size = 0
+    shift = 0
+    while True:
+      c = ord(from_file.read(1))
+      field_size |= (c & 0x7f) << shift
+      shift += 7
+      if not c & 0x80:
+        break
+    # Finally the packet itself
+    from_file.seek(field_size, os.SEEK_CUR)
+  return True
 
 class AtraceFromFileConfig(tracing_agents.TracingConfig):
   def __init__(self, from_file):
