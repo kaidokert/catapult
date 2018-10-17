@@ -70,6 +70,30 @@
       "revId": "083612dd91be637368da0d7d1b0b6dd2cc210351",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1d791bf_70b8617c",
+        "filename": "telemetry/telemetry/internal/actions/action_runner_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-10-17T19:58:06Z",
+      "side": 1,
+      "message": "turns out, the google search input doesn\u0027t trigger properly either when just setting the contents directly.\n\nSo I\u0027m stuck on this solution I think, unless you have a better way to do this without too much clutter...",
+      "parentUuid": "ed8e0ba3_36383b71",
+      "range": {
+        "startLine": 461,
+        "startChar": 18,
+        "endLine": 461,
+        "endChar": 27
+      },
+      "revId": "083612dd91be637368da0d7d1b0b6dd2cc210351",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
