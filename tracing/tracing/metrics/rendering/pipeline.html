@@ -187,8 +187,114 @@ tr.exportTo('tr.metrics.rendering', function() {
     }
   }
 
+  function addLayerDetails(histograms, model, segments) {
+    const allPics = [];
+    const procPics = [];
+    const surfaceLayers = [];
+    // const minBranchingFactor = [];
+    // const maxBranchingFactor = [];
+    const avgBranchingFactor = [];
+    // const varBranchingFactor = [];
+    const treeHeights = [];
+    // const opacityCanAnimateRatios = [];
+    // const scrollableRatios = [];
+    // const mayChangeTransformRatios = [];
+    const NonZeroOpacityRatios = [];
+    for (const thread of model.getAllThreads()) {
+      thread.sliceGroup.slices.forEach(
+          slice => {
+            if (slice.title !== 'PageProfiling') return;
+            for (const segment of segments) {
+              if (segment.boundsRange.containsExplicitRangeInclusive(
+                  slice.start, slice.end)) {
+                allPics.push(slice.args.all_picture_layers);
+                procPics.push(slice.args.visible_picture_layers);
+                surfaceLayers.push(slice.args.visible_surface_layers);
+                // minBranchingFactor.push(slice.args.min_branching_factor);
+                // maxBranchingFactor.push(slice.args.max_branching_factor);
+                avgBranchingFactor.push(slice.args.avg_branching_factor);
+                // varBranchingFactor.push(slice.args.var_branching_factor);
+                treeHeights.push(slice.args.treeHeight);
+                // opacityCanAnimateRatios.push(
+                //     slice.args.opacityCanAnimateRatio);
+                // scrollableRatios.push(slice.args.scrollableRatio);
+                // mayChangeTransformRatios.push(
+                //     slice.args.mayChangeTransformRatio);
+                treeHeights.push(slice.args.treeHeight);
+                NonZeroOpacityRatios.push(slice.args.NonZeroOpacityRatio);
+              }
+            }
+          }
+      );
+    }
+
+    histograms.createHistogram(
+        'PageProfiling:all_picture_layers',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        allPics, { description: 'All picture layers.', });
+    histograms.createHistogram(
+        'PageProfiling:visible_picture_layers',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        procPics, { description: 'All visible picture layers.', });
+    histograms.createHistogram(
+        'PageProfiling:visible_surface_layers',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        surfaceLayers, { description: 'All surface layers.', });
+    // histograms.createHistogram(
+    //     'PageProfiling:min_branching_factor',
+    //     tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+    //     minBranchingFactor, {
+    //       description: 'min_branching_factor of layerTree',
+    //     });
+    // histograms.createHistogram(
+    //     'PageProfiling:max_branching_factor',
+    //     tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+    //     maxBranchingFactor, {
+    //       description: 'max_branching_factor of layerTree',
+    //     });
+    histograms.createHistogram(
+        'PageProfiling:avg_branching_factor',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        avgBranchingFactor, {
+          description: 'avg_branching_factor of layerTree',
+        });
+    // histograms.createHistogram(
+    //     'PageProfiling:var_branching_factor',
+    //     tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+    //     varBranchingFactor, {
+    //       description: 'var_branching_factor of layerTree',
+    //     });
+    histograms.createHistogram(
+        'PageProfiling:treeHeight',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        treeHeights, { description: 'height of layerTree', });
+    // histograms.createHistogram(
+    //     'PageProfiling:opacityCanAnimateRatio',
+    //     tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+    //     opacityCanAnimateRatios, {
+    //       description: 'ratio of opacityCanAnimate layers',
+    //     });
+    // histograms.createHistogram(
+    //     'PageProfiling:scrollableRatio',
+    //     tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+    //     scrollableRatios, {
+    //       description: 'ratio of scrollable layers',
+    //     });
+    // histograms.createHistogram(
+    //     'PageProfiling:mayChangeTransformRatio',
+    //     tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+    //     mayChangeTransformRatios, {
+    //       description: 'ratrio of mayChangeTransform layers', });
+    histograms.createHistogram(
+        'PageProfiling:NonZeroOpacityRatio',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        NonZeroOpacityRatios, {
+          description: 'ratrio of NonZeroOpacity layers', });
+  }
+
   return {
     addPipelineHistograms,
+    addLayerDetails,
   };
 });
 </script>
