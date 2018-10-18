@@ -88,6 +88,24 @@
       "revId": "342e268dfc869cfb23be1a927f809dabb178e160",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7502c4f_fed83bb1",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2922,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2018-10-18T21:25:23Z",
+      "side": 1,
+      "message": "Let\u0027s talk off thread. 10s completely defeats the purpose of this.",
+      "parentUuid": "e7c4c7ae_e657bf29",
+      "revId": "342e268dfc869cfb23be1a927f809dabb178e160",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
