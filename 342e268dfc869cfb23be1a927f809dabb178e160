@@ -106,6 +106,24 @@
       "revId": "342e268dfc869cfb23be1a927f809dabb178e160",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3393401_84cf20c8",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2922,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2018-10-18T21:53:56Z",
+      "side": 1,
+      "message": "K, capped at 60s.",
+      "parentUuid": "e7502c4f_fed83bb1",
+      "revId": "342e268dfc869cfb23be1a927f809dabb178e160",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
