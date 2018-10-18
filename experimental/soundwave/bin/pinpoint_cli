@@ -14,7 +14,6 @@ ROOT_PATH = os.path.normpath(os.path.join(os.path.dirname(__file__), '..'))
 CATAPULT_PATH = os.path.normpath(os.path.join(ROOT_PATH, '..', '..'))
 PY_UTILS_PATH = os.path.join(CATAPULT_PATH, 'common', 'py_utils')
 TRACING_PATH = os.path.join(CATAPULT_PATH, 'tracing')
-JOB_CONFIGS_PATH = os.path.join(ROOT_PATH, 'job_configs')
 
 sys.path.append(ROOT_PATH)
 sys.path.append(PY_UTILS_PATH)
@@ -51,19 +50,10 @@ def main():
   utils.ConfigureLogging(args.verbose)
 
   api = services.UserServices(args)
-
   if args.action == 'get-csv':
     return commands.DownloadJobResultsAsCsv(api, args.job_ids, args.output)
   elif args.action == 'start-job':
-    with open(os.path.join(JOB_CONFIGS_PATH, args.config + '.json')) as f:
-      options = json.load(f)
-
-    options.update(dict(
-        repository=args.repository,
-        start_git_hash=args.revision,
-        end_git_hash=args.revision,
-    ))
-    print api.pinpoint.NewJob(**options)
+    return commands.StartJobsFromConfig(api, args)
   else:
     raise NotImplementedError(args.action)
 
