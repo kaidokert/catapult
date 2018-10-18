@@ -34,6 +34,24 @@
       "revId": "342e268dfc869cfb23be1a927f809dabb178e160",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52e94d87_a2f5d551",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2922,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-10-18T21:00:25Z",
+      "side": 1,
+      "message": ":/\n\nUnbounded exponential backoff here seems like overkill and seems dangerous. Yes, I am afraid of sleeping too long if we don\u0027t need to do so.",
+      "parentUuid": "715f34cd_9d1794f3",
+      "revId": "342e268dfc869cfb23be1a927f809dabb178e160",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
