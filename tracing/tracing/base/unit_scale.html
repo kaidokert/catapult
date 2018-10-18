@@ -55,6 +55,28 @@ tr.exportTo('tr.b', function() {
     return unitScale;
   };
 
+  function definePrefixScaleFromUnitScale(prefixName, unitScale) {
+    if (!unitScale) {
+      throw new Error('Cannot create PrefixScale without a unit scale.');
+    }
+    const prefixScale = {};
+    for (const curPrefix of Object.keys(unitScale)) {
+      if (curPrefix === 'AUTO') {
+        continue;
+      }
+      const curScale = unitScale[curPrefix];
+      if (curScale.symbol === undefined || !curScale.value) {
+        throw new Error(
+            `Cannot create PrefixScale from malformed unit ${curScale}.`);
+      }
+      prefixScale[curPrefix] = {
+        value: curScale.value,
+        symbol: curScale.symbol
+      };
+    }
+    return defineUnitPrefixScale(prefixName, prefixScale);
+  }
+
   UnitScale.defineUnitScaleFromPrefixScale = function(
       baseSymbol, baseName, prefixScale, opt_scaleName) {
     if (baseSymbol === undefined) {
@@ -144,6 +166,11 @@ tr.exportTo('tr.b', function() {
 
   UnitScale.defineUnitScaleFromPrefixScale(
       'B', 'BYTE', UnitPrefixScale.BINARY, 'MEMORY');
+
+  definePrefixScaleFromUnitScale('DATA_SIZE', UnitScale.MEMORY);
+
+  UnitScale.defineUnitScaleFromPrefixScale(
+      '/s', 'SECONDS', UnitPrefixScale.DATA_SIZE, 'BANDWIDTH_BYTES');
 
   return {
     UnitPrefixScale,
