@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "046b77fb_1ff5b619",
+        "filename": "tracing/tracing/extras/importer/linux_perf/sched_parser_test.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-18T21:57:08Z",
+      "side": 1,
+      "message": "This line seems to have no effect.",
+      "revId": "344925659a1514de7cca477c813bdb2ca92a4f91",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
