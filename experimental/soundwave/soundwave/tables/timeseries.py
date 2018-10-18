@@ -35,10 +35,10 @@ _CODE_TO_IMPROVEMENT_DIRECTION = {
 TEST_PATH_PARTS = (
     'master', 'builder', 'test_suite', 'measurement', 'test_case')
 
-# This query finds the most recent point_id for a given test_path (i.e. fixed
+# Query template to find all data points of a given test_path (i.e. fixed
 # test_suite, measurement, bot, and test_case values).
-_GET_MOST_RECENT_QUERY = (
-    'SELECT * FROM %s WHERE %s ORDER BY timestamp DESC LIMIT 1'
+_QUERY_TIME_SERIES = (
+    'SELECT * FROM %s WHERE %s'
     % (TABLE_NAME, ' AND '.join('%s=?' % c for c in INDEX[:-1])))
 
 
@@ -81,14 +81,25 @@ def DataFrameFromJson(data):
   return df
 
 
+def GetTimeSeries(con, test_path, extra_cond=None):
+  """Get the records for all data points on the given test_path.
+
+  Returns:
+    A pandas.DataFrame with all records found.
+  """
+  config = _ParseConfigFromTestPath(test_path)
+  params = tuple(config[c] for c in INDEX[:-1])
+  query = _QUERY_TIME_SERIES
+  if extra_cond is not None:
+    query = ' '.join([query, extra_cond])
+  return pandas.read_sql(query, con, params=params, parse_dates=['timestamp'])
+
+
 def GetMostRecentPoint(con, test_path):
   """Find the record for the most recent data point on the given test_path.
 
   Returns:
     A pandas.Series with the record if found, or None otherwise.
   """
-  config = _ParseConfigFromTestPath(test_path)
-  params = tuple(config[c] for c in INDEX[:-1])
-  df = pandas.read_sql(
-      _GET_MOST_RECENT_QUERY, con, params=params, parse_dates=['timestamp'])
+  df = GetTimeSeries(con, test_path, 'ORDER BY timestamp DESC LIMIT 1')
   return df.iloc[0] if not df.empty else None
