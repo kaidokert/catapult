@@ -6,6 +6,7 @@ import BaseHTTPServer
 from collections import namedtuple
 import errno
 import gzip
+import logging
 import mimetypes
 import os
 import SimpleHTTPServer
@@ -19,6 +20,11 @@ from telemetry.core import local_server
 
 ByteRange = namedtuple('ByteRange', ['from_byte', 'to_byte'])
 ResourceAndRange = namedtuple('ResourceAndRange', ['resource', 'byte_range'])
+
+
+def log(text):
+  with open('/tmp/log.txt', 'w+') as f:
+    f.write(text)
 
 
 class MemoryCacheHTTPRequestHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
@@ -83,6 +89,13 @@ class MemoryCacheHTTPRequestHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
       self.send_response(200)
 
     self.send_header('Content-Length', str(total_num_of_bytes))
+    if path.endswith('.js'):
+      if resource['content-type'] != 'application/javascript':
+        raise Exception('JavaScript file served up with content-type ' + resource['content-type'])
+      else:
+        log('Served ' + path + ' with content-type application/javascript')
+    else:
+      log('Served ' + path)
     self.send_header('Content-Type', resource['content-type'])
     self.send_header('Last-Modified',
                      self.date_time_string(resource['last-modified']))
