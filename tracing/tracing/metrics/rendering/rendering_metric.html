@@ -11,6 +11,7 @@ found in the LICENSE file.
 <link rel="import" href="/tracing/metrics/rendering/pipeline.html">
 <link rel="import" href="/tracing/metrics/rendering/pixels.html">
 <link rel="import" href="/tracing/metrics/rendering/queueing_duration.html">
+<link rel="import" href="/tracing/model/helpers/chrome_renderer_helper.html">
 <link rel="import" href="/tracing/model/user_model/segment.html">
 
 <script>
@@ -43,12 +44,17 @@ tr.exportTo('tr.metrics.rendering', function() {
     const gestureEvents = [];
     const interactionRecords = [];
     const IRExp = /Interaction\.([^/]+)(\/[^/]*)?$/;
+    let targetRenderer;
     for (const thread of model.getAllThreads()) {
       for (const slice of thread.asyncSliceGroup.slices) {
         if (slice.title === GESTURE_EVENT) {
           gestureEvents.push(slice);
         } else if (IRExp.test(slice.title)) {
           interactionRecords.push(slice);
+          if (tr.model.helpers.ChromeRendererHelper.isRenderProcess(
+              thread.parent)) {
+            targetRenderer = thread.parent;
+          }
         }
       }
     }
@@ -90,7 +96,7 @@ tr.exportTo('tr.metrics.rendering', function() {
     tr.metrics.rendering.addPipelineHistograms(histograms, model, segments);
     tr.metrics.rendering.addPixelsHistograms(histograms, model, segments);
     tr.metrics.rendering.addQueueingDurationHistograms(
-        histograms, model, segments);
+        histograms, model, segments, targetRenderer);
 
     if (uiSegments.length === 0) return;
     uiSegments.sort((x, y) => x.start - y.start);
