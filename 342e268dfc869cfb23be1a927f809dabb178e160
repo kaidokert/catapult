@@ -16,6 +16,24 @@
       "revId": "342e268dfc869cfb23be1a927f809dabb178e160",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "715f34cd_9d1794f3",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2922,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2018-10-18T20:45:39Z",
+      "side": 1,
+      "message": "What\u0027s the fear? Sleeping for too long? That\u0027s all determined by the value the user passes in the retries arg.\n\n\u003e We\u0027re not hitting a remote server...\n\nWell... we are. We\u0027re hitting adbd on a remote usb device. And if it\u0027s down and unresponsive, it may need a certain amount of uninterrupted time to stand back up (hence the progressive sleeps).",
+      "parentUuid": "905ad035_5067b68f",
+      "revId": "342e268dfc869cfb23be1a927f809dabb178e160",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
