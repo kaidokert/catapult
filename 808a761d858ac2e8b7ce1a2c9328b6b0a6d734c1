@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6c891838_0fbb4fa2",
+        "filename": "tracing/tracing/value/ui/histogram_importer_test.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-10-18T12:17:39Z",
+      "side": 1,
+      "message": "👍 much nicer that way.\nI\u0027ll use \"async function() {..\" because of the this.AddHTMLOutput which doesn\u0027t work otherwise.",
+      "parentUuid": "466360f3_59f1313e",
+      "revId": "808a761d858ac2e8b7ce1a2c9328b6b0a6d734c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e878afc5_1c9888ba",
         "filename": "tracing/tracing_build/render_histograms_viewer.py",
         "patchSetId": 6
