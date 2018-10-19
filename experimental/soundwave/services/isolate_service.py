@@ -33,6 +33,8 @@ class Api(object):
   def RetrieveFile(self, digest, filename):
     """Retrieve a particular filename from an isolate container."""
     container = json.loads(self.Retrieve(digest))
+    if filename not in container['files']:
+      filename = filename.replace('/', '\\')
     return self.Retrieve(container['files'][filename]['h'])
 
   def RetrieveCompressed(self, digest):
