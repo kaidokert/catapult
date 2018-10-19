@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f0a1889_28b160f8",
+        "filename": "experimental/soundwave/pinpoint_cli/commands.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-10-19T09:09:32Z",
+      "side": 1,
+      "message": "Dave, I wanted to use the same logic as in pinpoint:\nhttps://cs.chromium.org/chromium/src/third_party/catapult/dashboard/dashboard/pinpoint/models/quest/read_value.py?rcl\u003d237fb2a03b4b525d829b169d7061b79917262797\u0026l\u003d281\n\nHowever the job state returned by the API does not include the bot dimensions, I think it only includes the arguments used to create the job, but not those after being resolved/expanded by pinpoint?\n\nAnyway, I believe this should work for the current set of bot configurations what we have.",
+      "revId": "c442ff01a5acfe5431cbe3d649f4747ac604d591",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
