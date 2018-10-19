@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "351b650d_f1ae04ca",
+        "filename": "telemetry/telemetry/internal/util/webpagereplay_go_server.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-10-19T12:17:45Z",
+      "side": 1,
+      "message": "I think here you have to use:\n\n  logging.log(log_level, stuff)",
+      "revId": "b270f3a643401bc5531de37cc6fd8033b2be90e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
