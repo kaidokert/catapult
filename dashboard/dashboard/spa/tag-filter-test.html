@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+<script src="/bower_components/web-component-tester/browser.js"></script>
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/dashboard/spa/tag-filter.html">
+
+<test-fixture id="test">
+  <template>
+    <tag-filter state-path="test"></tag-filter>
+  </template>
+</test-fixture>
+
+<script>
+'use strict';
+setup(() => {
+  fixture('test').dispatch(Redux.UPDATE('', {
+    test: cp.MenuInput.buildState({
+      label: 'Test',
+      options: cp.OptionGroup.groupValues(new Set([
+        'aaa',
+        'bbb',
+        'ccc',
+        'ddd',
+        'eee',
+      ])),
+      tags: {
+        options: cp.OptionGroup.groupValues(new Set([
+          'xxx',
+          'yyy',
+        ])),
+        map: new Map([
+          ['xxx', ['aaa', 'ccc']],
+          ['yyy', ['bbb', 'ddd']],
+        ]),
+      }
+    }),
+  }));
+});
+
+suite('tag-filter', function() {
+  test('filter', async() => {
+    const tagFilter = fixture('test');
+    await cp.afterRender();
+    const xxx = tr.ui.b.findDeepElementWithTextContent(tagFilter, /xxx/);
+    xxx.$.native.click();
+    await cp.afterRender();
+    assert.deepEqual(['aaa', 'ccc'], optionGroup.getState().test.options);
+    xxx.$.native.click();
+    await cp.afterRender();
+    assert.deepEqual(['aaa', 'bbb', 'ccc', 'ddd', 'eee'],
+        optionGroup.getState().test.options);
+    const yyy = tr.ui.b.findDeepElementWithTextContent(tagFilter, /yyy/);
+    yyy.$.native.click();
+    await cp.afterRender();
+    assert.deepEqual(['bbb', 'ddd'], optionGroup.getState().test.options);
+    xxx.$.native.click();
+    await cp.afterRender();
+    assert.deepEqual(['aaa', 'bbb', 'ccc', 'ddd'],
+        optionGroup.getState().test.options);
+  });
+});
+</script>
