@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0cbf90ad_50fe70e9",
+        "filename": "experimental/soundwave/pinpoint_cli/job_results_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-10-19T10:01:15Z",
+      "side": 0,
+      "message": "with this change the test failed before the fix, and now passes again after fixing the bug.",
+      "revId": "237fb2a03b4b525d829b169d7061b79917262797",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
