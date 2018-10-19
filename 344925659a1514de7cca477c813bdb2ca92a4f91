@@ -16,6 +16,24 @@
       "revId": "344925659a1514de7cca477c813bdb2ca92a4f91",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0cb1ccd8_13849402",
+        "filename": "tracing/tracing/extras/importer/linux_perf/sched_parser_test.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1308235
+      },
+      "writtenOn": "2018-10-19T15:14:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "046b77fb_1ff5b619",
+      "revId": "344925659a1514de7cca477c813bdb2ca92a4f91",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
