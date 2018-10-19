@@ -1,0 +1,62 @@
+#!/usr/bin/env python
+# Copyright 2018 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import argparse
+import os
+import sys
+
+
+def main():
+  parser = argparse.ArgumentParser()
+  parser.add_argument(
+      '--input', '-i', help='Name of csv file containing the results.')
+  parser.add_argument('--output', '-o', help='Where to write the HTML output.')
+  args = parser.parse_args()
+  if not args.input or not args.output:
+    sys.stderr.write('Must provide both input and output files.\n')
+    return
+
+  with open(args.input) as f:
+    headers = f.readline().split(',')
+    change_idx = headers.index('change')
+    mean_idx = headers.index('mean')
+    count_idx = headers.index('count')
+    name_idx = headers.index('name')
+
+    metrics = {}
+    for line in f:
+      cells = line.split(',')
+      change = cells[change_idx]
+      name = cells[name_idx]
+      mean = float(cells[mean_idx] or '0')
+      count = int(cells[count_idx])
+
+      if name not in metrics:
+        metrics[name] = {}
+      if change not in metrics[name]:
+        metrics[name][change] = {'total': 0, 'count': 0}
+
+      metrics[name][change]['count'] += count
+      metrics[name][change]['total'] += mean * count
+
+    names = metrics.keys()
+    names.sort()
+
+    change_keys = metrics[names[0]].keys()
+    change_keys.sort()
+
+    output = open(args.output, 'w')
+    output.write('metric,%s\n' % ','.join(change_keys))
+    for name in names:
+      metric = metrics[name]
+      avg = []
+      for ch in change_keys:
+        m = metric[ch]
+        avg.append(str(m['total'] / m['count']) if m['count'] > 0 else '0')
+      output.write('%s,%s\n' % (name, ','.join(avg)))
+    output.close()
+
+if __name__ == '__main__':
+  sys.exit(main())
