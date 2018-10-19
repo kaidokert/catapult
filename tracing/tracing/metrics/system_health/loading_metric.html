@@ -186,29 +186,30 @@ tr.exportTo('tr.metrics.sh', function() {
     });
   }
 
-  function addFirstMeaningfulPaintCpuTimeSample(samples, rendererHelper,
-      navigationStart, fmpMarkerEvent, url) {
-    const navStartToFMPRange = tr.b.math.Range.fromExplicitRange(
-        navigationStart.start, fmpMarkerEvent.start);
+  function addMetricCpuTimeSample(samples, rendererHelper, navigationStart,
+      markerEvent, url, diagnosticsInfos = {}) {
+    const navStartToMarkerRange = tr.b.math.Range.fromExplicitRange(
+        navigationStart.start, markerEvent.start);
 
     const mainThreadCpuTime =
-        rendererHelper.mainThread.getCpuTimeForRange(navStartToFMPRange);
+        rendererHelper.mainThread.getCpuTimeForRange(navStartToMarkerRange);
 
     const breakdownTree = tr.metrics.sh.generateCpuTimeBreakdownTree(
-        rendererHelper.mainThread, navStartToFMPRange);
+        rendererHelper.mainThread, navStartToMarkerRange);
+    let infos = {
+      url,
+      pid: rendererHelper.pid,
+      start: navigationStart.start,
+    };
+    infos = Object.assign(diagnosticsInfos, infos);
     samples.push({
       value: mainThreadCpuTime,
       breakdownTree,
       diagnostics: {
         breakdown: createBreakdownDiagnostic(breakdownTree),
         start: new RelatedEventSet(navigationStart),
-        end: new RelatedEventSet(fmpMarkerEvent),
-        infos: new tr.v.d.GenericSet([{
-          url,
-          pid: rendererHelper.pid,
-          start: navigationStart.start,
-          fmp: fmpMarkerEvent.start,
-        }]),
+        end: new RelatedEventSet(markerEvent),
+        infos: new tr.v.d.GenericSet([infos]),
       }
     });
   }
@@ -307,9 +308,9 @@ tr.exportTo('tr.metrics.sh', function() {
         addFirstMeaningfulPaintSample(firstMeaningfulPaintSamples,
             rendererHelper, expectation.navigationStart, expectation.fmpEvent,
             expectation.url);
-        addFirstMeaningfulPaintCpuTimeSample(firstMeaningfulPaintCpuTimeSamples,
+        addMetricCpuTimeSample(firstMeaningfulPaintCpuTimeSamples,
             rendererHelper, expectation.navigationStart, expectation.fmpEvent,
-            expectation.url);
+            expectation.url, { fmp: expectation.fmpEvent.start });
       }
       if (expectation.firstCpuIdleTime !== undefined) {
         firstCpuIdleSamples.push(decorateInteractivitySampleWithDiagnostics_(
