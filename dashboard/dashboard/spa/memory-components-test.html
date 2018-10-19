@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+<script src="/bower_components/web-component-tester/browser.js"></script>
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/dashboard/spa/memory-components.html">
+
+<test-fixture id="test">
+  <template>
+    <memory-components state-path="xxx"></memory-components>
+  </template>
+</test-fixture>
+
+<script>
+'use strict';
+setup(() => {
+  fixture('test').dispatch(Redux.UPDATE('', {
+    test: cp.OptionGroup.buildState({
+      options: cp.OptionGroup.groupValues(new Set([
+        'memory:chrome:aaa_process:reported_bbb:ccc:ddd_size',
+        'memory:chrome:aaa_process:reported_bbb:ccc:eee_size',
+        'memory:chrome:aaa_process:reported_bbb:fff:ddd_size',
+        'memory:chrome:aaa_process:reported_bbb:fff:eee_size',
+        'memory:chrome:aaa_process:reported_ggg:ccc:ddd_size',
+        'memory:chrome:aaa_process:reported_ggg:ccc:eee_size',
+        'memory:chrome:aaa_process:reported_ggg:fff:ddd_size',
+        'memory:chrome:aaa_process:reported_ggg:fff:eee_size',
+        'memory:chrome:hhh_process:reported_bbb:ccc:ddd_size',
+        'memory:chrome:hhh_process:reported_bbb:ccc:eee_size',
+        'memory:chrome:hhh_process:reported_bbb:fff:ddd_size',
+        'memory:chrome:hhh_process:reported_bbb:fff:eee_size',
+        'memory:chrome:hhh_process:reported_ggg:ccc:ddd_size',
+        'memory:chrome:hhh_process:reported_ggg:ccc:eee_size',
+        'memory:chrome:hhh_process:reported_ggg:fff:ddd_size',
+        'memory:chrome:hhh_process:reported_ggg:fff:eee_size',
+        'memory:webview:aaa_process:reported_bbb:ccc:ddd_size',
+        'memory:webview:aaa_process:reported_bbb:ccc:eee_size',
+        'memory:webview:aaa_process:reported_bbb:fff:ddd_size',
+        'memory:webview:aaa_process:reported_bbb:fff:eee_size',
+        'memory:webview:aaa_process:reported_ggg:ccc:ddd_size',
+        'memory:webview:aaa_process:reported_ggg:ccc:eee_size',
+        'memory:webview:aaa_process:reported_ggg:fff:ddd_size',
+        'memory:webview:aaa_process:reported_ggg:fff:eee_size',
+        'memory:webview:hhh_process:reported_bbb:ccc:ddd_size',
+        'memory:webview:hhh_process:reported_bbb:ccc:eee_size',
+        'memory:webview:hhh_process:reported_bbb:fff:ddd_size',
+        'memory:webview:hhh_process:reported_bbb:fff:eee_size',
+        'memory:webview:hhh_process:reported_ggg:ccc:ddd_size',
+        'memory:webview:hhh_process:reported_ggg:ccc:eee_size',
+        'memory:webview:hhh_process:reported_ggg:fff:ddd_size',
+        'memory:webview:hhh_process:reported_ggg:fff:eee_size',
+      ])),
+      selectedOptions: [
+        'memory:chrome:aaa_process:reported_bbb:ccc:ddd_size',
+      ],
+    }),
+  }));
+});
+
+suite('memory-components', function() {
+  test('select', () => {
+    const memoryComponents = fixture('test');
+    memoryComponents.dispatch('buildColumns', 'test');
+    // TODO assert columns
+    // TODO [de]select some options
+    // TODO assert test.selectedOptions
+  });
+});
+</script>
