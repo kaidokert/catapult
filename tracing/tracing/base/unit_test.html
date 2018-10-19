@@ -225,10 +225,10 @@ tr.b.unittest.testSuite(function() {
   });
 
   test('powerInWatts', function() {
-    assert.strictEqual(Unit.byName.powerInWatts.format(1000), '1,000.000 W');
+    assert.strictEqual(Unit.byName.powerInWatts.format(1000), '1.000 kW');
     assert.strictEqual(Unit.byName.powerInWatts.format(1), '1.000 W');
-    assert.strictEqual(Unit.byName.powerInWatts.format(.001), '0.001 W');
-    assert.strictEqual(Unit.byName.powerInWatts.format(.001005), '0.001 W');
+    assert.strictEqual(Unit.byName.powerInWatts.format(.001), '1.000 mW');
+    assert.strictEqual(Unit.byName.powerInWatts.format(.001005), '1.005 mW');
   });
 
   test('unitlessNumber', function() {

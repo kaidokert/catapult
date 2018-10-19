@@ -393,7 +393,8 @@ tr.exportTo('tr.b', function() {
     baseUnitName: 'powerInWatts',
     baseJsonName: 'W',
     formatSpec: {
-      baseSymbol: 'W',
+      unitScale: tr.b.UnitScale.defineUnitScaleFromPrefixScale(
+          'W', 'WATT', tr.b.UnitPrefixScale.METRIC, 'WATT').AUTO,
       minimumFractionDigits: 3
     }
   });
