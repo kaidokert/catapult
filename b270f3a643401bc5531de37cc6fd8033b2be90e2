@@ -16,6 +16,24 @@
       "revId": "b270f3a643401bc5531de37cc6fd8033b2be90e2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2547a2f_e0a6f97a",
+        "filename": "telemetry/telemetry/internal/util/webpagereplay_go_server.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-10-19T12:30:44Z",
+      "side": 1,
+      "message": "ah yes... right.",
+      "parentUuid": "351b650d_f1ae04ca",
+      "revId": "b270f3a643401bc5531de37cc6fd8033b2be90e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
