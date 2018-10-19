@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "30f52bf1_66f3401c",
+        "filename": "experimental/soundwave/services/request_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-10-19T15:46:22Z",
+      "side": 1,
+      "message": "Without the fix this test raises a UnicodeEncodeError and fails.",
+      "revId": "5d7244b5b999c5b0109155743c486ad59ee03365",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
