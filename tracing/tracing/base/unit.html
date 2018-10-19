@@ -394,7 +394,8 @@ tr.exportTo('tr.b', function() {
     baseUnitName: 'energyInJoules',
     baseJsonName: 'J',
     formatSpec: {
-      baseSymbol: 'J',
+      unitScale: tr.b.UnitScale.defineUnitScaleFromPrefixScale(
+          'J', 'JOULE', tr.b.UnitPrefixScale.METRIC, 'JOULE').AUTO,
       minimumFractionDigits: 3
     }
   });
@@ -403,7 +404,8 @@ tr.exportTo('tr.b', function() {
     baseUnitName: 'powerInWatts',
     baseJsonName: 'W',
     formatSpec: {
-      baseSymbol: 'W',
+      unitScale: tr.b.UnitScale.defineUnitScaleFromPrefixScale(
+          'W', 'WATT', tr.b.UnitPrefixScale.METRIC, 'WATT').AUTO,
       minimumFractionDigits: 3
     }
   });
@@ -413,6 +415,8 @@ tr.exportTo('tr.b', function() {
     baseJsonName: 'A',
     formatSpec: {
       baseSymbol: 'A',
+      unitScale: tr.b.UnitScale.defineUnitScaleFromPrefixScale(
+          'A', 'AMPERE', tr.b.UnitPrefixScale.METRIC, 'AMPERE').AUTO,
       minimumFractionDigits: 3
     }
   });
@@ -422,6 +426,8 @@ tr.exportTo('tr.b', function() {
     baseJsonName: 'V',
     formatSpec: {
       baseSymbol: 'V',
+      unitScale: tr.b.UnitScale.defineUnitScaleFromPrefixScale(
+          'V', 'VOLT', tr.b.UnitPrefixScale.METRIC, 'VOLT').AUTO,
       minimumFractionDigits: 3
     }
   });
@@ -431,6 +437,8 @@ tr.exportTo('tr.b', function() {
     baseJsonName: 'Hz',
     formatSpec: {
       baseSymbol: 'Hz',
+      unitScale: tr.b.UnitScale.defineUnitScaleFromPrefixScale(
+          'Hz', 'HERTZ', tr.b.UnitPrefixScale.METRIC, 'HERTZ').AUTO,
       minimumFractionDigits: 3
     }
   });
