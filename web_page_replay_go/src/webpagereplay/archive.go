@@ -18,6 +18,7 @@ import (
 	"net/url"
 	"os"
 	"reflect"
+	"strings"
 	"sync"
 )
 
@@ -26,8 +27,18 @@ var ErrNotFound = errors.New("not found")
 // ArchivedRequest contains a single request and its response.
 // Immutable after creation.
 type ArchivedRequest struct {
-	SerializedRequest  []byte
+	SerializedRequest []byte
 	SerializedResponse []byte // if empty, the request failed
+	Served bool
+}
+
+// RequestMatch represents a match when querying the archive for responses to a request
+type RequestMatch struct {
+	Match *ArchivedRequest
+	Request *http.Request
+	Response *http.Response
+	MatchRatio float64
+	Index int
 }
 
 func serializeRequest(req *http.Request, resp *http.Response) (*ArchivedRequest, error) {
@@ -155,42 +166,10 @@ func (a *Archive) FindRequest(req *http.Request, scheme string) (*http.Request, 
 		u.Host = req.Host
 		u.Scheme = scheme
 	}
-	var bestRatio float64
-	if len(hostMap[u.String()]) > 0 {
-		var bestRequest *http.Request
-		var bestResponse *http.Response
-		// There can be multiple requests with the same URL string. If that's the case,
-		// break the tie by the number of headers that match.
-		for _, r := range hostMap[u.String()] {
-			curReq, curResp, err := r.unmarshal()
-			if err != nil {
-				log.Println("Error unmarshaling request")
-				continue
-			}
-			if curReq.Method != req.Method {
-				continue
-			}
-			rh := curReq.Header
-			reqh := req.Header
-			m := 1
-			t := len(rh) + len(reqh)
-			for k, v := range rh {
-				if reflect.DeepEqual(v, reqh[k]) {
-					m++
-				}
-			}
-			ratio := 2 * float64(m) / float64(t)
-			// Note that since |m| starts from 1. The ratio will be more than 0
-			// even if no header matches.
-			if ratio > bestRatio {
-				bestRequest = curReq
-				bestResponse = curResp
-				bestRatio = ratio
-			}
-		}
-		if bestRequest != nil && bestResponse != nil {
-			return bestRequest, bestResponse, nil
-		}
+	reqUrl := u.String()
+
+	if len(hostMap[reqUrl]) > 0 {
+		return findBestMatchInArchivedRequestSet(req, hostMap[reqUrl])
 	}
 
 	// For all URLs with a matching path, pick the URL that has the most matching query parameters.
@@ -200,6 +179,7 @@ func (a *Archive) FindRequest(req *http.Request, scheme string) (*http.Request, 
 	aq := req.URL.Query()
 
 	var bestURL string
+	var bestRatio float64
 
 	for ustr := range hostMap {
 		u, err := url.Parse(ustr)
@@ -226,28 +206,125 @@ func (a *Archive) FindRequest(req *http.Request, scheme string) (*http.Request, 
 		}
 	}
 
-	// TODO: Try each until one succeeds with a matching request method.
 	if bestURL != "" {
-		return findExactMatch(hostMap[bestURL], req.Method)
+		return findBestMatchInArchivedRequestSet(req, hostMap[bestURL])
 	}
 
 	return nil, nil, ErrNotFound
 }
 
-// findExactMatch returns the first request that exactly matches the given request method.
-func findExactMatch(requests []*ArchivedRequest, method string) (*http.Request, *http.Response, error) {
-	for _, ar := range requests {
-		req, resp, err := ar.unmarshal()
-		if err != nil {
-			log.Printf("Error unmarshaling request: %v\nAR.Request: %q\nAR.Response: %q", err, ar.SerializedRequest, ar.SerializedResponse)
-			continue
+// Given an incoming request and a set of matches in the archive, identify the best match,
+// based on request headers, request cookies, data and other information.
+func findBestMatchInArchivedRequestSet(req *http.Request, archivedReqs []*ArchivedRequest) (*http.Request, *http.Response, error) {
+	if len(archivedReqs) == 1 {
+		archivedReq, archivedResp, err := archivedReqs[0].unmarshal()
+		if err == nil {
+			return archivedReq, archivedResp, err
 		}
-		if req.Method == method {
-			return req, resp, nil
+	} else if len(archivedReqs) > 0 {
+		var bestMatch RequestMatch
+
+		// There can be multiple requests with the same URL string. If that's the case,
+		// break the tie by the number of headers that match, and in the case of a POST,
+		// PUT or a PATCH request, also by the number of data entries that match.
+		reqHeaders := req.Header
+		reqCookies := req.Cookies()
+		parseForm(req);
+
+		for index, r := range archivedReqs {
+			archivedReq, archivedResp, err := r.unmarshal()
+			if err != nil {
+				log.Println("Error unmarshaling request")
+				continue
+			}
+
+			// Skip if the request methods does not match.
+			if archivedReq.Method != req.Method {
+				continue
+			}
+
+			matches := 1
+			total := 1
+
+			// Count the number of header matches
+			archivedHeaders := archivedReq.Header
+			total += len(reqHeaders) + len(archivedHeaders)
+			for key, val := range archivedHeaders {
+				if reflect.DeepEqual(val, reqHeaders[key]) {
+					matches++
+				}
+			}
+
+			// Count the number of cookie entry matches
+			archivedCookies := archivedReq.Cookies()
+			total += len(reqCookies) + len(archivedCookies)
+			for _, cookie := range archivedCookies {
+				val, err := req.Cookie(cookie.Name)
+				if err == nil {
+					// If both the archived request and the current request has the same cookie name,
+					// increment the match score by 1.
+					matches++
+					// If both the archived request and the current request has the same cookie name
+					// and the exact same cookie value, increment the match score by 2.
+					if reflect.DeepEqual(val, cookie) {
+						matches ++
+					}
+				}
+			}
+
+			// Count the number of data matches
+			parseForm(archivedReq)
+			total += len(archivedReq.PostForm) + len(req.PostForm)
+			for key, val := range archivedReq.PostForm {
+				if reflect.DeepEqual(val, req.PostForm[key]) {
+					matches++
+				}
+			}
+
+			ratio := 2 * float64(matches) / float64(total)
+			if ratio > bestMatch.MatchRatio {
+				bestMatch.Match = r
+				bestMatch.Request = archivedReq
+				bestMatch.Response = archivedResp
+				bestMatch.MatchRatio = ratio
+				bestMatch.Index = index
+			}
+		}
+		return bestMatch.Request, bestMatch.Response, nil
+	}
+	return nil, nil, ErrNotFound
+}
+
+func parseForm(r *http.Request) {
+	r.ParseForm()
+	method := strings.ToUpper(r.Method)
+	// Custom parser. Golang's http.Request class's ParseForm function can only handle
+	// a limited set of data content types. The following section implement a number of
+	// customize parsers for custom data content types
+	if len(r.PostForm) == 0 && method == "POST" {
+		// Limit the amount of data to read to 2 MB.
+		maxFormSize := int64(2 << 20)
+		switch ct := r.Header.Get("Content-Type"); ct {
+		// Some sites, notably Gap, Banana Republic and Old Navy, issue post requests
+		// in plain text using the new-line character as a delimiter.
+		case "text/plain":
+			var reader io.Reader = io.LimitReader(r.Body, maxFormSize + 1)
+			b, e := ioutil.ReadAll(reader)
+			if e != nil {
+				return
+			}
+			r.PostForm, e = url.ParseQuery(strings.Replace(string(b), "\n", "&", -1))
+			break
+		// All else failing, insert a single entry with the entire POST text.
+		default:
+			var reader io.Reader = io.LimitReader(r.Body, maxFormSize + 1)
+			b, e := ioutil.ReadAll(reader)
+			if e != nil {
+				return
+			}
+			r.PostForm["raw"] = append(r.PostForm["raw"], string(b))
 		}
 	}
-
-	return nil, nil, ErrNotFound
 }
 
 func (a *Archive) addArchivedRequest(scheme string, req *http.Request, resp *http.Response) error {
