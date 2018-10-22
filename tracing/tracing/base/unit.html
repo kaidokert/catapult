@@ -391,6 +391,16 @@ tr.exportTo('tr.b', function() {
   });
 
   Unit.define({
+    baseUnitName: 'framesPerSecond',
+    baseJsonName: 'framesPerSecond',
+    formatSpec: {
+      baseSymbol: 'fps',
+      minimumFractionDigits: 3,
+      maximumFractionDigits: 3
+    }
+  });
+
+  Unit.define({
     baseUnitName: 'energyInJoules',
     baseJsonName: 'J',
     formatSpec: {

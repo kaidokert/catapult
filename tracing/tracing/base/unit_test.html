@@ -315,6 +315,15 @@ tr.b.unittest.testSuite(function() {
         '0.01 MiB/s');
   });
 
+  test('framesPerSecond', function() {
+    assert.strictEqual(
+        Unit.byName.framesPerSecond.format(1000), '1,000.000 fps');
+    assert.strictEqual(Unit.byName.framesPerSecond.format(1), '1.000 fps');
+    assert.strictEqual(Unit.byName.framesPerSecond.format(.005), '0.005 fps');
+    assert.strictEqual(Unit.byName.framesPerSecond.format(.0005), '0.001 fps');
+    assert.strictEqual(Unit.byName.framesPerSecond.format(.0004), '0.000 fps');
+  });
+
   test('energyInJoules', function() {
     assert.strictEqual(Unit.byName.energyInJoules.format(1000), '1,000.000 J');
     assert.strictEqual(Unit.byName.energyInJoules.format(1), '1.000 J');

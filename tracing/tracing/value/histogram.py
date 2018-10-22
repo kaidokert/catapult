@@ -1440,6 +1440,7 @@ DEFAULT_BOUNDARIES_FOR_UNIT = {
     'n%': HistogramBinBoundaries.CreateLinear(0, 1.0, 20),
     'sizeInBytes': HistogramBinBoundaries.CreateExponential(1, 1e12, 100),
     'bytesPerSecond': HistogramBinBoundaries.CreateExponential(1, 1e12, 100),
+    'framesPerSecond': HistogramBinBoundaries.CreateExponential(1, 1e3, 20),
     'J': HistogramBinBoundaries.CreateExponential(1e-3, 1e3, 50),
     'W': HistogramBinBoundaries.CreateExponential(1e-3, 1, 50),
     'A': HistogramBinBoundaries.CreateExponential(1e-3, 1, 50),
