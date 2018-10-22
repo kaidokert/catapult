@@ -112,8 +112,7 @@ tr.exportTo('tr.metrics.sh', function() {
     return targetEvents;
   }
 
-
-  function collectTimeToEvent(
+  function findTimeToXEntries(
       category, eventName, rendererHelper, frameToNavStartEvents) {
     const targetEvents = findAllEvents(rendererHelper, category, eventName);
     const samples = [];
@@ -131,7 +130,24 @@ tr.exportTo('tr.metrics.sh', function() {
       // Ignore layout w/o preceding navigationStart, as they are not
       // attributed to any time-to-X metric.
       if (navigationStartEvent === undefined) continue;
+      samples.push({
+        navigationStartEvent,
+        targestEvent: ev,
+        url,
+      });
+    }
+    return samples;
+  }
 
+  function collectTimeToEvent(
+      category, eventName, rendererHelper, frameToNavStartEvents) {
+    const entries = findTimeToXEntries(
+        category, eventName, rendererHelper, frameToNavStartEvents);
+    const samples = [];
+    for (const entry of entries) {
+      const ev = entry.targestEvent;
+      const navigationStartEvent = entry.navigationStartEvent;
+      const url = entry.url;
       const navStartToEventRange = tr.b.math.Range.fromExplicitRange(
           navigationStartEvent.start, ev.start);
       const networkEvents = getNetworkEventsInRange(
@@ -146,6 +162,41 @@ tr.exportTo('tr.metrics.sh', function() {
           url: new tr.v.d.GenericSet([url]),
           Start: new RelatedEventSet(navigationStartEvent),
           End: new RelatedEventSet(ev)
+        }
+      });
+    }
+    return samples;
+  }
+
+  function collectTimeToEventInCpuTime(
+      category, eventName, rendererHelper, frameToNavStartEvents) {
+    const entries = findTimeToXEntries(
+        category, eventName, rendererHelper, frameToNavStartEvents);
+    const samples = [];
+    for (const entry of entries) {
+      const ev = entry.targestEvent;
+      const navigationStartEvent = entry.navigationStartEvent;
+      const url = entry.url;
+      const navStartToEventRange = tr.b.math.Range.fromExplicitRange(
+          navigationStartEvent.start, ev.start);
+
+      const mainThreadCpuTime =
+          rendererHelper.mainThread.getCpuTimeForRange(navStartToEventRange);
+
+      const breakdownTree = tr.metrics.sh.generateCpuTimeBreakdownTree(
+          rendererHelper.mainThread, navStartToEventRange);
+      samples.push({
+        value: mainThreadCpuTime,
+        breakdownTree,
+        diagnostics: {
+          breakdown: createBreakdownDiagnostic(breakdownTree),
+          start: new RelatedEventSet(navigationStartEvent),
+          end: new RelatedEventSet(ev),
+          infos: new tr.v.d.GenericSet([{
+            pid: rendererHelper.pid,
+            start: navigationStartEvent.start,
+            event: ev.start,
+          }]),
         }
       });
     }
@@ -267,6 +318,9 @@ tr.exportTo('tr.metrics.sh', function() {
     const firstContentfulPaintSamples = collectTimeToEvent(
         'loading', 'firstContentfulPaint',
         rendererHelper, frameToNavStartEvents);
+    const firstContentfulPaintCpuTimeSamples = collectTimeToEventInCpuTime(
+        'loading', 'firstContentfulPaint',
+        rendererHelper, frameToNavStartEvents);
     const onLoadSamples = collectTimeToEvent(
         'blink.user_timing', 'loadEventStart',
         rendererHelper, frameToNavStartEvents);
@@ -275,6 +329,7 @@ tr.exportTo('tr.metrics.sh', function() {
       frameToNavStartEvents,
       firstPaintSamples,
       firstContentfulPaintSamples,
+      firstContentfulPaintCpuTimeSamples,
       onLoadSamples,
     };
   }
@@ -377,6 +432,12 @@ tr.exportTo('tr.metrics.sh', function() {
           description: 'time to first contentful paint',
           summaryOptions: SUMMARY_OPTIONS,
         });
+    const firstContentfulPaintCpuTimeHistogram = histograms.createHistogram(
+        'cpuTimeToFirstContentfulPaint', timeDurationInMs_smallerIsBetter, [], {
+          binBoundaries: LOADING_METRIC_BOUNDARIES,
+          description: 'CPU time to first contentful paint',
+          summaryOptions: SUMMARY_OPTIONS,
+        });
     const onLoadHistogram = histograms.createHistogram(
         'timeToOnload', timeDurationInMs_smallerIsBetter, [], {
           binBoundaries: LOADING_METRIC_BOUNDARIES,
@@ -423,6 +484,10 @@ tr.exportTo('tr.metrics.sh', function() {
       addSamplesToHistogram(
           samplesSet.firstContentfulPaintSamples,
           firstContentfulPaintHistogram,
+          histograms);
+      addSamplesToHistogram(
+          samplesSet.firstContentfulPaintCpuTimeSamples,
+          firstContentfulPaintCpuTimeHistogram,
           histograms);
       addSamplesToHistogram(
           samplesSet.onLoadSamples, onLoadHistogram, histograms);
