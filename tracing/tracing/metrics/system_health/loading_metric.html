@@ -112,11 +112,11 @@ tr.exportTo('tr.metrics.sh', function() {
     return targetEvents;
   }
 
-  function collectTimeToEvent(
+  function findTimeToXEntries(
       category, eventName, rendererHelper, frameToNavStartEvents,
       navIdToNavStartEvents) {
     const targetEvents = findAllEvents(rendererHelper, category, eventName);
-    const samples = [];
+    const entries = [];
     for (const ev of targetEvents) {
       if (rendererHelper.isTelemetryInternalEvent(ev)) continue;
       const frameIdRef = ev.args.frame;
@@ -139,7 +139,21 @@ tr.exportTo('tr.metrics.sh', function() {
       // Ignore layout w/o preceding navigationStart, as they are not
       // attributed to any time-to-X metric.
       if (navigationStartEvent === undefined) continue;
+      entries.push({
+        navigationStartEvent,
+        targestEvent: ev,
+        url,
+      });
+    }
+    return entries;
+  }
 
+  function collectTimeToEvent(rendererHelper, timeToXEntries) {
+    const samples = [];
+    for (const entry of timeToXEntries) {
+      const ev = entry.targestEvent;
+      const navigationStartEvent = entry.navigationStartEvent;
+      const url = entry.url;
       const navStartToEventRange = tr.b.math.Range.fromExplicitRange(
           navigationStartEvent.start, ev.start);
       const networkEvents = getNetworkEventsInRange(
@@ -154,6 +168,38 @@ tr.exportTo('tr.metrics.sh', function() {
           url: new tr.v.d.GenericSet([url]),
           Start: new RelatedEventSet(navigationStartEvent),
           End: new RelatedEventSet(ev)
+        }
+      });
+    }
+    return samples;
+  }
+
+  function collectTimeToEventInCpuTime(rendererHelper, timeToXEntries) {
+    const samples = [];
+    for (const entry of timeToXEntries) {
+      const ev = entry.targestEvent;
+      const navigationStartEvent = entry.navigationStartEvent;
+      const url = entry.url;
+      const navStartToEventRange = tr.b.math.Range.fromExplicitRange(
+          navigationStartEvent.start, ev.start);
+
+      const mainThreadCpuTime =
+          rendererHelper.mainThread.getCpuTimeForRange(navStartToEventRange);
+
+      const breakdownTree = tr.metrics.sh.generateCpuTimeBreakdownTree(
+          rendererHelper.mainThread, navStartToEventRange);
+      samples.push({
+        value: mainThreadCpuTime,
+        breakdownTree,
+        diagnostics: {
+          breakdown: createBreakdownDiagnostic(breakdownTree),
+          start: new RelatedEventSet(navigationStartEvent),
+          end: new RelatedEventSet(ev),
+          infos: new tr.v.d.GenericSet([{
+            pid: rendererHelper.pid,
+            start: navigationStartEvent.start,
+            event: ev.start,
+          }]),
         }
       });
     }
@@ -272,20 +318,25 @@ tr.exportTo('tr.metrics.sh', function() {
     const navIdToNavStartEvents =
         EventFinderUtils.getSortedMainThreadEventsByNavId(
             rendererHelper, 'navigationStart', 'blink.user_timing');
-    const firstPaintSamples = collectTimeToEvent(
-        'loading', 'firstPaint',
-        rendererHelper, frameToNavStartEvents, navIdToNavStartEvents);
-    const firstContentfulPaintSamples = collectTimeToEvent(
-        'loading', 'firstContentfulPaint',
-        rendererHelper, frameToNavStartEvents, navIdToNavStartEvents);
-    const onLoadSamples = collectTimeToEvent(
-        'blink.user_timing', 'loadEventStart',
-        rendererHelper, frameToNavStartEvents, navIdToNavStartEvents);
+    const firstPaintSamples = collectTimeToEvent(rendererHelper,
+        findTimeToXEntries('loading', 'firstPaint', rendererHelper,
+            frameToNavStartEvents, navIdToNavStartEvents));
+    const timeToFCPEntries = findTimeToXEntries('loading',
+        'firstContentfulPaint', rendererHelper, frameToNavStartEvents,
+        navIdToNavStartEvents);
+    const firstContentfulPaintSamples = collectTimeToEvent(rendererHelper,
+        timeToFCPEntries);
+    const firstContentfulPaintCpuTimeSamples = collectTimeToEventInCpuTime(
+        rendererHelper, timeToFCPEntries);
+    const onLoadSamples = collectTimeToEvent(rendererHelper, findTimeToXEntries(
+        'blink.user_timing', 'loadEventStart', rendererHelper,
+        frameToNavStartEvents, navIdToNavStartEvents));
 
     return {
       frameToNavStartEvents,
       firstPaintSamples,
       firstContentfulPaintSamples,
+      firstContentfulPaintCpuTimeSamples,
       onLoadSamples,
     };
   }
@@ -388,6 +439,12 @@ tr.exportTo('tr.metrics.sh', function() {
           description: 'time to first contentful paint',
           summaryOptions: SUMMARY_OPTIONS,
         });
+    const firstContentfulPaintCpuTimeHistogram = histograms.createHistogram(
+        'cpuTimeToFirstContentfulPaint', timeDurationInMs_smallerIsBetter, [], {
+          binBoundaries: LOADING_METRIC_BOUNDARIES,
+          description: 'CPU time to first contentful paint',
+          summaryOptions: SUMMARY_OPTIONS,
+        });
     const onLoadHistogram = histograms.createHistogram(
         'timeToOnload', timeDurationInMs_smallerIsBetter, [], {
           binBoundaries: LOADING_METRIC_BOUNDARIES,
@@ -434,6 +491,10 @@ tr.exportTo('tr.metrics.sh', function() {
       addSamplesToHistogram(
           samplesSet.firstContentfulPaintSamples,
           firstContentfulPaintHistogram,
+          histograms);
+      addSamplesToHistogram(
+          samplesSet.firstContentfulPaintCpuTimeSamples,
+          firstContentfulPaintCpuTimeHistogram,
           histograms);
       addSamplesToHistogram(
           samplesSet.onLoadSamples, onLoadHistogram, histograms);
