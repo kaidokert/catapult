@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9d47af3c_046f015c",
+        "filename": "tracing/tracing/model/helpers/telemetry_helper.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-22T17:03:07Z",
+      "side": 1,
+      "message": "Can you spell out whatever \"exp\" stands for?",
+      "range": {
+        "startLine": 15,
+        "startChar": 8,
+        "endLine": 15,
+        "endChar": 14
+      },
+      "revId": "60fd7ae05e2deed85eccdc2dac35aee3267ffb86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51539615_efa6fcc5",
+        "filename": "tracing/tracing/model/helpers/telemetry_helper.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-22T17:03:07Z",
+      "side": 1,
+      "message": "Do the metrics fall back to using the user model so they at least produce something for non-telemetry traces?",
+      "revId": "60fd7ae05e2deed85eccdc2dac35aee3267ffb86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a885fe0c_5ef2796e",
+        "filename": "tracing/tracing/model/helpers/telemetry_helper.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-22T17:03:07Z",
+      "side": 1,
+      "message": "Is there any way to filter processes before handling all of their async slices in the interest of saving cpu time?",
+      "revId": "60fd7ae05e2deed85eccdc2dac35aee3267ffb86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
