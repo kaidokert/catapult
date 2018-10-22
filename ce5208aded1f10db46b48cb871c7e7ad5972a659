@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "693e09d4_61aec83a",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-22T16:37:40Z",
+      "side": 1,
+      "message": "Want to rename the loop variable to \"targetEvent\" so this object literal can use short-hand?",
+      "range": {
+        "startLine": 144,
+        "startChar": 22,
+        "endLine": 144,
+        "endChar": 24
+      },
+      "revId": "ce5208aded1f10db46b48cb871c7e7ad5972a659",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e5352bd_82bc78f6",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-22T16:37:40Z",
+      "side": 1,
+      "message": "Should this be \"target\"?",
+      "range": {
+        "startLine": 144,
+        "startChar": 8,
+        "endLine": 144,
+        "endChar": 15
+      },
+      "revId": "ce5208aded1f10db46b48cb871c7e7ad5972a659",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3438ee8d_3db45398",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-22T16:37:40Z",
+      "side": 1,
+      "message": "Why not unpack?\n\nfor (const {targetEvent, navigationStartEvent, url} of timeToXEntries)",
+      "revId": "ce5208aded1f10db46b48cb871c7e7ad5972a659",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
