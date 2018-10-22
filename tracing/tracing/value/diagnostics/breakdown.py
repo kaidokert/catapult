@@ -61,3 +61,7 @@ class Breakdown(diagnostic.Diagnostic):
   def __iter__(self):
     for name, value in self._values.iteritems():
       yield name, value
+
+  def __len__(self):
+    return len(self._values)
+
