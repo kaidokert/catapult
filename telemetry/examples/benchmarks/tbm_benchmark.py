@@ -11,10 +11,10 @@ class TBMSample(benchmark.Benchmark):
   def CreateStorySet(self, options):
     return simple_story_set.SimpleStorySet()
 
-  def CreateCoreTimelineBasedMeasurementOptions(self):
-    options = timeline_based_measurement.Options()
-    options.SetTimelineBasedMetrics(['sampleMetric'])
-    return options
+  def CreateCoreTimelineBasedMeasurementOptions(self, options):
+    tbm_options = timeline_based_measurement.Options()
+    tbm_options.SetTimelineBasedMetrics(['sampleMetric'])
+    return tbm_options
 
   @classmethod
   def Name(cls):
