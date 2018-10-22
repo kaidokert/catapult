@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "064490f2_78214e18",
+        "filename": "tracing/tracing/model/helpers/telemetry_helper.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-10-22T17:57:31Z",
+      "side": 1,
+      "message": "sorry, ba\u0027d abbreviation. It\u0027s now IR_REG_EXP interactive record regular expression.",
+      "parentUuid": "9d47af3c_046f015c",
+      "range": {
+        "startLine": 15,
+        "startChar": 8,
+        "endLine": 15,
+        "endChar": 14
+      },
+      "revId": "60fd7ae05e2deed85eccdc2dac35aee3267ffb86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "51539615_efa6fcc5",
         "filename": "tracing/tracing/model/helpers/telemetry_helper.html",
         "patchSetId": 1
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "8b201a6e_29c4777f",
+        "filename": "tracing/tracing/model/helpers/telemetry_helper.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-10-22T17:57:31Z",
+      "side": 1,
+      "message": "No, this CL does not change the behaviour of metrics in that respect. I suggest if we want to add support to compute metrics for non-telemetry traces, we do it in a separate CL, because there should be discussions about what the proper fallback should be for each metric. A couple of examples:\n\n- Should CPU utilization metrics fallback to animation segments or be computed for the whole duration of the trace, since they are not animation-related in nature?\n\n- For, frame_times, we probably want to fallback to animation segments, but, what about ui_frame_times? Does the user model provide a way to distinguish UI animations from webpage animations?",
+      "parentUuid": "51539615_efa6fcc5",
+      "revId": "60fd7ae05e2deed85eccdc2dac35aee3267ffb86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a885fe0c_5ef2796e",
         "filename": "tracing/tracing/model/helpers/telemetry_helper.html",
         "patchSetId": 1
@@ -53,6 +95,24 @@
       "writtenOn": "2018-10-22T17:03:07Z",
       "side": 1,
       "message": "Is there any way to filter processes before handling all of their async slices in the interest of saving cpu time?",
+      "revId": "60fd7ae05e2deed85eccdc2dac35aee3267ffb86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7554cd7d_1546e3fb",
+        "filename": "tracing/tracing/model/helpers/telemetry_helper.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-10-22T17:57:31Z",
+      "side": 1,
+      "message": "Done: I don\u0027t remember seeing that interaction records should be emitted from particular processes, in the documents; however, I think in practice they are always emitted from renderers or the telemetry process. I\u0027m not 100% sure. But, at least in rendering benchmarks, I know will appear in renderer processes only. The synthetic gesture controller events are from the browser process.\n\nSince, this is used in computing rendering metrics only, for now, I\u0027ll limit the search to renderers and the browser. We can search other processes if we need to in future.",
+      "parentUuid": "a885fe0c_5ef2796e",
       "revId": "60fd7ae05e2deed85eccdc2dac35aee3267ffb86",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
