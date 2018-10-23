@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1879783f_be84acad",
+        "filename": "experimental/soundwave/soundwave/studies/v8_study.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-23T17:05:14Z",
+      "side": 1,
+      "message": "Hard coding a path like this seems limiting. Are you sure you don\u0027t want to take a filename in --upload-csv?",
+      "revId": "87dfda5ebdd0efd13eb5acb61868b7f2203e818b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
