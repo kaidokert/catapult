@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1e96c4a3_ec5b7804",
+        "filename": "tracing/tracing/base/unit_test.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-23T16:36:09Z",
+      "side": 1,
+      "message": "Hm, it looks like this constant is defined in unit_scale.html, but outside of tr.exportTo(), which is not right. Can you move it inside tr.exportTo and export it to tr.b so this test can find it there?",
+      "revId": "09544dab505c3cf940c012b9827a238491cd7888",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2df7fa4_b30450ab",
+        "filename": "tracing/tracing/value/ui/scalar_span_test.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-10-23T16:36:09Z",
+      "side": 1,
+      "message": "Can you tweak Unit.format() to special-case 0 to select the sub-unit whose value \u003d\u003d\u003d 1 so we don\u0027t get this unnecessary \u0027n\u0027? That would also make this kind of test robust in case of future changes to add pico-, femto-, etc.",
+      "revId": "09544dab505c3cf940c012b9827a238491cd7888",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
