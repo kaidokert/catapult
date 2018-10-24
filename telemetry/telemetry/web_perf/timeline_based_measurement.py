@@ -13,7 +13,6 @@ from telemetry.timeline import model as model_module
 from telemetry.timeline import tracing_config
 from telemetry.value import trace
 from telemetry.value import common_value_helpers
-from telemetry.web_perf.metrics import timeline_based_metric
 from telemetry.web_perf import story_test
 from telemetry.web_perf import timeline_interaction_record as tir_module
 
@@ -30,93 +29,6 @@ ALL_OVERHEAD_LEVELS = [
     DEFAULT_OVERHEAD_LEVEL,
     DEBUG_OVERHEAD_LEVEL,
 ]
-
-
-class InvalidInteractions(Exception):
-  pass
-
-
-# TODO(nednguyen): Get rid of this results wrapper hack after we add interaction
-# record to telemetry value system (crbug.com/453109)
-class ResultsWrapperInterface(object):
-  def __init__(self):
-    self._tir_label = None
-    self._results = None
-
-  def SetResults(self, results):
-    self._results = results
-
-  def SetTirLabel(self, tir_label):
-    self._tir_label = tir_label
-
-  @property
-  def current_page(self):
-    return self._results.current_page
-
-  def AddValue(self, value):
-    raise NotImplementedError
-
-
-class _TBMResultWrapper(ResultsWrapperInterface):
-  def AddValue(self, value):
-    assert self._tir_label
-    if value.tir_label:
-      assert value.tir_label == self._tir_label
-    else:
-      value.tir_label = self._tir_label
-    self._results.AddValue(value)
-
-
-def _GetRendererThreadsToInteractionRecordsMap(model):
-  threads_to_records_map = collections.defaultdict(list)
-  interaction_labels_of_previous_threads = set()
-  for curr_thread in model.GetAllThreads():
-    for event in curr_thread.async_slices:
-      # TODO(nduca): Add support for page-load interaction record.
-      if tir_module.IsTimelineInteractionRecord(event.name):
-        interaction = tir_module.TimelineInteractionRecord.FromAsyncEvent(event)
-        threads_to_records_map[curr_thread].append(interaction)
-        if interaction.label in interaction_labels_of_previous_threads:
-          raise InvalidInteractions(
-              'Interaction record label %s is duplicated on different '
-              'threads' % interaction.label)
-    if curr_thread in threads_to_records_map:
-      interaction_labels_of_previous_threads.update(
-          r.label for r in threads_to_records_map[curr_thread])
-
-  return threads_to_records_map
-
-
-class _TimelineBasedMetrics(object):
-  def __init__(self, model, renderer_thread, interaction_records,
-               results_wrapper, metrics):
-    self._model = model
-    self._renderer_thread = renderer_thread
-    self._interaction_records = interaction_records
-    self._results_wrapper = results_wrapper
-    self._all_metrics = metrics
-
-  def AddResults(self, results):
-    interactions_by_label = collections.defaultdict(list)
-    for i in self._interaction_records:
-      interactions_by_label[i.label].append(i)
-
-    for label, interactions in interactions_by_label.iteritems():
-      are_repeatable = [i.repeatable for i in interactions]
-      if not all(are_repeatable) and len(interactions) > 1:
-        raise InvalidInteractions('Duplicate unrepeatable interaction records '
-                                  'on the page')
-      self._results_wrapper.SetResults(results)
-      self._results_wrapper.SetTirLabel(label)
-      self.UpdateResultsByMetric(interactions, self._results_wrapper)
-
-  def UpdateResultsByMetric(self, interactions, wrapped_results):
-    if not interactions:
-      return
-
-    for metric in self._all_metrics:
-      metric.AddResults(self._model, self._renderer_thread,
-                        interactions, wrapped_results)
 
 
 class Options(object):
@@ -203,15 +115,6 @@ class Options(object):
   def GetTimelineBasedMetrics(self):
     return self._timeline_based_metrics
 
-  def SetLegacyTimelineBasedMetrics(self, metrics):
-    assert isinstance(metrics, collections.Iterable)
-    for m in metrics:
-      assert isinstance(m, timeline_based_metric.TimelineBasedMetric)
-    self._legacy_timeline_based_metrics = metrics
-
-  def GetLegacyTimelineBasedMetrics(self):
-    return self._legacy_timeline_based_metrics
-
 
 class TimelineBasedMeasurement(story_test.StoryTest):
   """Collects multiple metrics based on their interaction records.
@@ -244,7 +147,6 @@ class TimelineBasedMeasurement(story_test.StoryTest):
   """
   def __init__(self, options, results_wrapper=None):
     self._tbm_options = options
-    self._results_wrapper = results_wrapper or _TBMResultWrapper()
 
   def WillRunStory(self, platform):
     """Configure and start tracing."""
@@ -275,18 +177,7 @@ class TimelineBasedMeasurement(story_test.StoryTest):
     results.AddValue(trace_value)
 
     try:
-      if self._tbm_options.GetTimelineBasedMetrics():
-        assert not self._tbm_options.GetLegacyTimelineBasedMetrics(), (
-            'Specifying both TBMv1 and TBMv2 metrics is not allowed.')
-        self._ComputeTimelineBasedMetrics(results, trace_value)
-      else:
-        # Run all TBMv1 metrics if no other metric is specified
-        # (legacy behavior)
-        if not self._tbm_options.GetLegacyTimelineBasedMetrics():
-          raise Exception(
-              'Please specify the TBMv1 metrics you are interested in '
-              'explicitly.')
-        self._ComputeLegacyTimelineBasedMetrics(results, trace_result)
+      self._ComputeTimelineBasedMetrics(results, trace_value)
     finally:
       trace_result.CleanUpAllTraces()
 
@@ -331,29 +222,6 @@ class TimelineBasedMeasurement(story_test.StoryTest):
 
     for d in mre_result.pairs.get('scalars', []):
       results.AddValue(common_value_helpers.TranslateScalarValue(d, page))
-
-  def _ComputeLegacyTimelineBasedMetrics(self, results, trace_result):
-    model = model_module.TimelineModel(trace_result)
-    threads_to_records_map = _GetRendererThreadsToInteractionRecordsMap(model)
-    if (len(threads_to_records_map.values()) == 0 and
-        self._tbm_options.config.enable_chrome_trace):
-      logging.warning(
-          'No timeline interaction records were recorded in the trace. '
-          'This could be caused by console.time() & console.timeEnd() execution'
-          ' failure or the tracing category specified doesn\'t include '
-          'blink.console categories.')
-
-    all_metrics = self._tbm_options.GetLegacyTimelineBasedMetrics()
-
-    for renderer_thread, interaction_records in (
-        threads_to_records_map.iteritems()):
-      meta_metrics = _TimelineBasedMetrics(
-          model, renderer_thread, interaction_records, self._results_wrapper,
-          all_metrics)
-      meta_metrics.AddResults(results)
-
-    for metric in all_metrics:
-      metric.AddWholeTraceResults(model, results)
 
   @property
   def tbm_options(self):
