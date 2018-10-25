@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e61bb6c5_c9cdcaa0",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-10-25T13:59:34Z",
+      "side": 1,
+      "message": "We\u0027ve actually had recent issues where the wrong APK was chosen, and this log was very useful for that. Also perezju@ is working on moving the perf builders from ChromePublic.apk to clank, and we\u0027ll probably want to keep this log in at least until this work has stabilized.",
+      "range": {
+        "startLine": 75,
+        "startChar": 59,
+        "endLine": 76,
+        "endChar": 17
+      },
+      "revId": "da2d20d0b72586e6874b11835d2265ca2c46a151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e24a1029_52e00a71",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-10-25T13:59:34Z",
+      "side": 1,
+      "message": "We do get frequent questions about whether a given command line was specified, but it\u0027s usually debuggable by looking at the field trial testing config. So I think this is okay to remove. Ned?",
+      "revId": "da2d20d0b72586e6874b11835d2265ca2c46a151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3f04240_8c5173bb",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-10-25T13:59:34Z",
+      "side": 1,
+      "message": "GPU team looks at this pretty frequently, and it\u0027s our first line of defense against misconfigured bots. That said, I agree it adds a lot to our logs. Ned, is there some way to make this info easily findable without spamming all the logs? Could it be put into a separate output file or something? (Actually, would it just be possible to have the info logs at one link, and the debug logs at another link?)",
+      "revId": "da2d20d0b72586e6874b11835d2265ca2c46a151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
