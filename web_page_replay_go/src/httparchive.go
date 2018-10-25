@@ -193,18 +193,43 @@ func edit(cfg *Config, a *webpagereplay.Archive, outfile string) {
 		return
 	}
 
+	if !writeArchive(newA, outfile) {
+		return
+	}
+
+	fmt.Printf("Wrote edited archive to %s\n", outfile)
+}
+
+func bool writeArchive(archive *webpagereplay.Archive, outfile string)
 	outf, err := os.OpenFile(outfile, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.FileMode(0660))
 	if err != nil {
 		fmt.Printf("Error opening output file %s: %v\n", outfile, err)
-		return
+		return false
 	}
-	err0 := newA.Serialize(outf)
+	err0 := archive.Serialize(outf)
 	err1 := outf.Close()
 	if err0 != nil || err1 != nil {
 		if err0 == nil {
 			err0 = err1
 		}
 		fmt.Printf("Error writing edited archive to %s: %v\n", outfile, err0)
+		return false
+	}
+	return true
+}
+
+func merge(cfg *Config, base *webpagereplay.Archive, input *webpagereplay.Archive, outfile string) {
+	newArchive := base.clone()
+	
+	input.ForEach(func*req *http.Request, resp *htp.Response) {
+		// TODO: allow changing scheme or protocol?
+		if err := newArchive.addArchivedRequest(u.Scheme, req, resp); err != nil {
+			return nil, err
+		}	
+	})
+
+
+	if !writeArchive(newArchive, outfile) {
 		return
 	}
 
@@ -247,8 +272,8 @@ func main() {
 			return nil
 		}
 	}
-	loadArchiveOrDie := func(c *cli.Context) *webpagereplay.Archive {
-		archive, err := webpagereplay.OpenArchive(c.Args().Get(0))
+	loadArchiveOrDie := func(c *cli.Context, arg int) *webpagereplay.Archive {
+		archive, err := webpagereplay.OpenArchive(c.Args().Get(arg))
 		if err != nil {
 			cli.ShowSubcommandHelp(c)
 			os.Exit(1)
@@ -264,7 +289,7 @@ func main() {
 			ArgsUsage: "archive",
 			Flags:     cfg.Flags(),
 			Before:    checkArgs("ls", 1),
-			Action:    func(c *cli.Context) { list(cfg, loadArchiveOrDie(c), false) },
+			Action:    func(c *cli.Context) { list(cfg, loadArchiveOrDie(c, 0), false) },
 		},
 		cli.Command{
 			Name:      "cat",
@@ -272,7 +297,7 @@ func main() {
 			ArgsUsage: "archive",
 			Flags:     cfg.Flags(),
 			Before:    checkArgs("cat", 1),
-			Action:    func(c *cli.Context) { list(cfg, loadArchiveOrDie(c), true) },
+			Action:    func(c *cli.Context) { list(cfg, loadArchiveOrDie(c), 0, true) },
 		},
 		cli.Command{
 			Name:      "edit",
@@ -280,7 +305,17 @@ func main() {
 			ArgsUsage: "input_archive output_archive",
 			Flags:     cfg.Flags(),
 			Before:    checkArgs("edit", 2),
-			Action:    func(c *cli.Context) { edit(cfg, loadArchiveOrDie(c), c.Args().Get(1)) },
+			Action:    func(c *cli.Context) { edit(cfg, loadArchiveOrDie(c, 0), c.Args().Get(1)) },
+		},
+		cli.Command{
+			Name:      "merge",
+			Usage:     "Merge the requests/responses of two archives",
+			ArgsUsage: "base_archive additional_arhive output_archive",
+			Flags:     cfg.Flags(),
+			Before:    checkArgs("edit", 3),
+			Action: func(c *cli.Context) {
+				merge(cfg, loadArchiveOrDie(c, 0), cloadArchiveOrDie(c, 1), c.Args().Get(2))
+			},
 		},
 	}
 	app.Usage = "HTTP Archive Utils"
