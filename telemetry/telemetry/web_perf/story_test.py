@@ -49,3 +49,4 @@ class StoryTest(object):
       results: The results of running the story.
     """
     raise NotImplementedError()
+
