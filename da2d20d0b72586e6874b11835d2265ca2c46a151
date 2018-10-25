@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "706ced65_0e1537dd",
+        "filename": "devil/devil/utils/cmd_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2018-10-25T20:39:08Z",
+      "side": 1,
+      "message": "That sounds great to me. Erik, can you have Juan review?",
+      "parentUuid": "1dfde6c2_a54063cc",
+      "revId": "da2d20d0b72586e6874b11835d2265ca2c46a151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e61bb6c5_c9cdcaa0",
         "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
         "patchSetId": 1
