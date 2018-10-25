@@ -82,6 +82,8 @@ tr.exportTo('cp', () => {
     // Array of string values.
     selectedOptions: options => options.selectedOptions || [],
 
+    optionValues: options => options.options || [],
+
     // Set this to filter options.
     // An option matches the query if its valueLowerCase contains all of the
     // space-separated parts of the query.
