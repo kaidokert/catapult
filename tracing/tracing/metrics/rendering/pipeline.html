@@ -38,6 +38,19 @@ tr.exportTo('tr.metrics.rendering', function() {
     return true;
   }
 
+  function generateBreakdownForHighLevelPipeline_(flow) {
+    const breakdown = new tr.v.d.Breakdown();
+    breakdown.set('Begin-frame isssue to Recipet duration',
+        flow.ReceiveBeginFrame.start - flow.IssueBeginFrame.start);
+    breakdown.set('Begin-frame reception and CompositorFrame submission ' +
+        'Latency', flow.SubmitCompositorFrame.end -
+        flow.ReceiveBeginFrame.start);
+    breakdown.set('Latency between CompositorFrame submission in the ' +
+          'renderer to display', flow.SurfaceAggregation.end -
+          flow.SubmitCompositorFrame.end);
+    return breakdown;
+  }
+
   function generateBreakdownForCompositorPipelineInClient_(flow) {
     const breakdown = new tr.v.d.Breakdown();
     breakdown.set('time before GenerateRenderPass',
@@ -126,6 +139,14 @@ tr.exportTo('tr.metrics.rendering', function() {
       }
     }
 
+    const issueToAggregate = histograms.createHistogram(
+        'pipeline:begin_frame_to_display',
+        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
+        [], {
+          description: 'Latency between begin-frame message to display in ' +
+          ' the display-compositor.',
+          summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
+        });
     const issueToReceipt = histograms.createHistogram(
         'pipeline:begin_frame_transport',
         tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
@@ -167,6 +188,9 @@ tr.exportTo('tr.metrics.rendering', function() {
           !flow.SubmitCompositorFrame || !flow.SurfaceAggregation) {
         continue;
       }
+      issueToAggregate.addSample(
+          flow.SurfaceAggregation.end - flow.IssueBeginFrame.start,
+          {breakdown: generateBreakdownForHighLevelPipeline_(flow)});
       issueToReceipt.addSample(flow.ReceiveBeginFrame.start -
                                flow.IssueBeginFrame.start);
       receiptToSubmit.addSample(
