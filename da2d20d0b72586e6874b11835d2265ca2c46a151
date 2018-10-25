@@ -56,6 +56,24 @@
       "revId": "da2d20d0b72586e6874b11835d2265ca2c46a151",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f21d4a0_cc62a2ae",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2018-10-25T17:33:08Z",
+      "side": 1,
+      "message": "Yes, our team looks at this information basically all the time -- it\u0027s the analogue of about:gpu on the bots. I don\u0027t know enough about how to produce links to separate files but was going to learn how to do it in http://crbug.com/898649 .",
+      "parentUuid": "b3f04240_8c5173bb",
+      "revId": "da2d20d0b72586e6874b11835d2265ca2c46a151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
