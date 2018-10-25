@@ -339,6 +339,10 @@ def _MakeTaskDict(
 
   diagnostics = {k: d.AsDict() for k, d in diagnostics.iteritems()}
 
+  log_urls = hist.diagnostics.get(reserved_infos.LOG_URLS.name)
+  if log_urls:
+    log_urls.ResetGuid()
+
   params['diagnostics'] = diagnostics
   params['data'] = hist.AsDict()
 
