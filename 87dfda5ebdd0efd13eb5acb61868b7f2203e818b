@@ -16,6 +16,24 @@
       "revId": "87dfda5ebdd0efd13eb5acb61868b7f2203e818b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2ab5c41_6e9f2f24",
+        "filename": "experimental/soundwave/soundwave/studies/v8_study.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-10-25T10:18:26Z",
+      "side": 1,
+      "message": "There is already --output-csv {PATH} which offers the same functionality and, with this CL, works for both local and gs paths.\n\nSo --upload-csv is effectively the same as --output-csv with the default path, so users don\u0027t have to type or remember it every time.\n\nIn the latest patch I\u0027ve improved the help message strings to make this clearer.",
+      "parentUuid": "1879783f_be84acad",
+      "revId": "87dfda5ebdd0efd13eb5acb61868b7f2203e818b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
