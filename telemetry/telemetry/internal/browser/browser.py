@@ -109,14 +109,14 @@ class Browser(app.App):
       if system_info.model_name:
         logging.info('Model: %s', system_info.model_name)
       if system_info.command_line:
-        logging.info('Browser command line: %s', system_info.command_line)
+        logging.debug('Browser command line: %s', system_info.command_line)
       if system_info.gpu:
         for i, device in enumerate(system_info.gpu.devices):
           logging.info('GPU device %d: %s', i, device)
         if system_info.gpu.aux_attributes:
-          logging.info('GPU Attributes:')
+          logging.debug('GPU Attributes:')
           for k, v in sorted(system_info.gpu.aux_attributes.iteritems()):
-            logging.info('  %-20s: %s', k, v)
+            logging.debug('  %-20s: %s', k, v)
         if system_info.gpu.feature_status:
           logging.info('Feature Status:')
           for k, v in sorted(system_info.gpu.feature_status.iteritems()):

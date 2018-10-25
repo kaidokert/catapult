@@ -222,7 +222,7 @@ class FlagChanger(object):
       self._device.RemovePath(self._cmdline_path, force=True, as_root=True)
 
     current_flags = self.GetCurrentFlags()
-    logger.info('Flags now set on the device: %s', current_flags)
+    logger.debug('Flags now set on the device: %s', current_flags)
     return current_flags
 
 
