@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eae385b8_4a1f23a7",
+        "filename": "systrace/systrace/tracing_agents/atrace_from_file_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1002871
+      },
+      "writtenOn": "2018-10-26T14:36:17Z",
+      "side": 1,
+      "message": "instead of this I\u0027d just if os.path.exists()",
+      "range": {
+        "startLine": 60,
+        "startChar": 3,
+        "endLine": 60,
+        "endChar": 6
+      },
+      "revId": "3fe084a40402c5991339029d84298aa90b80810b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a14ddef6_b77499f8",
+        "filename": "systrace/systrace/tracing_agents/atrace_from_file_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1002871
+      },
+      "writtenOn": "2018-10-26T14:36:17Z",
+      "side": 1,
+      "message": "check the SHA1 at the end, if doesn\u0027t match delete the file and die with a fatal error",
+      "range": {
+        "startLine": 70,
+        "startChar": 45,
+        "endLine": 70,
+        "endChar": 46
+      },
+      "revId": "3fe084a40402c5991339029d84298aa90b80810b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
