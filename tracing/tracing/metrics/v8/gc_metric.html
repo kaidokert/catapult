@@ -30,6 +30,7 @@ tr.exportTo('tr.metrics.v8', function() {
     addTotalPercentageInV8Execute(histograms, model);
     addMarkCompactorMutatorUtilization(histograms, model);
     addTotalMarkCompactorTime(histograms, model);
+    addTotalMarkCompactorMarkingTime(histograms, model);
   }
 
   tr.metrics.MetricRegistry.register(gcMetric);
@@ -150,21 +151,54 @@ tr.exportTo('tr.metrics.v8', function() {
            tr.metrics.v8.utils.isMarkCompactorSummaryEvent(event);
   }
 
+  function isV8MarkCompactorMarkingSummary(event) {
+    return !tr.metrics.v8.utils.isForcedGarbageCollectionEvent(event) &&
+           tr.metrics.v8.utils.isMarkCompactorMarkingSummaryEvent(event);
+  }
+
+  function createHistogramFromSummary(histograms, name, events) {
+    const foregroundDuration =
+        createNumericForTopEventTime(name + '-foreground');
+    const backgroundDuration =
+        createNumericForTopEventTime(name + '-background');
+    const totalDuration =
+        createNumericForTopEventTime(name + '-total');
+    for (const event of events) {
+      foregroundDuration.addSample(event.args.duration);
+      backgroundDuration.addSample(event.args.background_duration);
+      totalDuration.addSample(
+          event.args.duration + event.args.background_duration);
+    }
+    histograms.addHistogram(foregroundDuration);
+    histograms.addHistogram(backgroundDuration);
+    histograms.addHistogram(totalDuration);
+  }
+
   /**
    * Example output:
-   * - v8-gc-mark-compactor
+   * - v8-gc-mark-compactor-foreground
+   * - v8-gc-mark-compactor-background
+   * - v8-gc-mark-compactor-total
    */
   function addTotalMarkCompactorTime(histograms, model) {
     tr.metrics.v8.utils.groupAndProcessEvents(model,
         isV8MarkCompactorSummary,
         event => 'v8-gc-mark-compactor',
-        function(name, events) {
-          const duration = createNumericForTopEventTime(name);
-          for (const event of events) {
-            duration.addSample(event.args.duration);
-          }
-          histograms.addHistogram(duration);
-        }
+        (name, events) => createHistogramFromSummary(histograms, name, events)
+    );
+  }
+
+  /**
+   * Example output:
+   * - v8-gc-mark-compactor-marking-foreground
+   * - v8-gc-mark-compactor-marking-background
+   * - v8-gc-mark-compactor-marking-total
+   */
+  function addTotalMarkCompactorMarkingTime(histograms, model) {
+    tr.metrics.v8.utils.groupAndProcessEvents(model,
+        isV8MarkCompactorMarkingSummary,
+        event => 'v8-gc-mark-compactor-marking',
+        (name, events) => createHistogramFromSummary(histograms, name, events)
     );
   }
 
