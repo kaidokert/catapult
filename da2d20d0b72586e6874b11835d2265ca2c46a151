@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "fc4e69ea_12bc7dd1",
+        "filename": "devil/devil/android/flag_changer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-10-26T09:54:29Z",
+      "side": 1,
+      "message": "Maybe instead change this to something like:\n\n  if current_flags:\n    logger.info(\u0027Chrome command line file with %d flags now set on the device.\u0027, len(current_flags))\n  else:\n    logger.info(\u0027Chrome command line file now cleared on the device.\u0027)",
+      "revId": "da2d20d0b72586e6874b11835d2265ca2c46a151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1dfde6c2_a54063cc",
         "filename": "devil/devil/utils/cmd_helper.py",
         "patchSetId": 1
@@ -78,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "d0a0c9d0_b7a2cd8c",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-10-26T09:54:29Z",
+      "side": 1,
+      "message": "Yeah, the problem we should really solve here is the fact that Telemetry currently tries to \"find\" the browser some ~ 4 times on each test run; so this ends up too many times in the log. Telemetry should find the browser just once and then that instance is used elsewhere, but that requires a longer and more careful refactor.\n\nAs a start, maybe just move the logging line to the else-branch of the if statement below, so at least we skip the more useless lines with \"None\" apk name.",
+      "parentUuid": "e61bb6c5_c9cdcaa0",
+      "range": {
+        "startLine": 75,
+        "startChar": 59,
+        "endLine": 76,
+        "endChar": 17
+      },
+      "revId": "da2d20d0b72586e6874b11835d2265ca2c46a151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e24a1029_52e00a71",
         "filename": "telemetry/telemetry/internal/browser/browser.py",
         "patchSetId": 1
@@ -89,6 +130,24 @@
       "writtenOn": "2018-10-25T13:59:34Z",
       "side": 1,
       "message": "We do get frequent questions about whether a given command line was specified, but it\u0027s usually debuggable by looking at the field trial testing config. So I think this is okay to remove. Ned?",
+      "revId": "da2d20d0b72586e6874b11835d2265ca2c46a151",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3a720fe_3f5179e6",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-10-26T09:54:29Z",
+      "side": 1,
+      "message": "Please keep this as \"info\", specially since you are removing the detailed logs on flag_changer above.",
+      "parentUuid": "e24a1029_52e00a71",
       "revId": "da2d20d0b72586e6874b11835d2265ca2c46a151",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
