@@ -38,6 +38,10 @@ OAUTH_CLIENT_ID_WHITELIST = [
     '113172445342431053212',
     # Used by luci builders to upload perf data.
     'chrome-ci-builder@chops-service-accounts.iam.gserviceaccount.com',
+    # This oauth client id is used by all LUCI binaries. In particular, it will
+    # allow accessing the APIs by authorized users that generate tokens via
+    # luci-auth command.
+    '446450136466-2hr92jrq8e6i4tnsa56b52vacp7t3936.apps.googleusercontent.com',
 ]
 
 
