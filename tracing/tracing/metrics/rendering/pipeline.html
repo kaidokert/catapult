@@ -40,8 +40,16 @@ tr.exportTo('tr.metrics.rendering', function() {
 
   function generateBreakdownForCompositorPipelineInClient_(flow) {
     const breakdown = new tr.v.d.Breakdown();
-    breakdown.set('time before GenerateRenderPass',
-        flow.GenerateRenderPass.start - flow.ReceiveBeginFrame.start);
+    const UpdateDrawPropertiesDuration = (flow.UpdateDrawProperties) ?
+      flow.UpdateDrawProperties.duration : 0;
+    const AnimateDuration = (flow.Animate) ? flow.Animate.duration : 0;
+    breakdown.set('UpdateDrawProperties duration',
+        UpdateDrawPropertiesDuration);
+    breakdown.set('Animate duration', AnimateDuration);
+    breakdown.set('time before GenerateRenderPass excluding ' +
+      'UpdateDrawProperties & Animate',
+    flow.GenerateRenderPass.start - flow.ReceiveBeginFrame.start -
+        UpdateDrawPropertiesDuration - AnimateDuration);
     breakdown.set('GenerateRenderPass duration',
         flow.GenerateRenderPass.duration);
     breakdown.set('GenerateCompositorFrame duration',
