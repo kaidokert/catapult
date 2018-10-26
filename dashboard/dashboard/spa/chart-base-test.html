@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+<script src="/bower_components/web-component-tester/browser.js"></script>
+<link rel="import" href="/dashboard/spa/chart-base.html">
+
+<test-fixture id="test">
+  <template>
+    <chart-base state-path="test"></chart-base>
+  </template>
+</test-fixture>
+
+<script>
+'use strict';
+suite('chart-base', function() {
+  setup(() => {
+    fixture('test').dispatch(Redux.ENSURE('test'));
+  });
+
+  test('lines', async function() {
+    const chart = fixture('test');
+    chart.dispatch(Redux.UPDATE('test', {
+      lines: [
+        {
+          path: 'M0,0 L10,10',
+          color: 'blue',
+          strokeWidth: 1,
+        },
+      ],
+    }));
+  });
+
+  test('antiBrushes', async function() {
+    assert.deepEqual([], cp.ChartBase.antiBrushes());
+    assert.deepEqual([], cp.ChartBase.antiBrushes([]));
+    assert.throws(() => cp.ChartBase.antiBrushes([{}]));
+    assert.throws(() => cp.ChartBase.antiBrushes([{}, {}, {}]));
+    assert.deepEqual([], cp.ChartBase.antiBrushes([
+      {xPct: 0}, {xPct: 100},
+    ]));
+    assert.deepEqual([
+      {start: '0%', length: '20%'},
+      {start: '80%', length: '20%'},
+    ], cp.ChartBase.antiBrushes([
+      {xPct: 20}, {xPct: 80},
+    ]));
+    assert.deepEqual([
+      {start: '0%', length: '20%'},
+    ], cp.ChartBase.antiBrushes([
+      {xPct: 20}, {xPct: 100},
+    ]));
+    assert.deepEqual([
+      {start: '80%', length: '20%'},
+    ], cp.ChartBase.antiBrushes([
+      {xPct: 0}, {xPct: 80},
+    ]));
+  });
+});
+</script>
