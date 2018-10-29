@@ -40,8 +40,16 @@ tr.exportTo('tr.metrics.rendering', function() {
 
   function generateBreakdownForCompositorPipelineInClient_(flow) {
     const breakdown = new tr.v.d.Breakdown();
-    breakdown.set('time before GenerateRenderPass',
-        flow.GenerateRenderPass.start - flow.ReceiveBeginFrame.start);
+    const UpdateDrawPropertiesDuration = (flow.UpdateDrawProperties) ?
+      flow.UpdateDrawProperties.duration : 0;
+    const AnimateDuration = (flow.Animate) ? flow.Animate.duration : 0;
+    breakdown.set('UpdateDrawProperties duration',
+        UpdateDrawPropertiesDuration);
+    breakdown.set('Animate duration', AnimateDuration);
+    breakdown.set('time before GenerateRenderPass excluding ' +
+      'UpdateDrawProperties & Animate',
+    flow.GenerateRenderPass.start - flow.ReceiveBeginFrame.start -
+        UpdateDrawPropertiesDuration - AnimateDuration);
     breakdown.set('GenerateRenderPass duration',
         flow.GenerateRenderPass.duration);
     breakdown.set('GenerateCompositorFrame duration',
@@ -187,8 +195,108 @@ tr.exportTo('tr.metrics.rendering', function() {
     }
   }
 
+  function addSchedulingHistograms(histograms, model, segments) {
+    const schedulingMetrics = [
+      {
+        name: 'BeginMainFrameIntervalCritical',
+        list: [],
+        description: 'Begin Main Frame Interval Critical',
+      },
+      {
+        name: 'BeginMainFrameIntervalNotCritical',
+        list: [],
+        description: 'Begin Main Frame Interval Not Critical',
+      },
+      {
+        name: 'CommitInterval',
+        list: [],
+        description: 'Commit Interval',
+      },
+      {
+        name: 'DrawInterval',
+        list: [],
+        description: 'Begin Main Frame Interval Critical',
+      },
+      {
+        name: 'DrawIntervalWithCompositedAnimations',
+        list: [],
+        description: 'Draw Interval With Composited Animations',
+      },
+      {
+        name: 'DrawIntervalWithMainThreadAnimations',
+        list: [],
+        description: 'Draw Interval With Main Thread Animations',
+      },
+      {
+        name: 'BeginImplFrameLatency',
+        list: [],
+        description: 'Begin Impl Frame Latency',
+      },
+      {
+        name: 'BeginMainFrameQueueDurationCritical',
+        list: [],
+        description: 'Begin Main Frame Queue Duration Critical',
+      },
+      {
+        name: 'BeginMainFrameQueueDurationNotCritical',
+        list: [],
+        description: 'Begin Main Frame Queue Duration Not Critical',
+      },
+      {
+        name: 'BeginMainFrameStartToCommitDuration',
+        list: [],
+        description: 'Begin Main Frame Start To Commit Duration',
+      },
+      {
+        name: 'CommitToReadyToActivateDuration',
+        list: [],
+        description: 'Commit To Ready_To_Activate Duration',
+      },
+      {
+        name: 'InvalidationToReadyToActivateDuration',
+        list: [],
+        description: 'Invalidation To Ready_To_Activate Duration',
+      },
+      {
+        name: 'PrepareTilesDuration',
+        list: [],
+        description: 'Prepare Tiles Duration',
+      },
+      {
+        name: 'DrawDuration',
+        list: [],
+        description: 'Draw Duration',
+      },
+    ];
+    for (const thread of model.getAllThreads()) {
+      thread.sliceGroup.slices.forEach(
+          slice => {
+            if (slice.title !== 'Scheduling') return;
+            for (const segment of segments) {
+              if (segment.boundsRange.containsExplicitRangeInclusive(
+                  slice.start, slice.end)) {
+                schedulingMetrics.forEach(schedulingMetric => {
+                  schedulingMetric.list.push(
+                      slice.args[schedulingMetric.name]);
+                });
+              }
+            }
+          }
+      );
+    }
+
+    schedulingMetrics.forEach(schedulingMetric => {
+      histograms.createHistogram(
+          'Scheduling:' + schedulingMetric.name,
+          tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+          schedulingMetric.list,
+          { description: schedulingMetric.description, });
+    });
+  }
+
   return {
     addPipelineHistograms,
+    addSchedulingHistograms,
   };
 });
 </script>

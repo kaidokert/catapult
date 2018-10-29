@@ -29,6 +29,7 @@ tr.exportTo('tr.metrics.rendering', function() {
       tr.metrics.rendering.addFrameTimeHistograms(histograms, model, segments);
       tr.metrics.rendering.addLatencyHistograms(histograms, model, segments);
       tr.metrics.rendering.addPipelineHistograms(histograms, model, segments);
+      tr.metrics.rendering.addSchedulingHistograms(histograms, model, segments);
       tr.metrics.rendering.addPixelsHistograms(histograms, model, segments);
       tr.metrics.rendering.addQueueingDurationHistograms(
           histograms, model, segments);
