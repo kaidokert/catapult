@@ -1017,7 +1017,7 @@ class DeviceUtils(object):
            (required_sdk_level, self.build_version_sdk)),
            device_serial=self.serial)
 
-  @decorators.WithTimeoutAndRetriesFromInstance()
+  @decorators.WithTimeoutAndRetriesFromInstance(timeout_multiplier=1.05)
   def RunShellCommand(self, cmd, shell=False, check_return=False, cwd=None,
                       env=None, run_as=None, as_root=False, single_line=False,
                       large_output=False, raw_output=False,

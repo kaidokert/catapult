@@ -21,7 +21,7 @@ DEFAULT_RETRIES_ATTR = '_default_retries'
 
 def _TimeoutRetryWrapper(
     f, timeout_func, retries_func, retry_if_func=timeout_retry.AlwaysRetry,
-    pass_values=False):
+    pass_values=False, timeout_multiplier=1.0):
   """ Wraps a funcion with timeout and retry handling logic.
 
   Args:
@@ -53,6 +53,8 @@ def _TimeoutRetryWrapper(
         desc = '%s(%s)' % (f.__name__, ', '.join(itertools.chain(
             (str(a) for a in args),
             ('%s=%s' % (k, str(v)) for k, v in kwargs.iteritems()))))
+        if timeout:
+          timeout *= timeout_multiplier
         return timeout_retry.Run(impl, timeout, retries, desc=desc,
                                  retry_if_func=retry_if_func)
     except reraiser_thread.TimeoutError as e:
@@ -144,7 +146,8 @@ def WithTimeoutAndRetriesDefaults(default_timeout, default_retries):
 def WithTimeoutAndRetriesFromInstance(
     default_timeout_name=DEFAULT_TIMEOUT_ATTR,
     default_retries_name=DEFAULT_RETRIES_ATTR,
-    min_default_timeout=None):
+    min_default_timeout=None,
+    timeout_multiplier=1.0):
   """Returns a decorator that handles timeouts and retries.
 
   The provided |default_timeout_name| and |default_retries_name| are used to
@@ -171,6 +174,8 @@ def WithTimeoutAndRetriesFromInstance(
 
     def get_retries(inst, *_args, **kwargs):
       return kwargs.get('retries', getattr(inst, default_retries_name))
-    return _TimeoutRetryWrapper(f, get_timeout, get_retries, pass_values=True)
+    return _TimeoutRetryWrapper(
+        f, get_timeout, get_retries, pass_values=True,
+        timeout_multiplier=timeout_multiplier)
   return decorator
 
