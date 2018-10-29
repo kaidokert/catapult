@@ -40,8 +40,16 @@ tr.exportTo('tr.metrics.rendering', function() {
 
   function generateBreakdownForCompositorPipelineInClient_(flow) {
     const breakdown = new tr.v.d.Breakdown();
-    breakdown.set('time before GenerateRenderPass',
-        flow.GenerateRenderPass.start - flow.ReceiveBeginFrame.start);
+    const UpdateDrawPropertiesDuration = (flow.UpdateDrawProperties) ?
+      flow.UpdateDrawProperties.duration : 0;
+    const AnimateDuration = (flow.Animate) ? flow.Animate.duration : 0;
+    breakdown.set('UpdateDrawProperties duration',
+        UpdateDrawPropertiesDuration);
+    breakdown.set('Animate duration', AnimateDuration);
+    breakdown.set('time before GenerateRenderPass excluding ' +
+      'UpdateDrawProperties & Animate',
+    flow.GenerateRenderPass.start - flow.ReceiveBeginFrame.start -
+        UpdateDrawPropertiesDuration - AnimateDuration);
     breakdown.set('GenerateRenderPass duration',
         flow.GenerateRenderPass.duration);
     breakdown.set('GenerateCompositorFrame duration',
@@ -187,8 +195,127 @@ tr.exportTo('tr.metrics.rendering', function() {
     }
   }
 
+  function addSchedulingHistograms(histograms, model, segments) {
+    const BMFIntervalCritical = [];
+    const BMFIntervalNotCritical = [];
+    const CommitInterval = [];
+    const DrawInterval = [];
+    const DrawIntervalWithCompositedAnimations = [];
+    const DrawIntervalWithMainThreadAnimations = [];
+    const BeginImplFrameLatency = [];
+    const BMFQueueDurationCritical = [];
+    const BMFQueueDurationNotCritical = [];
+    const BMFStartToCommitDuration = [];
+    const CommitToReadyToActivateDuration = [];
+    const InvalidationToReadyToActivateDuration = [];
+    const PrepareTilesDuration = [];
+    const DrawDuration = [];
+    for (const thread of model.getAllThreads()) {
+      thread.sliceGroup.slices.forEach(
+          slice => {
+            if (slice.title !== 'Scheduling') return;
+            for (const segment of segments) {
+              if (segment.boundsRange.containsExplicitRangeInclusive(
+                  slice.start, slice.end)) {
+                BMFIntervalCritical.push(
+                    slice.args.BeginMainFrameIntervalCritical);
+                BMFIntervalNotCritical.push(
+                    slice.args.BeginMainFrameIntervalNotCritical);
+                CommitInterval.push(slice.args.CommitInterval);
+                DrawInterval.push(slice.args.DrawInterval);
+                DrawIntervalWithCompositedAnimations.push(
+                    slice.args.DrawIntervalWithCompositedAnimations);
+                DrawIntervalWithMainThreadAnimations.push(
+                    slice.args.DrawIntervalWithMainThreadAnimations);
+                BeginImplFrameLatency.push(slice.args.BeginImplFrameLatency);
+                BMFQueueDurationCritical.push(
+                    slice.args.BeginMainFrameQueueDurationCritical);
+                BMFQueueDurationNotCritical.push(
+                    slice.args.BeginMainFrameQueueDurationNotCritical);
+                BMFStartToCommitDuration.push(
+                    slice.args.BeginMainFrameStartToCommitDuration);
+                CommitToReadyToActivateDuration.push(
+                    slice.args.CommitToReadyToActivateDuration);
+                InvalidationToReadyToActivateDuration.push(
+                    slice.args.InvalidationToReadyToActivateDuration);
+                PrepareTilesDuration.push(slice.args.PrepareTilesDuration);
+                DrawDuration.push(slice.args.DrawDuration);
+              }
+            }
+          }
+      );
+    }
+
+    histograms.createHistogram(
+        'Scheduling:BeginMainFrameIntervalCritical',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        BMFIntervalCritical,
+        { description: 'Begin Main Frame Interval Critical', });
+    histograms.createHistogram(
+        'Scheduling:BeginMainFrameIntervalNotCritical',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        BMFIntervalNotCritical,
+        { description: 'Begin Main Frame Interval Not Critical', });
+    histograms.createHistogram(
+        'Scheduling:CommitInterval',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        CommitInterval, { description: 'Commit Interval', });
+    histograms.createHistogram(
+        'Scheduling:DrawInterval',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        DrawInterval, { description: 'Draw Interval', });
+    histograms.createHistogram(
+        'Scheduling:DrawIntervalWithCompositedAnimations',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        DrawIntervalWithCompositedAnimations,
+        { description: 'Draw Interval With Composited Animations', });
+    histograms.createHistogram(
+        'Scheduling:DrawIntervalWithMainThreadAnimations',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        DrawIntervalWithMainThreadAnimations,
+        { description: 'Draw Interval With Main Thread Animations', });
+    histograms.createHistogram(
+        'Scheduling:BeginImplFrameLatency',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        BeginImplFrameLatency, { description: 'Begin Impl Frame Latency', });
+    histograms.createHistogram(
+        'Scheduling:BeginMainFrameQueueDurationCritical',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        BMFQueueDurationCritical,
+        { description: 'Begin Main Frame Queue Duration Critical', });
+    histograms.createHistogram(
+        'Scheduling:BeginMainFrameQueueDurationNotCritical',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        BMFQueueDurationNotCritical,
+        { description: 'Begin Main Frame Queue Duration Not Critical', });
+    histograms.createHistogram(
+        'Scheduling:BeginMainFrameStartToCommitDuration',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        BMFStartToCommitDuration,
+        { description: 'Begin Main Frame Start To Commit Duration', });
+    histograms.createHistogram(
+        'Scheduling:CommitToReadyToActivateDuration',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        CommitToReadyToActivateDuration,
+        { description: 'Commit To Ready_To_Activate Duration', });
+    histograms.createHistogram(
+        'Scheduling:InvalidationToReadyToActivateDuration',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        InvalidationToReadyToActivateDuration,
+        { description: 'Invalidation To Ready_To_Activate Duration', });
+    histograms.createHistogram(
+        'Scheduling:PrepareTilesDuration',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        PrepareTilesDuration, { description: 'Prepare Tiles Duration', });
+    histograms.createHistogram(
+        'Scheduling:DrawDuration',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        DrawDuration, { description: 'Draw Duration', });
+  }
+
   return {
     addPipelineHistograms,
+    addSchedulingHistograms,
   };
 });
 </script>
