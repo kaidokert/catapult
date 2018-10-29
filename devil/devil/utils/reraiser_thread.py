@@ -11,6 +11,8 @@ import threading
 import time
 import traceback
 
+import six
+
 from devil.utils import watchdog_timer
 
 
@@ -70,7 +72,7 @@ class ReraiserThread(threading.Thread):
   def ReraiseIfException(self):
     """Reraise exception if an exception was raised in the thread."""
     if self._exc_info:
-      raise self._exc_info[0], self._exc_info[1], self._exc_info[2]
+      six.reraise(*self._exc_info)
 
   def GetReturnValue(self):
     """Reraise exception if present, otherwise get the return value."""
