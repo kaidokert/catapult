@@ -114,7 +114,7 @@ def FetchTimeseriesData(args):
 
     # Apply --filter's to test_paths.
     if args.filters:
-      test_paths = filter(_MatchesAllFilters, test_paths)
+      test_paths = [p for p in test_paths if _MatchesAllFilters(p)]
     num_found = len(test_paths)
     print '%d test paths found!' % num_found
 
