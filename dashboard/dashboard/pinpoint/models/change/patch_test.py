@@ -97,7 +97,11 @@ class GerritPatchTest(test.TestCase):
     self.assertEqual(p, Patch('other revision'))
 
   def testFromUrl(self):
-    p = patch.GerritPatch.FromUrl('https://codereview.com/c/repo/+/658277')
+    p = patch.GerritPatch.FromUrl('https://codereview.com/c/repo/+/658277/5')
+    self.assertEqual(p, Patch('5'))
+
+  def testFromGitClIssueUrl(self):
+    p = patch.GerritPatch.FromUrl('https://codereview.com/658277/')
     self.assertEqual(p, Patch('current revision'))
 
   def testFromUrlWithHash(self):
