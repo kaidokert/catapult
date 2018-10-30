@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "43defac9_1a7a1576",
+        "filename": "dashboard/dashboard/spa/chromeperf-app.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-10-30T18:14:39Z",
+      "side": 1,
+      "message": "I think this is fine to use here, but just as an FYI: we\u0027ll probably want to eventually try to figure out how we can make google Sign In uniform across our frontends. I think about half of our frontends right now use google-signin and the other half use backend signin handlers htat are triggered through links.",
+      "revId": "d6ab13dc1715ad3c2d9bb414af04d7d1c34b10d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "067cad01_17f03416",
+        "filename": "dashboard/dashboard/spa/chromeperf-app.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-10-30T18:14:39Z",
+      "side": 1,
+      "message": "Nit: Add TODOs to implement these?",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 5
+      },
+      "revId": "d6ab13dc1715ad3c2d9bb414af04d7d1c34b10d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2986faf_4aeaa761",
+        "filename": "dashboard/dashboard/spa/webpack.config.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-10-30T18:14:39Z",
+      "side": 1,
+      "message": ":O Were you able to get Webpack to work with Polymer 2? I tried this recently but kind of struggled with it.",
+      "revId": "d6ab13dc1715ad3c2d9bb414af04d7d1c34b10d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd0b6c4e_e1f156b5",
+        "filename": "third_party/polymer2/bower_components/chopsui/chops-header.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-10-30T18:14:39Z",
+      "side": 1,
+      "message": "Nit: Can this be added to the .header-section style block above?",
+      "revId": "d6ab13dc1715ad3c2d9bb414af04d7d1c34b10d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
