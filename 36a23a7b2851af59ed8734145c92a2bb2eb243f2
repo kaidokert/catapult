@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c9553cb9_89a746a5",
+        "filename": "tracing/tracing/metrics/v8/utils.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2018-10-30T10:17:17Z",
+      "side": 0,
+      "message": "This was the bug.",
+      "range": {
+        "startLine": 427,
+        "startChar": 14,
+        "endLine": 427,
+        "endChar": 30
+      },
+      "revId": "36a23a7b2851af59ed8734145c92a2bb2eb243f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
