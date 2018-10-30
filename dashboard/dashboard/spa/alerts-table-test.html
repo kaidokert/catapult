@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+<script src="/bower_components/web-component-tester/browser.js"></script>
+<link rel="import" href="/dashboard/spa/alerts-table.html">
+
+<test-fixture id="test">
+  <template>
+    <alerts-table state-path="test">
+  </template>
+</test-fixture>
+
+<script>
+'use strict';
+suite('alerts-table', function() {
+  setup(() => {
+    fixture('test').dispatch(Redux.ENSURE('test'));
+  });
+
+  test('placeholder', async function() {
+    const table = fixture('test');
+    table.dispatch(Redux.UPDATE('test', {
+      alertGroups: cp.AlertsTable.PLACEHOLDER_ALERT_GROUPS,
+      areAlertGroupsPlaceholders: true,
+    }));
+    this.timeout(1e6);
+    await cp.timeout(9e5);
+    assert.strictEqual('TODO', '');
+  });
+
+  test('allTriaged', async function() {
+    assert.strictEqual('TODO', '');
+  });
+
+  test('sort', async function() {
+    assert.strictEqual('TODO', '');
+  });
+
+  test('shouldDisplayAlert', async function() {
+    assert.strictEqual('TODO', '');
+  });
+
+  test('shouldDisplayExpandGroupButton', async function() {
+    assert.strictEqual('TODO', '');
+  });
+
+  test('shouldDisplayExpandTriagedButton', async function() {
+    assert.strictEqual('TODO', '');
+  });
+
+  test('shouldDisplaySelectedCount', async function() {
+    assert.strictEqual('TODO', '');
+  });
+
+  test('isAlertIgnored', async function() {
+    assert.strictEqual('TODO', '');
+  });
+});
+</script>
