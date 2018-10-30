@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f3696eca_b1dc5bdd",
+        "filename": "dashboard/dashboard/spa/cp-checkbox.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-10-30T21:43:04Z",
+      "side": 1,
+      "message": "Neat! I didn\u0027t know this was a thing.",
+      "revId": "7e3888c628cd07c0ff7c45e5a8929d5da84aa26c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fff211d_91aa0c01",
+        "filename": "dashboard/dashboard/spa/memory-components-test.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-10-30T21:43:04Z",
+      "side": 1,
+      "message": "Optional nit: Perhaps add a comment explaining what this format is? Looking at this data with limited context is a bit confusing.",
+      "revId": "7e3888c628cd07c0ff7c45e5a8929d5da84aa26c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
