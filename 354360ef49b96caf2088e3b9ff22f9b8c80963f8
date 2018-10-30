@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "49647c5e_23b02476",
+        "filename": "dashboard/dashboard/spa/triage-existing.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-10-30T21:14:10Z",
+      "side": 1,
+      "message": "Nit: would it be possible to simplify this so that we don\u0027t need a separate container div for the table?",
+      "range": {
+        "startLine": 107,
+        "startChar": 4,
+        "endLine": 107,
+        "endChar": 30
+      },
+      "revId": "354360ef49b96caf2088e3b9ff22f9b8c80963f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
