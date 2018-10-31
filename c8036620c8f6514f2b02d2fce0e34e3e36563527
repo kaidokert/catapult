@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "9d0b17e3_73921502",
+        "filename": "web_page_replay_go/src/webpagereplay/archive.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-10-31T01:44:19Z",
+      "side": 1,
+      "message": "Actually this is only invoked when there are multiple request matches, so I don\u0027t expect this will slow down general recording much",
+      "revId": "c8036620c8f6514f2b02d2fce0e34e3e36563527",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "85ae761d_5706a443",
         "filename": "web_page_replay_go/src/webpagereplay/archive.go",
         "patchSetId": 6
