@@ -293,5 +293,14 @@ suite('basic tests', function() {
   test('normalize', function() {
     assert.deepEqual({a: 1, b: 2}, cp.normalize(['a', 'b'], [1, 2]));
   });
+
+  test('breakWords', function() {
+    assert.strictEqual(cp.NON_BREAKING_SPACE, cp.breakWords(''));
+    const Z = cp.ZERO_WIDTH_SPACE;
+    assert.strictEqual(`a${Z}_b`, cp.breakWords('a_b'));
+    assert.strictEqual(`a:${Z}b`, cp.breakWords('a:b'));
+    assert.strictEqual(`a.${Z}b`, cp.breakWords('a.b'));
+    assert.strictEqual(`a${Z}B`, cp.breakWords('aB'));
+  });
 });
 </script>
