@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "97682d8c_887fb490",
+        "filename": "web_page_replay_go/src/httparchive.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-10-31T18:05:51Z",
+      "side": 1,
+      "message": "you\u0027ll get the error from writeArchive in this case (see line 217) where it failed to write the archive.\nWill print the merge-failed message as well.",
+      "parentUuid": "bd5336de_716a16f9",
+      "revId": "17ff8ac35979960ffc68f99fae8d99d9aba56795",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c4dc4213_5e84305a",
         "filename": "web_page_replay_go/src/webpagereplay/archive.go",
         "patchSetId": 3
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "8c86b04b_e594d00d",
+        "filename": "web_page_replay_go/src/webpagereplay/archive.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-10-31T18:05:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4dc4213_5e84305a",
+      "range": {
+        "startLine": 303,
+        "startChar": 24,
+        "endLine": 303,
+        "endChar": 29
+      },
+      "revId": "17ff8ac35979960ffc68f99fae8d99d9aba56795",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9fe694aa_7776bf1e",
         "filename": "web_page_replay_go/src/webpagereplay/archive.go",
         "patchSetId": 3
@@ -62,6 +104,30 @@
       "revId": "17ff8ac35979960ffc68f99fae8d99d9aba56795",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1386b77_332f7204",
+        "filename": "web_page_replay_go/src/webpagereplay/archive.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-10-31T18:05:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9fe694aa_7776bf1e",
+      "range": {
+        "startLine": 305,
+        "startChar": 5,
+        "endLine": 305,
+        "endChar": 21
+      },
+      "revId": "17ff8ac35979960ffc68f99fae8d99d9aba56795",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
