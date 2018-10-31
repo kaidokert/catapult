@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4aaff79b_aa17a886",
+        "filename": "telemetry/telemetry/web_perf/timeline_based_measurement.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-10-31T16:43:55Z",
+      "side": 0,
+      "message": "Is \u0027results_wrapper\u0027 still needed?",
+      "range": {
+        "startLine": 245,
+        "startChar": 30,
+        "endLine": 245,
+        "endChar": 45
+      },
+      "revId": "c6a85907fbdd620e996caf2b3d80081603c7e807",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
