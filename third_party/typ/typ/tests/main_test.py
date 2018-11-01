@@ -251,7 +251,6 @@ class TestCli(test_case.MainTestCase):
                       out)
         self.assertIn('0 tests passed, 0 skipped, 1 failure', out)
 
-
     def test_pass_repeat(self):
         self.check(
             ['--repeat', '2'], files=PASS_TEST_FILES, ret=0, err='',
