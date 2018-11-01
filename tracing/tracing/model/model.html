@@ -182,6 +182,13 @@ tr.exportTo('tr', function() {
         bounds.addRange(ec.bounds);
       }
       for (const event of this.childEvents()) {
+        // DO NOT LAND. Go debug the importer.
+        if (isNaN(event.start) || isNaN(event.end)) {
+          // eslint-disable-next-line no-console
+          console.log('Ignoring invalid bounds', event);
+          continue;
+        }
+
         event.addBoundsToRange(bounds);
       }
     },
