@@ -4,6 +4,16 @@
 
 import re
 
+from typ.json_results import ResultType
+
+_EXPECTATION_MAP = {
+    'Crash': ResultType.Crash,
+    'Failure': ResultType.Failure,
+    'Pass': ResultType.Pass,
+    'Timeout': ResultType.Timeout,
+    'Skip': ResultType.Skip
+}
+
 
 class ParseError(Exception):
     pass
@@ -13,13 +23,14 @@ class Expectation(object):
     def __init__(self, reason, test, conditions, results):
         """Constructor for expectations.
 
-    Args:
-      reason: String that indicates the reason for disabling.
-      test: String indicating which test is being disabled.
-      conditions: List of tags indicating which conditions to disable for.
-          Conditions are combined using logical and. Example: ['Mac', 'Debug']
-      results: List of outcomes for test. Example: ['Skip', 'Pass']
-    """
+        Args:
+          reason: String that indicates the reason for disabling.
+          test: String indicating which test is being disabled.
+          conditions: List of tags indicating which conditions to disable for.
+              Conditions are combined using logical and.
+              Example: ['Mac', 'Debug']
+          results: List of outcomes for test. Example: ['Skip', 'Pass']
+        """
         assert isinstance(reason, basestring) or reason is None
         self._reason = reason
         assert isinstance(test, basestring)
@@ -52,24 +63,27 @@ class Expectation(object):
 
 
 class TestExpectationParser(object):
-    """Parse expectations data in TA/DA format.
+    """Parses lists of tests and expectations for them.
 
-  This parser covers the 'tagged' test lists format in:
-      bit.ly/chromium-test-list-format
+    This parser covers the 'tagged' test lists format in:
+        bit.ly/chromium-test-list-format
 
-  Takes raw expectations data as a string read from the TA/DA expectation file
-  in the format:
+    Takes raw expectations data as a string read from the expectation file
+    in the format:
 
-    # This is an example expectation file.
-    #
-    # tags: Mac Mac10.10 Mac10.11
-    # tags: Win Win8
+      # This is an example expectation file.
+      #
+      # tags: [
+      #   Mac Mac10.1 Mac10.2
+      #   Win Win8
+      # ]
+      # tags: [ Release Debug ]
 
-    crbug.com/123 [ Win ] benchmark/story [ Skip ]
-    ...
-  """
+      crbug.com/123 [ Win ] benchmark/story [ Skip ]
+      ...
+    """
 
-    TAG_TOKEN = '# tags:'
+    TAG_TOKEN = '# tags: ['
     _MATCH_STRING = r'^(?:(crbug.com/\d+) )?'  # The bug field (optional).
     _MATCH_STRING += r'(?:\[ (.+) \] )?'  # The label field (optional).
     _MATCH_STRING += r'(\S+) '  # The test path field.
@@ -78,47 +92,72 @@ class TestExpectationParser(object):
     MATCHER = re.compile(_MATCH_STRING)
 
     def __init__(self, raw_data):
-        self._tags = []
-        self._expectations = []
-        self._parse_raw_expectation_data(raw_data)
+        self.tag_sets = []
+        self.expectations = []
+        self._ParseRawExpectationData(raw_data)
 
-    def _parse_raw_expectation_data(self, raw_data):
-        for count, line in list(enumerate(raw_data.splitlines(), start=1)):
-            # Handle metadata and comments.
+    def _ParseRawExpectationData(self, raw_data):
+        lines = raw_data.splitlines()
+        line_number = 1
+        num_lines = len(lines)
+        while line_number <= num_lines:
+            line = lines[line_number - 1].strip()
             if line.startswith(self.TAG_TOKEN):
-                for word in line[len(self.TAG_TOKEN):].split():
-                    # Expectations must be after all tags are declared.
-                    if self._expectations:
-                        raise ParseError('Tag found after first expectation.')
-                    self._tags.append(word)
+                # Handle tags.
+                if self.expectations:
+                    raise ParseError('Tag found after first expectation.')
+                right_bracket = line.find(']')
+                if right_bracket == -1:
+                    # multi-line tag set
+                    tag_set = set(line[len(self.TAG_TOKEN):].split())
+                    line_number += 1
+                    while line_number <= num_lines and right_bracket == -1:
+                        line = lines[line_number - 1].strip()
+                        if line[0] != '#':
+                            raise ParseError(
+                                'Multi-line tag set missing leading "#"')
+                        right_bracket = line.find(']')
+                        if right_bracket == -1:
+                            tag_set.update(line[1:].split())
+                        else:
+                            tag_set.update(line[1:right_bracket].split())
+                        line_number += 1
+                else:
+                    tag_set = set(
+                        line[len(self.TAG_TOKEN):right_bracket].split())
+                self.tag_sets.append(tag_set)
             elif line.startswith('#') or not line:
-                continue  # Ignore, it is just a comment or empty.
+                # Ignore, it is just a comment or empty.
+                line_number += 1
+                continue
             else:
-                self._expectations.append(
-                    self._parse_expectation_line(count, line, self._tags))
+                self.expectations.append(
+                    self._ParseExpectationLine(line_number, line,
+                                               self.tag_sets))
+            line_number += 1
 
-    def _parse_expectation_line(self, line_number, line, tags):
+    def _ParseExpectationLine(self, line_number, line, tag_sets):
         match = self.MATCHER.match(line)
         if not match:
             raise ParseError('Expectation has invalid syntax on line %d: %s' %
                              (line_number, line))
         # Unused group is optional trailing comment.
-        reason, raw_conditions, test, results, _ = match.groups()
+        reason, raw_conditions, test, raw_results, _ = match.groups()
         conditions = [c for c in raw_conditions.split()
                       ] if raw_conditions else []
 
         for c in conditions:
-            if c not in tags:
+            if not any(c in tag_set for tag_set in tag_sets):
                 raise ParseError(
                     'Condition %s not found in expectations tag data. Line %d'
                     % (c, line_number))
-        return Expectation(reason, test, conditions,
-                           [r for r in results.split()])
 
-    @property
-    def expectations(self):
-        return self._expectations
+        results = []
+        for r in raw_results.split():
+            try:
+                results.append(_EXPECTATION_MAP[r])
+            except KeyError:
+                raise ParseError(
+                    'Unknown result type %s on line %d' % (r, line_number))
 
-    @property
-    def tags(self):
-        return self._tags
+        return Expectation(reason, test, conditions, results)
