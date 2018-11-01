@@ -18,14 +18,13 @@ import json
 
 
 class ResultType(object):
-    Pass = 'Pass'
-    Failure = 'Failure'
-    ImageOnlyFailure = 'ImageOnlyFailure'
-    Timeout = 'Timeout'
-    Crash = 'Crash'
-    Skip = 'Skip'
+    Pass = 'PASS'
+    Failure = 'FAIL'
+    Timeout = 'TIMEOUT'
+    Crash = 'CRASH'
+    Skip = 'SKIP'
 
-    values = (Pass, Failure, ImageOnlyFailure, Timeout, Crash, Skip)
+    values = (Pass, Failure, Timeout, Crash, Skip)
 
 
 class Result(object):
@@ -87,17 +86,15 @@ def make_full_results(metadata, seconds_since_epoch, all_test_names, results):
     full_results['num_failures_by_type']['PASS'] = len(passing_tests)
     full_results['num_failures_by_type']['SKIP'] = len(skipped_tests)
 
+    full_results['num_regressions'] = 0
+
     full_results['tests'] = OrderedDict()
 
     for test_name in all_test_names:
         value = _results_for_test(test_name, results)
-        if test_name in skipped_tests:
-            value['expected'] = 'SKIP'
-        else:
-            value['expected'] = 'PASS'
-            if value['actual'].endswith('FAIL'):
-                value['is_unexpected'] = True
         _add_path_to_trie(full_results['tests'], test_name, value)
+        if value.get('is_unexpected'):
+            full_results['num_regressions'] += 1
 
     return full_results
 
@@ -116,7 +113,7 @@ def make_upload_request(test_results_server, builder, master, testtype,
 
 
 def exit_code_from_full_results(full_results):
-    return 1 if num_failures(full_results) else 0
+    return 1 if full_results['num_regressions'] else 0
 
 
 def num_failures(full_results):
@@ -170,6 +167,11 @@ def _results_for_test(test_name, results):
             # we truncate the file to ten-thousandths of a second, which is
             # probably more than good enough for most tests.
             times.append(round(r.took, 4))
+            if r.unexpected:
+                value['is_unexpected'] = r.unexpected
+            elif 'is_unexpected' in value:
+                value.pop('is_unexpected')
+            value['expected'] = ' '.join(r.expected)
     if not actuals:  # pragma: untested
         actuals.append('SKIP')
     value['actual'] = ' '.join(actuals)
