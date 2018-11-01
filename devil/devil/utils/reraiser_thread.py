@@ -11,10 +11,11 @@ import threading
 import time
 import traceback
 
+from devil import base_error
 from devil.utils import watchdog_timer
 
 
-class TimeoutError(Exception):
+class TimeoutError(base_error.BaseError):
   """Module-specific timeout exception."""
   pass
 
