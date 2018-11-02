@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f9d0d0e4_b51eec28",
+        "filename": "netlog_viewer/netlog_viewer/index.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001766
+      },
+      "writtenOn": "2018-11-02T21:52:34Z",
+      "side": 1,
+      "message": "Can this be bundled or removed?",
+      "revId": "bd167d5c033d90ff2b924785366fade26ae2fa76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7dcb698_5546f63f",
+        "filename": "netlog_viewer/netlog_viewer/index.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001766
+      },
+      "writtenOn": "2018-11-02T21:52:34Z",
+      "side": 1,
+      "message": "Change name here?",
+      "revId": "bd167d5c033d90ff2b924785366fade26ae2fa76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
