@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ea2fc6c7_d52920cd",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 923,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-11-02T04:15:10Z",
+      "side": 1,
+      "message": "I think this should be moved into the fifth CL; it isn\u0027t specific to globs ...",
+      "revId": "af9afa30fa54f17862b2a70a99c61ecb2e1d536e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
