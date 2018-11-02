@@ -40,7 +40,7 @@ class ApiRequestHandler(webapp2.RequestHandler):
   """
 
   def _AllowAnonymous(self):
-    return False
+    return utils.IsDevAppserver()
 
   def post(self, *args):
     """Returns alert data in response to API requests.
