@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0f751a52_39f5aea3",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-11-02T15:17:32Z",
+      "side": 1,
+      "message": "nits: I think we can make the init of ParseError takes both the error message and the line number, line since most parsing error should involve the line where error happens",
+      "revId": "cdc73cefa46cc7f4840157c36c6f65f2990968d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1179be1e_12fc8a43",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-11-02T15:17:32Z",
+      "side": 1,
+      "message": "shouldn\u0027t conditions be a set datastructure?",
+      "revId": "cdc73cefa46cc7f4840157c36c6f65f2990968d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27012ba7_55a3b799",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-11-02T15:17:32Z",
+      "side": 1,
+      "message": "nits: can we immutablize this? e.g: frozenset, or tuple (if you think this should be a list)",
+      "revId": "cdc73cefa46cc7f4840157c36c6f65f2990968d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b78a4533_eb1aee1a",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-11-02T15:17:32Z",
+      "side": 1,
+      "message": "ditto, I think set here as well?",
+      "revId": "cdc73cefa46cc7f4840157c36c6f65f2990968d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2c92952_bd1cd391",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-11-02T15:17:32Z",
+      "side": 1,
+      "message": "make this immutable as well",
+      "revId": "cdc73cefa46cc7f4840157c36c6f65f2990968d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1311c396_c4a99fda",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-11-02T15:17:32Z",
+      "side": 1,
+      "message": "should we limit to crbug? what about skiabug, github.. for example?",
+      "revId": "cdc73cefa46cc7f4840157c36c6f65f2990968d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebd2ba96_538c9b05",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-11-02T15:17:32Z",
+      "side": 1,
+      "message": "nits, raise ParseError(msg\u003d\u0027Tag found after first expectation.\u0027, line_count\u003dcount)",
+      "revId": "cdc73cefa46cc7f4840157c36c6f65f2990968d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
