@@ -187,8 +187,110 @@ tr.exportTo('tr.metrics.rendering', function() {
     }
   }
 
+  function addProfilingDetails(histograms, model, segments) {
+    const profilingMetrics = [
+      {
+        name: 'all_picture_layers',
+        list: [],
+        description: 'All picture layers.',
+      },
+      {
+        name: 'visible_picture_layers',
+        list: [],
+        description: 'All visible picture layers.',
+      },
+      {
+        name: 'visible_surface_layers',
+        list: [],
+        description: 'All surface layers.',
+      },
+      {
+        name: 'avg_branching_factor',
+        list: [],
+        description: 'avg_branching_factor of layerTree',
+      },
+      {
+        name: 'treeHeight',
+        list: [],
+        description: 'height of layerTree',
+      },
+      {
+        name: 'NonZeroOpacityRatio',
+        list: [],
+        description: 'ratrio of NonZeroOpacity layers',
+      },
+      {
+        name: 'filtersNum',
+        list: [],
+        description: 'number of filters in layer tree',
+      },
+      {
+        name: 'scriptedAnimationEvents',
+        list: [],
+        description: 'number of scriptedAnimation events',
+      },
+      {
+        name: 'tickingAnimations',
+        list: [],
+        description: 'ticking animations in animations_host',
+      },
+      {
+        name: 'mainAnimationCount',
+        list: [],
+        description: 'main thread Animations',
+      },
+      {
+        name: 'compositorAnimationCount',
+        list: [],
+        description: 'compositor thread Animations',
+      },
+      {
+        name: 'framesWithAnimation',
+        list: [],
+        description: 'number of frames having animations',
+      },
+      {
+        name: 'LeafCount',
+        list: [],
+        description: 'number of leafs in layer tree',
+      },
+      {
+        name: 'DescendantCount',
+        list: [],
+        description: 'number of Descendants in layer tree',
+      },
+      {
+        name: 'BgfiltersNum',
+        list: [],
+        description: 'number of background filters in layer tree',
+      },
+    ];
+    for (const thread of model.getAllThreads()) {
+      thread.sliceGroup.slices.forEach(
+          slice => {
+            if (slice.title !== 'PageProfiling') return;
+            for (const segment of segments) {
+              if (segment.boundsRange.containsExplicitRangeInclusive(
+                  slice.start, slice.end)) {
+                profilingMetrics.forEach(profilingMetric => {
+                  profilingMetric.list.push(slice.args[profilingMetric.name]);
+                });
+              }
+            }
+          }
+      );
+    }
+    profilingMetrics.forEach(profilingMetric => {
+      histograms.createHistogram(
+          'PageProfiling:' + profilingMetric.name,
+          tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+          profilingMetric.list, { description: profilingMetric.description });
+    });
+  }
+
   return {
     addPipelineHistograms,
+    addProfilingDetails,
   };
 });
 </script>
