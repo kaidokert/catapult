@@ -94,7 +94,17 @@ class AddHistogramsProcessHandler(request_handler.RequestHandler):
 
 class AddHistogramsHandler(api_request_handler.ApiRequestHandler):
 
+  def UnprivilegedPost(self):
+    if utils.IsDevAppserver():
+      return self.PrivilegedPost()
+    raise api_request_handler.ForbiddenError()
+
   def PrivilegedPost(self):
+    if utils.IsDevAppserver():
+      # Don't require developers to zip the body.
+      ProcessHistogramSet(json.loads(self.request.body))
+      return
+
     with timing.WallTimeLogger('decompress'):
       try:
         data_str = self.request.body
