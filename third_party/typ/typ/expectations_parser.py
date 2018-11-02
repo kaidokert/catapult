@@ -20,29 +20,31 @@ class ParseError(Exception):
 
 
 class Expectation(object):
-    def __init__(self, reason, test, conditions, results):
+    def __init__(self, reason, test, tags, results):
         """Constructor for expectations.
 
         Args:
-          reason: String that indicates the reason for disabling.
-          test: String indicating which test is being disabled.
-          conditions: List of tags indicating which conditions to disable for.
-              Conditions are combined using logical and.
-              Example: ['Mac', 'Debug']
+          reason: String that indicates the reason for the expectation.
+          test: String indicating which test is being affected.
+          tags: List of tags that the expectation applies to. Tags are combined
+              using a logical and, i.e., all of the tags need to be present for
+              the expectation to apply. For example, if tags = ['Mac', 'Debug'],
+              then the test must be running with the 'Mac' and 'Debug' tags
+              set; just 'Mac', or 'Mac' and 'Release', would not qualify.
           results: List of outcomes for test. Example: ['Skip', 'Pass']
         """
         assert isinstance(reason, basestring) or reason is None
         self._reason = reason
         assert isinstance(test, basestring)
         self._test = test
-        assert isinstance(conditions, list)
-        self._conditions = conditions
+        assert isinstance(tags, list)
+        self._tags = tags
         assert isinstance(results, list)
         self._results = results
 
     def __eq__(self, other):
         return (self.reason == other.reason and self.test == other.test
-                and self.conditions == other.conditions
+                and self.tags == other.tags
                 and self.results == other.results)
 
     @property
@@ -54,8 +56,8 @@ class Expectation(object):
         return self._test
 
     @property
-    def conditions(self):
-        return self._conditions
+    def tags(self):
+        return self._tags
 
     @property
     def results(self):
@@ -142,14 +144,13 @@ class TestExpectationParser(object):
             raise ParseError('Expectation has invalid syntax on line %d: %s' %
                              (line_number, line))
         # Unused group is optional trailing comment.
-        reason, raw_conditions, test, raw_results, _ = match.groups()
-        conditions = [c for c in raw_conditions.split()
-                      ] if raw_conditions else []
+        reason, raw_tags, test, raw_results, _ = match.groups()
+        tags = [c for c in raw_tags.split()] if raw_tags else []
 
-        for c in conditions:
+        for tag in tags:
             if not any(c in tag_set for tag_set in tag_sets):
                 raise ParseError(
-                    'Condition %s not found in expectations tag data. Line %d'
+                    'Tag %s not found in expectations tag data. Line %d'
                     % (c, line_number))
 
         results = []
@@ -160,4 +161,4 @@ class TestExpectationParser(object):
                 raise ParseError(
                     'Unknown result type %s on line %d' % (r, line_number))
 
-        return Expectation(reason, test, conditions, results)
+        return Expectation(reason, test, tags, results)
