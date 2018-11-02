@@ -13,6 +13,7 @@
 # limitations under the License.
 
 import fnmatch
+import glob
 import importlib
 import inspect
 import json
@@ -34,7 +35,7 @@ if path_to_file.endswith('.pyc'):  # pragma: no cover
     path_to_file = path_to_file[:-1]
 dir_above_typ = os.path.dirname(os.path.dirname(path_to_file))
 if dir_above_typ not in sys.path:  # pragma: no cover
-    sys.path.append(dir_above_typ)
+    sys.path.insert(0, dir_above_typ)
 
 
 from typ import json_results
@@ -123,6 +124,8 @@ class Runner(object):
         self.has_expectations = False
         self.expectations = {}
         self.tags = set()
+        self.individual_expectations = {}
+        self.expectation_globs = OrderedDict()
 
         # initialize self.args to the defaults.
         parser = ArgumentParser(self.host)
@@ -374,6 +377,9 @@ class Runner(object):
         return 0
 
     def parse_expectations(self):
+        # TODO(crbug.com/835690): With the addition of globs, this makes
+        # the runner code a bit unwieldly; we should move the logic for
+        # handling expectations into its own class in expectations_parser.py.
         args = self.args
         if len(args.expectations_files) != 1:
             # TODO(crbug.com/835690): Fix this.
@@ -388,12 +394,27 @@ class Runner(object):
             self.print_(e.message, stream=self.host.stderr)
             return 1
         self.has_expectations = True
+        expectation_globs = []
         for exp in parser.expectations:
-            self.expectations.setdefault(exp.test, [])
             # TODO(crbug.com/83560) - Add support for multiple policies
             # for supporting multiple matching lines, e.g., allow/union,
             # reject, etc.
-            self.expectations[exp.test].append(exp)
+            if exp.test.endswith('*'):
+                expectation_globs.append(exp)
+            else:
+                self.individual_expectations.setdefault(exp.test, [])
+                self.individual_expectations[exp.test].append(exp)
+
+            # By using an OrderedDict for the globs and inserting them
+            # with the longest globs first, this'll allow us to match
+            # by the longest glob first. We could also use a list of
+            # lists of exps here, but using an OrderedDict makes debugging
+            # a bit easier and hopefully isn't much of a performance impact.
+            expectation_globs = sorted(expectation_globs,
+                                       key=lambda exp: len(exp.test))
+            for exp in expectation_globs:
+                self.expectation_globs.setdefault(exp.test, [])
+                self.expectation_globs[exp.test].append(exp)
         self.tags = set(args.tags)
 
     def find_tests(self, args):
@@ -835,8 +856,8 @@ class _Child(object):
         self.cov = None
         self.has_expectations = parent.has_expectations
         self.tags = parent.tags
-        self.expectations = parent.expectations
-
+        self.individual_expectations = parent.individual_expectations
+        self.expectation_globs = parent.expectation_globs
 
 def _setup_process(host, worker_num, child):
     child.host = host
@@ -896,6 +917,10 @@ def _run_one_test(child, test_input):
         if child.all:
             unittest.skip = lambda reason: lambda x: x
             unittest.skipIf = lambda condition, reason: lambda x: x
+        elif 'SKIP' in expected_results:
+            return Result(test_name, ResultType.Skip, start, 0,
+                          child.worker_num, unexpected=False, code=0,
+                          err='', pid=pid)
 
         try:
             suite = child.loader.loadTestsFromName(test_name)
@@ -934,7 +959,7 @@ def _run_one_test(child, test_input):
     out = ''
     err = ''
     try:
-        if child.dry_run or ResultType.Skip in expected_results:
+        if child.dry_run:
             pass
         elif child.debugger:  # pragma: no cover
             _run_under_debugger(h, test_case, suite, test_result)
@@ -942,9 +967,6 @@ def _run_one_test(child, test_input):
             suite.run(test_result)
     finally:
         out, err = h.restore_output()
-
-    if ResultType.Skip in expected_results:
-        return _skipped_test(test_name, start, child.worker_num, pid)
 
     took = h.time() - start
     return _result_from_test_result(test_result, test_name, start, took, out,
@@ -962,13 +984,35 @@ def expected_results_for(child, test):
     # To determine the expected results for a test, we have to loop over
     # all of the failures matching a test, find the ones that match all of
     # the tags, and return the union of all of the results.
+    #
+    # The longest matching test string (a name or glob) has priority.
+    #
     # TODO(crbug.com/83560): Handle multiple policies for multiple matching
     # lines (also see above in parse_expectations()).
     results = set()
-    for exp in child.expectations.get(test, []):
-        if (set(exp.tags).intersection(child.tags) == set(exp.tags)):
+
+    # First check for exact matches on test names.
+    for exp in child.individual_expectations.get(test, []):
+        tags = set(exp.tags)
+        if tags.intersection(child.tags) == tags:
             results.update(set(exp.results))
-    return sorted(results) if results else [ResultType.Pass]
+    if results:
+        return results
+
+    # There were no exact matches, so check for matching globs. The globs
+    # inserted into the OrderedDict by length, so by running through the
+    # globs in order we ensure we will hit the longest-length matches first.
+    for glob, exps in child.expectation_globs.items():
+        if fnmatch.fnmatch(test, glob):
+            for exp in exps:   
+                tags = set(exp.tags)
+                if tags.intersection(child.tags) == tags:
+                    results.update(set(exp.results))
+            if results:
+                return results
+
+    # Nothing matched, so the test is expected to pass by default.
+    return [ResultType.Pass]
 
 
 def _run_under_debugger(host, test_case, suite,
@@ -980,11 +1024,6 @@ def _run_under_debugger(host, test_case, suite,
     dbg = pdb.Pdb(stdout=host.stdout.stream)
     dbg.set_break(fname, lineno)
     dbg.runcall(suite.run, test_result)
-
-
-def _skipped_test(test_name, start, worker_num, pid):
-    return Result(test_name, ResultType.Skip, start, 0, worker_num,
-                  unexpected=False, code=0, err='', pid=pid)
 
 
 def _result_from_test_result(test_result, test_name, start, took, out, err,
