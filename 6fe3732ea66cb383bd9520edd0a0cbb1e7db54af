@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f8d8a266_4ba30096",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-11-02T04:15:40Z",
+      "side": 1,
+      "message": "Looking at this now, I\u0027m not sure about this change and need to take another look at it before landing.",
+      "revId": "6fe3732ea66cb383bd9520edd0a0cbb1e7db54af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
