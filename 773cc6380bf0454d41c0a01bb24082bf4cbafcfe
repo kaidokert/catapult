@@ -16,6 +16,23 @@
       "revId": "773cc6380bf0454d41c0a01bb24082bf4cbafcfe",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07a83091_d370c64e",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 957,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2018-11-03T19:24:38Z",
+      "side": 1,
+      "message": "Hi Dirk\n\nI was looking at the if statement\u0027s condition in the for loop of the \nexpected_results_for function in runner.py. It seems like you are trying to \ntest if the set of exp.tags is equal to the set of child tags before \nupdating the results set. If that is true then before the for loop you\nshould precompute the set of child tags and store it in a variable, and maybe\ncall it child_tags. And then put child_tags\u003d\u003dset(exp.tags) as the condition \nof the if statement. Also when updating results set, you can just call\nresults.update(exp.results) instead of computing a set of exp.results and\nthen passing that as an argument to results.update(). It will have the same \noutcome and there will be no duplicates in the results set. \n\nRakib",
+      "revId": "773cc6380bf0454d41c0a01bb24082bf4cbafcfe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
