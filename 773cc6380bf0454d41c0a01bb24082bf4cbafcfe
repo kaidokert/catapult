@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "18f74556_7381682a",
+        "filename": "third_party/typ/typ/arg_parser.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-11-03T01:38:47Z",
+      "side": 1,
+      "message": "This is just re-sorting the args.",
+      "revId": "773cc6380bf0454d41c0a01bb24082bf4cbafcfe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
