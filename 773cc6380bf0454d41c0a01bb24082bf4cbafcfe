@@ -33,6 +33,24 @@
       "revId": "773cc6380bf0454d41c0a01bb24082bf4cbafcfe",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf0449e2_321c851a",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 957,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-11-04T17:30:38Z",
+      "side": 1,
+      "message": "I\u0027m not sure if I follow your suggestion, but you want to make sure that exp.tags is a subset of child.tags, not equal to it. For example, if child.tags is {Debug, Mac, Mac10.12}, then lines that contain {Debug}, {Debug, Mac}, or {Mac} should all match. I\u0027ll rewrite the comment to make this clearer.\n\nYou\u0027re right that I can get rid of the set() constructors, though; this code was written before we changed exp.tags and exp.results to be sets.\n\nAlso, I just realized that there\u0027s actually an issubset() method on sets, too.\n\nSo this can be simplified to:\n\n    results \u003d set()\n    for exp in child.expectations.get(test, []):\n        if exp.tags.issubset(child.tags):\n            results.update(exp.results)\n\nDid I understand you correctly, and does this make sense?",
+      "parentUuid": "07a83091_d370c64e",
+      "revId": "773cc6380bf0454d41c0a01bb24082bf4cbafcfe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
