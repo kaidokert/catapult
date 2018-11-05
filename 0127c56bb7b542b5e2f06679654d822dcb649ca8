@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "243392ce_9b7747b9",
+        "filename": "tracing/tracing/model/thread.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-05T17:51:32Z",
+      "side": 1,
+      "message": "I would find it surprising to receive a fractional number from this method. If that\u0027s intentional, please add a comment.",
+      "revId": "0127c56bb7b542b5e2f06679654d822dcb649ca8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
