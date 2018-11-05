@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "cca96316_cd0ed829",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 899,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-11-05T19:57:39Z",
+      "side": 1,
+      "message": "shouldn\u0027t we add the skipped tests to tests_to_skip list instead? I think the benefit is we can make sure tests_to_skip is the single source of truth to know which tests are meant to be skipped \u0026 it will be easier to later implement --also-run-disabled-tests flag.",
+      "revId": "773cc6380bf0454d41c0a01bb24082bf4cbafcfe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "07a83091_d370c64e",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 13
@@ -87,6 +104,29 @@
       "revId": "773cc6380bf0454d41c0a01bb24082bf4cbafcfe",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "73ee929b_0efa0620",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 971,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-11-05T19:57:39Z",
+      "side": 1,
+      "message": "this can be simplified to \"exp.tags \u003e\u003d child.tags\", I think.",
+      "range": {
+        "startLine": 971,
+        "startChar": 12,
+        "endLine": 971,
+        "endChar": 67
+      },
+      "revId": "773cc6380bf0454d41c0a01bb24082bf4cbafcfe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
