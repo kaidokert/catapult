@@ -177,9 +177,34 @@ path_to_main = os.path.join(
     'runner.py')
 
 
-class TestCli(test_case.MainTestCase):
-    prog = [sys.executable, path_to_main]
-    files_to_ignore = ['*.pyc']
+class TestMain(test_case.MainTestCase):
+    prog = []
+
+    def make_host(self):
+        return Host()
+
+    def call(self, host, argv, stdin, env):
+        stdin = unicode(stdin)
+        host.stdin = io.StringIO(stdin)
+        if env:
+            host.getenv = env.get
+        host.capture_output()
+        orig_sys_path = sys.path[:]
+        orig_sys_modules = list(sys.modules.keys())
+
+        try:
+            ret = main(argv + ['-j', '1'], host)
+        finally:
+            out, err = host.restore_output()
+            modules_to_unload = []
+            for k in sys.modules:
+                if k not in orig_sys_modules:
+                    modules_to_unload.append(k)
+            for k in modules_to_unload:
+                del sys.modules[k]
+            sys.path = orig_sys_path
+
+        return ret, out, err
 
     def test_bad_arg(self):
         self.check(['--bad-arg'], ret=2, out='',
@@ -222,14 +247,6 @@ class TestCli(test_case.MainTestCase):
             # that import will succeed.
             self.check(['-c'], files=PASS_TEST_FILES, ret=1,
                        out='Error: coverage is not installed.\n', err='')
-
-    def test_debugger(self):
-        if sys.version_info.major == 3:  # pragma: python3
-            return
-        else:  # pragma: python2
-            _, out, _, _ = self.check(['-d'], stdin='quit()\n',
-                                      files=PASS_TEST_FILES, ret=0, err='')
-            self.assertIn('(Pdb) ', out)
 
     def test_dryrun(self):
         self.check(['-n'], files=PASS_TEST_FILES, ret=0, err='',
@@ -856,35 +873,17 @@ class TestCli(test_case.MainTestCase):
         self.assertEqual(event['args']['actual'], 'Pass')
 
 
-class TestMain(TestCli):
-    prog = []
-
-    def make_host(self):
-        return Host()
+class TestCli(test_case.MainTestCase):
+    prog = [sys.executable, path_to_main]
+    files_to_ignore = ['*.pyc']
 
     def call(self, host, argv, stdin, env):
-        stdin = unicode(stdin)
-        host.stdin = io.StringIO(stdin)
-        if env:
-            host.getenv = env.get
-        host.capture_output()
-        orig_sys_path = sys.path[:]
-        orig_sys_modules = list(sys.modules.keys())
-
-        try:
-            ret = main(argv + ['-j', '1'], host)
-        finally:
-            out, err = host.restore_output()
-            modules_to_unload = []
-            for k in sys.modules:
-                if k not in orig_sys_modules:
-                    modules_to_unload.append(k)
-            for k in modules_to_unload:
-                del sys.modules[k]
-            sys.path = orig_sys_path
-
-        return ret, out, err
+        return host.call(argv, stdin=stdin, env=env)
 
     def test_debugger(self):
-        # TODO: this test seems to hang under coverage.
-        pass
+        if sys.version_info.major == 3:  # pragma: python3
+            return
+        else:  # pragma: python2
+            _, out, _, _ = self.check(['-d'], stdin='quit()\n',
+                                      files=PASS_TEST_FILES, ret=0, err='')
+            self.assertIn('(Pdb) ', out)
