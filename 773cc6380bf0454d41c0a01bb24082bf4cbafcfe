@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "c5a71e6c_61e3493f",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 899,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-11-05T20:18:58Z",
+      "side": 1,
+      "message": "leave a TODO sgtm",
+      "parentUuid": "e6cac85d_8ca3352b",
+      "revId": "773cc6380bf0454d41c0a01bb24082bf4cbafcfe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "07a83091_d370c64e",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 13
@@ -160,6 +178,30 @@
       "side": 1,
       "message": "Ah, didn\u0027t know about \u003e\u003d on sets. I\u0027m not sure that I think that that\u0027s clearer than exp.tags.issubset(child.tags) though.\n\n(Also, I think you want \"\u003c\u003d\", not \"\u003e\u003d\".)",
       "parentUuid": "73ee929b_0efa0620",
+      "range": {
+        "startLine": 971,
+        "startChar": 12,
+        "endLine": 971,
+        "endChar": 67
+      },
+      "revId": "773cc6380bf0454d41c0a01bb24082bf4cbafcfe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10be3081_8d8c6c7c",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 971,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-11-05T20:18:58Z",
+      "side": 1,
+      "message": "Using issubset sgtm",
+      "parentUuid": "517b668e_0fb9503b",
       "range": {
         "startLine": 971,
         "startChar": 12,
