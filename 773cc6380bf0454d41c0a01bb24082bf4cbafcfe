@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "e6cac85d_8ca3352b",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 899,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-11-05T20:15:11Z",
+      "side": 1,
+      "message": "In order to do that we\u0027d have to either evaluate expected_results_for() twice (once up in run() and once here) or pass the results of the call down as part of the test input. Plus that would mean that we\u0027d be modifying an input parameter, which I\u0027m not usually wild about. Either way, that\u0027d end up being a much more invasive patch.\n\nHow about we leave this as-is and add a TODO for now to look at it in a follow-up patch?\n\nI\u0027m not sure what you mean by --also-run-disabled-tests, but there is already an --all flag that should do that (and which should be handled correctly here).",
+      "parentUuid": "cca96316_cd0ed829",
+      "revId": "773cc6380bf0454d41c0a01bb24082bf4cbafcfe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "07a83091_d370c64e",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 13
@@ -118,6 +136,30 @@
       "writtenOn": "2018-11-05T19:57:39Z",
       "side": 1,
       "message": "this can be simplified to \"exp.tags \u003e\u003d child.tags\", I think.",
+      "range": {
+        "startLine": 971,
+        "startChar": 12,
+        "endLine": 971,
+        "endChar": 67
+      },
+      "revId": "773cc6380bf0454d41c0a01bb24082bf4cbafcfe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "517b668e_0fb9503b",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 971,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-11-05T20:15:11Z",
+      "side": 1,
+      "message": "Ah, didn\u0027t know about \u003e\u003d on sets. I\u0027m not sure that I think that that\u0027s clearer than exp.tags.issubset(child.tags) though.\n\n(Also, I think you want \"\u003c\u003d\", not \"\u003e\u003d\".)",
+      "parentUuid": "73ee929b_0efa0620",
       "range": {
         "startLine": 971,
         "startChar": 12,
