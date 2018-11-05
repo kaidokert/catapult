@@ -415,7 +415,7 @@ func (r *RootCACommand) Remove(c *cli.Context) {
 	r.installer.RemoveRoot()
 }
 
-func main() {
+func mainer() {
 	progName := filepath.Base(os.Args[0])
 
 	var record RecordCommand
