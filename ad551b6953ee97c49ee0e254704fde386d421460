@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bd3e6ecd_18c85f87",
+        "filename": "dashboard/dashboard/api/api_request_handler_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-11-06T17:16:39Z",
+      "side": 1,
+      "message": "why was this change needed?",
+      "revId": "ad551b6953ee97c49ee0e254704fde386d421460",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "213a9084_1488473b",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-11-06T17:16:39Z",
+      "side": 1,
+      "message": "I\u0027m wondering whether an API that returns True/False instead of raising an error would be more natural and easy to read/write, e.g. something like:\n\n  def _AllowUserAccess(self):\n    return utils.IsLoggedIn() and utils.IsTryJobJuser()\n\nor in some of the above:\n\n  def _AllowUserAccess(self):\n    return utils.IsIpWhitelisted() or utils.IsInternalUser()\n\nthis also encourages encapsulating the logic for small units that check for \"types of users\" into methods with meaningful self-descriptive names.\n\nwdyt?",
+      "revId": "ad551b6953ee97c49ee0e254704fde386d421460",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
