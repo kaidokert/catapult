@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+<script src="/bower_components/web-component-tester/browser.js"></script>
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/dashboard/spa/timeseries-descriptor.html">
+
+<test-fixture id="test">
+  <template>
+    <timeseries-descriptor state-path="test"></timeseries-descriptor>
+  </template>
+</test-fixture>
+
+<script>
+'use strict';
+setup(() => {
+  fixture('test').dispatch(Redux.ENSURE('test'));
+});
+
+suite('timeseries-descriptor', function() {
+  // TODO DescribeRequest on suite select
+  // TODO getParameterMatrix
+
+  test('suite select describe', async function() {
+    const td = fixture('test');
+    const aSuite = tr.ui.b.findDeepElementWithTextContent(chartLegend, /aaa/);
+    aSuite.click();
+    await cp.afterRender();
+    const state = td.getState().test;
+    assert.strictEqual(TODO, state.measurement.options);
+    assert.strictEqual(TODO, state.measurement.recommended.options);
+    assert.strictEqual(TODO, state.bot.options);
+    assert.strictEqual(TODO, state.bot.recommended.options);
+    assert.strictEqual(TODO, state.case.options);
+    assert.strictEqual(TODO, state.case.recommended.options);
+    assert.strictEqual(TODO, state.case.tags.options);
+  });
+
+  test('option-select matrix-change', async function() {
+    const td = fixture('test');
+    let matrix;
+    td.addEventListener('matrix-change', e => {
+      matrix = e.detail;
+    });
+    const aBot = tr.ui.b.findDeepElementWithTextContent(chartLegend, /aaa/);
+    aBot.click();
+    await cp.afterRender();
+    assert.lengthOf(TODO, matrix.suiteses);
+    assert.lengthOf(TODO, matrix.botses);
+    assert.lengthOf(TODO, matrix.measurements);
+    assert.lengthOf(TODO, matrix.caseses);
+  });
+});
+</script>
