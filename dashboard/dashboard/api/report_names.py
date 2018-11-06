@@ -10,11 +10,5 @@ from dashboard.models import report_template
 
 class ReportNamesHandler(api_request_handler.ApiRequestHandler):
 
-  def _AllowAnonymous(self):
-    return True
-
-  def PrivilegedPost(self, *args):
-    return self.UnprivilegedPost(*args)
-
-  def UnprivilegedPost(self, *_):
+  def Post(self):
     return report_template.List()
