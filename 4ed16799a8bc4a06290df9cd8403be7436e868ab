@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "be80397f_aaaf5692",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-11-06T20:01:34Z",
+      "side": 1,
+      "message": "looks like we don\u0027t do anything about the text after right_bracket. Is that possible to add error reporting if user do s.t like:\n\n# tags: [ foo bar ] [ baz ] ?\n\nThe current code will just ignore \"[ baz ]\" part silently, I think",
+      "revId": "4ed16799a8bc4a06290df9cd8403be7436e868ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
