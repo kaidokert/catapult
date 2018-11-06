@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "15447bf1_ce7c51a4",
+        "filename": "telemetry/telemetry/core/memory_cache_http_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-11-06T22:19:07Z",
+      "side": 1,
+      "message": "I moved the init to the __init__ of this class to avoid this problem. THis code can be invoked many times, so assert that  mimetypes is not initialized at this point will crash it",
+      "parentUuid": "23dfdd7f_9ba4657a",
+      "revId": "7731a380318c9934174161cc4b7b6e50f2e2f387",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e12d8ee2_d49057fb",
         "filename": "telemetry/telemetry/core/mime.types",
         "patchSetId": 1
@@ -51,6 +69,24 @@
       "revId": "7731a380318c9934174161cc4b7b6e50f2e2f387",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9613eee1_5083ce4d",
+        "filename": "telemetry/telemetry/core/mime.types",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-11-06T22:19:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "424bca20_30b74c02",
+      "revId": "7731a380318c9934174161cc4b7b6e50f2e2f387",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
