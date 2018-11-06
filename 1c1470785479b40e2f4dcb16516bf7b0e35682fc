@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fb0cd740_5492758c",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2856,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-11-06T21:31:57Z",
+      "side": 1,
+      "message": "nit: \"last the attempt\" -\u003e \"the last attempt\"",
+      "revId": "1c1470785479b40e2f4dcb16516bf7b0e35682fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
