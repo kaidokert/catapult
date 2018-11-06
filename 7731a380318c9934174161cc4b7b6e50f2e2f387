@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "23dfdd7f_9ba4657a",
+        "filename": "telemetry/telemetry/core/memory_cache_http_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2018-11-06T22:04:23Z",
+      "side": 1,
+      "message": "If code elsewhere happens to init mimetypes before this code does, trouble will happen. Should this code assert that mimetypes is not initialized at this point, so it works reliably?",
+      "revId": "7731a380318c9934174161cc4b7b6e50f2e2f387",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e12d8ee2_d49057fb",
         "filename": "telemetry/telemetry/core/mime.types",
         "patchSetId": 1
@@ -13,6 +30,24 @@
       "writtenOn": "2018-11-06T21:38:00Z",
       "side": 1,
       "message": "this is copied from https://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types",
+      "revId": "7731a380318c9934174161cc4b7b6e50f2e2f387",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "424bca20_30b74c02",
+        "filename": "telemetry/telemetry/core/mime.types",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2018-11-06T22:04:23Z",
+      "side": 1,
+      "message": "Could you please include that fact in this file as a comment? Thanks.",
+      "parentUuid": "e12d8ee2_d49057fb",
       "revId": "7731a380318c9934174161cc4b7b6e50f2e2f387",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
