@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/dashboard/spa/cp-input.html">
+<link rel="import" href="/dashboard/spa/element-base.html">
+<link rel="import" href="/dashboard/spa/option-group.html">
+<link rel="import" href="/dashboard/spa/utils.html">
+
+<dom-module id="timeseries-descriptor">
+  <template>
+    <style>
+    </style>
+
+    <div>
+      <menu-input state-path="[[statePath]].suite">
+      </menu-input>
+
+      <cp-checkbox
+          id="aggregate"
+          disabled$="[[!isMultiple_(suite.selectedOptions)]]"
+          checked="[[suite.isAggregated]]"
+          on-change="onTestSuiteAggregateChange_">
+        Aggregate
+      </cp-checkbox>
+    </div>
+
+    <div>
+      <menu-input state-path="[[statePath]].measurement">
+      </menu-input>
+    </div>
+
+    <div>
+      <menu-input state-path="[[statePath]].bot">
+      </menu-input>
+    </div>
+
+    <div>
+      <menu-input state-path="[[statePath]].case">
+        <div slot="left">
+          <span id="tag_head">
+            Tags
+          </span>
+          <option-group
+              state-path="[[statePath]].case.tags"
+              root-state-path="[[statePath]].case.tags"
+              on-option-select="onCaseTagSelect_">
+          </option-group>
+        </div>
+      </menu-input>
+    </div>
+  </template>
+</dom-module>
+<script src="/dashboard/spa/timeseries-descriptor.js"></script>
