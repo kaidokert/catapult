@@ -16,6 +16,24 @@
       "revId": "4ed16799a8bc4a06290df9cd8403be7436e868ab",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcecefd5_9607f6ad",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-11-06T20:21:51Z",
+      "side": 1,
+      "message": "Good catch. I will fix and add a test for it.",
+      "parentUuid": "be80397f_aaaf5692",
+      "revId": "4ed16799a8bc4a06290df9cd8403be7436e868ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
