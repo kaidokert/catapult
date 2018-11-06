@@ -328,7 +328,106 @@ tr.exportTo('cp', () => {
     return dict;
   }
 
+  /**
+   * BatchIterator reduces processing costs by batching results and errors
+   * from an array of tasks. A task can either be a promise or an asynchronous
+   * iterator. In other words, use this class when it is costly to iteratively
+   * process the output of each task (e.g. when rendering to DOM).
+   *
+   *   const tasks = urls.map(fetch);
+   *   for await (const {results, errors} of new BatchIterator(tasks)) {
+   *     render(results);
+   *     renderErrors(errors);
+   *   }
+   */
+  class BatchIterator {
+    /**
+     * type tasks = [task]
+     * type task = Promise | AsyncIterator
+     * type AsyncIterator = {
+     *   next: () => Promise
+     * }
+     */
+    constructor(tasks) {
+      this.results_ = [];
+      this.errors_ = [];
+      this.timeSinceLastCalled_ = undefined;
+      this.promises_ = [];
+
+      for (const task of tasks) {
+        if (task instanceof Promise) {
+          this.promises_.push(this.wrapPromise_(task));
+        } else {
+          this.wrapIterator_(task);
+        }
+      }
+    }
+
+    wrapPromise_(promise, isAsyncIter = false) {
+      const self = (async() => {
+        try {
+          let result = await promise;
+          if (isAsyncIter) {
+            if (result.done) return;
+            result = result.value;
+          }
+          this.results_.push(result);
+        } catch (err) {
+          this.errors_.push(err);
+        } finally {
+          this.promises_.splice(this.promises_.indexOf(self), 1);
+        }
+      })();
+      return self;
+    }
+
+    async wrapIterator_(asyncIter) {
+      while (true) {
+        const promise = asyncIter.next();
+        this.promises_.push(this.wrapPromise_(promise, true));
+        const {done} = await promise;
+        if (done) break;
+      }
+    }
+
+    [Symbol.asyncIterator]() {
+      return this;
+    }
+
+    async next() {
+      if (this.promises_.length === 0 && this.results_.length === 0 &&
+          this.errors_.length === 0) {
+        return {done: true};
+      }
+
+      await Promise.race(this.promises_);
+
+      if (this.timeSinceLastCalled_) {
+        const timeToProcess = performance.now() - this.timeSinceLastCalled_;
+        await Promise.race([
+          await timeout(timeToProcess),
+          await Promise.all(this.promises_)
+        ]);
+      }
+
+      const results = this.results_;
+      const errors = this.errors_;
+      this.results_ = [];
+      this.errors_ = [];
+
+      // Measure how long it takes the caller to process yielded results to
+      // avoid overloading the caller the next time around.
+      this.timeSinceLastCalled_ = performance.now();
+
+      return {
+        done: false,
+        value: {results, errors}
+      };
+    }
+  }
+
   return {
+    BatchIterator,
     afterRender,
     animationFrame,
     authorizationHeaders,
