@@ -20,6 +20,9 @@ from telemetry.core import local_server
 ByteRange = namedtuple('ByteRange', ['from_byte', 'to_byte'])
 ResourceAndRange = namedtuple('ResourceAndRange', ['resource', 'byte_range'])
 
+_MIME_TYPES_FILE = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), 'mime.types'))
+
 
 class MemoryCacheHTTPRequestHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
@@ -183,6 +186,9 @@ class _MemoryCacheHTTPServerImpl(SocketServer.ThreadingMixIn,
     with open(file_path, 'rb') as fd:
       response = fd.read()
       fs = os.fstat(fd.fileno())
+    if not mimetypes.inited:
+      assert os.path.exist(_MIME_TYPES_FILE)
+      mimetypes.init([_MIME_TYPES_FILE])
     content_type = mimetypes.guess_type(file_path)[0]
     zipped = False
     if content_type in ['text/html', 'text/css', 'application/javascript']:
