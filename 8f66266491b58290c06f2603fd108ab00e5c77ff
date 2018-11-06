@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2faa931d_ca76c02b",
+        "filename": "web_page_replay_go/src/httparchive.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-11-06T14:42:24Z",
+      "side": 1,
+      "message": "can you add that this will query the GET request from network?",
+      "revId": "8f66266491b58290c06f2603fd108ab00e5c77ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2c37b2d_558ff71b",
+        "filename": "web_page_replay_go/src/webpagereplay/archive_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-11-06T14:42:24Z",
+      "side": 1,
+      "message": "are these tests using real network fetches?",
+      "revId": "8f66266491b58290c06f2603fd108ab00e5c77ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
