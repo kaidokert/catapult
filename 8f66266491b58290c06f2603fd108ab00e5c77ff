@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "188d3b60_16b2af94",
+        "filename": "web_page_replay_go/src/httparchive.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-11-07T10:41:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2faa931d_ca76c02b",
+      "revId": "8f66266491b58290c06f2603fd108ab00e5c77ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a2c37b2d_558ff71b",
         "filename": "web_page_replay_go/src/webpagereplay/archive_test.go",
         "patchSetId": 4
@@ -51,6 +69,24 @@
       "revId": "8f66266491b58290c06f2603fd108ab00e5c77ff",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a95e9819_50b557e0",
+        "filename": "web_page_replay_go/src/webpagereplay/archive_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-11-07T10:41:48Z",
+      "side": 1,
+      "message": "Using httptest to intercept requsts was easy enough, this should be fixed now.",
+      "parentUuid": "83787305_9ff7133c",
+      "revId": "8f66266491b58290c06f2603fd108ab00e5c77ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
