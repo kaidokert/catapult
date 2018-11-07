@@ -23,11 +23,53 @@ import (
 
 var ErrNotFound = errors.New("not found")
 
+// ClientSessions contains a map that records a session id for a given client IP address.
+// The Archive object uses a ClientSessions object to track the current session id for any connected clients.
+// Each ArchivedRequest inside the Archive object uses a ClientSessions object to track the last session when
+// wprGo matched the ArchivedRequest with an incoming request from a client.
+// Together these ClientSessions objects allow Archive to keep track which request the Archive has served, and
+// to which client. The Archive uses this state information to serve ArchivedRequests in the chronological
+// sequence in which the recording was made.
+type ClientSessions struct {
+	SessionIds map[string]uint32
+	StartingSessionId uint32
+}
+
+func (c *ClientSessions) getSessionId(remoteAddr string) uint32 {
+	val, exists := c.SessionIds[remoteAddr]
+	if !exists {
+		return c.StartingSessionId
+	}
+	return val
+}
+
+func (c *ClientSessions) incrementSessionId(remoteAddr string) {
+	val, exists := c.SessionIds[remoteAddr]
+	if !exists {
+		c.SessionIds[remoteAddr] = 0
+	} else {
+		c.SessionIds[remoteAddr] = val + 1; // An int32 value will wrap around if the value overflows.
+	}
+}
+
+func newClientSessions(startingSessionId uint32) ClientSessions {
+	return ClientSessions{SessionIds: make(map[string]uint32), StartingSessionId: startingSessionId}
+}
+
 // ArchivedRequest contains a single request and its response.
 // Immutable after creation.
 type ArchivedRequest struct {
-	SerializedRequest  []byte
+	SerializedRequest []byte
 	SerializedResponse []byte // if empty, the request failed
+	LastServedSession ClientSessions
+}
+
+// RequestMatch represents a match when querying the archive for responses to a request
+type RequestMatch struct {
+	Match *ArchivedRequest
+	Request *http.Request
+	Response *http.Response
+	MatchRatio float64
 }
 
 func serializeRequest(req *http.Request, resp *http.Response) (*ArchivedRequest, error) {
@@ -79,10 +121,29 @@ type Archive struct {
 	NegotiatedProtocol map[string]string
 	// The time seed that was used to initialize deterministic.js.
 	DeterministicTimeSeedMs int64
+	// When an incoming request matches multiple recorded responses, whether to serve the responses
+	// in the chronological sequence in which wpr_go recorded them.
+	ServeResponseInChronologicalSequence bool
+	// Maps host a client's IP address to the client's current session id.
+	// Archive can serve responses in chronological order to each client. If a client wants to reset the Archive
+	// to serve responses from the start, the client may do so by incrementing its session id.
+	CurrentSession ClientSessions
 }
 
 func newArchive() Archive {
-	return Archive{Requests: make(map[string]map[string][]*ArchivedRequest)}
+	return Archive {Requests: make(map[string]map[string][]*ArchivedRequest)}
+}
+
+func prepareArchiveForReplay(a *Archive) {
+	// Initialize the session id mechanism that Archive uses to keep state information about clients.
+	a.CurrentSession = newClientSessions(1)
+	for _, urlmap := range a.Requests {
+		for _, requests := range urlmap {
+			for _, ar := range requests {
+				ar.LastServedSession = newClientSessions(0)
+			}
+		}
+	}
 }
 
 // OpenArchive opens an archive file previously written by OpenWritableArchive.
@@ -106,6 +167,7 @@ func OpenArchive(path string) (*Archive, error) {
 	if err := json.Unmarshal(buf, &a); err != nil {
 		return nil, fmt.Errorf("json unmarshal failed: %v", err)
 	}
+	prepareArchiveForReplay(&a);
 	return &a, nil
 }
 
@@ -158,42 +220,10 @@ func (a *Archive) FindRequest(req *http.Request, scheme string) (*http.Request, 
 		u.Host = req.Host
 		u.Scheme = scheme
 	}
-	var bestRatio float64
-	if len(hostMap[u.String()]) > 0 {
-		var bestRequest *http.Request
-		var bestResponse *http.Response
-		// There can be multiple requests with the same URL string. If that's the case,
-		// break the tie by the number of headers that match.
-		for _, r := range hostMap[u.String()] {
-			curReq, curResp, err := r.unmarshal()
-			if err != nil {
-				log.Println("Error unmarshaling request")
-				continue
-			}
-			if curReq.Method != req.Method {
-				continue
-			}
-			rh := curReq.Header
-			reqh := req.Header
-			m := 1
-			t := len(rh) + len(reqh)
-			for k, v := range rh {
-				if reflect.DeepEqual(v, reqh[k]) {
-					m++
-				}
-			}
-			ratio := 2 * float64(m) / float64(t)
-			// Note that since |m| starts from 1. The ratio will be more than 0
-			// even if no header matches.
-			if ratio > bestRatio {
-				bestRequest = curReq
-				bestResponse = curResp
-				bestRatio = ratio
-			}
-		}
-		if bestRequest != nil && bestResponse != nil {
-			return bestRequest, bestResponse, nil
-		}
+	reqUrl := u.String()
+
+	if len(hostMap[reqUrl]) > 0 {
+		return a.findBestMatchInArchivedRequestSet(req, hostMap[reqUrl], a.CurrentSession.getSessionId(req.RemoteAddr))
 	}
 
 	// For all URLs with a matching path, pick the URL that has the most matching query parameters.
@@ -203,6 +233,7 @@ func (a *Archive) FindRequest(req *http.Request, scheme string) (*http.Request, 
 	aq := req.URL.Query()
 
 	var bestURL string
+	var bestRatio float64
 
 	for ustr := range hostMap {
 		u, err := url.Parse(ustr)
@@ -229,24 +260,76 @@ func (a *Archive) FindRequest(req *http.Request, scheme string) (*http.Request, 
 		}
 	}
 
-	// TODO: Try each until one succeeds with a matching request method.
 	if bestURL != "" {
-		return findExactMatch(hostMap[bestURL], req.Method)
+		return a.findBestMatchInArchivedRequestSet(req, hostMap[bestURL], a.CurrentSession.getSessionId(req.RemoteAddr))
 	}
 
 	return nil, nil, ErrNotFound
 }
 
-// findExactMatch returns the first request that exactly matches the given request method.
-func findExactMatch(requests []*ArchivedRequest, method string) (*http.Request, *http.Response, error) {
-	for _, ar := range requests {
-		req, resp, err := ar.unmarshal()
+// Given an incoming request and a set of matches in the archive, identify the best match,
+// based on request headers, request cookies, data and other information.
+func (a *Archive) findBestMatchInArchivedRequestSet(incomingReq *http.Request, archivedReqs []*ArchivedRequest, sessionId uint32) (*http.Request, *http.Response, error) {
+	if len(archivedReqs) == 1 {
+		archivedReq, archivedResp, err := archivedReqs[0].unmarshal()
 		if err != nil {
-			log.Printf("Error unmarshaling request: %v\nAR.Request: %q\nAR.Response: %q", err, ar.SerializedRequest, ar.SerializedResponse)
-			continue
+			log.Println("Error unmarshaling request")
+			return nil, nil, err
 		}
-		if req.Method == method {
-			return req, resp, nil
+		return archivedReq, archivedResp, err
+	} else if len(archivedReqs) > 0 {
+		// There can be multiple requests with the same URL string. If that's the case,
+		// break the tie by the number of headers that match.
+		var bestMatch RequestMatch
+		var bestInSequenceMatch RequestMatch
+
+		for _, r := range archivedReqs {
+			archivedReq, archivedResp, err := r.unmarshal()
+			if err != nil {
+				log.Println("Error unmarshaling request")
+				continue
+			}
+
+			// Skip this archived request if the request methods does not match that of the incoming request.
+			if archivedReq.Method != incomingReq.Method {
+				continue
+			}
+
+			// Count the number of header matches
+			numMatchingHeaders := 1
+			numTotalHeaders := len(incomingReq.Header) + len(archivedReq.Header)
+			for key, val := range archivedReq.Header {
+				if reflect.DeepEqual(val, incomingReq.Header[key]) {
+					numMatchingHeaders++
+				}
+			}
+			// Note that since |m| starts from 1. The ratio will be more than 0
+			// even if no header matches.
+			ratio := 2 * float64(numMatchingHeaders) / float64(numTotalHeaders)
+
+			if a.ServeResponseInChronologicalSequence &&
+				r.LastServedSession.getSessionId(incomingReq.RemoteAddr) != sessionId &&
+				ratio > bestInSequenceMatch.MatchRatio {
+				bestInSequenceMatch.Match = r
+				bestInSequenceMatch.Request = archivedReq
+				bestInSequenceMatch.Response = archivedResp
+				bestInSequenceMatch.MatchRatio = ratio
+			}
+			if ratio > bestMatch.MatchRatio {
+				bestMatch.Match = r
+				bestMatch.Request = archivedReq
+				bestMatch.Response = archivedResp
+				bestMatch.MatchRatio = ratio
+			}
+		}
+
+		if a.ServeResponseInChronologicalSequence &&
+			bestInSequenceMatch.Match != nil {
+			bestInSequenceMatch.Match.LastServedSession.SessionIds[incomingReq.RemoteAddr] = sessionId
+			return bestInSequenceMatch.Request, bestInSequenceMatch.Response, nil
+		} else if bestMatch.Match != nil {
+			bestMatch.Match.LastServedSession.SessionIds[incomingReq.RemoteAddr] = sessionId
+			return bestMatch.Request, bestMatch.Response, nil
 		}
 	}
 	return nil, nil, ErrNotFound
@@ -269,6 +352,10 @@ func (a *Archive) addArchivedRequest(scheme string, req *http.Request, resp *htt
 	ustr := u.String()
 	a.Requests[req.Host][ustr] = append(a.Requests[req.Host][ustr], ar)
 	return nil
+}
+
+func (a *Archive) resetClientSession(clientRemoteAddress string) {
+	a.CurrentSession.incrementSessionId(clientRemoteAddress)
 }
 
 // Edit iterates over all requests in the archive. For each request, it calls f to
