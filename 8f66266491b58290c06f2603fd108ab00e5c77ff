@@ -87,6 +87,24 @@
       "revId": "8f66266491b58290c06f2603fd108ab00e5c77ff",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e6b93e0_2e0a1dcd",
+        "filename": "web_page_replay_go/src/webpagereplay/archive_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-11-07T11:55:27Z",
+      "side": 1,
+      "message": "Nice, i didn\u0027t know this\n\n👍",
+      "parentUuid": "a95e9819_50b557e0",
+      "revId": "8f66266491b58290c06f2603fd108ab00e5c77ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
