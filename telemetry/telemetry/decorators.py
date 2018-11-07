@@ -178,6 +178,7 @@ def Info(emails=None, component=None, documentation_url=None):
       info_dict['emails'] = emails
     if component:
       assert 'component' not in info_dict, 'component can only be set once'
+      assert isinstance(component, basestring), 'component must be a string'
       info_dict['component'] = component
     if documentation_url:
       assert 'documentation_url' not in info_dict, (
