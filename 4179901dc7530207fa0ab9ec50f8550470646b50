@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c254336f_10800287",
+        "filename": "web_page_replay_go/src/webpagereplay/archive.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1251641
+      },
+      "writtenOn": "2018-11-07T21:28:45Z",
+      "side": 1,
+      "message": "nitpick: I prefer req.URL over url. I almost missed that we are modifying the req object in this block.",
+      "range": {
+        "startLine": 58,
+        "startChar": 1,
+        "endLine": 62,
+        "endChar": 2
+      },
+      "revId": "4179901dc7530207fa0ab9ec50f8550470646b50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b88ec002_9148dd99",
+        "filename": "web_page_replay_go/src/webpagereplay/archive.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1251641
+      },
+      "writtenOn": "2018-11-07T21:28:45Z",
+      "side": 1,
+      "message": "nitpick: why prefer reqURL over req.URL? I am more in favor of req.URL , as it indicates that the variable is referring to an attribute of the input parameter.",
+      "range": {
+        "startLine": 170,
+        "startChar": 1,
+        "endLine": 170,
+        "endChar": 18
+      },
+      "revId": "4179901dc7530207fa0ab9ec50f8550470646b50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36d856ce_888b6e72",
+        "filename": "web_page_replay_go/src/webpagereplay/archive.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1251641
+      },
+      "writtenOn": "2018-11-07T21:28:45Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we be asserting the input request URL\u0027s completeness at the start of the function, before making changes to the archive?",
+      "range": {
+        "startLine": 277,
+        "startChar": 1,
+        "endLine": 278,
+        "endChar": 23
+      },
+      "revId": "4179901dc7530207fa0ab9ec50f8550470646b50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96e77b03_e614cedd",
+        "filename": "web_page_replay_go/src/webpagereplay/archive.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1251641
+      },
+      "writtenOn": "2018-11-07T21:28:45Z",
+      "side": 1,
+      "message": "It wouldn\u0027t be an override, as we are adding the response, rather than replacing the existing response. Also, with the way archive finds matches incoming request today during replay, the archive will always return the 1st response it finds - since this code appends a response to the end of the map, the response will not override any response before it.",
+      "range": {
+        "startLine": 343,
+        "startChar": 1,
+        "endLine": 343,
+        "endChar": 64
+      },
+      "revId": "4179901dc7530207fa0ab9ec50f8550470646b50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
