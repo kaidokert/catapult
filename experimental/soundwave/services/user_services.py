@@ -33,5 +33,5 @@ class UserServices(object):
   @property
   def pinpoint(self):
     if self._pinpoint is None:
-      self._pinpoint = pinpoint_service.Api(self._credentials)
+      self._pinpoint = pinpoint_service.Api()
     return self._pinpoint

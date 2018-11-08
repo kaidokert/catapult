@@ -5,23 +5,16 @@
 
 import json
 
+from services import luci_auth
 from services import request
 
 
 class Api(object):
   SERVICE_URL = 'https://pinpoint-dot-chromeperf.appspot.com/api'
 
-  def __init__(self, credentials):
-    self._credentials = credentials
-
-  @property
-  def user_email(self):
-    """Get the email address of the authenticated user."""
-    return self._credentials.id_token['email']
-
   def Request(self, endpoint, **kwargs):
     """Send a request to some pinpoint endpoint."""
-    kwargs.setdefault('credentials', self._credentials)
+    kwargs.setdefault('use_auth', True)
     return json.loads(request.Request(self.SERVICE_URL + endpoint, **kwargs))
 
   def Job(self, job_id, with_state=False, with_tags=False):
@@ -39,5 +32,6 @@ class Api(object):
 
   def NewJob(self, **kwargs):
     """Create a new pinpoint job."""
-    kwargs.setdefault('user', self.user_email)
+    if 'user' not in kwargs:
+      kwargs['user'] = luci_auth.GetUserEmail()
     return self.Request('/new', method='POST', data=kwargs)
