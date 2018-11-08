@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "545c7f20_f743bac5",
+        "filename": "web_page_replay_go/src/webpagereplay/archive.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1251641
+      },
+      "writtenOn": "2018-11-08T21:13:08Z",
+      "side": 1,
+      "message": "I think this should remain \"\u003d\u003d\". req would not be a duplicate if the archive finds a similar, but not identical url.",
+      "range": {
+        "startLine": 344,
+        "startChar": 27,
+        "endLine": 344,
+        "endChar": 29
+      },
+      "revId": "3645e3d2d6293a0847e148ca3adedca18c5752e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
