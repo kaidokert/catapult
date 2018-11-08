@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "e3380e80_b6a7bfe3",
+        "filename": "dashboard/dashboard/api/api_request_handler_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-11-08T01:24:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6f228699_732b351f",
+      "revId": "ad551b6953ee97c49ee0e254704fde386d421460",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "213a9084_1488473b",
         "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
         "patchSetId": 2
@@ -137,6 +155,24 @@
       "side": 1,
       "message": "I\u0027m not super concerned about the safety here, since we have one centralized place for dealing with all the errors (`ApiRequestHandler.post()`). I don\u0027t have a strong preference for exceptions vs an enum, but exceptions are easier.",
       "parentUuid": "dd0b6dd5_af055352",
+      "revId": "ad551b6953ee97c49ee0e254704fde386d421460",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf6f0931_484ae3bc",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-11-08T01:24:52Z",
+      "side": 1,
+      "message": "Yeah, after the discussions, I agree. Exceptions sgtm.",
+      "parentUuid": "ca91d732_c7fd23af",
       "revId": "ad551b6953ee97c49ee0e254704fde386d421460",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
