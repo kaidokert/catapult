@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2886be1f_c37e4112",
+        "filename": "web_page_replay_go/src/webpagereplay/archive.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-11-08T10:20:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c254336f_10800287",
+      "range": {
+        "startLine": 58,
+        "startChar": 1,
+        "endLine": 62,
+        "endChar": 2
+      },
+      "revId": "4179901dc7530207fa0ab9ec50f8550470646b50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b88ec002_9148dd99",
         "filename": "web_page_replay_go/src/webpagereplay/archive.go",
         "patchSetId": 6
@@ -45,6 +69,30 @@
       "revId": "4179901dc7530207fa0ab9ec50f8550470646b50",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59cf85f1_b0b12ba4",
+        "filename": "web_page_replay_go/src/webpagereplay/archive.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-11-08T10:20:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b88ec002_9148dd99",
+      "range": {
+        "startLine": 170,
+        "startChar": 1,
+        "endLine": 170,
+        "endChar": 18
+      },
+      "revId": "4179901dc7530207fa0ab9ec50f8550470646b50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "12af4fbb_1eff6cf8",
+        "filename": "web_page_replay_go/src/webpagereplay/archive.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-11-08T10:20:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36d856ce_888b6e72",
+      "range": {
+        "startLine": 277,
+        "startChar": 1,
+        "endLine": 278,
+        "endChar": 23
+      },
+      "revId": "4179901dc7530207fa0ab9ec50f8550470646b50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "96e77b03_e614cedd",
         "filename": "web_page_replay_go/src/webpagereplay/archive.go",
         "patchSetId": 6
@@ -91,6 +163,30 @@
       "revId": "4179901dc7530207fa0ab9ec50f8550470646b50",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b328d2c_8accc698",
+        "filename": "web_page_replay_go/src/webpagereplay/archive.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-11-08T10:20:06Z",
+      "side": 1,
+      "message": "I\u0027ll add that as an explanation.\n\nMaybe at some point we should really just overwrite the request?\nI\u0027ve seen cases where we have Error 500 requests that you can overwrite, currently this only works for 404s since they are not in the archive yet.",
+      "parentUuid": "96e77b03_e614cedd",
+      "range": {
+        "startLine": 343,
+        "startChar": 1,
+        "endLine": 343,
+        "endChar": 64
+      },
+      "revId": "4179901dc7530207fa0ab9ec50f8550470646b50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
