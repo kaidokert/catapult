@@ -309,6 +309,9 @@ def RunTests(args):
   runner.setup_fn = _SetUpProcess
   runner.teardown_fn = _TearDownProcess
 
+  runner.args.expectation_file = '/tmp/foo.expectation'
+  runner.args.tags = ['mac']
+
   runner.args.jobs = options.jobs
   runner.args.metadata = options.metadata
   runner.args.passthrough = options.passthrough
