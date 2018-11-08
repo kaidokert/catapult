@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "17594867_347e19bb",
+        "filename": "dashboard/dashboard/api/api_request_handler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-11-08T01:15:29Z",
+      "side": 1,
+      "message": "Done. Made _CheckUser() required and added a docstring.",
+      "parentUuid": "766a03ca_2b4835da",
+      "revId": "ad551b6953ee97c49ee0e254704fde386d421460",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bd3e6ecd_18c85f87",
         "filename": "dashboard/dashboard/api/api_request_handler_test.py",
         "patchSetId": 2
@@ -101,6 +119,24 @@
       "side": 1,
       "message": "Raising errors feels right to me. It indicates that the normal flow of execution should stop. It seems safer than returning a status code, which risks allowing the caller to accidentally continue the normal flow of execution.\nBut if you want to keep considering returning some sort of status code for some reason, if not a boolean, then maybe an enum like _GetAuthorizationStatus?",
       "parentUuid": "646866a2_5180c9ff",
+      "revId": "ad551b6953ee97c49ee0e254704fde386d421460",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca91d732_c7fd23af",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-11-08T01:15:29Z",
+      "side": 1,
+      "message": "I\u0027m not super concerned about the safety here, since we have one centralized place for dealing with all the errors (`ApiRequestHandler.post()`). I don\u0027t have a strong preference for exceptions vs an enum, but exceptions are easier.",
+      "parentUuid": "dd0b6dd5_af055352",
       "revId": "ad551b6953ee97c49ee0e254704fde386d421460",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
