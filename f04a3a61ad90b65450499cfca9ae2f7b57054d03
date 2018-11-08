@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ebd2fed_d54009cf",
+        "filename": "experimental/soundwave/job_configs/startup.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-11-08T23:20:48Z",
+      "side": 0,
+      "message": "Moved these away to a local repo from where I\u0027m managing pinpoint jobs for my feature tracking. Really no need for them to be here.",
+      "revId": "f04a3a61ad90b65450499cfca9ae2f7b57054d03",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a22eddc6_d414061c",
+        "filename": "experimental/soundwave/pinpoint_examples/bisect_job.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-11-08T23:20:48Z",
+      "side": 1,
+      "message": "Added a couple of examples here for people to tweak/reuse as needed.",
+      "revId": "ca0ba779ed4cdc592d927140b9c3d7ba6e137b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
