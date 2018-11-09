@@ -330,7 +330,10 @@ def _MakeRowDict(revision, test_path, tracing_histogram, stat_name=None):
 
   for diag_name, annotation in DIAGNOSTIC_NAMES_TO_ANNOTATION_NAMES.iteritems():
     revision_info = tracing_histogram.diagnostics.get(diag_name)
-    value = list(revision_info) if revision_info else None
+    if diag_name == reserved_infos.REVISION_TIMESTAMPS.name:
+      value = [revision_info.min_timestamp]
+    else:
+      value = list(revision_info) if revision_info else None
     if not value:
       continue
     _CheckRequest(

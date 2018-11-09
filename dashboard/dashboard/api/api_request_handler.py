@@ -69,18 +69,19 @@ class ApiRequestHandler(webapp2.RequestHandler):
     """
     self._SetCorsHeadersIfAppropriate()
 
-    try:
-      self._CheckUser()
-    except api_auth.NotLoggedInError as e:
-      self.WriteErrorMessage(e.message, 401)
-      return
-    except api_auth.OAuthError as e:
-      self.WriteErrorMessage(e.message, 403)
-      return
-    except ForbiddenError as e:
-      self.WriteErrorMessage(e.message, 403)
-      return
-    # Allow oauth.Error to manifest as HTTP 500.
+    if not utils.IsDevAppserver():
+      try:
+        self._CheckUser()
+      except api_auth.NotLoggedInError as e:
+        self.WriteErrorMessage(e.message, 401)
+        return
+      except api_auth.OAuthError as e:
+        self.WriteErrorMessage(e.message, 403)
+        return
+      except ForbiddenError as e:
+        self.WriteErrorMessage(e.message, 403)
+        return
+      # Allow oauth.Error to manifest as HTTP 500.
 
     try:
       results = self.Post(*args)

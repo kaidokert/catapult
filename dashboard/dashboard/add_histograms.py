@@ -95,9 +95,15 @@ class AddHistogramsProcessHandler(request_handler.RequestHandler):
 class AddHistogramsHandler(api_request_handler.ApiRequestHandler):
 
   def _CheckUser(self):
-    self._CheckIsInternalUser()
+    if not utils.IsDevAppserver():
+      self._CheckIsInternalUser()
 
   def Post(self):
+    if utils.IsDevAppserver():
+      # Don't require developers to zip the body.
+      ProcessHistogramSet(json.loads(self.request.body))
+      return
+
     with timing.WallTimeLogger('decompress'):
       try:
         data_str = self.request.body
