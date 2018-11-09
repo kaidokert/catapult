@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "232c7b5d_8178c9d3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1158749
+      },
+      "writtenOn": "2018-11-09T16:29:24Z",
+      "side": 1,
+      "message": "Could you list the steps you added in breakdown of begin_frame_to_frame_submission? So it gives more information to readers of your cls in the future.\n\nnit: Added/added\nbegin_frame_to_frame_submission/begin_frame_to_frame_submision",
+      "revId": "6d54bc70ce8b317d17b94c5aed83f6d2e287ca6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b645a72a_9c5f0283",
+        "filename": "tracing/tracing/metrics/rendering/pipeline.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1158749
+      },
+      "writtenOn": "2018-11-09T16:29:24Z",
+      "side": 1,
+      "message": "Sorry, what does AnimationDuration mean? the time required to perform animation?",
+      "revId": "6d54bc70ce8b317d17b94c5aed83f6d2e287ca6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80823cc2_8e796b1b",
+        "filename": "tracing/tracing/metrics/rendering/pipeline.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1158749
+      },
+      "writtenOn": "2018-11-09T16:29:24Z",
+      "side": 1,
+      "message": "remove the empty line",
+      "revId": "6d54bc70ce8b317d17b94c5aed83f6d2e287ca6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
