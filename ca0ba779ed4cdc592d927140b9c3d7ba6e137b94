@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7525f3f7_8321d466",
+        "filename": "experimental/soundwave/pinpoint_cli/commands.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-11-09T01:11:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77a87978_98ce516e",
+      "revId": "ca0ba779ed4cdc592d927140b9c3d7ba6e137b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bf1a370d_667a22b0",
         "filename": "experimental/soundwave/pinpoint_cli/commands.py",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2018-11-09T00:08:47Z",
       "side": 1,
       "message": "I find it a little awkward to mix returns and prints in the same function, because it\u0027s no longer clear whether it\u0027s an accessor or a mutator. Maybe this should be an exception?",
+      "revId": "ca0ba779ed4cdc592d927140b9c3d7ba6e137b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e747df4_8625aa03",
+        "filename": "experimental/soundwave/pinpoint_cli/commands.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-11-09T01:11:22Z",
+      "side": 1,
+      "message": "Good point. Raising an exception instead.",
+      "parentUuid": "bf1a370d_667a22b0",
       "revId": "ca0ba779ed4cdc592d927140b9c3d7ba6e137b94",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
