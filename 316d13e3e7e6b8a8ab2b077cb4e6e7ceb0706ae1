@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7152fcec_1bf673f4",
+        "filename": "dashboard/dashboard/spa/range.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2018-11-09T18:10:37Z",
+      "side": 1,
+      "message": "why have the isEmpty_ state variable that has to be updated under various conditions? the getter could just return the result of lines #42-#45 no?",
+      "revId": "316d13e3e7e6b8a8ab2b077cb4e6e7ceb0706ae1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
