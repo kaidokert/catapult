@@ -1641,10 +1641,18 @@ tr.exportTo('tr.e.importer', function() {
         }
 
         if (event.cat === 'blink.user_timing') {
-          const matched = /([^\/:]+):([^\/]+)\/?(.*)/.exec(event.name);
+          const matched = /([^\/:]+):(.*?)(?:\/([A-Za-z0-9+/]+=?=?))?$/.exec(
+              event.name
+          );
           if (matched !== null) {
             const key = matched[1] + ':' + event.cat;
-            event.args = JSON.parse(Base64.atob(matched[3]) || '{}');
+            try {
+              event.args = JSON.parse(Base64.atob(matched[3]) || '{}');
+            } catch (e) {
+              // ignored because we assume that we accidentally
+              // matched a performance.measure() where the user was
+              // not aware of this convention.
+            }
             if (nestableMeasureAsyncEventsByKey[key] === undefined) {
               nestableMeasureAsyncEventsByKey[key] = [];
             }
