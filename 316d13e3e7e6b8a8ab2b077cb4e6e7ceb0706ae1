@@ -16,6 +16,24 @@
       "revId": "316d13e3e7e6b8a8ab2b077cb4e6e7ceb0706ae1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2426540c_4ca3f5c0",
+        "filename": "dashboard/dashboard/spa/range.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-09T19:35:41Z",
+      "side": 1,
+      "message": "This code was copied from trace viewer, so there was probably a historical performance optimization, but this code is effectively new and used in different contexts from the original copy, so that\u0027s a good point.",
+      "parentUuid": "7152fcec_1bf673f4",
+      "revId": "316d13e3e7e6b8a8ab2b077cb4e6e7ceb0706ae1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
