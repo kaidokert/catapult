@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f79c552f_6b2d7032",
+        "filename": "dashboard/dashboard/spa/alerts-table.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-11-09T23:21:29Z",
+      "side": 1,
+      "message": "Can placeholders be used with tables? To my knowledge, they\u0027re only available in inputs and textareas.",
+      "range": {
+        "startLine": 94,
+        "startChar": 15,
+        "endLine": 94,
+        "endChar": 60
+      },
+      "revId": "5441e8e79c74fc2dfa86f1979bbbb8cb4d6250ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcde3e6d_0ad0b96c",
+        "filename": "dashboard/dashboard/spa/alerts-table.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-11-09T23:21:29Z",
+      "side": 1,
+      "message": "Nit: This is just my opinion, so feel free to ignore, but I think it\u0027s usually better to avoid naming classes after the styles they add if you can. I believe I first learned this tip from the Maintainable CSS book in: https://maintainablecss.com/chapters/semantics/ (I don\u0027t agree with everything in this book though)\n\nI think we don\u0027t have a lot of beast practices for organizing CSS, so that might be worth discussing more broadly at some point or another.",
+      "range": {
+        "startLine": 242,
+        "startChar": 31,
+        "endLine": 242,
+        "endChar": 36
+      },
+      "revId": "5441e8e79c74fc2dfa86f1979bbbb8cb4d6250ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80a40d66_a1c91a01",
+        "filename": "dashboard/dashboard/spa/alerts-table.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-11-09T23:21:29Z",
+      "side": 1,
+      "message": "Could the purpose of this function be done with media queries and CSS?",
+      "range": {
+        "startLine": 13,
+        "startChar": 4,
+        "endLine": 13,
+        "endChar": 25
+      },
+      "revId": "5441e8e79c74fc2dfa86f1979bbbb8cb4d6250ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86f1b5c9_fbf71411",
+        "filename": "dashboard/dashboard/spa/alerts-table.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-11-09T23:21:29Z",
+      "side": 1,
+      "message": "Nit: Perhaps a comment to explain this special case?",
+      "range": {
+        "startLine": 44,
+        "startChar": 6,
+        "endLine": 44,
+        "endChar": 160
+      },
+      "revId": "5441e8e79c74fc2dfa86f1979bbbb8cb4d6250ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2027c9e9_d10082dc",
+        "filename": "dashboard/dashboard/spa/alerts-table.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-11-09T23:21:29Z",
+      "side": 1,
+      "message": "Out of curiosity, what\u0027s the reason for removing text selection on a checkbox select?",
+      "range": {
+        "startLine": 119,
+        "startChar": 6,
+        "endLine": 119,
+        "endChar": 48
+      },
+      "revId": "5441e8e79c74fc2dfa86f1979bbbb8cb4d6250ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
