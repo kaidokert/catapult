@@ -297,13 +297,13 @@ class TestCli(test_case.MainTestCase):
             'fail_test.py': FAIL_TEST_PY,
         }
         # This isn't supported yet.
-        self.check(['-X', 'expectations_1.txt', '-X', 'expectations_2.txt', 
+        self.check(['-X', 'expectations_1.txt', '-X', 'expectations_2.txt',
                     '-x', 'foo'], files=files, ret=1)
 
     def test_expectations_file_has_syntax_error(self):
         files = {
             'expectations.txt': d('''\
-                # tags: [ 
+                # tags: [
                 crbug.com/12345 [ foo ] fail_test.FailingTest.test_fail [ Failure ]
                 '''),
             'fail_test.py': FAIL_TEST_PY,
@@ -396,6 +396,24 @@ class TestCli(test_case.MainTestCase):
             results['tests'][
                 'fail_then_skip_test']['FPTest']['test_count']['actual'],
             'FAIL SKIP')
+
+    def test_testSkip_results(self):
+      files = {'skip_test.py': d("""\
+      import unittest
+      class SkipTest(unittest.TestCase):
+          def test_skip(self):
+              self.skipTest('')
+      """)}
+      _, out, _, files = self.check(['--write-full-results-to',
+                                       'full_results.json'],
+                                      files=files, ret=0, err='')
+      results = json.loads(files['full_results.json'])
+      self.assertEqual(
+          results['tests']['skip_test']['SkipTest']['test_skip']['actual'],
+          'SKIP')
+      self.assertEqual(
+          results['tests']['skip_test']['SkipTest']['test_skip']['expected'],
+          'SKIP')
 
     def test_failures_are_not_elided(self):
         _, out, _, _ = self.check(['--terminal-width=20'],
@@ -852,7 +870,7 @@ class TestCli(test_case.MainTestCase):
                 'crbug.com/23456 skip_test.SkipSetup.test_notrun [ Pass ]\n',
             'skip_test.py': SF_TEST_PY
         }
-        _, out, _, _ = self.check(['-X', 'expectations.txt', 
+        _, out, _, _ = self.check(['-X', 'expectations.txt',
                                    'skip_test.SkipSetup.test_notrun'],
                                    files=files, ret=1, err='')
         self.assertIn('skip_test.SkipSetup.test_notrun was skipped unexpectedly',
