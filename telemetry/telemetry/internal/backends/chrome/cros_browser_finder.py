@@ -110,8 +110,10 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
 
   def GetBrowserStartupArgs(self, browser_options):
     startup_args = chrome_startup_args.GetFromBrowserOptions(browser_options)
+    use_socks_proxy = not self._platform_backend.IsRemoteDevice()
     startup_args.extend(chrome_startup_args.GetReplayArgs(
-        self._platform_backend.network_controller_backend))
+        self._platform_backend.network_controller_backend,
+        use_socks_proxy=use_socks_proxy))
 
     vmodule = ','.join('%s=2' % pattern for pattern in [
         '*/chromeos/net/*',
