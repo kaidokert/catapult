@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "71e3dcf2_e40166e5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2018-11-12T17:54:18Z",
+      "side": 1,
+      "message": "Can you please simplify the construction of this sentence? I can\u0027t understand it with the dashes and semicolons.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 28
+      },
+      "revId": "0a335f064f3d6b9e6cd0e2accd0de484e74fbaa2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
