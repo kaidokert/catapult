@@ -10,13 +10,14 @@ import posixpath
 
 from pinpoint_cli import histograms_df
 from pinpoint_cli import job_results
+from services import pinpoint_service
 
 
 JOB_CONFIGS_PATH = os.path.normpath(os.path.join(
     os.path.dirname(__file__), '..', 'job_configs'))
 
 
-def StartJobsFromConfig(api, args):
+def StartJobsFromConfig(args):
   """Start some pinpoint jobs based on a config file."""
   config_file = os.path.join(JOB_CONFIGS_PATH, args.config + '.json')
   with open(config_file) as f:
@@ -32,12 +33,12 @@ def StartJobsFromConfig(api, args):
         start_git_hash=args.revision,
         end_git_hash=args.revision,
     ))
-    print '-', api.pinpoint.NewJob(**config)['jobUrl']
+    print '-', pinpoint_service.NewJob(**config)['jobUrl']
 
 
-def CheckJobStatus(api, job_ids):
+def CheckJobStatus(job_ids):
   for job_id in job_ids:
-    job = api.pinpoint.Job(job_id)
+    job = pinpoint_service.Job(job_id)
     print '%s: %s' % (job_id, job['status'].lower())
 
 
@@ -48,7 +49,7 @@ def DownloadJobResultsAsCsv(api, job_ids, output_file):
     writer.writerow(('job_id', 'change', 'isolate') + histograms_df.COLUMNS)
     num_rows = 0
     for job_id in job_ids:
-      job = api.pinpoint.Job(job_id, with_state=True)
+      job = pinpoint_service.Job(job_id, with_state=True)
       os_path = _OsPathFromJob(job)
       results_file = os_path.join(
           job['arguments']['benchmark'], 'perf_results.json')
