@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "73551810_bc600f62",
+        "filename": "dashboard/dashboard/spa/chart-base-test.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1168241
+      },
+      "writtenOn": "2018-11-12T19:22:54Z",
+      "side": 1,
+      "message": "Nit: also here - do these need to be async?",
+      "range": {
+        "startLine": 205,
+        "startChar": 28,
+        "endLine": 205,
+        "endChar": 33
+      },
+      "revId": "267dd8fc586aab2223ea14b8e9a656e6502a41d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c06494e7_39c3633a",
         "filename": "dashboard/dashboard/spa/chart-base.js",
         "patchSetId": 7
@@ -25,6 +48,52 @@
     },
     {
       "key": {
+        "uuid": "8b27e2b8_866fe46e",
+        "filename": "dashboard/dashboard/spa/chart-base.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1168241
+      },
+      "writtenOn": "2018-11-12T19:22:54Z",
+      "side": 1,
+      "message": "Is this `async` necessary here?",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 9
+      },
+      "revId": "267dd8fc586aab2223ea14b8e9a656e6502a41d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdccd2fd_4985e9ad",
+        "filename": "dashboard/dashboard/spa/chart-base.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1168241
+      },
+      "writtenOn": "2018-11-12T19:22:54Z",
+      "side": 1,
+      "message": "Here and below as well, does this method need to be async if it\u0027s not using await (even if functions later in the call stack are?)",
+      "range": {
+        "startLine": 92,
+        "startChar": 45,
+        "endLine": 92,
+        "endChar": 50
+      },
+      "revId": "267dd8fc586aab2223ea14b8e9a656e6502a41d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9df0dcf7_190e28db",
         "filename": "dashboard/dashboard/spa/chart-base.js",
         "patchSetId": 7
@@ -36,6 +105,29 @@
       "writtenOn": "2018-11-09T22:55:43Z",
       "side": 1,
       "message": "Nit: Number.parseFloat as well here.",
+      "revId": "267dd8fc586aab2223ea14b8e9a656e6502a41d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee007277_8076b95e",
+        "filename": "dashboard/dashboard/spa/chart-base.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1168241
+      },
+      "writtenOn": "2018-11-12T19:22:54Z",
+      "side": 1,
+      "message": "Could this be\n\n  static computeBrush(x, containerRect) {\n\ninside the class? Doesn\u0027t look like it makes a difference. Curious if there\u0027s a benefit to either.",
+      "range": {
+        "startLine": 125,
+        "startChar": 2,
+        "endLine": 125,
+        "endChar": 50
+      },
       "revId": "267dd8fc586aab2223ea14b8e9a656e6502a41d2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
