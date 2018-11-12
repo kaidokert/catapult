@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ddb3500d_dbc864da",
+        "filename": "tracing/tracing/extras/importer/trace_event_importer.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 1644,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-12T18:38:40Z",
+      "side": 1,
+      "message": "It looks like the only difference between this regex and the one in measure_async_slice is the last group.\nWould it be possible to share this regex between the two files as a constant?",
+      "revId": "7eda31ae8ca32931e64a599560c86ced4e1d5c1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fbce9fcb_f165fea0",
+        "filename": "tracing/tracing/extras/importer/trace_event_importer_test.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 6245,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-12T18:38:40Z",
+      "side": 1,
+      "message": "Are all of these necessary to test the feature? Can some of the fields be shortened?\nIs it necessary to pack them into single lines and suppress the longLineCheck, or can you format them nicely?",
+      "revId": "7eda31ae8ca32931e64a599560c86ced4e1d5c1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
