@@ -59,11 +59,11 @@ def main():
 
   api = services.UserServices(args)
   if args.action == 'status':
-    return commands.CheckJobStatus(api, args.job_ids)
+    return commands.CheckJobStatus(args.job_ids)
   elif args.action == 'get-csv':
     return commands.DownloadJobResultsAsCsv(api, args.job_ids, args.output)
   elif args.action == 'start-job':
-    return commands.StartJobFromConfig(api, args.config_path)
+    return commands.StartJobFromConfig(args.config_path)
   else:
     raise NotImplementedError(args.action)
 
