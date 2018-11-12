@@ -113,9 +113,9 @@ def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
 
   with CaptureLogsAsArtifacts(results, story.name):
     try:
+      state.WillRunStory(story)
       if isinstance(test, story_test.StoryTest):
         test.WillRunStory(state.platform)
-      state.WillRunStory(story)
 
       if not state.CanRunStory(story):
         results.Skip(
