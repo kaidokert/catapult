@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "42d6cc2d_f13a8e79",
+        "filename": "experimental/soundwave/services/pinpoint_service.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-11-12T14:15:53Z",
+      "side": 0,
+      "message": "This used to be a class basically to hold the _credentials and avoid clients from having to pass them all around. With luci-auth this is no longer needed, so as part of the migration I\u0027ll replace this Api classes with regular module-level functions.",
+      "revId": "d1eeca86af6e45a61f88964e085ed4745c8570ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
