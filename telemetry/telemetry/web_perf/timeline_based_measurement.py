@@ -326,6 +326,10 @@ class TimelineBasedMeasurement(story_test.StoryTest):
     for f in mre_result.failures:
       results.Fail(f.stack)
 
+    if results.had_failures:
+      logging.info('Metric computation failed: upload traces to cloud')
+      results.UploadTraceFilesToCloud()
+
     histogram_dicts = mre_result.pairs.get('histograms', [])
     results.ImportHistogramDicts(histogram_dicts)
 
