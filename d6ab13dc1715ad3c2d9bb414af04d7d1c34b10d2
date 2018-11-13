@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "221fe33a_943875b3",
+        "filename": "dashboard/dashboard/spa/chromeperf-app.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-13T21:05:52Z",
+      "side": 1,
+      "message": "I was considering rewriting google-signin in a way that would be easy to upgrade to LitElement. Would that be useful for other projects?",
+      "parentUuid": "43defac9_1a7a1576",
+      "revId": "d6ab13dc1715ad3c2d9bb414af04d7d1c34b10d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "067cad01_17f03416",
         "filename": "dashboard/dashboard/spa/chromeperf-app.js",
         "patchSetId": 4
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "9a2f7625_19ddf364",
+        "filename": "dashboard/dashboard/spa/chromeperf-app.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-13T21:05:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "067cad01_17f03416",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 5
+      },
+      "revId": "d6ab13dc1715ad3c2d9bb414af04d7d1c34b10d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b2986faf_4aeaa761",
         "filename": "dashboard/dashboard/spa/webpack.config.js",
         "patchSetId": 4
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "36edd6b0_e7276fe1",
+        "filename": "dashboard/dashboard/spa/webpack.config.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-13T21:05:52Z",
+      "side": 1,
+      "message": "No, sorry, only the service worker is webpacked.\nI deployed this change to appengine to demonstrate it, and that failed because webpack specifies a default minimizer that doesn\u0027t support es9 features used by the service worker. This change fixes deploying to appengine.",
+      "parentUuid": "b2986faf_4aeaa761",
+      "revId": "d6ab13dc1715ad3c2d9bb414af04d7d1c34b10d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bd0b6c4e_e1f156b5",
         "filename": "third_party/polymer2/bower_components/chopsui/chops-header.html",
         "patchSetId": 4
@@ -70,6 +130,24 @@
       "writtenOn": "2018-10-30T18:14:39Z",
       "side": 1,
       "message": "Nit: Can this be added to the .header-section style block above?",
+      "revId": "d6ab13dc1715ad3c2d9bb414af04d7d1c34b10d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ffcedf7_4ccee5b3",
+        "filename": "third_party/polymer2/bower_components/chopsui/chops-header.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-13T21:05:52Z",
+      "side": 1,
+      "message": "No, because I don\u0027t want the other header-section to grow, just this one.\nAlternatively, we could add another header-section in the middle with flex-grow:1 that just contains \u003cslot name\u003d\"middle\"\u003e.",
+      "parentUuid": "bd0b6c4e_e1f156b5",
       "revId": "d6ab13dc1715ad3c2d9bb414af04d7d1c34b10d2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
