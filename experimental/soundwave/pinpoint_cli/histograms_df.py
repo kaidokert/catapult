@@ -53,5 +53,5 @@ def DataFrame(histogram_dicts):
   """Turn a list of histogram dicts into a pandas DataFrame."""
   df = pandas.DataFrame.from_records(
       IterRows(histogram_dicts), columns=COLUMNS)
-  df['benchmark_start'] = pandas.to_datetime(df['benchmark_start'])
+  df['benchmark_start'] = pandas.to_datetime(df['benchmark_start'], utc=True)
   return df
