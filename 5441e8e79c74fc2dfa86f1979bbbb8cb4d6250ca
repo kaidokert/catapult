@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d0dba617_479c2f22",
+        "filename": "dashboard/dashboard/spa/alerts-table.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-13T19:17:59Z",
+      "side": 1,
+      "message": "This is a boolean attribute used to style the table, not a displayed string like inputs\u0027 placeholder text.\nI renamed this to is-placeholder.",
+      "parentUuid": "f79c552f_6b2d7032",
+      "range": {
+        "startLine": 94,
+        "startChar": 15,
+        "endLine": 94,
+        "endChar": 60
+      },
+      "revId": "5441e8e79c74fc2dfa86f1979bbbb8cb4d6250ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fcde3e6d_0ad0b96c",
         "filename": "dashboard/dashboard/spa/alerts-table.html",
         "patchSetId": 8
@@ -45,6 +69,30 @@
       "revId": "5441e8e79c74fc2dfa86f1979bbbb8cb4d6250ca",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "521f7d5a_69e66913",
+        "filename": "dashboard/dashboard/spa/alerts-table.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-13T19:17:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fcde3e6d_0ad0b96c",
+      "range": {
+        "startLine": 242,
+        "startChar": 31,
+        "endLine": 242,
+        "endChar": 36
+      },
+      "revId": "5441e8e79c74fc2dfa86f1979bbbb8cb4d6250ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "ed7557de_f90a3c05",
+        "filename": "dashboard/dashboard/spa/alerts-table.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-13T19:17:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80a40d66_a1c91a01",
+      "range": {
+        "startLine": 13,
+        "startChar": 4,
+        "endLine": 13,
+        "endChar": 25
+      },
+      "revId": "5441e8e79c74fc2dfa86f1979bbbb8cb4d6250ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "86f1b5c9_fbf71411",
         "filename": "dashboard/dashboard/spa/alerts-table.js",
         "patchSetId": 8
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "91987688_f5012000",
+        "filename": "dashboard/dashboard/spa/alerts-table.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-13T19:17:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86f1b5c9_fbf71411",
+      "range": {
+        "startLine": 44,
+        "startChar": 6,
+        "endLine": 44,
+        "endChar": 160
+      },
+      "revId": "5441e8e79c74fc2dfa86f1979bbbb8cb4d6250ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2027c9e9_d10082dc",
         "filename": "dashboard/dashboard/spa/alerts-table.js",
         "patchSetId": 8
@@ -114,6 +210,30 @@
       "revId": "5441e8e79c74fc2dfa86f1979bbbb8cb4d6250ca",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "617ef39f_2e41206d",
+        "filename": "dashboard/dashboard/spa/alerts-table.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-13T19:17:59Z",
+      "side": 1,
+      "message": "I don\u0027t remember, so I removed it. :-)",
+      "parentUuid": "2027c9e9_d10082dc",
+      "range": {
+        "startLine": 119,
+        "startChar": 6,
+        "endLine": 119,
+        "endChar": 48
+      },
+      "revId": "5441e8e79c74fc2dfa86f1979bbbb8cb4d6250ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
