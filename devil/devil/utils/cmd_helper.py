@@ -15,8 +15,6 @@ import subprocess
 import sys
 import time
 
-from devil import base_error
-
 logger = logging.getLogger(__name__)
 
 _SafeShellChars = frozenset(string.ascii_letters + string.digits + '@%_-+=:,./')
@@ -232,11 +230,11 @@ def GetCmdStatusOutputAndError(args, cwd=None, shell=False, env=None):
   return (pipe.returncode, stdout, stderr)
 
 
-class TimeoutError(base_error.BaseError):
+class TimeoutError(Exception):
   """Module-specific timeout exception."""
 
   def __init__(self, output=None):
-    super(TimeoutError, self).__init__('Timeout')
+    super(TimeoutError, self).__init__()
     self._output = output
 
   @property
