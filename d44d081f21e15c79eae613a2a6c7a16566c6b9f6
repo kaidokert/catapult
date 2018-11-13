@@ -22,6 +22,30 @@
       "revId": "d44d081f21e15c79eae613a2a6c7a16566c6b9f6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44602a7b_2d919df9",
+        "filename": "tracing/tracing/metrics/rendering/cpu_utilization.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-11-13T19:16:27Z",
+      "side": 1,
+      "message": "Yep, I was considering that when I was sending this out for review myself. Done.",
+      "parentUuid": "beb7c915_fabf285b",
+      "range": {
+        "startLine": 115,
+        "startChar": 38,
+        "endLine": 115,
+        "endChar": 47
+      },
+      "revId": "d44d081f21e15c79eae613a2a6c7a16566c6b9f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
