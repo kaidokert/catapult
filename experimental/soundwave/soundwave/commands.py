@@ -2,8 +2,10 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-import pandas  # pylint: disable=import-error
+import logging
 import sqlite3
+
+import pandas  # pylint: disable=import-error
 
 from common import utils
 from services import dashboard_service
@@ -11,6 +13,7 @@ from soundwave import dashboard_api
 from soundwave import pandas_sqlite
 from soundwave import studies
 from soundwave import tables
+from soundwave import utils
 from soundwave import worker_pool
 
 
@@ -77,12 +80,27 @@ def _IterStaleTestPaths(con, test_paths):
 def _FetchTimeseriesWorker(args):
   api = dashboard_api.PerfDashboardCommunicator()
   con = sqlite3.connect(args.database_file, timeout=10)
+  min_timestamp = utils.DaysAgoToTimestamp(args.days)
 
   def Process(test_path):
-    data = api.GetTimeseries(test_path, days=args.days)
-    if data:
-      timeseries = tables.timeseries.DataFrameFromJson(data)
+    try:
+      if isinstance(test_path, tables.timeseries.Key):
+        params = test_path.AsApiParams()
+        params['min_timestamp'] = min_timestamp
+        data = dashboard_service.Timeseries2(**params)
+      else:
+        data = api.GetTimeseries(test_path, days=args.days)
+    except KeyError:
+      logging.info('Timeseries not found: %s', test_path)
+      return
+
+    timeseries = tables.timeseries.DataFrameFromJson(test_path, data)
+    try:
       pandas_sqlite.InsertOrReplaceRecords(con, 'timeseries', timeseries)
+    except:
+      print test_path
+      print timeseries
+      raise
 
   worker_pool.Process = Process
 
