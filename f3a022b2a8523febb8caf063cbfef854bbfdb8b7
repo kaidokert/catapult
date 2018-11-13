@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d5ad65d9_e61d9da2",
+        "filename": "experimental/soundwave/pinpoint_cli/histograms_df_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-11-13T16:21:57Z",
+      "side": 1,
+      "message": "windows bot didn\u0027t like the old version.",
+      "revId": "f3a022b2a8523febb8caf063cbfef854bbfdb8b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4267fd88_40d3d00f",
+        "filename": "experimental/soundwave/soundwave/tables/alerts_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-11-13T16:21:57Z",
+      "side": 1,
+      "message": "windows bot didn\u0027t like the old version.",
+      "revId": "f3a022b2a8523febb8caf063cbfef854bbfdb8b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa50597c_3aacbad8",
+        "filename": "experimental/soundwave/soundwave/worker_pool_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-11-13T16:21:57Z",
+      "side": 1,
+      "message": "also this and the previous due to windows bot, where resources do not seem to be auto-closed when the pool is done and the rmtree below would fail.",
+      "revId": "f3a022b2a8523febb8caf063cbfef854bbfdb8b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e1150a8_fb10e07b",
+        "filename": "tracing/tracing/value/histogram.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-11-13T16:21:57Z",
+      "side": 1,
+      "message": "switching this to UTC date/times, otherwise the returned value depends on the locale of the machine running this.",
+      "revId": "f3a022b2a8523febb8caf063cbfef854bbfdb8b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a21ed2bb_05c6bbe6",
+        "filename": "tracing/tracing/value/histogram_unittest.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-11-13T16:21:57Z",
+      "side": 1,
+      "message": "calendar.timegm is the UTC equivalent of time.mktime.",
+      "revId": "f3a022b2a8523febb8caf063cbfef854bbfdb8b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
