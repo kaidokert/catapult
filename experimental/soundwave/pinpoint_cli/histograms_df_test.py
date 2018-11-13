@@ -53,7 +53,9 @@ class TestHistogramsDf(unittest.TestCase):
         ('memory', 'sizeInBytes', 512.0, 0.0, 1, 'run2', 'system_health',
          'story2', '2009-02-13 23:41:30', 'device1', 'http://url/to/trace3'),
     ]
-    self.assertItemsEqual(histograms_df.IterRows(hists.AsDicts()), expected)
+    actual = list(histograms_df.IterRows(hists.AsDicts()))
+    self.maxDiff = None
+    self.assertItemsEqual(actual, expected)
 
   def testDataFrame(self):
     run1 = {'benchmarkStart': 1234567890000, 'labels': ['run1'],
