@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5954c656_714b2baf",
+        "filename": "dashboard/dashboard/spa/timeseries-descriptor.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-11-13T01:32:30Z",
+      "side": 1,
+      "message": "Nit: Is this supposed to be suites?",
+      "range": {
+        "startLine": 254,
+        "startChar": 8,
+        "endLine": 254,
+        "endChar": 16
+      },
+      "revId": "12aa149d7e00c4aef03bba1a7ffb80c8b1c3db8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59bb5368_50dd8cfe",
+        "filename": "dashboard/dashboard/spa/timeseries-descriptor.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-11-13T01:32:30Z",
+      "side": 1,
+      "message": "Nit: Same question as above. Should this be bots?",
+      "range": {
+        "startLine": 263,
+        "startChar": 16,
+        "endLine": 263,
+        "endChar": 22
+      },
+      "revId": "12aa149d7e00c4aef03bba1a7ffb80c8b1c3db8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
