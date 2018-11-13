@@ -288,6 +288,7 @@ tr.exportTo('tr.metrics.sh', function() {
     const breakdownDiagnostic = createBreakdownDiagnostic(breakdownTree);
     return {
       value: navStartToEventTimeRange.duration,
+      breakdownTree,
       diagnostics: tr.v.d.DiagnosticMap.fromObject({
         'Start': new RelatedEventSet(navigationStartEvent),
         'Navigation infos': new tr.v.d.GenericSet([{
@@ -386,7 +387,10 @@ tr.exportTo('tr.metrics.sh', function() {
 
       // Only add breakdown histograms for FCP.
       // http://crbug.com/771610
-      if (histogram.name !== 'timeToFirstContentfulPaint') continue;
+      if (histogram.name !== 'timeToFirstContentfulPaint' &&
+          histogram.name !== 'timeToFirstMeaningfulPaint' &&
+          histogram.name !== 'timeToInteractive')
+        continue;
 
       if (!sample.breakdownTree) continue;
       for (const [category, breakdown] of Object.entries(
