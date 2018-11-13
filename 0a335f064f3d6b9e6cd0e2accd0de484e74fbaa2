@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "207b435e_4e34c008",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-11-13T10:03:21Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "71e3dcf2_e40166e5",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 28
+      },
+      "revId": "0a335f064f3d6b9e6cd0e2accd0de484e74fbaa2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "47702ef8_75a02007",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2018-11-12T18:09:46Z",
       "side": 1,
       "message": "To increase log readability, would it make sense to have some consistent \"story *\u003cBENCHMARKNAME\u003e.\u003cSTORYNAME\u003e* is *\u003cOUTCOME\u003e* because of *\u003cREASON\u003e*\" format s.t. it is easy to search the logs to find the outcome of a specific story without needing to parse back and forth over the whole logs.\n\nFor example, right now if I see an error in the logs I need to scroll back through the logs to figure out which story the error happened on. I also don\u0027t know when I see an error whether the error is a real problem or not. Some errors can be retried without failing the story. Some errors fail the story but don\u0027t cause the rest of the stories to be skipped. Some errors cause the whole thing to get aborted.\n\nSo for this specific log line, you might consider something like\n\n\"\"\"\nstory *media.desktop.mse.html?media_h264_video.mp4* is *SKIPPED* because of *UNSUPPORTED PAGE ACTION* stack trace:\n\u003cstack trace\u003e\n\"\"\"\n\nAfter that, if I am trying to figure out what errors caused stories to be skipped, I can jsut search for \"*SKIPPED*\". And it I am trying to figure out how many UNSUPPORTED PAGE ACTION errors I have and what caused them, I simply search \"*UNSUPPORTED PAGE ACTION*\" etc etc.\n\nThis would need to be consistent everywhere however.",
+      "range": {
+        "startLine": 136,
+        "startChar": 19,
+        "endLine": 136,
+        "endChar": 43
+      },
+      "revId": "0a335f064f3d6b9e6cd0e2accd0de484e74fbaa2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "114e8e1c_a911cb2e",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-11-13T10:03:21Z",
+      "side": 1,
+      "message": "I agree that would be great, but that change needs some more systematic planning and design, beyond the scope of this CL.\n\nAlso note, for this particular instance, the story name and skip reason *are* displayed together (c.f. [1]).\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/results/story_run.py?rcl\u003d84f62b6f08e8a531545acf059e0d3edf2fd19f42\u0026l\u003d24",
+      "parentUuid": "47702ef8_75a02007",
       "range": {
         "startLine": 136,
         "startChar": 19,
