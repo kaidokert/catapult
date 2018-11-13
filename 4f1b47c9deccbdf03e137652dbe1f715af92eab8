@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9dcfa006_8856492f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1158749
+      },
+      "writtenOn": "2018-11-13T19:56:50Z",
+      "side": 1,
+      "message": "Generally, the first line is like the tile of the cl and the content starts from the second line. I normally do \nTitle\n\ncontent",
+      "revId": "4f1b47c9deccbdf03e137652dbe1f715af92eab8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ca4f24e_1687deb7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1158749
+      },
+      "writtenOn": "2018-11-13T19:56:50Z",
+      "side": 1,
+      "message": "For content, we normally want to use complete sentence, so it\u0027s easier for reader to understand.",
+      "revId": "4f1b47c9deccbdf03e137652dbe1f715af92eab8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f76249ef_8d751e2e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1158749
+      },
+      "writtenOn": "2018-11-13T19:56:50Z",
+      "side": 1,
+      "message": "we add Bug: XXXX to all cls to provide more information to reviewers so they know what/why are you doing them.",
+      "revId": "4f1b47c9deccbdf03e137652dbe1f715af92eab8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
