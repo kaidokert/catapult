@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5b08f12b_ff3bcf05",
+        "filename": "dashboard/dashboard/spa/chart-base-test.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-14T00:11:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73551810_bc600f62",
+      "range": {
+        "startLine": 205,
+        "startChar": 28,
+        "endLine": 205,
+        "endChar": 33
+      },
+      "revId": "267dd8fc586aab2223ea14b8e9a656e6502a41d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c06494e7_39c3633a",
         "filename": "dashboard/dashboard/spa/chart-base.js",
         "patchSetId": 7
@@ -45,6 +69,30 @@
       "revId": "267dd8fc586aab2223ea14b8e9a656e6502a41d2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43b0ad74_51931a46",
+        "filename": "dashboard/dashboard/spa/chart-base.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-14T00:11:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c06494e7_39c3633a",
+      "range": {
+        "startLine": 24,
+        "startChar": 10,
+        "endLine": 24,
+        "endChar": 15
+      },
+      "revId": "267dd8fc586aab2223ea14b8e9a656e6502a41d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "fac3c3a3_662a6d62",
+        "filename": "dashboard/dashboard/spa/chart-base.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-14T00:11:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b27e2b8_866fe46e",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 9
+      },
+      "revId": "267dd8fc586aab2223ea14b8e9a656e6502a41d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bdccd2fd_4985e9ad",
         "filename": "dashboard/dashboard/spa/chart-base.js",
         "patchSetId": 7
@@ -82,6 +154,30 @@
       "writtenOn": "2018-11-12T19:22:54Z",
       "side": 1,
       "message": "Here and below as well, does this method need to be async if it\u0027s not using await (even if functions later in the call stack are?)",
+      "range": {
+        "startLine": 92,
+        "startChar": 45,
+        "endLine": 92,
+        "endChar": 50
+      },
+      "revId": "267dd8fc586aab2223ea14b8e9a656e6502a41d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d0c6942_af4094ca",
+        "filename": "dashboard/dashboard/spa/chart-base.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-14T00:11:00Z",
+      "side": 1,
+      "message": "All action creators in v2spa follow this pattern for consistency. It\u0027s easier to modify them safely if they all work the same. Also, ElementBase.register() instruments action creators to measure them, and assumes that they all work like this.",
+      "parentUuid": "bdccd2fd_4985e9ad",
       "range": {
         "startLine": 92,
         "startChar": 45,
@@ -111,6 +207,24 @@
     },
     {
       "key": {
+        "uuid": "c24cdd45_e18ab115",
+        "filename": "dashboard/dashboard/spa/chart-base.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-14T00:11:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9df0dcf7_190e28db",
+      "revId": "267dd8fc586aab2223ea14b8e9a656e6502a41d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee007277_8076b95e",
         "filename": "dashboard/dashboard/spa/chart-base.js",
         "patchSetId": 7
@@ -122,6 +236,30 @@
       "writtenOn": "2018-11-12T19:22:54Z",
       "side": 1,
       "message": "Could this be\n\n  static computeBrush(x, containerRect) {\n\ninside the class? Doesn\u0027t look like it makes a difference. Curious if there\u0027s a benefit to either.",
+      "range": {
+        "startLine": 125,
+        "startChar": 2,
+        "endLine": 125,
+        "endChar": 50
+      },
+      "revId": "267dd8fc586aab2223ea14b8e9a656e6502a41d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1fd3160_7d14579b",
+        "filename": "dashboard/dashboard/spa/chart-base.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-14T00:11:00Z",
+      "side": 1,
+      "message": "Yes, it could be spelled that way. This spelling requires less indentation and keeps the class definition smaller and simpler.",
+      "parentUuid": "ee007277_8076b95e",
       "range": {
         "startLine": 125,
         "startChar": 2,
