@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fc294508_47d087cf",
+        "filename": "web_page_replay_go/src/webpagereplay/archive.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1251641
+      },
+      "writtenOn": "2018-11-14T20:34:19Z",
+      "side": 1,
+      "message": "restore space align",
+      "range": {
+        "startLine": 29,
+        "startChar": 1,
+        "endLine": 29,
+        "endChar": 25
+      },
+      "revId": "c769483af3c70632cd9f703151c643171738f9a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
