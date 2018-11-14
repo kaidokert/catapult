@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "68ebf852_80739abc",
+        "filename": "dashboard/dashboard/spa/timeseries-descriptor.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-14T18:18:25Z",
+      "side": 1,
+      "message": "I had meant the name to indicate that it was an array of arrays, but yeah, it was just confusing, so I changed them.",
+      "parentUuid": "5954c656_714b2baf",
+      "range": {
+        "startLine": 254,
+        "startChar": 8,
+        "endLine": 254,
+        "endChar": 16
+      },
+      "revId": "12aa149d7e00c4aef03bba1a7ffb80c8b1c3db8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "59bb5368_50dd8cfe",
         "filename": "dashboard/dashboard/spa/timeseries-descriptor.js",
         "patchSetId": 8
@@ -45,6 +69,30 @@
       "revId": "12aa149d7e00c4aef03bba1a7ffb80c8b1c3db8b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b34f7328_0ecf2071",
+        "filename": "dashboard/dashboard/spa/timeseries-descriptor.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-14T18:18:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59bb5368_50dd8cfe",
+      "range": {
+        "startLine": 263,
+        "startChar": 16,
+        "endLine": 263,
+        "endChar": 22
+      },
+      "revId": "12aa149d7e00c4aef03bba1a7ffb80c8b1c3db8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
