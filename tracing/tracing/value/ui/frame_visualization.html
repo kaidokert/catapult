@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+<meta charset="utf-8">
+<dom-module id='tr-v-ui-frame-visualization'>
+  <template>
+    <style>
+      button {
+        padding: 5px;
+        font-size: 14px;
+      }
+      .error {
+        color: red;
+        display: none;
+      }
+
+      .text_input {
+        width: 50px;
+        padding: 4px;
+        font-size: 14px;
+      }
+
+      #search {
+        display: block;
+        padding-bottom: 10px;
+      }
+
+      #search_page {
+        width: 200px;
+      }
+
+      #close {
+        display: none;
+        vertical-align: top;
+      }
+
+      #close svg{
+        height: 1em;
+      }
+
+      #close svg line {
+        stroke-width: 18;
+        stroke: black;
+      }
+
+      #close:hover svg {
+        background: black;
+      }
+
+      #close:hover svg line {
+        stroke: white;
+      }
+    </style>
+    <div id="aggregateContainer">
+        <div id="search">
+          <input id="search_page" class="text_input" placeholder="Page Name">
+          <button id="search_button">Search</button>
+          <div id="search_error" class="error">Sorry, could not find that page!</div>
+        </div>
+    </div>
+    <div id="pageContainer">
+      <span id="close">
+          <svg viewbox="0 0 128 128">
+            <line x1="28" y1="28" x2="100" y2="100"/>
+            <line x1="28" y1="100" x2="100" y2="28"/>
+          </svg>
+        </span>
+    </div>
+  </template>
+</dom-module>
+<script>
+'use strict';
+
+Polymer({
+  is: 'tr-v-ui-frame-visualization',
+
+  created() {
+    this.charts_ = new Map();
+  },
+
+  ready() {
+    this.$.search_page.addEventListener ('keydown', (e) => {
+      if (e.key === 'Enter') this.searchByPage_();
+    });
+
+    this.$.search_button.addEventListener ('click', () => {
+      this.searchByPage_();
+    });
+  },
+
+
+  build(chartData) {
+    this.data_ = chartData.data;
+    this.benchmarkCount_ = chartData.benchmarkCount;
+    const aggregateChart = this.createChart_('Aggregate');
+    this.charts_.set('aggregate', aggregateChart);
+    Polymer.dom(this.$.aggregateContainer).appendChild(aggregateChart);
+    this.setChartColors_('aggregate');
+    this.setChartSize_('aggregate');
+    this.setChartData_('aggregate');
+  },
+
+  setChartData_(page) {
+    this.charts_.get(page).data = this.data_.get(page);
+  },
+
+  setChartSize_(page) {
+    const chart = this.charts_.get(page);
+    const pageCount = this.data_.get(page).length;
+    chart.graphHeight = tr.b.math.clamp(pageCount * this.benchmarkCount_ * 10,
+        175, 600);
+    chart.graphWidth = tr.b.math.clamp(this.benchmarkCount_ * 25,
+        500, 1000);
+  },
+
+  setChartColors_(page) {
+    const metrics = new Map();
+    let count = 0;
+    for (const bar of FRAME) {
+      for (const metric of bar.keys()) {
+        metrics.set(metric, count);
+        count++;
+      }
+    }
+    const chart = this.charts_.get(page);
+    const data = this.data_.get(page);
+    for (let i = 0; i < this.benchmarkCount_; ++i) {
+      for (let j = 0; j < FRAME.length; ++j) {
+        for (const metric of FRAME[j].keys()) {
+          let color = 'transparent';
+          if (FRAME[j].get(metric)) {
+            const mainColorIndex = metrics.get(metric) % COLORS.length;
+            const subColorIndex = i % COLORS[mainColorIndex].length;
+            color = COLORS[mainColorIndex][subColorIndex];
+          }
+          const series = metric + '-' + data[i * 2].x;
+          chart.getDataSeries(series).color = color;
+          chart.getDataSeries(series).title = !i ? metric : '';
+        }
+      }
+    }
+  },
+
+  createChart_(title) {
+    const newChart = new tr.ui.b.NameBarChart();
+    newChart.chartTitle = title;
+    newChart.xAxisLabel = 'ms';
+    newChart.showTitleInLegend = true;
+    newChart.hideYAxis = true;
+    newChart.isStacked = true;
+    newChart.displayXInHover = true;
+    newChart.isGrouped = true;
+    return newChart;
+  },
+
+  searchByPage_() {
+    const criteria = this.$.search_page.value;
+    if (criteria === '') return;
+
+    const query = new RegExp(criteria);
+
+    const filteredData = [...this.data_.keys()]
+        .filter(page => page.match(query));
+
+    if (filteredData.length < 1) {
+      this.$.search_error.style.display = 'block';
+      return;
+    }
+
+    // Create child chart with breakdown data
+    const page = filteredData[0];
+
+    const div = document.createElement('div');
+    div.classList.add('child_container');
+    Polymer.dom(this.$.pageContainer).
+        insertBefore(div, this.$.pageContainer.firstChild);
+
+    const pageChart = this.createChart_(page);
+
+    div.appendChild(pageChart);
+    const button = this.initializeCloseButton_(div, this.$.pageContainer);
+    div.appendChild(button);
+
+    this.charts_.set(page, pageChart);
+    this.setChartColors_(page);
+    this.setChartSize_(page);
+    this.setChartData_(page);
+  },
+
+  initializeCloseButton_(div, parent) {
+    const button = this.$.close.cloneNode(true);
+    button.style.display = 'inline-block';
+    button.addEventListener ('click', () => {
+      Polymer.dom(parent).removeChild(div);
+    });
+    return button;
+  },
+
+});
+
+
+</script>
