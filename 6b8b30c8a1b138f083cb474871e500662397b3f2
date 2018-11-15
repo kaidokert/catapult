@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "947d88dd_64244d3d",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend_list.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-11-15T13:28:59Z",
+      "side": 1,
+      "message": "I think this should be just \"raise\"?\n\nc.f. https://stackoverflow.com/a/4825279/359178",
+      "revId": "6b8b30c8a1b138f083cb474871e500662397b3f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
