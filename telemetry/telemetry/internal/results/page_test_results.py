@@ -28,6 +28,7 @@ from telemetry.value import trace
 from tracing.value import convert_chart_json
 from tracing.value import histogram
 from tracing.value import histogram_set
+from tracing.value.diagnostics import all_diagnostics
 from tracing.value.diagnostics import reserved_infos
 
 class TelemetryInfo(object):
@@ -260,6 +261,10 @@ class PageTestResults(object):
     # Mapping of the stories that have run to the number of times they have run
     # This is necessary on interrupt if some of the stories did not run.
     self._story_run_count = {}
+
+    # State of whether or not shared diagnostics have been added to the results
+    # yet.
+    self._shared_diagnostics_added = False
 
   @property
   def telemetry_info(self):
@@ -638,3 +643,32 @@ class PageTestResults(object):
               'Uploading %s of page %s to %s (%d out of %d)\n' %
               (artifact_type, test_name, cloud_url, i + 1,
                total_num_artifacts))
+
+
+  def AddTelemetryInfoToSharedDiagnostics(self):
+    """ Benchmarks that add histograms but don't use
+    timeline_base_measurement need to add shared diagnostics separately. """
+    if self._shared_diagnostics_added:
+      # We only want to add these diagnostics once per result set.
+      return
+    for name in self._telemetry_info.AsDict():
+      print "----------------"
+      value = self._telemetry_info.AsDict()[name]
+      if isinstance(value, list):
+        keep = False
+        for val in value:
+          if val:
+            keep = True
+        if not keep:
+          continue
+      else:
+        if value is None:
+          continue
+      name_type = reserved_infos.GetTypeForName(name)
+      diag_class = all_diagnostics.GetDiagnosticClassForName(name_type)
+      diag = diag_class(value)
+      print "ADDING DIAGNOSTIC"
+      print name
+      print value
+      self._histograms.AddSharedDiagnostic(name, diag)
+    self._shared_diagnostics_added = True
