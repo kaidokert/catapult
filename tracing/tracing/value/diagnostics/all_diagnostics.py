@@ -6,17 +6,16 @@ import importlib
 import sys
 
 
-# TODO(#3613): Flatten this to a list once diagnostics are in their own modules.
 _MODULES_BY_DIAGNOSTIC_NAME = {
-    'Breakdown': 'diagnostics.breakdown',
-    'GenericSet': 'diagnostics.generic_set',
-    'UnmergeableDiagnosticSet': 'histogram',
-    'RelatedEventSet': 'histogram',
-    'DateRange': 'histogram',
-    'TagMap': 'histogram',
-    'RelatedHistogramBreakdown': 'histogram',
-    'RelatedHistogramMap': 'histogram',
-    'RelatedNameMap': 'histogram',
+    'Breakdown': 'breakdown',
+    'GenericSet': 'generic_set',
+    'UnmergeableDiagnosticSet': 'unmergeable_diagnostic_set',
+    'RelatedEventSet': 'related_event_set',
+    'DateRange': 'date_range',
+    'TagMap': 'tag_map',
+    'RelatedHistogramBreakdown': 'related_histogram_breakdown',
+    'RelatedHistogramMap': 'related_histogram_map',
+    'RelatedNameMap': 'related_name_map',
 }
 
 
@@ -37,7 +36,8 @@ def GetDiagnosticClassForName(name):
   if name in _CLASSES_BY_NAME:
     return _CLASSES_BY_NAME[name]
 
-  module_name = 'tracing.value.%s' % _MODULES_BY_DIAGNOSTIC_NAME[name]
+  module_name = ('tracing.value.diagnostics.%s'
+                 % _MODULES_BY_DIAGNOSTIC_NAME[name])
   importlib.import_module(module_name)
 
   cls = getattr(sys.modules[module_name], name)
