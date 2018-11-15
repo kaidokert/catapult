@@ -33,6 +33,24 @@
       "revId": "e3a1ca081b67f32533a2c8ba3b07c2b3d044acdc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c672f6ff_4da84b47",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 1170907
+      },
+      "writtenOn": "2018-11-15T18:54:28Z",
+      "side": 1,
+      "message": "I fail to see how keeping it on the TelemetryInfo makes a difference.  Doesn\u0027t every histogram go through AddHistogram?  That means that we will still be adding it to all histograms in the set.\n\nHow often does TelemetryInfo change?  I thought it was populated once and it remained static throughout the run of the benchmark.",
+      "parentUuid": "8a38cc0c_2fe30ecd",
+      "revId": "e3a1ca081b67f32533a2c8ba3b07c2b3d044acdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
