@@ -9,6 +9,7 @@ from tracing.value.diagnostics import all_diagnostics
 from tracing.value.diagnostics import diagnostic
 from tracing.value.diagnostics import diagnostic_ref
 from tracing.value.diagnostics import generic_set
+from tracing.value.diagnostics import related_histogram_map
 
 class HistogramSet(object):
   def __init__(self, histograms=()):
@@ -72,7 +73,7 @@ class HistogramSet(object):
     histograms = self
     def HandleDiagnosticMap(dm):
       for diag in dm.values():
-        if isinstance(diag, histogram_module.RelatedHistogramMap):
+        if isinstance(diag, related_histogram_map.RelatedHistogramMap):
           diag.Resolve(histograms)
 
     for hist in self:

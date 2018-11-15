@@ -6,8 +6,10 @@ import unittest
 
 from tracing.value import histogram
 from tracing.value import histogram_set
+from tracing.value.diagnostics import date_range
 from tracing.value.diagnostics import diagnostic_ref
 from tracing.value.diagnostics import generic_set
+from tracing.value.diagnostics import related_histogram_map
 
 class HistogramSetUnittest(unittest.TestCase):
 
@@ -15,7 +17,7 @@ class HistogramSetUnittest(unittest.TestCase):
     a = histogram.Histogram('a', 'unitless')
     b = histogram.Histogram('b', 'unitless')
     c = histogram.Histogram('c', 'unitless')
-    rhm = histogram.RelatedHistogramMap()
+    rhm = related_histogram_map.RelatedHistogramMap()
     rhm.Set('y', b)
     rhm.Set('z', c)
     a.diagnostics['rhm'] = rhm
@@ -38,7 +40,7 @@ class HistogramSetUnittest(unittest.TestCase):
     self.assertIsInstance(b2, histogram.Histogram)
     self.assertIsNot(b2, b)
     rhm2 = a2.diagnostics['rhm']
-    self.assertIsInstance(rhm2, histogram.RelatedHistogramMap)
+    self.assertIsInstance(rhm2, related_histogram_map.RelatedHistogramMap)
     self.assertEqual(len(rhm2), 2)
 
     # Assert that b and c are in a2's RelatedHistogramMap, rhm2.
@@ -60,7 +62,7 @@ class HistogramSetUnittest(unittest.TestCase):
 
   def testGetSharedDiagnosticsOfType(self):
     d0 = generic_set.GenericSet(['foo'])
-    d1 = histogram.DateRange(0)
+    d1 = date_range.DateRange(0)
     hs = histogram_set.HistogramSet()
     hs.AddSharedDiagnostic('generic', d0)
     hs.AddSharedDiagnostic('generic', d1)
@@ -177,14 +179,14 @@ class HistogramSetUnittest(unittest.TestCase):
   def testDeduplicateDiagnostics(self):
     generic_a = generic_set.GenericSet(['A'])
     generic_b = generic_set.GenericSet(['B'])
-    date_a = histogram.DateRange(42)
-    date_b = histogram.DateRange(57)
+    date_a = date_range.DateRange(42)
+    date_b = date_range.DateRange(57)
 
     a_hist = histogram.Histogram('a', 'unitless')
     generic0 = generic_set.GenericSet.FromDict(generic_a.AsDict())
     generic0.AddDiagnostic(generic_b)
     a_hist.diagnostics['generic'] = generic0
-    date0 = histogram.DateRange.FromDict(date_a.AsDict())
+    date0 = date_range.DateRange.FromDict(date_a.AsDict())
     date0.AddDiagnostic(date_b)
     a_hist.diagnostics['date'] = date0
 
@@ -192,7 +194,7 @@ class HistogramSetUnittest(unittest.TestCase):
     generic1 = generic_set.GenericSet.FromDict(generic_a.AsDict())
     generic1.AddDiagnostic(generic_b)
     b_hist.diagnostics['generic'] = generic1
-    date1 = histogram.DateRange.FromDict(date_a.AsDict())
+    date1 = date_range.DateRange.FromDict(date_a.AsDict())
     date1.AddDiagnostic(date_b)
     b_hist.diagnostics['date'] = date1
 
