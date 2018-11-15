@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b9a3e917_0f9ba9e4",
+        "filename": "telemetry/telemetry/internal/actions/swipe.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-11-15T14:19:36Z",
+      "side": 1,
+      "message": "this can\u0027t be replaced with EvaluateCallback?",
+      "revId": "0818bdd4136a864d729e3625c1729e8cadad8e94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
