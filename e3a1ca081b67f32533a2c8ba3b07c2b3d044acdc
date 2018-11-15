@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4f45e442_ae19bca6",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-15T18:23:30Z",
+      "side": 1,
+      "message": "for name, value in self._telemetry_info.AsDict().items():",
+      "revId": "e3a1ca081b67f32533a2c8ba3b07c2b3d044acdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a38cc0c_2fe30ecd",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-15T18:23:30Z",
+      "side": 1,
+      "message": "This adds diag to all histograms in the set. If some of those histograms came from TBM2, then that would be unnecessary, but not problematic. If some of those histograms came from different stories, or different repeats of the same story, then this could cause problems.\nWould it be safer to store the Diagnostic objects on the TelemetryInfo, and copy them to new Histograms as they are added in AddHistogram?",
+      "revId": "e3a1ca081b67f32533a2c8ba3b07c2b3d044acdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
