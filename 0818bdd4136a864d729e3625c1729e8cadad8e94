@@ -16,6 +16,24 @@
       "revId": "0818bdd4136a864d729e3625c1729e8cadad8e94",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c00d13ad_7af42f4a",
+        "filename": "telemetry/telemetry/internal/actions/swipe.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-11-15T16:53:48Z",
+      "side": 1,
+      "message": "Right, must have missed this one 😊",
+      "parentUuid": "b9a3e917_0f9ba9e4",
+      "revId": "0818bdd4136a864d729e3625c1729e8cadad8e94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
