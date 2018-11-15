@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6cf49a9f_c954a3f0",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-11-15T23:23:04Z",
+      "side": 1,
+      "message": "style nit: single quotes for strings",
+      "revId": "68642a97a6489c4f18a9a70a70b4ac9b85c94bef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a28f5b8_4f0318ed",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-11-15T23:23:04Z",
+      "side": 1,
+      "message": "If there\u0027s no benchmark looks like this will just be \u0027configuration: \u0027?",
+      "revId": "68642a97a6489c4f18a9a70a70b4ac9b85c94bef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
