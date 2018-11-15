@@ -238,6 +238,7 @@ class _TestConditionByAndroidModel(_TestCondition):
     self._name = name if name else model
 
   def ShouldDisable(self, platform, finder_options):
+    print("GetDeviceTypeName() result: %s" % (platform.GetDeviceTypeName()))
     return (platform.GetOSName() == 'android' and
             self._model in platform.GetDeviceTypeName())
 
