@@ -540,6 +540,26 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
     diag = hs.LookupDiagnostic(original_diagnostic.guid)
     self.assertIsInstance(diag, generic_set.GenericSet)
 
+  def testAddTelemetryInfoToSharedDiagnostics(self):
+    benchmark_metadata = benchmark.BenchmarkMetadata(
+        'benchmark_name', 'benchmark_description')
+    results = page_test_results.PageTestResults(
+        benchmark_metadata=benchmark_metadata)
+    results.telemetry_info.benchmark_name = 'benchmark1'
+    results.telemetry_info.benchmark_start_epoch = 123
+    results.WillRunPage(self.pages[0])
+    results.DidRunPage(self.pages[0])
+    results.CleanUp()
+
+    results.AddTelemetryInfoToSharedDiagnostics()
+    results.PopulateHistogramSet()
+
+    histogram_dicts = results.AsHistogramDicts()
+    self.assertEquals(4, len(histogram_dicts))
+    for dicto in histogram_dicts:
+      diag = diagnostic.Diagnostic.FromDict(dicto)
+      self.assertTrue(isinstance(diag, histogram_module.DateRange)
+                      or isinstance(diag, generic_set.GenericSet))
 
 class PageTestResultsFilterTest(unittest.TestCase):
   def setUp(self):
