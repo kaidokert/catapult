@@ -34,6 +34,24 @@
       "revId": "6b8b30c8a1b138f083cb474871e500662397b3f2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8479faab_6cb82104",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend_list.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-11-15T15:24:39Z",
+      "side": 1,
+      "message": "I recall that just reraising doesn\u0027t preserve the stack trace. Last time experimenting with this , I find that either doing it this way or doing logging.exception(...) is way to get the original stack",
+      "parentUuid": "001ee759_27e9401a",
+      "revId": "6b8b30c8a1b138f083cb474871e500662397b3f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
