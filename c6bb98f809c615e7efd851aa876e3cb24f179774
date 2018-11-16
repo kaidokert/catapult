@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a958975c_bbf41261",
+        "filename": "dashboard/dashboard/spa/chart-base.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2018-11-16T23:36:35Z",
+      "side": 1,
+      "message": "Nit: Does the brush handle move a lot? If this is meant to change regularly, consider using transforms to move the element rather than left because changing the left value will cause the page to reflow. (I encountered this performance problem in the past with CSS animations)",
+      "range": {
+        "startLine": 113,
+        "startChar": 23,
+        "endLine": 113,
+        "endChar": 55
+      },
+      "revId": "c6bb98f809c615e7efd851aa876e3cb24f179774",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
