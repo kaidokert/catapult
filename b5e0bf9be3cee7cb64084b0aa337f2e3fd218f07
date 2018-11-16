@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa425ab_5a97181c",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-11-16T09:55:54Z",
+      "side": 1,
+      "message": "Is there a plan for rolling this to newer versions when needed? A way to keep it in sync with what the waterfall is doing?",
+      "revId": "b5e0bf9be3cee7cb64084b0aa337f2e3fd218f07",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
