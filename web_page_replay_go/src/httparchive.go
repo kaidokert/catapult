@@ -12,7 +12,6 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
-	"net/url"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -25,8 +24,8 @@ import (
 const usage = "%s [ls|cat|edit|merge|add|addAll] [options] archive_file [output_file] [url]"
 
 type Config struct {
-	method, host, fullPath string
-	decodeResponseBody     bool
+	method, host, fullPath                              string
+	decodeResponseBody, skipExisting, overwriteExisting bool
 }
 
 func (cfg *Config) DefaultFlags() []cli.Flag {
@@ -57,6 +56,21 @@ func (cfg *Config) DefaultFlags() []cli.Flag {
 	}
 }
 
+func (cfg *Config) AddFlags() []cli.Flag {
+	return []cli.Flag{
+		cli.BoolFlag{
+			Name:        "skip-existing",
+			Usage:       "Skip over existing urls in the archive",
+			Destination: &cfg.skipExisting,
+		},
+		cli.BoolFlag{
+			Name:        "overwrite-existing",
+			Usage:       "Overwrite existing urls in the archive",
+			Destination: &cfg.overwriteExisting,
+		},
+	}
+}
+
 func (cfg *Config) requestEnabled(req *http.Request) bool {
 	if cfg.method != "" && strings.ToUpper(cfg.method) != req.Method {
 		return false
@@ -71,7 +85,7 @@ func (cfg *Config) requestEnabled(req *http.Request) bool {
 }
 
 func list(cfg *Config, a *webpagereplay.Archive, printFull bool) error {
-	return a.ForEach(func(fullURL *url.URL, req *http.Request, resp *http.Response) error {
+	return a.ForEach(func(req *http.Request, resp *http.Response) error {
 		if !cfg.requestEnabled(req) {
 			return nil
 		}
@@ -215,18 +229,29 @@ func merge(cfg *Config, archive *webpagereplay.Archive, input *webpagereplay.Arc
 	return writeArchive(archive, outfile)
 }
 
-func add(cf *Config, archive *webpagereplay.Archive, outfile string, urls []string) error {
-	for _, urlString := range urls {
-		if err := archive.Add("GET", urlString); err != nil {
-			return fmt.Errorf("Error adding request: %v", err)
-		}
-		fmt.Printf("Added GET %s\n", urlString)
+func addUrl(cfg *Config, archive *webpagereplay.Archive, urlString string) error {
+	addMode := webpagereplay.AddModeAppend
+	if cfg.skipExisting {
+		addMode = webpagereplay.AddModeSkipExisting
+	} else if cfg.overwriteExisting {
+		addMode = webpagereplay.AddModeOverwriteExisting
 	}
+	if err := archive.Add("GET", urlString, addMode); err != nil {
+		return fmt.Errorf("Error adding request: %v", err)
+	}
+	return nil
+}
 
+func add(cfg *Config, archive *webpagereplay.Archive, outfile string, urls []string) error {
+	for _, urlString := range urls {
+		if err := addUrl(cfg, archive, urlString); err != nil {
+			return err
+		}
+	}
 	return writeArchive(archive, outfile)
 }
 
-func addAll(cf *Config, archive *webpagereplay.Archive, outfile string, inputFilePath string) error {
+func addAll(cfg *Config, archive *webpagereplay.Archive, outfile string, inputFilePath string) error {
 	f, err := os.OpenFile(inputFilePath, os.O_RDONLY, os.ModePerm)
 	if err != nil {
 		return fmt.Errorf("open file error: %v", err)
@@ -235,11 +260,10 @@ func addAll(cf *Config, archive *webpagereplay.Archive, outfile string, inputFil
 
 	sc := bufio.NewScanner(f)
 	for sc.Scan() {
-		urlString := sc.Text()  // GET the line string
-		if err := archive.Add("GET", urlString); err != nil {
-			return fmt.Errorf("Error adding request: %v", err)
+		urlString := sc.Text() // GET the line string
+		if err := addUrl(cfg, archive, urlString); err != nil {
+			return err
 		}
-		fmt.Printf("Added GET %s\n", urlString)
 	}
 	if err := sc.Err(); err != nil {
 		return fmt.Errorf("scan file error: %v", err)
@@ -342,8 +366,9 @@ func main() {
 			Name:      "add",
 			Usage:     "Add a simple GET request from the network to the archive",
 			ArgsUsage: "input_archive output_archive [urls...]",
-			Before:    func (c *cli.Context) error {
-				if (len(c.Args()) < 3) {
+			Flags:     cfg.AddFlags(),
+			Before: func(c *cli.Context) error {
+				if len(c.Args()) < 3 {
 					return fmt.Errorf("Expected at least 3 arguments but got %d", len(c.Args()))
 				}
 				return nil
@@ -356,6 +381,7 @@ func main() {
 			Name:      "addAll",
 			Usage:     "Add a simple GET request from the network to the archive",
 			ArgsUsage: "input_archive output_archive urls_file",
+			Flags:     cfg.AddFlags(),
 			Before:    checkArgs("add", 3),
 			Action: func(c *cli.Context) error {
 				return addAll(cfg, loadArchiveOrDie(c, 0), c.Args().Get(1), c.Args().Get(2))
