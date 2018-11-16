@@ -243,6 +243,7 @@ def Run(test, story_set, finder_options, results, max_failures=None,
           if state.platform:
             state.platform.WaitForBatteryTemperature(35)
             _WaitForThermalThrottlingIfNeeded(state.platform)
+            logging.warning("GetDeviceTypeName() result: %s" % (state.platform.GetDeviceTypeName()))
           _RunStoryAndProcessErrorIfNeeded(story, results, state, test)
 
           num_values = len(results.all_page_specific_values)
