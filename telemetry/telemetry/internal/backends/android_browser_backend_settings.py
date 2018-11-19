@@ -169,6 +169,22 @@ class WebViewGoogleBackendSettings(WebViewBackendSettings):
       return 'SystemWebViewGoogle.apk'
 
 
+class CCTBenchmarkBackendSettings(AndroidBrowserBackendSettings):
+  def __new__(cls, **kwargs):
+    # Provide some defaults common to Chrome based backends.
+    kwargs.setdefault('activity', 'org.chromium.customtabs.test.MainActivity')
+    kwargs.setdefault('command_line_name', 'customtabs_benchmark.py')
+    kwargs.setdefault('devtools_port', 'localabstract:chrome_devtools_remote')
+    kwargs.setdefault('apk_name', 'CustomTabsBenchmark.apk')
+    kwargs.setdefault('embedder_apk_name', None)
+    kwargs.setdefault('supports_tab_control', False)
+    kwargs.setdefault('supports_spki_list', False)
+    return super(CCTBenchmarkBackendSettings, cls).__new__(cls, **kwargs)
+
+
+ANDROID_CCT = CCTBenchmarkBackendSettings(
+    browser_type='android-cct-benchmark')
+
 ANDROID_CONTENT_SHELL = AndroidBrowserBackendSettings(
     browser_type='android-content-shell',
     package='org.chromium.content_shell_apk',
@@ -229,7 +245,8 @@ ANDROID_BACKEND_SETTINGS = (
     ANDROID_CHROME_BETA,
     ANDROID_CHROME_DEV,
     ANDROID_CHROME_CANARY,
-    ANDROID_SYSTEM_CHROME
+    ANDROID_SYSTEM_CHROME,
+    ANDROID_CCT
 )
 
 
