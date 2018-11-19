@@ -78,11 +78,14 @@ class TestTimeSeries(unittest.TestCase):
 
     timeseries_in = tables.timeseries.DataFrameFromJson(data)
     with tables.DbSession(':memory:') as con:
+      pandas_sqlite.CreateTableIfNotExists(con, 'timeseries', timeseries_in)
       pandas_sqlite.InsertOrReplaceRecords(con, 'timeseries', timeseries_in)
       timeseries_out = tables.timeseries.GetTimeSeries(con, test_path)
       # Both DataFrame's should be equal, except the one we get out of the db
       # does not have an index defined.
       timeseries_in = timeseries_in.reset_index()
+      print timeseries_in['point_id']
+      print timeseries_out['point_id']
       self.assertTrue(timeseries_in.equals(timeseries_out))
 
   def testGetTimeSeries_withSummaryMetric(self):

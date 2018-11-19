@@ -4,6 +4,8 @@
 
 import pandas  # pylint: disable=import-error
 
+from soundwave import pandas_sqlite
+
 
 TABLE_NAME = 'bugs'
 COLUMN_TYPES = (
@@ -22,6 +24,10 @@ COLUMN_TYPES = (
 COLUMNS = tuple(c for c, _ in COLUMN_TYPES)
 DATE_COLUMNS = tuple(c for c, t in COLUMN_TYPES if t == 'datetime64[ns]')
 INDEX = COLUMNS[0]
+
+
+def EmptyFrame():
+  return pandas_sqlite.EmptyFrame(COLUMN_TYPES, INDEX)
 
 
 def _CommaSeparate(values):

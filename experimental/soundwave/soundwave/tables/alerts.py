@@ -4,6 +4,8 @@
 
 import pandas  # pylint: disable=import-error
 
+from soundwave import pandas_sqlite
+
 
 TABLE_NAME = 'alerts'
 COLUMN_TYPES = (
@@ -33,6 +35,10 @@ _CODE_TO_STATUS = {
     None: 'untriaged',
     # Any positive integer represents a bug_id and maps to a 'triaged' status.
 }
+
+
+def EmptyFrame():
+  return pandas_sqlite.EmptyFrame(COLUMN_TYPES, INDEX)
 
 
 def _RowFromJson(data):

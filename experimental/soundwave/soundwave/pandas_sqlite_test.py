@@ -13,10 +13,11 @@ class TestPandasSQLite(unittest.TestCase):
   def testCreateTableIfNotExists_newTable(self):
     column_types = (('bug_id', int), ('summary', str), ('status', str))
     index = 'bug_id'
+    df = pandas_sqlite.EmptyFrame(column_types, index)
     con = sqlite3.connect(':memory:')
     try:
       self.assertFalse(pandas.io.sql.has_table('bugs', con))
-      pandas_sqlite.CreateTableIfNotExists(con, 'bugs', column_types, index)
+      pandas_sqlite.CreateTableIfNotExists(con, 'bugs', df)
       self.assertTrue(pandas.io.sql.has_table('bugs', con))
     finally:
       con.close()
@@ -24,44 +25,43 @@ class TestPandasSQLite(unittest.TestCase):
   def testCreateTableIfNotExists_alreadyExists(self):
     column_types = (('bug_id', int), ('summary', str), ('status', str))
     index = 'bug_id'
+    df = pandas_sqlite.EmptyFrame(column_types, index)
     con = sqlite3.connect(':memory:')
     try:
       self.assertFalse(pandas.io.sql.has_table('bugs', con))
-      pandas_sqlite.CreateTableIfNotExists(con, 'bugs', column_types, index)
+      pandas_sqlite.CreateTableIfNotExists(con, 'bugs', df)
       self.assertTrue(pandas.io.sql.has_table('bugs', con))
       # It's fine to call a second time.
-      pandas_sqlite.CreateTableIfNotExists(con, 'bugs', column_types, index)
+      pandas_sqlite.CreateTableIfNotExists(con, 'bugs', df)
       self.assertTrue(pandas.io.sql.has_table('bugs', con))
     finally:
       con.close()
 
   def testInsertOrReplaceRecords_tableNotExistsRaises(self):
     column_types = (('bug_id', int), ('summary', str), ('status', str))
-    columns = tuple(c for c, _ in column_types)
-    index = columns[0]
-    df1 = pandas.DataFrame.from_records(
-        [(123, 'Some bug', 'Started'), (456, 'Another bug', 'Assigned')],
-        columns=columns, index=index)
+    index = 'bug_id'
+    df = pandas_sqlite.EmptyFrame(column_types, index)
+    df.loc[123] = ('Some bug', 'Started')
+    df.loc[456] = ('Another bug', 'Assigned')
     con = sqlite3.connect(':memory:')
     try:
       with self.assertRaises(AssertionError):
-        pandas_sqlite.InsertOrReplaceRecords(con, 'bugs', df1)
+        pandas_sqlite.InsertOrReplaceRecords(con, 'bugs', df)
     finally:
       con.close()
 
   def testInsertOrReplaceRecords_existingRecords(self):
     column_types = (('bug_id', int), ('summary', str), ('status', str))
-    columns = tuple(c for c, _ in column_types)
-    index = columns[0]
-    df1 = pandas.DataFrame.from_records(
-        [(123, 'Some bug', 'Started'), (456, 'Another bug', 'Assigned')],
-        columns=columns, index=index)
-    df2 = pandas.DataFrame.from_records(
-        [(123, 'Some bug', 'Fixed'), (789, 'A new bug', 'Untriaged')],
-        columns=columns, index=index)
+    index = 'bug_id'
+    df1 = pandas_sqlite.EmptyFrame(column_types, index)
+    df1.loc[123] = ('Some bug', 'Started')
+    df1.loc[456] = ('Another bug', 'Assigned')
+    df2 = pandas_sqlite.EmptyFrame(column_types, index)
+    df2.loc[123] = ('Some bug', 'Fixed')
+    df2.loc[789] = ('A new bug', 'Untriaged')
     con = sqlite3.connect(':memory:')
     try:
-      pandas_sqlite.CreateTableIfNotExists(con, 'bugs', column_types, index)
+      pandas_sqlite.CreateTableIfNotExists(con, 'bugs', df1)
 
       # Write first data frame to database.
       pandas_sqlite.InsertOrReplaceRecords(con, 'bugs', df1)

@@ -36,4 +36,4 @@ def _CreateTablesIfNeeded(con):
   """Creates soundwave tables in the database, if they don't already exist."""
   for m in (alerts, bugs, timeseries):
     pandas_sqlite.CreateTableIfNotExists(
-        con, m.TABLE_NAME, m.COLUMN_TYPES, m.INDEX)
+        con, m.TABLE_NAME, m.EmptyFrame())

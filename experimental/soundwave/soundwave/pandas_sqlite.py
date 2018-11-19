@@ -8,26 +8,34 @@ Helper methods for dealing with a SQLite database with pandas.
 import pandas  # pylint: disable=import-error
 
 
-def _EmptyFrame(column_types):
+def EmptyFrame(column_types, index=None):
   df = pandas.DataFrame()
   for column, dtype in column_types:
     df[column] = pandas.Series(dtype=dtype)
+  if index is not None:
+    if not isinstance(index, basestring):
+      index = list(index)
+    df.set_index(index, inplace=True)
   return df
 
 
-def CreateTableIfNotExists(con, name, column_types, keys=None):
+def CreateTableIfNotExists(con, name, frame):
   """Create a new empty table, if it doesn't already exist.
 
   Args:
     con: A sqlite connection object.
     name: Name of SQL table to create.
-    column_types: A sequence of (column, dtype) pairs for the table schema.
-    keys: A sequence of column names to set as PRIMARY KEY of the table.
+    frame: A DataFrame from which to infer the table schema, the index columns
+      of the frame, if any, are set as PRIMARY KEY of the table.
   """
-  frame = _EmptyFrame(column_types)
+  keys = [k for k in frame.index.names if k is not None]
+  print keys
+  if not keys:
+    keys = None
   db = pandas.io.sql.SQLiteDatabase(con)
   table = pandas.io.sql.SQLiteTable(
-      name, db, frame=frame, index=False, keys=keys, if_exists='append')
+      name, db, frame=frame.reset_index(), index=False, keys=keys,
+      if_exists='append')
   table.create()
 
 
