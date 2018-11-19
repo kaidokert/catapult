@@ -4,6 +4,8 @@
 
 import pandas  # pylint: disable=import-error
 
+from soundwave import pandas_sqlite
+
 
 TABLE_NAME = 'timeseries'
 COLUMN_TYPES = (
@@ -40,6 +42,10 @@ TEST_PATH_PARTS = (
 _QUERY_TIME_SERIES = (
     'SELECT * FROM %s WHERE %s'
     % (TABLE_NAME, ' AND '.join('%s=?' % c for c in INDEX[:-1])))
+
+
+def DataFrame(rows=None):
+  return pandas_sqlite.DataFrame(COLUMN_TYPES, index=INDEX, rows=rows)
 
 
 def _ParseIntValue(value, on_error=-1):
@@ -80,9 +86,7 @@ def DataFrameFromJson(data):
     row['clank_rev'] = row.get('r_clank', None)
     rows.append(tuple(row.get(k) for k in COLUMNS))
 
-  df = pandas.DataFrame.from_records(rows, index=INDEX, columns=COLUMNS)
-  df['timestamp'] = pandas.to_datetime(df['timestamp'])
-  return df
+  return DataFrame(rows)
 
 
 def GetTimeSeries(con, test_path, extra_cond=None):
