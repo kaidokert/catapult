@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dec350ad_cb0cd116",
+        "filename": "tracing/tracing/extras/importer/trace_event_importer.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 1648,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-19T17:44:25Z",
+      "side": 1,
+      "message": "This looks like it should fit on one line.",
+      "range": {
+        "startLine": 1646,
+        "startChar": 10,
+        "endLine": 1648,
+        "endChar": 12
+      },
+      "revId": "034c43e32d8096a53ea95d383986b9003cffc071",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a69a1a31_a002ee88",
+        "filename": "tracing/tracing/extras/measure/measure_async_slice.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-19T17:44:25Z",
+      "side": 1,
+      "message": "Nit: constants are all caps with underscores LIKE_THIS.",
+      "revId": "034c43e32d8096a53ea95d383986b9003cffc071",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2b74779_75a19ff0",
+        "filename": "tracing/tracing/extras/measure/measure_async_slice.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-19T17:44:25Z",
+      "side": 1,
+      "message": "This looks like it should fit on one line.",
+      "range": {
+        "startLine": 20,
+        "startChar": 4,
+        "endLine": 22,
+        "endChar": 6
+      },
+      "revId": "034c43e32d8096a53ea95d383986b9003cffc071",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
