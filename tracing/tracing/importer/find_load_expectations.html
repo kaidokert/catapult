@@ -78,6 +78,267 @@ tr.exportTo('tr.importer', function() {
     return candidatesForFrameId;
   }
 
+  function findAllEvents(rendererHelper, category, title) {
+    const targetEvents = [];
+
+    for (const ev of rendererHelper.process.getDescendantEvents()) {
+      if (!tr.e.chrome.EventFinderUtils.hasCategoryAndName(ev, category, title)) continue;
+      targetEvents.push(ev);
+    }
+
+    return targetEvents;
+  }
+
+  function groupMainFrameEventsByPaints(events, mainFrameIds) {
+    // Assuming events have been sorted in ascending order.
+    const paints = [];
+    for (const event of events) {
+      const paintCounter = event.args.data.paint_counter;
+      if (!paintCounter && paintCounter!==0)
+        throw Exception("paint_counter should be an integer");
+      const frameId = event.args.data.frame;
+      if (!mainFrameIds.includes(frameId)) continue;
+      if (!(paintCounter in paints)) paints[paintCounter] = [];
+      paints[paintCounter].push(event);
+    }
+    return paints;
+  }
+
+  function groupMainFrameEventsByObjects(events, mainFrameIds) {
+    // Assuming events have been sorted in ascending order.
+    const objects = [];
+    for (const event of events) {
+      const frameId = event.args.data.frame;
+      if (!mainFrameIds.includes(frameId)) continue;
+      const paintCounter = event.args.data.paint_counter;
+      let domNodeId = event.args.data.dom_node_id;
+      if (!domNodeId) domNodeId = 'domNodeId_is_null'
+      if (!(domNodeId in objects)) objects[domNodeId] = [];
+      objects[domNodeId].push(event);
+    }
+    return objects;
+  }
+
+  function getMainFrameIds(events) {
+    const mainFrameIds = new Set();
+    events.filter(e=>e.args.data.is_in_main_frame)
+      .forEach(e=>mainFrameIds.add(e.args.data.frame));
+    return [...mainFrameIds];
+  }
+
+  function findSize(paintEventData) {
+    return paintEventData.size_height * paintEventData.size_width;
+  }
+
+  function findContentSize(paintEventData) {
+    return paintEventData.content_height*paintEventData.content_width;
+  }
+
+  function findRectSize(rect) {
+    return Math.abs(Math.max(rect[2] - rect[0], rect[4] - rect[2]) *
+        Math.max(rect[3] - rect[1], rect[5] - rect[3]));
+  }
+
+  // paintProperties are in "or" relation.
+  // object types:
+  // * is_text
+  // * is_text_area
+  // * is_text_field
+  // * is_layout_ng_text
+  // * is_svg_text
+  // * is_svg
+  // * is_video
+  // * is_image
+  // * has_background_image
+  // * is_layout_image
+  // * is_layout_ng_list_marker_image,
+  // * has_box_decoration_background
+  // * is_svg_image
+  // * is_canvas
+  // * will_render_image
+  // Reference: https://chromium-review.googlesource.com/c/chromium/src/+/1062926/28/third_party/blink/renderer/core/layout/paint_tracker.cc
+  function findLargestAtLastFrame(objects, objectTypes) {
+    let maxArea = null;
+    let largestObjectId = null;
+    for (const domNodeId of Object.keys(objects)) {
+      const objectEvents = objects[domNodeId];
+      // Assuming events in objects are sorted by start.
+
+      const objectFinalEvent = objectEvents[objectEvents.length - 1];
+      const isTypeOfInterest = !!objectTypes.find(
+          t => objectFinalEvent.args.data[t]);
+      if (!isTypeOfInterest) continue;
+      // sizes not in view port is 0
+      const area = findRectSize(
+          objectFinalEvent.args.data.visible_new_visual_rect);
+      if (!maxArea || area > maxArea) {
+        maxArea = area;
+        largestObjectId = domNodeId;
+      }
+    }
+    return largestObjectId;
+  }
+
+  function findLargestObjectFirstPaint(objects,
+      objectTypes, needInViewport) {
+    // ['is_image', 'has_background_image'], true
+    const largestObjectId =
+        findLargestAtLastFrame(objects, objectTypes);
+    if (!largestObjectId) return null;
+    const paintEvents = objects[largestObjectId];
+    if (!paintEvents.length) return null;
+    const finalSize =
+        findRectSize(
+            paintEvents[paintEvents.length-1].args.data.visible_new_visual_rect);
+    const objectVisiblePaintEvents = objects[largestObjectId].filter(p=>{
+      const type = objectTypes.find(t => p.args.data[t]);
+      return p.args.data.is_in_viewport &&
+          p.args.data.is_in_main_frame &&
+          findRectSize(p.args.data.visible_new_visual_rect) > 0 &&
+          type &&
+          findRectSize(p.args.data.visible_new_visual_rect) > finalSize / 2 &&
+          (type !== "is_image" || p.args.data.is_layout_image_loaded) &&
+          (type !== "has_background_image" ||
+              p.args.data.is_background_image_loaded) &&
+          (type !== "is_video" || p.args.data.is_video_image_loaded);
+    });
+    if (!objectVisiblePaintEvents.length) return null;
+    return objectVisiblePaintEvents[0].start;
+  }
+
+  function findLastLoadedImageInViewPort(objects) {
+    const imageTypes = ['is_image', 'has_background_image', 'is_video',
+          'is_canvas', 'is_svg_image'];
+    const objectTimings = {};
+    for (const domNodeId of Object.keys(objects)) {
+      const objectEvents = objects[domNodeId];
+      const type = imageTypes.find(
+          t=>objectEvents[objectEvents.length-1].args.data[t]);
+      if (!type) break;
+      let loadedTime = null;
+      let lastLoadingTime = null;
+      for (const e of objectEvents) {
+        const d = e.args.data;
+        const loaded = d.is_layout_image_loaded ||
+            d.is_background_image_loaded || d.is_video_image_loaded;
+        if (loaded || d.is_canvas || d.is_svg_image) {
+          loadedTime = e.ts;
+          break; // Found the first paint of the loaded image.
+        } else {
+          lastLoadingTime = e.ts;
+        }
+      }
+      const lastEventData = objectEvents[objectEvents.length - 1].args.data;
+      objectTimings[domNodeId] = {
+        loadedTime,
+        lastLoadingTime,
+        in_viewport:
+            lastEventData.is_in_viewport,
+        size: findRectSize(lastEventData.visible_new_visual_rect) /
+                  findRectSize(lastEventData.viewport_rect)
+      }
+    }
+    const nonTrivialInViewportObjects = Object.values(objectTimings)
+        .filter(t=>t.in_viewport && t.size > 0.02);
+    const allLoadedTimes = nonTrivialInViewportObjects.filter(t=>t.loadedTime);
+    const maxLoadedTime = allLoadedTimes.length===0?null:allLoadedTimes
+        .reduce((acc, cur)=>Math.max(acc, cur.loadedTime));
+    const stillLoading = nonTrivialInViewportObjects.find(t=>t.lastLoadingTime>maxLoadedTime)
+    return stillLoading?null:maxLoadedTime;
+  }
+
+  function findLastObjectFirstPaintedInViewPort(objects,
+      objectTypes, needInViewport) {
+    let maxTime = null;
+    for (const domNodeId of Object.keys(objects)) {
+      const objectEvents = objects[domNodeId];
+      let firstPaintedInViewPort = null;
+      // Assuming objectEvents are sorted in ascending order by start.
+      for (const e of objectEvents) {
+        const type = objectTypes.find(t => e.args.data[t]);
+        if (!type) break;
+        if (e.args.data.is_in_viewport &&
+            findRectSize(e.args.data.visible_new_visual_rect) /
+                findRectSize(e.args.data.viewport_rect) > 0.01 &&
+            (type !== "is_image" || e.args.data.is_layout_image_loaded) &&
+            (type !== "has_background_image" ||
+                e.args.data.is_background_image_loaded)) {
+          firstPaintedInViewPort = e.start;
+          break;
+        }
+      }
+      if (!firstPaintedInViewPort) continue;
+      if (!maxTime || maxTime < firstPaintedInViewPort)
+        maxTime = firstPaintedInViewPort;
+    }
+    return maxTime;
+  }
+
+  function computeFirstContentfulPaintVariants_(
+    rendererHelper, navigationStart, searchWindowEnd) {
+      const results = {
+          largestImageFirstPaint: null,
+          largestTextFirstPaint: null,
+          largestImageOrTextFirstPaint: null,
+          largestNonBackgroundImageOrTextFirstPaint: null,
+          lastImageFirstPaint: null,
+          lastLoadedImage: null,
+          lastTextFirstPaint: null,
+          lastImageOrTextFirstPaint: null
+      };
+      const paintTrackerEvents = findAllEvents(rendererHelper, 'loading',
+          'PaintTracker::LayoutObjectPainted');
+      const nodeRemovalEvents = findAllEvents(rendererHelper, 'loading',
+          'PaintTracker::LayoutObjectRemoval');
+      // nodeRemovalEvents use normal time
+      const eventsInNavigation = paintTrackerEvents.filter(
+          e => e.start >= navigationStart.start && e.start <= searchWindowEnd);
+      if (eventsInNavigation.length === 0) return results;
+      eventsInNavigation.sort((a, b) => a.start - b.start);
+      const mainFrameIds = getMainFrameIds(eventsInNavigation);
+      if (mainFrameIds.length===0) return results;
+      const paints =
+          groupMainFrameEventsByPaints(eventsInNavigation, mainFrameIds);
+      const objects =
+          groupMainFrameEventsByObjects(eventsInNavigation, mainFrameIds);
+      if (!paints.length) return results;
+
+      // largest image first paint
+      const imageTypes = ['is_image', 'has_background_image', 'is_video',
+          'is_canvas', 'is_svg_image'];
+      results.largestImageFirstPaint = findLargestObjectFirstPaint(
+          objects, imageTypes);
+
+      const nonBackgroundImageTypes = ['is_image', 'is_video', 'is_canvas', 'is_svg_image'];
+      results.largestImageNoBackgroundFirstPaint = findLargestObjectFirstPaint(
+          objects, nonBackgroundImageTypes);
+
+      // largest text first paint
+      const textTypes = ['is_text', 'is_svg_text', 'is_text_area',
+          'is_text_field', 'is_layout_ng_text'];
+      results.largestTextFirstPaint = findLargestObjectFirstPaint(
+          objects, textTypes);
+
+      // largest image or text first paint
+      results.largestImageOrTextFirstPaint = findLargestObjectFirstPaint(
+          objects, imageTypes.concat(textTypes));
+
+      // largest image or text first paint
+      results.largestNonBackgroundImageOrTextFirstPaint = findLargestObjectFirstPaint(
+          objects, nonBackgroundImageTypes.concat(textTypes));
+      results.lastLoadedImage = findLastLoadedImageInViewPort(objects);
+      // last image first paint
+      results.lastImageFirstPaint = findLastObjectFirstPaintedInViewPort(
+          objects, imageTypes, true);
+      // last text first paint
+      results.lastTextFirstPaint = findLastObjectFirstPaintedInViewPort(
+          objects, textTypes, true);
+      // last image or text first paint
+      results.lastImageOrTextFirstPaint = findLastObjectFirstPaintedInViewPort(
+          objects, imageTypes.concat(textTypes), true);
+      return results;
+  }
+
   /**
    * Returns Time to Interactive and First CPU Idle for the
    * given parameters. See the time_to_interactive.html module for detailed
@@ -189,6 +450,9 @@ tr.exportTo('tr.importer', function() {
           rendererHelper, navigationStart, fmpEvent,
           domContentLoadedEndEvent, searchWindowEnd);
 
+    const fcpVariants = computeFirstContentfulPaintVariants_(
+        rendererHelper, navigationStart, searchWindowEnd);
+
     const duration = (interactiveTime === undefined) ?
       searchWindowEnd - navigationStart.start :
       interactiveTime - navigationStart.start;
@@ -197,8 +461,8 @@ tr.exportTo('tr.importer', function() {
         rendererHelper.modelHelper.model,
         tr.model.um.LOAD_SUBTYPE_NAMES.SUCCESSFUL, navigationStart.start,
         duration, rendererHelper.process, navigationStart, fmpEvent,
-        domContentLoadedEndEvent, firstCpuIdleTime, interactiveTime, url,
-        frameId);
+        domContentLoadedEndEvent, firstCpuIdleTime, interactiveTime,
+        fcpVariants, url, frameId);
   }
 
   /**
