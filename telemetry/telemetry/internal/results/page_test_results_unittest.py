@@ -25,6 +25,7 @@ from telemetry.value import trace
 from tracing.trace_data import trace_data
 from tracing.value import histogram as histogram_module
 from tracing.value import histogram_set
+from tracing.value.diagnostics import date_range
 from tracing.value.diagnostics import diagnostic
 from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import reserved_infos
@@ -70,6 +71,24 @@ class TelemetryInfoTest(unittest.TestCase):
     ti.WillRunStory(bar_story, None)
     self.assertIn('www_bar_com', ti.trace_local_path)
     self.assertIn('custom_label', ti.trace_local_path)
+
+  def testAsDiagnostics(self):
+    ti = page_test_results.TelemetryInfo()
+    ti.benchmark_name = 'benchmark'
+    ti.benchmark_start_epoch = 123
+    ti.benchmark_descriptions = 'foo'
+    ti_diags = ti.AsDiagnostics()
+
+    self.assertIn(reserved_infos.BENCHMARKS.name, ti_diags)
+    self.assertIsInstance(ti_diags[reserved_infos.BENCHMARKS.name],
+                          generic_set.GenericSet)
+    self.assertIn(reserved_infos.BENCHMARK_START.name, ti_diags)
+    self.assertIsInstance(ti_diags[reserved_infos.BENCHMARK_START.name],
+                          date_range.DateRange)
+    self.assertIn(reserved_infos.BENCHMARK_DESCRIPTIONS.name, ti_diags)
+    self.assertIsInstance(ti_diags[reserved_infos.BENCHMARK_DESCRIPTIONS.name],
+                          generic_set.GenericSet)
+
 
 
 class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
@@ -544,6 +563,8 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
         'benchmark_name', 'benchmark_description')
     results = page_test_results.PageTestResults(
         benchmark_metadata=benchmark_metadata)
+    results.telemetry_info.benchmark_name = 'benchmark_name'
+    results.telemetry_info.benchmark_descriptions = 'benchmark_description'
     results.telemetry_info.benchmark_start_epoch = 1501773200
     results.WillRunPage(self.pages[0])
     results.AddHistogram(histogram_module.Histogram('foo', 'count'))
