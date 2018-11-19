@@ -28,6 +28,7 @@ from telemetry.value import trace
 from tracing.value import convert_chart_json
 from tracing.value import histogram
 from tracing.value import histogram_set
+from tracing.value.diagnostics import all_diagnostics
 from tracing.value.diagnostics import reserved_infos
 
 class TelemetryInfo(object):
@@ -202,6 +203,27 @@ class TelemetryInfo(object):
     if self.had_failures:
       d[reserved_infos.HAD_FAILURES.name] = [self.had_failures]
     return d
+
+  def AsDiagnostics(self):
+    """ Benchmarks that add histograms but don't use
+    timeline_base_measurement need to add shared diagnostics separately. """
+    diags = {}
+    for name, value in self.AsDict().items():
+      if isinstance(value, list):
+        keep = False
+        for val in value:
+          if val:
+            keep = True
+        if not keep:
+          continue
+      else:
+        if value is None:
+          continue
+      name_type = reserved_infos.GetTypeForName(name)
+      diag_class = all_diagnostics.GetDiagnosticClassForName(name_type)
+      diag = diag_class(value)
+      diags[name] = diag
+    return diags
 
 
 class PageTestResults(object):
@@ -455,7 +477,7 @@ class PageTestResults(object):
 
   def AddHistogram(self, hist):
     if self._ShouldAddHistogram(hist):
-      self._histograms.AddHistogram(hist)
+      self._histograms.AddHistogram(hist, self._telemetry_info.AsDiagnostics())
 
   def ImportHistogramDicts(self, histogram_dicts, import_immediately=True):
     dicts_to_add = []

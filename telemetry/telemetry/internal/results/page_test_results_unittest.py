@@ -71,6 +71,24 @@ class TelemetryInfoTest(unittest.TestCase):
     self.assertIn('www_bar_com', ti.trace_local_path)
     self.assertIn('custom_label', ti.trace_local_path)
 
+  def testAsDiagnostics(self):
+    ti = page_test_results.TelemetryInfo()
+    ti.benchmark_name = 'benchmark'
+    ti.benchmark_start_epoch = 123
+    ti.benchmark_descriptions = 'foo'
+    ti_diags = ti.AsDiagnostics()
+
+    self.assertIn(reserved_infos.BENCHMARKS.name, ti_diags)
+    self.assertIsInstance(ti_diags[reserved_infos.BENCHMARKS.name],
+                          generic_set.GenericSet)
+    self.assertIn(reserved_infos.BENCHMARK_START.name, ti_diags)
+    self.assertIsInstance(ti_diags[reserved_infos.BENCHMARK_START.name],
+                          histogram_module.DateRange)
+    self.assertIn(reserved_infos.BENCHMARK_DESCRIPTIONS.name, ti_diags)
+    self.assertIsInstance(ti_diags[reserved_infos.BENCHMARK_DESCRIPTIONS.name],
+                          generic_set.GenericSet)
+
+
 
 class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
   def setUp(self):
@@ -544,6 +562,8 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
         'benchmark_name', 'benchmark_description')
     results = page_test_results.PageTestResults(
         benchmark_metadata=benchmark_metadata)
+    results.telemetry_info.benchmark_name = 'benchmark_name'
+    results.telemetry_info.benchmark_descriptions = 'benchmark_description'
     results.telemetry_info.benchmark_start_epoch = 1501773200
     results.WillRunPage(self.pages[0])
     results.AddHistogram(histogram_module.Histogram('foo', 'count'))
