@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9e701ce9_64102559",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 1170907
+      },
+      "writtenOn": "2018-11-19T15:58:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f45e442_ae19bca6",
+      "revId": "e3a1ca081b67f32533a2c8ba3b07c2b3d044acdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8a38cc0c_2fe30ecd",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 3
@@ -51,6 +69,24 @@
       "revId": "e3a1ca081b67f32533a2c8ba3b07c2b3d044acdc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e480610d_7ddd7c92",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 1170907
+      },
+      "writtenOn": "2018-11-19T15:58:10Z",
+      "side": 1,
+      "message": "Ok I looked into this a little bit further and moved this logic into TelemetryInfo. \n\nPageTestResults.AddHistogram is actually never used until my CL with the updates to Dromaeo, so I guess it makes sense to add this logic during AddHistogram.\n\nI am still not sure I total understand what the final state of the histograms should look like and why adding the same diagnostics to histograms to different repeats of the same story would be problematic but it is not problematic to add them to histograms from TBMv2.  Maybe we can touch base offline to discuss the state of these results and the diagnostics associated with them.",
+      "parentUuid": "c672f6ff_4da84b47",
+      "revId": "e3a1ca081b67f32533a2c8ba3b07c2b3d044acdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
