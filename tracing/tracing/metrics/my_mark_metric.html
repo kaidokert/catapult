@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/base/unit_scale.html">
+<link rel="import" href="/tracing/metrics/metric_registry.html">
+<link rel="import" href="/tracing/value/histogram.html">
+
+<script>
+'use strict';
+
+tr.exportTo('tr.metrics.sh', function() {
+  /**
+   * A simple metric that counts the number of times that "my_mark" occurs in
+   * the trace.
+   */
+  function myMarkMetric(histograms, model) {
+    let occurrences = 0;
+    for (const event of model.getDescendantEvents()) {
+      if (event.category === 'blink.user_timing' &&
+          event.title === 'my_mark') {
+        occurrences++;
+      }
+    }
+
+    const h = histograms.createHistogram('my_mark',
+        tr.b.Unit.byName.count_smallerIsBetter, [], {
+          description: 'Number of occurrences of my_mark',
+          summaryOptions: {
+            count: true,
+            avg: false,
+            max: false,
+            min: false,
+            std: false,
+            sum: false,
+          }
+        });
+
+    h.addSample(occurrences);
+  }
+
+  tr.metrics.MetricRegistry.register(myMarkMetric);
+
+  return {
+    myMarkMetric
+  };
+});
+</script>

@@ -195,6 +195,7 @@ tracing_js_html_files = [
   "tracing/metrics/media_metric.html",
   "tracing/metrics/metric_map_function.html",
   "tracing/metrics/metric_registry.html",
+  "tracing/metrics/my_mark_metric.html",
   "tracing/metrics/rendering/cpu_utilization.html",
   "tracing/metrics/rendering/frame_time.html",
   "tracing/metrics/rendering/latency.html",
