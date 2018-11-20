@@ -2,6 +2,8 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import collections
+
 import pandas  # pylint: disable=import-error
 
 from soundwave import pandas_sqlite
@@ -21,10 +23,39 @@ COLUMN_TYPES = (
     ('commit_pos', 'int64'),  # chromium commit position
     ('chromium_rev', str),  # git hash of chromium revision
     ('clank_rev', str),  # git hash of clank revision
+    ('trace_url', str),  # URL to a sample trace.
     ('improvement_direction', str),  # good direction ('up', 'down', 'unknown')
+    ('units', str),  # unit of measurement (e.g. 'ms', 'bytes')
 )
 COLUMNS = tuple(c for c, _ in COLUMN_TYPES)
 INDEX = COLUMNS[:5]
+
+# Required columns to request from /timeseries2 API.
+TIMESERIES2_COLUMNS = [
+    'revision',
+    'revisions',
+    'avg',
+    'timestamp',
+    'annotations']
+
+
+def EmptyFrame():
+  return utils.EmptyFrame(COLUMN_TYPES).set_index(list(INDEX))
+
+
+class Key(collections.namedtuple('Key', INDEX[:-1])):
+  """Uniquely identifies a single timeseries."""
+
+  def AsDict(self):
+    return dict(zip(self._fields, self))
+
+  def AsApiParams(self):
+    """Return a dict with params for a /timeseries2 API request."""
+    params = self.AsDict()
+    if not params['test_case']:
+      del params['test_case']  # test_case is optional.
+    params['columns'] = ','.join(TIMESERIES2_COLUMNS)
+    return params
 
 
 # Copied from https://goo.gl/DzGYpW.
@@ -57,6 +88,9 @@ def _ParseIntValue(value, on_error=-1):
 
 
 def _ParseConfigFromTestPath(test_path):
+  if isinstance(test_path, Key):
+    return test_path.AsDict()
+
   values = test_path.split('/', len(TEST_PATH_PARTS) - 1)
   if len(values) < len(TEST_PATH_PARTS):
     values.append('')  # Possibly missing test_case.
@@ -67,7 +101,33 @@ def _ParseConfigFromTestPath(test_path):
   return config
 
 
-def DataFrameFromJson(data):
+def DataFrameFromJson(test_path, data):
+  if isinstance(test_path, Key):
+    return _DataFrameFromJson_v2(test_path, data)
+  else:
+    return _DataFrameFromJson_v1(test_path, data)
+
+
+def _DataFrameFromJson_v2(ts_key, data):
+  df = EmptyFrame()
+  for point in data['data']:
+    point = dict(zip(TIMESERIES2_COLUMNS, point))
+    index = ts_key + (point['revision'], )
+    df.loc[index] = (
+        point['avg'],  # value
+        point['timestamp'],  # timestamp
+        _ParseIntValue(point['revisions']['r_commit_pos']),  # commit_pos
+        point['revisions'].get('r_chromium'),  # chromium_rev
+        point['revisions'].get('r_clank'),  # clank_rev
+        point['annotations'].get('a_tracing_uri'),  # trace_url
+        data['improvement_direction'],  # improvement_direction
+        data['units'],  # units
+    )
+  return df
+
+
+def _DataFrameFromJson_v1(test_path, data):
+  assert test_path == data['test_path']
   config = _ParseConfigFromTestPath(data['test_path'])
   config['improvement_direction'] = _CODE_TO_IMPROVEMENT_DIRECTION.get(
       data['improvement_direction'], 'unknown')
