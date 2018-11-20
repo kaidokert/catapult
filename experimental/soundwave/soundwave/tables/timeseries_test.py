@@ -11,10 +11,10 @@ from soundwave import tables
 
 class TestTimeSeries(unittest.TestCase):
   def testDataFrameFromJson(self):
+    test_path = ('ChromiumPerf/android-nexus5/loading.mobile'
+                 '/timeToFirstInteractive/PageSet/Google')
     data = {
-        'test_path': (
-            'ChromiumPerf/android-nexus5/loading.mobile'
-            '/timeToFirstInteractive/PageSet/Google'),
+        'test_path': test_path,
         'improvement_direction': 1,
         'timeseries': [
             ['revision', 'value', 'timestamp', 'r_commit_pos', 'r_chromium'],
@@ -26,7 +26,7 @@ class TestTimeSeries(unittest.TestCase):
         ]
     }
 
-    timeseries = tables.timeseries.DataFrameFromJson(data)
+    timeseries = tables.timeseries.DataFrameFromJson(test_path, data)
     # Check the integrity of the index: there should be no duplicates.
     self.assertFalse(timeseries.index.duplicated().any())
     self.assertEqual(len(timeseries), 4)
@@ -47,9 +47,10 @@ class TestTimeSeries(unittest.TestCase):
     self.assertEqual(point['clank_rev'], None)
 
   def testDataFrameFromJson_withSummaryMetric(self):
+    test_path = ('ChromiumPerf/android-nexus5/loading.mobile'
+                 '/timeToFirstInteractive')
     data = {
-        'test_path':
-            'ChromiumPerf/android-nexus5/loading.mobile/timeToFirstInteractive',
+        'test_path': test_path,
         'improvement_direction': 1,
         'timeseries': [
             ['revision', 'value', 'timestamp', 'r_commit_pos', 'r_chromium'],
@@ -58,7 +59,8 @@ class TestTimeSeries(unittest.TestCase):
         ],
     }
 
-    timeseries = tables.timeseries.DataFrameFromJson(data).reset_index()
+    timeseries = tables.timeseries.DataFrameFromJson(
+        test_path, data).reset_index()
     self.assertTrue((timeseries['test_case'] == '').all())
 
   def testGetTimeSeries(self):
@@ -76,7 +78,7 @@ class TestTimeSeries(unittest.TestCase):
         ]
     }
 
-    timeseries_in = tables.timeseries.DataFrameFromJson(data)
+    timeseries_in = tables.timeseries.DataFrameFromJson(test_path, data)
     with tables.DbSession(':memory:') as con:
       pandas_sqlite.InsertOrReplaceRecords(con, 'timeseries', timeseries_in)
       timeseries_out = tables.timeseries.GetTimeSeries(con, test_path)
@@ -99,7 +101,7 @@ class TestTimeSeries(unittest.TestCase):
         ]
     }
 
-    timeseries_in = tables.timeseries.DataFrameFromJson(data)
+    timeseries_in = tables.timeseries.DataFrameFromJson(test_path, data)
     with tables.DbSession(':memory:') as con:
       pandas_sqlite.InsertOrReplaceRecords(con, 'timeseries', timeseries_in)
       timeseries_out = tables.timeseries.GetTimeSeries(con, test_path)
@@ -123,7 +125,7 @@ class TestTimeSeries(unittest.TestCase):
         ]
     }
 
-    timeseries = tables.timeseries.DataFrameFromJson(data)
+    timeseries = tables.timeseries.DataFrameFromJson(test_path, data)
     with tables.DbSession(':memory:') as con:
       pandas_sqlite.InsertOrReplaceRecords(con, 'timeseries', timeseries)
       point = tables.timeseries.GetMostRecentPoint(con, test_path)
