@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "61b557dc_33ade746",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-11-20T16:29:09Z",
+      "side": 1,
+      "message": "+skyostil - this is coming on the next CL, so you can also get\ntraces from the -i option.",
+      "revId": "776f9fbc0b2866c7b41856816331eb648f916087",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5400c51_9f0558b9",
+        "filename": "experimental/soundwave/soundwave/dashboard_api.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-11-20T16:29:09Z",
+      "side": 1,
+      "message": "To make the behavior of both APIs consistent.",
+      "range": {
+        "startLine": 46,
+        "startChar": 8,
+        "endLine": 46,
+        "endChar": 13
+      },
+      "revId": "776f9fbc0b2866c7b41856816331eb648f916087",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70d4e72f_b34f3ced",
+        "filename": "experimental/soundwave/soundwave/tables/timeseries_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-11-20T16:29:09Z",
+      "side": 1,
+      "message": "kept this test for the old v1 code path; all others are also migrated to v2.",
+      "range": {
+        "startLine": 38,
+        "startChar": 6,
+        "endLine": 38,
+        "endChar": 29
+      },
+      "revId": "776f9fbc0b2866c7b41856816331eb648f916087",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
