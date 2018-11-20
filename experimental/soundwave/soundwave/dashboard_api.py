@@ -42,7 +42,7 @@ class PerfDashboardCommunicator(object):
           '/timeseries/%s' % urllib.quote(test_path), params={'num_days': days})
     except request.ClientError as exc:
       if 'Invalid test_path' in exc.json['error']:
-        return None
+        raise KeyError(test_path)
       else:
         raise
 

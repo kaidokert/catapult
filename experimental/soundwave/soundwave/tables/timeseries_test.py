@@ -9,12 +9,34 @@ from soundwave import pandas_sqlite
 from soundwave import tables
 
 
+def SampleRow(point_id, value, timestamp=None, missing_commit_pos=False):
+  revisions = {
+      'r_commit_pos': str(point_id),
+      'r_chromium': 'chromium@%d' % point_id,
+      'r_clank': 'clank@%d' % point_id
+  }
+  if missing_commit_pos:
+    # Some timeseries have a missing commit position.
+    revisions['r_commit_pos'] = None
+  if timestamp is None:
+    timestamp = datetime.datetime.utcfromtimestamp(
+        1234567890.0 + point_id * 60).isoformat()
+
+  return [
+      point_id,
+      revisions,
+      value,
+      timestamp,
+      {'a_tracing_uri': 'http://example.com/trace/%d' % point_id}
+  ]
+
+
 class TestTimeSeries(unittest.TestCase):
-  def testDataFrameFromJson(self):
+  def testDataFrameFromJson_v1(self):
+    test_path = ('ChromiumPerf/android-nexus5/loading.mobile'
+                 '/timeToFirstInteractive/PageSet/Google')
     data = {
-        'test_path': (
-            'ChromiumPerf/android-nexus5/loading.mobile'
-            '/timeToFirstInteractive/PageSet/Google'),
+        'test_path': test_path,
         'improvement_direction': 1,
         'timeseries': [
             ['revision', 'value', 'timestamp', 'r_commit_pos', 'r_chromium'],
@@ -26,7 +48,7 @@ class TestTimeSeries(unittest.TestCase):
         ]
     }
 
-    timeseries = tables.timeseries.DataFrameFromJson(data)
+    timeseries = tables.timeseries.DataFrameFromJson(test_path, data)
     # Check the integrity of the index: there should be no duplicates.
     self.assertFalse(timeseries.index.duplicated().any())
     self.assertEqual(len(timeseries), 4)
@@ -46,10 +68,50 @@ class TestTimeSeries(unittest.TestCase):
     self.assertEqual(point['chromium_rev'], 'adb123')
     self.assertEqual(point['clank_rev'], None)
 
-  def testDataFrameFromJson_withSummaryMetric(self):
+  def testDataFrameFromJson_v2(self):
+    test_path = tables.timeseries.Key(
+        test_suite='loading.mobile',
+        measurement='timeToFirstInteractive',
+        bot='ChromiumPerf:android-nexus5',
+        test_case='PageSet/Google')
     data = {
-        'test_path':
-            'ChromiumPerf/android-nexus5/loading.mobile/timeToFirstInteractive',
+        'improvement_direction': 'down',
+        'units': 'ms',
+        'data': [
+            SampleRow(547397, 2300.3, timestamp='2018-04-01T14:16:32.000'),
+            SampleRow(547398, 2750.9),
+            SampleRow(547423, 2342.2),
+            SampleRow(547836, 2402.5, missing_commit_pos=True),
+        ]
+    }
+
+    timeseries = tables.timeseries.DataFrameFromJson(test_path, data)
+    # Check the integrity of the index: there should be no duplicates.
+    self.assertFalse(timeseries.index.duplicated().any())
+    self.assertEqual(len(timeseries), 4)
+
+    # Check values on the first point of the series.
+    point = timeseries.reset_index().iloc[0]
+    self.assertEqual(point['test_suite'], 'loading.mobile')
+    self.assertEqual(point['measurement'], 'timeToFirstInteractive')
+    self.assertEqual(point['bot'], 'ChromiumPerf:android-nexus5')
+    self.assertEqual(point['test_case'], 'PageSet/Google')
+    self.assertEqual(point['improvement_direction'], 'down')
+    self.assertEqual(point['point_id'], 547397)
+    self.assertEqual(point['value'], 2300.3)
+    self.assertEqual(point['timestamp'], datetime.datetime(
+        year=2018, month=4, day=1, hour=14, minute=16, second=32))
+    self.assertEqual(point['commit_pos'], 547397)
+    self.assertEqual(point['chromium_rev'], 'chromium@547397')
+    self.assertEqual(point['clank_rev'], 'clank@547397')
+
+  def testDataFrameFromJson_withSummaryMetric(self):
+    # TODO: This test is only relevant for v1 API where we need to parse the
+    # test_path into its components. Test can be removed when v1 is deprecated.
+    test_path = (
+        'ChromiumPerf/android-nexus5/loading.mobile/timeToFirstInteractive')
+    data = {
+        'test_path': test_path,
         'improvement_direction': 1,
         'timeseries': [
             ['revision', 'value', 'timestamp', 'r_commit_pos', 'r_chromium'],
@@ -58,7 +120,8 @@ class TestTimeSeries(unittest.TestCase):
         ],
     }
 
-    timeseries = tables.timeseries.DataFrameFromJson(data).reset_index()
+    timeseries = tables.timeseries.DataFrameFromJson(
+        test_path, data).reset_index()
     self.assertTrue((timeseries['test_case'] == '').all())
 
   def testGetTimeSeries(self):
@@ -76,7 +139,7 @@ class TestTimeSeries(unittest.TestCase):
         ]
     }
 
-    timeseries_in = tables.timeseries.DataFrameFromJson(data)
+    timeseries_in = tables.timeseries.DataFrameFromJson(test_path, data)
     with tables.DbSession(':memory:') as con:
       pandas_sqlite.InsertOrReplaceRecords(con, 'timeseries', timeseries_in)
       timeseries_out = tables.timeseries.GetTimeSeries(con, test_path)
@@ -99,7 +162,7 @@ class TestTimeSeries(unittest.TestCase):
         ]
     }
 
-    timeseries_in = tables.timeseries.DataFrameFromJson(data)
+    timeseries_in = tables.timeseries.DataFrameFromJson(test_path, data)
     with tables.DbSession(':memory:') as con:
       pandas_sqlite.InsertOrReplaceRecords(con, 'timeseries', timeseries_in)
       timeseries_out = tables.timeseries.GetTimeSeries(con, test_path)
@@ -124,7 +187,7 @@ class TestTimeSeries(unittest.TestCase):
         ]
     }
 
-    timeseries = tables.timeseries.DataFrameFromJson(data)
+    timeseries = tables.timeseries.DataFrameFromJson(test_path, data)
     with tables.DbSession(':memory:') as con:
       pandas_sqlite.InsertOrReplaceRecords(con, 'timeseries', timeseries)
       point = tables.timeseries.GetMostRecentPoint(con, test_path)

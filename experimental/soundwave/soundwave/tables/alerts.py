@@ -2,7 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-import pandas  # pylint: disable=import-error
+from soundwave import pandas_sqlite
 
 
 TABLE_NAME = 'alerts'
@@ -35,6 +35,10 @@ _CODE_TO_STATUS = {
 }
 
 
+def DataFrame(rows=None):
+  return pandas_sqlite.DataFrame(COLUMN_TYPES, index=INDEX, rows=rows)
+
+
 def _RowFromJson(data):
   """Turn json data from an alert into a tuple with values for that record."""
   data = data.copy()  # Do not modify the original dict.
@@ -64,8 +68,4 @@ def _RowFromJson(data):
 
 
 def DataFrameFromJson(data):
-  df = pandas.DataFrame.from_records(
-      list(_RowFromJson(d) for d in data['anomalies']),
-      index=INDEX, columns=COLUMNS)
-  df['timestamp'] = pandas.to_datetime(df['timestamp'])
-  return df
+  return DataFrame([_RowFromJson(d) for d in data['anomalies']])
