@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "4a3c0cf6_8f404f49",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2018-11-20T17:17:31Z",
+      "side": 1,
+      "message": "typo: sheriffed",
+      "range": {
+        "startLine": 15,
+        "startChar": 14,
+        "endLine": 15,
+        "endChar": 23
+      },
+      "revId": "776f9fbc0b2866c7b41856816331eb648f916087",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c103638_9d933894",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2018-11-20T17:17:31Z",
+      "side": 1,
+      "message": "typo: we",
+      "range": {
+        "startLine": 16,
+        "startChar": 8,
+        "endLine": 16,
+        "endChar": 11
+      },
+      "revId": "776f9fbc0b2866c7b41856816331eb648f916087",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "61b557dc_33ade746",
         "filename": "/COMMIT_MSG",
         "patchSetId": 9
@@ -13,6 +59,52 @@
       "writtenOn": "2018-11-20T16:29:09Z",
       "side": 1,
       "message": "+skyostil - this is coming on the next CL, so you can also get\ntraces from the -i option.",
+      "revId": "776f9fbc0b2866c7b41856816331eb648f916087",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6923161_63b6e90e",
+        "filename": "experimental/soundwave/services/dashboard_service.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2018-11-20T17:17:31Z",
+      "side": 1,
+      "message": "s/timeseries/Timeseries/",
+      "range": {
+        "startLine": 47,
+        "startChar": 22,
+        "endLine": 47,
+        "endChar": 32
+      },
+      "revId": "776f9fbc0b2866c7b41856816331eb648f916087",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5c4ceca_185128a0",
+        "filename": "experimental/soundwave/services/dashboard_service.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2018-11-20T17:17:31Z",
+      "side": 1,
+      "message": "nit: no need for \"else\"",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 48,
+        "endChar": 8
+      },
       "revId": "776f9fbc0b2866c7b41856816331eb648f916087",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
