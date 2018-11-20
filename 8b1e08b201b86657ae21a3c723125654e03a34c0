@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3b0508f5_b84c2514",
+        "filename": "dashboard/dashboard/spa/alerts-controls.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2018-11-20T18:37:15Z",
+      "side": 1,
+      "message": "here and elsewhere, use dashes instead of underscores to separate parts of CSS IDs and class names: https://google.github.io/styleguide/htmlcssguide.html#ID_and_Class_Name_Delimiters",
+      "range": {
+        "startLine": 29,
+        "startChar": 7,
+        "endLine": 29,
+        "endChar": 24
+      },
+      "revId": "8b1e08b201b86657ae21a3c723125654e03a34c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd273b8c_a4a971bb",
+        "filename": "dashboard/dashboard/spa/alerts-controls.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2018-11-20T18:37:15Z",
+      "side": 1,
+      "message": "What is left TODO here?",
+      "revId": "8b1e08b201b86657ae21a3c723125654e03a34c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6a4c05a_8e6ebe89",
+        "filename": "dashboard/dashboard/spa/alerts-controls.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2018-11-20T18:37:15Z",
+      "side": 1,
+      "message": "maybe call this recentlyModifiedBugsJSON when you create the action, just to to be clear that it hasn\u0027t been parsed yet?",
+      "range": {
+        "startLine": 267,
+        "startChar": 53,
+        "endLine": 267,
+        "endChar": 73
+      },
+      "revId": "8b1e08b201b86657ae21a3c723125654e03a34c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
