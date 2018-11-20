@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "be402891_5213c9c9",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1002882
+      },
+      "writtenOn": "2018-11-20T00:30:54Z",
+      "side": 1,
+      "message": "Is there a reason not to at runtime copy this from a Swarming task request in a build on the perf waterfall? I believe that the perf waterfall runs the benchmarks via a Swarming task too, but please correct me if I\u0027m wrong.\n\nFindit does it that way, and there is no need to update this in the source code side.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 1
+      },
+      "revId": "df5eb52c2f42b8e8d040fe9df50b65773f26e1f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
