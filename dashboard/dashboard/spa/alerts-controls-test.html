@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+<script src="/bower_components/web-component-tester/browser.js"></script>
+<link rel="import" href="/dashboard/spa/alerts-controls.html">
+
+<test-fixture id="test">
+  <template>
+    <alerts-controls state-path="test"></alerts-controls>
+  </template>
+</test-fixture>
+
+<script>
+'use strict';
+suite('alerts-controls', function() {
+  let originalFetch;
+  setup(() => {
+    originalFetch = window.fetch;
+    window.fetch = async(url, options) => {
+      return {
+        async json() {
+          return [{name: 'aaa', id: 42, modified: new Date()}];
+        }
+      };
+    };
+    fixture('test').dispatch(Redux.ENSURE('test'));
+  });
+  teardown(() => {
+    window.fetch = originalFetch;
+  });
+
+  // TODO load report names
+  // TODO changing anything should dispatch change events
+  // TODO recent bugs
+
+  test('ReportNames', async function() {
+    const controls = fixture('test');
+    controls.dispatch(Redux.UPDATE('test', cp.AlertsControls.buildState({})));
+    // this.timeout(1e6);await cp.timeout(9e5);
+  });
+});
+</script>
