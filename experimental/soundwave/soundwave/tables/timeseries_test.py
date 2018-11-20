@@ -83,6 +83,11 @@ class TestTimeSeries(unittest.TestCase):
       # Both DataFrame's should be equal, except the one we get out of the db
       # does not have an index defined.
       timeseries_in = timeseries_in.reset_index()
+      self.assertEqual(timeseries_in.columns, timeseries_out.columns)
+      for col in timeseries_in.columns:
+        check = timeseries_in[col].equals(timeseries_out[col])
+        print "%s: %s" % (col, check)
+        self.assertTrue(check)
       self.assertTrue(timeseries_in.equals(timeseries_out))
 
   def testGetTimeSeries_withSummaryMetric(self):
@@ -103,10 +108,11 @@ class TestTimeSeries(unittest.TestCase):
     with tables.DbSession(':memory:') as con:
       pandas_sqlite.InsertOrReplaceRecords(con, 'timeseries', timeseries_in)
       timeseries_out = tables.timeseries.GetTimeSeries(con, test_path)
-      print timeseries_out
       # Both DataFrame's should be equal, except the one we get out of the db
       # does not have an index defined.
       timeseries_in = timeseries_in.reset_index()
+      print timeseries_in.dtypes
+      print timeseries_out.dtypes
       self.assertTrue(timeseries_in.equals(timeseries_out))
 
   def testGetMostRecentPoint_success(self):
