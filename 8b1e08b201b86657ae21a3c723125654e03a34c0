@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6ff8c70b_0d2e4a05",
+        "filename": "dashboard/dashboard/spa/alerts-controls.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-20T20:43:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b0508f5_b84c2514",
+      "range": {
+        "startLine": 29,
+        "startChar": 7,
+        "endLine": 29,
+        "endChar": 24
+      },
+      "revId": "8b1e08b201b86657ae21a3c723125654e03a34c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dd273b8c_a4a971bb",
         "filename": "dashboard/dashboard/spa/alerts-controls.js",
         "patchSetId": 7
@@ -39,6 +63,24 @@
       "revId": "8b1e08b201b86657ae21a3c723125654e03a34c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c37ed15_2002a935",
+        "filename": "dashboard/dashboard/spa/alerts-controls.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-20T20:43:32Z",
+      "side": 1,
+      "message": "Oops, meant to move this function to alerts-section.",
+      "parentUuid": "dd273b8c_a4a971bb",
+      "revId": "8b1e08b201b86657ae21a3c723125654e03a34c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -62,6 +104,30 @@
       "revId": "8b1e08b201b86657ae21a3c723125654e03a34c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c271c56e_fd9bf802",
+        "filename": "dashboard/dashboard/spa/alerts-controls.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-20T20:43:32Z",
+      "side": 1,
+      "message": "renamed to just `json`",
+      "parentUuid": "c6a4c05a_8e6ebe89",
+      "range": {
+        "startLine": 267,
+        "startChar": 53,
+        "endLine": 267,
+        "endChar": 73
+      },
+      "revId": "8b1e08b201b86657ae21a3c723125654e03a34c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
