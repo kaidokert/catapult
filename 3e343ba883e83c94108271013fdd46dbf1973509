@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "850f567f_ccb94bf5",
+        "filename": "web_page_replay_go/src/webpagereplay/archive.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-11-21T17:29:14Z",
+      "side": 1,
+      "message": "can you do an early return here and avoid the large nested block?\n\n  if len(archiveReqs) \u003d\u003d 0 {\n    return nil, nil, ErrNotFound\n  } else if (len(archivedReqs) \u003d\u003d 1) {\n    ...\n  }\n  var bestMatch RequestMatch;\n  ...",
+      "revId": "3e343ba883e83c94108271013fdd46dbf1973509",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3eff8d13_06627de7",
+        "filename": "web_page_replay_go/src/webpagereplay/archive.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-11-21T17:29:14Z",
+      "side": 1,
+      "message": "Maybe introduce a helper method for setting these values?",
+      "revId": "3e343ba883e83c94108271013fdd46dbf1973509",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9b7aef4_a4a18ea3",
+        "filename": "web_page_replay_go/src/webpagereplay/archive.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-11-21T17:29:14Z",
+      "side": 1,
+      "message": "The \"reset\" in the commend and the increment here seem contradictory :P.\nHow about OpenNextSession or in a similar direction.",
+      "revId": "3e343ba883e83c94108271013fdd46dbf1973509",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ec53df5_e7363987",
+        "filename": "web_page_replay_go/src/webpagereplay/archive_test.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2018-11-21T17:29:14Z",
+      "side": 1,
+      "message": "Can\u0027t you move this into newArchive()?",
+      "revId": "3e343ba883e83c94108271013fdd46dbf1973509",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
