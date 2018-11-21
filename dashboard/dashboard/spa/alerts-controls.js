@@ -200,8 +200,19 @@ tr.exportTo('cp', () => {
       }));
     },
 
+    loadSheriffs: statePath => async(dispatch, getState) => {
+      const sheriffs = await new cp.SheriffsRequest().response;
+      dispatch({
+        type: AlertsSection.reducers.receiveSheriffs.name,
+        statePath,
+        sheriffs,
+      });
+      dispatch(cp.MenuInput.actions.focus(statePath + '.sheriff'));
+    },
+
     connected: statePath => async(dispatch, getState) => {
       AlertsControls.actions.loadReportNames(statePath)(dispatch, getState);
+      AlertsSection.actions.loadSheriffs(statePath)(dispatch, getState);
       dispatch({
         type: AlertsControls.reducers.receiveRecentlyModifiedBugs.name,
         statePath,
