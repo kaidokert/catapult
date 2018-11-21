@@ -142,7 +142,6 @@ tr.exportTo('cp', () => {
     hasTriagedExisting: options => false,
     hasIgnored: options => false,
     ignoredCount: options => 0,
-    isLoading: options => false,
     maxRevision: options => options.maxRevision || '',
     minRevision: options => options.minRevision || '',
     recentlyModifiedBugs: options => [],
@@ -151,10 +150,6 @@ tr.exportTo('cp', () => {
       options: [],
       selectedOptions: options.reports || [],
     }),
-    sectionId: options => 0,
-    selectedAlertPath: options => undefined,
-    selectedAlertsCount: options => 0,
-    selectedAlertsCount: options => 0,
     sheriff: options => cp.MenuInput.buildState({
       label: 'Sheriff',
       options: [],

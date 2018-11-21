@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+<script src="/bower_components/web-component-tester/browser.js"></script>
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/dashboard/spa/alerts-section.html">
+
+<test-fixture id="test">
+  <template>
+    <alerts-section state-path="test"></alerts-section>
+  </template>
+</test-fixture>
+
+<script>
+'use strict';
+suite('alerts-section', function() {
+  let originalFetch;
+  setup(() => {
+    originalFetch = window.fetch;
+    window.fetch = async(url, options) => {
+      if (url === '/api/report/names') {
+        return {
+          async json() {
+            return [{name: 'aaa', id: 42, modified: new Date()}];
+          }
+        };
+      }
+    };
+    localStorage.setItem('recentlyModifiedBugs', JSON.stringify([
+      {id: 42, summary: 'bbb'},
+    ]));
+    fixture('test').dispatch(Redux.CHAIN(
+        Redux.ENSURE('test'),
+        Redux.UPDATE('test', cp.AlertsControls.buildState({}))));
+  });
+  teardown(() => {
+    window.fetch = originalFetch;
+    localStorage.removeItem('recentlyModifiedBugs');
+  });
+
+  test('triageNew', async function() {
+    const section = fixture('test');
+    section.$.controls.dispatchEvent(new CustomEvent('sources', {
+      detail: {sources: [
+        {bug: 42},
+      ]},
+    }));
+    // select alerts
+    // open triage-new menu
+    // submit it
+    // assert fetch() called correctly
+    // assert alerts are removed from table
+    this.timeout(1e6);await cp.timeout(9e5);
+  });
+
+  test('triageExisting', async function() {
+    const section = fixture('test');
+    section.$.controls.dispatchEvent(new CustomEvent('sources', {
+      detail: {sources: [
+        {bug: 42},
+      ]},
+    }));
+    // select alerts
+    // open triage-existing menu
+    // submit it
+    // assert fetch() called correctly
+    // assert alerts are removed from table
+    this.timeout(1e6);await cp.timeout(9e5);
+  });
+
+  test('ignore', async function() {
+    const section = fixture('test');
+    section.$.controls.dispatchEvent(new CustomEvent('sources', {
+      detail: {sources: [
+        {bug: 42},
+      ]},
+    }));
+    // select alerts
+    // ignore them
+    // assert fetch() called correctly
+    // assert alerts are removed from table
+    this.timeout(1e6);await cp.timeout(9e5);
+  });
+
+  test('unassign', async function() {
+    const section = fixture('test');
+    section.$.controls.dispatchEvent(new CustomEvent('sources', {
+      detail: {sources: [
+        {bug: 42},
+      ]},
+    }));
+    // select alerts
+    // unassign them
+    // assert fetch() called correctly
+    // assert alerts are removed from table
+    this.timeout(1e6);await cp.timeout(9e5);
+  });
+});
+</script>
