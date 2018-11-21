@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a9eb0659_52c9c9a7",
+        "filename": "dashboard/dashboard/spa/alerts-controls.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2018-11-21T17:54:21Z",
+      "side": 1,
+      "message": "Sheriffs?",
+      "range": {
+        "startLine": 234,
+        "startChar": 16,
+        "endLine": 234,
+        "endChar": 23
+      },
+      "revId": "846ff618fa955cf1692ab42aec429e04a48fd1a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
