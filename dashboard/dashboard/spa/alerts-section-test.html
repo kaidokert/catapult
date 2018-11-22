@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+<script src="/bower_components/web-component-tester/browser.js"></script>
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/dashboard/spa/alerts-section.html">
+
+<test-fixture id="test">
+  <template>
+    <alerts-section state-path="test"></alerts-section>
+  </template>
+</test-fixture>
+
+<script>
+'use strict';
+suite('alerts-section', function() {
+  let originalFetch;
+  setup(() => {
+    originalFetch = window.fetch;
+    window.fetch = async(url, options) => {
+      if (url === '/api/report/names') {
+        return {
+          async json() {
+            return [{name: 'aaa', id: 42, modified: new Date()}];
+          }
+        };
+      }
+      if (url === '/api/alerts') {
+        return {
+          async json() {
+            const improvements = Boolean(options.body.get('improvements'));
+            const alerts = [];
+            const measurements = ['mmm0', 'mmm1', 'mmm2'];
+            const testCases = ['ccc0', 'ccc1', 'ccc2'];
+            for (let i = 0; i < 10; ++i) {
+              const revs = new tr.b.math.Range();
+              revs.addValue(parseInt(1e6 * Math.random()));
+              revs.addValue(parseInt(1e6 * Math.random()));
+              let bugId = undefined;
+              if (options.body.get('bug_id') !== '' && (Math.random() > 0.5)) {
+                if (Math.random() > 0.5) {
+                  bugId = -1;
+                } else {
+                  bugId = 123456;
+                }
+              }
+              alerts.push({
+                bot: 'bot' + (i % 3),
+                bug_components: [],
+                bug_id: bugId,
+                bug_labels: [],
+                descriptor: {
+                  bot: 'master:bot' + (i * 3),
+                  measurement: measurements[i % measurements.length],
+                  statistic: 'avg',
+                  testCase: testCases[i % testCases.length],
+                  testSuite: 'system_health.common_desktop',
+                },
+                end_revision: revs.max,
+                improvement: improvements && (Math.random() > 0.5),
+                key: tr.b.GUID.allocateSimple(),
+                master: 'master',
+                median_after_anomaly: 100 * Math.random(),
+                median_before_anomaly: 100 * Math.random(),
+                start_revision: revs.min,
+                test: (measurements[i % measurements.length] + '/' +
+                       testCases[i % testCases.length]),
+                units: measurements[i % measurements.length].startsWith(
+                    'memory') ? 'sizeInBytes' : 'ms',
+              });
+            }
+            alerts.sort((x, y) => x.start_revision - y.start_revision);
+            return {
+              anomalies: alerts,
+            };
+          }
+        };
+      }
+    };
+    localStorage.setItem('recentlyModifiedBugs', JSON.stringify([
+      {id: 42, summary: 'bbb'},
+    ]));
+    fixture('test').dispatch(Redux.CHAIN(
+        Redux.ENSURE('test'),
+        Redux.UPDATE('test', cp.AlertsControls.buildState({}))));
+  });
+  teardown(() => {
+    window.fetch = originalFetch;
+    localStorage.removeItem('recentlyModifiedBugs');
+  });
+
+  test('triageNew', async function() {
+    const section = fixture('test');
+    section.$.controls.dispatchEvent(new CustomEvent('sources', {
+      detail: {sources: [
+        {bug: 42},
+      ]},
+    }));
+    // select alerts
+    // open triage-new menu
+    // submit it
+    // assert fetch() called correctly
+    // assert alerts are removed from table
+    this.timeout(1e6);await cp.timeout(9e5);
+  });
+
+  test('triageExisting', async function() {
+    const section = fixture('test');
+    section.$.controls.dispatchEvent(new CustomEvent('sources', {
+      detail: {sources: [
+        {bug: 42},
+      ]},
+    }));
+    // select alerts
+    // open triage-existing menu
+    // submit it
+    // assert fetch() called correctly
+    // assert alerts are removed from table
+    this.timeout(1e6);await cp.timeout(9e5);
+  });
+
+  test('ignore', async function() {
+    const section = fixture('test');
+    section.$.controls.dispatchEvent(new CustomEvent('sources', {
+      detail: {sources: [
+        {bug: 42},
+      ]},
+    }));
+    // select alerts
+    // ignore them
+    // assert fetch() called correctly
+    // assert alerts are removed from table
+    this.timeout(1e6);await cp.timeout(9e5);
+  });
+
+  test('unassign', async function() {
+    const section = fixture('test');
+    section.$.controls.dispatchEvent(new CustomEvent('sources', {
+      detail: {sources: [
+        {bug: 42},
+      ]},
+    }));
+    // select alerts
+    // unassign them
+    // assert fetch() called correctly
+    // assert alerts are removed from table
+    this.timeout(1e6);await cp.timeout(9e5);
+  });
+});
+</script>
