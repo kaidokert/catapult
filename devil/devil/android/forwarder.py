@@ -5,10 +5,10 @@
 # pylint: disable=W0212
 
 import fcntl
-import inspect
 import logging
 import os
-import psutil
+
+import psutil  # pylint: disable=import-error
 
 from devil import base_error
 from devil import devil_env
@@ -28,10 +28,7 @@ DYNAMIC_DEVICE_PORT = 0
 
 def _GetProcessStartTime(pid):
   p = psutil.Process(pid)
-  if inspect.ismethod(p.create_time):
-    return p.create_time()
-  else:  # Process.create_time is a property in old versions of psutil.
-    return p.create_time
+  return p.create_time()
 
 
 def _LogMapFailureDiagnostics(device):
