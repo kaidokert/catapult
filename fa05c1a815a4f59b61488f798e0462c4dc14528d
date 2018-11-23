@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "36429b43_bb1e6520",
+        "filename": "experimental/soundwave/soundwave_examples/startup_timeseries.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2018-11-23T11:59:13Z",
+      "side": 1,
+      "message": "By the way, should this be ClankInternal?",
+      "range": {
+        "startLine": 5,
+        "startChar": 12,
+        "endLine": 5,
+        "endChar": 32
+      },
+      "revId": "fa05c1a815a4f59b61488f798e0462c4dc14528d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
