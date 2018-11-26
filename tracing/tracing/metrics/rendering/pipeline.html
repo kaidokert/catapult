@@ -176,6 +176,7 @@ tr.exportTo('tr.metrics.rendering', function() {
           'CompositorTasks run in the compositor.',
           summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
         });
+
     const submitToAggregate = histograms.createHistogram(
         'pipeline:frame_submission_to_display',
         tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
@@ -214,6 +215,7 @@ tr.exportTo('tr.metrics.rendering', function() {
           {breakdown: generateBreakdownForCompositorPipelineInClient_(flow)});
       receiptToRaster.addSample(averageRasterStartTime -
           flow.ReceiveBeginFrame.start);
+
       submitToAggregate.addSample(
           flow.SurfaceAggregation.end - flow.SubmitCompositorFrame.end,
           {breakdown: generateBreakdownForCompositorPipelineInService_(flow)});
