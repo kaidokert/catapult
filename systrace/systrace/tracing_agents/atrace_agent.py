@@ -241,19 +241,24 @@ class AtraceAgent(tracing_agents.TracingAgent):
   def _stop_collect_trace(self):
     """Stops atrace.
 
-    Note that prior to Api 23, --async-stop may not actually stop tracing.
-    Thus, this uses a fallback method of running a zero-length synchronous
-    trace if tracing is still on."""
-    result = self._device_utils.RunShellCommand(
-        self._tracer_args + ['--async_stop'], raw_output=True,
-        large_output=True, check_return=True, timeout=ADB_LARGE_OUTPUT_TIMEOUT)
-    is_trace_enabled_file = '/sys/kernel/debug/tracing/tracing_on'
-
+    Note that prior to Api 23, --async-stop isn't working correctly. It
+    doesn't stop tracing and clears trace buffer before dumping it rendering
+    results unusable. On such devices an alternative method is used: first,
+    trace data is gathered with --async_dump command; then synchronous tracing
+    is started for 0 seconds to actually stop tracing."""
     if self._device_sdk_version < version_codes.MARSHMALLOW:
-      if int(self._device_utils.ReadFile(is_trace_enabled_file)):
-        # tracing was incorrectly left on, disable it
-        self._device_utils.RunShellCommand(
-            self._tracer_args + ['-t 0'], check_return=True)
+      result = self._device_utils.RunShellCommand(
+          self._tracer_args + ['--async_dump'], raw_output=True,
+          large_output=True, check_return=True,
+          timeout=ADB_LARGE_OUTPUT_TIMEOUT)
+      self._device_utils.RunShellCommand(
+          self._tracer_args + ['-t 0'], check_return=True)
+    else:
+      # On M+ --async_stop does everything necessary
+      result = self._device_utils.RunShellCommand(
+          self._tracer_args + ['--async_stop'], raw_output=True,
+          large_output=True, check_return=True,
+          timeout=ADB_LARGE_OUTPUT_TIMEOUT)
 
     return result
 
