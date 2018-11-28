@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d747ad55_18da7dc3",
+        "filename": "dashboard/dashboard/spa/alerts-controls.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2018-11-28T00:43:32Z",
+      "side": 1,
+      "message": "camelCase here and elsewhere?",
+      "range": {
+        "startLine": 260,
+        "startChar": 6,
+        "endLine": 260,
+        "endChar": 22
+      },
+      "revId": "598fbf1a82a9fc932be093284160a60e06fb0240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "936b9a9c_0174a39e",
+        "filename": "dashboard/dashboard/spa/alerts-section.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2018-11-28T00:43:32Z",
+      "side": 1,
+      "message": "and then what happens after the signin flow finishes? Do they have to retry the action to get the new bug dialog?",
+      "range": {
+        "startLine": 41,
+        "startChar": 1,
+        "endLine": 42,
+        "endChar": 14
+      },
+      "revId": "598fbf1a82a9fc932be093284160a60e06fb0240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "926fe325_71300f97",
+        "filename": "dashboard/dashboard/spa/alerts-section.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2018-11-28T00:43:32Z",
+      "side": 1,
+      "message": "is this worth refactoring into a method, since it happens twice?",
+      "revId": "598fbf1a82a9fc932be093284160a60e06fb0240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69a67fb5_85883a00",
+        "filename": "dashboard/dashboard/spa/alerts-section.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2018-11-28T00:43:32Z",
+      "side": 1,
+      "message": "what is this timeout for?",
+      "revId": "598fbf1a82a9fc932be093284160a60e06fb0240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf28fef9_9a4727a4",
+        "filename": "dashboard/dashboard/spa/alerts-section.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2018-11-28T00:43:32Z",
+      "side": 1,
+      "message": "Interesting - does the absence of bug, master, test case etc convey useful information for sheriffs?",
+      "revId": "598fbf1a82a9fc932be093284160a60e06fb0240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
