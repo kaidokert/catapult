@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4d9a4b5b_0aee9a44",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-11-28T02:28:43Z",
+      "side": 1,
+      "message": "Ultimately we\u0027ll want to add a parse_simple_list() method as well to support filter files.",
+      "revId": "d6254b777d66d1d60b77e2efab720dc630430f96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
