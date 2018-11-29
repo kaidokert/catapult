@@ -5,7 +5,13 @@ Use of this source code is governed by a BSD-style license that can be
 found in the LICENSE file.
 -->
 
-<link rel="import" href="/components/google-signin/google-signin.html">
+<script>
+'use strict';
+window.AUTH_CLIENT_ID =
+  '62121018386-aqdfougp0ddn93knqj6g79vvn42ajmrg.apps.googleusercontent.com';
+</script>
+<script src="./chops-signin.js"></script>
+
 <link rel="import" href="/components/iron-icons/iron-icons.html">
 <link rel="import" href="/components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="/components/paper-tooltip/paper-tooltip.html">
@@ -31,11 +37,6 @@ found in the LICENSE file.
       a:hover {
         color: white;
       }
-
-      google-signin {
-        margin: 0;
-        padding: 8px;
-      }
     </style>
 
     <nav id="navbar">
@@ -51,12 +52,7 @@ found in the LICENSE file.
         <paper-icon-button icon="feedback"></paper-icon-button>
         <paper-tooltip>File a bug</paper-tooltip>
       </a>
-      <google-signin
-          client-id="62121018386-aqdfougp0ddn93knqj6g79vvn42ajmrg.apps.googleusercontent.com"
-          height="short" theme="dark"
-          scopes="email"
-          on-google-signin-success="handleSignIn"
-          on-google-signed-out="handleSignOut"></google-signin>
+      <chops-signin></chops-signin>
     </nav>
   </template>
 
@@ -73,18 +69,12 @@ found in the LICENSE file.
         }
       },
 
-      handleSignIn() {
-        const user = gapi.auth2.getAuthInstance().currentUser.get();
-        const tokenType = user.getAuthResponse().token_type;
-        const accessToken = user.getAuthResponse().access_token;
-
-        this.authHeaders = {
-          Authorization: tokenType + ' ' + accessToken
-        };
+      ready() {
+        window.addEventListener('user-update', this.onUserUpdate.bind(this));
       },
 
-      handleSignOut() {
-        this.authHeaders = null;
+      async onUserUpdate() {
+        this.authHeaders = await window.getAuthorizationHeaders();
       },
     });
   </script>
