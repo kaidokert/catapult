@@ -232,7 +232,7 @@ class _TestConditionAndroidSvelte(_TestCondition):
     return 'Android Svelte'
 
 
-class _TestConditionByAndroidModel(_TestCondition):
+class _TestConditionByAndroidModelContains(_TestCondition):
   def __init__(self, model, name=None):
     self._model = model
     self._name = name if name else model
@@ -240,6 +240,18 @@ class _TestConditionByAndroidModel(_TestCondition):
   def ShouldDisable(self, platform, finder_options):
     return (platform.GetOSName() == 'android' and
             self._model in platform.GetDeviceTypeName())
+
+  def __str__(self):
+    return self._name
+
+class _TestConditionByAndroidModelExact(_TestCondition):
+  def __init__(self, model, name=None):
+    self._model = model
+    self._name = name if name else model
+
+  def ShouldDisable(self, platform, finder_options):
+    return (platform.GetOSName() == 'android' and
+            self._model == platform.GetDeviceTypeName())
 
   def __str__(self):
     return self._name
@@ -326,23 +338,23 @@ ALL_ANDROID = _TestConditionByPlatformList(['android'], 'Android')
 ALL_DESKTOP = _TestConditionByPlatformList(
     ['mac', 'linux', 'win', 'chromeos'], 'Desktop')
 ALL_MOBILE = _TestConditionByPlatformList(['android'], 'Mobile')
-ANDROID_NEXUS5 = _TestConditionByAndroidModel('Nexus 5')
-_ANDROID_NEXUS5X = _TestConditionByAndroidModel('Nexus 5X')
-_ANDROID_NEXUS5XAOSP = _TestConditionByAndroidModel('AOSP on BullHead')
+ANDROID_NEXUS5 = _TestConditionByAndroidModelExact('Nexus 5')
+_ANDROID_NEXUS5X = _TestConditionByAndroidModelExact('Nexus 5X')
+_ANDROID_NEXUS5XAOSP = _TestConditionByAndroidModelContains('AOSP on BullHead')
 ANDROID_NEXUS5X = _TestConditionLogicalOrConditions(
     [_ANDROID_NEXUS5X, _ANDROID_NEXUS5XAOSP], 'Nexus 5X')
-_ANDROID_NEXUS6 = _TestConditionByAndroidModel('Nexus 6')
-_ANDROID_NEXUS6AOSP = _TestConditionByAndroidModel('AOSP on Shamu')
+_ANDROID_NEXUS6 = _TestConditionByAndroidModelExact('Nexus 6')
+_ANDROID_NEXUS6AOSP = _TestConditionByAndroidModelContains('AOSP on Shamu')
 ANDROID_NEXUS6 = _TestConditionLogicalOrConditions(
     [_ANDROID_NEXUS6, _ANDROID_NEXUS6AOSP], 'Nexus 6')
-ANDROID_NEXUS6P = _TestConditionByAndroidModel('Nexus 6P')
-ANDROID_NEXUS7 = _TestConditionByAndroidModel('Nexus 7')
-ANDROID_GO = _TestConditionByAndroidModel('gobo', 'Android Go')
-ANDROID_ONE = _TestConditionByAndroidModel('W6210', 'Android One')
+ANDROID_NEXUS6P = _TestConditionByAndroidModelExact('Nexus 6P')
+ANDROID_NEXUS7 = _TestConditionByAndroidModelExact('Nexus 7')
+ANDROID_GO = _TestConditionByAndroidModelExact('gobo', 'Android Go')
+ANDROID_ONE = _TestConditionByAndroidModelExact('W6210', 'Android One')
 ANDROID_SVELTE = _TestConditionAndroidSvelte()
 ANDROID_LOW_END = _TestConditionLogicalOrConditions(
     [ANDROID_GO, ANDROID_SVELTE, ANDROID_ONE], 'Android Low End')
-ANDROID_PIXEL2 = _TestConditionByAndroidModel('Pixel 2')
+ANDROID_PIXEL2 = _TestConditionByAndroidModelExact('Pixel 2')
 ANDROID_WEBVIEW = _TestConditionAndroidWebview()
 ANDROID_NOT_WEBVIEW = _TestConditionAndroidNotWebview()
 # MAC_10_11 Includes:
