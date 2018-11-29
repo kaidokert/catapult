@@ -33,6 +33,24 @@
       "revId": "d6254b777d66d1d60b77e2efab720dc630430f96",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b12ab3e_77ac8e48",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-11-29T23:40:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "805a90d9_b9904b79",
+      "revId": "d6254b777d66d1d60b77e2efab720dc630430f96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
