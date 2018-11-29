@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0977711b_24576486",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2018-11-29T17:00:56Z",
+      "side": 1,
+      "message": "Another way to do this would be to add a flag like \u0027--print-only\u0027 or something like that to story_runner.py and then you could do something like this\n\n./tools/perf/run_benchmark media.desktop --browser\u003dsystem --story-tag-filter\u003dh264 --print-only\n\nand then get output with all the tags in in\n\nthis would be easier for users since my workflow would end up being to always use the --print-only flag before running the benchmark for real so that I could be sure about what I am running.\n\nWDYT?",
+      "range": {
+        "startLine": 17,
+        "startChar": 31,
+        "endLine": 17,
+        "endChar": 35
+      },
+      "revId": "88e636388db41162543acb184b11f83114081ae1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3aa8a77_5aef5938",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2018-11-29T17:00:56Z",
+      "side": 1,
+      "message": "please update args",
+      "range": {
+        "startLine": 128,
+        "startChar": 4,
+        "endLine": 131,
+        "endChar": 17
+      },
+      "revId": "88e636388db41162543acb184b11f83114081ae1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3331b7b_7f56a3dc",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2018-11-29T17:00:56Z",
+      "side": 1,
+      "message": "I\u0027m wondering if the options could match those in story_filter: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/story/story_filter.py?l\u003d45",
+      "range": {
+        "startLine": 227,
+        "startChar": 23,
+        "endLine": 227,
+        "endChar": 57
+      },
+      "revId": "88e636388db41162543acb184b11f83114081ae1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
