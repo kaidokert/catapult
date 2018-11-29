@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "7a8d6eae_b52353e8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2018-11-29T18:16:01Z",
+      "side": 1,
+      "message": "Yeah, something like that. That was just an idea though.\n\nI guess my main concern is that listing tags and such should be user-friendly and the code should be shared. it\u0027s strange that the user has multiple ways of filtering depending on whether they use the list command or the run command. the \"list\" command isn\u0027t very discoverable. I actually didn\u0027t know about it until now.\n\nI think you can feel free to land this CL as is. I am still catching up on this so that I can provide useful recommendations here.",
+      "parentUuid": "72884dcd_585f0b84",
+      "range": {
+        "startLine": 17,
+        "startChar": 31,
+        "endLine": 17,
+        "endChar": 35
+      },
+      "revId": "88e636388db41162543acb184b11f83114081ae1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b3aa8a77_5aef5938",
         "filename": "telemetry/telemetry/benchmark_runner.py",
         "patchSetId": 1
