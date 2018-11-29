@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "72884dcd_585f0b84",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-11-29T18:07:14Z",
+      "side": 1,
+      "message": "Interesting. So I guess you are suggesting this moves under the \u0027run\u0027 command instead of list? I still often want to see the list of tags, so there would be:\n\n  --print-only\u003d[stories|tags|both]\n\n\u0027stories\u0027 prints the names of the stories.\n\u0027tags\u0027 prints the name of the tags, without the stories.\n\u0027both\u0027 prints the name of the stories and their tags.",
+      "parentUuid": "0977711b_24576486",
+      "range": {
+        "startLine": 17,
+        "startChar": 31,
+        "endLine": 17,
+        "endChar": 35
+      },
+      "revId": "88e636388db41162543acb184b11f83114081ae1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b3aa8a77_5aef5938",
         "filename": "telemetry/telemetry/benchmark_runner.py",
         "patchSetId": 1
