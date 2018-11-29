@@ -45,7 +45,7 @@ found in the LICENSE file.
  * Average number of frames, ignoring short frames, per second during
  * animations.
  *
- * jank_count (Android only)
+ * jank_count
  * =========================
  * The number of times that frame lengths are increased, during animations. For
  * example, if frame lengths are 1, 1, 1, 2, 3, 1, 1 vsyncs, then jank_count
@@ -155,19 +155,6 @@ tr.exportTo('tr.metrics.rendering', function() {
         { description: 'Average frames per second.',
           summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
         });
-
-    let jankCount = 0;
-    for (let i = 1; i < frameLengths.length; i++) {
-      const change = Math.round(frameLengths[i] - frameLengths[i - 1]);
-      if (change > 0 && change < PAUSE_THRESHOLD) jankCount++;
-    }
-    histograms.createHistogram(
-        'jank_count',
-        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
-        jankCount,
-        { description: 'Number of changes in frame rate.',
-          summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
-        });
   }
 
   function computeFrameSegments_(timestamps, segments) {
@@ -248,9 +235,12 @@ tr.exportTo('tr.metrics.rendering', function() {
         addSurfaceFlingerHistograms_(
             histograms, frameSegments,
             metadata.value.surface_flinger.refresh_period);
+        addJankCountHistograms(histograms, frameSegments,
+            metadata.value.surface_flinger.refresh_period);
         return;
       }
     }
+    addJankCountHistograms(histograms, frameSegments, 17);
   }
 
   function addUIFrameTimeHistograms(histograms, model, segments) {
@@ -262,6 +252,25 @@ tr.exportTo('tr.metrics.rendering', function() {
     const timestamps = events.map(event => [event.start, event.start]);
     const frameSements = computeFrameSegments_(timestamps, segments);
     addBasicFrameTimeHistograms_(histograms, frameSements, 'ui_');
+  }
+
+  function addJankCountHistograms(histograms, frameSegments, refreshPeriod) {
+    let frameLengths = frameSegments.map(x => x.duration / refreshPeriod);
+    frameLengths = frameLengths.filter(length => length >= MIN_FRAME_LENGTH);
+
+    let jankCount = 0;
+    for (let i = 1; i < frameLengths.length; i++) {
+      const change = Math.round(frameLengths[i] - frameLengths[i - 1]);
+      if (change > 0 && change < PAUSE_THRESHOLD) jankCount++;
+    }
+
+    histograms.createHistogram(
+        'jank_count',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        jankCount,
+        { description: 'Number of changes in frame rate.',
+          summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
+        });
   }
 
   return {
