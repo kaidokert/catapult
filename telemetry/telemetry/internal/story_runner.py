@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 
 import contextlib
+import itertools
 import logging
 import optparse
 import os
@@ -77,6 +78,8 @@ def AddCommandLineArgs(parser):
                     dest='run_disabled_tests',
                     action='store_true', default=False,
                     help='Ignore expectations.config disabling.')
+  parser.add_option('-p', '--print-only', dest='print_only',
+                    type=str, default=None)
 
 def ProcessCommandLineArgs(parser, args):
   story_module.StoryFilter.ProcessCommandLineArgs(parser, args)
@@ -84,6 +87,9 @@ def ProcessCommandLineArgs(parser, args):
 
   if args.pageset_repeat < 1:
     parser.error('--pageset-repeat must be a positive integer.')
+
+  if args.print_only and args.print_only not in ['stories', 'tags', 'both']:
+    parser.error('--print-only must be one of "stories", "tags", "both"')
 
 
 def _GenerateTagMapFromStorySet(stories):
@@ -202,6 +208,20 @@ def Run(test, story_set, finder_options, results, max_failures=None,
       return
 
   if not stories:
+    return
+
+  if finder_options.print_only:
+    if finder_options.print_only == 'tags':
+      tags = set(itertools.chain.from_iterable(s.tags for s in stories))
+      print 'List of tags:\n%s' % '\n'.join(tags)
+      return
+    include_tags = finder_options.print_only == 'both'
+    if include_tags:
+      format_string = '  %%-%ds %%s' % max(len(s.name) for s in stories)
+    else:
+      format_string = '%s%s'
+    for s in stories:
+      print format_string % (s.name, ','.join(s.tags) if include_tags else '')
     return
 
   # Effective max failures gives priority to command-line flag value.
