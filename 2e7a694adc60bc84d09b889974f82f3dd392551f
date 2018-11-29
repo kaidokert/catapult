@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "95e163d9_d5838777",
+        "filename": "dashboard/dashboard/spa/timeseries-cache-request.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-29T23:54:37Z",
+      "side": 1,
+      "message": "Added comments, ptal?",
+      "parentUuid": "4f546287_c9b1511b",
+      "revId": "2e7a694adc60bc84d09b889974f82f3dd392551f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1ed742be_561aff8b",
         "filename": "dashboard/dashboard/spa/timeseries-cache-request.js",
         "patchSetId": 8
@@ -30,6 +48,30 @@
       "writtenOn": "2018-11-09T18:53:23Z",
       "side": 1,
       "message": "keyFn or keyOf might be a clearer name",
+      "range": {
+        "startLine": 46,
+        "startChar": 25,
+        "endLine": 46,
+        "endChar": 30
+      },
+      "revId": "2e7a694adc60bc84d09b889974f82f3dd392551f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c89d362_e3053d46",
+        "filename": "dashboard/dashboard/spa/timeseries-cache-request.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-29T23:54:37Z",
+      "side": 1,
+      "message": "This was copied from tracing, but I renamed it to getKey.",
+      "parentUuid": "1ed742be_561aff8b",
       "range": {
         "startLine": 46,
         "startChar": 25,
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "022b46cd_a82ab5cc",
+        "filename": "dashboard/dashboard/spa/timeseries-cache-request.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-29T23:54:37Z",
+      "side": 1,
+      "message": "Sorry, I\u0027m confused. Can you elaborate?",
+      "parentUuid": "c023f3d4_c5539558",
+      "revId": "2e7a694adc60bc84d09b889974f82f3dd392551f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "82d90063_7dce6b93",
         "filename": "dashboard/dashboard/spa/timeseries-cache-request.js",
         "patchSetId": 8
@@ -70,6 +130,24 @@
       "writtenOn": "2018-11-09T18:53:23Z",
       "side": 1,
       "message": "under what conditions would this happen? There is one database per {testSuite, measurement, bot, testCase, buildType}, but findInProgressRequest looks at all of them?",
+      "revId": "2e7a694adc60bc84d09b889974f82f3dd392551f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d3227f4_0560f458",
+        "filename": "dashboard/dashboard/spa/timeseries-cache-request.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-11-29T23:54:37Z",
+      "side": 1,
+      "message": "Yes, findInProgressRequest calls this callback for all instances of subclasses of CacheRequestBase with the same request url pathname. service-worker.js maps from pathname to subclass, so this callback is effectively called for all TimeseriesCacheRequest instances.",
+      "parentUuid": "82d90063_7dce6b93",
       "revId": "2e7a694adc60bc84d09b889974f82f3dd392551f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
