@@ -84,9 +84,25 @@ def _GetStoriesWithTags(b):
   return sorted(stories_info)
 
 
+def _PrintBenchmarkStories(output_pipe, bench, tag_filter, print_tags):
+  print >> output_pipe, '    List of stories%s:' % (
+      ' for tag "%s"' % tag_filter if tag_filter else '')
+  if bench['stories']:
+    if print_tags:
+      story_format = '      %%-%ds %%s' % max(len(s['name'])
+                                              for s in bench['stories'])
+    else:
+      story_format = '      %s %s'
+    for s in bench['stories']:
+      print >> output_pipe, story_format % (
+          s['name'], ','.join(s['tags']) if print_tags else '')
+  else:
+    print >> output_pipe, '      None'
+
+
 def PrintBenchmarkList(
     benchmarks, possible_browser, expectations_file, output_pipe=sys.stdout,
-    json_pipe=None):
+    json_pipe=None, tag_filter=None, print_stories=False, print_tags=False):
   """ Print benchmarks that are not filtered in the same order of benchmarks in
   the |benchmarks| list.
 
@@ -131,7 +147,10 @@ def PrintBenchmarkList(
     benchmark_info['enabled'] = (
         not possible_browser or
         _IsBenchmarkEnabled(b, possible_browser, expectations_file))
-    benchmark_info['stories'] = _GetStoriesWithTags(b)
+    stories = _GetStoriesWithTags(b)
+    if tag_filter:
+      stories = [s for s in stories if tag_filter in s['tags']]
+    benchmark_info['stories'] = stories
     all_benchmark_info.append(benchmark_info)
 
   # Align the benchmark names to the longest one.
@@ -147,6 +166,8 @@ def PrintBenchmarkList(
         'for %s ' % possible_browser.browser_type if possible_browser else '')
     for b in enabled:
       print >> output_pipe, format_string % (b['name'], b['description'])
+      if print_stories:
+        _PrintBenchmarkStories(output_pipe, b, tag_filter, print_tags)
 
   disabled = [b for b in all_benchmark_info if not b['enabled']]
   if disabled:
@@ -155,6 +176,8 @@ def PrintBenchmarkList(
         possible_browser.browser_type)
     for b in disabled:
       print >> output_pipe, format_string % (b['name'], b['description'])
+      if print_stories:
+        _PrintBenchmarkStories(output_pipe, b, tag_filter, print_tags)
 
   print >> output_pipe, (
       'Pass --browser to list benchmarks for another browser.\n')
@@ -201,6 +224,12 @@ class List(command_line.OptparseCommand):
   def AddCommandLineArgs(cls, parser, _):
     parser.add_option('--json', action='store', dest='json_filename',
                       help='Output the list in JSON')
+    parser.add_option('-f', '--filter', dest='tag_filter',
+                      help='Only print for the listed tag')
+    parser.add_option('-s', '--stories', action='store_true', dest='stories',
+                      default=False, help='Output the list in JSON')
+    parser.add_option('-t', dest='print_tags', action='store_true',
+                      default=False, help=('Print the story tags'))
 
   @classmethod
   def CreateParser(cls):
@@ -217,6 +246,9 @@ class List(command_line.OptparseCommand):
           args.positional_args[0], environment, exact_matches=False)
     else:
       parser.error('Must provide at most one benchmark name.')
+    if not args.stories:
+      args.tag_filter = None
+      args.print_tags = False
     cls._expectations_file = environment.expectations_file
 
   def Run(self, args):
@@ -229,10 +261,16 @@ class List(command_line.OptparseCommand):
       with open(args.json_filename, 'w') as json_out:
         PrintBenchmarkList(args.benchmarks, possible_browser,
                            self._expectations_file,
-                           json_pipe=json_out)
+                           json_pipe=json_out,
+                           tag_filter=args.tag_filter,
+                           print_stories=args.stories,
+                           print_tags=args.print_tags)
     else:
       PrintBenchmarkList(args.benchmarks, possible_browser,
-                         self._expectations_file)
+                         self._expectations_file,
+                         tag_filter=args.tag_filter,
+                         print_stories=args.stories,
+                         print_tags=args.print_tags)
     return 0
 
 
