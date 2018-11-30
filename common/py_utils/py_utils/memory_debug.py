@@ -7,10 +7,8 @@ import heapq
 import logging
 import os
 import sys
-try:
-  import psutil
-except ImportError:
-  psutil = None
+
+import psutil  # pylint: disable=import-error
 
 
 BYTE_UNITS = ['B', 'KiB', 'MiB', 'GiB']
@@ -42,19 +40,6 @@ def _LogProcessInfo(pinfo, level):
 
 
 def LogHostMemoryUsage(top_n=10, level=logging.INFO):
-  if not psutil:
-    logging.warning('psutil module is not found, skipping logging memory info')
-    return
-  if psutil.version_info < (2, 0):
-    logging.warning('psutil %s too old, upgrade to version 2.0 or higher'
-                    ' for memory usage information.', psutil.__version__)
-    return
-
-  # TODO(crbug.com/777865): Remove the following pylint disable. Even if we
-  # check for a recent enough psutil version above, the catapult presubmit
-  # builder (still running some old psutil) fails pylint checks due to API
-  # changes in psutil.
-  # pylint: disable=no-member
   mem = psutil.virtual_memory()
   logging.log(level, 'Used %s out of %s memory available.',
               FormatBytes(mem.used), FormatBytes(mem.total))
