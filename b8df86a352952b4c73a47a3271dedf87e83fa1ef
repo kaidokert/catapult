@@ -16,6 +16,24 @@
       "revId": "b8df86a352952b4c73a47a3271dedf87e83fa1ef",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d876809_cc2d7969",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-11-30T03:17:02Z",
+      "side": 1,
+      "message": "Good question, but that is the intended behavior (the longest match taking priority).\n\nThis allows you to do:\n\n[ Mac ] * [ Failure ]\n[ Mac ] foo.* [ Pass ]\n\nto say that everything is expected to fail on Mac except for the stuff you expect to pass. If you didn\u0027t short-circuit out, you\u0027d have to list everything not in foo explicitly.\n\n(This is also why we need more tests, to help make this clearer ...).",
+      "parentUuid": "3538c86b_fd1fc286",
+      "revId": "b8df86a352952b4c73a47a3271dedf87e83fa1ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
