@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "dab6101f_b648f989",
+        "filename": "dashboard/dashboard/spa/timeseries-cache-request.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2018-11-30T00:32:47Z",
+      "side": 1,
+      "message": "Thanks. LG",
+      "parentUuid": "95e163d9_d5838777",
+      "revId": "2e7a694adc60bc84d09b889974f82f3dd392551f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1ed742be_561aff8b",
         "filename": "dashboard/dashboard/spa/timeseries-cache-request.js",
         "patchSetId": 8
@@ -119,6 +137,24 @@
     },
     {
       "key": {
+        "uuid": "be74741a_041cdb94",
+        "filename": "dashboard/dashboard/spa/timeseries-cache-request.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2018-11-30T00:32:47Z",
+      "side": 1,
+      "message": "This is fine as-is, it just looks verbose.\n\nI wonder if this whole section of \"this.\u003cfoo\u003e \u003d options.\u003cfoo\u003e;\" assignments could be replaced by that Object.assign(...) call though.",
+      "parentUuid": "022b46cd_a82ab5cc",
+      "revId": "2e7a694adc60bc84d09b889974f82f3dd392551f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "82d90063_7dce6b93",
         "filename": "dashboard/dashboard/spa/timeseries-cache-request.js",
         "patchSetId": 8
@@ -151,6 +187,24 @@
       "revId": "2e7a694adc60bc84d09b889974f82f3dd392551f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39a6c9a3_9d16b881",
+        "filename": "dashboard/dashboard/spa/timeseries-cache-request.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2018-11-30T00:32:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4d3227f4_0560f458",
+      "revId": "2e7a694adc60bc84d09b889974f82f3dd392551f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
