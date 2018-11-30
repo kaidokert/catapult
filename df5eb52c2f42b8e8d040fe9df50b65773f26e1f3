@@ -46,6 +46,30 @@
       "revId": "df5eb52c2f42b8e8d040fe9df50b65773f26e1f3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a7fbfe1_7564e507",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1002882
+      },
+      "writtenOn": "2018-11-30T23:33:37Z",
+      "side": 1,
+      "message": "perf try jobs are hard. But each benchmark should have a name, maybe we could use some cache like\n  benchmark_name --\u003e Swarming task request\nJobs for waterfall alerts could keep updating this config, and try-job just uses that config?\n\nAlternatively, for perf try jobs, we could read the Swarming task request from the latest \u0026 completed build on the perf waterfall?",
+      "parentUuid": "c4b52f09_7a39031c",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 1
+      },
+      "revId": "df5eb52c2f42b8e8d040fe9df50b65773f26e1f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
