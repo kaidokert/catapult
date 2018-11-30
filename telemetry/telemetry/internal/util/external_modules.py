@@ -11,8 +11,7 @@ from distutils import version  # pylint: disable=no-name-in-module
 # and "2.4.13.2" (a version of OpenCV 2.x).
 MODULES = {
     'cv2': (version.LooseVersion('2.4.8'), version.LooseVersion('3.0.0')),
-    'numpy': (version.LooseVersion('1.8.0'), version.LooseVersion('1.12.0')),
-    'psutil': (version.LooseVersion('0.5.0'), None),
+    'numpy': (version.LooseVersion('1.8.0'), version.LooseVersion('1.12.0'))
 }
 
 def ImportRequiredModule(module):
