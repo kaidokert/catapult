@@ -34,6 +34,24 @@
       "revId": "b8df86a352952b4c73a47a3271dedf87e83fa1ef",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1cf5885f_ef727885",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-11-30T16:15:52Z",
+      "side": 1,
+      "message": "Ah, that makes sense.",
+      "parentUuid": "0d876809_cc2d7969",
+      "revId": "b8df86a352952b4c73a47a3271dedf87e83fa1ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
