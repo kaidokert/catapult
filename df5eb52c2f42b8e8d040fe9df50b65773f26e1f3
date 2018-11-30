@@ -22,6 +22,30 @@
       "revId": "df5eb52c2f42b8e8d040fe9df50b65773f26e1f3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4b52f09_7a39031c",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-11-30T22:55:40Z",
+      "side": 1,
+      "message": "I think it\u0027s possible to do this in the future for bisects (perf dashboard can pass in the build info to Pinpoint) but it\u0027s not clear how we would do this for perf try jobs, which aren\u0027t tied to a waterfall build.",
+      "parentUuid": "be402891_5213c9c9",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 1
+      },
+      "revId": "df5eb52c2f42b8e8d040fe9df50b65773f26e1f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
