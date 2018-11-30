@@ -3,9 +3,13 @@
 # found in the LICENSE file.
 
 import collections
-import inspect
 import logging
 import os
+
+import psutil  # pylint: disable=import-error
+
+from distutils import version  # pylint: disable=no-name-in-module
+assert version.LooseVersion(psutil.__version__) >= version.LooseVersion('2.0')
 
 from py_utils import atexit_with_log
 
@@ -53,35 +57,16 @@ def GetPsOutputWithPlatformBackend(platform_backend, columns, pid):
 
 
 def ListAllSubprocesses():
-  try:
-    import psutil
-  except ImportError:
-    logging.warning(
-        'psutil is not installed on the system. Not listing possible '
-        'leaked processes. To install psutil, see: '
-        'https://pypi.python.org/pypi/psutil')
-    return
   telemetry_pid = os.getpid()
   parent = psutil.Process(telemetry_pid)
-  if hasattr(parent, 'children'):
-    children = parent.children(recursive=True)
-  else:  # Some old version of psutil use get_children instead children.
-    children = parent.get_children()
+  children = parent.children(recursive=True)
 
   if children:
     processes_info = []
     for p in children:
-      if inspect.ismethod(p.name):
-        name = p.name()
-      else:  # Process.name is a property in old versions of psutil.
-        name = p.name
-      process_info = '%s (%s)' % (name, p.pid)
+      process_info = '%s (%s)' % (p.name(), p.pid)
       try:
-        if inspect.ismethod(p.cmdline):
-          cmdline = p.cmdline()
-        else:
-          cmdline = p.cmdline
-        process_info += ' - %s' % cmdline
+        process_info += ' - %s' % p.cmdline()
       except Exception as e: # pylint: disable=broad-except
         logging.warning(str(e))
       processes_info.append(process_info)

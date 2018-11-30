@@ -9,6 +9,11 @@ import re
 import subprocess
 import tempfile
 
+import psutil  # pylint: disable=import-error
+
+from distutils import version  # pylint: disable=no-name-in-module
+assert version.LooseVersion(psutil.__version__) >= version.LooseVersion('2.0')
+
 from telemetry.core import android_platform
 from telemetry.core import exceptions
 from telemetry.core import util
@@ -24,7 +29,6 @@ from telemetry.internal.platform.power_monitor import (
     android_power_monitor_controller)
 from telemetry.internal.platform.power_monitor import sysfs_power_monitor
 from telemetry.internal.util import binary_manager
-from telemetry.internal.util import external_modules
 
 from devil.android import app_ui
 from devil.android import battery_utils
@@ -49,7 +53,6 @@ try:
 except Exception: # pylint: disable=broad-except
   surface_stats_collector = None
 
-psutil = external_modules.ImportOptionalModule('psutil')
 
 _ARCH_TO_STACK_TOOL_ARCH = {
     'armeabi-v7a': 'arm',
@@ -728,16 +731,12 @@ def _FixPossibleAdbInstability():
 
   The adb server has a race which is mitigated by binding to a single core.
   """
-  if not psutil:
+  if not psutil:  # Some tests use unset psutil to disable this method.
     return
   for process in psutil.process_iter():
     try:
-      if psutil.version_info >= (2, 0):
-        if 'adb' in process.name():
-          process.cpu_affinity([0])
-      else:
-        if 'adb' in process.name:
-          process.set_cpu_affinity([0])
+      if 'adb' in process.name():
+        process.cpu_affinity([0])
     except (psutil.NoSuchProcess, psutil.AccessDenied):
       logging.warn('Failed to set adb process CPU affinity')
 
