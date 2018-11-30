@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3538c86b_fd1fc286",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-11-30T03:11:30Z",
+      "side": 1,
+      "message": "Hmhh, should we add this check after the for loop in 248 so that the results is the combination of all matched glob expectations?\n\nOtherwise, I worry that deleting one glob expectation line from an expectation file can make a test matched with the next glob, which is a bit unexpected.",
+      "revId": "b8df86a352952b4c73a47a3271dedf87e83fa1ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
