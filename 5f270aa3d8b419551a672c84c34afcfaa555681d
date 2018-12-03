@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6a12733a_5bd037bc",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-12-03T23:55:12Z",
+      "side": 1,
+      "message": "Nit: this should just be `if intersection:`.",
+      "revId": "5f270aa3d8b419551a672c84c34afcfaa555681d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08a21c65_a6f85b9b",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-12-03T23:55:12Z",
+      "side": 1,
+      "message": "Nit: use spaces around the \u0027%\u0027. Also, the message will be weird if there\u0027s more than one duplicate tag.",
+      "revId": "5f270aa3d8b419551a672c84c34afcfaa555681d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f35c18e7_7969c217",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-12-03T23:55:12Z",
+      "side": 1,
+      "message": "Nit: use spaces after \u0027tg:\u0027.",
+      "revId": "5f270aa3d8b419551a672c84c34afcfaa555681d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6cd0e20_901d860c",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-12-03T23:55:12Z",
+      "side": 1,
+      "message": "spaces here, also.",
+      "revId": "5f270aa3d8b419551a672c84c34afcfaa555681d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67af8c5f_576b5e6e",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-12-03T23:55:12Z",
+      "side": 1,
+      "message": "Given that you list the actual conflicts below, I wouldn\u0027t repeat the raw_tag_list in this message.",
+      "revId": "5f270aa3d8b419551a672c84c34afcfaa555681d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a01dbd6c_dd0140be",
+        "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-12-03T23:55:12Z",
+      "side": 1,
+      "message": "Nit: I\u0027d split raw_data over two lines to make it a bit easier to read.",
+      "revId": "5f270aa3d8b419551a672c84c34afcfaa555681d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "575f6e38_39bf017c",
+        "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-12-03T23:55:12Z",
+      "side": 1,
+      "message": "Seems like we\u0027d also want line 242 to be illegal ...",
+      "revId": "5f270aa3d8b419551a672c84c34afcfaa555681d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
