@@ -153,10 +153,8 @@ Polymer({
   setChartSize_(page) {
     const chart = this.charts_.get(page);
     const pageCount = chart.data.length;
-    chart.graphHeight = tr.b.math.clamp(pageCount * 20,
-        400, 600);
-    chart.graphWidth = tr.b.math.clamp(pageCount * 30,
-        200, 1000);
+    chart.graphHeight = tr.b.math.clamp(pageCount * 20, 400, 600);
+    chart.graphWidth = tr.b.math.clamp(pageCount * 100, 400, 1500);
   },
 
   // Assign color gradient to series in chart
