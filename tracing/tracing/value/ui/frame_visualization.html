@@ -23,13 +23,9 @@ found in the LICENSE file.
         font-size: 14px;
       }
 
-      #search {
+      #pageSelector {
         display: block;
-        padding-bottom: 10px;
-      }
-
-      #search_page {
-        width: 200px;
+        font-size: 12pt;
       }
 
       #close {
@@ -55,11 +51,9 @@ found in the LICENSE file.
       }
     </style>
     <div id="aggregateContainer">
-        <div id="search">
-          <input id="search_page" class="text_input" placeholder="Page Name">
-          <button id="search_button">Search</button>
-          <div id="search_error" class="error">Sorry, could not find that page!</div>
-        </div>
+      <select id="pageSelector">
+        <option value="">Select a page</option>
+      </select>
     </div>
     <div id="pageContainer">
       <span id="close">
@@ -77,46 +71,40 @@ found in the LICENSE file.
 Polymer({
   is: 'tr-v-ui-frame-visualization',
 
-  created() {
-    this.charts_ = new Map();
-  },
-
   ready() {
-    this.$.search_page.addEventListener ('keydown', (e) => {
-      if (e.key === 'Enter') this.searchByPage_();
-    });
-
-    this.$.search_button.addEventListener ('click', () => {
-      this.searchByPage_();
+    this.$.pageSelector.addEventListener ('click', () => {
+      this.selectPage_();
     });
   },
 
 
   build(chartData) {
-    this.data_ = chartData.data;
-    this.benchmarkCount_ = chartData.benchmarkCount;
+    this.data_ = chartData;
     const aggregateChart = this.createChart_('Aggregate');
     Polymer.dom(this.$.aggregateContainer).appendChild(aggregateChart);
-    this.charts_.set('aggregate', aggregateChart);
-    this.setChartColors_('aggregate');
-    this.setChartSize_('aggregate');
-    this.setChartData_('aggregate');
+    aggregateChart.enableToolTip = true;
+    aggregateChart.toolTipCallBack = (rect) =>
+      this.openBenchmarkChart_(rect);
+    this.setChartColors_(aggregateChart, this.data_.get('aggregate'));
+    this.setChartSize_(aggregateChart, this.data_.get('aggregate').length);
+    aggregateChart.data = this.data_.get('aggregate');
+
+    for (const page of this.data_.keys()) {
+      if (page === 'aggregate') continue;
+      const option = document.createElement('option');
+      option.textContent = page;
+      option.value = page;
+      this.$.pageSelector.appendChild(option);
+    }
   },
 
-  setChartData_(page) {
-    this.charts_.get(page).data = this.data_.get(page);
+  setChartSize_(chart, pageCount, dataLength) {
+    chart.graphHeight = tr.b.math.clamp(pageCount * 25, 175, 600);
+    chart.graphWidth = tr.b.math.clamp(Math.floor(pageCount / FRAME.length) *
+        25, 500, 1000);
   },
 
-  setChartSize_(page) {
-    const chart = this.charts_.get(page);
-    const pageCount = this.data_.get(page).length;
-    chart.graphHeight = tr.b.math.clamp(pageCount * this.benchmarkCount_ * 15,
-        175, 600);
-    chart.graphWidth = tr.b.math.clamp(this.benchmarkCount_ * 25,
-        500, 1000);
-  },
-
-  setChartColors_(page) {
+  setChartColors_(chart, data) {
     const metrics = new Map();
     let count = 0;
     for (const thread of FRAME.values()) {
@@ -125,9 +113,7 @@ Polymer({
         count++;
       }
     }
-    const chart = this.charts_.get(page);
-    const data = this.data_.get(page);
-    for (let i = 0; i < this.benchmarkCount_; ++i) {
+    for (let i = 0; i < Math.floor(data.length / FRAME.length); ++i) {
       let j = 0;
       for (const thread of FRAME.values()) {
         for (const metric of thread.keys()) {
@@ -159,25 +145,44 @@ Polymer({
     return newChart;
   },
 
-  searchByPage_() {
-    const criteria = this.$.search_page.value;
-    if (criteria === '') return;
-
-    const query = new RegExp(criteria);
-
-    const filteredData = [...this.data_.keys()]
-        .filter(page => page.match(query));
-
-    if (filteredData.length < 1) {
-      this.$.search_error.style.display = 'block';
-      return;
-    }
+  openBenchmarkChart_(rect) {
+    // Find main metric and corresponding sub-metrics
+    const benchmarkIndex = Math.floor(rect.index / FRAME.length);
+    const title = rect.datum.x.split('-')[0];
 
     // Create child chart with breakdown data
-    const page = filteredData[0];
-
     const div = document.createElement('div');
     div.classList.add('child_container');
+    Polymer.dom(this.$.pageContainer).
+        insertBefore(div, this.$.pageContainer.firstChild);
+
+    const chart = this.createChart_(title);
+
+    div.appendChild(chart);
+    const button = this.initializeCloseButton_(div, this.$.pageContainer);
+    div.appendChild(button);
+
+    const newDataSet = [];
+
+    for (const page of this.data_.keys()) {
+      if (page === 'aggregate') continue;
+      for (let i = 0; i < FRAME.length; i++) {
+        newDataSet.push(this.data_
+            .get(page)[benchmarkIndex * FRAME.length + i]);
+      }
+    }
+
+    this.setChartColors_(chart, newDataSet);
+    this.setChartSize_(chart, newDataSet.length);
+    chart.data = newDataSet;
+  },
+
+  selectPage_() {
+    // Create child chart with breakdown data
+    const div = document.createElement('div');
+    div.classList.add('child_container');
+    const page = this.$.pageSelector.value;
+    if (page === '') return;
     Polymer.dom(this.$.pageContainer).
         insertBefore(div, this.$.pageContainer.firstChild);
 
@@ -187,10 +192,9 @@ Polymer({
     const button = this.initializeCloseButton_(div, this.$.pageContainer);
     div.appendChild(button);
 
-    this.charts_.set(page, pageChart);
-    this.setChartColors_(page);
-    this.setChartSize_(page);
-    this.setChartData_(page);
+    this.setChartColors_(pageChart, this.data_.get(page));
+    this.setChartSize_(pageChart, this.data_.get(page).length);
+    pageChart.data = this.data_.get(page);
   },
 
   initializeCloseButton_(div, parent) {
