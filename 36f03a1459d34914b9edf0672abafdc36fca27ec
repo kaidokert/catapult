@@ -34,6 +34,24 @@
       "revId": "36f03a1459d34914b9edf0672abafdc36fca27ec",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df350a54_93b62839",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2252,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2018-12-03T22:44:18Z",
+      "side": 1,
+      "message": "Seems to work fine for me:\n\n\u003e\u003e\u003e import devil.android.device_utils as du\n\u003e\u003e\u003e d \u003d de.DeviceUtils.HealthyDevices()[0]\n\u003e\u003e\u003e d.GetResolution()\n(1080, 1920)",
+      "parentUuid": "fa70932f_ab17ad05",
+      "revId": "36f03a1459d34914b9edf0672abafdc36fca27ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
