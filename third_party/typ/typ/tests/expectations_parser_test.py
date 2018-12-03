@@ -103,11 +103,17 @@ crbug.com/12345 [ tag1 ] b1/s1 [ Skip ]
 
     def testParseExpectationLineMultipleTags(self):
         raw_data = ('# tags: [ All None Batman ]\n'
-                    'crbug.com/123 [ All None Batman ] b1/s1 [ Skip ]')
+                    'crbug.com/123 [ All ] b1/s1 [ Skip ]\n'
+                    'crbug.com/124 [ None ] b1/s2 [ Pass ]\n'
+                    'crbug.com/125 [ Batman ] b1/s3 [ Failure ]')
         parser = expectations_parser.TaggedTestListParser(raw_data)
         expected_outcome = [
             expectations_parser.Expectation(
-                'crbug.com/123', 'b1/s1', ['All', 'None', 'Batman'], ['SKIP']),
+                'crbug.com/123', 'b1/s1', ['All'], ['SKIP']),
+            expectations_parser.Expectation(
+                'crbug.com/124', 'b1/s2', ['None'], ['PASS']),
+            expectations_parser.Expectation(
+                'crbug.com/125', 'b1/s3', ['Batman'], ['FAIL'])
         ]
         for i in range(len(parser.expectations)):
             self.assertEqual(parser.expectations[i], expected_outcome[i])
@@ -190,9 +196,48 @@ crbug.com/12345 [ tag1 ] b1/s1 [ Skip ]
                     'crbug.com/23456 [ Mac ] b1/s2 [ Skip ]')
         with self.assertRaises(expectations_parser.ParseError):
             expectations_parser.TaggedTestListParser(raw_data)
+
     def testParseUnknownResult(self):
         raw_data = ('# tags: [ Mac ]\n'
                     'crbug.com/23456 [ Mac ] b1/s2 [ UnknownResult ]')
         with self.assertRaises(expectations_parser.ParseError):
             expectations_parser.TaggedTestListParser(raw_data)
 
+    def testParseExpectationMutuallyExclusiveTestSets(self):
+        raw_data = ('# tags: [ Mac Win Linux ]\n# tags: [ Mac BMW ]')
+        with self.assertRaises(expectations_parser.ParseError):
+            try:
+                expectations_parser.TaggedTestListParser(raw_data)
+            except expectations_parser.ParseError as ex:
+                self.assertEqual(
+                    '2: The tag Mac was found in multiple tag sets',
+                    str(ex))
+                raise ex
+        raw_data = ('# tags: [ Mac Win Linux ]\n# tags: [ Honda BMW ]')
+        expectations_parser.TaggedTestListParser(raw_data)
+
+    def testParseExpectationEachTagInGroupIsFromDisjointTagSets(self):
+        raw_data = (
+            '# tags: [ Mac Win Amd Intel]\n'
+            '# tags: [Linux Batman Robin Superman]\n'
+            'crbug.com/23456 [ Mac Win Amd Robin Linux ] b1/s1 [ Pass ]\n')
+        with self.assertRaises(expectations_parser.ParseError):
+            try:
+                expectations_parser.TaggedTestListParser(raw_data)
+            except expectations_parser.ParseError as ex:
+                self.assertEqual(
+                    '3: The tag group Mac, Win, Amd, Robin and Linux contains '
+                    'tags that are part of the same tag set\n'
+                    '  - Tags Linux and Robin are part of the same tag set\n'
+                    '  - Tags Amd, Mac and Win are part of the same tag set',
+                    str(ex))
+                raise ex
+        raw_data = (
+            '# tags: [ Mac Win Linux ]\n'
+            '# tags: [ Batman Robin Superman ]\n'
+            '# tags: [ Android Iphone ]\n'
+            'crbug.com/23456 [ Android Mac Superman ] b1/s1 [ Failure ]\n'
+            'crbug.com/23457 [ Iphone Win Robin ] b1/s2 [ Pass ]\n'
+            'crbug.com/23458 [ Android Linux  ] b1/s3 [ Pass ]\n'
+            'crbug.com/23459 [ Batman  Batman Batman ] b1/s4 [ Skip ]\n')
+        expectations_parser.TaggedTestListParser(raw_data)
