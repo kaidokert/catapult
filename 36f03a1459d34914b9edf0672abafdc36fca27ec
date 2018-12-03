@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "f1feb7d3_2c67c8d3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2018-12-03T22:56:28Z",
+      "side": 1,
+      "message": "nit: prepend commit msg title w/ \"devil: \"\n\nAnd maybe append w/ \"when dismissing ANR dialogs\" or something to that effect",
+      "revId": "36f03a1459d34914b9edf0672abafdc36fca27ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "589753f3_af3c7c65",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 1
@@ -52,6 +69,70 @@
       "revId": "36f03a1459d34914b9edf0672abafdc36fca27ec",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29293c23_fb7f260a",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2252,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2018-12-03T22:56:28Z",
+      "side": 1,
+      "message": "Turning the screen off and on made the fields actually get populated on my device... *sigh*\n\nIt sounds like this\u0027ll be fine in most cases.",
+      "parentUuid": "df350a54_93b62839",
+      "revId": "36f03a1459d34914b9edf0672abafdc36fca27ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b0270267_3ea308a8",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2740,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2018-12-03T22:56:28Z",
+      "side": 1,
+      "message": "nit: no need to surround these in parentheses",
+      "range": {
+        "startLine": 2740,
+        "startChar": 4,
+        "endLine": 2740,
+        "endChar": 35
+      },
+      "revId": "36f03a1459d34914b9edf0672abafdc36fca27ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "984f11a8_b7c11954",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2675,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2018-12-03T22:56:28Z",
+      "side": 1,
+      "message": "The title of this section of the dumpsys output is intriguing. Isn\u0027t \"Color Fade\" what we\u0027re seeing happen when we send those keyevents? Digging through android source w/ references to that string, it seems there\u0027s logic to fade colors when the screen transitions from on to off. Sounds like it could very well be related.\n\nThough I couldn\u0027t find the existence of an easy on/off switch, so this may still be the only reasonable work around.",
+      "range": {
+        "startLine": 2675,
+        "startChar": 0,
+        "endLine": 2675,
+        "endChar": 17
+      },
+      "revId": "36f03a1459d34914b9edf0672abafdc36fca27ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
