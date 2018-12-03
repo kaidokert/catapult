@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "589753f3_af3c7c65",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2252,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2018-12-03T22:21:27Z",
+      "side": 1,
+      "message": "Testing this logic w/ a pixel2 on my desk (screen on but no anr present), I get a height and width of 0. That seem right?",
+      "revId": "36f03a1459d34914b9edf0672abafdc36fca27ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
