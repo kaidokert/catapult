@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "7c935b11_1a46a51a",
+        "filename": "dashboard/dashboard/spa/alerts-controls.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2018-12-03T17:27:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7ca6753b_c63c69a0",
+      "range": {
+        "startLine": 260,
+        "startChar": 6,
+        "endLine": 260,
+        "endChar": 22
+      },
+      "revId": "598fbf1a82a9fc932be093284160a60e06fb0240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "936b9a9c_0174a39e",
         "filename": "dashboard/dashboard/spa/alerts-section.js",
         "patchSetId": 7
