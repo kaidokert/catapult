@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bb4a359f_2bfe0b0f",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-12-03T21:06:21Z",
+      "side": 1,
+      "message": "As mentioned offline: I don\u0027t think we want to hardcode 17 here.\n\nWe get traces for the frames produced by the display-compositor [1]. We also get traces for the frames produced by the renderer-compositor [2], and when the display-compositor wanted to produce a frame [3]. I was hoping we could use these information to more accurately measure the jank.\n\n\n[1] https://cs.chromium.org/chromium/src/cc/benchmarks/benchmark_instrumentation.cc?type\u003dcs\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d24\n[2] https://cs.chromium.org/chromium/src/cc/benchmarks/benchmark_instrumentation.cc?type\u003dcs\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d17\n[3] https://cs.chromium.org/chromium/src/components/viz/service/display/display_scheduler.cc?l\u003d499",
+      "revId": "31d7e74086fa4df67f573ef9fa5f574c2fa6d769",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
