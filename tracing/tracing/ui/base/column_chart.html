@@ -308,7 +308,7 @@ tr.exportTo('tr.ui.b', function() {
             .attr('class', 'hover')
             .on('mouseleave', () => this.clearHoverValueBox_(rect))
             .on('mousedown', this.drawToolTip_.bind(this, rect))
-            .attr('fill', rect.color)
+            .attr('fill', rect.color === 'transparent' ? '#000000' : rect.color)
             .attr('x', hoverLeftPx + 2)
             .attr('y', hoverTopPx + keyHeightPx + xLabelHeightPx - 2)
             .text(rect.datum.x);
