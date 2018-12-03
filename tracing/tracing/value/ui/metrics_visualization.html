@@ -28,9 +28,10 @@ found in the LICENSE file.
         display: none;
       }
 
-      .child_container {
+      .container {
         position: relative;
         display: inline-block;
+        margin-left: 15px;
       }
 
       #title {
@@ -71,9 +72,9 @@ found in the LICENSE file.
         stroke: white;
       }
     </style>
-      <span id="aggregateContainer" display="inline-block">
+      <span id="aggregateContainer" class="container">
       </span>
-      <span id="pageByPageContainer" display="inline-block">
+      <span id="pageByPageContainer" class="container">
         <div id="selectors">
           <div id="percentile_label">Percentile Range:</div>
           <input id="start" class="text_input" placeholder="0">
@@ -195,7 +196,7 @@ Polymer({
 
   initializeChildChart_(title, height, width) {
     const div = document.createElement('div');
-    div.classList.add('child_container');
+    div.classList.add('container');
     Polymer.dom(this.$.submetricsContainer).
         insertBefore(div, this.$.submetricsContainer.firstChild);
 
@@ -226,8 +227,6 @@ Polymer({
     return button;
   },
 
-  // Page action functions
-
   // Create child chart and populate it
   openChildChart_(rect) {
     // Find main metric and corresponding sub-metrics
@@ -244,7 +243,7 @@ Polymer({
 
     // Create child chart
     const page = rect.datum.group;
-    const title = this.title_ + ': ' + page;
+    const title = this.title_ + ' ' + metric + ': ' + page;
     const submetrics = this.submetricsData_.get(page).get(metric);
     const width = tr.b.math.clamp(submetrics.size * 150, 300, 700);
     const height = tr.b.math.clamp(submetrics.size *
@@ -265,8 +264,10 @@ Polymer({
       for (const benchmark of submetric.values()) {
         benchmark.hide = !hideValue ? 0 : hideValue;
         const series = benchmark.x + '-' + benchmark.group;
-        chart.getDataSeries(series).color = COLORS[metricIndex][benchmarkIndex];
-        if (benchmarkIndex) benchmark.x = '.';
+        const mainColorIndex = metricIndex % COLORS.length;
+        const subColorIndex = benchmarkIndex % COLORS[mainColorIndex].length;
+        chart.getDataSeries(series).color =
+            COLORS[mainColorIndex][subColorIndex];
         if (benchmarkIndex === (this.benchmarkCount_ - 1)) {
           hideValue += benchmark[series];
         }

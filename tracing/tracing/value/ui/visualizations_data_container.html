@@ -197,24 +197,28 @@ Polymer({
   buildFrameChart_() {
     const allChartData = new Map();
     for (const [page, pageMap] of this.groupedData_.entries()) {
-      const chartData = [];
+      let chartData = [];
       for (const benchmark of this.orderedBenchmarks_) {
         if (!pageMap.has(benchmark)) continue;
         const benchmarkMap = pageMap.get(benchmark);
-        for (const bar of FRAME) {
-          const data = {x: benchmark, group: page};
-          for (const metric of bar.keys()) {
+        let i = 0;
+        const benchmarkData = [];
+        const negativeBars = [];
+        for (const [threadName, thread] of FRAME.entries()) {
+          const data = {x: benchmark + '-' + threadName, group: page, hide: 0};
+          for (const metric of thread.keys()) {
             const metricMap = benchmarkMap.get(metric);
-            const key = this.getSeriesKey_(metric, benchmark);
+            const key = this.getSeriesKey_(metric, data.x);
             const mean = metricMap.get(STATISTICS_KEY).mean;
-            data[key] = Math.round(mean * 100) / 100;
+            const roundedMean = Math.round(mean * 100) / 100;
           }
-          chartData.push(data);
+          i++;
+          benchmarkData.push(data);
         }
+        chartData = chartData.concat(benchmarkData);
       }
       allChartData.set(page, chartData);
     }
-
     return {data: allChartData,
       benchmarkCount: this.orderedBenchmarks_.length};
   },
@@ -252,6 +256,20 @@ Polymer({
       benchmarkCount: this.orderedBenchmarks_.length};
   },
 
+  submetricsHelper_(submetric, value, benchmark, metricToSubmetricMap) {
+    let submetricToBenchmarkMap = metricToSubmetricMap.get(submetric);
+    if (!submetricToBenchmarkMap) {
+      submetricToBenchmarkMap = [];
+      metricToSubmetricMap.set(submetric, submetricToBenchmarkMap);
+    }
+    const data = {x: submetric, hide: 0, group: benchmark};
+    const mean = value;
+    const roundedMean = Math.round(mean * 100) / 100;
+    if (!roundedMean) return;
+    data[this.getSeriesKey_(submetric, benchmark)] = roundedMean;
+    submetricToBenchmarkMap.push(data);
+  },
+
   // Get data for breakdown of a main step
   processSubmetricsData_(chartName) {
     // page -> metric -> submetric -> array of submetrics across all benchmarks
@@ -263,22 +281,17 @@ Polymer({
         const benchmarkMap = pageMap.get(benchmark);
         for (const metric of METRICS.get(chartName)) {
           const metricMap = benchmarkMap.get(metric);
+          const metricToSubmetricMap = this.getValueFromMap_(metric,
+              pageToMetricMap);
           const submetrics = metricMap.get(SUBMETRICS_KEY);
-          if (!submetrics) continue;
+          if (!submetrics) {
+            this.submetricsHelper_(metric, metricMap.get(STATISTICS_KEY),
+                benchmark, metricToSubmetricMap);
+            continue;
+          }
           for (const [submetric, value] of [...submetrics]) {
-            const metricToSubmetricMap = this.getValueFromMap_(metric,
-                pageToMetricMap);
-            let submetricToBenchmarkMap = metricToSubmetricMap.get(submetric);
-            if (!submetricToBenchmarkMap) {
-              submetricToBenchmarkMap = [];
-              metricToSubmetricMap.set(submetric, submetricToBenchmarkMap);
-            }
-            const data = {x: submetric, hide: 0, group: benchmark};
-            const mean = value;
-            const roundedMean = Math.round(mean * 100) / 100;
-            data[this.getSeriesKey_(submetric, benchmark)] =
-                roundedMean === undefined ? 0 : roundedMean;
-            submetricToBenchmarkMap.push(data);
+            this.submetricsHelper_(submetric, value, benchmark,
+                metricToSubmetricMap);
           }
         }
       }

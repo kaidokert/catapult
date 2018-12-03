@@ -1,0 +1,68 @@
+# Copyright 2018 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+# This file is auto-generated from
+#    //third_party/catapult/generated_telemetry_build.py
+# DO NOT EDIT!
+
+import("//build/config/compiler/compiler.gni")
+
+group("telemetry_chrome_test_support") {
+  testonly = true
+  data = []
+
+  data += [
+    "AUTHORS",
+    "CONTRIBUTING.md",
+    "LICENSE",
+    "OWNERS",
+    "PRESUBMIT.py",
+    "README.md",
+    "WATCHLISTS",
+    "codereview.settings",
+    "navbar.md",
+    "pylintrc",
+    "bin/",
+    "catapult_build/",
+    "dashboard/",
+    "dependency_manager/",
+    "devil/",
+    "firefighter/",
+    "hooks/",
+    "infra/",
+    "netlog_viewer/",
+    "systrace/",
+    "trace_processor/",
+    "web_page_replay_go/",
+  ]
+
+  data += [
+    "common/OWNERS",
+    "common/bin/",
+    "common/eslint/",
+    "common/lab/",
+    "common/py_trace_event/",
+    "common/py_utils/",
+    "common/py_vulcanize/",
+  ]
+
+  data += [
+    "telemetry/BUILD.gn",
+    "telemetry/OWNERS",
+    "telemetry/PRESUBMIT.py",
+    "telemetry/README.md",
+    "telemetry/cloud_storage",
+    "telemetry/json_format",
+    "telemetry/pylintrc",
+    "telemetry/telemetry.gyp",
+    "telemetry/telemetry.isolate",
+    "telemetry/update_docs",
+    "telemetry/validate_binary_dependencies",
+    "telemetry/bin/",
+    "telemetry/build/",
+    "telemetry/docs/",
+    "telemetry/examples/",
+    "telemetry/third_party/",
+  ]
+
