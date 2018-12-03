@@ -22,6 +22,30 @@
       "revId": "f82fce67eead70dbf8e5d90bf3ffbc9059057f9d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a019560d_5f5cb323",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2018-12-03T23:22:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "eef33abd_5f9c3711",
+      "range": {
+        "startLine": 104,
+        "startChar": 13,
+        "endLine": 104,
+        "endChar": 27
+      },
+      "revId": "f82fce67eead70dbf8e5d90bf3ffbc9059057f9d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
