@@ -16,6 +16,24 @@
       "revId": "36f03a1459d34914b9edf0672abafdc36fca27ec",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa70932f_ab17ad05",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2252,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2018-12-03T22:25:43Z",
+      "side": 1,
+      "message": "Nope. I tested this in an actual test run on a swarmed Pixel XL w/ O, and it worked fine (resolved the intended issue, as well). Locally, my Pixel 2 w/ O is has the following in the dumpsys output:\n\nColor Fade State:\n  mPrepared\u003dtrue\n  mMode\u003d0\n  mDisplayLayerStack\u003d0\n  mDisplayWidth\u003d1080\n  mDisplayHeight\u003d1920\n  mSurfaceVisible\u003dfalse\n  mSurfaceAlpha\u003d0.0\n\nwhich is more-or-less the same as on the Pixel XL. Can\u0027t say I\u0027ve actually verified locally on my Pixel 2, though.",
+      "parentUuid": "589753f3_af3c7c65",
+      "revId": "36f03a1459d34914b9edf0672abafdc36fca27ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
