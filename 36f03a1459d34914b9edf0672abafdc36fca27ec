@@ -133,6 +133,30 @@
       "revId": "36f03a1459d34914b9edf0672abafdc36fca27ec",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da09ebda_1924efe5",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2675,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2018-12-03T23:02:01Z",
+      "side": 1,
+      "message": "That does sound pretty suspicious, although I would think that \"color fade\" would apply to the whole screen? It only seems to affect the web contents, though.",
+      "parentUuid": "984f11a8_b7c11954",
+      "range": {
+        "startLine": 2675,
+        "startChar": 0,
+        "endLine": 2675,
+        "endChar": 17
+      },
+      "revId": "36f03a1459d34914b9edf0672abafdc36fca27ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
