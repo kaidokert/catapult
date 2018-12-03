@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "cfd46203_93d7492d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2018-12-03T23:23:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1feb7d3_2c67c8d3",
+      "revId": "36f03a1459d34914b9edf0672abafdc36fca27ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "589753f3_af3c7c65",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 1
@@ -110,6 +128,30 @@
       "revId": "36f03a1459d34914b9edf0672abafdc36fca27ec",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e6b7f8b_fafea92e",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2740,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2018-12-03T23:23:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0270267_3ea308a8",
+      "range": {
+        "startLine": 2740,
+        "startChar": 4,
+        "endLine": 2740,
+        "endChar": 35
+      },
+      "revId": "36f03a1459d34914b9edf0672abafdc36fca27ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
