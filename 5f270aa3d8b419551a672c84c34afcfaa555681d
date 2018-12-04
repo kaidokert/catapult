@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "35b4c1fe_1e28bd5c",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2018-12-04T01:30:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6a12733a_5bd037bc",
+      "revId": "5f270aa3d8b419551a672c84c34afcfaa555681d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "08a21c65_a6f85b9b",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2018-12-03T23:55:12Z",
       "side": 1,
       "message": "Nit: use spaces around the \u0027%\u0027. Also, the message will be weird if there\u0027s more than one duplicate tag.",
+      "revId": "5f270aa3d8b419551a672c84c34afcfaa555681d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45453e80_7e8456c4",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2018-12-04T01:30:55Z",
+      "side": 1,
+      "message": "I will change it so that the error message will show all the tags that are found across multiple tag sets.",
+      "parentUuid": "08a21c65_a6f85b9b",
       "revId": "5f270aa3d8b419551a672c84c34afcfaa555681d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
