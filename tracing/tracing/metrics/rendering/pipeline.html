@@ -89,9 +89,18 @@ tr.exportTo('tr.metrics.rendering', function() {
   function getAverageRasterTaskStartTime(sourceFrameNumber, model) {
     const chromeHelper = model.getOrCreateHelper(
         tr.model.helpers.ChromeModelHelper);
-    const rendererHelper = chromeHelper.rendererWithLargestPid;
-    if (!rendererHelper) return 0;
-    const rasterThreads = rendererHelper.rasterWorkerThreads;
+
+    const rendererHelper = chromeHelper.rendererHelpers;
+
+    let largestPid = -1;
+    for (const pid in chromeHelper.rendererHelpers) {
+      const rendererHelper = chromeHelper.rendererHelpers[pid];
+      if (rendererHelper.isChromeTracingUI) continue;
+      if (pid > largestPid) largestPid = pid;
+    }
+    if (largestPid === -1) return 0;
+    const rasterThreads = chromeHelper.
+        rendererHelpers[largestPid].rasterWorkerThreads;
 
     let totalSum = 0;
     for (const rasterThread of rasterThreads) {
@@ -160,20 +169,20 @@ tr.exportTo('tr.metrics.rendering', function() {
           'queue time in the client.',
           summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
         });
+    const issueToRaster = histograms.createHistogram(
+        'pipeline:begin_frame_to_raster_tasks',
+        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
+        [], {
+          description: 'Latency between begin-frame message and ' +
+          'CompositorTasks run in the compositor.',
+          summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
+        });
     const receiptToSubmit = histograms.createHistogram(
         'pipeline:begin_frame_to_frame_submission',
         tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
         [], {
           description: 'Latency between begin-frame reception and ' +
           'CompositorFrame submission in the renderer.',
-          summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
-        });
-    const receiptToRaster = histograms.createHistogram(
-        'pipeline:begin_frame_to_raster_tasks',
-        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
-        [], {
-          description: 'Latency between begin-frame reception and ' +
-          'CompositorTasks run in the compositor.',
           summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
         });
     const submitToAggregate = histograms.createHistogram(
@@ -209,11 +218,11 @@ tr.exportTo('tr.metrics.rendering', function() {
 
       issueToReceipt.addSample(flow.ReceiveBeginFrame.start -
                                flow.IssueBeginFrame.start);
+      issueToRaster.addSample(averageRasterStartTime -
+          flow.ReceiveBeginFrame.start);
       receiptToSubmit.addSample(
           flow.SubmitCompositorFrame.end - flow.ReceiveBeginFrame.start,
           {breakdown: generateBreakdownForCompositorPipelineInClient_(flow)});
-      receiptToRaster.addSample(averageRasterStartTime -
-          flow.ReceiveBeginFrame.start);
       submitToAggregate.addSample(
           flow.SurfaceAggregation.end - flow.SubmitCompositorFrame.end,
           {breakdown: generateBreakdownForCompositorPipelineInService_(flow)});
