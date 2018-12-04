@@ -154,6 +154,24 @@
       "revId": "5f270aa3d8b419551a672c84c34afcfaa555681d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6b0c349_149aaa74",
+        "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2018-12-04T02:58:28Z",
+      "side": 1,
+      "message": "Yeah your right. In the case of having duplicate tags in a tag group, throwing a ParseError for the reason that the tag group has tags from the same tag set makes sense. It would also make my code a little simpler to implement. Hey Ned what do you think about this?",
+      "parentUuid": "575f6e38_39bf017c",
+      "revId": "5f270aa3d8b419551a672c84c34afcfaa555681d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
