@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4b41d579_e87b3371",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 13
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1305608
+      },
+      "writtenOn": "2018-12-04T23:22:22Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "8cbdc146_e3245ec9",
+      "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "51835d0c_d3db330e",
         "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
         "patchSetId": 13
@@ -30,6 +48,30 @@
       "writtenOn": "2018-12-04T05:16:04Z",
       "side": 1,
       "message": "Please use hacker_style for all element ids for consistency with the surrounding code.",
+      "range": {
+        "startLine": 40,
+        "startChar": 13,
+        "endLine": 40,
+        "endChar": 51
+      },
+      "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "983db9a9_d08782af",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 13
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1305608
+      },
+      "writtenOn": "2018-12-04T23:22:22Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "51835d0c_d3db330e",
       "range": {
         "startLine": 40,
         "startChar": 13,
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "c161a2b2_7e87d79d",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 13
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1305608
+      },
+      "writtenOn": "2018-12-04T23:22:22Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "13fe96c7_e93c8de2",
+      "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2f8b56a7_7494d809",
         "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
         "patchSetId": 13
@@ -70,6 +130,30 @@
       "writtenOn": "2018-12-04T05:16:04Z",
       "side": 1,
       "message": "This string is duplicated five times. Can you define a constant for it?",
+      "range": {
+        "startLine": 119,
+        "startChar": 62,
+        "endLine": 119,
+        "endChar": 73
+      },
+      "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a0e4ebd_40d8fc92",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 13
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1305608
+      },
+      "writtenOn": "2018-12-04T23:22:22Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "2f8b56a7_7494d809",
       "range": {
         "startLine": 119,
         "startChar": 62,
@@ -99,6 +183,24 @@
     },
     {
       "key": {
+        "uuid": "8df55b91_6fec8145",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 13
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1305608
+      },
+      "writtenOn": "2018-12-04T23:22:22Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "f2af0328_33249939",
+      "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e0e959b5_208520f1",
         "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
         "patchSetId": 13
@@ -110,6 +212,24 @@
       "writtenOn": "2018-12-04T05:16:04Z",
       "side": 1,
       "message": "Display labels don\u0027t always contain benchmark name \\n date.\nrun_benchmark accepts an argument --label to allow users to label results (HistogramSets) with any string.\nIt looks like this code should get the BENCHMARK_START diagnostic directly.",
+      "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3105522e_7104d830",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 13
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1305608
+      },
+      "writtenOn": "2018-12-04T23:22:22Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "e0e959b5_208520f1",
       "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -133,6 +253,24 @@
     },
     {
       "key": {
+        "uuid": "32f9497d_a7864b98",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 13
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1305608
+      },
+      "writtenOn": "2018-12-04T23:22:22Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "5232d77c_9db0e281",
+      "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "51b37600_427c8cfa",
         "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
         "patchSetId": 13
@@ -144,6 +282,24 @@
       "writtenOn": "2018-12-04T05:16:04Z",
       "side": 1,
       "message": "This comment doesn\u0027t add any information.",
+      "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94d65022_ad805478",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 13
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1305608
+      },
+      "writtenOn": "2018-12-04T23:22:22Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "51b37600_427c8cfa",
       "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -173,6 +329,30 @@
     },
     {
       "key": {
+        "uuid": "d0e4f374_f0b5bba4",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 13
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1305608
+      },
+      "writtenOn": "2018-12-04T23:22:22Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "5d76b4a0_ec9c2140",
+      "range": {
+        "startLine": 234,
+        "startChar": 58,
+        "endLine": 234,
+        "endChar": 71
+      },
+      "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0a9ae588_4ee361f3",
         "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
         "patchSetId": 13
@@ -190,6 +370,24 @@
     },
     {
       "key": {
+        "uuid": "b3a2e2db_6d157aaa",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 13
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1305608
+      },
+      "writtenOn": "2018-12-04T23:22:22Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "0a9ae588_4ee361f3",
+      "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c5298965_c14226d3",
         "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
         "patchSetId": 13
@@ -201,6 +399,24 @@
       "writtenOn": "2018-12-04T05:16:04Z",
       "side": 1,
       "message": "Please remove this blank line.",
+      "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e7a1149_ea1e1773",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 13
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1305608
+      },
+      "writtenOn": "2018-12-04T23:22:22Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "c5298965_c14226d3",
       "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -230,6 +446,30 @@
     },
     {
       "key": {
+        "uuid": "ae915b30_554dfaf5",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 13
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1305608
+      },
+      "writtenOn": "2018-12-04T23:22:22Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "95999b27_3e22e094",
+      "range": {
+        "startLine": 310,
+        "startChar": 0,
+        "endLine": 311,
+        "endChar": 0
+      },
+      "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cf0681ea_67570247",
         "filename": "tracing/tracing/value/ui/visualizations_data_container_test.html",
         "patchSetId": 13
@@ -241,6 +481,30 @@
       "writtenOn": "2018-12-04T05:16:04Z",
       "side": 1,
       "message": "These are the same for both tests so they can be refactored out alongside getHistogram and getHistogramSet.",
+      "range": {
+        "startLine": 101,
+        "startChar": 1,
+        "endLine": 119,
+        "endChar": 5
+      },
+      "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e45f9ae_f8768559",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container_test.html",
+        "patchSetId": 13
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1305608
+      },
+      "writtenOn": "2018-12-04T23:22:22Z",
+      "side": 1,
+      "message": "Done!",
+      "parentUuid": "cf0681ea_67570247",
       "range": {
         "startLine": 101,
         "startChar": 1,
