@@ -1,0 +1,255 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8cbdc146_e3245ec9",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 13
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-04T05:16:04Z",
+      "side": 1,
+      "message": "Please add a space after the colon.",
+      "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51835d0c_d3db330e",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 13
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-04T05:16:04Z",
+      "side": 1,
+      "message": "Please use hacker_style for all element ids for consistency with the surrounding code.",
+      "range": {
+        "startLine": 40,
+        "startChar": 13,
+        "endLine": 40,
+        "endChar": 51
+      },
+      "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13fe96c7_e93c8de2",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 13
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-04T05:16:04Z",
+      "side": 1,
+      "message": "All these constants need to be in a namespace, preferably tr.exportTo(...) so they can be shared with tests and other modules and so they don\u0027t pollute the global namespace.",
+      "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f8b56a7_7494d809",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 13
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-04T05:16:04Z",
+      "side": 1,
+      "message": "This string is duplicated five times. Can you define a constant for it?",
+      "range": {
+        "startLine": 119,
+        "startChar": 62,
+        "endLine": 119,
+        "endChar": 73
+      },
+      "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2af0328_33249939",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 13
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-04T05:16:04Z",
+      "side": 1,
+      "message": "Please move this method out of this component to a function since it doesn\u0027t reference `this`.",
+      "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0e959b5_208520f1",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 13
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-04T05:16:04Z",
+      "side": 1,
+      "message": "Display labels don\u0027t always contain benchmark name \\n date.\nrun_benchmark accepts an argument --label to allow users to label results (HistogramSets) with any string.\nIt looks like this code should get the BENCHMARK_START diagnostic directly.",
+      "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5232d77c_9db0e281",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 13
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-04T05:16:04Z",
+      "side": 1,
+      "message": "This comment doesn\u0027t add any information.",
+      "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51b37600_427c8cfa",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 13
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-04T05:16:04Z",
+      "side": 1,
+      "message": "This comment doesn\u0027t add any information.",
+      "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d76b4a0_ec9c2140",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 13
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-04T05:16:04Z",
+      "side": 1,
+      "message": "What does this comment mean?\nComments should have 2 spaces before them.",
+      "range": {
+        "startLine": 234,
+        "startChar": 58,
+        "endLine": 234,
+        "endChar": 71
+      },
+      "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a9ae588_4ee361f3",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 13
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-04T05:16:04Z",
+      "side": 1,
+      "message": "Please place each element and brace on a separate line for readability:\nreturn {\n    title: chartName,\n    aggregate: aggregateChart,\n    page: chartData,\n    ...\n};",
+      "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5298965_c14226d3",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 13
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-04T05:16:04Z",
+      "side": 1,
+      "message": "Please remove this blank line.",
+      "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95999b27_3e22e094",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 13
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-04T05:16:04Z",
+      "side": 1,
+      "message": "Please remove these blank lines.",
+      "range": {
+        "startLine": 310,
+        "startChar": 0,
+        "endLine": 311,
+        "endChar": 0
+      },
+      "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf0681ea_67570247",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container_test.html",
+        "patchSetId": 13
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-04T05:16:04Z",
+      "side": 1,
+      "message": "These are the same for both tests so they can be refactored out alongside getHistogram and getHistogramSet.",
+      "range": {
+        "startLine": 101,
+        "startChar": 1,
+        "endLine": 119,
+        "endChar": 5
+      },
+      "revId": "9eab96af77f8a38813abee2f58c984ec53b2f1cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
