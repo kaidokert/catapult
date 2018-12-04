@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6cd96b17_93576aab",
+        "filename": "web_page_replay_go/src/httparchive.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1251641
+      },
+      "writtenOn": "2018-12-04T19:35:09Z",
+      "side": 1,
+      "message": "nickpick: please add spaces to align the argument values.",
+      "range": {
+        "startLine": 370,
+        "startChar": 10,
+        "endLine": 370,
+        "endChar": 11
+      },
+      "revId": "690a90342ad47d1d21f125ce69470fe7e82b8106",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f727384_51101737",
+        "filename": "web_page_replay_go/src/webpagereplay/archive.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1251641
+      },
+      "writtenOn": "2018-12-04T19:35:09Z",
+      "side": 1,
+      "message": "line 363 will never be true, as line 360 and line 363 are mutually exclusive. Either mode \u003d\u003d AddModeSkipExisting or mode \u003d\u003d AddModeAppend. Perhaps you intended to use bitwise and here?",
+      "range": {
+        "startLine": 363,
+        "startChar": 4,
+        "endLine": 363,
+        "endChar": 34
+      },
+      "revId": "690a90342ad47d1d21f125ce69470fe7e82b8106",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
