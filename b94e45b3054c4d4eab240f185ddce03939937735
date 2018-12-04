@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "94f91647_69282d52",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-12-04T20:01:05Z",
+      "side": 1,
+      "message": "nits: name this _GROUP_TO_STRING. We usually name global constant \"_PRIVATE_ALL_CAPITAL\" or \"PUBLIC_ALL_CAPITAL\"",
+      "revId": "b94e45b3054c4d4eab240f185ddce03939937735",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "687c0f96_6f1335f8",
+        "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-12-04T20:01:05Z",
+      "side": 1,
+      "message": "these are trailing spaces, you may want to update your code editor so that it removes all trailing spaces",
+      "range": {
+        "startLine": 209,
+        "startChar": 0,
+        "endLine": 209,
+        "endChar": 4
+      },
+      "revId": "b94e45b3054c4d4eab240f185ddce03939937735",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
