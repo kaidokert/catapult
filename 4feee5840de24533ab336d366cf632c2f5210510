@@ -16,6 +16,24 @@
       "revId": "4feee5840de24533ab336d366cf632c2f5210510",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c5b450a_bc5353dd",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-12-04T10:12:30Z",
+      "side": 1,
+      "message": "Oh, never mind. Just noted this was already merged. :)",
+      "parentUuid": "168c14d0_150268cb",
+      "revId": "4feee5840de24533ab336d366cf632c2f5210510",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
