@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8dccf203_e8c15aa5",
+        "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-12-04T15:58:57Z",
+      "side": 1,
+      "message": "can you split this unittest into a few test, each test one case?\n\nI also think you don\u0027t need to many test cases that are similar. Just create one for each of the key logics. For example, s.t like:\n1. Test 1 tag in multiple tag sets\n2. Test 2+ tags in multiple tag sets. \n3. Test tags in multiple tag sets and those tag sets are in different lines",
+      "revId": "cfee44652a0b76ba81eeb07395c9bda13344ce02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca9fedf7_7f9eb089",
+        "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-12-04T15:58:57Z",
+      "side": 1,
+      "message": "you don\u0027t need to do this. Instead, you can do:\n with self.assertRaises(expectations_parser.ParseError) as context:\n    ...\n self.assertEqual(\u0027...\u0027, str(context.exception))",
+      "range": {
+        "startLine": 206,
+        "startChar": 12,
+        "endLine": 207,
+        "endChar": 33
+      },
+      "revId": "cfee44652a0b76ba81eeb07395c9bda13344ce02",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
