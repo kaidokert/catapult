@@ -16,6 +16,24 @@
       "revId": "a096e724626eea54c4296b6420172dccbf399511",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5172485f_7ec35fe1",
+        "filename": "common/node_runner/node_runner/run-wct",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-04T04:31:46Z",
+      "side": 1,
+      "message": "Of course!\nLet\u0027s hold this CL until 1359272 lands and is published on npm, then I\u0027ll update this CL to fetch this script via npm.",
+      "parentUuid": "97d077d9_2dc3fee6",
+      "revId": "a096e724626eea54c4296b6420172dccbf399511",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
