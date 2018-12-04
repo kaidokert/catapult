@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "168c14d0_150268cb",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-12-04T10:11:37Z",
+      "side": 1,
+      "message": "nit: can you add a dest\u003d\u0027unused\u0027 or something like that to make sure there is nothing in Telemetry\u0027s code still relying on the existence of this option?",
+      "revId": "4feee5840de24533ab336d366cf632c2f5210510",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
