@@ -34,6 +34,24 @@
       "revId": "595416629520252d4059450918982546850394ba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18b530c1_4bf90f61",
+        "filename": "devil/devil/utils/cmd_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2018-12-05T21:14:19Z",
+      "side": 1,
+      "message": "sgtm. My initial guess would be that that \"something\" is vpython... but who knows?",
+      "parentUuid": "44cf19ed_423f9a01",
+      "revId": "595416629520252d4059450918982546850394ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
