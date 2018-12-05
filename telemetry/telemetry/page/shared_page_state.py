@@ -233,6 +233,13 @@ class SharedPageState(story_module.SharedState):
       while len(self.browser.tabs) > 1:
         self.browser.tabs[-1].Close()
 
+      # If we didn't start the browser, then there is a single tab left from the
+      # previous story. The tab may have some state that may effect the next
+      # story. Close it to reset the state. Tab.Close() when there is only one
+      # tab left, creates a new one and closes the old.
+      if not started_browser:
+        self.browser.tabs[-1].Close()
+
       # Must wait for tab to commit otherwise it can commit after the next
       # navigation has begun and RenderFrameHostManager::DidNavigateMainFrame()
       # will cancel the next navigation because it's pending. This manifests as
@@ -241,8 +248,7 @@ class SharedPageState(story_module.SharedState):
       # committed. Only do this when we just started the browser, otherwise
       # there are cases where previous pages in a PageSet never complete
       # loading so we'll wait forever.
-      if started_browser:
-        self.browser.tabs[0].WaitForDocumentReadyStateToBeComplete()
+      self.browser.tabs[0].WaitForDocumentReadyStateToBeComplete()
 
     # Reset traffic shaping to speed up cache temperature setup.
     self.platform.network_controller.UpdateTrafficSettings(0, 0, 0)
