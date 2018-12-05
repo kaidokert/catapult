@@ -71,8 +71,8 @@ tr.exportTo('tr.v.ui', function() {
     ['#8C9EFF', '#536DFE', '#3D5AFE', '#304FFE']];
 
   const FRAME = [new Map([
-    ['pipeline:begin_frame_to_raster_tasks', false],
-    ['thread_raster_cpu_time_per_frame', true]]), new Map([
+    ['pipeline:begin_frame_to_raster_start', false],
+    ['pipeline:begin_frame_to_raster_end', true]]), new Map([
     ['pipeline:begin_frame_transport', true],
     ['pipeline:begin_frame_to_frame_submission', true],
     ['pipeline:frame_submission_to_display', true],
@@ -200,8 +200,11 @@ tr.exportTo('tr.v.ui', function() {
     },
 
     buildFrameChart_() {
+      const orderedPages = [...this.groupedData_.keys()].sort((a, b) =>
+        this.sortByRasterStart_(a, b));
       const allChartData = new Map();
-      for (const [page, pageMap] of this.groupedData_.entries()) {
+      for (const page of orderedPages) {
+        const pageMap = this.groupedData_.get(page);
         let chartData = [];
         for (const benchmark of this.orderedBenchmarks_) {
           if (!pageMap.has(benchmark)) continue;
@@ -215,11 +218,19 @@ tr.exportTo('tr.v.ui', function() {
               group: page,
               hide: 0
             };
+            let rasterBegin = 0;
             for (const metric of thread.keys()) {
               const metricMap = benchmarkMap.get(metric);
               const key = this.getSeriesKey_(metric, data.x);
-              const mean = metricMap.get(STATISTICS_KEY).mean;
-              const roundedMean = Math.round(mean * 100) / 100;
+              const stats = metricMap.get(STATISTICS_KEY);
+              const mean = stats ? stats.mean : 0;
+              let roundedMean = Math.round(mean * 100) / 100;
+              if (metric === 'pipeline:begin_frame_to_raster_start') {
+                rasterBegin = roundedMean;
+              } else if (metric === 'pipeline:begin_frame_to_raster_end') {
+                roundedMean -= rasterBegin;
+              }
+              data[key] = roundedMean;
             }
             i++;
             benchmarkData.push(data);
@@ -228,18 +239,14 @@ tr.exportTo('tr.v.ui', function() {
         }
         allChartData.set(page, chartData);
       }
-
-      return {
-        data: allChartData,
-        benchmarkCount: this.orderedBenchmarks_.length
-      };
+      return allChartData;
     },
 
     buildMetricsData_(chartName) {
       // pages are ordered from smallest to largest by their total
       // values for the first benchmark
       const orderedPages = [...this.groupedData_.keys()].sort((a, b) =>
-        this.sortGroups_(a, b, chartName));
+        this.sortByTotal_(a, b, chartName));
       const chartData = [];
       const aggregateChart = [];
       for (const page of orderedPages) {
@@ -317,9 +324,9 @@ tr.exportTo('tr.v.ui', function() {
       return submetrics;
     },
 
-    sortGroups_(a, b, chartName) {
-      if (a === AGGREGATE_KEY) return -1;
-      if (b === AGGREGATE_KEY) return 1;
+    sortByTotal_(a, b, chartName) {
+      if (a === 'aggregate') return -1;
+      if (b === 'aggregate') return 1;
       let aValue = 0;
       const aMap = this.groupedData_.get(a);
       if (aMap.get(this.orderedBenchmarks_[0]) !== undefined) {
@@ -335,6 +342,29 @@ tr.exportTo('tr.v.ui', function() {
           const bMetricMap = bMap.get(this.orderedBenchmarks_[0]).get(metric);
           bValue += bMetricMap.get(STATISTICS_KEY).mean;
         }
+      }
+      if (aValue === bValue) return 0;
+      return (aValue < bValue) ? -1 : 1;
+    },
+
+    sortByRasterStart_(a, b) {
+      if (a === 'aggregate') return -1;
+      if (b === 'aggregate') return 1;
+      let aValue = 0;
+      const aMap = this.groupedData_.get(a);
+      if (aMap.get(this.orderedBenchmarks_[0]) !== undefined) {
+        const aMetricMap = aMap.get(this.orderedBenchmarks_[0])
+            .get('pipeline:begin_frame_to_raster_start');
+        const aStats = aMetricMap.get(STATISTICS_KEY);
+        aValue = aStats ? aStats.mean : 0;
+      }
+      let bValue = 0;
+      const bMap = this.groupedData_.get(b);
+      if (bMap.get(this.orderedBenchmarks_[0]) !== undefined) {
+        const bMetricMap = bMap.get(this.orderedBenchmarks_[0])
+            .get('pipeline:begin_frame_to_raster_start');
+        const bStats = bMetricMap.get(STATISTICS_KEY);
+        bValue = bStats ? bStats.mean : 0;
       }
       if (aValue === bValue) return 0;
       return (aValue < bValue) ? -1 : 1;
