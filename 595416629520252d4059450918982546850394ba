@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1aa86089_7575981f",
+        "filename": "devil/devil/utils/cmd_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2018-12-05T21:07:06Z",
+      "side": 1,
+      "message": "If subprocess can\u0027t find it, what makes you think cmd_helper will?\n\nShould this catch and suppress LookupError? Or let it propagate?",
+      "revId": "595416629520252d4059450918982546850394ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
