@@ -2,6 +2,63 @@
   "comments": [
     {
       "key": {
+        "uuid": "c5e9c943_f5d4c18c",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2018-12-05T18:41:04Z",
+      "side": 1,
+      "message": "This name seems a bit confusing to me since there are other platforms that support_no_tabs (I believe mac and android). Why not is_chromeos?",
+      "range": {
+        "startLine": 232,
+        "startChar": 6,
+        "endLine": 232,
+        "endChar": 22
+      },
+      "revId": "cf97e4ac0f2940acc817a344a970749e613035b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00a5c5fd_254fcfc0",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2018-12-05T18:41:04Z",
+      "side": 1,
+      "message": "It looks like keep_one\u003dTrue does the right thing, which is to open a new tab and close the last tab:\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/browser/tab.py?l\u003d104-106",
+      "revId": "cf97e4ac0f2940acc817a344a970749e613035b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61701237_56e67215",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2018-12-05T18:41:04Z",
+      "side": 1,
+      "message": "Wouldn\u0027t it work to swap the order of this while block with the if block before it, and change this comparison to \u003e0? Like so:\n\n# Closes all tabs, leaving one fresh tab.\nwhile len(self.browser.tabs) \u003e 0:\n  self.browser.tabs[-1].Close()\n\n# Create a tab if there\u0027s none.\nif len(self.browser.tabs) \u003d\u003d 0:\n  self.browser.tabs.New()",
+      "revId": "cf97e4ac0f2940acc817a344a970749e613035b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fd60e59c_ed6b651e",
         "filename": "telemetry/telemetry/page/shared_page_state.py",
         "patchSetId": 3
