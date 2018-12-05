@@ -4,6 +4,7 @@ Copyright (c) 2018 The Chromium Authors. All rights reserved.
 Use of this source code is governed by a BSD-style license that can be
 found in the LICENSE file.
 -->
+<link rel="import" href="/tracing/value/ui/frame_visualization.html">
 <link rel="import" href="/tracing/value/ui/metrics_visualization.html">
 <meta charset="utf-8">
 <dom-module id='tr-v-ui-visualizations-data-container'>
@@ -40,6 +41,8 @@ found in the LICENSE file.
     <div id="pipeline_per_frame_container">
       <div class="subtitle">Graphics Pipeline Per Frame</div>
       <div class="description">When raster tasks are completed in comparison to the rest of the graphics pipeline.</div>
+      <tr-v-ui-frame-visualization id="frameVisualization">
+      </tr-v-ui-frame-visualization>
     </div>
     <div id=metrics_container>
       <div class="subtitle">Metrics</div>
@@ -185,6 +188,7 @@ tr.exportTo('tr.v.ui', function() {
 
     buildCharts_() {
       const frameDataToBePassed = this.buildFrameChart_();
+      this.$.frameVisualization.build(frameDataToBePassed);
 
       for (const chartName of METRICS.keys()) {
         const metricsDataToBePassed = this.buildMetricsData_(chartName);
@@ -274,7 +278,7 @@ tr.exportTo('tr.v.ui', function() {
             const submetrics = metricMap.get(SUBMETRICS_KEY);
             if (!submetrics) continue;
             for (const [submetric, value] of [...submetrics]) {
-              const metricToSubmetricMap = getValueFromMap(metric,
+              const metricToSubmetricMap = this.getValueFromMap_(metric,
                   pageToMetricMap);
               let submetricToBenchmarkMap = metricToSubmetricMap.get(submetric);
               if (!submetricToBenchmarkMap) {

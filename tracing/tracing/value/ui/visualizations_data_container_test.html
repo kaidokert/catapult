@@ -23,14 +23,9 @@ tr.b.unittest.testSuite(function() {
       values[name + 'c'] = total / 4.0;
       samples.push({
         value: total,
-        diagnostics: new Map([
-          [
-            tr.v.d.RESERVED_NAMES.BENCHMARK_START,
-            new tr.v.d.DateRange(Date.now()),
-          ], [
-            'breakdown', tr.v.d.Breakdown.fromDict({values}),
-          ],
-        ]),
+        diagnostics: {
+          breakdown: tr.v.d.Breakdown.fromDict({values})
+        },
       });
     }
     return tr.v.Histogram.create(name, tr.b.Unit.byName.count, samples);
@@ -39,7 +34,7 @@ tr.b.unittest.testSuite(function() {
   function getHistogramSet(displayLabel, story) {
     const histograms = new tr.v.HistogramSet();
     let metrics = [];
-    for (const category of tr.v.ui.METRICS.values()) {
+    for (const category of METRICS.values()) {
       metrics = metrics.concat(category);
     }
     metrics.push('pipeline:begin_frame_to_raster_tasks');
