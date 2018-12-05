@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/dashboard/spa/cp-loading.html">
+<link rel="import" href="/dashboard/spa/cp-toast.html">
+<link rel="import" href="/dashboard/spa/element-base.html">
+<link rel="import" href="/dashboard/spa/menu-input.html">
+<link rel="import" href="/dashboard/spa/raised-button.html">
+<link rel="import" href="/dashboard/spa/report-names-request.html">
+<link rel="import" href="/dashboard/spa/report-request.html">
+<link rel="import" href="/dashboard/spa/report-template-request.html">
+<link rel="import" href="/dashboard/spa/request-base.html">
+<link rel="import" href="/dashboard/spa/scalar-span.html">
+<link rel="import" href="/dashboard/spa/team-filter.html">
+<link rel="import" href="/dashboard/spa/test-suites.html">
+<link rel="import" href="/dashboard/spa/utils.html">
+
+<dom-module id="report-table">
+  <template>
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+
+      table[placeholder] {
+        color: var(--neutral-color-dark);
+      }
+
+      h2 {
+        text-align: center;
+        margin: 0;
+      }
+
+      td, th {
+        padding: 4px;
+        vertical-align: top;
+      }
+
+      #edit,
+      #copy,
+      #documentation {
+        color: var(--primary-color-dark);
+        cursor: pointer;
+        flex-shrink: 0;
+        margin: 0 0 0 8px;
+        padding: 0;
+        width: var(--icon-size, 1em);
+        height: var(--icon-size, 1em);
+      }
+
+      #tooltip {
+        background-color: var(--background-color);
+        border: 2px solid var(--primary-color-dark);
+        padding: 8px;
+        position: absolute;
+        z-index: var(--layer-menu);
+      }
+
+      #tooltip td {
+        padding: 2px;
+      }
+    </style>
+
+    <h2>[[table.name]]</h2>
+    <template is="dom-if" if="[[table.url]]">
+      <a id="documentation"
+          href="[[table.url]]"
+          target="_blank"
+          title="Documentation">
+        <iron-icon icon="cp:help">
+        </iron-icon>
+      </a>
+    </template>
+
+    <iron-icon
+        id="copy"
+        icon="cp:copy"
+        title="Copy measurements"
+        on-click="onCopy_">
+    </iron-icon>
+
+    <template is="dom-if" if="[[canEdit_(table, userEmail)]]">
+      <iron-icon
+          id="edit"
+          icon="cp:edit"
+          title="Edit template"
+          on-click="onToggleEditing_">
+      </iron-icon>
+    </template>
+  </div>
+
+  <table placeholder$="[[table.isPlaceholder]]">
+    <thead>
+      <tr>
+        <th colspan$="[[table.maxLabelParts]]">&nbsp;</th>
+        <th colspan$="[[lengthOf_(table.statistics)]]">
+          [[prevMstoneLabel_(milestone, maxRevision)]]
+          <br>
+          [[minRevision]]
+        </th>
+        <th colspan$="[[lengthOf_(table.statistics)]]">
+          [[curMstoneLabel_(milestone, maxRevision)]]
+          <br>
+          [[maxRevision]]
+        </th>
+        <th colspan$="[[numChangeColumns_(table.statistics)]]">Change</th>
+      </tr>
+      <template is="dom-if" if="[[isMultiple_(table.statistics)]]">
+        <tr>
+          <th colspan$="[[table.maxLabelParts]]">&nbsp;</th>
+          <template is="dom-repeat" items="[[table.statistics]]" as="statistic" index-as="statisticIndex">
+            <th>[[statistic]]</th>
+          </template>
+          <template is="dom-repeat" items="[[table.statistics]]" as="statistic" index-as="statisticIndex">
+            <th>[[statistic]]</th>
+          </template>
+          <template is="dom-repeat" items="[[table.statistics]]" as="statistic" index-as="statisticIndex">
+            <th colspan="2">[[statistic]]</th>
+          </template>
+        </tr>
+      </template>
+    </thead>
+
+    <tbody>
+      <template is="dom-repeat" items="[[table.rows]]" as="row">
+        <tr on-mouseover="onOverRow_" on-mouseout="onOutRow_">
+          <template is="dom-repeat" items="[[row.labelParts]]" as="labelPart" index-as="labelPartIndex">
+            <template is="dom-if" if="[[labelPart.isFirst]]">
+              <td row-span="[[labelPart.rowCount]]">
+                <a href="[[labelPart.href]]"
+                    on-click="onOpenChart_">
+                  [[labelPart.label]]
+                </a>
+              </td>
+            </template>
+          </template>
+
+          <template is="dom-repeat" items="[[row.scalars]]" as="scalar" index-as="scalarIndex">
+            <td>
+              <scalar-span
+                  unit="[[scalar.unit]]"
+                  unit-prefix="[[scalar.unitPrefix]]"
+                  value="[[scalar.value]]">
+              </scalar-span>
+            </td>
+          </template>
+        </tr>
+      </template>
+    </tbody>
+  </table>
+
+  <div id="tooltip"
+      hidden$="[[!tooltip.rows]]"
+      style$="top: [[tooltip.top]]px; left: [[tooltip.left]]px;">
+    <table>
+      <tbody>
+        <template is="dom-repeat" items="[[tooltip.rows]]" as="row" index-as="rowIndex">
+          <tr>
+            <template is="dom-repeat" items="[[row]]" as="cell" index-as="cellIndex">
+              [[cell]]
+            </template>
+          </tr>
+        </template>
+      </tbody>
+    </table>
+  </template>
+</dom-module>
+<script src="/dashboard/spa/report-table.js"></script>
