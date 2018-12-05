@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "615cfbe6_3d06b76d",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-12-05T00:09:01Z",
+      "side": 1,
+      "message": "Nit: It\u0027s a bit unorthodox (in Chromium-land anyway) to define a function this way (assigning a lambda to a constant). Why not just:\n\ndef _GroupToString(group):\n    return \u0027, \u0027.join(group).replace(\u0027, \u0027 + group[-1], \u0027 and \u0027 + group[-1])\n\n?",
+      "revId": "1eed630e33520bb071ac18416b483bd1d42a95eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "276f8c7d_f702339a",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-12-05T00:09:01Z",
+      "side": 1,
+      "message": "These two lines seem suspicious. It looks like the goal is to break out of the loop and then get into the block at line 170, right?\n\nIf so, I\u0027d rework I\u0027d change line 164 to \u0027elif tag_sets_intersection\u0027, then lift lines 171-177 here, then leave lines 155-158 unchanged.",
+      "revId": "1eed630e33520bb071ac18416b483bd1d42a95eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4eb8ad2_7a71b665",
+        "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-12-05T00:09:01Z",
+      "side": 1,
+      "message": "Nit: here and below, it\u0027s easier to read if you\u0027re only doing one actual line per source line, so change this so that the \\n ends the line. We don\u0027t need to pack these things.",
+      "revId": "1eed630e33520bb071ac18416b483bd1d42a95eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
