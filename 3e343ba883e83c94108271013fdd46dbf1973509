@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "27c4d9e9_c7e2416a",
+        "filename": "web_page_replay_go/src/webpagereplay/archive.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1251641
+      },
+      "writtenOn": "2018-12-05T00:44:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "850f567f_ccb94bf5",
+      "revId": "3e343ba883e83c94108271013fdd46dbf1973509",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3eff8d13_06627de7",
         "filename": "web_page_replay_go/src/webpagereplay/archive.go",
         "patchSetId": 12
@@ -53,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "d2ac8cab_8e3c7939",
+        "filename": "web_page_replay_go/src/webpagereplay/archive.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1251641
+      },
+      "writtenOn": "2018-12-05T00:44:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9b7aef4_a4a18ea3",
+      "revId": "3e343ba883e83c94108271013fdd46dbf1973509",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ec53df5_e7363987",
         "filename": "web_page_replay_go/src/webpagereplay/archive_test.go",
         "patchSetId": 12
@@ -67,6 +103,24 @@
       "revId": "3e343ba883e83c94108271013fdd46dbf1973509",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a36fbcfc_c1113d0d",
+        "filename": "web_page_replay_go/src/webpagereplay/archive_test.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1251641
+      },
+      "writtenOn": "2018-12-05T00:44:25Z",
+      "side": 1,
+      "message": "The prepareArchiveForReplay function adds a session id property to an archive. This property is only useful in replay mode. WPR calls the newArchive function to create a new archive both for recording and for replay. If we call prepareArchiveForReplay inside newArchive, WPR will serialize the session id property inside the archive file. I don\u0027t think we want to add any extraneous properties to the archive files.",
+      "parentUuid": "0ec53df5_e7363987",
+      "revId": "3e343ba883e83c94108271013fdd46dbf1973509",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
