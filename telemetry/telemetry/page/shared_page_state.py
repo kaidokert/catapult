@@ -225,6 +225,15 @@ class SharedPageState(story_module.SharedState):
     if not self.browser:
       self._StartBrowser(page)
     if self.browser.supports_tab_control and self._test.close_tabs_before_run:
+      # On ChromeOS we don't stop the browser between pages (it's very
+      # expensive). To make sure each test gets a clean slate close all the
+      # tabs. This sets |keep_one| to false, as closing the last tab does not
+      # trigger process exit on ChromeOS as it does on the desktop.
+      supports_no_tabs = self.platform.GetOSName() == 'chromeos'
+      if supports_no_tabs:
+        while len(self.browser.tabs) > 0:
+          self.browser.tabs[-1].Close(keep_one=False)
+
       # Create a tab if there's none.
       if len(self.browser.tabs) == 0:
         self.browser.tabs.New()
