@@ -16,6 +16,24 @@
       "revId": "595416629520252d4059450918982546850394ba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44cf19ed_423f9a01",
+        "filename": "devil/devil/utils/cmd_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-12-05T21:10:25Z",
+      "side": 1,
+      "message": "My suspicion is that something later is interfering with subprocess\u0027s ability to find it later (see e.g. https://mail.python.org/pipermail/python-list/2011-September/611815.html, though I\u0027m not sure that it\u0027s chroot in this case). If we can\u0027t find it here, then subprocess *definitely* won\u0027t find it later and it should be ok to let it propagate.",
+      "parentUuid": "1aa86089_7575981f",
+      "revId": "595416629520252d4059450918982546850394ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
