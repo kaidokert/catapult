@@ -42,7 +42,9 @@ tr.b.unittest.testSuite(function() {
       histograms.addHistogram(getHistogram(metric, false));
     }
     histograms.addHistogram(
-        getHistogram('pipeline:begin_frame_to_raster_tasks', negative));
+        getHistogram('pipeline:begin_frame_to_raster_start', negative));
+    histograms.addHistogram(
+        getHistogram('pipeline:begin_frame_to_raster_end', false));
     histograms.addSharedDiagnosticToAllHistograms(
         tr.v.d.RESERVED_NAMES.LABELS, new tr.v.d.GenericSet([displayLabel]));
     histograms.addSharedDiagnosticToAllHistograms(

@@ -200,8 +200,11 @@ tr.exportTo('tr.v.ui', function() {
     },
 
     buildFrameChart_() {
+      const orderedPages = [...this.groupedData_.keys()].sort((a, b) =>
+        this.sortByRasterStart_(a, b));
       const allChartData = new Map();
-      for (const [page, pageMap] of this.groupedData_.entries()) {
+      for (const page of orderedPages) {
+        const pageMap = this.groupedData_.get(page);
         let chartData = [];
         for (const benchmark of this.orderedBenchmarks_) {
           if (!pageMap.has(benchmark)) continue;
@@ -218,8 +221,15 @@ tr.exportTo('tr.v.ui', function() {
             for (const metric of thread.keys()) {
               const metricMap = benchmarkMap.get(metric);
               const key = this.getSeriesKey_(metric, data.x);
-              const mean = metricMap.get(STATISTICS_KEY).mean;
-              const roundedMean = Math.round(mean * 100) / 100;
+              const stats = metricMap.get(STATISTICS_KEY);
+              const mean = stats ? stats.mean : 0;
+              let roundedMean = Math.round(mean * 100) / 100;
+              if (metric === 'pipeline:begin_frame_to_raster_start') {
+                rasterBegin = roundedMean;
+              } else if (metric === 'pipeline:begin_frame_to_raster_end') {
+                roundedMean -= rasterBegin;
+              }
+              data[key] = roundedMean;
             }
             i++;
             benchmarkData.push(data);
@@ -228,11 +238,7 @@ tr.exportTo('tr.v.ui', function() {
         }
         allChartData.set(page, chartData);
       }
-
-      return {
-        data: allChartData,
-        benchmarkCount: this.orderedBenchmarks_.length
-      };
+      return allChartData;
     },
 
     buildMetricsData_(chartName) {
@@ -317,9 +323,9 @@ tr.exportTo('tr.v.ui', function() {
       return submetrics;
     },
 
-    sortGroups_(a, b, chartName) {
-      if (a === AGGREGATE_KEY) return -1;
-      if (b === AGGREGATE_KEY) return 1;
+    sortByTotal_(a, b, chartName) {
+      if (a === 'aggregate') return -1;
+      if (b === 'aggregate') return 1;
       let aValue = 0;
       const aMap = this.groupedData_.get(a);
       if (aMap.get(this.orderedBenchmarks_[0]) !== undefined) {
@@ -335,6 +341,29 @@ tr.exportTo('tr.v.ui', function() {
           const bMetricMap = bMap.get(this.orderedBenchmarks_[0]).get(metric);
           bValue += bMetricMap.get(STATISTICS_KEY).mean;
         }
+      }
+      if (aValue === bValue) return 0;
+      return (aValue < bValue) ? -1 : 1;
+    },
+
+    sortByRasterStart_(a, b) {
+      if (a === 'aggregate') return -1;
+      if (b === 'aggregate') return 1;
+      let aValue = 0;
+      const aMap = this.groupedData_.get(a);
+      if (aMap.get(this.orderedBenchmarks_[0]) !== undefined) {
+        const aMetricMap = aMap.get(this.orderedBenchmarks_[0])
+            .get('pipeline:begin_frame_to_raster_start');
+        const aStats = aMetricMap.get(STATISTICS_KEY);
+        aValue = aStats ? aStats.mean : 0;
+      }
+      let bValue = 0;
+      const bMap = this.groupedData_.get(b);
+      if (bMap.get(this.orderedBenchmarks_[0]) !== undefined) {
+        const bMetricMap = bMap.get(this.orderedBenchmarks_[0])
+            .get('pipeline:begin_frame_to_raster_start');
+        const bStats = bMetricMap.get(STATISTICS_KEY);
+        bValue = bStats ? bStats.mean : 0;
       }
       if (aValue === bValue) return 0;
       return (aValue < bValue) ? -1 : 1;
