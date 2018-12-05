@@ -79,6 +79,9 @@ class AndroidBrowserBackendSettings(_BackendSettingsTuple):
     else:
       return _FindLocalApk(chrome_root, apk_name)
 
+  def FindExtraApk(self, chrome_root, apk_name):
+    return _FindLocalApk(chrome_root, apk_name)
+
 
 class GenericChromeBackendSettings(AndroidBrowserBackendSettings):
   def __new__(cls, **kwargs):
