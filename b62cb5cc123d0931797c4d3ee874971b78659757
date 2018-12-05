@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a8247af4_c7de26d1",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-12-05T19:17:36Z",
+      "side": 1,
+      "message": "I guess one application would work as well, was just thinking about CCT helper as well, not feeling strong about it ..",
+      "range": {
+        "startLine": 304,
+        "startChar": 6,
+        "endLine": 304,
+        "endChar": 30
+      },
+      "revId": "b62cb5cc123d0931797c4d3ee874971b78659757",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
