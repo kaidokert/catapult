@@ -42,6 +42,24 @@
     },
     {
       "key": {
+        "uuid": "fbdf0985_3db60a32",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2018-12-05T18:50:37Z",
+      "side": 1,
+      "message": "keep_one seems confusing to me since really it means: \"create one if deleting this would cause us to reach 0\"\n\"keep_one\" name to me implies that you don\u0027t close the tab if it is the last one left.\n\nI don\u0027t know how to resolve this... maybe just a comment explaining it. Or rename the parameter somehow.",
+      "parentUuid": "00a5c5fd_254fcfc0",
+      "revId": "cf97e4ac0f2940acc817a344a970749e613035b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "61701237_56e67215",
         "filename": "telemetry/telemetry/page/shared_page_state.py",
         "patchSetId": 3
