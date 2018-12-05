@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "1d76fced_36d03bb1",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2018-12-05T01:48:29Z",
+      "side": 1,
+      "message": "This won\u0027t throw a ParseError if I only define tag sets. In the code I want to parse all the tag sets and then after the while loop check if any tags are part of multiple tag sets. If there are tags shared across multiple tag sets then a ParseError exception will be thrown which lists all the tags that are shared by tag sets. I included the \"else:\\n\\tbreak\" at line 167 because I wanted to break early if there are any Test expectations in the file. I wanted to do this so that I can display the non disjoint tag set error before any error that would be discovered when parsing the test expectations.\n\nFor example a test expectation file with the following content\n# tags: [ Mac Win Linux ]\n# tags: [ Mac BMW ]\n\nwill incorrectly not throw a ParseError",
+      "parentUuid": "276f8c7d_f702339a",
+      "revId": "1eed630e33520bb071ac18416b483bd1d42a95eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b4eb8ad2_7a71b665",
         "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
         "patchSetId": 3
