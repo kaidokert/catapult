@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fd60e59c_ed6b651e",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2018-12-05T18:37:28Z",
+      "side": 1,
+      "message": "Is this still the correct condition? It seems like if you closed all the tabs then you will also need to WaitForDocumentReadyStateToBeComplete()",
+      "range": {
+        "startLine": 253,
+        "startChar": 0,
+        "endLine": 253,
+        "endChar": 25
+      },
+      "revId": "cf97e4ac0f2940acc817a344a970749e613035b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
