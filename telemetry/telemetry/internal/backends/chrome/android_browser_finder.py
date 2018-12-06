@@ -85,6 +85,7 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
     self._backend_settings = backend_settings
     self._local_apk = local_apk
     self._flag_changer = None
+    self._chrome_root = finder_options.chrome_root
 
     if self._local_apk is None and finder_options.chrome_root is not None:
       self._local_apk = self._backend_settings.FindLocalApk(
@@ -298,6 +299,12 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
         self._platform_backend.device) == 'Monochrome.apk'):
       self._platform_backend.device.SetWebViewImplementation(
           android_browser_backend_settings.ANDROID_CHROME.package)
+
+  def InstallExtraApplications(self, applications):
+    for apk in applications:
+      self.platform.InstallApplication(
+          android_browser_backend_settings.FindLatestApkOnHost(
+              self._chrome_root, apk))
 
 
 def SelectDefaultBrowser(possible_browsers):
