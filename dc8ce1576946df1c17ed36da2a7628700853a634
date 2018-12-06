@@ -270,6 +270,30 @@
       "revId": "dc8ce1576946df1c17ed36da2a7628700853a634",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1cbe9213_47a647d9",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-12-06T19:44:22Z",
+      "side": 1,
+      "message": "Both solution would run for each test expectation, right? Both of them are O(number of test expectation), and the only differences are the scalar factor, right? \n\nHaving said that, I have no strong opinion about which solution you pick",
+      "parentUuid": "b17ed732_c1ce5aac",
+      "range": {
+        "startLine": 197,
+        "startChar": 7,
+        "endLine": 209,
+        "endChar": 35
+      },
+      "revId": "dc8ce1576946df1c17ed36da2a7628700853a634",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
