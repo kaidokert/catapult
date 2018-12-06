@@ -204,6 +204,30 @@
       "revId": "dc8ce1576946df1c17ed36da2a7628700853a634",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6922418d_2261d1b3",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-12-06T19:08:59Z",
+      "side": 1,
+      "message": "ah, good eye.\n\nnits: I prefer \"for t in tags\" over \"for tag in tags\". The reason is variable names which are only different by the \"s\" at the end makes it\u0027s hard to read the code \u0026 can be error-prone to write (especially for editor that does autofill).",
+      "parentUuid": "c13cba35_5fb63b15",
+      "range": {
+        "startLine": 197,
+        "startChar": 7,
+        "endLine": 209,
+        "endChar": 35
+      },
+      "revId": "dc8ce1576946df1c17ed36da2a7628700853a634",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
