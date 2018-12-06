@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291b6df9_21dd11c2",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-12-06T15:41:09Z",
+      "side": 1,
+      "message": "At this point this also doesn\u0027t have much to do with android browsers (it\u0027s now more general), maybe move to telemetry.core.util itself?\n\n+Ned, what do you think?",
+      "revId": "ea960fe6e02824edd8f796c679d325962202fedf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8728798_72fe0614",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-12-06T15:41:09Z",
+      "side": 1,
+      "message": "I think this decorators.Cache is misleading: the function will often get called on different instances of the class, so nothing gets \"really\" cached; and the low-level function in device_utils that ultimately does the installing also implements a bit of caching there. So let\u0027s just remove the decorator.",
+      "revId": "ea960fe6e02824edd8f796c679d325962202fedf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75aea7a6_9d567903",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-12-06T15:41:09Z",
+      "side": 1,
+      "message": "Now I\u0027m thinking, this also doesn\u0027t quite belong here.\n\nWhat about defining a platform.InstallHostApks(chrome_root, apk_names) which the shared story can call directly?",
+      "revId": "ea960fe6e02824edd8f796c679d325962202fedf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

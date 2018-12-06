@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "0c14b4fd_d7224143",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-12-06T15:41:09Z",
+      "side": 1,
+      "message": "thanks! looks good",
+      "parentUuid": "e2c71c28_0d44ecd1",
+      "revId": "b62cb5cc123d0931797c4d3ee874971b78659757",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a8247af4_c7de26d1",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
         "patchSetId": 1
