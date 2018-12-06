@@ -294,6 +294,24 @@
       "revId": "dc8ce1576946df1c17ed36da2a7628700853a634",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ab6db08_7b4cdbec",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2018-12-06T21:11:10Z",
+      "side": 1,
+      "message": "I decided to go with one of Ned\u0027s suggested changes for this code. So this expression is not there anymore.",
+      "parentUuid": "e78b5bad_5daf48c9",
+      "revId": "dc8ce1576946df1c17ed36da2a7628700853a634",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
