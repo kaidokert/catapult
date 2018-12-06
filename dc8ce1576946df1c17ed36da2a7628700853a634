@@ -246,6 +246,30 @@
       "revId": "dc8ce1576946df1c17ed36da2a7628700853a634",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b17ed732_c1ce5aac",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2018-12-06T19:36:36Z",
+      "side": 1,
+      "message": "Another issue with the alternative solutions is that they run for each test expectation. Since there could be thousands of those, I think we should keep the if statement at 197. Therefore we should keep the  self._tag_to_tag_set dictionary and create the tag_set_ids set each time we parse a test expectation. Also if we do that we could change lines 194 to 196. Instead of iterating through each tag_set and checking if a tag from the tag group is in it, we can check if the tag from the tag group is in the self._tag_to_tag_set dictionary with one simple query.",
+      "parentUuid": "6922418d_2261d1b3",
+      "range": {
+        "startLine": 197,
+        "startChar": 7,
+        "endLine": 209,
+        "endChar": 35
+      },
+      "revId": "dc8ce1576946df1c17ed36da2a7628700853a634",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
