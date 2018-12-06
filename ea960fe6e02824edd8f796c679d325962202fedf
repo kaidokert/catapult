@@ -86,6 +86,24 @@
       "revId": "ea960fe6e02824edd8f796c679d325962202fedf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5882f4c8_feda973e",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-12-06T17:02:49Z",
+      "side": 1,
+      "message": "My thought is to keep FindEmbedderApk as is, possibly move FindLocalApk to telemetry.core.util (or keep as is), and just implement InstallHostApks in platform (with an implementation quite similar to the one you have here).",
+      "parentUuid": "763ed3c2_1d3870b8",
+      "revId": "ea960fe6e02824edd8f796c679d325962202fedf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
