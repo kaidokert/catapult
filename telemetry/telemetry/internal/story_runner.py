@@ -298,6 +298,8 @@ def Run(test, story_set, finder_options, results, max_failures=None,
     if state:
       has_existing_exception = sys.exc_info() != (None, None, None)
       try:
+        if state.system_wide_profiling_controller.IsEnabled():
+          state.system_wide_profiling_controller.WriteStatsJSON(results)
         state.TearDownState()
       except Exception: # pylint: disable=broad-except
         if not has_existing_exception:

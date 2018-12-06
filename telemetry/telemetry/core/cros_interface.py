@@ -67,6 +67,26 @@ def GetAllCmdOutput(args, cwd=None, quiet=False):
       logging.debug(' > stdout=[%s], stderr=[%s]', stdout, stderr)
     return stdout, stderr
 
+def StartAllCmd(args, cwd=None, quiet=False):
+  """Starts a subprocess to execute a program and returns its handle.
+
+  Args:
+    args: A string or a sequence of program arguments. The program to execute is
+      the string or the first item in the args sequence.
+    cwd: If not None, the subprocess's current directory will be changed to
+      |cwd| before it's executed.
+
+  Returns:
+     An instance of subprocess.Popen associated with the live process.
+  """
+  if not quiet:
+    logging.debug(' '.join(args) + ' ' + (cwd or ''))
+  with open(os.devnull, 'w') as devnull:
+    return subprocess.Popen(args=args,
+                            cwd=cwd,
+                            stdout=subprocess.PIPE,
+                            stderr=subprocess.PIPE,
+                            stdin=devnull)
 
 def HasSSH():
   try:
@@ -126,10 +146,17 @@ class CrOSInterface(object):
           stdout=devnull,
           stderr=devnull)
 
+    # List of subprocesses started using StartCmdOnDevice.
+    self._subprocesses = []
+
   def __enter__(self):
     return self
 
   def __exit__(self, *args):
+    for p in self._subprocesses:
+      p.poll()
+      if p.returncode is None:
+        p.kill()
     self.CloseConnection()
 
   @property
@@ -235,6 +262,14 @@ class CrOSInterface(object):
     # a warning to stderr that we need to remove.
     stderr = self._RemoveSSHWarnings(stderr)
     return stdout, stderr
+ 
+  def StartCmdOnDevice(self, args, cwd=None, quiet=False, connect_timeout=None):
+    p = StartAllCmd(
+	self.FormSSHCommandLine(args, connect_timeout=connect_timeout),
+        cwd,
+        quiet=quiet)
+    self._subprocesses.append(p)
+    return p
 
   def TryLogin(self):
     logging.debug('TryLogin()')
@@ -309,10 +344,10 @@ class CrOSInterface(object):
       self.PushFile(f.name, remote_filename)
 
   def GetFile(self, filename, destfile=None):
-    """Copies a local file |filename| to |destfile| on the device.
+    """Copies a remote file |filename| on the device to a local file |destfile|.
 
     Args:
-      filename: The name of the local source file.
+      filename: The name of the remote source file.
       destfile: The name of the file to copy to, and if it is not specified
         then it is the basename of the source file.
 
