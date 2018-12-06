@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "12ae6e46_273cf480",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-12-06T16:46:45Z",
+      "side": 1,
+      "message": "Remove \u0027Solved Bug:\u0027",
+      "revId": "b3408f34edc3877e2685c37798b27ad3c746955c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8f9f81e_eae698fe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-12-06T16:46:45Z",
+      "side": 1,
+      "message": "This feels a bit too specific. Perhaps reword like the following:\n\nThe TabSwitching::Latency trace events can be generated when opening\nthe initial set of tabs. However, the benchmark should ignore those\ntimes, and only look at the ones that were generated during tab-switching.\nSo ignore the TabSwitching::Latency traces that happen before the first\nTabSwitchVisibilityRequest event.",
+      "revId": "b3408f34edc3877e2685c37798b27ad3c746955c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "415e50f9_b0989c9c",
+        "filename": "tracing/tracing/metrics/tabs_metric.html",
+        "patchSetId": 11
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-12-06T16:46:45Z",
+      "side": 1,
+      "message": "*startTabSwitchVisibilityRequest",
+      "revId": "b3408f34edc3877e2685c37798b27ad3c746955c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
