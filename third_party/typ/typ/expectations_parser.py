@@ -24,7 +24,9 @@ _EXPECTATION_MAP = {
 }
 
 def _group_to_string(group):
-    return ', '.join(group).replace(', ' + group[-1], ' and ' + group[-1])
+    msg = ', '.join(group)
+    k = msg.rfind(', ')
+    return msg[:k] + ' and ' + msg[k+2:] if k != -1 else msg
 
 class ParseError(Exception):
 
@@ -106,6 +108,7 @@ class TaggedTestListParser(object):
     def __init__(self, raw_data):
         self.tag_sets = []
         self.expectations = []
+        self._tag_to_tag_set = {}
         self._parse_raw_expectation_data(raw_data)
 
     def _parse_raw_expectation_data(self, raw_data):
@@ -157,6 +160,7 @@ class TaggedTestListParser(object):
                 tag_sets_intersection.update(master_tag_set & tag_set)
                 master_tag_set.update(tag_set)
                 self.tag_sets.append(tag_set)
+                self._tag_to_tag_set.update({tg: id(tag_set) for tg in tag_set})
             elif line.startswith('#') or not line:
                 # Ignore, it is just a comment or empty.
                 lineno += 1
@@ -183,11 +187,27 @@ class TaggedTestListParser(object):
 
         # Unused group is optional trailing comment.
         reason, raw_tags, test, raw_results, _ = match.groups()
-
         tags = raw_tags.split() if raw_tags else []
+        tag_set_ids = {self._tag_to_tag_set[tag]
+                       for tag in tags if tag in self._tag_to_tag_set}
+
         for tag in tags:
             if not any(tag in tag_set for tag_set in tag_sets):
                 raise ParseError(lineno, 'Unknown tag "%s"' % tag)
+        if len(tag_set_ids) != len(tags):
+            error_msg = "The tag group contains tags that are " \
+                "part of the same tag set\n  - "
+            id_to_tags = {}
+            for tag in tags:
+                id_to_tags.setdefault(self._tag_to_tag_set[tag], []).append(tag)
+            error_msg += '\n  - '.join(
+                ['Tags %s are part of the same tag set' \
+                % _group_to_string(sorted(tags))
+                 for tags in  sorted(
+                     [tags for _, tags in id_to_tags.items()],
+                     lambda x, y: len(x)-len(y))
+                 if len(tags) > 1])
+            raise ParseError(lineno, error_msg)
 
         results = []
         for r in raw_results.split():
