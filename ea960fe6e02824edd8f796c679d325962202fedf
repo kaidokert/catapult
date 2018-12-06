@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "dc4ab3ee_cf10bbed",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-12-06T16:45:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8728798_72fe0614",
+      "revId": "ea960fe6e02824edd8f796c679d325962202fedf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "75aea7a6_9d567903",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
         "patchSetId": 3
@@ -47,6 +65,24 @@
       "writtenOn": "2018-12-06T15:41:09Z",
       "side": 1,
       "message": "Now I\u0027m thinking, this also doesn\u0027t quite belong here.\n\nWhat about defining a platform.InstallHostApks(chrome_root, apk_names) which the shared story can call directly?",
+      "revId": "ea960fe6e02824edd8f796c679d325962202fedf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "763ed3c2_1d3870b8",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-12-06T16:45:18Z",
+      "side": 1,
+      "message": "The FindLocalApk and FindEmbedderApk in AndroidBrowserBackendSettings are using this method as well. They cannot be easily moved to platform. We can split into:\nplatform.InstallApk(some_util_place.FindLatestApkOnHost(chrome_root, apk))\n\nThis is a more verbose API, so I\u0027d want to ask before doing it.",
+      "parentUuid": "75aea7a6_9d567903",
       "revId": "ea960fe6e02824edd8f796c679d325962202fedf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
