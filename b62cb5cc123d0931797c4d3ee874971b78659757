@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e2c71c28_0d44ecd1",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-12-06T12:57:58Z",
+      "side": 1,
+      "message": "Sounds good. Done. Also changed the implementation slightly to hopefully improve readability.",
+      "parentUuid": "df7d78b5_66d87bc5",
+      "revId": "b62cb5cc123d0931797c4d3ee874971b78659757",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a8247af4_c7de26d1",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
         "patchSetId": 1
@@ -54,6 +72,30 @@
       "side": 1,
       "message": "Who would be calling this? The story?",
       "parentUuid": "a8247af4_c7de26d1",
+      "range": {
+        "startLine": 304,
+        "startChar": 6,
+        "endLine": 304,
+        "endChar": 30
+      },
+      "revId": "b62cb5cc123d0931797c4d3ee874971b78659757",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b044c4af_a78b754f",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2018-12-06T12:57:58Z",
+      "side": 1,
+      "message": "I was thinking it would be rather _MobileStartupSharedState.__init__(). At least this is how I tested.",
+      "parentUuid": "acafdac4_c458d995",
       "range": {
         "startLine": 304,
         "startChar": 6,
