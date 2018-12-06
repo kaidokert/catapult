@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b4a26292_8c5a988b",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2018-12-06T22:26:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1ac15dd4_948ea91b",
+      "range": {
+        "startLine": 192,
+        "startChar": 8,
+        "endLine": 192,
+        "endChar": 24
+      },
+      "revId": "11faa9b1f5ae9ca179d0ec970013fee47cf8ac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e7fc115b_84da993c",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "11faa9b1f5ae9ca179d0ec970013fee47cf8ac0e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17aea6db_10b68db1",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2018-12-06T22:26:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e7fc115b_84da993c",
+      "range": {
+        "startLine": 197,
+        "startChar": 23,
+        "endLine": 197,
+        "endChar": 69
+      },
+      "revId": "11faa9b1f5ae9ca179d0ec970013fee47cf8ac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "998cd256_c062fa56",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2018-12-06T22:26:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "badca90b_fb982d37",
+      "range": {
+        "startLine": 199,
+        "startChar": 64,
+        "endLine": 199,
+        "endChar": 65
+      },
+      "revId": "11faa9b1f5ae9ca179d0ec970013fee47cf8ac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "676d6e3c_31835f31",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 3
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "bb3ad99d_ad8d8b82",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2018-12-06T22:26:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "676d6e3c_31835f31",
+      "range": {
+        "startLine": 202,
+        "startChar": 12,
+        "endLine": 202,
+        "endChar": 28
+      },
+      "revId": "11faa9b1f5ae9ca179d0ec970013fee47cf8ac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4f075de0_7d5670cd",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 3
@@ -114,6 +210,30 @@
       "revId": "11faa9b1f5ae9ca179d0ec970013fee47cf8ac0e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a6119c1_d45c4fab",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2018-12-06T22:26:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4f075de0_7d5670cd",
+      "range": {
+        "startLine": 204,
+        "startChar": 36,
+        "endLine": 205,
+        "endChar": 60
+      },
+      "revId": "11faa9b1f5ae9ca179d0ec970013fee47cf8ac0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
