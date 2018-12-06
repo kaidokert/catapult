@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "eb540ac4_819b916f",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-12-06T16:51:19Z",
+      "side": 1,
+      "message": "I just notice this now. +1 for correcting the grammar ;)",
+      "revId": "dc8ce1576946df1c17ed36da2a7628700853a634",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "80ac3acb_08ab0dda",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 2
@@ -19,6 +36,29 @@
     },
     {
       "key": {
+        "uuid": "f3448b47_63f7a2ab",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-12-06T16:51:19Z",
+      "side": 1,
+      "message": "you don\u0027t need this check if you move this tag_set_ids construction to after line 196, right?",
+      "range": {
+        "startLine": 192,
+        "startChar": 39,
+        "endLine": 192,
+        "endChar": 69
+      },
+      "revId": "dc8ce1576946df1c17ed36da2a7628700853a634",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6f3686c7_b897c96a",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 2
@@ -30,6 +70,29 @@
       "writtenOn": "2018-12-06T16:23:00Z",
       "side": 1,
       "message": "this expression is IMO complicated to be easily understood as an argument to a string. Can you pull this into a local variable.\n\nAlso, what happens if len(tags) \u003c 1?",
+      "revId": "dc8ce1576946df1c17ed36da2a7628700853a634",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c25055ad_e5e1784a",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-12-06T16:51:19Z",
+      "side": 1,
+      "message": "I think all this code can be simplified as follow:\nerrors \u003d []\ntags_by_tag_set_id \u003d defaultdict(list)\nfor t in tags:\n  tags_by_tag_set_id[self._tag_to_tag_set[t]].append(t)\nfor tags_groups in tags_by_tag_set_id.values():\n   if len(tags_group) \u003e 1:\n      error.append(\u0027Tags %s are part of the same tag set\u0027 % _group_to_string(tags_group)\n\n\nAn alternative is to get rid of tags_by_tag_set_id completely. The algorithm is as follow:\n\nerrors \u003d []\nfor ts in self.tag_sets:\n  intersection \u003d ts.intersection(tags)\n  if len(intersection) \u003e 0:\n      error.append(\u0027Tags %s are part of the same tag set\u0027 % _group_to_string(intersection)\n\nIn theory, the 2nd implementation could be a little bit slower than your original implementation which uses _tag_to_tag_set dictionary. In practice, I think they will end up having similar performance give the number of tag_sets shouldn\u0027t be too high.",
+      "range": {
+        "startLine": 197,
+        "startChar": 7,
+        "endLine": 209,
+        "endChar": 35
+      },
       "revId": "dc8ce1576946df1c17ed36da2a7628700853a634",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
