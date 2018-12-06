@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ed7318c_99f96d92",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-12-06T16:28:38Z",
+      "side": 1,
+      "message": "This is probably wrong. We probably don\u0027t want to divide ith display frame duration by the ith renderer frame interval. Let\u0027s say the page has OOPIFs. Then:\n\ndisplay:    F1    F2    F3    F4\nrenderer1:  I11   I12         I13\nrenderer2:        I21   I22   I23\n\nThen IntervalTime is something like [I11, I12, I13, I21, I22, I23], while frameSegments is [F1, F2, F3, F4]. We cannot assume the ith elements of the two lists correspond to each other.\n\nHere is my bigger question:\n\nOn android, surface refresh period is constant through out. So, we divide frame lengths by a single number. If this assumption is not correct on other platforms, could you please explain, preferably in the jack_count documentation at the beginning of the file:\n\n1- when refresh periods change, and\n2- what do we expect jank_count mean if the refresh period changes: e.g. if refresh period increases, is that a jank?",
+      "range": {
+        "startLine": 282,
+        "startChar": 0,
+        "endLine": 282,
+        "endChar": 78
+      },
+      "revId": "9e00035ef5f7ab03f6cdafd362c856ec8d35dd7c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
