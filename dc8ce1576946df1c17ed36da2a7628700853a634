@@ -228,6 +228,24 @@
       "revId": "dc8ce1576946df1c17ed36da2a7628700853a634",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e78b5bad_5daf48c9",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-12-06T19:10:27Z",
+      "side": 1,
+      "message": "This:\n\n[\u0027Tags %s are part of the same tag set\u0027 \\\n                % _group_to_string(sorted(tags))\n                 for tags in  sorted(\n                     [tags for _, tags in id_to_tags.items()],\n                     lambda x, y: len(x)-len(y))\n                 if len(tags) \u003e 1]",
+      "parentUuid": "5c519b2f_89863cd5",
+      "revId": "dc8ce1576946df1c17ed36da2a7628700853a634",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
