@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "68a9305f_98e104a3",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2018-12-06T18:43:12Z",
+      "side": 1,
+      "message": "Yes that is my intention. This function is also used when a tag is found to be in multiple tag sets. There for a group of 1 tag is passed to the function.",
+      "parentUuid": "80ac3acb_08ab0dda",
+      "revId": "dc8ce1576946df1c17ed36da2a7628700853a634",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f3448b47_63f7a2ab",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 2
@@ -56,6 +74,30 @@
       "revId": "dc8ce1576946df1c17ed36da2a7628700853a634",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9faeb898_571aa4f6",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2018-12-06T18:43:12Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f3448b47_63f7a2ab",
+      "range": {
+        "startLine": 192,
+        "startChar": 39,
+        "endLine": 192,
+        "endChar": 69
+      },
+      "revId": "dc8ce1576946df1c17ed36da2a7628700853a634",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -111,6 +153,48 @@
       "side": 1,
       "message": "*forgot to add that for both implementation above, we also need to add:\n\nif errors:\n  raise ParseError(lineno, \u0027\\n\u0027.join(errors))",
       "parentUuid": "c25055ad_e5e1784a",
+      "range": {
+        "startLine": 197,
+        "startChar": 7,
+        "endLine": 209,
+        "endChar": 35
+      },
+      "revId": "dc8ce1576946df1c17ed36da2a7628700853a634",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c519b2f_89863cd5",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2018-12-06T18:43:12Z",
+      "side": 1,
+      "message": "Sorry which expression were you talking about? I\u0027m confused about what you want to pull into a local variable. Also if len(tags)\u003c1 then len(tag_set_ids) should be less than 1 also. Therefore it wont pass the if statement at line 197.",
+      "parentUuid": "6f3686c7_b897c96a",
+      "revId": "dc8ce1576946df1c17ed36da2a7628700853a634",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c13cba35_5fb63b15",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2018-12-06T18:43:12Z",
+      "side": 1,
+      "message": "In your alternative solution, an error won\u0027t be thrown if there are duplicate tags in a tag group from an test expectation. Thats because the ts.intersection() function returns another set. And it should be \"if len(intersection) \u003e 1:\" in the alternative solution.\n\nAlternatively to the alternative solution we can do this\nerrors \u003d []\nfor ts in self.tag_sets:\n    intersection \u003d [tag for tag in tags if tag in ts]\n    if len(intersection) \u003e 1:\n        error.append(\u0027Tags %s are part of the same tag set\u0027 % _group_to_string(intersection))",
+      "parentUuid": "0afd6934_b94a8103",
       "range": {
         "startLine": 197,
         "startChar": 7,
