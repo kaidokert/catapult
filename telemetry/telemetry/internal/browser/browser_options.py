@@ -56,6 +56,9 @@ class BrowserFinderOptions(optparse.Values):
     self.interval_profiling_periods = []
     self.interval_profiling_frequency = 1000
 
+    self.start_system_wide_profiler = False
+    self.system_wide_profiling_options = '-e cycles -c 400000'
+    self.system_wide_profiler_temp_dir = None
   def __repr__(self):
     return str(sorted(self.__dict__.items()))
 
@@ -199,6 +202,32 @@ class BrowserFinderOptions(optparse.Values):
         type=int,
         help='Frequency of CPU profiling samples, in samples per second '
         '(default=%default).')
+    parser.add_option_group(group)
+
+    # System-wide profiling on ChromeOS.
+    group = optparse.OptionGroup(parser, (
+        'System-wide CPU profiling of story runs on ChromeOS'))
+    group.add_option(
+        '--collect-system-wide-profiles', action="store_true",
+        dest='start_system_wide_profiler', default=False,
+        help='Run the system-wide CPU profiler for each story run.')
+#    group.add_option(
+#        '--system-wide-profiling-period', default=400000,
+#        metavar='PERIOD',
+#        type=int, help='Perf event period to sample i.e., Sample every x '
+#        'number of event or events (default=%default).')
+    group.add_option(
+        '--system-wide-profiling-options', default='-e cycles -c 400000',
+        metavar='"-option <value> ..."',
+        help='Perf record options to collect system-wide CPU profiles. See the '
+	'(http://man7.org/linux/man-pages/man1/perf-record.1.html) perf man '
+	'page for more options. Provide only perf record options other than -o '
+        'and -a.')
+    group.add_option(
+        '--system-wide-profiler-temp-dir', default=None, type=str,
+        metavar='PATH TO A TEMPORARY DIRECTORY',
+        help='Location on the test device to temporarily store the generated '
+             'perf.data files.')
     parser.add_option_group(group)
 
     # Browser options.
