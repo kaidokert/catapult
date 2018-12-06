@@ -77,7 +77,7 @@ class AndroidBrowserBackendSettings(_BackendSettingsTuple):
     if apk_name is None:
       return None
     else:
-      return _FindLocalApk(chrome_root, apk_name)
+      return FindLatestApkOnHost(chrome_root, apk_name)
 
 
 class GenericChromeBackendSettings(AndroidBrowserBackendSettings):
@@ -154,7 +154,7 @@ class WebViewBackendSettings(WebViewBasedBackendSettings):
         return embedder_apk_path
     if chrome_root is not None:
       # Otherwise fall back to an APK found on chrome_root
-      return _FindLocalApk(chrome_root, self.embedder_apk_name)
+      return FindLatestApkOnHost(chrome_root, self.embedder_apk_name)
     else:
       return None
 
@@ -233,16 +233,22 @@ ANDROID_BACKEND_SETTINGS = (
 )
 
 
-def _FindLocalApk(chrome_root, apk_name):
+def FindLatestApkOnHost(chrome_root, apk_name):
+  """Chooses the path to the APK that was updated latest.
+
+  Args:
+    chrome_root: The path to chrome src.
+    apk_name: The name of the APK file to find (example: 'MapsWebApk.apk').
+  Returns:
+    The absolute path to the latest APK found.
+  """
   found_apk_path = None
-  found_last_changed = None
+  latest_mtime = 0
   for build_path in util.GetBuildDirectories(chrome_root):
     apk_path = os.path.join(build_path, 'apks', apk_name)
     if os.path.exists(apk_path):
-      last_changed = os.path.getmtime(apk_path)
-      # Keep the most recently updated apk only.
-      if found_last_changed is None or last_changed > found_last_changed:
+      mtime = os.path.getmtime(apk_path)
+      if mtime > latest_mtime:
+        latest_mtime = mtime
         found_apk_path = apk_path
-        found_last_changed = last_changed
-
   return found_apk_path
