@@ -104,6 +104,24 @@
       "revId": "ea960fe6e02824edd8f796c679d325962202fedf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8bf7683c_5cde2204",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-12-06T17:04:20Z",
+      "side": 1,
+      "message": "s/FindLocalApk/FindLatestApkOnHost/",
+      "parentUuid": "5882f4c8_feda973e",
+      "revId": "ea960fe6e02824edd8f796c679d325962202fedf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
