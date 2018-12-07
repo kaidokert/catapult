@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a39d4766_ea753134",
+        "filename": "common/py_utils/py_utils/modules_util.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-12-07T14:15:48Z",
+      "side": 1,
+      "message": "moving the central logic of Telemetry\u0027s old \"ImportRequiredModule\" here, so it can be reused e.g. by devil.",
+      "revId": "0d340ee150de5ae6545c6269092fc66fb36ef337",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
