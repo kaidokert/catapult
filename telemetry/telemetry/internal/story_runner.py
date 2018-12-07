@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 
 import contextlib
+import itertools
 import logging
 import optparse
 import os
@@ -87,6 +88,8 @@ def AddCommandLineArgs(parser):
                     dest='run_disabled_tests',
                     action='store_true', default=False,
                     help='Ignore expectations.config disabling.')
+  parser.add_option('-p', '--print-only', dest='print_only',
+                    type=str, default=None)
 
 def ProcessCommandLineArgs(parser, args):
   story_module.StoryFilter.ProcessCommandLineArgs(parser, args)
@@ -94,6 +97,9 @@ def ProcessCommandLineArgs(parser, args):
 
   if args.pageset_repeat < 1:
     parser.error('--pageset-repeat must be a positive integer.')
+
+  if args.print_only and args.print_only not in ['stories', 'tags', 'both']:
+    parser.error('--print-only must be one of "stories", "tags", "both"')
 
 
 def _GenerateTagMapFromStorySet(stories):
@@ -212,6 +218,20 @@ def Run(test, story_set, finder_options, results, max_failures=None,
       return
 
   if not stories:
+    return
+
+  if finder_options.print_only:
+    if finder_options.print_only == 'tags':
+      tags = set(itertools.chain.from_iterable(s.tags for s in stories))
+      print 'List of tags:\n%s' % '\n'.join(tags)
+      return
+    include_tags = finder_options.print_only == 'both'
+    if include_tags:
+      format_string = '  %%-%ds %%s' % max(len(s.name) for s in stories)
+    else:
+      format_string = '%s%s'
+    for s in stories:
+      print format_string % (s.name, ','.join(s.tags) if include_tags else '')
     return
 
   # Effective max failures gives priority to command-line flag value.
@@ -340,37 +360,39 @@ def RunBenchmark(benchmark, finder_options):
   else:
     target_platform = platform_module.GetHostPlatform()
 
-  can_run_on_platform = benchmark._CanRunOnPlatform(
-      target_platform, finder_options)
+  if not finder_options.print_only:
+    can_run_on_platform = benchmark._CanRunOnPlatform(
+        target_platform, finder_options)
 
-  expectations_disabled = False
-  # For now, test expectations are only applicable in the cases where the
-  # testing target involves a browser.
-  if possible_browser:
-    expectations_disabled = expectations.IsBenchmarkDisabled(
-        possible_browser.platform, finder_options)
+    expectations_disabled = False
+    # For now, test expectations are only applicable in the cases where the
+    # testing target involves a browser.
+    if possible_browser:
+      expectations_disabled = expectations.IsBenchmarkDisabled(
+          possible_browser.platform, finder_options)
 
-  if expectations_disabled or not can_run_on_platform:
-    print '%s is disabled on the selected browser' % benchmark.Name()
-    if finder_options.run_disabled_tests and can_run_on_platform:
-      print 'Running benchmark anyway due to: --also-run-disabled-tests'
-    else:
-      if can_run_on_platform:
-        print 'Try --also-run-disabled-tests to force the benchmark to run.'
+    if expectations_disabled or not can_run_on_platform:
+      print '%s is disabled on the selected browser' % benchmark.Name()
+      if finder_options.run_disabled_tests and can_run_on_platform:
+        print 'Running benchmark anyway due to: --also-run-disabled-tests'
       else:
-        print ("This platform is not supported for this benchmark. If this is "
-               "in error please add it to the benchmark's supported platforms.")
-      # If chartjson is specified, this will print a dict indicating the
-      # benchmark name and disabled state.
-      with results_options.CreateResults(
-          benchmark_metadata, finder_options,
-          should_add_value=benchmark.ShouldAddValue,
-          benchmark_enabled=False
-          ) as results:
-        results.PrintSummary()
-      # When a disabled benchmark is run we now want to return success since
-      # we are no longer filtering these out in the buildbot recipes.
-      return 0
+        if can_run_on_platform:
+          print 'Try --also-run-disabled-tests to force the benchmark to run.'
+        else:
+          print ("This platform is not supported for this benchmark. If this "
+                 "is in error please add it to the benchmark's supported "
+                 "platforms.")
+        # If chartjson is specified, this will print a dict indicating the
+        # benchmark name and disabled state.
+        with results_options.CreateResults(
+            benchmark_metadata, finder_options,
+            should_add_value=benchmark.ShouldAddValue,
+            benchmark_enabled=False
+            ) as results:
+          results.PrintSummary()
+        # When a disabled benchmark is run we now want to return success since
+        # we are no longer filtering these out in the buildbot recipes.
+        return 0
 
   pt = benchmark.CreatePageTest(finder_options)
   pt.__name__ = benchmark.__class__.__name__
