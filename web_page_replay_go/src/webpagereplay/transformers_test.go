@@ -121,3 +121,65 @@ func TestInjectScriptToGzipResponse(t *testing.T) {
 		t.Fatal(fmt.Errorf("expected : %s \n actual: %s \n", expectedContent, body))
 	}
 }
+
+func TestInjectScriptToResponseWithCspNonce(t *testing.T) {
+	script := []byte("var foo = 1;")
+	transformer := NewScriptInjector(script, nil)
+	req := http.Request{}
+	responseHeader := http.Header{
+		"Content-Type": []string{"text/html"},
+		"Content-Security-Policy": []string{"script-src 'strict-dynamic' 'nonce-2726c7f26c'"}}
+	resp := http.Response{
+		StatusCode: 200,
+		Header:     responseHeader,
+		Body:       ioutil.NopCloser(bytes.NewReader([]byte("<html><head><script>document.write('<head></head>');</script></head></html>")))}
+	transformer.Transform(&req, &resp)
+	body, err := ioutil.ReadAll(resp.Body)
+	resp.Body.Close()
+	if err != nil {
+		t.Fatal(err)
+	}
+	expectedContent := []byte(fmt.Sprintf("<html><head><script nonce=\"2726c7f26c\">var foo = 1;</script><script>document.write('<head></head>');</script></head></html>"))
+	if !bytes.Equal(expectedContent, body) {
+		t.Fatal(fmt.Errorf("expected : %s \n actual: %s \n", expectedContent, body))
+	}
+}
+
+func transformCsp(
+	oldCsp string) string {
+	responseHeader := http.Header{
+		"Content-Security-Policy": {oldCsp},
+	}
+	transformCSPHeader(responseHeader)
+	newCsp := responseHeader.Get("Content-Security-Policy")
+	return newCsp
+}
+
+func TestTransformCsp(t *testing.T) {
+	assertEquals(t,
+		transformCsp(
+			"script-src 'self' https://foo.com;"),
+		"script-src 'unsafe-inline' 'self' https://foo.com ; ")
+	assertEquals(t,
+		transformCsp(
+			"script-src 'strict-dynamic' 'nonce-2726c7f26c'"),
+		"script-src 'strict-dynamic' 'nonce-2726c7f26c'")
+	assertEquals(t,
+		transformCsp(
+			"script-src 'sha256-pwltXkdHyMvChFSLNauyy5WItOFOm+iDDsgqRTr8peI='"),
+		"script-src 'unsafe-inline' ")
+	assertEquals(t,
+		transformCsp(
+			"script-src "+
+				"'sha384-oqVuAfXRKap7fdgcCY5uykM6+R9GqQ8K/"+
+				"uxy9rx7HNQlGYl1kPzQho1wx4JwY8wC'"),
+		"script-src 'unsafe-inline' ")
+	assertEquals(t,
+		transformCsp(
+			"script-src 'sha512-cLuU6nVzrYJlo7rUa6TMmz3nylPFrPQrEUpOHllb5ic='"),
+		"script-src 'unsafe-inline' ")
+	assertEquals(t,
+		transformCsp(
+			"script-src 'self' https://foo.com 'sha512-cLuU6nVzrYJlo7rUa6TMmz3nylPFrPQrEUpOHllb5ic=' 'strict-dynamic' ;"),
+		"script-src 'unsafe-inline' 'self' https://foo.com ; ")
+}

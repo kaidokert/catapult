@@ -96,6 +96,101 @@ func transformResponseBody(resp *http.Response, f func([]byte) []byte) error {
 	return nil
 }
 
+// getCSPScriptSrcDirectiveFromHeaders returns a Content-Security-Policy (CSP) header's
+// script source directive. If a header set does not have a CSP header or if the CSP header does not
+// have a script-src directive, getCSPScriptSrcDirectiveFromHeaders returns an empty string.
+func getCSPScriptSrcDirectiveFromHeaders(header http.Header) string {
+	csp := header.Get("Content-Security-Policy")
+	if csp == "" {
+		return ""
+	}
+
+	directives := strings.Split(csp, ";")
+	for i := 0; i < len(directives); i++ {
+		directive := strings.TrimSpace(directives[i])
+		if strings.HasPrefix(directive, "script-src ") {
+			return directives[i];
+		}
+	}
+
+	return ""
+}
+
+// getScriptSrcNonceTokenFromCSPHeader returns the nonce token from a Content-Security-Policy
+// (CSP) header's script source directive, or an empty string if the CSP header's script source
+// does not contain a nonce.
+// For more background information on CSP and nonce, please refer to
+// https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src
+// https://developers.google.com/web/fundamentals/security/csp/
+func getNonceTokenFromCSPHeaderScriptSrc(cspScriptSrc string) string {
+	cspScriptSrc = strings.Trim(cspScriptSrc, " ")
+	tokens := strings.Split(cspScriptSrc, " ")
+	for i := 1; i < len(tokens); i++ {
+		token := strings.TrimSpace(tokens[i])
+		if strings.HasPrefix(token, "'nonce-") {
+			token = strings.TrimPrefix(token, "'nonce-")
+			token = strings.TrimSuffix(token, "'")
+			return token
+		}
+	}
+
+	return ""
+}
+
+// transformCSPHeader transforms a Content-Security-Policy (CSP) header to permit execution of
+// inline scripts. Without this permission a page with a restrictive CSP will not execute WPR
+// injected scripts.
+// For more background information on CSP, please refer to
+// https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src
+// https://developers.google.com/web/fundamentals/security/csp/
+func transformCSPHeader(header http.Header) {
+	csp := header.Get("Content-Security-Policy")
+	if csp == "" {
+		return
+	}
+
+	directives := strings.Split(csp, ";")
+	for i := 0; i < len(directives); i++ {
+		directive := strings.TrimSpace(directives[i])
+		if strings.HasPrefix(directive, "script-src ") {
+			if getNonceTokenFromCSPHeaderScriptSrc(directive) != "" {
+				// If the CSP header's script-src contains a nonce, then transformCSPHeader does nothing.
+				// WPR will add the nonce token to any injected script to open the permission.
+				return
+			}
+
+			// Break the 'script-src' directive into more tokens, and examine each token.
+			tokens := strings.Split(directive, " ")
+			newDirective := "script-src 'unsafe-inline' "
+
+			for j := 1; j < len(tokens); j++ {
+				token := strings.TrimSpace(tokens[j])
+				// If the CSP header contains a hash, remove the hash.
+				// If a CSP specifies a hash, only inline scripts matching the hash may execute. The
+				// presence of a hash invalidates the 'unsafe-inline' rule.
+				// To open permission for WPR-injected scripts while preserving permission for the
+				// original page-src script matching the hash, WPR should remove the hash from CSP
+				// script-src while adding the umbrella 'unsafe-inline' rule.
+				if !strings.HasPrefix(token, "'sha256-") &&
+					!strings.HasPrefix(token, "'sha384-") &&
+					!strings.HasPrefix(token, "'sha512-") &&
+					// Also remove any 'strict-dynamic' rule.
+					// 'strict-dynamic' invalidates the 'unsafe-inline' rule.
+					token != "'strict-dynamic'" &&
+					token != "'unsafe-inline'" {
+						newDirective += token + " "
+				}
+			}
+
+			directives[i] = newDirective
+			break
+		}
+	}
+
+	newCsp := strings.Join(directives, "; ")
+	header.Set("Content-Security-Policy", newCsp)
+}
+
 // Decompresses Response Body in place.
 func DecompressResponse(resp *http.Response) error {
 	ce := strings.ToLower(resp.Header.Get("Content-Encoding"))
@@ -181,11 +276,7 @@ func NewScriptInjector(script []byte, replacements map[string]string) ResponseTr
 	}
 	// Remove line breaks.
 	script = bytes.Replace(script, []byte("\r\n"), []byte(""), -1)
-	// Add HTML tags.
-	tagged := []byte("<script>")
-	tagged = append(tagged, script...)
-	tagged = append(tagged, []byte("</script>")...)
-	return &scriptInjector{tagged}
+	return &scriptInjector{script}
 }
 
 // NewScriptInjectorFromFile creates a script injector from a script stored in a file.
@@ -209,6 +300,23 @@ type scriptInjector struct {
 	script []byte
 }
 
+// Given a nonce, getScriptWithNonce returns the injected script text with the nonce.
+// If nonce is an empty string, getScriptWithNonce returns the script block without attaching a nonce
+// attribute.
+// Some responses may specify a nonce inside their Content-Security-Policy, script-src directive.
+// The script injector needs to set the injected script's nonce attribute to open execute permission
+// for the injected script.
+func (si *scriptInjector) getScriptWithNonce(nonce string) []byte {
+	tagged := []byte("<script")
+	if (nonce != "") {
+		tagged = append(tagged, []byte(" nonce=\"" + nonce + "\"")...)
+	}
+	tagged = append(tagged, []byte(">")...)
+	tagged = append(tagged, si.script...)
+	tagged = append(tagged, []byte("</script>")...)
+	return tagged
+}
+
 func (si *scriptInjector) Transform(_ *http.Request, resp *http.Response) {
 	// Skip non-HTML non-200 responses.
 	if !strings.HasPrefix(strings.ToLower(resp.Header.Get("Content-Type")), "text/html") {
@@ -223,6 +331,7 @@ func (si *scriptInjector) Transform(_ *http.Request, resp *http.Response) {
 		if bytes.Contains(body, si.script) {
 			return body
 		}
+
 		// Find an appropriate place to inject the script, then inject.
 		idx := headRE.FindIndex(body)
 		if idx == nil {
@@ -235,11 +344,29 @@ func (si *scriptInjector) Transform(_ *http.Request, resp *http.Response) {
 			log.Printf("ScriptInjector(%s): no start tags found, skip injecting script", resp.Request.URL)
 			return body
 		}
+
+		// If the response has a content-script-policy script src directive that specifices a nonce,
+		// add the nonce to the injected script.
+		// If a CSP specifies a nonce, only script blocks containing a matching nonce attribute may
+		// execute.
+		// To open permission for WPR-injected scripts while preserving permission for any page-src
+		// scripts containing the hash, WPR must add the nonce token to injected scripts. Please see
+		// http://crbug.com/904534 for a detailed case study.
+		nonce := ""
+		if directive := getCSPScriptSrcDirectiveFromHeaders(resp.Header); directive != "" {
+			nonce = getNonceTokenFromCSPHeaderScriptSrc(directive)
+		}
+
 		n := idx[1]
-		newBody := make([]byte, 0, len(body)+len(si.script))
+		scriptBody := si.getScriptWithNonce(nonce)
+		newBody := make([]byte, 0, len(body)+len(scriptBody))
 		newBody = append(newBody, body[:n]...)
-		newBody = append(newBody, si.script...)
+		newBody = append(newBody, scriptBody...)
 		newBody = append(newBody, body[n:]...)
+
+		// Having injected script, transform the response's content-security-policy directive
+		// to allow the injected script to execute.
+		transformCSPHeader(resp.Header)
 		return newBody
 	})
 }

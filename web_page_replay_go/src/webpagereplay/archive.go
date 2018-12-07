@@ -19,7 +19,12 @@ import (
 	"os"
 	"reflect"
 	"sync"
+
+	"github.com/golang/protobuf/proto"
+	"github.com/catapult-project/catapult/web_page_replay_go/src/autofill"
 )
+
+const AutofillTypePredictionQuery = "https://clients1.google.com/tbproxy/af/query?"
 
 var ErrNotFound = errors.New("not found")
 
@@ -28,6 +33,15 @@ var ErrNotFound = errors.New("not found")
 type ArchivedRequest struct {
 	SerializedRequest  []byte
 	SerializedResponse []byte // if empty, the request failed
+	Served bool
+}
+
+// RequestMatch represents a match when querying the archive for responses to a request
+type RequestMatch struct {
+	Match *ArchivedRequest
+	Request *http.Request
+	Response *http.Response
+	MatchRatio float64
 }
 
 func serializeRequest(req *http.Request, resp *http.Response) (*ArchivedRequest, error) {
@@ -167,43 +181,10 @@ func (a *Archive) FindRequest(req *http.Request) (*http.Request, *http.Response,
 
 	// Exact match. Note that req may be relative, but hostMap keys are always absolute.
 	assertCompleteURL(req.URL)
+	reqUrl := req.URL.String()
 
-	var bestRatio float64
-	if len(hostMap[req.URL.String()]) > 0 {
-		var bestRequest *http.Request
-		var bestResponse *http.Response
-		// There can be multiple requests with the same URL string. If that's the case,
-		// break the tie by the number of headers that match.
-		for _, archivedRequest := range hostMap[req.URL.String()] {
-			curReq, curResp, err := archivedRequest.unmarshal(req.URL.Scheme)
-			if err != nil {
-				log.Println("Error unmarshaling request")
-				continue
-			}
-			if curReq.Method != req.Method {
-				continue
-			}
-			rh := curReq.Header
-			reqh := req.Header
-			m := 1
-			t := len(rh) + len(reqh)
-			for k, v := range rh {
-				if reflect.DeepEqual(v, reqh[k]) {
-					m++
-				}
-			}
-			ratio := 2 * float64(m) / float64(t)
-			// Note that since |m| starts from 1. The ratio will be more than 0
-			// even if no header matches.
-			if ratio > bestRatio {
-				bestRequest = curReq
-				bestResponse = curResp
-				bestRatio = ratio
-			}
-		}
-		if bestRequest != nil && bestResponse != nil {
-			return bestRequest, bestResponse, nil
-		}
+	if len(hostMap[reqUrl]) > 0 {
+		return a.findBestMatchInArchivedRequestSet(req, hostMap[reqUrl])
 	}
 
 	// For all URLs with a matching path, pick the URL that has the most matching query parameters.
@@ -213,6 +194,7 @@ func (a *Archive) FindRequest(req *http.Request) (*http.Request, *http.Response,
 	aq := req.URL.Query()
 
 	var bestURL string
+	var bestRatio float64
 
 	for ustr := range hostMap {
 		u, err := url.Parse(ustr)
@@ -241,26 +223,120 @@ func (a *Archive) FindRequest(req *http.Request) (*http.Request, *http.Response,
 
 	// TODO: Try each until one succeeds with a matching request method.
 	if bestURL != "" {
-		return findExactMatch(hostMap[bestURL], req.Method, req.URL.Scheme)
+		return a.findBestMatchInArchivedRequestSet(req, hostMap[bestURL])
 	}
 
 	return nil, nil, ErrNotFound
 }
 
-// findExactMatch returns the first request that exactly matches the given request method.
-func findExactMatch(requests []*ArchivedRequest, method string, scheme string) (*http.Request, *http.Response, error) {
-	for _, archivedRequest := range requests {
-		req, resp, err := archivedRequest.unmarshal(scheme)
+// Given an incoming request and a set of matches in the archive, identify the best match,
+// based on request headers, request cookies, data and other information.
+func (a *Archive) findBestMatchInArchivedRequestSet(
+		incomingReq *http.Request,
+		archivedReqs []*ArchivedRequest) (
+		*http.Request, *http.Response, error) {
+	scheme := incomingReq.URL.Scheme
+	if len(archivedReqs) == 1 {
+		archivedReq, archivedResp, err := archivedReqs[0].unmarshal(scheme)
 		if err != nil {
-			log.Printf("Error unmarshaling request: %v\nAR.Request: %q\nAR.Response: %q",
-				err, archivedRequest.SerializedRequest, archivedRequest.SerializedResponse)
-			continue
+			log.Println("Error unmarshaling request")
+			return nil, nil, err
 		}
-		if req.Method == method {
-			return req, resp, nil
+		return archivedReq, archivedResp, err
+	} else if len(archivedReqs) > 0 {
+		if incomingReq.URL.String() == AutofillTypePredictionQuery &&
+			incomingReq.Header.Get("Content-Type") == "text/proto" {
+			return findChromeAutofillQueryRequest(incomingReq, archivedReqs)
+		}
+
+		// There can be multiple requests with the same URL string. If that's the case,
+		// break the tie by the number of headers that match.
+		var bestMatch RequestMatch
+		var bestInSequenceMatch RequestMatch
+
+		for _, r := range archivedReqs {
+			archivedReq, archivedResp, err := r.unmarshal(scheme)
+			if err != nil {
+				log.Println("Error unmarshaling request")
+				continue
+			}
+
+			// Skip this archived request if the request methods does not match that of the incoming request.
+			if archivedReq.Method != incomingReq.Method {
+				continue
+			}
+
+			// Count the number of header matches
+			numMatchingHeaders := 1
+			numTotalHeaders := len(incomingReq.Header) + len(archivedReq.Header)
+			for key, val := range archivedReq.Header {
+				if reflect.DeepEqual(val, incomingReq.Header[key]) {
+					numMatchingHeaders++
+				}
+			}
+			// Note that since |m| starts from 1. The ratio will be more than 0
+			// even if no header matches.
+			ratio := 2 * float64(numMatchingHeaders) / float64(numTotalHeaders)
+
+			if !r.Served && ratio > bestInSequenceMatch.MatchRatio {
+				bestInSequenceMatch.Match = r
+				bestInSequenceMatch.Request = archivedReq
+				bestInSequenceMatch.Response = archivedResp
+				bestInSequenceMatch.MatchRatio = ratio
+			}
+			if ratio > bestMatch.MatchRatio {
+				bestMatch.Match = r
+				bestMatch.Request = archivedReq
+				bestMatch.Response = archivedResp
+				bestMatch.MatchRatio = ratio
+			}
+		}
+
+		if bestInSequenceMatch.Match != nil {
+			bestInSequenceMatch.Match.Served = true
+			return bestInSequenceMatch.Request, bestInSequenceMatch.Response, nil
+		} else if bestMatch.Match != nil {
+			bestMatch.Match.Served = true
+			return bestMatch.Request, bestMatch.Response, nil
 		}
 	}
 	return nil, nil, ErrNotFound
+}
+
+func findChromeAutofillQueryRequest(incomingReq *http.Request, archivedReqs []*ArchivedRequest) (*http.Request, *http.Response, error) {
+	scheme := incomingReq.URL.Scheme
+  data, errParse := parseChromeAutofillQueryContentData(incomingReq)
+  if errParse != nil {
+    log.Println("Error deserializing Chrome Autofill query content data!")
+    return nil, nil, errParse
+  }
+
+  for _, archivedReq := range archivedReqs {
+    curReq, curResp, errMarshal := archivedReq.unmarshal(scheme)
+    if errMarshal != nil {
+      continue
+    }
+    archivedData, errParse := parseChromeAutofillQueryContentData(curReq)
+    if errParse != nil {
+      continue
+    }
+    if reflect.DeepEqual(data, archivedData) {
+      return curReq, curResp, nil
+    }
+  }
+  return nil, nil, ErrNotFound
+}
+
+func parseChromeAutofillQueryContentData(req *http.Request) (*autofill.AutofillQueryContents, error) {
+  body, err := ioutil.ReadAll(req.Body)
+  req.Body.Close()
+  if err != nil {
+    log.Println("Error reading Chrome Autofill query content data!")
+    return nil, err
+  }
+  data := &autofill.AutofillQueryContents{}
+  err = proto.Unmarshal(body, data)
+  return data, err
 }
 
 func (a *Archive) addArchivedRequest(req *http.Request, resp *http.Response) error {
