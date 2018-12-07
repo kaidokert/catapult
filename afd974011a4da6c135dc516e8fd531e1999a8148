@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ad954515_06199b59",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2018-12-07T18:00:35Z",
+      "side": 1,
+      "message": "Add docstring providing the type for \"applications\" argument. I\u0027m assuming it is a list of strings. It should be obvious from reading the docstring what the answers to the following questions are: Should the strings be the filename of the APK? SHould they have the \".apk\" extension?",
+      "range": {
+        "startLine": 303,
+        "startChar": 0,
+        "endLine": 303,
+        "endChar": 51
+      },
+      "revId": "afd974011a4da6c135dc516e8fd531e1999a8148",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
