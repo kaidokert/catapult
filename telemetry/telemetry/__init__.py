@@ -51,6 +51,7 @@ _AddDirToPythonPath(_CATAPULT_DIR, 'tracing', 'tracing_build')
 
 # pylint: disable=wrong-import-position
 from telemetry.core import util
+from telemetry.internal.util import external_modules
 from telemetry.internal.util import global_hooks
 # pylint: enable=wrong-import-position
 
@@ -71,3 +72,6 @@ _AddDirToPythonPath(util.GetTelemetryThirdPartyDir(), 'websocket-client')
 
 # Install Telemtry global hooks.
 global_hooks.InstallHooks()
+
+# Validate external module version requirements.
+external_modules.ValidateRequirements()

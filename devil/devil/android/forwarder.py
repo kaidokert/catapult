@@ -5,7 +5,6 @@
 # pylint: disable=W0212
 
 import fcntl
-import inspect
 import logging
 import os
 import psutil
@@ -18,6 +17,12 @@ from devil.android.sdk import adb_wrapper
 from devil.android.valgrind_tools import base_tool
 from devil.utils import cmd_helper
 
+from py_utils import modules_util
+
+# This module depends on features from psutil version 2.0 or higher.
+modules_util.RequireVersion(psutil, '2.0')
+
+
 logger = logging.getLogger(__name__)
 
 # If passed as the device port, this will tell the forwarder to allocate
@@ -27,11 +32,7 @@ DYNAMIC_DEVICE_PORT = 0
 
 
 def _GetProcessStartTime(pid):
-  p = psutil.Process(pid)
-  if inspect.ismethod(p.create_time):
-    return p.create_time()
-  else:  # Process.create_time is a property in old versions of psutil.
-    return p.create_time
+  return psutil.Process(pid).create_time()
 
 
 def _LogMapFailureDiagnostics(device):
