@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bf974123_376748c6",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-12-08T18:12:27Z",
+      "side": 1,
+      "message": "instead of this, you can define \nparser.add_option(\u0027-p\u0027, \u0027--print-only\u0027, dest\u003d\u0027print_only\u0027,choices\u003d[\u0027stories\u0027, \u0027tags\u0027, \u0027both\u0027])",
+      "range": {
+        "startLine": 101,
+        "startChar": 2,
+        "endLine": 103,
+        "endChar": 0
+      },
+      "revId": "5f79096742628a929c06534d285b32a3eb475a4f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "438ee88c_7f35d466",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-12-08T18:12:27Z",
+      "side": 1,
+      "message": "I think you would want to do this at line 202? There is no reason to fetch the wpr archives/... in this \u0027--print-only\u0027 mode",
+      "revId": "5f79096742628a929c06534d285b32a3eb475a4f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
