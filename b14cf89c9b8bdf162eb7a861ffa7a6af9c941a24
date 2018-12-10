@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a0389b9_4a2c76eb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2018-12-10T15:37:41Z",
+      "side": 1,
+      "message": "Remove lines 9:14.",
+      "revId": "b14cf89c9b8bdf162eb7a861ffa7a6af9c941a24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
