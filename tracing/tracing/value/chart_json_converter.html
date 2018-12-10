@@ -131,7 +131,9 @@ tr.exportTo('tr.v', function() {
                 hist.addSample(sample * conversionFactor);
               }
             }
-          } else if (value.type === 'scalar') {
+          } else {
+            // We assume the type is 'scalar' with a single 'value' field if
+            // unspecified.
             hist.addSample(value.value * conversionFactor);
           }
         }
