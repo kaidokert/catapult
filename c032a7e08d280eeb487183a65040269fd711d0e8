@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cd4e3f10_df7ad523",
+        "filename": "telemetry/telemetry/core/android_platform.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-12-10T14:24:54Z",
+      "side": 1,
+      "message": "nit: call this InstallApkFromHost, also in the docstring explain that this will \"try to find\" the apks on the output build directory.",
+      "revId": "c032a7e08d280eeb487183a65040269fd711d0e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "918d77c1_8a72d67d",
+        "filename": "telemetry/telemetry/core/util.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-12-10T14:24:54Z",
+      "side": 1,
+      "message": "I think a bunch of recipe/bot configs pass --chrome-root args to let telemetry know where to find the built APKS, and I believe this is going to break that. Let\u0027s not change the signature for now, and still pass chrome_root as before.",
+      "revId": "c032a7e08d280eeb487183a65040269fd711d0e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
