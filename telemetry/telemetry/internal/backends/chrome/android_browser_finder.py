@@ -86,9 +86,9 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
     self._local_apk = local_apk
     self._flag_changer = None
 
-    if self._local_apk is None and finder_options.chrome_root is not None:
+    if self._local_apk is None:
       self._local_apk = self._backend_settings.FindLocalApk(
-          self._platform_backend.device, finder_options.chrome_root)
+          self._platform_backend.device)
 
     # At this point the local_apk, if any, must exist.
     assert self._local_apk is None or os.path.exists(self._local_apk)
@@ -99,7 +99,7 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
         self._embedder_apk = finder_options.webview_embedder_apk
       else:
         self._embedder_apk = self._backend_settings.FindEmbedderApk(
-            self._local_apk, finder_options.chrome_root)
+            self._local_apk)
     elif finder_options.webview_embedder_apk:
       logging.warning(
           'No embedder needed for %s, ignoring --webview-embedder-apk option',
