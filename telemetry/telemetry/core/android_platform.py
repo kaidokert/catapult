@@ -4,6 +4,7 @@
 
 from telemetry.core import android_action_runner
 from telemetry.core import platform
+from telemetry.core import util as core_util
 from telemetry.internal.app import android_app
 from telemetry.internal.backends import android_app_backend
 
@@ -90,3 +91,7 @@ class AndroidPlatform(platform.Platform):
       start_intent: The intent to use to start the service
     """
     self._platform_backend.device.StartService(start_intent)
+
+  def InstallApk(self, apk_name):
+    """Tries to find an APK by name and install it."""
+    self.InstallApplication(core_util.FindLatestApkOnHost(apk_name))
