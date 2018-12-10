@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2a0bfc38_3481169b",
+        "filename": "tracing/tracing/metrics/rendering/pipeline.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-10T22:07:07Z",
+      "side": 1,
+      "message": "for (const [pid, helper] of Object.entries(chromeHelper.rendererHelpers))",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 63
+      },
+      "revId": "e14035de6421b44a0a56307859676b7c85f08994",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
