@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c3ecb753_5da943aa",
+        "filename": "web_page_replay_go/src/webpagereplay/transformers.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1115949
+      },
+      "writtenOn": "2018-12-11T22:17:01Z",
+      "side": 1,
+      "message": "Here and below, you might want to use https://golang.org/pkg/bytes/#Buffer\nThen you can use fmt.Fprintf.",
+      "revId": "6830f062ea76bb23cccfcc1b9dbacad6c7b32572",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
