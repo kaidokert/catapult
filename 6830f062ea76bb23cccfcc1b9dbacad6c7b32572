@@ -16,6 +16,24 @@
       "revId": "6830f062ea76bb23cccfcc1b9dbacad6c7b32572",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64280c90_63ed91b6",
+        "filename": "web_page_replay_go/src/webpagereplay/transformers.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1251641
+      },
+      "writtenOn": "2018-12-11T23:45:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3ecb753_5da943aa",
+      "revId": "6830f062ea76bb23cccfcc1b9dbacad6c7b32572",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

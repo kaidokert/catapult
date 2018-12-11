@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "55565d92_62c65a00",
+        "filename": "telemetry/telemetry/internal/binary_dependencies.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1251641
+      },
+      "writtenOn": "2018-12-11T23:45:29Z",
+      "side": 1,
+      "message": "Build for mips always fails on my machine:\n\n2018/12/11 15:23:18 duplicate symbol runtime.exit (types 1 and 1) in runtime and $WORK/b011/_pkg_.a(sys_linux_mipsx.)\n\nTraceback (most recent call last):\n  \u003cmodule\u003e at /usr/local/google/home/uwyiming/go/src/github.com/catapult-project/catapult/telemetry/bin/update_wpr_go_binary:140\n    sys.exit(main())\n  main at /usr/local/google/home/uwyiming/go/src/github.com/catapult-project/catapult/telemetry/bin/update_wpr_go_binary:136\n    BuildAndUpdateWPRGoBinary(os_name, arch_name)\n  BuildAndUpdateWPRGoBinary at /usr/local/google/home/uwyiming/go/src/github.com/catapult-project/catapult/telemetry/bin/update_wpr_go_binary:124\n    wpr_bin \u003d build_wpr_go(os_name, arch_name)\n  build_wpr_go at /usr/local/google/home/uwyiming/go/src/github.com/catapult-project/catapult/telemetry/bin/update_wpr_go_binary:90\n    subprocess.check_call(build_cmd, env\u003denv, cwd\u003d_WPR_GO_DIR)\n  check_call at /usr/lib/python2.7/subprocess.py:186\n    raise CalledProcessError(retcode, cmd)\nCalledProcessError: Command \u0027[\u0027go\u0027, \u0027build\u0027, \u0027-v\u0027, \u0027wpr.go\u0027]\u0027 returned non-zero exit status 2",
+      "range": {
+        "startLine": 322,
+        "startChar": 8,
+        "endLine": 326,
+        "endChar": 10
+      },
+      "revId": "89fb72de66dacd8671f918199fbd3c7ae08be8a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
