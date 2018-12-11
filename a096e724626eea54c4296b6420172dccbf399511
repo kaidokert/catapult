@@ -34,6 +34,24 @@
       "revId": "a096e724626eea54c4296b6420172dccbf399511",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7a2711a_48e2c58f",
+        "filename": "common/node_runner/node_runner/run-wct",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2018-12-11T18:03:13Z",
+      "side": 1,
+      "message": "You should be able to install chops-wct-runner via npm now:\n% npm install --save-dev chops-wct-runner\nand change your build script to run\n% npx run-wct",
+      "parentUuid": "5172485f_7ec35fe1",
+      "revId": "a096e724626eea54c4296b6420172dccbf399511",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
