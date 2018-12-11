@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1b9ed9fd_a79d220b",
+        "filename": "web_page_replay_go/src/webpagereplay/transformers.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1115949
+      },
+      "writtenOn": "2018-12-11T06:28:19Z",
+      "side": 1,
+      "message": "for _, directive :\u003d directives {",
+      "revId": "d2f029bd92e791549563b17768f54b7385c338ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e7be81b_0003f379",
+        "filename": "web_page_replay_go/src/webpagereplay/transformers.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1115949
+      },
+      "writtenOn": "2018-12-11T06:28:19Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "d2f029bd92e791549563b17768f54b7385c338ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
