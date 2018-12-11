@@ -87,11 +87,11 @@ tr.exportTo('tr.metrics.rendering', function() {
   }
 
   function getAverageRasterTaskStartTime(sourceFrameNumber, model) {
-    const chromeHelper = model.getOrCreateHelper(
+    const modelHelper = model.getOrCreateHelper(
         tr.model.helpers.ChromeModelHelper);
-    const rendererHelper = chromeHelper.rendererWithLargestPid;
-    if (!rendererHelper) return 0;
-    const rasterThreads = rendererHelper.rasterWorkerThreads;
+
+    const renderers = modelHelper.telemetryHelper.renderersWithIR;
+    const rasterThreads = renderers[0].rasterWorkerThreads;
 
     let totalSum = 0;
     for (const rasterThread of rasterThreads) {
