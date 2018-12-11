@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ebde0b0_cab491bc",
+        "filename": "tracing/tracing/value/chart_json_converter.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-11T00:16:06Z",
+      "side": 1,
+      "message": "I don\u0027t expect anybody to omit value.value, but if they do, this would addSample(NaN), but they\u0027d probably want this to just not add any samples. It might be a good idea to be a bit defensive in case anybody else omits type but provides value.values or value.buckets.\n\nif (value.type \u003d\u003d\u003d \u0027histogram\u0027 || value.buckets) {\n} else if (value.type \u003d\u003d\u003d \u0027list_of_scalar_values\u0027 || value.values) {\n} else if (value.type \u003d\u003d\u003d \u0027scalar\u0027 || value.value !\u003d\u003d undefined) {\n}",
+      "revId": "75e27b3f73159374f240a435afffc1072a814dd1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
