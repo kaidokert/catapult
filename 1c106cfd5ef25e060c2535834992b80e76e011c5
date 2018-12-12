@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "34401474_31c1b310",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 17
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-12T19:50:33Z",
+      "side": 1,
+      "message": "Please use html character entities or String.fromCharCode instead of embedding unicode.",
+      "revId": "1c106cfd5ef25e060c2535834992b80e76e011c5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c21e1773_686bb2c2",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 17
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-12T19:50:33Z",
+      "side": 1,
+      "message": "Why not `return aValue - bValue;`?",
+      "revId": "1c106cfd5ef25e060c2535834992b80e76e011c5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
