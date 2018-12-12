@@ -22,6 +22,30 @@
       "revId": "89fb72de66dacd8671f918199fbd3c7ae08be8a0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c877a17_0f2edbfa",
+        "filename": "telemetry/telemetry/internal/binary_dependencies.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-12-12T00:02:16Z",
+      "side": 1,
+      "message": "Hmhh, you can ignore mips from the build by commenting it out for now. Our official support don\u0027t include mips",
+      "parentUuid": "55565d92_62c65a00",
+      "range": {
+        "startLine": 322,
+        "startChar": 8,
+        "endLine": 326,
+        "endChar": 10
+      },
+      "revId": "89fb72de66dacd8671f918199fbd3c7ae08be8a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
