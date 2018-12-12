@@ -13,10 +13,11 @@ found in the LICENSE file.
 'use strict';
 
 tr.b.unittest.testSuite(function() {
-  function getHistogram(name) {
+  function getHistogram(name, negative) {
     const samples = [];
     for (let i = 0; i < 5; ++i) {
-      const total = Math.random();
+      let total = Math.random();
+      if (negative) total *= -1;
       const values = {};
       values[name + 'a'] = total / 2.0;
       values[name + 'b'] = total / 4.0;
@@ -36,47 +37,24 @@ tr.b.unittest.testSuite(function() {
     return tr.v.Histogram.create(name, tr.b.Unit.byName.count, samples);
   }
 
-  function getHistogramSet(displayLabel, story) {
+  function getHistogramSet(displayLabel, story, negative = false) {
     const histograms = new tr.v.HistogramSet();
     let metrics = [];
     for (const category of tr.v.ui.METRICS.values()) {
       metrics = metrics.concat(category);
     }
-    metrics.push('pipeline:begin_frame_to_raster_tasks');
-    metrics.push('pipeline:raster_tasks_to_frame_submission');
     for (const metric of metrics) {
-      histograms.addHistogram(getHistogram(metric));
+      histograms.addHistogram(getHistogram(metric, false));
     }
+    histograms.addHistogram(
+        getHistogram('pipeline:begin_frame_to_raster_start', negative));
+    histograms.addHistogram(
+        getHistogram('pipeline:begin_frame_to_raster_end', false));
     histograms.addSharedDiagnosticToAllHistograms(
         tr.v.d.RESERVED_NAMES.LABELS, new tr.v.d.GenericSet([displayLabel]));
     histograms.addSharedDiagnosticToAllHistograms(
         tr.v.d.RESERVED_NAMES.STORIES, new tr.v.d.GenericSet([story]));
     return histograms;
-  }
-
-  function groupHistograms(histograms) {
-    const groupings = [
-      tr.v.HistogramGrouping.HISTOGRAM_NAME,
-      tr.v.HistogramGrouping.DISPLAY_LABEL];
-
-    function canSkipGrouping(grouping, groupedHistograms) {
-      // Never skip meaningful groupings.
-      if (groupedHistograms.size > 1) return false;
-
-      // Never skip the zero-th grouping.
-      if (grouping.key === groupings[0].key) return false;
-
-      // Never skip the grouping that defines the table columns.
-      if (grouping.key === tr.v.HistogramGrouping.DISPLAY_LABEL.key) {
-        return false;
-      }
-
-      // Skip meaningless groupings.
-      return true;
-    }
-
-    return histograms.groupHistogramsRecursively(
-        groupings, canSkipGrouping);
   }
 
   test('instantiate', function() {
@@ -94,9 +72,7 @@ tr.b.unittest.testSuite(function() {
     const histograms4 = getHistogramSet('Run 2', 'abc.com');
     histograms.importDicts(histograms4.asDicts());
 
-    const groupedHistograms = groupHistograms(histograms);
-
-    cp.build(histograms, groupedHistograms);
+    cp.build(histograms, histograms);
   });
 
   test('instantiateWithRepeat', function() {
@@ -107,9 +83,19 @@ tr.b.unittest.testSuite(function() {
     const histograms2 = getHistogramSet('Run 1', 'repeat.com');
     histograms.importDicts(histograms2.asDicts());
 
-    const groupedHistograms = groupHistograms(histograms);
+    cp.build(histograms, histograms);
+  });
 
-    cp.build(histograms, groupedHistograms);
+  test('instantiateWithNegativeValues', function() {
+    const cp = document.createElement('tr-v-ui-visualizations-data-container');
+    this.addHTMLOutput(cp);
+
+    const histograms = getHistogramSet('Run 1', 'test.com', true);
+
+    const histograms2 = getHistogramSet('Run 2', 'test.com', true);
+    histograms.importDicts(histograms2.asDicts());
+
+    cp.build(histograms, histograms);
   });
 });
 </script>
