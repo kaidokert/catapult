@@ -186,15 +186,6 @@ tr.b.unittest.testSuite(function() {
 
   test('jankCount', function() {
     const model = tr.c.TestUtils.newModel((model) => {
-      model.metadata = [{
-        name: 'metadata',
-        value: {
-          surface_flinger: {
-            refresh_period: 3,
-          },
-        },
-      }];
-
       const browserMain = model.getOrCreateProcess(0).getOrCreateThread(0);
       browserMain.name = 'CrBrowserMain';
 
@@ -213,6 +204,14 @@ tr.b.unittest.testSuite(function() {
           { title: 'vsync_before', start: 16, end: 16}));
       surfaceFlingerThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx(
           { title: 'vsync_before', start: 79, end: 79}));
+      surfaceFlingerThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx(
+          { title: 'Scheduler::BeginFrame', start: 1, end: 2,
+            args: {
+              args: {
+                interval_us: 3
+              }
+            }
+          }));
     });
     const histograms = new tr.v.HistogramSet();
     tr.metrics.rendering.addFrameTimeHistograms(
