@@ -70,6 +70,24 @@
       "revId": "0fc391f3056140005185843af6e1966aace7461b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "014e93c6_b5338b6f",
+        "filename": "telemetry/telemetry/project_config.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-12-13T23:52:02Z",
+      "side": 1,
+      "message": "TYP definitely will need to support multiple files. I\u0027m not sure if telemetry will need to any time soon, but it\u0027s not bad to add the hook in like this.",
+      "parentUuid": "20412ad8_c8bfeb0f",
+      "revId": "0fc391f3056140005185843af6e1966aace7461b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
