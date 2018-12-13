@@ -16,6 +16,24 @@
       "revId": "0fc391f3056140005185843af6e1966aace7461b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34e798cf_8c6b965c",
+        "filename": "telemetry/telemetry/project_config.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2018-12-13T21:50:25Z",
+      "side": 1,
+      "message": "I plan on removing expectations_file. Ned made a suggestion that I rename expectations_file to expectations_files. However if I made that change then I would have to make a change in src/tools/perf/chrome_telemetry_build/chromium_config.py because it uses the old parameter. I made a new optional parameter, expectations_files, and I will make a change in the chrome source file so that it uses this new parameter. And then I will remove the old parameter.a",
+      "parentUuid": "8862d62b_b4267983",
+      "revId": "0fc391f3056140005185843af6e1966aace7461b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
