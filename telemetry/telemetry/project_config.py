@@ -26,7 +26,7 @@ class ProjectConfig(object):
     self._benchmark_aliases = benchmark_aliases or dict()
     self._client_configs = client_configs or []
     self._default_chrome_root = default_chrome_root
-    self._expectations_file = expectations_file
+    self._expectations_file = expectations_file or []
 
   @property
   def top_level_dir(self):
