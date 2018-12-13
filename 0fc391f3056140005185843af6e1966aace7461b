@@ -34,6 +34,24 @@
       "revId": "0fc391f3056140005185843af6e1966aace7461b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e385efec_00709a37",
+        "filename": "telemetry/telemetry/project_config.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-12-13T21:59:14Z",
+      "side": 1,
+      "message": "ok.\n\nMy question about whether we need to actually support more than one file at the moment still stands.",
+      "parentUuid": "34e798cf_8c6b965c",
+      "revId": "0fc391f3056140005185843af6e1966aace7461b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
