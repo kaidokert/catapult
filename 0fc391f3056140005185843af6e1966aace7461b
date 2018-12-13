@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8862d62b_b4267983",
+        "filename": "telemetry/telemetry/project_config.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2018-12-13T21:41:27Z",
+      "side": 1,
+      "message": "I\u0027m a bit lost here.\n\nFirst, why are we adding an additional parameter if there\u0027s already one?\n\nSecond, do you actually need to support multiple expectations files? I thought you didn\u0027t (at least not for the GPU tests). Currently that support isn\u0027t implemented in TYP, so we\u0027d have to add it.\n\nThird, are you planning to have both parameters indefinitely, or are you planning to remove \u0027expectations_file\u0027 once you\u0027ve updated callers?",
+      "revId": "0fc391f3056140005185843af6e1966aace7461b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
