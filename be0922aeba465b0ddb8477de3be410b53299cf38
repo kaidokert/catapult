@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ed5a9a57_65e1a8ae",
+        "filename": "telemetry/telemetry/project_config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-12-13T14:20:57Z",
+      "side": 1,
+      "message": "should this be \"expectations_files\" for consistency?",
+      "range": {
+        "startLine": 23,
+        "startChar": 41,
+        "endLine": 23,
+        "endChar": 58
+      },
+      "revId": "be0922aeba465b0ddb8477de3be410b53299cf38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8befb9bf_03b436a6",
+        "filename": "telemetry/telemetry/testing/browser_test_context.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-12-13T14:20:57Z",
+      "side": 1,
+      "message": "We also need to add: \"assert not self._frozen\"",
+      "revId": "be0922aeba465b0ddb8477de3be410b53299cf38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e48e527_c4f81660",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-12-13T14:20:57Z",
+      "side": 1,
+      "message": "To make this easier to read, you can write: \n\nnot_using_typ_expectation \u003d len(options.expectations_files) \u003d\u003d 0",
+      "range": {
+        "startLine": 260,
+        "startChar": 30,
+        "endLine": 260,
+        "endChar": 69
+      },
+      "revId": "be0922aeba465b0ddb8477de3be410b53299cf38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
