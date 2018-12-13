@@ -52,6 +52,24 @@
       "revId": "0fc391f3056140005185843af6e1966aace7461b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20412ad8_c8bfeb0f",
+        "filename": "telemetry/telemetry/project_config.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2018-12-13T22:05:09Z",
+      "side": 1,
+      "message": "I was looking at the discussion at https://bugs.chromium.org/p/chromium/issues/detail?id\u003d835690. gpu_tests doesn\u0027t need multiple expectations files but webkit_layout_tests needs it. Down the road if we end up supporting multiple expectation files for webkit layout tests, then the change in parameter and variable name  make sense.",
+      "parentUuid": "e385efec_00709a37",
+      "revId": "0fc391f3056140005185843af6e1966aace7461b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
