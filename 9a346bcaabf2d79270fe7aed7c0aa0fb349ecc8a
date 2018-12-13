@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "98b47e97_48b2db82",
+        "filename": "tracing/tracing/metrics/rendering/pipeline.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-12-13T16:55:27Z",
+      "side": 1,
+      "message": "\"undefined\" is a better default value I think. Timestamp of 0 can actually happen because the trace model importer shifts all timestamps to make the world start at 0.",
+      "range": {
+        "startLine": 96,
+        "startChar": 24,
+        "endLine": 96,
+        "endChar": 25
+      },
+      "revId": "9a346bcaabf2d79270fe7aed7c0aa0fb349ecc8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db4bdd05_d2f107f0",
+        "filename": "tracing/tracing/metrics/rendering/pipeline.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-12-13T16:55:27Z",
+      "side": 1,
+      "message": "I think this kind of searching for specific slices is fragile and may break easily in future if someone adds another trace event above these. I prefer using findTopmostSlicesNamed() if the name of the slice is known or just searching all slices instead of topLevelSlices.",
+      "range": {
+        "startLine": 99,
+        "startChar": 50,
+        "endLine": 99,
+        "endChar": 64
+      },
+      "revId": "9a346bcaabf2d79270fe7aed7c0aa0fb349ecc8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6324035_76f6d710",
+        "filename": "tracing/tracing/metrics/rendering/pipeline.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-12-13T16:55:27Z",
+      "side": 1,
+      "message": "Looks like this line suggests receiveToStart can be negative. If it can, could you please add a comment here, explaining what it means? Perhaps we shouldn\u0027t add those to the histogram instead of adding 0?",
+      "range": {
+        "startLine": 233,
+        "startChar": 74,
+        "endLine": 233,
+        "endChar": 76
+      },
+      "revId": "9a346bcaabf2d79270fe7aed7c0aa0fb349ecc8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78a58b6b_d82d275b",
+        "filename": "tracing/tracing/metrics/rendering/pipeline_test.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-12-13T16:55:27Z",
+      "side": 1,
+      "message": "Could you please add one more test that have more than one renderer and only one of them has an IR to make sure that we compute metrics based on the correct renderer? Thanks!",
+      "range": {
+        "startLine": 82,
+        "startChar": 27,
+        "endLine": 82,
+        "endChar": 35
+      },
+      "revId": "9a346bcaabf2d79270fe7aed7c0aa0fb349ecc8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
