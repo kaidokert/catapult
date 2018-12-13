@@ -71,21 +71,6 @@ class HistogramSet(object):
   def LookupDiagnostic(self, guid):
     return self._shared_diagnostics_by_guid.get(guid)
 
-  def ResolveRelatedHistograms(self):
-    histograms = self
-    def HandleDiagnosticMap(dm):
-      for diag in dm.values():
-        if isinstance(diag, histogram_module.RelatedHistogramMap):
-          diag.Resolve(histograms)
-
-    for hist in self:
-      HandleDiagnosticMap(hist.diagnostics)
-      for dm in hist.nan_diagnostic_maps:
-        HandleDiagnosticMap(dm)
-      for hbin in hist.bins:
-        for dm in hbin.diagnostic_maps:
-          HandleDiagnosticMap(dm)
-
   def __len__(self):
     return len(self._histograms_by_guid)
 
