@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "576d1a27_e98a02de",
+        "filename": "telemetry/telemetry/project_config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2018-12-13T18:46:08Z",
+      "side": 1,
+      "message": "To do a change like this, it\u0027s necessary to first add the new optional argument here and make it an alias of the original one; then roll forward Telemetry; then switch Chromium\u0027s code to use the new argument; then delete the old argument in Telemetry, and roll forward Telemetry again.",
+      "parentUuid": "5c7ac432_4a7fdcbc",
+      "range": {
+        "startLine": 23,
+        "startChar": 41,
+        "endLine": 23,
+        "endChar": 58
+      },
+      "revId": "be0922aeba465b0ddb8477de3be410b53299cf38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8befb9bf_03b436a6",
         "filename": "telemetry/telemetry/testing/browser_test_context.py",
         "patchSetId": 2
