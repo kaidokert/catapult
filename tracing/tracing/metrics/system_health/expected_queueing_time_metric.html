@@ -127,6 +127,8 @@ tr.exportTo('tr.metrics.sh', function() {
       }
       return tasks;
     }
+    const eventNamesWithTaskExtractors =
+        getV8EventNamesWithTaskExtractors_(getEventTimes);
     const totalHistogram = createHistogramForEQT_(
         `total:${WINDOW_SIZE_MS}ms_window:${eqtName}`,
         `The maximum EQT in a ${WINDOW_SIZE_MS}ms sliding window` +
@@ -142,11 +144,12 @@ tr.exportTo('tr.metrics.sh', function() {
       if (rendererHelper.mainThread.bounds.duration < WINDOW_SIZE_MS) continue;
 
       const tasks = getTasks(rendererHelper);
-      totalHistogram.addSample(
-          tr.e.chrome.maxExpectedQueueingTimeInSlidingWindow(
-              rendererHelper.mainThread.bounds.min,
-              rendererHelper.mainThread.bounds.max,
-              WINDOW_SIZE_MS, tasks));
+      const totalSample = tr.e.chrome.maxExpectedQueueingTimeInSlidingWindow(
+          rendererHelper.mainThread.bounds.min,
+          rendererHelper.mainThread.bounds.max,
+          WINDOW_SIZE_MS, tasks);
+      const totalBreakdown = new tr.v.d.Breakdown();
+      totalHistogram.addSample(totalSample, {v8: totalBreakdown});
       const interactiveTimestamps =
         rendererToInteractiveTimestamps.get(rendererHelper.pid);
       if (interactiveTimestamps.length === 0) continue;
@@ -158,10 +161,19 @@ tr.exportTo('tr.metrics.sh', function() {
       const interactiveWindow =
           tr.b.math.Range.fromExplicitRange(interactiveTimestamps[0], Infinity)
               .findIntersection(rendererHelper.mainThread.bounds);
-      interactiveHistogram.addSample(
-          tr.e.chrome.maxExpectedQueueingTimeInSlidingWindow(
-              interactiveWindow.min, interactiveWindow.max,
-              WINDOW_SIZE_MS, tasks));
+      const interactiveBreakdown = new tr.v.d.Breakdown();
+      for (const [eventName, getTasks] of eventNamesWithTaskExtractors) {
+        const tasks = getTasks(rendererHelper);
+        totalBreakdown.set(eventName, XXX);
+        interactiveBreakdown.set(eventName, XXX);
+      }
+      const interactiveSample =
+        tr.e.chrome.maxExpectedQueueingTimeInSlidingWindow(
+            interactiveWindow.min, interactiveWindow.max, WINDOW_SIZE_MS,
+            tasks);
+      interactiveHistogram.addSample(interactiveSample, {
+        v8: interactiveBreakdown,
+      });
     }
     addV8ContributionToExpectedQueueingTime_(
         eqtName, getEventTimes, isCpuTime, totalHistogram, interactiveHistogram,
@@ -190,8 +202,8 @@ tr.exportTo('tr.metrics.sh', function() {
       interactiveEqtHistogram, rendererToInteractiveTimestamps,
       histograms, model) {
     if (!model.categories.includes('v8')) return;
-    const breakdownForTotal = new tr.v.d.RelatedHistogramMap();
-    const breakdownForInteractive = new tr.v.d.RelatedHistogramMap();
+    const totalRelatedNames = new tr.v.d.RelatedNameMap();
+    const interactiveRelatedNames = new tr.v.d.RelatedNameMap();
     // Include task extractors that use tracing.
     const eventNamesWithTaskExtractors =
         getV8EventNamesWithTaskExtractors_(getEventTimes);
@@ -208,11 +220,11 @@ tr.exportTo('tr.metrics.sh', function() {
       const contribution = contributionToExpectedQueueingTime_(
           eqtName, eventName, getTasks, rendererToInteractiveTimestamps,
           histograms, model);
-      breakdownForTotal.set(eventName, contribution.total);
-      breakdownForInteractive.set(eventName, contribution.interactive);
+      totalRelatedNames.set(eventName, contribution.total.name);
+      interactiveRelatedNames.set(eventName, contribution.interactive.name);
     }
-    totalEqtHistogram.diagnostics.set('v8', breakdownForTotal);
-    interactiveEqtHistogram.diagnostics.set('v8', breakdownForInteractive);
+    totalEqtHistogram.diagnostics.set('v8', totalRelatedNames);
+    interactiveEqtHistogram.diagnostics.set('v8', interactiveRelatedNames);
   }
 
   /**
