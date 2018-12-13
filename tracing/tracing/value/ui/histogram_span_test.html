@@ -247,13 +247,13 @@ tr.b.unittest.testSuite(function() {
     sampleBreakdown.set('x', 30 << 20);
     sampleBreakdown.set('y', 70 << 20);
     root.addSample(100 << 20, {sampleBreakdown});
-    const rhb = new tr.v.d.RelatedHistogramBreakdown();
+    const rhb = new tr.v.d.RelatedNameMap();
     root.diagnostics.set('rhb', rhb);
     const aHist = new tr.v.Histogram('a', tr.b.Unit.byName.sizeInBytes);
-    rhb.set('a', aHist);
+    rhb.set('a', aHist.name);
     aHist.addSample(10 << 20);
     const bHist = new tr.v.Histogram('b', tr.b.Unit.byName.sizeInBytes);
-    rhb.set('b', bHist);
+    rhb.set('b', bHist.name);
     bHist.addSample(90 << 20);
     const span = document.createElement('tr-v-ui-histogram-span');
     this.addHTMLOutput(span);
@@ -285,7 +285,6 @@ tr.b.unittest.testSuite(function() {
           diagnostics: new Map([
             [tr.v.d.RESERVED_NAMES.BENCHMARKS, new tr.v.d.GenericSet([
               'system_health.common_desktop'])],
-            ['breakdown', new tr.v.d.RelatedHistogramBreakdown()],
           ]),
         }));
     this.addHTMLOutput(span);

@@ -368,57 +368,6 @@ class HistogramRef(object):
     return self._guid
 
 
-class RelatedHistogramMap(diagnostic.Diagnostic):
-  __slots__ = '_histograms_by_name',
-
-  def __init__(self):
-    super(RelatedHistogramMap, self).__init__()
-    self._histograms_by_name = {}
-
-  def Get(self, name):
-    return self._histograms_by_name.get(name)
-
-  def Set(self, name, hist):
-    assert isinstance(hist, (Histogram, HistogramRef)), (
-        'Expected Histogram or HistogramRef, found %s: "%r"',
-        (type(hist).__name__, hist))
-    self._histograms_by_name[name] = hist
-
-  def Add(self, hist):
-    self.Set(hist.name, hist)
-
-  def __len__(self):
-    return len(self._histograms_by_name)
-
-  def __iter__(self):
-    for name, hist in self._histograms_by_name.items():
-      yield name, hist
-
-  def Resolve(self, histograms, required=False):
-    for name, hist in self:
-      if not isinstance(hist, HistogramRef):
-        continue
-
-      guid = hist.guid
-      hist = histograms.LookupHistogram(guid)
-      if isinstance(hist, Histogram):
-        self._histograms_by_name[name] = hist
-      else:
-        assert not required, ('Missing required Histogram %s' % guid)
-
-  def _AsDictInto(self, d):
-    d['values'] = {}
-    for name, hist in self:
-      d['values'][name] = hist.guid
-
-  @staticmethod
-  def FromDict(d):
-    result = RelatedHistogramMap()
-    for name, guid in d['values'].items():
-      result.Set(name, HistogramRef(guid))
-    return result
-
-
 class DiagnosticMap(dict):
   __slots__ = '_allow_reserved_names',
 
@@ -863,12 +812,6 @@ class Histogram(object):
       if mybin.count == 0:
         self._bins[i] = mybin = HistogramBin(mybin.range)
       mybin.AddBin(hbin)
-
-    merged_from = self.diagnostics.get(reserved_infos.MERGED_FROM.name)
-    if merged_from is None:
-      merged_from = RelatedHistogramMap()
-      self.diagnostics[reserved_infos.MERGED_FROM.name] = merged_from
-    merged_from.Set(len(merged_from), other)
 
     self.diagnostics.Merge(other.diagnostics)
 

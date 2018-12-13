@@ -600,20 +600,6 @@ tr.exportTo('tr.v', function() {
         this.running_ = this.running_.merge(other.running_);
       }
 
-      let mergedFrom = this.diagnostics.get(tr.v.d.RESERVED_NAMES.MERGED_FROM);
-      if (!mergedFrom) {
-        mergedFrom = new tr.v.d.RelatedHistogramMap();
-        this.diagnostics.set(tr.v.d.RESERVED_NAMES.MERGED_FROM, mergedFrom);
-      }
-      mergedFrom.set(mergedFrom.length, other);
-
-      let mergedTo = other.diagnostics.get(tr.v.d.RESERVED_NAMES.MERGED_TO);
-      if (!mergedTo) {
-        mergedTo = new tr.v.d.RelatedHistogramMap();
-        other.diagnostics.set(tr.v.d.RESERVED_NAMES.MERGED_TO, mergedTo);
-      }
-      mergedTo.set(mergedTo.length, this);
-
       this.diagnostics.addDiagnostics(other.diagnostics);
 
       for (const [stat, option] of other.summaryOptions) {

@@ -174,9 +174,6 @@ def ProcessHistogramSet(histogram_dicts):
   with timing.WallTimeLogger('hs.ImportDicts'):
     histograms.ImportDicts(histogram_dicts)
 
-  with timing.WallTimeLogger('hs.ResolveRelatedHistograms'):
-    histograms.ResolveRelatedHistograms()
-
   with timing.WallTimeLogger('hs.DeduplicateDiagnostics'):
     histograms.DeduplicateDiagnostics()
 
