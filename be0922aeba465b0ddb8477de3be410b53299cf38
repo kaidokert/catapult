@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5c7ac432_4a7fdcbc",
+        "filename": "telemetry/telemetry/project_config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2018-12-13T18:38:02Z",
+      "side": 1,
+      "message": "Your right it should, but if I change it then I would have to change src/tools/perf/chrome_telemetry_build/chromium_config.py which is in chrome\u0027s source repository. I have to change it because  chromium_config.ChromiumConfig is the subclass of ProjectConfig which is being used to pass gpu test configurations to typ. Do you have any suggestions on how I should make this change? I don\u0027t want to break builds.",
+      "parentUuid": "ed5a9a57_65e1a8ae",
+      "range": {
+        "startLine": 23,
+        "startChar": 41,
+        "endLine": 23,
+        "endChar": 58
+      },
+      "revId": "be0922aeba465b0ddb8477de3be410b53299cf38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8befb9bf_03b436a6",
         "filename": "telemetry/telemetry/testing/browser_test_context.py",
         "patchSetId": 2
