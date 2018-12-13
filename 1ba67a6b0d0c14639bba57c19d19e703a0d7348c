@@ -16,6 +16,24 @@
       "revId": "1ba67a6b0d0c14639bba57c19d19e703a0d7348c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3c0f941_96287b4b",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2018-12-13T00:42:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c889d969_6d2c274d",
+      "revId": "1ba67a6b0d0c14639bba57c19d19e703a0d7348c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
