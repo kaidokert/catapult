@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c29ef53a_d523307e",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-12-13T20:27:26Z",
+      "side": 1,
+      "message": "Refresh period should be read from Metadata on Android (SF is the source of truth there).\n\nPlease move these to a separate function (findRefreshPeriod()) that reads refresh period from metadata if it\u0027s possible; otherwise reads it from BeginFrame events.",
+      "range": {
+        "startLine": 272,
+        "startChar": 8,
+        "endLine": 272,
+        "endChar": 20
+      },
+      "revId": "e0871f48cc1426393685a715c86135994d9d713b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1fb31d5d_8a2e0a97",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-12-13T20:27:26Z",
+      "side": 1,
+      "message": "Use tr.b.convertUnit:\n\ntr.b.convertUnit(\n    data[FRAME_INTERVAL],\n    tr.b.UnitScale.TIME.MICRO_SEC, tr.b.UnitScale.TIME.MILLI_SEC)",
+      "range": {
+        "startLine": 272,
+        "startChar": 43,
+        "endLine": 272,
+        "endChar": 50
+      },
+      "revId": "e0871f48cc1426393685a715c86135994d9d713b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab5bb3ec_31a8a250",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-12-13T20:27:26Z",
+      "side": 1,
+      "message": "This breaks from the inner loop only :)",
+      "range": {
+        "startLine": 273,
+        "startChar": 8,
+        "endLine": 273,
+        "endChar": 13
+      },
+      "revId": "e0871f48cc1426393685a715c86135994d9d713b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3195235_c61930a8",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-12-13T20:27:26Z",
+      "side": 1,
+      "message": "addSurfaceFlingerHistograms computes frameLengths, too. Could you please factor this logic out and use it in both places? Like, inside addFrameTimeHistograms:\n\nlet frameLengths \u003d frameSegments.map(x \u003d\u003e x.duration / findRefreshPeriod());\nframeLengths \u003d frameLengths.filter(length \u003d\u003e length \u003e\u003d MIN_FRAME_LENGTH);\n\naddJankCountHistogram(histograms, frameLengths);\n\nif (modelHelper.surfaceFlingerProcess) {\n  addSurfaceFlingerHistograms(histograms, frameSegments, frameLengths);\n}",
+      "range": {
+        "startLine": 277,
+        "startChar": 10,
+        "endLine": 277,
+        "endChar": 22
+      },
+      "revId": "e0871f48cc1426393685a715c86135994d9d713b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "884f34b5_dd581e02",
+        "filename": "tracing/tracing/metrics/rendering/frame_time_test.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-12-13T20:27:26Z",
+      "side": 1,
+      "message": "Please have 2 test cases: one for Android that have refresh_period in metadata, and one for non-Android platforms.",
+      "range": {
+        "startLine": 207,
+        "startChar": 6,
+        "endLine": 207,
+        "endChar": 26
+      },
+      "revId": "e0871f48cc1426393685a715c86135994d9d713b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
