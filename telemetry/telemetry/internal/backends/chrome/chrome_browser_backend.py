@@ -85,9 +85,6 @@ class ChromeBrowserBackend(browser_backend.BrowserBackend):
     # Suppress all permission prompts by atomatically denying them.
     args.append('--deny-permission-prompts')
 
-    # Override the need for a user gesture in order to play media.
-    args.append('--autoplay-policy=no-user-gesture-required')
-
     if self.browser_options.disable_background_networking:
       args.append('--disable-background-networking')
     args.extend(self.GetReplayBrowserStartupArgs())

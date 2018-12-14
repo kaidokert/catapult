@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 
 from telemetry.internal.actions import play
+from telemetry.internal.actions import key_event
 from telemetry.testing import tab_test_case
 
 import py_utils
@@ -18,6 +19,11 @@ class PlayActionTest(tab_test_case.TabTestCase):
   def setUp(self):
     tab_test_case.TabTestCase.setUp(self)
     self.Navigate('video_test.html')
+
+    # Simulate a user activation to enable autoplay.
+    action = key_event.KeyPressAction(key)
+    action.WillRunAction(self._tab)
+    action.RunAction(self._tab);
 
   def testPlayWithNoSelector(self):
     """Tests that with no selector Play action plays first video element."""

@@ -285,6 +285,10 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
                          .GetChromeTraceConfigFile())
     if trace_config_file:
       args.append('--trace-config-file=%s' % trace_config_file)
+
+    # Override the need for a user gesture in order to play media.
+    args.append('--autoplay-policy=no-user-gesture-required')
+
     return args
 
   def Start(self):
