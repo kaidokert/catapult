@@ -30,6 +30,20 @@ tr.exportTo('tr.v', function() {
   const P_VALUE_NAME = 'p-value';
   const U_STATISTIC_NAME = 'U';
 
+  const TAGS = {
+    NAME: 'n',
+    DESCRIPTION: 'd',
+    UNIT_TAG: 'u',
+    GUID_TAG: 'g',
+    BIN_BOUNDARIES_TAG: 'b',
+    SHORT_NAME_TAG: 's',
+    DIAGNOSTICS: 'D',
+    MAX_NUM_SAMPLE_VALUES: 'm',
+  };
+  if (new Set(Object.values(TAGS)).size !== Object.keys(TAGS).length) {
+    throw new Error('Duplicate tag!');
+  }
+
   /**
    * Converts the given percent to a string in the format specified above.
    * @param {number} percent The percent must be between 0.0 and 1.0.
@@ -914,25 +928,25 @@ tr.exportTo('tr.v', function() {
       return rebinned;
     }
 
-    asDict() {
+    asDict(exporter) {
       const dict = {};
-      dict.name = this.name;
-      dict.unit = this.unit.asJSON();
-      dict.guid = this.guid;
+      dict[TAGS.NAME] = exporter.getNameId(this.name);
+      dict[TAGS.UNIT] = this.unit.asJSON();
+      dict[TAGS.GUID] = this.guid;
       if (this.binBoundariesDict_ !== undefined) {
-        dict.binBoundaries = this.binBoundariesDict_;
+        dict[TAGS.BIN_BOUNDARIES] = this.binBoundariesDict_;
       }
       if (this.shortName) {
-        dict.shortName = this.shortName;
+        dict[TAGS.SHORT_NAME] = this.shortName;
       }
       if (this.description) {
-        dict.description = this.description;
+        dict[TAGS.DESCRIPTION] = this.description;
       }
       if (this.diagnostics.size) {
-        dict.diagnostics = this.diagnostics.asDict();
+        dict[TAGS.DIAGNOSTICS] = this.diagnostics.asDict(exporter);
       }
       if (this.maxNumSampleValues !== this.defaultMaxNumSampleValues_) {
-        dict.maxNumSampleValues = this.maxNumSampleValues;
+        dict[TAGS.MAX_NUM_SAMPLE_VALUES] = this.maxNumSampleValues;
       }
       if (this.numNans) {
         dict.numNans = this.numNans;
