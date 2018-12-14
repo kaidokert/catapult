@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--
+Copyright 2016 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/base/utils.html">
+<link rel="import" href="/tracing/value/diagnostics/add_related_names.html">
+<link rel="import" href="/tracing/value/histogram.html">
+<link rel="import" href="/tracing/value/histogram_grouping.html">
+
+<script>
+'use strict';
+
+tr.exportTo('tr.v', function() {
+  class HistogramWriter {
+    static write(histograms) {
+      const writer = new HistogramWriter();
+      const dict = {
+        [HistogramWriter.TAGS.NAMES]: writer.names_,
+        [HistogramWriter.TAGS.DIAGNOSTICS]: writer.diagnosticsByType_,
+        [HistogramWriter.TAGS.HISTOGRAMS]: [...writer].map(h =>
+          h.asDict(writer)),
+      };
+      for (const diagnosticsByName of writer.diagnosticsByType_.values()) {
+        for (const diagnosticsById of diagnosticsByName.values()) {
+          for (const [id, diagnostic] of diagnosticsById) {
+            diagnosticsById[id] = diagnostic.asDict(writer);
+          }
+        }
+      }
+      return dict;
+    }
+
+    constructor() {
+      this.names_ = [];
+      this.diagnosticsByType_ = {};
+      this.diagnosticId_ = 0;
+    }
+
+    getNameId(name) {
+      const id = this.names_.indexOf(name);
+      if (id >= 0) return id;
+      return this.names_.push(name) - 1;
+    }
+
+    getDiagnosticId(name, diagnostic) {
+      const typeName = diag.constructor.name;
+      let diagnosticsByName = diagnosticsByType[typeName];
+      if (!diagnosticsByName) {
+        diagnosticsByName = {};
+        diagnosticsByType[typeName] = diagnosticsByName;
+      }
+
+      let diagnosticsById = diagnosticsByName[name];
+      if (!diagnosticsById) {
+        diagnosticsById = {};
+        diagnosticsByName[name] = diagnosticsById;
+      }
+
+      // TODO look for duplicates
+
+      diagnosticsById[++diagnosticId] = diag;
+    }
+  }
+
+  HistogramWriter.TAGS = {
+    HISTOGRAMS: 'h',
+    NAMES: 'n',
+    DIAGNOSTICS: 'd',
+  };
+
+  return {HistogramWriter};
+});
+</script>

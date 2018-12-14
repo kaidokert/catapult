@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--
+Copyright 2016 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/value/histogram_writer.html">
+
+<script>
+'use strict';
+
+tr.exportTo('tr.v', function() {
+  const TAGS = tr.v.HistogramWriter.TAGS;
+
+  class HistogramReader {
+    static read(dict) {
+      const reader = new HistogramReader(dict);
+      return dict[TAGS.HISTOGRAMS].map(h => tr.v.Histogram.fromDict(h, reader));
+    }
+
+    constructor(dict) {
+      this.names_ = dict[TAGS.NAMES];
+      this.diagnosticsById_ = {};
+      for (const [type, diagnosticsByName] of Object.entries(
+          dict[TAGS.DIAGNOSTICS])) {
+        for (const [name, diagnosticsById] of Object.entries(
+            diagnosticsByName)) {
+          for (const [id, diagDict] of Object.entries(diagnosticsById)) {
+            const diagnostic = tr.v.d.Diagnostic.fromDict(
+                {type, ...diagDict}, this);
+            this.diagnosticsById_[id] = {name, diagnostic};
+          }
+        }
+      }
+    }
+
+    getNameById(id) {
+      return this.names_[id];
+    }
+
+    getDiagnosticById(id) {
+      return this.diagnosticsById_[id];
+    }
+  }
+
+  return {HistogramReader};
+});
+</script>

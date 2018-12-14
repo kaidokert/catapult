@@ -9,6 +9,8 @@ found in the LICENSE file.
 <link rel="import" href="/tracing/value/diagnostics/add_related_names.html">
 <link rel="import" href="/tracing/value/histogram.html">
 <link rel="import" href="/tracing/value/histogram_grouping.html">
+<link rel="import" href="/tracing/value/histogram_reader.html">
+<link rel="import" href="/tracing/value/histogram_writer.html">
 
 <script>
 'use strict';
@@ -83,20 +85,9 @@ tr.exportTo('tr.v', function() {
      * @param {!tr.v.d.Diagnostic} diagnostic
      */
     addSharedDiagnosticToAllHistograms(name, diagnostic) {
-      this.addSharedDiagnostic(diagnostic);
       for (const hist of this) {
         hist.diagnostics.set(name, diagnostic);
       }
-    }
-
-    /**
-     * Add a Diagnostic to this HistogramSet so that it will only be serialized
-     * once per HistogramSet rather than once per Histogram that contains it.
-     *
-     * @param {!tr.v.d.Diagnostic} diagnostic
-     */
-    addSharedDiagnostic(diagnostic) {
-      this.sharedDiagnosticsByGuid_.set(diagnostic.guid, diagnostic);
     }
 
     get length() {
@@ -190,8 +181,14 @@ tr.exportTo('tr.v', function() {
      * @param {!Object} dicts
      */
     importDicts(dicts) {
-      for (const dict of dicts) {
-        this.importDict(dict);
+      if (dicts instanceof Array) {
+        for (const dict of dicts) {
+          this.importDict(dict);
+        }
+        return;
+      }
+      for (const hist of tr.v.HistogramReader.read(dicts)) {
+        this.addHistogram(hist);
       }
     }
 
@@ -219,15 +216,8 @@ tr.exportTo('tr.v', function() {
      *
      * @return {!Array.<!Object>}
      */
-    asDicts() {
-      const dicts = [];
-      for (const diagnostic of this.sharedDiagnosticsByGuid_.values()) {
-        dicts.push(diagnostic.asDict());
-      }
-      for (const hist of this) {
-        dicts.push(hist.asDict());
-      }
-      return dicts;
+    asDict() {
+      return tr.v.HistogramWriter.write(this);
     }
 
     /**
@@ -439,8 +429,6 @@ tr.exportTo('tr.v', function() {
     }
   }
 
-  return {
-    HistogramSet,
-  };
+  return {HistogramSet};
 });
 </script>
