@@ -30,6 +30,26 @@ tr.exportTo('tr.v', function() {
   const P_VALUE_NAME = 'p-value';
   const U_STATISTIC_NAME = 'U';
 
+  const TAGS = {
+    NAME: 'n',
+    DESCRIPTION: 'd',
+    UNIT_TAG: 'u',
+    GUID_TAG: 'g',
+    BIN_BOUNDARIES_TAG: 'b',
+    SHORT_NAME_TAG: 's',
+    DIAGNOSTICS: 'D',
+    MAX_NUM_SAMPLE_VALUES: 'm',
+    NUM_NANS: 'a',
+    NAN_DIAGNOSTICS: 'i',
+    SAMPLE_VALUES: 'v',
+    RUNNING: 'r',
+    ALL_BINS: 'B',
+    SUMMARY_OPTIONS: 'o',
+  };
+  if (new Set(Object.values(TAGS)).size !== Object.keys(TAGS).length) {
+    throw new Error('Duplicate tag!');
+  }
+
   /**
    * Converts the given percent to a string in the format specified above.
    * @param {number} percent The percent must be between 0.0 and 1.0.
@@ -111,14 +131,14 @@ tr.exportTo('tr.v', function() {
       }
     }
 
-    asDict() {
+    asDict(writer) {
       if (!this.diagnosticMaps.length) {
         return [this.count];
       }
       // It's more efficient to serialize these 2 fields in an array. If you
       // add any other fields, you should re-evaluate whether it would be more
       // efficient to serialize as a dict.
-      return [this.count, this.diagnosticMaps.map(d => d.asDict())];
+      return [this.count, this.diagnosticMaps.map(d => d.asDict(writer))];
     }
   }
 
@@ -914,38 +934,38 @@ tr.exportTo('tr.v', function() {
       return rebinned;
     }
 
-    asDict() {
+    asDict(writer) {
       const dict = {};
-      dict.name = this.name;
-      dict.unit = this.unit.asJSON();
-      dict.guid = this.guid;
+      dict[TAGS.NAME] = writer.getNameId(this.name);
+      dict[TAGS.UNIT] = this.unit.asJSON();
+      dict[TAGS.GUID] = this.guid;
       if (this.binBoundariesDict_ !== undefined) {
-        dict.binBoundaries = this.binBoundariesDict_;
+        dict[TAGS.BIN_BOUNDARIES] = this.binBoundariesDict_;
       }
       if (this.shortName) {
-        dict.shortName = this.shortName;
+        dict[TAGS.SHORT_NAME] = this.shortName;
       }
       if (this.description) {
-        dict.description = this.description;
+        dict[TAGS.DESCRIPTION] = this.description;
       }
       if (this.diagnostics.size) {
-        dict.diagnostics = this.diagnostics.asDict();
+        dict[TAGS.DIAGNOSTICS] = this.diagnostics.asDict(writer);
       }
       if (this.maxNumSampleValues !== this.defaultMaxNumSampleValues_) {
-        dict.maxNumSampleValues = this.maxNumSampleValues;
+        dict[TAGS.MAX_NUM_SAMPLE_VALUES] = this.maxNumSampleValues;
       }
       if (this.numNans) {
-        dict.numNans = this.numNans;
+        dict[TAGS.NUM_NANS] = this.numNans;
       }
       if (this.nanDiagnosticMaps.length) {
-        dict.nanDiagnostics = this.nanDiagnosticMaps.map(
-            dm => dm.asDict());
+        dict[TAGS.NAN_DIAGNOSTICS] = this.nanDiagnosticMaps.map(
+            dm => dm.asDict(writer));
       }
 
       if (this.numValues) {
-        dict.sampleValues = this.sampleValues.slice();
-        dict.running = this.running_.asDict();
-        dict.allBins = this.allBinsAsDict_();
+        dict[TAGS.SAMPLE_VALUES] = this.sampleValues.slice();
+        dict[TAGS.RUNNING] = this.running_.asDict();
+        dict[TAGS.ALL_BINS] = this.allBinsAsDict_(writer);
       }
 
       const summaryOptions = {};
@@ -968,13 +988,13 @@ tr.exportTo('tr.v', function() {
         anyOverriddenSummaryOptions = true;
       }
       if (anyOverriddenSummaryOptions) {
-        dict.summaryOptions = summaryOptions;
+        dict[TAGS.SUMMARY_OPTIONS] = summaryOptions;
       }
 
       return dict;
     }
 
-    allBinsAsDict_() {
+    allBinsAsDict_(writer) {
       // dict.allBins may be either an array or a dict, whichever is more
       // efficient.
       // The overhead of the array form is significant when the histogram is
@@ -1004,7 +1024,7 @@ tr.exportTo('tr.v', function() {
         for (let i = 0; i < numBins; ++i) {
           const bin = this.allBins[i];
           if (bin.count > 0) {
-            allBinsDict[i] = bin.asDict();
+            allBinsDict[i] = bin.asDict(writer);
           }
         }
         return allBinsDict;
@@ -1012,7 +1032,7 @@ tr.exportTo('tr.v', function() {
 
       const allBinsArray = [];
       for (let i = 0; i < numBins; ++i) {
-        allBinsArray.push(this.allBins[i].asDict());
+        allBinsArray.push(this.allBins[i].asDict(writer));
       }
       return allBinsArray;
     }

@@ -97,10 +97,10 @@ tr.exportTo('tr.v.d', function() {
       }
     }
 
-    asDict() {
-      const dict = {};
+    asDict(writer) {
+      const dict = [];
       for (const [name, diagnostic] of this) {
-        dict[name] = diagnostic.asDictOrReference();
+        dict.push(writer.getDiagnosticId(name, diagnostic));
       }
       return dict;
     }
