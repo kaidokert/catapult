@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8884f90b_aca1071d",
+        "filename": "tracing/tracing/metrics/rendering/pipeline.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1305608
+      },
+      "writtenOn": "2018-12-14T19:03:27Z",
+      "side": 1,
+      "message": "ok, fixed.",
+      "parentUuid": "ef522caf_8d1a1966",
+      "range": {
+        "startLine": 104,
+        "startChar": 15,
+        "endLine": 104,
+        "endChar": 28
+      },
+      "revId": "258fab3f13504365fe845741cdbbb666d0ef8260",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ef5cdaa6_81a08b29",
         "filename": "tracing/tracing/metrics/rendering/pipeline.html",
         "patchSetId": 9
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "25f77dd7_48c8f3c4",
+        "filename": "tracing/tracing/metrics/rendering/pipeline.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1305608
+      },
+      "writtenOn": "2018-12-14T19:03:27Z",
+      "side": 1,
+      "message": "fixed.",
+      "parentUuid": "ef5cdaa6_81a08b29",
+      "range": {
+        "startLine": 107,
+        "startChar": 15,
+        "endLine": 107,
+        "endChar": 22
+      },
+      "revId": "258fab3f13504365fe845741cdbbb666d0ef8260",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ac5fcb26_fd20816d",
         "filename": "tracing/tracing/metrics/rendering/pipeline.html",
         "patchSetId": 9
@@ -68,6 +116,30 @@
       "revId": "258fab3f13504365fe845741cdbbb666d0ef8260",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad8951ae_98bba01a",
+        "filename": "tracing/tracing/metrics/rendering/pipeline.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1305608
+      },
+      "writtenOn": "2018-12-14T19:03:27Z",
+      "side": 1,
+      "message": "I talked to Sadrul and we agreed to leave the negative values off.",
+      "parentUuid": "ac5fcb26_fd20816d",
+      "range": {
+        "startLine": 238,
+        "startChar": 52,
+        "endLine": 238,
+        "endChar": 62
+      },
+      "revId": "258fab3f13504365fe845741cdbbb666d0ef8260",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

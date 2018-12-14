@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a05051f4_bb59b08d",
+        "filename": "tracing/tracing/metrics/rendering/pipeline.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1305608
+      },
+      "writtenOn": "2018-12-14T19:03:27Z",
+      "side": 1,
+      "message": "Fixed.",
+      "parentUuid": "98b47e97_48b2db82",
+      "range": {
+        "startLine": 96,
+        "startChar": 24,
+        "endLine": 96,
+        "endChar": 25
+      },
+      "revId": "9a346bcaabf2d79270fe7aed7c0aa0fb349ecc8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "db4bdd05_d2f107f0",
         "filename": "tracing/tracing/metrics/rendering/pipeline.html",
         "patchSetId": 8
@@ -45,6 +69,30 @@
       "revId": "9a346bcaabf2d79270fe7aed7c0aa0fb349ecc8a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fb08464_23d96112",
+        "filename": "tracing/tracing/metrics/rendering/pipeline.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1305608
+      },
+      "writtenOn": "2018-12-14T19:03:27Z",
+      "side": 1,
+      "message": "Fixed.",
+      "parentUuid": "db4bdd05_d2f107f0",
+      "range": {
+        "startLine": 99,
+        "startChar": 50,
+        "endLine": 99,
+        "endChar": 64
+      },
+      "revId": "9a346bcaabf2d79270fe7aed7c0aa0fb349ecc8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "03dbfdb5_519a3255",
+        "filename": "tracing/tracing/metrics/rendering/pipeline.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1305608
+      },
+      "writtenOn": "2018-12-14T19:03:27Z",
+      "side": 1,
+      "message": "Changed.",
+      "parentUuid": "f6324035_76f6d710",
+      "range": {
+        "startLine": 233,
+        "startChar": 74,
+        "endLine": 233,
+        "endChar": 76
+      },
+      "revId": "9a346bcaabf2d79270fe7aed7c0aa0fb349ecc8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "78a58b6b_d82d275b",
         "filename": "tracing/tracing/metrics/rendering/pipeline_test.html",
         "patchSetId": 8
@@ -82,6 +154,30 @@
       "writtenOn": "2018-12-13T16:55:27Z",
       "side": 1,
       "message": "Could you please add one more test that have more than one renderer and only one of them has an IR to make sure that we compute metrics based on the correct renderer? Thanks!",
+      "range": {
+        "startLine": 82,
+        "startChar": 27,
+        "endLine": 82,
+        "endChar": 35
+      },
+      "revId": "9a346bcaabf2d79270fe7aed7c0aa0fb349ecc8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38085857_5c26e732",
+        "filename": "tracing/tracing/metrics/rendering/pipeline_test.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1305608
+      },
+      "writtenOn": "2018-12-14T19:03:27Z",
+      "side": 1,
+      "message": "Is it ok for the renderers to be in different processes?",
+      "parentUuid": "78a58b6b_d82d275b",
       "range": {
         "startLine": 82,
         "startChar": 27,
