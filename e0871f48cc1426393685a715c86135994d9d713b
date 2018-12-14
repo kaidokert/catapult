@@ -48,6 +48,54 @@
     },
     {
       "key": {
+        "uuid": "5062d65c_95979ab2",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1158749
+      },
+      "writtenOn": "2018-12-14T22:39:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c29ef53a_d523307e",
+      "range": {
+        "startLine": 272,
+        "startChar": 8,
+        "endLine": 272,
+        "endChar": 20
+      },
+      "revId": "e0871f48cc1426393685a715c86135994d9d713b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "31fabe0e_b3db5aeb",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1158749
+      },
+      "writtenOn": "2018-12-14T22:39:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fb31d5d_8a2e0a97",
+      "range": {
+        "startLine": 272,
+        "startChar": 43,
+        "endLine": 272,
+        "endChar": 50
+      },
+      "revId": "e0871f48cc1426393685a715c86135994d9d713b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ab5bb3ec_31a8a250",
         "filename": "tracing/tracing/metrics/rendering/frame_time.html",
         "patchSetId": 9
@@ -68,6 +116,30 @@
       "revId": "e0871f48cc1426393685a715c86135994d9d713b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1eb5b105_8687a261",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1158749
+      },
+      "writtenOn": "2018-12-14T22:39:57Z",
+      "side": 1,
+      "message": "when i refactor it into its own function, i can return the value instead of break.",
+      "parentUuid": "ab5bb3ec_31a8a250",
+      "range": {
+        "startLine": 273,
+        "startChar": 8,
+        "endLine": 273,
+        "endChar": 13
+      },
+      "revId": "e0871f48cc1426393685a715c86135994d9d713b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "e94667d0_3589494f",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1158749
+      },
+      "writtenOn": "2018-12-14T22:39:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3195235_c61930a8",
+      "range": {
+        "startLine": 277,
+        "startChar": 10,
+        "endLine": 277,
+        "endChar": 22
+      },
+      "revId": "e0871f48cc1426393685a715c86135994d9d713b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "884f34b5_dd581e02",
         "filename": "tracing/tracing/metrics/rendering/frame_time_test.html",
         "patchSetId": 9
@@ -105,6 +201,30 @@
       "writtenOn": "2018-12-13T20:27:26Z",
       "side": 1,
       "message": "Please have 2 test cases: one for Android that have refresh_period in metadata, and one for non-Android platforms.",
+      "range": {
+        "startLine": 207,
+        "startChar": 6,
+        "endLine": 207,
+        "endChar": 26
+      },
+      "revId": "e0871f48cc1426393685a715c86135994d9d713b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae3c3bc3_0bb45e7e",
+        "filename": "tracing/tracing/metrics/rendering/frame_time_test.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1158749
+      },
+      "writtenOn": "2018-12-14T22:39:57Z",
+      "side": 1,
+      "message": "i will add one more test then.",
+      "parentUuid": "884f34b5_dd581e02",
       "range": {
         "startLine": 207,
         "startChar": 6,
