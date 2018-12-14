@@ -12,6 +12,7 @@ from tracing.value.diagnostics import diagnostic
 from tracing.value.diagnostics import diagnostic_ref
 from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import related_event_set
+from tracing.value.diagnostics import related_name_map
 from tracing.value.diagnostics import reserved_infos
 from tracing.value.diagnostics import unmergeable_diagnostic_set as ums
 
@@ -632,8 +633,8 @@ class DiagnosticMapUnittest(unittest.TestCase):
     })
     generic = generic_set.GenericSet(['generic diagnostic'])
     generic2 = generic_set.GenericSet(['generic diagnostic 2'])
-    related_map = histogram.RelatedHistogramMap()
-    related_map.Set('a', histogram.Histogram('histogram', 'count'))
+    related_map = related_name_map.RelatedNameMap()
+    related_map.Set('a', 'histogram')
 
     hist = histogram.Histogram('', 'count')
 

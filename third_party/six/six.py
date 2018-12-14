@@ -31,6 +31,9 @@ import types
 __author__ = "Benjamin Peterson <benjamin@python.org>"
 __version__ = "1.10.0"
 
+# pylint: disable-all
+# pylint: skip-file
+
 
 # Useful for very coarse version differentiation.
 PY2 = sys.version_info[0] == 2
