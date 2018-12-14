@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7b278633_71633c2e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2018-12-14T13:57:43Z",
+      "side": 1,
+      "message": "RelatedNameMap",
+      "range": {
+        "startLine": 7,
+        "startChar": 33,
+        "endLine": 7,
+        "endChar": 46
+      },
+      "revId": "025c7a083f84f4afd985321981beffbb181456f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf9b9779_e6a2ea30",
+        "filename": "tracing/tracing/metrics/system_health/expected_queueing_time_metric.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2018-12-14T13:57:43Z",
+      "side": 1,
+      "message": "This is leaking implementation details on V8 specific EQT into generic EQT.\nCan we adjust and call addV8ContributionToExpectedQueueingTime_ from this function?",
+      "range": {
+        "startLine": 130,
+        "startChar": 4,
+        "endLine": 140,
+        "endChar": 5
+      },
+      "revId": "025c7a083f84f4afd985321981beffbb181456f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7980690b_d0789a79",
+        "filename": "tracing/tracing/metrics/system_health/expected_queueing_time_metric.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2018-12-14T13:57:43Z",
+      "side": 1,
+      "message": "The totalBreakdown is not filled if we take the \"continue\" branches.",
+      "range": {
+        "startLine": 164,
+        "startChar": 0,
+        "endLine": 169,
+        "endChar": 7
+      },
+      "revId": "025c7a083f84f4afd985321981beffbb181456f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c3e2876_fc136cb7",
+        "filename": "tracing/tracing/metrics/system_health/expected_queueing_time_metric.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2018-12-14T13:57:43Z",
+      "side": 1,
+      "message": "This code is duplicating word done by addV8ContributionToExpectedQueueingTime_.\nComputing maxExpectedQueueingTimeInSlidingWindow is expensive and should be done only once per V8 event.\n\nI think it is better to change addV8ContributionToExpectedQueueingTime_ and call it from here passing appropriate parameters (rendererHelper, totalBreakdown, and interactiveBreakdown).",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 7
+      },
+      "revId": "025c7a083f84f4afd985321981beffbb181456f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
