@@ -356,6 +356,24 @@ tr.exportTo('tr.b', function() {
   });
 
   Unit.define({
+    baseUnitName: 'timeDurationInUs',
+    baseJsonName: 'us',
+    scaleBaseUnit: tr.b.UnitScale.TIME.MICRO_SEC,
+    formatSpec() {
+      return Unit.currentTimeDisplayMode_.formatSpec;
+    }
+  });
+
+  Unit.define({
+    baseUnitName: 'timeDurationInNs',
+    baseJsonName: 'ns',
+    scaleBaseUnit: tr.b.UnitScale.TIME.NANO_SEC,
+    formatSpec() {
+      return Unit.currentTimeDisplayMode_.formatSpec;
+    }
+  });
+
+  Unit.define({
     baseUnitName: 'timeStampInMs',
     baseJsonName: 'tsMs',
     scaleBaseUnit: tr.b.UnitScale.TIME.MILLI_SEC,

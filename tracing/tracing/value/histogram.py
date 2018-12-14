@@ -537,6 +537,8 @@ class HistogramBin(object):
 # TODO(#3814) Presubmit to compare with unit.html.
 UNIT_NAMES = [
     'ms',
+    'us',
+    'ns',
     'msBestFitFormat',
     'tsMs',
     'n%',
@@ -1184,6 +1186,8 @@ def _CreateMsAutoFormatBins():
 
 DEFAULT_BOUNDARIES_FOR_UNIT = {
     'ms': HistogramBinBoundaries.CreateExponential(1e-3, 1e6, 100),
+    'us': HistogramBinBoundaries.CreateExponential(1e-3, 1e9, 100),
+    'ns': HistogramBinBoundaries.CreateExponential(1e-3, 1e12, 100),
     'tsMs': HistogramBinBoundaries.CreateLinear(0, 1e10, 1000),
     'msBestFitFormat': _CreateMsAutoFormatBins(),
     'n%': HistogramBinBoundaries.CreateLinear(0, 1.0, 20),
