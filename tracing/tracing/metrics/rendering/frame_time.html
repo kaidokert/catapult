@@ -45,7 +45,7 @@ found in the LICENSE file.
  * Average number of frames, ignoring short frames, per second during
  * animations.
  *
- * jank_count (Android only)
+ * jank_count
  * =========================
  * The number of times that frame lengths are increased, during animations. For
  * example, if frame lengths are 1, 1, 1, 2, 3, 1, 1 vsyncs, then jank_count
@@ -155,19 +155,6 @@ tr.exportTo('tr.metrics.rendering', function() {
         { description: 'Average frames per second.',
           summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
         });
-
-    let jankCount = 0;
-    for (let i = 1; i < frameLengths.length; i++) {
-      const change = Math.round(frameLengths[i] - frameLengths[i - 1]);
-      if (change > 0 && change < PAUSE_THRESHOLD) jankCount++;
-    }
-    histograms.createHistogram(
-        'jank_count',
-        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
-        jankCount,
-        { description: 'Number of changes in frame rate.',
-          summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
-        });
   }
 
   function computeFrameSegments_(timestamps, segments) {
@@ -241,6 +228,11 @@ tr.exportTo('tr.metrics.rendering', function() {
         'Number of tasks of a thread group per frame',
         tr.b.Unit.byName.unitlessNumber_smallerIsBetter);
 
+    const refreshPeriod = getRefreshPeriod(model,
+        frameSegments.map(s => s.boundsRange));
+    let frameLengths = frameSegments.map(x => x.duration / refreshPeriod);
+    frameLengths = frameLengths.filter(length => length >= MIN_FRAME_LENGTH);
+    addJankCountHistograms(histograms, frameLengths);
     // If Surface Flinger information is captured, add Surface Flinger
     // histograms.
     for (const metadata of model.metadata) {
@@ -262,6 +254,55 @@ tr.exportTo('tr.metrics.rendering', function() {
     const timestamps = events.map(event => [event.start, event.start]);
     const frameSements = computeFrameSegments_(timestamps, segments);
     addBasicFrameTimeHistograms_(histograms, frameSements, 'ui_');
+  }
+
+  function addJankCountHistograms(histograms, frameLengths) {
+    let jankCount = 0;
+    for (let i = 1; i < frameLengths.length; i++) {
+      if (frameLengths[i] < MIN_FRAME_LENGTH) continue;
+      const change =
+        Math.round((frameLengths[i] - frameLengths[i - 1]));
+      if (change > 0 && change < PAUSE_THRESHOLD) jankCount++;
+    }
+
+    histograms.createHistogram(
+        'jank_count',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        jankCount,
+        { description: 'Number of changes in frame rate.',
+          summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
+        });
+  }
+
+  function getRefreshPeriod(model, ranges) {
+    // Get the refresh period for android devices:
+    for (const metadata of model.metadata) {
+      if (metadata.value && metadata.value.surface_flinger) {
+        return metadata.value.surface_flinger.refresh_period;
+      }
+    }
+
+    // Get the refresh period for non-android devices:
+    const BEGIN_FRAME_ARGS = 'Scheduler::BeginFrame';
+    const FRAME_INTERVAL = 'interval_us';
+    const chromeHelper = model.getOrCreateHelper(
+        tr.model.helpers.ChromeModelHelper);
+
+    for (const rendererHelper of Object.values(chromeHelper.rendererHelpers)) {
+      if (rendererHelper.compositorThread === undefined) continue;
+      const slices = rendererHelper.compositorThread.sliceGroup;
+      for (const slice of slices.getDescendantEventsInSortedRanges(ranges)) {
+        if (slice.title !== BEGIN_FRAME_ARGS) continue;
+        const data = slice.args.args;
+        if (!(FRAME_INTERVAL in data)) {
+          throw new Error(`${FRAME_INTERVAL} is missing`);
+        }
+        return tr.b.convertUnit(data[FRAME_INTERVAL],
+            tr.b.UnitScale.TIME.MICRO_SEC, tr.b.UnitScale.TIME.MILLI_SEC);
+      }
+    }
+
+    return 17;
   }
 
   return {
