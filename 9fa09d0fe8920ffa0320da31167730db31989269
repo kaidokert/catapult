@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ece407b7_17614e16",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 11
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-12-14T23:47:54Z",
+      "side": 1,
+      "message": "We already have frameLengths and refreshPeriod at this point. So, please replace this block with\n\nif (modelHelper.surfaceFlingerProcess) {\n  addSurfaceFlingerHistograms_(histograms, frameSegments, frameLengths, refreshPeriod);\n}\n\nand delete the part that compute frameLengths from addSurfaceFlingerHistograms_.",
+      "range": {
+        "startLine": 236,
+        "startChar": 0,
+        "endLine": 245,
+        "endChar": 5
+      },
+      "revId": "9fa09d0fe8920ffa0320da31167730db31989269",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dfd4a7b5_15913579",
+        "filename": "tracing/tracing/metrics/rendering/frame_time_test.html",
+        "patchSetId": 11
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-12-14T23:47:54Z",
+      "side": 1,
+      "message": "I think 3 (or any number !\u003d 17) is better than 17, since we do not know if findRefreshPeriod is correctly using the SF refresh period or the default value which is 17 :)",
+      "range": {
+        "startLine": 193,
+        "startChar": 28,
+        "endLine": 193,
+        "endChar": 30
+      },
+      "revId": "9fa09d0fe8920ffa0320da31167730db31989269",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ae429f0_ac2f5beb",
+        "filename": "tracing/tracing/metrics/rendering/frame_time_test.html",
+        "patchSetId": 11
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2018-12-14T23:47:54Z",
+      "side": 1,
+      "message": "Again, this does not test if we are using the correct refresh period specified here or just the default value of 17 that is returned at the end of findRefreshPeriod function.",
+      "range": {
+        "startLine": 257,
+        "startChar": 29,
+        "endLine": 257,
+        "endChar": 31
+      },
+      "revId": "9fa09d0fe8920ffa0320da31167730db31989269",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
