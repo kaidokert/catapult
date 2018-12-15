@@ -97,17 +97,24 @@ tr.exportTo('tr.v.d', function() {
       }
     }
 
-    asDict() {
-      const dict = {};
+    asDict(writer) {
+      const dict = [];
       for (const [name, diagnostic] of this) {
-        dict[name] = diagnostic.asDictOrReference();
+        dict.push(writer.getDiagnosticId(name, diagnostic));
       }
       return dict;
     }
 
-    static fromDict(d) {
+    static fromDict(d, reader) {
       const diagnostics = new DiagnosticMap();
-      diagnostics.addDicts(d);
+      if (d instanceof Array) {
+        for (const id of d) {
+          const {name, diagnostic} = reader.getDiagnosticById(id);
+          this.set(name, diagnostic);
+        }
+      } else {
+        diagnostics.addDicts(d);
+      }
       return diagnostics;
     }
 
