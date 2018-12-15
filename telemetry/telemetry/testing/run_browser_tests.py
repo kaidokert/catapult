@@ -13,6 +13,7 @@ from telemetry.internal.platform import android_device
 from telemetry.internal.util import binary_manager
 from telemetry.testing import browser_test_context
 from telemetry.testing import serially_executed_browser_test_case
+from telemetry.internal.browser import browser_finder
 
 from py_utils import discover
 import typ
@@ -305,6 +306,8 @@ def RunTests(args):
   context.Freeze()
   browser_test_context._global_test_context = context
 
+  possible_browser = browser_finder.FindBrowser(context.finder_options)
+
   # Setup typ runner.
   runner = typ.Runner()
 
@@ -312,6 +315,7 @@ def RunTests(args):
   runner.setup_fn = _SetUpProcess
   runner.teardown_fn = _TearDownProcess
   runner.args.expectations_files = options.expectations_files
+  runner.args.tags = test_class.GenerateTags(options, possible_browser)
   runner.args.jobs = options.jobs
   runner.args.metadata = options.metadata
   runner.args.passthrough = options.passthrough
