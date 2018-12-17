@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7e7ce223_03556f90",
+        "filename": "third_party/six/six.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2018-12-17T21:23:34Z",
+      "side": 1,
+      "message": "intentional?",
+      "revId": "16f13fa0385b958a599943d5dcb67cdbd0cf8ad7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
