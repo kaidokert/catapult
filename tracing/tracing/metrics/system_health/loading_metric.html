@@ -112,6 +112,42 @@ tr.exportTo('tr.metrics.sh', function() {
     return targetEvents;
   }
 
+  function getMostRecentValidEvent(rendererHelper, category, title) {
+    const targetEvents = findAllEvents(rendererHelper, category, title);
+    let validEvent;
+
+    for (const targetEvent of targetEvents) {
+      if (rendererHelper.isTelemetryInternalEvent(targetEvent)) continue;
+      if (validEvent === undefined) {
+        validEvent = targetEvent;
+      } else {
+        // Want to keep the event with the most recent timestamp
+        if (validEvent.start < targetEvent.start) {
+          validEvent = targetEvent;
+        }
+      }
+    }
+    return validEvent;
+  }
+
+  function getFirstViewportReadySamples(rendererHelper) {
+    const samples = [];
+    // Want to measure the time from when the document is visible to the time
+    // when the load event firered for non-ad resources.  This is done with
+    // two marks in the amp code: pc and visible.
+    const pcEvent = getMostRecentValidEvent(
+        rendererHelper, 'blink.user_timing', 'pc');
+    const visibleEvent = getMostRecentValidEvent(
+        rendererHelper, 'blink.user_timing', 'visible');
+    if (pcEvent !== undefined && visibleEvent !== undefined) {
+      samples.push({
+        value: pcEvent.start - visibleEvent.start,
+        diagnostics: {}
+      });
+    }
+    return samples;
+  }
+
   function findTimeToXEntries(
       category, eventName, rendererHelper, frameToNavStartEvents,
       navIdToNavStartEvents) {
@@ -325,6 +361,8 @@ tr.exportTo('tr.metrics.sh', function() {
     const onLoadSamples = collectTimeToEvent(rendererHelper, findTimeToXEntries(
         'blink.user_timing', 'loadEventStart', rendererHelper,
         frameToNavStartEvents, navIdToNavStartEvents));
+    const firstViewportReadySamples = getFirstViewportReadySamples(
+        rendererHelper);
 
     return {
       frameToNavStartEvents,
@@ -332,6 +370,7 @@ tr.exportTo('tr.metrics.sh', function() {
       firstContentfulPaintSamples,
       firstContentfulPaintCpuTimeSamples,
       onLoadSamples,
+      firstViewportReadySamples,
     };
   }
 
@@ -470,6 +509,12 @@ tr.exportTo('tr.metrics.sh', function() {
           description: 'Time to First CPU Idle',
           summaryOptions: SUMMARY_OPTIONS,
         });
+    const firstViewportReadyHistogram = histograms.createHistogram(
+        'timeToFirstViewportReady', timeDurationInMs_smallerIsBetter, [], {
+          binBoundaries: TIME_TO_INTERACTIVE_BOUNDARIES,
+          description: 'Time to first viewport ready',
+          summaryOptions: SUMMARY_OPTIONS,
+        });
 
     const chromeHelper = model.getOrCreateHelper(
         tr.model.helpers.ChromeModelHelper);
@@ -492,6 +537,10 @@ tr.exportTo('tr.metrics.sh', function() {
           histograms);
       addSamplesToHistogram(
           samplesSet.onLoadSamples, onLoadHistogram, histograms);
+      addSamplesToHistogram(
+          samplesSet.firstViewportReadySamples,
+          firstViewportReadyHistogram,
+          histograms);
     }
 
     const samplesSet = collectMetricsFromLoadExpectations(model, chromeHelper);
