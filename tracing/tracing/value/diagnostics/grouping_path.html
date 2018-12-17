@@ -47,12 +47,12 @@ tr.exportTo('tr.v.d', function() {
           (x, y) => x.localeCompare(y));
     }
 
-    asDictInto_(d) {
-      d.groupingPath = this.groupingPath_;
+    asDict(writer) {
+      return this.groupingPath_;
     }
 
-    static fromDict(d) {
-      return new GroupingPath(d.groupingPath);
+    static fromDict(d, reader) {
+      return new GroupingPath(reader ? d : d.groupingPath);
     }
   }
 

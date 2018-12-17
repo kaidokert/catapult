@@ -71,12 +71,19 @@ tr.exportTo('tr.v.d', function() {
      *
      * @param {Object} dict
      */
-    addDicts(dict) {
-      for (const [name, diagnosticDict] of Object.entries(dict)) {
-        if (typeof diagnosticDict === 'string') {
-          this.set(name, new tr.v.d.DiagnosticRef(diagnosticDict));
-        } else {
-          this.set(name, tr.v.d.Diagnostic.fromDict(diagnosticDict));
+    addDicts(dict, reader) {
+      if (dict instanceof Array) {
+        for (const id of dict) {
+          const {name, diagnostic} = reader.getDiagnosticById(id);
+          this.set(name, diagnostic);
+        }
+      } else {
+        for (const [name, diagnosticDict] of Object.entries(dict)) {
+          if (typeof diagnosticDict === 'string') {
+            this.set(name, new tr.v.d.DiagnosticRef(diagnosticDict));
+          } else {
+            this.set(name, tr.v.d.Diagnostic.fromDict(diagnosticDict));
+          }
         }
       }
     }
@@ -97,17 +104,17 @@ tr.exportTo('tr.v.d', function() {
       }
     }
 
-    asDict() {
-      const dict = {};
+    asDict(writer) {
+      const dict = [];
       for (const [name, diagnostic] of this) {
-        dict[name] = diagnostic.asDictOrReference();
+        dict.push(writer.getDiagnosticId(name, diagnostic));
       }
       return dict;
     }
 
-    static fromDict(d) {
+    static fromDict(d, reader) {
       const diagnostics = new DiagnosticMap();
-      diagnostics.addDicts(d);
+      diagnostics.addDicts(d, reader);
       return diagnostics;
     }
 

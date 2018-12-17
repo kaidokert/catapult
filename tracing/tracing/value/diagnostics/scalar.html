@@ -28,12 +28,12 @@ tr.exportTo('tr.v.d', function() {
       return new Scalar(this.value);
     }
 
-    asDictInto_(d) {
-      d.value = this.value.asDict();
+    asDict(writer) {
+      return this.value.asDict();
     }
 
-    static fromDict(d) {
-      return new Scalar(tr.b.Scalar.fromDict(d.value));
+    static fromDict(d, reader) {
+      return new Scalar(tr.b.Scalar.fromDict(reader ? d : d.value));
     }
   }
 
