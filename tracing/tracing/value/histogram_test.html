@@ -8,6 +8,8 @@ found in the LICENSE file.
 <link rel="import" href="/tracing/base/assert_utils.html">
 <link rel="import" href="/tracing/value/diagnostics/generic_set.html">
 <link rel="import" href="/tracing/value/histogram.html">
+<link rel="import" href="/tracing/value/histogram_reader.html">
+<link rel="import" href="/tracing/value/histogram_writer.html">
 
 <script>
 'use strict';
@@ -223,49 +225,60 @@ tr.b.unittest.testSuite(function() {
 
     // You can change these numbers, but when you do, please explain in your CL
     // description why they changed.
-    let dict = hist.asDict();
-    assert.strictEqual(107, JSON.stringify(dict).length);
+    let dict = tr.v.HistogramWriter.write([hist]);
+    assert.strictEqual(109, JSON.stringify(dict).length);
     assert.isUndefined(dict.allBins);
-    assert.deepEqual(dict, tr.v.Histogram.fromDict(dict).asDict());
+    assert.deepEqual(dict, tr.v.HistogramWriter.write(
+        tr.v.HistogramReader.read(dict)));
 
     hist.addSample(100);
-    dict = hist.asDict();
-    assert.strictEqual(198, JSON.stringify(dict).length);
-    assert.isUndefined(dict.allBins.length);
-    assert.deepEqual(dict, tr.v.Histogram.fromDict(dict).asDict());
+    dict = tr.v.HistogramWriter.write([hist]);
+    assert.strictEqual(177, JSON.stringify(dict).length);
+    assert.isUndefined(dict[tr.v.HistogramWriter.TAGS.HISTOGRAMS][0][
+        tr.v.Histogram.TAGS.ALL_BINS].length);
+    assert.deepEqual(dict, tr.v.HistogramWriter.write(
+        tr.v.HistogramReader.read(dict)));
 
     hist.addSample(100);
-    dict = hist.asDict();
+    dict = tr.v.HistogramWriter.write([hist]);
     // SAMPLE_VALUES grew by "100,"
-    assert.strictEqual(202, JSON.stringify(dict).length);
-    assert.isUndefined(dict.allBins.length);
-    assert.deepEqual(dict, tr.v.Histogram.fromDict(dict).asDict());
+    assert.strictEqual(181, JSON.stringify(dict).length);
+    assert.isUndefined(dict[tr.v.HistogramWriter.TAGS.HISTOGRAMS][0][
+        tr.v.Histogram.TAGS.ALL_BINS].length);
+    assert.deepEqual(dict, tr.v.HistogramWriter.write(
+        tr.v.HistogramReader.read(dict)));
 
     hist.addSample(271, {foo: new tr.v.d.GenericSet(['bar'])});
-    dict = hist.asDict();
-    assert.strictEqual(268, JSON.stringify(dict).length);
-    assert.isUndefined(dict.allBins.length);
-    assert.deepEqual(dict, tr.v.Histogram.fromDict(dict).asDict());
+    dict = tr.v.HistogramWriter.write([hist]);
+    assert.strictEqual(238, JSON.stringify(dict).length);
+    assert.isUndefined(dict[tr.v.HistogramWriter.TAGS.HISTOGRAMS][0][
+        tr.v.Histogram.TAGS.ALL_BINS].length);
+    assert.deepEqual(dict, tr.v.HistogramWriter.write(
+        tr.v.HistogramReader.read(dict)));
 
     // Add samples to most bins so that allBinsArray is more efficient than
     // allBinsDict.
     for (let i = 10; i < 100; ++i) {
       hist.addSample(10 * i);
     }
-    dict = hist.asDict();
-    assert.strictEqual(697, JSON.stringify(hist.asDict()).length);
-    assert.lengthOf(dict.allBins, 12);
-    assert.deepEqual(dict, tr.v.Histogram.fromDict(dict).asDict());
+    dict = tr.v.HistogramWriter.write([hist]);
+    assert.strictEqual(667, JSON.stringify(dict).length);
+    assert.lengthOf(dict[tr.v.HistogramWriter.TAGS.HISTOGRAMS][0][
+        tr.v.Histogram.TAGS.ALL_BINS], 12);
+    assert.deepEqual(dict, tr.v.HistogramWriter.write(
+        tr.v.HistogramReader.read(dict)));
 
     // Lowering maxNumSampleValues takes a random sub-sample of the existing
     // sampleValues. We have deliberately set all samples to 3-digit numbers so
     // that the serialized size is constant regardless of which samples are
     // retained.
     hist.maxNumSampleValues = 10;
-    dict = hist.asDict();
-    assert.strictEqual(389, JSON.stringify(dict).length);
-    assert.lengthOf(dict.allBins, 12);
-    assert.deepEqual(dict, tr.v.Histogram.fromDict(dict).asDict());
+    dict = tr.v.HistogramWriter.write([hist]);
+    assert.strictEqual(342, JSON.stringify(dict).length);
+    assert.lengthOf(dict[tr.v.HistogramWriter.TAGS.HISTOGRAMS][0][
+        tr.v.Histogram.TAGS.ALL_BINS], 12);
+    assert.deepEqual(dict, tr.v.HistogramWriter.write(
+        tr.v.HistogramReader.read(dict)));
   });
 
   test('significance', function() {
@@ -332,7 +345,8 @@ tr.b.unittest.testSuite(function() {
     assert.deepEqual(hist.nanDiagnosticMaps.map(dm =>
       tr.b.getOnlyElement(dm.get('foo'))), ['b', 'c']);
 
-    const hist2 = tr.v.Histogram.fromDict(hist.asDict());
+    const hist2 = tr.b.getOnlyElement(tr.v.HistogramReader.read(
+        tr.v.HistogramWriter.write([hist])));
     assert.instanceOf(hist2.nanDiagnosticMaps[0], tr.v.d.DiagnosticMap);
     assert.instanceOf(hist2.nanDiagnosticMaps[0].get('foo'), tr.v.d.GenericSet);
   });
@@ -388,7 +402,8 @@ tr.b.unittest.testSuite(function() {
     assert.strictEqual(hist0.numValues, 10);
     assert.closeTo(hist0.average, 349.7, 0.1);
 
-    const hist02 = tr.v.Histogram.fromDict(hist0.asDict());
+    const hist02 = tr.v.HistogramReader.read(tr.v.HistogramWriter.write(
+        [hist0]))[0];
     assert.instanceOf(hist02.allBins[0].diagnosticMaps[0],
         tr.v.d.DiagnosticMap);
     assert.instanceOf(hist02.allBins[0].diagnosticMaps[0].get('foo'),

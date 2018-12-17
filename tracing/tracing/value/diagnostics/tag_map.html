@@ -73,11 +73,12 @@ tr.exportTo('tr.v.d', function() {
       return this;
     }
 
-    asDictInto_(d) {
-      d.tagsToStoryNames = {};
+    asDict(writer) {
+      const d = {};
       for (const [name, value] of this.tagsToStoryNames) {
-        d.tagsToStoryNames[name] = Array.from(value);
+        d[name] = Array.from(value);
       }
+      return d;
     }
 
     /**
@@ -88,11 +89,11 @@ tr.exportTo('tr.v.d', function() {
       return this.tagsToStoryNames_;
     }
 
-    static fromDict(d) {
+    static fromDict(d, reader) {
       const info = new TagMap();
 
       for (const [name, values] of
-        Object.entries(d.tagsToStoryNames || {})) {
+        Object.entries((reader ? d : d.tagsToStoryNames) || {})) {
         info.tagsToStoryNames.set(name, new Set(values));
       }
 
