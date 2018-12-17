@@ -46,6 +46,30 @@
       "revId": "f6bb04dae80ed3af1b371098ec37305ab990a110",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f534123f_347912d5",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2018-12-17T23:22:31Z",
+      "side": 1,
+      "message": "Option 1 sounds good to me.",
+      "parentUuid": "646fe06c_42e103af",
+      "range": {
+        "startLine": 318,
+        "startChar": 54,
+        "endLine": 318,
+        "endChar": 70
+      },
+      "revId": "f6bb04dae80ed3af1b371098ec37305ab990a110",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
