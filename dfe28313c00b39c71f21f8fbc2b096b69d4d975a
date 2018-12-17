@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "4d3c36d0_dc39e4cf",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1170907
+      },
+      "writtenOn": "2018-12-17T20:04:51Z",
+      "side": 1,
+      "message": "If it has a chance to help with future maintenance I will revert back.  Done.",
+      "parentUuid": "57095e14_cfb7109f",
+      "range": {
+        "startLine": 116,
+        "startChar": 71,
+        "endLine": 116,
+        "endChar": 72
+      },
+      "revId": "dfe28313c00b39c71f21f8fbc2b096b69d4d975a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dc5f0147_2f1d0957",
         "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
         "patchSetId": 1
@@ -274,6 +298,30 @@
       "side": 1,
       "message": "I was wondering if there\u0027s something we should do around not having the histogram at all in some cases.",
       "parentUuid": "faa660f1_e0825d47",
+      "range": {
+        "startLine": 515,
+        "startChar": 47,
+        "endLine": 515,
+        "endChar": 52
+      },
+      "revId": "dfe28313c00b39c71f21f8fbc2b096b69d4d975a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d2c5cd2_041406f8",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1170907
+      },
+      "writtenOn": "2018-12-17T20:04:51Z",
+      "side": 1,
+      "message": "I often see empty values in the metrics tab if the values weren\u0027t included in the trace.  I don\u0027t think this is super problematic but I will defer to Bens\u0027 thoughts",
+      "parentUuid": "df99f700_e6d4c015",
       "range": {
         "startLine": 515,
         "startChar": 47,
