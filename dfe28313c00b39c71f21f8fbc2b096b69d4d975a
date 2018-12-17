@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "57095e14_cfb7109f",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1116050
+      },
+      "writtenOn": "2018-12-17T19:46:20Z",
+      "side": 1,
+      "message": "Sorry for the misdirection here!\nGiven that this is the case, I don\u0027t have a preference on whether we roll back to the previous implementation.",
+      "parentUuid": "0b1e624c_60588296",
+      "range": {
+        "startLine": 116,
+        "startChar": 71,
+        "endLine": 116,
+        "endChar": 72
+      },
+      "revId": "dfe28313c00b39c71f21f8fbc2b096b69d4d975a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dc5f0147_2f1d0957",
         "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
         "patchSetId": 1
@@ -226,6 +250,30 @@
       "side": 1,
       "message": "Sorry, I don\u0027t have many thoughts on which details to include in descriptions versus other docs. I wouldn\u0027t recommend letting descriptions grow to kilobytes, but a couple hundred bytes should be fine.",
       "parentUuid": "07d44dd4_3f185574",
+      "range": {
+        "startLine": 515,
+        "startChar": 47,
+        "endLine": 515,
+        "endChar": 52
+      },
+      "revId": "dfe28313c00b39c71f21f8fbc2b096b69d4d975a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df99f700_e6d4c015",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1116050
+      },
+      "writtenOn": "2018-12-17T19:46:20Z",
+      "side": 1,
+      "message": "I was wondering if there\u0027s something we should do around not having the histogram at all in some cases.",
+      "parentUuid": "faa660f1_e0825d47",
       "range": {
         "startLine": 515,
         "startChar": 47,
