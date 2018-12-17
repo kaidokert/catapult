@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f0bcafba_1a2d2992",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-12-17T16:06:57Z",
+      "side": 1,
+      "message": "You are passing the possible_browser object to GenerateTags, not the browser. I think there are two ways moving forward here:\n\n1) Renaming the \"browser\" parameter in GenerateTags method to \"possible_browser\". Users are responsible for creating the actual browser, generating the tags by querying it, and close the browser themselves.\nPros: For users who don\u0027t need browser to create tags, they don\u0027t have to pay the cost of creating one.\nCons: Users are responsible for making sure to close the browser object themselves\n\n2) Update this code to s.t like:\n\nwith possible_browser.Create() as browser:\n   runner.args.tags \u003d test_class.GenerateTags(options, browser)",
+      "range": {
+        "startLine": 318,
+        "startChar": 54,
+        "endLine": 318,
+        "endChar": 70
+      },
+      "revId": "f6bb04dae80ed3af1b371098ec37305ab990a110",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
