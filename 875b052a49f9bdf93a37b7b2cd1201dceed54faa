@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1eb993e6_3bfbe4ff",
+        "filename": "tracing/tracing/value/diagnostics/breakdown.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-17T22:18:40Z",
+      "side": 1,
+      "message": "Not in this class, but other Diagnostic subclasses\u0027 fromDict() methods use it, such as RelatedNameMap. All Diagnostic subclasses\u0027 fromDict() methods must have the same signature.",
+      "parentUuid": "3d550e3e_7eba280d",
+      "range": {
+        "startLine": 91,
+        "startChar": 23,
+        "endLine": 91,
+        "endChar": 29
+      },
+      "revId": "875b052a49f9bdf93a37b7b2cd1201dceed54faa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "da1b26bd_4f780ee4",
         "filename": "tracing/tracing/value/histogram_writer.html",
         "patchSetId": 9
@@ -36,6 +60,30 @@
       "writtenOn": "2018-12-17T21:00:49Z",
       "side": 1,
       "message": "is it a Writer, or more of an Encoder or Serializer?",
+      "range": {
+        "startLine": 17,
+        "startChar": 17,
+        "endLine": 17,
+        "endChar": 23
+      },
+      "revId": "875b052a49f9bdf93a37b7b2cd1201dceed54faa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bef2d865_07a92a8b",
+        "filename": "tracing/tracing/value/histogram_writer.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-17T22:18:40Z",
+      "side": 1,
+      "message": "It\u0027s a Serializer, I\u0027ll rename it.",
+      "parentUuid": "da1b26bd_4f780ee4",
       "range": {
         "startLine": 17,
         "startChar": 17,
