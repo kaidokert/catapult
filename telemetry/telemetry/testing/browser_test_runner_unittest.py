@@ -74,6 +74,72 @@ class BrowserTestRunnerTest(unittest.TestCase):
     finally:
       os.remove(temp_file_name)
 
+  def testTagGenerationFailExpectation(self):
+    expectations = ('# tags: [ foo bar ]\n'
+                    'crbug.com/123 [ foo ] '
+                    'browser_tests.generate_tags_test.GenerateTagsTest.PassTest'
+                    ' [ Failure ]')
+    expectations_file = tempfile.NamedTemporaryFile(delete=False)
+    expectations_file.write(expectations)
+    results = tempfile.NamedTemporaryFile(delete=False)
+    results.close()
+    expectations_file.close()
+    config = project_config.ProjectConfig(
+        top_level_dir=os.path.join(util.GetTelemetryDir(), 'examples'),
+        client_configs=[],
+        expectations_files=[expectations_file.name],
+        benchmark_dirs=[
+            os.path.join(util.GetTelemetryDir(), 'examples', 'browser_tests')]
+    )
+    try:
+      browser_test_runner.Run(
+          config,
+          ['GenerateTagsTest',
+           '--write-full-results-to=%s' % results.name,
+           '--test-filter=.*PassTest.*'])
+      with open(results.name) as f:
+        test_result = json.load(f)
+        expected_result = (test_result['tests']['browser_tests']
+                           ['generate_tags_test']['GenerateTagsTest']
+                           ['PassTest']['expected'])
+        assert expected_result == 'FAIL'
+    finally:
+      os.remove(expectations_file.name)
+      os.remove(results.name)
+
+  def testTagGenerationDefaultExpectation(self):
+    expectations = ('# tags: [ foo bar bmw ]\n'
+                    'crbug.com/123 [ bmw ] '
+                    'browser_tests.generate_tags_test.GenerateTagsTest.PassTest'
+                    ' [ Failure ]')
+    expectations_file = tempfile.NamedTemporaryFile(delete=False)
+    expectations_file.write(expectations)
+    results = tempfile.NamedTemporaryFile(delete=False)
+    results.close()
+    expectations_file.close()
+    config = project_config.ProjectConfig(
+        top_level_dir=os.path.join(util.GetTelemetryDir(), 'examples'),
+        client_configs=[],
+        expectations_files=[expectations_file.name],
+        benchmark_dirs=[
+            os.path.join(util.GetTelemetryDir(), 'examples', 'browser_tests')]
+    )
+    try:
+      browser_test_runner.Run(
+          config,
+          ['GenerateTagsTest',
+           '--write-full-results-to=%s' % results.name,
+           '--test-filter=.*PassTest.*'])
+      with open(results.name) as f:
+        test_result = json.load(f)
+        expected_result = (test_result['tests']['browser_tests']
+                           ['generate_tags_test']['GenerateTagsTest']
+                           ['PassTest']['expected'])
+        assert expected_result == 'PASS'
+    finally:
+      os.remove(expectations_file.name)
+      os.remove(results.name)
+
   @decorators.Disabled('chromeos')  # crbug.com/696553
   def testJsonOutputFormatNegativeFilter(self):
     self.baseTest(
