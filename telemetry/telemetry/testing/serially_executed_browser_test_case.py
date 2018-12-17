@@ -156,6 +156,10 @@ class SeriallyExecutedBrowserTestCase(unittest.TestCase):
   def UrlOfStaticFilePath(cls, file_path):
     return cls.platform.http_server.UrlOf(file_path)
 
+  @classmethod
+  def GenerateTags(cls, options, possible_browser):
+    del possible_browser # unused for now
+    return options.tags
 
 def LoadAllTestsInModule(module):
   """ Load all tests & generated browser tests in a given module.
