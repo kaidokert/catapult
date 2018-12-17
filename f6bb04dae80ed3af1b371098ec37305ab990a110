@@ -22,6 +22,30 @@
       "revId": "f6bb04dae80ed3af1b371098ec37305ab990a110",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "646fe06c_42e103af",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2018-12-17T19:51:28Z",
+      "side": 1,
+      "message": "Thanks Ned for identifying this issue. Either way sounds fine. Since some users might not need to query the browser to identify the tags, (1) sounds good to me as long as it\u0027s documented somewhere how to use the possible_browser object. (Finding the types and APIs for various objects in Telemetry, like \"backends\", etc., is difficult.)",
+      "parentUuid": "f0bcafba_1a2d2992",
+      "range": {
+        "startLine": 318,
+        "startChar": 54,
+        "endLine": 318,
+        "endChar": 70
+      },
+      "revId": "f6bb04dae80ed3af1b371098ec37305ab990a110",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
