@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "20c55c62_667654ad",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1116050
+      },
+      "writtenOn": "2018-12-17T18:39:10Z",
+      "side": 1,
+      "message": "Alternatively, this could be written with a filter and a reduce.\nI think that might be a bit clearer?\n\nI don\u0027t remember the exact style for multi-line chains like this...\n\nreturn targetEvents.filter(e \u003d\u003e !rendererHelper.isTelemetryInternalEvent(e)).\n  reduce((latest, current) \u003d\u003e latest.start \u003c current.start : current : latest);",
+      "range": {
+        "startLine": 116,
+        "startChar": 71,
+        "endLine": 116,
+        "endChar": 72
+      },
+      "revId": "dfe28313c00b39c71f21f8fbc2b096b69d4d975a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc5f0147_2f1d0957",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1116050
+      },
+      "writtenOn": "2018-12-17T18:39:10Z",
+      "side": 1,
+      "message": "all non-ad",
+      "range": {
+        "startLine": 136,
+        "startChar": 39,
+        "endLine": 136,
+        "endChar": 42
+      },
+      "revId": "dfe28313c00b39c71f21f8fbc2b096b69d4d975a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5a1c29b_4c4402de",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1116050
+      },
+      "writtenOn": "2018-12-17T18:39:10Z",
+      "side": 1,
+      "message": "fired",
+      "range": {
+        "startLine": 136,
+        "startChar": 27,
+        "endLine": 136,
+        "endChar": 34
+      },
+      "revId": "dfe28313c00b39c71f21f8fbc2b096b69d4d975a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07d44dd4_3f185574",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1116050
+      },
+      "writtenOn": "2018-12-17T18:39:10Z",
+      "side": 1,
+      "message": "This will only work for a subset of pages right (AMP ones)?\n\nI\u0027m not sure if just including this in the description is adequate. Ben will likely have thoughts.",
+      "range": {
+        "startLine": 515,
+        "startChar": 47,
+        "endLine": 515,
+        "endChar": 52
+      },
+      "revId": "dfe28313c00b39c71f21f8fbc2b096b69d4d975a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
