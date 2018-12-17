@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "15214474_e60b764d",
+        "filename": "tracing/tracing/value/gtest_json_converter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2018-12-17T22:20:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f26b43d3_dfe9a255",
+      "revId": "b73b5797c710f0559fd2534b308fa4342040b063",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ccda40b5_94d32aa8",
         "filename": "tracing/tracing/value/histogram.py",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2018-12-17T21:24:08Z",
       "side": 1,
       "message": "Sorry, we try not to add units that can be converted to other units.\nPlease convert your measurements to ms and use either ms or msBestFitFormat. See chart_json_converter.",
+      "revId": "b73b5797c710f0559fd2534b308fa4342040b063",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02f81dba_ea3a83d5",
+        "filename": "tracing/tracing/value/histogram.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2018-12-17T22:20:30Z",
+      "side": 1,
+      "message": "Done. I think this might cause issues when displaying the data on the dashboard since the graph will have both ms and some other time unit for the Y axis, but that might get resolved once only one unit is present in the selected timespan?",
+      "parentUuid": "ccda40b5_94d32aa8",
       "revId": "b73b5797c710f0559fd2534b308fa4342040b063",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
