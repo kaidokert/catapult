@@ -145,14 +145,15 @@ tr.exportTo('tr.v.d', function() {
       }
     }
 
-    asDictInto_(d) {
-      d.values = {};
+    asDict(writer) {
+      const d = {values: {}};
       for (const [name, hist] of this) {
         d.values[name] = hist.guid;
       }
+      return d;
     }
 
-    static fromDict(d) {
+    static fromDict(d, reader) {
       const map = new RelatedHistogramMap();
       for (const [name, guid] of Object.entries(d.values)) {
         map.set(name, new tr.v.d.HistogramRef(guid));
