@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7c312894_6f51f38f",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1170907
+      },
+      "writtenOn": "2018-12-18T19:49:26Z",
+      "side": 1,
+      "message": "thanks, fell off when I reverted back to this solution.",
+      "parentUuid": "8deb3b3c_05d37bd2",
+      "revId": "f81c9fbbf2dfd634cb017ecee18ff9e1e6ffe6ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5c73d5e1_38eafadf",
         "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
         "patchSetId": 3
@@ -51,6 +69,24 @@
       "revId": "f81c9fbbf2dfd634cb017ecee18ff9e1e6ffe6ce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "954faeda_29100ac7",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1170907
+      },
+      "writtenOn": "2018-12-18T19:49:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdc68e3e_9e5a47cb",
+      "revId": "f81c9fbbf2dfd634cb017ecee18ff9e1e6ffe6ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
