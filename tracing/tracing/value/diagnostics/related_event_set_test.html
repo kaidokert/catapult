@@ -8,6 +8,8 @@ found in the LICENSE file.
 <link rel="import" href="/tracing/base/utils.html">
 <link rel="import" href="/tracing/core/test_utils.html">
 <link rel="import" href="/tracing/value/histogram.html">
+<link rel="import" href="/tracing/value/histogram_deserializer.html">
+<link rel="import" href="/tracing/value/histogram_serializer.html">
 
 <script>
 'use strict';
@@ -35,7 +37,7 @@ tr.b.unittest.testSuite(function() {
     d = new tr.v.d.RelatedEventSet(new tr.model.EventSet([slice]));
     assert.strictEqual(tr.b.getOnlyElement([...d]), slice);
 
-    const d2 = tr.v.d.Diagnostic.fromDict(d.asDict());
+    const d2 = tr.v.d.Diagnostic.fromDict('RelatedEventSet', d.asDict(), true);
     assert.instanceOf(d2, tr.v.d.RelatedEventSet);
 
     assert.instanceOf(tr.b.getOnlyElement([...d2]), tr.v.d.EventRef);
@@ -80,7 +82,8 @@ tr.b.unittest.testSuite(function() {
 
     let mergedHist = aHist.clone();
     mergedHist.addHistogram(bHist);
-    mergedHist = tr.v.Histogram.fromDict(mergedHist.asDict());
+    mergedHist = tr.v.HistogramDeserializer.deserialize(
+        tr.v.HistogramSerializer.serialize([mergedHist]))[0];
 
     const mergedEvents = mergedHist.diagnostics.get('events');
     const aSlice2 = tr.b.getOnlyElement(mergedEvents.get('http://a'));
