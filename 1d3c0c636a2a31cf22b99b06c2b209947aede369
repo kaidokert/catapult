@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7154dfb8_f46f6d22",
+        "filename": "devil/devil/android/md5sum.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1153089
+      },
+      "writtenOn": "2018-12-18T18:48:08Z",
+      "side": 1,
+      "message": "That would not eliminate the problem as exit code parsing will still be racy, i.e. stderr may come after stdout despite being issued by an earlier command and the following warning will still be printed:\n\nWARNING   exit status of shell command \u0027a\u003d/data/local/tmp/md5sum/md5sum_bin;! [[ $(ls -l $a) \u003d *313200* ]]\u0026\u0026exit 2;export LD_LIBRARY_PATH\u003d/data/local/tmp/md5sum;$a /data/local/tmp/v8/bin/icudtl.dat;:\u0027 missing.",
+      "parentUuid": "31de6951_de561d22",
+      "revId": "1d3c0c636a2a31cf22b99b06c2b209947aede369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e7ea8d0c_df4040e9",
         "filename": "devil/devil/android/md5sum.py",
         "patchSetId": 1
