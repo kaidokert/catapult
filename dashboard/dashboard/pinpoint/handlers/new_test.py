@@ -33,7 +33,8 @@ _BASE_REQUEST = {
 _CONFIGURATION_ARGUMENTS = {
     'browser': 'release',
     'builder': 'Mac Builder',
-    'dimensions': '{"key": "value"}',
+    'dimensions': '[{"key": "pool", "value": "cool pool"}]',
+    #'dimensions': [{'key': 'pool', 'value': 'cool pool'}],
     'repository': 'chromium',
     'swarming_server': 'https://chromium-swarm.appspot.com',
 }
