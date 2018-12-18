@@ -331,6 +331,30 @@
       "revId": "dfe28313c00b39c71f21f8fbc2b096b69d4d975a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9263d70b_7dd1d03e",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-18T05:01:17Z",
+      "side": 1,
+      "message": "Results.html displays missing cells differently from empty Histograms, so feel free to experiment and choose whichever will provide the intended user experience. No stress, you can always change it later.\nAnother option: add a non-numeric sample to the Histogram such as undefined or NaN (null would also work, but is discouraged in catapult for simplicity). That would allow you to use sample diagnostics such as GenericSet and/or RelatedEventSet to explain to users why the value could not be computed. NaN samples don\u0027t contribute to statistics except for the \u0027nans\u0027 statistic. I forget whether there\u0027s a way in results.html to display nan sample diagnostics in results.html, so please file a bug on crbug with component\u003dSpeed\u003eTBM2 if that\u0027s missing and if you want to use nan samples.",
+      "parentUuid": "5d2c5cd2_041406f8",
+      "range": {
+        "startLine": 515,
+        "startChar": 47,
+        "endLine": 515,
+        "endChar": 52
+      },
+      "revId": "dfe28313c00b39c71f21f8fbc2b096b69d4d975a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

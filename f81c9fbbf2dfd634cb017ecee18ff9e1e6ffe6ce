@@ -33,6 +33,24 @@
       "revId": "f81c9fbbf2dfd634cb017ecee18ff9e1e6ffe6ce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdc68e3e_9e5a47cb",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-18T05:01:17Z",
+      "side": 1,
+      "message": "Good idea, thanks!\nHere\u0027s an example where the accessibilityMetric is using a RelatedEventSet:\nhttps://github.com/catapult-project/catapult/blob/11513e359cd60e369bbbd1f4f2ef648c1bccabd0/tracing/tracing/metrics/accessibility_metric.html#L49\nHere\u0027s the documentation for RelatedEventSet:\nhttps://github.com/catapult-project/catapult/blob/master/docs/how-to-write-metrics.md#general-diagnostics",
+      "parentUuid": "5c73d5e1_38eafadf",
+      "revId": "f81c9fbbf2dfd634cb017ecee18ff9e1e6ffe6ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
