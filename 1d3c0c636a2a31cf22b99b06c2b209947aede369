@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "31de6951_de561d22",
+        "filename": "devil/devil/android/md5sum.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-12-18T17:27:14Z",
+      "side": 1,
+      "message": "Could we instead just pass large_output\u003dTrue here?",
+      "revId": "1d3c0c636a2a31cf22b99b06c2b209947aede369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7ea8d0c_df4040e9",
+        "filename": "devil/devil/android/md5sum.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2018-12-18T17:27:14Z",
+      "side": 1,
+      "message": "... and here?",
+      "revId": "1d3c0c636a2a31cf22b99b06c2b209947aede369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
