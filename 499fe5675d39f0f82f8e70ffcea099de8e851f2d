@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a60b841_08fc83fe",
+        "filename": "dashboard/dashboard/common/utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1002882
+      },
+      "writtenOn": "2018-12-18T01:49:26Z",
+      "side": 1,
+      "message": "FYI in case there are more autorollers than the domain here\n\nFrom Findit https://cs.chromium.org/chromium/infra/appengine/findit/common/constants.py?q\u003dAUTO_ROLLER_ACCOUNT_PATTERN\n\nFrom Audit App https://cs.chromium.org/chromium/infra/go/src/infra/appengine/cr-audit-commits/app/rules_config.go?q\u003dAutoRollRulesAFDOVersion",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 17
+      },
+      "revId": "499fe5675d39f0f82f8e70ffcea099de8e851f2d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d783b486_824cd180",
+        "filename": "dashboard/dashboard/common/utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1002882
+      },
+      "writtenOn": "2018-12-18T01:49:26Z",
+      "side": 1,
+      "message": "author.split(\u0027@\u0027)[-1] in _AUTOROLL_DOMAINS",
+      "range": {
+        "startLine": 656,
+        "startChar": 9,
+        "endLine": 656,
+        "endChar": 77
+      },
+      "revId": "499fe5675d39f0f82f8e70ffcea099de8e851f2d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
