@@ -84,7 +84,7 @@ def CalculateDeviceMd5Sums(paths, device):
       md5sum_script += 'p="%s";' % prefix
       paths = ['$p"%s"' % p[len(prefix):] for p in paths]
 
-  md5sum_script += ';'.join('$a %s' % p for p in paths)
+  md5sum_script += ';'.join('$a %s 2>&1' % p for p in paths)
   # Don't fail the script if the last md5sum fails (due to file not found)
   # Note: ":" is equivalent to "true".
   md5sum_script += ';:'
