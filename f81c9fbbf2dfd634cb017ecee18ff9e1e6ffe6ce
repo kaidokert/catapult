@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8deb3b3c_05d37bd2",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1115941
+      },
+      "writtenOn": "2018-12-18T04:15:17Z",
+      "side": 1,
+      "message": "validEvent should be declared here?",
+      "revId": "f81c9fbbf2dfd634cb017ecee18ff9e1e6ffe6ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c73d5e1_38eafadf",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1115941
+      },
+      "writtenOn": "2018-12-18T04:15:17Z",
+      "side": 1,
+      "message": "Optional: You can put the event objects and some additional data here (see other \"add*Sample\" functions). That can be seen in the chrome://tracing UI and are useful for debugging.",
+      "revId": "f81c9fbbf2dfd634cb017ecee18ff9e1e6ffe6ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
