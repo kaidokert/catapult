@@ -100,20 +100,21 @@ tr.exportTo('tr.v.d', function() {
       }
     }
 
-    asDictInto_(d) {
-      d.events = [];
+    asDict(writer) {
+      const events = [];
       for (const event of this) {
-        d.events.push({
+        events.push({
           stableId: event.stableId,
           title: event.title,
           start: event.start,
           duration: event.duration
         });
       }
+      return events;
     }
 
-    static fromDict(d) {
-      return new RelatedEventSet(d.events.map(
+    static fromDict(d, reader) {
+      return new RelatedEventSet((reader ? d : d.events).map(
           event => new tr.v.d.EventRef(event)));
     }
   }
