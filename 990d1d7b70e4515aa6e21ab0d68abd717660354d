@@ -22,6 +22,30 @@
       "revId": "990d1d7b70e4515aa6e21ab0d68abd717660354d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2aa9a56_c9bb0e6e",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-12-18T10:11:29Z",
+      "side": 1,
+      "message": "+1, also mention that this can be a comma separated list of tags (and then it will match stories that have any of these tags).",
+      "parentUuid": "f642c2b0_fad8d1f6",
+      "range": {
+        "startLine": 69,
+        "startChar": 37,
+        "endLine": 69,
+        "endChar": 65
+      },
+      "revId": "990d1d7b70e4515aa6e21ab0d68abd717660354d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
