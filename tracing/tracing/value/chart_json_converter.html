@@ -34,7 +34,6 @@ tr.exportTo('tr.v', function() {
           [...diagnostic].sort().join(',') : diagnostic.minDate;
         if (!cache.has(cacheKey)) {
           cache.set(cacheKey, diagnostic);
-          histograms.addSharedDiagnostic(diagnostic);
         }
         hist.diagnostics.set(name, cache.get(cacheKey));
       }

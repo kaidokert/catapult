@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--
+Copyright 2016 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/base/utils.html">
+<link rel="import" href="/tracing/value/diagnostics/add_related_names.html">
+<link rel="import" href="/tracing/value/histogram.html">
+<link rel="import" href="/tracing/value/histogram_grouping.html">
+
+<script>
+'use strict';
+
+tr.exportTo('tr.v', function() {
+  class HistogramSerializer {
+    static serialize(histograms) {
+      const serializer = new HistogramSerializer();
+      const dict = {
+        [HistogramSerializer.TAGS.NAMES]: serializer.names_,
+        [HistogramSerializer.TAGS.DIAGNOSTICS]: serializer.diagnosticsByType_,
+        [HistogramSerializer.TAGS.HISTOGRAMS]: histograms.map(h =>
+          h.asDict(serializer)),
+      };
+      for (const diagnosticsByName of Object.values(
+          dict[HistogramSerializer.TAGS.DIAGNOSTICS])) {
+        for (const diagnosticsById of Object.values(diagnosticsByName)) {
+          for (const [id, diag] of Object.entries(diagnosticsById)) {
+            diagnosticsById[id] = diag.asDict(serializer);
+          }
+        }
+      }
+      return dict;
+    }
+
+    constructor() {
+      this.names_ = [];
+      this.diagnosticsByType_ = {};
+      this.diagnosticId_ = 0;
+    }
+
+    getNameId(name) {
+      const id = this.names_.indexOf(name);
+      if (id >= 0) return id;
+      return this.names_.push(name) - 1;
+    }
+
+    getDiagnosticId(name, diag) {
+      const typeName = diag.constructor.name;
+      let diagnosticsByName = this.diagnosticsByType_[typeName];
+      if (!diagnosticsByName) {
+        diagnosticsByName = {};
+        this.diagnosticsByType_[typeName] = diagnosticsByName;
+      }
+
+      let diagnosticsById = diagnosticsByName[name];
+      if (!diagnosticsById) {
+        diagnosticsById = {};
+        diagnosticsByName[name] = diagnosticsById;
+      }
+
+      for (const [id, other] of Object.entries(diagnosticsById)) {
+        if ((other === diag) || (other.equals && other.equals(diag))) return id;
+      }
+
+      const id = ++this.diagnosticId_;
+      diagnosticsById[id] = diag;
+      return id;
+    }
+  }
+
+  HistogramSerializer.TAGS = {
+    HISTOGRAMS: 'h',
+    NAMES: 'n',
+    DIAGNOSTICS: 'd',
+  };
+
+  return {
+    HistogramSerializer,
+  };
+});
+</script>
