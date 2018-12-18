@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d8a839c_9466ced9",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1002882
+      },
+      "writtenOn": "2018-12-18T01:13:39Z",
+      "side": 1,
+      "message": "you may want to talk to nodir@ or tandrii@ about this.\n\nI\u0027m not 100% sure whether this is the reliable approach to tell whether it is with patch or without patch.",
+      "range": {
+        "startLine": 148,
+        "startChar": 29,
+        "endLine": 148,
+        "endChar": 58
+      },
+      "revId": "8e667c3dabdb90c10718903ac8762cea4295f7bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7926d249_600e60d8",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1002882
+      },
+      "writtenOn": "2018-12-18T01:13:39Z",
+      "side": 1,
+      "message": "https://chromium-review.googlesource.com/c/chromium/tools/build/+/1366977 is not landed yet.\n\nIf we want to land this CL before that one, we might want to fall back with a default isolate server, assuming that the server is always the same.",
+      "range": {
+        "startLine": 157,
+        "startChar": 26,
+        "endLine": 157,
+        "endChar": 55
+      },
+      "revId": "8e667c3dabdb90c10718903ac8762cea4295f7bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0e03385_b7f6fe45",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1002882
+      },
+      "writtenOn": "2018-12-18T01:13:39Z",
+      "side": 1,
+      "message": "I assume that this will save the isolate hashes into Pinpoint datastore. If not, we\u0027d better do that.",
+      "range": {
+        "startLine": 160,
+        "startChar": 9,
+        "endLine": 160,
+        "endChar": 18
+      },
+      "revId": "8e667c3dabdb90c10718903ac8762cea4295f7bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
