@@ -74,6 +74,87 @@ class BrowserTestRunnerTest(unittest.TestCase):
     finally:
       os.remove(temp_file_name)
 
+  def _testGenerateTagsTest(self, test_name, expectation, test_tags='foo'):
+    expectations = ('# tags: [ foo bar mac ]\n'
+                    'crbug.com/123 [ %s ] '
+                    'browser_tests.generate_tags_test.GenerateTagsTest.%s'
+                    ' [ %s ]')
+    expectations = expectations % (test_tags, test_name, expectation)
+    expectations_file = tempfile.NamedTemporaryFile(delete=False)
+    expectations_file.write(expectations)
+    results = tempfile.NamedTemporaryFile(delete=False)
+    results.close()
+    expectations_file.close()
+    config = project_config.ProjectConfig(
+        top_level_dir=os.path.join(util.GetTelemetryDir(), 'examples'),
+        client_configs=[],
+        expectations_files=[expectations_file.name],
+        benchmark_dirs=[
+            os.path.join(util.GetTelemetryDir(), 'examples', 'browser_tests')]
+    )
+    try:
+      browser_test_runner.Run(
+          config,
+          ['GenerateTagsTest',
+           '--write-full-results-to=%s' % results.name,
+           '--test-filter=.*%s.*' % test_name])
+      with open(results.name) as f:
+        test_result = json.load(f)
+    finally:
+      os.remove(expectations_file.name)
+      os.remove(results.name)
+    return test_result
+
+  def testTagGenerationExpectedPass(self):
+    test_result = self._testGenerateTagsTest('PassTest', 'Pass')
+    test_result = (test_result['tests']['browser_tests']
+                   ['generate_tags_test']['GenerateTagsTest']['PassTest'])
+    assert test_result['expected'] == 'PASS'
+    assert test_result['actual'] == 'PASS'
+    # TODO(rmhasan): If expected result and actual result match, then we
+    # should put 'is_unexpected: false' inside the test result's json node
+    assert not 'is_unexpected' in test_result
+
+  def testTagGenerationExpectedFail(self):
+    test_result = self._testGenerateTagsTest('FailTest', 'Failure')
+    test_result = (test_result['tests']['browser_tests']
+                   ['generate_tags_test']['GenerateTagsTest']['FailTest'])
+    assert test_result['expected'] == 'FAIL'
+    assert test_result['actual'] == 'FAIL'
+    assert not 'is_unexpected' in test_result
+
+  def testTagGenerationUnexpectedPass(self):
+    test_result = self._testGenerateTagsTest('PassTest', 'Failure')
+    test_result = (test_result['tests']['browser_tests']
+                   ['generate_tags_test']['GenerateTagsTest']['PassTest'])
+    assert test_result['expected'] == 'FAIL'
+    assert test_result['actual'] == 'PASS'
+    assert test_result['is_unexpected'] is True
+
+  def testTagGenerationUnexpectedFail(self):
+    test_result = self._testGenerateTagsTest('FailTest', 'Pass')
+    test_result = (test_result['tests']['browser_tests']
+                   ['generate_tags_test']['GenerateTagsTest']['FailTest'])
+    assert test_result['expected'] == 'PASS'
+    assert test_result['actual'] == 'FAIL'
+    assert test_result['is_unexpected'] is True
+
+  def testTagGenerationDefaultExpectedPassActualPass(self):
+    test_result = self._testGenerateTagsTest('PassTest', 'Failure', 'mac')
+    test_result = (test_result['tests']['browser_tests']
+                   ['generate_tags_test']['GenerateTagsTest']['PassTest'])
+    assert test_result['expected'] == 'PASS'
+    assert test_result['actual'] == 'PASS'
+    assert not 'is_unexpected' in test_result
+
+  def testTagGenerationDefaultExpectedPassActualFail(self):
+    test_result = self._testGenerateTagsTest('FailTest', 'Failure', 'mac')
+    test_result = (test_result['tests']['browser_tests']
+                   ['generate_tags_test']['GenerateTagsTest']['FailTest'])
+    assert test_result['expected'] == 'PASS'
+    assert test_result['actual'] == 'FAIL'
+    assert test_result['is_unexpected'] is True
+
   @decorators.Disabled('chromeos')  # crbug.com/696553
   def testJsonOutputFormatNegativeFilter(self):
     self.baseTest(
