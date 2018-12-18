@@ -12,6 +12,7 @@ from telemetry.internal.browser import browser_finder
 from telemetry.internal.browser import browser_finder_exceptions
 from telemetry.internal.browser import browser_info as browser_info_module
 from telemetry.internal.browser import browser_interval_profiling_controller
+from telemetry.internal.browser import system_wide_profiling_controller
 from telemetry.page import cache_temperature
 from telemetry.page import legacy_page_test
 from telemetry.page import traffic_setting
@@ -70,6 +71,14 @@ class SharedPageState(story_module.SharedState):
             process_name=finder_options.interval_profiling_target,
             periods=finder_options.interval_profiling_periods,
             frequency=finder_options.interval_profiling_frequency))
+    profiling_mod = system_wide_profiling_controller
+    self._system_wide_profiling_controller = (
+        profiling_mod.SystemWideProfilingController(
+            possible_browser=self._possible_browser,
+            start_profiler=finder_options.start_system_wide_profiler,
+            perf_options=finder_options.system_wide_profiling_options,
+            output_dir=finder_options.output_dir,
+            temp_dir=finder_options.system_wide_profiler_temp_dir))
 
     self.platform.SetFullPerformanceModeEnabled(
         finder_options.full_performance_mode)
@@ -79,6 +88,10 @@ class SharedPageState(story_module.SharedState):
   @property
   def interval_profiling_controller(self):
     return self._interval_profiling_controller
+
+  @property
+  def system_wide_profiling_controller(self):
+    return self._system_wide_profiling_controller
 
   @property
   def possible_browser(self):
@@ -150,6 +163,9 @@ class SharedPageState(story_module.SharedState):
           self._current_tab.Close()
       self._interval_profiling_controller.GetResults(
           self._current_page.name, self._current_page.file_safe_name, results)
+      if self._system_wide_profiling_controller.IsEnabled():
+        self._system_wide_profiling_controller.GetResults(
+            self._current_page.name, results)
     finally:
       self._current_page = None
       self._current_tab = None
