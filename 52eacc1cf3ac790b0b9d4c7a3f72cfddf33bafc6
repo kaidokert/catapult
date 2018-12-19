@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1b089269_acfe9814",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-12-19T03:35:38Z",
+      "side": 1,
+      "message": "err, can you rename this to finder_options since it\u0027s an instance of BrowserFinderOptions?\n\nThis is to avoid confusion since this also a member named browser_options (https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/browser/browser_options.py?rcl\u003d7d95d86a652fb83e619f1861708d19f938bf32de\u0026l\u003d45)",
+      "range": {
+        "startLine": 160,
+        "startChar": 24,
+        "endLine": 160,
+        "endChar": 39
+      },
+      "revId": "52eacc1cf3ac790b0b9d4c7a3f72cfddf33bafc6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
