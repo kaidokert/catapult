@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d67cac61_6b305a81",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-12-19T00:36:00Z",
+      "side": 1,
+      "message": "I think this should be options.browser_options",
+      "range": {
+        "startLine": 318,
+        "startChar": 45,
+        "endLine": 318,
+        "endChar": 52
+      },
+      "revId": "d0d1135f0d92f389e84c7543b2e274813db95b95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14dc6873_a6c1062e",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-12-19T00:36:00Z",
+      "side": 1,
+      "message": "nits: s/options/browser_options",
+      "range": {
+        "startLine": 160,
+        "startChar": 24,
+        "endLine": 160,
+        "endChar": 31
+      },
+      "revId": "d0d1135f0d92f389e84c7543b2e274813db95b95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e876ef57_d6df7da1",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-12-19T00:36:00Z",
+      "side": 1,
+      "message": "Can you document the type of possible_browser?\n\nYou can follow the format in http://google.github.io/styleguide/pyguide.html#383-functions-and-methods\n\ne.g: possible_browser is an instance of telemetry.internal.browser.possible_browser.PossibleBrowser. It can be used to create an actual browser as:\n    with possible_browser.BrowserSession(browser_options) as browser:\n      # Do something with the browser.",
+      "revId": "d0d1135f0d92f389e84c7543b2e274813db95b95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
