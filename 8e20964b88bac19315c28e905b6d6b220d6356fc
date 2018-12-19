@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ab30473_ac6bc49e",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1115941
+      },
+      "writtenOn": "2018-12-19T03:24:13Z",
+      "side": 1,
+      "message": "This is tricky... The main thread trace contains navigationStart events for each subframe, so \"most recent\" navStart event may not be from the same frame as pcEvent.\n\nThe existing timeToX metrics use frameID or navigationID to associate the start and end events, but user timing events don\u0027t have such IDs. To correctly measure this, probably we need to add frameID or navigationID to the user timing events, recorded here:\n\nhttps://cs.chromium.org/chromium/src/third_party/blink/renderer/core/timing/performance_user_timing.cc?sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d149",
+      "revId": "8e20964b88bac19315c28e905b6d6b220d6356fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
