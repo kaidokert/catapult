@@ -71,7 +71,7 @@ def FindBrowser(options):
       if new_default_browser:
         default_browsers.append(new_default_browser)
       browsers.extend(curr_browsers)
-
+  print browsers, devices
   if not browsers:
     return None
 
