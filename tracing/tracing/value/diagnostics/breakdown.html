@@ -25,6 +25,15 @@ tr.exportTo('tr.v.d', function() {
       return clone;
     }
 
+    equals(other) {
+      if (this.colorScheme !== other.colorScheme) return false;
+      if (this.values_.size !== other.values_.size) return false;
+      for (const [k, v] of this) {
+        if (v !== other.get(k)) return false;
+      }
+      return true;
+    }
+
     canAddDiagnostic(otherDiagnostic) {
       return ((otherDiagnostic instanceof Breakdown) &&
               (otherDiagnostic.colorScheme === this.colorScheme));
@@ -69,14 +78,15 @@ tr.exportTo('tr.v.d', function() {
       return this.values_.size;
     }
 
-    asDictInto_(d) {
-      d.values = {};
+    asDict(writer) {
+      const d = {values: {}};
       for (const [name, value] of this) {
         d.values[name] = tr.b.numberToJson(value);
       }
       if (this.colorScheme) {
         d.colorScheme = this.colorScheme;
       }
+      return d;
     }
 
     static fromEntries(entries) {
@@ -87,7 +97,7 @@ tr.exportTo('tr.v.d', function() {
       return breakdown;
     }
 
-    static fromDict(d) {
+    static fromDict(d, reader) {
       const breakdown = new Breakdown();
       for (const [name, value] of Object.entries(d.values)) {
         breakdown.set(name, tr.b.numberFromJson(value));

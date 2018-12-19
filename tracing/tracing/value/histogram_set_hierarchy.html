@@ -67,8 +67,6 @@ tr.exportTo('tr.v', function() {
         }
       }
 
-      histograms.deduplicateDiagnostics();
-
       for (const row of HistogramSetHierarchy.walkAll(rootRows)) {
         for (const [name, hist] of row.columns) {
           if (!(hist instanceof tr.v.Histogram)) continue;
