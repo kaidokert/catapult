@@ -76,7 +76,6 @@ function mergeHistograms(histogramsPath, groupingKeys) {
   const groupedHistograms = histograms.groupHistogramsRecursively(groupings);
   const mergedHistograms = new tr.v.HistogramSet();
   mergeLeafHistograms(groupedHistograms, mergedHistograms);
-  mergedHistograms.deduplicateDiagnostics();
   mergedHistograms.mergeRelationships();
   stripInternalDiagnostics(mergedHistograms);
   return mergedHistograms;

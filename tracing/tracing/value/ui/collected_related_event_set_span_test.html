@@ -8,6 +8,8 @@ found in the LICENSE file.
 <link rel="import" href="/tracing/base/utils.html">
 <link rel="import" href="/tracing/core/test_utils.html">
 <link rel="import" href="/tracing/value/histogram.html">
+<link rel="import" href="/tracing/value/histogram_deserializer.html">
+<link rel="import" href="/tracing/value/histogram_serializer.html">
 <link rel="import" href="/tracing/value/ui/diagnostic_span.html">
 
 <script>
@@ -44,7 +46,8 @@ tr.b.unittest.testSuite(function() {
 
     let mergedHist = aHist.clone();
     mergedHist.addHistogram(bHist);
-    mergedHist = tr.v.Histogram.fromDict(mergedHist.asDict());
+    mergedHist = tr.v.HistogramDeserializer.deserialize(
+        tr.v.HistogramSerializer.serialize([mergedHist]))[0];
 
     const mergedEvents = mergedHist.diagnostics.get('events');
     const span = tr.v.ui.createDiagnosticSpan(mergedEvents);
