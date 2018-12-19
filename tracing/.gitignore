@@ -7,3 +7,4 @@
 .settings
 bin/trace_viewer*.html
 test_data/measurmt-traces
+test_data/
