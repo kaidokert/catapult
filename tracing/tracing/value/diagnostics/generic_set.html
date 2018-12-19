@@ -125,7 +125,7 @@ tr.exportTo('tr.v.d', function() {
       for (const value of otherDiagnostic) {
         if (typeof value === 'object') {
           if (jsons.has(stableStringify(value))) {
-            continue;
+            return;
           }
           this.has_objects_ = true;
         }
