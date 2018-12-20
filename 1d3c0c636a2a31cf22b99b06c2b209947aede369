@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "a609a714_9d787503",
+        "filename": "devil/devil/android/md5sum.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1153089
+      },
+      "writtenOn": "2018-12-20T12:46:18Z",
+      "side": 1,
+      "message": "Good point, I forgot that output is written to a file with large_output\u003dTrue. Done.\n\nOne minor concern I have is that it adds some overhead to this low-level command that may be called a lot for tests that have many files accompanying them. If that\u0027s negligible, why aren\u0027t we using large_output\u003dTrue for everything, i.e. make it a default?",
+      "parentUuid": "72ffd6e9_a2761f9c",
+      "revId": "1d3c0c636a2a31cf22b99b06c2b209947aede369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e7ea8d0c_df4040e9",
         "filename": "devil/devil/android/md5sum.py",
         "patchSetId": 1
@@ -69,6 +87,24 @@
       "revId": "1d3c0c636a2a31cf22b99b06c2b209947aede369",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c187bd9_1ec54cb7",
+        "filename": "devil/devil/android/md5sum.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1153089
+      },
+      "writtenOn": "2018-12-20T12:46:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7ea8d0c_df4040e9",
+      "revId": "1d3c0c636a2a31cf22b99b06c2b209947aede369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
