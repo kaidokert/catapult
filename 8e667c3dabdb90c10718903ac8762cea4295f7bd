@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "dd1815e3_18ab450f",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2018-12-20T22:54:57Z",
+      "side": 1,
+      "message": "checking patch_storage isn\u0027t reliable. Please check if there is build tag (build[\u0027tags\u0027]) that starts with \"buildset:patch\"\n\nor even better, switch to v2 API (go/buildbucket-rpc) which has native support for gerrit changes: \n\n  if build.input.gerrit_changes:\n     ...\n\na PSA about v2 API will be sent out in Jan",
+      "parentUuid": "9a08821e_f7de274f",
+      "range": {
+        "startLine": 148,
+        "startChar": 29,
+        "endLine": 148,
+        "endChar": 58
+      },
+      "revId": "8e667c3dabdb90c10718903ac8762cea4295f7bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7926d249_600e60d8",
         "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
         "patchSetId": 1
