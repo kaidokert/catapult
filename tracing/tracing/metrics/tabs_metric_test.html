@@ -20,12 +20,6 @@ tr.b.unittest.testSuite(function() {
 
       const rendererMainThread = setUpRendererMainThread(model);
       addTabSwitchingData(rendererMainThread);
-
-      const group = browserThread.asyncSliceGroup;
-      group.push(tr.c.TestUtils.newAsyncSliceEx({cat: 'latency',
-        title: 'TabSwitchVisibilityRequest', start: 3, duration: 10}));
-      group.push(tr.c.TestUtils.newAsyncSliceEx({cat: 'latency',
-        title: 'TabSwitchVisibilityRequest', start: 15, duration: 6}));
     });
     const histograms = new tr.v.HistogramSet();
     tr.metrics.tabs.tabsMetric(histograms, model);
@@ -40,12 +34,6 @@ tr.b.unittest.testSuite(function() {
     const model = tr.c.TestUtils.newModel((model) => {
       const browserThread = setUpBrowserThread(model);
       addTabSwitchingData(browserThread, true);
-
-      const group = browserThread.asyncSliceGroup;
-      group.push(tr.c.TestUtils.newAsyncSliceEx({cat: 'latency',
-        title: 'TabSwitchVisibilityRequest', start: 3, duration: 10}));
-      group.push(tr.c.TestUtils.newAsyncSliceEx({cat: 'latency',
-        title: 'TabSwitchVisibilityRequest', start: 15, duration: 6}));
     });
     const histograms = new tr.v.HistogramSet();
     tr.metrics.tabs.tabsMetric(histograms, model);
@@ -92,28 +80,21 @@ tr.b.unittest.testSuite(function() {
     group.push(tr.c.TestUtils.newAsyncSliceEx({
       cat: 'latency',
       title: 'TabSwitching::Latency',
-      start: 2,
+      start: 0,
       duration: 24,
       args: legacy ? {} : {latency: 24 },
     }));
     group.push(tr.c.TestUtils.newAsyncSliceEx({
       cat: 'latency',
       title: 'TabSwitching::Latency',
-      start: 4,
-      duration: 24,
-      args: legacy ? {} : {latency: 24 },
-    }));
-    group.push(tr.c.TestUtils.newAsyncSliceEx({
-      cat: 'latency',
-      title: 'TabSwitching::Latency',
-      start: 5,
+      start: 1,
       duration: 14,
       args: legacy ? {} : {latency: 32 },
     }));
     group.push(tr.c.TestUtils.newAsyncSliceEx({
       cat: 'latency',
       title: 'TabSwitching::Latency',
-      start: 6,
+      start: 2,
       duration: 37,
       args: legacy ? {} : {latency: 43 },
     }));

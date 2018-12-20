@@ -17,7 +17,9 @@ if __name__ == '__main__':
   logger.addHandler(logging.StreamHandler())
   sys.path.insert(0, CATAPULT_PATH)
   from catapult_build import run_wct
-  debug = len(sys.argv) > 1 and sys.argv[1] == 'debug'
+  persist = False
+  if len(sys.argv) > 1 and sys.argv[1] == 'persist':
+    persist = True
   deps = [
       os.path.join(CATAPULT_PATH, 'third_party', 'polymer2'),
       os.path.join(CATAPULT_PATH, 'third_party'),
@@ -27,5 +29,6 @@ if __name__ == '__main__':
         CATAPULT_PATH, 'tracing', 'third_party', 'gl-matrix', 'dist'),
       os.path.join(CATAPULT_PATH, 'tracing'),
   ]
-  prefix = os.path.join('dashboard', 'spa')
-  sys.exit(run_wct.RunWct(DASHBOARD_PATH, deps, debug, prefix))
+  sys.exit(run_wct.RunWct(
+      DASHBOARD_PATH, deps, persist, 'stable',
+      os.path.join('dashboard', 'spa')))

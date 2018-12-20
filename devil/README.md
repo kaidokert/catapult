@@ -6,8 +6,8 @@
 
 😈
 
-devil (device interaction layer) is a library used by the Chromium developers to
-interact with Android devices. It currently supports SDK level 16 and above.
+devil is a library used by the Chromium developers to interact with Android
+devices. It currently supports SDK level 16 and above.
 
 ## Interfaces
 

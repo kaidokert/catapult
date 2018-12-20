@@ -196,9 +196,7 @@ func TestAdd(t *testing.T) {
 
 	requestURL, _ := url.Parse(testServer.URL)
 	requestURLString := testServer.URL
-	if err := a.Add("GET", requestURLString, AddModeAppend); err != nil {
-		t.Fatalf("Error: %v", err)
-	}
+	a.Add("GET", requestURLString)
 
 	requestMap := a.Requests[requestURL.Host]
 	if len(requestMap) != 1 {
@@ -209,8 +207,9 @@ func TestAdd(t *testing.T) {
 	}
 
 	requestURLString2 := requestURLString + "?q=something"
-	if err := a.Add("GET", requestURLString2, AddModeAppend); err != nil {
-		t.Fatalf("Error: %v", err)
+	a.Add("GET", requestURLString2)
+	if len(requestMap) != 2 {
+		t.Fatalf("Expected 1 requests in archive a")
 	}
 	if len(requestMap[requestURLString]) != 1 {
 		t.Fatalf("Expected 1 requests in archive a")
@@ -218,78 +217,4 @@ func TestAdd(t *testing.T) {
 	if len(requestMap[requestURLString2]) != 1 {
 		t.Fatalf("Expected 1 requests in archive a")
 	}
-
-	// Append another request with the URL
-	if err := a.Add("GET", requestURLString2, AddModeAppend); err != nil {
-		t.Fatalf("Error: %v", err)
-	}
-	if len(requestMap[requestURLString]) != 1 {
-		t.Fatalf("Expected 1 requests in archive a")
-	}
-	if len(requestMap[requestURLString2]) != 2 {
-		t.Fatalf("Expected 1 requests in archive a")
-	}
-
-	// Add but ignore existing request.
-	requestURLString3 := requestURLString + "/request3/?q=something_else"
-	if err := a.Add("GET", requestURLString2, AddModeSkipExisting); err != nil {
-		t.Fatalf("Error: %v", err)
-	}
-	if len(requestMap[requestURLString]) != 1 {
-		t.Fatalf("Expected 1 requests in archive a")
-	}
-	if len(requestMap[requestURLString2]) != 2 {
-		t.Fatalf("Expected 1 requests in archive a")
-	}
-	if len(requestMap[requestURLString3]) != 0 {
-		t.Fatalf("Expected 1 requests in archive a")
-	}
-	// Adding new requests works as usual.
-	if err := a.Add("GET", requestURLString3, AddModeSkipExisting); err != nil {
-		t.Fatalf("Error: %v", err)
-	}
-	if len(requestMap[requestURLString]) != 1 {
-		t.Fatalf("Expected 1 requests in archive a")
-	}
-	if len(requestMap[requestURLString2]) != 2 {
-		t.Fatalf("Expected 1 requests in archive a")
-	}
-	if len(requestMap[requestURLString3]) != 1 {
-		t.Fatalf("Expected 1 requests in archive a")
-	}
-
-	// Add but overwrite existing ones
-	requestURLString4 := requestURLString + "/request4/"
-	if err := a.Add("GET", requestURLString2, AddModeOverwriteExisting); err != nil {
-		t.Fatalf("Error: %v", err)
-	}
-	if len(requestMap[requestURLString]) != 1 {
-		t.Fatalf("Expected 1 requests in archive a")
-	}
-	if len(requestMap[requestURLString2]) != 1 {
-		t.Fatalf("Expected 1 requests in archive a")
-	}
-	if len(requestMap[requestURLString3]) != 1 {
-		t.Fatalf("Expected 1 requests in archive a")
-	}
-	if len(requestMap[requestURLString4]) != 0 {
-		t.Fatalf("Expected 1 requests in archive a")
-	}
-	// Adding new requests works as usual.
-	if err := a.Add("GET", requestURLString4, AddModeOverwriteExisting); err != nil {
-		t.Fatalf("Error: %v", err)
-	}
-	if len(requestMap[requestURLString]) != 1 {
-		t.Fatalf("Expected 1 requests in archive a")
-	}
-	if len(requestMap[requestURLString2]) != 1 {
-		t.Fatalf("Expected 1 requests in archive a")
-	}
-	if len(requestMap[requestURLString3]) != 1 {
-		t.Fatalf("Expected 1 requests in archive a")
-	}
-	if len(requestMap[requestURLString4]) != 1 {
-		t.Fatalf("Expected 1 requests in archive a")
-	}
-
 }

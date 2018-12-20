@@ -86,31 +86,29 @@ tr.exportTo('tr.metrics.rendering', function() {
         'CrBrowserMain');
   }
 
-  function getRasterTaskTimes(sourceFrameNumber, model) {
+  function getAverageRasterTaskStartTime(sourceFrameNumber, model) {
     const modelHelper = model.getOrCreateHelper(
         tr.model.helpers.ChromeModelHelper);
 
     const renderers = modelHelper.telemetryHelper.renderersWithIR;
     const rasterThreads = renderers[0].rasterWorkerThreads;
 
-    let earliestStart = undefined;
-    let lastEnd = undefined;
+    let totalSum = 0;
     for (const rasterThread of rasterThreads) {
-      for (const slice of [...rasterThread.
-          findTopmostSlicesNamed('TaskGraphRunner::RunTask')]) {
+      let slicesCounted = 0;
+      let threadTotal = 0;
+      for (const slice of rasterThread.sliceGroup.topLevelSlices) {
         if (slice.args &&
             slice.args.source_frame_number_ &&
             slice.args.source_frame_number_ === sourceFrameNumber) {
-          if (earliestStart === undefined || slice.start < earliestStart) {
-            earliestStart = slice.start;
-          }
-          if (lastEnd === undefined || slice.end > lastEnd) {
-            lastEnd = slice.end;
-          }
+          threadTotal += slice.start;
+          slicesCounted++;
         }
       }
+      if (slicesCounted > 0) totalSum += (threadTotal / slicesCounted);
     }
-    return {start: earliestStart, end: lastEnd};
+    if (rasterThreads.length > 0) return (totalSum / rasterThreads.length);
+    return 0;
   }
 
   function addPipelineHistograms(histograms, model, segments) {
@@ -162,20 +160,12 @@ tr.exportTo('tr.metrics.rendering', function() {
           'queue time in the client.',
           summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
         });
-    const issueToRasterStart = histograms.createHistogram(
-        'pipeline:begin_frame_to_raster_start',
+    const issueToRaster = histograms.createHistogram(
+        'pipeline:begin_frame_to_raster_tasks',
         tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
         [], {
           description: 'Latency between begin-frame message and ' +
-          'the beginning of the first CompositorTask run in the compositor.',
-          summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
-        });
-    const issueToRasterEnd = histograms.createHistogram(
-        'pipeline:begin_frame_to_raster_end',
-        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
-        [], {
-          description: 'Latency between begin-frame message and ' +
-          'the end of the last CompositorTask run in the compositor.',
+          'CompositorTasks run in the compositor.',
           summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
         });
     const receiptToSubmit = histograms.createHistogram(
@@ -210,15 +200,10 @@ tr.exportTo('tr.metrics.rendering', function() {
           !flow.SubmitCompositorFrame || !flow.SurfaceAggregation) {
         continue;
       }
-
-      const sourceFrameNumber = flow.SubmitCompositorFrame.parentSlice
-          .args.source_frame_number_;
-
-      const rasterDuration =
-          getRasterTaskTimes(sourceFrameNumber, model);
-
       issueToReceipt.addSample(flow.ReceiveBeginFrame.start -
                                flow.IssueBeginFrame.start);
+      issueToRaster.addSample(averageRasterStartTime -
+          flow.ReceiveBeginFrame.start);
       receiptToSubmit.addSample(
           flow.SubmitCompositorFrame.end - flow.ReceiveBeginFrame.start,
           {breakdown: generateBreakdownForCompositorPipelineInClient_(flow)});
@@ -226,20 +211,6 @@ tr.exportTo('tr.metrics.rendering', function() {
           flow.SurfaceAggregation.end - flow.SubmitCompositorFrame.end,
           {breakdown: generateBreakdownForCompositorPipelineInService_(flow)});
 
-      if (rasterDuration.start && rasterDuration.end) {
-        const receiveToStart = rasterDuration.start -
-            flow.ReceiveBeginFrame.start;
-        const receiveToEnd = rasterDuration.end - flow.ReceiveBeginFrame.end;
-
-        // receiveToStart can be negative if the earliest raster task for
-        // a frame starts before receiveBeginFrame starts.
-        // The same is true for receiveToEnd
-        // Only positive samples are added.
-        if (receiveToEnd > 0) {
-          issueToRasterStart.addSample(receiveToStart > 0 ? receiveToStart : 0);
-          issueToRasterEnd.addSample(receiveToEnd);
-        }
-      }
       if (flow.SurfaceAggregation.args &&
           flow.SurfaceAggregation.args.display_trace) {
         const displayTrace = flow.SurfaceAggregation.args.display_trace;
