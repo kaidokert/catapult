@@ -1,0 +1,118 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4cb65877_c05296b1",
+        "filename": "tracing/tracing/value/ui/raster_visualization.html",
+        "patchSetId": 40
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-20T17:55:50Z",
+      "side": 1,
+      "message": "Please remove this.",
+      "revId": "ad75b4c9693ab5f6e69dcc5b85abd494eb05b6a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6e128d2_03d22dc2",
+        "filename": "tracing/tracing/value/ui/raster_visualization.html",
+        "patchSetId": 40
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-20T17:55:50Z",
+      "side": 1,
+      "message": "Please add a test for this module.",
+      "revId": "ad75b4c9693ab5f6e69dcc5b85abd494eb05b6a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "afd1abee_993be987",
+        "filename": "tracing/tracing/value/ui/raster_visualization.html",
+        "patchSetId": 40
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-20T17:55:50Z",
+      "side": 1,
+      "message": "Please remove these blank lines.",
+      "revId": "ad75b4c9693ab5f6e69dcc5b85abd494eb05b6a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45ade55e_c54ef44f",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 40
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-20T17:55:50Z",
+      "side": 1,
+      "message": "This variable looks unused. If it\u0027s necessary, please find a better name for it.",
+      "revId": "ad75b4c9693ab5f6e69dcc5b85abd494eb05b6a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2f6bf62_62c03fb1",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 40
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-20T17:55:50Z",
+      "side": 1,
+      "message": "This looks like it should fit on 1 line.",
+      "range": {
+        "startLine": 231,
+        "startChar": 10,
+        "endLine": 232,
+        "endChar": 60
+      },
+      "revId": "ad75b4c9693ab5f6e69dcc5b85abd494eb05b6a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91762f89_fe0b675f",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 40
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-20T17:55:50Z",
+      "side": 1,
+      "message": "\u0027metricExists\u0027 looks unnecessary.\n\nfor (...) {\n  if (...) return true;\n}\nreturn false;",
+      "range": {
+        "startLine": 371,
+        "startChar": 6,
+        "endLine": 376,
+        "endChar": 26
+      },
+      "revId": "ad75b4c9693ab5f6e69dcc5b85abd494eb05b6a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
