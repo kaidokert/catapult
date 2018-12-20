@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6da44980_153d31da",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-12-20T10:37:02Z",
+      "side": 1,
+      "message": "???",
+      "revId": "5ca02e3251831aec3312388234a3e81f931f83eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "554f5b2e_b3ef92e9",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-12-20T10:37:02Z",
+      "side": 1,
+      "message": "whys is this needed now?",
+      "revId": "5ca02e3251831aec3312388234a3e81f931f83eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
