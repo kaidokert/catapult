@@ -234,6 +234,8 @@ class TestBrowserCreation(unittest.TestCase):
 
   def testCreateWithBrowserSession(self):
     with self.browser_to_create.BrowserSession(self.browser_options) as browser:
+      print self.finder_options
+      assert False
       tab = browser.tabs.New()
       tab.Navigate('about:blank')
       self.assertEquals(2, tab.EvaluateJavaScript('1 + 1'))
