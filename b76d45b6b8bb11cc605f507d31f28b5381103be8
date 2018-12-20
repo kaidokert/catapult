@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "241a8adf_147356c7",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 10
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-20T17:35:08Z",
+      "side": 1,
+      "message": "Should this be removed or uncommented?",
+      "revId": "b76d45b6b8bb11cc605f507d31f28b5381103be8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
