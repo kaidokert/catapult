@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "72ffd6e9_a2761f9c",
+        "filename": "devil/devil/android/md5sum.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-12-20T10:20:24Z",
+      "side": 1,
+      "message": "I think John is right. With large_output\u003dTrue both stdout/stderr of the command is sent to a file on the device [1]; while the exit status is still written to and read from stdout [2]. So, no more race?\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/devil/devil/android/device_utils.py?rcl\u003d7d95d86a652fb83e619f1861708d19f938bf32de\u0026l\u003d1123\n[2]: https://cs.chromium.org/chromium/src/third_party/catapult/devil/devil/android/sdk/adb_wrapper.py?rcl\u003d7d95d86a652fb83e619f1861708d19f938bf32de\u0026l\u003d532",
+      "parentUuid": "7154dfb8_f46f6d22",
+      "revId": "1d3c0c636a2a31cf22b99b06c2b209947aede369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e7ea8d0c_df4040e9",
         "filename": "devil/devil/android/md5sum.py",
         "patchSetId": 1
