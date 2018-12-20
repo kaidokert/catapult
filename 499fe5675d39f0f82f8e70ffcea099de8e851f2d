@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "b27d0226_358d506e",
+        "filename": "dashboard/dashboard/common/utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1002882
+      },
+      "writtenOn": "2018-12-20T23:27:01Z",
+      "side": 1,
+      "message": "Yes! It looks like Audit App were not auditing those new accounts.\nNo record here except the web test importoer https://cr-audit-commits.appspot.com/view/status\n\nWe should fix that asap! Would you mind filing a bug with the new autoroller acounts and I will route it to the right person?",
+      "parentUuid": "ccba0062_f41d7ba7",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 17
+      },
+      "revId": "499fe5675d39f0f82f8e70ffcea099de8e851f2d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d783b486_824cd180",
         "filename": "dashboard/dashboard/common/utils.py",
         "patchSetId": 1
