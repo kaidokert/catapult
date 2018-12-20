@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ccba0062_f41d7ba7",
+        "filename": "dashboard/dashboard/common/utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-12-20T22:55:39Z",
+      "side": 1,
+      "message": "Those lists also look out of date (!) and should be updated. Does this mean that we\u0027ve lost coverage in Audit App?\n\nHere are some recent example rolls:\n\nv8: v8-ci-autoroll-builder@chops-service-accounts.iam.gserviceaccount.com\nhttps://chromium.googlesource.com/chromium/src/+/a61d5f9800ab4ea46c83e63304e0b427bf3ec809\n\nskia: chromium-autoroll@skia-public.iam.gserviceaccount.com\nhttps://chromium.googlesource.com/chromium/src/+/ffa2a7a745891c34d2cab726430d20002ce59b51\n\ncatapult: chromium-autoroll@skia-public.iam.gserviceaccount.com\nhttps://chromium.googlesource.com/chromium/src/+/d6d92060e56c9593961572ef137e94ff1700b807\n\nsrc-internal: chromium-internal-autoroll@skia-corp.google.com.iam.gserviceaccount.com\nhttps://chromium.googlesource.com/chromium/src/+/1f2898275ba47cbef85db95275928d171fd12000",
+      "parentUuid": "3a60b841_08fc83fe",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 17
+      },
+      "revId": "499fe5675d39f0f82f8e70ffcea099de8e851f2d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d783b486_824cd180",
         "filename": "dashboard/dashboard/common/utils.py",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "499fe5675d39f0f82f8e70ffcea099de8e851f2d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c83959f0_e11b05a6",
+        "filename": "dashboard/dashboard/common/utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-12-20T22:55:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d783b486_824cd180",
+      "range": {
+        "startLine": 656,
+        "startChar": 9,
+        "endLine": 656,
+        "endChar": 77
+      },
+      "revId": "499fe5675d39f0f82f8e70ffcea099de8e851f2d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
