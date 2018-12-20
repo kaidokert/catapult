@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9b7410ba_e3cdde6e",
+        "filename": "tracing/tracing/value/ui/raster_visualization.html",
+        "patchSetId": 42
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2018-12-20T23:32:45Z",
+      "side": 1,
+      "message": "Please remove this extra space.",
+      "range": {
+        "startLine": 268,
+        "startChar": 27,
+        "endLine": 268,
+        "endChar": 28
+      },
+      "revId": "d39d434b1491ca02ed1d54a850a39a6b090ac8e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
