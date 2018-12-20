@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a08821e_f7de274f",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-12-20T22:42:27Z",
+      "side": 1,
+      "message": "+nodir@, +tandrii@ for this question -- what\u0027s the most reliable way to tell from the build properties whether or not it has a patch?",
+      "parentUuid": "3d8a839c_9466ced9",
+      "range": {
+        "startLine": 148,
+        "startChar": 29,
+        "endLine": 148,
+        "endChar": 58
+      },
+      "revId": "8e667c3dabdb90c10718903ac8762cea4295f7bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7926d249_600e60d8",
         "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "7ffa4bfe_6c6ada85",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-12-20T22:42:27Z",
+      "side": 1,
+      "message": "We\u0027ll just wait. That one is ready to land, but neither can land until after the holiday freeze anyway.",
+      "parentUuid": "7926d249_600e60d8",
+      "range": {
+        "startLine": 157,
+        "startChar": 26,
+        "endLine": 157,
+        "endChar": 55
+      },
+      "revId": "8e667c3dabdb90c10718903ac8762cea4295f7bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b0e03385_b7f6fe45",
         "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2018-12-18T01:13:39Z",
       "side": 1,
       "message": "I assume that this will save the isolate hashes into Pinpoint datastore. If not, we\u0027d better do that.",
+      "range": {
+        "startLine": 160,
+        "startChar": 9,
+        "endLine": 160,
+        "endChar": 18
+      },
+      "revId": "8e667c3dabdb90c10718903ac8762cea4295f7bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c4e35fd_e3e799ba",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-12-20T22:42:27Z",
+      "side": 1,
+      "message": "It doesn\u0027t. We still use the old mechanism for saving the isolate hashes into the Pinpoint datastore (i.e. the builder uploads them in the \"pinpoint isolate upload\" step). That way is consistent across the perf waterfall and Pinpoint builders.",
+      "parentUuid": "b0e03385_b7f6fe45",
       "range": {
         "startLine": 160,
         "startChar": 9,
