@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d9d520f9_14620f47",
+        "filename": "tracing/tracing/value/ui/raster_visualization.html",
+        "patchSetId": 40
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1305608
+      },
+      "writtenOn": "2018-12-20T22:15:09Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "4cb65877_c05296b1",
+      "revId": "ad75b4c9693ab5f6e69dcc5b85abd494eb05b6a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d6e128d2_03d22dc2",
         "filename": "tracing/tracing/value/ui/raster_visualization.html",
         "patchSetId": 40
@@ -33,6 +51,24 @@
       "revId": "ad75b4c9693ab5f6e69dcc5b85abd494eb05b6a7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79b15aed_410e12d1",
+        "filename": "tracing/tracing/value/ui/raster_visualization.html",
+        "patchSetId": 40
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1305608
+      },
+      "writtenOn": "2018-12-20T22:15:09Z",
+      "side": 1,
+      "message": "I added one for this module and the metrics_visualization module.",
+      "parentUuid": "d6e128d2_03d22dc2",
+      "revId": "ad75b4c9693ab5f6e69dcc5b85abd494eb05b6a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "77ef718d_f3602185",
+        "filename": "tracing/tracing/value/ui/raster_visualization.html",
+        "patchSetId": 40
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1305608
+      },
+      "writtenOn": "2018-12-20T22:15:09Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "afd1abee_993be987",
+      "revId": "ad75b4c9693ab5f6e69dcc5b85abd494eb05b6a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "45ade55e_c54ef44f",
         "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
         "patchSetId": 40
@@ -67,6 +121,24 @@
       "revId": "ad75b4c9693ab5f6e69dcc5b85abd494eb05b6a7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc0591fe_3e4aa3b3",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 40
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1305608
+      },
+      "writtenOn": "2018-12-20T22:15:09Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "45ade55e_c54ef44f",
+      "revId": "ad75b4c9693ab5f6e69dcc5b85abd494eb05b6a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -93,6 +165,30 @@
     },
     {
       "key": {
+        "uuid": "40861eb8_b208a5ab",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 40
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1305608
+      },
+      "writtenOn": "2018-12-20T22:15:09Z",
+      "side": 1,
+      "message": "Fixed.",
+      "parentUuid": "f2f6bf62_62c03fb1",
+      "range": {
+        "startLine": 231,
+        "startChar": 10,
+        "endLine": 232,
+        "endChar": 60
+      },
+      "revId": "ad75b4c9693ab5f6e69dcc5b85abd494eb05b6a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "91762f89_fe0b675f",
         "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
         "patchSetId": 40
@@ -113,6 +209,30 @@
       "revId": "ad75b4c9693ab5f6e69dcc5b85abd494eb05b6a7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0671c6f2_b5751e38",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 40
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1305608
+      },
+      "writtenOn": "2018-12-20T22:15:09Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "91762f89_fe0b675f",
+      "range": {
+        "startLine": 371,
+        "startChar": 6,
+        "endLine": 376,
+        "endChar": 26
+      },
+      "revId": "ad75b4c9693ab5f6e69dcc5b85abd494eb05b6a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
