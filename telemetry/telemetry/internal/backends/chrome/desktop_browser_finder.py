@@ -365,6 +365,10 @@ def FindAllAvailableBrowsers(finder_options, device):
                                              reference_build, None, False,
                                              reference_root))
 
+  if reference_build:
+    print 'Reference_build %s' % reference_build
+    if path_module.IsExecutable(reference_build):
+      print 'It is an executable'
   # Linux specific options.
   if sys.platform.startswith('linux'):
     versions = {

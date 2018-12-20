@@ -68,10 +68,11 @@ def FindBrowser(options):
         continue
       curr_browsers = finder.FindAllAvailableBrowsers(options, device)
       new_default_browser = finder.SelectDefaultBrowser(curr_browsers)
+      print curr_browsers, new_default_browser
       if new_default_browser:
         default_browsers.append(new_default_browser)
       browsers.extend(curr_browsers)
-
+  print browsers, devices
   if not browsers:
     return None
 
