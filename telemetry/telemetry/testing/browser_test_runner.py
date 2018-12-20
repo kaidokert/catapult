@@ -23,8 +23,8 @@ def Run(project_config, args):
     args.extend(['--start-dir', s])
   for e in project_config.expectations_files:
     args.extend(['--expectations-file', e])
-  if project_config.default_chrome_root and not '--chrome-root' in args:
-    args.extend(['--chrome-root', project_config.default_chrome_root])
+  #if project_config.default_chrome_root and not '--chrome-root' in args:
+  #  args.extend(['--chrome-root', project_config.default_chrome_root])
 
   env = os.environ.copy()
   telemetry_dir = util.GetTelemetryDir()
