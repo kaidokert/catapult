@@ -19,7 +19,7 @@ class MergeHistogramsUnittest(unittest.TestCase):
     hist1 = histogram.Histogram('bar', 'count')
     histograms = histogram_set.HistogramSet([hist0, hist1])
     histograms_file = tempfile.NamedTemporaryFile(delete=False)
-    histograms_file.write(json.dumps(histograms.AsDicts()).encode('utf-8'))
+    histograms_file.write(json.dumps(histograms.AsDict()).encode('utf-8'))
     histograms_file.close()
 
     merged_dicts = merge_histograms.MergeHistograms(histograms_file.name,

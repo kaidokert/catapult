@@ -17,12 +17,12 @@ tr.exportTo('tr.v.d', function() {
       this.eventSetsByCanonicalUrl_ = new Map();
     }
 
-    asDictInto_(d) {
-      d.events = {};
+    asDict(writer) {
+      const d = {};
       for (const [canonicalUrl, eventSet] of this) {
-        d.events[canonicalUrl] = [];
+        d[canonicalUrl] = [];
         for (const event of eventSet) {
-          d.events[canonicalUrl].push({
+          d[canonicalUrl].push({
             stableId: event.stableId,
             title: event.title,
             start: event.start,
@@ -30,15 +30,24 @@ tr.exportTo('tr.v.d', function() {
           });
         }
       }
+      return d;
     }
 
-    static fromDict(d) {
+    static fromDict(d, reader) {
       const result = new CollectedRelatedEventSet();
-      for (const [canonicalUrl, events] of Object.entries(d.events)) {
+      for (const [canonicalUrl, events] of Object.entries(
+          reader ? d : d.events)) {
         result.eventSetsByCanonicalUrl_.set(canonicalUrl, events.map(
             e => new tr.v.d.EventRef(e)));
       }
       return result;
+    }
+
+    equals(other) {
+      for (const [url, events] of this) {
+        if (!tr.b.setsEqual(events, other.get(url))) return false;
+      }
+      return true;
     }
 
     get size() {

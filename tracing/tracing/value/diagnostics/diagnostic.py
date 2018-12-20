@@ -59,7 +59,7 @@ class Diagnostic(object):
     raise NotImplementedError
 
   @staticmethod
-  def FromDict(dct):
+  def FromDict(dct, deserializer=None):
     cls = all_diagnostics.GetDiagnosticClassForName(dct['type'])
     if not cls:
       raise ValueError('Unrecognized diagnostic type: ' + dct['type'])
@@ -93,3 +93,9 @@ class Diagnostic(object):
   def AddDiagnostic(self, unused_other_diagnostic):
     raise Exception('Abstract virtual method: subclasses must override '
                     'this method if they override canAddDiagnostic')
+
+def FromDict(type_name, dct, deserializer):
+  cls = all_diagnostics.GetDiagnosticClassForName(type_name)
+  if not cls:
+    raise ValueError('Unrecognized diagnostic type: ' + type_name)
+  return cls.FromDict(dct, deserializer)
