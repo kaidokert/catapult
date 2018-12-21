@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2e93a675_fc6bfa89",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-12-21T01:06:50Z",
+      "side": 1,
+      "message": "Whoops, removed. Was testing whether I could use a dict here. But all request arguments are converted to strings by the webapp2 framework anyway.",
+      "parentUuid": "6da44980_153d31da",
+      "revId": "5ca02e3251831aec3312388234a3e81f931f83eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "554f5b2e_b3ef92e9",
         "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2018-12-20T10:37:02Z",
       "side": 1,
       "message": "whys is this needed now?",
+      "revId": "5ca02e3251831aec3312388234a3e81f931f83eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b157a06_1150ad41",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2018-12-21T01:06:50Z",
+      "side": 1,
+      "message": "new_test requires all the arguments be strings, since the requests are form/URL-encoded. So we need to support string dimensions here. (We already support them in the run_test Quest.)\n\nPreviously, this code path wasn\u0027t covered in new_test, since it used telemetry_perf_tests instead of performance_test_suite, so there was no OS path separator in the results_filename.",
+      "parentUuid": "554f5b2e_b3ef92e9",
       "revId": "5ca02e3251831aec3312388234a3e81f931f83eb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
