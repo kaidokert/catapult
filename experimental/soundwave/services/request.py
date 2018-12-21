@@ -72,7 +72,7 @@ def BuildRequestError(request, response, content):
 
 
 @retry_util.RetryOnException(ServerError, retries=3)
-def Request(url, method='GET', params=None, data=None,
+def Request(url, method='GET', params=None, data=None, accept=None,
             content_type='urlencoded', use_auth=False, retries=None):
   """Perform an HTTP request of a given resource.
 
@@ -83,6 +83,10 @@ def Request(url, method='GET', params=None, data=None,
       a query to the url.
     data: An optional dict or sequence of key, value pairs to send as payload
       data in the body of the request.
+    accept: An optional string to specify the expected response format.
+      Currently only 'json' and 'jsonp' are supported, which attempt to parse
+      the response content as json (after removing the 'padding' in the case of
+      jsonp). The default does not attempt to interpret the content in any way.
     content_type: A string specifying how to encode the payload data,
       can be either 'urlencoded' (default) or 'json'.
     use_auth: A boolean indecating whether to send authorized requests, if True
@@ -104,6 +108,12 @@ def Request(url, method='GET', params=None, data=None,
 
   body = None
   headers = {}
+
+  if accept in ('json', 'jsonp'):
+    headers['Accept'] = 'application/json'
+  elif accept is not None:
+    raise NotImplementedError('Invalid accept format: %s' % accept)
+
   if data is not None:
     if content_type == 'json':
       body = json.dumps(data, sort_keys=True, separators=(',', ':'))
@@ -125,4 +135,9 @@ def Request(url, method='GET', params=None, data=None,
       url, method=method, body=body, headers=headers)
   if response.status != 200:
     raise BuildRequestError(url, response, content)
+
+  if accept is not None:
+    if accept == 'jsonp':
+      content = content[4:]  # Skip over jsonp junk, i.e. )]}'.
+    content = json.loads(content)
   return content
