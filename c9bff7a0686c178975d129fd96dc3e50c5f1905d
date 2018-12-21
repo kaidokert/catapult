@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "573a0b76_f92b4244",
+        "filename": "telemetry/telemetry/internal/results/results_options.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2018-12-21T01:29:50Z",
+      "side": 1,
+      "message": "Why not change the signature of this method to \"def ProcessCommandLineArgs(args)\"?",
+      "range": {
+        "startLine": 92,
+        "startChar": 27,
+        "endLine": 92,
+        "endChar": 33
+      },
+      "revId": "c9bff7a0686c178975d129fd96dc3e50c5f1905d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
