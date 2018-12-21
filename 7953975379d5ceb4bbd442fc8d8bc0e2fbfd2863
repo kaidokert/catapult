@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ae60f25_1d18c3a7",
+        "filename": "experimental/soundwave/services/request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2018-12-21T18:34:46Z",
+      "side": 1,
+      "message": "This isn\u0027t really jsonp. It\u0027s json with a parser breaker to prevent https://haacked.com/archive/2008/11/20/anatomy-of-a-subtle-json-vulnerability.aspx/\n... Or maybe that is jsonp? This stuff is confusing.",
+      "range": {
+        "startLine": 87,
+        "startChar": 33,
+        "endLine": 87,
+        "endChar": 38
+      },
+      "revId": "7953975379d5ceb4bbd442fc8d8bc0e2fbfd2863",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af504cbf_e3012dfd",
+        "filename": "experimental/soundwave/services/request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2018-12-21T18:34:46Z",
+      "side": 1,
+      "message": "status",
+      "range": {
+        "startLine": 101,
+        "startChar": 44,
+        "endLine": 101,
+        "endChar": 50
+      },
+      "revId": "7953975379d5ceb4bbd442fc8d8bc0e2fbfd2863",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b248b7e_260fa9d3",
+        "filename": "experimental/soundwave/services/request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2018-12-21T18:34:46Z",
+      "side": 1,
+      "message": "Prefer a line before this:\nif content[:4] !\u003d \u0027)]}\\\u0027\u0027:\n  raise ValueError(\u0027For jsonp format, we expect a padding of )]}\\\u0027 before the JSON payload\u0027)",
+      "range": {
+        "startLine": 141,
+        "startChar": 13,
+        "endLine": 141,
+        "endChar": 28
+      },
+      "revId": "7953975379d5ceb4bbd442fc8d8bc0e2fbfd2863",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a74d1749_a4b1fa37",
+        "filename": "experimental/soundwave/services/request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2018-12-21T18:34:46Z",
+      "side": 1,
+      "message": "Add a comment here documenting this:\n\n# Skip over JSON Parser Breaker junk, i.e. )]}\u0027\n# That code is added to prevent the redefinition of Array initialization\n# hack: https://haacked.com/archive/2008/11/20/anatomy-of-a-subtle-json-vulnerability.aspx/\n# Per https://github.com/whatwg/mimesniff/blob/f4a2d87981ff56048c40b73cedafaaa83fa512a7/mimesniff.bs\n# There are other parser breakers as well.",
+      "range": {
+        "startLine": 141,
+        "startChar": 34,
+        "endLine": 141,
+        "endChar": 63
+      },
+      "revId": "7953975379d5ceb4bbd442fc8d8bc0e2fbfd2863",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
