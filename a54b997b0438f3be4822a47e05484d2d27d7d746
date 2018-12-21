@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fed853de_b6587c62",
+        "filename": "experimental/soundwave/services/request_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-12-21T14:47:47Z",
+      "side": 1,
+      "message": "this test fails without the fix, and passes after adding it.",
+      "revId": "a54b997b0438f3be4822a47e05484d2d27d7d746",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
