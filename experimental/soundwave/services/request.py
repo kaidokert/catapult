@@ -19,7 +19,7 @@ class RequestError(OSError):
     self.request = request
     self.response = response
     self.content = content
-    message = '%s returned HTTP Error %d: %s' % (
+    message = u'%s returned HTTP Error %d: %s' % (
         self.request, self.response.status, self.error_message)
     # Note: often the message will contain unicode characters, so we explicitly
     # encode them as utf-8; otherwise by default python will encode as ascii
@@ -47,7 +47,8 @@ class RequestError(OSError):
       return self.json['error']
     except StandardError:
       # Otherwise fall back to entire content itself.
-      return self.content
+      # Convert str object to unicode.
+      return self.content.decode('utf-8')
 
 
 class ClientError(RequestError):
@@ -72,7 +73,7 @@ def BuildRequestError(request, response, content):
 
 
 @retry_util.RetryOnException(ServerError, retries=3)
-def Request(url, method='GET', params=None, data=None,
+def Request(url, method='GET', params=None, data=None, accept=None,
             content_type='urlencoded', use_auth=False, retries=None):
   """Perform an HTTP request of a given resource.
 
@@ -104,6 +105,12 @@ def Request(url, method='GET', params=None, data=None,
 
   body = None
   headers = {}
+
+  if accept in ('json', 'jsonp'):
+    headers['Accept'] = 'application/json'
+  elif accept is not None:
+    raise NotImplementedError('Invalid accept format: %s' % content_type)
+
   if data is not None:
     if content_type == 'json':
       body = json.dumps(data, sort_keys=True, separators=(',', ':'))
@@ -125,4 +132,8 @@ def Request(url, method='GET', params=None, data=None,
       url, method=method, body=body, headers=headers)
   if response.status != 200:
     raise BuildRequestError(url, response, content)
+  if accept is not None:
+    if accept == 'jsonp':
+      content = content[4:]  # Skip over jsonp junk.
+    content = json.loads(content)
   return content
