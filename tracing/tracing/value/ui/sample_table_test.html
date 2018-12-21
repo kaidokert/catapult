@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/base/assert_utils.html">
+<link rel="import" href="/tracing/ui/base/deep_utils.html">
+<link rel="import" href="/tracing/value/ui/sample_table.html">
+
+<script>
+'use strict';
+tr.b.unittest.testSuite(function() {
+  test('basic', function() {
+    const table = document.createElement('tr-v-ui-sample-table');
+    this.addHTMLOutput(table);
+    const hist = tr.v.Histogram.create('', tr.b.Unit.byName.timeDurationInMs, [
+      {
+        value: 111,
+        diagnostics: {
+          aaa: new tr.v.d.GenericSet(['bbb']),
+        },
+      },
+      {
+        value: 'not a number',
+        diagnostics: {
+          aaa: new tr.v.d.GenericSet(['ccc']),
+          ddd: new tr.v.d.GenericSet(['eee']),
+        },
+      },
+    ], {
+      binBoundaries: tr.v.HistogramBinBoundaries.SINGULAR,
+    });
+    table.build(hist.allBins[0].samples.concat(hist.nanBin.samples), hist);
+
+    assert.isDefined(tr.ui.b.findDeepElementMatchingPredicate(
+        table, e => e.textContent === '111.000 ms'));
+    assert.isDefined(tr.ui.b.findDeepElementMatchingPredicate(
+        table, e => e.textContent === 'not a number'));
+    assert.isDefined(tr.ui.b.findDeepElementMatchingPredicate(
+        table, e => e.textContent === 'aaa'));
+    assert.isDefined(tr.ui.b.findDeepElementMatchingPredicate(
+        table, e => e.textContent === 'bbb'));
+    assert.isDefined(tr.ui.b.findDeepElementMatchingPredicate(
+        table, e => e.textContent === 'ccc'));
+    assert.isDefined(tr.ui.b.findDeepElementMatchingPredicate(
+        table, e => e.textContent === 'ddd'));
+    assert.isDefined(tr.ui.b.findDeepElementMatchingPredicate(
+        table, e => e.textContent === 'eee'));
+  });
+});
+</script>

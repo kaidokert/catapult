@@ -168,9 +168,9 @@ tr.b.unittest.testSuite(function() {
     assert.closeTo(expectedDuration, histogram.running.sum, 0.5);
 
     const binsWithSampleDiagnosticMaps =
-        histogram.allBins.filter(bin => bin.diagnosticMaps.length > 0);
+        histogram.allBins.filter(bin => bin.samples.length > 0);
     const diagnostic = tr.b.getOnlyElement(binsWithSampleDiagnosticMaps[0]
-        .diagnosticMaps[0].get('Navigation infos'));
+        .samples[0].diagnostics.get('Navigation infos'));
     assert.strictEqual(diagnostic.url, URL);
     assert.strictEqual(diagnostic.pid, RENDERER_PROCESS_ID);
     assert.strictEqual(diagnostic.navStart, navStartTs);
@@ -192,9 +192,9 @@ tr.b.unittest.testSuite(function() {
     assert.closeTo(expectedDuration, histogram.running.sum, 0.5);
 
     const binsWithSampleDiagnosticMaps =
-        histogram.allBins.filter(bin => bin.diagnosticMaps.length > 0);
+        histogram.allBins.filter(bin => bin.samples.length > 0);
     const diagnostic = tr.b.getOnlyElement(binsWithSampleDiagnosticMaps[0]
-        .diagnosticMaps[0].get('Navigation infos'));
+        .samples[0].diagnostics.get('Navigation infos'));
     assert.strictEqual(diagnostic.url, URL);
     assert.strictEqual(diagnostic.pid, RENDERER_PROCESS_ID);
     assert.strictEqual(diagnostic.navStart, 99);

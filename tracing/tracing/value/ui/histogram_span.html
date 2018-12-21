@@ -14,6 +14,7 @@ found in the LICENSE file.
 <link rel="import" href="/tracing/value/ui/diagnostic_map_table.html">
 <link rel="import" href="/tracing/value/ui/diagnostic_span.html">
 <link rel="import" href="/tracing/value/ui/histogram_set_view_state.html">
+<link rel="import" href="/tracing/value/ui/sample_table.html">
 <link rel="import" href="/tracing/value/ui/scalar_map_table.html">
 
 <dom-module id="tr-v-ui-histogram-span">
@@ -54,12 +55,14 @@ found in the LICENSE file.
 
       <tr-v-ui-diagnostic-map-table id="metadata_diagnostics"></tr-v-ui-diagnostic-map-table>
 
+      <tr-v-ui-sample-table id="nan_samples"></tr-v-ui-sample-table>
+
       <div id="sample_diagnostics_container">
         <div id="merge_sample_diagnostics_container">
           <input type="checkbox" id="merge_sample_diagnostics" checked on-change="updateDiagnostics_">
           <label for="merge_sample_diagnostics">Merge Sample Diagnostics</label>
         </div>
-        <tr-v-ui-diagnostic-map-table id="sample_diagnostics"></tr-v-ui-diagnostic-map-table>
+        <tr-v-ui-sample-table id="samples"></tr-v-ui-sample-table>
       </div>
     </div>
   </template>
@@ -145,7 +148,8 @@ tr.exportTo('tr.v.ui', function() {
     build(histogram, opt_referenceHistogram) {
       this.histogram_ = histogram;
       this.$.metric_diagnostics.histogram = histogram;
-      this.$.sample_diagnostics.histogram = histogram;
+      this.$.samples.histogram = histogram;
+      this.$.nan_samples.histogram = histogram;
       this.referenceHistogram_ = opt_referenceHistogram;
 
       if (this.histogram.canCompare(this.referenceHistogram)) {
@@ -156,11 +160,16 @@ tr.exportTo('tr.v.ui', function() {
       }
 
       this.anySampleDiagnostics_ = false;
+      const sampleValues = new Set();
       for (const bin of this.histogram.allBins) {
-        if (bin.diagnosticMaps.length > 0) {
-          this.anySampleDiagnostics_ = true;
-          break;
+        for (const sample of bin.samples) {
+          sampleValues.add(sample.value);
+          if ((sampleValues.size > 1) || (sample.diagnostics.size > 0)) {
+            this.anySampleDiagnostics_ = true;
+            break;
+          }
         }
+        if (this.anySampleDiagnostics_) break;
       }
 
       if (this.isAttached) this.updateContents_();
@@ -215,9 +224,11 @@ tr.exportTo('tr.v.ui', function() {
 
     ready() {
       this.$.metric_diagnostics.tabLabel = 'histogram diagnostics';
-      this.$.sample_diagnostics_container.tabLabel = 'sample diagnostics';
+      this.$.sample_diagnostics_container.tabLabel = 'numeric samples';
+      this.$.nan_samples.tabLabel = 'non-numeric samples';
       this.$.metadata_diagnostics.tabLabel = 'metadata';
       this.$.metadata_diagnostics.isMetadata = true;
+
       this.$.diagnostics.addEventListener(
           'selected-tab-change', this.onSelectedDiagnosticsChanged_.bind(this));
       this.$.drag_handle.target = this.$.container;
@@ -400,10 +411,10 @@ tr.exportTo('tr.v.ui', function() {
     },
 
     updateDiagnostics_() {
-      let maps = [];
+      let samples = [];
       for (const bin of this.brushedBins) {
-        for (const map of bin.diagnosticMaps) {
-          maps.push(map);
+        for (const sample of bin.samples) {
+          samples.push(sample);
         }
       }
 
@@ -414,17 +425,17 @@ tr.exportTo('tr.v.ui', function() {
       }
 
       if (this.viewState.mergeSampleDiagnostics) {
-        const merged = new tr.v.d.DiagnosticMap();
-        for (const map of maps) {
-          merged.addDiagnostics(map);
+        const merged = new tr.v.Sample(0, new tr.v.d.DiagnosticMap());
+        for (const sample of samples) {
+          merged.addSample(sample);
         }
-        maps = [merged];
+        samples = [merged];
       }
 
       const mark = tr.b.Timing.mark('histogram-span',
           (this.viewState.mergeSampleDiagnostics ? 'merge' : 'split') +
            'SampleDiagnostics');
-      this.$.sample_diagnostics.diagnosticMaps = maps;
+      this.$.samples.build(samples, this.histogram);
       mark.end();
 
       if (this.anySampleDiagnostics_) {
@@ -506,6 +517,10 @@ tr.exportTo('tr.v.ui', function() {
       }
       if (this.anySampleDiagnostics_) {
         diagnosticTabs.push(this.$.sample_diagnostics_container);
+      }
+      if (this.histogram.nanBin.samples.length) {
+        this.$.nan_samples.build(this.histogram.nanBin.samples, this.histogram);
+        diagnosticTabs.push(this.$.nan_samples);
       }
       if (metadataDiagnosticMap.size) {
         this.$.metadata_diagnostics.diagnosticMaps = [metadataDiagnosticMap];

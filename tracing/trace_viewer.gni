@@ -585,6 +585,7 @@ tracing_js_html_files = [
   "tracing/value/ui/preferred_display_unit.html",
   "tracing/value/ui/related_event_set_span.html",
   "tracing/value/ui/related_histogram_map_span.html",
+  "tracing/value/ui/sample_table.html",
   "tracing/value/ui/scalar_context_controller.html",
   "tracing/value/ui/scalar_diagnostic_span.html",
   "tracing/value/ui/scalar_map_table.html",

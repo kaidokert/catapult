@@ -4165,7 +4165,8 @@ tr.b.unittest.testSuite(function() {
     assert.strictEqual(relatedNameMap.get('gpu_process'), undefined);
 
     const bin = allHistogram.getBinForValue(allHistogram.average);
-    const breakdown = tr.b.getOnlyElement(bin.diagnosticMaps).get('processes');
+    const breakdown = tr.b.getOnlyElement(bin.samples).diagnostics.get(
+        'processes');
     assert.strictEqual(breakdown.get('browser_process'),
         browserHistogram.average);
     assert.strictEqual(breakdown.get('renderer_processes'),
@@ -4220,12 +4221,12 @@ tr.b.unittest.testSuite(function() {
     const browserBin = browserHistogram.getBinForValue(
         browserHistogram.average);
     const browserBreakdown = tr.b.getOnlyElement(
-        browserBin.diagnosticMaps).get('components');
+        browserBin.samples).diagnostics.get('components');
     assert.strictEqual(browserBreakdown.get('heap'), heapHistogram.average);
 
     const heapBin = heapHistogram.getBinForValue(heapHistogram.average);
     const heapBreakdown = tr.b.getOnlyElement(
-        heapBin.diagnosticMaps).get('components');
+        heapBin.samples).diagnostics.get('components');
     assert.strictEqual(heapBreakdown.get('code_space'),
         codeSpaceHistogram.average);
   });

@@ -57,8 +57,8 @@ tr.b.unittest.testSuite(function() {
     assert.strictEqual(hist.average, 2);
 
     const bin = hist.getBinForValue(3);
-    assert.lengthOf(bin.diagnosticMaps, 1);
-    const sampleDiagnostics = tr.b.getOnlyElement(bin.diagnosticMaps);
+    assert.lengthOf(bin.samples, 1);
+    const sampleDiagnostics = tr.b.getOnlyElement(bin.samples).diagnostics;
     assert.strictEqual(tr.b.getOnlyElement(sampleDiagnostics.get('a')), 'b');
   });
 
@@ -179,7 +179,6 @@ tr.b.unittest.testSuite(function() {
   test('rebin', function() {
     const hist = new tr.v.Histogram('foo', unitlessNumber_smallerIsBetter,
         tr.v.HistogramBinBoundaries.SINGULAR);
-    assert.strictEqual(400, hist.maxNumSampleValues);
     for (let i = 0; i < 100; ++i) {
       hist.addSample(i);
     }
@@ -204,9 +203,9 @@ tr.b.unittest.testSuite(function() {
     let binCountSum = 0;
     for (let i = 1; i < 11; ++i) {
       binCountSum += rebinned.allBins[i].count;
-      assert.isAbove(100, rebinned.allBins[i].count, i);
+      assert.isAbove(101, rebinned.allBins[i].count, i);
     }
-    assert.strictEqual(400, binCountSum);
+    assert.strictEqual(1000, binCountSum);
     assert.strictEqual(hist.numValues, rebinned.numValues);
     assert.strictEqual(hist.average, rebinned.average);
     assert.strictEqual(hist.standardDeviation, rebinned.standardDeviation);
@@ -230,20 +229,20 @@ tr.b.unittest.testSuite(function() {
 
     hist.addSample(100);
     dict = hist.asDict();
-    assert.strictEqual(198, JSON.stringify(dict).length);
+    assert.strictEqual(185, JSON.stringify(dict).length);
     assert.isUndefined(dict.allBins.length);
     assert.deepEqual(dict, tr.v.Histogram.fromDict(dict).asDict());
 
     hist.addSample(100);
     dict = hist.asDict();
-    // SAMPLE_VALUES grew by "100,"
-    assert.strictEqual(202, JSON.stringify(dict).length);
+    // HistogramBin.samples grew by "[100],"
+    assert.strictEqual(191, JSON.stringify(dict).length);
     assert.isUndefined(dict.allBins.length);
     assert.deepEqual(dict, tr.v.Histogram.fromDict(dict).asDict());
 
     hist.addSample(271, {foo: new tr.v.d.GenericSet(['bar'])});
     dict = hist.asDict();
-    assert.strictEqual(268, JSON.stringify(dict).length);
+    assert.strictEqual(259, JSON.stringify(dict).length);
     assert.isUndefined(dict.allBins.length);
     assert.deepEqual(dict, tr.v.Histogram.fromDict(dict).asDict());
 
@@ -253,17 +252,7 @@ tr.b.unittest.testSuite(function() {
       hist.addSample(10 * i);
     }
     dict = hist.asDict();
-    assert.strictEqual(697, JSON.stringify(hist.asDict()).length);
-    assert.lengthOf(dict.allBins, 12);
-    assert.deepEqual(dict, tr.v.Histogram.fromDict(dict).asDict());
-
-    // Lowering maxNumSampleValues takes a random sub-sample of the existing
-    // sampleValues. We have deliberately set all samples to 3-digit numbers so
-    // that the serialized size is constant regardless of which samples are
-    // retained.
-    hist.maxNumSampleValues = 10;
-    dict = hist.asDict();
-    assert.strictEqual(389, JSON.stringify(dict).length);
+    assert.strictEqual(882, JSON.stringify(hist.asDict()).length);
     assert.lengthOf(dict.allBins, 12);
     assert.deepEqual(dict, tr.v.Histogram.fromDict(dict).asDict());
   });
@@ -309,8 +298,8 @@ tr.b.unittest.testSuite(function() {
 
     assert.strictEqual(hist.getBinForValue(0).count, 2);
     assert.deepEqual(
-        hist.getBinForValue(0).diagnosticMaps.map(dm =>
-          tr.b.getOnlyElement(dm.get('foo'))), ['b', 'c']);
+        hist.getBinForValue(0).samples.map(dm =>
+          tr.b.getOnlyElement(dm.diagnostics.get('foo'))), ['b', 'c']);
 
     assert.strictEqual(hist.getBinForValue(500).count, 1);
     assert.strictEqual(hist.getBinForValue(999).count, 1);
@@ -324,17 +313,47 @@ tr.b.unittest.testSuite(function() {
     const hist = new tr.v.Histogram('', unitlessNumber, TEST_BOUNDARIES);
 
     hist.addSample(undefined, {foo: new tr.v.d.GenericSet(['b'])});
-    hist.addSample(NaN, {'foo': new tr.v.d.GenericSet(['c'])});
+    hist.addSample(NaN, {foo: new tr.v.d.GenericSet(['c'])});
     hist.addSample(undefined);
     hist.addSample(NaN);
 
-    assert.strictEqual(hist.numNans, 4);
-    assert.deepEqual(hist.nanDiagnosticMaps.map(dm =>
-      tr.b.getOnlyElement(dm.get('foo'))), ['b', 'c']);
+    assert.strictEqual(hist.nanBin.count, 4);
+    assert.strictEqual(tr.b.getOnlyElement(
+        hist.nanBin.samples[0].diagnostics.get('foo')), 'b');
+    assert.strictEqual(tr.b.getOnlyElement(
+        hist.nanBin.samples[1].diagnostics.get('foo')), 'c');
+    assert.strictEqual(hist.nanBin.samples[2].diagnostics.size, 0);
+    assert.strictEqual(hist.nanBin.samples[3].diagnostics.size, 0);
 
     const hist2 = tr.v.Histogram.fromDict(hist.asDict());
-    assert.instanceOf(hist2.nanDiagnosticMaps[0], tr.v.d.DiagnosticMap);
-    assert.instanceOf(hist2.nanDiagnosticMaps[0].get('foo'), tr.v.d.GenericSet);
+    assert.instanceOf(hist2.nanBin.samples[0].diagnostics,
+        tr.v.d.DiagnosticMap);
+    assert.instanceOf(hist2.nanBin.samples[0].diagnostics.get('foo'),
+        tr.v.d.GenericSet);
+  });
+
+  test('legacyDiagnosticMaps', function() {
+    const hist = tr.v.Histogram.fromDict({
+      guid: 'guid',
+      name: 'name',
+      unit: 'ms',
+      numNans: 2,
+      nanDiagnostics: [{generic: {type: 'GenericSet', values: ['foo']}}],
+      allBins: {'0': [2, [{generic2: {type: 'GenericSet', values: ['foo2']}}]]},
+    });
+    assert.strictEqual(hist.nanBin.count, 2);
+    assert.lengthOf(hist.nanBin.samples, 1);
+    assert.isUndefined(hist.nanBin.samples[0].value);
+    assert.strictEqual(hist.nanBin.samples[0].diagnostics.size, 1);
+    assert.strictEqual(tr.b.getOnlyElement(
+        hist.nanBin.samples[0].diagnostics.get('generic')), 'foo');
+    assert.lengthOf(hist.allBins, 1);
+    assert.strictEqual(hist.allBins[0].count, 2);
+    assert.lengthOf(hist.allBins[0].samples, 1);
+    assert.isUndefined(hist.allBins[0].samples[0].value);
+    assert.strictEqual(hist.allBins[0].samples[0].diagnostics.size, 1);
+    assert.strictEqual(tr.b.getOnlyElement(
+        hist.allBins[0].samples[0].diagnostics.get('generic2')), 'foo2');
   });
 
   test('addHistogramsValid', function() {
@@ -357,41 +376,39 @@ tr.b.unittest.testSuite(function() {
 
     hist0.addHistogram(hist1);
 
-    assert.strictEqual(hist0.numNans, 2);
-    assert.deepEqual(hist0.nanDiagnosticMaps.map(dmd =>
-      tr.b.getOnlyElement(dmd.get('foo'))), ['e0', 'e1']);
+    assert.strictEqual(hist0.nanBin.count, 2);
+    assert.deepEqual(hist0.nanBin.samples.map(s =>
+      tr.b.getOnlyElement(s.diagnostics.get('foo'))), ['e0', 'e1']);
 
     assert.strictEqual(hist0.allBins[0].count, 2);
-    assert.deepEqual(
-        hist0.allBins[0].diagnosticMaps.map(dmd =>
-          tr.b.getOnlyElement(dmd.get('foo'))), ['a0', 'a1']);
+    assert.deepEqual(hist0.allBins[0].samples.map(s =>
+      tr.b.getOnlyElement(s.diagnostics.get('foo'))), ['a0', 'a1']);
 
     assert.strictEqual(hist0.getBinForValue(0).count, 4);
-    assert.deepEqual(
-        hist0.getBinForValue(0).diagnosticMaps.map(dmd =>
-          tr.b.getOnlyElement(dmd.get('foo'))), ['b0', 'c0', 'b1', 'c1']);
+    assert.deepEqual(hist0.getBinForValue(0).samples.map(s =>
+      tr.b.getOnlyElement(s.diagnostics.get('foo'))), ['b0', 'c0', 'b1', 'c1']);
 
     assert.strictEqual(hist0.getBinForValue(500).count, 1);
     assert.deepEqual(
-        hist0.getBinForValue(500).diagnosticMaps.map(dmd =>
-          tr.b.getOnlyElement(dmd.get('foo'))), ['c0']);
+        hist0.getBinForValue(500).samples.map(s =>
+          tr.b.getOnlyElement(s.diagnostics.get('foo'))), ['c0']);
 
     assert.strictEqual(hist0.getBinForValue(999).count, 1);
     assert.deepEqual(
-        hist0.getBinForValue(999).diagnosticMaps.map(dmd =>
-          tr.b.getOnlyElement(dmd.get('foo'))), ['d1']);
+        hist0.getBinForValue(999).samples.map(s =>
+          tr.b.getOnlyElement(s.diagnostics.get('foo'))), ['d1']);
 
     assert.strictEqual(hist0.allBins[hist0.allBins.length - 1].count, 2);
-    assert.deepEqual(hist0.allBins[hist0.allBins.length - 1].diagnosticMaps.map(
-        dmd => tr.b.getOnlyElement(dmd.get('foo'))), ['d0', 'd1']);
+    assert.deepEqual(hist0.allBins[hist0.allBins.length - 1].samples.map(
+        s => tr.b.getOnlyElement(s.diagnostics.get('foo'))), ['d0', 'd1']);
 
     assert.strictEqual(hist0.numValues, 10);
     assert.closeTo(hist0.average, 349.7, 0.1);
 
     const hist02 = tr.v.Histogram.fromDict(hist0.asDict());
-    assert.instanceOf(hist02.allBins[0].diagnosticMaps[0],
+    assert.instanceOf(hist02.allBins[0].samples[0].diagnostics,
         tr.v.d.DiagnosticMap);
-    assert.instanceOf(hist02.allBins[0].diagnosticMaps[0].get('foo'),
+    assert.instanceOf(hist02.allBins[0].samples[0].diagnostics.get('foo'),
         tr.v.d.GenericSet);
   });
 
@@ -650,11 +667,6 @@ tr.b.unittest.testSuite(function() {
     const boundaries = tr.v.HistogramBinBoundaries.createLinear(0, 1000, 50);
     const hist0 = new tr.v.Histogram('', unitlessNumber, boundaries);
     const hist1 = new tr.v.Histogram('', unitlessNumber, boundaries);
-    // maxNumSampleValues defaults to numBins * 10, which, including the
-    // underflow bin and overflow bin plus this builder's 10 central bins,
-    // is 52 * 10.
-    assert.strictEqual(hist0.maxNumSampleValues, 520);
-    assert.strictEqual(hist1.maxNumSampleValues, 520);
     const values0 = [];
     const values1 = [];
     for (let i = 0; i < 10; ++i) {
@@ -671,18 +683,6 @@ tr.b.unittest.testSuite(function() {
     assert.deepEqual(hist0.sampleValues, values0.concat(values1));
     const hist2 = tr.v.Histogram.fromDict(hist0.asDict());
     assert.deepEqual(hist2.sampleValues, values0.concat(values1));
-
-    for (let i = 0; i < 500; ++i) {
-      hist0.addSample(i);
-    }
-    assert.strictEqual(hist0.sampleValues.length, hist0.maxNumSampleValues);
-
-    const hist3 = new tr.v.Histogram('', unitlessNumber, boundaries);
-    hist3.maxNumSampleValues = 10;
-    for (let i = 0; i < 100; ++i) {
-      hist3.addSample(i);
-    }
-    assert.strictEqual(hist3.sampleValues.length, 10);
   });
 
   test('singularBin', function() {

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/ui/base/table.html">
+<link rel="import" href="/tracing/value/ui/diagnostic_span.html">
+
+<dom-module id="tr-v-ui-sample-table">
+  <template>
+    <tr-ui-b-table id="table"></tr-ui-b-table>
+  </template>
+</dom-module>
+
+<script>
+'use strict';
+
+tr.exportTo('tr.v.ui', function() {
+  Polymer({
+    is: 'tr-v-ui-sample-table',
+
+    created() {
+      this.samples_ = undefined;
+      this.histogram_ = undefined;
+    },
+
+    build(samples, histogram) {
+      this.samples_ = samples;
+      this.histogram_ = histogram;
+      if (this.samples_ === undefined ||
+          this.samples_.length === 0) {
+        this.$.table.tableRows = [];
+        this.$.table.tableColumns = [];
+        return;
+      }
+
+      let diagnosticNames = new Set();
+      for (const sample of this.samples_) {
+        for (const [name, diagnostic] of sample.diagnostics) {
+          if (diagnostic instanceof tr.v.d.UnmergeableDiagnosticSet) continue;
+          if (diagnostic instanceof tr.v.d.CollectedRelatedEventSet) continue;
+          if (diagnostic instanceof tr.v.d.GroupingPath) continue;
+
+          diagnosticNames.add(name);
+        }
+      }
+      diagnosticNames = Array.from(diagnosticNames).sort();
+
+      const columns = [
+        {
+          title: 'value',
+          value(sample) {
+            if (typeof(sample.value) === 'number') {
+              return tr.v.ui.createScalarSpan(
+                  new tr.b.Scalar(histogram.unit, sample.value));
+            }
+            return '' + sample.value;
+          },
+        },
+      ];
+      for (const name of diagnosticNames) {
+        columns.push({
+          title: name,
+          value(sample) {
+            const diagnostic = sample.diagnostics.get(name);
+            if (!diagnostic) return '';
+            return tr.v.ui.createDiagnosticSpan(diagnostic, name, histogram);
+          }
+        });
+      }
+
+      this.$.table.tableColumns = columns;
+      this.$.table.tableRows = this.samples_;
+      this.$.table.rebuild();
+    }
+  });
+
+  return {};
+});
+</script>

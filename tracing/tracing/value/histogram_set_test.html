@@ -34,8 +34,8 @@ tr.b.unittest.testSuite(function() {
     histograms2.importDicts(histograms.asDicts());
     assert.isDefined(histograms2.getHistogramNamed('foo'));
     const v = histograms2.getHistogramNamed('foo');
-    assert.lengthOf(v.getBinForValue(10).diagnosticMaps, 1);
-    const dm = v.getBinForValue(10).diagnosticMaps[0];
+    assert.lengthOf(v.getBinForValue(10).samples, 1);
+    const dm = v.getBinForValue(10).samples[0].diagnostics;
     assert.strictEqual(dm.size, 1);
     assert.instanceOf(dm.get('bar'), tr.v.d.GenericSet);
     assert.strictEqual(tr.b.getOnlyElement(dm.get('bar')), 'baz');

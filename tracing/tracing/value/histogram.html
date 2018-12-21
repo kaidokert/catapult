@@ -17,9 +17,8 @@ found in the LICENSE file.
 'use strict';
 
 tr.exportTo('tr.v', function() {
-  const MAX_DIAGNOSTIC_MAPS = 16;
-
-  const DEFAULT_SAMPLE_VALUES_PER_BIN = 10;
+  const DEFAULT_MAX_NUMERIC_SAMPLES = 100;
+  const MAX_NAN_BIN_SAMPLES = 20;
 
   const DEFAULT_REBINNED_COUNT = 40;
 
@@ -68,59 +67,108 @@ tr.exportTo('tr.v', function() {
     return parseFloat(s[0] + '.' + s.substr(1).replace(/_/g, ''));
   }
 
+  class Sample {
+    constructor(value, diagnostics) {
+      this.value_ = value;
+      this.diagnostics_ = diagnostics;
+    }
+
+    get value() {
+      return this.value_;
+    }
+
+    get diagnostics() {
+      return this.diagnostics_;
+    }
+
+    addSample(other) {
+      this.value_ += other.value;
+      this.diagnostics_.addDiagnostics(other.diagnostics);
+    }
+
+    asDict() {
+      if (this.diagnostics.size === 0) return [this.value];
+      return [this.value, this.diagnostics.asDict()];
+    }
+
+    static fromDict(dict) {
+      if (dict instanceof Array) {
+        return new Sample(dict[0], tr.v.d.DiagnosticMap.fromDict(
+            dict[1] || {}));
+      }
+
+      // Legacy HistogramBin.diagnosticMaps:
+      return new Sample(undefined, tr.v.d.DiagnosticMap.fromDict(dict));
+    }
+  }
+
   class HistogramBin {
     /**
      * @param {!tr.b.math.Range} range
      */
     constructor(range) {
-      this.range = range;
-      this.count = 0;
-      this.diagnosticMaps = [];
+      this.range_ = range;
+      this.count_ = 0;
+      this.samples_ = [];
+    }
+
+    get range() {
+      return this.range_;
+    }
+
+    get count() {
+      return this.count_;
+    }
+
+    get samples() {
+      return this.samples_;
     }
 
     /**
-     * @param {*} value
+     * @param {!Sample} sample
      */
-    addSample(value) {
-      this.count += 1;
-    }
-
-    /**
-     * @param {!tr.v.d.DiagnosticMap} diagnostics
-     */
-    addDiagnosticMap(diagnostics) {
-      tr.b.math.Statistics.uniformlySampleStream(
-          this.diagnosticMaps, this.count, diagnostics, MAX_DIAGNOSTIC_MAPS);
+    addSample(sample) {
+      this.count_ += 1;
+      this.samples_.push(sample);
     }
 
     addBin(other) {
-      if (!this.range.equals(other.range)) {
-        throw new Error('Merging incompatible Histogram bins.');
+      if (((this.range === undefined) !== (other.range === undefined)) ||
+          (this.range && !this.range.equals(other.range))) {
+        throw new Error('Merging incompatible HistogramBins.');
       }
-      tr.b.math.Statistics.mergeSampledStreams(this.diagnosticMaps, this.count,
-          other.diagnosticMaps, other.count, MAX_DIAGNOSTIC_MAPS);
-      this.count += other.count;
+      this.count_ += other.count;
+      this.samples_.push.apply(this.samples_, other.samples);
     }
 
     fromDict(dict) {
-      this.count = dict[0];
+      this.count_ = dict[0];
       if (dict.length > 1) {
-        for (const map of dict[1]) {
-          this.diagnosticMaps.push(tr.v.d.DiagnosticMap.fromDict(map));
+        for (const sampleDict of dict[1]) {
+          this.samples_.push(Sample.fromDict(sampleDict));
         }
       }
     }
 
-    asDict() {
-      if (!this.diagnosticMaps.length) {
+    asDict(maxNumSamples) {
+      if (!this.samples.length) {
         return [this.count];
       }
+
+      // It's usually probably ok to retain all Samples in memory while building
+      // the Histogram or merging Histograms, but the number of Samples must be
+      // limited when serializing Histograms.
+      const sampleSample = this.samples.map(s => s);
+      tr.b.math.Statistics.uniformlySampleArray(sampleSample, maxNumSamples);
+
       // It's more efficient to serialize these 2 fields in an array. If you
       // add any other fields, you should re-evaluate whether it would be more
       // efficient to serialize as a dict.
-      return [this.count, this.diagnosticMaps.map(d => d.asDict())];
+      return [this.count, sampleSample.map(s => s.asDict())];
     }
   }
+
+  const EMPTY_NAN_BIN = new HistogramBin(undefined);
 
   const DEFAULT_SUMMARY_OPTIONS = new Map([
     ['avg', true],
@@ -176,12 +224,10 @@ tr.exportTo('tr.v', function() {
       this.description = '';
       const allowReservedNames = false;
       this.diagnostics_ = new tr.v.d.DiagnosticMap(allowReservedNames);
-      this.maxNumSampleValues_ = this.defaultMaxNumSampleValues_;
+      this.maxNumericSamples_ = DEFAULT_MAX_NUMERIC_SAMPLES;
       this.name_ = name;
-      this.nanDiagnosticMaps = [];
-      this.numNans = 0;
+      this.nanBin_ = EMPTY_NAN_BIN;
       this.running_ = undefined;
-      this.sampleValues_ = [];
       this.shortName = undefined;
       this.summaryOptions = new Map(DEFAULT_SUMMARY_OPTIONS);
       this.summaryOptions.set('percentile', []);
@@ -259,14 +305,16 @@ tr.exportTo('tr.v', function() {
       return this.running_;
     }
 
-    get maxNumSampleValues() {
-      return this.maxNumSampleValues_;
+    get maxNumericSamples() {
+      return this.maxNumericSamples_;
     }
 
-    set maxNumSampleValues(n) {
-      this.maxNumSampleValues_ = n;
-      tr.b.math.Statistics.uniformlySampleArray(
-          this.sampleValues_, this.maxNumSampleValues_);
+    set maxNumericSamples(n) {
+      this.maxNumericSamples_ = n;
+    }
+
+    get nanBin() {
+      return this.nanBin_;
     }
 
     get name() {
@@ -329,20 +377,50 @@ tr.exportTo('tr.v', function() {
         }
         hist.customizeSummaryOptions(dict.summaryOptions);
       }
+
+      if (dict.maxNumericSamples !== undefined) {
+        hist.maxNumericSamples = dict.maxNumericSamples;
+      }
+
+      if (dict.nanBin) {
+        hist.nanBin_ = new HistogramBin(undefined);
+        hist.nanBin_.fromDict(dict.nanBin);
+      }
+
+      // Legacy:
       if (dict.maxNumSampleValues !== undefined) {
-        hist.maxNumSampleValues = dict.maxNumSampleValues;
+        hist.maxNumericSamples = dict.maxNumSampleValues;
       }
-      if (dict.sampleValues) {
-        hist.sampleValues_ = dict.sampleValues;
-      }
+
+      // Legacy:
       if (dict.numNans) {
-        hist.numNans = dict.numNans;
+        hist.nanBin_ = new HistogramBin(undefined);
+        hist.nanBin.fromDict([dict.numNans]);
       }
+
+      // Legacy:
       if (dict.nanDiagnostics) {
+        if (hist.nanBin === EMPTY_NAN_BIN) {
+          hist.nanBin_ = new HistogramBin(undefined);
+        }
         for (const map of dict.nanDiagnostics) {
-          hist.nanDiagnosticMaps.push(tr.v.d.DiagnosticMap.fromDict(map));
+          hist.nanBin.samples.push(Sample.fromDict(map));
         }
       }
+
+      // Legacy:
+      if (dict.sampleValues) {
+        for (const value of dict.sampleValues) {
+          let bin;
+          if (typeof(value) !== 'number' || isNaN(value)) {
+            bin = hist.nanBin;
+          } else {
+            bin = hist.getBinForValue(value);
+          }
+          bin.samples.push(new Sample(value, new tr.v.d.DiagnosticMap()));
+        }
+      }
+
       return hist;
     }
 
@@ -421,9 +499,7 @@ tr.exportTo('tr.v', function() {
       }
       if (this.numValues === 0) return undefined;
       if (this.allBins.length === 1) {
-        // Copy sampleValues, don't sort them in place, in order to preserve
-        // insertion order.
-        const sortedSampleValues = this.sampleValues.slice().sort(
+        const sortedSampleValues = this.sampleValues.sort(
             (x, y) => x - y);
         return sortedSampleValues[Math.floor((sortedSampleValues.length - 1) *
             percent)];
@@ -460,17 +536,19 @@ tr.exportTo('tr.v', function() {
      * @param {(!Object|!tr.v.d.DiagnosticMap)=} opt_diagnostics
      */
     addSample(value, opt_diagnostics) {
-      if (opt_diagnostics &&
-          !(opt_diagnostics instanceof tr.v.d.DiagnosticMap)) {
+      if (opt_diagnostics === undefined) {
+        opt_diagnostics = new tr.v.d.DiagnosticMap();
+      }
+      if (!(opt_diagnostics instanceof tr.v.d.DiagnosticMap)) {
         opt_diagnostics = tr.v.d.DiagnosticMap.fromObject(opt_diagnostics);
       }
+      const sample = new Sample(value, opt_diagnostics);
 
       if (typeof(value) !== 'number' || isNaN(value)) {
-        this.numNans++;
-        if (opt_diagnostics) {
-          tr.b.math.Statistics.uniformlySampleStream(this.nanDiagnosticMaps,
-              this.numNans, opt_diagnostics, MAX_DIAGNOSTIC_MAPS);
+        if (this.nanBin.count === 0) {
+          this.nanBin_ = new HistogramBin(undefined);
         }
+        this.nanBin.addSample(sample);
       } else {
         if (this.running_ === undefined) {
           this.running_ = new tr.b.math.RunningStatistics();
@@ -485,19 +563,7 @@ tr.exportTo('tr.v', function() {
           bin = new HistogramBin(bin.range);
           this.allBins[binIndex] = bin;
         }
-        bin.addSample(value);
-        if (opt_diagnostics) {
-          bin.addDiagnosticMap(opt_diagnostics);
-        }
-      }
-
-      tr.b.math.Statistics.uniformlySampleStream(this.sampleValues_,
-          this.numValues + this.numNans, value, this.maxNumSampleValues);
-    }
-
-    sampleValuesInto(samples) {
-      for (const sampleValue of this.sampleValues) {
-        samples.push(sampleValue);
+        bin.addSample(sample);
       }
     }
 
@@ -585,14 +651,16 @@ tr.exportTo('tr.v', function() {
         }
       }
 
-      tr.b.math.Statistics.mergeSampledStreams(this.nanDiagnosticMaps,
-          this.numNans, other.nanDiagnosticMaps, other.numNans,
-          MAX_DIAGNOSTIC_MAPS);
       tr.b.math.Statistics.mergeSampledStreams(
           this.sampleValues, this.numValues + this.numNans,
           other.sampleValues, other.numValues + other.numNans,
           (this.maxNumSampleValues + other.maxNumSampleValues) / 2);
-      this.numNans += other.numNans;
+      if (other.nanBin.count) {
+        if (this.nanBin.count === 0) {
+          this.nanBin_ = new HistogramBin();
+        }
+        this.nanBin.addBin(other.nanBin);
+      }
 
       if (other.running_ !== undefined) {
         if (this.running_ === undefined) {
@@ -692,7 +760,7 @@ tr.exportTo('tr.v', function() {
       }
       if (statName === 'nans') {
         return new tr.b.Scalar(
-            tr.b.Unit.byName.count_smallerIsBetter, this.numNans);
+            tr.b.Unit.byName.count_smallerIsBetter, this.nanBin.count);
       }
       if (statName === 'count') {
         return new tr.b.Scalar(
@@ -860,7 +928,13 @@ tr.exportTo('tr.v', function() {
     }
 
     get sampleValues() {
-      return this.sampleValues_;
+      const values = [];
+      for (const bin of this.allBins) {
+        for (const sample of bin.samples) {
+          values.push(sample.value);
+        }
+      }
+      return values;
     }
 
     /**
@@ -932,19 +1006,13 @@ tr.exportTo('tr.v', function() {
       if (this.diagnostics.size) {
         dict.diagnostics = this.diagnostics.asDict();
       }
-      if (this.maxNumSampleValues !== this.defaultMaxNumSampleValues_) {
-        dict.maxNumSampleValues = this.maxNumSampleValues;
+      if (this.maxNumericSamples !== DEFAULT_MAX_NUMERIC_SAMPLES) {
+        dict.maxNumericSamples = this.maxNumericSamples;
       }
-      if (this.numNans) {
-        dict.numNans = this.numNans;
+      if (this.nanBin.count) {
+        dict.nanBin = this.nanBin.asDict(MAX_NAN_BIN_SAMPLES);
       }
-      if (this.nanDiagnosticMaps.length) {
-        dict.nanDiagnostics = this.nanDiagnosticMaps.map(
-            dm => dm.asDict());
-      }
-
       if (this.numValues) {
-        dict.sampleValues = this.sampleValues.slice();
         dict.running = this.running_.asDict();
         dict.allBins = this.allBinsAsDict_();
       }
@@ -996,16 +1064,16 @@ tr.exportTo('tr.v', function() {
         }
       }
 
-      if (emptyBins === numBins) {
-        return undefined;
-      }
+      if (emptyBins === numBins) return undefined;
+
+      const sampleRatio = this.maxNumericSamples / this.numValues;
 
       if (emptyBins > (numBins / 2)) {
         const allBinsDict = {};
         for (let i = 0; i < numBins; ++i) {
           const bin = this.allBins[i];
           if (bin.count > 0) {
-            allBinsDict[i] = bin.asDict();
+            allBinsDict[i] = bin.asDict(Math.ceil(bin.count * sampleRatio));
           }
         }
         return allBinsDict;
@@ -1013,16 +1081,10 @@ tr.exportTo('tr.v', function() {
 
       const allBinsArray = [];
       for (let i = 0; i < numBins; ++i) {
-        allBinsArray.push(this.allBins[i].asDict());
+        allBinsArray.push(this.allBins[i].asDict(
+            Math.ceil(this.allBins[i].count * sampleRatio)));
       }
       return allBinsArray;
-    }
-
-    get defaultMaxNumSampleValues_() {
-      // Single-bin histograms might be rebin()ned, so they should retain enough
-      // samples that the rebinned histogram looks close enough.
-      return DEFAULT_SAMPLE_VALUES_PER_BIN * Math.max(
-          this.allBins.length, DEFAULT_REBINNED_COUNT);
     }
   }
 
@@ -1504,6 +1566,7 @@ tr.exportTo('tr.v', function() {
     Histogram,
     HistogramBinBoundaries,
     P_VALUE_NAME,
+    Sample,
     U_STATISTIC_NAME,
     Z_SCORE_NAME,
     percentFromString,

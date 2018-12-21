@@ -94,8 +94,9 @@ tr.b.unittest.testSuite(function() {
             'resource_loading'),
         'timeToFirstContentfulPaint:resource_loading');
     assert.strictEqual(fcpResourceLoading.sum, 100);
-    assert.strictEqual(tr.b.getOnlyElement(hist.getBinForValue(
-        800).diagnosticMaps).get('breakdown').get('resource_loading'), 100);
+    const sample = tr.b.getOnlyElement(hist.getBinForValue(800).samples);
+    const breakdown = sample.diagnostics.get('breakdown');
+    assert.strictEqual(breakdown.get('resource_loading'), 100);
   });
 
   test('timeToFirstContentfulPaintIgnoringWarmCache', function() {
@@ -358,12 +359,12 @@ tr.b.unittest.testSuite(function() {
     const histograms = new tr.v.HistogramSet();
     tr.metrics.sh.loadingMetric(histograms, model);
     const hist = histograms.getHistogramNamed('cpuTimeToFirstMeaningfulPaint');
-    assert.deepEqual(hist.sampleValues, [225]);
-    const histBin = hist.getBinForValue(225);
-    assert.closeTo(histBin.diagnosticMaps[0]
-        .get('breakdown').get('other'), 400 / 3, 0.1);
-    assert.strictEqual(histBin.diagnosticMaps[0]
-        .get('breakdown').get('resource_loading'), 100);
+    assert.deepEqual(hist.sampleValues, [40]);
+    const histBin = hist.getBinForValue(40);
+    assert.strictEqual(histBin.samples[0].diagnostics
+        .get('breakdown').get('other'), 35);
+    assert.strictEqual(histBin.samples[0].diagnostics
+        .get('breakdown').get('resource_loading'), 15);
   });
 
   //             [-------------]        [------------------]
@@ -519,10 +520,10 @@ tr.b.unittest.testSuite(function() {
     const hist = histograms.getHistogramNamed('cpuTimeToFirstMeaningfulPaint');
     assert.deepEqual(hist.sampleValues, [50, 100]);
     const histBin1 = hist.getBinForValue(50);
-    assert.strictEqual(histBin1.diagnosticMaps[0]
+    assert.strictEqual(histBin1.samples[0].diagnostics
         .get('breakdown').get('resource_loading'), 50);
     const histBin2 = hist.getBinForValue(100);
-    assert.strictEqual(histBin2.diagnosticMaps[0]
+    assert.strictEqual(histBin2.samples[0].diagnostics
         .get('breakdown').get('other'), 100);
   });
 
@@ -704,14 +705,16 @@ tr.b.unittest.testSuite(function() {
 
     const histograms = new tr.v.HistogramSet();
     tr.metrics.sh.loadingMetric(histograms, model);
-    const ttiHist = histograms.getHistogramNamed('timeToInteractive');
-    assert.strictEqual(1, ttiHist.running.count);
-    // 3000 - 200 (navStart) = 2800.
-    assert.strictEqual(2800, ttiHist.running.mean);
-    const firstCpuIdleHist = histograms.getHistogramNamed('timeToFirstCpuIdle');
-    assert.strictEqual(1, firstCpuIdleHist.running.count);
-    // 3000 - 200 (navStart) = 2800.
-    assert.strictEqual(2800, firstCpuIdleHist.running.mean);
+    const hist = histograms.getHistogramNamed('timeToFirstInteractive');
+    assert.strictEqual(1, hist.running.count);
+    assert.strictEqual(15200, hist.running.mean);
+    const binsWithSampleDiagnosticMaps = hist.allBins.filter(
+        bin => bin.samples.length > 0);
+    const diagnostic = tr.b.getOnlyElement(binsWithSampleDiagnosticMaps[0]
+        .samples[0].diagnostics.get('infos'));
+    assert.strictEqual(diagnostic.start, 200);
+    assert.strictEqual(diagnostic.interactive, 15400);
+    assert.strictEqual(diagnostic.pid, 1984);
   });
 
   test('interactivityMetrics_networkBusyBlocksInteractivity', function() {

@@ -170,13 +170,13 @@ tr.exportTo('tr.v', function() {
       for (const hist of this) {
         handleDiagnosticMap(hist.diagnostics);
 
-        for (const dm of hist.nanDiagnosticMaps) {
-          handleDiagnosticMap(dm);
+        for (const sample of hist.nanBin.samples) {
+          handleDiagnosticMap(sample.diagnostics);
         }
 
         for (const bin of hist.allBins) {
-          for (const dm of bin.diagnosticMaps) {
-            handleDiagnosticMap(dm);
+          for (const sample of bin.samples) {
+            handleDiagnosticMap(sample.diagnostics);
           }
         }
       }
@@ -271,12 +271,12 @@ tr.exportTo('tr.v', function() {
 
       for (const hist of this) {
         deleteSourceHistograms(hist.diagnostics);
-        for (const dm of hist.nanDiagnosticMaps) {
-          deleteSourceHistograms(dm);
+        for (const sample of hist.nanBin.samples) {
+          deleteSourceHistograms(sample.diagnostics);
         }
         for (const b of hist.allBins) {
-          for (const dm of b.diagnosticMaps) {
-            deleteSourceHistograms(dm);
+          for (const sample of b.samples) {
+            deleteSourceHistograms(sample.diagnostics);
           }
         }
       }

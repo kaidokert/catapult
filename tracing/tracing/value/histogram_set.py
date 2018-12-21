@@ -80,11 +80,11 @@ class HistogramSet(object):
 
     for hist in self:
       HandleDiagnosticMap(hist.diagnostics)
-      for dm in hist.nan_diagnostic_maps:
-        HandleDiagnosticMap(dm)
+      for sample in hist.nan_bin.samples:
+        HandleDiagnosticMap(sample.diagnostics)
       for hbin in hist.bins:
-        for dm in hbin.diagnostic_maps:
-          HandleDiagnosticMap(dm)
+        for sample in hbin.samples:
+          HandleDiagnosticMap(sample.diagnostics)
 
   def __len__(self):
     return len(self._histograms_by_guid)

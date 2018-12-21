@@ -28,13 +28,13 @@ tr.b.unittest.testSuite(function() {
 
     if (breakdownHistograms === undefined) return;
     const countBin = tr.b.getOnlyElement(countHistogram.allBins.filter(
-        bin => bin.diagnosticMaps.length > 0));
+        bin => bin.samples.length > 0));
     const durationBin = tr.b.getOnlyElement(durationHistogram.allBins.filter(
-        bin => bin.diagnosticMaps.length > 0));
+        bin => bin.samples.length > 0));
     for (const name of breakdownHistograms) {
-      assert.notEqual(tr.b.getOnlyElement(countBin.diagnosticMaps)
+      assert.notEqual(countBin.samples[0].diagnostics
           .get('samples').get(name + ':count'), undefined);
-      assert.notEqual(tr.b.getOnlyElement(durationBin.diagnosticMaps)
+      assert.notEqual(durationBin.samples[0].diagnostics
           .get('samples').get(name + ':duration'), undefined);
     }
   }

@@ -30,6 +30,10 @@ except NameError:
 JS_MAX_VALUE = 1.7976931348623157e+308
 
 
+DEFAULT_MAX_NUMERIC_SAMPLES = 100
+MAX_NAN_BIN_SAMPLES = 20
+
+
 # Converts the given percent to a string in the following format:
 # 0.x produces '0x0',
 # 0.xx produces '0xx',
@@ -132,6 +136,10 @@ def Percentile(ary, percent):
   return ary[int((len(ary) - 1) * percent)]
 
 
+def Approximately(x, y, delta=1e-9):
+  return abs(x - y) < delta
+
+
 class Range(object):
   __slots__ = '_empty', '_min', '_max'
 
@@ -197,6 +205,14 @@ class Range(object):
       return
     self.AddValue(other.min)
     self.AddValue(other.max)
+
+  def Equals(self, other):
+    if self.empty and other.empty:
+      return True
+    if self.empty != other.empty:
+      return False
+    return Approximately(self.min, other.min) and Approximately(
+        self.max, other.max)
 
 
 # This class computes statistics online in O(1).
@@ -488,19 +504,53 @@ class DiagnosticMap(dict):
           my_diagnostic, other_diagnostic])
 
 
-MAX_DIAGNOSTIC_MAPS = 16
+class Sample(object):
+
+  def __init__(self, value, diagnostics):
+    self._value = value
+    self._diagnostics = diagnostics
+
+  @property
+  def value(self):
+    return self._value
+
+  @property
+  def diagnostics(self):
+    return self._diagnostics
+
+  def AddSample(self, other):
+    self._value += other.value
+    self._diagnostics.Merge(other.diagnostics, None, None, None)
+
+  def AsDict(self):
+    if len(self.diagnostics) == 0:
+      return [self.value]
+    return [self.value, self.diagnostics.AsDict()]
+
+  @staticmethod
+  def FromDict(dct):
+    if isinstance(dct, list):
+      if len(dct) > 1:
+        diagnostics = DiagnosticMap.FromDict(dct[1])
+      else:
+        diagnostics = DiagnosticMap()
+      return Sample(dct[0], diagnostics)
+
+    # Legacy HistogramBin.diagnosticMaps
+    return Sample(None, DiagnosticMap.FromDict(dct))
 
 
 class HistogramBin(object):
-  __slots__ = '_range', '_count', '_diagnostic_maps'
+  __slots__ = '_range', '_count', '_samples'
 
   def __init__(self, rang):
     self._range = rang
     self._count = 0
-    self._diagnostic_maps = []
+    self._samples = []
 
-  def AddSample(self, unused_x):
+  def AddSample(self, sample):
     self._count += 1
+    self._samples.append(sample)
 
   @property
   def count(self):
@@ -511,27 +561,29 @@ class HistogramBin(object):
     return self._range
 
   def AddBin(self, other):
+    if (((self.range is None) != (other.range is None)) or
+        (self.range and not self.range.Equals(other.range))):
+      raise ValueError('Merging incompatible HistogramBins.')
     self._count += other.count
+    self._samples.extend(other.samples)
 
   @property
-  def diagnostic_maps(self):
-    return self._diagnostic_maps
-
-  def AddDiagnosticMap(self, diagnostics):
-    UniformlySampleStream(
-        self._diagnostic_maps, self.count, diagnostics, MAX_DIAGNOSTIC_MAPS)
+  def samples(self):
+    return self._samples
 
   def FromDict(self, dct):
     self._count = dct[0]
     if len(dct) > 1:
-      for diagnostic_map_dict in dct[1]:
-        self._diagnostic_maps.append(DiagnosticMap.FromDict(
-            diagnostic_map_dict))
+      for sample_dict in dct[1]:
+        self._samples.append(Sample.FromDict(sample_dict))
 
-  def AsDict(self):
-    if len(self._diagnostic_maps) == 0:
+  def AsDict(self, max_num_samples):
+    if len(self._samples) == 0:
       return [self.count]
-    return [self.count, [d.AsDict() for d in self._diagnostic_maps]]
+
+    sample_sample = list(self._samples)
+    UniformlySampleArray(sample_sample, max_num_samples)
+    return [self.count, [s.AsDict() for s in sample_sample]]
 
 
 # TODO(#3814) Presubmit to compare with unit.html.
@@ -601,23 +653,22 @@ DEFAULT_SUMMARY_OPTIONS = {
     # instance for each Histogram instance.
 }
 
+EMPTY_NAN_BIN = HistogramBin(None)
 
 class Histogram(object):
   __slots__ = (
-      '_guid',
       '_bin_boundaries_dict',
+      '_bins',
       '_description',
-      '_name',
       '_diagnostics',
-      '_nan_diagnostic_maps',
-      '_num_nans',
+      '_guid',
+      '_max_numeric_samples',
+      '_name',
+      '_nan_bin',
       '_running',
-      '_sample_values',
       '_short_name',
       '_summary_options',
-      '_unit',
-      '_bins',
-      '_max_num_sample_values')
+      '_unit')
 
   def __init__(self, name, unit, bin_boundaries=None):
     assert unit in UNIT_NAMES, (
@@ -627,7 +678,6 @@ class Histogram(object):
       base_unit = unit.split('_')[0]
       bin_boundaries = DEFAULT_BOUNDARIES_FOR_UNIT[base_unit]
 
-    self._guid = None
 
     # Serialize bin boundaries here instead of holding a reference to it in case
     # it is modified.
@@ -638,23 +688,17 @@ class Histogram(object):
     # HistogramBins until we need to modify it (copy-on-write).
     self._bins = list(bin_boundaries.bins)
     self._description = ''
-    self._name = name
     self._diagnostics = DiagnosticMap()
     self._diagnostics.DisallowReservedNames()
-    self._nan_diagnostic_maps = []
-    self._num_nans = 0
+    self._guid = None
+    self._max_numeric_samples = DEFAULT_MAX_NUMERIC_SAMPLES
+    self._name = name
+    self._nan_bin = HistogramBin(None)
     self._running = None
-    self._sample_values = []
     self._short_name = None
     self._summary_options = dict(DEFAULT_SUMMARY_OPTIONS)
     self._summary_options['percentile'] = []
     self._unit = unit
-
-    self._max_num_sample_values = self._GetDefaultMaxNumSampleValues()
-
-  @property
-  def nan_diagnostic_maps(self):
-    return self._nan_diagnostic_maps
 
   @property
   def unit(self):
@@ -665,17 +709,20 @@ class Histogram(object):
     return self._running
 
   @property
-  def max_num_sample_values(self):
-    return self._max_num_sample_values
+  def max_numeric_samples(self):
+    return self._max_numeric_samples
 
-  @max_num_sample_values.setter
-  def max_num_sample_values(self, n):
-    self._max_num_sample_values = n
-    UniformlySampleArray(self._sample_values, self._max_num_sample_values)
+  @max_numeric_samples.setter
+  def max_numeric_samples(self, n):
+    self._max_numeric_samples = n
 
   @property
   def sample_values(self):
-    return self._sample_values
+    values = []
+    for hbin in self._bins:
+      for sample in hbin.samples:
+        values.append(sample.value)
+    return values
 
   @property
   def name(self):
@@ -731,15 +778,39 @@ class Histogram(object):
       hist._running = RunningStatistics.FromDict(dct['running'])
     if 'summaryOptions' in dct:
       hist.CustomizeSummaryOptions(dct['summaryOptions'])
+
+    if 'maxNumericSamples' in dct:
+      hist.max_numeric_samples = dct['maxNumericSamples']
+
+    if 'nanBin' in dct:
+      hist._nan_bin = HistogramBin(None)
+      hist.nan_bin.FromDict(dct['nanBin'])
+
+    # Legacy:
     if 'maxNumSampleValues' in dct:
-      hist._max_num_sample_values = dct['maxNumSampleValues']
-    if 'sampleValues' in dct:
-      hist._sample_values = dct['sampleValues']
+      hist.max_numeric_samples = dct['maxNumSampleValues']
+
+    # Legacy:
     if 'numNans' in dct:
-      hist._num_nans = dct['numNans']
+      hist._nan_bin = HistogramBin(None)
+      hist._nan_bin.FromDict([dct['numNans']])
+
+    # Legacy:
     if 'nanDiagnostics' in dct:
+      if hist._nan_bin is EMPTY_NAN_BIN:
+        hist._nan_bin = HistogramBin(None)
       for map_dct in dct['nanDiagnostics']:
-        hist._nan_diagnostic_maps.append(DiagnosticMap.FromDict(map_dct))
+        hist._nan_bin.samples.append(Sample.FromDict(map_dct))
+
+    # Legacy:
+    if 'sampleValues' in dct:
+      for value in dct['sampleValues']:
+        if not isinstance(value, numbers.Number) or math.isnan(value):
+          hbin = hist.nan_bin
+        else:
+          hbin = hist.GetBinForValue(value)
+        hbin.samples.append(Sample(value, DiagnosticMap()))
+
     return hist
 
   @property
@@ -749,8 +820,8 @@ class Histogram(object):
     return self._running.count
 
   @property
-  def num_nans(self):
-    return self._num_nans
+  def nan_bin(self):
+    return self._nan_bin
 
   @property
   def average(self):
@@ -783,7 +854,7 @@ class Histogram(object):
       return 0
 
     if len(self._bins) == 1:
-      sorted_sample_values = list(self._sample_values)
+      sorted_sample_values = self.sample_values
       sorted_sample_values.sort()
       return sorted_sample_values[
           int((len(sorted_sample_values) - 1) * percent)]
@@ -815,12 +886,13 @@ class Histogram(object):
     if (diagnostic_map is not None and
         not isinstance(diagnostic_map, DiagnosticMap)):
       diagnostic_map = DiagnosticMap(diagnostic_map)
+    if diagnostic_map is None:
+      diagnostic_map = DiagnosticMap()
+
+    sample = Sample(value, diagnostic_map)
 
     if not isinstance(value, numbers.Number) or math.isnan(value):
-      self._num_nans += 1
-      if diagnostic_map:
-        UniformlySampleStream(self._nan_diagnostic_maps, self.num_nans,
-                              diagnostic_map, MAX_DIAGNOSTIC_MAPS)
+      self._nan_bin.AddSample(sample)
     else:
       if self._running is None:
         self._running = RunningStatistics()
@@ -831,12 +903,7 @@ class Histogram(object):
       if hbin.count == 0:
         hbin = HistogramBin(hbin.range)
         self._bins[bin_index] = hbin
-      hbin.AddSample(value)
-      if diagnostic_map:
-        hbin.AddDiagnosticMap(diagnostic_map)
-
-    UniformlySampleStream(self._sample_values, self.num_values + self.num_nans,
-                          value, self.max_num_sample_values)
+      hbin.AddSample(sample)
 
   def CanAddHistogram(self, other):
     if self.unit != other.unit:
@@ -847,11 +914,7 @@ class Histogram(object):
     if not self.CanAddHistogram(other):
       raise ValueError('Merging incompatible Histograms')
 
-    MergeSampledStreams(
-        self.sample_values, self.num_values,
-        other.sample_values, other.num_values,
-        (self.max_num_sample_values + other.max_num_sample_values) / 2)
-    self._num_nans += other._num_nans
+    self.nan_bin.AddBin(other.nan_bin)
 
     if other.running is not None:
       if self.running is None:
@@ -895,7 +958,7 @@ class Histogram(object):
           results['pct_' + PercentToString(percent)] = Scalar(
               self.unit, percentile)
       elif stat_name == 'nans':
-        results['nans'] = Scalar('count', self.num_nans)
+        results['nans'] = Scalar('count', self.nan_bin.count)
       else:
         if stat_name == 'count':
           stat_unit = 'count'
@@ -926,14 +989,14 @@ class Histogram(object):
       dct['description'] = self._description
     if len(self.diagnostics):
       dct['diagnostics'] = self.diagnostics.AsDict()
-    if self.max_num_sample_values != self._GetDefaultMaxNumSampleValues():
-      dct['maxNumSampleValues'] = self.max_num_sample_values
-    if self.num_nans:
-      dct['numNans'] = self.num_nans
-    if len(self.nan_diagnostic_maps):
-      dct['nanDiagnostics'] = [m.AsDict() for m in self.nan_diagnostic_maps]
+
+    if self.max_numeric_samples != DEFAULT_MAX_NUMERIC_SAMPLES:
+      dct['maxNumericSamples'] = self.max_numeric_samples
+
+    if self.nan_bin.count:
+      dct['nanBin'] = self.nan_bin.AsDict(MAX_NAN_BIN_SAMPLES)
+
     if self.num_values:
-      dct['sampleValues'] = list(self.sample_values)
       dct['running'] = self._running.AsDict()
       dct['allBins'] = self._GetAllBinsAsDict()
       if dct['allBins'] is None:
@@ -962,20 +1025,19 @@ class Histogram(object):
     if empty_bins == num_bins:
       return None
 
+    sample_ratio = float(self.max_numeric_samples) / self.num_values
+
     if empty_bins > (num_bins / 2):
       all_bins_dict = {}
       for i, hbin in enumerate(self._bins):
         if hbin.count > 0:
-          all_bins_dict[i] = hbin.AsDict()
+          all_bins_dict[i] = hbin.AsDict(math.ceil(hbin.count * sample_ratio))
       return all_bins_dict
 
     all_bins_list = []
     for hbin in self._bins:
-      all_bins_list.append(hbin.AsDict())
+      all_bins_list.append(hbin.AsDict(math.ceil(hbin.count * sample_ratio)))
     return all_bins_list
-
-  def _GetDefaultMaxNumSampleValues(self):
-    return len(self._bins) * 10
 
 
 class HistogramBinBoundaries(object):
