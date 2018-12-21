@@ -69,6 +69,24 @@
       "revId": "5ca02e3251831aec3312388234a3e81f931f83eb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebd29dbe_2277b23f",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-12-21T10:18:22Z",
+      "side": 1,
+      "message": "Ack. Possibly for a follow up CL, but could we catch and expand those string encoded jsons somewhere earlier when creating the job?",
+      "parentUuid": "4b157a06_1150ad41",
+      "revId": "5ca02e3251831aec3312388234a3e81f931f83eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
