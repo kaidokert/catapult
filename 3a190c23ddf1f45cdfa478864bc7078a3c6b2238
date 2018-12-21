@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ed26eccf_bc14d85d",
+        "filename": "telemetry/telemetry/internal/results/results_options.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-12-21T10:21:02Z",
+      "side": 0,
+      "message": "🤣",
+      "revId": "3a190c23ddf1f45cdfa478864bc7078a3c6b2238",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
