@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "941d66d1_e49511e6",
+        "filename": "telemetry/telemetry/record_wpr_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2018-12-21T14:56:03Z",
+      "side": 0,
+      "message": "this test no longer makes sense, since RunNavigateSteps is not part of the \"page_test\" object any more (what all of these methods are testing).",
+      "revId": "4ee958e1f5215809e5d2df1ad308331c3ac67ff5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
