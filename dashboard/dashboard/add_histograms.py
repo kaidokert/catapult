@@ -177,9 +177,6 @@ def ProcessHistogramSet(histogram_dicts):
   with timing.WallTimeLogger('hs.ResolveRelatedHistograms'):
     histograms.ResolveRelatedHistograms()
 
-  with timing.WallTimeLogger('hs.DeduplicateDiagnostics'):
-    histograms.DeduplicateDiagnostics()
-
   if len(histograms) == 0:
     raise api_request_handler.BadRequestError(
         'HistogramSet JSON must contain at least one histogram.')

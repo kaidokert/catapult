@@ -24,13 +24,14 @@ class RelatedHistogramBreakdown(histogram.RelatedHistogramMap):
         break  # Only the first Histogram needs to be checked.
     super(RelatedHistogramBreakdown, self).Set(name, hist)
 
-  def _AsDictInto(self, d):
-    histogram.RelatedHistogramMap._AsDictInto(self, d)
+  def AsDict(self, serializer):
+    d = histogram.RelatedHistogramMap.AsDict(self, serializer)
     if self._color_scheme:
       d['colorScheme'] = self._color_scheme
+    return d
 
   @staticmethod
-  def FromDict(d):
+  def FromDict(d, unused_deserializer=None):
     result = RelatedHistogramBreakdown()
     for name, guid in d['values'].items():
       result.Set(name, histogram.HistogramRef(guid))

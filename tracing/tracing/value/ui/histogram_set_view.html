@@ -173,7 +173,7 @@ tr.exportTo('tr.v.ui', function() {
         csv.build();
         blob = new window.Blob([csv.toString()], {type: 'text/csv'});
       } else if (event.format === 'json') {
-        blob = new window.Blob([JSON.stringify(histograms.asDicts())],
+        blob = new window.Blob([JSON.stringify(histograms.asDict())],
             {type: 'text/json'});
       } else {
         throw new Error(`Unable to export format "${event.format}"`);
