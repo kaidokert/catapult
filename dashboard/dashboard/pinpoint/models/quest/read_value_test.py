@@ -130,7 +130,7 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
     histograms.AddSharedDiagnosticToAllHistograms(
         reserved_infos.STORIES.name,
         generic_set.GenericSet(['story']))
-    self.SetOutputFileContents(histograms.AsDicts())
+    self.SetOutputFileContents(histograms.AsDict())
 
     quest = read_value.ReadHistogramsJsonValue(
         'chartjson-output.json', hist.name, 'tir_label', 'story')
@@ -153,7 +153,7 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
     histograms.AddSharedDiagnosticToAllHistograms(
         reserved_infos.STORIES.name,
         generic_set.GenericSet(['http://story']))
-    self.SetOutputFileContents(histograms.AsDicts())
+    self.SetOutputFileContents(histograms.AsDict())
 
     quest = read_value.ReadHistogramsJsonValue(
         'chartjson-output.json', hist.name, 'tir_label', 'http://story')
@@ -176,7 +176,7 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
     histograms.AddSharedDiagnosticToAllHistograms(
         reserved_infos.STORIES.name,
         generic_set.GenericSet(['story']))
-    self.SetOutputFileContents(histograms.AsDicts())
+    self.SetOutputFileContents(histograms.AsDict())
 
     quest = read_value.ReadHistogramsJsonValue(
         'chartjson-output.json', hist.name,
@@ -197,7 +197,7 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
     histograms.AddSharedDiagnosticToAllHistograms(
         reserved_infos.STORIES.name,
         generic_set.GenericSet(['story']))
-    self.SetOutputFileContents(histograms.AsDicts())
+    self.SetOutputFileContents(histograms.AsDict())
 
     quest = read_value.ReadHistogramsJsonValue(
         'chartjson-output.json', hist.name,
@@ -227,7 +227,7 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
     histograms.AddSharedDiagnosticToAllHistograms(
         reserved_infos.STORIES.name,
         generic_set.GenericSet(['story']))
-    self.SetOutputFileContents(histograms.AsDicts())
+    self.SetOutputFileContents(histograms.AsDict())
 
     quest = read_value.ReadHistogramsJsonValue(
         'chartjson-output.json', hist.name, 'tir_label', 'story')
@@ -250,7 +250,7 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
     hist3.diagnostics[reserved_infos.TRACE_URLS.name] = (
         generic_set.GenericSet(['trace_url2']))
     histograms = histogram_set.HistogramSet([hist, hist2, hist3])
-    self.SetOutputFileContents(histograms.AsDicts())
+    self.SetOutputFileContents(histograms.AsDict())
 
     quest = read_value.ReadHistogramsJsonValue(
         'chartjson-output.json', hist_name=hist.name)
@@ -294,7 +294,7 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
         generic_set.GenericSet(['trace_url3']))
     hist2.diagnostics[reserved_infos.TRACE_URLS.name].guid = 'foo'
     histograms = histogram_set.HistogramSet([hist, hist2])
-    self.SetOutputFileContents(histograms.AsDicts())
+    self.SetOutputFileContents(histograms.AsDict())
 
     quest = read_value.ReadHistogramsJsonValue(
         'chartjson-output.json', hist_name=hist.name)
@@ -333,7 +333,7 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
         reserved_infos.STORY_TAGS.name,
         generic_set.GenericSet(['group:tir_label']))
 
-    self.SetOutputFileContents(histograms.AsDicts())
+    self.SetOutputFileContents(histograms.AsDict())
 
     quest = read_value.ReadHistogramsJsonValue(
         'chartjson-output.json', hist_name=hist.name, tir_label='tir_label')
@@ -354,7 +354,7 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
         reserved_infos.STORIES.name,
         generic_set.GenericSet(['story']))
 
-    self.SetOutputFileContents(histograms.AsDicts())
+    self.SetOutputFileContents(histograms.AsDict())
 
     quest = read_value.ReadHistogramsJsonValue(
         'chartjson-output.json', hist_name=hist.name, story='story')
@@ -383,7 +383,7 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
         reserved_infos.STORY_TAGS.name,
         generic_set.GenericSet(['group:tir_label']))
 
-    self.SetOutputFileContents(histograms.AsDicts())
+    self.SetOutputFileContents(histograms.AsDict())
 
     quest = read_value.ReadHistogramsJsonValue(
         'chartjson-output.json', hist_name=hists[0].name, tir_label='tir_label')
@@ -426,7 +426,7 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
         reserved_infos.STORY_TAGS.name,
         generic_set.GenericSet(['group:tir_label']))
 
-    self.SetOutputFileContents(histograms.AsDicts())
+    self.SetOutputFileContents(histograms.AsDict())
 
     quest = read_value.ReadHistogramsJsonValue(
         'chartjson-output.json', hist_name=hists[0].name)
@@ -457,7 +457,7 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
         reserved_infos.STORY_TAGS.name,
         generic_set.GenericSet(['group:tir_label']))
 
-    self.SetOutputFileContents(histograms.AsDicts())
+    self.SetOutputFileContents(histograms.AsDict())
 
     quest = read_value.ReadHistogramsJsonValue('chartjson-output.json')
     execution = quest.Start(None, 'server', 'output hash')
@@ -490,7 +490,7 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
   def testReadHistogramsJsonValueWithMissingHistogram(self):
     hist = histogram_module.Histogram('hist', 'count')
     histograms = histogram_set.HistogramSet([hist])
-    self.SetOutputFileContents(histograms.AsDicts())
+    self.SetOutputFileContents(histograms.AsDict())
 
     quest = read_value.ReadHistogramsJsonValue(
         'chartjson-output.json', hist_name='does_not_exist')
@@ -502,7 +502,7 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
   def testReadHistogramsJsonValueWithNoValues(self):
     hist = histogram_module.Histogram('hist', 'count')
     histograms = histogram_set.HistogramSet([hist])
-    self.SetOutputFileContents(histograms.AsDicts())
+    self.SetOutputFileContents(histograms.AsDict())
 
     quest = read_value.ReadHistogramsJsonValue(
         'chartjson-output.json', hist_name='chart')
@@ -514,7 +514,7 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
   def testReadHistogramsJsonValueTirLabelWithNoValues(self):
     hist = histogram_module.Histogram('hist', 'count')
     histograms = histogram_set.HistogramSet([hist])
-    self.SetOutputFileContents(histograms.AsDicts())
+    self.SetOutputFileContents(histograms.AsDict())
 
     quest = read_value.ReadHistogramsJsonValue(
         'chartjson-output.json', hist_name='chart', tir_label='tir_label')
@@ -526,7 +526,7 @@ class ReadHistogramsJsonValueTest(_ReadValueExecutionTest):
   def testReadHistogramsJsonValueStoryWithNoValues(self):
     hist = histogram_module.Histogram('hist', 'count')
     histograms = histogram_set.HistogramSet([hist])
-    self.SetOutputFileContents(histograms.AsDicts())
+    self.SetOutputFileContents(histograms.AsDict())
 
     quest = read_value.ReadHistogramsJsonValue(
         'chartjson-output.json', hist_name='chart', story='story')

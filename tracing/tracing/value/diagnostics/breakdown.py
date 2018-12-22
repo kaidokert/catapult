@@ -27,7 +27,7 @@ class Breakdown(diagnostic.Diagnostic):
     return self._color_scheme
 
   @staticmethod
-  def FromDict(d):
+  def FromDict(d, unused_deserializer=None):
     result = Breakdown()
     result._color_scheme = d.get('colorScheme')
     for name, value in d['values'].items():
@@ -36,8 +36,8 @@ class Breakdown(diagnostic.Diagnostic):
       result.Set(name, value)
     return result
 
-  def _AsDictInto(self, d):
-    d['values'] = {}
+  def AsDict(self, unused_serializer):
+    d = {'values': {}}
     for name, value in self:
       # JSON serializes NaN and the infinities as 'null', preventing
       # distinguishing between them. Override that behavior by serializing them
@@ -53,6 +53,7 @@ class Breakdown(diagnostic.Diagnostic):
       d['values'][name] = value
     if self._color_scheme:
       d['colorScheme'] = self._color_scheme
+    return d
 
   def Set(self, name, value):
     assert isinstance(name, StringTypes), (
