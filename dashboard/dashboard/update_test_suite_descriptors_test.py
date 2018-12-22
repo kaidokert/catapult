@@ -106,13 +106,13 @@ class UpdateTestSuiteDescriptorsTest(testing_common.TestCase):
         name=reserved_infos.TAG_MAP.name,
         end_revision=sys.maxint,
         data=tag_map.TagMap(
-            {'tagsToStoryNames': {'j': ['x']}}).AsDict()).put()
+            {'tagsToStoryNames': {'j': ['x']}}).AsDict(None)).put()
     histogram.SparseDiagnostic(
         test=utils.TestKey('master/b/suite'),
         name=reserved_infos.TAG_MAP.name,
         end_revision=sys.maxint,
         data=tag_map.TagMap(
-            {'tagsToStoryNames': {'j': ['y'], 'k': ['y']}}).AsDict()).put()
+            {'tagsToStoryNames': {'j': ['y'], 'k': ['y']}}).AsDict(None)).put()
 
     self.Post('/update_test_suite_descriptors')
 

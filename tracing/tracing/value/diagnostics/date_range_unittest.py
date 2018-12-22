@@ -16,7 +16,7 @@ class DateRangeUnittest(unittest.TestCase):
     dr.AddDiagnostic(date_range.DateRange(1496693746000))
     self.assertEqual(calendar.timegm(dr.min_date.timetuple()), 1496693745)
     self.assertEqual(calendar.timegm(dr.max_date.timetuple()), 1496693746)
-    clone = diagnostic.Diagnostic.FromDict(dr.AsDict())
+    clone = diagnostic.FromDict('DateRange', dr.AsDict(None), None)
     self.assertEqual(clone.min_date, dr.min_date)
     self.assertEqual(clone.max_date, dr.max_date)
 

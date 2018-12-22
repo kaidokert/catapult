@@ -69,11 +69,13 @@ class GenericSet(diagnostic.Diagnostic):
         self._values.append(value)
         self._comparable_set.add(value)
 
-  def _AsDictInto(self, dct):
-    dct['values'] = list(self)
+  def AsDict(self, unused_serializer):
+    return list(self)
 
   @staticmethod
-  def FromDict(dct):
+  def FromDict(dct, deserializer=None):
+    if deserializer:
+      return GenericSet(dct)
     return GenericSet(dct['values'])
 
   def GetOnlyElement(self):

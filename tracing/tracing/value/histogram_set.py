@@ -2,9 +2,9 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-import collections
-
 from tracing.value import histogram as histogram_module
+from tracing.value import histogram_deserializer
+from tracing.value import histogram_serializer
 from tracing.value.diagnostics import all_diagnostics
 from tracing.value.diagnostics import diagnostic
 from tracing.value.diagnostics import diagnostic_ref
@@ -16,6 +16,11 @@ class HistogramSet(object):
     self._shared_diagnostics_by_guid = {}
     for hist in histograms:
       self.AddHistogram(hist)
+
+  def CreateHistogram(self, name, unit, samples, **kw):
+    hist = histogram_module.Histogram.Create(name, unit, samples, **kw)
+    self.AddHistogram(hist)
+    return hist
 
   @property
   def shared_diagnostics(self):
@@ -94,22 +99,25 @@ class HistogramSet(object):
       yield hist
 
   def ImportDicts(self, dicts):
+    if not isinstance(dicts, list):
+      dicts = [dicts]
     for d in dicts:
-      if d.get('type') in all_diagnostics.GetDiagnosticTypenames():
-        diag = diagnostic.Diagnostic.FromDict(d)
-        self._shared_diagnostics_by_guid[d['guid']] = diag
-      else:
-        hist = histogram_module.Histogram.FromDict(d)
-        hist.diagnostics.ResolveSharedDiagnostics(self)
-        self.AddHistogram(hist)
+      self.ImportDict(d)
 
-  def AsDicts(self):
-    dcts = []
-    for d in self._shared_diagnostics_by_guid.values():
-      dcts.append(d.AsDict())
-    for h in self:
-      dcts.append(h.AsDict())
-    return dcts
+  def ImportDict(self, dct):
+    if dct.get('type') in all_diagnostics.GetDiagnosticTypenames():
+      diag = diagnostic.Diagnostic.FromDict(dct)
+      self._shared_diagnostics_by_guid[dct['guid']] = diag
+    elif histogram_serializer.HISTOGRAMS_TAG in dct:
+      for hist in histogram_deserializer.Deserialize(dct):
+        self.AddHistogram(hist)
+    else:
+      hist = histogram_module.Histogram.FromDict(dct)
+      hist.diagnostics.ResolveSharedDiagnostics(self)
+      self.AddHistogram(hist)
+
+  def AsDict(self):
+    return histogram_serializer.Serialize(self)
 
   def ReplaceSharedDiagnostic(self, old_guid, new_diagnostic):
     if not isinstance(new_diagnostic, diagnostic_ref.DiagnosticRef):
@@ -133,33 +141,3 @@ class HistogramSet(object):
       for name, diag in hist.diagnostics.items():
         if diag.has_guid and diag.guid == old_guid:
           hist.diagnostics[name] = new_diagnostic
-
-  def DeduplicateDiagnostics(self):
-    names_to_candidates = {}
-    diagnostics_to_histograms = collections.defaultdict(list)
-
-    for hist in self:
-      for name, candidate in hist.diagnostics.items():
-        diagnostics_to_histograms[candidate].append(hist)
-
-        if name not in names_to_candidates:
-          names_to_candidates[name] = set()
-        names_to_candidates[name].add(candidate)
-
-    for name, candidates in names_to_candidates.items():
-      deduplicated_diagnostics = set()
-
-      for candidate in candidates:
-        found = False
-        for test in deduplicated_diagnostics:
-          if candidate == test:
-            hists = diagnostics_to_histograms.get(candidate)
-            for h in hists:
-              h.diagnostics[name] = test
-            found = True
-            break
-        if not found:
-          deduplicated_diagnostics.add(candidate)
-
-        for diag in deduplicated_diagnostics:
-          self._shared_diagnostics_by_guid[diag.guid] = diag
