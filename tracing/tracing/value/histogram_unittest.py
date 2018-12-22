@@ -190,26 +190,26 @@ class HistogramUnittest(unittest.TestCase):
 
   def testSerializationSize(self):
     hist = histogram.Histogram('', 'unitless', self.TEST_BOUNDARIES)
-    d = hist.AsDict()
+    d = histogram_set.HistogramSet([hist]).AsDict()
     self.assertEqual(107, len(ToJSON(d)))
     self.assertIsNone(d.get('allBins'))
     self.assertDeepEqual(d, histogram.Histogram.FromDict(d).AsDict())
 
     hist.AddSample(100)
-    d = hist.AsDict()
+    d = histogram_set.HistogramSet([hist]).AsDict()
     self.assertEqual(198, len(ToJSON(d)))
     self.assertIsInstance(d['allBins'], dict)
     self.assertDeepEqual(d, histogram.Histogram.FromDict(d).AsDict())
 
     hist.AddSample(100)
-    d = hist.AsDict()
+    d = histogram_set.HistogramSet([hist]).AsDict()
     # SAMPLE_VALUES grew by "100,"
     self.assertEqual(202, len(ToJSON(d)))
     self.assertIsInstance(d['allBins'], dict)
     self.assertDeepEqual(d, histogram.Histogram.FromDict(d).AsDict())
 
     hist.AddSample(271, {'foo': generic_set.GenericSet(['bar'])})
-    d = hist.AsDict()
+    d = histogram_set.HistogramSet([hist]).AsDict()
     self.assertEqual(268, len(ToJSON(d)))
     self.assertIsInstance(d['allBins'], dict)
     self.assertDeepEqual(d, histogram.Histogram.FromDict(d).AsDict())
@@ -218,7 +218,7 @@ class HistogramUnittest(unittest.TestCase):
     # allBinsDict.
     for i in range(10, 100):
       hist.AddSample(10 * i)
-    d = hist.AsDict()
+    d = histogram_set.HistogramSet([hist]).AsDict()
     self.assertEqual(697, len(ToJSON(d)))
     self.assertIsInstance(d['allBins'], list)
     self.assertDeepEqual(d, histogram.Histogram.FromDict(d).AsDict())
@@ -228,7 +228,7 @@ class HistogramUnittest(unittest.TestCase):
     # that the serialized size is constant regardless of which samples are
     # retained.
     hist.max_num_sample_values = 10
-    d = hist.AsDict()
+    d = histogram_set.HistogramSet([hist]).AsDict()
     self.assertEqual(389, len(ToJSON(d)))
     self.assertIsInstance(d['allBins'], list)
     self.assertDeepEqual(d, histogram.Histogram.FromDict(d).AsDict())
@@ -590,28 +590,6 @@ class DiagnosticMapUnittest(unittest.TestCase):
     generic.ResetGuid()
     guid2 = generic.guid
     self.assertNotEqual(guid1, guid2)
-
-  # TODO(eakuefner): Find a better place for these non-map tests once we
-  # break up the Python implementation more.
-  def testInlineSharedDiagnostic(self):
-    generic = generic_set.GenericSet(['generic diagnostic'])
-    hist = histogram.Histogram('', 'count')
-    _ = generic.guid  # First access sets guid
-    hist.diagnostics['foo'] = generic
-    generic.Inline()
-    self.assertFalse(generic.has_guid)
-    hist_dict = hist.AsDict()
-    diag_dict = hist_dict['diagnostics']['foo']
-    self.assertIsInstance(diag_dict, dict)
-    self.assertEqual(diag_dict['type'], 'GenericSet')
-
-  def testCloneWithRef(self):
-    diagnostics = histogram.DiagnosticMap()
-    diagnostics['ref'] = diagnostic_ref.DiagnosticRef('abc')
-
-    clone = histogram.DiagnosticMap.FromDict(diagnostics.AsDict())
-    self.assertIsInstance(clone.get('ref'), diagnostic_ref.DiagnosticRef)
-    self.assertEqual(clone.get('ref').guid, 'abc')
 
   def testDiagnosticGuidDeserialized(self):
     d = {

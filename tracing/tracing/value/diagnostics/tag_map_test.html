@@ -50,12 +50,13 @@ tr.b.unittest.testSuite(function() {
     assert.isFalse(m0.equals(m2));
 
     // Test round-tripping of non-merged diagnostic
-    const clonet0 = tr.v.d.Diagnostic.fromDict(t0.asDict()).clone();
+    const clonet0 = tr.v.d.Diagnostic.fromDict(
+        'TagMap', t0.asDict(), true).clone();
 
     assert.isTrue(clonet0.equals(t0.clone()));
 
     // Test round-tripping of merged diagnostic
-    const clone = tr.v.d.Diagnostic.fromDict(m0.asDict());
+    const clone = tr.v.d.Diagnostic.fromDict('TagMap', m0.asDict(), true);
 
     assert.deepEqual(Array.from(clone.tagsToStoryNames.keys()), [
       'press', 'desktop', 'android']);

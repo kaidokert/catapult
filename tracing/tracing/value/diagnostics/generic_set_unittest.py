@@ -23,7 +23,8 @@ class GenericSetUnittest(unittest.TestCase):
         [0, False],
         {'a': 1, 'b': True},
     ])
-    self.assertEqual(a_set, diagnostic.Diagnostic.FromDict(a_set.AsDict()))
+    self.assertEqual(a_set, diagnostic.FromDict(
+        'GenericSet', a_set.AsDict(None), None))
 
   def testEq(self):
     a_set = generic_set.GenericSet([

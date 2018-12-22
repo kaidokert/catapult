@@ -8,6 +8,7 @@ import unittest
 
 from tracing.value.diagnostics import breakdown
 from tracing.value.diagnostics import diagnostic
+from tracing.value import histogram_serializer
 
 
 class BreakdownUnittest(unittest.TestCase):
@@ -20,9 +21,9 @@ class BreakdownUnittest(unittest.TestCase):
     bd.Set('nun', float('nan'))
     bd.Set('ninf', float('-inf'))
     bd.Set('long', 2**65)
-    d = bd.AsDict()
-    clone = diagnostic.Diagnostic.FromDict(d)
-    self.assertEqual(json.dumps(d), json.dumps(clone.AsDict()))
+    d = bd.AsDict(None)
+    clone = diagnostic.FromDict('Breakdown', d, None)
+    self.assertEqual(json.dumps(d), json.dumps(clone.AsDict(None)))
     self.assertEqual(clone.Get('one'), 1)
     self.assertEqual(clone.Get('m1'), -1)
     self.assertEqual(clone.Get('inf'), float('inf'))

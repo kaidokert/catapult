@@ -406,13 +406,14 @@ class RelatedHistogramMap(diagnostic.Diagnostic):
       else:
         assert not required, ('Missing required Histogram %s' % guid)
 
-  def _AsDictInto(self, d):
-    d['values'] = {}
+  def AsDict(self, unused_serializer):
+    d = {'values': {}}
     for name, hist in self:
       d['values'][name] = hist.guid
+    return d
 
   @staticmethod
-  def FromDict(d):
+  def FromDict(d, unused_deserializer=None):
     result = RelatedHistogramMap()
     for name, guid in d['values'].items():
       result.Set(name, HistogramRef(guid))
@@ -446,12 +447,18 @@ class DiagnosticMap(dict):
     dict.__setitem__(self, name, diag)
 
   @staticmethod
-  def FromDict(dct):
+  def FromDict(dct, deserializer=None):
     dm = DiagnosticMap()
-    dm.AddDicts(dct)
+    dm.AddDicts(dct, deserializer)
     return dm
 
-  def AddDicts(self, dct):
+  def AddDicts(self, dct, deserializer=None):
+    if isinstance(dct, list):
+      for i in dct:
+        name, diagnostic = deserializer.GetDiagnosticById(i).items()[0]
+        self[name] = diagnostic
+      return
+
     for name, diagnostic_dict in dct.items():
       if isinstance(diagnostic_dict, StringTypes):
         self[name] = diagnostic_ref.DiagnosticRef(diagnostic_dict)
@@ -469,11 +476,9 @@ class DiagnosticMap(dict):
       elif required:
         raise ValueError('Unable to find shared Diagnostic ' + guid)
 
-  def AsDict(self):
-    dct = {}
-    for name, diag in self.items():
-      dct[name] = diag.AsDictOrReference()
-    return dct
+  def AsDict(self, serializer):
+    return [serializer.GetDiagnosticId(name, diag)
+            for name, diag in self.items()]
 
   def Merge(self, other):
     for name, other_diagnostic in other.items():
@@ -528,10 +533,10 @@ class HistogramBin(object):
         self._diagnostic_maps.append(DiagnosticMap.FromDict(
             diagnostic_map_dict))
 
-  def AsDict(self):
+  def AsDict(self, serializer):
     if len(self._diagnostic_maps) == 0:
       return [self.count]
-    return [self.count, [d.AsDict() for d in self._diagnostic_maps]]
+    return [self.count, [d.AsDict(serializer) for d in self._diagnostic_maps]]
 
 
 # TODO(#3814) Presubmit to compare with unit.html.
@@ -601,6 +606,21 @@ DEFAULT_SUMMARY_OPTIONS = {
     # instance for each Histogram instance.
 }
 
+ALL_BINS_TAG = 'B'
+BIN_BOUNDARIES_TAG = 'b'
+DESCRIPTION_TAG = 'd'
+DIAGNOSTICS_TAG = 'D'
+GUID_TAG = 'g'
+MAX_NUM_SAMPLE_VALUES_TAG = 'm'
+NAME_TAG = 'n'
+NAN_DIAGNOSTICS_TAG = 'i'
+NUM_NANS_TAG = 'a'
+RUNNING_TAG = 'r'
+SAMPLE_VALUES_TAG = 'v'
+SHORT_NAME_TAG = 's'
+SUMMARY_OPTIONS_TAG = 'o'
+UNIT_TAG = 'u'
+
 
 class Histogram(object):
   __slots__ = (
@@ -651,6 +671,26 @@ class Histogram(object):
     self._unit = unit
 
     self._max_num_sample_values = self._GetDefaultMaxNumSampleValues()
+
+  @staticmethod
+  def Create(name, unit, samples, bin_boundaries=None, description='',
+             short_name=None, summary_options=None, diagnostics=None):
+    hist = Histogram(name, unit, bin_boundaries)
+    hist._description = description
+    hist._short_name = short_name
+    if summary_options:
+      hist.CustomizeSummaryOptions(summary_options)
+    if diagnostics:
+      for k, v in diagnostics.items():
+        hist._diagnostics[k] = v
+    if not isinstance(samples, list):
+      samples = [samples]
+    for sample in samples:
+      if isinstance(sample, dict):
+        hist.AddSample(sample['value'], sample['diagnostics'])
+      else:
+        hist.AddSample(sample)
+    return hist
 
   @property
   def nan_diagnostic_maps(self):
@@ -705,40 +745,51 @@ class Histogram(object):
     return self._diagnostics
 
   @staticmethod
-  def FromDict(dct):
-    boundaries = HistogramBinBoundaries.FromDict(dct.get('binBoundaries'))
-    hist = Histogram(dct['name'], dct['unit'], boundaries)
-    hist.guid = dct['guid']
-    if 'shortName' in dct:
-      hist._short_name = dct['shortName']
-    if 'description' in dct:
-      hist._description = dct['description']
+  def FromDict(dct, deserializer=None):
+    boundaries = HistogramBinBoundaries.FromDict(
+        dct.get(BIN_BOUNDARIES_TAG) or dct.get('binBoundaries'))
+    hist = Histogram(
+        (deserializer.GetNameById(dct.get(NAME_TAG))
+          if deserializer else dct.get('name')),
+        dct.get(UNIT_TAG) or dct.get('unit'),
+        boundaries)
+    hist.guid = dct.get(GUID_TAG) or dct.get('guid')
+    hist._short_name = dct.get(SHORT_NAME_TAG) or dct.get('shortName') or ''
+    hist._description = dct.get(DESCRIPTION_TAG) or dct.get('description') or ''
+    if DIAGNOSTICS_TAG in dct:
+      hist._diagnostics.AddDicts(dct[DIAGNOSTICS_TAG], deserializer)
     if 'diagnostics' in dct:
       hist._diagnostics.AddDicts(dct['diagnostics'])
-    if 'allBins' in dct:
-      if isinstance(dct['allBins'], list):
-        for i, bin_dct in enumerate(dct['allBins']):
+    all_bins = dct.get(ALL_BINS_TAG) or dct.get('allBins')
+    if all_bins:
+      if isinstance(all_bins, list):
+        for i, bin_dct in enumerate(all_bins):
           # Copy HistogramBin on write, share the rest with the other
           # Histograms that use the same HistogramBinBoundaries.
           hist._bins[i] = HistogramBin(hist._bins[i].range)
-          hist._bins[i].FromDict(bin_dct)
+          hist._bins[i].FromDict(bin_dct, deserializer)
       else:
-        for i, bin_dct in dct['allBins'].items():
+        for i, bin_dct in all_bins.items():
           i = int(i)
           hist._bins[i] = HistogramBin(hist._bins[i].range)
-          hist._bins[i].FromDict(bin_dct)
+          hist._bins[i].FromDict(bin_dct, deserializer)
+    if RUNNING_TAG in dct:
+      hist._running = RunningStatistics.FromDict(dct[RUNNING_TAG])
     if 'running' in dct:
       hist._running = RunningStatistics.FromDict(dct['running'])
+    if SUMMARY_OPTIONS_TAG in dct:
+      hist.CustomizeSummaryOptions(dct[SUMMARY_OPTIONS_TAG])
     if 'summaryOptions' in dct:
       hist.CustomizeSummaryOptions(dct['summaryOptions'])
+    if MAX_NUM_SAMPLE_VALUES_TAG in dct:
+      hist._max_num_sample_values = dct[MAX_NUM_SAMPLE_VALUES_TAG]
     if 'maxNumSampleValues' in dct:
       hist._max_num_sample_values = dct['maxNumSampleValues']
-    if 'sampleValues' in dct:
-      hist._sample_values = dct['sampleValues']
-    if 'numNans' in dct:
-      hist._num_nans = dct['numNans']
-    if 'nanDiagnostics' in dct:
-      for map_dct in dct['nanDiagnostics']:
+    hist._sample_values = dct.get(SAMPLE_VALUES_TAG) or dct.get('sampleValues') or []
+    hist._num_nans = dct.get(NUM_NANS_TAG) or dct.get('numNans') or 0
+    nan_diagnostics = dct.get(NAN_DIAGNOSTICS_TAG) or dct.get('nanDiagnostics')
+    if nan_diagnostics:
+      for map_dct in nan_diagnostics:
         hist._nan_diagnostic_maps.append(DiagnosticMap.FromDict(map_dct))
     return hist
 
@@ -916,28 +967,32 @@ class Histogram(object):
           results[stat_name] = Scalar(stat_unit, stat_value)
     return results
 
-  def AsDict(self):
-    dct = {'name': self.name, 'unit': self.unit, 'guid': self.guid}
+  def AsDict(self, serializer):
+    dct = {
+        NAME_TAG: serializer.GetNameId(self.name),
+        UNIT_TAG: self.unit,
+        GUID_TAG: self.guid,
+    }
     if self._bin_boundaries_dict is not None:
-      dct['binBoundaries'] = self._bin_boundaries_dict
+      dct[BIN_BOUNDARIES_TAG] = self._bin_boundaries_dict
     if self._short_name:
-      dct['shortName'] = self._short_name
+      dct[SHORT_NAME_TAG] = self._short_name
     if self._description:
-      dct['description'] = self._description
+      dct[DESCRIPTION_TAG] = self._description
     if len(self.diagnostics):
-      dct['diagnostics'] = self.diagnostics.AsDict()
+      dct[DIAGNOSTICS_TAG] = self.diagnostics.AsDict(serializer)
     if self.max_num_sample_values != self._GetDefaultMaxNumSampleValues():
-      dct['maxNumSampleValues'] = self.max_num_sample_values
+      dct[MAX_NUM_SAMPLE_VALUES_TAG] = self.max_num_sample_values
     if self.num_nans:
-      dct['numNans'] = self.num_nans
+      dct[NUM_NANS_TAG] = self.num_nans
     if len(self.nan_diagnostic_maps):
-      dct['nanDiagnostics'] = [m.AsDict() for m in self.nan_diagnostic_maps]
+      dct[NAN_DIAGNOSTICS_TAG] = [m.AsDict(serializer) for m in self.nan_diagnostic_maps]
     if self.num_values:
-      dct['sampleValues'] = list(self.sample_values)
-      dct['running'] = self._running.AsDict()
-      dct['allBins'] = self._GetAllBinsAsDict()
-      if dct['allBins'] is None:
-        del dct['allBins']
+      dct[SAMPLE_VALUES_TAG] = list(self.sample_values)
+      dct[RUNNING_TAG] = self._running.AsDict()
+      dct[ALL_BINS_TAG] = self._GetAllBinsAsDict(serializer)
+      if dct[ALL_BINS_TAG] is None:
+        del dct[ALL_BINS_TAG]
 
     summary_options = {}
     any_overridden_summary_options = False
@@ -950,10 +1005,10 @@ class Histogram(object):
       summary_options[name] = option
       any_overridden_summary_options = True
     if any_overridden_summary_options:
-      dct['summaryOptions'] = summary_options
+      dct[SUMMARY_OPTIONS_TAG] = summary_options
     return dct
 
-  def _GetAllBinsAsDict(self):
+  def _GetAllBinsAsDict(self, serializer):
     num_bins = len(self._bins)
     empty_bins = 0
     for hbin in self._bins:
@@ -966,12 +1021,12 @@ class Histogram(object):
       all_bins_dict = {}
       for i, hbin in enumerate(self._bins):
         if hbin.count > 0:
-          all_bins_dict[i] = hbin.AsDict()
+          all_bins_dict[i] = hbin.AsDict(serializer)
       return all_bins_dict
 
     all_bins_list = []
     for hbin in self._bins:
-      all_bins_list.append(hbin.AsDict())
+      all_bins_list.append(hbin.AsDict(serializer))
     return all_bins_list
 
   def _GetDefaultMaxNumSampleValues(self):

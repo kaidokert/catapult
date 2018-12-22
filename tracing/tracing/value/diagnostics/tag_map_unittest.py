@@ -10,7 +10,7 @@ from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import tag_map
 
 def _SortStories(d):
-  for story_names in d['tagsToStoryNames'].values():
+  for story_names in d.values():
     story_names.sort()
   return d
 
@@ -49,10 +49,10 @@ class TagMapUnittest(unittest.TestCase):
         'tag3': ['path5'],
     }
     info = tag_map.TagMap({'tagsToStoryNames': tags})
-    d = info.AsDict()
-    clone = diagnostic.Diagnostic.FromDict(d)
+    d = info.AsDict(None)
+    clone = diagnostic.FromDict('TagMap', d, None)
     self.assertEqual(histogram_unittest.ToJSON(_SortStories(d)),
-                     histogram_unittest.ToJSON(_SortStories(clone.AsDict())))
+                     histogram_unittest.ToJSON(_SortStories(clone.AsDict(None))))
     self.assertSetEqual(
         clone.tags_to_story_names['tag1'], set(tags['tag1']))
     self.assertSetEqual(
@@ -89,7 +89,7 @@ class TagMapUnittest(unittest.TestCase):
     self.assertFalse(t0.CanAddDiagnostic(generic_set.GenericSet([])))
     self.assertTrue(t0.CanAddDiagnostic(t1))
 
-    m0 = diagnostic.Diagnostic.FromDict(t0.AsDict())
+    m0 = diagnostic.FromDict(t0.AsDict(None), None)
 
     self.assertTrue(isinstance(m0, tag_map.TagMap))
     self.assertFalse(
@@ -98,17 +98,17 @@ class TagMapUnittest(unittest.TestCase):
 
     m0.AddDiagnostic(t1)
 
-    m1 = diagnostic.Diagnostic.FromDict(t1.AsDict())
+    m1 = diagnostic.FromDict(t1.AsDict(None), None)
     m1.AddDiagnostic(t0)
 
     self.assertDictEqual(_SortStories(m0.AsDict()), _SortStories(m1.AsDict()))
 
-    m2 = diagnostic.Diagnostic.FromDict(t1.AsDict())
+    m2 = diagnostic.FromDict(t1.AsDict(None), None)
 
     self.assertNotEqual(_SortStories(m2.AsDict()), _SortStories(m0.AsDict()))
 
     # Test round-tripping of merged diagnostic
-    clone = diagnostic.Diagnostic.FromDict(m0.AsDict())
+    clone = diagnostic.FromDict(m0.AsDict(None), None)
 
     self.assertSetEqual(
         set(clone.tags_to_story_names.keys()),

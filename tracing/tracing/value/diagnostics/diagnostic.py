@@ -43,23 +43,8 @@ class Diagnostic(object):
   def has_guid(self):
     return self._guid is not None
 
-  def AsDictOrReference(self):
-    if self._guid:
-      return self._guid
-    return self.AsDict()
-
-  def AsDict(self):
-    dct = {'type': self.__class__.__name__}
-    if self._guid:
-      dct['guid'] = self._guid
-    self._AsDictInto(dct)
-    return dct
-
-  def _AsDictInto(self, unused_dct):
-    raise NotImplementedError
-
   @staticmethod
-  def FromDict(dct):
+  def FromDict(dct, unused_deserializer=None):
     cls = all_diagnostics.GetDiagnosticClassForName(dct['type'])
     if not cls:
       raise ValueError('Unrecognized diagnostic type: ' + dct['type'])
@@ -93,3 +78,9 @@ class Diagnostic(object):
   def AddDiagnostic(self, unused_other_diagnostic):
     raise Exception('Abstract virtual method: subclasses must override '
                     'this method if they override canAddDiagnostic')
+
+def FromDict(type_name, dct, deserializer):
+  cls = all_diagnostics.GetDiagnosticClassForName(type_name)
+  if not cls:
+    raise ValueError('Unrecognized diagnostic type: ' + type_name)
+  return cls.FromDict(dct, deserializer)
