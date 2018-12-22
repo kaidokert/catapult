@@ -99,12 +99,12 @@ tr.exportTo('tr.v.d', function() {
       return key;
     }
 
-    asDictInto_(d) {
-      d.values = Array.from(this);
+    asDict(writer) {
+      return Array.from(this);
     }
 
-    static fromDict(d) {
-      return new GenericSet(d.values);
+    static fromDict(d, reader) {
+      return new GenericSet(reader ? d : d.values);
     }
 
     clone() {

@@ -27,7 +27,7 @@ class Breakdown(diagnostic.Diagnostic):
     return self._color_scheme
 
   @staticmethod
-  def FromDict(d):
+  def FromDict(d, unused_deserializer=None):
     result = Breakdown()
     result._color_scheme = d.get('colorScheme')
     for name, value in d['values'].items():

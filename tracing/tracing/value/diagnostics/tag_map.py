@@ -10,9 +10,13 @@ class TagMap(diagnostic.Diagnostic):
 
   def __init__(self, info):
     super(TagMap, self).__init__()
+    if isinstance(info, dict):
+      if 'tagsToStoryNames' in info:
+        info = info['tagsToStoryNames']
+    if not isinstance(info, dict):
+      info = {}
     self._tags_to_story_names = dict(
-        (k, set(v)) for k, v in info.get(
-            'tagsToStoryNames', {}).items())
+        (k, set(v)) for k, v in info.items())
 
   def __eq__(self, other):
     if not isinstance(other, TagMap):
@@ -28,7 +32,7 @@ class TagMap(diagnostic.Diagnostic):
         (k, list(v)) for k, v in self.tags_to_story_names.items())
 
   @staticmethod
-  def FromDict(d):
+  def FromDict(d, unused_deserializer=None):
     return TagMap(d)
 
   @property

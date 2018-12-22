@@ -54,8 +54,12 @@ class RelatedNameMap(diagnostic.Diagnostic):
     dct['names'] = dict(self._map)
 
   @staticmethod
-  def FromDict(dct):
+  def FromDict(dct, deserializer=None):
     names = RelatedNameMap()
-    for key, name in dct['names'].items():
-      names.Set(key, name)
+    if deserializer:
+      for key, i in dct.items():
+        names.Set(key, deserializer.GetNameById(i))
+    else:
+      for key, name in dct['names'].items():
+        names.Set(key, name)
     return names

@@ -24,7 +24,7 @@ class HistogramSetUnittest(unittest.TestCase):
     # Don't serialize c yet.
     hists = histogram_set.HistogramSet([a, b])
     hists2 = histogram_set.HistogramSet()
-    hists2.ImportDicts(hists.AsDicts())
+    hists2.ImportDicts(hists.AsDict())
     hists2.ResolveRelatedHistograms()
     a2 = hists2.GetHistogramsNamed('a')
     self.assertEqual(len(a2), 1)
@@ -73,7 +73,7 @@ class HistogramSetUnittest(unittest.TestCase):
     hist = histogram.Histogram('', 'unitless')
     hists = histogram_set.HistogramSet([hist])
     hists2 = histogram_set.HistogramSet()
-    hists2.ImportDicts(hists.AsDicts())
+    hists2.ImportDicts(hists.AsDict())
     self.assertEqual(len(hists), len(hists2))
 
   def testAddHistogramRaises(self):
@@ -111,11 +111,11 @@ class HistogramSetUnittest(unittest.TestCase):
     hs.AddSharedDiagnosticToAllHistograms('b', db)
     hs.FilterHistograms(lambda h: h.name == 'a')
 
-    dicts = hs.AsDicts()
+    dicts = hs.AsDict()
     self.assertEqual(3, len(dicts))
 
     hs.RemoveOrphanedDiagnostics()
-    dicts = hs.AsDicts()
+    dicts = hs.AsDict()
     self.assertEqual(2, len(dicts))
 
   def testAddSharedDiagnostic(self):
@@ -132,7 +132,7 @@ class HistogramSetUnittest(unittest.TestCase):
     hs.AddHistogram(b, {'db': db})
 
     # This should produce one shared diagnostic and 2 histograms.
-    dicts = hs.AsDicts()
+    dicts = hs.AsDict()
     self.assertEqual(3, len(dicts))
     self.assertEqual(da.AsDict(), dicts[0])
 
@@ -156,7 +156,7 @@ class HistogramSetUnittest(unittest.TestCase):
 
     # Serializing a single Histogram with a single shared diagnostic should
     # produce 2 dicts.
-    ds = hists.AsDicts()
+    ds = hists.AsDict()
     self.assertEqual(len(ds), 2)
     self.assertEqual(diag.AsDict(), ds[0])
 
@@ -204,84 +204,3 @@ class HistogramSetUnittest(unittest.TestCase):
     hists.ReplaceSharedDiagnostic(guid0, diag1)
 
     self.assertIsNotNone(hists.LookupDiagnostic(guid1))
-
-  def testDeduplicateDiagnostics(self):
-    generic_a = generic_set.GenericSet(['A'])
-    generic_b = generic_set.GenericSet(['B'])
-    date_a = date_range.DateRange(42)
-    date_b = date_range.DateRange(57)
-
-    a_hist = histogram.Histogram('a', 'unitless')
-    generic0 = generic_set.GenericSet.FromDict(generic_a.AsDict())
-    generic0.AddDiagnostic(generic_b)
-    a_hist.diagnostics['generic'] = generic0
-    date0 = date_range.DateRange.FromDict(date_a.AsDict())
-    date0.AddDiagnostic(date_b)
-    a_hist.diagnostics['date'] = date0
-
-    b_hist = histogram.Histogram('b', 'unitless')
-    generic1 = generic_set.GenericSet.FromDict(generic_a.AsDict())
-    generic1.AddDiagnostic(generic_b)
-    b_hist.diagnostics['generic'] = generic1
-    date1 = date_range.DateRange.FromDict(date_a.AsDict())
-    date1.AddDiagnostic(date_b)
-    b_hist.diagnostics['date'] = date1
-
-    c_hist = histogram.Histogram('c', 'unitless')
-    c_hist.diagnostics['generic'] = generic1
-
-    histograms = histogram_set.HistogramSet([a_hist, b_hist, c_hist])
-    self.assertNotEqual(
-        a_hist.diagnostics['generic'].guid, b_hist.diagnostics['generic'].guid)
-    self.assertEqual(
-        b_hist.diagnostics['generic'].guid, c_hist.diagnostics['generic'].guid)
-    self.assertEqual(
-        a_hist.diagnostics['generic'], b_hist.diagnostics['generic'])
-    self.assertNotEqual(
-        a_hist.diagnostics['date'].guid, b_hist.diagnostics['date'].guid)
-    self.assertEqual(
-        a_hist.diagnostics['date'], b_hist.diagnostics['date'])
-
-    histograms.DeduplicateDiagnostics()
-
-    self.assertEqual(
-        a_hist.diagnostics['generic'].guid, b_hist.diagnostics['generic'].guid)
-    self.assertEqual(
-        b_hist.diagnostics['generic'].guid, c_hist.diagnostics['generic'].guid)
-    self.assertEqual(
-        a_hist.diagnostics['generic'], b_hist.diagnostics['generic'])
-    self.assertEqual(
-        a_hist.diagnostics['date'].guid, b_hist.diagnostics['date'].guid)
-    self.assertEqual(
-        a_hist.diagnostics['date'], b_hist.diagnostics['date'])
-
-    histogram_dicts = histograms.AsDicts()
-
-    # All diagnostics should have been serialized as DiagnosticRefs.
-    for d in histogram_dicts:
-      if 'type' not in d:
-        for diagnostic_dict in d['diagnostics'].values():
-          self.assertIsInstance(diagnostic_dict, str)
-
-    histograms2 = histogram_set.HistogramSet()
-    histograms2.ImportDicts(histograms.AsDicts())
-    histograms2.ResolveRelatedHistograms()
-    a_hists = histograms2.GetHistogramsNamed('a')
-    self.assertEqual(len(a_hists), 1)
-    a_hist2 = a_hists[0]
-    b_hists = histograms2.GetHistogramsNamed('b')
-    self.assertEqual(len(b_hists), 1)
-    b_hist2 = b_hists[0]
-
-    self.assertEqual(
-        a_hist2.diagnostics['generic'].guid,
-        b_hist2.diagnostics['generic'].guid)
-    self.assertEqual(
-        a_hist2.diagnostics['generic'],
-        b_hist2.diagnostics['generic'])
-    self.assertEqual(
-        a_hist2.diagnostics['date'].guid,
-        b_hist2.diagnostics['date'].guid)
-    self.assertEqual(
-        a_hist2.diagnostics['date'],
-        b_hist2.diagnostics['date'])

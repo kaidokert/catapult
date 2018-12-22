@@ -69,12 +69,13 @@ tr.exportTo('tr.v.d', function() {
       tr.v.d.RelatedHistogramMap.prototype.set.call(this, name, hist);
     }
 
-    asDictInto_(d) {
-      tr.v.d.RelatedHistogramMap.prototype.asDictInto_.call(this, d);
+    asDict(writer) {
+      const d = tr.v.d.RelatedHistogramMap.prototype.asDict.call(this, writer);
       if (this.colorScheme) d.colorScheme = this.colorScheme;
+      return d;
     }
 
-    static fromDict(d) {
+    static fromDict(d, deserializer) {
       const diagnostic = new RelatedHistogramBreakdown();
       for (const [name, guid] of Object.entries(d.values)) {
         diagnostic.set(name, new tr.v.d.HistogramRef(guid));

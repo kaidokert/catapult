@@ -412,7 +412,7 @@ class RelatedHistogramMap(diagnostic.Diagnostic):
       d['values'][name] = hist.guid
 
   @staticmethod
-  def FromDict(d):
+  def FromDict(d, unused_deserializer=None):
     result = RelatedHistogramMap()
     for name, guid in d['values'].items():
       result.Set(name, HistogramRef(guid))
@@ -705,7 +705,7 @@ class Histogram(object):
     return self._diagnostics
 
   @staticmethod
-  def FromDict(dct):
+  def FromDict(dct, unused_deserializer=None):
     boundaries = HistogramBinBoundaries.FromDict(dct.get('binBoundaries'))
     hist = Histogram(dct['name'], dct['unit'], boundaries)
     hist.guid = dct['guid']
