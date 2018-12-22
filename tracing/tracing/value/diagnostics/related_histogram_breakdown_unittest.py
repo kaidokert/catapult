@@ -17,9 +17,10 @@ class RelatedHistogramBreakdownUnittest(unittest.TestCase):
     histb = histogram.Histogram('b', 'unitless')
     breakdown.Add(hista)
     breakdown.Add(histb)
-    d = breakdown.AsDict()
-    clone = diagnostic.Diagnostic.FromDict(d)
+    d = breakdown.AsDict(None)
+    clone = diagnostic.FromDict('RelatedHistogramBreakdown', d, None)
     self.assertEqual(
-        histogram_unittest.ToJSON(d), histogram_unittest.ToJSON(clone.AsDict()))
+        histogram_unittest.ToJSON(d),
+        histogram_unittest.ToJSON(clone.AsDict(None)))
     self.assertEqual(hista.guid, clone.Get('a').guid)
     self.assertEqual(histb.guid, clone.Get('b').guid)

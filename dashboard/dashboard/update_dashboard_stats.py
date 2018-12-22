@@ -198,7 +198,7 @@ def _ProcessAlertsForBot(bot_name, alerts):
       [alerts_total] + hists_by_suite.values())
 
   deferred.defer(
-      add_histograms.ProcessHistogramSet, hs.AsDicts())
+      add_histograms.ProcessHistogramSet, hs.AsDict())
 
 
 @ndb.tasklet
@@ -236,4 +236,4 @@ def _ProcessPinpointJobs(jobs_and_commits):
       [commit_to_alert, alert_to_job, job_to_culprit, commit_to_culprit])
 
   deferred.defer(
-      add_histograms.ProcessHistogramSet, hs.AsDicts())
+      add_histograms.ProcessHistogramSet, hs.AsDict())

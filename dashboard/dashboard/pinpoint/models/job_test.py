@@ -202,9 +202,10 @@ class BugCommentTest(test.TestCase):
         (), (), bug_id=123456, comparison_mode='performance',
         tags={'test_path': 'master/bot/benchmark'})
 
-    diag_dict = generic_set.GenericSet([[u'Benchmark doc link', u'http://docs']])
+    diag_dict = generic_set.GenericSet([
+        [u'Benchmark doc link', u'http://docs']]).AsDict(None)
     diag = histogram.SparseDiagnostic(
-        data=diag_dict.AsDict(), start_revision=1, end_revision=sys.maxint,
+        data=diag_dict, start_revision=1, end_revision=sys.maxint,
         name=reserved_infos.DOCUMENTATION_URLS.name,
         test=utils.TestKey('master/bot/benchmark'))
     diag.put()

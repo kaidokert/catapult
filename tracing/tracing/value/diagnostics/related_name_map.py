@@ -50,12 +50,16 @@ class RelatedNameMap(diagnostic.Diagnostic):
   def Values(self):
     return self._map.values()
 
-  def _AsDictInto(self, dct):
-    dct['names'] = dict(self._map)
+  def AsDict(self, serializer):
+    return {key: serializer.GetNameId(name) for key, name in self}
 
   @staticmethod
-  def FromDict(dct):
+  def FromDict(dct, deserializer=None):
     names = RelatedNameMap()
-    for key, name in dct['names'].items():
-      names.Set(key, name)
+    if deserializer:
+      for key, i in dct.items():
+        names.Set(key, deserializer.GetNameById(i))
+    else:
+      for key, name in dct['names'].items():
+        names.Set(key, name)
     return names
