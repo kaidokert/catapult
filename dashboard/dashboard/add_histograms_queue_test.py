@@ -257,13 +257,10 @@ class AddHistogramsQueueTest(testing_common.TestCase):
 
     test_path = 'Chromium/win7/suite/metric'
     params = [{
-        'data': hist.AsDict(),
+        'data': histogram_set.HistogramSet([hist]).AsDict(),
         'test_path': test_path,
         'benchmark_description': None,
         'revision': 123,
-        'diagnostics': {
-            'stories': hist.diagnostics.get('stories').AsDict(),
-        }
     }]
     self.testapp.post('/add_histograms_queue', json.dumps(params))
 
@@ -304,13 +301,16 @@ class AddHistogramsQueueTest(testing_common.TestCase):
 
   def testPostHistogram_KeepsWeirdStatistics(self):
     test_path = 'Chromium/win7/memory_desktop/memory:chrome'
-    hist = histogram_module.Histogram.FromDict(TEST_HISTOGRAM)
-    hist.CustomizeSummaryOptions({
+    hs = histogram_set.HistogramSet()
+    hs.ImportDict(TEST_BENCHMARKS)
+    hs.ImportDict(TEST_OWNERS)
+    hs.ImportDict(TEST_HISTOGRAM)
+    hs.GetHistogramNamed('foo').CustomizeSummaryOptions({
         'percentile': [0.9]
     })
 
     params = [{
-        'data': hist.AsDict(),
+        'data': hs.AsDict(),
         'test_path': test_path,
         'revision': 123,
         'benchmark_description': None
@@ -372,7 +372,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     test_path = 'Chromium/win7/blink_perf.dom/foo'
     hist = histogram_module.Histogram('foo', 'count')
     params = [{
-        'data': hist.AsDict(),
+        'data': histogram_set.HistogramSet([hist]).AsDict(),
         'test_path': test_path,
         'benchmark_description': None,
         'revision': 123
@@ -470,8 +470,17 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     test_path = 'Chromium/win7/suite/metric'
     test_key = utils.TestKey(test_path)
 
-    hist = histogram_module.Histogram.FromDict(TEST_HISTOGRAM)
-    hist.CustomizeSummaryOptions({
+    stat_names_to_test_keys = {
+        'avg': utils.TestKey('Chromium/win7/suite/metric_avg'),
+        'std': utils.TestKey('Chromium/win7/suite/metric_std'),
+        'count': utils.TestKey('Chromium/win7/suite/metric_count')
+    }
+
+    hs = histogram_set.HistogramSet()
+    hs.ImportDict(TEST_BENCHMARKS)
+    hs.ImportDict(TEST_OWNERS)
+    hs.ImportDict(TEST_HISTOGRAM)
+    hs.GetHistogramNamed('foo').CustomizeSummaryOptions({
         'avg': True,
         'std': True,
         'count': True,
@@ -480,13 +489,9 @@ class AddHistogramsQueueTest(testing_common.TestCase):
         'sum': False
         })
 
-    stat_names_to_test_keys = {
-        'avg': utils.TestKey('Chromium/win7/suite/metric_avg'),
-        'std': utils.TestKey('Chromium/win7/suite/metric_std'),
-        'count': utils.TestKey('Chromium/win7/suite/metric_count')
-    }
     rows = add_histograms_queue.CreateRowEntities(
-        hist.AsDict(), test_key, stat_names_to_test_keys, 123)
+        hs.AsDict(),
+        test_key, stat_names_to_test_keys, 123)
 
     self.assertEqual(4, len(rows))
 
@@ -502,8 +507,11 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     test_path = 'Chromium/win7/suite/metric'
     test_key = utils.TestKey(test_path)
 
-    hist = histogram_module.Histogram.FromDict(TEST_HISTOGRAM)
-    hist.CustomizeSummaryOptions({
+    hs = histogram_set.HistogramSet()
+    hs.ImportDict(TEST_BENCHMARKS)
+    hs.ImportDict(TEST_OWNERS)
+    hs.ImportDict(TEST_HISTOGRAM)
+    hs.GetHistogramNamed('foo').CustomizeSummaryOptions({
         'avg': True,
         'std': False,
         'count': False,
@@ -516,7 +524,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
         'avg': utils.TestKey('Chromium/win7/suite/metric_avg')
     }
     rows = add_histograms_queue.CreateRowEntities(
-        hist.AsDict(), test_key, stat_names_to_test_keys, 123)
+        hs.AsDict(), test_key, stat_names_to_test_keys, 123)
 
     self.assertEqual(2, len(rows))
 
@@ -540,7 +548,8 @@ class AddHistogramsQueueTest(testing_common.TestCase):
       self.assertTrue(row.key.parent().id().endswith('ref'))
 
   def testCreateRowEntities_DoesntAddRowForEmptyHistogram(self):
-    hist = histogram_module.Histogram('foo', 'count').AsDict()
+    hist = histogram_set.HistogramSet([
+        histogram_module.Histogram('foo', 'count')]).AsDict()
     test_path = 'Chromium/win7/suite/metric'
     test_key = utils.TestKey(test_path)
     row = add_histograms_queue.CreateRowEntities(hist, test_key, {}, 123)

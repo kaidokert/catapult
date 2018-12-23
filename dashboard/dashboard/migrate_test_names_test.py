@@ -61,7 +61,7 @@ class MigrateTestNamesTest(testing_common.TestCase):
       graph_data.Row(id=rev, parent=test_container_key, value=(rev * 2)).put()
       if rev % 50 == 0:
         data = generic_set.GenericSet(['foo_%s' % rev])
-        data = data.AsDict()
+        data = data.AsDict(None)
         anomaly.Anomaly(
             start_revision=(rev - 2), end_revision=rev,
             median_before_anomaly=100, median_after_anomaly=50,

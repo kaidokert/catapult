@@ -71,7 +71,14 @@ tr.exportTo('tr.v.d', function() {
      *
      * @param {Object} dict
      */
-    addDicts(dict) {
+    addDicts(dict, deserializer) {
+      if (dict instanceof Array) {
+        for (const id of dict) {
+          const {name, diagnostic} = deserializer.getDiagnosticById(id);
+          this.set(name, diagnostic);
+        }
+        return;
+      }
       for (const [name, diagnosticDict] of Object.entries(dict)) {
         if (typeof diagnosticDict === 'string') {
           this.set(name, new tr.v.d.DiagnosticRef(diagnosticDict));
@@ -97,17 +104,17 @@ tr.exportTo('tr.v.d', function() {
       }
     }
 
-    asDict() {
-      const dict = {};
+    asDict(serializer) {
+      const dict = [];
       for (const [name, diagnostic] of this) {
-        dict[name] = diagnostic.asDictOrReference();
+        dict.push(serializer.getDiagnosticId(name, diagnostic));
       }
       return dict;
     }
 
-    static fromDict(d) {
+    static fromDict(d, deserializer) {
       const diagnostics = new DiagnosticMap();
-      diagnostics.addDicts(d);
+      diagnostics.addDicts(d, deserializer);
       return diagnostics;
     }
 

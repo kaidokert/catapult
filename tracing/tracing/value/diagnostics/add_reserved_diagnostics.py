@@ -73,7 +73,7 @@ def ComputeTestPath(hist):
 
 def _MergeHistogramSetByPath(hs):
   with TempFile() as temp:
-    temp.write(json.dumps(hs.AsDicts()).encode('utf-8'))
+    temp.write(json.dumps(hs.AsDict()).encode('utf-8'))
     temp.close()
 
     return merge_histograms.MergeHistograms(temp.name, (
@@ -120,7 +120,7 @@ def AddReservedDiagnostics(histogram_dicts, names_to_values):
   # This call combines all repetitions of a metric for a given story into a
   # single histogram.
   hs = histogram_set.HistogramSet()
-  hs.ImportDicts(hs_with_stories.AsDicts())
+  hs.ImportDicts(hs_with_stories.AsDict())
 
   for h in hs:
     h.diagnostics[reserved_infos.TEST_PATH.name] = (
@@ -134,7 +134,7 @@ def AddReservedDiagnostics(histogram_dicts, names_to_values):
   if not had_failures:
     # This call creates summary metrics across each tag set of stories.
     hs = histogram_set.HistogramSet()
-    hs.ImportDicts(hs_with_stories.AsDicts())
+    hs.ImportDicts(hs_with_stories.AsDict())
     hs.FilterHistograms(lambda h: not GetTIRLabelFromHistogram(h))
 
     for h in hs:
@@ -147,7 +147,7 @@ def AddReservedDiagnostics(histogram_dicts, names_to_values):
 
     # This call creates summary metrics across the entire story set.
     hs = histogram_set.HistogramSet()
-    hs.ImportDicts(hs_with_stories.AsDicts())
+    hs.ImportDicts(hs_with_stories.AsDict())
 
     for h in hs:
       h.diagnostics[reserved_infos.SUMMARY_KEYS.name] = (
@@ -169,17 +169,15 @@ def AddReservedDiagnostics(histogram_dicts, names_to_values):
   histograms.ImportDicts(dicts_across_names)
   histograms.ImportDicts(dicts_across_stories)
   histograms.ImportDicts(dicts_across_repeats)
-  histograms.ImportDicts(hs_with_no_stories.AsDicts())
+  histograms.ImportDicts(hs_with_no_stories.AsDict())
 
   # Merge tagmaps since we OBBS may produce several for shared runs
   _MergeAndReplaceSharedDiagnostics(
       reserved_infos.TAG_MAP.name, histograms)
 
-  histograms.DeduplicateDiagnostics()
   for name, value in names_to_values.items():
     assert name in ALL_NAMES
     histograms.AddSharedDiagnosticToAllHistograms(
         name, generic_set.GenericSet([value]))
-  histograms.RemoveOrphanedDiagnostics()
 
-  return json.dumps(histograms.AsDicts())
+  return json.dumps(histograms.AsDict())

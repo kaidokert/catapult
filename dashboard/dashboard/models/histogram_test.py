@@ -4,6 +4,7 @@
 
 import json
 import sys
+import uuid
 
 from dashboard.common import testing_common
 from dashboard.common import utils
@@ -307,7 +308,7 @@ class SparseDiagnosticTest(testing_common.TestCase):
       self, name, values, test_key, start_revision, end_revision=sys.maxint):
     d = generic_set.GenericSet([values])
     e = histogram.SparseDiagnostic(
-        id=d.guid, data=d.AsDict(), name=name, test=test_key,
+        id=str(uuid.uuid4()), data=d.AsDict(None), name=name, test=test_key,
         start_revision=start_revision, end_revision=end_revision)
     return e
 

@@ -38,7 +38,7 @@ tr.exportTo('tr.v.d', function() {
       super();
 
       if (typeof values[Symbol.iterator] !== 'function') {
-        throw new Error('GenericSet must be constructed from an interable.');
+        throw new Error('GenericSet must be constructed from an iterable.');
       }
 
       this.values_ = new Set(values);
@@ -99,12 +99,12 @@ tr.exportTo('tr.v.d', function() {
       return key;
     }
 
-    asDictInto_(d) {
-      d.values = Array.from(this);
+    asDict(serializer) {
+      return Array.from(this);
     }
 
-    static fromDict(d) {
-      return new GenericSet(d.values);
+    static fromDict(d, deserializer) {
+      return new GenericSet(deserializer ? d : d.values);
     }
 
     clone() {

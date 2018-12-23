@@ -192,10 +192,10 @@ def Profile(root, label=None, html_filename=None, html_stream=None,
     # viewer is provided.
     if vulcanized_viewer:
       render_histograms_viewer.RenderHistogramsViewer(
-          histograms.AsDicts(), html_stream, reset_results, vulcanized_viewer)
+          histograms.AsDict(), html_stream, reset_results, vulcanized_viewer)
     else:
       from tracing_build import vulcanize_histograms_viewer
       vulcanize_histograms_viewer.VulcanizeAndRenderHistogramsViewer(
-          histograms.AsDicts(), html_stream)
+          histograms.AsDict(), html_stream)
 
   return histograms

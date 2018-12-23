@@ -50,7 +50,8 @@ tr.b.unittest.testSuite(() => {
     const importer = new tr.v.HistogramImporter(loadingEl);
 
     const hist = createHistogram(42);
-    const histogramData = '\n' + JSON.stringify(hist.asDict()) + '\n';
+    const histogramData = '\n' + JSON.stringify(
+        tr.v.HistogramSerializer.serialize([hist])) + '\n';
 
     const view = document.createElement('tr-v-ui-histogram-set-view');
     view.style.display = 'none';
@@ -77,7 +78,8 @@ tr.b.unittest.testSuite(() => {
     for (let i = 0; i < kNofHistograms; i++) {
       const id = kNofHistograms * 100 + i;
       const histogram = createHistogram(id);
-      histogramData += JSON.stringify(histogram.asDict()) + '\n';
+      histogramData += JSON.stringify(tr.v.HistogramSerializer.serialize(
+          [histogram])) + '\n';
     }
 
     const view = document.createElement('tr-v-ui-histogram-set-view');

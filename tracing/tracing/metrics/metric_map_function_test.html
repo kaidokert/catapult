@@ -57,7 +57,8 @@ tr.b.unittest.testSuite(function() {
     tr.metrics.metricMapFunction(
         result, m, {'metrics': ['sampleMetric']});
     assert.property(result.pairs, 'histograms');
-    assert.strictEqual(result.pairs.histograms.length, 4);
+    assert.strictEqual(result.pairs.histograms[
+        tr.v.HistogramSerializer.TAGS.HISTOGRAMS].length, 4);
     assert.property(result.pairs, 'scalars');
     assert.strictEqual(result.pairs.scalars.length, 19);
     assert.lengthOf(result.failures, 0);
@@ -92,7 +93,8 @@ tr.b.unittest.testSuite(function() {
     tr.metrics.metricMapFunction(
         result, m, {'metrics': ['sampleExceptionMetric']});
     assert.property(result.pairs, 'histograms');
-    assert.strictEqual(result.pairs.histograms.length, 4);
+    assert.strictEqual(result.pairs.histograms[
+        tr.v.HistogramSerializer.TAGS.HISTOGRAMS].length, 4);
     assert.property(result.pairs, 'scalars');
     assert.strictEqual(result.pairs.scalars.length, 19);
     assert.lengthOf(result.failures, 1);

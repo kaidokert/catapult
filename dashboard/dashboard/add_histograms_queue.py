@@ -21,7 +21,6 @@ from dashboard.common import utils
 from dashboard.models import anomaly
 from dashboard.models import graph_data
 from dashboard.models import histogram
-from tracing.value import histogram as histogram_module
 from tracing.value import histogram_set
 from tracing.value.diagnostics import diagnostic
 from tracing.value.diagnostics import diagnostic_ref
@@ -138,7 +137,9 @@ def _ProcessRowAndHistogram(params):
 
   logging.info('Processing: %s', test_path)
 
-  hist = histogram_module.Histogram.FromDict(data_dict)
+  hs = histogram_set.HistogramSet()
+  hs.ImportDict(data_dict)
+  hist = hs.GetFirstHistogram()
 
   if hist.num_values == 0:
     return []
@@ -233,7 +234,7 @@ def _AddHistogramFromData(params, revision, test_key, internal_only):
       diagnostics, revision, test_key, internal_only)
 
   hs = histogram_set.HistogramSet()
-  hs.ImportDicts([data_dict])
+  hs.ImportDict(data_dict)
   for new_guid, existing_diagnostic in (
       new_guids_to_existing_diagnostics.iteritems()):
     hs.ReplaceSharedDiagnostic(
@@ -272,9 +273,7 @@ def ProcessDiagnostics(diagnostic_data, revision, test_key, internal_only):
 
 
 def GetUnitArgs(unit):
-  unit_args = {
-      'units': unit
-  }
+  unit_args = {'units': unit}
   histogram_improvement_direction = unit.split('_')[-1]
   if histogram_improvement_direction == 'biggerIsBetter':
     unit_args['improvement_direction'] = anomaly.UP
@@ -287,7 +286,9 @@ def GetUnitArgs(unit):
 
 def CreateRowEntities(
     histogram_dict, test_metadata_key, stat_names_to_test_keys, revision):
-  h = histogram_module.Histogram.FromDict(histogram_dict)
+  hs = histogram_set.HistogramSet()
+  hs.ImportDict(histogram_dict)
+  h = hs.GetFirstHistogram()
   # TODO(#3564): Move this check into _PopulateNumericalFields once we
   # know that it's okay to put rows that don't have a value/error.
   if h.num_values == 0:

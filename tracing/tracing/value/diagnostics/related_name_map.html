@@ -54,9 +54,10 @@ tr.exportTo('tr.v.d', function() {
       }
     }
 
-    asDictInto_(d) {
-      d.names = {};
-      for (const [key, name] of this) d.names[key] = name;
+    asDict(serializer) {
+      const dict = {};
+      for (const [key, name] of this) dict[key] = serializer.getNameId(name);
+      return dict;
     }
 
     set(key, name) {
@@ -83,8 +84,18 @@ tr.exportTo('tr.v.d', function() {
       return names;
     }
 
-    static fromDict(d) {
-      return RelatedNameMap.fromEntries(Object.entries(d.names || {}));
+    static fromDict(d, deserializer) {
+      const entries = [];
+      if (deserializer) {
+        for (const [k, v] of Object.entries(d)) {
+          entries.push([k, deserializer.getNameById(v)]);
+        }
+      } else {
+        for (const [k, v] of Object.entries(d.names)) {
+          entries.push([k, v]);
+        }
+      }
+      return RelatedNameMap.fromEntries(entries);
     }
   }
 
