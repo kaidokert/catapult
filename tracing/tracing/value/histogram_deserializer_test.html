@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/value/histogram_deserializer.html">
+
+<script>
+'use strict';
+tr.b.unittest.testSuite(function() {
+  test('deserialize', function() {
+    const hists = tr.v.HistogramDeserializer.deserialize({
+      n: ['aaa', 'bbb', 'ccc'],
+      d: {
+        GenericSet: {
+          ddd: {
+            0: ['eee'],
+          },
+        },
+        DateRange: {
+          fff: {
+            1: 1545682260742,
+          },
+        },
+        Breakdown: {
+          ggg: {
+            2: ['colorscheme', {
+              hhh: 4,
+              iii: 6,
+            }],
+          }
+        },
+        RelatedNameMap: {
+          jjj: {
+            3: {
+              lll: 1,
+              mmm: 2,
+            },
+          },
+        },
+        RelatedEventSet: {
+          nnn: {
+            4: [
+              {
+                stableId: 'a.0.b.1.c.2',
+                title: 'Title',
+                start: 0,
+                duration: 1,
+              },
+            ],
+          },
+        },
+      },
+      h: [
+        {
+          B: {1: [1, [[2, 4]]]},
+          b: [0, [0, 100, 10]],
+          d: 'description',
+          D: [0, 1, 3],
+          g: 'guid',
+          m: 100,
+          n: 0,
+          a: [2, [[0, 4]]],
+          r: [1, 1, 1, 1, 1, 1, 1],
+          v: [42],
+          o: {nans: true},
+          u: 'ms',
+        },
+      ],
+    });
+    assert.lengthOf(hists, 1);
+    const hist = hists[0];
+    assert.instanceOf(hist, tr.v.Histogram);
+    assert.strictEqual('aaa', hist.name);
+    assert.strictEqual(tr.b.Unit.byName.timeDurationInMs, hist.unit);
+    assert.strictEqual('guid', hist.guid);
+    assert.strictEqual(1, hist.average);
+    assert.strictEqual(1, hist.numValues);
+    assert.strictEqual(0, hist.standardDeviation);
+    assert.strictEqual(1, hist.sum);
+    assert.strictEqual(1, hist.min);
+    assert.strictEqual(1, hist.max);
+
+    const fff = hist.diagnostics.get('fff');
+    assert.instanceOf(fff, tr.v.d.DateRange);
+    assert.strictEqual(1545682260742, fff.minDate.getTime());
+
+    const jjj = hist.diagnostics.get('jjj');
+    assert.instanceOf(jjj, tr.v.d.RelatedNameMap);
+    assert.strictEqual(jjj.get('lll'), 'bbb');
+    assert.strictEqual(jjj.get('mmm'), 'ccc');
+
+    let ddd = hist.diagnostics.get('ddd');
+    assert.instanceOf(ddd, tr.v.d.GenericSet);
+    assert.strictEqual('eee', tr.b.getOnlyElement(ddd));
+
+    assert.strictEqual(2, hist.numNans);
+    assert.lengthOf(hist.nanDiagnosticMaps, 1);
+    ddd = hist.nanDiagnosticMaps[0].get('ddd');
+    assert.instanceOf(ddd, tr.v.d.GenericSet);
+    assert.strictEqual('eee', tr.b.getOnlyElement(ddd));
+    const nnn = hist.nanDiagnosticMaps[0].get('nnn');
+    assert.instanceOf(nnn, tr.v.d.RelatedEventSet);
+    assert.lengthOf(nnn, 1);
+
+    assert.lengthOf(hist.allBins, 12);
+    const bin = hist.allBins[1];
+    assert.lengthOf(bin.diagnosticMaps, 1);
+    const dm = bin.diagnosticMaps[0];
+    assert.strictEqual(dm.size, 2);
+    const ggg = dm.get('ggg');
+    assert.instanceOf(ggg, tr.v.d.Breakdown);
+    assert.strictEqual('colorscheme', ggg.colorScheme);
+    assert.strictEqual(ggg.size, 2);
+    assert.strictEqual(4, ggg.get('hhh'));
+    assert.strictEqual(6, ggg.get('iii'));
+  });
+});
+</script>

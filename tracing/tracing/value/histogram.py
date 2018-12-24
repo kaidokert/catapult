@@ -412,7 +412,7 @@ class RelatedHistogramMap(diagnostic.Diagnostic):
       d['values'][name] = hist.guid
 
   @staticmethod
-  def FromDict(d):
+  def FromDict(d, unused_deserializer=None):
     result = RelatedHistogramMap()
     for name, guid in d['values'].items():
       result.Set(name, HistogramRef(guid))
@@ -446,12 +446,18 @@ class DiagnosticMap(dict):
     dict.__setitem__(self, name, diag)
 
   @staticmethod
-  def FromDict(dct):
+  def FromDict(dct, deserializer=None):
     dm = DiagnosticMap()
-    dm.AddDicts(dct)
+    dm.AddDicts(dct, deserializer)
     return dm
 
-  def AddDicts(self, dct):
+  def AddDicts(self, dct, deserializer=None):
+    if isinstance(dct, list):
+      for i in dct:
+        name, diag = deserializer.GetDiagnosticById(i).items()[0]
+        self[name] = diag
+      return
+
     for name, diagnostic_dict in dct.items():
       if isinstance(diagnostic_dict, StringTypes):
         self[name] = diagnostic_ref.DiagnosticRef(diagnostic_dict)
@@ -521,12 +527,12 @@ class HistogramBin(object):
     UniformlySampleStream(
         self._diagnostic_maps, self.count, diagnostics, MAX_DIAGNOSTIC_MAPS)
 
-  def FromDict(self, dct):
+  def FromDict(self, dct, deserializer=None):
     self._count = dct[0]
     if len(dct) > 1:
       for diagnostic_map_dict in dct[1]:
         self._diagnostic_maps.append(DiagnosticMap.FromDict(
-            diagnostic_map_dict))
+            diagnostic_map_dict, deserializer))
 
   def AsDict(self):
     if len(self._diagnostic_maps) == 0:
@@ -600,6 +606,20 @@ DEFAULT_SUMMARY_OPTIONS = {
     # modifiable. Callers may push to it, so there must be a different Array
     # instance for each Histogram instance.
 }
+
+
+ALL_BINS_TAG = 'B'
+BIN_BOUNDARIES_TAG = 'b'
+DESCRIPTION_TAG = 'd'
+DIAGNOSTICS_TAG = 'D'
+GUID_TAG = 'g'
+MAX_NUM_SAMPLE_VALUES_TAG = 'm'
+NAME_TAG = 'n'
+NAN_BIN_TAG = 'a'
+RUNNING_TAG = 'r'
+SAMPLE_VALUES_TAG = 'v'
+SUMMARY_OPTIONS_TAG = 'o'
+UNIT_TAG = 'u'
 
 
 class Histogram(object):
@@ -705,41 +725,59 @@ class Histogram(object):
     return self._diagnostics
 
   @staticmethod
-  def FromDict(dct):
-    boundaries = HistogramBinBoundaries.FromDict(dct.get('binBoundaries'))
-    hist = Histogram(dct['name'], dct['unit'], boundaries)
-    hist.guid = dct['guid']
-    if 'shortName' in dct:
-      hist._short_name = dct['shortName']
-    if 'description' in dct:
-      hist._description = dct['description']
-    if 'diagnostics' in dct:
-      hist._diagnostics.AddDicts(dct['diagnostics'])
-    if 'allBins' in dct:
-      if isinstance(dct['allBins'], list):
-        for i, bin_dct in enumerate(dct['allBins']):
+  def FromDict(dct, deserializer=None):
+    name = (deserializer.GetNameById(dct.get(NAME_TAG))
+            if deserializer else dct['name'])
+    boundaries = HistogramBinBoundaries.FromDict(
+        dct.get(BIN_BOUNDARIES_TAG) or dct.get('binBoundaries'))
+    unit = dct.get(UNIT_TAG) or dct.get('unit') or 'unitless'
+    hist = Histogram(name, unit, boundaries)
+    hist.guid = dct.get(GUID_TAG) or dct['guid']
+    hist._description = dct.get(DESCRIPTION_TAG) or dct.get('description') or ''
+    if DIAGNOSTICS_TAG in dct:
+      hist._diagnostics.AddDicts(dct[DIAGNOSTICS_TAG], deserializer)
+    all_bins = dct.get(ALL_BINS_TAG) or dct.get('allBins')
+    if all_bins:
+      if isinstance(all_bins, list):
+        for i, bin_dct in enumerate(all_bins):
           # Copy HistogramBin on write, share the rest with the other
           # Histograms that use the same HistogramBinBoundaries.
           hist._bins[i] = HistogramBin(hist._bins[i].range)
-          hist._bins[i].FromDict(bin_dct)
+          hist._bins[i].FromDict(bin_dct, deserializer)
       else:
-        for i, bin_dct in dct['allBins'].items():
+        for i, bin_dct in all_bins.items():
           i = int(i)
           hist._bins[i] = HistogramBin(hist._bins[i].range)
-          hist._bins[i].FromDict(bin_dct)
+          hist._bins[i].FromDict(bin_dct, deserializer)
+    if RUNNING_TAG in dct:
+      hist._running = RunningStatistics.FromDict(dct[RUNNING_TAG])
+    if SUMMARY_OPTIONS_TAG in dct:
+      hist.CustomizeSummaryOptions(dct[SUMMARY_OPTIONS_TAG])
+    hist._sample_values = (
+        dct.get(SAMPLE_VALUES_TAG) or dct.get('sampleValues') or [])
+    if NAN_BIN_TAG in dct:
+      hist._num_nans = dct[NAN_BIN_TAG][0]
+      if len(dct[NAN_BIN_TAG]) > 1:
+        for map_dct in dct[NAN_BIN_TAG][1]:
+          hist._nan_diagnostic_maps.append(
+              DiagnosticMap.FromDict(map_dct, deserializer))
+
+    if 'shortName' in dct:
+      hist._short_name = dct['shortName']
+    if 'diagnostics' in dct:
+      hist._diagnostics.AddDicts(dct['diagnostics'])
     if 'running' in dct:
       hist._running = RunningStatistics.FromDict(dct['running'])
     if 'summaryOptions' in dct:
       hist.CustomizeSummaryOptions(dct['summaryOptions'])
     if 'maxNumSampleValues' in dct:
       hist._max_num_sample_values = dct['maxNumSampleValues']
-    if 'sampleValues' in dct:
-      hist._sample_values = dct['sampleValues']
     if 'numNans' in dct:
       hist._num_nans = dct['numNans']
     if 'nanDiagnostics' in dct:
       for map_dct in dct['nanDiagnostics']:
         hist._nan_diagnostic_maps.append(DiagnosticMap.FromDict(map_dct))
+
     return hist
 
   @property
