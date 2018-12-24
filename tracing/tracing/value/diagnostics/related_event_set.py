@@ -24,9 +24,11 @@ class RelatedEventSet(diagnostic.Diagnostic):
       yield event
 
   @staticmethod
-  def FromDict(d):
+  def FromDict(dct, deserializer=None):
     result = RelatedEventSet()
-    for event in d['events']:
+    if not deserializer:
+      dct = dct['events']
+    for event in dct:
       result.Add(event)
     return result
 

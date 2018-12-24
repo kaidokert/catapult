@@ -8,6 +8,7 @@ found in the LICENSE file.
 <link rel="import" href="/tracing/base/utils.html">
 <link rel="import" href="/tracing/value/diagnostics/add_related_names.html">
 <link rel="import" href="/tracing/value/histogram.html">
+<link rel="import" href="/tracing/value/histogram_deserializer.html">
 <link rel="import" href="/tracing/value/histogram_grouping.html">
 
 <script>
@@ -190,6 +191,9 @@ tr.exportTo('tr.v', function() {
      * @param {!Object} dicts
      */
     importDicts(dicts) {
+      if (!(dicts instanceof Array)) {
+        dicts = [dicts];
+      }
       for (const dict of dicts) {
         this.importDict(dict);
       }
@@ -206,6 +210,10 @@ tr.exportTo('tr.v', function() {
       if (dict.type && tr.v.d.Diagnostic.findTypeInfoWithName(dict.type)) {
         this.sharedDiagnosticsByGuid_.set(dict.guid,
             tr.v.d.Diagnostic.fromDict(dict));
+      } else if (dict[tr.v.HistogramDeserializer.TAGS.HISTOGRAMS]) {
+        for (const hist of tr.v.HistogramDeserializer.deserialize(dict)) {
+          this.addHistogram(hist);
+        }
       } else {
         const hist = tr.v.Histogram.fromDict(dict);
         this.addHistogram(hist);
