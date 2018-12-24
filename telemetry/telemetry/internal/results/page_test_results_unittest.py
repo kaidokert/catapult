@@ -544,7 +544,7 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
     hs.AddHistogram(histogram_module.Histogram('foo', 'count'))
     hs.AddSharedDiagnosticToAllHistograms(
         'bar', generic_set.GenericSet(['baz']))
-    histogram_dicts = hs.AsDicts()
+    histogram_dicts = hs.AsDict()
     results = self.getPageTestResults(start=1501773200)
     results.WillRunPage(self.pages[0])
     results.ImportHistogramDicts(histogram_dicts)
@@ -556,7 +556,7 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
     hs.AddHistogram(histogram_module.Histogram('foo', 'count'))
     hs.AddSharedDiagnosticToAllHistograms(
         'bar', generic_set.GenericSet(['baz']))
-    histogram_dicts = hs.AsDicts()
+    histogram_dicts = hs.AsDict()
     benchmark_metadata = benchmark.BenchmarkMetadata(
         'benchmark_name', 'benchmark_description')
     results = self.getPageTestResults(
@@ -694,7 +694,7 @@ class PageTestResultsFilterTest(unittest.TestCase):
     results = self.getPageTestResults(
         should_add_value=AcceptValueStartsWith_a)
     results.WillRunPage(self.pages[0])
-    results.ImportHistogramDicts(hs.AsDicts())
+    results.ImportHistogramDicts(hs.AsDict())
     results.DidRunPage(self.pages[0])
 
     new_hs = histogram_set.HistogramSet()

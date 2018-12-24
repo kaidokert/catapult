@@ -310,7 +310,7 @@ class PageTestResults(object):
     return self._telemetry_info
 
   def AsHistogramDicts(self):
-    return self._histograms.AsDicts()
+    return self._histograms.AsDict()
 
   def PopulateHistogramSet(self):
     if len(self._histograms):
@@ -495,8 +495,6 @@ class PageTestResults(object):
   def AddHistogram(self, hist):
     if self._ShouldAddHistogram(hist):
       diags = self._telemetry_info.diagnostics
-      for _, diag in diags.items():
-        self._histograms.AddSharedDiagnostic(diag)
       self._histograms.AddHistogram(hist, diags)
 
   def ImportHistogramDicts(self, histogram_dicts, import_immediately=True):

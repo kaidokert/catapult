@@ -165,9 +165,9 @@ def _LogDebugInfo(histograms):
 
 
 def ProcessHistogramSet(histogram_dicts):
-  if not isinstance(histogram_dicts, list):
+  if not isinstance(histogram_dicts, (list, dict)):
     raise api_request_handler.BadRequestError(
-        'HistogramSet JSON much be a list of dicts')
+        'HistogramSet JSON must be a dict or list of dicts')
 
   histograms = histogram_set.HistogramSet()
 
@@ -177,18 +177,12 @@ def ProcessHistogramSet(histogram_dicts):
   with timing.WallTimeLogger('hs.ResolveRelatedHistograms'):
     histograms.ResolveRelatedHistograms()
 
-  with timing.WallTimeLogger('hs.DeduplicateDiagnostics'):
-    histograms.DeduplicateDiagnostics()
-
   if len(histograms) == 0:
     raise api_request_handler.BadRequestError(
         'HistogramSet JSON must contain at least one histogram.')
 
   with timing.WallTimeLogger('hs._LogDebugInfo'):
     _LogDebugInfo(histograms)
-
-  with timing.WallTimeLogger('InlineDenseSharedDiagnostics'):
-    InlineDenseSharedDiagnostics(histograms)
 
   # TODO(#4242): Get rid of this.
   # https://github.com/catapult-project/catapult/issues/4242
@@ -292,8 +286,6 @@ def _BatchHistogramsIntoTasks(
   duplicate_check = set()
 
   for hist in histograms:
-    diagnostics = FindHistogramLevelSparseDiagnostics(hist)
-
     # TODO(896856): Don't compute full diagnostics, because we need anyway to
     # call GetOrCreate here and in the queue.
     test_path = '%s/%s' % (suite_path, histogram_helpers.ComputeTestPath(hist))
@@ -304,8 +296,14 @@ def _BatchHistogramsIntoTasks(
     duplicate_check.add(test_path)
 
     # TODO(#4135): Batch these better than one per task.
-    task_dict = _MakeTaskDict(
-        hist, test_path, revision, benchmark_description, diagnostics)
+    # TODO(simonhatch): "revision" is common to all tasks, as is the majority of
+    # the test path
+    task_dict = {
+        'benchmark_description': benchmark_description,
+        'data': histogram_set.HistogramSet([hist]).AsDict(),
+        'revision': revision,
+        'test_path': test_path,
+    }
 
     estimated_size_dict = len(json.dumps(task_dict))
     estimated_size += estimated_size_dict
@@ -330,32 +328,6 @@ def _BatchHistogramsIntoTasks(
   return tasks
 
 
-def _MakeTaskDict(
-    hist, test_path, revision, benchmark_description, diagnostics):
-  # TODO(simonhatch): "revision" is common to all tasks, as is the majority of
-  # the test path
-  params = {
-      'test_path': test_path,
-      'revision': revision,
-      'benchmark_description': benchmark_description
-  }
-
-  # By changing the GUID just before serializing the task, we're making it
-  # unique for each histogram. This avoids each histogram trying to write the
-  # same diagnostic out (datastore contention), at the cost of copyin the
-  # data. These are sparsely written to datastore anyway, so the extra
-  # storage should be minimal.
-  for d in diagnostics.itervalues():
-    d.ResetGuid()
-
-  diagnostics = {k: d.AsDict() for k, d in diagnostics.iteritems()}
-
-  params['diagnostics'] = diagnostics
-  params['data'] = hist.AsDict()
-
-  return params
-
-
 def FindSuiteLevelSparseDiagnostics(
     histograms, suite_key, revision, internal_only):
   diagnostics = {}
@@ -365,10 +337,10 @@ def FindSuiteLevelSparseDiagnostics(
         existing_entity = diagnostics.get(name)
         if existing_entity is None:
           diagnostics[name] = histogram.SparseDiagnostic(
-              id=diag.guid, data=diag.AsDict(), test=suite_key,
+              id=str(uuid.uuid4()), data=diag.AsDict(None), test=suite_key,
               start_revision=revision, end_revision=sys.maxint, name=name,
               internal_only=internal_only)
-        elif existing_entity.key.id() != diag.guid:
+        elif existing_entity.data != diag.AsDict(None):
           raise ValueError(
               name + ' diagnostics must be the same for all histograms')
   return diagnostics.values()
@@ -421,15 +393,6 @@ def ComputeRevision(histograms):
         'Point ID must be an integer.')
 
   return rev
-
-
-def InlineDenseSharedDiagnostics(histograms):
-  # TODO(896856): Delete inlined diagnostics from the set
-  for hist in histograms:
-    diagnostics = hist.diagnostics
-    for name, diag in diagnostics.iteritems():
-      if name not in SPARSE_DIAGNOSTIC_NAMES:
-        diag.Inline()
 
 
 def _PurgeHistogramBinData(histograms):

@@ -76,7 +76,6 @@ function mergeHistograms(histogramsPath, groupingKeys) {
   const groupedHistograms = histograms.groupHistogramsRecursively(groupings);
   const mergedHistograms = new tr.v.HistogramSet();
   mergeLeafHistograms(groupedHistograms, mergedHistograms);
-  mergedHistograms.deduplicateDiagnostics();
   mergedHistograms.mergeRelationships();
   stripInternalDiagnostics(mergedHistograms);
   return mergedHistograms;
@@ -84,6 +83,6 @@ function mergeHistograms(histogramsPath, groupingKeys) {
 
 if (tr.isHeadless) {
   const mergedHistograms = mergeHistograms(sys.argv[1], sys.argv.slice(2));
-  console.log(JSON.stringify(mergedHistograms.asDicts()));
+  console.log(JSON.stringify(mergedHistograms.asDict()));
 }
 </script>

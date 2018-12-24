@@ -17,10 +17,11 @@ class RelatedEventSetUnittest(unittest.TestCase):
         'start': 0,
         'duration': 1,
     })
-    d = events.AsDict()
-    clone = diagnostic.Diagnostic.FromDict(d)
+    d = events.AsDict(None)
+    clone = diagnostic.FromDict('RelatedEventSet', d, object())
     self.assertEqual(
-        histogram_unittest.ToJSON(d), histogram_unittest.ToJSON(clone.AsDict()))
+        histogram_unittest.ToJSON(d),
+        histogram_unittest.ToJSON(clone.AsDict(None)))
     self.assertEqual(len(events), 1)
     event = list(events)[0]
     self.assertEqual(event['stableId'], '0.0')

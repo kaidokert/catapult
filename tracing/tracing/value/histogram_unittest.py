@@ -7,9 +7,9 @@ import math
 import unittest
 
 from tracing.value import histogram
+from tracing.value import histogram_deserializer
+from tracing.value import histogram_set
 from tracing.value.diagnostics import date_range
-from tracing.value.diagnostics import diagnostic
-from tracing.value.diagnostics import diagnostic_ref
 from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import related_event_set
 from tracing.value.diagnostics import reserved_infos
@@ -190,48 +190,54 @@ class HistogramUnittest(unittest.TestCase):
 
   def testSerializationSize(self):
     hist = histogram.Histogram('', 'unitless', self.TEST_BOUNDARIES)
-    d = hist.AsDict()
-    self.assertEqual(107, len(ToJSON(d)))
+    d = histogram_set.HistogramSet([hist]).AsDict()
+    self.assertEqual(109, len(ToJSON(d)))
     self.assertIsNone(d.get('allBins'))
-    self.assertDeepEqual(d, histogram.Histogram.FromDict(d).AsDict())
+    self.assertDeepEqual(d, histogram_set.HistogramSet(
+        histogram_deserializer.Deserialize(d)).AsDict())
 
     hist.AddSample(100)
-    d = hist.AsDict()
-    self.assertEqual(198, len(ToJSON(d)))
-    self.assertIsInstance(d['allBins'], dict)
-    self.assertDeepEqual(d, histogram.Histogram.FromDict(d).AsDict())
+    d = histogram_set.HistogramSet([hist]).AsDict()
+    self.assertEqual(177, len(ToJSON(d)))
+    self.assertIsInstance(d['h'][0]['B'], dict)
+    self.assertDeepEqual(d, histogram_set.HistogramSet(
+        histogram_deserializer.Deserialize(d)).AsDict())
 
     hist.AddSample(100)
-    d = hist.AsDict()
+    d = histogram_set.HistogramSet([hist]).AsDict()
     # SAMPLE_VALUES grew by "100,"
-    self.assertEqual(202, len(ToJSON(d)))
-    self.assertIsInstance(d['allBins'], dict)
-    self.assertDeepEqual(d, histogram.Histogram.FromDict(d).AsDict())
+    self.assertEqual(181, len(ToJSON(d)))
+    self.assertIsInstance(d['h'][0]['B'], dict)
+    self.assertDeepEqual(d, histogram_set.HistogramSet(
+        histogram_deserializer.Deserialize(d)).AsDict())
 
     hist.AddSample(271, {'foo': generic_set.GenericSet(['bar'])})
-    d = hist.AsDict()
-    self.assertEqual(268, len(ToJSON(d)))
-    self.assertIsInstance(d['allBins'], dict)
-    self.assertDeepEqual(d, histogram.Histogram.FromDict(d).AsDict())
+    d = histogram_set.HistogramSet([hist]).AsDict()
+    self.assertEqual(238, len(ToJSON(d)))
+    self.assertIsInstance(d['h'][0]['B'], dict)
+    self.assertDeepEqual(d, histogram_set.HistogramSet(
+        histogram_deserializer.Deserialize(d)).AsDict())
 
     # Add samples to most bins so that allBinsArray is more efficient than
     # allBinsDict.
     for i in range(10, 100):
       hist.AddSample(10 * i)
-    d = hist.AsDict()
-    self.assertEqual(697, len(ToJSON(d)))
-    self.assertIsInstance(d['allBins'], list)
-    self.assertDeepEqual(d, histogram.Histogram.FromDict(d).AsDict())
+    d = histogram_set.HistogramSet([hist]).AsDict()
+    self.assertEqual(667, len(ToJSON(d)))
+    self.assertIsInstance(d['h'][0]['B'], list)
+    self.assertDeepEqual(d, histogram_set.HistogramSet(
+        histogram_deserializer.Deserialize(d)).AsDict())
 
     # Lowering maxNumSampleValues takes a random sub-sample of the existing
     # sampleValues. We have deliberately set all samples to 3-digit numbers so
     # that the serialized size is constant regardless of which samples are
     # retained.
     hist.max_num_sample_values = 10
-    d = hist.AsDict()
-    self.assertEqual(389, len(ToJSON(d)))
-    self.assertIsInstance(d['allBins'], list)
-    self.assertDeepEqual(d, histogram.Histogram.FromDict(d).AsDict())
+    d = histogram_set.HistogramSet([hist]).AsDict()
+    self.assertEqual(342, len(ToJSON(d)))
+    self.assertIsInstance(d['h'][0]['B'], list)
+    self.assertDeepEqual(d, histogram_set.HistogramSet(
+        histogram_deserializer.Deserialize(d)).AsDict())
 
   def testBasic(self):
     hist = histogram.Histogram('', 'unitless', self.TEST_BOUNDARIES)
@@ -442,7 +448,8 @@ class HistogramUnittest(unittest.TestCase):
     })
 
     # Test round-tripping summaryOptions
-    hist = hist.Clone()
+    hist = list(histogram_deserializer.Deserialize(
+        histogram_set.HistogramSet([hist]).AsDict()))[0]
     stats = hist.statistics_scalars
     self.assertEqual(stats['nans'].unit, 'count')
     self.assertEqual(stats['nans'].value, 1)
@@ -523,7 +530,8 @@ class HistogramUnittest(unittest.TestCase):
     self.assertDeepEqual(hist1.sample_values, values1)
     hist0.AddHistogram(hist1)
     self.assertDeepEqual(hist0.sample_values, values0 + values1)
-    hist2 = hist0.Clone()
+    hist2 = list(histogram_deserializer.Deserialize(
+        histogram_set.HistogramSet([hist0]).AsDict()))[0]
     self.assertDeepEqual(hist2.sample_values, values0 + values1)
 
     for i in range(200):
@@ -540,11 +548,11 @@ class HistogramUnittest(unittest.TestCase):
     hist = histogram.Histogram(
         '', 'unitless', histogram.HistogramBinBoundaries.SINGULAR)
     self.assertEqual(1, len(hist.bins))
-    d = hist.AsDict()
+    d = histogram_set.HistogramSet([hist]).AsDict()
     self.assertNotIn('binBoundaries', d)
-    clone = histogram.Histogram.FromDict(d)
+    clone = list(histogram_deserializer.Deserialize(d))[0]
     self.assertEqual(1, len(clone.bins))
-    self.assertDeepEqual(d, clone.AsDict())
+    self.assertDeepEqual(d, histogram_set.HistogramSet([clone]).AsDict())
 
     self.assertEqual(0, hist.GetApproximatePercentile(0))
     self.assertEqual(0, hist.GetApproximatePercentile(1))
@@ -583,44 +591,6 @@ class DiagnosticMapUnittest(unittest.TestCase):
     diagnostics[reserved_infos.TRACE_URLS.name] = generic_set.GenericSet(())
     with self.assertRaises(TypeError):
       diagnostics[reserved_infos.TRACE_URLS.name] = date_range.DateRange(0)
-
-  def testResetGuid(self):
-    generic = generic_set.GenericSet(['generic diagnostic'])
-    guid1 = generic.guid
-    generic.ResetGuid()
-    guid2 = generic.guid
-    self.assertNotEqual(guid1, guid2)
-
-  # TODO(eakuefner): Find a better place for these non-map tests once we
-  # break up the Python implementation more.
-  def testInlineSharedDiagnostic(self):
-    generic = generic_set.GenericSet(['generic diagnostic'])
-    hist = histogram.Histogram('', 'count')
-    _ = generic.guid  # First access sets guid
-    hist.diagnostics['foo'] = generic
-    generic.Inline()
-    self.assertFalse(generic.has_guid)
-    hist_dict = hist.AsDict()
-    diag_dict = hist_dict['diagnostics']['foo']
-    self.assertIsInstance(diag_dict, dict)
-    self.assertEqual(diag_dict['type'], 'GenericSet')
-
-  def testCloneWithRef(self):
-    diagnostics = histogram.DiagnosticMap()
-    diagnostics['ref'] = diagnostic_ref.DiagnosticRef('abc')
-
-    clone = histogram.DiagnosticMap.FromDict(diagnostics.AsDict())
-    self.assertIsInstance(clone.get('ref'), diagnostic_ref.DiagnosticRef)
-    self.assertEqual(clone.get('ref').guid, 'abc')
-
-  def testDiagnosticGuidDeserialized(self):
-    d = {
-        'type': 'GenericSet',
-        'values': [],
-        'guid': 'bar'
-    }
-    g = diagnostic.Diagnostic.FromDict(d)
-    self.assertEqual('bar', g.guid)
 
   def testMerge(self):
     events = related_event_set.RelatedEventSet()

@@ -66,13 +66,13 @@ tr.b.unittest.testSuite(function() {
     const histograms = getHistogramSet('Run 1', 'test.com');
 
     const histograms2 = getHistogramSet('Run 2', 'test.com');
-    histograms.importDicts(histograms2.asDicts());
+    histograms.importDicts(tr.v.HistogramSerializer.serialize(histograms2));
 
     const histograms3 = getHistogramSet('Run 1', 'abc.com');
-    histograms.importDicts(histograms3.asDicts());
+    histograms.importDicts(tr.v.HistogramSerializer.serialize(histograms3));
 
     const histograms4 = getHistogramSet('Run 2', 'abc.com');
-    histograms.importDicts(histograms4.asDicts());
+    histograms.importDicts(tr.v.HistogramSerializer.serialize(histograms4));
 
     cp.build(histograms, histograms);
   });
@@ -83,7 +83,7 @@ tr.b.unittest.testSuite(function() {
 
     const histograms = getHistogramSet('Run 1', 'repeat.com');
     const histograms2 = getHistogramSet('Run 1', 'repeat.com');
-    histograms.importDicts(histograms2.asDicts());
+    histograms.importDicts(tr.v.HistogramSerializer.serialize(histograms2));
 
     cp.build(histograms, histograms);
   });
@@ -95,13 +95,13 @@ tr.b.unittest.testSuite(function() {
     const histograms = getHistogramSet('Run 1', 'test.com', false);
 
     const histograms2 = getHistogramSet('Run 2', 'test.com', false);
-    histograms.importDicts(histograms2.asDicts());
+    histograms.importDicts(histograms2.asDict());
 
     const histograms3 = getHistogramSet('Run 1', 'abc.com');
-    histograms.importDicts(histograms3.asDicts());
+    histograms.importDicts(histograms3.asDict());
 
     const histograms4 = getHistogramSet('Run 2', 'abc.com');
-    histograms.importDicts(histograms4.asDicts());
+    histograms.importDicts(histograms4.asDict());
 
     cp.build(histograms, histograms);
   });

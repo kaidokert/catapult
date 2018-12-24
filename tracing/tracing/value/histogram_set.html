@@ -8,7 +8,9 @@ found in the LICENSE file.
 <link rel="import" href="/tracing/base/utils.html">
 <link rel="import" href="/tracing/value/diagnostics/add_related_names.html">
 <link rel="import" href="/tracing/value/histogram.html">
+<link rel="import" href="/tracing/value/histogram_deserializer.html">
 <link rel="import" href="/tracing/value/histogram_grouping.html">
+<link rel="import" href="/tracing/value/histogram_serializer.html">
 
 <script>
 'use strict';
@@ -83,20 +85,9 @@ tr.exportTo('tr.v', function() {
      * @param {!tr.v.d.Diagnostic} diagnostic
      */
     addSharedDiagnosticToAllHistograms(name, diagnostic) {
-      this.addSharedDiagnostic(diagnostic);
       for (const hist of this) {
         hist.diagnostics.set(name, diagnostic);
       }
-    }
-
-    /**
-     * Add a Diagnostic to this HistogramSet so that it will only be serialized
-     * once per HistogramSet rather than once per Histogram that contains it.
-     *
-     * @param {!tr.v.d.Diagnostic} diagnostic
-     */
-    addSharedDiagnostic(diagnostic) {
-      this.sharedDiagnosticsByGuid_.set(diagnostic.guid, diagnostic);
     }
 
     get length() {
@@ -107,6 +98,14 @@ tr.exportTo('tr.v', function() {
       for (const hist of this.histogramsByGuid_.values()) {
         yield hist;
       }
+    }
+
+    map(callback) {
+      const results = [];
+      for (const hist of this) {
+        results.push(callback(hist));
+      }
+      return results;
     }
 
     /**
@@ -190,6 +189,9 @@ tr.exportTo('tr.v', function() {
      * @param {!Object} dicts
      */
     importDicts(dicts) {
+      if (!(dicts instanceof Array)) {
+        dicts = [dicts];
+      }
       for (const dict of dicts) {
         this.importDict(dict);
       }
@@ -206,6 +208,10 @@ tr.exportTo('tr.v', function() {
       if (dict.type && tr.v.d.Diagnostic.findTypeInfoWithName(dict.type)) {
         this.sharedDiagnosticsByGuid_.set(dict.guid,
             tr.v.d.Diagnostic.fromDict(dict));
+      } else if (dict[tr.v.HistogramSerializer.TAGS.HISTOGRAMS]) {
+        for (const hist of tr.v.HistogramDeserializer.deserialize(dict)) {
+          this.addHistogram(hist);
+        }
       } else {
         const hist = tr.v.Histogram.fromDict(dict);
         this.addHistogram(hist);
@@ -219,15 +225,8 @@ tr.exportTo('tr.v', function() {
      *
      * @return {!Array.<!Object>}
      */
-    asDicts() {
-      const dicts = [];
-      for (const diagnostic of this.sharedDiagnosticsByGuid_.values()) {
-        dicts.push(diagnostic.asDict());
-      }
-      for (const hist of this) {
-        dicts.push(hist.asDict());
-      }
-      return dicts;
+    asDict() {
+      return tr.v.HistogramSerializer.serialize(this);
     }
 
     /**
@@ -326,79 +325,6 @@ tr.exportTo('tr.v', function() {
       return recurse([...this], 0);
     }
 
-    /*
-     * Histograms and Diagnostics are merged two at a time, without considering
-     * any others, so it is possible for two merged Diagnostics to be equivalent
-     * but not identical, which is inefficient. This method replaces equivalent
-     * Diagnostics with shared Diagnostics so that the HistogramSet can be
-     * serialized more efficiently and so that these Diagnostics can be compared
-     * quickly when merging relationship Diagnostics.
-     */
-    deduplicateDiagnostics() {
-      const namesToCandidates = new Map();  // string: Set<Diagnostic>
-      const diagnosticsToHistograms = new Map();  // Diagnostic: [Histogram]
-      const keysToDiagnostics = new Map();  // string: Diagnostic
-
-      for (const hist of this) {
-        for (const [name, candidate] of hist.diagnostics) {
-          // TODO(#3695): Remove this check once equality is smoke-tested.
-          if (candidate.equals === undefined) {
-            this.sharedDiagnosticsByGuid_.set(candidate.guid, candidate);
-            continue;
-          }
-
-          const hashKey = candidate.hashKey;
-          if (candidate.hashKey !== undefined) {
-            // TODO(857283): Fall back to slow path if same name but diff type
-            if (keysToDiagnostics.has(hashKey)) {
-              hist.diagnostics.set(name, keysToDiagnostics.get(hashKey));
-            } else {
-              keysToDiagnostics.set(hashKey, candidate);
-              this.sharedDiagnosticsByGuid_.set(candidate.guid, candidate);
-            }
-
-            continue;
-          }
-
-          if (diagnosticsToHistograms.get(candidate) === undefined) {
-            diagnosticsToHistograms.set(candidate, [hist]);
-          } else {
-            diagnosticsToHistograms.get(candidate).push(hist);
-          }
-
-          if (!namesToCandidates.has(name)) {
-            namesToCandidates.set(name, new Set());
-          }
-          namesToCandidates.get(name).add(candidate);
-        }
-      }
-
-      for (const [name, candidates] of namesToCandidates) {
-        const deduplicatedDiagnostics = new Set();
-
-        for (const candidate of candidates) {
-          let found = false;
-          for (const test of deduplicatedDiagnostics) {
-            if (candidate.equals(test)) {
-              const hists = diagnosticsToHistograms.get(candidate);
-              for (const hist of hists) {
-                hist.diagnostics.set(name, test);
-              }
-              found = true;
-              break;
-            }
-          }
-          if (!found) {
-            deduplicatedDiagnostics.add(candidate);
-          }
-
-          for (const diagnostic of deduplicatedDiagnostics) {
-            this.sharedDiagnosticsByGuid_.set(diagnostic.guid, diagnostic);
-          }
-        }
-      }
-    }
-
     /**
      * @param {!Iterable.<string>} names of GenericSet diagnostics
      * @return {!Array.<!tr.v.HistogramGrouping>}
@@ -428,9 +354,8 @@ tr.exportTo('tr.v', function() {
     /*
      * RelatedHistogram diagnostics cannot be merged when Histograms are merged
      * because the related Histograms might not exist yet. Callers must
-     * call HistogramSet.deduplicateDiagnostics() and then
-     * HistogramSet.mergeRelationships() after merging Histograms in order to
-     * merge RelatedHistogram diagnostics.
+     * call HistogramSet.mergeRelationships() after merging Histograms in order
+     * to merge RelatedHistogram diagnostics.
      */
     mergeRelationships() {
       for (const hist of this) {
@@ -439,8 +364,6 @@ tr.exportTo('tr.v', function() {
     }
   }
 
-  return {
-    HistogramSet,
-  };
+  return {HistogramSet};
 });
 </script>
