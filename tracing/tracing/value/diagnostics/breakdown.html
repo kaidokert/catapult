@@ -87,13 +87,19 @@ tr.exportTo('tr.v.d', function() {
       return breakdown;
     }
 
-    static fromDict(d) {
+    static fromDict(d, deserializer) {
       const breakdown = new Breakdown();
-      for (const [name, value] of Object.entries(d.values)) {
-        breakdown.set(name, tr.b.numberFromJson(value));
+      if (d instanceof Array) {
+        breakdown.colorScheme = d[0];
+        d = d[1];
+      } else {
+        if (d.colorScheme) {
+          breakdown.colorScheme = d.colorScheme;
+        }
+        d = d.values;
       }
-      if (d.colorScheme) {
-        breakdown.colorScheme = d.colorScheme;
+      for (const [name, value] of Object.entries(d)) {
+        breakdown.set(name, tr.b.numberFromJson(value));
       }
       return breakdown;
     }

@@ -73,7 +73,9 @@ class GenericSet(diagnostic.Diagnostic):
     dct['values'] = list(self)
 
   @staticmethod
-  def FromDict(dct):
+  def FromDict(dct, deserializer=None):
+    if deserializer:
+      return GenericSet(dct)
     return GenericSet(dct['values'])
 
   def GetOnlyElement(self):

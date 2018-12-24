@@ -30,6 +30,24 @@ tr.exportTo('tr.v', function() {
   const P_VALUE_NAME = 'p-value';
   const U_STATISTIC_NAME = 'U';
 
+  const TAGS = {
+    ALL_BINS: 'B',
+    BIN_BOUNDARIES: 'b',
+    DESCRIPTION: 'd',
+    DIAGNOSTICS: 'D',
+    GUID: 'g',
+    MAX_NUM_SAMPLE_VALUES: 'm',
+    NAME: 'n',
+    NAN_BIN: 'a',
+    RUNNING: 'r',
+    SAMPLE_VALUES: 'v',
+    SUMMARY_OPTIONS: 'o',
+    UNIT: 'u',
+  };
+  if (new Set(Object.values(TAGS)).size !== Object.keys(TAGS).length) {
+    throw new Error('Duplicate tag!');
+  }
+
   /**
    * Converts the given percent to a string in the format specified above.
    * @param {number} percent The percent must be between 0.0 and 1.0.
@@ -102,11 +120,12 @@ tr.exportTo('tr.v', function() {
       this.count += other.count;
     }
 
-    fromDict(dict) {
+    fromDict(dict, deserializer) {
       this.count = dict[0];
       if (dict.length > 1) {
         for (const map of dict[1]) {
-          this.diagnosticMaps.push(tr.v.d.DiagnosticMap.fromDict(map));
+          this.diagnosticMaps.push(tr.v.d.DiagnosticMap.fromDict(map,
+              deserializer));
         }
       }
     }
@@ -289,58 +308,68 @@ tr.exportTo('tr.v', function() {
       this.guid_ = guid;
     }
 
-    static fromDict(dict) {
-      const hist = new Histogram(dict.name, tr.b.Unit.fromJSON(dict.unit),
-          HistogramBinBoundaries.fromDict(dict.binBoundaries));
-      hist.guid = dict.guid;
-      if (dict.shortName) {
-        hist.shortName = dict.shortName;
+    static fromDict(dict, deserializer) {
+      const hist = new Histogram(
+          deserializer ? deserializer.getNameById(dict[TAGS.NAME]) : dict.name,
+          tr.b.Unit.fromJSON(dict.unit || dict[TAGS.UNIT] || 'unitless'),
+          HistogramBinBoundaries.fromDict(
+              dict.binBoundaries || dict[TAGS.BIN_BOUNDARIES]));
+      hist.guid = dict.guid || dict[TAGS.GUID];
+      hist.description = dict.description || dict[TAGS.DESCRIPTION] || '';
+      if (dict.diagnostics || dict[TAGS.DIAGNOSTICS]) {
+        hist.diagnostics.addDicts(
+            dict.diagnostics || dict[TAGS.DIAGNOSTICS], deserializer);
       }
-      if (dict.description) {
-        hist.description = dict.description;
-      }
-      if (dict.diagnostics) {
-        hist.diagnostics.addDicts(dict.diagnostics);
-      }
-      if (dict.allBins) {
-        if (dict.allBins.length !== undefined) {
-          for (let i = 0; i < dict.allBins.length; ++i) {
+      const allBins = dict.allBins || dict[TAGS.ALL_BINS];
+      if (allBins) {
+        if (allBins.length !== undefined) {
+          for (let i = 0; i < allBins.length; ++i) {
             // Copy HistogramBin on write, share the rest with the other
             // Histograms that use the same HistogramBinBoundaries.
             hist.allBins[i] = new HistogramBin(hist.allBins[i].range);
-            hist.allBins[i].fromDict(dict.allBins[i]);
+            hist.allBins[i].fromDict(allBins[i], deserializer);
           }
         } else {
-          for (const [i, binDict] of Object.entries(dict.allBins)) {
+          for (const [i, binDict] of Object.entries(allBins)) {
             hist.allBins[i] = new HistogramBin(hist.allBins[i].range);
-            hist.allBins[i].fromDict(binDict);
+            hist.allBins[i].fromDict(binDict, deserializer);
           }
         }
       }
-      if (dict.running) {
-        hist.running_ = tr.b.math.RunningStatistics.fromDict(dict.running);
+      if (dict.running || dict[TAGS.RUNNING]) {
+        hist.running_ = tr.b.math.RunningStatistics.fromDict(
+            dict.running || dict[TAGS.RUNNING]);
       }
-      if (dict.summaryOptions) {
-        if (dict.summaryOptions.iprs) {
+      const summaryOptions = dict.summaryOptions || dict[TAGS.SUMMARY_OPTIONS];
+      if (summaryOptions) {
+        if (summaryOptions.iprs) {
           // Range.fromDict() requires isEmpty, which is unnecessarily verbose
           // for this use case.
-          dict.summaryOptions.iprs = dict.summaryOptions.iprs.map(
+          summaryOptions.iprs = summaryOptions.iprs.map(
               r => tr.b.math.Range.fromExplicitRange(r[0], r[1]));
         }
-        hist.customizeSummaryOptions(dict.summaryOptions);
+        hist.customizeSummaryOptions(summaryOptions);
       }
-      if (dict.maxNumSampleValues !== undefined) {
-        hist.maxNumSampleValues = dict.maxNumSampleValues;
+      const maxNumSampleValues = dict.maxNumSampleValues || dict[
+          TAGS.MAX_NUM_SAMPLE_VALUES];
+      if (maxNumSampleValues !== undefined) {
+        hist.maxNumSampleValues = maxNumSampleValues;
       }
-      if (dict.sampleValues) {
-        hist.sampleValues_ = dict.sampleValues;
+      if (dict.sampleValues || dict[TAGS.SAMPLE_VALUES]) {
+        hist.sampleValues_ = dict.sampleValues || dict[TAGS.SAMPLE_VALUES];
       }
       if (dict.numNans) {
         hist.numNans = dict.numNans;
       }
       if (dict.nanDiagnostics) {
-        for (const map of dict.nanDiagnostics) {
-          hist.nanDiagnosticMaps.push(tr.v.d.DiagnosticMap.fromDict(map));
+        hist.nanDiagnosticMaps = dict.nanDiagnostics.map(m =>
+          tr.v.d.DiagnosticMap.fromDict(m));
+      }
+      if (dict[TAGS.NAN_BIN]) {
+        hist.numNans = dict[TAGS.NAN_BIN][0];
+        if (dict[TAGS.NAN_BIN].length > 1) {
+          hist.nanDiagnosticMaps = dict[TAGS.NAN_BIN][1].map(m =>
+            tr.v.d.DiagnosticMap.fromDict(m, deserializer));
         }
       }
       return hist;
