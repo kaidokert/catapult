@@ -42,7 +42,11 @@ class UnmergeableDiagnosticSet(diagnostic.Diagnostic):
     d['diagnostics'] = [d.AsDictOrReference() for d in self]
 
   @staticmethod
-  def FromDict(dct):
+  def FromDict(dct, deserializer=None):
+    if deserializer:
+      return UnmergeableDiagnosticSet([
+          deserializer.GetDiagnosticById(i).values()[0] for i in dct])
+
     def RefOrDiagnostic(d):
       if isinstance(d, StringTypes):
         return diagnostic_ref.DiagnosticRef(d)

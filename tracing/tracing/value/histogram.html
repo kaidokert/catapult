@@ -30,6 +30,24 @@ tr.exportTo('tr.v', function() {
   const P_VALUE_NAME = 'p-value';
   const U_STATISTIC_NAME = 'U';
 
+  const TAGS = {
+    ALL_BINS: 'B',
+    BIN_BOUNDARIES: 'b',
+    DESCRIPTION: 'd',
+    DIAGNOSTICS: 'D',
+    GUID: 'g',
+    MAX_NUM_SAMPLE_VALUES: 'm',
+    NAME: 'n',
+    NAN_BIN: 'a',
+    RUNNING: 'r',
+    SAMPLE_VALUES: 'v',
+    SUMMARY_OPTIONS: 'o',
+    UNIT: 'u',
+  };
+  if (new Set(Object.values(TAGS)).size !== Object.keys(TAGS).length) {
+    throw new Error('Duplicate tag!');
+  }
+
   /**
    * Converts the given percent to a string in the format specified above.
    * @param {number} percent The percent must be between 0.0 and 1.0.

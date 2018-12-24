@@ -103,8 +103,8 @@ tr.exportTo('tr.v.d', function() {
       d.values = Array.from(this);
     }
 
-    static fromDict(d) {
-      return new GenericSet(d.values);
+    static fromDict(d, deserializer) {
+      return new GenericSet(deserializer ? d : d.values);
     }
 
     clone() {

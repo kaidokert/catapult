@@ -30,11 +30,10 @@ class RelatedHistogramBreakdown(histogram.RelatedHistogramMap):
       d['colorScheme'] = self._color_scheme
 
   @staticmethod
-  def FromDict(d):
+  def FromDict(d, unused_deserializer=None):
     result = RelatedHistogramBreakdown()
     for name, guid in d['values'].items():
       result.Set(name, histogram.HistogramRef(guid))
     if 'colorScheme' in d:
       result._color_scheme = d['colorScheme']
     return result
-
