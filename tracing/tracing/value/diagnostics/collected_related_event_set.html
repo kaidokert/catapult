@@ -32,9 +32,10 @@ tr.exportTo('tr.v.d', function() {
       }
     }
 
-    static fromDict(d) {
+    static fromDict(d, deserializer) {
       const result = new CollectedRelatedEventSet();
-      for (const [canonicalUrl, events] of Object.entries(d.events)) {
+      for (const [canonicalUrl, events] of Object.entries(
+          deserializer ? d : d.events)) {
         result.eventSetsByCanonicalUrl_.set(canonicalUrl, events.map(
             e => new tr.v.d.EventRef(e)));
       }

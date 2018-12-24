@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/value/histogram_deserializer.html">
+
+<script>
+'use strict';
+tr.b.unittest.testSuite(function() {
+  test('deserialize', function() {
+    const hists = tr.v.HistogramDeserializer.deserialize({
+      n: ['aaa', 'bbb', 'ccc'],
+      d: {
+        GenericSet: {
+          ddd: {
+            0: ['eee'],
+          },
+        },
+        DateRange: {
+          fff: {
+            1: 1545682260742,
+          },
+        },
+        Breakdown: {
+          ggg: {
+            2: ['colorscheme', {
+              hhh: 4,
+              iii: 6,
+            }],
+          }
+        },
+        RelatedNameMap: {
+          jjj: {
+            3: {
+              lll: 1,
+              mmm: 2,
+            },
+          },
+        },
+        RelatedEventSet: {
+          nnn: {
+            4: [
+              {
+                stableId: 'a.0.b.1.c.2',
+                title: 'Title',
+                start: 0,
+                duration: 1,
+              },
+            ],
+          },
+        },
+      },
+      h: [
+        {
+          B: {1: [1, [2, 4]]},
+          b: [0, [0, 100, 10]],
+          d: 'description',
+          D: [0, 1, 3],
+          g: 'guid',
+          m: 100,
+          n: 0,
+          a: [2, [0, 4]],
+          r: [1, 1, 1, 1, 1, 1],
+          v: [42],
+          o: {nans: true},
+          u: 'ms',
+        },
+      ],
+    });
+    assert.lengthOf(hists, 1);
+    assert.instanceOf(hists[0], tr.v.Histogram);
+    assert.strictEqual('aaa', hists[0].name);
+  });
+});
+</script>
