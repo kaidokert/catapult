@@ -57,7 +57,14 @@ class DateRange(diagnostic.Diagnostic):
     dct['max'] = self._range.max
 
   @staticmethod
-  def FromDict(dct):
+  def FromDict(dct, deserializer=None):
+    if deserializer:
+      if isinstance(dct, list):
+        dr = DateRange(dct[0])
+        dr._range.AddValue(dct[1])
+        return dr
+      return DateRange(dct)
+
     dr = DateRange(dct['min'])
     if 'max' in dct:
       dr._range.AddValue(dct['max'])

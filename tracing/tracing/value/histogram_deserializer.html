@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+Copyright 2016 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/value/histogram.html">
+
+<script>
+'use strict';
+
+tr.exportTo('tr.v', function() {
+  const TAGS = {
+    HISTOGRAMS: 'h',
+    NAMES: 'n',
+    DIAGNOSTICS: 'd',
+  };
+
+  class HistogramDeserializer {
+    static deserialize(dict) {
+      const deserializer = new HistogramDeserializer(dict);
+      return dict[TAGS.HISTOGRAMS].map(h =>
+        tr.v.Histogram.fromDict(h, deserializer));
+    }
+
+    constructor(dict) {
+      this.names_ = dict[TAGS.NAMES];
+      this.diagnosticsById_ = new Map();
+      for (const [type, diagnosticsByName] of Object.entries(
+          dict[TAGS.DIAGNOSTICS])) {
+        for (const [name, diagnosticsById] of Object.entries(
+            diagnosticsByName)) {
+          for (const [id, diagDict] of Object.entries(diagnosticsById)) {
+            const diagnostic = tr.v.d.Diagnostic.fromDict2(
+                type, diagDict, this);
+            this.diagnosticsById_.set('' + id, {name, diagnostic});
+          }
+        }
+      }
+    }
+
+    getNameById(id) {
+      return this.names_[id];
+    }
+
+    getDiagnosticById(id) {
+      return this.diagnosticsById_.get('' + id);
+    }
+  }
+
+  HistogramDeserializer.TAGS = TAGS;
+
+  return {
+    HistogramDeserializer,
+  };
+});
+</script>
