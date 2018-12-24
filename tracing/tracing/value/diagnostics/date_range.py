@@ -50,14 +50,14 @@ class DateRange(diagnostic.Diagnostic):
     max_date = self.max_date.isoformat().replace('T', ' ')[:19]
     return min_date + ' - ' + max_date
 
-  def _AsDictInto(self, dct):
-    dct['min'] = self._range.min
-    if self.duration_ms == 0:
-      return
-    dct['max'] = self._range.max
+  def AsDict(self, unused_serializer):
+    dct = {'min': self._range.min}
+    if self.duration_ms != 0:
+      dct['max'] = self._range.max
+    return dct
 
   @staticmethod
-  def FromDict(dct):
+  def FromDict(dct, unused_deserializer=None):
     dr = DateRange(dct['min'])
     if 'max' in dct:
       dr._range.AddValue(dct['max'])

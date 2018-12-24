@@ -70,7 +70,7 @@ tr.b.unittest.testSuite(function() {
     }
 
     // Test round-tripping.
-    breakdown = tr.v.d.Diagnostic.fromDict(breakdown.asDict());
+    breakdown = tr.v.d.Diagnostic.fromDict('Breakdown', breakdown.asDict());
 
     const span = tr.v.ui.createDiagnosticSpan(breakdown);
     assert.strictEqual('TR-V-UI-BREAKDOWN-SPAN', span.tagName);
@@ -92,7 +92,7 @@ tr.b.unittest.testSuite(function() {
     breakdown.set('bar', 57);
 
     // Test round-tripping.
-    breakdown = tr.v.d.Diagnostic.fromDict(breakdown.asDict());
+    breakdown = tr.v.d.Diagnostic.fromDict('Breakdown', breakdown.asDict());
 
     const span = tr.v.ui.createDiagnosticSpan(breakdown);
     span.updateContents_();

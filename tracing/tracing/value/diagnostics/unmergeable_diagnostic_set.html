@@ -17,13 +17,21 @@ tr.exportTo('tr.v.d', function() {
      */
     constructor(diagnostics) {
       super();
-      this._diagnostics = diagnostics;
+      this.diagnostics_ = diagnostics;
     }
 
     clone() {
       const clone = new tr.v.d.UnmergeableDiagnosticSet();
       clone.addDiagnostic(this);
       return clone;
+    }
+
+    equals(other) {
+      if (this.length !== other.length) return false;
+      for (const d of this) {
+        if (!other.diagnostics_.includes(d)) return false;
+      }
+      return true;
     }
 
     canAddDiagnostic(otherDiagnostic) {
@@ -48,15 +56,15 @@ tr.exportTo('tr.v.d', function() {
         return;
       }
 
-      for (let i = 0; i < this._diagnostics.length; ++i) {
-        if (this._diagnostics[i].canAddDiagnostic(otherDiagnostic)) {
-          this._diagnostics[i].addDiagnostic(otherDiagnostic);
+      for (let i = 0; i < this.diagnostics_.length; ++i) {
+        if (this.diagnostics_[i].canAddDiagnostic(otherDiagnostic)) {
+          this.diagnostics_[i].addDiagnostic(otherDiagnostic);
           return;
         }
       }
 
       const clone = otherDiagnostic.clone();
-      this._diagnostics.push(clone);
+      this.diagnostics_.push(clone);
     }
 
     mergeRelationships(otherDiagnostic, parentHist, otherParentHist) {
@@ -77,18 +85,22 @@ tr.exportTo('tr.v.d', function() {
     }
 
     get length() {
-      return this._diagnostics.length;
+      return this.diagnostics_.length;
     }
 
     * [Symbol.iterator]() {
-      for (const diagnostic of this._diagnostics) yield diagnostic;
+      for (const diagnostic of this.diagnostics_) yield diagnostic;
     }
 
-    asDictInto_(d) {
-      d.diagnostics = this._diagnostics.map(d => d.asDictOrReference());
+    asDict(serializer) {
+      return this.diagnostics_.map(d => serializer.getDiagnosticId('', d));
     }
 
-    static fromDict(d) {
+    static fromDict(d, deserializer) {
+      if (deserializer) {
+        return new UnmergeableDiagnosticSet(d.map(i =>
+          deserializer.getDiagnosticById(i).diagnostic));
+      }
       return new UnmergeableDiagnosticSet(d.diagnostics.map(
           d => ((typeof d === 'string') ?
             new tr.v.d.DiagnosticRef(d) : tr.v.d.Diagnostic.fromDict(d))));

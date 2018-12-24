@@ -191,7 +191,7 @@ tr.exportTo('tr.metrics', function() {
         model, options, result.addFailure.bind(result));
     addTelemetryInfo(histograms, model);
 
-    result.addPair('histograms', histograms.asDicts());
+    result.addPair('histograms', histograms.asDict());
 
     const scalarDicts = [];
     for (const value of histograms) {

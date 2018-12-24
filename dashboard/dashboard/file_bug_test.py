@@ -267,9 +267,10 @@ class FileBugTest(testing_common.TestCase):
       file_bug.auto_bisect, 'StartNewBisectForBug',
       mock.MagicMock(return_value={'issue_id': 123, 'issue_url': 'foo.com'}))
   def testGet_WithFinish_CreatesBug_WithDocs(self):
-    diag_dict = generic_set.GenericSet([[u'Benchmark doc link', u'http://docs']])
+    diag_dict = generic_set.GenericSet([
+        [u'Benchmark doc link', u'http://docs']]).AsDict(None)
     diag = histogram.SparseDiagnostic(
-        data=diag_dict.AsDict(), start_revision=1, end_revision=sys.maxint,
+        data=diag_dict, start_revision=1, end_revision=sys.maxint,
         name=reserved_infos.DOCUMENTATION_URLS.name,
         test=utils.TestKey('ChromiumPerf/linux/scrolling'))
     diag.put()

@@ -4,8 +4,9 @@
 
 import unittest
 
-from tracing.value import histogram_unittest
-from tracing.value.diagnostics import diagnostic
+from tracing.value import histogram
+from tracing.value import histogram_deserializer
+from tracing.value import histogram_set
 from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import related_name_map
 
@@ -14,10 +15,9 @@ class RelatedNameMapUnittest(unittest.TestCase):
   def testRoundtrip(self):
     names = related_name_map.RelatedNameMap()
     names.Set('a', 'A')
-    d = names.AsDict()
-    clone = diagnostic.Diagnostic.FromDict(d)
-    self.assertEqual(
-        histogram_unittest.ToJSON(d), histogram_unittest.ToJSON(clone.AsDict()))
+    clone = list(histogram_deserializer.Deserialize(histogram_set.HistogramSet([
+        histogram.Histogram.Create('', 'ms', [], diagnostics={'test': names}),
+    ]).AsDict()))[0].diagnostics.get('test')
     self.assertEqual(clone.Get('a'), 'A')
 
   def testMerge(self):
