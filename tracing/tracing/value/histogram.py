@@ -613,7 +613,6 @@ class Histogram(object):
       '_num_nans',
       '_running',
       '_sample_values',
-      '_short_name',
       '_summary_options',
       '_unit',
       '_bins',
@@ -645,7 +644,6 @@ class Histogram(object):
     self._num_nans = 0
     self._running = None
     self._sample_values = []
-    self._short_name = None
     self._summary_options = dict(DEFAULT_SUMMARY_OPTIONS)
     self._summary_options['percentile'] = []
     self._unit = unit
@@ -682,10 +680,6 @@ class Histogram(object):
     return self._name
 
   @property
-  def short_name(self):
-    return self._short_name
-
-  @property
   def guid(self):
     if self._guid is None:
       self._guid = str(uuid.uuid4())
@@ -709,8 +703,6 @@ class Histogram(object):
     boundaries = HistogramBinBoundaries.FromDict(dct.get('binBoundaries'))
     hist = Histogram(dct['name'], dct['unit'], boundaries)
     hist.guid = dct['guid']
-    if 'shortName' in dct:
-      hist._short_name = dct['shortName']
     if 'description' in dct:
       hist._description = dct['description']
     if 'diagnostics' in dct:
@@ -920,8 +912,6 @@ class Histogram(object):
     dct = {'name': self.name, 'unit': self.unit, 'guid': self.guid}
     if self._bin_boundaries_dict is not None:
       dct['binBoundaries'] = self._bin_boundaries_dict
-    if self._short_name:
-      dct['shortName'] = self._short_name
     if self._description:
       dct['description'] = self._description
     if len(self.diagnostics):
