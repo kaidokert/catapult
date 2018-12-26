@@ -63,7 +63,7 @@ LoadLogWithNewEventsTask.prototype = {
   onLogDumpCreated: function(logDumpText) {
     var logDump = JSON.parse(logDumpText);
 
-    logDump.constants.timeTickOffset = '0';
+    logDump.constants.timeTickOffset = 0;
     logDump.events = [];
 
     var source = new NetInternalsTest.Source(1, EventSourceType.SOCKET);
