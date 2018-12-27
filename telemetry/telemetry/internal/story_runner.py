@@ -320,6 +320,13 @@ def Run(test, story_set, finder_options, results, max_failures=None,
     if state:
       has_existing_exception = sys.exc_info() != (None, None, None)
       try:
+        if state.system_wide_profiling_controller.IsEnabled():
+          state.system_wide_profiling_controller.WriteStatsJSON(results)
+      except Exception as exc: # pylint: disable=broad-except
+        logging.exception(
+            'Could not create stats JSON file, got exception: %s("%s")',
+            type(exc), exc.message)
+      try:
         state.TearDownState()
       except Exception: # pylint: disable=broad-except
         if not has_existing_exception:
