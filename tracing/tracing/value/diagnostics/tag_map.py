@@ -28,6 +28,10 @@ class TagMap(diagnostic.Diagnostic):
         (k, list(v)) for k, v in self.tags_to_story_names.items())
 
   @staticmethod
+  def Deserialize(data, unused_deserializer):
+    return TagMap(data)
+
+  @staticmethod
   def FromDict(d):
     return TagMap(d)
 
