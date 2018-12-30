@@ -84,6 +84,20 @@ tr.exportTo('tr.b', function() {
   }
 
   Unit.prototype = {
+    serialize() {
+      switch (this.improvementDirection) {
+        case ImprovementDirection.DONT_CARE:
+          return this.jsonName;
+        case ImprovementDirection.BIGGER_IS_BETTER:
+          return this.baseUnit.jsonName + '+';
+        case ImprovementDirection.SMALLER_IS_BETTER:
+          return this.baseUnit.jsonName + '-';
+        default:
+          throw new Error(
+              'Unknown improvement direction: ' + this.improvementDirection);
+      }
+    },
+
     asJSON() {
       return this.jsonName;
     },
