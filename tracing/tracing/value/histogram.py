@@ -412,6 +412,13 @@ class RelatedHistogramMap(diagnostic.Diagnostic):
       d['values'][name] = hist.guid
 
   @staticmethod
+  def Deserialize(data, unused_deserializer):
+    result = RelatedHistogramMap()
+    for name, guid in data['values'].items():
+      result.Set(name, HistogramRef(guid))
+    return result
+
+  @staticmethod
   def FromDict(d):
     result = RelatedHistogramMap()
     for name, guid in d['values'].items():
@@ -444,6 +451,16 @@ class DiagnosticMap(dict):
         raise TypeError('Diagnostics names "%s" must be %s, not %s' %
                         (name, expected_type, diag.__class__.__name__))
     dict.__setitem__(self, name, diag)
+
+  @staticmethod
+  def Deserialize(data, deserializer):
+    dm = DiagnosticMap()
+    dm.DeserializeAdd(data, deserializer)
+    return dm
+
+  def DeserializeAdd(self, data, deserializer):
+    for i in data:
+      self.update(deserializer.GetDiagnostic(i))
 
   @staticmethod
   def FromDict(dct):
@@ -527,6 +544,18 @@ class HistogramBin(object):
       for diagnostic_map_dict in dct[1]:
         self._diagnostic_maps.append(DiagnosticMap.FromDict(
             diagnostic_map_dict))
+
+  def Deserialize(self, data, deserializer):
+    if not isinstance(data, list):
+      self._count = data
+      return
+    self._count = data[0]
+    for sample in data[1:]:
+      # TODO(benjhayden): class Sample
+      if not isinstance(sample, list):
+        continue
+      self._diagnostic_maps.append(DiagnosticMap.Deserialize(
+          sample[1:], deserializer))
 
   def AsDict(self):
     if len(self._diagnostic_maps) == 0:
@@ -703,6 +732,48 @@ class Histogram(object):
   @property
   def diagnostics(self):
     return self._diagnostics
+
+  @staticmethod
+  def Deserialize(data, deserializer):
+    (name, unit, boundaries, description, diagnostics, running, bins, nan_bin,
+    ) = data
+    name = deserializer.GetObject(name)
+    boundaries = HistogramBinBoundaries.FromDict(
+        deserializer.GetObject(boundaries))
+    hist = Histogram(name, unit, boundaries)
+    hist._description = deserializer.GetObject(description)
+    hist._diagnostics.DeserializeAdd(diagnostics, deserializer)
+    if running:
+      hist._running = RunningStatistics.FromDict(running)
+
+    if bins:
+      def HandleBinData(i, bin_data):
+        # Copy HistogramBin on write, share the rest with the other
+        # Histograms that use the same HistogramBinBoundaries.
+        hist._bins[i] = HistogramBin(hist._bins[i].range)
+        hist._bins[i].Deserialize(bin_data, deserializer)
+
+        # TODO(benjhayden): Remove after class Sample.
+        for sample in bin_data[1:]:
+          if isinstance(sample, list):
+            sample = sample[0]
+          hist._sample_values.append(sample)
+
+      if isinstance(bins, list):
+        for i, bin_data in enumerate(bins):
+          HandleBinData(i, bin_data)
+      else:
+        for i, bin_data in bins.items():
+          HandleBinData(int(i), bin_data)
+
+    if nan_bin:
+      # TODO(benjhayden): hist._nan_bin
+      hist._num_nans = nan_bin[0]
+      for sample in nan_bin[1:]:
+        # TODO(benjhayden): class Sample
+        hist._nan_diagnostic_maps.append(
+            DiagnosticMap.Deserialize(sample[1:], deserializer))
+    return hist
 
   @staticmethod
   def FromDict(dct):
