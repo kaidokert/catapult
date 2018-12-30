@@ -102,6 +102,20 @@ tr.exportTo('tr.v', function() {
       this.count += other.count;
     }
 
+    deserialize(data, deserializer) {
+      if (!(data instanceof Array)) {
+        this.count = data;
+        return;
+      }
+      this.count = data[0];
+      for (const sample of data.slice(1)) {
+        // TODO(benjhayden): class Sample
+        if (!(sample instanceof Array)) continue;
+        this.diagnosticMaps.push(tr.v.d.DiagnosticMap.deserialize(
+            sample.slice(1), deserializer));
+      }
+    }
+
     fromDict(dict) {
       this.count = dict[0];
       if (dict.length > 1) {
@@ -289,58 +303,113 @@ tr.exportTo('tr.v', function() {
       this.guid_ = guid;
     }
 
-    static fromDict(dict) {
-      const hist = new Histogram(dict.name, tr.b.Unit.fromJSON(dict.unit),
-          HistogramBinBoundaries.fromDict(dict.binBoundaries));
-      hist.guid = dict.guid;
-      if (dict.shortName) {
-        hist.shortName = dict.shortName;
+    static deserialize(data, deserializer) {
+      const [name, unit, boundaries, description, diagnostics, running, bins,
+        nanBin] = data;
+      const hist = new Histogram(
+          deserializer.getObject(name),
+          tr.b.Unit.fromJSON(unit || 'unitless'),
+          HistogramBinBoundaries.fromDict(deserializer.getObject(boundaries)));
+      hist.description = deserializer.getObject(description);
+      hist.diagnostics.deserializeAdd(diagnostics, deserializer);
+      if (running) {
+        hist.running_ = tr.b.math.RunningStatistics.fromDict(running);
       }
-      if (dict.description) {
-        hist.description = dict.description;
+      if (bins) {
+        function handleBinData(i, binData) {
+          // Copy HistogramBin on write, share the rest with the other
+          // Histograms that use the same HistogramBinBoundaries.
+          hist.allBins[i] = new HistogramBin(hist.allBins[i].range);
+          hist.allBins[i].deserialize(binData);
+        }
+        if (bins.length !== undefined) {
+          for (let i = 0; i < bins.length; ++i) {
+            handleBinData(i, bins[i]);
+          }
+        } else {
+          for (const [i, binData] of Object.entries(bins)) {
+            handleBinData(i, binData);
+          }
+        }
       }
-      if (dict.diagnostics) {
-        hist.diagnostics.addDicts(dict.diagnostics);
+      if (nanBin) {
+        // TODO(benjhayden): hist.nanBin
+        if (!(nanBin instanceof Array)) {
+          hist.numNans = nanBin;
+        } else {
+          hist.numNans = nanBin[0];
+          for (const sample of nanBin.slice(1)) {
+            if (!(sample instanceof Array)) continue;
+            hist.nanDiagnosticMaps.push(tr.v.d.DiagnosticMap.deserialize(
+                sample.slice(1), deserializer));
+          }
+        }
       }
-      if (dict.allBins) {
-        if (dict.allBins.length !== undefined) {
-          for (let i = 0; i < dict.allBins.length; ++i) {
+      return hist;
+    }
+
+    static fromDict(dict, deserializer) {
+      const hist = new Histogram(
+          deserializer ? deserializer.getNameById(dict[TAGS.NAME]) : dict.name,
+          tr.b.Unit.fromJSON(dict.unit || dict[TAGS.UNIT] || 'unitless'),
+          HistogramBinBoundaries.fromDict(
+              dict.binBoundaries || dict[TAGS.BIN_BOUNDARIES]));
+      hist.guid = dict.guid || dict[TAGS.GUID];
+      hist.description = dict.description || dict[TAGS.DESCRIPTION] || '';
+      if (dict.diagnostics || dict[TAGS.DIAGNOSTICS]) {
+        hist.diagnostics.addDicts(
+            dict.diagnostics || dict[TAGS.DIAGNOSTICS], deserializer);
+      }
+      const allBins = dict.allBins || dict[TAGS.ALL_BINS];
+      if (allBins) {
+        if (allBins.length !== undefined) {
+          for (let i = 0; i < allBins.length; ++i) {
             // Copy HistogramBin on write, share the rest with the other
             // Histograms that use the same HistogramBinBoundaries.
             hist.allBins[i] = new HistogramBin(hist.allBins[i].range);
-            hist.allBins[i].fromDict(dict.allBins[i]);
+            hist.allBins[i].fromDict(allBins[i]);
           }
         } else {
-          for (const [i, binDict] of Object.entries(dict.allBins)) {
+          for (const [i, binDict] of Object.entries(allBins)) {
             hist.allBins[i] = new HistogramBin(hist.allBins[i].range);
             hist.allBins[i].fromDict(binDict);
           }
         }
       }
-      if (dict.running) {
-        hist.running_ = tr.b.math.RunningStatistics.fromDict(dict.running);
+      if (dict.running || dict[TAGS.RUNNING]) {
+        hist.running_ = tr.b.math.RunningStatistics.fromDict(
+            dict.running || dict[TAGS.RUNNING]);
       }
-      if (dict.summaryOptions) {
-        if (dict.summaryOptions.iprs) {
+      const summaryOptions = dict.summaryOptions || dict[TAGS.SUMMARY_OPTIONS];
+      if (summaryOptions) {
+        if (summaryOptions.iprs) {
           // Range.fromDict() requires isEmpty, which is unnecessarily verbose
           // for this use case.
-          dict.summaryOptions.iprs = dict.summaryOptions.iprs.map(
+          summaryOptions.iprs = summaryOptions.iprs.map(
               r => tr.b.math.Range.fromExplicitRange(r[0], r[1]));
         }
-        hist.customizeSummaryOptions(dict.summaryOptions);
+        hist.customizeSummaryOptions(summaryOptions);
       }
-      if (dict.maxNumSampleValues !== undefined) {
-        hist.maxNumSampleValues = dict.maxNumSampleValues;
+      const maxNumSampleValues = dict.maxNumSampleValues || dict[
+          TAGS.MAX_NUM_SAMPLE_VALUES];
+      if (maxNumSampleValues !== undefined) {
+        hist.maxNumSampleValues = maxNumSampleValues;
       }
-      if (dict.sampleValues) {
-        hist.sampleValues_ = dict.sampleValues;
+      if (dict.sampleValues || dict[TAGS.SAMPLE_VALUES]) {
+        hist.sampleValues_ = dict.sampleValues || dict[TAGS.SAMPLE_VALUES];
       }
       if (dict.numNans) {
         hist.numNans = dict.numNans;
       }
       if (dict.nanDiagnostics) {
-        for (const map of dict.nanDiagnostics) {
-          hist.nanDiagnosticMaps.push(tr.v.d.DiagnosticMap.fromDict(map));
+        hist.nanDiagnosticMaps = dict.nanDiagnostics.map(m =>
+          tr.v.d.DiagnosticMap.fromDict(m));
+      }
+      if (dict[TAGS.NAN_BIN]) {
+        hist.numNans = dict[TAGS.NAN_BIN][0];
+        if (dict[TAGS.NAN_BIN].length > 1) {
+          hist.nanDiagnosticMaps = dict[TAGS.NAN_BIN][1].map(m =>
+            tr.v.d.DiagnosticMap.fromDict(m, deserializer));
         }
       }
       return hist;
