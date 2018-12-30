@@ -69,7 +69,16 @@ tr.exportTo('tr.v.d', function() {
       d.max = this.range_.max;
     }
 
-    static fromDict(d) {
+    static fromDict(d, deserializer) {
+      if (deserializer) {
+        if (d instanceof Array) {
+          const dr = new DateRange(d[0]);
+          dr.range_.addValue(d[1]);
+          return dr;
+        }
+        return new DateRange(d);
+      }
+
       const dateRange = new DateRange(d.min);
       if (d.max !== undefined) dateRange.range_.addValue(d.max);
       return dateRange;

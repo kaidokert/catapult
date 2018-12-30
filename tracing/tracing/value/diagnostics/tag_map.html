@@ -88,11 +88,11 @@ tr.exportTo('tr.v.d', function() {
       return this.tagsToStoryNames_;
     }
 
-    static fromDict(d) {
+    static fromDict(d, deserializer) {
       const info = new TagMap();
 
       for (const [name, values] of
-        Object.entries(d.tagsToStoryNames || {})) {
+        Object.entries((deserializer ? d : d.tagsToStoryNames) || {})) {
         info.tagsToStoryNames.set(name, new Set(values));
       }
 
