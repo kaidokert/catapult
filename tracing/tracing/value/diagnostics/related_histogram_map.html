@@ -152,6 +152,10 @@ tr.exportTo('tr.v.d', function() {
       }
     }
 
+    static deserialize(data, deserializer) {
+      return RelatedHistogramMap.fromDict(data);
+    }
+
     static fromDict(d) {
       const map = new RelatedHistogramMap();
       for (const [name, guid] of Object.entries(d.values)) {
