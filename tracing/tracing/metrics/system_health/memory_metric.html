@@ -1283,6 +1283,10 @@ tr.exportTo('tr.metrics.sh', function() {
   function buildSampleDiagnostics(value, node) {
     if (node.children.length < 2) return undefined;
     const diagnostics = new Map();
+    console.log(value, node);
+    diagnostics.set('dump', new tr.v.d.RelatedEventSet([
+    ]));
+
     const i = node.values.indexOf(value);
 
     const processBreakdown = new tr.v.d.Breakdown();
