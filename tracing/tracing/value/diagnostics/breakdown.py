@@ -27,10 +27,25 @@ class Breakdown(diagnostic.Diagnostic):
     return self._color_scheme
 
   @staticmethod
+  def Deserialize(data, deserializer):
+    breakdown = Breakdown()
+    breakdown._color_scheme = deserializer.GetObject(data[0])
+    for key, value in zip(deserializer.GetObject(data[1]), data[2:]):
+      if value in ['NaN', 'Infinity', '-Infinity']:
+        value = float(value)
+      breakdown.Set(deserializer.GetObject(key), value)
+    return breakdown
+
+  @staticmethod
   def FromDict(d):
     result = Breakdown()
-    result._color_scheme = d.get('colorScheme')
-    for name, value in d['values'].items():
+    if isinstance(d, list):
+      result._color_scheme = d[0]
+      d = d[1]
+    else:
+      result._color_scheme = d.get('colorScheme')
+      d = d['values']
+    for name, value in d.items():
       if value in ['NaN', 'Infinity', '-Infinity']:
         value = float(value)
       result.Set(name, value)

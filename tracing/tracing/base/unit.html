@@ -234,6 +234,18 @@ tr.exportTo('tr.b', function() {
   Unit.byName = {};
   Unit.byJSONName = {};
 
+  Unit.deserialize = function(s) {
+    let dir = ImprovementDirection.DONT_CARE;
+    if (s.endsWith('+')) {
+      dir = ImprovementDirection.BIGGER_IS_BETTER;
+      s = s.substr(0, s.length - 1);
+    } else if (s.endsWith('-')) {
+      dir = ImprovementDirection.SMALLER_IS_BETTER;
+      s = s.substr(0, s.length - 1);
+    }
+    return Unit.fromJSON(s + Unit.nameSuffixForImprovementDirection(dir));
+  };
+
   Unit.fromJSON = function(object) {
     const u = Unit.byJSONName[object];
     if (u) {
