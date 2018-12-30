@@ -1,8 +1,6 @@
 Quick descriptions of the scripts in tracing/bin/:
 
  * `chartjson2histograms`: Converts a chartjson file to HistogramSet JSON.
- * `compare_samples`: Compares metric results between two runs. Supports
-   chart-json, HistogramSet JSON, and buildbot formats.
  * `generate_about_tracing_contents`: Vulcanizes trace viewer.
  * `histograms2csv`: Converts HistogramSet JSON to CSV.
  * `histograms2html`: Vulcanizes results.html. Optionally copies HistogramSet
