@@ -51,8 +51,8 @@ tr.exportTo('tr.v.d', function() {
       d.groupingPath = this.groupingPath_;
     }
 
-    static fromDict(d) {
-      return new GroupingPath(d.groupingPath);
+    static fromDict(d, deserializer) {
+      return new GroupingPath(deserializer ? d : d.groupingPath);
     }
   }
 
