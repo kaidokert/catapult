@@ -99,6 +99,10 @@ tr.exportTo('tr.v.d', function() {
       return key;
     }
 
+    serialize(serializer) {
+      return [...this].map(x => serializer.getId(x));
+    }
+
     asDictInto_(d) {
       d.values = Array.from(this);
     }

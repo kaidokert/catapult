@@ -100,6 +100,15 @@ tr.exportTo('tr.v.d', function() {
       }
     }
 
+    serialize(serializer) {
+      return [...this].map(event => [
+        event.stableId,
+        serializer.getId(event.title),
+        event.start,
+        event.duration,
+      ]);
+    }
+
     asDictInto_(d) {
       d.events = [];
       for (const event of this) {

@@ -69,6 +69,17 @@ tr.exportTo('tr.v.d', function() {
       return this.values_.size;
     }
 
+    serialize(serializer) {
+      const keys = [...this.values_.keys()];
+      keys.sort();
+      const names = keys.map(k => this.get(k));
+      return [
+        serializer.getId(this.colorScheme),
+        serializer.getId(keys.map(k => serializer.getId(k))),
+        ...names,
+      ];
+    }
+
     asDictInto_(d) {
       d.values = {};
       for (const [name, value] of this) {
