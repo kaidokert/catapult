@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+Copyright 2019 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/value/histogram_serializer.html">
+
+<script>
+'use strict';
+
+tr.b.unittest.testSuite(function() {
+  test('serialize', function() {
+    const hist = new tr.v.Histogram(
+        'aaa', tr.b.Unit.byName.count_biggerIsBetter);
+    hist.diagnostics.set('bbb', new tr.v.d.RelatedNameMap({
+      ccc: 'a:c',
+      ddd: 'a:d',
+    }));
+    hist.diagnostics.set('hhh', new tr.v.d.GenericSet(['ggg']));
+    hist.addSample(42, {
+      bbb: tr.v.d.Breakdown.fromEntries([
+        ['ccc', 11],
+        ['ddd', 31],
+      ]),
+      eee: new tr.v.d.RelatedEventSet([
+        new tr.v.d.EventRef({
+          stableId: 'fff',
+          title: 'ggg',
+          start: 3,
+          duration: 4,
+        }),
+      ]),
+    });
+    const data = tr.v.HistogramSerializer.serialize([hist]);
+    console.log(JSON.stringify(data));
+  });
+});
+</script>
