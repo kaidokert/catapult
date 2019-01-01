@@ -947,6 +947,11 @@ window.HTMLImports.addModule(function(scope) {
     nextToParseInDoc: function(doc, link) {
       if (doc && this._mayParse.indexOf(doc) < 0) {
         this._mayParse.push(doc);
+        for (const tpl of doc.querySelectorAll('template')) {
+          if (tpl.__importParsed) continue;
+          tpl.__importParsed = true;
+          document.body.appendChild(tpl);
+        }
         var nodes = doc.querySelectorAll(this.parseSelectorsForNode(doc));
         for (var i = 0, l = nodes.length, n; i < l && (n = nodes[i]); i++) {
           if (!this.isParsed(n)) {
