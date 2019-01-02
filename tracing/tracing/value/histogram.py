@@ -469,6 +469,10 @@ class DiagnosticMap(dict):
       elif required:
         raise ValueError('Unable to find shared Diagnostic ' + guid)
 
+  def Serialize(self, serializer):
+    return [serializer.GetDiagnosticId(name, diag)
+            for name, diag in self.items()]
+
   def AsDict(self):
     dct = {}
     for name, diag in self.items():
@@ -527,6 +531,12 @@ class HistogramBin(object):
       for diagnostic_map_dict in dct[1]:
         self._diagnostic_maps.append(DiagnosticMap.FromDict(
             diagnostic_map_dict))
+
+  def Serialize(self, serializer):
+    if len(self._diagnostic_maps) == 0:
+      return self.count
+    return [self.count] + [
+        [None] + d.Serialize(serializer) for d in self._diagnostic_maps]
 
   def AsDict(self):
     if len(self._diagnostic_maps) == 0:
@@ -916,6 +926,23 @@ class Histogram(object):
           results[stat_name] = Scalar(stat_unit, stat_value)
     return results
 
+  def Serialize(self, serializer):
+    nan_bin = self.num_nans
+    if self.nan_diagnostic_maps:
+      nan_bin = [nan_bin] + [
+          [None] + dm.Serialize(serializer) for dm in self.nan_diagnostic_maps]
+    return [
+        serializer.GetId(self.name),
+        self.unit.replace(
+            '_biggerIsBetter', '+').replace('_smallerIsBetter', '-'),
+        serializer.GetId(self._bin_boundaries_dict),
+        serializer.GetId(self._description),
+        self.diagnostics.Serialize(serializer),
+        self._running.AsDict(),
+        self._SerializeBins(serializer),
+        nan_bin,
+    ]
+
   def AsDict(self):
     dct = {'name': self.name, 'unit': self.unit, 'guid': self.guid}
     if self._bin_boundaries_dict is not None:
@@ -952,6 +979,27 @@ class Histogram(object):
     if any_overridden_summary_options:
       dct['summaryOptions'] = summary_options
     return dct
+
+  def _SerializeBins(self, serializer):
+    num_bins = len(self._bins)
+    empty_bins = 0
+    for hbin in self._bins:
+      if hbin.count == 0:
+        empty_bins += 1
+    if empty_bins == num_bins:
+      return None
+
+    if empty_bins > (num_bins / 2):
+      all_bins_dict = {}
+      for i, hbin in enumerate(self._bins):
+        if hbin.count > 0:
+          all_bins_dict[i] = hbin.Serialize(serializer)
+      return all_bins_dict
+
+    all_bins_list = []
+    for hbin in self._bins:
+      all_bins_list.append(hbin.Serialize(serializer))
+    return all_bins_list
 
   def _GetAllBinsAsDict(self):
     num_bins = len(self._bins)
