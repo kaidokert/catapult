@@ -10,6 +10,7 @@ import sys
 
 from google.appengine.ext import ndb
 
+from dashboard import add_histograms
 from dashboard import add_point
 from dashboard import add_point_queue
 from dashboard import find_anomalies
@@ -131,14 +132,19 @@ def _PrewarmGets(params):
 
 
 def _ProcessRowAndHistogram(params):
-  revision = int(params['revision'])
   test_path = params['test_path']
   benchmark_description = params['benchmark_description']
-  data_dict = params['data']
 
   logging.info('Processing: %s', test_path)
 
-  hist = histogram_module.Histogram.FromDict(data_dict)
+  hs = histogram_set.HistogramSet()
+  hs.ImportDicts([params['data']])
+  # TODO(#4135): for hist in hs
+  hist = hs.GetFirstHistogram()
+  revision = add_histograms.ComputeRevision(hist)
+  benchmark_description = add_histograms._GetDiagnosticValue(
+      reserved_infos.BENCHMARK_DESCRIPTIONS.name,
+      hist, optional=True)
 
   if hist.num_values == 0:
     return []
@@ -156,7 +162,7 @@ def _ProcessRowAndHistogram(params):
   internal_only = graph_data.Bot.GetInternalOnlySync(master, bot)
   extra_args = GetUnitArgs(hist.unit)
 
-  unescaped_story_name = _GetStoryFromDiagnosticsDict(params.get('diagnostics'))
+  unescaped_story_name = _GetStoryFromDiagnosticsDict(hist.diagnostics)
 
   parent_test = add_point_queue.GetOrCreateAncestors(
       master, bot, full_test_name, internal_only=internal_only,
@@ -191,13 +197,12 @@ def _ProcessRowAndHistogram(params):
 
 @ndb.tasklet
 def _AddRowsFromData(params, revision, parent_test, legacy_parent_tests):
-  data_dict = params['data']
   test_key = parent_test.key
 
   stat_names_to_test_keys = {k: v.key for k, v in
                              legacy_parent_tests.iteritems()}
   rows = CreateRowEntities(
-      data_dict, test_key, stat_names_to_test_keys, revision)
+      params['data'], test_key, stat_names_to_test_keys, revision)
   if not rows:
     raise ndb.Return()
 
@@ -226,14 +231,13 @@ def _AddRowsFromData(params, revision, parent_test, legacy_parent_tests):
 
 @ndb.tasklet
 def _AddHistogramFromData(params, revision, test_key, internal_only):
-  data_dict = params['data']
-  guid = data_dict['guid']
-  diagnostics = params.get('diagnostics')
+  hs = histogram_set.HistogramSet()
+  hs.ImportDicts([params['data']])
+  hist = hs.GetFirstHistogram()
+  diagnostics = add_histograms.FindHistogramLevelSparseDiagnostics(hist)
   new_guids_to_existing_diagnostics = yield ProcessDiagnostics(
       diagnostics, revision, test_key, internal_only)
 
-  hs = histogram_set.HistogramSet()
-  hs.ImportDicts([data_dict])
   for new_guid, existing_diagnostic in (
       new_guids_to_existing_diagnostics.iteritems()):
     hs.ReplaceSharedDiagnostic(
@@ -242,7 +246,7 @@ def _AddHistogramFromData(params, revision, test_key, internal_only):
   data = hs.GetFirstHistogram().AsDict()
 
   entity = histogram.Histogram(
-      id=guid, data=data, test=test_key, revision=revision,
+      id=hist.guid, data=data, test=test_key, revision=revision,
       internal_only=internal_only)
   yield entity.put_async()
 
