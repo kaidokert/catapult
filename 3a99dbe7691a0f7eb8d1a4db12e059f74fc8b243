@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0be684f8_535cb59c",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-01-03T18:51:50Z",
+      "side": 1,
+      "message": "should this be \"patcher\"?",
+      "range": {
+        "startLine": 22,
+        "startChar": 29,
+        "endLine": 22,
+        "endChar": 36
+      },
+      "revId": "3a99dbe7691a0f7eb8d1a4db12e059f74fc8b243",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cdbbd63b_6f6d16f6",
+        "filename": "telemetry/telemetry/internal/util/external_modules.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-01-03T18:51:50Z",
+      "side": 1,
+      "message": "Could you add comment explaining what \"MODULES\" is? What are the tuples inside it? Are they lists of acceptable versions? What does None mean in this context?",
+      "range": {
+        "startLine": 14,
+        "startChar": 24,
+        "endLine": 14,
+        "endChar": 30
+      },
+      "revId": "3a99dbe7691a0f7eb8d1a4db12e059f74fc8b243",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db850cc3_f82e1a39",
+        "filename": "telemetry/telemetry/internal/util/external_modules.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-01-03T18:51:50Z",
+      "side": 1,
+      "message": "This note should just go in the docstring I think.\n\ndocstrings ideally should be parsed by various systems to automatically create documentation pages. I\u0027m not sure whether we have anything that does that yet currently, but it would be great to follow convention now so that this is ready later.",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 78
+      },
+      "revId": "3a99dbe7691a0f7eb8d1a4db12e059f74fc8b243",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
