@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5427bed1_36643b27",
+        "filename": "tracing/tracing/value/gtest_json_converter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-03T19:36:54Z",
+      "side": 1,
+      "message": "Can you add improvement direction to the unit like \u0027_biggerIsBetter\u0027 or \u0027_smallerIsBetter\u0027?\nIt\u0027s required for regression detection.",
+      "revId": "0792c93f83e321e8a391407d3209424ab7ae036a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
