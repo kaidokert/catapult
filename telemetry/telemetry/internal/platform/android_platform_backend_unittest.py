@@ -19,9 +19,10 @@ class AndroidPlatformBackendTest(unittest.TestCase):
         android_platform_backend,
         ['perf_control', 'thermal_throttle'])
 
-    # Skip _FixPossibleAdbInstability by setting psutil to None.
-    self._actual_ps_util = android_platform_backend.psutil
-    android_platform_backend.psutil = None
+    self.fix_adb_instability_pathcer = mock.patch.object(
+        android_platform_backend, '_FixPossibleAdbInstability')
+    self.fix_adb_instability_pathcer.start()
+
     self.battery_patcher = mock.patch.object(battery_utils, 'BatteryUtils')
     self.battery_patcher.start()
 
@@ -38,6 +39,7 @@ class AndroidPlatformBackendTest(unittest.TestCase):
   def tearDown(self):
     self._stubs.Restore()
     android_platform_backend.psutil = self._actual_ps_util
+    self.fix_adb_instability_pathcer.stop()
     self.battery_patcher.stop()
     self.device_patcher.stop()
 
