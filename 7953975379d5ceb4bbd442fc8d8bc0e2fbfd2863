@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "092cd9ef_36ffd135",
+        "filename": "experimental/soundwave/services/request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-03T12:39:05Z",
+      "side": 1,
+      "message": "Thanks for the links, I\u0027ve also always found this confusing in the past. Indeed, this is not jsonp and, in fact, it is actually a protection to *prevent* the json being interpreted as jsonp (i.e. an executable js script).\n\nLooking at your other suggestion bellow (explicitly checking for the security prefix) I\u0027m thinking now to just expose \"json\" as a possible accept format, and transparently strip off the prefix if found. Other prefixes can be later added if needed.",
+      "parentUuid": "2ae60f25_1d18c3a7",
+      "range": {
+        "startLine": 87,
+        "startChar": 33,
+        "endLine": 87,
+        "endChar": 38
+      },
+      "revId": "7953975379d5ceb4bbd442fc8d8bc0e2fbfd2863",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "af504cbf_e3012dfd",
         "filename": "experimental/soundwave/services/request.py",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2018-12-21T18:34:46Z",
       "side": 1,
       "message": "status",
+      "range": {
+        "startLine": 101,
+        "startChar": 44,
+        "endLine": 101,
+        "endChar": 50
+      },
+      "revId": "7953975379d5ceb4bbd442fc8d8bc0e2fbfd2863",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7fe9468_f42e4100",
+        "filename": "experimental/soundwave/services/request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-03T12:39:05Z",
+      "side": 1,
+      "message": "thanks!",
+      "parentUuid": "af504cbf_e3012dfd",
       "range": {
         "startLine": 101,
         "startChar": 44,
@@ -87,6 +135,54 @@
         "startChar": 34,
         "endLine": 141,
         "endChar": 63
+      },
+      "revId": "7953975379d5ceb4bbd442fc8d8bc0e2fbfd2863",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a7f8b46_387fba9b",
+        "filename": "experimental/soundwave/services/request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-03T12:39:05Z",
+      "side": 1,
+      "message": "Added comment with explanation at the top now when defining a constant with the value of the security prefix.",
+      "parentUuid": "a74d1749_a4b1fa37",
+      "range": {
+        "startLine": 141,
+        "startChar": 34,
+        "endLine": 141,
+        "endChar": 63
+      },
+      "revId": "7953975379d5ceb4bbd442fc8d8bc0e2fbfd2863",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94bfe4e1_bbd90569",
+        "filename": "experimental/soundwave/services/request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-03T12:39:05Z",
+      "side": 1,
+      "message": "Done-ish. :)",
+      "parentUuid": "4b248b7e_260fa9d3",
+      "range": {
+        "startLine": 141,
+        "startChar": 13,
+        "endLine": 141,
+        "endChar": 28
       },
       "revId": "7953975379d5ceb4bbd442fc8d8bc0e2fbfd2863",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
