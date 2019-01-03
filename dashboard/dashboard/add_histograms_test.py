@@ -716,15 +716,11 @@ class AddHistogramsTest(AddHistogramsBaseTest):
   def setUp(self):
     super(AddHistogramsTest, self).setUp()
 
-  def TaskParamsByGuid(self):
-    tasks = self.GetTaskQueueTasks(add_histograms.TASK_QUEUE_NAME)
-    params_by_guid = {}
-    for task in tasks:
-      params = base64.b64decode(task['body'])
-      histogram_dicts = json.loads(params)
-      for d in histogram_dicts:
-        params_by_guid[d['data']['guid']] = d
-    return params_by_guid
+  def TaskParams(self):
+    tasks = []
+    for task in self.GetTaskQueueTasks(add_histograms.TASK_QUEUE_NAME):
+      tasks.extend(json.loads(base64.b64decode(task['body'])))
+    return tasks
 
   @mock.patch.object(
       add_histograms, '_QueueHistogramTasks')
@@ -847,21 +843,13 @@ class AddHistogramsTest(AddHistogramsBaseTest):
         }
     ])
     self.PostAddHistogram({'data': data})
-    params_by_guid = self.TaskParamsByGuid()
+    tasks = self.TaskParams()
+    print 'tasks', tasks
 
-    self.assertEqual(2, len(params_by_guid))
-    self.assertEqual(
-        'master/bot/benchmark/foo/story',
-        params_by_guid['4989617a-14d6-4f80-8f75-dafda2ff13b0']['test_path'])
-    self.assertEqual(
-        424242,
-        params_by_guid['4989617a-14d6-4f80-8f75-dafda2ff13b0']['revision'])
-    self.assertEqual(
-        'master/bot/benchmark/foo2/story',
-        params_by_guid['2a714c36-f4ef-488d-8bee-93c7e3149388']['test_path'])
-    self.assertEqual(
-        424242,
-        params_by_guid['2a714c36-f4ef-488d-8bee-93c7e3149388']['revision'])
+    self.assertEqual(2, len(tasks))
+    test_paths = [task['test_path'] for task in tasks]
+    self.assertIn('master/bot/benchmark/foo/story', test_paths)
+    self.assertIn('master/bot/benchmark/foo2/story', test_paths)
 
   def testPostHistogramPassesHistogramLevelSparseDiagnostics(self):
     data = json.dumps([
@@ -921,16 +909,15 @@ class AddHistogramsTest(AddHistogramsBaseTest):
     ])
     self.PostAddHistogram({'data': data})
 
-    params_by_guid = self.TaskParamsByGuid()
-    params = params_by_guid['2a714c36-f4ef-488d-8bee-93c7e3149388']
-    diagnostics = params['diagnostics']
-
-    self.assertEqual(1, len(diagnostics))
+    tasks = self.TaskParams()
+    task_by_path = {task['test_path']: task['data'] for task in tasks}
+    hs = histogram_set.HistogramSet()
+    hs.ImportDicts(task_by_path['master/bot/benchmark/foo2'])
+    self.assertEqual(1, len(hs))
+    hist = hs.GetFirstHistogram()
     self.assertEqual(
-        ['test'], diagnostics[reserved_infos.DEVICE_IDS.name]['values'])
-    self.assertNotEqual(
-        '0bc1021b-8107-4db7-bc8c-49d7cf53c5ae',
-        diagnostics[reserved_infos.DEVICE_IDS.name]['guid'])
+        'test',
+        hist.diagnostics[reserved_infos.DEVICE_IDS.name].GetOnlyElement())
 
   def testPostHistogram_AddsNewSparseDiagnostic(self):
     diag_dict = {
@@ -977,15 +964,14 @@ class AddHistogramsTest(AddHistogramsBaseTest):
     ])
     self.PostAddHistogram({'data': data})
 
-    diagnostics = histogram.SparseDiagnostic.query().fetch()
-    params_by_guid = self.TaskParamsByGuid()
-    params = params_by_guid['4989617a-14d6-4f80-8f75-dafda2ff13b0']
-    hist = params['data']
-
-    self.assertEqual(4, len(diagnostics))
+    tasks = self.TaskParams()
+    self.assertEqual(1, len(tasks))
+    hs = histogram_set.HistogramSet()
+    hs.ImportDicts(tasks[0]['data'])
+    hist = hs.GetFirstHistogram()
     self.assertEqual(
-        'e9c2891d-2b04-413f-8cf4-099827e67626',
-        hist['diagnostics'][reserved_infos.MASTERS.name])
+        'master',
+        hist.diagnostics[reserved_infos.MASTERS.name].GetOnlyElement())
 
   def testPostHistogram_DeduplicatesSameSparseDiagnostic(self):
     diag_dict = {
@@ -1034,15 +1020,15 @@ class AddHistogramsTest(AddHistogramsBaseTest):
     ])
     self.PostAddHistogram({'data': data})
 
-    diagnostics = histogram.SparseDiagnostic.query().fetch()
-    params_by_guid = self.TaskParamsByGuid()
-    params = params_by_guid['4989617a-14d6-4f80-8f75-dafda2ff13b0']
-    hist = params['data']
-
-    self.assertEqual(3, len(diagnostics))
+    tasks = self.TaskParams()
+    self.assertEqual(1, len(tasks))
+    hs = histogram_set.HistogramSet()
+    hs.ImportDicts(tasks[0]['data'])
+    self.assertEqual(1, len(hs))
+    hist = hs.GetFirstHistogram()
     self.assertEqual(
-        'e9c2891d-2b04-413f-8cf4-099827e67626',
-        hist['diagnostics'][reserved_infos.MASTERS.name])
+        'master',
+        hist.diagnostics[reserved_infos.MASTERS.name].GetOnlyElement())
 
   def testPostHistogramFailsWithoutHistograms(self):
     data = json.dumps([
@@ -1196,37 +1182,25 @@ class AddHistogramsTest(AddHistogramsBaseTest):
 
     self.PostAddHistogram({'data': data})
 
-    diagnostics = histogram.SparseDiagnostic.query().fetch()
-    params_by_guid = self.TaskParamsByGuid()
+    tasks = self.TaskParams()
+    self.assertEqual(1, len(tasks))
+    hs = histogram_set.HistogramSet()
+    hs.ImportDicts(tasks[0]['data'])
+    self.assertEqual(1, len(hs))
+    hist = hs.GetFirstHistogram()
 
-    params = params_by_guid['4989617a-14d6-4f80-8f75-dafda2ff13b0']
-    hist = params['data']
-    owners_info = hist['diagnostics'][reserved_infos.OWNERS.name]
-    self.assertEqual(4, len(diagnostics))
-
-    names = [
-        reserved_infos.BENCHMARKS.name,
-        reserved_infos.BOTS.name,
-        reserved_infos.OWNERS.name,
-        reserved_infos.MASTERS.name]
-    diagnostics_by_name = {}
-    for d in diagnostics:
-      self.assertIn(d.name, names)
-      names.remove(d.name)
-      diagnostics_by_name[d.name] = d
     self.assertEqual(
-        ['benchmark'],
-        diagnostics_by_name[reserved_infos.BENCHMARKS.name].data['values'])
+        'benchmark',
+        hist.diagnostics[reserved_infos.BENCHMARKS.name].GetOnlyElement())
     self.assertEqual(
-        ['bot'],
-        diagnostics_by_name[reserved_infos.BOTS.name].data['values'])
+        'bot',
+        hist.diagnostics[reserved_infos.BOTS.name].GetOnlyElement())
     self.assertEqual(
-        ['alice@chromium.org'],
-        diagnostics_by_name[reserved_infos.OWNERS.name].data['values'])
+        'alice@chromium.org',
+        hist.diagnostics[reserved_infos.OWNERS.name].GetOnlyElement())
     self.assertEqual(
-        ['master'],
-        diagnostics_by_name[reserved_infos.MASTERS.name].data['values'])
-    self.assertEqual('cabb59fe-4bcf-4512-881c-d038c7a80635', owners_info)
+        'master',
+        hist.diagnostics[reserved_infos.MASTERS.name].GetOnlyElement())
 
   def testPostHistogram_AddsSparseDiagnosticByName_OnlyOnce(self):
     data = json.dumps([
@@ -1392,7 +1366,8 @@ class AddHistogramsTest(AddHistogramsBaseTest):
   def testComputeRevision(self):
     hs = _CreateHistogram(name='hist', commit_position=424242,
                           revision_timestamp=123456)
-    self.assertEqual(424242, add_histograms.ComputeRevision(hs))
+    self.assertEqual(
+        424242, add_histograms.ComputeRevision(hs.GetFirstHistogram()))
 
   def testComputeRevision_NotInteger_Raises(self):
     hist = histogram_module.Histogram('hist', 'count')
@@ -1401,7 +1376,7 @@ class AddHistogramsTest(AddHistogramsBaseTest):
     histograms.AddSharedDiagnosticToAllHistograms(
         reserved_infos.CHROMIUM_COMMIT_POSITIONS.name, chromium_commit)
     with self.assertRaises(api_request_handler.BadRequestError):
-      add_histograms.ComputeRevision(histograms)
+      add_histograms.ComputeRevision(histograms.GetFirstHistogram())
 
   def testComputeRevision_RaisesOnError(self):
     hist = histogram_module.Histogram('hist', 'count')
@@ -1410,33 +1385,33 @@ class AddHistogramsTest(AddHistogramsBaseTest):
     histograms.AddSharedDiagnosticToAllHistograms(
         reserved_infos.CHROMIUM_COMMIT_POSITIONS.name, chromium_commit)
     with self.assertRaises(api_request_handler.BadRequestError):
-      add_histograms.ComputeRevision(histograms)
+      add_histograms.ComputeRevision(histograms.GetFirstHistogram())
 
   def testComputeRevision_UsesPointIdIfPresent(self):
     hs = _CreateHistogram(name='foo', commit_position=123456, point_id=234567,
                           revision_timestamp=345678)
-    rev = add_histograms.ComputeRevision(hs)
+    rev = add_histograms.ComputeRevision(hs.GetFirstHistogram())
     self.assertEqual(234567, rev)
 
   def testComputeRevision_PointIdNotInteger_Raises(self):
     hs = _CreateHistogram(name='foo', commit_position=123456, point_id='abc')
     with self.assertRaises(api_request_handler.BadRequestError):
-      add_histograms.ComputeRevision(hs)
+      add_histograms.ComputeRevision(hs.GetFirstHistogram())
 
   def testComputeRevision_UsesRevisionTimestampIfNecessary(self):
     hs = _CreateHistogram(name='foo', revision_timestamp=123456)
-    rev = add_histograms.ComputeRevision(hs)
+    rev = add_histograms.ComputeRevision(hs.GetFirstHistogram())
     self.assertEqual(123456, rev)
 
   def testComputeRevision_RevisionTimestampNotInteger_Raises(self):
     hs = _CreateHistogram(name='foo', revision_timestamp='abc')
     with self.assertRaises(api_request_handler.BadRequestError):
-      add_histograms.ComputeRevision(hs)
+      add_histograms.ComputeRevision(hs.GetFirstHistogram())
 
   def testComputeRevision_NoRevision_Raises(self):
     hs = _CreateHistogram(name='foo')
     with self.assertRaises(api_request_handler.BadRequestError):
-      add_histograms.ComputeRevision(hs)
+      add_histograms.ComputeRevision(hs.GetFirstHistogram())
 
   def testSparseDiagnosticsAreNotInlined(self):
     hist = histogram_module.Histogram('hist', 'count')
