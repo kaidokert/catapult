@@ -16,6 +16,24 @@
       "revId": "35caab8b839f1e5d3713ff6ed84fbc1b3b4a1970",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "749abe4d_091f405b",
+        "filename": "telemetry/OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2019-01-03T19:36:07Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "b5c84ddc_c8820794",
+      "revId": "35caab8b839f1e5d3713ff6ed84fbc1b3b4a1970",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
