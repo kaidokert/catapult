@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "83116261_dc023866",
+        "filename": "experimental/soundwave/services/request.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-03T13:18:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ba1f398_37d65e1b",
+      "range": {
+        "startLine": 25,
+        "startChar": 45,
+        "endLine": 25,
+        "endChar": 54
+      },
+      "revId": "a54b997b0438f3be4822a47e05484d2d27d7d746",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "02f1e1b2_83f06d7c",
         "filename": "experimental/soundwave/services/request.py",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "a54b997b0438f3be4822a47e05484d2d27d7d746",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bcae7d0_192f297c",
+        "filename": "experimental/soundwave/services/request.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-03T13:18:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02f1e1b2_83f06d7c",
+      "range": {
+        "startLine": 31,
+        "startChar": 10,
+        "endLine": 31,
+        "endChar": 22
+      },
+      "revId": "a54b997b0438f3be4822a47e05484d2d27d7d746",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
