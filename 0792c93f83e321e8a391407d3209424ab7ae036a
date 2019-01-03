@@ -16,6 +16,24 @@
       "revId": "0792c93f83e321e8a391407d3209424ab7ae036a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c149460e_271fc5fc",
+        "filename": "tracing/tracing/value/gtest_json_converter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-01-03T19:53:56Z",
+      "side": 1,
+      "message": "Done. We don\u0027t have a way of actually determining which to use since there\u0027s no relevant data in the gtest data, but most if not all uses of this seem to assume that smaller is better.",
+      "parentUuid": "5427bed1_36643b27",
+      "revId": "0792c93f83e321e8a391407d3209424ab7ae036a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
