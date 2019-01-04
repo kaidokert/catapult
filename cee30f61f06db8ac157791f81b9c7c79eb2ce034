@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a3373245_dd1a2a1d",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-04T16:45:27Z",
+      "side": 1,
+      "message": "Note this is the code from:\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/browser/possible_browser.py?rcl\u003d51771a7cad87fdf00c949740c06205e71de8830a\u0026l\u003d78\n\nWhich is planned to be removed.",
+      "revId": "cee30f61f06db8ac157791f81b9c7c79eb2ce034",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1731def_25569e68",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-04T16:45:27Z",
+      "side": 1,
+      "message": "Looking at the history, this seems to have been added for some legacy startup benchmark to switch between warm/cold starts. But that mechanism is no longer used by the new startup benchmarks or the (renderer) cache_temperature feature; and assuming the browser is always started \"cold\" is probably the best for all benchmarks.\n\nLeaving this as-is for now. Will try to flip to True everywhere on a follow up CL (so we can easily revert if my assumptions are wrong).",
+      "revId": "cee30f61f06db8ac157791f81b9c7c79eb2ce034",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
