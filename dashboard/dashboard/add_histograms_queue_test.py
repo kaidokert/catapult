@@ -80,10 +80,8 @@ class AddHistogramsQueueTest(testing_common.TestCase):
                    internal_only=False).put()
     test_path = 'Chromium/win7/suite/metric'
     params = [{
-        'data': TEST_HISTOGRAM,
+        'data': [TEST_HISTOGRAM],
         'test_path': test_path,
-        'benchmark_description': None,
-        'revision': 123
     }]
     self.testapp.post('/add_histograms_queue', json.dumps(params))
 
@@ -120,10 +118,8 @@ class AddHistogramsQueueTest(testing_common.TestCase):
   def testPostHistogram_Internal(self):
     test_path = 'Chromium/win7/suite/metric'
     params = [{
-        'data': TEST_HISTOGRAM,
+        'data': [TEST_HISTOGRAM],
         'test_path': test_path,
-        'benchmark_description': None,
-        'revision': 123
     }]
     self.testapp.post('/add_histograms_queue', json.dumps(params))
 
@@ -155,14 +151,8 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     histogram.HistogramRevisionRecord.GetOrCreate(
         utils.TestKey('Chromium/win7/suite'), 1).put()
     params = [{
-        'data': TEST_HISTOGRAM,
+        'data': [TEST_HISTOGRAM],
         'test_path': test_path,
-        'benchmark_description': None,
-        'revision': 123,
-        'diagnostics': {
-            'benchmarks': TEST_BENCHMARKS,
-            'owners': TEST_OWNERS
-        }
     }]
     self.testapp.post('/add_histograms_queue', json.dumps(params))
     histogram_entity = histogram.Histogram.query().fetch()[0]
@@ -196,14 +186,8 @@ class AddHistogramsQueueTest(testing_common.TestCase):
         utils.TestKey('Chromium/win7/suite'), 1).put()
     test_path = 'Chromium/win7/suite/metric'
     params = [{
-        'data': TEST_HISTOGRAM,
+        'data': [TEST_HISTOGRAM],
         'test_path': test_path,
-        'benchmark_description': None,
-        'revision': 123,
-        'diagnostics': {
-            'benchmarks': TEST_BENCHMARKS,
-            'owners': TEST_OWNERS
-        }
     }]
     self.testapp.post('/add_histograms_queue', json.dumps(params))
     histogram_entity = histogram.Histogram.query().fetch()[0]
@@ -229,14 +213,8 @@ class AddHistogramsQueueTest(testing_common.TestCase):
         utils.TestKey('Chromium/win7/suite'), 1).put()
     test_path = 'Chromium/win7/suite/metric'
     params = [{
-        'data': TEST_HISTOGRAM,
+        'data': [TEST_HISTOGRAM],
         'test_path': test_path,
-        'benchmark_description': None,
-        'revision': 123,
-        'diagnostics': {
-            'benchmarks': TEST_BENCHMARKS,
-            'owners': TEST_OWNERS
-        }
     }]
     self.testapp.post('/add_histograms_queue', json.dumps(params))
     histogram_entity = histogram.Histogram.query().fetch()[0]
@@ -257,13 +235,8 @@ class AddHistogramsQueueTest(testing_common.TestCase):
 
     test_path = 'Chromium/win7/suite/metric'
     params = [{
-        'data': hist.AsDict(),
+        'data': histogram_set.HistogramSet([hist]).AsDicts(),
         'test_path': test_path,
-        'benchmark_description': None,
-        'revision': 123,
-        'diagnostics': {
-            'stories': hist.diagnostics.get('stories').AsDict(),
-        }
     }]
     self.testapp.post('/add_histograms_queue', json.dumps(params))
 
@@ -274,7 +247,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
   def testPostHistogram_OnlyCreatesAvgRowForMemoryBenchmark(self):
     test_path = 'Chromium/win7/memory_desktop/memory:chrome'
     params = [{
-        'data': TEST_HISTOGRAM,
+        'data': [TEST_HISTOGRAM],
         'test_path': test_path,
         'benchmark_description': None,
         'revision': 123
@@ -288,7 +261,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
   def testPostHistogram_SuffixesHistogramName(self):
     test_path = 'Chromium/win7/memory_desktop/memory:chrome/bogus_page'
     params = [{
-        'data': TEST_HISTOGRAM,
+        'data': [TEST_HISTOGRAM],
         'test_path': test_path,
         'benchmark_description': None,
         'revision': 123
@@ -310,7 +283,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     })
 
     params = [{
-        'data': hist.AsDict(),
+        'data': histogram_set.HistogramSet([hist]).AsDicts(),
         'test_path': test_path,
         'revision': 123,
         'benchmark_description': None
@@ -325,7 +298,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     test_path = 'Chromium/win7/v8.browsing_desktop/v8-gc-blah'
 
     params = [{
-        'data': TEST_HISTOGRAM,
+        'data': [TEST_HISTOGRAM],
         'test_path': test_path,
         'revision': 123,
         'benchmark_description': None
@@ -342,10 +315,8 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     test_path = 'Chromium/win7/benchmark/benchmark_total_duration'
 
     params = [{
-        'data': TEST_HISTOGRAM,
+        'data': [TEST_HISTOGRAM],
         'test_path': test_path,
-        'revision': 123,
-        'benchmark_description': None
     }]
     self.testapp.post('/add_histograms_queue', json.dumps(params))
 
@@ -358,10 +329,8 @@ class AddHistogramsQueueTest(testing_common.TestCase):
   def testPostHistogram_CreatesNoLegacyRowsForLegacyTest(self):
     test_path = 'Chromium/win7/blink_perf.dom/foo'
     params = [{
-        'data': TEST_HISTOGRAM,
+        'data': [TEST_HISTOGRAM],
         'test_path': test_path,
-        'benchmark_description': None,
-        'revision': 123
     }]
     self.testapp.post('/add_histograms_queue', json.dumps(params))
 
@@ -371,11 +340,11 @@ class AddHistogramsQueueTest(testing_common.TestCase):
   def testPostHistogram_EmptyCreatesNoTestsOrRowsOrHistograms(self):
     test_path = 'Chromium/win7/blink_perf.dom/foo'
     hist = histogram_module.Histogram('foo', 'count')
+    hist.diagnostics[reserved_infos.POINT_ID.name] = generic_set.GenericSet([
+        123])
     params = [{
-        'data': hist.AsDict(),
+        'data': histogram_set.HistogramSet([hist]).AsDicts(),
         'test_path': test_path,
-        'benchmark_description': None,
-        'revision': 123
     }]
     self.testapp.post('/add_histograms_queue', json.dumps(params))
 

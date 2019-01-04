@@ -7,9 +7,11 @@
 import json
 import logging
 import sys
+import uuid
 
 from google.appengine.ext import ndb
 
+from dashboard import add_histograms
 from dashboard import add_point
 from dashboard import add_point_queue
 from dashboard import find_anomalies
@@ -102,10 +104,6 @@ def _GetStoryFromDiagnosticsDict(diagnostics):
     return None
 
   story_name = diagnostics.get(reserved_infos.STORIES.name)
-  if not story_name:
-    return None
-
-  story_name = diagnostic.Diagnostic.FromDict(story_name)
   if story_name and len(story_name) == 1:
     return story_name.GetOnlyElement()
   return None
@@ -131,14 +129,18 @@ def _PrewarmGets(params):
 
 
 def _ProcessRowAndHistogram(params):
-  revision = int(params['revision'])
   test_path = params['test_path']
-  benchmark_description = params['benchmark_description']
-  data_dict = params['data']
 
   logging.info('Processing: %s', test_path)
 
-  hist = histogram_module.Histogram.FromDict(data_dict)
+  hs = histogram_set.HistogramSet()
+  hs.ImportDicts(params['data'])
+  # TODO(#4135): for hist in hs
+  hist = hs.GetFirstHistogram()
+  revision = add_histograms.ComputeRevision(hist)
+  benchmark_description = add_histograms._GetDiagnosticValue(
+      reserved_infos.BENCHMARK_DESCRIPTIONS.name,
+      hist, optional=True)
 
   if hist.num_values == 0:
     return []
@@ -156,7 +158,7 @@ def _ProcessRowAndHistogram(params):
   internal_only = graph_data.Bot.GetInternalOnlySync(master, bot)
   extra_args = GetUnitArgs(hist.unit)
 
-  unescaped_story_name = _GetStoryFromDiagnosticsDict(params.get('diagnostics'))
+  unescaped_story_name = _GetStoryFromDiagnosticsDict(hist.diagnostics)
 
   parent_test = add_point_queue.GetOrCreateAncestors(
       master, bot, full_test_name, internal_only=internal_only,
@@ -185,19 +187,18 @@ def _ProcessRowAndHistogram(params):
         unescaped_story_name=unescaped_story_name, **extra_args)
 
   return [
-      _AddRowsFromData(params, revision, parent_test, legacy_parent_tests),
-      _AddHistogramFromData(params, revision, test_key, internal_only)]
+      _AddRowsFromData(hist, revision, parent_test, legacy_parent_tests),
+      _AddHistogramFromData(hs, revision, test_key, internal_only)]
 
 
 @ndb.tasklet
-def _AddRowsFromData(params, revision, parent_test, legacy_parent_tests):
-  data_dict = params['data']
+def _AddRowsFromData(hist, revision, parent_test, legacy_parent_tests):
   test_key = parent_test.key
 
   stat_names_to_test_keys = {k: v.key for k, v in
                              legacy_parent_tests.iteritems()}
   rows = CreateRowEntities(
-      data_dict, test_key, stat_names_to_test_keys, revision)
+      hist, test_key, stat_names_to_test_keys, revision)
   if not rows:
     raise ndb.Return()
 
@@ -225,39 +226,37 @@ def _AddRowsFromData(params, revision, parent_test, legacy_parent_tests):
 
 
 @ndb.tasklet
-def _AddHistogramFromData(params, revision, test_key, internal_only):
-  data_dict = params['data']
-  guid = data_dict['guid']
-  diagnostics = params.get('diagnostics')
+def _AddHistogramFromData(hs, revision, test_key, internal_only):
+  hist = hs.GetFirstHistogram()
+  diagnostics = add_histograms.FindHistogramLevelSparseDiagnostics(hist)
+  print diagnostics
   new_guids_to_existing_diagnostics = yield ProcessDiagnostics(
       diagnostics, revision, test_key, internal_only)
+  print new_guids_to_existing_diagnostics
 
-  hs = histogram_set.HistogramSet()
-  hs.ImportDicts([data_dict])
   for new_guid, existing_diagnostic in (
       new_guids_to_existing_diagnostics.iteritems()):
     hs.ReplaceSharedDiagnostic(
         new_guid, diagnostic_ref.DiagnosticRef(
             existing_diagnostic['guid']))
-  data = hs.GetFirstHistogram().AsDict()
+  data = hist.AsDict()
 
   entity = histogram.Histogram(
-      id=guid, data=data, test=test_key, revision=revision,
+      id=hist.guid, data=data, test=test_key, revision=revision,
       internal_only=internal_only)
   yield entity.put_async()
 
 
 @ndb.tasklet
-def ProcessDiagnostics(diagnostic_data, revision, test_key, internal_only):
-  if not diagnostic_data:
+def ProcessDiagnostics(diagnostics, revision, test_key, internal_only):
+  if not diagnostics:
     raise ndb.Return({})
 
   diagnostic_entities = []
-  for name, diagnostic_datum in diagnostic_data.iteritems():
-    guid = diagnostic_datum['guid']
+  for name, diag in diagnostics.iteritems():
     diagnostic_entities.append(histogram.SparseDiagnostic(
-        id=guid, name=name, data=diagnostic_datum, test=test_key,
-        start_revision=revision, end_revision=sys.maxint,
+        id=str(uuid.uuid4()), name=name, data=diag.AsDict(),
+        test=test_key, start_revision=revision, end_revision=sys.maxint,
         internal_only=internal_only))
 
   suite_key = utils.TestKey('/'.join(test_key.id().split('/')[:3]))
@@ -286,23 +285,22 @@ def GetUnitArgs(unit):
 
 
 def CreateRowEntities(
-    histogram_dict, test_metadata_key, stat_names_to_test_keys, revision):
-  h = histogram_module.Histogram.FromDict(histogram_dict)
+    hist, test_metadata_key, stat_names_to_test_keys, revision):
   # TODO(#3564): Move this check into _PopulateNumericalFields once we
   # know that it's okay to put rows that don't have a value/error.
-  if h.num_values == 0:
+  if hist.num_values == 0:
     return None
 
   rows = []
 
-  row_dict = _MakeRowDict(revision, test_metadata_key.id(), h)
+  row_dict = _MakeRowDict(revision, test_metadata_key.id(), hist)
   properties = add_point.GetAndValidateRowProperties(row_dict)
   test_container_key = utils.GetTestContainerKey(test_metadata_key)
   rows.append(graph_data.Row(id=revision, parent=test_container_key,
                              **properties))
 
   for stat_name, suffixed_key in stat_names_to_test_keys.iteritems():
-    row_dict = _MakeRowDict(revision, suffixed_key.id(), h, stat_name=stat_name)
+    row_dict = _MakeRowDict(revision, suffixed_key.id(), hist, stat_name=stat_name)
     properties = add_point.GetAndValidateRowProperties(row_dict)
     test_container_key = utils.GetTestContainerKey(suffixed_key)
     rows.append(graph_data.Row(
