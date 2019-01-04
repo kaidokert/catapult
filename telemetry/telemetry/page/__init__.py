@@ -5,6 +5,7 @@ import inspect
 import logging
 import os
 import urlparse
+import time
 
 from py_utils import cloud_storage  # pylint: disable=import-error
 
@@ -89,10 +90,12 @@ class Page(story.Story):
       current_tab.CollectGarbage()
     action_runner = action_runner_module.ActionRunner(
         current_tab, skip_waits=self.skip_waits)
-    shared_state.NavigateToPage(action_runner, self)
-    with shared_state.interval_profiling_controller.SamplePeriod(
-        'interactions', action_runner):
-      self.RunPageInteractions(action_runner)
+    with shared_state.system_wide_profiling_controller.SampleSession(
+        self.name, action_runner):
+      shared_state.NavigateToPage(action_runner, self)
+      with shared_state.interval_profiling_controller.SamplePeriod(
+          'interactions', action_runner):
+        self.RunPageInteractions(action_runner)
 
   def RunNavigateSteps(self, action_runner):
     url = self.file_path_url_with_scheme if self.is_file else self.url
