@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cd2e1081_4421aac7",
+        "filename": "dashboard/dashboard/api/examples/get_trace_urls.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-01-04T17:34:10Z",
+      "side": 1,
+      "message": "Please follow the recommended docstring format (https://engdoc.corp.google.com/eng/doc/devguide/py/style/index.md?cl\u003dhead#38-comments-and-docstrings).",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 2
+      },
+      "revId": "f8ab86fa4ff7684eb5cdf531c859768c54d5fa4f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e424a533_5a67f87a",
+        "filename": "dashboard/dashboard/api/examples/get_trace_urls.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-01-04T17:34:10Z",
+      "side": 1,
+      "message": "This will fail with Python 3. Simply use \u0027set\u0027 instead of sets.Set, that is supported by both Python 2.7 and Python 3.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 20
+      },
+      "revId": "f8ab86fa4ff7684eb5cdf531c859768c54d5fa4f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88f6c2d1_201f88cc",
+        "filename": "dashboard/dashboard/api/examples/get_trace_urls.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-01-04T17:34:10Z",
+      "side": 1,
+      "message": "Please use implicit line joining, like:\n\n  help\u003d\u0027...Nvidia \u0027\n       \u0027GPU Perf\u0027)",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 12
+      },
+      "revId": "f8ab86fa4ff7684eb5cdf531c859768c54d5fa4f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73f69b9b_5fca1670",
+        "filename": "dashboard/dashboard/api/examples/get_trace_urls.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-01-04T17:34:10Z",
+      "side": 1,
+      "message": "If this is the name of a metric, why not calling it \u0027metric\u0027?",
+      "range": {
+        "startLine": 36,
+        "startChar": 23,
+        "endLine": 36,
+        "endChar": 34
+      },
+      "revId": "f8ab86fa4ff7684eb5cdf531c859768c54d5fa4f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e0501f3_04fac163",
+        "filename": "dashboard/dashboard/api/examples/get_trace_urls.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-01-04T17:34:10Z",
+      "side": 1,
+      "message": "1. Is it possible to get traces from a date range in the past, e.g. traces from 10 days ago to 8 days ago, only? If it\u0027s not difficult to implement, then it would be nice to have 2 flags, e.g. --from and --to.\n\n2. Just my personal opinion: using a more explicit date format, like yyyy-mm-dd, looks better to me than a relative to today parameter. Relative format is OK, too; it\u0027s up to you.",
+      "range": {
+        "startLine": 38,
+        "startChar": 25,
+        "endLine": 38,
+        "endChar": 29
+      },
+      "revId": "f8ab86fa4ff7684eb5cdf531c859768c54d5fa4f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "109d4b47_4a94f8ac",
+        "filename": "dashboard/dashboard/api/examples/get_trace_urls.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-01-04T17:34:10Z",
+      "side": 1,
+      "message": "Please use implicit line joining.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 5
+      },
+      "revId": "f8ab86fa4ff7684eb5cdf531c859768c54d5fa4f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69fed393_aec239ce",
+        "filename": "dashboard/dashboard/api/examples/get_trace_urls.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-01-04T17:34:10Z",
+      "side": 1,
+      "message": "set()",
+      "range": {
+        "startLine": 57,
+        "startChar": 14,
+        "endLine": 57,
+        "endChar": 21
+      },
+      "revId": "f8ab86fa4ff7684eb5cdf531c859768c54d5fa4f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a34d8ce3_e64033ea",
+        "filename": "dashboard/dashboard/api/examples/get_trace_urls.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-01-04T17:34:10Z",
+      "side": 1,
+      "message": "Please use descriptive variable names.",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 58,
+        "endChar": 5
+      },
+      "revId": "f8ab86fa4ff7684eb5cdf531c859768c54d5fa4f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1edc6f15_28607c29",
+        "filename": "dashboard/dashboard/api/examples/get_trace_urls.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-01-04T17:34:10Z",
+      "side": 1,
+      "message": "Please either always use single quotes or always use double quotes. I think single quotes are more consistent with the code base.",
+      "range": {
+        "startLine": 87,
+        "startChar": 8,
+        "endLine": 87,
+        "endChar": 9
+      },
+      "revId": "f8ab86fa4ff7684eb5cdf531c859768c54d5fa4f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4566e463_5c38bd39",
+        "filename": "dashboard/dashboard/api/examples/get_trace_urls.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-01-04T17:34:10Z",
+      "side": 1,
+      "message": "Wrap in parentheses and use implicit line joining.",
+      "range": {
+        "startLine": 87,
+        "startChar": 78,
+        "endLine": 87,
+        "endChar": 79
+      },
+      "revId": "f8ab86fa4ff7684eb5cdf531c859768c54d5fa4f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "edeed8ce_18a4869e",
+        "filename": "dashboard/dashboard/api/examples/get_trace_urls.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-01-04T17:34:10Z",
+      "side": 1,
+      "message": "\u0027",
+      "range": {
+        "startLine": 93,
+        "startChar": 13,
+        "endLine": 93,
+        "endChar": 14
+      },
+      "revId": "f8ab86fa4ff7684eb5cdf531c859768c54d5fa4f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
