@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "86e1a683_06818acd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-01-04T02:49:17Z",
+      "side": 1,
+      "message": "nit: generally goes above Change-Id. Also, chrome infra doesn\u0027t like multi-line \"Test:\" footers, and sometimes garbles them with other info. I usually write it as:\n\nTest: line 1...\nTest: line 2...",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 77
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec1f1984_ea43c03f",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2639,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-01-04T02:49:17Z",
+      "side": 1,
+      "message": "This sounds like it\u0027s fetching a WebView update. Maybe \"GetWebViewUpdateServiceInfo\" or \"GetWebViewUpdateServiceDump?\"",
+      "range": {
+        "startLine": 2639,
+        "startChar": 6,
+        "endLine": 2639,
+        "endChar": 22
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77864213_240763bb",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2656,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-01-04T02:49:17Z",
+      "side": 1,
+      "message": "I would rephrase this as \"Command was implemented starting in Oreo\"",
+      "range": {
+        "startLine": 2656,
+        "startChar": 6,
+        "endLine": 2656,
+        "endChar": 73
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4fe5acd1_77d12a54",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2694,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-01-04T02:49:17Z",
+      "side": 1,
+      "message": "\"Prior to Nougat, only a single package could be a WebViewProvider for the device, so there\u0027s nothing to do\"\n\nAlternatively, you could just make this invalid to call on \u003c Nougat, since it doesn\u0027t make sense.",
+      "range": {
+        "startLine": 2694,
+        "startChar": 6,
+        "endLine": 2694,
+        "endChar": 45
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5271ca2_2f541082",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2678,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-01-04T02:49:17Z",
+      "side": 1,
+      "message": "Should probably be \u003e\u003d O?",
+      "range": {
+        "startLine": 2678,
+        "startChar": 52,
+        "endLine": 2678,
+        "endChar": 58
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b46db1f_a1398a76",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-01-04T02:49:17Z",
+      "side": 1,
+      "message": "STANDALONE_WEBVIEW_PACKAGES",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 16
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b81fc846_dbf767a6",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-01-04T02:49:17Z",
+      "side": 1,
+      "message": "Why is this limited to standalone packages?",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 66
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7789d418_bd91fc05",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-01-04T02:49:17Z",
+      "side": 1,
+      "message": "nit: I might call this \"original\" instead of \"existing\" (since \"existing\" is no longer a true label when we reach the finally block)",
+      "range": {
+        "startLine": 96,
+        "startChar": 2,
+        "endLine": 96,
+        "endChar": 25
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3b90a08_8cc34e9c",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-01-04T02:49:17Z",
+      "side": 1,
+      "message": "Really? That\u0027s surprising...",
+      "range": {
+        "startLine": 103,
+        "startChar": 6,
+        "endLine": 104,
+        "endChar": 74
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94974a89_b61e6a9e",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-01-04T02:49:17Z",
+      "side": 1,
+      "message": "Can we avoid this work if `new_provider \u003d\u003d existing_provider`?",
+      "range": {
+        "startLine": 105,
+        "startChar": 6,
+        "endLine": 106,
+        "endChar": 35
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "836bc352_0aa3c0a8",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-01-04T02:49:17Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem generally necessary. Also, you should probably restore the root state in cleanup.",
+      "range": {
+        "startLine": 107,
+        "startChar": 6,
+        "endLine": 107,
+        "endChar": 25
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
