@@ -41,6 +41,7 @@ SPECIAL_SYSTEM_APP_LOCATIONS = {
   'com.google.ar.core': '/data/app/',
 }
 
+WEBVIEW_PACKAGES = ["com.google.android.webview", "com.android.webview"]
 
 def RemoveSystemApps(device, package_names):
   """Removes the given system apps.
@@ -71,6 +72,54 @@ def ReplaceSystemApp(device, package_name, replacement_apk):
   install_app = _TemporarilyInstallApp(device, replacement_apk)
   with storage_dir, relocate_app, install_app:
     yield
+
+
+@contextlib.contextmanager
+def UseWebViewProvider(device, apk):
+  """A context manager that uses the apk as the webview provider while in scope.
+
+  Args:
+    device: (device_utils.DeviceUtils) the device for which the webview apk
+      should be used as the provider.
+    apk: (str) the path to the webview APK to use.
+  """
+  package_name = apk_helper.GetPackageName(apk)
+  if package_name not in WEBVIEW_PACKAGES:
+    raise device_errors.CommandFailedError(
+        '%s is not a webview package' % package_name, str(device))
+
+  storage_dir = device_temp_file.NamedDeviceTemporaryDirectory(device.adb)
+  relocate_app = _RelocateApp(device, package_name, storage_dir.name)
+  install_app = _TemporarilyInstallApp(device, apk)
+
+  webview_update = device.GetWebViewUpdate()
+  existing_fallback_logic = webview_update.get('FallbackLogicEnabled', None)
+  existing_provider = webview_update.get('CurrentWebViewPackage', None)
+
+  device.SetWebViewFallbackLogic(False)
+
+  try:
+    with storage_dir, relocate_app:
+      # Installation may fail without a reboot due to package manager treating
+      # webview implementation as being active even after it is relocated.
+      device.Reboot()
+      device.WaitUntilFullyBooted()
+      device.EnableRoot()
+      with install_app:
+        device.SetWebViewImplementation(package_name)
+        yield
+  finally:
+    # restore the original provider only if it was known and not the current
+    # provider
+    if existing_provider is not None:
+      webview_update = device.GetWebViewUpdate()
+      new_provider = webview_update.get('CurrentWebViewPackage', None)
+      if new_provider != existing_provider:
+        device.SetWebViewImplementation(existing_provider)
+
+    # enable the fallback logic only if it was known to be enabled
+    if existing_fallback_logic is True:
+      device.SetWebViewFallbackLogic(True)
 
 
 def _FindSystemPackagePaths(device, system_package_list):
