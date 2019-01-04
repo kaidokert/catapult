@@ -202,9 +202,6 @@ def ProcessHistogramSet(histogram_dicts):
         reserved_infos.BOTS.name, histograms.GetFirstHistogram())
     benchmark = _GetDiagnosticValue(
         reserved_infos.BENCHMARKS.name, histograms.GetFirstHistogram())
-    benchmark_description = _GetDiagnosticValue(
-        reserved_infos.BENCHMARK_DESCRIPTIONS.name,
-        histograms.GetFirstHistogram(), optional=True)
 
   with timing.WallTimeLogger('_ValidateMasterBotBenchmarkName'):
     _ValidateMasterBotBenchmarkName(master, bot, benchmark)
@@ -213,7 +210,8 @@ def ProcessHistogramSet(histogram_dicts):
     suite_key = utils.TestKey('%s/%s/%s' % (master, bot, benchmark))
     logging.info('Suite: %s', suite_key.id())
 
-    revision = ComputeRevision(histograms)
+    _CheckRequest(len(histograms) > 0, 'Must upload at least one histogram')
+    revision = ComputeRevision(histograms.GetFirstHistogram())
     logging.info('Revision: %s', revision)
 
     internal_only = graph_data.Bot.GetInternalOnlySync(master, bot)
@@ -253,7 +251,7 @@ def ProcessHistogramSet(histogram_dicts):
 
   with timing.WallTimeLogger('_BatchHistogramsIntoTasks'):
     tasks = _BatchHistogramsIntoTasks(
-        suite_key.id(), histograms, revision, benchmark_description)
+        suite_key.id(), histograms)
 
   with timing.WallTimeLogger('_QueueHistogramTasks'):
     _QueueHistogramTasks(tasks)
@@ -281,8 +279,7 @@ def _MakeTask(params):
       _size_check=False)
 
 
-def _BatchHistogramsIntoTasks(
-    suite_path, histograms, revision, benchmark_description):
+def _BatchHistogramsIntoTasks(suite_path, histograms):
   params = []
   tasks = []
 
@@ -292,8 +289,6 @@ def _BatchHistogramsIntoTasks(
   duplicate_check = set()
 
   for hist in histograms:
-    diagnostics = FindHistogramLevelSparseDiagnostics(hist)
-
     # TODO(896856): Don't compute full diagnostics, because we need anyway to
     # call GetOrCreate here and in the queue.
     test_path = '%s/%s' % (suite_path, histogram_helpers.ComputeTestPath(hist))
@@ -304,8 +299,7 @@ def _BatchHistogramsIntoTasks(
     duplicate_check.add(test_path)
 
     # TODO(#4135): Batch these better than one per task.
-    task_dict = _MakeTaskDict(
-        hist, test_path, revision, benchmark_description, diagnostics)
+    task_dict = _MakeTaskDict(hist, test_path)
 
     estimated_size_dict = len(json.dumps(task_dict))
     estimated_size += estimated_size_dict
@@ -330,30 +324,19 @@ def _BatchHistogramsIntoTasks(
   return tasks
 
 
-def _MakeTaskDict(
-    hist, test_path, revision, benchmark_description, diagnostics):
-  # TODO(simonhatch): "revision" is common to all tasks, as is the majority of
-  # the test path
-  params = {
-      'test_path': test_path,
-      'revision': revision,
-      'benchmark_description': benchmark_description
-  }
-
+def _MakeTaskDict(hist, test_path):
   # By changing the GUID just before serializing the task, we're making it
   # unique for each histogram. This avoids each histogram trying to write the
   # same diagnostic out (datastore contention), at the cost of copyin the
   # data. These are sparsely written to datastore anyway, so the extra
   # storage should be minimal.
-  for d in diagnostics.itervalues():
-    d.ResetGuid()
+  for d in hist.diagnostics.itervalues():
+    d.Inline()
 
-  diagnostics = {k: d.AsDict() for k, d in diagnostics.iteritems()}
-
-  params['diagnostics'] = diagnostics
-  params['data'] = hist.AsDict()
-
-  return params
+  return {
+      'test_path': test_path,
+      'data': histogram_set.HistogramSet([hist]).AsDicts(),
+  }
 
 
 def FindSuiteLevelSparseDiagnostics(
@@ -397,19 +380,18 @@ def _GetDiagnosticValue(name, hist, optional=False):
   return value.GetOnlyElement()
 
 
-def ComputeRevision(histograms):
-  _CheckRequest(len(histograms) > 0, 'Must upload at least one histogram')
+def ComputeRevision(hist):
   rev = _GetDiagnosticValue(
       reserved_infos.POINT_ID.name,
-      histograms.GetFirstHistogram(), optional=True)
+      hist, optional=True)
 
   if rev is None:
     rev = _GetDiagnosticValue(
         reserved_infos.CHROMIUM_COMMIT_POSITIONS.name,
-        histograms.GetFirstHistogram(), optional=True)
+        hist, optional=True)
 
   if rev is None:
-    revision_timestamps = histograms.GetFirstHistogram().diagnostics.get(
+    revision_timestamps = hist.diagnostics.get(
         reserved_infos.REVISION_TIMESTAMPS.name)
     _CheckRequest(revision_timestamps is not None,
                   'Must specify REVISION_TIMESTAMPS, CHROMIUM_COMMIT_POSITIONS,'
