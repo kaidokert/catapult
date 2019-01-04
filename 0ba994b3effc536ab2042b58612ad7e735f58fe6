@@ -237,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "6bb04314_f3d1f8e9",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2678,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-01-04T23:17:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "142ffe89_c8bfe2af",
+      "range": {
+        "startLine": 2678,
+        "startChar": 52,
+        "endLine": 2678,
+        "endChar": 58
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5b46db1f_a1398a76",
         "filename": "devil/devil/android/tools/system_app.py",
         "patchSetId": 2
@@ -331,6 +355,30 @@
     },
     {
       "key": {
+        "uuid": "c510b21f_15188889",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-01-04T23:17:21Z",
+      "side": 1,
+      "message": "I think the context manager should allow any package (to be sufficiently general), but throw if the switch fails. Passing the correct package should be a burden on the caller, because only the caller can know if the package is correct or not for their use case.",
+      "parentUuid": "1b6342ff_4aeefee4",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 66
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7789d418_bd91fc05",
         "filename": "devil/devil/android/tools/system_app.py",
         "patchSetId": 2
@@ -375,6 +423,29 @@
       "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c086c8f8_2d7758e6",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-01-04T23:17:21Z",
+      "side": 1,
+      "message": "I might add a comment along the lines of \"this is only necessary if the provider is a fallback provider, but we can\u0027t generally determine this, so we set this just in case\"",
+      "range": {
+        "startLine": 99,
+        "startChar": 2,
+        "endLine": 99,
+        "endChar": 39
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     },
     {
       "key": {
@@ -507,6 +578,30 @@
       "side": 1,
       "message": "The logic in the EnableSystemAppModification context manager enables root while in context, so wanted to match that behavior.  I\u0027ll add logic to disable root if it was disabled at the beginning.",
       "parentUuid": "836bc352_0aa3c0a8",
+      "range": {
+        "startLine": 107,
+        "startChar": 6,
+        "endLine": 107,
+        "endChar": 25
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1457ecf_cc856088",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-01-04T23:17:21Z",
+      "side": 1,
+      "message": "IMO we should only request root if generally necessary. But I know we basically require root for most of devil, so maybe this is not a big deal.\n\nMy impression of context managers is that they should do a best effort to restore state. But, I can\u0027t find any docs which insist upon this, so I\u0027ll defer to devil owners for this.",
+      "parentUuid": "e5b6339b_d67b1661",
       "range": {
         "startLine": 107,
         "startChar": 6,
