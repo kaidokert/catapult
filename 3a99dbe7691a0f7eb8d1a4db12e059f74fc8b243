@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "caa39b86_c4e88062",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-04T11:15:07Z",
+      "side": 1,
+      "message": "Oops. Yes. Done.",
+      "parentUuid": "0be684f8_535cb59c",
+      "range": {
+        "startLine": 22,
+        "startChar": 29,
+        "endLine": 22,
+        "endChar": 36
+      },
+      "revId": "3a99dbe7691a0f7eb8d1a4db12e059f74fc8b243",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cdbbd63b_6f6d16f6",
         "filename": "telemetry/telemetry/internal/util/external_modules.py",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2019-01-03T18:51:50Z",
       "side": 1,
       "message": "Could you add comment explaining what \"MODULES\" is? What are the tuples inside it? Are they lists of acceptable versions? What does None mean in this context?",
+      "range": {
+        "startLine": 14,
+        "startChar": 24,
+        "endLine": 14,
+        "endChar": 30
+      },
+      "revId": "3a99dbe7691a0f7eb8d1a4db12e059f74fc8b243",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c235873f_b10135b9",
+        "filename": "telemetry/telemetry/internal/util/external_modules.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-04T11:15:07Z",
+      "side": 1,
+      "message": "Didn\u0027t want to add too much docs as my intention is to deprecate this approach in favor of more explicit version checks as in:\nhttps://chromium-review.googlesource.com/c/catapult/+/1367704/1/telemetry/telemetry/internal/util/external_modules.py#15\n\nAdded a short comment anyway so this is not completely mysterious.",
+      "parentUuid": "cdbbd63b_6f6d16f6",
       "range": {
         "startLine": 14,
         "startChar": 24,
@@ -68,6 +116,30 @@
       "revId": "3a99dbe7691a0f7eb8d1a4db12e059f74fc8b243",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6dd8c020_34675756",
+        "filename": "telemetry/telemetry/internal/util/external_modules.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-04T11:15:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db850cc3_f82e1a39",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 78
+      },
+      "revId": "3a99dbe7691a0f7eb8d1a4db12e059f74fc8b243",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
