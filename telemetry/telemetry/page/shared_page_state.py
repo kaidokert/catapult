@@ -176,6 +176,13 @@ class SharedPageState(story_module.SharedState):
       raw_input('Pausing for interaction at %s... Press Enter to continue.' %
                 stage)
 
+  def _ClearCachesOnStart(self, flush_os_page_caches):
+    """Clear DNS caches and, optionally, OS page caches."""
+    self.platform.FlushDnsCache()
+    if flush_os_page_caches:
+      # TODO(crbug.com/811244): Consider whether we can do this unconditionally.
+      self.FlushOsPageCaches()
+
   def _StartBrowser(self, page):
     assert self._browser is None
     self._AllowInteractionForStage('before-start-browser')
@@ -188,7 +195,9 @@ class SharedPageState(story_module.SharedState):
       browser_options.startup_url = page.startup_url
     browser_options.AppendExtraBrowserArgs(page.extra_browser_args)
     self._possible_browser.SetUpEnvironment(browser_options)
-    self._browser = self._possible_browser.Create()
+    self._ClearCachesOnStart(
+        browser_options.clear_sytem_cache_for_browser_and_profile_on_start)
+    self._browser = self._possible_browser.Create(clear_caches=False)
     self._test.DidStartBrowser(self.browser)
 
     if self._first_browser:
