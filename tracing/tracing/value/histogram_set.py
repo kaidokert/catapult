@@ -100,13 +100,16 @@ class HistogramSet(object):
 
   def ImportDicts(self, dicts):
     for d in dicts:
-      if d.get('type') in all_diagnostics.GetDiagnosticTypenames():
-        diag = diagnostic.Diagnostic.FromDict(d)
-        self._shared_diagnostics_by_guid[d['guid']] = diag
-      else:
-        hist = histogram_module.Histogram.FromDict(d)
-        hist.diagnostics.ResolveSharedDiagnostics(self)
-        self.AddHistogram(hist)
+      self.ImportDict(d)
+
+  def ImportDict(self, d):
+    if d.get('type') in all_diagnostics.GetDiagnosticTypenames():
+      diag = diagnostic.Diagnostic.FromDict(d)
+      self._shared_diagnostics_by_guid[d['guid']] = diag
+    else:
+      hist = histogram_module.Histogram.FromDict(d)
+      hist.diagnostics.ResolveSharedDiagnostics(self)
+      self.AddHistogram(hist)
 
   def AsDicts(self):
     dcts = []
