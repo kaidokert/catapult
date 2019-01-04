@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "073b9515_2aaa2f55",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-01-04T19:07:25Z",
+      "side": 1,
+      "message": "will do",
+      "parentUuid": "86e1a683_06818acd",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 77
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ec1f1984_ea43c03f",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8579404c_0abf99ea",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2639,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-01-04T19:07:25Z",
+      "side": 1,
+      "message": "Will change it to GetWebViewUpdateServiceDump",
+      "parentUuid": "ec1f1984_ea43c03f",
+      "range": {
+        "startLine": 2639,
+        "startChar": 6,
+        "endLine": 2639,
+        "endChar": 22
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "331f7d89_61ae4cea",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2656,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-01-04T19:07:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77864213_240763bb",
+      "range": {
+        "startLine": 2656,
+        "startChar": 6,
+        "endLine": 2656,
+        "endChar": 73
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4fe5acd1_77d12a54",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 2
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "06b2869e_c7a8149f",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2694,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-01-04T19:07:25Z",
+      "side": 1,
+      "message": "I\u0027ll just remove this whole block then since it will throw an error if the command is not recognized anyways.",
+      "parentUuid": "4fe5acd1_77d12a54",
+      "range": {
+        "startLine": 2694,
+        "startChar": 6,
+        "endLine": 2694,
+        "endChar": 45
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a5271ca2_2f541082",
         "filename": "devil/devil/android/device_utils_test.py",
         "patchSetId": 2
@@ -105,6 +201,30 @@
       "writtenOn": "2019-01-04T02:49:17Z",
       "side": 1,
       "message": "Should probably be \u003e\u003d O?",
+      "range": {
+        "startLine": 2678,
+        "startChar": 52,
+        "endLine": 2678,
+        "endChar": 58
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "142ffe89_c8bfe2af",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2678,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-01-04T19:07:25Z",
+      "side": 1,
+      "message": "The disable-redundant-packages command itself works on Nougat.  But the dumpsys webviewupdate command does not, so we can\u0027t tell what the fallback logic state is but can set it.",
+      "parentUuid": "a5271ca2_2f541082",
       "range": {
         "startLine": 2678,
         "startChar": 52,
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "ebbd7c3c_da4828b6",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-01-04T19:07:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b46db1f_a1398a76",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 16
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b81fc846_dbf767a6",
         "filename": "devil/devil/android/tools/system_app.py",
         "patchSetId": 2
@@ -151,6 +295,30 @@
       "writtenOn": "2019-01-04T02:49:17Z",
       "side": 1,
       "message": "Why is this limited to standalone packages?",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 66
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b6342ff_4aeefee4",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-01-04T19:07:25Z",
+      "side": 1,
+      "message": "It\u0027s intended to be used in the upstream builds to install system_webview_apk target as the provider during a test.  Other packages such as com.android.chrome won\u0027t work for pre-monochrome devices and even for N+ devices, it could be a non-monochrome version of chrome.  So have limited the package choices here to prevent these types of errors.",
+      "parentUuid": "b81fc846_dbf767a6",
       "range": {
         "startLine": 86,
         "startChar": 4,
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "28fd9ee8_8eeb9b3d",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-01-04T19:07:25Z",
+      "side": 1,
+      "message": "sure, will update the name.",
+      "parentUuid": "7789d418_bd91fc05",
+      "range": {
+        "startLine": 96,
+        "startChar": 2,
+        "endLine": 96,
+        "endChar": 25
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f3b90a08_8cc34e9c",
         "filename": "devil/devil/android/tools/system_app.py",
         "patchSetId": 2
@@ -197,6 +389,30 @@
       "writtenOn": "2019-01-04T02:49:17Z",
       "side": 1,
       "message": "Really? That\u0027s surprising...",
+      "range": {
+        "startLine": 103,
+        "startChar": 6,
+        "endLine": 104,
+        "endChar": 74
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10b9c118_99b430d7",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-01-04T19:07:25Z",
+      "side": 1,
+      "message": "I believe it\u0027s because the relocation just moves the apk file to a temp directory.  So pm and webviewupdate services are not aware of this without them restarting.",
+      "parentUuid": "f3b90a08_8cc34e9c",
       "range": {
         "startLine": 103,
         "startChar": 6,
@@ -232,6 +448,30 @@
     },
     {
       "key": {
+        "uuid": "1e22887f_5534e0a2",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-01-04T19:07:25Z",
+      "side": 1,
+      "message": "Let me check if that works.",
+      "parentUuid": "94974a89_b61e6a9e",
+      "range": {
+        "startLine": 105,
+        "startChar": 6,
+        "endLine": 106,
+        "endChar": 35
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "836bc352_0aa3c0a8",
         "filename": "devil/devil/android/tools/system_app.py",
         "patchSetId": 2
@@ -243,6 +483,30 @@
       "writtenOn": "2019-01-04T02:49:17Z",
       "side": 1,
       "message": "This doesn\u0027t seem generally necessary. Also, you should probably restore the root state in cleanup.",
+      "range": {
+        "startLine": 107,
+        "startChar": 6,
+        "endLine": 107,
+        "endChar": 25
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5b6339b_d67b1661",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-01-04T19:07:25Z",
+      "side": 1,
+      "message": "The logic in the EnableSystemAppModification context manager enables root while in context, so wanted to match that behavior.  I\u0027ll add logic to disable root if it was disabled at the beginning.",
+      "parentUuid": "836bc352_0aa3c0a8",
       "range": {
         "startLine": 107,
         "startChar": 6,
