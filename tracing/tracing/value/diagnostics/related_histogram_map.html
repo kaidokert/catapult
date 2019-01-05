@@ -145,6 +145,14 @@ tr.exportTo('tr.v.d', function() {
       }
     }
 
+    serialize(serializer) {
+      const d = {};
+      for (const [name, hist] of this) {
+        d[name] = hist.guid;
+      }
+      return d;
+    }
+
     asDictInto_(d) {
       d.values = {};
       for (const [name, hist] of this) {
