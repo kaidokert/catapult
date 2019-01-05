@@ -69,6 +69,11 @@ class GenericSet(diagnostic.Diagnostic):
         self._values.append(value)
         self._comparable_set.add(value)
 
+  def Serialize(self, serializer):
+    if len(self) == 1:
+      return serializer.GetId(self._values[0])
+    return [serializer.GetId(v) for v in self]
+
   def _AsDictInto(self, dct):
     dct['values'] = list(self)
 
