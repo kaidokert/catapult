@@ -451,6 +451,30 @@
     },
     {
       "key": {
+        "uuid": "bc45544b_f8278b4f",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-01-05T02:15:31Z",
+      "side": 1,
+      "message": "I don\u0027t think this is sufficient. I don\u0027t think there\u0027s anything in place to prevent someone from installing GMSCore on AOSP.\n\nI\u0027ve thought of a couple other ideas, but I\u0027m not convinced they\u0027re better:\n\n * Of course, can\u0027t ask PM which WebView is installed, because both could be installed\n * We could `ls` the system folder and see which is a system app. But we have scripts to blast out system apps, so this would fail in that case\n * We *might* be able to guess based on signing keys (AOSP are *usually* test-keys and vendor are *usually* release-keys or dev-keys). But signing keys are really totally orthogonal to this, and this is pretty hacky.\n\nMaybe you could ask android-chatty-eng@ if there\u0027s an adb property which exposes AOSP vs. vendor? If such a prop exists, that\u0027s probably as reliable a signal as we could get.",
+      "parentUuid": "b30327bd_8e8095ca",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 66
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7789d418_bd91fc05",
         "filename": "devil/devil/android/tools/system_app.py",
         "patchSetId": 2
