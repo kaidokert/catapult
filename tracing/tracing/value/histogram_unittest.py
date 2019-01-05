@@ -444,7 +444,7 @@ class HistogramUnittest(unittest.TestCase):
     # Test round-tripping summaryOptions
     hist = hist.Clone()
     stats = hist.statistics_scalars
-    self.assertEqual(stats['nans'].unit, 'count')
+    self.assertEqual(stats['nans'].unit, 'count_smallerIsBetter')
     self.assertEqual(stats['nans'].value, 1)
     self.assertEqual(stats['count'].unit, 'count')
     self.assertEqual(stats['count'].value, 3)
@@ -495,17 +495,8 @@ class HistogramUnittest(unittest.TestCase):
     stats = hist.statistics_scalars
     self.assertEqual(stats['nans'].value, 0)
     self.assertEqual(stats['count'].value, 0)
-    self.assertEqual(stats['min'].value, histogram.JS_MAX_VALUE)
-    self.assertEqual(stats['max'].value, -histogram.JS_MAX_VALUE)
-    self.assertEqual(stats['sum'].value, 0)
     self.assertNotIn('avg', stats)
     self.assertNotIn('stddev', stats)
-    self.assertEqual(stats['pct_000'].value, 0)
-    self.assertEqual(stats['pct_001'].value, 0)
-    self.assertEqual(stats['pct_010'].value, 0)
-    self.assertEqual(stats['pct_050'].value, 0)
-    self.assertEqual(stats['pct_099_5'].value, 0)
-    self.assertEqual(stats['pct_100'].value, 0)
 
   def testSampleValues(self):
     hist0 = histogram.Histogram('', 'unitless', self.TEST_BOUNDARIES)
