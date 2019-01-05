@@ -149,7 +149,8 @@ tr.exportTo('tr.metrics.sh', function() {
           addProcessScalar({
             source: 'process_count',
             property: PROCESS_COUNT,
-            value: 1
+            value: 1,
+            processDump,
           });
 
           if (processDump.totals !== undefined) {
@@ -157,18 +158,21 @@ tr.exportTo('tr.metrics.sh', function() {
               source: 'reported_by_os',
               property: RESIDENT_SIZE,
               component: ['system_memory'],
+              processDump,
               value: processDump.totals.residentBytes
             });
             addProcessScalar({
               source: 'reported_by_os',
               property: PEAK_RESIDENT_SIZE,
               component: ['system_memory'],
+              processDump,
               value: processDump.totals.peakResidentBytes
             });
             addProcessScalar({
               source: 'reported_by_os',
               property: PRIVATE_FOOTPRINT_SIZE,
               component: ['system_memory'],
+              processDump,
               value: processDump.totals.privateFootprintBytes,
             });
           }
@@ -183,6 +187,7 @@ tr.exportTo('tr.metrics.sh', function() {
                 source: 'reported_by_chrome',
                 component: [rootAllocatorDump.name],
                 property,
+                processDump,
                 value: rootAllocatorDump.numerics[property.name]
               });
             });
@@ -198,6 +203,7 @@ tr.exportTo('tr.metrics.sh', function() {
                   source: 'reported_by_chrome',
                   component: [rootAllocatorDump.name],
                   property: ALLOCATED_OBJECTS_SIZE,
+                  processDump,
                   value: allocatedObjectsDump.numerics.size
                 });
               }
@@ -700,6 +706,7 @@ tr.exportTo('tr.metrics.sh', function() {
               source: 'reported_by_os',
               component: componentPath,
               property: PROPORTIONAL_RESIDENT_SIZE,
+              processDump,
               value: node === undefined ?
                 0 : (node.byteStats.proportionalResident || 0)
             });
@@ -707,6 +714,7 @@ tr.exportTo('tr.metrics.sh', function() {
               source: 'reported_by_os',
               component: componentPath,
               property: PRIVATE_DIRTY_SIZE,
+              processDump,
               value: node === undefined ?
                 0 : (node.byteStats.privateDirtyResident || 0)
             });
@@ -718,6 +726,7 @@ tr.exportTo('tr.metrics.sh', function() {
                   source: 'reported_by_os',
                   component: componentPath,
                   property: JAVA_BASE_PSS,
+                  processDump,
                   value: node.byteStats.javaBasePss
                 });
               }
@@ -726,6 +735,7 @@ tr.exportTo('tr.metrics.sh', function() {
                   source: 'reported_by_os',
                   component: componentPath,
                   property: JAVA_BASE_CLEAN_RESIDENT,
+                  processDump,
                   value: node.byteStats.javaBaseCleanResident
                 });
               }
@@ -738,6 +748,7 @@ tr.exportTo('tr.metrics.sh', function() {
                   source: 'reported_by_os',
                   component: componentPath,
                   property: NATIVE_LIBRARY_PRIVATE_CLEAN_RESIDENT,
+                  processDump,
                   value: node.byteStats.nativeLibraryPrivateCleanResident
                 });
               }
@@ -746,6 +757,7 @@ tr.exportTo('tr.metrics.sh', function() {
                   source: 'reported_by_os',
                   component: componentPath,
                   property: NATIVE_LIBRARY_SHARED_CLEAN_RESIDENT,
+                  processDump,
                   value: node.byteStats.nativeLibrarySharedCleanResident
                 });
               }
@@ -754,6 +766,7 @@ tr.exportTo('tr.metrics.sh', function() {
                   source: 'reported_by_os',
                   component: componentPath,
                   property: NATIVE_LIBRARY_PROPORTIONAL_RESIDENT,
+                  processDump,
                   value: node.byteStats.nativeLibraryProportionalResident
                 });
               }
@@ -770,11 +783,14 @@ tr.exportTo('tr.metrics.sh', function() {
                 source: 'reported_by_os',
                 component: ['gpu_memory', memtrackChildDump.name],
                 property: PROPORTIONAL_RESIDENT_SIZE,
+                processDump,
                 value: memtrackChildDump.numerics.memtrack_pss
               });
             });
           }
-        }, function(componentTree) {}, values);
+        }, function(componentTree) {
+          console.log('componentTree', componentTree);
+        }, values);
   }
 
   // Specifications of components reported by the system.
@@ -1143,6 +1159,7 @@ tr.exportTo('tr.metrics.sh', function() {
 
           const values = new Array(dumpCount);
           values[dumpIndex] = value;
+          console.log('spec', spec);
 
           builder.addPath(
               [processNamePath, component] /* path */, values,
@@ -1283,6 +1300,10 @@ tr.exportTo('tr.metrics.sh', function() {
   function buildSampleDiagnostics(value, node) {
     if (node.children.length < 2) return undefined;
     const diagnostics = new Map();
+    console.log('value', value, 'node', node);
+    diagnostics.set('dump', new tr.v.d.RelatedEventSet([
+    ]));
+
     const i = node.values.indexOf(value);
 
     const processBreakdown = new tr.v.d.Breakdown();
