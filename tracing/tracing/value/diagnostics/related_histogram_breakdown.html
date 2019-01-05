@@ -69,6 +69,12 @@ tr.exportTo('tr.v.d', function() {
       tr.v.d.RelatedHistogramMap.prototype.set.call(this, name, hist);
     }
 
+    serialize(serializer) {
+      const d = {};
+      this.asDictInto_(d);
+      return d;
+    }
+
     asDictInto_(d) {
       tr.v.d.RelatedHistogramMap.prototype.asDictInto_.call(this, d);
       if (this.colorScheme) d.colorScheme = this.colorScheme;
