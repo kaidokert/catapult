@@ -403,6 +403,30 @@
     },
     {
       "key": {
+        "uuid": "143b66ad_91f5a244",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-01-05T01:21:37Z",
+      "side": 1,
+      "message": "I don\u0027t think there\u0027s a way to differentiate between pre-N devices which use AOSP WebView and those which use Google WebView (but I\u0027d love to know if such a way exists). It also seems weird to assert input values when the expected behavior is NOOP.",
+      "parentUuid": "9aa954bd_afce0b68",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 66
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7789d418_bd91fc05",
         "filename": "devil/devil/android/tools/system_app.py",
         "patchSetId": 2
