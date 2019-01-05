@@ -41,6 +41,8 @@ SPECIAL_SYSTEM_APP_LOCATIONS = {
   'com.google.ar.core': '/data/app/',
 }
 
+STANDALONE_WEBVIEW_PACKAGES = ["com.google.android.webview",
+                               "com.android.webview"]
 
 def RemoveSystemApps(device, package_names):
   """Removes the given system apps.
@@ -71,6 +73,51 @@ def ReplaceSystemApp(device, package_name, replacement_apk):
   install_app = _TemporarilyInstallApp(device, replacement_apk)
   with storage_dir, relocate_app, install_app:
     yield
+
+
+@contextlib.contextmanager
+def UseWebViewProvider(device, apk):
+  """A context manager that uses the apk as the webview provider while in scope.
+
+  Args:
+    device: (device_utils.DeviceUtils) the device for which the webview apk
+      should be used as the provider.
+    apk: (str) the path to the webview APK to use.
+  """
+  package_name = apk_helper.GetPackageName(apk)
+  if package_name not in STANDALONE_WEBVIEW_PACKAGES:
+    raise device_errors.CommandFailedError(
+        '%s is not a standalone webview package' % package_name, str(device))
+
+  if device.build_version_sdk in \
+      [version_codes.NOUGAT, version_codes.NOUGAT_MR1]:
+    logger.warning('Due to webviewupdate bug in Nougat, WebView Fallback Logic '
+                   'will be disabled and WebView provider may be changed after '
+                   'exit of UseWebViewProvider context manager scope.')
+
+  webview_update = device.GetWebViewUpdateServiceDump()
+  original_fallback_logic = webview_update.get('FallbackLogicEnabled', None)
+  original_provider = webview_update.get('CurrentWebViewPackage', None)
+
+  device.SetWebViewFallbackLogic(False)
+
+  try:
+    with ReplaceSystemApp(device, package_name, apk):
+      if device.build_version_sdk >= version_codes.NOUGAT:
+        device.SetWebViewImplementation(package_name)
+      yield
+  finally:
+    # restore the original provider only if it was known and not the current
+    # provider
+    if original_provider is not None:
+      webview_update = device.GetWebViewUpdateServiceDump()
+      new_provider = webview_update.get('CurrentWebViewPackage', None)
+      if new_provider != original_provider:
+        device.SetWebViewImplementation(original_provider)
+
+    # enable the fallback logic only if it was known to be enabled
+    if original_fallback_logic is True:
+      device.SetWebViewFallbackLogic(True)
 
 
 def _FindSystemPackagePaths(device, system_package_list):
@@ -220,6 +267,18 @@ def main(raw_args):
       help='The APK with which the existing system app should be replaced.')
   add_common_arguments(replace_parser)
   replace_parser.set_defaults(func=replace_system_app)
+
+  @contextlib.contextmanager
+  def use_webview_provider(device, args):
+    with UseWebViewProvider(device, args.package):
+      yield
+
+  use_webview_parser = subparsers.add_parser('use-webview')
+  use_webview_parser.add_argument(
+      '--package', required=True,
+      help='The standalone webview package to use as the provider.')
+  add_common_arguments(use_webview_parser)
+  use_webview_parser.set_defaults(func=use_webview_provider)
 
   args = parser.parse_args(raw_args)
 
