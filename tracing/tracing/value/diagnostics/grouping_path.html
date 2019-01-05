@@ -47,6 +47,10 @@ tr.exportTo('tr.v.d', function() {
           (x, y) => x.localeCompare(y));
     }
 
+    serialize(serializer) {
+      return this.groupingPath_;
+    }
+
     asDictInto_(d) {
       d.groupingPath = this.groupingPath_;
     }

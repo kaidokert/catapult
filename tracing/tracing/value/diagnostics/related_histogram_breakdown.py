@@ -24,6 +24,11 @@ class RelatedHistogramBreakdown(histogram.RelatedHistogramMap):
         break  # Only the first Histogram needs to be checked.
     super(RelatedHistogramBreakdown, self).Set(name, hist)
 
+  def Serialize(self, unused_serializer):
+    d = {}
+    self._AsDictInto(d)
+    return d
+
   def _AsDictInto(self, d):
     histogram.RelatedHistogramMap._AsDictInto(self, d)
     if self._color_scheme:

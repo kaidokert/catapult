@@ -73,6 +73,14 @@ tr.exportTo('tr.v.d', function() {
       return this;
     }
 
+    serialize(serializer) {
+      const d = {};
+      for (const [name, value] of this.tagsToStoryNames) {
+        d[name] = Array.from(value);
+      }
+      return d;
+    }
+
     asDictInto_(d) {
       d.tagsToStoryNames = {};
       for (const [name, value] of this.tagsToStoryNames) {
