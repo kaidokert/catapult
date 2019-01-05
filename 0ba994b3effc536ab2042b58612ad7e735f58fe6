@@ -379,6 +379,30 @@
     },
     {
       "key": {
+        "uuid": "9aa954bd_afce0b68",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-01-05T01:05:50Z",
+      "side": 1,
+      "message": "I see your point...what about limiting to the webview packages only for versions below N (since there would be no way to detect the switch failure)?",
+      "parentUuid": "c510b21f_15188889",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 66
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7789d418_bd91fc05",
         "filename": "devil/devil/android/tools/system_app.py",
         "patchSetId": 2
@@ -449,6 +473,30 @@
     },
     {
       "key": {
+        "uuid": "1f26a94a_6b13eeb5",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-01-05T01:05:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c086c8f8_2d7758e6",
+      "range": {
+        "startLine": 99,
+        "startChar": 2,
+        "endLine": 99,
+        "endChar": 39
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f3b90a08_8cc34e9c",
         "filename": "devil/devil/android/tools/system_app.py",
         "patchSetId": 2
@@ -496,6 +544,30 @@
     },
     {
       "key": {
+        "uuid": "5e5a4f02_75efa15e",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-01-05T01:05:50Z",
+      "side": 1,
+      "message": "Actually you\u0027re right it\u0027s not needed, it\u0027s possible when I added this my device was acting up due to some other reason, but I don\u0027t see any issues anymore after removing this logic, so have simplified the code to use ReplaceSystemApp context manager.",
+      "parentUuid": "10b9c118_99b430d7",
+      "range": {
+        "startLine": 103,
+        "startChar": 6,
+        "endLine": 104,
+        "endChar": 74
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "94974a89_b61e6a9e",
         "filename": "devil/devil/android/tools/system_app.py",
         "patchSetId": 2
@@ -540,6 +612,30 @@
       "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90094e77_58ae9fcc",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-01-05T01:05:50Z",
+      "side": 1,
+      "message": "This block has been deleted, see above.",
+      "parentUuid": "1e22887f_5534e0a2",
+      "range": {
+        "startLine": 105,
+        "startChar": 6,
+        "endLine": 106,
+        "endChar": 35
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -611,6 +707,30 @@
       "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6f97306_aa3c0b30",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-01-05T01:05:50Z",
+      "side": 1,
+      "message": "Actually the EnableSystemAppModification context manager used by _RelocateApp already reboots the device which disables root access upon exit.  So will leave it at that.\n\nAlright, let\u0027s wait for John to chime in on this.",
+      "parentUuid": "e5b6339b_d67b1661",
+      "range": {
+        "startLine": 107,
+        "startChar": 6,
+        "endLine": 107,
+        "endChar": 25
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
