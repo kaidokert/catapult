@@ -427,6 +427,30 @@
     },
     {
       "key": {
+        "uuid": "b30327bd_8e8095ca",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-01-05T01:34:40Z",
+      "side": 1,
+      "message": "In a previous iteration, I looked for the gmscore package on the device and assumed it was aosp if gmscore was absent.  Felt a bit hacky so took it out.  But now that we\u0027re talking about the best way to handle this, maybe we can do this:\n  if gms core absent then restrict to com.android.webview\n  if gms core present and below N then restrict to com.google.android.webview\n  else let the the set implementation command decide. \nWDYT?",
+      "parentUuid": "143b66ad_91f5a244",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 66
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7789d418_bd91fc05",
         "filename": "devil/devil/android/tools/system_app.py",
         "patchSetId": 2
