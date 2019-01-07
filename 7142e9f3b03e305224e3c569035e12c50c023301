@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "b191f5d6_385d5959",
+        "filename": "dashboard/dashboard/api/examples/get_trace_urls.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-01-07T15:57:51Z",
+      "side": 1,
+      "message": "Can you document how (or where) to get the list of test_suites, or the list of bots?",
+      "revId": "7142e9f3b03e305224e3c569035e12c50c023301",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "acec57d7_cd3c58a9",
         "filename": "dashboard/dashboard/api/examples/get_trace_urls.py",
         "patchSetId": 5
@@ -19,6 +36,23 @@
         "endLine": 42,
         "endChar": 46
       },
+      "revId": "7142e9f3b03e305224e3c569035e12c50c023301",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a19586ee_5d211968",
+        "filename": "dashboard/dashboard/api/examples/get_trace_urls.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-01-07T15:57:51Z",
+      "side": 1,
+      "message": "Instead of this, I think the following would be easier to read:\n\n  url \u003d \u0027.../timeseries2\u0027\n  params \u003d {\n     \u0027test_suite\u0027: ...,\n     \u0027measurement\u0027: ...,\n     ...\n  }",
       "revId": "7142e9f3b03e305224e3c569035e12c50c023301",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
