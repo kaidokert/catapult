@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ab7e6e8_9a01e0ef",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-01-07T17:41:35Z",
+      "side": 1,
+      "message": "Please avoid \\-continued lines. This should be something like\n\n  if (device.build_version_sdk \u003c version_codes.NOUGAT and\n      package_name not in STANDALONE_WEBVIEW_PACKAGES):",
+      "revId": "3c1513d74a0fa2eed5f53c28f458d9e40f954f55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "354cb412_438de160",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-01-07T17:41:35Z",
+      "side": 1,
+      "message": "Same here.",
+      "revId": "3c1513d74a0fa2eed5f53c28f458d9e40f954f55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

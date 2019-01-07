@@ -803,6 +803,30 @@
       "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6423bd71_2f0487e2",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-01-07T17:41:35Z",
+      "side": 1,
+      "message": "We\u0027re pretty lax about EnableRoot generally.\n\nIf you\u0027d like to mirror EnableSystemAppModification, you could consider rebooting the device when you leave the context, which should undo the rooting.",
+      "parentUuid": "f6f97306_aa3c0b30",
+      "range": {
+        "startLine": 107,
+        "startChar": 6,
+        "endLine": 107,
+        "endChar": 25
+      },
+      "revId": "0ba994b3effc536ab2042b58612ad7e735f58fe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
