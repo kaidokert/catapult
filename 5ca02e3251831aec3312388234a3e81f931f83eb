@@ -87,6 +87,24 @@
       "revId": "5ca02e3251831aec3312388234a3e81f931f83eb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce1cb082_30444c02",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2019-01-07T23:55:16Z",
+      "side": 1,
+      "message": "Okay. What we really want is to eventually change over to pRPC.",
+      "parentUuid": "ebd29dbe_2277b23f",
+      "revId": "5ca02e3251831aec3312388234a3e81f931f83eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
