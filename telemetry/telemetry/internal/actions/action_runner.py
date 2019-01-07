@@ -36,7 +36,7 @@ import py_utils
 
 # Time to wait in seconds before requesting a memory dump in deterministic
 # mode, thus allowing metric values to stabilize a bit.
-_MEMORY_DUMP_WAIT_TIME = 3
+_MEMORY_DUMP_WAIT_TIME = 30
 
 # Time to wait in seconds after forcing garbage collection to allow its
 # effects to propagate. Experimentally determined on an Android One device
