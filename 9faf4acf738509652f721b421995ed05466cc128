@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "cbe589e2_bb63f23c",
+        "filename": "dashboard/dashboard/api/examples/get_trace_urls.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1307714
+      },
+      "writtenOn": "2019-01-07T21:56:18Z",
+      "side": 1,
+      "message": "I\u0027m trying to keep the input simpler for the user and get a date instead of an iso-format timestamp. Maybe changing the name to min_date and max_date can help with clarity.",
+      "parentUuid": "5d51625c_8529f9c8",
+      "range": {
+        "startLine": 41,
+        "startChar": 25,
+        "endLine": 41,
+        "endChar": 32
+      },
+      "revId": "9faf4acf738509652f721b421995ed05466cc128",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "eb54dff5_f1f14a20",
         "filename": "dashboard/dashboard/api/examples/get_trace_urls.py",
         "patchSetId": 7
@@ -128,6 +152,24 @@
       "writtenOn": "2019-01-07T19:47:01Z",
       "side": 1,
       "message": "Why split the urls from the revisions here instead of producing a single CSV containing both revisions and urls? You can always split the urls to a separate file later if needed using `cut -d,`",
+      "revId": "9faf4acf738509652f721b421995ed05466cc128",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c675db7_c3a2c0c2",
+        "filename": "dashboard/dashboard/api/examples/get_trace_urls.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1307714
+      },
+      "writtenOn": "2019-01-07T21:56:18Z",
+      "side": 1,
+      "message": "That\u0027s right, I can only output one file having both data.",
+      "parentUuid": "f9667eb9_6f46a147",
       "revId": "9faf4acf738509652f721b421995ed05466cc128",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
