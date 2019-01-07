@@ -22,6 +22,30 @@
       "revId": "b52b93a828f2961fe31f1af7feb9fdbdfb27ebba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2962905b_94a4867b",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-07T10:26:31Z",
+      "side": 1,
+      "message": "That is a 2 or 3 CLs change (because we need to change both in chromium and catapult). But as the comment here in the TODO states, I\u0027m hoping the option can be removed entirely. I\u0027ll follow up.",
+      "parentUuid": "5ba2118a_a37520d4",
+      "range": {
+        "startLine": 194,
+        "startChar": 23,
+        "endLine": 194,
+        "endChar": 73
+      },
+      "revId": "b52b93a828f2961fe31f1af7feb9fdbdfb27ebba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
