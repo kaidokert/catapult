@@ -22,6 +22,30 @@
       "revId": "4c67cceefd6f360894a720238b59906acdb6c293",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e305f10_e8b3f171",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-07T10:08:31Z",
+      "side": 1,
+      "message": "The \"test\" (or more accurately \"page_test\") is a legacy concept, even before timeline based metrics, where a benchmark consisted of a set of pages + a \"test\" indicating _what_ to measure of the page. And we need a reference to the \"page_test\" object here since the _measuring_ often involves running some commands e.g. before/after starting the browser or navigating to a page. Only a few uses of this still remain [1], but these should all eventually be removed or migrated.\n\nThe \"new way\" is to override CreateCoreTimelineBasedMeasurementOptions on the benchmark, e.g. [2], to indicate tracing categories to enable and then the \"story\" just runs to produce a trace. The measurements are done after the fact by a _metric_ that turns traces into values (i.e. histograms).\n\nThe key bit is that measuring and story running are now decoupled, so the shared state doesn\u0027t need to know about the \"test\" part any more. Note, on the deleted code, the alternative branch just created a TimelineBasedPageTest (a dummy no-op page_test that we want to remove) and ignored the test object itself.\n\nI\u0027ve now also left a short comment with an explanation on the code.\n\n[1]: https://cs.chromium.org/search/?q\u003d%5C.LegacyPageTest%5C)+file:tools/perf\u0026type\u003dcs\n[2]: https://cs.chromium.org/chromium/src/tools/perf/benchmarks/system_health.py?rcl\u003deff05ef45cd5f83123b6bd9609a2914293ad1143\u0026l\u003d104",
+      "parentUuid": "6389d220_a8c06824",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 63
+      },
+      "revId": "4c67cceefd6f360894a720238b59906acdb6c293",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
