@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bf075098_aae9a4ce",
+        "filename": "dashboard/dashboard/elements/alerts-table.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2019-01-07T21:57:04Z",
+      "side": 1,
+      "message": "I can\u0027t tell if the diff is just wonky (more deltas in this file than the others) or if any logic actually got changed here. Just to verify: the latter is not the intent, and it\u0027s just supposed to hoist the script out of the \u003cdom-module\u003e element?",
+      "revId": "8db8ee53e4fc473a153eb16d51c166c3b41e1143",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "448f1d9f_87094add",
+        "filename": "dashboard/dashboard/elements/chart-container.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2019-01-07T21:57:04Z",
+      "side": 1,
+      "message": "same concern here as with alerts-table.html\u0027s diffs.",
+      "revId": "8db8ee53e4fc473a153eb16d51c166c3b41e1143",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "335fa3ae_2548c389",
+        "filename": "dashboard/dashboard/elements/group-report-page.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2019-01-07T21:57:04Z",
+      "side": 1,
+      "message": "style nit: missing newline btw these props?",
+      "revId": "8db8ee53e4fc473a153eb16d51c166c3b41e1143",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0613eb98_5f9894cc",
+        "filename": "third_party/polymer/components/webcomponentsjs/HTMLImports.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 950,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2019-01-07T21:57:04Z",
+      "side": 1,
+      "message": "eeeeehhhh, not crazy about checking in direct changes to source in third_party - is there an updated version from polymer repo that fixes this issue?",
+      "revId": "8db8ee53e4fc473a153eb16d51c166c3b41e1143",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
