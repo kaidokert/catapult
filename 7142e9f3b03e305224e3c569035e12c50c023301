@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "acec57d7_cd3c58a9",
+        "filename": "dashboard/dashboard/api/examples/get_trace_urls.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-01-07T15:40:29Z",
+      "side": 1,
+      "message": "space around -",
+      "range": {
+        "startLine": 42,
+        "startChar": 43,
+        "endLine": 42,
+        "endChar": 46
+      },
+      "revId": "7142e9f3b03e305224e3c569035e12c50c023301",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
