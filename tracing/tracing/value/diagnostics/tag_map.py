@@ -23,6 +23,9 @@ class TagMap(diagnostic.Diagnostic):
   def __hash__(self):
     return id(self)
 
+  def Serialize(self, unused_serializer):
+    return dict((k, list(v)) for k, v in self.tags_to_story_names.items())
+
   def _AsDictInto(self, d):
     d['tagsToStoryNames'] = dict(
         (k, list(v)) for k, v in self.tags_to_story_names.items())

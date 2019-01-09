@@ -15,7 +15,7 @@ tr.exportTo('tr.v.d', function() {
     constructor() {
       super();
       this.values_ = new Map();
-      this.colorScheme = undefined;
+      this.colorScheme = '';
     }
 
     clone() {
@@ -68,6 +68,16 @@ tr.exportTo('tr.v.d', function() {
 
     get size() {
       return this.values_.size;
+    }
+
+    serialize(serializer) {
+      const keys = [...this.values_.keys()];
+      keys.sort();
+      return [
+        serializer.getId(this.colorScheme),
+        serializer.getId(keys.map(k => serializer.getId(k))),
+        ...keys.map(k => this.get(k)),
+      ];
     }
 
     asDictInto_(d) {
