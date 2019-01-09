@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b1218afe_6fe0f745",
+        "filename": "dashboard/dashboard/elements/alerts-table.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-09T00:13:19Z",
+      "side": 1,
+      "message": "The diff is just wonky, no logic changed, the script is just hoisted.",
+      "parentUuid": "bf075098_aae9a4ce",
+      "revId": "8db8ee53e4fc473a153eb16d51c166c3b41e1143",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "448f1d9f_87094add",
         "filename": "dashboard/dashboard/elements/chart-container.html",
         "patchSetId": 8
@@ -30,6 +48,24 @@
       "writtenOn": "2019-01-07T21:57:04Z",
       "side": 1,
       "message": "same concern here as with alerts-table.html\u0027s diffs.",
+      "revId": "8db8ee53e4fc473a153eb16d51c166c3b41e1143",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78099f93_18a374ca",
+        "filename": "dashboard/dashboard/elements/chart-container.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-09T00:13:19Z",
+      "side": 1,
+      "message": "No logic changes here either, just hoisting the script.",
+      "parentUuid": "448f1d9f_87094add",
       "revId": "8db8ee53e4fc473a153eb16d51c166c3b41e1143",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "912c7d80_d2fc45d0",
+        "filename": "dashboard/dashboard/elements/group-report-page.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-09T00:13:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "335fa3ae_2548c389",
+      "revId": "8db8ee53e4fc473a153eb16d51c166c3b41e1143",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0613eb98_5f9894cc",
         "filename": "third_party/polymer/components/webcomponentsjs/HTMLImports.js",
         "patchSetId": 8
@@ -64,6 +118,24 @@
       "writtenOn": "2019-01-07T21:57:04Z",
       "side": 1,
       "message": "eeeeehhhh, not crazy about checking in direct changes to source in third_party - is there an updated version from polymer repo that fixes this issue?",
+      "revId": "8db8ee53e4fc473a153eb16d51c166c3b41e1143",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6544fb2b_4acaede8",
+        "filename": "third_party/polymer/components/webcomponentsjs/HTMLImports.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 950,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-09T00:13:19Z",
+      "side": 1,
+      "message": "I tried using webcomponents/html-imports, and everything exploded horribly. I\u0027m not sure exactly what went wrong, but I gave up when updating some parts of polymer-micro.html didn\u0027t help.\nThis CL is just keeping trace-viewer and dashboard v1 alive until perfetto and v2spa can launch.",
+      "parentUuid": "0613eb98_5f9894cc",
       "revId": "8db8ee53e4fc473a153eb16d51c166c3b41e1143",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
