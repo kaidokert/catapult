@@ -448,6 +448,8 @@ tr.exportTo('tr.v', function() {
         }
         this.running_.add(value);
 
+        value = this.unit.truncate(value);
+
         const binIndex = this.getBinIndexForValue(value);
         let bin = this.allBins[binIndex];
         if (bin.count === 0) {
@@ -898,6 +900,7 @@ tr.exportTo('tr.v', function() {
 
       if (this.numValues) {
         dict.sampleValues = this.sampleValues.slice();
+        this.running.truncate(this.unit);
         dict.running = this.running_.asDict();
         dict.allBins = this.allBinsAsDict_();
       }
