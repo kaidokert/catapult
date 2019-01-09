@@ -228,20 +228,20 @@ tr.b.unittest.testSuite(function() {
 
     hist.addSample(100);
     dict = hist.asDict();
-    assert.strictEqual(152, JSON.stringify(dict).length);
+    assert.strictEqual(142, JSON.stringify(dict).length);
     assert.isUndefined(dict.allBins.length);
     assert.deepEqual(dict, tr.v.Histogram.fromDict(dict).asDict());
 
     hist.addSample(100);
     dict = hist.asDict();
     // SAMPLE_VALUES grew by "100,"
-    assert.strictEqual(156, JSON.stringify(dict).length);
+    assert.strictEqual(146, JSON.stringify(dict).length);
     assert.isUndefined(dict.allBins.length);
     assert.deepEqual(dict, tr.v.Histogram.fromDict(dict).asDict());
 
     hist.addSample(271, {foo: new tr.v.d.GenericSet(['bar'])});
     dict = hist.asDict();
-    assert.strictEqual(222, JSON.stringify(dict).length);
+    assert.strictEqual(212, JSON.stringify(dict).length);
     assert.isUndefined(dict.allBins.length);
     assert.deepEqual(dict, tr.v.Histogram.fromDict(dict).asDict());
 
@@ -251,7 +251,7 @@ tr.b.unittest.testSuite(function() {
       hist.addSample(10 * i);
     }
     dict = hist.asDict();
-    assert.strictEqual(651, JSON.stringify(hist.asDict()).length);
+    assert.strictEqual(626, JSON.stringify(hist.asDict()).length);
     assert.lengthOf(dict.allBins, 12);
     assert.deepEqual(dict, tr.v.Histogram.fromDict(dict).asDict());
 
@@ -261,7 +261,7 @@ tr.b.unittest.testSuite(function() {
     // retained.
     hist.maxNumSampleValues = 10;
     dict = hist.asDict();
-    assert.strictEqual(343, JSON.stringify(dict).length);
+    assert.strictEqual(318, JSON.stringify(dict).length);
     assert.lengthOf(dict.allBins, 12);
     assert.deepEqual(dict, tr.v.Histogram.fromDict(dict).asDict());
   });
