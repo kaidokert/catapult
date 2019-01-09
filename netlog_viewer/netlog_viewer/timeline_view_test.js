@@ -2,16 +2,17 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+'use strict';
+
 // Include test fixture.
 GEN_INCLUDE(['net_internals_test.js']);
 
 // Anonymous namespace
 (function() {
-
 // Range of time set on a log once loaded used by sanity checks.
 // Used by sanityCheckWithTimeRange.
-var startTime = null;
-var endTime = null;
+let startTime = null;
+let endTime = null;
 
 function timelineView() {
   return TimelineView.getInstance();
@@ -53,20 +54,21 @@ LoadLogWithNewEventsTask.prototype = {
   /**
    * Starts creating a log dump.
    */
-  start: function() {
-    log_util.createLogDumpAsync('test', this.onLogDumpCreated.bind(this), true);
+  start() {
+    log_util.createLogDumpAsync(
+        'test', this.onLogDumpCreated.bind(this), true);
   },
 
   /**
    * Modifies the log dump and loads it.
    */
-  onLogDumpCreated: function(logDumpText) {
-    var logDump = JSON.parse(logDumpText);
+  onLogDumpCreated(logDumpText) {
+    const logDump = JSON.parse(logDumpText);
 
     logDump.constants.timeTickOffset = '0';
     logDump.events = [];
 
-    var source = new NetInternalsTest.Source(1, EventSourceType.SOCKET);
+    const source = new NetInternalsTest.Source(1, EventSourceType.SOCKET);
     logDump.events.push(NetInternalsTest.createBeginEvent(
         source, EventType.SOCKET_ALIVE, this.startTime_, null));
     logDump.events.push(NetInternalsTest.createMatchingEndEvent(
@@ -77,8 +79,9 @@ LoadLogWithNewEventsTask.prototype = {
 
     endTime = this.endTime_;
     startTime = this.startTime_;
-    if (startTime >= endTime)
+    if (startTime >= endTime) {
       --startTime;
+    }
 
     sanityCheckWithTimeRange(false);
 
@@ -97,11 +100,11 @@ function sanityCheck() {
 }
 
 /**
- * Checks what sanityCheck does, but also checks that |startTime| and |endTime|
- * are the same as those used by the graph, as well as whether we have a timer
- * running to update the graph's end time.  To avoid flake, this should only
- * be used synchronously relative to when |startTime| and |endTime| were set,
- * unless |expectUpdateTimer| is false.
+ * Checks what sanityCheck does, but also checks that |startTime| and
+ * |endTime| are the same as those used by the graph, as well as whether we
+ * have a timer running to update the graph's end time.  To avoid flake, this
+ * should only be used synchronously relative to when |startTime| and
+ * |endTime| were set, unless |expectUpdateTimer| is false.
  * @param {bool} expectUpdateTimer true if the TimelineView should currently
  *     have an update end time timer running.
  */
@@ -119,8 +122,8 @@ function sanityCheckWithTimeRange(expectUpdateTimer) {
 }
 
 /**
- * Checks what sanityCheck does, but also checks that |startTime| and |endTime|
- * are the same as those used by the graph.
+ * Checks what sanityCheck does, but also checks that |startTime| and
+ * |endTime| are the same as those used by the graph.
  */
 function sanityCheckNotUpdating() {
   expectEquals(null, timelineView().updateIntervalId_);
@@ -132,16 +135,17 @@ function sanityCheckNotUpdating() {
  * @param {number} ticks Number of mouse wheel ticks to simulate.
  */
 function mouseZoom(ticks) {
-  var scrollbarStartedAtEnd =
-      (scrollbar().getRange() == scrollbar().getPosition());
+  const scrollbarStartedAtEnd =
+      (scrollbar().getRange() === scrollbar().getPosition());
 
-  var event = new WheelEvent('mousewheel', {deltaX: 0, deltaY: -ticks});
+  const event = new WheelEvent('mousewheel', {deltaX: 0, deltaY: -ticks});
   canvas().dispatchEvent(event);
 
   // If the scrollbar started at the end of the range, make sure it ends there
   // as well.
-  if (scrollbarStartedAtEnd)
+  if (scrollbarStartedAtEnd) {
     expectEquals(scrollbar().getRange(), scrollbar().getPosition());
+  }
 
   sanityCheck();
 }
@@ -152,12 +156,12 @@ function mouseZoom(ticks) {
  */
 function mouseZoomIn(ticks) {
   assertGT(ticks, 0);
-  var oldScale = graphView().scale_;
-  var oldRange = scrollbar().getRange();
+  const oldScale = graphView().scale_;
+  const oldRange = scrollbar().getRange();
 
   mouseZoom(ticks);
 
-  if (oldScale == graphView().scale_) {
+  if (oldScale === graphView().scale_) {
     expectEquals(oldScale, TimelineGraphView.MIN_SCALE);
   } else {
     expectLT(graphView().scale_, oldScale);
@@ -171,8 +175,8 @@ function mouseZoomIn(ticks) {
  */
 function mouseZoomOut(ticks) {
   assertGT(ticks, 0);
-  var oldScale = graphView().scale_;
-  var oldRange = scrollbar().getRange();
+  const oldScale = graphView().scale_;
+  const oldRange = scrollbar().getRange();
 
   mouseZoom(-ticks);
 
@@ -185,8 +189,9 @@ function mouseZoomOut(ticks) {
  */
 function mouseZoomAllTheWayIn() {
   expectLT(TimelineGraphView.MIN_SCALE, graphView().scale_);
-  while (graphView().scale_ != TimelineGraphView.MIN_SCALE)
+  while (graphView().scale_ !== TimelineGraphView.MIN_SCALE) {
     mouseZoomIn(8);
+  }
   // Verify that zooming in when already at max zoom works.
   mouseZoomIn(1);
 }
@@ -214,10 +219,10 @@ function MouseScrollTask(position) {
 MouseScrollTask.prototype = {
   __proto__: NetInternalsTest.Task.prototype,
 
-  start: function() {
+  start() {
     this.waitingToStart_ = false;
     // If the scrollbar is already in the correct position, do nothing.
-    if (scrollbar().getNode().scrollLeft == this.position_) {
+    if (scrollbar().getNode().scrollLeft === this.position_) {
       // We may still have a timer going to adjust the position of the
       // scrollbar to some other value.  If so, this will clear it.
       scrollbar().setPosition(this.position_);
@@ -228,7 +233,7 @@ MouseScrollTask.prototype = {
     // Replace the onscroll event handler with our own.
     this.oldOnScroll_ = scrollbar().getNode().onscroll;
     scrollbar().getNode().onscroll = this.onScroll_.bind(this);
-    if (scrollbar().getNode().scrollLeft != scrollbar().getPosition()) {
+    if (scrollbar().getNode().scrollLeft !== scrollbar().getPosition()) {
       this.waitingToStart_ = true;
       return;
     }
@@ -236,7 +241,7 @@ MouseScrollTask.prototype = {
     window.setTimeout(this.startScrolling_.bind(this), 0);
   },
 
-  onScroll_: function(event) {
+  onScroll_(event) {
     // Restore the original onscroll function.
     scrollbar().getNode().onscroll = this.oldOnScroll_;
     // Call the original onscroll function.
@@ -254,7 +259,7 @@ MouseScrollTask.prototype = {
     this.onTaskDone();
   },
 
-  startScrolling_: function() {
+  startScrolling_() {
     scrollbar().getNode().scrollLeft = this.position_;
   }
 };
@@ -289,13 +294,13 @@ TEST_F('NetInternalsTest', 'netInternalsTimelineViewRange', function() {
  */
 TEST_F('NetInternalsTest', 'netInternalsTimelineViewScrollbar', function() {
   // The range we want the graph to have.
-  var expectedGraphRange = canvas().width;
+  const expectedGraphRange = canvas().width;
 
   function checkGraphRange() {
     expectEquals(expectedGraphRange, scrollbar().getRange());
   }
 
-  var taskQueue = new NetInternalsTest.TaskQueue(true);
+  const taskQueue = new NetInternalsTest.TaskQueue(true);
   // Load a log and then switch to the timeline view.  The end time is
   // calculated so that the range is exactly |expectedGraphRange|.
   taskQueue.addTask(new LoadLogWithNewEventsTask(
@@ -330,7 +335,7 @@ TEST_F('NetInternalsTest', 'netInternalsTimelineViewLoadLog', function() {
   }
 
   // Load a log and then run the rest of the test.
-  var taskQueue = new NetInternalsTest.TaskQueue(true);
+  const taskQueue = new NetInternalsTest.TaskQueue(true);
   taskQueue.addTask(new LoadLogWithNewEventsTask(55, 10055));
   taskQueue.addFunctionTask(testBody);
   taskQueue.run();
@@ -350,7 +355,7 @@ TEST_F('NetInternalsTest', 'netInternalsTimelineViewZoomOut', function() {
   }
 
   // Load a log and then run the rest of the test.
-  var taskQueue = new NetInternalsTest.TaskQueue(true);
+  const taskQueue = new NetInternalsTest.TaskQueue(true);
   taskQueue.addTask(new LoadLogWithNewEventsTask(55, 10055));
   taskQueue.addFunctionTask(testBody);
   taskQueue.run();
@@ -369,7 +374,7 @@ TEST_F('NetInternalsTest', 'netInternalsTimelineViewZoomIn', function() {
   }
 
   // Load a log and then run the rest of the test.
-  var taskQueue = new NetInternalsTest.TaskQueue(true);
+  const taskQueue = new NetInternalsTest.TaskQueue(true);
   taskQueue.addTask(new LoadLogWithNewEventsTask(55, 10055));
   taskQueue.addFunctionTask(testBody);
   taskQueue.run();
@@ -389,7 +394,7 @@ TEST_F('NetInternalsTest', 'netInternalsTimelineViewDegenerate', function() {
   }
 
   // Load a log and then run the rest of the test.
-  var taskQueue = new NetInternalsTest.TaskQueue(true);
+  const taskQueue = new NetInternalsTest.TaskQueue(true);
   taskQueue.addTask(new LoadLogWithNewEventsTask(55, 55));
   taskQueue.addFunctionTask(testBody);
   taskQueue.run();
@@ -421,5 +426,4 @@ TEST_F('NetInternalsTest', 'netInternalsTimelineViewNoEvents', function() {
 
   testDone();
 });
-
 })();  // Anonymous namespace

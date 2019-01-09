@@ -10,7 +10,6 @@ found in the LICENSE file.
 
 // Anonymous namespace
 (function() {
-
 tr.b.unittest.testSuite(function() {
   /**
    * Tests the formatting of log entries to fixed width text.
@@ -21,25 +20,26 @@ tr.b.unittest.testSuite(function() {
     setNetLogConstantsForTest();
 
     // Add a DOM node to draw the log entries into.
-    var div = addNode(document.body, 'div');
+    const div = addNode(document.body, 'div');
 
-    // Helper function to run a particular "test case". This comprises an input
-    // and the resulting formatted text expectation.
+    // Helper function to run a particular "test case". This comprises an
+    // input and the resulting formatted text expectation.
     function runTestCase(testCase) {
       div.innerHTML = '';
       timeutil.setTimeTickOffset(testCase.tickOffset);
 
-      var baseTime = 0;
-      if (typeof testCase.baseTimeTicks != 'undefined')
+      let baseTime = 0;
+      if (typeof testCase.baseTimeTicks !== 'undefined') {
         baseTime = timeutil.convertTimeTicksToTime(testCase.baseTimeTicks);
+      }
 
-      var tablePrinter = createLogEntryTablePrinter(
+      const tablePrinter = createLogEntryTablePrinter(
           testCase.logEntries, baseTime, testCase.logCreationTime);
       tablePrinter.toText(0, div);
 
-      // Strip any trailing newlines, since the whitespace when using innerText
-      // can be a bit unpredictable.
-      var actualText = div.innerText;
+      // Strip any trailing newlines, since the whitespace when using
+      // innerText can be a bit unpredictable.
+      let actualText = div.innerText;
       actualText = actualText.replace(/^\s+|\s+$/g, '');
 
       chai.assert.strictEqual(testCase.expectedText, actualText);
@@ -74,7 +74,7 @@ tr.b.unittest.testSuite(function() {
  * for finished sources when there's a logCreationTime.
  */
 function painterTestURLRequest() {
-  var testCase = {};
+  const testCase = {};
   testCase.tickOffset = '1337911098446';
   testCase.logCreationTime = 1338864634013;
   testCase.loadFlags =
@@ -451,70 +451,70 @@ function painterTestURLRequest() {
   ];
 
   testCase.expectedText =
-      't=1338864633224 [st=  0] +REQUEST_ALIVE  [dt=789]\n' +
-      't=1338864633238 [st= 14]    URL_REQUEST_START_JOB  [dt=8]\n' +
-      '                            --> load_flags = ' +
-      testCase.loadFlags.toString() +
-      ' (MAIN_FRAME_DEPRECATED | MAYBE_USER_GESTURE)\n' +
-      '                            --> method = "GET"\n' +
-      '                            --> priority = 4\n' +
-      '                            --> url = "http://www.google.com/"\n' +
-      't=1338864633248 [st= 24]   +URL_REQUEST_START_JOB  [dt=279]\n' +
-      '                            --> load_flags = ' +
-      testCase.loadFlags.toString() +
-      ' (MAIN_FRAME_DEPRECATED | MAYBE_USER_GESTURE)\n' +
-      '                            --> method = "GET"\n' +
-      '                            --> priority = 4\n' +
-      '                            --> url = "http://www.google.com/"\n' +
-      't=1338864633255 [st= 31]      HTTP_CACHE_GET_BACKEND  [dt=1]\n' +
-      't=1338864633257 [st= 33]      HTTP_CACHE_OPEN_ENTRY  [dt=5]\n' +
-      't=1338864633263 [st= 39]      HTTP_CACHE_ADD_TO_ENTRY  [dt=1]\n' +
-      't=1338864633269 [st= 45]      HTTP_CACHE_READ_INFO  [dt=4]\n' +
-      't=1338864633276 [st= 52]     +HTTP_STREAM_REQUEST  [dt=72]\n' +
-      't=1338864633344 [st=120]        HTTP_STREAM_REQUEST_BOUND_TO_JOB\n' +
-      '                                --> source_dependency = 149 ' +
-      '(HTTP_STREAM_JOB)\n' +
-      't=1338864633348 [st=124]     -HTTP_STREAM_REQUEST\n' +
-      't=1338864633352 [st=128]     +HTTP_TRANSACTION_SEND_REQUEST  [dt=9]\n' +
-      't=1338864633356 [st=132]        HTTP_TRANSACTION_SEND_REQUEST_HEADERS\n' +
-      '                                --> GET / HTTP/1.1\n' +
-      '                                    Host: www.google.com\n' +
-      '                                    Connection: keep-alive\n' +
-      '                                    User-Agent: Mozilla/5.0\n' +
-      '                                    Accept: text/html\n' +
-      '                                    Accept-Encoding: gzip,deflate\n' +
-      '                                    Accept-Language: en-US,en;q=0.8\n' +
-      '                                    Accept-Charset: ISO-8859-1\n' +
-      't=1338864633361 [st=137]     -HTTP_TRANSACTION_SEND_REQUEST\n' +
-      't=1338864633362 [st=138]     +HTTP_TRANSACTION_READ_HEADERS  [dt=76]\n' +
-      't=1338864633363 [st=139]        HTTP_STREAM_PARSER_READ_HEADERS  [dt=70]\n' +
-      't=1338864633435 [st=211]        HTTP_TRANSACTION_READ_RESPONSE_HEADERS\n' +
-      '                                --> HTTP/1.1 200 OK\n' +
-      '                                    Date: Tue, 05 Jun 2012 02:50:33 GMT\n' +
-      '                                    Expires: -1\n' +
-      '                                    Cache-Control: private, max-age=0\n' +
-      '                                    Content-Type: text/html; charset=UTF-8\n' +
-      '                                    Content-Encoding: gzip\n' +
-      '                                    Server: gws\n' +
-      '                                    Content-Length: 23798\n' +
-      't=1338864633438 [st=214]     -HTTP_TRANSACTION_READ_HEADERS\n' +
-      't=1338864633439 [st=215]      HTTP_CACHE_WRITE_INFO  [dt=30]\n' +
-      't=1338864633470 [st=246]      HTTP_CACHE_WRITE_DATA  [dt=38]\n' +
-      't=1338864633508 [st=284]      HTTP_CACHE_WRITE_INFO  [dt=13]\n' +
-      't=1338864633527 [st=303]   -URL_REQUEST_START_JOB\n' +
-      't=1338864633983 [st=759]    HTTP_TRANSACTION_READ_BODY  [dt=1]\n' +
-      't=1338864633984 [st=760]    HTTP_CACHE_WRITE_DATA  [dt=3]\n' +
-      't=1338864633988 [st=764]    HTTP_TRANSACTION_READ_BODY  [dt=3]\n' +
-      't=1338864633992 [st=768]    HTTP_CACHE_WRITE_DATA  [dt=2]\n' +
-      't=1338864633994 [st=770]    HTTP_TRANSACTION_READ_BODY  [dt=0]\n' +
-      't=1338864633995 [st=771]    HTTP_CACHE_WRITE_DATA  [dt=0]\n' +
-      't=1338864633996 [st=772]    HTTP_TRANSACTION_READ_BODY  [dt=0]\n' +
-      't=1338864633996 [st=772]    HTTP_CACHE_WRITE_DATA  [dt=1]\n' +
-      't=1338864633998 [st=774]    HTTP_TRANSACTION_READ_BODY  [dt=1]\n' +
-      't=1338864633999 [st=775]    HTTP_CACHE_WRITE_DATA  [dt=3]\n' +
-      't=1338864634002 [st=778]    HTTP_TRANSACTION_READ_BODY  [dt=3]\n' +
-      't=1338864634005 [st=781]    HTTP_CACHE_WRITE_DATA  [dt=0]\n' +
-      't=1338864634013 [st=789] -REQUEST_ALIVE';
+'t=1338864633224 [st=  0] +REQUEST_ALIVE  [dt=789]\n' +
+'t=1338864633238 [st= 14]    URL_REQUEST_START_JOB  [dt=8]\n' +
+'                            --> load_flags = ' +
+testCase.loadFlags.toString() +
+' (MAIN_FRAME_DEPRECATED | MAYBE_USER_GESTURE)\n' +
+'                            --> method = "GET"\n' +
+'                            --> priority = 4\n' +
+'                            --> url = "http://www.google.com/"\n' +
+'t=1338864633248 [st= 24]   +URL_REQUEST_START_JOB  [dt=279]\n' +
+'                            --> load_flags = ' +
+testCase.loadFlags.toString() +
+' (MAIN_FRAME_DEPRECATED | MAYBE_USER_GESTURE)\n' +
+'                            --> method = "GET"\n' +
+'                            --> priority = 4\n' +
+'                            --> url = "http://www.google.com/"\n' +
+'t=1338864633255 [st= 31]      HTTP_CACHE_GET_BACKEND  [dt=1]\n' +
+'t=1338864633257 [st= 33]      HTTP_CACHE_OPEN_ENTRY  [dt=5]\n' +
+'t=1338864633263 [st= 39]      HTTP_CACHE_ADD_TO_ENTRY  [dt=1]\n' +
+'t=1338864633269 [st= 45]      HTTP_CACHE_READ_INFO  [dt=4]\n' +
+'t=1338864633276 [st= 52]     +HTTP_STREAM_REQUEST  [dt=72]\n' +
+'t=1338864633344 [st=120]        HTTP_STREAM_REQUEST_BOUND_TO_JOB\n' +
+'                                --> source_dependency = 149 ' +
+'(HTTP_STREAM_JOB)\n' +
+'t=1338864633348 [st=124]     -HTTP_STREAM_REQUEST\n' +
+'t=1338864633352 [st=128]     +HTTP_TRANSACTION_SEND_REQUEST  [dt=9]\n' +
+'t=1338864633356 [st=132]        HTTP_TRANSACTION_SEND_REQUEST_HEADERS\n' +
+'                                --> GET / HTTP/1.1\n' +
+'                                    Host: www.google.com\n' +
+'                                    Connection: keep-alive\n' +
+'                                    User-Agent: Mozilla/5.0\n' +
+'                                    Accept: text/html\n' +
+'                                    Accept-Encoding: gzip,deflate\n' +
+'                                    Accept-Language: en-US,en;q=0.8\n' +
+'                                    Accept-Charset: ISO-8859-1\n' +
+'t=1338864633361 [st=137]     -HTTP_TRANSACTION_SEND_REQUEST\n' +
+'t=1338864633362 [st=138]     +HTTP_TRANSACTION_READ_HEADERS  [dt=76]\n' +
+'t=1338864633363 [st=139]        HTTP_STREAM_PARSER_READ_HEADERS  [dt=70]\n' +
+'t=1338864633435 [st=211]        HTTP_TRANSACTION_READ_RESPONSE_HEADERS\n' +
+'                                --> HTTP/1.1 200 OK\n' +
+'                                    Date: Tue, 05 Jun 2012 02:50:33 GMT\n' +
+'                                    Expires: -1\n' +
+'                                    Cache-Control: private, max-age=0\n' +
+'                                    Content-Type: text/html; charset=UTF-8\n' +
+'                                    Content-Encoding: gzip\n' +
+'                                    Server: gws\n' +
+'                                    Content-Length: 23798\n' +
+'t=1338864633438 [st=214]     -HTTP_TRANSACTION_READ_HEADERS\n' +
+'t=1338864633439 [st=215]      HTTP_CACHE_WRITE_INFO  [dt=30]\n' +
+'t=1338864633470 [st=246]      HTTP_CACHE_WRITE_DATA  [dt=38]\n' +
+'t=1338864633508 [st=284]      HTTP_CACHE_WRITE_INFO  [dt=13]\n' +
+'t=1338864633527 [st=303]   -URL_REQUEST_START_JOB\n' +
+'t=1338864633983 [st=759]    HTTP_TRANSACTION_READ_BODY  [dt=1]\n' +
+'t=1338864633984 [st=760]    HTTP_CACHE_WRITE_DATA  [dt=3]\n' +
+'t=1338864633988 [st=764]    HTTP_TRANSACTION_READ_BODY  [dt=3]\n' +
+'t=1338864633992 [st=768]    HTTP_CACHE_WRITE_DATA  [dt=2]\n' +
+'t=1338864633994 [st=770]    HTTP_TRANSACTION_READ_BODY  [dt=0]\n' +
+'t=1338864633995 [st=771]    HTTP_CACHE_WRITE_DATA  [dt=0]\n' +
+'t=1338864633996 [st=772]    HTTP_TRANSACTION_READ_BODY  [dt=0]\n' +
+'t=1338864633996 [st=772]    HTTP_CACHE_WRITE_DATA  [dt=1]\n' +
+'t=1338864633998 [st=774]    HTTP_TRANSACTION_READ_BODY  [dt=1]\n' +
+'t=1338864633999 [st=775]    HTTP_CACHE_WRITE_DATA  [dt=3]\n' +
+'t=1338864634002 [st=778]    HTTP_TRANSACTION_READ_BODY  [dt=3]\n' +
+'t=1338864634005 [st=781]    HTTP_CACHE_WRITE_DATA  [dt=0]\n' +
+'t=1338864634013 [st=789] -REQUEST_ALIVE';
 
   return testCase;
 }
@@ -524,7 +524,7 @@ function painterTestURLRequest() {
  * loaded log file.
  */
 function painterTestURLRequestIncomplete() {
-  var testCase = {};
+  const testCase = {};
   testCase.tickOffset = '1337911098446';
 
   testCase.logEntries = [
@@ -554,7 +554,8 @@ function painterTestURLRequestIncomplete() {
     },
   ];
 
-  testCase.expectedText = 't=1338864633224 [st=  0] +REQUEST_ALIVE  [dt=?]\n' +
+  testCase.expectedText =
+      't=1338864633224 [st=  0] +REQUEST_ALIVE  [dt=?]\n' +
       't=1338864633356 [st=132]    URL_REQUEST_START_JOB  [dt=60]\n' +
       '                            --> load_flags = 0 (NORMAL)\n' +
       '                            --> method = "GET"\n' +
@@ -569,7 +570,7 @@ function painterTestURLRequestIncomplete() {
  * log file.
  */
 function painterTestURLRequestIncompleteFromLoadedLog() {
-  var testCase = painterTestURLRequestIncomplete();
+  const testCase = painterTestURLRequestIncomplete();
   testCase.logCreationTime = 1338864634013;
   testCase.expectedText =
       't=1338864633224 [st=  0] +REQUEST_ALIVE  [dt=789+]\n' +
@@ -587,7 +588,7 @@ function painterTestURLRequestIncompleteFromLoadedLog() {
  * log file when there's only a begin event.
  */
 function painterTestURLRequestIncompleteFromLoadedLogSingleEvent() {
-  var testCase = painterTestURLRequestIncomplete();
+  const testCase = painterTestURLRequestIncomplete();
   testCase.logEntries = [testCase.logEntries[0]];
   testCase.logCreationTime = 1338864634013;
   testCase.expectedText =
@@ -601,7 +602,7 @@ function painterTestURLRequestIncompleteFromLoadedLogSingleEvent() {
  * types.
  */
 function painterTestNetError() {
-  var testCase = {};
+  const testCase = {};
   testCase.tickOffset = '1337911098446';
   testCase.loadFlags =
       LoadFlag.MAIN_FRAME_DEPRECATED | LoadFlag.MAYBE_USER_GESTURE;
@@ -721,31 +722,31 @@ function painterTestNetError() {
   ];
 
   testCase.expectedText =
-      't=1338864773894 [st=  0] +REQUEST_ALIVE  [dt=475]\n' +
-      't=1338864773901 [st=  7]    URL_REQUEST_START_JOB  [dt=5]\n' +
-      '                            --> load_flags = ' +
-      testCase.loadFlags.toString() +
-      ' (MAIN_FRAME_DEPRECATED | MAYBE_USER_GESTURE)\n' +
-      '                            --> method = "GET"\n' +
-      '                            --> priority = 4\n' +
-      '                            --> url = "http://www.doesnotexistdomain.com/"\n' +
-      't=1338864773906 [st= 12]   +URL_REQUEST_START_JOB  [dt=245]\n' +
-      '                            --> load_flags = ' +
-      testCase.loadFlags.toString() +
-      ' (MAIN_FRAME_DEPRECATED | MAYBE_USER_GESTURE)\n' +
-      '                            --> method = "GET"\n' +
-      '                            --> priority = 4\n' +
-      '                            --> url = "http://www.doesnotexistdomain.com/"\n' +
-      't=1338864773915 [st= 21]      HTTP_CACHE_GET_BACKEND  [dt=0]\n' +
-      't=1338864773915 [st= 21]      HTTP_CACHE_OPEN_ENTRY  [dt=1]\n' +
-      '                              --> net_error = -2 (ERR_FAILED)\n' +
-      't=1338864773917 [st= 23]      HTTP_CACHE_CREATE_ENTRY  [dt=2]\n' +
-      't=1338864773919 [st= 25]      HTTP_CACHE_ADD_TO_ENTRY  [dt=1]\n' +
-      't=1338864773920 [st= 26]      HTTP_STREAM_REQUEST  [dt=225]\n' +
-      't=1338864774151 [st=257]   -URL_REQUEST_START_JOB\n' +
-      '                            --> net_error = -105 (ERR_NAME_NOT_RESOLVED)\n' +
-      't=1338864774369 [st=475] -REQUEST_ALIVE\n' +
-      '                          --> net_error = -105 (ERR_NAME_NOT_RESOLVED)';
+'t=1338864773894 [st=  0] +REQUEST_ALIVE  [dt=475]\n' +
+'t=1338864773901 [st=  7]    URL_REQUEST_START_JOB  [dt=5]\n' +
+'                            --> load_flags = ' +
+testCase.loadFlags.toString() +
+' (MAIN_FRAME_DEPRECATED | MAYBE_USER_GESTURE)\n' +
+'                            --> method = "GET"\n' +
+'                            --> priority = 4\n' +
+'                            --> url = "http://www.doesnotexistdomain.com/"\n' +
+'t=1338864773906 [st= 12]   +URL_REQUEST_START_JOB  [dt=245]\n' +
+'                            --> load_flags = ' +
+testCase.loadFlags.toString() +
+' (MAIN_FRAME_DEPRECATED | MAYBE_USER_GESTURE)\n' +
+'                            --> method = "GET"\n' +
+'                            --> priority = 4\n' +
+'                            --> url = "http://www.doesnotexistdomain.com/"\n' +
+'t=1338864773915 [st= 21]      HTTP_CACHE_GET_BACKEND  [dt=0]\n' +
+'t=1338864773915 [st= 21]      HTTP_CACHE_OPEN_ENTRY  [dt=1]\n' +
+'                              --> net_error = -2 (ERR_FAILED)\n' +
+'t=1338864773917 [st= 23]      HTTP_CACHE_CREATE_ENTRY  [dt=2]\n' +
+'t=1338864773919 [st= 25]      HTTP_CACHE_ADD_TO_ENTRY  [dt=1]\n' +
+'t=1338864773920 [st= 26]      HTTP_STREAM_REQUEST  [dt=225]\n' +
+'t=1338864774151 [st=257]   -URL_REQUEST_START_JOB\n' +
+'                            --> net_error = -105 (ERR_NAME_NOT_RESOLVED)\n' +
+'t=1338864774369 [st=475] -REQUEST_ALIVE\n' +
+'                          --> net_error = -105 (ERR_NAME_NOT_RESOLVED)';
 
   return testCase;
 }
@@ -755,7 +756,7 @@ function painterTestNetError() {
  * types.
  */
 function painterTestQuicError() {
-  var testCase = {};
+  const testCase = {};
   testCase.tickOffset = '1337911098446';
 
   testCase.logEntries = [
@@ -796,20 +797,21 @@ function painterTestQuicError() {
     }
   ];
 
-  testCase.expectedText = 't=1338864773894 [st=  0] +QUIC_SESSION  [dt=475]\n' +
-      '                          --> host = "www.example.com"\n' +
-      't=1338864773906 [st= 12]    QUIC_SESSION_RST_STREAM_FRAME_RECEIVED\n' +
-      '                            --> details = "invalid headers"\n' +
-      '                            --> quic_rst_stream_error = ' +
-      QuicRstStreamError.QUIC_BAD_APPLICATION_PAYLOAD + ' (' +
-      'QUIC_BAD_APPLICATION_PAYLOAD)\n' +
-      '                            --> stream_id = 1\n' +
-      't=1338864774151 [st=257]    QUIC_SESSION_CONNECTION_CLOSE_FRAME_RECEIVED\n' +
-      '                            --> quic_error = ' +
-      QuicError.QUIC_NETWORK_IDLE_TIMEOUT + ' (QUIC_NETWORK_IDLE_TIMEOUT)\n' +
-      't=1338864774369 [st=475] -QUIC_SESSION\n' +
-      '                          --> quic_error = ' +
-      QuicError.QUIC_NETWORK_IDLE_TIMEOUT + ' (QUIC_NETWORK_IDLE_TIMEOUT)';
+  testCase.expectedText =
+'t=1338864773894 [st=  0] +QUIC_SESSION  [dt=475]\n' +
+'                          --> host = "www.example.com"\n' +
+'t=1338864773906 [st= 12]    QUIC_SESSION_RST_STREAM_FRAME_RECEIVED\n' +
+'                            --> details = "invalid headers"\n' +
+'                            --> quic_rst_stream_error = ' +
+QuicRstStreamError.QUIC_BAD_APPLICATION_PAYLOAD + ' (' +
+'QUIC_BAD_APPLICATION_PAYLOAD)\n' +
+'                            --> stream_id = 1\n' +
+'t=1338864774151 [st=257]    QUIC_SESSION_CONNECTION_CLOSE_FRAME_RECEIVED\n' +
+'                            --> quic_error = ' +
+QuicError.QUIC_NETWORK_IDLE_TIMEOUT + ' (QUIC_NETWORK_IDLE_TIMEOUT)\n' +
+'t=1338864774369 [st=475] -QUIC_SESSION\n' +
+'                          --> quic_error = ' +
+QuicError.QUIC_NETWORK_IDLE_TIMEOUT + ' (QUIC_NETWORK_IDLE_TIMEOUT)';
 
   return testCase;
 }
@@ -818,7 +820,7 @@ function painterTestQuicError() {
  * Tests the custom formatting of QUIC crypto handshake messages.
  */
 function painterTestQuicCryptoHandshakeMessage() {
-  var testCase = {};
+  const testCase = {};
   testCase.tickOffset = '1337911098446';
 
   testCase.logEntries = [
@@ -861,26 +863,27 @@ function painterTestQuicCryptoHandshakeMessage() {
     }
   ];
 
-  testCase.expectedText = 't=1338864773894 [st=  0] +QUIC_SESSION  [dt=475]\n' +
-      '                          --> host = "www.example.com"\n' +
-      't=1338864773906 [st= 12]    QUIC_SESSION_CRYPTO_HANDSHAKE_MESSAGE_SENT\n' +
-      '                            --> REJ <\n' +
-      '                                  STK : 4FDE\n' +
-      '                                  SNO : A228\n' +
-      '                                  PROF: 3045\n' +
-      '                                  SCFG:\n' +
-      '                                    SCFG<\n' +
-      '                                      AEAD: AESG\n' +
-      '                                      SCID: FED7\n' +
-      '                                      PDMD: CHID\n' +
-      '                                      PUBS: 2000\n' +
-      '                                      VERS: 0000\n' +
-      '                                      KEXS: C255,P256\n' +
-      '                                      OBIT: 7883764781F2DFD0\n' +
-      '                                      EXPY: FFEE725200000000\n' +
-      '                                    >\n' +
-      '                                  >\n' +
-      't=1338864774369 [st=475] -QUIC_SESSION';
+  testCase.expectedText =
+'t=1338864773894 [st=  0] +QUIC_SESSION  [dt=475]\n' +
+'                          --> host = "www.example.com"\n' +
+'t=1338864773906 [st= 12]    QUIC_SESSION_CRYPTO_HANDSHAKE_MESSAGE_SENT\n' +
+'                            --> REJ <\n' +
+'                                  STK : 4FDE\n' +
+'                                  SNO : A228\n' +
+'                                  PROF: 3045\n' +
+'                                  SCFG:\n' +
+'                                    SCFG<\n' +
+'                                      AEAD: AESG\n' +
+'                                      SCID: FED7\n' +
+'                                      PDMD: CHID\n' +
+'                                      PUBS: 2000\n' +
+'                                      VERS: 0000\n' +
+'                                      KEXS: C255,P256\n' +
+'                                      OBIT: 7883764781F2DFD0\n' +
+'                                      EXPY: FFEE725200000000\n' +
+'                                    >\n' +
+'                                  >\n' +
+'t=1338864774369 [st=475] -QUIC_SESSION';
 
   return testCase;
 }
@@ -891,7 +894,7 @@ function painterTestQuicCryptoHandshakeMessage() {
  * hex_encoded_bytes.
  */
 function painterTestHexEncodedBytes() {
-  var testCase = {};
+  const testCase = {};
   testCase.tickOffset = '1337911098473';
 
   testCase.logEntries = [
@@ -968,39 +971,40 @@ function painterTestHexEncodedBytes() {
     }
   ];
 
-  testCase.expectedText = 't=1338865016932 [st=  0] +SOCKET_ALIVE  [dt=?]\n' +
-      '                          --> source_dependency = 634 (TRANSPORT_CONNECT_JOB' +
-      ')\n' +
-      't=1338865016933 [st=  1]   +TCP_CONNECT  [dt=5]\n' +
-      '                            --> address_list = ["184.30.253.15:80"]\n' +
-      't=1338865016934 [st=  2]      TCP_CONNECT_ATTEMPT  [dt=3]\n' +
-      '                              --> address = "184.30.253.15:80"\n' +
-      't=1338865016938 [st=  6]   -TCP_CONNECT\n' +
-      '                            --> source_address = "127.0.0.1:54041"\n' +
-      't=1338865016945 [st= 13]   +SOCKET_IN_USE  [dt=?]\n' +
-      '                            --> source_dependency = 628 (HTTP_STREAM_JOB)\n' +
-      't=1338865016957 [st= 25]      SOCKET_BYTES_SENT\n' +
-      '                              --> byte_count = 780\n' +
-      '                              --> hex_encoded_bytes =\n' +
-      '                                47 45 54 20 2F 66 61 76  69 63 6F 6E 2E 69 ' +
-      '63 6F   GET /favicon.ico\n' +
-      '                                20 48 54 54 50 2F 31 2E  31 0D 0A 48 6F 73 ' +
-      '74 3A    HTTP/1.1..Host:\n' +
-      '                                20 77 77 77 2E 61 70 70  6C 65 2E 63 6F 6D ' +
-      '0D 0A    www.apple.com..\n' +
-      '                                43 6F 6E 6E 65 63 74 69  6F 6E 3A 20       ' +
-      '        Connection: \n' +
-      't=1338865017069 [st=137]      SOCKET_BYTES_RECEIVED\n' +
-      '                              --> byte_count = 1024\n' +
-      '                              --> hex_encoded_bytes =\n' +
-      '                                48 54 54 50 2F 31 2E 31  20 32 30 30 20 4F ' +
-      '4B 0D   HTTP/1.1 200 OK.\n' +
-      '                                0A 4C 61 73 74 2D 4D 6F  64 69 66 69 65 64 ' +
-      '3A 20   .Last-Modified: \n' +
-      '                                4D 6F 6E 2C 20 31 39 20  44 65 63 20 32 30 ' +
-      '31 31   Mon, 19 Dec 2011\n' +
-      '                                20 32 32 3A 34 36 3A 35  39 20 47 4D       ' +
-      '         22:46:59 GM';
+  testCase.expectedText =
+'t=1338865016932 [st=  0] +SOCKET_ALIVE  [dt=?]\n' +
+'                          --> source_dependency = 634 (TRANSPORT_CONNECT_JOB' +
+')\n' +
+'t=1338865016933 [st=  1]   +TCP_CONNECT  [dt=5]\n' +
+'                            --> address_list = ["184.30.253.15:80"]\n' +
+'t=1338865016934 [st=  2]      TCP_CONNECT_ATTEMPT  [dt=3]\n' +
+'                              --> address = "184.30.253.15:80"\n' +
+'t=1338865016938 [st=  6]   -TCP_CONNECT\n' +
+'                            --> source_address = "127.0.0.1:54041"\n' +
+'t=1338865016945 [st= 13]   +SOCKET_IN_USE  [dt=?]\n' +
+'                            --> source_dependency = 628 (HTTP_STREAM_JOB)\n' +
+'t=1338865016957 [st= 25]      SOCKET_BYTES_SENT\n' +
+'                              --> byte_count = 780\n' +
+'                              --> hex_encoded_bytes =\n' +
+'                                47 45 54 20 2F 66 61 76  69 63 6F 6E 2E 69 ' +
+'63 6F   GET /favicon.ico\n' +
+'                                20 48 54 54 50 2F 31 2E  31 0D 0A 48 6F 73 ' +
+'74 3A    HTTP/1.1..Host:\n' +
+'                                20 77 77 77 2E 61 70 70  6C 65 2E 63 6F 6D ' +
+'0D 0A    www.apple.com..\n' +
+'                                43 6F 6E 6E 65 63 74 69  6F 6E 3A 20       ' +
+'        Connection: \n' +
+'t=1338865017069 [st=137]      SOCKET_BYTES_RECEIVED\n' +
+'                              --> byte_count = 1024\n' +
+'                              --> hex_encoded_bytes =\n' +
+'                                48 54 54 50 2F 31 2E 31  20 32 30 30 20 4F ' +
+'4B 0D   HTTP/1.1 200 OK.\n' +
+'                                0A 4C 61 73 74 2D 4D 6F  64 69 66 69 65 64 ' +
+'3A 20   .Last-Modified: \n' +
+'                                4D 6F 6E 2C 20 31 39 20  44 65 63 20 32 30 ' +
+'31 31   Mon, 19 Dec 2011\n' +
+'                                20 32 32 3A 34 36 3A 35  39 20 47 4D       ' +
+'         22:46:59 GM';
 
   return testCase;
 }
@@ -1009,7 +1013,7 @@ function painterTestHexEncodedBytes() {
  * Tests the formatting of certificates.
  */
 function painterTestCertVerifierJob() {
-  var testCase = {};
+  const testCase = {};
   testCase.tickOffset = '1337911098481';
 
   testCase.logEntries = [
@@ -1050,7 +1054,7 @@ function painterTestCertVerifierJob() {
  * Tests the formatting of CertVerifyResult fields.
  */
 function painterTestCertVerifyResult() {
-  var testCase = {};
+  const testCase = {};
   testCase.tickOffset = '1337911098481';
 
   testCase.logEntries = [
@@ -1130,7 +1134,7 @@ function painterTestCertVerifyResult() {
  * Tests the formatting of checked certificates
  */
 function painterTestCheckedCert() {
-  var testCase = {};
+  const testCase = {};
   testCase.tickOffset = '1337911098481';
 
   testCase.logEntries = [{
@@ -1163,11 +1167,11 @@ function painterTestCheckedCert() {
 }
 
 /**
- * Tests the formatting of proxy configurations when using one proxy server for
- * all URL schemes.
+ * Tests the formatting of proxy configurations when using one proxy
+ * server for all URL schemes.
  */
 function painterTestProxyConfigOneProxyAllSchemes() {
-  var testCase = {};
+  const testCase = {};
   testCase.tickOffset = '1337911098481';
 
   testCase.logEntries = [{
@@ -1187,28 +1191,29 @@ function painterTestProxyConfigOneProxyAllSchemes() {
     'type': EventType.PROXY_CONFIG_CHANGED
   }];
 
-  testCase.expectedText = 't=1338865542059 [st=0]  PROXY_CONFIG_CHANGED\n' +
-      '                        --> old_config =\n' +
-      '                               Auto-detect\n' +
-      '                        --> new_config =\n' +
-      '                               (1) Auto-detect\n' +
-      '                               (2) PAC script: https://config/wpad.dat\n' +
-      '                               (3) Proxy server: cache-proxy:3128\n' +
-      '                                   Bypass list: \n' +
-      '                                     *.local\n' +
-      '                                     foo\n' +
-      '                                     <local>\n' +
-      '                               Source: SYSTEM';
+  testCase.expectedText =
+'t=1338865542059 [st=0]  PROXY_CONFIG_CHANGED\n' +
+'                        --> old_config =\n' +
+'                               Auto-detect\n' +
+'                        --> new_config =\n' +
+'                               (1) Auto-detect\n' +
+'                               (2) PAC script: https://config/wpad.dat\n' +
+'                               (3) Proxy server: cache-proxy:3128\n' +
+'                                   Bypass list: \n' +
+'                                     *.local\n' +
+'                                     foo\n' +
+'                                     <local>\n' +
+'                               Source: SYSTEM';
 
   return testCase;
 }
 
 /**
- * Tests the formatting of proxy configurations when using two proxy servers for
- * all URL schemes.
+ * Tests the formatting of proxy configurations when using two proxy servers
+ * for all URL schemes.
  */
 function painterTestProxyConfigTwoProxiesAllSchemes() {
-  var testCase = {};
+  const testCase = {};
   testCase.tickOffset = '1337911098481';
 
   testCase.logEntries = [{
@@ -1228,19 +1233,20 @@ function painterTestProxyConfigTwoProxiesAllSchemes() {
     'type': EventType.PROXY_CONFIG_CHANGED
   }];
 
-  testCase.expectedText = 't=1338865542059 [st=0]  PROXY_CONFIG_CHANGED\n' +
-      '                        --> old_config =\n' +
-      '                               Auto-detect\n' +
-      '                        --> new_config =\n' +
-      '                               (1) Auto-detect\n' +
-      '                               (2) PAC script: https://config/wpad.dat\n' +
-      '                               (3) Proxy server: [cache-proxy:3128, ' +
-      'socks4://other:999]\n' +
-      '                                   Bypass list: \n' +
-      '                                     *.local\n' +
-      '                                     foo\n' +
-      '                                     <local>\n' +
-      '                               Source: SYSTEM';
+  testCase.expectedText =
+'t=1338865542059 [st=0]  PROXY_CONFIG_CHANGED\n' +
+'                        --> old_config =\n' +
+'                               Auto-detect\n' +
+'                        --> new_config =\n' +
+'                               (1) Auto-detect\n' +
+'                               (2) PAC script: https://config/wpad.dat\n' +
+'                               (3) Proxy server: [cache-proxy:3128, ' +
+'socks4://other:999]\n' +
+'                                   Bypass list: \n' +
+'                                     *.local\n' +
+'                                     foo\n' +
+'                                     <local>\n' +
+'                               Source: SYSTEM';
 
   return testCase;
 }
@@ -1250,7 +1256,7 @@ function painterTestProxyConfigTwoProxiesAllSchemes() {
  * event type, they are printed out in addition to the custom formatting.
  */
 function painterTestExtraCustomParameter() {
-  var testCase = {};
+  const testCase = {};
   testCase.tickOffset = '1337911098446';
 
   testCase.logEntries = [
@@ -1269,11 +1275,11 @@ function painterTestExtraCustomParameter() {
   ];
 
   testCase.expectedText =
-      't=1338864633356 [st=0]  HTTP_TRANSACTION_SEND_REQUEST_HEADERS\n' +
-      '                        --> GET / HTTP/1.1\n' +
-      '                            Host: www.google.com\n' +
-      '                            Connection: keep-alive\n' +
-      '                        --> hello = "yo dawg, i heard you like strings"';
+'t=1338864633356 [st=0]  HTTP_TRANSACTION_SEND_REQUEST_HEADERS\n' +
+'                        --> GET / HTTP/1.1\n' +
+'                            Host: www.google.com\n' +
+'                            Connection: keep-alive\n' +
+'                        --> hello = "yo dawg, i heard you like strings"';
 
   return testCase;
 }
@@ -1283,7 +1289,7 @@ function painterTestExtraCustomParameter() {
  * what we expect, we fall back to default formatting.
  */
 function painterTestMissingCustomParameter() {
-  var testCase = {};
+  const testCase = {};
   testCase.tickOffset = '1337911098446';
 
   testCase.logEntries = [
@@ -1314,7 +1320,7 @@ function painterTestMissingCustomParameter() {
  * net-internals was opened.
  */
 function painterTestInProgressURLRequest() {
-  var testCase = {};
+  const testCase = {};
   testCase.tickOffset = '1337911098446';
   testCase.loadFlags =
       LoadFlag.MAIN_FRAME_DEPRECATED | LoadFlag.MAYBE_USER_GESTURE;
@@ -1353,17 +1359,17 @@ function painterTestInProgressURLRequest() {
   ];
 
   testCase.expectedText =
-      't=1338864773994 [st=  0] +REQUEST_ALIVE  [dt=375]\n' +
-      '                          --> load_flags = ' +
-      testCase.loadFlags.toString() +
-      ' (MAIN_FRAME_DEPRECATED | MAYBE_USER_GESTURE)\n' +
-      '                          --> load_state = ' +
-      LoadState.READING_RESPONSE + ' (READING_RESPONSE)\n' +
-      '                          --> method = "GET"\n' +
-      '                          --> url = "http://www.MagicPonyShopper.com"\n' +
-      't=1338864774145 [st=151]   -HTTP_STREAM_REQUEST\n' +
-      't=1338864774151 [st=157]   -URL_REQUEST_START_JOB\n' +
-      't=1338864774369 [st=375] -REQUEST_ALIVE';
+'t=1338864773994 [st=  0] +REQUEST_ALIVE  [dt=375]\n' +
+'                          --> load_flags = ' +
+testCase.loadFlags.toString() +
+' (MAIN_FRAME_DEPRECATED | MAYBE_USER_GESTURE)\n' +
+'                          --> load_state = ' +
+LoadState.READING_RESPONSE + ' (READING_RESPONSE)\n' +
+'                          --> method = "GET"\n' +
+'                          --> url = "http://www.MagicPonyShopper.com"\n' +
+'t=1338864774145 [st=151]   -HTTP_STREAM_REQUEST\n' +
+'t=1338864774151 [st=157]   -URL_REQUEST_START_JOB\n' +
+'t=1338864774369 [st=375] -REQUEST_ALIVE';
 
   return testCase;
 }
@@ -1373,7 +1379,7 @@ function painterTestInProgressURLRequest() {
  * to make sure logCreationTime is handled correctly.
  */
 function painterTestBaseTime() {
-  var testCase = {};
+  const testCase = {};
   testCase.tickOffset = '1337911098446';
   testCase.logCreationTime = 1338864774783;
   testCase.baseTimeTicks = '953675546';
@@ -1405,6 +1411,5 @@ function painterTestBaseTime() {
 
   return testCase;
 }
-
 })();  // Anonymous namespace
 </script>
