@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7c3be212_331b679c",
+        "filename": "dashboard/dashboard/common/layered_cache.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2019-01-10T17:37:28Z",
+      "side": 1,
+      "message": "nit: this variable is not visible outside of this method, obv, but this could really use a more descriptive name (denoting its purpose rather than type) if it were in a longer method. delete_future or similar.\n\nDoes chromeperf use namespacing elsewhere for multi-tenancy?",
+      "range": {
+        "startLine": 148,
+        "startChar": 2,
+        "endLine": 148,
+        "endChar": 21
+      },
+      "revId": "4e84c4e0c7fd44a33d3dba338d875f42f04733ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
