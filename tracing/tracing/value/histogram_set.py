@@ -5,6 +5,7 @@
 import collections
 
 from tracing.value import histogram as histogram_module
+from tracing.value import histogram_deserializer
 from tracing.value.diagnostics import all_diagnostics
 from tracing.value.diagnostics import diagnostic
 from tracing.value.diagnostics import diagnostic_ref
@@ -77,7 +78,15 @@ class HistogramSet(object):
     for hist in self._histograms:
       yield hist
 
+  def Deserialize(self, data):
+    for hist in histogram_deserializer.Deserialize(data):
+      self.AddHistogram(hist)
+
   def ImportDicts(self, dicts):
+    if isinstance(dicts, list) and dicts and isinstance(dicts[0], list):
+      self.Deserialize(dicts)
+      return
+
     for d in dicts:
       if 'type' in d:
         assert d['type'] in all_diagnostics.GetDiagnosticTypenames(), (
