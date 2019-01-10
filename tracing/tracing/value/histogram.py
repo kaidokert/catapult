@@ -9,6 +9,7 @@ import random
 
 from tracing.value.diagnostics import diagnostic
 from tracing.value.diagnostics import diagnostic_ref
+from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import reserved_infos
 from tracing.value.diagnostics import unmergeable_diagnostic_set
 
@@ -34,7 +35,7 @@ JS_MAX_VALUE = 1.7976931348623157e+308
 # 0.xx produces '0xx',
 # 0.xxy produces '0xx_y',
 # 1.0 produces '100'.
-def PercentToString(percent):
+def PercentToString(percent, force3=False):
   if percent < 0 or percent > 1:
     raise ValueError('percent must be in [0,1]')
   if percent == 0:
@@ -46,8 +47,15 @@ def PercentToString(percent):
     raise ValueError('Unexpected percent')
   s += '0' * max(4 - len(s), 0)
   if len(s) > 4:
-    s = s[:4] + '_' + s[4:]
+    if force3:
+      s = s[:4]
+    else:
+      s = s[:4] + '_' + s[4:]
   return '0' + s[2:]
+
+
+def PercentFromString(s):
+  return float(s[0] + '.' + s[1:].replace('_', ''))
 
 
 # This variation of binary search returns the index |hi| into |ary| for which
@@ -409,6 +417,10 @@ class DiagnosticMap(dict):
       elif required:
         raise ValueError('Unable to find shared Diagnostic ' + guid)
 
+  def Serialize(self, serializer):
+    return [serializer.GetDiagnosticId(name, diag)
+            for name, diag in self.items()]
+
   def AsDict(self):
     dct = {}
     for name, diag in self.items():
@@ -467,6 +479,12 @@ class HistogramBin(object):
       for diagnostic_map_dict in dct[1]:
         self._diagnostic_maps.append(DiagnosticMap.FromDict(
             diagnostic_map_dict))
+
+  def Serialize(self, serializer):
+    if len(self._diagnostic_maps) == 0:
+      return self.count
+    return [self.count] + [
+        [None] + d.Serialize(serializer) for d in self._diagnostic_maps]
 
   def AsDict(self):
     if len(self._diagnostic_maps) == 0:
@@ -647,6 +665,10 @@ class Histogram(object):
     if 'running' in dct:
       hist._running = RunningStatistics.FromDict(dct['running'])
     if 'summaryOptions' in dct:
+      if 'iprs' in dct['summaryOptions']:
+        dct['summaryOptions']['iprs'] = [
+            Range.FromExplicitRange(r[0], r[1])
+            for r in dct['summaryOptions']['iprs']]
       hist.CustomizeSummaryOptions(dct['summaryOptions'])
     if 'maxNumSampleValues' in dct:
       hist._max_num_sample_values = dct['maxNumSampleValues']
@@ -795,37 +817,89 @@ class Histogram(object):
         self._bin_boundaries_dict))
 
   @property
+  def statistics_names(self):
+    names = set()
+    for stat_name, option in self._summary_options.items():
+      if stat_name == 'percentile':
+        for pctile in option:
+          names.add('pct_' + PercentToString(pctile))
+      elif stat_name == 'iprs':
+        for rang in option:
+          names.add('ipr_' + PercentToString(rang.min, True) +
+                    '_' + PercentToString(rang.max, True))
+      elif option:
+        names.add(stat_name)
+    return names
+
+  def GetStatisticScalar(self, stat_name):
+    if stat_name == 'avg':
+      if self.average is None:
+        return None
+      return Scalar(self.unit, self.average)
+
+    if stat_name == 'std':
+      if self.standard_deviation is None:
+        return None
+      return Scalar(self.unit, self.standard_deviation)
+
+    if stat_name == 'geometricMean':
+      if self.geometric_mean is None:
+        return None
+      return Scalar(self.unit, self.geometric_mean)
+
+    if stat_name in ['min', 'max', 'sum']:
+      if self._running is None:
+        return None
+      return Scalar(self.unit, getattr(self._running, stat_name))
+
+    if stat_name == 'nans':
+      return Scalar('count_smallerIsBetter', self.num_nans)
+
+    if stat_name == 'count':
+      return Scalar('count', self.num_values)
+
+    if stat_name.startswith('pct_'):
+      if self.num_values == 0:
+        return None
+      percent = PercentFromString(stat_name[4:])
+      percentile = self.GetApproximatePercentile(percent)
+      return Scalar(self.unit, percentile)
+
+    if stat_name.startswith('ipr_'):
+      lower = PercentFromString(stat_name[4:7])
+      upper = PercentFromString(stat_name[8:])
+      if lower >= upper:
+        raise ValueError('Invalid inter-percentile range: ' + stat_name)
+      return Scalar(self.unit, (self.GetApproximatePercentile(upper) -
+                                self.GetApproximatePercentile(lower)))
+
+  @property
   def statistics_scalars(self):
     results = {}
-    for stat_name, option in self._summary_options.items():
-      if not option:
-        continue
-      if stat_name == 'percentile':
-        for percent in option:
-          percentile = self.GetApproximatePercentile(percent)
-          results['pct_' + PercentToString(percent)] = Scalar(
-              self.unit, percentile)
-      elif stat_name == 'nans':
-        results['nans'] = Scalar('count', self.num_nans)
-      else:
-        if stat_name == 'count':
-          stat_unit = 'count'
-        else:
-          stat_unit = self.unit
-        if stat_name == 'std':
-          key = 'stddev'
-        elif stat_name == 'avg':
-          key = 'mean'
-        elif stat_name == 'geometricMean':
-          key = 'geometric_mean'
-        else:
-          key = stat_name
-        if self._running is None:
-          self._running = RunningStatistics()
-        stat_value = getattr(self._running, key)
-        if isinstance(stat_value, numbers.Number):
-          results[stat_name] = Scalar(stat_unit, stat_value)
+    for name in self.statistics_names:
+      scalar = self.GetStatisticScalar(name)
+      if scalar:
+        results[name] = scalar
     return results
+
+  def Serialize(self, serializer):
+    nan_bin = self.num_nans
+    if self.nan_diagnostic_maps:
+      nan_bin = [nan_bin] + [
+          [None] + dm.Serialize(serializer) for dm in self.nan_diagnostic_maps]
+    self.diagnostics[reserved_infos.STATISTICS_NAMES.name] = \
+      generic_set.GenericSet(sorted(self.statistics_names))
+    return [
+        serializer.GetId(self.name),
+        self.unit.replace(
+            '_biggerIsBetter', '+').replace('_smallerIsBetter', '-'),
+        serializer.GetId(self._bin_boundaries_dict),
+        serializer.GetId(self._description),
+        self.diagnostics.Serialize(serializer),
+        self._running.AsDict() if self._running else 0,
+        self._SerializeBins(serializer),
+        nan_bin,
+    ]
 
   def AsDict(self):
     dct = {'name': self.name, 'unit': self.unit}
@@ -854,6 +928,10 @@ class Histogram(object):
       if name == 'percentile':
         if len(option) == 0:
           continue
+      elif name == 'iprs':
+        if len(option) == 0:
+          continue
+        option = [[r.min, r.max] for r in option]
       elif option == DEFAULT_SUMMARY_OPTIONS[name]:
         continue
       summary_options[name] = option
@@ -861,6 +939,27 @@ class Histogram(object):
     if any_overridden_summary_options:
       dct['summaryOptions'] = summary_options
     return dct
+
+  def _SerializeBins(self, serializer):
+    num_bins = len(self._bins)
+    empty_bins = 0
+    for hbin in self._bins:
+      if hbin.count == 0:
+        empty_bins += 1
+    if empty_bins == num_bins:
+      return None
+
+    if empty_bins > (num_bins / 2):
+      all_bins_dict = {}
+      for i, hbin in enumerate(self._bins):
+        if hbin.count > 0:
+          all_bins_dict[i] = hbin.Serialize(serializer)
+      return all_bins_dict
+
+    all_bins_list = []
+    for hbin in self._bins:
+      all_bins_list.append(hbin.Serialize(serializer))
+    return all_bins_list
 
   def _GetAllBinsAsDict(self):
     num_bins = len(self._bins)
