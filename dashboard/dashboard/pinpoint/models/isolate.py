@@ -10,6 +10,8 @@ More about isolates:
 https://github.com/luci/luci-py/blob/master/appengine/isolate/doc/client/Design.md
 """
 
+import datetime
+
 from google.appengine.ext import ndb
 
 
@@ -49,6 +51,13 @@ def Get(builder_name, change, target):
     else:
       raise KeyError('No isolate with builder %s, change %s, and target %s.' %
                      (builder_name, change, target))
+
+  two_months = datetime.datetime.now() - datetime.timedelta(weeks=8)
+  if entity.created < two_months:
+    # TODO: Remove expired isolates from the datastore.
+    raise KeyError('Isolate with builder %s, change %s, and target %s was '
+                   'found, but is expired.' % (builder_name, change, target))
+
   return entity.isolate_server, entity.isolate_hash
 
 
