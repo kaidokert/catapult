@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3b5ab58f_84d00640",
+        "filename": "dashboard/dashboard/pinpoint/models/isolate.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1002882
+      },
+      "writtenOn": "2019-01-10T23:44:28Z",
+      "side": 1,
+      "message": "+maruel@ to be on the same page: does this look good?",
+      "range": {
+        "startLine": 56,
+        "startChar": 22,
+        "endLine": 56,
+        "endChar": 32
+      },
+      "revId": "64fda483cbc761c5dcaae7c4f96db3d7a9c95056",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
