@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bc43c353_6033063b",
+        "filename": "devil/devil/android/tools/webview_app.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-01-11T01:10:51Z",
+      "side": 1,
+      "message": "Assuming HasGoogleFeatures() implies the google WebView config, this is fine",
+      "range": {
+        "startLine": 54,
+        "startChar": 6,
+        "endLine": 57,
+        "endChar": 24
+      },
+      "revId": "f1a915f751718cda222c09612002d7b98e303973",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "22881532_0c87e008",
+        "filename": "devil/devil/android/tools/webview_app.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-01-11T01:10:51Z",
+      "side": 1,
+      "message": "Not strictly correct. \"com.android.webview\" is the default package, but we honestly don\u0027t know what the package is for some non-google AOSP-based ROM.\n\nI think any package is technically valid on \u003c N, but I\u0027m certain other packages may be valid on \u003e\u003d N (for example, CopperheadOS adds \"org.chromium.chrome\" to the list for monochrome benefits)",
+      "range": {
+        "startLine": 59,
+        "startChar": 6,
+        "endLine": 62,
+        "endChar": 22
+      },
+      "revId": "f1a915f751718cda222c09612002d7b98e303973",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
