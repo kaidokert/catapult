@@ -69,6 +69,30 @@
       "revId": "f1a915f751718cda222c09612002d7b98e303973",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1c73319_bfc6dd17",
+        "filename": "devil/devil/android/tools/webview_app.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-01-11T04:35:26Z",
+      "side": 1,
+      "message": "\u003e I mean even for google builds, someone could have added additional providers to a custom build like I was doing to get the bisect working.\n\nTrue, although I think this would fail GTS.\n\n\u003e What about making the package name check for \u003c N an optional param.  When True (check the package name with logic above), but if set to False, then the package name check will be skipped?\n\nI\u0027d lean toward moving the assertions to chromium infra instead of devil (fewer edge cases to worry about, since we control our devices). If that\u0027s not feasible, it\u0027s probably not worth making this overly complex. Maybe just add a comment indicating this isn\u0027t strictly correct, but it\u0027s the best we can do?",
+      "parentUuid": "58bf705d_bc722e0c",
+      "range": {
+        "startLine": 59,
+        "startChar": 6,
+        "endLine": 62,
+        "endChar": 22
+      },
+      "revId": "f1a915f751718cda222c09612002d7b98e303973",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
