@@ -22,6 +22,30 @@
       "revId": "4e84c4e0c7fd44a33d3dba338d875f42f04733ee",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57d8c44a_55be2ba4",
+        "filename": "dashboard/dashboard/common/layered_cache.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-11T00:59:31Z",
+      "side": 1,
+      "message": "Several places use namespaced_stored_object:\nhttps://github.com/catapult-project/catapult/search?q\u003d%22import+namespaced_stored_object%22\u0026unscoped_q\u003d%22import+namespaced_stored_object%22",
+      "parentUuid": "7c3be212_331b679c",
+      "range": {
+        "startLine": 148,
+        "startChar": 2,
+        "endLine": 148,
+        "endChar": 21
+      },
+      "revId": "4e84c4e0c7fd44a33d3dba338d875f42f04733ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
