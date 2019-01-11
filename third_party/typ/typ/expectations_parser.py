@@ -21,7 +21,8 @@ _EXPECTATION_MAP = {
     'Failure': ResultType.Failure,
     'Pass': ResultType.Pass,
     'Timeout': ResultType.Timeout,
-    'Skip': ResultType.Skip
+    'Skip': ResultType.Skip,
+    'Flaky': ResultType.Flaky
 }
 
 def _group_to_string(group):
