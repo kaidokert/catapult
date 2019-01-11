@@ -22,6 +22,23 @@
       "revId": "64fda483cbc761c5dcaae7c4f96db3d7a9c95056",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12e88676_7e76a478",
+        "filename": "dashboard/dashboard/pinpoint/models/isolate_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-11T09:58:28Z",
+      "side": 1,
+      "message": "nit: it\u0027s a bit hard to see why this test works (without going and reading code elsewhere). Where is the entity.created date set? can we set it to some constant datetime within the code of this test method?",
+      "revId": "64fda483cbc761c5dcaae7c4f96db3d7a9c95056",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
