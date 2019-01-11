@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b63c8904_a571236d",
+        "filename": "dashboard/dashboard/start_try_job.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-11T16:00:22Z",
+      "side": 1,
+      "message": "Making this private since all existing clients are within this file. Also trimming down the options to remove some code paths that are no longer reachable.",
+      "revId": "544efa62ed05af1ff73edeaeab067c68375e287d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
