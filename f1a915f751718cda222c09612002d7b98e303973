@@ -93,6 +93,30 @@
       "revId": "f1a915f751718cda222c09612002d7b98e303973",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c914152_77a5f48f",
+        "filename": "devil/devil/android/tools/webview_app.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-01-11T18:51:18Z",
+      "side": 1,
+      "message": "Moving it up to chromium infra sounds good, so I\u0027ve removed the package name checking heuristic, but added package name checking as an optional arg so that the caller can decide what to do.",
+      "parentUuid": "c1c73319_bfc6dd17",
+      "range": {
+        "startLine": 59,
+        "startChar": 6,
+        "endLine": 62,
+        "endChar": 22
+      },
+      "revId": "f1a915f751718cda222c09612002d7b98e303973",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
