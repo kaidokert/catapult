@@ -18,7 +18,7 @@ from telemetry.internal.browser import browser_finder
 from py_utils import discover
 import typ
 from typ import arg_parser
-
+from typ import json_results
 TEST_SUFFIXES = ['*_test.py', '*_tests.py', '*_unittest.py', '*_unittests.py']
 
 
@@ -230,8 +230,21 @@ def _CreateTestArgParsers():
 def _SkipMatch(name, skipGlobs):
   return any(fnmatch.fnmatch(name, glob) for glob in skipGlobs)
 
+def _build_test_input(test_class, runner, msg=''):
+  # TODO(rmhasan): Implement method in browser test suites to get
+  # flaky retry count for each test method. Then call that method
+  # from the test_class argument to get the count. Use that value to
+  # override the retry_flaky_tests_limits member variable
+  test_name = test_class.id()
+  expected_results = (runner.expectations.expected_results_for(test_name)
+                      if runner.has_expectations
+                      else {json_results.ResultType.Pass})
+  retry_flaky = (runner.args.retry_limit_for_flaky_tests
+                 if json_results.ResultType.Flaky in expected_results else 0)
+  return typ.TestInput(test_name, msg, test_expectations=expected_results,
+                       retry_flaky_tests=retry_flaky)
 
-def _GetClassifier(args):
+def _GetClassifier(args, typ_runner=None):
   def _SeriallyExecutedBrowserTestCaseClassifer(test_set, test):
     # Do not pick up tests that do not inherit from
     # serially_executed_browser_test_case.SeriallyExecutedBrowserTestCase
@@ -246,7 +259,7 @@ def _GetClassifier(args):
           typ.TestInput(name, 'skipped because matched --skip'))
       return
     # For now, only support running these tests serially.
-    test_set.isolated_tests.append(typ.TestInput(name))
+    test_set.isolated_tests.append(_build_test_input(test, typ_runner))
   return _SeriallyExecutedBrowserTestCaseClassifer
 
 
@@ -306,7 +319,6 @@ def RunTests(args):
   context.Freeze()
   browser_test_context._global_test_context = context
   possible_browser = browser_finder.FindBrowser(context.finder_options)
-
   # Setup typ runner.
   runner = typ.Runner()
   options.tags.extend(test_class.GenerateTags(context.finder_options,
@@ -322,13 +334,14 @@ def RunTests(args):
   runner.args.path = options.path
   runner.args.repeat = options.repeat
   runner.args.retry_limit = options.retry_limit
+  runner.args.retry_limit_for_flaky_tests = options.retry_limit_for_flaky_tests
   runner.args.test_results_server = options.test_results_server
   runner.args.test_type = options.test_type
   runner.args.top_level_dir = options.top_level_dir
   runner.args.write_full_results_to = options.write_full_results_to
   runner.args.write_trace_to = options.write_trace_to
   runner.args.list_only = options.list_only
-  runner.classifier = _GetClassifier(options)
+  runner.classifier = _GetClassifier(options, runner)
 
   runner.args.suffixes = TEST_SUFFIXES
 
