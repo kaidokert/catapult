@@ -46,8 +46,9 @@ def IsEventInInteractions(event, interaction_records):
 class TimelineBasedMetric(object):
 
   def __init__(self):
-    """Computes metrics from a telemetry.timeline Model and a range
+    """Computes TMBv1 metrics from a telemetry.timeline Model and a range
 
+    This class is deprecated.
     """
     super(TimelineBasedMetric, self).__init__()
 
