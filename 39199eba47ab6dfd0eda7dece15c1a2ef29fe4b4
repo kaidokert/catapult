@@ -16,6 +16,24 @@
       "revId": "39199eba47ab6dfd0eda7dece15c1a2ef29fe4b4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c755e488_e2967d02",
+        "filename": "tracing/tracing/base/math/math.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-11T21:20:56Z",
+      "side": 1,
+      "message": "That returns a string, whereas we need a number here.\nAlso, it counts digits before the decimal, which is not appropriate for this case.",
+      "parentUuid": "5c9aa193_a6144175",
+      "revId": "39199eba47ab6dfd0eda7dece15c1a2ef29fe4b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
