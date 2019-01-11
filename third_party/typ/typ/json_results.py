@@ -23,9 +23,10 @@ class ResultType(object):
     Timeout = 'TIMEOUT'
     Crash = 'CRASH'
     Skip = 'SKIP'
+    Flaky = 'FLAKY'
 
-    values = (Pass, Failure, Timeout, Crash, Skip)
-
+    values = (Pass, Failure, Timeout, Crash, Skip, Flaky)
+    failure_values = (Failure, Timeout, Crash)
 
 class Result(object):
     # too many instance attributes  pylint: disable=R0902
@@ -47,6 +48,9 @@ class Result(object):
         self.err = err
         self.pid = pid
 
+    @property
+    def is_pass(self):
+        return self.actual == ResultType.Pass
 
 class ResultSet(object):
 
@@ -131,7 +135,7 @@ def num_skips(full_results):
 def failed_test_names(results):
     names = set()
     for r in results.results:
-        if r.actual == ResultType.Failure:
+        if r.actual in ResultType.failure_values:
             names.add(r.name)
         elif ((r.actual == ResultType.Pass or r.actual == ResultType.Skip)
               and r.name in names):

@@ -172,6 +172,9 @@ class ArgumentParser(argparse.ArgumentParser):
                                     'test run.'))
             self.add_argument('--retry-limit', type=int, default=0,
                               help='Retries each failure up to N times.')
+            self.add_argument('--retry-limit-for-flaky-tests',
+                              type=int, default=0,
+                              help='Retries each flaky test up to N times.')
             self.add_argument('--terminal-width', type=int,
                               default=self._host.terminal_width(),
                               help=argparse.SUPPRESS)
