@@ -46,11 +46,13 @@ class FromDictTest(unittest.TestCase):
   def testAllArguments(self):
     arguments = dict(_BASE_ARGUMENTS)
     arguments['story'] = 'http://www.fifa.com/'
+    arguments['tags'] = 'tag1,tag2'
     quest = run_telemetry_test.RunTelemetryTest.FromDict(arguments)
 
     extra_args = [
         'speedometer', '--story-filter', 'http://www.fifa.com/',
-        '--pageset-repeat', '1', '--browser', 'release',
+        '--story-tag-filter', 'tag1,tag2', '--pageset-repeat', '1',
+        '--browser', 'release',
     ] + _COMBINED_DEFAULT_EXTRA_ARGS
     expected = run_telemetry_test.RunTelemetryTest(
         'server', {'key': 'value'}, extra_args)
