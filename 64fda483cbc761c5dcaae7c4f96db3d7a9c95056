@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "88efe43b_0a3f47ab",
+        "filename": "dashboard/dashboard/pinpoint/models/isolate.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-11T15:16:41Z",
+      "side": 1,
+      "message": "yes, its currently 60 days, which is a tad over 8 weeks. I would rename the two_months variable though, since its value is less than that. stale_ts or something.\n\nNote that it\u0027s expiring not when the data is created, but it was last uploaded. For inputs it can stick for a long time. For outputs, the expiration generally matches the created time, since outputs are never deterministic.",
+      "parentUuid": "3b5ab58f_84d00640",
+      "range": {
+        "startLine": 56,
+        "startChar": 22,
+        "endLine": 56,
+        "endChar": 32
+      },
+      "revId": "64fda483cbc761c5dcaae7c4f96db3d7a9c95056",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "12e88676_7e76a478",
         "filename": "dashboard/dashboard/pinpoint/models/isolate_test.py",
         "patchSetId": 1
