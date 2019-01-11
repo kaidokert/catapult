@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "71bf8a02_1d575a41",
+        "filename": "dashboard/dashboard/pinpoint/models/isolate.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-01-11T20:10:16Z",
+      "side": 1,
+      "message": "Isolate server does not care why the blob are stored. All content gets the same treatment.\nSwarming server only keeps a reference to the hash, it doesn\u0027t talk to it, only the bot doesm",
+      "parentUuid": "6fa9c782_ff634871",
+      "range": {
+        "startLine": 56,
+        "startChar": 22,
+        "endLine": 56,
+        "endChar": 32
+      },
+      "revId": "64fda483cbc761c5dcaae7c4f96db3d7a9c95056",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "12e88676_7e76a478",
         "filename": "dashboard/dashboard/pinpoint/models/isolate_test.py",
         "patchSetId": 1
