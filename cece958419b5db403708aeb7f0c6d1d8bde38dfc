@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6724fd6d_d14f0b75",
+        "filename": "experimental/soundwave/services/buildbucket_service.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-14T10:07:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60029ba6_91f09d2e",
+      "range": {
+        "startLine": 17,
+        "startChar": 12,
+        "endLine": 17,
+        "endChar": 20
+      },
+      "revId": "cece958419b5db403708aeb7f0c6d1d8bde38dfc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "80b50143_d7010634",
         "filename": "experimental/soundwave/services/buildbucket_service.py",
         "patchSetId": 1
@@ -36,6 +60,24 @@
       "writtenOn": "2019-01-04T16:47:06Z",
       "side": 1,
       "message": "this returns go/build.proto. Did you consider vendoring protobufs\nhttps://cs.chromium.org/chromium/infra/infra/libs/buildbucket/proto/\nhere?\nthen the callers would deal with more type-safe message objects, as opposed to schemaless dicts\nthese compiled protos also have request messages\n\nif changing request module is hard, this func can at least use https://github.com/protocolbuffers/protobuf/blob/1354e469d447609b9e93c76f3e163d41a4799839/python/google/protobuf/json_format.py#L422",
+      "revId": "cece958419b5db403708aeb7f0c6d1d8bde38dfc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d46ddd8_e60b1469",
+        "filename": "experimental/soundwave/services/buildbucket_service.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-14T10:07:14Z",
+      "side": 1,
+      "message": "Thanks for the suggestions but, for simplicity, I would prefer to stay with the json based approach. I understand we lose type safety, but for the simple ad-hoc scripts we intend to write that\u0027s probably OK.",
+      "parentUuid": "80b50143_d7010634",
       "revId": "cece958419b5db403708aeb7f0c6d1d8bde38dfc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
