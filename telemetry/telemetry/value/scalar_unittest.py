@@ -43,22 +43,6 @@ class ValueTest(TestBase):
 
     self.assertEquals(expected, str(v))
 
-  def testBuildbotValueType(self):
-    page0 = self.pages[0]
-    v = scalar.ScalarValue(page0, 'x', 'unit', 3, important=True,
-                           improvement_direction=improvement_direction.DOWN)
-    self.assertEquals('default', v.GetBuildbotDataType(
-        value.COMPUTED_PER_PAGE_SUMMARY_OUTPUT_CONTEXT))
-    self.assertEquals([3], v.GetBuildbotValue())
-    self.assertEquals(('x', page0.name),
-                      v.GetChartAndTraceNameForPerPageResult())
-
-    v = scalar.ScalarValue(page0, 'x', 'unit', 3, important=False,
-                           improvement_direction=improvement_direction.DOWN)
-    self.assertEquals(
-        'unimportant',
-        v.GetBuildbotDataType(value.COMPUTED_PER_PAGE_SUMMARY_OUTPUT_CONTEXT))
-
   def testScalarSamePageMerging(self):
     page0 = self.pages[0]
     v0 = scalar.ScalarValue(page0, 'x', 'unit', 1,

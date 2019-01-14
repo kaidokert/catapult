@@ -38,35 +38,10 @@ class SummarizableValue(value_module.Value):
       del d['improvement_direction']
     return d
 
-  def GetBuildbotDataType(self, output_context):
-    """Returns the buildbot's equivalent data_type.
-
-    This should be one of the values accepted by perf_tests_results_helper.py.
-    """
-    raise NotImplementedError()
-
-  def GetBuildbotValue(self):
-    """Returns the buildbot's equivalent value."""
-    raise NotImplementedError()
-
   @classmethod
   def MergeLikeValuesFromSamePage(cls, values):
     raise NotImplementedError()
 
   @classmethod
   def MergeLikeValuesFromDifferentPages(cls, values):
-    raise NotImplementedError()
-
-  def GetRepresentativeNumber(self):
-    """Gets a single scalar value that best-represents this value.
-
-    Returns None if not possible.
-    """
-    raise NotImplementedError()
-
-  def GetRepresentativeString(self):
-    """Gets a string value that best-represents this value.
-
-    Returns None if not possible.
-    """
     raise NotImplementedError()
