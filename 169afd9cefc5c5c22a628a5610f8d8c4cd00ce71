@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "039b9ad5_393d3506",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-01-14T23:53:59Z",
+      "side": 1,
+      "message": "Is this what is blocking the roll? If so, it would be great to start by reverting the change(s) that are breaking the roll and then you can reland them with the fixes.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 68
+      },
+      "revId": "169afd9cefc5c5c22a628a5610f8d8c4cd00ce71",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
