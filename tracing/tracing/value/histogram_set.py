@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 
 import collections
+import logging
 
 from tracing.value import histogram as histogram_module
 from tracing.value.diagnostics import all_diagnostics
@@ -80,10 +81,12 @@ class HistogramSet(object):
   def ImportDicts(self, dicts):
     for d in dicts:
       if 'type' in d:
-        assert d['type'] in all_diagnostics.GetDiagnosticTypenames(), (
-            'Unrecognized shared diagnostic type ' + d['type'])
-        diag = diagnostic.Diagnostic.FromDict(d)
-        self._shared_diagnostics_by_guid[d['guid']] = diag
+        if d['type'] in all_diagnostics.GetDiagnosticTypenames():
+          diag = diagnostic.Diagnostic.FromDict(d)
+          self._shared_diagnostics_by_guid[d['guid']] = diag
+        else:
+          logging.warning(
+              'Ignoring unrecognized shared diagnostic type %s', d['type'])
       else:
         hist = histogram_module.Histogram.FromDict(d)
         hist.diagnostics.ResolveSharedDiagnostics(self)

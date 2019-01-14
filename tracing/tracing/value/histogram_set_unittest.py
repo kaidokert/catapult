@@ -4,6 +4,8 @@
 
 import unittest
 
+import mock
+
 from tracing.value import histogram
 from tracing.value import histogram_set
 from tracing.value.diagnostics import date_range
@@ -29,10 +31,11 @@ class HistogramSetUnittest(unittest.TestCase):
     hists2.ImportDicts(hists.AsDicts())
     self.assertEqual(len(hists), len(hists2))
 
-  def testAssertType(self):
+  @mock.patch('logging.warning')
+  def testIgnoreUnrecognizedType(self, mock_warning):
     hs = histogram_set.HistogramSet()
-    with self.assertRaises(AssertionError):
-      hs.ImportDicts([{'type': ''}])
+    hs.ImportDicts([{'type': 'foo'}])
+    self.assertTrue(mock_warning.call_count)
 
   def testFilterHistogram(self):
     a = histogram.Histogram('a', 'unitless')
