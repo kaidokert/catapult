@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c7d0fafd_713e3928",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit_cache.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-01-15T16:06:57Z",
+      "side": 1,
+      "message": "Did you consider using layered_cache at all, would rather see it used or it\u0027s shortcomings addressed than adding a new thing (however small), but leave it to you",
+      "range": {
+        "startLine": 8,
+        "startChar": 4,
+        "endLine": 8,
+        "endChar": 7
+      },
+      "revId": "a13883f0757dee251facb66aa0c5cc14adb84bb4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
