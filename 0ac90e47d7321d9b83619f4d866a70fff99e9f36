@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "984e71bd_8105a75b",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-15T09:59:03Z",
+      "side": 0,
+      "message": "the change seems to be removing the TBR is this deliverate?",
+      "revId": "0ac90e47d7321d9b83619f4d866a70fff99e9f36",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
