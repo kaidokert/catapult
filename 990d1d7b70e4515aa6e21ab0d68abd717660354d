@@ -46,6 +46,30 @@
       "revId": "990d1d7b70e4515aa6e21ab0d68abd717660354d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6e34ec8_c3bd6c17",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2019-01-15T00:38:23Z",
+      "side": 1,
+      "message": "I\u0027ve added \"comma-separated\" to the field description.\n\nNot a big fan of placeholder text here, unless it\u0027s applied consistently across all the fields, since in Material it causes the label to change size and location. The Material spec has a \"helper text\" space for this kind of thing, but the Polymer component doesn\u0027t implement it :(",
+      "parentUuid": "d2aa9a56_c9bb0e6e",
+      "range": {
+        "startLine": 69,
+        "startChar": 37,
+        "endLine": 69,
+        "endChar": 65
+      },
+      "revId": "990d1d7b70e4515aa6e21ab0d68abd717660354d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
