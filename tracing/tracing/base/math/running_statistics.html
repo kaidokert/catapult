@@ -27,6 +27,8 @@ tr.exportTo('tr.b.math', function() {
       this.min_ = Infinity;
       this.sum_ = 0;
       this.variance_ = 0;
+      this.meanCILow95_ = 0;
+      this.meanCIHigh95_ = 0;
 
       // Mean of logarithms of absolute values of samples, or undefined if any
       // samples were <= 0.
@@ -70,6 +72,14 @@ tr.exportTo('tr.b.math', function() {
       return Math.sqrt(this.variance);
     }
 
+    get meanCILow95() {
+      return this.meanCILow95_;
+    }
+
+    get meanCIHigh95() {
+      return this.meanCIHigh95_;
+    }
+
     add(x) {
       this.count_++;
       this.max_ = Math.max(this.max_, x);
@@ -101,6 +111,11 @@ tr.exportTo('tr.b.math', function() {
         }
         this.variance_ = oldVariance + (x - oldMean) * (x - this.mean_);
       }
+    }
+
+    setConfidenceInterval(low, high) {
+      this.avg_CI_95_low_ = low;
+      this.avg_CI_95_high_ = high;
     }
 
     merge(other) {
@@ -148,12 +163,14 @@ tr.exportTo('tr.b.math', function() {
         this.min_,
         this.sum_,
         this.variance_,
+        this.meanCILow95_,
+        this.meanCIHigh95_,
       ];
     }
 
     static fromDict(dict) {
       const result = new RunningStatistics();
-      if (dict.length !== 7) {
+      if (dict.length !== 9) {
         return result;
       }
       [
@@ -164,6 +181,8 @@ tr.exportTo('tr.b.math', function() {
         result.min_,
         result.sum_,
         result.variance_,
+        result.meanCILow95_,
+        result.meanCIHigh95_,
       ] = dict;
       return result;
     }

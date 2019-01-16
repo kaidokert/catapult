@@ -19,11 +19,13 @@ found in the LICENSE file.
 tr.exportTo('tr.v', function() {
   const MAX_DIAGNOSTIC_MAPS = 16;
 
-  const DEFAULT_SAMPLE_VALUES_PER_BIN = 10;
+  const DEFAULT_SAMPLE_VALUES_PER_BIN = 200;
 
   const DEFAULT_REBINNED_COUNT = 40;
 
   const DEFAULT_BOUNDARIES_FOR_UNIT = new Map();
+
+  const DEFAULT_ITERATION_FOR_BOOTSTRAP_RESAMPLING = 500;
 
   const DELTA = String.fromCharCode(916);
   const Z_SCORE_NAME = 'z-score';
@@ -131,6 +133,8 @@ tr.exportTo('tr.v', function() {
     ['nans', false],
     ['std', true],
     ['sum', true],
+    ['meanCILow95', true],
+    ['meanCIHigh95', true],
     // Don't include 'percentile' or 'iprs' here. Their default values are [],
     // which is mutable. Callers may push to it, so there must be a different
     // Array instance for each Histogram instance.
@@ -466,6 +470,33 @@ tr.exportTo('tr.v', function() {
           this.numValues + this.numNans, value, this.maxNumSampleValues);
     }
 
+    resampleMean(iterations) {
+      const sampleCount = this.sampleValues_.length;
+      if (sampleCount === 1) {
+        this.running_.setConfidenceInterval(
+            this.sampleValues_[0],
+            this.sampleValues_[0],
+        );
+        return;
+      }
+
+      const sampleMeans = [];
+      for (let i = 0; i < iterations; i++) {
+        let tempSum = 0.0;
+        for (let j = 0; j < sampleCount; j++) {
+          tempSum += this.sampleValues_[Math.floor(
+              Math.random() * sampleCount)];
+        }
+
+        sampleMeans.push(tempSum / sampleCount);
+      }
+      sampleMeans.sort((a, b) => a - b);
+      this.running_.setConfidenceInterval(
+          this.sampleValues_[0],
+          this.sampleValues_[0],
+      );
+    }
+
     sampleValuesInto(samples) {
       for (const sampleValue of this.sampleValues) {
         samples.push(sampleValue);
@@ -609,6 +640,8 @@ tr.exportTo('tr.v', function() {
      * @param {boolean=} summaryOptions.nans
      * @param {boolean=} summaryOptions.std
      * @param {boolean=} summaryOptions.sum
+     * @param {boolean=} summaryOptions.meanCILow95
+     * @param {boolean=} summaryOptions.meanCIHigh95
      * @param {!Array.<number>=} summaryOptions.percentile Numbers in (0,1)
      * @param {!Array.<!tr.b.Range>=} summaryOptions.iprs Ranges of numbers in
      *     (0,1).
@@ -654,6 +687,13 @@ tr.exportTo('tr.v', function() {
       if (statName === 'count') {
         return new tr.b.Scalar(
             tr.b.Unit.byName.count_smallerIsBetter, this.numValues);
+      }
+      if (statName === 'meanCILow95' || statName === 'meanCIHigh95') {
+        if (this.running_ === undefined) {
+          this.running_ = new tr.b.math.RunningStatistics();
+        }
+        if (typeof(this.running_[statName]) !== 'number') return undefined;
+        return new tr.b.Scalar(this.unit, this.running_[statName]);
       }
       if (statName.substr(0, 4) === 'pct_') {
         const percent = percentFromString(statName.substr(4));
@@ -740,6 +780,7 @@ tr.exportTo('tr.v', function() {
           statisticsNames.add(statName);
         }
       }
+
       return statisticsNames;
     }
 
@@ -876,6 +917,7 @@ tr.exportTo('tr.v', function() {
       const dict = {};
       dict.name = this.name;
       dict.unit = this.unit.asJSON();
+
       if (this.binBoundariesDict_ !== undefined) {
         dict.binBoundaries = this.binBoundariesDict_;
       }
@@ -898,6 +940,7 @@ tr.exportTo('tr.v', function() {
 
       if (this.numValues) {
         dict.sampleValues = this.sampleValues.slice();
+        this.resampleMean(DEFAULT_ITERATION_FOR_BOOTSTRAP_RESAMPLING);
         dict.running = this.running_.asDict();
         dict.allBins = this.allBinsAsDict_();
       }
@@ -987,6 +1030,8 @@ tr.exportTo('tr.v', function() {
     min: false,
     std: false,
     sum: false,
+    meanCILow95: false,
+    meanCIHigh95: false,
   };
 
   const HISTOGRAM_BIN_BOUNDARIES_CACHE = new Map();
