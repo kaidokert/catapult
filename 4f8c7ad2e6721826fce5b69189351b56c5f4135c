@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "72b7937b_cde37658",
+        "filename": "telemetry/telemetry/internal/actions/action_runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-01-16T02:41:34Z",
+      "side": 1,
+      "message": "That\u0027s what this does:\n\nif \n\nkwargs \u003d {\u0027timeout\u0027: 4}\n\nthen \n\nprint kwargs.get(\u0027timeout\u0027, page_action.DEFAULT_TIMEOUT)\n\nwill print 4.\n\n\nBut if you didn\u0027t understand this then probably some of my users won\u0027t either. I change the code to be more readable.",
+      "parentUuid": "de37bcec_ba81cfa8",
+      "range": {
+        "startLine": 227,
+        "startChar": 4,
+        "endLine": 227,
+        "endChar": 74
+      },
+      "revId": "4f8c7ad2e6721826fce5b69189351b56c5f4135c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "23c3b5ab_cf9fab7c",
         "filename": "telemetry/telemetry/internal/actions/navigate.py",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "4f8c7ad2e6721826fce5b69189351b56c5f4135c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a16d5089_08988900",
+        "filename": "telemetry/telemetry/internal/actions/navigate.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-01-16T02:41:34Z",
+      "side": 1,
+      "message": "Nice catch!",
+      "parentUuid": "23c3b5ab_cf9fab7c",
+      "range": {
+        "startLine": 13,
+        "startChar": 34,
+        "endLine": 13,
+        "endChar": 36
+      },
+      "revId": "4f8c7ad2e6721826fce5b69189351b56c5f4135c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
