@@ -36,7 +36,7 @@ class RunTelemetryTest(run_performance_test.RunPerformanceTest):
     if story:
       extra_test_args += ('--story-filter', story)
 
-    tags = arguments.get('tags')
+    tags = arguments.get('story_tags')
     if tags:
       extra_test_args += ('--story-tag-filter', tags)
 
