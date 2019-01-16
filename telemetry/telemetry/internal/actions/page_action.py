@@ -12,6 +12,7 @@ GESTURE_SOURCE_MOUSE = 'MOUSE'
 GESTURE_SOURCE_TOUCH = 'TOUCH'
 SUPPORTED_GESTURE_SOURCES = (GESTURE_SOURCE_DEFAULT, GESTURE_SOURCE_MOUSE,
                              GESTURE_SOURCE_TOUCH)
+DEFAULT_TIMEOUT = 60
 
 
 class PageActionNotSupported(Exception):
@@ -26,6 +27,14 @@ class PageAction(object):
   """Represents an action that a user might try to perform to a page."""
 
   __metaclass__ = trace_event.TracedMetaClass
+
+  def __init__(self, timeout=None):
+    """Initialization function.
+
+    Args:
+      timeout: number of seconds to wait for the action to finish.
+    """
+    self.timeout = DEFAULT_TIMEOUT if timeout is None else timeout
 
   def WillRunAction(self, tab):
     """Override to do action-specific setup before
@@ -45,8 +54,9 @@ class PageAction(object):
 class ElementPageAction(PageAction):
   """A PageAction which acts on DOM elements"""
 
-  def __init__(self, selector=None, text=None, element_function=None):
-    super(ElementPageAction, self).__init__()
+  def __init__(self, selector=None, text=None, element_function=None,
+               timeout=None):
+    super(ElementPageAction, self).__init__(timeout)
     self._selector = selector
     self._text = text
     self._element_function = element_function
