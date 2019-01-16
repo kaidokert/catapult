@@ -72,8 +72,8 @@ _AddRegularKey(' ', 0x20)
 
 class KeyPressAction(page_action.PageAction):
 
-  def __init__(self, dom_key, timeout=60):
-    super(KeyPressAction, self).__init__()
+  def __init__(self, dom_key, timeout=None):
+    super(KeyPressAction, self).__init__(timeout=timeout)
     char_code = 0 if len(dom_key) > 1 else ord(dom_key)
     self._dom_key = dom_key
     # Check that ascii chars are allowed.
@@ -83,26 +83,25 @@ class KeyPressAction(page_action.PageAction):
           dom_key, char_code))
     self._windows_virtual_key_code, self._text = _KEY_MAP.get(
         dom_key, ('', dom_key))
-    self._timeout = timeout
 
   def RunAction(self, tab):
     tab.DispatchKeyEvent(
         key_event_type='rawKeyDown',
         dom_key=self._dom_key,
         windows_virtual_key_code=self._windows_virtual_key_code,
-        timeout=self._timeout)
+        timeout=self.timeout)
     if self._text:
       tab.DispatchKeyEvent(
           key_event_type='char',
           text=self._text,
           dom_key=self._dom_key,
           windows_virtual_key_code=ord(self._text),
-          timeout=self._timeout)
+          timeout=self.timeout)
     tab.DispatchKeyEvent(
         key_event_type='keyUp',
         dom_key=self._dom_key,
         windows_virtual_key_code=self._windows_virtual_key_code,
-        timeout=self._timeout)
+        timeout=self.timeout)
 
   def __str__(self):
     return "%s('%s')" % (self.__class__.__name__, self._dom_key)

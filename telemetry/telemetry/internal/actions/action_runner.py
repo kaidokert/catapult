@@ -7,6 +7,7 @@ import time
 import urlparse
 
 from telemetry.core import exceptions
+from telemetry.internal.actions import page_action
 from telemetry.internal.actions.drag import DragAction
 from telemetry.internal.actions.javascript_click import ClickElementAction
 from telemetry.internal.actions.key_event import KeyPressAction
@@ -128,7 +129,7 @@ class ActionRunner(object):
     """ Wait for network quiesence on the page.
     Args:
       timeout_in_seconds: maximum amount of time (seconds) to wait for network
-        quiesence unil raising exception.
+        quiesence before raising exception.
 
     Raises:
       py_utils.TimeoutException when the timeout is reached but the page's
@@ -172,7 +173,7 @@ class ActionRunner(object):
     self._tab.PrepareForLeakDetection()
 
   def Navigate(self, url, script_to_evaluate_on_commit=None,
-               timeout_in_seconds=60):
+               timeout_in_seconds=page_action.DEFAULT_TIMEOUT):
     """Navigates to |url|.
 
     If |script_to_evaluate_on_commit| is given, the script source string will be
@@ -191,7 +192,8 @@ class ActionRunner(object):
     """ Navigate back to the previous page."""
     self.ExecuteJavaScript('window.history.back()')
 
-  def WaitForNavigate(self, timeout_in_seconds_seconds=60):
+  def WaitForNavigate(
+      self, timeout_in_seconds_seconds=page_action.DEFAULT_TIMEOUT):
     start_time = time.time()
     self._tab.WaitForNavigate(timeout_in_seconds_seconds)
 
@@ -222,6 +224,7 @@ class ActionRunner(object):
     Raises:
       EvaluationException: The statement failed to execute.
     """
+    kwargs['timeout'] = kwargs.get('timeout', page_action.DEFAULT_TIMEOUT)
     return self._tab.ExecuteJavaScript(*args, **kwargs)
 
   def EvaluateJavaScript(self, *args, **kwargs):
@@ -244,6 +247,7 @@ class ActionRunner(object):
       EvaluationException: The statement expression failed to execute
           or the evaluation result can not be JSON-ized.
     """
+    kwargs['timeout'] = kwargs.get('timeout', page_action.DEFAULT_TIMEOUT)
     return self._tab.EvaluateJavaScript(*args, **kwargs)
 
   def WaitForJavaScriptCondition(self, *args, **kwargs):
@@ -260,6 +264,7 @@ class ActionRunner(object):
       Additional keyword arguments provide values to be interpolated within
           the expression. See telemetry.util.js_template for details.
     """
+    kwargs['timeout'] = kwargs.get('timeout', page_action.DEFAULT_TIMEOUT)
     return self._tab.WaitForJavaScriptCondition(*args, **kwargs)
 
   def Wait(self, seconds):
@@ -272,7 +277,7 @@ class ActionRunner(object):
       time.sleep(seconds)
 
   def WaitForElement(self, selector=None, text=None, element_function=None,
-                     timeout_in_seconds=60):
+                     timeout_in_seconds=page_action.DEFAULT_TIMEOUT):
     """Wait for an element to appear in the document.
 
     The element may be selected via selector, text, or element_function.
@@ -284,11 +289,11 @@ class ActionRunner(object):
       element_function: A JavaScript function (as string) that is used
           to retrieve the element. For example:
           '(function() { return foo.element; })()'.
-      timeout_in_seconds: The timeout in seconds (default to 60).
+      timeout_in_seconds: The timeout in seconds.
     """
     self._RunAction(WaitForElementAction(
         selector=selector, text=text, element_function=element_function,
-        timeout_in_seconds=timeout_in_seconds))
+        timeout=timeout_in_seconds))
 
   def TapElement(self, selector=None, text=None, element_function=None):
     """Tap an element.

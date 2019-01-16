@@ -21,8 +21,10 @@ class ScrollAction(page_action.ElementPageAction):
                distance_expr=None,
                speed_in_pixels_per_second=800,
                use_touch=False,
-               synthetic_gesture_source=page_action.GESTURE_SOURCE_DEFAULT):
-    super(ScrollAction, self).__init__(selector, text, element_function)
+               synthetic_gesture_source=page_action.GESTURE_SOURCE_DEFAULT,
+               timeout=None):
+    super(ScrollAction, self).__init__(
+        selector, text, element_function, timeout=timeout)
     if direction not in ('down', 'up', 'left', 'right', 'downleft', 'downright',
                          'upleft', 'upright'):
       raise page_action.PageActionNotSupported(
