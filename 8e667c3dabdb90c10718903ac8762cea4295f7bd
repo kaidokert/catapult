@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "e030d1ba_650d9087",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2019-01-16T00:19:30Z",
+      "side": 1,
+      "message": "It looks like the builds requested from Pinpoint don\u0027t have this tag. Is the tag automatically added when there\u0027s a patch, or does the requester need to explicitly add it?\n\nv2 API: I may not have time to implement this before I change teams.",
+      "parentUuid": "dd1815e3_18ab450f",
+      "range": {
+        "startLine": 148,
+        "startChar": 29,
+        "endLine": 148,
+        "endChar": 58
+      },
+      "revId": "8e667c3dabdb90c10718903ac8762cea4295f7bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7926d249_600e60d8",
         "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
         "patchSetId": 1
