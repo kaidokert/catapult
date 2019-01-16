@@ -19,11 +19,13 @@ found in the LICENSE file.
 tr.exportTo('tr.v', function() {
   const MAX_DIAGNOSTIC_MAPS = 16;
 
-  const DEFAULT_SAMPLE_VALUES_PER_BIN = 10;
+  const DEFAULT_SAMPLE_VALUES_PER_BIN = 200;
 
   const DEFAULT_REBINNED_COUNT = 40;
 
   const DEFAULT_BOUNDARIES_FOR_UNIT = new Map();
+
+  const DEFAULT_ITERATION_FOR_BOOTSTRAP_RESAMPLING = 500;
 
   const DELTA = String.fromCharCode(916);
   const Z_SCORE_NAME = 'z-score';
@@ -176,6 +178,7 @@ tr.exportTo('tr.v', function() {
       this.numNans = 0;
       this.running_ = undefined;
       this.sampleValues_ = [];
+      this.confidenceInterval_95 = [];
       this.summaryOptions = new Map(DEFAULT_SUMMARY_OPTIONS);
       this.summaryOptions.set('percentile', []);
       this.summaryOptions.set('iprs', []);
@@ -238,6 +241,7 @@ tr.exportTo('tr.v', function() {
           hist.addSample(sample);
         }
       }
+      hist.resampleMean(DEFAULT_ITERATION_FOR_BOOTSTRAP_RESAMPLING);
 
       return hist;
     }
@@ -305,6 +309,7 @@ tr.exportTo('tr.v', function() {
       }
       if (dict.sampleValues) {
         hist.sampleValues_ = dict.sampleValues;
+        hist.resampleMean(DEFAULT_ITERATION_FOR_BOOTSTRAP_RESAMPLING);
       }
       if (dict.numNans) {
         hist.numNans = dict.numNans;
@@ -464,6 +469,33 @@ tr.exportTo('tr.v', function() {
 
       tr.b.math.Statistics.uniformlySampleStream(this.sampleValues_,
           this.numValues + this.numNans, value, this.maxNumSampleValues);
+    }
+
+    resampleMean(iterations) {
+      const sampleCount = this.sampleValues_.length;
+      if (sampleCount === 1) {
+        this.confidenceInterval_95 = [
+          this.sampleValues_[0],
+          this.sampleValues_[0],
+        ];
+        return;
+      }
+
+      const sampleMeans = [];
+      for (let i = 0; i < iterations; i++) {
+        let tempSum = 0.0;
+        for (let j = 0; j < sampleCount; j++) {
+          tempSum += this.sampleValues_[Math.floor(
+              Math.random() * sampleCount)];
+        }
+
+        sampleMeans.push(tempSum / sampleCount);
+      }
+      sampleMeans.sort((a, b) => a - b);
+      this.confidenceInterval_95 = [
+        sampleMeans[Math.floor(iterations * 0.025)],
+        sampleMeans[Math.ceil(iterations * 0.975)],
+      ];
     }
 
     sampleValuesInto(samples) {
@@ -740,6 +772,7 @@ tr.exportTo('tr.v', function() {
           statisticsNames.add(statName);
         }
       }
+
       return statisticsNames;
     }
 
@@ -899,6 +932,7 @@ tr.exportTo('tr.v', function() {
       if (this.numValues) {
         dict.sampleValues = this.sampleValues.slice();
         dict.running = this.running_.asDict();
+        dict.confidenceInterval_95 = this.confidenceInterval_95;
         dict.allBins = this.allBinsAsDict_();
       }
 
