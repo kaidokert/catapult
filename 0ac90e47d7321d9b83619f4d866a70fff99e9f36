@@ -16,6 +16,24 @@
       "revId": "0ac90e47d7321d9b83619f4d866a70fff99e9f36",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b18b097_e4531bcf",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2019-01-16T00:12:52Z",
+      "side": 0,
+      "message": "Yes, it appears that that logic was copied from common/utils.py, where it\u0027s parsed from the \u0027message\u0027 field if the \u0027tbr\u0027 field is absent. So including the \u0027message\u0027 field here means we don\u0027t need the \u0027tbr\u0027 field. I\u0027ve cleaned up GetSheriffForAutorollCommit() to reduce this awkward dependency.\n\nhttps://chromium.googlesource.com/catapult.git/+/HEAD/dashboard/dashboard/common/utils.py#664",
+      "parentUuid": "984e71bd_8105a75b",
+      "revId": "0ac90e47d7321d9b83619f4d866a70fff99e9f36",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

@@ -22,6 +22,30 @@
       "revId": "a13883f0757dee251facb66aa0c5cc14adb84bb4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "daca5baa_1b36e8c5",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit_cache.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000093
+      },
+      "writtenOn": "2019-01-16T00:12:52Z",
+      "side": 1,
+      "message": "Totally forgot that existed.\n\nI\u0027m not completely convinced that something like layered cache is the right tool for when you want to store a lot of entities with the same schema? I think it makes more sense for one-off things where there will only be one or a few entities, or entities containing less structured data.",
+      "parentUuid": "c7d0fafd_713e3928",
+      "range": {
+        "startLine": 8,
+        "startChar": 4,
+        "endLine": 8,
+        "endChar": 7
+      },
+      "revId": "a13883f0757dee251facb66aa0c5cc14adb84bb4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
