@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "148dc36c_1cc6e23c",
+        "filename": "telemetry/telemetry/page/cache_temperature.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2019-01-17T15:35:38Z",
+      "side": 1,
+      "message": "should we also do this here? https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/page/cache_temperature.py?type\u003dcs\u0026q\u003dPrepareRendererCache\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d85\n\n(looks like PrepareBrowserCache calls PrepareRendererCache)",
+      "range": {
+        "startLine": 187,
+        "startChar": 0,
+        "endLine": 187,
+        "endChar": 78
+      },
+      "revId": "bc24ded5b13efc0d90f7e5d8fcdc42cf88c7406a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
