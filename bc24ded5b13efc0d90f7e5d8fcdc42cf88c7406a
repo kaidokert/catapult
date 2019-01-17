@@ -22,6 +22,30 @@
       "revId": "bc24ded5b13efc0d90f7e5d8fcdc42cf88c7406a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7af3df38_a14521d2",
+        "filename": "telemetry/telemetry/page/cache_temperature.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-17T16:04:18Z",
+      "side": 1,
+      "message": "Ah, yes. In fact we possibly only need it right there after the tab.Close()?",
+      "parentUuid": "148dc36c_1cc6e23c",
+      "range": {
+        "startLine": 187,
+        "startChar": 0,
+        "endLine": 187,
+        "endChar": 78
+      },
+      "revId": "bc24ded5b13efc0d90f7e5d8fcdc42cf88c7406a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
