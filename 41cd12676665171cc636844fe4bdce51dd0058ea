@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aaea76d1_ad937bae",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1017,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-01-17T20:10:46Z",
+      "side": 1,
+      "message": "nit: indeterminate",
+      "revId": "41cd12676665171cc636844fe4bdce51dd0058ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8bb298a_7e51b027",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 2640,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-01-17T20:10:46Z",
+      "side": 1,
+      "message": "nit: should be\n\n  Returns:\n    ...",
+      "revId": "41cd12676665171cc636844fe4bdce51dd0058ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fba8ccf8_2e3040d3",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 2663,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-01-17T20:10:46Z",
+      "side": 1,
+      "message": "nit: should be\n\n  Returns:\n    ...",
+      "revId": "41cd12676665171cc636844fe4bdce51dd0058ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be4441f4_51311c55",
+        "filename": "devil/devil/android/tools/webview_app.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-01-17T20:10:46Z",
+      "side": 1,
+      "message": "nit: Please don\u0027t use \\ for line continuations; wrap in parentheses instead.",
+      "revId": "41cd12676665171cc636844fe4bdce51dd0058ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8604083d_12751ec6",
+        "filename": "devil/devil/android/tools/webview_app.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-01-17T20:10:46Z",
+      "side": 1,
+      "message": "nit: you can condense this entire function down to\n\n  return [\n      p for p in path_list\n      if is_system \u003d\u003d bool(re.match(_SYSTEM_PATH_RE, p))\n  ]",
+      "revId": "41cd12676665171cc636844fe4bdce51dd0058ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eac5fe53_794e8323",
+        "filename": "devil/devil/android/tools/webview_app.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-01-17T20:10:46Z",
+      "side": 1,
+      "message": "nit: consider using tempfile_ext.NamedTemporaryDirectory",
+      "revId": "41cd12676665171cc636844fe4bdce51dd0058ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21d66158_49461f1f",
+        "filename": "devil/devil/android/tools/webview_app.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-01-17T20:10:46Z",
+      "side": 1,
+      "message": "nit:\n\n  for host_path in reversed(host_paths):",
+      "revId": "41cd12676665171cc636844fe4bdce51dd0058ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7ae0070_4af8441a",
+        "filename": "devil/devil/android/tools/webview_app.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-01-17T20:10:46Z",
+      "side": 1,
+      "message": "Do you have other subcommands, or do you intend to introduce other subcommands in the future? If not, I might avoid the subparsers.",
+      "revId": "41cd12676665171cc636844fe4bdce51dd0058ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec397f29_1a2b656c",
+        "filename": "devil/devil/android/tools/webview_app.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-01-17T20:10:46Z",
+      "side": 1,
+      "message": "nit: You can omit required\u003dFalse, it\u0027s the default.",
+      "revId": "41cd12676665171cc636844fe4bdce51dd0058ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c3a8fc1_8879149a",
+        "filename": "devil/devil/android/tools/webview_app.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-01-17T20:10:46Z",
+      "side": 1,
+      "message": "nit: double quotes for strings containing single quotes rather than escaping",
+      "revId": "41cd12676665171cc636844fe4bdce51dd0058ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
