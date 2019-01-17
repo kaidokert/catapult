@@ -63,12 +63,14 @@ def main(argv=None, host=None, win_multiprocessing=None, **defaults):
 
 class TestInput(object):
 
-    def __init__(self, name, msg='', timeout=None, expected=None):
+    def __init__(self, name, msg='', timeout=None, expected=None,
+                 test_expectations=None, test_class=None):
         self.name = name
         self.msg = msg
         self.timeout = timeout
         self.expected = expected
-
+        self.expected_results = test_expectations
+        self.test_class = test_class
 
 class TestSet(object):
 
@@ -122,7 +124,7 @@ class Runner(object):
         self.final_responses = []
         self.has_expectations = False
         self.expectations = None
-
+        self.test_name_to_object = {}
         # initialize self.args to the defaults.
         parser = ArgumentParser(self.host)
         self.parse_args(parser, [])
@@ -187,10 +189,13 @@ class Runner(object):
             self.stats.total = (len(test_set.parallel_tests) +
                                 len(test_set.isolated_tests) +
                                 len(test_set.tests_to_skip)) * self.args.repeat
+
+            self.test_name_to_object = {ti.name: ti for ti in
+                                        (test_set.parallel_tests +
+                                         test_set.isolated_tests +
+                                         test_set.tests_to_skip)}
             all_tests = [ti.name for ti in
-            _sort_inputs(test_set.parallel_tests +
-                         test_set.isolated_tests +
-                         test_set.tests_to_skip)]
+                         _sort_inputs(self.test_name_to_object.values())]
             if self.args.list_only:
                 self.print_('\n'.join(all_tests))
             else:
@@ -523,7 +528,9 @@ class Runner(object):
 
             stats = Stats(self.args.status_format, h.time, 1)
             stats.total = len(failed_tests)
-            tests_to_retry = TestSet(isolated_tests=list(failed_tests))
+            retry_tests = [self.test_name_to_object[tname]
+                           for tname in failed_tests]
+            tests_to_retry = TestSet(isolated_tests=retry_tests)
             retry_set = ResultSet()
             self._run_one_set(stats, retry_set, tests_to_retry)
             result_set.results.extend(retry_set.results)
@@ -572,20 +579,44 @@ class Runner(object):
         child = _Child(self)
         pool = make_pool(h, jobs, _run_one_test, child,
                          _setup_process, _teardown_process)
+        retry_counter = {}
+        all_retries_done = lambda result: (result.name in retry_counter and
+                                           retry_counter[result.name][0] ==
+                                           retry_counter[result.name][1])
         try:
             while test_inputs or running_jobs:
-                while test_inputs and (len(running_jobs) < self.args.jobs):
+                while test_inputs and (len(running_jobs) < jobs):
                     test_input = test_inputs.pop(0)
                     stats.started += 1
                     pool.send(test_input)
                     running_jobs.add(test_input.name)
                     self._print_test_started(stats, test_input)
-
                 result = pool.get()
-                running_jobs.remove(result.name)
                 result_set.add(result)
-                stats.finished += 1
-                self._print_test_finished(stats, result)
+                finished_test = self.test_name_to_object[result.name]
+                if (not result.is_flaky or result.is_pass
+                    or all_retries_done(result)):
+                    running_jobs.remove(result.name)
+                    stats.finished += 1
+                    self._print_test_finished(stats, result)
+                else:
+                    if not result.name in retry_counter:
+                        test_class = finished_test.test_class
+                        retry_count = test_class.GetFlakyRetryCount()
+                        if retry_count == -1:
+                            retry_count = self.args.retry_limit_for_flaky_tests
+                            test_class.SetFlakyRetryCount(retry_count)
+                        retry_counter[result.name] = [0, retry_count]
+                    else:
+                        retry_counter[result.name][0] += 1
+                    self._print_test_finished(stats, result)
+                    self.print_('')
+                    self.print_('Retrying flaky test %s (attempt #%d of %d)' %
+                                (finished_test.name,
+                                 retry_counter[finished_test.name][0] + 1,
+                                 retry_counter[finished_test.name][1]))
+                    self.print_('')
+                    pool.send(finished_test)
             pool.close()
         finally:
             self.final_responses.extend(pool.join())
@@ -883,11 +914,12 @@ def _run_one_test(child, test_input):
     # This comes up when using the FakeTestLoader and testing typ itself,
     # but could come up when testing non-typ code as well.
     h.capture_output(divert=not child.passthrough)
-    if child.has_expectations:
-      expected_results = child.expectations.expected_results_for(test_name)
+    if test_input.expected_results:
+        expected_results = test_input.expected_results
+    elif child.has_expectations:
+        expected_results = child.expectations.expected_results_for(test_name)
     else:
-      expected_results = {ResultType.Pass}
-
+        expected_results = {ResultType.Pass}
     ex_str = ''
     try:
         orig_skip = unittest.skip
@@ -901,7 +933,8 @@ def _run_one_test(child, test_input):
             # get here with a test we wanted to skip?
             h.restore_output()
             return Result(test_name, ResultType.Skip, started, 0,
-                          child.worker_num, unexpected=False, pid=pid)
+                          child.worker_num, expected=expected_results,
+                          unexpected=False, pid=pid)
 
         try:
             suite = child.loader.loadTestsFromName(test_name)
@@ -999,9 +1032,10 @@ def _result_from_test_result(test_result, test_name, started, took, out, err,
     else:
         actual = ResultType.Pass
         code = 0
-        unexpected = actual not in expected_results
+        unexpected = (actual not in expected_results and
+                      ResultType.Flaky not in expected_results)
 
-    flaky = False
+    flaky = ResultType.Flaky in expected_results
     return Result(test_name, actual, started, took, worker_num,
                   expected_results, unexpected, flaky, code, out, err, pid)
 
