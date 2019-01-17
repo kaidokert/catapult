@@ -181,6 +181,10 @@ def EnsurePageCacheTemperature(page, browser, previous_page=None):
             HotCacheManipulator]:
     if temperature == c.RENDERER_TEMPERATURE:
       c.PrepareRendererCache(page, browser.tabs[0], previous_page)
+      if temperature != ANY:
+        # Flush and discard current tracing data, so trace only contains
+        # events from the actual page run we inted to measure.
+        browser.platform.tracing_controller.FlushTracing(discard_current=True)
       return
     elif temperature == c.BROWSER_TEMPERATURE:
       c.PrepareBrowserCache(page, browser, previous_page)
