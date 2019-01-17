@@ -214,7 +214,7 @@ class TracingControllerBackendTest(unittest.TestCase):
 
     # Flush tracing several times.
     for _ in xrange(5):
-      self.controller.FlushTracing()
+      self.controller.FlushTracing(discard_current=False)
       self.assertTrue(self.controller.is_tracing_running)
       self.assertIs(self.controller._current_state.config, self.config)
       self.assertEqual(self.controller._current_state.timeout, 30)
