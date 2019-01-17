@@ -46,6 +46,30 @@
       "revId": "bc24ded5b13efc0d90f7e5d8fcdc42cf88c7406a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3a96d7c_d572c151",
+        "filename": "telemetry/telemetry/page/cache_temperature.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2019-01-17T16:18:36Z",
+      "side": 1,
+      "message": "Yeah. probably not necessary here since we would have had to deal with the trace events from these warm-up runs when using the old tracing backend, too (since no tab was closed AFAICT, so they shouldn\u0027t have gotten lost).",
+      "parentUuid": "7af3df38_a14521d2",
+      "range": {
+        "startLine": 187,
+        "startChar": 0,
+        "endLine": 187,
+        "endChar": 78
+      },
+      "revId": "bc24ded5b13efc0d90f7e5d8fcdc42cf88c7406a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
