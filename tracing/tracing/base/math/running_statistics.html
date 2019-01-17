@@ -21,7 +21,11 @@ tr.exportTo('tr.b.math', function() {
    */
   class RunningStatistics {
     constructor() {
-      this.mean_ = 0;
+      this.mean_ = {
+        value: 0,
+        CI95Low: 0,
+        CI95High: 0,
+      };
       this.count_ = 0;
       this.max_ = -Infinity;
       this.min_ = Infinity;
@@ -44,7 +48,15 @@ tr.exportTo('tr.b.math', function() {
 
     get mean() {
       if (this.count_ === 0) return undefined;
-      return this.mean_;
+      return this.mean_.value;
+    }
+
+    get meanCILow95() {
+      return this.mean_.CI95Low;
+    }
+
+    get meanCIHigh95() {
+      return this.mean_.CI95High;
     }
 
     get max() {
@@ -86,21 +98,26 @@ tr.exportTo('tr.b.math', function() {
       // The following uses Welford's algorithm for computing running mean
       // and variance. See http://www.johndcook.com/blog/standard_deviation.
       if (this.count_ === 1) {
-        this.mean_ = x;
+        this.mean_.value = x;
         this.variance_ = 0;
       } else {
-        const oldMean = this.mean_;
+        const oldMean = this.mean_.value;
         const oldVariance = this.variance_;
         // Using the 2nd formula for updating the mean yields better precision
         // but it doesn't work for the case oldMean is Infinity. Hence we handle
         // that case separately.
         if (oldMean === Infinity || oldMean === -Infinity) {
-          this.mean_ = this.sum_ / this.count_;
+          this.mean_.value = this.sum_ / this.count_;
         } else {
-          this.mean_ = oldMean + (x - oldMean) / this.count_;
+          this.mean_.value = oldMean + (x - oldMean) / this.count_;
         }
-        this.variance_ = oldVariance + (x - oldMean) * (x - this.mean_);
+        this.variance_ = oldVariance + (x - oldMean) * (x - this.mean_.value);
       }
+    }
+
+    setConfidenceInterval(low, high) {
+      this.mean_.CI95Low = low;
+      this.mean_.CI95High = high;
     }
 
     merge(other) {
@@ -110,13 +127,13 @@ tr.exportTo('tr.b.math', function() {
       result.min_ = Math.min(this.min_, other.min_);
       result.max_ = Math.max(this.max_, other.max_);
       if (result.count === 0) {
-        result.mean_ = 0;
+        result.mean_.value = 0;
         result.variance_ = 0;
         result.meanlogs_ = 0;
       } else {
         // Combine the mean and the variance using the formulas from
         // https://goo.gl/ddcAep.
-        result.mean_ = result.sum / result.count;
+        result.mean_.value = result.sum / result.count;
         const deltaMean = (this.mean || 0) - (other.mean || 0);
         result.variance_ = this.variance_ + other.variance_ +
           (this.count * other.count * deltaMean * deltaMean / result.count);
@@ -144,7 +161,7 @@ tr.exportTo('tr.b.math', function() {
         this.count_,
         this.max_,
         this.meanlogs_,
-        this.mean_,
+        this.mean_.value,
         this.min_,
         this.sum_,
         this.variance_,
@@ -160,7 +177,7 @@ tr.exportTo('tr.b.math', function() {
         result.count_,
         result.max_,
         result.meanlogs_,
-        result.mean_,
+        result.mean_.value,
         result.min_,
         result.sum_,
         result.variance_,
