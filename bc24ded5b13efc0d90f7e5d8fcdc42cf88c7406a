@@ -70,6 +70,30 @@
       "revId": "bc24ded5b13efc0d90f7e5d8fcdc42cf88c7406a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fd1f5ed_0c74a223",
+        "filename": "telemetry/telemetry/page/cache_temperature.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-17T16:25:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3a96d7c_d572c151",
+      "range": {
+        "startLine": 187,
+        "startChar": 0,
+        "endLine": 187,
+        "endChar": 78
+      },
+      "revId": "bc24ded5b13efc0d90f7e5d8fcdc42cf88c7406a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
