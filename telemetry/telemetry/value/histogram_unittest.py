@@ -35,12 +35,12 @@ class ValueTest(TestBase):
     v = histogram_module.HistogramValue(
         page, 'x', 'counts',
         raw_value_json='{"buckets": [{"low": 1, "high": 2, "count": 1}]}',
-        important=True, description='desc', tir_label='my_ir',
+        important=True, description='desc',
         improvement_direction=improvement_direction.UP)
     expected = ('HistogramValue(http://www.bar.com/, x, counts, '
                 'raw_json_string={"buckets": [{"low": 1, "high": 2, "count": '
-                '1}]}, important=True, description=desc, tir_label=my_ir, '
-                'improvement_direction=up, grouping_keys={})')
+                '1}]}, important=True, description=desc, '
+                'improvement_direction=up)')
 
     self.assertEquals(expected, str(v))
 

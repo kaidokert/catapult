@@ -34,12 +34,11 @@ class Summary(object):
       ]
 
   """
-  def __init__(self, results, key_func=merge_values.DefaultKeyFunc):
+  def __init__(self, results):
     self._had_failures = results.had_failures
     self._computed_per_page_values = []
     self._computed_summary_values = []
     self._interleaved_computed_per_page_values_and_summaries = []
-    self._key_func = key_func
     self._ComputePerPageValues(results.all_page_specific_values)
 
   @property
@@ -70,7 +69,7 @@ class Summary(object):
     # output.
     num_successful_pages_for_key = defaultdict(int)
     for v in all_successful_page_values:
-      num_successful_pages_for_key[self._key_func(v)] += 1
+      num_successful_pages_for_key[v.name] += 1
 
     # By here, due to page repeat options, all_values_from_successful_pages
     # contains values of the same name not only from mulitple pages, but also
@@ -79,7 +78,7 @@ class Summary(object):
     #
     # So, get rid of the repeated pages by merging.
     merged_page_values = merge_values.MergeLikeValuesFromSamePage(
-        all_successful_page_values, self._key_func)
+        all_successful_page_values)
 
     # Now we have a bunch of values, but there is only one value_name per page.
     # Suppose page1 and page2 ran, producing values x and y. We want to print
@@ -98,7 +97,7 @@ class Summary(object):
     # that name.
     per_page_values_by_key = defaultdict(list)
     for value in merged_page_values:
-      per_page_values_by_key[self._key_func(value)].append(value)
+      per_page_values_by_key[value.name].append(value)
 
     # We already have the x values in the values array. But, we also need
     # the values merged across the pages. And, we will need them indexed by
@@ -107,12 +106,11 @@ class Summary(object):
     merged_pages_value_by_key = {}
     if not self._had_failures:
       for value in merge_values.MergeLikeValuesFromDifferentPages(
-          merged_page_values, self._key_func):
-        value_key = self._key_func(value)
-        assert value_key not in merged_pages_value_by_key
-        merged_pages_value_by_key[value_key] = value
+          merged_page_values):
+        assert value.name not in merged_pages_value_by_key
+        merged_pages_value_by_key[value.name] = value
 
-    keys = sorted(set([self._key_func(v) for v in merged_page_values]))
+    keys = sorted(set([v.name for v in merged_page_values]))
 
     # Time to walk through the values by key, printing first the page-specific
     # values and then the merged_site value.
