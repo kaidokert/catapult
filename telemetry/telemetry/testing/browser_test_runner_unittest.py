@@ -106,6 +106,74 @@ class BrowserTestRunnerTest(unittest.TestCase):
       os.remove(results.name)
     return test_result
 
+  def _RunBrowserTestExpectation(self, classname, test_name):
+    results = tempfile.NamedTemporaryFile(delete=False)
+    results.close()
+    config = project_config.ProjectConfig(
+        top_level_dir=os.path.join(util.GetTelemetryDir(), 'examples'),
+        client_configs=[],
+        benchmark_dirs=[
+            os.path.join(util.GetTelemetryDir(), 'examples', 'browser_tests')]
+    )
+    try:
+      browser_test_runner.Run(config,
+                              ['%s' % classname,
+                               '--write-full-results-to=%s' % results.name,
+                               '--test-filter=.*%s.*' % test_name])
+      with open(results.name) as f:
+        test_result = json.load(f)
+    finally:
+      os.remove(results.name)
+    return test_result
+
+  @decorators.Disabled('chromeos')  # crbug.com/696553
+  def testExpectationsFilesExpectedFail(self):
+    test_results = self._RunBrowserTestExpectation('ExpectedExpectations',
+                                                   'FailTest')
+    test_result = (test_results['tests']['browser_tests']
+                   ['expected_expectations_test']['ExpectedExpectations']
+                   ['FailTest'])
+    assert test_result['expected'] == 'FAIL'
+    assert test_result['actual'] == 'FAIL'
+    assert not 'is_unexpected' in test_result
+    assert not 'is_regression' in test_result
+
+  @decorators.Disabled('chromeos')  # crbug.com/696553
+  def testExpectationsFilesExpectedPass(self):
+    test_results = self._RunBrowserTestExpectation('ExpectedExpectations',
+                                                   'PassTest')
+    test_result = (test_results['tests']['browser_tests']
+                   ['expected_expectations_test']['ExpectedExpectations']
+                   ['PassTest'])
+    assert test_result['expected'] == 'PASS'
+    assert test_result['actual'] == 'PASS'
+    assert not 'is_unexpected' in test_result
+    assert not 'is_regression' in test_result
+
+  @decorators.Disabled('chromeos')  # crbug.com/696553
+  def testExpectationsFilesUnexpectedPass(self):
+    test_results = self._RunBrowserTestExpectation('UnexpectedExpectations',
+                                                   'PassTest')
+    test_result = (test_results['tests']['browser_tests']
+                   ['unexpected_expectations_test']['UnexpectedExpectations']
+                   ['PassTest'])
+    assert test_result['expected'] == 'FAIL'
+    assert test_result['actual'] == 'PASS'
+    assert 'is_unexpected' in test_result
+    assert not 'is_regression' in test_result
+
+  @decorators.Disabled('chromeos')  # crbug.com/696553
+  def testExpectationsFilesUnexpectedFail(self):
+    test_results = self._RunBrowserTestExpectation('UnexpectedExpectations',
+                                                   'FailTest')
+    test_result = (test_results['tests']['browser_tests']
+                   ['unexpected_expectations_test']['UnexpectedExpectations']
+                   ['FailTest'])
+    assert test_result['expected'] == 'PASS'
+    assert test_result['actual'] == 'FAIL'
+    assert 'is_unexpected' in test_result
+    assert 'is_regression' in test_result
+
   @decorators.Disabled('chromeos')  # crbug.com/696553
   def testTagGenerationExpectedPass(self):
     test_result = self._RunBrowserTest('generate_tags_test',
