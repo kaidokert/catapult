@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "647fec80_410ed707",
+        "filename": "tracing/tracing/value/histogram.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-01-18T17:04:17Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we read/write meanCI95Low and meanCI95High in RunningStats::asDict and ::fromDict methods and then recompute them from samples here only if it does not already exist in the dict?",
+      "revId": "3e767b73f6ca52a16e66d3b56da7f0cbc86e57ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "218b84e3_2225b990",
+        "filename": "tracing/tracing/value/histogram.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-01-18T17:04:17Z",
+      "side": 1,
+      "message": "nit: push tempSum here and divide by sampleCount in lines 509 and 510 to save (iterations - 2) divisions :)",
+      "range": {
+        "startLine": 505,
+        "startChar": 32,
+        "endLine": 505,
+        "endChar": 46
+      },
+      "revId": "3e767b73f6ca52a16e66d3b56da7f0cbc86e57ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ab79777_67038c76",
+        "filename": "tracing/tracing/value/histogram.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-01-18T17:04:17Z",
+      "side": 1,
+      "message": "nit: Maybe merge this with line 689? Like\n\nif ([\u0027min\u0027, \u0027max\u0027, \u0027sum\u0027, \u0027meanCILow95\u0027, \u0027maxCIHigh95\u0027].indexOf(statName) \u003e\u003d 0) {\n  ...\n}",
+      "revId": "3e767b73f6ca52a16e66d3b56da7f0cbc86e57ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
