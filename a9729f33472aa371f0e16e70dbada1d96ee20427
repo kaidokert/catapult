@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "13430b21_50ce6181",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-18T09:31:18Z",
+      "side": 0,
+      "message": "The default value for page.startup_url is \u0027\u0027, and as far as I could see, nothing uses anything other than the default. So this should never be triggered.\n\nThe default value for browser_options.startup_url is \u0027about:blank\u0027 which is, therefore, what should arrive to the desktop/android browser_backend.Start methods above.",
+      "revId": "a9729f33472aa371f0e16e70dbada1d96ee20427",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
