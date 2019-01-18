@@ -25,6 +25,8 @@ tr.exportTo('tr.metrics.sh', function() {
   const LONG_TASK_THRESHOLD_MS = 50;
   const timeDurationInMs_smallerIsBetter =
       tr.b.Unit.byName.timeDurationInMs_smallerIsBetter;
+  const unitlessNumber_smallerIsBetter =
+      tr.b.Unit.byName.unitlessNumber_smallerIsBetter;
   const RelatedEventSet = tr.v.d.RelatedEventSet;
   const hasCategoryAndName = tr.metrics.sh.hasCategoryAndName;
   const EventFinderUtils = tr.e.chrome.EventFinderUtils;
@@ -75,6 +77,9 @@ tr.exportTo('tr.metrics.sh', function() {
   // loads. Data obtained through Cluster Telemetry analysis.
       .createExponential(1, 40e3, 35)
       .addExponentialBins(80e3, 15);
+
+  const JANK_SCORE_BOUNDARIES = tr.v.HistogramBinBoundaries
+      .createLinear(0, 50, 25);
 
   const SUMMARY_OPTIONS = {
     avg: true,
@@ -273,6 +278,18 @@ tr.exportTo('tr.metrics.sh', function() {
     return samples;
   }
 
+  function getJankScoreSamples(rendererHelper) {
+    let jankScoreSample;
+    EventFinderUtils.getSortedMainThreadEventsByFrame(rendererHelper,
+        'FrameLayoutJank', 'loading').forEach((events) => {
+      const evData = events.pop().args.data;
+      if (evData.is_main_frame) {
+        jankScoreSample = {value: evData.cumulative_score};
+      }
+    });
+    return jankScoreSample ? [jankScoreSample] : [];
+  }
+
   function addFirstMeaningfulPaintSample(samples, rendererHelper,
       navigationStart, fmpMarkerEvent, url) {
     const navStartToFMPRange = tr.b.math.Range.fromExplicitRange(
@@ -404,6 +421,7 @@ tr.exportTo('tr.metrics.sh', function() {
     const firstViewportReadySamples = getFirstViewportReadySamples(
         rendererHelper);
 
+    const jankScoreSamples = getJankScoreSamples(rendererHelper);
     return {
       frameToNavStartEvents,
       firstPaintSamples,
@@ -412,6 +430,7 @@ tr.exportTo('tr.metrics.sh', function() {
       onLoadSamples,
       aboveTheFoldLoadedToVisibleSamples,
       firstViewportReadySamples,
+      jankScoreSamples
     };
   }
 
@@ -550,6 +569,7 @@ tr.exportTo('tr.metrics.sh', function() {
           description: 'Time to First CPU Idle',
           summaryOptions: SUMMARY_OPTIONS,
         });
+
     const aboveTheFoldLoadedToVisibleHistogram = histograms.createHistogram(
         'aboveTheFoldLoadedToVisible', timeDurationInMs_smallerIsBetter, [], {
           binBoundaries: TIME_TO_INTERACTIVE_BOUNDARIES,
@@ -560,6 +580,13 @@ tr.exportTo('tr.metrics.sh', function() {
         'timeToFirstViewportReady', timeDurationInMs_smallerIsBetter, [], {
           binBoundaries: TIME_TO_INTERACTIVE_BOUNDARIES,
           description: 'Time from navigation to load for AMP pages only. ',
+          summaryOptions: SUMMARY_OPTIONS,
+        });
+
+    const jankScoreHistogram = histograms.createHistogram(
+        'layoutJank_score', unitlessNumber_smallerIsBetter, [], {
+          binBoundaries: JANK_SCORE_BOUNDARIES,
+          description: 'Layout Jank Score',
           summaryOptions: SUMMARY_OPTIONS,
         });
 
@@ -585,6 +612,7 @@ tr.exportTo('tr.metrics.sh', function() {
       addSamplesToHistogram(
           samplesSet.onLoadSamples, onLoadHistogram, histograms);
       addSamplesToHistogram(
+
           samplesSet.aboveTheFoldLoadedToVisibleSamples,
           aboveTheFoldLoadedToVisibleHistogram,
           histograms);
@@ -592,6 +620,9 @@ tr.exportTo('tr.metrics.sh', function() {
           samplesSet.firstViewportReadySamples,
           firstViewportReadyHistogram,
           histograms);
+
+      addSamplesToHistogram(
+          samplesSet.jankScoreSamples, jankScoreHistogram, histograms);
     }
 
     const samplesSet = collectMetricsFromLoadExpectations(model, chromeHelper);
