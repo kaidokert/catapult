@@ -6,6 +6,9 @@
 
 import re
 
+from tracing.value import histogram_set
+from tracing.value import histogram as histogram_module
+from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import reserved_infos
 
 # List of non-TBMv2 chromium.perf Telemetry benchmarks
@@ -208,3 +211,25 @@ def _ShouldAddV8BrowsingValue(value_name):
   if 'v8-gc' in value_name:
     return v8_gc_re.search(value_name) and not v8_stats_re.search(value_name)
   return True
+
+def HistogramSetFromGraphJSON(graphjson_results, label=None):
+  hs = histogram_set.HistogramSet()
+  for chart, chart_values in graphjson_results.iteritems():
+    traces = chart_values['traces']
+    unit = chart_values['units']
+    if unit not in histogram_module.UNIT_NAMES:
+      unit = 'unitless'
+
+    for trace_name, trace_values in traces.iteritems():
+      hist = histogram_module.Histogram(chart, unit)
+      for t in trace_values:
+        hist.AddSample(float(t))
+      story_diag = generic_set.GenericSet([trace_name])
+      hs.AddHistogram(
+          hist, diagnostics={reserved_infos.STORIES.name: story_diag})
+
+  if label:
+    hs.AddSharedDiagnosticToAllHistograms(
+        reserved_infos.LABELS.name,
+        generic_set.GenericSet([label]))
+  return hs
