@@ -91,3 +91,34 @@ class HistogramHelpersTest(testing_common.TestCase):
     hist = histograms.GetFirstHistogram()
     test_path = histogram_helpers.ComputeTestPath(hist)
     self.assertEqual('hist/http___story_ref', test_path)
+
+  def testHistogramSetFromGraphJson(self):
+    graphjson = {
+        'chart1': {
+            'units': 'ms',
+            'traces': {
+                'trace1': [1, 2]
+            }
+        },
+        'chart2': {
+            'units': 'UNSUPPORTED',
+            'traces': {
+                'trace2': [3, 4, 5]
+            }
+        }
+    }
+    hs = histogram_set.HistogramSet()
+    hs.ImportDicts(
+        histogram_helpers.HistogramSetFromGraphJSON(graphjson, label='foo'))
+
+    h = hs.GetHistogramNamed('chart1')
+    self.assertEqual([1, 2], h.sample_values)
+    self.assertEqual(
+        'trace1', h.diagnostics[reserved_infos.STORIES.name].GetOnlyElement())
+    self.assertEqual('ms', h.unit)
+
+    h = hs.GetHistogramNamed('chart2')
+    self.assertEqual([3, 4, 5], h.sample_values)
+    self.assertEqual(
+        'trace2', h.diagnostics[reserved_infos.STORIES.name].GetOnlyElement())
+    self.assertEqual('unitless', h.unit)
