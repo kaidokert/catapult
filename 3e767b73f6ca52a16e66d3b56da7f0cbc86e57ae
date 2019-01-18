@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5b310c98_7a9d9ebc",
+        "filename": "tracing/tracing/value/histogram.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1307714
+      },
+      "writtenOn": "2019-01-18T17:56:35Z",
+      "side": 1,
+      "message": "I was trying to keep the structure of the json dict untouched, so I\u0027m not including the meanCI95Low and meanCI95High in the dict. The main reason was that these values are not really running statistics and also adding them as a separate attribute would not be clean.\nI also think adding new data fields to the dict, might need more changes to the code, and other modules which use the dict.",
+      "parentUuid": "647fec80_410ed707",
+      "revId": "3e767b73f6ca52a16e66d3b56da7f0cbc86e57ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "218b84e3_2225b990",
         "filename": "tracing/tracing/value/histogram.html",
         "patchSetId": 9
@@ -30,6 +48,30 @@
       "writtenOn": "2019-01-18T17:04:17Z",
       "side": 1,
       "message": "nit: push tempSum here and divide by sampleCount in lines 509 and 510 to save (iterations - 2) divisions :)",
+      "range": {
+        "startLine": 505,
+        "startChar": 32,
+        "endLine": 505,
+        "endChar": 46
+      },
+      "revId": "3e767b73f6ca52a16e66d3b56da7f0cbc86e57ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e9d33b5_aeec484a",
+        "filename": "tracing/tracing/value/histogram.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1307714
+      },
+      "writtenOn": "2019-01-18T17:56:35Z",
+      "side": 1,
+      "message": "Then the name of arrays should be sampleSum :)",
+      "parentUuid": "218b84e3_2225b990",
       "range": {
         "startLine": 505,
         "startChar": 32,
