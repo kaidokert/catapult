@@ -27,6 +27,8 @@ tr.exportTo('tr.b.math', function() {
       this.min_ = Infinity;
       this.sum_ = 0;
       this.variance_ = 0;
+      this.CI95Low = 0;
+      this.CI95High = 0;
 
       // Mean of logarithms of absolute values of samples, or undefined if any
       // samples were <= 0.
@@ -45,6 +47,14 @@ tr.exportTo('tr.b.math', function() {
     get mean() {
       if (this.count_ === 0) return undefined;
       return this.mean_;
+    }
+
+    get meanCILow95() {
+      return this.CI95Low;
+    }
+
+    get meanCIHigh95() {
+      return this.CI95High;
     }
 
     get max() {
@@ -101,6 +111,11 @@ tr.exportTo('tr.b.math', function() {
         }
         this.variance_ = oldVariance + (x - oldMean) * (x - this.mean_);
       }
+    }
+
+    setConfidenceInterval(low, high) {
+      this.CI95Low = low;
+      this.CI95High = high;
     }
 
     merge(other) {
