@@ -311,6 +311,7 @@ def RunTests(args):
   runner = typ.Runner()
   options.tags.extend(test_class.GenerateTags(context.finder_options,
                                               possible_browser))
+  options.expectations_files.extend(test_class.ExpectationsFiles())
   runner.context = context
   runner.setup_fn = _SetUpProcess
   runner.teardown_fn = _TearDownProcess
