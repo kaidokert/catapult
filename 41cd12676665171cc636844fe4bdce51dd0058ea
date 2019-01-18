@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c25ad015_b88279ef",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1017,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-01-18T20:57:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aaea76d1_ad937bae",
+      "revId": "41cd12676665171cc636844fe4bdce51dd0058ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b8bb298a_7e51b027",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 8
@@ -33,6 +51,24 @@
       "revId": "41cd12676665171cc636844fe4bdce51dd0058ea",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40214be4_ec25f6e5",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 2640,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-01-18T20:57:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8bb298a_7e51b027",
+      "revId": "41cd12676665171cc636844fe4bdce51dd0058ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "fa4f5514_e3f8e1f9",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 2663,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-01-18T20:57:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fba8ccf8_2e3040d3",
+      "revId": "41cd12676665171cc636844fe4bdce51dd0058ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "be4441f4_51311c55",
         "filename": "devil/devil/android/tools/webview_app.py",
         "patchSetId": 8
@@ -67,6 +121,24 @@
       "revId": "41cd12676665171cc636844fe4bdce51dd0058ea",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f77af587_ba45ef58",
+        "filename": "devil/devil/android/tools/webview_app.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-01-18T20:57:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be4441f4_51311c55",
+      "revId": "41cd12676665171cc636844fe4bdce51dd0058ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "d3825399_16cd77b2",
+        "filename": "devil/devil/android/tools/webview_app.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-01-18T20:57:34Z",
+      "side": 1,
+      "message": "Nice!",
+      "parentUuid": "8604083d_12751ec6",
+      "revId": "41cd12676665171cc636844fe4bdce51dd0058ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eac5fe53_794e8323",
         "filename": "devil/devil/android/tools/webview_app.py",
         "patchSetId": 8
@@ -101,6 +191,24 @@
       "revId": "41cd12676665171cc636844fe4bdce51dd0058ea",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4efe4df6_e2271098",
+        "filename": "devil/devil/android/tools/webview_app.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-01-18T20:57:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eac5fe53_794e8323",
+      "revId": "41cd12676665171cc636844fe4bdce51dd0058ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "3cb915fa_45c9fdfb",
+        "filename": "devil/devil/android/tools/webview_app.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-01-18T20:57:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21d66158_49461f1f",
+      "revId": "41cd12676665171cc636844fe4bdce51dd0058ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b7ae0070_4af8441a",
         "filename": "devil/devil/android/tools/webview_app.py",
         "patchSetId": 8
@@ -135,6 +261,24 @@
       "revId": "41cd12676665171cc636844fe4bdce51dd0058ea",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20513eb6_ee35e558",
+        "filename": "devil/devil/android/tools/webview_app.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-01-18T20:57:34Z",
+      "side": 1,
+      "message": "will remove it, no plans for more subcommands for now.",
+      "parentUuid": "b7ae0070_4af8441a",
+      "revId": "41cd12676665171cc636844fe4bdce51dd0058ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "b1e55782_a00373ca",
+        "filename": "devil/devil/android/tools/webview_app.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-01-18T20:57:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec397f29_1a2b656c",
+      "revId": "41cd12676665171cc636844fe4bdce51dd0058ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0c3a8fc1_8879149a",
         "filename": "devil/devil/android/tools/webview_app.py",
         "patchSetId": 8
@@ -169,6 +331,24 @@
       "revId": "41cd12676665171cc636844fe4bdce51dd0058ea",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "608fd9b4_d2241635",
+        "filename": "devil/devil/android/tools/webview_app.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-01-18T20:57:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c3a8fc1_8879149a",
+      "revId": "41cd12676665171cc636844fe4bdce51dd0058ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
