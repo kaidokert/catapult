@@ -25,7 +25,6 @@ def Run(project_config, args):
     args.extend(['--expectations-file', e])
   if project_config.default_chrome_root and not '--chrome-root' in args:
     args.extend(['--chrome-root', project_config.default_chrome_root])
-
   env = os.environ.copy()
   telemetry_dir = util.GetTelemetryDir()
   if 'PYTHONPATH' in env:
