@@ -307,4 +307,5 @@ def _ExecutionsPerQuest(attempts):
 
 
 def _Mean(values):
+  values = [v for v in values if isinstance(v, (int, long, float))]
   return float(sum(values)) / len(values)
