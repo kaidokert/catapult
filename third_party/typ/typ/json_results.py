@@ -25,7 +25,7 @@ class ResultType(object):
     Skip = 'SKIP'
 
     values = (Pass, Failure, Timeout, Crash, Skip)
-
+    failure_values = {Pass, Failure, Timeout, Crash}
 
 class Result(object):
     # too many instance attributes  pylint: disable=R0902
@@ -173,7 +173,7 @@ def _results_for_test(test_name, results):
             # of the *last* time it was run.
             if r.unexpected:
                 value['is_unexpected'] = r.unexpected
-                if r.actual != ResultType.Pass:
+                if r.actual in ResultType.failure_values:
                     value['is_regression'] = True
             else:
                 if 'is_unexpected' in value:
