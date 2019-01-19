@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0efea76e_ff327f1f",
+        "filename": "tracing/tracing/base/math/running_statistics.html",
+        "patchSetId": 17
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-19T20:16:12Z",
+      "side": 1,
+      "message": "RunningStatistics is for online algorithms to compute statistics. It isn\u0027t meant to contain all of a Histogram\u0027s statistics. You don\u0027t need to store these on RunningStatistics.",
+      "revId": "0971d8b24a33a50de4f6fa223eb6631f687c822c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
