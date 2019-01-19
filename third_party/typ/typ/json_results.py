@@ -26,7 +26,6 @@ class ResultType(object):
 
     values = (Pass, Failure, Timeout, Crash, Skip)
 
-
 class Result(object):
     # too many instance attributes  pylint: disable=R0902
     # too many arguments  pylint: disable=R0913
@@ -183,7 +182,7 @@ def _results_for_test(test_name, results):
 
             # This assumes that the expected values are the same for every
             # invocation of the test.
-            value['expected'] = ' '.join(r.expected)
+            value['expected'] = ' '.join(sorted(r.expected))
 
     if not actuals:  # pragma: untested
         actuals.append('SKIP')
