@@ -5,6 +5,7 @@ Use of this source code is governed by a BSD-style license that can be
 found in the LICENSE file.
 -->
 
+<link rel="import" href="/tracing/base/math/deterministic.html">
 <link rel="import" href="/tracing/base/math/math.html">
 <link rel="import" href="/tracing/base/math/range.html">
 <script src="/mannwhitneyu/mannwhitneyu.js"></script>
@@ -394,7 +395,7 @@ tr.exportTo('tr.b.math', function() {
       return samples;
     }
     while (samples.length > count) {
-      const i = parseInt(Math.random() * samples.length);
+      const i = parseInt(tr.b.math.deterministic() * samples.length);
       samples.splice(i, 1);
     }
     return samples;
@@ -434,10 +435,10 @@ tr.exportTo('tr.b.math', function() {
     }
 
     const probToKeep = numSamples / streamLength;
-    if (Math.random() > probToKeep) return;  // New sample was rejected.
+    if (tr.b.math.deterministic() > probToKeep) return;  // New sample was rejected.
 
     // Keeping it, replace an alement randomly.
-    const index = Math.floor(Math.random() * numSamples);
+    const index = Math.floor(tr.b.math.deterministic() * numSamples);
     samples[index] = newElement;
   };
 
@@ -501,7 +502,7 @@ tr.exportTo('tr.b.math', function() {
     const nbElements = Math.min(numSamples, samplesB.length);
     const probOfSwapping = streamLengthB / (streamLengthA + streamLengthB);
     for (let i = 0; i < nbElements; ++i) {
-      if (Math.random() < probOfSwapping) {
+      if (tr.b.math.deterministic() < probOfSwapping) {
         samplesA[i] = samplesB[i];
       }
     }

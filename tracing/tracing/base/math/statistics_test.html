@@ -14,6 +14,31 @@ found in the LICENSE file.
 tr.b.unittest.testSuite(function() {
   const Statistics = tr.b.math.Statistics;
 
+  tr.b.math.Statistics.fuzzMergeSampledStreams = ({
+    iterations=1000,
+    samplesA=new Array(16).fill(0).map((_, i) => String.fromCharCode(97 + i)),
+    samplesB=new Array(16).fill(0).map((_, i) => String.fromCharCode(65 + i)),
+    streamLengthA=100,
+    streamLengthB=100,
+    numSamples=16,
+  } = {}) => {
+    console.log({iterations, samplesA, samplesB, streamLengthA, streamLengthB,
+      numSamples});
+    for (let iteration = 0; iteration < iterations; ++iteration) {
+      tr.b.math.deterministic.record = [];
+      const testSamplesA = [...samplesA]
+      tr.b.math.Statistics.mergeSampledStreams(
+        testSamplesA, streamLengthA,
+        [...samplesB], streamLengthB, numSamples);
+      for (const e of testSamplesA) {
+        if (!samplesA.includes(e) && !samplesB.includes(e)) {
+          console.error('unexpected ' + e + '. record=' +
+            tr.b.math.deterministic.record);
+        }
+      }
+    }
+  };
+
   /**
    * Lloyd relaxation in 1D.
    *

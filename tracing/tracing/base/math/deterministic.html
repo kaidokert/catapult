@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+Copyright 2019 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/base/base.html">
+
+<script>
+'use strict';
+tr.exportTo('tr.b.math', function() {
+  /**
+   * Drop-in replacement for Math.random().
+   * Set deterministic.record = []; in order to record generated values.
+   * Set deterministic.replay = [...]; in order to replay pre-computed values.
+   */
+  function deterministic() {
+    if (deterministic.replay.length) {
+      const value = deterministic.shift();
+      if (typeof value === 'number' &&
+          !isNaN(value) &&
+          value >= 0 &&
+          value < 1) {
+        return value;
+      }
+      console.error('Invalid deterministic.replay value ' + value);
+    }
+    const value = Math.random();
+    if (deterministic.record !== undefined) {
+      deterministic.record.push(value);
+    }
+    return value;
+  }
+
+  deterministic.replay = [];
+
+  return {deterministic};
+});
+</script>
