@@ -6,6 +6,7 @@ import fnmatch
 import logging
 import os
 import sys
+import json
 
 from telemetry.core import util
 from telemetry.core import platform as platform_module
@@ -171,8 +172,10 @@ class RunTestsCommand(command_line.OptparseCommand):
       runner.args.jobs = max(int(args.jobs) // 4, 1)
     else:
       runner.args.jobs = max(int(args.jobs) // 2, 1)
-
+    not_using_typ_expectation = len(args.expectations_files) == 0
+    runner.args.expectations_files = args.expectations_files
     runner.args.skip = args.skip
+    runner.args.tags = args.tags
     runner.args.metadata = args.metadata
     runner.args.passthrough = args.passthrough
     runner.args.path = args.path
@@ -205,8 +208,31 @@ class RunTestsCommand(command_line.OptparseCommand):
     except KeyboardInterrupt:
       print >> sys.stderr, "interrupted, exiting"
       ret = 130
+    finally:
+      if (runner.args.write_full_results_to and
+          os.path.exists(runner.args.write_full_results_to) and
+          not_using_typ_expectation):
+        # Set expectation of all skipped tests to skip to keep the test behavior
+        # the same as when typ doesn't support test expectation.
+        # (also see crbug.com/904019) for why this work around is needed)
+        _SetSkippedTestExpectationsToSkip(runner.args.write_full_results_to)
     return ret
 
+def _SetSkippedTestExpectationsToSkip(full_results_file_path):
+  with open(full_results_file_path) as f:
+    results = json.load(f)
+  root_node = results['tests']
+  queue = [root_node]
+  while queue:
+    curr_node = queue.pop()
+    if 'actual' in curr_node:
+      if curr_node['actual'] == 'SKIP':
+        curr_node['expected'] = 'SKIP'
+    else:
+      for v in curr_node.values():
+        queue.append(v)
+  with open(full_results_file_path, 'w') as f:
+    json.dump(results, f, indent=2)
 
 def _SkipMatch(name, skipGlobs):
   return any(fnmatch.fnmatch(name, glob) for glob in skipGlobs)
