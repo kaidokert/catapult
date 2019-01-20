@@ -549,13 +549,17 @@ class Runner(object):
 
     def _skip_tests(self, stats, result_set, tests_to_skip):
         for test_input in tests_to_skip:
+            if self.has_expectations:
+                expected_results = self.expectations.expected_results_for(test_input.name)
+            else:
+                expected_results = {ResultType.Skip}
             last = self.host.time()
             stats.started += 1
             self._print_test_started(stats, test_input)
             now = self.host.time()
             result = Result(test_input.name, actual=ResultType.Skip,
                             started=last, took=(now - last), worker=0,
-                            expected=[ResultType.Skip],
+                            expected=list(expected_results),
                             out=test_input.msg)
             result_set.add(result)
             stats.finished += 1
@@ -887,7 +891,6 @@ def _run_one_test(child, test_input):
       expected_results = child.expectations.expected_results_for(test_name)
     else:
       expected_results = {ResultType.Pass}
-
     ex_str = ''
     try:
         orig_skip = unittest.skip
@@ -901,7 +904,8 @@ def _run_one_test(child, test_input):
             # get here with a test we wanted to skip?
             h.restore_output()
             return Result(test_name, ResultType.Skip, started, 0,
-                          child.worker_num, unexpected=False, pid=pid)
+                          child.worker_num, unexpected=False, pid=pid,
+                          expected=list(expected_results))
 
         try:
             suite = child.loader.loadTestsFromName(test_name)
@@ -987,6 +991,7 @@ def _result_from_test_result(test_result, test_name, started, took, out, err,
             unexpected = actual not in expected_results
         else:
             unexpected = False
+            expected_results = {ResultType.Skip}
     elif test_result.expectedFailures:
         actual = ResultType.Failure
         code = 1
@@ -1000,7 +1005,6 @@ def _result_from_test_result(test_result, test_name, started, took, out, err,
         actual = ResultType.Pass
         code = 0
         unexpected = actual not in expected_results
-
     flaky = False
     return Result(test_name, actual, started, took, worker_num,
                   expected_results, unexpected, flaky, code, out, err, pid)
