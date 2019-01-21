@@ -258,7 +258,6 @@ def RunTests(args):
     PrintTelemetryHelp()
     return parser.exit_status
   binary_manager.InitDependencyManager(options.client_configs)
-  not_using_typ_expectation = len(options.expectations_files) == 0
   for start_dir in options.start_dirs:
     modules_to_classes = discover.DiscoverClasses(
         start_dir,
@@ -281,6 +280,8 @@ def RunTests(args):
         cl.Name() for cl in browser_test_classes)
     return 1
 
+  options.expectations_files.extend(test_class.ExpectationsFiles())
+  not_using_typ_expectation = len(options.expectations_files) == 0
   # Create test context.
   context = browser_test_context.TypTestContext()
   for c in options.client_configs:

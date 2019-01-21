@@ -1,0 +1,4 @@
+# tags: [foo bar honda]
+
+crbug.com/123 [ foo ] browser_tests.expected_expectations_test.ExpectedExpectations.PassTest [ Pass ]
+crbug.com/124 [ bar ] browser_tests.expected_expectations_test.ExpectedExpectations.FailTest [ Failure ]
