@@ -190,7 +190,7 @@ tr.b.unittest.testSuite(function() {
   test('rebin', function() {
     const hist = new tr.v.Histogram('foo', unitlessNumber_smallerIsBetter,
         tr.v.HistogramBinBoundaries.SINGULAR);
-    assert.strictEqual(400, hist.maxNumSampleValues);
+    assert.strictEqual(2000, hist.maxNumSampleValues);
     for (let i = 0; i < 100; ++i) {
       hist.addSample(i);
     }
@@ -215,9 +215,9 @@ tr.b.unittest.testSuite(function() {
     let binCountSum = 0;
     for (let i = 1; i < 11; ++i) {
       binCountSum += rebinned.allBins[i].count;
-      assert.isAbove(100, rebinned.allBins[i].count, i);
+      assert.isAbove(500, rebinned.allBins[i].count, i);
     }
-    assert.strictEqual(400, binCountSum);
+    assert.strictEqual(1000, binCountSum);
     assert.strictEqual(hist.numValues, rebinned.numValues);
     assert.strictEqual(hist.average, rebinned.average);
     assert.strictEqual(hist.standardDeviation, rebinned.standardDeviation);
@@ -578,7 +578,8 @@ tr.b.unittest.testSuite(function() {
       std: true,
       nans: true,
       geometricMean: true,
-      percentile: [0.5, 1]
+      percentile: [0.5, 1],
+      CI: [0, 0.95]
     });
 
     // Test round-tripping summaryOptions.
@@ -606,6 +607,10 @@ tr.b.unittest.testSuite(function() {
     assert.closeTo(stats.get('pct_100').value, 70, 1);
     assert.strictEqual(stats.get('geometricMean').unit, hist.unit);
     assert.closeTo(stats.get('geometricMean').value, 59.439, 1e-3);
+    assert(stats.get('CI_095_lower').value < stats.get('avg').value);
+    assert(stats.get('CI_095_upper').value > stats.get('avg').value);
+    assert.strictEqual(stats.get('CI_000_lower').value, stats.get('avg').value);
+    assert.strictEqual(stats.get('CI_000_upper').value, stats.get('avg').value);
   });
 
   test('statisticsScalarsNoSummaryOptions', function() {
@@ -623,7 +628,8 @@ tr.b.unittest.testSuite(function() {
       sum: false,
       avg: false,
       std: false,
-      percentile: []
+      percentile: [],
+      CI: []
     });
 
     assert.strictEqual(hist.statisticsScalars.size, 0);
@@ -639,7 +645,8 @@ tr.b.unittest.testSuite(function() {
       sum: true,
       avg: true,
       std: true,
-      percentile: [0, 0.01, 0.1, 0.5, 0.995, 1]
+      percentile: [0, 0.01, 0.1, 0.5, 0.995, 1],
+      CI: [0.1, 0.8]
     });
 
     const stats = hist.statisticsScalars;
@@ -655,17 +662,23 @@ tr.b.unittest.testSuite(function() {
     assert.isUndefined(stats.get('pct_050'));
     assert.isUndefined(stats.get('pct_099_5'));
     assert.isUndefined(stats.get('pct_100'));
+    assert.isUndefined(stats.get('CI_010_lower'));
+    assert.isUndefined(stats.get('CI_010_upper'));
+    assert.isUndefined(stats.get('CI_010'));
+    assert.isUndefined(stats.get('CI_080_lower'));
+    assert.isUndefined(stats.get('CI_080_upper'));
+    assert.isUndefined(stats.get('CI_080'));
   });
 
   test('sampleValues', function() {
     const boundaries = tr.v.HistogramBinBoundaries.createLinear(0, 1000, 50);
     const hist0 = new tr.v.Histogram('', unitlessNumber, boundaries);
     const hist1 = new tr.v.Histogram('', unitlessNumber, boundaries);
-    // maxNumSampleValues defaults to numBins * 10, which, including the
-    // underflow bin and overflow bin plus this builder's 10 central bins,
-    // is 52 * 10.
-    assert.strictEqual(hist0.maxNumSampleValues, 520);
-    assert.strictEqual(hist1.maxNumSampleValues, 520);
+    // maxNumSampleValues defaults to numBins * SAMPLE_VALUES_PER_BIN (50),
+    // which, including the underflow bin and overflow bin plus this builder's
+    // 40 central bins, is 52 * 50.
+    assert.strictEqual(hist0.maxNumSampleValues, 2600);
+    assert.strictEqual(hist1.maxNumSampleValues, 2600);
     const values0 = [];
     const values1 = [];
     for (let i = 0; i < 10; ++i) {
@@ -683,7 +696,7 @@ tr.b.unittest.testSuite(function() {
     const hist2 = tr.v.Histogram.fromDict(hist0.asDict());
     assert.deepEqual(hist2.sampleValues, values0.concat(values1));
 
-    for (let i = 0; i < 500; ++i) {
+    for (let i = 0; i < 2580; ++i) {
       hist0.addSample(i);
     }
     assert.strictEqual(hist0.sampleValues.length, hist0.maxNumSampleValues);
