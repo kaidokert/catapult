@@ -465,13 +465,20 @@ class HistogramBin(object):
     self._count = dct[0]
     if len(dct) > 1:
       for diagnostic_map_dict in dct[1]:
+        if not isinstance(dct, dict):
+          # TODO(923181): Remove this type check.
+          continue
+
         self._diagnostic_maps.append(DiagnosticMap.FromDict(
             diagnostic_map_dict))
 
   def AsDict(self):
     if len(self._diagnostic_maps) == 0:
       return [self.count]
-    return [self.count, [d.AsDict() for d in self._diagnostic_maps]]
+    return [self.count, [
+        d.AsDict() for d in self._diagnostic_maps
+        if isinstance(d, DiagnosticMap)  # TODO(923181) Remove this.
+    ]]
 
 
 # TODO(#3814) Presubmit to compare with unit.html.

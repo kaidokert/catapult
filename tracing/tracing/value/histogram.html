@@ -106,6 +106,10 @@ tr.exportTo('tr.v', function() {
       this.count = dict[0];
       if (dict.length > 1) {
         for (const map of dict[1]) {
+          if (!(dict instanceof Object)) {
+            // TODO(923181): Remove this type check.
+            continue;
+          }
           this.diagnosticMaps.push(tr.v.d.DiagnosticMap.fromDict(map));
         }
       }
@@ -118,7 +122,9 @@ tr.exportTo('tr.v', function() {
       // It's more efficient to serialize these 2 fields in an array. If you
       // add any other fields, you should re-evaluate whether it would be more
       // efficient to serialize as a dict.
-      return [this.count, this.diagnosticMaps.map(d => d.asDict())];
+      // TODO(923181): Remove the filter.
+      return [this.count, this.diagnosticMaps.filter(m => m).map(d =>
+        d.asDict())];
     }
   }
 
