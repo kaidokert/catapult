@@ -27,6 +27,7 @@ except NameError:
 # between platforms, whereas ECMA Script specifies this value for all platforms.
 # The specific value should not matter in normal practice.
 JS_MAX_VALUE = 1.7976931348623157e+308
+DEFAULT_ITERATION_FOR_BOOTSTRAP_RESAMPLING = 500
 
 
 # Converts the given percent to a string in the following format:
@@ -552,6 +553,7 @@ class Histogram(object):
       '_num_nans',
       '_running',
       '_sample_values',
+      '_sample_means',
       '_summary_options',
       '_unit',
       '_bins',
@@ -581,8 +583,10 @@ class Histogram(object):
     self._num_nans = 0
     self._running = None
     self._sample_values = []
+    self._sample_means = []
     self._summary_options = dict(DEFAULT_SUMMARY_OPTIONS)
     self._summary_options['percentile'] = []
+    self._summary_options['CI'] = []
     self._unit = unit
 
     self._max_num_sample_values = self._GetDefaultMaxNumSampleValues()
@@ -718,6 +722,33 @@ class Histogram(object):
         return hbin.range.center
     return self._bins[len(self._bins) - 1].range.min
 
+  def GetConfidenceInterval(self, iterations, percent):
+    if percent < 0 or percent > 1:
+      raise ValueError('percent must be in [0,1]')
+    if not self._sample_values:
+      return [0, 0]
+
+    filtered_samples = [
+        x for x in self._sample_values if isinstance(x, (float, int))
+    ]
+    sample_count = len(filtered_samples)
+    if sample_count == 1:
+      return [filtered_samples[0], filtered_samples[0]]
+    if len(self._sample_means) != iterations:
+      self._sample_means = []
+      for _ in range(0, iterations):
+        temp_sum = 0
+        for _ in range(0, sample_count):
+          random_index = int(random.uniform(0, sample_count))
+          temp_sum += filtered_samples[random_index]
+        self._sample_means.append(temp_sum / sample_count)
+      self._sample_means.sort()
+
+    return [
+        self._sample_means[int(math.floor(iterations * (0.5 - percent / 2)))],
+        self._sample_means[int(math.ceil(iterations * (0.5 + percent / 2)))],
+    ]
+
   def GetBinIndexForValue(self, value):
     index = FindHighIndexInSortedArray(
         self._bins, lambda b: (-1 if (value < b.range.max) else 1))
@@ -805,6 +836,18 @@ class Histogram(object):
           percentile = self.GetApproximatePercentile(percent)
           results['pct_' + PercentToString(percent)] = Scalar(
               self.unit, percentile)
+      elif stat_name == 'CI':
+        for ci_percent in option:
+          [ci_lower, ci_upper] = self.GetConfidenceInterval(
+              DEFAULT_ITERATION_FOR_BOOTSTRAP_RESAMPLING,
+              ci_percent,
+          )
+          results['CI_' + PercentToString(ci_percent) + '_lower'] = Scalar(
+              self.unit, ci_lower)
+          results['CI_' + PercentToString(ci_percent) + '_upper'] = Scalar(
+              self.unit, ci_upper)
+          results['CI_' + PercentToString(ci_percent)] = Scalar(
+              self.unit, ci_upper - ci_lower)
       elif stat_name == 'nans':
         results['nans'] = Scalar('count', self.num_nans)
       else:
@@ -851,7 +894,7 @@ class Histogram(object):
     summary_options = {}
     any_overridden_summary_options = False
     for name, option in self._summary_options.items():
-      if name == 'percentile':
+      if name == 'percentile' or name == 'CI':
         if len(option) == 0:
           continue
       elif option == DEFAULT_SUMMARY_OPTIONS[name]:
