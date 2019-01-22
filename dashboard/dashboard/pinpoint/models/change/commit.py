@@ -103,8 +103,13 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
           self.repository_url, self.git_hash)
       url = self.repository_url + '/+/' + commit_info['commit']
       author = commit_info['author']['email']
+      commit_time = commit_info['committer']['time']
+
+      if commit_time.endswith('+0000'):
+        commit_time = commit_time[:-5].strip()
       created = datetime.datetime.strptime(
-          commit_info['committer']['time'], '%a %b %d %H:%M:%S %Y')
+          commit_time, '%a %b %d %H:%M:%S %Y')
+
       subject = commit_info['message'].split('\n', 1)[0]
       message = commit_info['message']
 
