@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c7fa34e4_5375c07a",
+        "filename": "dashboard/dashboard/api/new_bug.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-01-22T16:32:31Z",
+      "side": 1,
+      "message": "Please file a bug for that so we know all the \"must do right after launch\" things.",
+      "range": {
+        "startLine": 24,
+        "startChar": 6,
+        "endLine": 24,
+        "endChar": 10
+      },
+      "revId": "e05f1e99bf6601b0450414891343b117b966fc9b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
