@@ -19,7 +19,12 @@ import (
 	"os"
 	"reflect"
 	"sync"
+
+	"github.com/golang/protobuf/proto"
+	"github.com/catapult-project/catapult/web_page_replay_go/src/autofill"
 )
+
+const AutofillTypePredictionQuery = "https://clients1.google.com/tbproxy/af/query?"
 
 var ErrNotFound = errors.New("not found")
 
@@ -206,8 +211,9 @@ func (a *Archive) FindRequest(req *http.Request) (*http.Request, *http.Response,
 	assertCompleteURL(req.URL)
 	reqUrl := req.URL.String()
 
-	if len(hostMap[reqUrl]) > 0 {
-		return a.findBestMatchInArchivedRequestSet(req, hostMap[reqUrl])
+	if reqUrl == AutofillTypePredictionQuery &&
+		req.Header.Get("Content-Type") == "text/proto" {
+		return findChromeAutofillQueryRequest(req, hostMap[reqUrl])
 	}
 
 	// For all URLs with a matching path, pick the URL that has the most matching query parameters.
@@ -320,6 +326,47 @@ func (a *Archive) findBestMatchInArchivedRequestSet(
 	}
 
 	return nil, nil, ErrNotFound
+}
+
+// Find a matching Chrome Autofill Server Prediction query in the archive.
+func findChromeAutofillQueryRequest(
+		incomingReq *http.Request, archivedReqs []*ArchivedRequest) (
+			*http.Request, *http.Response, error) {
+	scheme := incomingReq.URL.Scheme
+	data, errParse := parseChromeAutofillQueryContentData(incomingReq)
+	if errParse != nil {
+		log.Println("Error deserializing Chrome Autofill query content data!")
+		return nil, nil, errParse
+	}
+
+	for _, archivedReq := range archivedReqs {
+		curReq, curResp, errMarshal := archivedReq.unmarshal(scheme)
+		if errMarshal != nil {
+			continue
+		}
+		archivedData, errParse := parseChromeAutofillQueryContentData(curReq)
+		if errParse != nil {
+			continue
+		}
+		if reflect.DeepEqual(data, archivedData) {
+			return curReq, curResp, nil
+		}
+	}
+	return nil, nil, ErrNotFound
+}
+
+// Deserialize the body of a Chrome Autofill Server Prediction query from wire format to a query object.
+func parseChromeAutofillQueryContentData(req *http.Request) (
+		*autofill.AutofillQueryContents, error) {
+	body, err := ioutil.ReadAll(req.Body)
+	req.Body.Close()
+	if err != nil {
+		log.Println("Error reading Chrome Autofill query content data!")
+		return nil, err
+	}
+	data := &autofill.AutofillQueryContents{}
+	err = proto.Unmarshal(body, data)
+	return data, err
 }
 
 type AddMode int
