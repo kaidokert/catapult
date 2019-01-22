@@ -467,6 +467,7 @@ tr.exportTo('tr.metrics.sh', function() {
             rendererHelper, navIdToNavStartEvents);
     const firstViewportReadySamples = getFirstViewportReadySamples(
         rendererHelper);
+
     // {jankFraction, cumulativeScore, maxDistance};
     const jankInfo = getLastJankSamples(rendererHelper);
     const jankScoreSamples = [];
@@ -482,11 +483,14 @@ tr.exportTo('tr.metrics.sh', function() {
       firstContentfulPaintSamples,
       firstContentfulPaintCpuTimeSamples,
       onLoadSamples,
+<<<<<<< HEAD
       aboveTheFoldLoadedToVisibleSamples,
       firstViewportReadySamples,
+=======
       jankScoreSamples,
       jankMaxDistanceSamples,
       jankFractionSamples
+>>>>>>> 27b46f736... [FCP++] Variation study [NOT_FOR_LANDING]
     };
   }
 
@@ -671,53 +675,72 @@ tr.exportTo('tr.metrics.sh', function() {
   }
 
   function loadingMetric(histograms, model) {
-    const firstPaintHistogram = histograms.createHistogram(
-        'timeToFirstPaint', timeDurationInMs_smallerIsBetter, [], {
-          binBoundaries: LOADING_METRIC_BOUNDARIES,
-          description: 'time to first paint',
+    try {
+      const firstPaintHistogram = histograms.createHistogram(
+          'timeToFirstPaint', timeDurationInMs_smallerIsBetter, [], {
+            binBoundaries: LOADING_METRIC_BOUNDARIES,
+            description: 'time to first paint',
+            summaryOptions: SUMMARY_OPTIONS,
+          });
+      const firstContentfulPaintHistogram = histograms.createHistogram(
+          'timeToFirstContentfulPaint', timeDurationInMs_smallerIsBetter, [], {
+            binBoundaries: LOADING_METRIC_BOUNDARIES,
+            description: 'time to first contentful paint',
+            summaryOptions: SUMMARY_OPTIONS,
+          });
+      const firstContentfulPaintCpuTimeHistogram = histograms.createHistogram(
+          'cpuTimeToFirstContentfulPaint', timeDurationInMs_smallerIsBetter, [], {
+            binBoundaries: LOADING_METRIC_BOUNDARIES,
+            description: 'CPU time to first contentful paint',
+            summaryOptions: SUMMARY_OPTIONS,
+          });
+      const onLoadHistogram = histograms.createHistogram(
+          'timeToOnload', timeDurationInMs_smallerIsBetter, [], {
+            binBoundaries: LOADING_METRIC_BOUNDARIES,
+            description: 'time to onload. ' +
+              'This is temporary metric used for PCv1/v2 sanity checking',
+            summaryOptions: SUMMARY_OPTIONS,
+          });
+      const firstMeaningfulPaintHistogram = histograms.createHistogram(
+          'timeToFirstMeaningfulPaint', timeDurationInMs_smallerIsBetter, [], {
+            binBoundaries: LOADING_METRIC_BOUNDARIES,
+            description: 'time to first meaningful paint',
+            summaryOptions: SUMMARY_OPTIONS,
+          });
+      const firstMeaningfulPaintCpuTimeHistogram = histograms.createHistogram(
+          'cpuTimeToFirstMeaningfulPaint', timeDurationInMs_smallerIsBetter, [], {
+            binBoundaries: LOADING_METRIC_BOUNDARIES,
+            description: 'CPU time to first meaningful paint',
+            summaryOptions: SUMMARY_OPTIONS,
+          });
+      const timeToInteractiveHistogram = histograms.createHistogram(
+          'timeToInteractive', timeDurationInMs_smallerIsBetter, [], {
+            binBoundaries: TIME_TO_INTERACTIVE_BOUNDARIES,
+            description: 'Time to Interactive',
+            summaryOptions: SUMMARY_OPTIONS,
+          });
+      const timeToFirstCpuIdleHistogram = histograms.createHistogram(
+          'timeToFirstCpuIdle', timeDurationInMs_smallerIsBetter, [], {
+            binBoundaries: TIME_TO_INTERACTIVE_BOUNDARIES,
+            description: 'Time to First CPU Idle',
+            summaryOptions: SUMMARY_OPTIONS,
+          });
+      const jankScoreHistogram = histograms.createHistogram(
+        'layoutJank_score', unitlessNumber_smallerIsBetter, [], {
+          binBoundaries: JANK_SCORE_BOUNDARIES,
+          description: 'Layout Jank Score',
           summaryOptions: SUMMARY_OPTIONS,
         });
-    const firstContentfulPaintHistogram = histograms.createHistogram(
-        'timeToFirstContentfulPaint', timeDurationInMs_smallerIsBetter, [], {
-          binBoundaries: LOADING_METRIC_BOUNDARIES,
-          description: 'time to first contentful paint',
+      const jankMaxDistanceHistogram = histograms.createHistogram(
+        'layoutJank_maxDistance', unitlessNumber_smallerIsBetter, [], {
+          binBoundaries: JANK_MAX_DISTANCE_BOUNDARIES,
+          description: 'Layout Jank Max Move Distance',
           summaryOptions: SUMMARY_OPTIONS,
         });
-    const firstContentfulPaintCpuTimeHistogram = histograms.createHistogram(
-        'cpuTimeToFirstContentfulPaint', timeDurationInMs_smallerIsBetter, [], {
-          binBoundaries: LOADING_METRIC_BOUNDARIES,
-          description: 'CPU time to first contentful paint',
-          summaryOptions: SUMMARY_OPTIONS,
-        });
-    const onLoadHistogram = histograms.createHistogram(
-        'timeToOnload', timeDurationInMs_smallerIsBetter, [], {
-          binBoundaries: LOADING_METRIC_BOUNDARIES,
-          description: 'time to onload. ' +
-            'This is temporary metric used for PCv1/v2 sanity checking',
-          summaryOptions: SUMMARY_OPTIONS,
-        });
-    const firstMeaningfulPaintHistogram = histograms.createHistogram(
-        'timeToFirstMeaningfulPaint', timeDurationInMs_smallerIsBetter, [], {
-          binBoundaries: LOADING_METRIC_BOUNDARIES,
-          description: 'time to first meaningful paint',
-          summaryOptions: SUMMARY_OPTIONS,
-        });
-    const firstMeaningfulPaintCpuTimeHistogram = histograms.createHistogram(
-        'cpuTimeToFirstMeaningfulPaint', timeDurationInMs_smallerIsBetter, [], {
-          binBoundaries: LOADING_METRIC_BOUNDARIES,
-          description: 'CPU time to first meaningful paint',
-          summaryOptions: SUMMARY_OPTIONS,
-        });
-    const timeToInteractiveHistogram = histograms.createHistogram(
-        'timeToInteractive', timeDurationInMs_smallerIsBetter, [], {
-          binBoundaries: TIME_TO_INTERACTIVE_BOUNDARIES,
-          description: 'Time to Interactive',
-          summaryOptions: SUMMARY_OPTIONS,
-        });
-    const timeToFirstCpuIdleHistogram = histograms.createHistogram(
-        'timeToFirstCpuIdle', timeDurationInMs_smallerIsBetter, [], {
-          binBoundaries: TIME_TO_INTERACTIVE_BOUNDARIES,
-          description: 'Time to First CPU Idle',
+      const jankFractionHistogram = histograms.createHistogram(
+        'layoutJank_jankFraction', unitlessNumber_smallerIsBetter, [], {
+          binBoundaries: JANK_FRACTION_BOUNDARIES,
+          description: 'Layout Jank Jank Fraction',
           summaryOptions: SUMMARY_OPTIONS,
         });
     const aboveTheFoldLoadedToVisibleHistogram = histograms.createHistogram(
@@ -732,49 +755,58 @@ tr.exportTo('tr.metrics.sh', function() {
           description: 'Time from navigation to load for AMP pages only. ',
           summaryOptions: SUMMARY_OPTIONS,
         });
-    const jankScoreHistogram = histograms.createHistogram(
-        'layoutJank_score', unitlessNumber_smallerIsBetter, [], {
-          binBoundaries: JANK_SCORE_BOUNDARIES,
-          description: 'Layout Jank Score',
-          summaryOptions: SUMMARY_OPTIONS,
-        });
-    const jankMaxDistanceHistogram = histograms.createHistogram(
-      'layoutJank_maxDistance', unitlessNumber_smallerIsBetter, [], {
-        binBoundaries: JANK_MAX_DISTANCE_BOUNDARIES,
-        description: 'Layout Jank Max Move Distance',
-        summaryOptions: SUMMARY_OPTIONS,
-      });
-    const jankFractionHistogram = histograms.createHistogram(
-      'layoutJank_jankFraction', unitlessNumber_smallerIsBetter, [], {
-        binBoundaries: JANK_FRACTION_BOUNDARIES,
-        description: 'Layout Jank Jank Fraction',
-        summaryOptions: SUMMARY_OPTIONS,
-      });
 
-    const chromeHelper = model.getOrCreateHelper(
-        tr.model.helpers.ChromeModelHelper);
-    for (const pid in chromeHelper.rendererHelpers) {
-      const rendererHelper = chromeHelper.rendererHelpers[pid];
-      if (rendererHelper.isChromeTracingUI) continue;
+      const chromeHelper = model.getOrCreateHelper(
+          tr.model.helpers.ChromeModelHelper);
+      for (const pid in chromeHelper.rendererHelpers) {
+        const rendererHelper = chromeHelper.rendererHelpers[pid];
+        if (rendererHelper.isChromeTracingUI) continue;
 
-      // jankScoreSamples,
-      // jankMaxDistanceSamples,
-      // jankFractionSamples
+        // jankScoreSamples,
+        // jankMaxDistanceSamples,
+        // jankFractionSamples
+        const samplesSet =
+            collectLoadingMetricsForRenderer(rendererHelper);
 
-      const samplesSet =
-          collectLoadingMetricsForRenderer(rendererHelper);
+        addSamplesToHistogram(
+            samplesSet.firstPaintSamples, firstPaintHistogram, histograms);
+        addSamplesToHistogram(
+            samplesSet.firstContentfulPaintSamples,
+            firstContentfulPaintHistogram,
+            histograms);
+        addSamplesToHistogram(
+            samplesSet.firstContentfulPaintCpuTimeSamples,
+            firstContentfulPaintCpuTimeHistogram,
+            histograms);
+        addSamplesToHistogram(
+            samplesSet.onLoadSamples, onLoadHistogram, histograms);
+        addSamplesToHistogram(
+            samplesSet.jankScoreSamples, jankScoreHistogram, histograms);
+        addSamplesToHistogram(
+            samplesSet.jankMaxDistanceSamples,
+            jankMaxDistanceHistogram,
+            histograms);
+        addSamplesToHistogram(
+            samplesSet.jankFractionSamples,
+            jankFractionHistogram,
+            histograms);
+      }
 
+      const samplesSet = collectMetricsFromLoadExpectations(model, chromeHelper, histograms);
       addSamplesToHistogram(
-          samplesSet.firstPaintSamples, firstPaintHistogram, histograms);
-      addSamplesToHistogram(
-          samplesSet.firstContentfulPaintSamples,
-          firstContentfulPaintHistogram,
+          samplesSet.firstMeaningfulPaintSamples,
+          firstMeaningfulPaintHistogram,
           histograms);
       addSamplesToHistogram(
-          samplesSet.firstContentfulPaintCpuTimeSamples,
-          firstContentfulPaintCpuTimeHistogram,
+          samplesSet.firstMeaningfulPaintCpuTimeSamples,
+          firstMeaningfulPaintCpuTimeHistogram,
           histograms);
       addSamplesToHistogram(
+          samplesSet.interactiveSamples,
+          timeToInteractiveHistogram,
+          histograms);
+      addSamplesToHistogram(
+<<<<<<< HEAD
           samplesSet.onLoadSamples, onLoadHistogram, histograms);
       addSamplesToHistogram(
           samplesSet.aboveTheFoldLoadedToVisibleSamples,
@@ -784,35 +816,14 @@ tr.exportTo('tr.metrics.sh', function() {
           samplesSet.firstViewportReadySamples,
           firstViewportReadyHistogram,
           histograms);
-      addSamplesToHistogram(
-          samplesSet.jankScoreSamples, jankScoreHistogram, histograms);
-      addSamplesToHistogram(
-          samplesSet.jankMaxDistanceSamples,
-          jankMaxDistanceHistogram,
+=======
+          samplesSet.firstCpuIdleSamples,
+          timeToFirstCpuIdleHistogram,
           histograms);
-      addSamplesToHistogram(
-          samplesSet.jankFractionSamples,
-          jankFractionHistogram,
-          histograms);
+    } catch (error) {
+      console.error(error);
+>>>>>>> 27b46f736... [FCP++] Variation study [NOT_FOR_LANDING]
     }
-
-    const samplesSet = collectMetricsFromLoadExpectations(model, chromeHelper, histograms);
-    addSamplesToHistogram(
-        samplesSet.firstMeaningfulPaintSamples,
-        firstMeaningfulPaintHistogram,
-        histograms);
-    addSamplesToHistogram(
-        samplesSet.firstMeaningfulPaintCpuTimeSamples,
-        firstMeaningfulPaintCpuTimeHistogram,
-        histograms);
-    addSamplesToHistogram(
-        samplesSet.interactiveSamples,
-        timeToInteractiveHistogram,
-        histograms);
-    addSamplesToHistogram(
-        samplesSet.firstCpuIdleSamples,
-        timeToFirstCpuIdleHistogram,
-        histograms);
   }
 
   tr.metrics.MetricRegistry.register(loadingMetric);
