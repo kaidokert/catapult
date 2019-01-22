@@ -440,6 +440,7 @@ class HistogramUnittest(unittest.TestCase):
         'nans': True,
         'geometricMean': True,
         'percentile': [0.5, 1],
+        'CI': [0.0, 0.95],
     })
 
     # Test round-tripping summaryOptions
@@ -465,6 +466,10 @@ class HistogramUnittest(unittest.TestCase):
     self.assertEqual(stats['pct_100'].value, 70.5)
     self.assertEqual(stats['geometricMean'].unit, hist.unit)
     self.assertLess(abs(stats['geometricMean'].value - 59.439), 1e-3)
+    self.assertLess(stats['CI_095_lower'].value, stats['avg'].value)
+    self.assertLess(stats['avg'].value, stats['CI_095_upper'].value)
+    self.assertEqual(stats['CI_000_lower'].value, stats['avg'].value)
+    self.assertEqual(stats['CI_000_upper'].value, stats['avg'].value)
 
     hist.CustomizeSummaryOptions({
         'count': False,
@@ -476,6 +481,7 @@ class HistogramUnittest(unittest.TestCase):
         'nans': False,
         'geometricMean': False,
         'percentile': [],
+        'CI': [],
     })
     self.assertEqual(0, len(hist.statistics_scalars))
 
@@ -492,6 +498,7 @@ class HistogramUnittest(unittest.TestCase):
         'nans': True,
         'geometricMean': True,
         'percentile': [0, 0.01, 0.1, 0.5, 0.995, 1],
+        'CI': [0.1, 0.8],
     })
     stats = hist.statistics_scalars
     self.assertEqual(stats['nans'].value, 0)
@@ -507,6 +514,12 @@ class HistogramUnittest(unittest.TestCase):
     self.assertEqual(stats['pct_050'].value, 0)
     self.assertEqual(stats['pct_099_5'].value, 0)
     self.assertEqual(stats['pct_100'].value, 0)
+    self.assertEqual(stats['CI_010_lower'].value, 0)
+    self.assertEqual(stats['CI_010_upper'].value, 0)
+    self.assertEqual(stats['CI_010'].value, 0)
+    self.assertEqual(stats['CI_080_lower'].value, 0)
+    self.assertEqual(stats['CI_080_upper'].value, 0)
+    self.assertEqual(stats['CI_080'].value, 0)
 
   def testSampleValues(self):
     hist0 = histogram.Histogram('', 'unitless', self.TEST_BOUNDARIES)
