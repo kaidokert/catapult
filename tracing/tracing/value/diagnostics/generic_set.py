@@ -74,6 +74,12 @@ class GenericSet(diagnostic.Diagnostic):
     dct['values'] = list(self)
 
   @staticmethod
+  def Deserialize(data, deserializer):
+    if not isinstance(data, list):
+      data = [data]
+    return GenericSet([deserializer.GetObject(i) for i in data])
+
+  @staticmethod
   def FromDict(dct):
     return GenericSet(dct['values'])
 
