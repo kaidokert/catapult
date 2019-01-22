@@ -19,11 +19,13 @@ found in the LICENSE file.
 tr.exportTo('tr.v', function() {
   const MAX_DIAGNOSTIC_MAPS = 16;
 
-  const DEFAULT_SAMPLE_VALUES_PER_BIN = 10;
+  const DEFAULT_SAMPLE_VALUES_PER_BIN = 50;
 
   const DEFAULT_REBINNED_COUNT = 40;
 
   const DEFAULT_BOUNDARIES_FOR_UNIT = new Map();
+
+  const DEFAULT_ITERATION_FOR_BOOTSTRAP_RESAMPLING = 500;
 
   const DELTA = String.fromCharCode(916);
   const Z_SCORE_NAME = 'z-score';
@@ -179,9 +181,11 @@ tr.exportTo('tr.v', function() {
       this.numNans = 0;
       this.running_ = undefined;
       this.sampleValues_ = [];
+      this.sampleMeans_ = [];
       this.summaryOptions = new Map(DEFAULT_SUMMARY_OPTIONS);
       this.summaryOptions.set('percentile', []);
       this.summaryOptions.set('iprs', []);
+      this.summaryOptions.set('CI', []);
       this.unit = unit;
     }
 
@@ -477,6 +481,36 @@ tr.exportTo('tr.v', function() {
           this.numValues + this.numNans, value, this.maxNumSampleValues);
     }
 
+    resampleMean(iterations, percent) {
+      const filteredSamples = this.sampleValues_.
+          filter(value => !isNaN(value));
+      const sampleCount = filteredSamples.length;
+      if (sampleCount === 0 || percent < 0.0 || percent > 1.0) {
+        return [undefined, undefined];
+      } else if (sampleCount === 1) {
+        return [filteredSamples[0], filteredSamples[0]];
+      }
+
+      if (this.sampleMeans_.length !== iterations) {
+        this.sampleMeans_ = [];
+        for (let i = 0; i < iterations; i++) {
+          let tempSum = 0.0;
+          for (let j = 0; j < sampleCount; j++) {
+            tempSum += filteredSamples[Math.floor(
+                Math.random() * sampleCount)];
+          }
+
+          this.sampleMeans_.push(tempSum / sampleCount);
+        }
+        this.sampleMeans_.sort((a, b) => a - b);
+      }
+
+      return [
+        this.sampleMeans_[Math.floor(iterations * (0.5 - percent / 2))],
+        this.sampleMeans_[Math.ceil(iterations * (0.5 + percent / 2))],
+      ];
+    }
+
     sampleValuesInto(samples) {
       for (const sampleValue of this.sampleValues) {
         samples.push(sampleValue);
@@ -601,6 +635,11 @@ tr.exportTo('tr.v', function() {
             }
             if (!found) thisIprs.push(ipr);
           }
+        } else if (stat === 'CI') {
+          const CIs = this.summaryOptions.get(stat);
+          for (const CI of option) {
+            if (!CIs.includes(CI)) CIs.push(CI);
+          }
         } else if (option && !this.summaryOptions.get(stat)) {
           this.summaryOptions.set(stat, true);
         }
@@ -651,7 +690,7 @@ tr.exportTo('tr.v', function() {
         if (typeof(this.geometricMean) !== 'number') return undefined;
         return new tr.b.Scalar(this.unit, this.geometricMean);
       }
-      if (statName === 'min' || statName === 'max' || statName === 'sum') {
+      if ('min' === statName || 'max' === statName || 'sum' === statName) {
         if (this.running_ === undefined) {
           this.running_ = new tr.b.math.RunningStatistics();
         }
@@ -672,6 +711,23 @@ tr.exportTo('tr.v', function() {
         const percentile = this.getApproximatePercentile(percent);
         if (typeof(percentile) !== 'number') return undefined;
         return new tr.b.Scalar(this.unit, percentile);
+      }
+      if (statName.substr(0, 3) === 'CI_') {
+        const percent = percentFromString(statName.substr(3, 3));
+        const [lowCI, highCI] = this.resampleMean(
+            DEFAULT_ITERATION_FOR_BOOTSTRAP_RESAMPLING, percent);
+        if (statName.substr(7) === 'lower') {
+          if (typeof(lowCI) !== 'number') return undefined;
+          return new tr.b.Scalar(this.unit, lowCI);
+        } else if (statName.substr(7) === 'upper') {
+          if (typeof(highCI) !== 'number') return undefined;
+          return new tr.b.Scalar(this.unit, highCI);
+        }
+
+        if (typeof(highCI) !== 'number' || typeof(lowCI) !== 'number') {
+          return undefined;
+        }
+        return new tr.b.Scalar(this.unit, highCI - lowCI);
       }
       if (statName.substr(0, 4) === 'ipr_') {
         let lower = percentFromString(statName.substr(4, 3));
@@ -746,6 +802,14 @@ tr.exportTo('tr.v', function() {
             statisticsNames.add(
                 'ipr_' + tr.v.percentToString(range.min, true) +
                 '_' + tr.v.percentToString(range.max, true));
+          }
+        } else if (statName === 'CI') {
+          for (const CIpctile of option) {
+            statisticsNames.add('CI_' + tr.v.percentToString(CIpctile) +
+              '_lower');
+            statisticsNames.add('CI_' + tr.v.percentToString(CIpctile) +
+              '_upper');
+            statisticsNames.add('CI_' + tr.v.percentToString(CIpctile));
           }
         } else if (option) {
           statisticsNames.add(statName);
@@ -842,7 +906,7 @@ tr.exportTo('tr.v', function() {
       const hist = new Histogram(this.name, this.unit, binBoundaries);
       for (const [stat, option] of this.summaryOptions) {
         // Copy arrays, but not ipr Ranges.
-        if (stat === 'percentile' || stat === 'iprs') {
+        if (stat === 'percentile' || stat === 'iprs' || stat === 'CI') {
           hist.summaryOptions.set(stat, Array.from(option));
         } else {
           hist.summaryOptions.set(stat, option);
@@ -874,7 +938,7 @@ tr.exportTo('tr.v', function() {
       }
       for (const [stat, option] of this.summaryOptions) {
         // Copy the array of percentiles.
-        if (stat === 'percentile') {
+        if (stat === 'percentile' || stat === 'CI') {
           rebinned.summaryOptions.set(stat, Array.from(option));
         } else {
           rebinned.summaryOptions.set(stat, option);
@@ -925,6 +989,9 @@ tr.exportTo('tr.v', function() {
           // Use a more compact JSON format than Range supports.
           if (value.length === 0) continue;
           option = value.map(r => [r.min, r.max]);
+        } else if (name === 'CI') {
+          if (value.length === 0) continue;
+          option = Array.from(value);
         } else if (value === DEFAULT_SUMMARY_OPTIONS.get(name)) {
           continue;
         } else {
