@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5fc4001b_bc141c89",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-01-23T01:23:19Z",
+      "side": 1,
+      "message": "Could this change be a standalone CL?",
+      "range": {
+        "startLine": 185,
+        "startChar": 12,
+        "endLine": 186,
+        "endChar": 0
+      },
+      "revId": "6a0a4eed3a4862659a1bd95e4af9bfc2f3c091f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

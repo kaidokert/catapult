@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "34c37f7a_6d232230",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-01-23T01:23:19Z",
+      "side": 0,
+      "message": "new line here is standard python style. I suggest running pylint on this code.",
+      "revId": "fab27dfe460a5f5ef019cb1fe45d3f28f89de709",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
