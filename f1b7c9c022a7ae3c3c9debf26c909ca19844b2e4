@@ -16,6 +16,24 @@
       "revId": "f1b7c9c022a7ae3c3c9debf26c909ca19844b2e4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ce68541_2efc8e24",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-01-23T17:04:04Z",
+      "side": 1,
+      "message": "Good idea, I think moving it might make sense if anybody needs it, will do if that happens. I\u0027m not really clear if this should be part of the ParseISO8601 though, is it the same format?",
+      "parentUuid": "b3e8f6cf_bbfa7654",
+      "revId": "f1b7c9c022a7ae3c3c9debf26c909ca19844b2e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
