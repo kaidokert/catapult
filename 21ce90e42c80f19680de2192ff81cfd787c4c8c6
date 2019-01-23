@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "5177395b_6950162a",
+        "filename": "telemetry/telemetry/page/page_run_end_to_end_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-23T23:48:14Z",
+      "side": 1,
+      "message": "nit: I think the usual style we follow is @decorators.Disabled(\u0027android\u0027), like above in line 159.\n\nI also think we should be using skipTest more, but for the moment let\u0027s try to follow the current convention.",
+      "revId": "21ce90e42c80f19680de2192ff81cfd787c4c8c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9f310273_db61e115",
         "filename": "telemetry/telemetry/page/shared_page_state.py",
         "patchSetId": 1
@@ -19,6 +36,47 @@
         "endLine": 247,
         "endChar": 65
       },
+      "revId": "21ce90e42c80f19680de2192ff81cfd787c4c8c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1e545d5_ed8f47bd",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-23T23:48:14Z",
+      "side": 1,
+      "message": "I only know of android tests that need this; and nobody has complained about problems with other platforms, so keeping `as !\u003d` android sgtm\n\ntiny nit: maybe name the variable as `should_close_last_tab`",
+      "parentUuid": "9f310273_db61e115",
+      "range": {
+        "startLine": 247,
+        "startChar": 9,
+        "endLine": 247,
+        "endChar": 65
+      },
+      "revId": "21ce90e42c80f19680de2192ff81cfd787c4c8c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b82842e_a491286a",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-23T23:48:14Z",
+      "side": 1,
+      "message": "Is this condition right? If I\u0027m reading it correctly (when started_browser \u003d\u003d False and can_close_last_tab \u003d\u003d True), this would attempt to wait for a document on a tab that no longer exists at this point? Or does closing the last tab reopens a new one?\n\nI\u0027m having trouble figuring out how these two conditions interact with each other.",
       "revId": "21ce90e42c80f19680de2192ff81cfd787c4c8c6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
