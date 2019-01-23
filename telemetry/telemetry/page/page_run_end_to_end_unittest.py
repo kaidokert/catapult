@@ -436,6 +436,9 @@ class ActualPageRunEndToEndTests(unittest.TestCase):
   # the second page loads the same url and checks the scroll position to ensure
   # it is at the top.
   def testPageResetWhenBrowserReusedBetweenStories(self):
+    if self.platform.GetOSName() == 'android':
+      self.skipTest('The test is not applicable to android')
+
     class NoClosingBrowserSharedState(shared_page_state.SharedPageState):
       # Simulate what ChromeOS does.
       def ShouldStopBrowserAfterStoryRun(self, s):
