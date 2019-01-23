@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ca6701f1_409b8b86",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-01-23T22:16:36Z",
+      "side": 1,
+      "message": "nit: since we are going to need this again a few lines below, please store it in a variable like \u0027modelHelper\u0027 and use it here and below:\n\nconst modelHelper \u003d model.getOr....\nconst events \u003d getDisplay...(modelHelper);\n...\nif (modelHelper.surfaceFlingerProcess) {\n...",
+      "range": {
+        "startLine": 201,
+        "startChar": 14,
+        "endLine": 201,
+        "endChar": 31
+      },
+      "revId": "e221867c4c3d3f7809dcd60f87ed8303e5c80ba9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
