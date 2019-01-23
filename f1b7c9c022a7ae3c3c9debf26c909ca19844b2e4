@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b3e8f6cf_bbfa7654",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-23T01:11:05Z",
+      "side": 1,
+      "message": "Would it make sense to unify this with api/utils.py:ParseISO8601 and move them to common/utils.py?",
+      "revId": "f1b7c9c022a7ae3c3c9debf26c909ca19844b2e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
