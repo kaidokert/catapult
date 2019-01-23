@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f310273_db61e115",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-01-23T22:45:21Z",
+      "side": 1,
+      "message": "I\u0027m not sure whether this should be \n\n  !\u003d \u0027android\u0027\n\nor  if it should be\n\n  \u003d\u003d \u0027chromeos\u0027\n\nMaybe Juan knows.",
+      "range": {
+        "startLine": 247,
+        "startChar": 9,
+        "endLine": 247,
+        "endChar": 65
+      },
+      "revId": "21ce90e42c80f19680de2192ff81cfd787c4c8c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
