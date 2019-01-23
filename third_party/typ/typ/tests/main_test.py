@@ -34,12 +34,25 @@ if is_python3:  # pragma: python3
 
 d = textwrap.dedent
 
+PASS_TEST_FLAKY_PY = """
+import unittest
+
+_flaky_retry = 0
+class PassFlakyTest(unittest.TestCase):
+    def test_flaky_pass(self):
+        global _flaky_retry
+        if _flaky_retry == 3:
+            return
+        _flaky_retry += 1
+        self.fail()
+"""
 
 PASS_TEST_PY = """
 import unittest
 import time
 
 class PassingTest(unittest.TestCase):
+
     def test_pass(self):
         # Add sleep to make the time assertion in
         # main_test.TestCli.test_write_full_results_to not flaky.
@@ -292,6 +305,8 @@ class TestCli(test_case.MainTestCase):
         }
         self.check(['-X', 'expectations.txt'], files=files, ret=0)
 
+
+
     def test_multiple_expectations_files_do_not_work(self):
         files = {
             'expectations_1.txt': d('''\
@@ -305,13 +320,13 @@ class TestCli(test_case.MainTestCase):
             'fail_test.py': FAIL_TEST_PY,
         }
         # This isn't supported yet.
-        self.check(['-X', 'expectations_1.txt', '-X', 'expectations_2.txt', 
+        self.check(['-X', 'expectations_1.txt', '-X', 'expectations_2.txt',
                     '-x', 'foo'], files=files, ret=1)
 
     def test_expectations_file_has_syntax_error(self):
         files = {
             'expectations.txt': d('''\
-                # tags: [ 
+                # tags: [
                 crbug.com/12345 [ foo ] fail_test.FailingTest.test_fail [ Failure ]
                 '''),
             'fail_test.py': FAIL_TEST_PY,
@@ -798,6 +813,130 @@ class TestCli(test_case.MainTestCase):
                          r'\d+.\d+s\n'
                          r'1 test passed in \d+.\d+s, 0 skipped, 0 failures.'))
 
+    def test_flaky_expectation_flaky_actual_pass(self):
+        files = {'pass_flaky_test.py': PASS_TEST_FLAKY_PY,
+                 'expectations.txt': d("""\
+                  # tags: [ foo bar ]
+                  crbug.com/12345 [ foo ] pass_flaky_test.PassFlakyTest.test_flaky_pass [ Flaky ]
+                """)}
+        _, out, _, files = self.check(['--write-full-results-to',
+                                       'full_results.json',
+                                       '-X', 'expectations.txt',
+                                       '-x', 'foo',
+                                       '--retry-limit-for-flaky-tests', '3'],
+                                      files=files, ret=0, err='')
+        test_name = 'pass_flaky_test.PassFlakyTest.test_flaky_pass'
+        self.assertIn(test_name + ' failed unexpectedly', out)
+        self.assertIn(test_name + ' passed', out)
+        self.assertIn('1 test passed, 0 skipped, 0 failures.\n', out)
+        retry_flaky_test_output = ('Retrying flaky test pass_flaky_test'
+                                   '.PassFlakyTest.test_flaky_pass '
+                                   '(attempt #%d of 3)')
+        self.assertIn(retry_flaky_test_output % 1, out)
+        self.assertIn(retry_flaky_test_output % 2, out)
+        self.assertIn(retry_flaky_test_output % 3, out)
+        results = json.loads(files['full_results.json'])
+        results = results['tests']['pass_flaky_test']['PassFlakyTest']['test_flaky_pass']
+        self.assertEqual(results['actual'], 'FAIL FAIL FAIL PASS')
+        self.assertEqual(results['expected'], 'FLAKY')
+        self.assertNotIn('is_unexpected', results)
+        self.assertNotIn('is_regression', results)
+
+    def test_flaky_expectation_flaky_expected_fail_actual_pass(self):
+        files = {'pass_flaky_test.py': PASS_TEST_FLAKY_PY,
+                 'expectations.txt': d("""\
+                  # tags: [ foo bar ]
+                  crbug.com/12345 [ foo ] pass_flaky_test.PassFlakyTest.test_flaky_pass [ Failure Flaky ]
+                """)}
+        _, out, _, files = self.check(['--write-full-results-to',
+                                       'full_results.json',
+                                       '-X', 'expectations.txt',
+                                       '-x', 'foo',
+                                       '--retry-limit-for-flaky-tests', '3'],
+                                      files=files, ret=0, err='')
+        print out
+        test_name = 'pass_flaky_test.PassFlakyTest.test_flaky_pass'
+        self.assertIn(test_name + ' failed as expected', out)
+        self.assertIn(test_name + ' passed unexpectedly', out)
+        self.assertIn('1 test passed, 0 skipped, 0 failures.\n', out)
+        retry_flaky_test_output = ('Retrying flaky test pass_flaky_test'
+                                   '.PassFlakyTest.test_flaky_pass '
+                                   '(attempt #%d of 3)')
+        self.assertIn(retry_flaky_test_output % 1, out)
+        self.assertIn(retry_flaky_test_output % 2, out)
+        self.assertIn(retry_flaky_test_output % 3, out)
+        results = json.loads(files['full_results.json'])
+        results = (results['tests']['pass_flaky_test']['PassFlakyTest']
+                   ['test_flaky_pass'])
+        self.assertEqual(results['actual'], 'FAIL FAIL FAIL PASS')
+        self.assertEqual(results['expected'], 'FAIL FLAKY')
+        self.assertIn('is_unexpected', results)
+        self.assertNotIn('is_regression', results)
+
+    def test_flaky_expectation_flaky_expected_pass_actual_fail(self):
+        files = {'fail_test.py': FAIL_TEST_PY,
+                 'expectations.txt': d("""\
+                  # tags: [ foo bar ]
+                  crbug.com/12345 [ foo ] fail_test.FailingTest.test_fail [ Flaky ]
+                """)}
+        _, out, _, files = self.check(['--write-full-results-to',
+                                       'full_results.json',
+                                       '-X', 'expectations.txt',
+                                       '-x', 'foo',
+                                       '--retry-limit-for-flaky-tests', '3',
+                                       '--retry-limit', '3'],
+                                      files=files, ret=1, err='')
+        self.assertIn('fail_test.FailingTest.test_fail failed unexpectedly', out)
+        self.assertIn('0 tests passed, 0 skipped, 1 failure.\n', out)
+        retry_flaky_test_output = ('Retrying flaky test fail_test'
+                                   '.FailingTest.test_fail '
+                                   '(attempt #%d of 3)')
+        self.assertIn(retry_flaky_test_output % 1, out)
+        self.assertIn(retry_flaky_test_output % 2, out)
+        self.assertIn(retry_flaky_test_output % 3, out)
+        self.assertIn('Retrying failed tests (attempt #1 of 3)...', out)
+        self.assertIn('Retrying failed tests (attempt #2 of 3)...', out)
+        self.assertIn('Retrying failed tests (attempt #3 of 3)...', out)
+        results = json.loads(files['full_results.json'])
+        results = results['tests']['fail_test']['FailingTest']['test_fail']
+        self.assertEqual(results['actual'], ' '.join(['FAIL']*16))
+        self.assertEqual(results['expected'], 'FLAKY')
+        self.assertIn('is_unexpected', results)
+        self.assertIn('is_regression', results)
+        self.assertEqual(out.count('Retrying flaky'), 12)
+
+    def test_flaky_expectation_flaky_expected_fail_actual_fail(self):
+        files = {'fail_test.py': FAIL_TEST_PY,
+                 'expectations.txt': d("""\
+                  # tags: [ foo bar ]
+                  crbug.com/12345 [ foo ] fail_test.FailingTest.test_fail [ Failure Flaky ]
+                """)}
+        _, out, _, files = self.check(['--write-full-results-to',
+                                       'full_results.json',
+                                       '-X', 'expectations.txt',
+                                       '-x', 'foo',
+                                       '--retry-limit-for-flaky-tests', '3',
+                                       '--retry-limit', '3'],
+                                      files=files, ret=0, err='')
+        self.assertIn('fail_test.FailingTest.test_fail failed as expected', out)
+        self.assertIn('0 tests passed, 0 skipped, 1 failure.\n', out)
+        retry_flaky_test_output = ('Retrying flaky test fail_test'
+                                   '.FailingTest.test_fail '
+                                   '(attempt #%d of 3)')
+        self.assertIn(retry_flaky_test_output % 1, out)
+        self.assertIn(retry_flaky_test_output % 2, out)
+        self.assertIn(retry_flaky_test_output % 3, out)
+        self.assertIn('Retrying failed tests (attempt #1 of 3)...', out)
+        self.assertIn('Retrying failed tests (attempt #2 of 3)...', out)
+        self.assertIn('Retrying failed tests (attempt #3 of 3)...', out)
+        results = json.loads(files['full_results.json'])
+        results = results['tests']['fail_test']['FailingTest']['test_fail']
+        self.assertEqual(results['actual'], ' '.join(['FAIL']*16))
+        self.assertEqual(results['expected'], 'FAIL FLAKY')
+        self.assertNotIn('is_unexpected', results)
+        self.assertNotIn('is_regression', results)
+        self.assertEqual(out.count('Retrying flaky'), 12)
+
     def test_test_results_server(self):
         server = test_result_server_fake.start()
         self.assertNotEqual(server, None, 'could not start fake server')
@@ -860,7 +999,7 @@ class TestCli(test_case.MainTestCase):
                 'crbug.com/23456 skip_test.SkipSetup.test_notrun [ Pass ]\n',
             'skip_test.py': SF_TEST_PY
         }
-        _, out, _, _ = self.check(['-X', 'expectations.txt', 
+        _, out, _, _ = self.check(['-X', 'expectations.txt',
                                    'skip_test.SkipSetup.test_notrun'],
                                    files=files, ret=1, err='')
         self.assertIn('skip_test.SkipSetup.test_notrun was skipped unexpectedly',

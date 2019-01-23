@@ -19,9 +19,10 @@ DEFAULT_LOG_FORMAT = (
 
 
 class SeriallyExecutedBrowserTestCase(unittest.TestCase):
-  def __init__(self, methodName):
+  def __init__(self, methodName, method_args=None):
     super(SeriallyExecutedBrowserTestCase, self).__init__(methodName)
     self._private_methodname = methodName
+    self._private_method_args = method_args
 
   def shortName(self):
     """Returns the method name this test runs, without the package prefix."""
@@ -182,6 +183,16 @@ class SeriallyExecutedBrowserTestCase(unittest.TestCase):
     del finder_options, possible_browser
     return []
 
+  def SetFlakyRetryCount(self, retry_count):
+    pass
+
+  def GetFlakyRetryCount(self):
+    return -1
+
+  @classmethod
+  def ExpectationsFiles(cls):
+    return []
+
 def LoadAllTestsInModule(module):
   """ Load all tests & generated browser tests in a given module.
 
@@ -269,5 +280,5 @@ def GenerateTestCases(test_class, finder_options):
         _ValidateTestMethodname(generated_test_name)
         setattr(test_class, generated_test_name, _GenerateTestMethod(
             based_method, args))
-        test_cases.append(test_class(generated_test_name))
+        test_cases.append(test_class(generated_test_name, args))
   return test_cases
