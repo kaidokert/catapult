@@ -16,6 +16,24 @@
       "revId": "fab27dfe460a5f5ef019cb1fe45d3f28f89de709",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "317d97f0_5800d7ed",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-01-23T02:29:05Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "34c37f7a_6d232230",
+      "revId": "fab27dfe460a5f5ef019cb1fe45d3f28f89de709",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

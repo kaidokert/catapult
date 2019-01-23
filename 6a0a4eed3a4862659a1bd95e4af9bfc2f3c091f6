@@ -22,6 +22,30 @@
       "revId": "6a0a4eed3a4862659a1bd95e4af9bfc2f3c091f6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53097c32_1560bed9",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-01-23T02:29:05Z",
+      "side": 1,
+      "message": "This was done for unit tests. I added this so that I would know what I was going to get in the value of the expected field if multiple expectations were specified in an expectations file. It doesn\u0027t add anything of value outside of that to Typ. So I don\u0027t think it could be a standalone CL.",
+      "parentUuid": "5fc4001b_bc141c89",
+      "range": {
+        "startLine": 185,
+        "startChar": 12,
+        "endLine": 186,
+        "endChar": 0
+      },
+      "revId": "6a0a4eed3a4862659a1bd95e4af9bfc2f3c091f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
