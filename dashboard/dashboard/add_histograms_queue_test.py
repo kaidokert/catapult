@@ -79,10 +79,8 @@ class AddHistogramsQueueTest(testing_common.TestCase):
                    internal_only=False).put()
     test_path = 'Chromium/win7/suite/metric'
     params = [{
-        'data': TEST_HISTOGRAM,
+        'data': [TEST_HISTOGRAM],
         'test_path': test_path,
-        'benchmark_description': None,
-        'revision': 123
     }]
     self.testapp.post('/add_histograms_queue', json.dumps(params))
 
@@ -116,10 +114,8 @@ class AddHistogramsQueueTest(testing_common.TestCase):
   def testPostHistogram_Internal(self):
     test_path = 'Chromium/win7/suite/metric'
     params = [{
-        'data': TEST_HISTOGRAM,
+        'data': [TEST_HISTOGRAM],
         'test_path': test_path,
-        'benchmark_description': None,
-        'revision': 123
     }]
     self.testapp.post('/add_histograms_queue', json.dumps(params))
 
@@ -147,14 +143,8 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     histogram.HistogramRevisionRecord.GetOrCreate(
         utils.TestKey('Chromium/win7/suite'), 1).put()
     params = [{
-        'data': TEST_HISTOGRAM,
+        'data': [TEST_HISTOGRAM],
         'test_path': test_path,
-        'benchmark_description': None,
-        'revision': 123,
-        'diagnostics': {
-            'benchmarks': TEST_BENCHMARKS,
-            'owners': TEST_OWNERS
-        }
     }]
     self.testapp.post('/add_histograms_queue', json.dumps(params))
     histogram_entity = histogram.Histogram.query().fetch()[0]
@@ -165,46 +155,48 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     self.assertEqual(
         '68e5b3bd-829c-4f4f-be3a-98a94279ccf0',
         hist.diagnostics['owners'].guid)
-    telemetry_info_entity = ndb.Key(
-        'SparseDiagnostic', TEST_BENCHMARKS['guid']).get()
-    ownership_entity = ndb.Key(
-        'SparseDiagnostic', TEST_OWNERS['guid']).get()
-    self.assertFalse(telemetry_info_entity.internal_only)
-    self.assertEqual('benchmarks', telemetry_info_entity.name)
-    self.assertFalse(ownership_entity.internal_only)
-    self.assertEqual('owners', ownership_entity.name)
+
+    benchmarks = histogram.SparseDiagnostic.query(
+        histogram.SparseDiagnostic.test == utils.TestKey(test_path),
+        histogram.SparseDiagnostic.name == 'benchmarks',
+        histogram.SparseDiagnostic.end_revision == sys.maxint).get()
+    self.assertFalse(benchmarks.internal_only)
+    self.assertEqual('benchmarks', benchmarks.name)
+
+    ownership = histogram.SparseDiagnostic.query(
+        histogram.SparseDiagnostic.test == utils.TestKey(test_path),
+        histogram.SparseDiagnostic.name == 'owners',
+        histogram.SparseDiagnostic.end_revision == sys.maxint).get()
+    self.assertFalse(ownership.internal_only)
 
   def testPostHistogram_WithSameDiagnostic(self):
     diag_dict = {
         'guid': '05341937-1272-4214-80ce-43b2d03807f9',
-        'values': ['myBenchmark'],
+        'values': ['test'],
         'type': 'GenericSet',
     }
     diag = histogram.SparseDiagnostic(
+        name=reserved_infos.DEVICE_IDS.name,
         data=diag_dict, start_revision=1, end_revision=sys.maxint,
         test=utils.TestKey('Chromium/win7/suite/metric'))
     diag.put()
     histogram.HistogramRevisionRecord.GetOrCreate(
         utils.TestKey('Chromium/win7/suite'), 1).put()
     test_path = 'Chromium/win7/suite/metric'
-    params = [{
-        'data': TEST_HISTOGRAM,
-        'test_path': test_path,
-        'benchmark_description': None,
-        'revision': 123,
-        'diagnostics': {
-            'benchmarks': TEST_BENCHMARKS,
-            'owners': TEST_OWNERS
-        }
-    }]
+    hs = histogram_set.HistogramSet()
+    hs.ImportDict(TEST_HISTOGRAM)
+    hs.GetFirstHistogram().diagnostics[reserved_infos.DEVICE_IDS.name] = \
+        generic_set.GenericSet(['test'])
+
+    params = [{'data': hs.AsDicts(), 'test_path': test_path}]
     self.testapp.post('/add_histograms_queue', json.dumps(params))
     histogram_entity = histogram.Histogram.query().fetch()[0]
     hist = histogram_module.Histogram.FromDict(histogram_entity.data)
     self.assertEqual(
-        TEST_BENCHMARKS['guid'],
-        hist.diagnostics[reserved_infos.BENCHMARKS.name].guid)
+        TEST_BENCHMARKS['values'],
+        list(hist.diagnostics[reserved_infos.BENCHMARKS.name]))
     diagnostics = histogram.SparseDiagnostic.query().fetch()
-    self.assertEqual(len(diagnostics), 3)
+    self.assertEqual(len(diagnostics), 1)
 
   def testPostHistogram_WithDifferentDiagnostic(self):
     diag_dict = {
@@ -221,14 +213,8 @@ class AddHistogramsQueueTest(testing_common.TestCase):
         utils.TestKey('Chromium/win7/suite'), 1).put()
     test_path = 'Chromium/win7/suite/metric'
     params = [{
-        'data': TEST_HISTOGRAM,
+        'data': [TEST_HISTOGRAM],
         'test_path': test_path,
-        'benchmark_description': None,
-        'revision': 123,
-        'diagnostics': {
-            'benchmarks': TEST_BENCHMARKS,
-            'owners': TEST_OWNERS
-        }
     }]
     self.testapp.post('/add_histograms_queue', json.dumps(params))
     histogram_entity = histogram.Histogram.query().fetch()[0]
@@ -237,7 +223,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
         '68e5b3bd-829c-4f4f-be3a-98a94279ccf0',
         hist.diagnostics['owners'].guid)
     diagnostics = histogram.SparseDiagnostic.query().fetch()
-    self.assertEqual(len(diagnostics), 3)
+    self.assertEqual(len(diagnostics), 1)
 
   def testPostHistogram_StoresUnescapedStoryName(self):
     hist = histogram_module.Histogram('hist', 'count')
@@ -246,17 +232,11 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     histograms.AddSharedDiagnosticToAllHistograms(
         reserved_infos.STORIES.name,
         generic_set.GenericSet(['http://unescaped_story']))
+    hist.diagnostics[reserved_infos.POINT_ID.name] = generic_set.GenericSet([
+        123])
 
     test_path = 'Chromium/win7/suite/metric'
-    params = [{
-        'data': hist.AsDict(),
-        'test_path': test_path,
-        'benchmark_description': None,
-        'revision': 123,
-        'diagnostics': {
-            'stories': hist.diagnostics.get('stories').AsDict(),
-        }
-    }]
+    params = [{'data': histograms.AsDicts(), 'test_path': test_path}]
     self.testapp.post('/add_histograms_queue', json.dumps(params))
 
     t = utils.TestKey(test_path).get()
@@ -266,7 +246,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
   def testPostHistogram_OnlyCreatesAvgRowForMemoryBenchmark(self):
     test_path = 'Chromium/win7/memory_desktop/memory:chrome'
     params = [{
-        'data': TEST_HISTOGRAM,
+        'data': [TEST_HISTOGRAM],
         'test_path': test_path,
         'benchmark_description': None,
         'revision': 123
@@ -280,7 +260,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
   def testPostHistogram_SuffixesHistogramName(self):
     test_path = 'Chromium/win7/memory_desktop/memory:chrome/bogus_page'
     params = [{
-        'data': TEST_HISTOGRAM,
+        'data': [TEST_HISTOGRAM],
         'test_path': test_path,
         'benchmark_description': None,
         'revision': 123
@@ -302,7 +282,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     })
 
     params = [{
-        'data': hist.AsDict(),
+        'data': histogram_set.HistogramSet([hist]).AsDicts(),
         'test_path': test_path,
         'revision': 123,
         'benchmark_description': None
@@ -317,7 +297,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     test_path = 'Chromium/win7/v8.browsing_desktop/v8-gc-blah'
 
     params = [{
-        'data': TEST_HISTOGRAM,
+        'data': [TEST_HISTOGRAM],
         'test_path': test_path,
         'revision': 123,
         'benchmark_description': None
@@ -334,10 +314,8 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     test_path = 'Chromium/win7/benchmark/benchmark_total_duration'
 
     params = [{
-        'data': TEST_HISTOGRAM,
+        'data': [TEST_HISTOGRAM],
         'test_path': test_path,
-        'revision': 123,
-        'benchmark_description': None
     }]
     self.testapp.post('/add_histograms_queue', json.dumps(params))
 
@@ -350,10 +328,8 @@ class AddHistogramsQueueTest(testing_common.TestCase):
   def testPostHistogram_CreatesNoLegacyRowsForLegacyTest(self):
     test_path = 'Chromium/win7/blink_perf.dom/foo'
     params = [{
-        'data': TEST_HISTOGRAM,
+        'data': [TEST_HISTOGRAM],
         'test_path': test_path,
-        'benchmark_description': None,
-        'revision': 123
     }]
     self.testapp.post('/add_histograms_queue', json.dumps(params))
 
@@ -363,11 +339,11 @@ class AddHistogramsQueueTest(testing_common.TestCase):
   def testPostHistogram_EmptyCreatesNoTestsOrRowsOrHistograms(self):
     test_path = 'Chromium/win7/blink_perf.dom/foo'
     hist = histogram_module.Histogram('foo', 'count')
+    hist.diagnostics[reserved_infos.POINT_ID.name] = generic_set.GenericSet([
+        123])
     params = [{
-        'data': hist.AsDict(),
+        'data': histogram_set.HistogramSet([hist]).AsDicts(),
         'test_path': test_path,
-        'benchmark_description': None,
-        'revision': 123
     }]
     self.testapp.post('/add_histograms_queue', json.dumps(params))
 
@@ -402,7 +378,8 @@ class AddHistogramsQueueTest(testing_common.TestCase):
         'sum': utils.TestKey('Chromium/win7/suite/metric_sum')
     }
     rows_to_put = add_histograms_queue.CreateRowEntities(
-        TEST_HISTOGRAM, test_key, stat_names_to_test_keys, 123)
+        histogram_module.Histogram.FromDict(TEST_HISTOGRAM), test_key,
+        stat_names_to_test_keys, 123)
     ndb.put_multi(rows_to_put)
 
     rows = graph_data.Row.query().fetch()
@@ -478,7 +455,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
         'count': utils.TestKey('Chromium/win7/suite/metric_count')
     }
     rows = add_histograms_queue.CreateRowEntities(
-        hist.AsDict(), test_key, stat_names_to_test_keys, 123)
+        hist, test_key, stat_names_to_test_keys, 123)
 
     self.assertEqual(4, len(rows))
 
@@ -508,7 +485,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
         'avg': utils.TestKey('Chromium/win7/suite/metric_avg')
     }
     rows = add_histograms_queue.CreateRowEntities(
-        hist.AsDict(), test_key, stat_names_to_test_keys, 123)
+        hist, test_key, stat_names_to_test_keys, 123)
 
     self.assertEqual(2, len(rows))
 
@@ -523,9 +500,9 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     test_key0 = utils.TestKey(test_path0)
     test_key1 = utils.TestKey(test_path1)
     rows_to_put = add_histograms_queue.CreateRowEntities(
-        TEST_HISTOGRAM, test_key0, {}, 123)
+        histogram_module.Histogram.FromDict(TEST_HISTOGRAM), test_key0, {}, 123)
     rows_to_put += add_histograms_queue.CreateRowEntities(
-        TEST_HISTOGRAM, test_key1, {}, 123)
+        histogram_module.Histogram.FromDict(TEST_HISTOGRAM), test_key1, {}, 123)
     ndb.put_multi(rows_to_put)
     rows = graph_data.Row.query().fetch()
     for row in rows:
@@ -535,7 +512,8 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     hist = histogram_module.Histogram('foo', 'count').AsDict()
     test_path = 'Chromium/win7/suite/metric'
     test_key = utils.TestKey(test_path)
-    row = add_histograms_queue.CreateRowEntities(hist, test_key, {}, 123)
+    row = add_histograms_queue.CreateRowEntities(
+        histogram_module.Histogram.FromDict(hist), test_key, {}, 123)
 
     rows = graph_data.Row.query().fetch()
     self.assertEqual(0, len(rows))
@@ -550,7 +528,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
 
     with self.assertRaises(add_histograms_queue.BadRequestError):
       add_histograms_queue.CreateRowEntities(
-          hist, test_key, {}, 123).put()
+          histogram_module.Histogram.FromDict(hist), test_key, {}, 123).put()
 
   def testCreateRowEntities_AddsTraceUri(self):
     test_path = 'Chromium/win7/suite/metric/story'
@@ -558,7 +536,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     hist = copy.deepcopy(TEST_HISTOGRAM)
 
     row = add_histograms_queue.CreateRowEntities(
-        hist, test_key, {}, 123)[0]
+        histogram_module.Histogram.FromDict(hist), test_key, {}, 123)[0]
     row_dict = row.to_dict()
 
     self.assertIn('a_tracing_uri', row_dict)
@@ -572,7 +550,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
         'type': 'GenericSet', 'values': ['stories']}
 
     row = add_histograms_queue.CreateRowEntities(
-        hist, test_key, {}, 123)[0]
+        histogram_module.Histogram.FromDict(hist), test_key, {}, 123)[0]
     row_dict = row.to_dict()
 
     self.assertNotIn('a_tracing_uri', row_dict)
@@ -586,7 +564,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     hist['diagnostics'][reserved_infos.TRACE_URLS.name]['values'] = []
 
     row = add_histograms_queue.CreateRowEntities(
-        hist, test_key, {}, 123)[0]
+        histogram_module.Histogram.FromDict(hist), test_key, {}, 123)[0]
     row_dict = row.to_dict()
 
     self.assertNotIn('a_tracing_uri', row_dict)
