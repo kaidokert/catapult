@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "254420ff_d48cf767",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-01-24T00:08:23Z",
+      "side": 1,
+      "message": "I wasn\u0027t sure what to put here - I think (but not entirely sure) this code is buggy.\n\nI believe the right-hand-side should be \"x86_64\" since (as far as I can tell) that\u0027s a real ABI value. I\u0027m not sure what the valid lib values are (so maybe left-hand-side is not a bug).\n\nI can follow-up to fix if you know the answers, otherwise I\u0027ll file a ticket against the author.",
+      "range": {
+        "startLine": 264,
+        "startChar": 8,
+        "endLine": 264,
+        "endChar": 22
+      },
+      "revId": "eab9c4253e6640e2afdd942a7f960ed28e4cbf4e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
