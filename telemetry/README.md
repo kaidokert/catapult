@@ -16,6 +16,12 @@ and report metrics about it.  The framework abstracts:
 *   Using [Web Page Replay](../web_page_replay_go/README.md) to
     cache real-world websites so they don’t change when used in benchmarks.
 
+## How to run the unit tests
+
+Run
+`catapult/telemetry/bin/run_tests --help`
+and see the usage info at the top.
+
 ## Design Principles
 
 *   Write one performance test that runs on major platforms - Windows, Mac,
