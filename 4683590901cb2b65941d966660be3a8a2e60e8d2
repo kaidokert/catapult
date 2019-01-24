@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "75cb104a_142a3bab",
+        "filename": "dashboard/dashboard/update_dashboard_stats.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-01-24T23:56:49Z",
+      "side": 1,
+      "message": "Get errors on missing index trying to do that, could go ahead and build those but in reality this job when run every day sorting by created and just checking those will be close enough.",
+      "parentUuid": "b686c71e_dca18e82",
+      "revId": "4683590901cb2b65941d966660be3a8a2e60e8d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "382ffc14_01dbec63",
         "filename": "dashboard/dashboard/update_dashboard_stats.py",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2019-01-24T22:50:49Z",
       "side": 1,
       "message": "Why not search until the oldest_job *ended* before start_date?",
+      "revId": "4683590901cb2b65941d966660be3a8a2e60e8d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4959d2f5_b92a6efc",
+        "filename": "dashboard/dashboard/update_dashboard_stats.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-01-24T23:56:49Z",
+      "side": 1,
+      "message": "Wouldn\u0027t that be pretty easy to trip up? A fast running job might start and end before the start date while another on like a webview bot waited days. There\u0027s also some weird infinite running jobs bugs in Pinpoint right now, so hitting super old jobs that are still going isn\u0027t just possible but expected.",
+      "parentUuid": "382ffc14_01dbec63",
       "revId": "4683590901cb2b65941d966660be3a8a2e60e8d2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "444643e2_465724bb",
+        "filename": "dashboard/dashboard/update_dashboard_stats.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-01-24T23:56:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0285ddc0_e3695305",
+      "revId": "4683590901cb2b65941d966660be3a8a2e60e8d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "51c9f628_0857a17a",
         "filename": "dashboard/dashboard/update_dashboard_stats.py",
         "patchSetId": 4
@@ -64,6 +118,24 @@
       "writtenOn": "2019-01-24T22:50:49Z",
       "side": 1,
       "message": "When offset \u003d 0, now - delta(days\u003d-1) \u003d this time tomorrow. Should one of those dashes be a plus?",
+      "revId": "4683590901cb2b65941d966660be3a8a2e60e8d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63ee7b21_79ca7ebe",
+        "filename": "dashboard/dashboard/update_dashboard_stats.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-01-24T23:56:49Z",
+      "side": 1,
+      "message": "Oops, yes, messed that up when I added the offset to backfill. Fixed by changing to the suggestion above anyway.",
+      "parentUuid": "51c9f628_0857a17a",
       "revId": "4683590901cb2b65941d966660be3a8a2e60e8d2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "9fd9b2b9_148cb7a0",
+        "filename": "dashboard/dashboard/update_dashboard_stats.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-01-24T23:56:49Z",
+      "side": 1,
+      "message": "Hmm yeah that could be useful, wonder if I should have a normalizedPercentage version of them all. Might just go add that.",
+      "parentUuid": "c6748211_376f9948",
+      "revId": "4683590901cb2b65941d966660be3a8a2e60e8d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "84a27aad_f74170e9",
         "filename": "dashboard/dashboard/update_dashboard_stats.py",
         "patchSetId": 4
@@ -98,6 +188,24 @@
       "writtenOn": "2019-01-24T22:50:49Z",
       "side": 1,
       "message": "The sum statistic is probably what we want. I\u0027m not sure that count, std, min, max are useful here. Want to disable them? Probably keep avg since I don\u0027t know what add_histograms_queue would do without it.",
+      "revId": "4683590901cb2b65941d966660be3a8a2e60e8d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb12a68c_7767d0dc",
+        "filename": "dashboard/dashboard/update_dashboard_stats.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-01-24T23:56:49Z",
+      "side": 1,
+      "message": "Yeah I\u0027m leary of disabling avg, the rest can go. For sum, should I just go ahead and add a sample for each hit on the benchmark?",
+      "parentUuid": "84a27aad_f74170e9",
       "revId": "4683590901cb2b65941d966660be3a8a2e60e8d2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
