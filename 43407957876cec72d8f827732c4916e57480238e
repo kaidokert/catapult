@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "98cf6dac_477cba7a",
+        "filename": "telemetry/telemetry/testing/run_tests.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-24T21:41:46Z",
+      "side": 1,
+      "message": "I think it actually works by substring matching, so you can pass any portion of the test path (and possibly match multiple tests).",
+      "revId": "43407957876cec72d8f827732c4916e57480238e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
