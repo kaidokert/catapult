@@ -39,6 +39,24 @@
       "revId": "43407957876cec72d8f827732c4916e57480238e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2abe4ae1_29879b81",
+        "filename": "telemetry/telemetry/testing/run_tests.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-01-24T21:56:50Z",
+      "side": 1,
+      "message": "Makes sense. Is there a suggestion in there?\n\nHonestly this is pretty broken:\n\n\n./run_tests testDuplicateRepeatableInteractions \n\nruns both testDuplicateRepeatableInteractions and testDuplicateRepeatableInteractionsInDifferentThreads\n\n\n./run_tests --test-filter\u003dtestDuplicateRepeatableInteractionsInDifferentThreads\n\nruns nothing.\n\n\nSo essentially the usage doc is wrong since \"test_name\" has an inconsistent definition.",
+      "parentUuid": "98cf6dac_477cba7a",
+      "revId": "43407957876cec72d8f827732c4916e57480238e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
