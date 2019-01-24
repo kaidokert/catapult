@@ -124,65 +124,9 @@ class FileBugHandler(request_handler.RequestHandler):
       })
       return
 
-    alert_keys = [ndb.Key(urlsafe=k) for k in urlsafe_keys.split(',')]
-    alerts = ndb.get_multi(alert_keys)
-
-    if not description:
-      description = 'See the link to graphs below.'
-
-    milestone_label = _MilestoneLabel(alerts)
-    if milestone_label:
-      labels.append(milestone_label)
-
     cc = self.request.get('cc')
-
-    http = oauth2_decorator.DECORATOR.http()
-    user_issue_tracker_service = issue_tracker_service.IssueTrackerService(http)
-
-    new_bug_response = user_issue_tracker_service.NewBug(
-        summary, description, labels=labels, components=components, owner=owner,
-        cc=cc)
-    if 'error' in new_bug_response:
-      self.RenderHtml('bug_result.html', {'error': new_bug_response['error']})
-      return
-
-    bug_id = new_bug_response['bug_id']
-    bug_data.Bug(id=bug_id).put()
-
-    for a in alerts:
-      a.bug_id = bug_id
-
-    ndb.put_multi(alerts)
-
-    comment_body = _AdditionalDetails(bug_id, alerts)
-    # Add the bug comment with the service account, so that there are no
-    # permissions issues.
-    dashboard_issue_tracker_service = issue_tracker_service.IssueTrackerService(
-        utils.ServiceAccountHttp())
-    dashboard_issue_tracker_service.AddBugComment(bug_id, comment_body)
-
-    template_params = {'bug_id': bug_id}
-    if all(k.kind() == 'Anomaly' for k in alert_keys):
-      logging.info('Kicking bisect for bug ' + str(bug_id))
-      culprit_rev = _GetSingleCLForAnomalies(alerts)
-      if culprit_rev is not None:
-        _AssignBugToCLAuthor(bug_id, alerts[0], dashboard_issue_tracker_service)
-      else:
-        bisect_result = auto_bisect.StartNewBisectForBug(bug_id)
-        if 'error' in bisect_result:
-          logging.info('Failed to kick bisect for ' + str(bug_id))
-          template_params['bisect_error'] = bisect_result['error']
-        else:
-          logging.info('Successfully kicked bisect for ' + str(bug_id))
-          template_params.update(bisect_result)
-    else:
-      kinds = set()
-      for k in alert_keys:
-        kinds.add(k.kind())
-      logging.info(
-          'Didn\'t kick bisect for bug id %s because alerts had kinds %s',
-          bug_id, list(kinds))
-
+    template_params = FileBug(
+        summary, owner, cc, description, labels, components, urlsafe_keys)
     self.RenderHtml('bug_result.html', template_params)
 
 
@@ -435,3 +379,62 @@ def _AssignBugToCLAuthor(bug_id, alert, service):
             author, message),
         status='Assigned',
         owner=author)
+
+
+def FileBug(summary, owner, cc, description, labels, components, urlsafe_keys):
+  alert_keys = [ndb.Key(urlsafe=k) for k in urlsafe_keys.split(',')]
+  alerts = ndb.get_multi(alert_keys)
+
+  if not description:
+    description = 'See the link to graphs below.'
+
+  milestone_label = _MilestoneLabel(alerts)
+  if milestone_label:
+    labels.append(milestone_label)
+
+  http = oauth2_decorator.DECORATOR.http()
+  user_issue_tracker_service = issue_tracker_service.IssueTrackerService(http)
+
+  new_bug_response = user_issue_tracker_service.NewBug(
+      summary, description, labels=labels, components=components, owner=owner,
+      cc=cc)
+  if 'error' in new_bug_response:
+    return {'error': new_bug_response['error']}
+
+  bug_id = new_bug_response['bug_id']
+  bug_data.Bug(id=bug_id).put()
+
+  for a in alerts:
+    a.bug_id = bug_id
+
+  ndb.put_multi(alerts)
+
+  comment_body = _AdditionalDetails(bug_id, alerts)
+  # Add the bug comment with the service account, so that there are no
+  # permissions issues.
+  dashboard_issue_tracker_service = issue_tracker_service.IssueTrackerService(
+      utils.ServiceAccountHttp())
+  dashboard_issue_tracker_service.AddBugComment(bug_id, comment_body)
+
+  template_params = {'bug_id': bug_id}
+  if all(k.kind() == 'Anomaly' for k in alert_keys):
+    logging.info('Kicking bisect for bug ' + str(bug_id))
+    culprit_rev = _GetSingleCLForAnomalies(alerts)
+    if culprit_rev is not None:
+      _AssignBugToCLAuthor(bug_id, alerts[0], dashboard_issue_tracker_service)
+    else:
+      bisect_result = auto_bisect.StartNewBisectForBug(bug_id)
+      if 'error' in bisect_result:
+        logging.info('Failed to kick bisect for ' + str(bug_id))
+        template_params['bisect_error'] = bisect_result['error']
+      else:
+        logging.info('Successfully kicked bisect for ' + str(bug_id))
+        template_params.update(bisect_result)
+  else:
+    kinds = set()
+    for k in alert_keys:
+      kinds.add(k.kind())
+    logging.info(
+        'Didn\'t kick bisect for bug id %s because alerts had kinds %s',
+        bug_id, list(kinds))
+  return template_params
