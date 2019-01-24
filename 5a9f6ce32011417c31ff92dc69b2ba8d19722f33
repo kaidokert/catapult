@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c430484c_190a11be",
+        "filename": "tracing/tracing/value/histogram.html",
+        "patchSetId": 25
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1307714
+      },
+      "writtenOn": "2019-01-24T20:31:00Z",
+      "side": 1,
+      "message": "This may not be a needed change in the current cl, but it might be interesting to see how the confidence interval changes by increasing this number for a metric. Please let me know how to change the maxSampleValues for one metric (like frame_times), and I can run an experiment locally.",
+      "parentUuid": "985d408e_33149f08",
+      "revId": "5a9f6ce32011417c31ff92dc69b2ba8d19722f33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8a5b2035_393f7013",
         "filename": "tracing/tracing/value/histogram.html",
         "patchSetId": 25
@@ -30,6 +48,24 @@
       "writtenOn": "2019-01-24T06:36:44Z",
       "side": 1,
       "message": "Is there any situation where clients should call this method?\nI would expect clients should go through getStatisticScalar. If that sounds right, please mark this method private by appending an underscore: resampleMean_(...).",
+      "revId": "5a9f6ce32011417c31ff92dc69b2ba8d19722f33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e858bcb_723ff6c4",
+        "filename": "tracing/tracing/value/histogram.html",
+        "patchSetId": 25
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1307714
+      },
+      "writtenOn": "2019-01-24T20:31:00Z",
+      "side": 1,
+      "message": "That\u0027s correct, it should be private",
+      "parentUuid": "8a5b2035_393f7013",
       "revId": "5a9f6ce32011417c31ff92dc69b2ba8d19722f33",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -81,6 +117,24 @@
       "writtenOn": "2019-01-24T06:36:44Z",
       "side": 1,
       "message": "Wikipedia describes several types of schemes.\nhttps://en.wikipedia.org/wiki/Bootstrapping_(statistics)#Types_of_bootstrap_scheme\nWere any other schemes evaluated for comparison?\nIf we have to replace this algorithm later, or add another scheme alongside it like \u0027ci2\u0027, that would be ok, but I\u0027d just like to try to minimize the chances of that as much as is reasonable.",
+      "revId": "5a9f6ce32011417c31ff92dc69b2ba8d19722f33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0fb7cfc3_86e56408",
+        "filename": "tracing/tracing/value/histogram.html",
+        "patchSetId": 25
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 1307714
+      },
+      "writtenOn": "2019-01-24T20:31:00Z",
+      "side": 1,
+      "message": "From the list specified in Wikipedia, what we are adding is \"Estimating the distribution of sample mean\". Reading over other sachems, I can\u0027t think of any of them which currently would be applicable, specially without assuming the distribution of sample values.",
+      "parentUuid": "d86419e4_0c94252d",
       "revId": "5a9f6ce32011417c31ff92dc69b2ba8d19722f33",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
