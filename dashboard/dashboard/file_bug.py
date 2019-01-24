@@ -161,28 +161,8 @@ class FileBugHandler(request_handler.RequestHandler):
         utils.ServiceAccountHttp())
     dashboard_issue_tracker_service.AddBugComment(bug_id, comment_body)
 
-    template_params = {'bug_id': bug_id}
-    if all(k.kind() == 'Anomaly' for k in alert_keys):
-      logging.info('Kicking bisect for bug ' + str(bug_id))
-      culprit_rev = _GetSingleCLForAnomalies(alerts)
-      if culprit_rev is not None:
-        _AssignBugToCLAuthor(bug_id, alerts[0], dashboard_issue_tracker_service)
-      else:
-        bisect_result = auto_bisect.StartNewBisectForBug(bug_id)
-        if 'error' in bisect_result:
-          logging.info('Failed to kick bisect for ' + str(bug_id))
-          template_params['bisect_error'] = bisect_result['error']
-        else:
-          logging.info('Successfully kicked bisect for ' + str(bug_id))
-          template_params.update(bisect_result)
-    else:
-      kinds = set()
-      for k in alert_keys:
-        kinds.add(k.kind())
-      logging.info(
-          'Didn\'t kick bisect for bug id %s because alerts had kinds %s',
-          bug_id, list(kinds))
-
+    template_params = FileBug(
+        bug_id, alert_keys, alerts, dashboard_issue_tracker_service)
     self.RenderHtml('bug_result.html', template_params)
 
 
@@ -435,3 +415,28 @@ def _AssignBugToCLAuthor(bug_id, alert, service):
             author, message),
         status='Assigned',
         owner=author)
+
+
+def FileBug(bug_id, alert_keys, alerts, dashboard_issue_tracker_service):
+  template_params = {'bug_id': bug_id}
+  if all(k.kind() == 'Anomaly' for k in alert_keys):
+    logging.info('Kicking bisect for bug ' + str(bug_id))
+    culprit_rev = _GetSingleCLForAnomalies(alerts)
+    if culprit_rev is not None:
+      _AssignBugToCLAuthor(bug_id, alerts[0], dashboard_issue_tracker_service)
+    else:
+      bisect_result = auto_bisect.StartNewBisectForBug(bug_id)
+      if 'error' in bisect_result:
+        logging.info('Failed to kick bisect for ' + str(bug_id))
+        template_params['bisect_error'] = bisect_result['error']
+      else:
+        logging.info('Successfully kicked bisect for ' + str(bug_id))
+        template_params.update(bisect_result)
+  else:
+    kinds = set()
+    for k in alert_keys:
+      kinds.add(k.kind())
+    logging.info(
+        'Didn\'t kick bisect for bug id %s because alerts had kinds %s',
+        bug_id, list(kinds))
+  return template_params
