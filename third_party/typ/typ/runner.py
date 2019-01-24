@@ -549,13 +549,18 @@ class Runner(object):
 
     def _skip_tests(self, stats, result_set, tests_to_skip):
         for test_input in tests_to_skip:
+            if self.has_expectations:
+                expected_results = (self.expectations.
+                                    expected_results_for(test_input.name))
+            else:
+                expected_results = {ResultType.Skip}
             last = self.host.time()
             stats.started += 1
             self._print_test_started(stats, test_input)
             now = self.host.time()
             result = Result(test_input.name, actual=ResultType.Skip,
                             started=last, took=(now - last), worker=0,
-                            expected=[ResultType.Skip],
+                            expected=list(expected_results),
                             out=test_input.msg)
             result_set.add(result)
             stats.finished += 1
