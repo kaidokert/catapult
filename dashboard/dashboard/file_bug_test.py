@@ -66,15 +66,15 @@ class FileBugTest(testing_common.TestCase):
     testing_common.SetIsInternalUser('foo@chromium.org', False)
     self.SetCurrentUser('foo@chromium.org')
 
-    # Add a fake issue tracker service that we can get call values from.
-    file_bug.issue_tracker_service = mock.MagicMock()
-    self.original_service = file_bug.issue_tracker_service.IssueTrackerService
-    self.service = MockIssueTrackerService
-    file_bug.issue_tracker_service.IssueTrackerService = self.service
+    mits = mock.MagicMock()
+    self.service = mits.IssueTrackerService = MockIssueTrackerService
+    self.PatchObject(file_bug, 'issue_tracker_service', mits)
+
+    self.PatchObject(file_bug.app_identity, 'get_default_version_hostname',
+                     mock.Mock(return_value=''))
 
   def tearDown(self):
     super(FileBugTest, self).tearDown()
-    file_bug.issue_tracker_service.IssueTrackerService = self.original_service
     self.UnsetCurrentUser()
 
   def _AddSampleAlerts(self, master='ChromiumPerf', has_commit_positions=True):
