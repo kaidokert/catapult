@@ -140,6 +140,24 @@
       "revId": "21ce90e42c80f19680de2192ff81cfd787c4c8c6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3071bd98_d85695fa",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-24T00:37:01Z",
+      "side": 1,
+      "message": "sgtm thanks!",
+      "parentUuid": "b27155fd_56016f7d",
+      "revId": "21ce90e42c80f19680de2192ff81cfd787c4c8c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
