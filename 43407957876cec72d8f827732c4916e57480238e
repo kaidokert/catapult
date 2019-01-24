@@ -57,6 +57,24 @@
       "revId": "43407957876cec72d8f827732c4916e57480238e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfb2a0dc_3a408bb8",
+        "filename": "telemetry/telemetry/testing/run_tests.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-01-24T22:00:06Z",
+      "side": 1,
+      "message": "I made some more changes. Let me know what you think.",
+      "parentUuid": "2abe4ae1_29879b81",
+      "revId": "43407957876cec72d8f827732c4916e57480238e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
