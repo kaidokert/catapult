@@ -260,8 +260,8 @@ class ApkHelper(object):
     lib_to_abi = {
         abis.ARM: [abis.ARM, abis.ARM_64],
         abis.ARM_64: [abis.ARM_64],
-        abis.X86: [abis.X86, 'x64'],
-        'x64': ['x64']
+        abis.X86: [abis.X86, abis.X86_64],
+        abis.X86_64: [abis.X86_64]
     }
     try:
       output = set()
