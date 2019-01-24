@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "985d408e_33149f08",
+        "filename": "tracing/tracing/value/histogram.html",
+        "patchSetId": 25
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-24T06:36:44Z",
+      "side": 1,
+      "message": "Why did this change?\nMetrics can already set maxNumSampleValues if they wish.",
+      "revId": "5a9f6ce32011417c31ff92dc69b2ba8d19722f33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a5b2035_393f7013",
+        "filename": "tracing/tracing/value/histogram.html",
+        "patchSetId": 25
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-24T06:36:44Z",
+      "side": 1,
+      "message": "Is there any situation where clients should call this method?\nI would expect clients should go through getStatisticScalar. If that sounds right, please mark this method private by appending an underscore: resampleMean_(...).",
+      "revId": "5a9f6ce32011417c31ff92dc69b2ba8d19722f33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b611328e_4c68527d",
+        "filename": "tracing/tracing/value/histogram.html",
+        "patchSetId": 25
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-24T06:36:44Z",
+      "side": 1,
+      "message": "sample values can also be strings or null or undefined or anything.\n\nfilter(value \u003d\u003e typeof value \u003d\u003d\u003d \u0027number\u0027 \u0026\u0026 !isNaN(value))",
+      "revId": "5a9f6ce32011417c31ff92dc69b2ba8d19722f33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91ff29c3_3816e62a",
+        "filename": "tracing/tracing/value/histogram.html",
+        "patchSetId": 25
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-24T06:36:44Z",
+      "side": 1,
+      "message": "addSample() and addHistogram() should reset this.sampleMeans_ \u003d [] so that this code is re-run if a caller gets CI statistics for a histogram, merges it, then gets the CI statistics again.",
+      "revId": "5a9f6ce32011417c31ff92dc69b2ba8d19722f33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d86419e4_0c94252d",
+        "filename": "tracing/tracing/value/histogram.html",
+        "patchSetId": 25
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-24T06:36:44Z",
+      "side": 1,
+      "message": "Wikipedia describes several types of schemes.\nhttps://en.wikipedia.org/wiki/Bootstrapping_(statistics)#Types_of_bootstrap_scheme\nWere any other schemes evaluated for comparison?\nIf we have to replace this algorithm later, or add another scheme alongside it like \u0027ci2\u0027, that would be ok, but I\u0027d just like to try to minimize the chances of that as much as is reasonable.",
+      "revId": "5a9f6ce32011417c31ff92dc69b2ba8d19722f33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b28c7c5f_29922a6d",
+        "filename": "tracing/tracing/value/histogram.html",
+        "patchSetId": 25
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-24T06:36:44Z",
+      "side": 1,
+      "message": "Please add ci to this jsdoc.",
+      "revId": "5a9f6ce32011417c31ff92dc69b2ba8d19722f33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40601eb7_a43bc524",
+        "filename": "tracing/tracing/value/histogram.html",
+        "patchSetId": 25
+      },
+      "lineNbr": 693,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-24T06:36:44Z",
+      "side": 1,
+      "message": "Why did this change?\nhttps://en.wikipedia.org/wiki/Yoda_conditions",
+      "revId": "5a9f6ce32011417c31ff92dc69b2ba8d19722f33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df3945c1_9c5b6ce5",
+        "filename": "tracing/tracing/value/histogram.html",
+        "patchSetId": 25
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-24T06:36:44Z",
+      "side": 1,
+      "message": "Please use lowercase \u0027ci_\u0027 to be consistent with other statistics. \u0027ipr\u0027 is also an acronym.",
+      "revId": "5a9f6ce32011417c31ff92dc69b2ba8d19722f33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a25da83f_57ceb9f7",
+        "filename": "tracing/tracing/value/histogram.html",
+        "patchSetId": 25
+      },
+      "lineNbr": 718,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-24T06:36:44Z",
+      "side": 1,
+      "message": "There doesn\u0027t seem to be a way for callers to override the iteration count, so it doesn\u0027t seem worthwhile to pass the constant here. resampleMean_() can reference the constant directly. If an option is added to allow callers to override the iteration count, then resampleMean_ can be changed to accept it again.",
+      "revId": "5a9f6ce32011417c31ff92dc69b2ba8d19722f33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a772271_6a73260a",
+        "filename": "tracing/tracing/value/histogram_test.html",
+        "patchSetId": 25
+      },
+      "lineNbr": 611,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-24T06:36:44Z",
+      "side": 1,
+      "message": "Please add \u0027ci_095\u0027 here.",
+      "revId": "5a9f6ce32011417c31ff92dc69b2ba8d19722f33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
