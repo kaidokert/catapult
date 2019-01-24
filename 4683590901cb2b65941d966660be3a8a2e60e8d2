@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b686c71e_dca18e82",
+        "filename": "dashboard/dashboard/update_dashboard_stats.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-24T22:50:49Z",
+      "side": 1,
+      "message": "All these conditions look like they can be moved into the query, no?",
+      "revId": "4683590901cb2b65941d966660be3a8a2e60e8d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "382ffc14_01dbec63",
+        "filename": "dashboard/dashboard/update_dashboard_stats.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-24T22:50:49Z",
+      "side": 1,
+      "message": "Why not search until the oldest_job *ended* before start_date?",
+      "revId": "4683590901cb2b65941d966660be3a8a2e60e8d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0285ddc0_e3695305",
+        "filename": "dashboard/dashboard/update_dashboard_stats.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-24T22:50:49Z",
+      "side": 1,
+      "message": "Let\u0027s name these start_date, end_date so it can re-use end_date when computing the commit_position for _CreateHistogramSet?\n\nend_date \u003d datetime.datetime.now() - datetime.timedelta(days\u003doffset)\nstart_date \u003d end_date - datetime.timedelta(days\u003d1)\ncommit_pos \u003d int(time.mktime(end_date.timetuple()))",
+      "revId": "4683590901cb2b65941d966660be3a8a2e60e8d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51c9f628_0857a17a",
+        "filename": "dashboard/dashboard/update_dashboard_stats.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-24T22:50:49Z",
+      "side": 1,
+      "message": "When offset \u003d 0, now - delta(days\u003d-1) \u003d this time tomorrow. Should one of those dashes be a plus?",
+      "revId": "4683590901cb2b65941d966660be3a8a2e60e8d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6748211_376f9948",
+        "filename": "dashboard/dashboard/update_dashboard_stats.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-24T22:50:49Z",
+      "side": 1,
+      "message": "Would it be useful to also record pass divided by total as a normalizedPercentage?",
+      "revId": "4683590901cb2b65941d966660be3a8a2e60e8d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84a27aad_f74170e9",
+        "filename": "dashboard/dashboard/update_dashboard_stats.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-24T22:50:49Z",
+      "side": 1,
+      "message": "The sum statistic is probably what we want. I\u0027m not sure that count, std, min, max are useful here. Want to disable them? Probably keep avg since I don\u0027t know what add_histograms_queue would do without it.",
+      "revId": "4683590901cb2b65941d966660be3a8a2e60e8d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
