@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bbbccc3e_0062b528",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-01-24T23:20:46Z",
+      "side": 1,
+      "message": "This CL includes http://crrev/c/1432645 too",
+      "range": {
+        "startLine": 264,
+        "startChar": 8,
+        "endLine": 264,
+        "endChar": 34
+      },
+      "revId": "ab0bb28719285ebd43709be6ae408c17f491e3ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
