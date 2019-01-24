@@ -122,6 +122,31 @@ class UpdateDashboardStatsTest(test.TestCase):
       mock.MagicMock(side_effect=commit.NonLinearError))
   @mock.patch.object(
       update_dashboard_stats.deferred, 'defer')
+  @mock.patch.object(
+      update_dashboard_stats, '_ProcessPinpointJobs',
+      mock.MagicMock(side_effect=_FakeTasklet))
+  def testPost_ProcessPinpointStats_Success(self, mock_defer):
+    created = datetime.datetime.now() - datetime.timedelta(hours=12)
+    self._CreateJob(
+        'aaaaaaaa', 'bbbbbbbb', job_state.PERFORMANCE, created, 12345)
+    anomaly_entity = anomaly.Anomaly(
+        test=utils.TestKey('M/B/S'), bug_id=12345, timestamp=created)
+    anomaly_entity.put()
+
+    self.testapp.get('/update_dashboard_stats')
+    self.assertTrue(mock_defer.called)
+
+  @mock.patch.object(
+      update_dashboard_stats, '_ProcessAlerts',
+      mock.MagicMock(side_effect=_FakeTasklet))
+  @mock.patch.object(
+      update_dashboard_stats, '_ProcessPinpointStats',
+      mock.MagicMock(side_effect=_FakeTasklet))
+  @mock.patch.object(
+      change_module.Change, 'Midpoint',
+      mock.MagicMock(side_effect=commit.NonLinearError))
+  @mock.patch.object(
+      update_dashboard_stats.deferred, 'defer')
   def testPost_ProcessPinpoint_Success(self, mock_defer):
     created = datetime.datetime.now() - datetime.timedelta(days=1)
     self._CreateJob(
@@ -138,6 +163,9 @@ class UpdateDashboardStatsTest(test.TestCase):
       mock.MagicMock(side_effect=httplib.HTTPException))
   @mock.patch.object(
       update_dashboard_stats, '_ProcessAlerts',
+      mock.MagicMock(side_effect=_FakeTasklet))
+  @mock.patch.object(
+      update_dashboard_stats, '_ProcessPinpointStats',
       mock.MagicMock(side_effect=_FakeTasklet))
   @mock.patch.object(
       change_module.Change, 'Midpoint',

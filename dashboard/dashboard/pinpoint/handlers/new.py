@@ -71,8 +71,15 @@ def _ArgumentsWithConfiguration(original_arguments):
   else:
     new_arguments = {}
 
+  print configuration
+  print new_arguments
+
   # Override the configuration arguments with the API-provided arguments.
   new_arguments.update(original_arguments)
+
+  print
+  print 'new arguments:'
+  print new_arguments
 
   return new_arguments
 
