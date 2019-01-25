@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b4f22650_6d680a4e",
+        "filename": "dashboard/dashboard/api/existing_bug.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-01-25T22:29:36Z",
+      "side": 1,
+      "message": "You can\u0027t just call into associate alerts with the keys and bug_id?",
+      "range": {
+        "startLine": 19,
+        "startChar": 25,
+        "endLine": 19,
+        "endChar": 34
+      },
+      "revId": "a95e87bad8c826dcbebd014b07b4fac5102c52e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
