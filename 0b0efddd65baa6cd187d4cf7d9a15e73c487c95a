@@ -1,0 +1,141 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d60c2a4_91894e7f",
+        "filename": "dashboard/dashboard/update_dashboard_stats.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-25T20:45:46Z",
+      "side": 1,
+      "message": "I\u0027m still confused about why this sorts by created but filters by updated. It seems like it should sort by updated and not look at created at all. Want to VC?",
+      "range": {
+        "startLine": 148,
+        "startChar": 55,
+        "endLine": 148,
+        "endChar": 62
+      },
+      "revId": "0b0efddd65baa6cd187d4cf7d9a15e73c487c95a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1ff1292_c0f7bd4f",
+        "filename": "dashboard/dashboard/update_dashboard_stats.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-25T20:45:46Z",
+      "side": 1,
+      "message": "Any reason not to record normalized rates per-benchmark?",
+      "revId": "0b0efddd65baa6cd187d4cf7d9a15e73c487c95a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbb3f766_5607c9ea",
+        "filename": "dashboard/dashboard/update_dashboard_stats.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-25T20:45:46Z",
+      "side": 1,
+      "message": "Bigger is better for pass, smaller is better for norepro and fail?",
+      "range": {
+        "startLine": 221,
+        "startChar": 33,
+        "endLine": 221,
+        "endChar": 38
+      },
+      "revId": "0b0efddd65baa6cd187d4cf7d9a15e73c487c95a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05a8746f_c126f99d",
+        "filename": "dashboard/dashboard/update_dashboard_stats.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-25T20:45:46Z",
+      "side": 1,
+      "message": "Pass summary options here, too?",
+      "revId": "0b0efddd65baa6cd187d4cf7d9a15e73c487c95a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "549d1bf3_2138447c",
+        "filename": "dashboard/dashboard/update_dashboard_stats.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-25T20:45:46Z",
+      "side": 1,
+      "message": "Pass summary options here, too?\nMaybe disable sum for normalized histograms?",
+      "revId": "0b0efddd65baa6cd187d4cf7d9a15e73c487c95a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd5dd3b0_f270508d",
+        "filename": "dashboard/dashboard/update_dashboard_stats.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-25T20:45:46Z",
+      "side": 1,
+      "message": "\u0027n%\u0027 unit?\nBigger is better for pass, smaller is better for norepro and fail?",
+      "range": {
+        "startLine": 232,
+        "startChar": 49,
+        "endLine": 232,
+        "endChar": 54
+      },
+      "revId": "0b0efddd65baa6cd187d4cf7d9a15e73c487c95a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d9e6e61_a7957e14",
+        "filename": "dashboard/dashboard/update_dashboard_stats.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-25T20:45:46Z",
+      "side": 1,
+      "message": "If zero pinpoint jobs finished on a particular day, then this will raise ZeroDivisionError.",
+      "revId": "0b0efddd65baa6cd187d4cf7d9a15e73c487c95a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
