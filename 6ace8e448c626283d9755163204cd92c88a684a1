@@ -108,6 +108,30 @@
     },
     {
       "key": {
+        "uuid": "82845b82_16129cbe",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-01-25T23:36:13Z",
+      "side": 1,
+      "message": "I looked into the SSH return codes. If the SSH command succeeds, by default its return code is the return code of the command it is executing.\n\nIf p.returncode \u003d\u003d 0, the command executed by the SSH command passed.\nIf p.returncode !\u003d 0, either the SSH command failed or the command executed by the SSH command failed.\nIf p.returncode \u003c 0, the abs(returncode) is the signal that killed the child process.",
+      "parentUuid": "0175e1be_29e43d21",
+      "range": {
+        "startLine": 257,
+        "startChar": 6,
+        "endLine": 258,
+        "endChar": 20
+      },
+      "revId": "6ace8e448c626283d9755163204cd92c88a684a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "05a6d139_d61d8a14",
         "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
         "patchSetId": 6
