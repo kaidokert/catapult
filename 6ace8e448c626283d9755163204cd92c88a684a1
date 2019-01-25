@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a2d33807_d9080a71",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-01-25T19:28:37Z",
+      "side": 1,
+      "message": "This is still remote invocation. You need to ssh into the VM/device and run:\n/usr/local/telemetry/src/third_party/catapult/telemetry/bin/run_tests CrOSInterfaceTest.testStartCmdOnDevice\n\nYou will of course need to update local files on the device in \nusr/local/telemetry/src/third_party/catapult/telemetry/",
+      "revId": "6ace8e448c626283d9755163204cd92c88a684a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05a6d139_d61d8a14",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-01-25T19:28:37Z",
+      "side": 1,
+      "message": "Should you check for p.returncode before calling wait?",
+      "revId": "6ace8e448c626283d9755163204cd92c88a684a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
