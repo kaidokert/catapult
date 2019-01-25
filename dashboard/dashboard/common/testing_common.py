@@ -136,6 +136,11 @@ class TestCase(unittest.TestCase):
         user_id=user_id,
         overwrite=True)
 
+  def PatchObject(self, obj, prop, value):
+    patch = mock.patch.object(obj, prop, value)
+    patch.start()
+    self.addCleanup(patch.stop)
+
   def SetCurrentUserOAuth(self, user):
     patch = mock.patch.object(oauth, 'get_current_user', mock.Mock(
         return_value=user))
