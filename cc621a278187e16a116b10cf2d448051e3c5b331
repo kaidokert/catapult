@@ -16,6 +16,40 @@
       "revId": "cc621a278187e16a116b10cf2d448051e3c5b331",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9464210d_f47ed2e0",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-25T16:12:32Z",
+      "side": 1,
+      "message": "nit: this name is a bit confusing, why \"All\"? should be just \"StartCmd\"?",
+      "revId": "cc621a278187e16a116b10cf2d448051e3c5b331",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be915291_71518f29",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-25T16:12:32Z",
+      "side": 1,
+      "message": "nit: let\u0027s be explicit with kwargs so we don\u0027t depend on their position, here say: cwd\u003dcwd.",
+      "revId": "cc621a278187e16a116b10cf2d448051e3c5b331",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
