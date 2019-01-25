@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "12ca5c49_0de31477",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-01-25T21:19:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2d33807_d9080a71",
+      "revId": "6ace8e448c626283d9755163204cd92c88a684a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fd807552_c7804394",
         "filename": "telemetry/telemetry/core/cros_interface.py",
         "patchSetId": 6
@@ -30,6 +48,30 @@
       "writtenOn": "2019-01-25T19:40:42Z",
       "side": 1,
       "message": "I think this is a bit scary since the return code may or may not work correctly over SSH. Could you please add some tests to make sure that the return code of the subprocess is the same over ssh as it is locally both for failure return codes and for successful return codes?",
+      "range": {
+        "startLine": 257,
+        "startChar": 6,
+        "endLine": 258,
+        "endChar": 20
+      },
+      "revId": "6ace8e448c626283d9755163204cd92c88a684a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b1be285_cff8d74b",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-01-25T21:19:21Z",
+      "side": 1,
+      "message": "This just returns the subprocess handler. The user has to verify whether or not the command executed with this API has succeeded or failed. I added examples in the testcase.\n\nPlease mark this comment as resolved if there is nothing more to do for this.",
+      "parentUuid": "fd807552_c7804394",
       "range": {
         "startLine": 257,
         "startChar": 6,
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "943cea65_66445595",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-01-25T21:19:21Z",
+      "side": 1,
+      "message": "wait/communicate sets the p.returncode value so checking before wait/communicate isn\u0027t useful.",
+      "parentUuid": "05a6d139_d61d8a14",
+      "revId": "6ace8e448c626283d9755163204cd92c88a684a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "83c8c4d2_0b087655",
         "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
         "patchSetId": 6
@@ -79,6 +139,30 @@
       "revId": "6ace8e448c626283d9755163204cd92c88a684a1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f71fed99_bafaee46",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-01-25T21:19:21Z",
+      "side": 1,
+      "message": "Ah. I didn\u0027t know.\n\nDone.",
+      "parentUuid": "83c8c4d2_0b087655",
+      "range": {
+        "startLine": 170,
+        "startChar": 6,
+        "endLine": 170,
+        "endChar": 30
+      },
+      "revId": "6ace8e448c626283d9755163204cd92c88a684a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
