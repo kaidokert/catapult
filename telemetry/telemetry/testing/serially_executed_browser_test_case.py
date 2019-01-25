@@ -19,9 +19,10 @@ DEFAULT_LOG_FORMAT = (
 
 
 class SeriallyExecutedBrowserTestCase(unittest.TestCase):
-  def __init__(self, methodName):
+  def __init__(self, methodName, method_args=None):
     super(SeriallyExecutedBrowserTestCase, self).__init__(methodName)
     self._private_methodname = methodName
+    self._private_method_args = method_args
 
   def shortName(self):
     """Returns the method name this test runs, without the package prefix."""
@@ -157,14 +158,14 @@ class SeriallyExecutedBrowserTestCase(unittest.TestCase):
     return cls.platform.http_server.UrlOf(file_path)
 
   @classmethod
-  def GenerateTags(cls, finder_options, possible_browser):
+  def GenerateTags(cls, browser_options, possible_browser):
     """This class method is part of the API for all test suites
     that inherit this class. All test suites that override this function
     can use the browser_options and possible_browser parameters to generate
     test expectations file tags.
 
     Args:
-    finder_options are command line arguments parsed using the parser returned
+    browser_options are command line arguments parsed using the parser returned
     from telemetry.internal.browser.possible_browser.BrowserFinderOptions's
     CreateParser class method
 
@@ -179,7 +180,24 @@ class SeriallyExecutedBrowserTestCase(unittest.TestCase):
     Returns:
     A list of test expectations file tags
     """
-    del finder_options, possible_browser
+    del browser_options, possible_browser
+    return []
+
+  def SetFlakyRetryCount(self, retry_count):
+    pass
+
+  def GetFlakyRetryCount(self):
+    return -1
+
+  @classmethod
+  def ExpectationsFiles(cls):
+    """This class method is part of the API for all test suites
+    that inherit this class. All test suites that override this function
+    can return the path's of its test expectations files
+
+    Returns:
+    A list of test expectations file paths
+    """
     return []
 
 def LoadAllTestsInModule(module):
@@ -269,5 +287,5 @@ def GenerateTestCases(test_class, finder_options):
         _ValidateTestMethodname(generated_test_name)
         setattr(test_class, generated_test_name, _GenerateTestMethod(
             based_method, args))
-        test_cases.append(test_class(generated_test_name))
+        test_cases.append(test_class(generated_test_name, args))
   return test_cases

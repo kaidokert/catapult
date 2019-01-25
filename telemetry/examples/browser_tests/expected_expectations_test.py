@@ -3,11 +3,13 @@
 # found in the LICENSE file.
 
 import sys
+import os
 
+from telemetry.core import util
 from telemetry.testing import serially_executed_browser_test_case
 
 
-class GenerateTagsTest(
+class ExpectedExpectations(
     serially_executed_browser_test_case.SeriallyExecutedBrowserTestCase):
 
   @classmethod
@@ -30,6 +32,11 @@ class GenerateTagsTest(
 
   def _RunFailTest(self):
     assert False
+
+  @classmethod
+  def ExpectationsFiles(cls):
+    return [os.path.join(util.GetTelemetryDir(), 'examples', 'browser_tests',
+                         'expected_expectations.txt')]
 
 def load_tests(loader, tests, pattern):
   del loader, tests, pattern
