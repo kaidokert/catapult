@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c6910119_36087df7",
+        "filename": "tracing/tracing/value/histogram.html",
+        "patchSetId": 29
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-25T05:21:40Z",
+      "side": 1,
+      "message": "I think 3 uses is enough to justify naming a variable\nconst ps \u003d tr.v.percentToString(CIpctile);",
+      "revId": "5c0b1617b7ba1fac2ebdcaebd6957f5fc672a05a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df1bb95a_2e778ace",
+        "filename": "tracing/tracing/value/histogram.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-25T05:21:40Z",
+      "side": 1,
+      "message": "Please name this similar to the JS version like _ResampleMean",
+      "revId": "5c0b1617b7ba1fac2ebdcaebd6957f5fc672a05a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05b34597_ba429c1d",
+        "filename": "tracing/tracing/value/histogram.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 727,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-25T05:21:40Z",
+      "side": 1,
+      "message": "Is it useful to set percent\u003d0 or 1? The JS version says \"Numbers in (0,1)\", which sounds right to me.",
+      "revId": "5c0b1617b7ba1fac2ebdcaebd6957f5fc672a05a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae6c9fd1_6c4416fa",
+        "filename": "tracing/tracing/value/histogram.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 728,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-25T05:21:40Z",
+      "side": 1,
+      "message": "Move this to after filtering the sample values like in the JS version.",
+      "revId": "5c0b1617b7ba1fac2ebdcaebd6957f5fc672a05a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e9f7fff_60309cc7",
+        "filename": "tracing/tracing/value/histogram.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 743,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-25T05:21:40Z",
+      "side": 1,
+      "message": "I think random.choice(filtered_samples) should work here?",
+      "revId": "5c0b1617b7ba1fac2ebdcaebd6957f5fc672a05a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
