@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ff35da23_c67829c6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-01-25T19:16:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a122868_cdc7dd7a",
+      "revId": "cc621a278187e16a116b10cf2d448051e3c5b331",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9464210d_f47ed2e0",
         "filename": "telemetry/telemetry/core/cros_interface.py",
         "patchSetId": 4
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "3691acf7_6185ef3a",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-01-25T19:16:22Z",
+      "side": 1,
+      "message": "The above function is GetAllCmdOutput so named this function similarly.\n\nAnyways, renamed to StartCmd.",
+      "parentUuid": "9464210d_f47ed2e0",
+      "revId": "cc621a278187e16a116b10cf2d448051e3c5b331",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "be915291_71518f29",
         "filename": "telemetry/telemetry/core/cros_interface.py",
         "patchSetId": 4
@@ -50,6 +86,24 @@
       "revId": "cc621a278187e16a116b10cf2d448051e3c5b331",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f51721a0_5130b235",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-01-25T19:16:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be915291_71518f29",
+      "revId": "cc621a278187e16a116b10cf2d448051e3c5b331",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
