@@ -2,23 +2,34 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-import datetime
-import urllib
-
 from google.appengine.datastore import datastore_query
-from google.appengine.ext import ndb
 
 from dashboard import alerts
 from dashboard.api import api_request_handler
-from dashboard.api import utils
+from dashboard.api import utils as api_utils
 from dashboard.common import request_handler
+from dashboard.common import utils
 from dashboard.models import anomaly
 from dashboard.models import report_template
-
+from dashboard.services import issue_tracker_service
 
 
 class AlertsHandler(api_request_handler.ApiRequestHandler):
   """API handler for various alert requests."""
+
+  def _AllowAnonymous(self):
+    return True
+
+  def _RecentBugs(self):
+    if not utils.IsValidSheriffUser():
+      raise api_request_handler.BadRequestError(
+          'Only chromium.org accounts may query recent bugs')
+    http = utils.ServiceAccountHttp()  # TODO use self._AuthorizedHttp()
+    issue_tracker = issue_tracker_service.IssueTrackerService(http)
+    response = issue_tracker.List(
+        q='opened-after:today-5', label='Type-Bug-Regression,Performance',
+        sort='-id')
+    return {'bugs': response.get('items', [])}
 
   def _CheckUser(self):
     pass
@@ -38,21 +49,22 @@ class AlertsHandler(api_request_handler.ApiRequestHandler):
     response = {}
     try:
       if len(args) == 0:
-        is_improvement = utils.ParseBool(self.request.get(
+        is_improvement = api_utils.ParseBool(self.request.get(
             'is_improvement', None))
-        recovered = utils.ParseBool(self.request.get('recovered', None))
+        recovered = api_utils.ParseBool(self.request.get('recovered', None))
         start_cursor = self.request.get('cursor', None)
         if start_cursor:
           start_cursor = datastore_query.Cursor(urlsafe=start_cursor)
-        min_timestamp = utils.ParseISO8601(self.request.get(
+
+        min_timestamp = api_utils.ParseISO8601(self.request.get(
             'min_timestamp', None))
-        max_timestamp = utils.ParseISO8601(self.request.get(
+        max_timestamp = api_utils.ParseISO8601(self.request.get(
             'max_timestamp', None))
 
-        test_keys = []
-        for template_id in self.request.get_all('report'):
-          test_keys.extend(report_template.TestKeysForReportTemplate(
-              template_id))
+        test_keys = [test_key
+                     for template_id in self.request.get_all('report')
+                     for test_key in report_template.TestKeysForReportTemplate(
+                         template_id)]
 
         try:
           alert_list, next_cursor, _ = anomaly.Anomaly.QueryAsync(
@@ -80,54 +92,10 @@ class AlertsHandler(api_request_handler.ApiRequestHandler):
           response['next_cursor'] = next_cursor.urlsafe()
       else:
         list_type = args[0]
-        if list_type.startswith('bug_id'):
-          bug_id = list_type.replace('bug_id/', '')
-          raise api_request_handler.BadRequestError(
-              'Please use /api/alerts?bug_id=%s' % bug_id)
-        elif list_type.startswith('keys'):
-          keys = list_type.replace('keys/', '').split(',')
-          raise api_request_handler.BadRequestError(
-              'Please use /api/alerts?key=%s' % keys[0])
-        elif list_type.startswith('rev'):
-          rev = list_type.replace('rev/', '')
-          raise api_request_handler.BadRequestError(
-              'Please use /api/alerts?max_end_revision=%s&min_start_revision=%s'
-              % (rev, rev))
-        elif list_type.startswith('history'):
-          try:
-            days = int(list_type.replace('history/', ''))
-          except ValueError:
-            days = 7
-          cutoff = datetime.datetime.now() - datetime.timedelta(days=days)
-          sheriff_name = self.request.get('sheriff', 'Chromium Perf Sheriff')
-          sheriff_key = ndb.Key('Sheriff', sheriff_name)
-          sheriff = sheriff_key.get()
-          if not sheriff:
-            raise api_request_handler.BadRequestError(
-                'Invalid sheriff %s' % sheriff_name)
-          error = 'Please use /api/alerts?min_timestamp=%s&sheriff=%s' % (
-              urllib.quote(cutoff.isoformat()),
-              urllib.quote(sheriff_name))
-          include_improvements = bool(self.request.get('improvements'))
-          filter_for_benchmark = self.request.get('benchmark')
-          if not include_improvements:
-            error += '&is_improvement=false'
-          if filter_for_benchmark:
-            error += (
-                '&test_suite=' + filter_for_benchmark)
-          raise api_request_handler.BadRequestError(error)
-        else:
-          raise api_request_handler.BadRequestError(
-              'Invalid alert type %s' % list_type)
-    except AssertionError:
-      # The only known assertion is in InternalOnlyModel._post_get_hook when a
-      # non-internal user requests an internal-only entity.
-      raise api_request_handler.BadRequestError('Not found')
+        if list_type == 'recent_bugs':
+          return self._RecentBugs()
     except request_handler.InvalidInputError as e:
       raise api_request_handler.BadRequestError(e.message)
 
-    anomaly_dicts = alerts.AnomalyDicts(
-        [a for a in alert_list if a.key.kind() == 'Anomaly'])
-
-    response['anomalies'] = anomaly_dicts
+    response['anomalies'] = alerts.AnomalyDicts2(alert_list)
     return response

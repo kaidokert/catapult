@@ -1,5 +1,3 @@
-# See dashboard/docs/v2spa.md
-
 runtime: python27
 threadsafe: true
 
@@ -7,6 +5,9 @@ handlers:
 - url: /favicon.ico
   static_files: dashboard/static/favicon.ico
   upload: dashboard/static/favicon.ico
+
+- url: /dashboard/spa
+  static_dir: dashboard/spa/
 
 - url: /
   static_files: dashboard/spa/index.html
@@ -19,9 +20,24 @@ handlers:
   static_files: polymer2/bower_components/\1/\2
   upload: polymer2/bower_components/.*/.*\.(html|js|css)$
 
+- url: /polymer-svg-template.js
+  static_files: ../third_party/polymer-svg-template/polymer-svg-template.js
+  upload: \.\./third_party/polymer-svg-template/polymer-svg-template.js
+
+- url: /idb/idb.js
+  static_files: ../third_party/idb/idb.js
+  upload: \.\./third_party/idb/idb\.js
+
 - url: /redux.min.js
   static_files: redux/redux.min.js
   upload: redux/redux\.min\.js
+
+- url: /gl-matrix-min.js
+  static_files: gl-matrix-min.js
+  upload: gl-matrix-min\.js
+
+- url: /mannwhitneyu
+  static_dir: mannwhitneyu
 
 - url: /tracing/(.*)/(.*\.(html|js|css))$
   static_files: tracing/\1/\2
