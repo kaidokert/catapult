@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d60192aa_821ed084",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-01-25T22:21:29Z",
+      "side": 1,
+      "message": "I can\u0027t easily understand this unit test. Can you make it clearer? Maybe you can also strengthen your assertions. Couldn\u0027t you assert p.returncode \u003d\u003d 0?",
+      "range": {
+        "startLine": 178,
+        "startChar": 11,
+        "endLine": 178,
+        "endChar": 46
+      },
+      "revId": "efdddd94a056aa4416d928345d5a2600d1d27f8f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

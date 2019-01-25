@@ -84,6 +84,30 @@
     },
     {
       "key": {
+        "uuid": "0175e1be_29e43d21",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-01-25T22:21:29Z",
+      "side": 1,
+      "message": "That\u0027s what I was worried about. This type of API is asking to be misused. I can\u0027t approve this implementation. I suspect there are a couple of ways to fix this:\n\n1. See if there\u0027s some way you can make ssh command return returncode of the command that it runs. Maybe some option to the ssh binary?\n\n2. Instead of returning a subprocess handler, return your own wrapper around that handle that provides a returncode attribute that is from the command itself, not the ssh run.",
+      "parentUuid": "6b1be285_cff8d74b",
+      "range": {
+        "startLine": 257,
+        "startChar": 6,
+        "endLine": 258,
+        "endChar": 20
+      },
+      "revId": "6ace8e448c626283d9755163204cd92c88a684a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "05a6d139_d61d8a14",
         "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
         "patchSetId": 6
