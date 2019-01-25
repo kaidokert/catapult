@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "485b4297_463f6a94",
+        "filename": "tracing/tracing/value/histogram.html",
+        "patchSetId": 25
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-25T18:35:58Z",
+      "side": 1,
+      "message": "metrics can assign hist.maxNumSampleValues \u003d some large number, though you should check the default value first either by reading through the source or using the devtools console on a trace or results.html.",
+      "parentUuid": "c430484c_190a11be",
+      "revId": "5a9f6ce32011417c31ff92dc69b2ba8d19722f33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8a5b2035_393f7013",
         "filename": "tracing/tracing/value/histogram.html",
         "patchSetId": 25
