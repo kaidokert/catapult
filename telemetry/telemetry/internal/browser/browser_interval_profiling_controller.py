@@ -3,10 +3,12 @@
 # found in the LICENSE file.
 
 import contextlib
+import logging
 import os
 import shutil
 import tempfile
 import textwrap
+import urllib
 
 from telemetry.internal.util import binary_manager
 from telemetry.util import statistics
@@ -16,27 +18,47 @@ from devil.android.sdk import version_codes
 __all__ = ['BrowserIntervalProfilingController']
 
 class BrowserIntervalProfilingController(object):
-  def __init__(self, possible_browser, process_name, periods, frequency):
+  def __init__(self, possible_browser, process_name, periods, frequency,
+               profiler_options):
     process_name, _, thread_name = process_name.partition(':')
     self._process_name = process_name
     self._thread_name = thread_name
     self._periods = periods
     self._frequency = statistics.Clamp(int(frequency), 1, 4000)
     self._platform_controller = None
+    self._profiler_options = profiler_options
     if periods:
       self._platform_controller = self._CreatePlatformController(
-          possible_browser)
+          possible_browser, process_name, thread_name, profiler_options)
 
   @staticmethod
-  def _CreatePlatformController(possible_browser):
+  def _CreatePlatformController(possible_browser, process_name, thread_name,
+                                profiler_options):
     os_name = possible_browser._platform_backend.GetOSName()
-    if os_name == 'linux':
-      possible_browser.AddExtraBrowserArg('--no-sandbox')
-      return _LinuxController(possible_browser)
-    elif os_name == 'android' and (
-        possible_browser._platform_backend.device.build_version_sdk >=
-        version_codes.NOUGAT):
-      return _AndroidController(possible_browser)
+    if os_name == 'linux' or os_name == 'android':
+      if profiler_options is not None:
+        raise Exception(
+            'Additional arguments to the profiler is not supported on %s'
+            % os_name)
+      if process_name == 'system_wide':
+        raise Exception(
+            'System-wide profiling is not supported on %s' % os_name)
+      if os_name == 'linux':
+        possible_browser.AddExtraBrowserArg('--no-sandbox')
+        return _LinuxController(possible_browser)
+      elif os_name == 'android' and (
+          possible_browser._platform_backend.device.build_version_sdk >=
+          version_codes.NOUGAT):
+        return _AndroidController(possible_browser)
+    elif os_name == 'chromeos':
+      if process_name != 'system_wide':
+        raise Exception(
+            'Only system-wide profiling is supported on ChromeOS.'
+            ' Got process name %s' % process_name)
+      if thread_name != '':
+        raise Exception(
+            'Thread name should be empty. Got thread name %s' % thread_name)
+      return _ChromeOSController(possible_browser, profiler_options)
     return None
 
   @contextlib.contextmanager
@@ -50,7 +72,8 @@ class BrowserIntervalProfilingController(object):
         action_runner=action_runner,
         process_name=self._process_name,
         thread_name=self._thread_name,
-        frequency=self._frequency):
+        frequency=self._frequency,
+        profiler_options=self._profiler_options):
       yield
 
   def GetResults(self, page_name, file_safe_name, results):
@@ -207,4 +230,92 @@ class _AndroidController(_PlatformController):
         local_file = fh.name
         fh.close()
         self._device.PullFile(device_file, local_file)
+    self._device_results = []
+
+
+class _ChromeOSController(_PlatformController):
+  PERF_BINARY_PATH = '/usr/bin/perf'
+  DEVICE_OUT_FILE_PATTERN = '/tmp/%s-perf.data'
+  DEVICE_KPTR_FILE = '/proc/sys/kernel/kptr_restrict'
+  def __init__(self, possible_browser, profiler_options):
+    super(_ChromeOSController, self).__init__()
+    if profiler_options is None:
+      raise Exception('Profiler options must be provided to run the linux perf'
+                      ' tool on ChromeOS')
+    self._platform_backend = possible_browser._platform_backend
+    # Default to system-wide profile collection as only system-wide profiling
+    # is supported in ChromeOS.
+    self._perf_command = ([self.PERF_BINARY_PATH]
+                          + profiler_options.split() + ['-a'])
+    self._PrepareHostForProfiling()
+    self._ValidatePerfCommand()
+    self._device_results = []
+
+  def _PrepareHostForProfiling(self):
+    # Update DEVICE_KPTR_FILE file with the 0 value to make kernel mappings
+    # available to the user.
+    data = self._platform_backend.GetFileContents(self.DEVICE_KPTR_FILE)
+    if data.strip() != '0':
+      self._platform_backend.PushContents('0', self.DEVICE_KPTR_FILE)
+
+  def _ValidatePerfCommand(self):
+    if '-o' in self._perf_command:
+      raise Exception(
+          'Cannot pass the output filename flag in the profiler options.'
+          ' Got perf command %s' % ' '.join(self._perf_command))
+
+    if '--' in self._perf_command:
+      raise Exception(
+          'Cannot pass a command to run in the profiler options.'
+          ' Got perf command %s' % ' '.join(self._perf_command))
+
+    p = self._platform_backend.StartCommand(
+        self._perf_command + ['-o', '/dev/null', '-- touch /tmp/temp'])
+
+    p.communicate()
+
+    if p.returncode < 0:
+      raise Exception('Perf command validation failed.'
+                      ' Got perf command %s' % self._perf_command)
+
+  def _KillPerfProcess(self, platform_backend):
+    pidof_line = platform_backend.RunCommand(
+        ['pidof', self.PERF_PATH]).strip()
+    pidof_lines = pidof_line.split()
+    if not pidof_lines:
+      raise Exception('Could not get pid of the running perf process.')
+    platform_backend.RunCommand(['kill', '-s', 'SIGTERM', pidof_lines[0]])
+
+  @contextlib.contextmanager
+  def SamplePeriod(self, period, action_runner, **_):
+    out_file = self.DEVICE_OUT_FILE_PATTERN % period
+    platform_backend = action_runner.tab.browser._platform_backend
+    ssh_process = platform_backend.StartCommand(
+        self._perf_command + ['-o', out_file])
+    try:
+      yield
+    except Exception as story_run_exc: # pylint: disable=broad-except
+      try:
+        self._KillPerfProcess(platform_backend)
+      except Exception as kill_perf_exc: # pylint: disable=broad-except
+        logging.error('_KillPerfProcess raised exception: %s("%s")'
+                      % type(kill_perf_exc), kill_perf_exc.message)
+      finally:
+        raise story_run_exc
+    self._killPerfProcess(platform_backend)
+    ssh_process.wait()
+    self._device_results.append((period, out_file))
+
+  def GetResults(self, page_name, _, results):
+    # Benchmark and story names are delimited by "@@" and ends with "@@". These
+    # can derived from the .perf.data filename.
+    file_safe_name = (urllib.quote(results.telemetry_info.benchmark_name)
+                      + "@@" + urllib.quote(page_name) + "@@")
+    for period, device_file in self._device_results:
+      prefix = '%s-%s-' % (file_safe_name, period)
+      with results.CreateArtifact(
+          page_name, 'perf', prefix=prefix, suffix='.perf.data') as fh:
+        local_file = fh.name
+        fh.close()
+        self._platform_backend.GetFile(device_file, local_file)
     self._device_results = []
