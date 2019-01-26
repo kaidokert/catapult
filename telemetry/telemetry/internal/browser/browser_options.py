@@ -175,7 +175,7 @@ class BrowserFinderOptions(optparse.Values):
         'used.')
     parser.add_option_group(group)
 
-    # CPU profiling on Android.
+    # CPU profiling on Android/Linux.
     group = optparse.OptionGroup(parser, (
         'CPU profiling over intervals of interest, '
         'Android and Linux only'))
@@ -185,20 +185,21 @@ class BrowserFinderOptions(optparse.Values):
         help='Run the CPU profiler on this process/thread (default=%default).')
     group.add_option(
         '--interval-profiling-period', dest='interval_profiling_periods',
-        type='choice', choices=('navigation', 'interactions'), action='append',
-        default=[], metavar='PERIOD',
+        type='choice',
+        choices=('navigation', 'interactions', 'whole_story_run'),
+        action='append', default=[], metavar='PERIOD',
         help='Run the CPU profiler during this test period. '
         'May be specified multiple times; available choices '
-        'are ["navigation", "interactions"]. Profile data will be written to'
-        'artifacts/*.perf.data (Android) or artifacts/*.profile.pb (Linux) '
-        'files in the output directory. See '
+        'are ["navigation", "interactions", "whole_story_run"]. Profile data '
+        'will be written to artifacts/*.perf.data (Android) or '
+        'artifacts/*.profile.pb (Linux) files in the output directory. See '
         'https://developer.android.com/ndk/guides/simpleperf for more info on '
         'Android profiling via simpleperf.')
     group.add_option(
         '--interval-profiling-frequency', default=1000, metavar='FREQUENCY',
         type=int,
         help='Frequency of CPU profiling samples, in samples per second '
-        '(default=%default).')
+        '(default=%default). This flag is used only on Android')
     parser.add_option_group(group)
 
     # Browser options.
