@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2167e334_6fa1eea7",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-01-26T00:56:04Z",
+      "side": 1,
+      "message": "pylint didn\u0027t complain. Added a blank line for consistency.",
+      "parentUuid": "f163da36_85e7735b",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 1
+      },
+      "revId": "07d6c0b27e6cd97df463b24df4942bc7da1e59c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0f11bd43_48cb8f06",
         "filename": "telemetry/telemetry/core/cros_interface.py",
         "patchSetId": 9
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "f2948f71_f21cadfb",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-01-26T00:56:04Z",
+      "side": 1,
+      "message": "pylint didn\u0027t complain. Added a blank line for consistency.",
+      "parentUuid": "0f11bd43_48cb8f06",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 1
+      },
+      "revId": "07d6c0b27e6cd97df463b24df4942bc7da1e59c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a237c6e4_11f0abb1",
         "filename": "telemetry/telemetry/internal/platform/cros_platform_backend.py",
         "patchSetId": 9
@@ -68,6 +116,30 @@
       "revId": "07d6c0b27e6cd97df463b24df4942bc7da1e59c1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94202541_e19a5b40",
+        "filename": "telemetry/telemetry/internal/platform/cros_platform_backend.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-01-26T00:56:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a237c6e4_11f0abb1",
+      "range": {
+        "startLine": 75,
+        "startChar": 29,
+        "endLine": 75,
+        "endChar": 31
+      },
+      "revId": "07d6c0b27e6cd97df463b24df4942bc7da1e59c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
