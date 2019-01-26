@@ -4,10 +4,6 @@
 */
 'use strict';
 tr.exportTo('cp', () => {
-  class PlaceHolder extends Polymer.Element {
-    static get is() { return 'place-holder'; }
-  }
-
-  customElements.define(PlaceHolder.is, PlaceHolder);
-  return {PlaceHolder};
+  return {
+  };
 });
