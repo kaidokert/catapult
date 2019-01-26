@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9c55dd40_fbca332b",
+        "filename": "telemetry/telemetry/testing/run_tests_unittest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-01-26T01:06:06Z",
+      "side": 1,
+      "message": "This helper function is unused and should be removed. It doesn\u0027t look like it\u0027s needed in the same way that browser_test_runner_unittest.py needs it.",
+      "revId": "f806577fc815dba4cf85a3a91fb52f7294c07f37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
