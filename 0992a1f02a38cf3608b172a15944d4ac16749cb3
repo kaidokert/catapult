@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44df1062_5bdc98a5",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1144939
+      },
+      "writtenOn": "2019-01-26T03:20:01Z",
+      "side": 1,
+      "message": "quiet arg should be documented?",
+      "revId": "0992a1f02a38cf3608b172a15944d4ac16749cb3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecd1fd16_0001ebfe",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1144939
+      },
+      "writtenOn": "2019-01-26T03:20:01Z",
+      "side": 1,
+      "message": "There are no comments here, so this is unclear - if poll() exited, the process must have already terminated, so p.kill() is not needed and p.returncode must be set?",
+      "revId": "0992a1f02a38cf3608b172a15944d4ac16749cb3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "607bb414_cf2c142b",
+        "filename": "telemetry/telemetry/internal/browser/system_wide_profiling_controller.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1144939
+      },
+      "writtenOn": "2019-01-26T03:20:01Z",
+      "side": 1,
+      "message": "2019",
+      "revId": "0992a1f02a38cf3608b172a15944d4ac16749cb3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
