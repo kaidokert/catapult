@@ -3,9 +3,18 @@
    found in the LICENSE file.
 */
 'use strict';
-
 tr.exportTo('cp', () => {
-  const ReduxMixin = PolymerRedux(Redux.createSimpleStore());
+  const ReduxMixin = PolymerRedux(Redux.createSimpleStore({
+    devtools: {
+      // Do not record changes automatically when in a production environment.
+      shouldRecordChanges: !window.IS_PRODUCTION,
+
+      // Increase the maximum number of actions stored in the history tree. The
+      // oldest actions are removed once maxAge is reached. It's critical for
+      // performance.
+      maxAge: 75,
+    },
+  }));
 
   /*
    * This base class mixes Polymer.Element with Polymer-Redux and provides
@@ -18,16 +27,20 @@ tr.exportTo('cp', () => {
       this.debounceJobs_ = new Map();
     }
 
+    _add() {
+      let sum = arguments[0];
+      for (const arg of Array.from(arguments).slice(1)) {
+        sum += arg;
+      }
+      return sum;
+    }
+
     isEqual_() {
       const test = arguments[0];
       for (const arg of Array.from(arguments).slice(1)) {
         if (arg !== test) return false;
       }
       return true;
-    }
-
-    plural_(count, pluralSuffix = 's', singularSuffix = '') {
-      return cp.plural(count, pluralSuffix, singularSuffix);
     }
 
     lengthOf_(seq) {
@@ -45,6 +58,10 @@ tr.exportTo('cp', () => {
 
     isEmpty_(seq) {
       return this.lengthOf_(seq) === 0;
+    }
+
+    _plural(num) {
+      return num === 1 ? '' : 's';
     }
 
     /**
@@ -80,9 +97,9 @@ tr.exportTo('cp', () => {
         ...Redux.DEFAULT_REDUCER_WRAPPERS,
       ]);
     }
+    cp.timeActions(subclass);
+    cp.timeEventListeners(subclass);
   };
 
-  return {
-    ElementBase,
-  };
+  return {ElementBase};
 });

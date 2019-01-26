@@ -10,7 +10,6 @@ found in the LICENSE file.
 <link rel="import" href="/dashboard/spa/element-base.html">
 <link rel="import" href="/dashboard/spa/expand-button.html">
 <link rel="import" href="/dashboard/spa/scalar-span.html">
-<link rel="import" href="/dashboard/spa/utils.html">
 
 <dom-module id="alerts-table">
   <template>
@@ -21,22 +20,10 @@ found in the LICENSE file.
         width: 300px;
       }
 
-      :host {
-        --min-table-height: 122px;
-        --non-table-height: 483px;
-      }
-
       #scroll {
-        max-height: calc(100vh - var(--non-table-height));
         margin: 0;
         overflow-y: auto;
         overflow-x: hidden;
-      }
-
-      @media screen and (max-height: calc(var(--min-table-height) + var(--non-table-height))) {
-        #scroll {
-          max-height: var(--min-table-height);
-        }
       }
 
       table {
@@ -44,7 +31,7 @@ found in the LICENSE file.
         width: 100%;
       }
 
-      table[is-placeholder] {
+      table[placeholder] {
         color: var(--neutral-color-dark, grey);
       }
 
@@ -64,6 +51,10 @@ found in the LICENSE file.
 
       tbody tr:hover {
         background: #eee;
+      }
+
+      td.black {
+        color: var(--foreground-color, black);
       }
 
       td:last-child {
@@ -98,8 +89,8 @@ found in the LICENSE file.
     </template>
 
     <template is="dom-if" if="[[!allTriaged_(alertGroups, showingTriaged)]]">
-      <div id="scroll">
-        <table is-placeholder$="[[areAlertGroupsPlaceholders]]">
+      <div id="scroll" style$="max-height: [[getTableHeightPx_()]]px;">
+        <table placeholder$="[[areAlertGroupsPlaceholders]]">
           <thead>
             <tr>
               <th>
@@ -137,7 +128,7 @@ found in the LICENSE file.
               <template is="dom-if" if="[[showBugColumn]]">
                 <th>
                   <column-head
-                      name="bugId"
+                      name="bug"
                       sort-column="[[sortColumn]]"
                       sort-descending="[[sortDescending]]"
                       disabled="[[areAlertGroupsPlaceholders]]"
@@ -149,7 +140,7 @@ found in the LICENSE file.
 
               <th>
                 <column-head
-                    name="startRevision"
+                    name="revisions"
                     sort-column="[[sortColumn]]"
                     sort-descending="[[sortDescending]]"
                     disabled="[[areAlertGroupsPlaceholders]]"
@@ -219,7 +210,7 @@ found in the LICENSE file.
 
               <th>
                 <column-head
-                    name="deltaValue"
+                    name="delta"
                     sort-column="[[sortColumn]]"
                     sort-descending="[[sortDescending]]"
                     disabled="[[areAlertGroupsPlaceholders]]"
@@ -230,7 +221,7 @@ found in the LICENSE file.
 
               <th>
                 <column-head
-                    name="percentDeltaValue"
+                    name="deltaPct"
                     sort-column="[[sortColumn]]"
                     sort-descending="[[sortDescending]]"
                     disabled="[[areAlertGroupsPlaceholders]]"
@@ -245,9 +236,9 @@ found in the LICENSE file.
             <tbody expandedGroup$="[[isExpandedGroup_(alertGroup.isExpanded, alertGroup.triaged.isExpanded)]]">
               <template is="dom-repeat" items="[[alertGroup.alerts]]" as="alert" index-as="alertIndex">
                 <template is="dom-if" if="[[shouldDisplayAlert_(areAlertGroupsPlaceholders, showingTriaged, alertGroup, alertIndex, alertGroup.triaged.isExpanded)]]">
-                  <tr on-click="onRowTap_">
+                  <tr style$="color: [[alert.color]];" on-click="onRowTap_">
 
-                    <td>
+                    <td class="black">
                       <template is="dom-if"
                         if="[[shouldDisplayExpandGroupButton_(alertGroup,
                         alertIndex, showingTriaged, sortColumn, sortDescending)]]">
@@ -258,7 +249,7 @@ found in the LICENSE file.
                     </td>
 
                     <template is="dom-if" if="[[showTriagedColumn]]">
-                      <td>
+                      <td class="black">
                         <template is="dom-if" if="[[shouldDisplayExpandTriagedButton_(showingTriaged, alertGroup, alertIndex, sortColumn, sortDescending)]]">
                           <expand-button state-path="[[statePath]].alertGroups.[[alertGroupIndex]].triaged">
                             [[alertGroup.triaged.count]]
@@ -267,7 +258,7 @@ found in the LICENSE file.
                       </td>
                     </template>
 
-                    <td>
+                    <td class="black">
                       <cp-checkbox
                           checked="[[alert.isSelected]]"
                           disabled="[[areAlertGroupsPlaceholders]]"
@@ -304,27 +295,17 @@ found in the LICENSE file.
                       </a>
                     </td>
 
-                    <td style$="color: [[alert.color]];">
-                      [[breakWords_(alert.testSuite)]]
-                    </td>
-                    <td style$="color: [[alert.color]];">
-                      [[breakWords_(alert.measurement)]]
-                    </td>
+                    <td>[[breakWords_(alert.testSuite)]]</td>
+                    <td>[[breakWords_(alert.measurement)]]</td>
 
                     <template is="dom-if" if="[[showMasterColumn]]">
-                      <td style$="color: [[alert.color]];">
-                        [[alert.master]]
-                      </td>
+                      <td>[[alert.master]]</td>
                     </template>
 
-                    <td style$="color: [[alert.color]];">
-                      [[alert.bot]]
-                    </td>
+                    <td>[[alert.bot]]</td>
 
                     <template is="dom-if" if="[[showTestCaseColumn]]">
-                      <td style$="color: [[alert.color]];">
-                        [[breakWords_(alert.testCase)]]
-                      </td>
+                      <td>[[breakWords_(alert.testCase)]]</td>
                     </template>
 
                     <td>
