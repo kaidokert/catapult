@@ -50,6 +50,36 @@ class RunTestsUnitTest(unittest.TestCase):
   def setUp(self):
     self._test_result = {}
 
+  def _ExtractTestResults(self, test_result):
+    delimiter = test_result['path_delimiter']
+    failures = []
+    successes = []
+    skips = []
+    def _IsLeafNode(node):
+      test_dict = node[1]
+      return ('expected' in test_dict and
+              isinstance(test_dict['expected'], basestring))
+    node_queues = []
+    for t in test_result['tests']:
+      node_queues.append((t, test_result['tests'][t]))
+    while node_queues:
+      node = node_queues.pop()
+      full_test_name, test_dict = node
+      if _IsLeafNode(node):
+        if all(res not in test_dict['expected'].split() for res in
+               test_dict['actual'].split()):
+          failures.append(full_test_name)
+        elif test_dict['actual'] == 'SKIP':
+          skips.append(full_test_name)
+        else:
+          successes.append(full_test_name)
+      else:
+        for k in test_dict:
+          node_queues.append(
+              ('%s%s%s' % (full_test_name, delimiter, k),
+               test_dict[k]))
+    return successes, failures, skips
+
   def _RunUnitWithExpectationFile(self, full_test_name, expectation,
                                   test_tags='foo', extra_args=None,
                                   expected_exit_code=0):
@@ -90,6 +120,18 @@ class RunTestsUnitTest(unittest.TestCase):
                    ['test_pass'])
     self.assertEqual(test_result['actual'], 'SKIP')
     self.assertEqual(test_result['expected'], 'CRASH FAIL SKIP')
+    self.assertNotIn('is_unexpected', test_result)
+    self.assertNotIn('is_regression', test_result)
+
+  @decorators.Disabled('chromeos')  # crbug.com/696553
+  def testSkipTestCmdArgsWithExpectationsFile(self):
+    self._RunUnitWithExpectationFile('unit_tests_test.PassingTest.test_pass',
+                                     'Crash Failure',
+                                     extra_args=['--skip=*test_pass'])
+    test_result = (self._test_result['tests']['unit_tests_test']['PassingTest']
+                   ['test_pass'])
+    self.assertEqual(test_result['actual'], 'SKIP')
+    self.assertEqual(test_result['expected'], 'SKIP')
     self.assertNotIn('is_unexpected', test_result)
     self.assertNotIn('is_regression', test_result)
 
