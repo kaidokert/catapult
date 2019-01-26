@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f163da36_85e7735b",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-01-26T00:16:11Z",
+      "side": 1,
+      "message": "nit: there should be two blank lines before this function. Use pylint to see it.",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 1
+      },
+      "revId": "07d6c0b27e6cd97df463b24df4942bc7da1e59c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f11bd43_48cb8f06",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-01-26T00:16:11Z",
+      "side": 1,
+      "message": "nit: there should be two blank lines before this function. Use pylint to see it.",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 1
+      },
+      "revId": "07d6c0b27e6cd97df463b24df4942bc7da1e59c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a237c6e4_11f0abb1",
+        "filename": "telemetry/telemetry/internal/platform/cros_platform_backend.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-01-26T00:16:11Z",
+      "side": 1,
+      "message": "nit: Should also support: \n\ncwd\u003dNone, quiet\u003dFalse, connect_timeout\u003dNone\n\nI think",
+      "range": {
+        "startLine": 75,
+        "startChar": 29,
+        "endLine": 75,
+        "endChar": 31
+      },
+      "revId": "07d6c0b27e6cd97df463b24df4942bc7da1e59c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
