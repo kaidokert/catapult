@@ -11,6 +11,7 @@ found in the LICENSE file.
 <link rel="import" href="/tracing/metrics/rendering/pipeline.html">
 <link rel="import" href="/tracing/metrics/rendering/pixels.html">
 <link rel="import" href="/tracing/metrics/rendering/queueing_duration.html">
+<link rel="import" href="/tracing/metrics/rendering/scripts.html">
 
 <script>
 'use strict';
@@ -32,6 +33,7 @@ tr.exportTo('tr.metrics.rendering', function() {
       tr.metrics.rendering.addPixelsHistograms(histograms, model, segments);
       tr.metrics.rendering.addQueueingDurationHistograms(
           histograms, model, segments);
+      tr.metrics.rendering.addScriptHistograms(histograms, model, segments);
     }
 
     const uiSegments = chromeHelper.telemetryHelper.uiSegments;
