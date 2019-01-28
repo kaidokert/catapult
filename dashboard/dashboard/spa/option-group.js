@@ -74,8 +74,10 @@ tr.exportTo('cp', () => {
   OptionGroup.State = {
     // Elements of this array look like {
     //   isExpanded, label, options, value, valueLowerCase}.
-    options: options => OptionGroup.groupValues(options.options) || [],
-    optionValues: options => options.options || new Set(),
+    // Most callers build options using groupValues() below.
+    options: options => options.options || [],
+
+    optionValues: options => new Set(),
   };
 
   OptionGroup.RootState = {
