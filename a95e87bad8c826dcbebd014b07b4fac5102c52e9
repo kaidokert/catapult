@@ -22,6 +22,30 @@
       "revId": "a95e87bad8c826dcbebd014b07b4fac5102c52e9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33c789e7_d099e6ef",
+        "filename": "dashboard/dashboard/api/existing_bug.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-28T22:00:04Z",
+      "side": 1,
+      "message": "This only needed to share 3 lines with associate_alerts, but done.",
+      "parentUuid": "b4f22650_6d680a4e",
+      "range": {
+        "startLine": 19,
+        "startChar": 25,
+        "endLine": 19,
+        "endChar": 34
+      },
+      "revId": "a95e87bad8c826dcbebd014b07b4fac5102c52e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
