@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a5631124_a5c34d1a",
+        "filename": "telemetry/telemetry/testing/run_tests_unittest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-01-28T20:31:36Z",
+      "side": 1,
+      "message": "This function is unused in this CL - please remove it.",
+      "range": {
+        "startLine": 53,
+        "startChar": 6,
+        "endLine": 53,
+        "endChar": 25
+      },
+      "revId": "70ab0d5c624dc8bf6f1b608a82fc4d5ec79eb778",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
