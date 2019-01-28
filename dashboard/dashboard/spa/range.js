@@ -6,6 +6,7 @@
 
 export default class Range {
   constructor() {
+    this.isEmpty_ = true;
     this.min_ = undefined;
     this.max_ = undefined;
   }
@@ -16,14 +17,14 @@ export default class Range {
   }
 
   get isEmpty() {
-    return ((this.min_ === undefined) || (this.min_ === null) ||
-            (this.max_ === undefined) || (this.max_ === null));
+    return this.isEmpty_;
   }
 
   addValue(value) {
-    if (this.isEmpty) {
+    if (this.isEmpty_) {
       this.max_ = value;
       this.min_ = value;
+      this.isEmpty_ = false;
       return;
     }
     this.max_ = Math.max(this.max_, value);
@@ -38,24 +39,32 @@ export default class Range {
 
   set min(min) {
     this.min_ = min;
+    this.isEmpty_ = (
+      typeof this.min_ === 'undefined' || this.min_ === null ||
+      typeof this.max_ === 'undefined' || this.max_ === null
+    );
   }
 
   get min() {
-    if (this.isEmpty) return undefined;
+    if (this.isEmpty_) return undefined;
     return this.min_;
   }
 
   get max() {
-    if (this.isEmpty) return undefined;
+    if (this.isEmpty_) return undefined;
     return this.max_;
   }
 
   set max(max) {
     this.max_ = max;
+    this.isEmpty_ = (
+      typeof this.min_ === 'undefined' || this.min_ === null ||
+      typeof this.max_ === 'undefined' || this.max_ === null
+    );
   }
 
   get duration() {
-    if (this.isEmpty) return 0;
+    if (this.isEmpty_) return 0;
     return this.max_ - this.min_;
   }
 
@@ -91,7 +100,7 @@ export default class Range {
   }
 
   toJSON() {
-    if (this.isEmpty) return {isEmpty: true};
+    if (this.isEmpty_) return {isEmpty: true};
     return {
       isEmpty: false,
       max: this.max,
