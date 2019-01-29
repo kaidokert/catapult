@@ -44,6 +44,7 @@ class RequestHandler(webapp2.RequestHandler):
 
   def RenderStaticHtml(self, filename):
     filename = os.path.join(_DASHBOARD_PYTHON_DIR, 'static', filename)
+    logging.info('RenderStaticHtml(%r)', filename)
     contents = open(filename, 'r')
     self.response.out.write(contents.read())
     contents.close()

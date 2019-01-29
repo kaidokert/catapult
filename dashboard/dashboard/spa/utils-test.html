@@ -19,7 +19,7 @@ found in the LICENSE file.
 
 <script>
 'use strict';
-suite('basic tests', function() {
+suite('utils', function() {
   test('setImmutable', function() {
     assert.deepEqual({b: 'c'}, cp.setImmutable(
         {a: []}, '', {b: 'c'}));
@@ -72,13 +72,6 @@ suite('basic tests', function() {
         document.body, document.body));
     assert.isFalse(cp.isElementChildOf(
         document.body.parentElement, document.body));
-
-    const div = document.createElement('div');
-    document.body.appendChild(div);
-    div.root = div.createShadowRoot();
-    const child = document.createElement('div');
-    div.root.appendChild(child);
-    assert.isTrue(cp.isElementChildOf(child, document.body));
   });
 
   test('getActiveElement', function() {
@@ -113,103 +106,6 @@ suite('basic tests', function() {
     assert.isBelow(0, rect.width);
     assert.isBelow(rect.height, larger.height);
     assert.isBelow(rect.width, larger.width);
-  });
-
-  test('authorizationHeaders empty', async function() {
-    window.gapi = undefined;
-    assert.deepEqual([], await cp.authorizationHeaders());
-
-    window.gapi = {};
-    assert.deepEqual([], await cp.authorizationHeaders());
-
-    window.gapi = {
-      auth2: {
-        getAuthInstance() {
-          return undefined;
-        },
-      },
-    };
-    assert.deepEqual([], await cp.authorizationHeaders());
-
-    window.gapi = {
-      auth2: {
-        getAuthInstance() {
-          return {
-            currentUser: {
-              get() {
-                return {
-                  getAuthResponse() {
-                    return {};
-                  },
-                };
-              }
-            },
-          };
-        },
-      },
-    };
-    assert.deepEqual([], await cp.authorizationHeaders());
-    window.gapi = undefined;
-  });
-
-  test('authorizationHeaders success', async function() {
-    window.gapi = {
-      auth2: {
-        getAuthInstance() {
-          return {
-            currentUser: {
-              get() {
-                return {
-                  getAuthResponse() {
-                    return {
-                      expires_at: new Date() + 100,
-                      token_type: 'TYPE',
-                      access_token: 'TOKEN',
-                    };
-                  },
-                };
-              }
-            },
-          };
-        },
-      },
-    };
-    assert.deepEqual([['Authorization', 'TYPE TOKEN']],
-        await cp.authorizationHeaders());
-    window.gapi = undefined;
-  });
-
-  test('authorizationHeaders reload', async function() {
-    window.gapi = {
-      auth2: {
-        getAuthInstance() {
-          return {
-            currentUser: {
-              get() {
-                return {
-                  getAuthResponse() {
-                    return {
-                      expires_at: new Date() - 100,
-                    };
-                  },
-
-                  reloadAuthResponse() {
-                    return {
-                      expires_at: new Date() + 100,
-                      token_type: 'TYPE',
-                      access_token: 'TOKEN',
-                    };
-                  }
-                };
-              }
-            },
-          };
-        },
-      },
-    };
-    assert.deepEqual([['Authorization', 'TYPE TOKEN']],
-        await cp.authorizationHeaders());
-    window.gapi = undefined;
   });
 
   test('sha', async function() {
