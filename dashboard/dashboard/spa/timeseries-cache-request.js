@@ -12,11 +12,6 @@ import ResultChannelSender from './result-channel-sender.js';
 
 async function* raceAllPromises(promises) {
   promises = promises.map((p, id) => {
-    // Promise.race() returns the result from the first promise that resolves,
-    // but it doesn't tell you which promise resolved.
-    // Add an id to both the promise and the result so that the result can be
-    // matched up with its promise so that the promise can be removed from
-    // promises.
     const replacement = p.then(result => {
       return {id, result};
     });
@@ -43,19 +38,19 @@ function normalize(table, columnNames) {
 /**
  * Finds the first index in the array whose value is >= loVal.
  *
- * The key for the search is defined by the getKey. This array must
- * be prearranged such that ary.map(getKey) would also be sorted in
+ * The key for the search is defined by the mapFn. This array must
+ * be prearranged such that ary.map(mapFn) would also be sorted in
  * ascending order.
  *
  * @param {Array} ary An array of arbitrary objects.
- * @param {function():*} getKey Callback that produces a key value
+ * @param {function():*} mapFn Callback that produces a key value
  *     from an element in ary.
  * @param {number} loVal Value for which to search.
  * @return {Number} Offset o into ary where all ary[i] for i <= o
  *     are < loVal, or ary.length if loVal is greater than all elements in
  *     the array.
  */
-function findLowIndexInSortedArray(ary, getKey, loVal) {
+function findLowIndexInSortedArray(ary, mapFn, loVal) {
   if (ary.length === 0) return 1;
 
   let low = 0;
@@ -65,7 +60,7 @@ function findLowIndexInSortedArray(ary, getKey, loVal) {
   let hitPos = -1;
   while (low <= high) {
     i = Math.floor((low + high) / 2);
-    comparison = getKey(ary[i]) - loVal;
+    comparison = mapFn(ary[i]) - loVal;
     if (comparison < 0) {
       low = i + 1; continue;
     } else if (comparison > 0) {
@@ -98,16 +93,6 @@ function mergeObjectArrays(key, merged, ...arrays) {
     }
   }
 }
-
-// A single Timeseries[Cache]Request spans two dimensions: range of numerical
-// revisions, and columns (e.g. avg, stddev, annotations, alert, histogram,
-// etc.). The database may already contain any sections of this 2D data frame.
-// TimeseriesCacheRequest sends multiple requests to the backend for only the
-// missing slices of the data frame that the page requested. The missing slices
-// are represented as TimeseriesSlices. TimeseriesSlice is very similar to
-// TimeseriesRequest, except that it skips the levelOfDetail and deals with
-// columns directly, accepts headers from the caller, and transforms results
-// slightly differently.
 
 class TimeseriesSlice {
   constructor(options) {
@@ -260,6 +245,21 @@ export default class TimeseriesCacheRequest extends CacheRequestBase {
     return await this.readDatabase_();
   }
 
+  createSlice_(columns, revisionRange) {
+    return new TimeseriesSlice({
+      bot: this.bot_,
+      buildType: this.buildType_,
+      columns,
+      headers: this.fetchEvent.request.headers,
+      measurement: this.measurement_,
+      method: this.fetchEvent.request.method,
+      revisionRange,
+      testCase: this.testCase_,
+      testSuite: this.testSuite_,
+      url: this.fetchEvent.request.url,
+    });
+  }
+
   async getSlices_() {
     const cacheResult = await this.cacheResultPromise;
     let availableRangeByCol = new Map();
@@ -297,81 +297,75 @@ export default class TimeseriesCacheRequest extends CacheRequestBase {
     const missingRanges = Range.findDifference(
         this.revisionRange_, availableRange);
 
-    return new Set(missingRanges.map(revisionRange => new TimeseriesSlice({
-      bot: this.bot_,
-      buildType: this.buildType_,
-      columns,
-      headers: this.fetchEvent.request.headers,
-      measurement: this.measurement_,
-      method: this.fetchEvent.request.method,
-      revisionRange,
-      testCase: this.testCase_,
-      testSuite: this.testSuite_,
-      url: this.fetchEvent.request.url,
-    })));
+    return new Set(missingRanges.map(revisionRange =>
+      this.createSlice_(columns, revisionRange)));
   }
 
-  async* generateResults() {
-    const cacheResult = {...await this.cacheResultPromise};
-    let finalResult = cacheResult;
-    let availableRangeByCol = new Map();
-    let mergedData = [];
-    if (cacheResult && cacheResult.data) {
-      mergedData = [...cacheResult.data];
-      availableRangeByCol = cacheResult.availableRangeByCol;
-      delete cacheResult.availableRangeByCol;
-      yield cacheResult;
-    }
+  get generateResults() {
+    return async function* () {
+      const cacheResult = {...await this.cacheResultPromise};
+      let finalResult = cacheResult;
+      let availableRangeByCol = new Map();
+      let mergedData = [];
+      if (cacheResult && cacheResult.data) {
+        mergedData = [...cacheResult.data];
+        availableRangeByCol = cacheResult.availableRangeByCol;
+        delete cacheResult.availableRangeByCol;
+        yield cacheResult;
+      }
 
-    const slices = await this.slicesPromise;
-    const matchingSlices = new Set();
-    await this.findInProgressRequest(async other => {
-      if (other.databaseName_ !== this.databaseName_) return;
+      const slices = await this.slicesPromise;
+      const matchingSlices = new Set();
+      await this.findInProgressRequest(async other => {
+        if (other.databaseName_ !== this.databaseName_) return;
 
-      const otherSlices = await other.slicesPromise;
-      for (const slice of slices) {
-        for (const otherSlice of otherSlices) {
-          const intersection = slice.revisionRange.findIntersection(
-              otherSlice.revisionRange);
-          if (intersection.duration < slice.revisionRange.duration) {
-            continue;
-          }
+        const otherSlices = await other.slicesPromise;
+        for (const slice of slices) {
+          for (const otherSlice of otherSlices) {
+            const intersection = slice.revisionRange.findIntersection(
+                otherSlice.revisionRange);
+            if (intersection.duration < slice.revisionRange.duration) {
+              continue;
+            }
 
-          for (const col of slice.columns) {
-            if (col === 'revision') continue;
-            if (otherSlice.columns.has(col)) {
-              // If a col is already being fetched by an otherSlice, then
-              // don't fetch it.
-              slice.columns.delete(col);
-              matchingSlices.add(otherSlice);
+            for (const col of slice.columns) {
+              if (col === 'revision') continue;
+              if (otherSlice.columns.has(col)) {
+                // If a col is already being fetched by an otherSlice, then
+                // don't fetch it.
+                slice.columns.delete(col);
+                matchingSlices.add(otherSlice);
+              }
+            }
+            // If all cols are already being fetched by an otherSlice, then
+            // don't fetch it.
+            if (slice.columns.size === 1) {
+              slices.delete(slice);
             }
           }
-          // If all cols are already being fetched by an otherSlice, then
-          // don't fetch it.
-          if (slice.columns.size === 1) {
-            slices.delete(slice);
-          }
         }
-      }
-    });
+      });
 
-    const sliceResponses = [];
-    for (const slice of slices) sliceResponses.push(slice.responsePromise);
-    for (const slice of matchingSlices) {
-      sliceResponses.push(slice.responsePromise);
-    }
-
-    for await (const result of raceAllPromises(sliceResponses)) {
-      if (!result || result.error || !result.data || !result.data.length) {
-        continue;
+      const sliceResponses = [];
+      for (const slice of slices) sliceResponses.push(slice.responsePromise);
+      for (const slice of matchingSlices) {
+        sliceResponses.push(slice.responsePromise);
       }
-      mergeObjectArrays('revision', mergedData, result.data.filter(d => (
-        d.revision >= this.revisionRange_.min &&
-        d.revision <= this.revisionRange_.max)));
-      finalResult = {...result, data: mergedData};
-      yield finalResult;
-    }
-    this.scheduleWrite(finalResult);
+
+      for await (const result of raceAllPromises(sliceResponses)) {
+        if (!result || result.error || !result.data || !result.data.length) {
+          continue;
+        }
+        mergeObjectArrays('revision', mergedData, result.data.filter(d => (
+          d.revision >= this.revisionRange_.min &&
+          d.revision <= this.revisionRange_.max)));
+        finalResult = {...result, data: mergedData};
+        yield finalResult;
+      }
+      if (finalResult.data && finalResult.data.length) {
+        this.scheduleWrite(finalResult);
+      }
+    };
   }
 
   async readDatabase_() {
