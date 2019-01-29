@@ -16,11 +16,11 @@ const STORES = [STORE_REPORTS, STORE_METADATA];
 export default class ReportCacheRequest extends CacheRequestBase {
   constructor(fetchEvent) {
     super(fetchEvent);
-    this.parseRequestPromise = this.parseRequest();
+    this.parseRequestPromise = this.parseRequest_();
     this.isTemplateDifferent_ = false;
   }
 
-  async parseRequest() {
+  async parseRequest_() {
     const body = await this.fetchEvent.request.clone().formData();
 
     if (!body.has('id')) throw new Error('Missing template id');
@@ -33,50 +33,64 @@ export default class ReportCacheRequest extends CacheRequestBase {
     this.revisions = body.get('revisions').split(',');
   }
 
-  respond() {
-    this.fetchEvent.respondWith(this.responsePromise.then(jsonResponse));
-    const sender = new ResultChannelSender(this.fetchEvent.request.url);
-    this.fetchEvent.waitUntil(sender.send(this.generateResults()));
+  async sendResults_() {
+    await this.parseRequestPromise;
+    let channelName = this.fetchEvent.request.url;
+    channelName += '?' + new URLSearchParams({
+      id: this.templateId,
+      modified: this.templateModified,
+      revisions: this.revisions.join(','),
+    });
+    const sender = new ResultChannelSender(channelName);
+    await sender.send(this.generateResults());
+    this.onResponded();
   }
 
-  async* generateResults() {
-    await this.parseRequestPromise;
+  respond() {
+    this.fetchEvent.respondWith(this.responsePromise.then(jsonResponse));
+    this.fetchEvent.waitUntil(this.sendResults_());
+  }
 
-    const otherRequest = await this.findInProgressRequest(async other => {
-      try {
-        await other.parseRequestPromise;
-      } catch (invalidOther) {
-        return false;
+  get generateResults() {
+    return async function* () {
+      await this.parseRequestPromise;
+
+      const otherRequest = await this.findInProgressRequest(async other => {
+        try {
+          await other.parseRequestPromise;
+        } catch (invalidOther) {
+          return false;
+        }
+        if (other.templateId !== this.templateId) return false;
+        return (other.revisions.join(',') === this.revisions.join(','));
+      });
+
+      if (otherRequest) {
+        // Be sure to call onComplete() to remove `this` from
+        // IN_PROGRESS_REQUESTS so that `otherRequest.generateResults()` doesn't
+        // await `this.generateResults()`.
+        this.onComplete();
+        this.readNetworkPromise = otherRequest.readNetworkPromise;
+      } else {
+        this.readNetworkPromise = this.readNetwork_();
       }
-      if (other.templateId !== this.templateId) return false;
-      return (other.revisions.join(',') === this.revisions.join(','));
-    });
 
-    if (otherRequest) {
-      // Be sure to call onComplete() to remove `this` from IN_PROGRESS_REQUESTS
-      // so that `otherRequest.generateResults()` doesn't await
-      // `this.generateResults()`.
-      this.onComplete();
-      this.readNetworkPromise = otherRequest.readNetworkPromise;
-    } else {
-      this.readNetworkPromise = this.readNetwork_();
-    }
+      const winner = await Promise.race([
+        this.readDatabase_().then(result => {
+          return {result, source: 'database'};
+        }),
+        this.readNetworkPromise.then(result => {
+          return {result, source: 'network'};
+        }),
+      ]);
+      if (winner.source === 'database' && winner.result) {
+        yield winner.result;
+      }
 
-    const winner = await Promise.race([
-      this.readDatabase_().then(result => {
-        return {result, source: 'database'};
-      }),
-      this.readNetworkPromise.then(result => {
-        return {result, source: 'network'};
-      }),
-    ]);
-    if (winner.source === 'database' && winner.result) {
-      yield winner.result;
-    }
-
-    const networkResult = await this.readNetworkPromise;
-    yield networkResult;
-    this.scheduleWrite(networkResult);
+      const networkResult = await this.readNetworkPromise;
+      yield networkResult;
+      this.scheduleWrite(networkResult);
+    };
   }
 
   async readNetwork_() {
