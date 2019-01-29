@@ -4,7 +4,7 @@
 
 from google.appengine.ext import ndb
 
-from dashboard import alerts
+from dashboard.api import alerts
 from dashboard.api import api_request_handler
 from dashboard.api import utils as api_utils
 from dashboard.common import descriptor
@@ -21,9 +21,7 @@ DIAGNOSTICS_QUERY_LIMIT = 10000
 HISTOGRAMS_QUERY_LIMIT = 1000
 ROWS_QUERY_LIMIT = 20000
 
-COLUMNS_REQUIRING_ROWS = {'timestamp', 'revisions', 'annotations'}.union(
-    descriptor.STATISTICS)
-CACHE_SECONDS = 60 * 60 * 24 * 7
+COLUMNS_REQUIRING_ROWS = {'timestamp', 'revisions'}.union(descriptor.STATISTICS)
 
 
 class Timeseries2Handler(api_request_handler.ApiRequestHandler):
@@ -53,8 +51,6 @@ class Timeseries2Handler(api_request_handler.ApiRequestHandler):
     except AssertionError:
       # The caller has requested internal-only data but is not authorized.
       raise api_request_handler.NotFoundError
-    self.response.headers['Cache-Control'] = '%s, max-age=%d' % (
-        'private' if query.private else 'public', CACHE_SECONDS)
     return result
 
 
@@ -70,6 +66,7 @@ class TimeseriesQuery(object):
     self._max_timestamp = max_timestamp
     self._statistic_columns = []
     self._unsuffixed_test_metadata_keys = []
+    self._test_metadata_keys = []
     self._test_keys = []
     self._units = None
     self._improvement_direction = None
@@ -109,11 +106,14 @@ class TimeseriesQuery(object):
       self._ResolveTimestamps()
       futures.append(self._FetchDiagnostics())
     yield futures
+    with timing.CpuTimeLogger('SortData'):
+      data = sorted(self._data.iteritems())
+    with timing.CpuTimeLogger('FormatCSV'):
+      data = [[datum.get(col) for col in self._columns] for _, datum in data]
     raise ndb.Return({
         'units': self._units,
         'improvement_direction': self._improvement_direction,
-        'data': [[datum.get(col) for col in self._columns]
-                 for _, datum in sorted(self._data.iteritems())],
+        'data': data,
     })
 
   def _ResolveTimestamps(self):
@@ -147,12 +147,13 @@ class TimeseriesQuery(object):
       desc.statistic = statistic
       test_paths.extend(desc.ToTestPathsSync())
 
-    test_metadata_keys = [utils.TestMetadataKey(path) for path in test_paths]
-    test_metadata_keys.extend(self._unsuffixed_test_metadata_keys)
+    self._test_metadata_keys = [
+        utils.TestMetadataKey(path) for path in test_paths]
+    self._test_metadata_keys.extend(self._unsuffixed_test_metadata_keys)
     test_paths.extend(unsuffixed_test_paths)
 
     test_old_keys = [utils.OldStyleTestKey(path) for path in test_paths]
-    self._test_keys = test_old_keys + test_metadata_keys
+    self._test_keys = test_old_keys + self._test_metadata_keys
 
   @ndb.tasklet
   def _FetchTests(self):
@@ -198,9 +199,15 @@ class TimeseriesQuery(object):
     limit = ROWS_QUERY_LIMIT
     projection = None
 
-    # revisions and annotations are not in any index, so a projection query
-    # can't get them.
-    if 'revisions' in self._columns or 'annotations' in self._columns:
+    # 'r_'-prefixed revisions are not in any index, so a projection query can't
+    # get them.
+    if 'revisions' in self._columns:
+      return projection, limit
+
+    # TODO(benjhayden) Remove this if/when the Row index is fixed.
+    # Disable projection queries for timestamp for now. There's just an index
+    # for ascending revision, not descending revision with timestamp.
+    if 'timestamp' in self._columns:
       return projection, limit
 
     # There is no index like (parent_test, -timestamp, revision, value):
@@ -260,10 +267,6 @@ class TimeseriesQuery(object):
           datum['revisions'] = {
               attr: value for attr, value in row.to_dict().iteritems()
               if attr.startswith('r_')}
-        if 'annotations' in self._columns:
-          datum['annotations'] = {
-              attr: value for attr, value in row.to_dict().iteritems()
-              if attr.startswith('a_')}
 
     if 'histogram' in self._columns and test_desc.statistic == None:
       with timing.WallTimeLogger('fetch_histograms'):
@@ -297,11 +300,12 @@ class TimeseriesQuery(object):
         self._private = True
       datum = self._Datum(alert.end_revision)
       # TODO(benjhayden) bisect_status
-      datum['alert'] = alerts.GetAnomalyDict(alert)
+      datum['alert'] = alerts.AnomalyDicts2([alert])[0]
 
   @ndb.tasklet
   def _FetchHistograms(self):
-    yield [self._FetchHistogramsForTest(test) for test in self._test_keys]
+    yield [self._FetchHistogramsForTest(test)
+           for test in self._test_metadata_keys]
 
   @ndb.tasklet
   def _FetchHistogramsForTest(self, test):
