@@ -209,6 +209,43 @@ tr.exportTo('tr.metrics.rendering', function() {
         });
   }
 
+  function addMissedFrameHistograms(histograms, model, segments) {
+    const helper = model.getOrCreateHelper(tr.model.helpers.ChromeModelHelper);
+    if (!helper || !helper.gpuHelper) return;
+    const gpuProcess = helper.gpuHelper.process;
+    const allEvents = gpuProcess.instantEvents.filter(
+        e => e.title === 'LateCompositorFrame');
+    const delays = [];
+    let total = 0;
+    let late = 0;
+    for (const segment of segments) {
+      const filtered = segment.boundsRange.filterArray(allEvents,
+          event => event.start);
+      for (const f of filtered) {
+        ++total;
+        if (f.args.delay > 0) {
+          ++late;
+          delays.push(f.args.delay);
+        }
+      }
+    }
+
+    histograms.createHistogram(
+        'missed:ratio',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        100 * late / total, {
+          description: 'How often are frames missed?',
+          summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
+        });
+    histograms.createHistogram(
+        'missed:delays',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        delays, {
+          description: 'How late are the missed frames?',
+          summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
+        });
+  }
+
   function addFrameTimeHistograms(histograms, model, segments) {
     const events = getDisplayCompositorPresentationEvents_(
         model.getOrCreateHelper(tr.model.helpers.ChromeModelHelper));
@@ -267,6 +304,7 @@ tr.exportTo('tr.metrics.rendering', function() {
   return {
     addFrameTimeHistograms,
     addUIFrameTimeHistograms,
+    addMissedFrameHistograms,
   };
 });
 </script>
