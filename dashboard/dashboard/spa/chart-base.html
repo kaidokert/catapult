@@ -6,7 +6,6 @@ found in the LICENSE file.
 -->
 
 <link rel="import" href="/dashboard/spa/element-base.html">
-<link rel="import" href="/polymer-svg-template/polymer-svg-template.html">
 
 <dom-module id="chart-base">
   <template>
@@ -21,16 +20,29 @@ found in the LICENSE file.
         flex-grow: 1;
       }
 
-      #brush_handles {
+      #x_brush_handles {
         position: relative;
         height: 15px;
       }
 
+      #y_brush_handles {
+        position: relative;
+        width: 15px;
+      }
+
       .brush_handle {
-        cursor: ew-resize;
         position: absolute;
+      }
+
+      .x_brush_handle {
+        cursor: ew-resize;
         top: 0;
         width: 100%;
+      }
+
+      .y_brush_handle {
+        right: 0;
+        cursor: ns-resize;
       }
 
       .brush_handle path {
@@ -62,19 +74,22 @@ found in the LICENSE file.
         stroke: #ccc;
       }
 
+      circle:hover {
+        opacity: 1;
+      }
+
       #main {
         position: relative;
       }
 
       #tooltip {
-        background-color: var(--background-color, white);
+        background-color: var(--background-color);
         border-style: solid;
         border-width: 2px;
-        display: flex;
         padding: 8px;
         position: absolute;
         white-space: pre;
-        z-index: var(--layer-menu, 100);
+        z-index: var(--layer-menu);
       }
 
       #tooltip td {
@@ -107,9 +122,9 @@ found in the LICENSE file.
     </svg>
 
     <div id="right">
-      <div id="brush_handles">
+      <div id="x_brush_handles">
         <template is="dom-repeat" items="[[xAxis.brushes]]" as="brush" index-as="brushIndex">
-          <div class="brush_handle"
+          <div class="brush_handle x_brush_handle"
                on-track="onTrackBrushHandle_"
                style$="transform: translateX([[brush.xPct]]) translateX(-5px);">
             <svg
@@ -160,6 +175,59 @@ found in the LICENSE file.
             </rect>
           </template>
 
+          <template is="dom-repeat" items="[[antiBrushes_(yAxis.brushes)]]" as="antiBrush">
+            <rect
+                x="0"
+                y$="[[antiBrush.start]]"
+                width="100%"
+                height$="[[antiBrush.length]]">
+            </rect>
+          </template>
+
+          <template is="dom-repeat" items="[[bars]]" as="bar" index-as="barIndex">
+            <svg
+                viewBox="0 0 100 100"
+                x="0"
+                y="0"
+                width="100%"
+                height="100%"
+                preserveAspectRatio="none">
+              <template is="dom-repeat" items="[[bar.data]]" as="datum" index-as="datumIndex">
+                <rect
+                    x$="[[datum.x]]"
+                    y$="[[datum.y]]"
+                    width$="[[datum.width]]"
+                    height$="[[datum.height]]"
+                    on-click="onBarClick_"
+                    on-mouseover="onBarMouseOver_"
+                    on-mouseout="onBarMouseOut_">
+                </rect>
+              </template>
+            </svg>
+          </template>
+
+          <template is="dom-repeat" items="[[columns]]" as="column" index-as="columnIndex">
+            <svg
+                viewBox="0 0 100 100"
+                x="0"
+                y="0"
+                width="100%"
+                height="100%"
+                preserveAspectRatio="none">
+              <template is="dom-repeat" items="[[column.data]]" as="datum" index-as="datumIndex">
+                <rect
+                    x$="[[datum.x]]"
+                    y$="[[datum.y]]"
+                    width$="[[datum.width]]"
+                    height$="[[datum.height]]"
+                    on-click="onColumnClick_"
+                    on-mouseover="onColumnMouseOver_"
+                    on-mouseout="onColumnMouseOut_">
+                </rect>
+              </template>
+            </svg>
+          </template>
+
           <template is="dom-repeat" items="[[lines]]" as="line" index-as="lineIndex">
             <svg
                 viewBox="0 0 100 100"
@@ -183,7 +251,28 @@ found in the LICENSE file.
               </template>
             </svg>
 
+            <template is="dom-if" if="[[dotRadius]]">
+              <template is="dom-repeat" items="[[line.data]]" as="datum" index-as="datumIndex">
+                <circle
+                    cx$="[[datum.xPct]]"
+                    cy$="[[datum.yPct]]"
+                    line-index$="[[lineIndex]]"
+                    r$="[[dotRadius]]"
+                    fill$="[[line.color]]"
+                    cursor$="[[dotCursor]]"
+                    opacity="0"
+                    on-click="onDotClick_"
+                    on-mouseover="onDotMouseOver_"
+                    on-mouseout="onDotMouseOut_">
+                </circle>
+              </template>
+            </template>
+
             <template is="dom-repeat" items="[[collectIcons_(line)]]" as="datum">
+              <!-- Icons are not on every datum, they're sparse. Save memory by
+                  reducing DOM nodes by collecting icons in a single separate
+                  dom-repeat.
+              -->
               <foreignObject
                   x$="[[datum.xPct]]"
                   y$="[[datum.yPct]]"
@@ -191,7 +280,10 @@ found in the LICENSE file.
                 <body xmlns="http://www.w3.org/1999/xhtml">
                   <iron-icon
                       icon$="[[datum.icon]]"
-                      style$="color: [[datum.iconColor]]">
+                      style$="color: [[datum.iconColor]]"
+                      on-click="onDotClick_"
+                      on-mouseover="onDotMouseOver_"
+                      on-mouseout="onDotMouseOut_">
                   </iron-icon>
                 </body>
               </foreignObject>

@@ -16,20 +16,56 @@ tr.exportTo('cp', () => {
       return '/api/describe';
     }
 
+    async localhostResponse_() {
+      return {
+        measurements: [
+          'memory:a_size',
+          'memory:b_size',
+          'memory:c_size',
+          'cpu:a',
+          'cpu:b',
+          'cpu:c',
+          'power',
+          'loading',
+          'startup',
+          'size',
+        ],
+        bots: ['master:bot0', 'master:bot1', 'master:bot2'],
+        cases: [
+          'browse:media:facebook_photos',
+          'browse:media:imgur',
+          'browse:media:youtube',
+          'browse:news:flipboard',
+          'browse:news:hackernews',
+          'browse:news:nytimes',
+          'browse:social:facebook',
+          'browse:social:twitter',
+          'load:chrome:blank',
+          'load:games:bubbles',
+          'load:games:lazors',
+          'load:games:spychase',
+          'load:media:google_images',
+          'load:media:imgur',
+          'load:media:youtube',
+          'search:portal:google',
+        ],
+      };
+    }
+
     static mergeDescriptor(merged, descriptor) {
-      for (const bot of descriptor.bots) merged.bots.add(bot);
-      for (const measurement of descriptor.measurements) {
+      for (const bot of (descriptor.bots || [])) merged.bots.add(bot);
+      for (const measurement of (descriptor.measurements || [])) {
         merged.measurements.add(measurement);
       }
-      for (const c of descriptor.cases) {
-        merged.cases.add(c);
+      for (const testCase of (descriptor.cases || [])) {
+        merged.testCases.add(testCase);
       }
       for (const [tag, cases] of Object.entries(descriptor.caseTags || {})) {
-        if (!merged.caseTags.has(tag)) {
-          merged.caseTags.set(tag, new Set());
+        if (!merged.testCaseTags.has(tag)) {
+          merged.testCaseTags.set(tag, new Set());
         }
-        for (const c of cases) {
-          merged.caseTags.get(tag).add(c);
+        for (const testCase of cases) {
+          merged.testCaseTags.get(tag).add(testCase);
         }
       }
     }
