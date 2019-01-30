@@ -55,6 +55,7 @@ class BrowserFinderOptions(optparse.Values):
     self.interval_profiling_target = ''
     self.interval_profiling_periods = []
     self.interval_profiling_frequency = 1000
+    self.interval_profiler_options = None
 
   def __repr__(self):
     return str(sorted(self.__dict__.items()))
@@ -175,14 +176,17 @@ class BrowserFinderOptions(optparse.Values):
         'used.')
     parser.add_option_group(group)
 
-    # CPU profiling on Android/Linux.
+    # CPU profiling on Android/Linux/ChromeOS.
     group = optparse.OptionGroup(parser, (
         'CPU profiling over intervals of interest, '
-        'Android and Linux only'))
+        'Android, Linux, and ChromeOS only'))
     group.add_option(
         '--interval-profiling-target', dest='interval_profiling_target',
-        default='renderer:main', metavar='PROCESS_NAME[:THREAD_NAME]',
-        help='Run the CPU profiler on this process/thread (default=%default).')
+        default='renderer:main',
+        metavar='PROCESS_NAME[:THREAD_NAME]|"system_wide"',
+        help='Run the CPU profiler on this process/thread (default=%default), '
+        'which is supported only on Linux and Android, or system-wide, which '
+        'is supported supported only on ChromeOS.')
     group.add_option(
         '--interval-profiling-period', dest='interval_profiling_periods',
         type='choice',
@@ -191,7 +195,7 @@ class BrowserFinderOptions(optparse.Values):
         help='Run the CPU profiler during this test period. '
         'May be specified multiple times; available choices '
         'are ["navigation", "interactions", "whole_story_run"]. Profile data '
-        'will be written to artifacts/*.perf.data (Android) or '
+        'will be written to artifacts/*.perf.data (Android/ChromeOS) or '
         'artifacts/*.profile.pb (Linux) files in the output directory. See '
         'https://developer.android.com/ndk/guides/simpleperf for more info on '
         'Android profiling via simpleperf.')
@@ -200,6 +204,16 @@ class BrowserFinderOptions(optparse.Values):
         type=int,
         help='Frequency of CPU profiling samples, in samples per second '
         '(default=%default). This flag is used only on Android')
+    group.add_option(
+        '--interval-profiler-options', dest='interval_profiler_options',
+        type=str, default='', metavar='"--flag <options> ..."',
+        help='Addtional arguments to pass to the CPU profiler. This is used '
+        'only on ChromeOS. On ChromeOS, pass the perf command name followed by '
+        'the options to pass to the perf command. Supported perf command are '
+        'record and stat. Note: "-a" flag is added to the perf command by '
+        'default. Do not pass options that are incompatible with the '
+        'system-wide profile collection. Eg: record -e cycles -c 4000000 -g .'
+    )
     parser.add_option_group(group)
 
     # Browser options.
