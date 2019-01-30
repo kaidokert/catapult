@@ -26,6 +26,50 @@ from tracing.value.diagnostics import reserved_infos
 _MAX_JOBS_TO_FETCH = 100
 
 
+
+from dashboard.common import utils
+from dashboard.models import graph_data
+
+from google.appengine.ext import ndb
+
+
+
+def _ScaleRow(r, scale_factor):
+  row_dict = r.to_dict()
+  r.value *= scale_factor
+  r.error *= scale_factor
+  for k in row_dict.keys():
+    if k.startswith('d_') and not 'count' in k:
+      new_value = getattr(r, k) * scale_factor
+      setattr(r, k, new_value)
+  print r
+  print
+
+
+def _ScaleRowsForAngle(test_path):
+  test_key = utils.TestKey(test_path)
+  test = test_key.get()
+  print test
+
+  units_to_scale = ['ms', 'ns']
+
+  if any(test.units.startswith(u) for u in units_to_scale):
+    scales = [
+        [620397, 623061, 0.5e-6],
+        [623062, 624375, 0.5e6]
+    ]
+
+    for start_rev, end_rev, scaling_factor in scales:
+      rows = graph_data.GetRowsForTestInRange(
+          test_key, start_rev, end_rev - 1)
+
+      if rows:
+        for r in rows:
+          row = _ScaleRow(r, scaling_factor)
+        ndb.put_multi(rows)
+
+
+
 class UpdateDashboardStatsHandler(request_handler.RequestHandler):
   """A simple request handler to refresh the cached test suites info."""
 
