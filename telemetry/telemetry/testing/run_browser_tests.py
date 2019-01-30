@@ -18,7 +18,6 @@ from telemetry.internal.browser import browser_finder
 from py_utils import discover
 import typ
 from typ import arg_parser
-
 TEST_SUFFIXES = ['*_test.py', '*_tests.py', '*_unittest.py', '*_unittests.py']
 
 
@@ -230,7 +229,6 @@ def _CreateTestArgParsers():
 def _SkipMatch(name, skipGlobs):
   return any(fnmatch.fnmatch(name, glob) for glob in skipGlobs)
 
-
 def _GetClassifier(args):
   def _SeriallyExecutedBrowserTestCaseClassifer(test_set, test):
     # Do not pick up tests that do not inherit from
@@ -240,13 +238,17 @@ def _GetClassifier(args):
         test,
         serially_executed_browser_test_case.SeriallyExecutedBrowserTestCase):
       return
-    name = test.id()
-    if _SkipMatch(name, args.skip):
+    test_id = test.id()
+    test_name = test.shortName() or test_id
+    if _SkipMatch(test_name, args.skip):
       test_set.tests_to_skip.append(
-          typ.TestInput(name, 'skipped because matched --skip'))
+          typ.TestInput(test_id,
+                        'skipped because matched --skip',
+                        test_short_name=test_name))
       return
     # For now, only support running these tests serially.
-    test_set.isolated_tests.append(typ.TestInput(name))
+    test_set.isolated_tests.append(typ.TestInput(test_id,  test_class=test,
+                                                 test_short_name=test_name))
   return _SeriallyExecutedBrowserTestCaseClassifer
 
 
@@ -258,7 +260,6 @@ def RunTests(args):
     PrintTelemetryHelp()
     return parser.exit_status
   binary_manager.InitDependencyManager(options.client_configs)
-  not_using_typ_expectation = len(options.expectations_files) == 0
   for start_dir in options.start_dirs:
     modules_to_classes = discover.DiscoverClasses(
         start_dir,
@@ -281,6 +282,8 @@ def RunTests(args):
         cl.Name() for cl in browser_test_classes)
     return 1
 
+  options.expectations_files.extend(test_class.ExpectationsFiles())
+  not_using_typ_expectation = len(options.expectations_files) == 0
   # Create test context.
   context = browser_test_context.TypTestContext()
   for c in options.client_configs:
@@ -306,7 +309,6 @@ def RunTests(args):
   context.Freeze()
   browser_test_context._global_test_context = context
   possible_browser = browser_finder.FindBrowser(context.finder_options)
-
   # Setup typ runner.
   runner = typ.Runner()
   options.tags.extend(test_class.GenerateTags(context.finder_options,
@@ -322,6 +324,7 @@ def RunTests(args):
   runner.args.path = options.path
   runner.args.repeat = options.repeat
   runner.args.retry_limit = options.retry_limit
+  runner.args.retry_limit_for_flaky_tests = options.retry_limit_for_flaky_tests
   runner.args.test_results_server = options.test_results_server
   runner.args.test_type = options.test_type
   runner.args.top_level_dir = options.top_level_dir
@@ -341,6 +344,7 @@ def RunTests(args):
   runner.args.timing = True
   runner.args.verbose = options.verbose
   runner.win_multiprocessing = typ.WinMultiprocessing.importable
+
   try:
     ret, _, _ = runner.run()
   except KeyboardInterrupt:
