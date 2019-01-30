@@ -71,15 +71,13 @@ tr.exportTo('cp', () => {
 
   TriageNew.State = {
     cc: options => options.cc || '',
-    components: options => TriageNew.collectAlertProperties(
-        options.alerts, 'bugComponents'),
+    components: options => TriageNew.collectComponents(options.alerts),
     description: options => '',
     isOpen: {
       value: options => options.isOpen || false,
       reflectToAttribute: true,
     },
-    labels: options => TriageNew.collectAlertProperties(
-        options.alerts, 'bugLabels'),
+    labels: options => TriageNew.collectLabels(options.alerts),
     owner: options => '',
     summary: options => TriageNew.summarize(options.alerts),
   };
@@ -187,26 +185,47 @@ tr.exportTo('cp', () => {
     );
   };
 
-  TriageNew.collectAlertProperties = (alerts, property) => {
+  TriageNew.collectLabels = alerts => {
     if (!alerts) return [];
     let labels = new Set();
-    if (property === 'bugLabels') {
-      labels.add('Pri-2');
-      labels.add('Type-Bug-Regression');
-    }
+    labels.add('Pri-2');
+    labels.add('Type-Bug-Regression');
     for (const alert of alerts) {
-      for (const label of alert[property]) {
+      for (const label of alert.bugLabels) {
         labels.add(label);
       }
     }
     labels = Array.from(labels);
     labels.sort((x, y) => x.localeCompare(y));
     return labels.map(name => {
-      return {name, isEnabled: true};
+      return {
+        isEnabled: true,
+        name,
+      };
+    });
+  };
+
+  TriageNew.collectComponents = alerts => {
+    if (!alerts) return [];
+    let components = new Set();
+    for (const alert of alerts) {
+      for (const component of alert.bugComponents) {
+        components.add(component);
+      }
+    }
+    components = Array.from(components);
+    components.sort((x, y) => x.localeCompare(y));
+    return components.map(name => {
+      return {
+        isEnabled: true,
+        name,
+      };
     });
   };
 
   cp.ElementBase.register(TriageNew);
 
-  return {TriageNew};
+  return {
+    TriageNew,
+  };
 });
