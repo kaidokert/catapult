@@ -134,6 +134,29 @@
     },
     {
       "key": {
+        "uuid": "d1d9e219_e23f281e",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1151970
+      },
+      "writtenOn": "2019-01-30T20:34:44Z",
+      "side": 1,
+      "message": "Discussed offline; with nested calls to SamplePeriod, this may pass in the same out_file. If overlapping collection is intentional, the process killing code above will need a revisit.",
+      "range": {
+        "startLine": 313,
+        "startChar": 0,
+        "endLine": 314,
+        "endChar": 46
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b4c84809_c7043cc8",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
         "patchSetId": 7
@@ -168,6 +191,47 @@
       "writtenOn": "2019-01-30T05:05:28Z",
       "side": 1,
       "message": "Why the need for has_existing_exception and for using exceptions here? If and when you do need to use Exceptions, try to raise a more specific built-in Error if possible, or subclass one.",
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a7737b0_9e464252",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1151970
+      },
+      "writtenOn": "2019-01-30T20:34:44Z",
+      "side": 1,
+      "message": "Discussed a bit offline. This doesn\u0027t seem \"exceptional\", it\u0027s just a failure to profile one particular item. Maybe _CheckAndKillProfilingProcess() is more accurately _ClosePerf() -\u003e bool, indicating the data in out_file is valid and useful? The rest of this cleanup looks like it is handled by GetResults().\n\n  ok \u003d self._ClosePerf()\n  self._device_results.append((period, out_file, ok))",
+      "parentUuid": "dc6d88c7_9c804e69",
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56baa997_b62fd091",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1151970
+      },
+      "writtenOn": "2019-01-30T20:34:44Z",
+      "side": 1,
+      "message": "Maybe cleanup in a helper function to avoid duplication. One command should also suffice, [\u0027rm\u0027, \u0027-f\u0027] + [df for _, df, _ in self._device_results].",
+      "range": {
+        "startLine": 336,
+        "startChar": 39,
+        "endLine": 339,
+        "endChar": 31
+      },
       "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
