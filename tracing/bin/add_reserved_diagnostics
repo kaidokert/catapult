@@ -42,6 +42,8 @@ def main():
       '--output_path',
       help='If present, will write new HistogramSet to this file instead of '
            'clobbering the file referenced by input_path.')
+  parser.add_argument('--max_size', type=int, default=0, help=(
+      'If non-zero, results will be split to multiple files.'))
   parser.add_argument('-h', '--help', action='help',
                       help='Show this help message and exit.')
   arg_names_to_infos = {}
@@ -78,15 +80,25 @@ def main():
   with open(args.input_path, 'r') as f:
     dicts = json.loads(f.read())
 
+  if args.stdout and args.max_size:
+    args.max_size = 0
+
   results_json = add_reserved_diagnostics.AddReservedDiagnostics(
-      dicts, names_to_values)
+      dicts, names_to_values, args.max_size)
 
   if args.stdout:
-    print results_json
+    assert len(results_json) == 1
+    print results_json[0]
   else:
     path = args.output_path or args.input_path
-    with open(path, 'w') as f:
-      f.write(results_json)
+    if len(results_json) == 1:
+      with open(path, 'w') as f:
+        f.write(results_json)
+    else:
+      base, ext = os.path.splitext(path)
+      for i, hs in results_json:
+        with open('%s.%04d%s' % (base, i, ext), 'w') as f:
+          f.write(hs)
 
   return 0
 
