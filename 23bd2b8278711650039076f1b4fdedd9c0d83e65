@@ -1,0 +1,268 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "51233686_f17fd542",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1151970
+      },
+      "writtenOn": "2019-01-30T05:05:28Z",
+      "side": 1,
+      "message": "Consider reorganizing these checks to reduce nesting?",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 50
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74d6053c_7395a08f",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1151970
+      },
+      "writtenOn": "2019-01-30T05:05:28Z",
+      "side": 1,
+      "message": "Maybe only add the \u0027-a\u0027 if not already present? That would avoid having to warn the user against this in the options.",
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89335f36_684f6e94",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1151970
+      },
+      "writtenOn": "2019-01-30T05:05:28Z",
+      "side": 1,
+      "message": "If this is not reset afterwards, skip the read?",
+      "range": {
+        "startLine": 256,
+        "startChar": 37,
+        "endLine": 258,
+        "endChar": 27
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48c06b9c_29be44b5",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1151970
+      },
+      "writtenOn": "2019-01-30T05:05:28Z",
+      "side": 1,
+      "message": "Nit: this isn\u0027t splitting by lines, so maybe better named as \u0027pids\u0027?",
+      "range": {
+        "startLine": 300,
+        "startChar": 4,
+        "endLine": 300,
+        "endChar": 15
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0df39f9_94d97c6a",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1151970
+      },
+      "writtenOn": "2019-01-30T05:05:28Z",
+      "side": 1,
+      "message": "[\u0027killall\u0027, self.PERF_BINARY_PATH] and avoid looking up the pids above?",
+      "range": {
+        "startLine": 304,
+        "startChar": 41,
+        "endLine": 305,
+        "endChar": 80
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d0ca3f2_486631c7",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1151970
+      },
+      "writtenOn": "2019-01-30T05:05:28Z",
+      "side": 1,
+      "message": "Nit: I see a lot more **_kwargs than **_ on cs.chromium.org.",
+      "range": {
+        "startLine": 310,
+        "startChar": 50,
+        "endLine": 310,
+        "endChar": 51
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4c84809_c7043cc8",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1151970
+      },
+      "writtenOn": "2019-01-30T05:05:28Z",
+      "side": 1,
+      "message": "Why all this instead of just \u0027yield\u0027?",
+      "range": {
+        "startLine": 315,
+        "startChar": 0,
+        "endLine": 319,
+        "endChar": 12
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc6d88c7_9c804e69",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1151970
+      },
+      "writtenOn": "2019-01-30T05:05:28Z",
+      "side": 1,
+      "message": "Why the need for has_existing_exception and for using exceptions here? If and when you do need to use Exceptions, try to raise a more specific built-in Error if possible, or subclass one.",
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91beaf5c_d51901e5",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1151970
+      },
+      "writtenOn": "2019-01-30T05:05:28Z",
+      "side": 1,
+      "message": "The with statement will close the handle, so you could remove that line and dedent the rest.\n\nThis usage of CreateArtifact and GetFile looks a bit convoluted; there\u0027s a temp file being created, moved, closed, and overwritten. The alternative involves manually creating a tempfile though, then GetFile() and AddArtifact(). Does the actual file basename matter? If it does, then what you have is fine, otherwise I think the alternative may be slightly clearer.",
+      "range": {
+        "startLine": 349,
+        "startChar": 50,
+        "endLine": 353,
+        "endChar": 18
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f33faa44_60790c40",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1151970
+      },
+      "writtenOn": "2019-01-30T05:05:28Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 189,
+        "startChar": 22,
+        "endLine": 189,
+        "endChar": 31
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5149d33_2d326234",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1151970
+      },
+      "writtenOn": "2019-01-30T05:05:28Z",
+      "side": 1,
+      "message": "This is a bit confusing, IIUC `perf` is prepended to what is passed in here.",
+      "range": {
+        "startLine": 211,
+        "startChar": 40,
+        "endLine": 211,
+        "endChar": 67
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d335602_7e634e4f",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1151970
+      },
+      "writtenOn": "2019-01-30T05:05:28Z",
+      "side": 1,
+      "message": "Add quotes to clarify what the user would pass in?",
+      "range": {
+        "startLine": 213,
+        "startChar": 26,
+        "endLine": 213,
+        "endChar": 63
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
