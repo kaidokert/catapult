@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4deca0b9_71c98c9a",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-30T06:54:14Z",
+      "side": 0,
+      "message": "This is duplicated from addFrameTimeHistograms. Can you deduplicate this code?",
+      "revId": "dd2de388fc4e3e8fa97a97515ec35c5b3834b753",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bbfb86ae_da0df25c",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-30T06:54:14Z",
+      "side": 0,
+      "message": "If frameLengths can be computed without surfaceFlingerProcess, then can these histograms also be created even if surfaceFlingerProcess isn\u0027t available?",
+      "revId": "dd2de388fc4e3e8fa97a97515ec35c5b3834b753",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

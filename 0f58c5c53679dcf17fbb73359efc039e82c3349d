@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bc5736eb_43b74f5b",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-30T06:54:14Z",
+      "side": 1,
+      "message": "The empty array is truthy in JS, so if the rest of this function should be skipped when this array is empty, it should check events.length",
+      "revId": "0f58c5c53679dcf17fbb73359efc039e82c3349d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e0c9b4b_c167e4b5",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-30T06:54:14Z",
+      "side": 1,
+      "message": "Should this unit be count_smallerIsBetter?\nChanging it from unitlessNumber to count will prevent merging results from before this change with results from after it, but that is unlikely to be a problem.",
+      "range": {
+        "startLine": 267,
+        "startChar": 25,
+        "endLine": 267,
+        "endChar": 39
+      },
+      "revId": "0f58c5c53679dcf17fbb73359efc039e82c3349d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a40b6393_15b901db",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-30T06:54:14Z",
+      "side": 1,
+      "message": "It might be useful at some point to add a RelatedEventSet sample diagnostic pointing to the jank events.\n\n{value: janks.length, diagnostics: {events: new RelatedEventSet(janks)}},",
+      "revId": "0f58c5c53679dcf17fbb73359efc039e82c3349d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c492fb1e_06208887",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-30T06:54:14Z",
+      "side": 1,
+      "message": "Please either define a constant for this number or add a comment or both.\nI assume it\u0027s derived from 1000/60fps? If so, why is it rounded?",
+      "range": {
+        "startLine": 302,
+        "startChar": 11,
+        "endLine": 302,
+        "endChar": 13
+      },
+      "revId": "0f58c5c53679dcf17fbb73359efc039e82c3349d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
