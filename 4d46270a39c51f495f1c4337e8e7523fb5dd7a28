@@ -71,6 +71,23 @@
     },
     {
       "key": {
+        "uuid": "64c06841_dfceb809",
+        "filename": "tracing/tracing/value/diagnostics/add_reserved_diagnostics.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-01-30T21:31:32Z",
+      "side": 1,
+      "message": "For some reason had some trouble following the logic in there, would it be simpler liek this?\n\n  results_json \u003d []\n  while histograms:\n    batch_size \u003d avg_batch_size\n    batch_json \u003d DumpsFirst(batch_size)\n\n    while True:\n      if len(batch_json) \u003d\u003d max_size:\n        break\n      elif len(batc_json) \u003c max_size:\n        test_size \u003d batch_size + 1\n      else:\n        test_size \u003d batch_size - 1\n\n      if test_size \u003d\u003d 0:\n        done? seems like it can\u0027t work at this point\n\n      test_json \u003d DumpsFirst(test_size)\n\n      if test_json \u003e max_size and test_size \u003e batch_size:\n        break\n      elif test_json \u003c max_size and test_size \u003c batch_size:\n        break",
+      "revId": "4d46270a39c51f495f1c4337e8e7523fb5dd7a28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "06bc861b_c2b30f51",
         "filename": "tracing/tracing/value/diagnostics/add_reserved_diagnostics.py",
         "patchSetId": 4
