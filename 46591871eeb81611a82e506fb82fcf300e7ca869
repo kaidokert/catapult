@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "57da41da_1c5c66c4",
+        "filename": "dashboard/dashboard/update_dashboard_stats.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1105324
+      },
+      "writtenOn": "2019-01-30T20:56:21Z",
+      "side": 1,
+      "message": "can probably restrict this to just \u0027ns\u0027. ms might use a different scaling.",
+      "range": {
+        "startLine": 54,
+        "startChar": 21,
+        "endLine": 54,
+        "endChar": 23
+      },
+      "revId": "46591871eeb81611a82e506fb82fcf300e7ca869",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
