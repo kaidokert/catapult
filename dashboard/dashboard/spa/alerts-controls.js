@@ -10,6 +10,11 @@ tr.exportTo('cp', () => {
       this.dispatch('connected', this.statePath);
     }
 
+    async onUserUpdate_() {
+      await this.dispatch('loadReportNames', this.statePath);
+      await this.dispatch('loadSheriffs', this.statePath);
+    }
+
     showSheriff_(bug, report) {
       return ((bug.selectedOptions.length === 0) &&
               (report.selectedOptions.length === 0));
