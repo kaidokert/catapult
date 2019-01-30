@@ -70,9 +70,13 @@ def ComputeTestPath(hist):
   return path
 
 
+def Dumps(obj):
+  return json.dumps(obj, separators=(',', ':')).encode('utf-8')
+
+
 def _MergeHistogramSetByPath(hs):
   with TempFile() as temp:
-    temp.write(json.dumps(hs.AsDicts()).encode('utf-8'))
+    temp.write(Dumps(hs.AsDicts()))
     temp.close()
 
     return merge_histograms.MergeHistograms(temp.name, (
@@ -103,7 +107,63 @@ def _MergeAndReplaceSharedDiagnostics(diagnostic_name, hs):
       h.diagnostics[diagnostic_name] = merged
 
 
-def AddReservedDiagnostics(histogram_dicts, names_to_values):
+def Batch(histograms, max_size):
+  all_json = Dumps(histograms.AsDicts())
+  if max_size == 0:
+    return [all_json]
+
+  avg_hist_size = len(all_json) / len(histograms)
+  del all_json
+  avg_batch_size = max(1, int(round(max_size / avg_hist_size)))
+
+  # Return an array of HistogramSet json strings, each not larger than max_size.
+  # Take |avg_batch_size| histograms, then add or remove one at a time until the
+  # batch_json size is just under max_size.
+
+  histograms = list(histograms)
+
+  def DumpsFirst(n):
+    hs = histogram_set.HistogramSet(histograms[:n])
+    hs.DeduplicateDiagnostics()
+    return Dumps(hs.AsDicts())
+
+  results_json = []
+  while histograms:
+    batch_size = avg_batch_size
+    batch_json = DumpsFirst(batch_size)
+    # Add or remove one at a time until batch_json is just under max_size.
+    step = +1 if (len(batch_json) < max_size) else -1
+
+    while True:
+      if len(batch_json) == max_size:
+        break
+      if step < 0:
+        if batch_size == 1:
+          break
+        if len(batch_json) < max_size:
+          break
+      else:
+        if batch_size >= len(histograms):
+          break
+
+      test_size = batch_size + step
+      test_json = DumpsFirst(test_size)
+
+      if step > 0 and len(test_json) > max_size:
+        break
+
+      batch_size = test_size
+      batch_json = test_json
+    # Ok, now len(batch_json) is as close to max_size as we can get it without
+    # going over.
+
+    histograms = histograms[batch_size:]
+    results_json.append(batch_json)
+
+  return results_json
+
+
+def AddReservedDiagnostics(histogram_dicts, names_to_values, max_size=0):
   # We need to generate summary statistics for anything that had a story, so
   # filter out every histogram with no stories, then merge. If you keep the
   # histograms with no story, you end up with duplicates.
@@ -177,4 +237,4 @@ def AddReservedDiagnostics(histogram_dicts, names_to_values):
         name, generic_set.GenericSet([value]))
   histograms.RemoveOrphanedDiagnostics()
 
-  return json.dumps(histograms.AsDicts())
+  return Batch(histograms, max_size)
