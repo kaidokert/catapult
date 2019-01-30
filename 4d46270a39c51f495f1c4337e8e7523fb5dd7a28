@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ef683877_ccf1afa9",
+        "filename": "tracing/bin/add_reserved_diagnostics",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-01-30T21:30:42Z",
+      "side": 1,
+      "message": "It looks like this script now also chunks up the histogramset as well. Maybe modify this description?",
+      "range": {
+        "startLine": 32,
+        "startChar": 19,
+        "endLine": 32,
+        "endChar": 64
+      },
+      "revId": "4d46270a39c51f495f1c4337e8e7523fb5dd7a28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "525a42c1_12ea5780",
+        "filename": "tracing/bin/add_reserved_diagnostics",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-01-30T21:30:42Z",
+      "side": 1,
+      "message": "Please explain the units.\n\nIs this max size in bits? bytes? megabytes?",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 63
+      },
+      "revId": "4d46270a39c51f495f1c4337e8e7523fb5dd7a28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2b5f848_c3a02882",
+        "filename": "tracing/bin/add_reserved_diagnostics",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-01-30T21:30:42Z",
+      "side": 1,
+      "message": "I think it would make this easier to read if you called it \"results_json_chunks\". Then it is clear that it is a list of chunks. (I know that sometimes there is only one chunk, but I think that\u0027s okay.)",
+      "range": {
+        "startLine": 86,
+        "startChar": 2,
+        "endLine": 86,
+        "endChar": 14
+      },
+      "revId": "4d46270a39c51f495f1c4337e8e7523fb5dd7a28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06bc861b_c2b30f51",
+        "filename": "tracing/tracing/value/diagnostics/add_reserved_diagnostics.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-01-30T21:30:42Z",
+      "side": 1,
+      "message": "I\u0027m confused about the \"+\" here. Is that valid python? Maybe just remove that \"+\"?",
+      "range": {
+        "startLine": 135,
+        "startChar": 11,
+        "endLine": 135,
+        "endChar": 13
+      },
+      "revId": "4d46270a39c51f495f1c4337e8e7523fb5dd7a28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd12b38c_dcaa8a7a",
+        "filename": "tracing/tracing/value/diagnostics/add_reserved_diagnostics.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-01-30T21:30:42Z",
+      "side": 1,
+      "message": "if we have a max_size, then we can\u0027t really return a chunk that is larger than that size. It would make more sense to raise an exception.",
+      "range": {
+        "startLine": 141,
+        "startChar": 8,
+        "endLine": 142,
+        "endChar": 15
+      },
+      "revId": "4d46270a39c51f495f1c4337e8e7523fb5dd7a28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dfb379c9_40f3318b",
+        "filename": "tracing/tracing/value/diagnostics/add_reserved_diagnostics.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-01-30T21:30:42Z",
+      "side": 1,
+      "message": "this can be\n\nelif if batch_size \u003e\u003d len(histograms):",
+      "range": {
+        "startLine": 145,
+        "startChar": 6,
+        "endLine": 146,
+        "endChar": 10
+      },
+      "revId": "4d46270a39c51f495f1c4337e8e7523fb5dd7a28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "451602d0_6ac60b5d",
+        "filename": "tracing/tracing/value/diagnostics/add_reserved_diagnostics.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-01-30T21:30:42Z",
+      "side": 1,
+      "message": "nit: The newline after this made me confused and think that the stuff that came after wasn\u0027t inside the while loop. Maybe remove this new line?",
+      "range": {
+        "startLine": 147,
+        "startChar": 14,
+        "endLine": 148,
+        "endChar": 0
+      },
+      "revId": "4d46270a39c51f495f1c4337e8e7523fb5dd7a28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
