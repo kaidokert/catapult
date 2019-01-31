@@ -15,8 +15,6 @@ from telemetry import page as page_module
 from telemetry.value import improvement_direction
 from telemetry.value import list_of_scalar_values
 from telemetry.value import scalar
-from telemetry.value import trace
-from tracing.trace_data import trace_data
 
 
 def _MakeStorySet():
@@ -95,26 +93,6 @@ class ChartJsonTest(unittest.TestCase):
         _MakePageTestResults())
 
     self.assertEquals('', d['benchmark_metadata']['description'])
-
-  def testAsChartDictPageSpecificValuesSamePageWithInteractionRecord(self):
-    v0 = scalar.ScalarValue(self._story_set[0], 'foo', 'seconds', 3,
-                            improvement_direction=improvement_direction.DOWN,
-                            tir_label='MyIR')
-    v1 = scalar.ScalarValue(self._story_set[0], 'foo', 'seconds', 4,
-                            improvement_direction=improvement_direction.DOWN,
-                            tir_label='MyIR')
-    results = _MakePageTestResults()
-    results.WillRunPage(self._story_set[0])
-    results.AddValue(v0)
-    results.AddValue(v1)
-    results.DidRunPage(self._story_set[0])
-
-    d = chart_json_output_formatter.ResultsAsChartDict(
-        self._benchmark_metadata, results)
-
-    self.assertTrue('MyIR@@foo' in d['charts'])
-    self.assertTrue('http://www.foo.com/' in d['charts']['MyIR@@foo'])
-    self.assertTrue(d['enabled'])
 
   def testAsChartDictPageSpecificValuesSamePageWithoutInteractionRecord(self):
     v0 = scalar.ScalarValue(self._story_set[0], 'foo', 'seconds', 3,
@@ -203,23 +181,6 @@ class ChartJsonTest(unittest.TestCase):
         self._benchmark_metadata, results)
 
     self.assertTrue('summary' in d['charts']['foo'])
-    self.assertTrue(d['enabled'])
-
-  def testAsChartDictWithTraceValuesThatHasTirLabel(self):
-    v = trace.TraceValue(self._story_set[0],
-                         trace_data.CreateTraceDataFromRawData([{'test': 1}]))
-    v.tir_label = 'background'
-    results = _MakePageTestResults()
-    results.WillRunPage(self._story_set[0])
-    results.AddValue(v)
-    results.DidRunPage(self._story_set[0])
-
-    d = chart_json_output_formatter.ResultsAsChartDict(
-        self._benchmark_metadata, results)
-
-    self.assertTrue('trace' in d['charts'])
-    self.assertTrue('http://www.foo.com/' in d['charts']['trace'],
-                    msg=d['charts']['trace'])
     self.assertTrue(d['enabled'])
 
   def testAsChartDictValueSmokeTest(self):
