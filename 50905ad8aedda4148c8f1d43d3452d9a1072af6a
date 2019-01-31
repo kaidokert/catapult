@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "e95b21a3_1b3c3efb",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-31T14:10:01Z",
+      "side": 1,
+      "message": "Wondering if there should be a platform_backed.IsIntervalProfilingSupported() instead? This is looking a bit messy.\n\nAlternatively, this method should mainly pick the right _PlatformController subclass given the os_name, and then delegate all checking if supported/input validation to the subclass instead.",
+      "revId": "50905ad8aedda4148c8f1d43d3452d9a1072af6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "35e1c54e_b031ca6f",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
         "patchSetId": 9
@@ -36,6 +53,30 @@
       "writtenOn": "2019-01-31T03:27:18Z",
       "side": 1,
       "message": "I think these input validation issues should all be ValueErrors.",
+      "range": {
+        "startLine": 55,
+        "startChar": 14,
+        "endLine": 55,
+        "endChar": 23
+      },
+      "revId": "50905ad8aedda4148c8f1d43d3452d9a1072af6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1c5b5ce_87dc7c9a",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-31T14:10:01Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "778611c8_a9dfdc0e",
       "range": {
         "startLine": 55,
         "startChar": 14,
