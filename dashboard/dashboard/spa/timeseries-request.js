@@ -8,7 +8,7 @@ tr.exportTo('cp', () => {
     XY: 'XY',
     ALERTS: 'ALERTS',
     ANNOTATIONS: 'ANNOTATIONS',
-    HISTOGRAMS: 'HISTOGRAMS',
+    HISTOGRAM: 'HISTOGRAM',
   });
 
   function getColumnsByLevelOfDetail(levelOfDetail, statistic) {
@@ -34,10 +34,12 @@ tr.exportTo('cp', () => {
     datum.timestamp = new Date(datum.timestamp);
 
     datum.unit = unit;
+    if (!datum.count) datum.count = 1;
     if (datum.avg) datum.avg *= conversionFactor;
     if (datum.std) datum.std *= conversionFactor;
     if (datum.sum) datum.sum *= conversionFactor;
 
+    if (datum.alert) datum.alert = cp.AlertsSection.transformAlert(datum.alert);
     if (datum.diagnostics) {
       datum.diagnostics = tr.v.d.DiagnosticMap.fromDict(datum.diagnostics);
     }
@@ -51,6 +53,7 @@ tr.exportTo('cp', () => {
     constructor(options) {
       super(options);
       this.method_ = 'POST';
+      this.measurement_ = options.measurement;
       this.body_ = new FormData();
       this.body_.set('test_suite', options.testSuite);
       this.body_.set('measurement', options.measurement);
@@ -76,11 +79,12 @@ tr.exportTo('cp', () => {
       }
     }
 
-    get url_() {
-      return '/api/timeseries2';
+    get channelName() {
+      return (location.origin + this.url_ + '?' +
+              new URLSearchParams(this.body_));
     }
 
-    postProcess_(response) {
+    postProcess_(response, isFromChannel = false) {
       if (!response) return;
       let unit = tr.b.Unit.byJSONName[response.units];
       let conversionFactor = 1;
@@ -93,8 +97,49 @@ tr.exportTo('cp', () => {
           unit = tr.b.Unit.byName.unitlessNumber;
         }
       }
+
+      // The backend returns denormalized (tabular) data, but
+      // TimeseriesCacheRequest yields normalized (objects) data for speed.
+      // Rely on TimeseriesCacheRequest to merge data from network requests in
+      // with previous data, so this code does not need to worry about merging
+      // across levels of detail. (Merging data across timeseries is handled by
+      // MultiTimeseriesIterator using mergeData().)
       return response.data.map(row => transformDatum(
-          cp.normalize(this.columns_, row), unit, conversionFactor));
+          (isFromChannel ? row : cp.normalize(this.columns_, row)),
+          unit, conversionFactor));
+    }
+
+    get url_() {
+      return '/api/timeseries2';
+    }
+
+    async localhostResponse_() {
+      let units = 'unitlessNumber';
+      if (this.measurement_.startsWith('memory:')) {
+        units = 'sizeInBytes_smallerIsBetter';
+      }
+      if (this.measurement_.startsWith('cpu:') ||
+          this.measurement_.startsWith('loading') ||
+          this.measurement_.startsWith('startup')) {
+        units = 'ms_smallerIsBetter';
+      }
+      if (this.measurement_.startsWith('power')) {
+        units = 'W_smallerIsBetter';
+      }
+      const data = [];
+      const sequenceLength = 100;
+      const nowMs = new Date() - 0;
+      for (let i = 0; i < sequenceLength; i += 1) {
+        data.push({
+          revision: i * 100,
+          timestamp: nowMs - ((sequenceLength - i - 1) * (2592105834 / 50)),
+          avg: parseInt(100 * Math.random()),
+          count: 1,
+          std: parseInt(50 * Math.random()),
+          // TODO diagnostics, revisions, alert
+        });
+      }
+      return {data: cp.denormalize(data, this.columns_), units};
     }
   }
 

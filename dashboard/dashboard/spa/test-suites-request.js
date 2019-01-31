@@ -13,6 +13,15 @@ tr.exportTo('cp', () => {
     get url_() {
       return '/api/test_suites';
     }
+
+    async localhostResponse_() {
+      return [
+        'system_health.common_desktop',
+        'system_health.common_mobile',
+        'system_health.memory_desktop',
+        'system_health.memory_mobile',
+      ];
+    }
   }
 
   return {TestSuitesRequest};
