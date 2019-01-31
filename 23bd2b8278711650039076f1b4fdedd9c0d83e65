@@ -84,6 +84,24 @@
     },
     {
       "key": {
+        "uuid": "db2728e2_c9a565af",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1151970
+      },
+      "writtenOn": "2019-01-31T03:27:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "458ce423_88fa5103",
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "89335f36_684f6e94",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
         "patchSetId": 7
@@ -128,6 +146,30 @@
       "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "82d65a9b_44a0c6bd",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1151970
+      },
+      "writtenOn": "2019-01-31T03:27:18Z",
+      "side": 1,
+      "message": "Sorry, my question was, do you want to return this to its original value after you are done profiling? If not, then replace\n`\nif x !\u003d 0:\n  x \u003d 0\n`\nwith\nx \u003d 0",
+      "parentUuid": "da7151d6_903f9100",
+      "range": {
+        "startLine": 256,
+        "startChar": 37,
+        "endLine": 258,
+        "endChar": 27
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     },
     {
       "key": {
