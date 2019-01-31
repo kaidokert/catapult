@@ -413,8 +413,7 @@ class SummaryTest(TestBase):
     results.AddValue(v3)
     results.DidRunPage(page1)
 
-    summary = summary_module.Summary(
-        results, key_func=lambda v: True)
+    summary = summary_module.Summary(results)
     values = summary.interleaved_computed_per_page_values_and_summaries
 
     v0_list = list_of_scalar_values.ListOfScalarValues(

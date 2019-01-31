@@ -27,7 +27,7 @@ class TraceValue(value_module.Value):
     """
     super(TraceValue, self).__init__(
         page, name='trace', units='', important=important,
-        description=description, tir_label=None, grouping_keys=None)
+        description=description)
     self._temp_file = self._GetTempFileHandle(trace_data)
     self._file_path = file_path
     self._remote_path = remote_path
