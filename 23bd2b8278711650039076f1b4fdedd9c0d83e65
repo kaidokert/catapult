@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "65217b78_87d46746",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-01-31T00:45:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51233686_f17fd542",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 50
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "74d6053c_7395a08f",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
         "patchSetId": 7
@@ -36,6 +60,24 @@
       "writtenOn": "2019-01-30T05:05:28Z",
       "side": 1,
       "message": "Maybe only add the \u0027-a\u0027 if not already present? That would avoid having to warn the user against this in the options.",
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "458ce423_88fa5103",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-01-31T00:45:50Z",
+      "side": 1,
+      "message": "It is totally fine to have two \u0027-a\u0027 options in the command. The user shouldn\u0027t pass flags like \u0027-p\u0027, \u0027-t\u0027, or \u0027-u\u0027 which are incompatible with \u0027-a\u0027 and will cause perf to fail.",
+      "parentUuid": "74d6053c_7395a08f",
       "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "da7151d6_903f9100",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-01-31T00:45:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89335f36_684f6e94",
+      "range": {
+        "startLine": 256,
+        "startChar": 37,
+        "endLine": 258,
+        "endChar": 27
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "48c06b9c_29be44b5",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
         "patchSetId": 7
@@ -85,6 +151,30 @@
       "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb0ce372_e26f41e6",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-01-31T00:45:50Z",
+      "side": 1,
+      "message": "Removed looking up the pids.",
+      "parentUuid": "48c06b9c_29be44b5",
+      "range": {
+        "startLine": 300,
+        "startChar": 4,
+        "endLine": 300,
+        "endChar": 15
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "895425ce_d96b5f78",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-01-31T00:45:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0df39f9_94d97c6a",
+      "range": {
+        "startLine": 304,
+        "startChar": 41,
+        "endLine": 305,
+        "endChar": 80
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0d0ca3f2_486631c7",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
         "patchSetId": 7
@@ -134,6 +248,30 @@
     },
     {
       "key": {
+        "uuid": "d3938d7d_0ce7e77a",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-01-31T00:45:50Z",
+      "side": 1,
+      "message": "Presubmit checks complain if I use **_kwargs instead of **_",
+      "parentUuid": "0d0ca3f2_486631c7",
+      "range": {
+        "startLine": 310,
+        "startChar": 50,
+        "endLine": 310,
+        "endChar": 51
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d1d9e219_e23f281e",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
         "patchSetId": 7
@@ -145,6 +283,30 @@
       "writtenOn": "2019-01-30T20:34:44Z",
       "side": 1,
       "message": "Discussed offline; with nested calls to SamplePeriod, this may pass in the same out_file. If overlapping collection is intentional, the process killing code above will need a revisit.",
+      "range": {
+        "startLine": 313,
+        "startChar": 0,
+        "endLine": 314,
+        "endChar": 46
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d0ad3d0_b3dbf120",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-01-31T00:45:50Z",
+      "side": 1,
+      "message": "Overlapping collection is not required for now. Modified the change https://chromium-review.googlesource.com/c/catapult/+/1436233 to not allow other profiling periods when the \u0027whole_story_run\u0027 period is profiled.",
+      "parentUuid": "d1d9e219_e23f281e",
       "range": {
         "startLine": 313,
         "startChar": 0,
@@ -177,6 +339,30 @@
       "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3c4f84e_c6b86a44",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-01-31T00:45:50Z",
+      "side": 1,
+      "message": "As discussed offline, this try block is to detect any exception and mark the perf.data file as not safe to create any artifact.",
+      "parentUuid": "b4c84809_c7043cc8",
+      "range": {
+        "startLine": 315,
+        "startChar": 0,
+        "endLine": 319,
+        "endChar": 12
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -215,6 +401,24 @@
     },
     {
       "key": {
+        "uuid": "9ef7847b_f23e168c",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-01-31T00:45:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a7737b0_9e464252",
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "56baa997_b62fd091",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
         "patchSetId": 7
@@ -235,6 +439,30 @@
       "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "773a4196_01232c3f",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-01-31T00:45:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56baa997_b62fd091",
+      "range": {
+        "startLine": 336,
+        "startChar": 39,
+        "endLine": 339,
+        "endChar": 31
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -261,6 +489,30 @@
     },
     {
       "key": {
+        "uuid": "7ad769a7_9811f0db",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-01-31T00:45:50Z",
+      "side": 1,
+      "message": "The base name is required to identify the benchmark and story names from the perf.data file name as this is very useful when this file is processed independent of the benchmark execution phase.",
+      "parentUuid": "91beaf5c_d51901e5",
+      "range": {
+        "startLine": 349,
+        "startChar": 50,
+        "endLine": 353,
+        "endChar": 18
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f33faa44_60790c40",
         "filename": "telemetry/telemetry/internal/browser/browser_options.py",
         "patchSetId": 7
@@ -281,6 +533,30 @@
       "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21a4f48e_7bac9b8d",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-01-31T00:45:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f33faa44_60790c40",
+      "range": {
+        "startLine": 189,
+        "startChar": 22,
+        "endLine": 189,
+        "endChar": 31
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -307,6 +583,30 @@
     },
     {
       "key": {
+        "uuid": "73e97f04_e00b15be",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-01-31T00:45:50Z",
+      "side": 1,
+      "message": "It is quite confusing in the perf documentation too. Reworded it to subcommand to avoid any confusion.",
+      "parentUuid": "e5149d33_2d326234",
+      "range": {
+        "startLine": 211,
+        "startChar": 40,
+        "endLine": 211,
+        "endChar": 67
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5d335602_7e634e4f",
         "filename": "telemetry/telemetry/internal/browser/browser_options.py",
         "patchSetId": 7
@@ -327,6 +627,30 @@
       "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a94c7d0_d42d0967",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-01-31T00:45:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d335602_7e634e4f",
+      "range": {
+        "startLine": 213,
+        "startChar": 26,
+        "endLine": 213,
+        "endChar": 63
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
