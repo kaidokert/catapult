@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d0365e19_8041463d",
+        "filename": "dashboard/dashboard/__init__.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-01-31T21:36:36Z",
+      "side": 1,
+      "message": "Tracing paths just uses / style below, don\u0027t think you have to go and os.path.join these, not sure anybody on windows has ever deployed.",
+      "range": {
+        "startLine": 28,
+        "startChar": 18,
+        "endLine": 28,
+        "endChar": 26
+      },
+      "revId": "15e43613bc3e13e06f97283b85c8241d2e32c3a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
