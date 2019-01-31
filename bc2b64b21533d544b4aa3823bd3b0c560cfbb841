@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0d1dee46_6ce87a4f",
+        "filename": "third_party/typ/run",
+        "patchSetId": 7
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-01-31T23:15:52Z",
+      "side": 0,
+      "message": "There are several whitespace-only changes in this CL, including this one, which I think should be reverted.",
+      "revId": "bc2b64b21533d544b4aa3823bd3b0c560cfbb841",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

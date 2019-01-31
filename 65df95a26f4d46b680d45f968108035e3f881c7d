@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ccb3e93_028e0635",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-01-31T23:15:52Z",
+      "side": 1,
+      "message": "Is it worth the additional complexity of letting browser tests override the GetFlakyRetryCount method? It\u0027s fine in my opinion to only allow configuring this via a command line option and/or as arguments passed to the typ runner when it\u0027s created.",
+      "revId": "65df95a26f4d46b680d45f968108035e3f881c7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7734ec3c_d52836db",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-01-31T23:15:52Z",
+      "side": 1,
+      "message": "Per other comments in the CL, I recommend removing Get/SetFlakyRetryCount.",
+      "revId": "65df95a26f4d46b680d45f968108035e3f881c7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "251b79ce_fac16cf8",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-01-31T23:15:52Z",
+      "side": 1,
+      "message": "Is it really a good idea to sort these? I would intuitively expect the results to be in chronological order of the tests\u0027 runs, rather than alphabetical order. (It\u0027s fine with me if they have to be sorted for some reason, for example to make the unit tests easier to read and write.)",
+      "range": {
+        "startLine": 198,
+        "startChar": 41,
+        "endLine": 198,
+        "endChar": 47
+      },
+      "revId": "65df95a26f4d46b680d45f968108035e3f881c7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f0b440a_d375ef13",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-01-31T23:15:52Z",
+      "side": 1,
+      "message": "I don\u0027t think it\u0027s worth the added complexity to support GetFlakyRetryCount / SetFlakyRetryCount. Just having the retry_limit_for_flaky_tests seems like enough configurability to me.",
+      "range": {
+        "startLine": 610,
+        "startChar": 43,
+        "endLine": 610,
+        "endChar": 61
+      },
+      "revId": "65df95a26f4d46b680d45f968108035e3f881c7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b39ed2f9_26bbb5ca",
+        "filename": "third_party/typ/typ/tests/main_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-01-31T23:15:52Z",
+      "side": 1,
+      "message": "Please undo whitespace-only changes.",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 0
+      },
+      "revId": "65df95a26f4d46b680d45f968108035e3f881c7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1256fda0_76dd8fca",
+        "filename": "third_party/typ/typ/tests/main_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 855,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-01-31T23:15:52Z",
+      "side": 1,
+      "message": "I wish this and the other tests could be written a little more tersely, but overall your test coverage looks good.",
+      "revId": "65df95a26f4d46b680d45f968108035e3f881c7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
