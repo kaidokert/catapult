@@ -102,6 +102,20 @@ tr.exportTo('cp', () => {
 
   TimeseriesDescriptor.actions = {
     ready: statePath => async(dispatch, getState) => {
+      TimeseriesDescriptor.actions.loadSuites(statePath)(dispatch, getState);
+
+      const state = Polymer.Path.get(getState(), statePath);
+      if (state && state.testSuite && state.testSuite.selectedOptions &&
+          state.testSuite.selectedOptions.length) {
+        await TimeseriesDescriptor.actions.describeSuites(statePath)(
+            dispatch, getState);
+      } else {
+        cp.MenuInput.actions.focus(`${statePath}.testSuite`)(
+            dispatch, getState);
+      }
+    },
+
+    loadSuites: statePath => async(dispatch, getState) => {
       const request = new cp.TestSuitesRequest({});
       const suites = await request.response;
       dispatch({
