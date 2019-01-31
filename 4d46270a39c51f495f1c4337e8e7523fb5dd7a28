@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b2673e3c_9472bae1",
+        "filename": "tracing/bin/add_reserved_diagnostics",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-31T19:13:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef683877_ccf1afa9",
+      "range": {
+        "startLine": 32,
+        "startChar": 19,
+        "endLine": 32,
+        "endChar": 64
+      },
+      "revId": "4d46270a39c51f495f1c4337e8e7523fb5dd7a28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "525a42c1_12ea5780",
         "filename": "tracing/bin/add_reserved_diagnostics",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "4d46270a39c51f495f1c4337e8e7523fb5dd7a28",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af468733_8a1f0941",
+        "filename": "tracing/bin/add_reserved_diagnostics",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-31T19:13:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "525a42c1_12ea5780",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 63
+      },
+      "revId": "4d46270a39c51f495f1c4337e8e7523fb5dd7a28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "af2f9d9b_3a41280f",
+        "filename": "tracing/bin/add_reserved_diagnostics",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-31T19:13:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2b5f848_c3a02882",
+      "range": {
+        "startLine": 86,
+        "startChar": 2,
+        "endLine": 86,
+        "endChar": 14
+      },
+      "revId": "4d46270a39c51f495f1c4337e8e7523fb5dd7a28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "64c06841_dfceb809",
         "filename": "tracing/tracing/value/diagnostics/add_reserved_diagnostics.py",
         "patchSetId": 4
@@ -88,6 +160,24 @@
     },
     {
       "key": {
+        "uuid": "c9f1a3fb_7558c25a",
+        "filename": "tracing/tracing/value/diagnostics/add_reserved_diagnostics.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-31T19:13:34Z",
+      "side": 1,
+      "message": "PTAL",
+      "parentUuid": "64c06841_dfceb809",
+      "revId": "4d46270a39c51f495f1c4337e8e7523fb5dd7a28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "06bc861b_c2b30f51",
         "filename": "tracing/tracing/value/diagnostics/add_reserved_diagnostics.py",
         "patchSetId": 4
@@ -99,6 +189,30 @@
       "writtenOn": "2019-01-30T21:30:42Z",
       "side": 1,
       "message": "I\u0027m confused about the \"+\" here. Is that valid python? Maybe just remove that \"+\"?",
+      "range": {
+        "startLine": 135,
+        "startChar": 11,
+        "endLine": 135,
+        "endChar": 13
+      },
+      "revId": "4d46270a39c51f495f1c4337e8e7523fb5dd7a28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfde708e_306f8e92",
+        "filename": "tracing/tracing/value/diagnostics/add_reserved_diagnostics.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-31T19:13:34Z",
+      "side": 1,
+      "message": "https://stackoverflow.com/questions/16819023/whats-the-purpose-of-the-pos-unary-operator-in-python\nIt\u0027s a holdover from C, when it was added for readability to improve symmetry for situations like this. It doesn\u0027t serve any purpose except readability, but it apparently didn\u0027t do that, so I\u0027ll remove it.",
+      "parentUuid": "06bc861b_c2b30f51",
       "range": {
         "startLine": 135,
         "startChar": 11,
@@ -134,6 +248,30 @@
     },
     {
       "key": {
+        "uuid": "768f8962_055cd1ba",
+        "filename": "tracing/tracing/value/diagnostics/add_reserved_diagnostics.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-31T19:13:34Z",
+      "side": 1,
+      "message": "That makes theoretical sense, but I\u0027m not sure if that\u0027s what we\u0027ll actually want in production, at least at first. The dashboard OOMs at *about* 2GB, but that doesn\u0027t always correlate exactly with a HistogramSet JSON size, so I think we\u0027ll want to experiment with max_size a bit.\nI added a \u0027strict\u0027 option to Batch to make it easy to flip.",
+      "parentUuid": "fd12b38c_dcaa8a7a",
+      "range": {
+        "startLine": 141,
+        "startChar": 8,
+        "endLine": 142,
+        "endChar": 15
+      },
+      "revId": "4d46270a39c51f495f1c4337e8e7523fb5dd7a28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dfb379c9_40f3318b",
         "filename": "tracing/tracing/value/diagnostics/add_reserved_diagnostics.py",
         "patchSetId": 4
@@ -157,6 +295,30 @@
     },
     {
       "key": {
+        "uuid": "610eec78_797fdf2a",
+        "filename": "tracing/tracing/value/diagnostics/add_reserved_diagnostics.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-31T19:13:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfb379c9_40f3318b",
+      "range": {
+        "startLine": 145,
+        "startChar": 6,
+        "endLine": 146,
+        "endChar": 10
+      },
+      "revId": "4d46270a39c51f495f1c4337e8e7523fb5dd7a28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "451602d0_6ac60b5d",
         "filename": "tracing/tracing/value/diagnostics/add_reserved_diagnostics.py",
         "patchSetId": 4
@@ -177,6 +339,30 @@
       "revId": "4d46270a39c51f495f1c4337e8e7523fb5dd7a28",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82518dbc_544c4cad",
+        "filename": "tracing/tracing/value/diagnostics/add_reserved_diagnostics.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-31T19:13:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "451602d0_6ac60b5d",
+      "range": {
+        "startLine": 147,
+        "startChar": 14,
+        "endLine": 148,
+        "endChar": 0
+      },
+      "revId": "4d46270a39c51f495f1c4337e8e7523fb5dd7a28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
