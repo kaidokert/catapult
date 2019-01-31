@@ -116,6 +116,8 @@ tr.exportTo('tr.metrics', function() {
         };
       }
     }
+    throw new Error('Missing trace config metadata (total metadata: ' +
+                    model.metadata.length + ')');
   }
 
   function validateTraceCategories(requiredCategories, categories) {
