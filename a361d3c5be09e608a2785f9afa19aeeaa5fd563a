@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "83f2d380_f70a8ad5",
+        "filename": "tracing/tracing/metrics/metric_map_function.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-01-31T21:38:58Z",
+      "side": 1,
+      "message": "You could include the names of the metadata if you want.\n\nmodel.metadata.map(m \u003d\u003e m.name).join(\u0027,\u0027)",
+      "revId": "a361d3c5be09e608a2785f9afa19aeeaa5fd563a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
