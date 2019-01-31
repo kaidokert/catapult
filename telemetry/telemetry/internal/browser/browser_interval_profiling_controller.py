@@ -24,6 +24,14 @@ class BrowserIntervalProfilingController(object):
     self._frequency = statistics.Clamp(int(frequency), 1, 4000)
     self._platform_controller = None
     if periods:
+      # Profiling other periods along with the whole_story_run period leads to
+      # running multiple profiling processes at the same time. It is not
+      # gauranteed that the correct profiling process will be terminated at the
+      # end of a session when multiple profiling processes are running at the
+      # same time.
+      if len(periods) > 1 and 'whole_story_run' in periods:
+        raise Exception('Cannot provide other periods along with'
+                        ' whole_story_run.')
       self._platform_controller = self._CreatePlatformController(
           possible_browser)
 
