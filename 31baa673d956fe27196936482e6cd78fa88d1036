@@ -16,6 +16,24 @@
       "revId": "31baa673d956fe27196936482e6cd78fa88d1036",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75920443_d1d13408",
+        "filename": "telemetry/telemetry/timeline/chrome_trace_config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-01-31T20:26:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11744f97_acc2bf89",
+      "revId": "31baa673d956fe27196936482e6cd78fa88d1036",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
