@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "11744f97_acc2bf89",
+        "filename": "telemetry/telemetry/timeline/chrome_trace_config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-01-31T14:42:12Z",
+      "side": 1,
+      "message": "nit: maybe make this EnableHistograms(self, *args) so callers can enable multiple histograms if they need to?",
+      "revId": "31baa673d956fe27196936482e6cd78fa88d1036",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
