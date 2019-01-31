@@ -54,11 +54,6 @@ class SkipValue(value_module.Value):
       del kwargs['important']
     kwargs['reason'] = value_dict['reason']
     kwargs['is_expected'] = value_dict['is_expected']
-    if 'tir_label' in kwargs:
-      del kwargs['tir_label']
-    if 'grouping_keys' in kwargs:
-      del kwargs['grouping_keys']
-
     return SkipValue(**kwargs)  # pylint: disable=unexpected-keyword-arg
 
   @classmethod

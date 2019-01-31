@@ -61,15 +61,5 @@ def SummarizePageSpecificValues(results):
   Thus, we only want to summarize once if the benchmark is not timeline-based,
   but twice, using the two different key functions, otherwise.
   """
-  # Default summary uses merge_values.DefaultKeyFunc to summarize both by name
-  # and tir_label.
   summary = summary_module.Summary(results)
-  values = summary.interleaved_computed_per_page_values_and_summaries
-
-  if any(v.tir_label for v in results.all_page_specific_values):
-    summary_by_name_only = summary_module.Summary(
-        results, key_func=lambda v: v.name)
-    values.extend(
-        summary_by_name_only.interleaved_computed_per_page_values_and_summaries
-    )
-  return values
+  return summary.interleaved_computed_per_page_values_and_summaries
