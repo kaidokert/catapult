@@ -16,6 +16,24 @@
       "revId": "a361d3c5be09e608a2785f9afa19aeeaa5fd563a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc2d8e86_eeb74ed5",
+        "filename": "tracing/tracing/metrics/metric_map_function.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2019-02-01T07:53:31Z",
+      "side": 1,
+      "message": "Thanks, good idea!",
+      "parentUuid": "83f2d380_f70a8ad5",
+      "revId": "a361d3c5be09e608a2785f9afa19aeeaa5fd563a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
