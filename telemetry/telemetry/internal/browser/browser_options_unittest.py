@@ -91,6 +91,16 @@ class BrowserOptionsTest(unittest.TestCase):
 
     self.assertTrue(options.enable_systrace)
 
+  def testIncompatibleIntervalProfilingPeriods(self):
+    options = browser_options.BrowserFinderOptions()
+    parser = options.CreateParser()
+
+    with self.assertRaises(Exception) as context:
+      parser.parse_args(['--interval-profiling-period=story_run',
+                         '--interval-profiling-period=navigation'])
+    self.assertTrue('Cannot provide other periods along with the story_run'
+                    ' period.' in context.exception)
+
   def testMergeDefaultValues(self):
     options = browser_options.BrowserFinderOptions()
     options.already_true = True
