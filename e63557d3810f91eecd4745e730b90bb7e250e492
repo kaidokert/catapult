@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1742073a_0ad9a128",
+        "filename": "tracing/bin/add_reserved_diagnostics",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-01T01:19:32Z",
+      "side": 1,
+      "message": "If you use --max-size, then you are no longer honoring this argument as well since you are putting the output into a bunch of files rather than all into one file at output_path.",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 59
+      },
+      "revId": "e63557d3810f91eecd4745e730b90bb7e250e492",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47fb67f9_54c2cd80",
+        "filename": "tracing/bin/add_reserved_diagnostics",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-01T01:19:32Z",
+      "side": 1,
+      "message": "This comment not true. Sometimes it will not be able to split it up to be as small as max_bytes.\n\nI don\u0027t have a strong opinion about what you do to fix this. But we can\u0027t have our comments be false or else it may confuse people.",
+      "range": {
+        "startLine": 48,
+        "startChar": 7,
+        "endLine": 49,
+        "endChar": 16
+      },
+      "revId": "e63557d3810f91eecd4745e730b90bb7e250e492",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
