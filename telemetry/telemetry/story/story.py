@@ -79,7 +79,7 @@ class Story(object):
     # A cache of the shared state wpr_mode to make it available to a story.
     self.wpr_mode = None
 
-  def Run(self, shared_state):
+  def Run(self, shared_state, **kwargs):
     """Execute the interactions with the applications and/or platforms."""
     raise NotImplementedError
 

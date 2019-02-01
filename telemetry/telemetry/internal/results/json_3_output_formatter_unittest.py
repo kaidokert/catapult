@@ -260,6 +260,7 @@ class Json3OutputFormatterTest(unittest.TestCase):
         3,
         improvement_direction=improvement_direction.DOWN)
     results.AddValue(v0)
+    results.current_page_run.SetRunOnlyDuration(3.0)
     results.current_page_run.SetDuration(5.0123)
     results.DidRunPage(test_page)
     results.PrintSummary()
@@ -281,4 +282,6 @@ class Json3OutputFormatterTest(unittest.TestCase):
     self.assertFalse(testBenchmarkFoo['is_unexpected'])
     self.assertEquals(testBenchmarkFoo['time'], 5.0123)
     self.assertEquals(testBenchmarkFoo['times'][0], 5.0123)
+    self.assertEquals(testBenchmarkFoo['test_only_time'], 3.0)
+    self.assertEquals(testBenchmarkFoo['test_only_times'][0], 3.0)
     self.assertEquals(json_test_results['version'], 3)
