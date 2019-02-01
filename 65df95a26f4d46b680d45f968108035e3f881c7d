@@ -119,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "53f7c9be_f3b7c76c",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-02-01T00:38:12Z",
+      "side": 1,
+      "message": "I see. Sounds good. Thanks for the explanation.",
+      "parentUuid": "39b9ae37_6c8000c9",
+      "range": {
+        "startLine": 198,
+        "startChar": 41,
+        "endLine": 198,
+        "endChar": 47
+      },
+      "revId": "65df95a26f4d46b680d45f968108035e3f881c7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2f0b440a_d375ef13",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 7
