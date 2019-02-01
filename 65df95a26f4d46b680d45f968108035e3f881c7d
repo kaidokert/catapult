@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "85f6233b_cf5f80cb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-02-01T00:34:26Z",
+      "side": 1,
+      "message": "I agree with getting rid of GetFlakyRetryCount and doing the simpler approach of providing a command line option to Typ to specify flaky retry count.",
+      "parentUuid": "2ccb3e93_028e0635",
+      "revId": "65df95a26f4d46b680d45f968108035e3f881c7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7734ec3c_d52836db",
         "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
         "patchSetId": 7
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "28c43546_df895054",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-02-01T00:34:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7734ec3c_d52836db",
+      "revId": "65df95a26f4d46b680d45f968108035e3f881c7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "251b79ce_fac16cf8",
         "filename": "third_party/typ/typ/json_results.py",
         "patchSetId": 7
@@ -47,6 +83,30 @@
       "writtenOn": "2019-01-31T23:15:52Z",
       "side": 1,
       "message": "Is it really a good idea to sort these? I would intuitively expect the results to be in chronological order of the tests\u0027 runs, rather than alphabetical order. (It\u0027s fine with me if they have to be sorted for some reason, for example to make the unit tests easier to read and write.)",
+      "range": {
+        "startLine": 198,
+        "startChar": 41,
+        "endLine": 198,
+        "endChar": 47
+      },
+      "revId": "65df95a26f4d46b680d45f968108035e3f881c7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39b9ae37_6c8000c9",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-02-01T00:34:26Z",
+      "side": 1,
+      "message": "The r.expected is a set of expectations from the expectations file for a given test. Multiple expectations in r.expected set does not follow the chronological order of tests runs, it follows some arbitrary order defined by the set data structure. This order could change in the future. I sort them so I can get a deterministic output for unit tests.",
+      "parentUuid": "251b79ce_fac16cf8",
       "range": {
         "startLine": 198,
         "startChar": 41,
@@ -82,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "00c02966_0e5ca739",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-02-01T00:34:26Z",
+      "side": 1,
+      "message": "I agree. I will get rid of them and just use the command line option --retry-limit-for-flaky-tests for passing the flaky retry limit to Typ",
+      "parentUuid": "2f0b440a_d375ef13",
+      "range": {
+        "startLine": 610,
+        "startChar": 43,
+        "endLine": 610,
+        "endChar": 61
+      },
+      "revId": "65df95a26f4d46b680d45f968108035e3f881c7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b39ed2f9_26bbb5ca",
         "filename": "third_party/typ/typ/tests/main_test.py",
         "patchSetId": 7
@@ -105,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "cc8100eb_01bd4ec4",
+        "filename": "third_party/typ/typ/tests/main_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-02-01T00:34:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b39ed2f9_26bbb5ca",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 0
+      },
+      "revId": "65df95a26f4d46b680d45f968108035e3f881c7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1256fda0_76dd8fca",
         "filename": "third_party/typ/typ/tests/main_test.py",
         "patchSetId": 7
@@ -119,6 +227,24 @@
       "revId": "65df95a26f4d46b680d45f968108035e3f881c7d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4b16fc8_11485d39",
+        "filename": "third_party/typ/typ/tests/main_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 855,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-02-01T00:34:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1256fda0_76dd8fca",
+      "revId": "65df95a26f4d46b680d45f968108035e3f881c7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
