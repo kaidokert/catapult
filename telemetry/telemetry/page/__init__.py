@@ -4,6 +4,7 @@
 import inspect
 import logging
 import os
+import time
 import urlparse
 
 from py_utils import cloud_storage  # pylint: disable=import-error
@@ -69,18 +70,24 @@ class Page(story.Story):
     if not self._scheme:
       raise ValueError('Must prepend the URL with scheme (e.g. file://)')
 
-  def Run(self, shared_state):
+  def Run(self, shared_state, **kwargs):
     current_tab = shared_state.current_tab
+    story_run = kwargs.get('story_run', None)
     # Collect garbage from previous run several times to make the results more
     # stable if needed.
     for _ in xrange(0, 5):
       current_tab.CollectGarbage()
     action_runner = action_runner_module.ActionRunner(
         current_tab, skip_waits=self.skip_waits)
-    shared_state.NavigateToPage(action_runner, self)
-    with shared_state.interval_profiling_controller.SamplePeriod(
-        'interactions', action_runner):
-      self.RunPageInteractions(action_runner)
+    start_timestamp = time.time()
+    try:
+      shared_state.NavigateToPage(action_runner, self)
+      with shared_state.interval_profiling_controller.SamplePeriod(
+          'interactions', action_runner):
+        self.RunPageInteractions(action_runner)
+    finally:
+      if story_run:
+        story_run.SetRunOnlyDuration(time.time() - start_timestamp)
 
   def RunNavigateSteps(self, action_runner):
     url = self.file_path_url_with_scheme if self.is_file else self.url
