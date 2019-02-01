@@ -45,6 +45,29 @@
       "revId": "e63557d3810f91eecd4745e730b90bb7e250e492",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e011bad3_d91921a8",
+        "filename": "tracing/tracing/value/diagnostics/add_reserved_diagnostics_unittest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-01T21:13:38Z",
+      "side": 1,
+      "message": "seems like there\u0027s some cases to cover, use strict, max_bytes \u003d 0, max_bytes is really small",
+      "range": {
+        "startLine": 29,
+        "startChar": 6,
+        "endLine": 29,
+        "endChar": 15
+      },
+      "revId": "e63557d3810f91eecd4745e730b90bb7e250e492",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
