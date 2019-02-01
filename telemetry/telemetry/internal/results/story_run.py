@@ -11,7 +11,10 @@ class StoryRun(object):
     self._values = []
     self._failed = False
     self._failure_str = None
+    # Time taken to setup, run, and teardown a story.
     self._duration = None
+    # Actual time taken for a story run without including setup/teardown time.
+    self._run_only_duration = None
 
   def AddValue(self, value):
     self._values.append(value)
@@ -25,6 +28,9 @@ class StoryRun(object):
 
   def SetDuration(self, duration_in_seconds):
     self._duration = duration_in_seconds
+
+  def SetRunOnlyDuration(self, duration_in_seconds):
+    self._run_only_duration = duration_in_seconds
 
   @property
   def story(self):
@@ -69,3 +75,7 @@ class StoryRun(object):
   @property
   def duration(self):
     return self._duration
+
+  @property
+  def run_only_duration(self):
+    return self._run_only_duration
