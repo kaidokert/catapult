@@ -173,6 +173,30 @@
     },
     {
       "key": {
+        "uuid": "dd7b84d4_e3a0f6fb",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-01T03:59:01Z",
+      "side": 1,
+      "message": "crouleau@, perezju@ Is it possible that the telemetry infrastructure could be used to run benchmarks on non-test device like ChromeOS devices in the wild?\n\nIf so, this step would make kernel mapping visible to the non-root users in the wild. Thus, this file should never be modified and the kernel mappings should be available to the profiling process only when the tests are run as the root user.",
+      "parentUuid": "82d65a9b_44a0c6bd",
+      "range": {
+        "startLine": 256,
+        "startChar": 37,
+        "endLine": 258,
+        "endChar": 27
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "48c06b9c_29be44b5",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
         "patchSetId": 7
@@ -358,6 +382,30 @@
       "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf6c6f0f_10f44fed",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-01T03:59:01Z",
+      "side": 1,
+      "message": "Resolving.",
+      "parentUuid": "0d0ad3d0_b3dbf120",
+      "range": {
+        "startLine": 313,
+        "startChar": 0,
+        "endLine": 314,
+        "endChar": 46
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {

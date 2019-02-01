@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "573b39de_b14c1eb7",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-01T03:59:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e95b21a3_1b3c3efb",
+      "revId": "50905ad8aedda4148c8f1d43d3452d9a1072af6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "35e1c54e_b031ca6f",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
         "patchSetId": 9
@@ -63,6 +81,30 @@
       "revId": "50905ad8aedda4148c8f1d43d3452d9a1072af6a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dff3f630_472510d2",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-01T03:59:01Z",
+      "side": 1,
+      "message": "Added a separate platform_backed.IsIntervalProfilingSupported() method.",
+      "parentUuid": "6a15870a_ba157c6b",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 35
+      },
+      "revId": "50905ad8aedda4148c8f1d43d3452d9a1072af6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -113,6 +155,30 @@
     },
     {
       "key": {
+        "uuid": "ab0d40dc_85f2d058",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-01T03:59:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1c5b5ce_87dc7c9a",
+      "range": {
+        "startLine": 55,
+        "startChar": 14,
+        "endLine": 55,
+        "endChar": 23
+      },
+      "revId": "50905ad8aedda4148c8f1d43d3452d9a1072af6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7607857b_6457645f",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
         "patchSetId": 9
@@ -127,6 +193,24 @@
       "revId": "50905ad8aedda4148c8f1d43d3452d9a1072af6a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50a2d5cd_13092b64",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-01T03:59:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7607857b_6457645f",
+      "revId": "50905ad8aedda4148c8f1d43d3452d9a1072af6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -153,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "f3c3a003_a053c3bb",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-01T03:59:01Z",
+      "side": 1,
+      "message": "Yes, chrome is still useful. Removed the exception.",
+      "parentUuid": "4fc4dfe1_cc3f98f0",
+      "range": {
+        "startLine": 272,
+        "startChar": 69,
+        "endLine": 276,
+        "endChar": 53
+      },
+      "revId": "50905ad8aedda4148c8f1d43d3452d9a1072af6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "49e1788a_7322d325",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
         "patchSetId": 9
@@ -170,6 +278,24 @@
     },
     {
       "key": {
+        "uuid": "bf72f1b5_e0b4dd0d",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-01T03:59:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49e1788a_7322d325",
+      "revId": "50905ad8aedda4148c8f1d43d3452d9a1072af6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3958ac1c_1c15f112",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
         "patchSetId": 9
@@ -181,6 +307,24 @@
       "writtenOn": "2019-02-01T02:21:48Z",
       "side": 1,
       "message": "Nit: this is not profiling process but SSH process?",
+      "revId": "50905ad8aedda4148c8f1d43d3452d9a1072af6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0750db65_560e4494",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-01T03:59:01Z",
+      "side": 1,
+      "message": "Yes. But the SSH process is running the profiling process as its only child and exits only when the child process exits so it is clearer to log the warning as the profiling process exited prematurely.",
+      "parentUuid": "3958ac1c_1c15f112",
       "revId": "50905ad8aedda4148c8f1d43d3452d9a1072af6a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -207,6 +351,30 @@
       "revId": "50905ad8aedda4148c8f1d43d3452d9a1072af6a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5cc4a507_509b041e",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-01T03:59:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b57a9ad8_c6ec8a61",
+      "range": {
+        "startLine": 344,
+        "startChar": 0,
+        "endLine": 344,
+        "endChar": 23
+      },
+      "revId": "50905ad8aedda4148c8f1d43d3452d9a1072af6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
