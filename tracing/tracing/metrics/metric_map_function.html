@@ -126,7 +126,7 @@ tr.exportTo('tr.metrics', function() {
       throw new Error(
           'Missing trace config metadata (' +
           model.metadata.length + ' metadata entries: ' +
-          model.metadata.map(m => m.name).join(', '));
+          model.metadata.map(m => m.name).join(', ') + ')');
     }
 
     for (const cat of requiredCategories) {
