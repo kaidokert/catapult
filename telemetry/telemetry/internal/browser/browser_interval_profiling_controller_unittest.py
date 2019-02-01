@@ -45,6 +45,14 @@ class FakePossibleBrowser(object):
 
 
 class BrowserIntervalProfilingControllerTest(unittest.TestCase):
+  def testProfilingControllerWithIncompatiblePeriods(self):
+    profiling_mod = browser_interval_profiling_controller
+    with self.assertRaises(Exception) as context:
+      profiling_mod.BrowserIntervalProfilingController(
+          None, '', ['period1', 'whole_story_run'], 1)
+    self.assertTrue('Cannot provide other periods along with'
+                    ' whole_story_run.' in context.exception)
+
   def testSupportedAndroidWithValidSamplePeriod(self):
     possible_browser = FakePossibleBrowser(
         FakeAndroidPlatformBackend(version_codes.OREO))
