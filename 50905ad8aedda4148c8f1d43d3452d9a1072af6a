@@ -108,6 +108,30 @@
     },
     {
       "key": {
+        "uuid": "1f267341_ca71e08e",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1151970
+      },
+      "writtenOn": "2019-02-01T19:10:50Z",
+      "side": 1,
+      "message": "Did you mean to add this to the PlatformBackend class or to keep it here?",
+      "parentUuid": "dff3f630_472510d2",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 35
+      },
+      "revId": "50905ad8aedda4148c8f1d43d3452d9a1072af6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "778611c8_a9dfdc0e",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
         "patchSetId": 9

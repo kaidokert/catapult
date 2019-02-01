@@ -22,6 +22,29 @@
       "revId": "8c5ffb4146f9eb384050ce66e7a41d43b3852e74",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b403c0c_668ddf60",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1151970
+      },
+      "writtenOn": "2019-02-01T19:10:50Z",
+      "side": 1,
+      "message": "This is not safe; r\"-\\- echo 1\" passes validation but would get executed.",
+      "range": {
+        "startLine": 280,
+        "startChar": 0,
+        "endLine": 280,
+        "endChar": 34
+      },
+      "revId": "8c5ffb4146f9eb384050ce66e7a41d43b3852e74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
