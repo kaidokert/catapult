@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "6a15870a_ba157c6b",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1144939
+      },
+      "writtenOn": "2019-02-01T02:21:48Z",
+      "side": 1,
+      "message": "+1, could be\n\nif not (is_supported_android or os_name in (\u0027linux\u0027, \u0027chromeos\u0027)):\n\nWould even be cleaner imo as\n\n    os_name \u003d possible_browser._platform_backend.GetOSName()\n    if os_name not in (\u0027android\u0027, \u0027chromeos\u0027, \u0027linux\u0027):\n      return None\n    if os_name \u003d\u003d \u0027android\u0027 and (\n        possible_browser._platform_backend.device.build_version_sdk \u003c\n        version_codes.NOUGAT):\n      return None",
+      "parentUuid": "35e1c54e_b031ca6f",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 35
+      },
+      "revId": "50905ad8aedda4148c8f1d43d3452d9a1072af6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "778611c8_a9dfdc0e",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
         "patchSetId": 9
@@ -89,6 +113,23 @@
     },
     {
       "key": {
+        "uuid": "7607857b_6457645f",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1144939
+      },
+      "writtenOn": "2019-02-01T02:21:48Z",
+      "side": 1,
+      "message": "Nit: add an empty line after this line.",
+      "revId": "50905ad8aedda4148c8f1d43d3452d9a1072af6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4fc4dfe1_cc3f98f0",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
         "patchSetId": 9
@@ -106,6 +147,40 @@
         "endLine": 276,
         "endChar": 53
       },
+      "revId": "50905ad8aedda4148c8f1d43d3452d9a1072af6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49e1788a_7322d325",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1144939
+      },
+      "writtenOn": "2019-02-01T02:21:48Z",
+      "side": 1,
+      "message": "\"touch /dev/null\" might be better to avoid failing if /tmp/temp is not writable.",
+      "revId": "50905ad8aedda4148c8f1d43d3452d9a1072af6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3958ac1c_1c15f112",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1144939
+      },
+      "writtenOn": "2019-02-01T02:21:48Z",
+      "side": 1,
+      "message": "Nit: this is not profiling process but SSH process?",
       "revId": "50905ad8aedda4148c8f1d43d3452d9a1072af6a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
