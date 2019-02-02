@@ -417,5 +417,6 @@ tr.exportTo('cp', () => {
   };
 
   cp.ElementBase.register(AlertsTable);
+
   return {AlertsTable};
 });

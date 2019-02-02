@@ -5,11 +5,27 @@
 'use strict';
 tr.exportTo('cp', () => {
   const NOTIFICATION_MS = 5000;
+  const RECOMMENDED_SHERIFFS = ['Chromium Perf Sheriff'];
 
   class AlertsSection extends cp.ElementBase {
     ready() {
       super.ready();
       this.scrollIntoView(true);
+    }
+
+    async connectedCallback() {
+      super.connectedCallback();
+      this.dispatch('connected', this.statePath);
+    }
+
+    isLoading_(isLoading, isPreviewLoading) {
+      return isLoading || isPreviewLoading;
+    }
+
+    allTriaged_(alertGroups, showingTriaged) {
+      if (showingTriaged) return alertGroups.length === 0;
+      return alertGroups.filter(group =>
+        group.alerts.length > group.triaged.count).length === 0;
     }
 
     canTriage_(alertGroups) {
@@ -37,11 +53,43 @@ tr.exportTo('cp', () => {
       await this.dispatch('changeBugId', this.statePath, 0);
     }
 
+    async onCharts_(event) {
+      const selectedAlerts = cp.AlertsTable.getSelectedAlerts(
+          this.alertGroups);
+      if (event.detail.ctrlKey) {
+        // TODO open V2SPA charts instead of V1 charts
+        for (const alert of selectedAlerts) {
+          window.open(alert.v1ReportLink, '_blank');
+        }
+        return;
+      }
+      for (const alert of selectedAlerts) {
+        this.dispatchEvent(new CustomEvent('new-chart', {
+          bubbles: true,
+          composed: true,
+          detail: {
+            options: {
+              minRevision: this.$.preview.minRevision,
+              maxRevision: this.$.preview.maxRevision,
+              parameters: {
+                testSuites: [alert.testSuite],
+                measurements: [alert.measurement],
+                bots: [alert.master + ':' + alert.bot],
+                testCases: [alert.testCase],
+                statistic: 'avg',
+              },
+              // TODO brush event.detail.datum.chromiumCommitPositions
+            },
+          },
+        }));
+      }
+    }
+
     onTriageNew_(event) {
       // If the user is already signed in, then require-sign-in will do nothing,
       // and openNewBugDialog will do so. If the user is not already signed in,
       // then openNewBugDialog won't, and require-sign-in will start the signin
-      // flow. Users can retry triaging after completing the signin flow.
+      // flow.
       this.dispatchEvent(new CustomEvent('require-sign-in', {
         bubbles: true,
         composed: true,
@@ -73,9 +121,52 @@ tr.exportTo('cp', () => {
       this.dispatch('ignore', this.statePath);
     }
 
+    onDotClick_(event) {
+      this.dispatchEvent(new CustomEvent('new-chart', {
+        bubbles: true,
+        composed: true,
+        detail: {
+          options: {
+            parameters: event.detail.line.descriptor,
+            // TODO brush event.detail.datum.chromiumCommitPositions
+          },
+        },
+      }));
+    }
+
+    onDotMouseOver_(event) {
+      this.dispatch('dotMouseOver', this.statePath, event.detail.datum);
+    }
+
+    onDotMouseOut_(event) {
+      // TODO unbold row in table
+    }
+
+    onSelected_(event) {
+      this.dispatch('maybeLayoutPreview', this.statePath);
+    }
+
     onSelectAlert_(event) {
       this.dispatch('selectAlert', this.statePath,
           event.detail.alertGroupIndex, event.detail.alertIndex);
+    }
+
+    onPreviewLineCountChange_() {
+      this.dispatch('updateAlertColors', this.statePath);
+    }
+
+    onSort_(event) {
+      this.dispatch('onSort_', this.statePath);
+    }
+
+    observeTriaged_() {
+      if (this.hasTriagedNew || this.hasTriagedExisting || this.hasIgnored) {
+        this.$.recent_bugs.scrollIntoView(true);
+      }
+    }
+
+    observeRecentPerformanceBugs_() {
+      this.dispatch('observeRecentPerformanceBugs', this.statePath);
     }
   }
 
@@ -84,16 +175,30 @@ tr.exportTo('cp', () => {
     ...cp.AlertsControls.State,
     existingBug: options => cp.TriageExisting.buildState({}),
     isLoading: options => false,
+    isOwner: options => false,
     newBug: options => cp.TriageNew.buildState({}),
+    preview: options => cp.ChartPair.buildState(options),
+    sectionId: options => options.sectionId || tr.b.GUID.allocateSimple(),
     selectedAlertPath: options => undefined,
     selectedAlertsCount: options => 0,
   };
+
+  AlertsSection.observers = [
+    'observeTriaged_(hasIgnored, hasTriagedExisting, hasTriagedNew)',
+    'observeRecentPerformanceBugs_(recentPerformanceBugs)',
+  ];
 
   AlertsSection.buildState = options =>
     cp.buildState(AlertsSection.State, options);
 
   AlertsSection.properties = {
     ...cp.buildProperties('state', AlertsSection.State),
+    ...cp.buildProperties('linkedState', {
+      // AlertsSection only needs the linkedStatePath property to forward to
+      // ChartPair.
+    }),
+    userEmail: {statePath: 'userEmail'},
+    recentPerformanceBugs: {statePath: 'recentPerformanceBugs'},
   };
 
   AlertsSection.actions = {
@@ -107,6 +212,10 @@ tr.exportTo('cp', () => {
         });
       },
 
+    toggleRecentlyModifiedBugs: statePath => async(dispatch, getState) => {
+      dispatch(Redux.TOGGLE(`${statePath}.showingRecentlyModifiedBugs`));
+    },
+
     cancelTriagedExisting: statePath => async(dispatch, getState) => {
       dispatch(Redux.UPDATE(statePath, {
         hasTriagedExisting: false,
@@ -114,10 +223,90 @@ tr.exportTo('cp', () => {
       }));
     },
 
-    storeRecentlyModifiedBugs: statePath => async(dispatch, getState) => {
+    updateAlertColors: statePath => async(dispatch, getState) => {
+      dispatch({
+        type: AlertsSection.reducers.updateAlertColors.name,
+        statePath,
+      });
+    },
+
+    dotMouseOver: (statePath, datum) => async(dispatch, getState) => {
+      // TODO bold row in table
+    },
+
+    onSheriffClear: statePath => async(dispatch, getState) => {
+      dispatch(AlertsSection.actions.loadAlerts(statePath));
+      dispatch(cp.MenuInput.actions.focus(statePath + '.sheriff'));
+    },
+
+    onBugClear: statePath => async(dispatch, getState) => {
+      dispatch(AlertsSection.actions.loadAlerts(statePath));
+      dispatch(cp.MenuInput.actions.focus(statePath + '.bug'));
+    },
+
+    onBugKeyup: (statePath, bugId) => async(dispatch, getState) => {
+      dispatch({
+        type: AlertsSection.reducers.onBugKeyup.name,
+        statePath,
+        bugId,
+      });
+    },
+
+    onReportClear: statePath => async(dispatch, getState) => {
+      dispatch(AlertsSection.actions.loadAlerts(statePath));
+      dispatch(cp.MenuInput.actions.focus(statePath + '.report'));
+    },
+
+    onReportKeyup: (statePath, report) => async(dispatch, getState) => {
+    },
+
+    setMinRevision: (statePath, minRevision) => async(dispatch, getState) => {
+      dispatch(Redux.UPDATE(statePath, {
+        minRevision,
+      }));
+      AlertsSection.actions.loadAlerts(statePath)(dispatch, getState);
+    },
+
+    setMaxRevision: (statePath, maxRevision) => async(dispatch, getState) => {
+      dispatch(Redux.UPDATE(statePath, {
+        maxRevision,
+      }));
+      AlertsSection.actions.loadAlerts(statePath)(dispatch, getState);
+    },
+
+    connected: statePath => async(dispatch, getState) => {
+      const recentlyModifiedBugs = localStorage.getItem('recentlyModifiedBugs');
+      if (recentlyModifiedBugs) {
+        dispatch({
+          type: AlertsSection.reducers.receiveRecentlyModifiedBugs.name,
+          statePath,
+          recentlyModifiedBugs,
+        });
+      }
       const state = Polymer.Path.get(getState(), statePath);
-      localStorage.setItem('recentlyModifiedBugs', JSON.stringify(
-          state.recentlyModifiedBugs));
+      if (!state) return;
+      if (state.sheriff.selectedOptions.length > 0 ||
+          state.bug.selectedOptions.length > 0 ||
+          state.report.selectedOptions.length > 0) {
+        dispatch(AlertsSection.actions.loadAlerts(statePath));
+      }
+    },
+
+    restoreState: (statePath, options) => async(dispatch, getState) => {
+      // Don't use buildState, which would drop state that was computed/fetched
+      // in actions.connected.
+      dispatch({
+        type: AlertsSection.reducers.restoreState.name,
+        statePath,
+        options,
+      });
+      const state = Polymer.Path.get(getState(), statePath);
+      if (state.sheriff.selectedOptions.length > 0 ||
+          state.bug.selectedOptions.lenght > 0) {
+        dispatch(AlertsSection.actions.loadAlerts(statePath));
+      } else {
+        dispatch(cp.MenuInput.actions.focus(statePath + '.sheriff'));
+      }
     },
 
     submitExistingBug: statePath => async(dispatch, getState) => {
@@ -131,15 +320,13 @@ tr.exportTo('cp', () => {
         statePath,
         triagedBugId,
       });
-      await AlertsSection.actions.storeRecentlyModifiedBugs(statePath)(
-          dispatch, getState);
 
-      // showTriagedExisting sets hasTriagedNew and triagedBugId, causing
-      // alerts-controls to display a notification. Wait a few seconds for the
-      // user to notice the notification, then automatically hide it. The user
-      // will still be able to access the bug by clicking Recent Bugs in
-      // alerts-controls.
-      await cp.timeout(NOTIFICATION_MS);
+      // Persist recentlyModifiedBugs to localStorage.
+      state = Polymer.Path.get(getState(), statePath);
+      localStorage.setItem('recentlyModifiedBugs', JSON.stringify(
+          state.recentlyModifiedBugs));
+
+      await cp.timeout(5000);
       state = Polymer.Path.get(getState(), statePath);
       if (state.triagedBugId !== triagedBugId) return;
       dispatch(AlertsSection.actions.cancelTriagedExisting(statePath));
@@ -163,6 +350,11 @@ tr.exportTo('cp', () => {
         });
 
         state = Polymer.Path.get(getState(), statePath);
+        dispatch(AlertsSection.actions.prefetchPreviewAlertGroup_(
+            statePath, state.alertGroups[0]));
+        if (bugId !== 0) {
+          dispatch(Redux.UPDATE(`${statePath}.preview`, {lineDescriptors: []}));
+        }
       } catch (err) {
         // eslint-disable-next-line no-console
         console.error(err);
@@ -182,13 +374,7 @@ tr.exportTo('cp', () => {
         hasIgnored: true,
         ignoredCount,
       }));
-
-      // Setting hasIgnored and ignoredCount causes alerts-controls to display a
-      // notification. Wait a few seconds for the user to notice the
-      // notification, then automatically hide it. The user can still access
-      // ignored alerts by toggling New Only to New and Triaged in
-      // alerts-controls.
-      await cp.timeout(NOTIFICATION_MS);
+      await cp.timeout(5000);
       state = Polymer.Path.get(getState(), statePath);
       if (state.ignoredCount !== ignoredCount) return;
       dispatch(Redux.UPDATE(statePath, {
@@ -247,8 +433,11 @@ tr.exportTo('cp', () => {
           bugId,
           summary,
         });
-        await AlertsSection.actions.storeRecentlyModifiedBugs(statePath)(
-            dispatch, getState);
+
+        // Persist recentlyModifiedBugs to localStorage.
+        state = Polymer.Path.get(getState(), statePath);
+        localStorage.setItem('recentlyModifiedBugs', JSON.stringify(
+            state.recentlyModifiedBugs));
 
         dispatch({
           type: AlertsSection.reducers.removeOrUpdateAlerts.name,
@@ -257,6 +446,9 @@ tr.exportTo('cp', () => {
           bugId,
         });
         state = Polymer.Path.get(getState(), statePath);
+        dispatch(AlertsSection.actions.prefetchPreviewAlertGroup_(
+            statePath, state.alertGroups[0]));
+        dispatch(Redux.UPDATE(`${statePath}.preview`, {lineDescriptors: []}));
       } catch (err) {
         // eslint-disable-next-line no-console
         console.error(err);
@@ -264,13 +456,7 @@ tr.exportTo('cp', () => {
       dispatch(Redux.UPDATE(statePath, {isLoading: false}));
 
       if (bugId === undefined) return;
-
-      // showTriagedNew sets hasTriagedNew and triagedBugId, causing
-      // alerts-controls to display a notification. Wait a few seconds for the
-      // user to notice the notification, then automatically hide it. The user
-      // will still be able to access the new bug by clicking Recent Bugs in
-      // alerts-controls.
-      await cp.timeout(NOTIFICATION_MS);
+      await cp.timeout(5000);
       state = Polymer.Path.get(getState(), statePath);
       if (state.triagedBugId !== bugId) return;
       dispatch(Redux.UPDATE(statePath, {
@@ -279,54 +465,166 @@ tr.exportTo('cp', () => {
       }));
     },
 
-    loadAlerts: (statePath, sources) => async(dispatch, getState) => {
+    onSort_: statePath => async(dispatch, getState) => {
+      const state = Polymer.Path.get(getState(), statePath);
+      dispatch(AlertsSection.actions.prefetchPreviewAlertGroup_(
+          statePath, state.alertGroups[0]));
+    },
+
+    loadAlerts: statePath => async(dispatch, getState) => {
       dispatch({
         type: AlertsSection.reducers.startLoadingAlerts.name,
         statePath,
       });
       const rootState = getState();
-      const state = Polymer.Path.get(rootState, statePath);
+      let state = Polymer.Path.get(rootState, statePath);
 
+      const alerts = [];
+      const errors = [];
+      const revisions = {};
+      if (state.minRevision && state.minRevision.match(/^\d+$/)) {
+        revisions.min_end_revision = parseInt(state.minRevision);
+      }
+      if (state.maxRevision && state.maxRevision.match(/^\d+$/)) {
+        revisions.max_start_revision = parseInt(state.maxRevision);
+      }
+      const sources = [
+        ...state.sheriff.selectedOptions.map(sheriff => {
+          const options = {sheriff, limit: 2000, ...revisions};
+          if (!state.showingImprovements) {
+            options.is_improvement = 'false';
+          }
+          return options;
+        }),
+        ...state.bug.selectedOptions.map(bug => {
+          return {bug_id: bug, ...revisions};
+        }),
+      ];
+      if (state.report.selectedOptions.length) {
+        const reportTemplateInfos = await new cp.ReportNamesRequest().response;
+        for (const name of state.report.selectedOptions) {
+          for (const reportId of reportTemplateInfos) {
+            if (reportId.name === name) {
+              sources.push({report: reportId.id, ...revisions});
+              break;
+            }
+          }
+        }
+      }
       if (sources.length > 0) {
         dispatch(cp.MenuInput.actions.blurAll());
       }
-
-      async function wrapRequest(body) {
+      await Promise.all(sources.map(async body => {
         const request = new cp.AlertsRequest({body});
-        const response = await request.response;
-        return {body, response};
-      }
-
-      const batches = new cp.BatchIterator(sources.map(wrapRequest));
-
-      for await (const {results, errors} of batches) {
-        // TODO(benjhayden): return if re-entered.
-        const alerts = [];
-        for (const {body, response} of results) {
-          const cursor = response.next_cursor;
-          // TODO(benjhayden): When should this stop chasing cursors so it
-          // doesn't try to load all old alerts for this sheriff?
-          if (cursor) batches.add(wrapRequest({...body, cursor}));
-
+        try {
+          const response = await request.response;
           alerts.push.apply(alerts, response.anomalies);
+        } catch (err) {
+          errors.push('Failed to fetch alerts: ' + err);
         }
-        dispatch({
-          type: AlertsSection.reducers.receiveAlerts.name,
-          statePath,
-          alerts,
-          errors,
-        });
-        await cp.animationFrame();
-      }
+      }));
 
       dispatch({
-        type: AlertsSection.reducers.finalizeAlerts.name,
+        type: AlertsSection.reducers.receiveAlerts.name,
+        statePath,
+        alerts,
+        errors,
+      });
+      state = Polymer.Path.get(getState(), statePath);
+      if (!state.areAlertGroupsPlaceholders) {
+        dispatch(AlertsSection.actions.prefetchPreviewAlertGroup_(
+            statePath, state.alertGroups[0]));
+      }
+    },
+
+    toggleShowingImprovements: statePath => async(dispatch, getState) => {
+      dispatch(Redux.TOGGLE(`${statePath}.showingImprovements`));
+      dispatch(AlertsSection.actions.loadAlerts(statePath));
+    },
+
+    toggleShowingTriaged: statePath => async(dispatch, getState) => {
+      dispatch(Redux.CHAIN(
+          Redux.TOGGLE(`${statePath}.showingTriaged`),
+          {type: AlertsSection.reducers.updateColumns.name, statePath}));
+    },
+
+    prefetchPreviewAlertGroup_: (statePath, alertGroup) =>
+      async(dispatch, getState) => {
+        if (!alertGroup) return;
+        const testSuites = new Set();
+        const lineDescriptors = [];
+        for (const alert of alertGroup.alerts) {
+          testSuites.add(alert.testSuite);
+          lineDescriptors.push(AlertsSection.computeLineDescriptor(alert));
+        }
+        dispatch(cp.ChartTimeseries.actions.prefetch(
+            `${statePath}.preview`, lineDescriptors));
+        await Promise.all([...testSuites].map(testSuite =>
+          new cp.DescribeRequest({testSuite}).response));
+      },
+
+    layoutPreview: statePath => async(dispatch, getState) => {
+      const rootState = getState();
+      const state = Polymer.Path.get(rootState, statePath);
+      const alerts = cp.AlertsTable.getSelectedAlerts(state.alertGroups);
+      const lineDescriptors = alerts.map(AlertsSection.computeLineDescriptor);
+      if (lineDescriptors.length === 1) {
+        lineDescriptors.push({
+          ...lineDescriptors[0],
+          buildType: 'ref',
+        });
+      }
+      dispatch(Redux.UPDATE(`${statePath}.preview`, {lineDescriptors}));
+
+      const testSuites = new Set();
+      for (const descriptor of lineDescriptors) {
+        testSuites.add(descriptor.testSuites[0]);
+      }
+      await Promise.all([...testSuites].map(testSuite =>
+        new cp.DescribeRequest({testSuite}).response));
+    },
+
+    maybeLayoutPreview: statePath => async(dispatch, getState) => {
+      const state = Polymer.Path.get(getState(), statePath);
+      if (!state.selectedAlertsCount) {
+        dispatch(Redux.UPDATE(`${statePath}.preview`, {lineDescriptors: []}));
+        return;
+      }
+
+      dispatch(AlertsSection.actions.layoutPreview(statePath));
+    },
+
+    observeRecentPerformanceBugs: statePath => async(dispatch, getState) => {
+      dispatch({
+        type: AlertsSection.reducers.receiveRecentPerformanceBugs.name,
         statePath,
       });
     },
   };
 
+  AlertsSection.computeLineDescriptor = alert => {
+    return {
+      baseUnit: alert.baseUnit,
+      testSuites: [alert.testSuite],
+      measurement: alert.measurement,
+      bots: [alert.master + ':' + alert.bot],
+      testCases: [alert.testCase],
+      statistic: 'avg', // TODO
+      buildType: 'test',
+    };
+  };
+
   AlertsSection.reducers = {
+    receiveSheriffs: (state, {sheriffs}, rootState) => {
+      const sheriff = cp.MenuInput.buildState({
+        label: `Sheriff (${sheriffs.length})`,
+        options: sheriffs,
+        selectedOptions: state.sheriff ? state.sheriff.selectedOptions : [],
+        recommended: {options: RECOMMENDED_SHERIFFS},
+      });
+      return {...state, sheriff};
+    },
+
     selectAlert: (state, action, rootState) => {
       if (state.areAlertGroupsPlaceholders) return state;
       const alertPath =
@@ -340,11 +638,41 @@ tr.exportTo('cp', () => {
         return {
           ...state,
           selectedAlertPath: undefined,
+          preview: {
+            ...state.preview,
+            lineDescriptors: cp.AlertsTable.getSelectedAlerts(
+                state.alertGroups).map(AlertsSection.computeLineDescriptor),
+          },
         };
       }
       return {
         ...state,
         selectedAlertPath: alertPath,
+        preview: {
+          ...state.preview,
+          lineDescriptors: [AlertsSection.computeLineDescriptor(alert)],
+        },
+      };
+    },
+
+    restoreState: (state, action, rootState) => {
+      if (!action.options) return state;
+      if (action.options.sheriffs) {
+        const sheriff = {...state.sheriff};
+        sheriff.selectedOptions = action.options.sheriffs;
+        state = {...state, sheriff};
+      }
+      if (action.options.bugs) {
+        const bug = {...state.bug};
+        bug.selectedOptions = action.options.bugs;
+        state = {...state, bug};
+      }
+      return {
+        ...state,
+        showingImprovements: action.options.showingImprovements || false,
+        showingTriaged: action.options.showingTriaged || false,
+        sortColumn: action.options.sortColumn || 'revisions',
+        sortDescending: action.options.sortDescending || false,
       };
     },
 
@@ -386,6 +714,30 @@ tr.exportTo('cp', () => {
         hasIgnored: false,
         triagedBugId: action.triagedBugId,
         recentlyModifiedBugs,
+      };
+    },
+
+    updateAlertColors: (state, action, rootState) => {
+      const colorByDescriptor = new Map();
+      for (const line of state.preview.chartLayout.lines) {
+        colorByDescriptor.set(cp.ChartTimeseries.stringifyDescriptor(
+            line.descriptor), line.color);
+      }
+      return {
+        ...state,
+        alertGroups: state.alertGroups.map(alertGroup => {
+          return {
+            ...alertGroup,
+            alerts: alertGroup.alerts.map(alert => {
+              const descriptor = cp.ChartTimeseries.stringifyDescriptor(
+                  AlertsSection.computeLineDescriptor(alert));
+              return {
+                ...alert,
+                color: colorByDescriptor.get(descriptor),
+              };
+            }),
+          };
+        }),
       };
     },
 
@@ -446,20 +798,15 @@ tr.exportTo('cp', () => {
       };
     },
 
-    receiveAlerts: (state, {alerts, errors}, rootState) => {
+    receiveAlerts: (state, action, rootState) => {
       state = {
         ...state,
+        isLoading: false,
+        isOwner: false,
         selectedAlertsCount: 0,
       };
 
-      // |alerts| are all new.
-      // Group them together with previously-received alerts from
-      // state.alertGroups[].alerts, which are post-transformation.
-      // d.groupAlerts() requires pre-transformed objects.
-      // Some previously-received alerts may have been triaged already, so we
-      // can't simply accumulate pre-transformation alerts across batches.
-
-      if (!alerts.length) {
+      if (!action.alerts.length) {
         state = {
           ...state,
           alertGroups: cp.AlertsTable.PLACEHOLDER_ALERT_GROUPS,
@@ -480,7 +827,7 @@ tr.exportTo('cp', () => {
         };
       }
 
-      let alertGroups = d.groupAlerts(alerts, state.showingTriaged);
+      let alertGroups = d.groupAlerts(action.alerts, state.showingTriaged);
       alertGroups = alertGroups.map((alerts, groupIndex) => {
         alerts = alerts.map(AlertsSection.transformAlert);
         return {
@@ -493,7 +840,7 @@ tr.exportTo('cp', () => {
         };
       });
 
-      alertGroups = cp.AlertsTable.sortGroups(
+      alertGroups = AlertsSection.sortGroups(
           alertGroups, state.sortColumn, state.sortDescending,
           state.showingTriaged);
 
@@ -503,13 +850,6 @@ tr.exportTo('cp', () => {
       return AlertsSection.reducers.updateColumns({
         ...state, alertGroups, areAlertGroupsPlaceholders: false,
       });
-    },
-
-    finalizeAlerts: (state, action, rootState) => {
-      return {
-        ...state,
-        isLoading: false,
-      };
     },
 
     updateColumns: (state, action, rootState) => {
@@ -544,6 +884,117 @@ tr.exportTo('cp', () => {
     startLoadingAlerts: (state, action, rootState) => {
       return {...state, isLoading: true};
     },
+
+    onBugKeyup: (state, action, rootState) => {
+      const options = state.bug.options.filter(option => !option.manual);
+      const bugIds = options.map(option => option.value);
+      if (action.bugId.match(/^\d+$/) &&
+          !bugIds.includes(action.bugId)) {
+        options.unshift({
+          value: action.bugId,
+          label: action.bugId,
+          manual: true,
+        });
+      }
+      return {
+        ...state,
+        bug: {
+          ...state.bug,
+          options,
+        },
+      };
+    },
+
+    receiveRecentPerformanceBugs: (state, action, rootState) => {
+      return {
+        ...state,
+        bug: {
+          ...state.bug,
+          options: rootState.recentPerformanceBugs.map(
+              AlertsSection.transformRecentPerformanceBugOption),
+        }
+      };
+    },
+
+    receiveRecentlyModifiedBugs: (state, action, rootState) => {
+      const recentlyModifiedBugs = JSON.parse(action.recentlyModifiedBugs);
+      return {...state, recentlyModifiedBugs};
+    },
+  };
+
+  AlertsSection.transformRecentPerformanceBugOption = bug => {
+    return {
+      label: bug.id + ' ' + bug.summary,
+      value: bug.id,
+    };
+  };
+
+  AlertsSection.newStateOptionsFromQueryParams = queryParams => {
+    return {
+      sheriffs: queryParams.getAll('sheriff').map(
+          sheriffName => sheriffName.replace(/_/g, ' ')),
+      bugs: queryParams.getAll('bug'),
+      reports: queryParams.getAll('ar'),
+      minRevision: queryParams.get('minRev'),
+      maxRevision: queryParams.get('maxRev'),
+      sortColumn: queryParams.get('sort') || 'revisions',
+      showingImprovements: queryParams.get('improvements') !== null,
+      showingTriaged: queryParams.get('triaged') !== null,
+      sortDescending: queryParams.get('descending') !== null,
+    };
+  };
+
+  AlertsSection.compareAlerts = (alertA, alertB, sortColumn) => {
+    switch (sortColumn) {
+      case 'bug': return alertA.bugId - alertB.bugId;
+      case 'revisions': return alertA.startRevision - alertB.startRevision;
+      case 'testSuite':
+        return alertA.testSuite.localeCompare(alertB.testSuite);
+      case 'master': return alertA.master.localeCompare(alertB.master);
+      case 'bot': return alertA.bot.localeCompare(alertB.bot);
+      case 'measurement':
+        return alertA.measurement.localeCompare(alertB.measurement);
+      case 'testCase':
+        return alertA.testCase.localeCompare(alertB.testCase);
+      case 'delta': return alertA.deltaValue - alertB.deltaValue;
+      case 'deltaPct':
+        return Math.abs(alertA.percentDeltaValue) -
+          Math.abs(alertB.percentDeltaValue);
+    }
+  };
+
+  AlertsSection.sortGroups = (
+      alertGroups, sortColumn, sortDescending, showingTriaged) => {
+    const factor = sortDescending ? -1 : 1;
+    if (sortColumn === 'count') {
+      alertGroups = [...alertGroups];
+      // See AlertsTable.getExpandGroupButtonLabel_.
+      if (showingTriaged) {
+        alertGroups.sort((groupA, groupB) =>
+          factor * (groupA.alerts.length - groupB.alerts.length));
+      } else {
+        alertGroups.sort((groupA, groupB) =>
+          factor * ((groupA.alerts.length - groupA.triaged.count) -
+            (groupB.alerts.length - groupB.triaged.count)));
+      }
+    } else if (sortColumn === 'triaged') {
+      alertGroups = [...alertGroups];
+      alertGroups.sort((groupA, groupB) =>
+        factor * (groupA.triaged.count - groupB.triaged.count));
+    } else {
+      alertGroups = alertGroups.map(group => {
+        const alerts = Array.from(group.alerts);
+        alerts.sort((alertA, alertB) => factor * AlertsSection.compareAlerts(
+            alertA, alertB, sortColumn));
+        return {
+          ...group,
+          alerts,
+        };
+      });
+      alertGroups.sort((groupA, groupB) => factor * AlertsSection.compareAlerts(
+          groupA.alerts[0], groupB.alerts[0], sortColumn));
+    }
+    return alertGroups;
   };
 
   AlertsSection.transformAlert = alert => {
@@ -600,6 +1051,98 @@ tr.exportTo('cp', () => {
     };
   };
 
+  AlertsSection.transformBug = bug => {
+    // Save memory by stripping out all the unnecessary data.
+    // TODO save bandwidth by stripping out the unnecessary data in the
+    // backend request handler.
+    let revisionRange = bug.summary.match(/.* (\d+):(\d+)$/);
+    if (revisionRange === null) {
+      revisionRange = new tr.b.math.Range();
+    } else {
+      revisionRange = tr.b.math.Range.fromExplicitRange(
+          parseInt(revisionRange[1]), parseInt(revisionRange[2]));
+    }
+    return {
+      id: '' + bug.id,
+      status: bug.status,
+      owner: bug.owner ? bug.owner.name : '',
+      summary: cp.breakWords(bug.summary),
+      revisionRange,
+    };
+  };
+
+  AlertsSection.getSessionState = state => {
+    return {
+      sheriffs: state.sheriff.selectedOptions,
+      bugs: state.bug.selectedOptions,
+      showingImprovements: state.showingImprovements,
+      showingTriaged: state.showingTriaged,
+      sortColumn: state.sortColumn,
+      sortDescending: state.sortDescending,
+    };
+  };
+
+  AlertsSection.getRouteParams = state => {
+    const queryParams = new URLSearchParams();
+    for (const sheriff of state.sheriff.selectedOptions) {
+      queryParams.append('sheriff', sheriff.replace(/ /g, '_'));
+    }
+    for (const bug of state.bug.selectedOptions) {
+      queryParams.append('bug', bug);
+    }
+    for (const name of state.report.selectedOptions) {
+      queryParams.append('ar', name);
+    }
+    if (state.minRevision && state.minRevision.match(/^\d+$/)) {
+      queryParams.set('minRev', state.minRevision);
+    }
+    if (state.maxRevision && state.maxRevision.match(/^\d+$/)) {
+      queryParams.set('maxRev', state.maxRevision);
+    }
+    if (state.showingImprovements) queryParams.set('improvements', '');
+    if (state.showingTriaged) queryParams.set('triaged', '');
+    if (state.sortColumn !== 'revisions') {
+      queryParams.set('sort', state.sortColumn);
+    }
+    if (state.sortDescending) queryParams.set('descending', '');
+    return queryParams;
+  };
+
+  AlertsSection.isEmpty = state => (
+    state &&
+    (!state.sheriff || !state.sheriff.selectedOptions ||
+     (state.sheriff.selectedOptions.length === 0)) &&
+    (!state.bug || !state.bug.selectedOptions ||
+     (state.bug.selectedOptions.length === 0)) &&
+    (!state.report || !state.report.selectedOptions ||
+     (state.report.selectedOptions.length === 0)));
+
+  AlertsSection.matchesOptions = (state, options) => {
+    if (!tr.b.setsEqual(new Set(options.reports),
+        new Set(state.report.selectedOptions))) {
+      return false;
+    }
+    if (!tr.b.setsEqual(new Set(options.sheriffs),
+        new Set(state.sheriff.selectedOptions))) {
+      return false;
+    }
+    if (!tr.b.setsEqual(new Set(options.bugs),
+        new Set(state.bug.selectedOptions))) {
+      return false;
+    }
+    return true;
+  };
+
+  AlertsSection.getTitle = state => {
+    if (state.sheriff.selectedOptions.length === 1) {
+      return state.sheriff.selectedOptions[0];
+    }
+    if (state.bug.selectedOptions.length === 1) {
+      return state.bug.selectedOptions[0];
+    }
+  };
+
   cp.ElementBase.register(AlertsSection);
+
   return {AlertsSection};
 });
