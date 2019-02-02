@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1bff29d5_05952c0f",
+        "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-02T00:49:26Z",
+      "side": 1,
+      "message": "See my comment on the other CL; can we just use `test_only_times` and not also have `test_only_time` ?",
+      "revId": "19fc2d7ead051d61bb1d121b91426b697c9c3589",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
