@@ -101,20 +101,15 @@ tr.exportTo('cp', () => {
     }
 
     async onSelect_(event) {
-      let shiftKey = false;
-      if (event.detail && event.detail.event &&
-          (event.detail.event.shiftKey ||
-           (event.detail.event.detail && event.detail.event.detail.shiftKey))) {
-        shiftKey = true;
-      }
       await this.dispatch('selectAlert', this.statePath,
           event.model.parentModel.alertGroupIndex,
           event.model.alertIndex,
-          shiftKey);
+          event.detail.event.shiftKey);
       this.dispatchEvent(new CustomEvent('selected', {
         bubbles: true,
         composed: true,
       }));
+      document.getSelection().removeAllRanges();
     }
 
     async onSort_(event) {
@@ -239,8 +234,7 @@ tr.exportTo('cp', () => {
       alerts: [
         {
           bugId: AlertsTable.DASHES,
-          startRevision: AlertsTable.DASHES,
-          endRevision: AlertsTable.DASHES,
+          revisions: AlertsTable.DASHES,
           testSuite: AlertsTable.DASHES,
           measurement: AlertsTable.DASHES,
           master: AlertsTable.DASHES,
@@ -258,23 +252,19 @@ tr.exportTo('cp', () => {
 
   AlertsTable.State = {
     previousSelectedAlertKey: options => undefined,
-    alertGroups: options => options.alertGroups ||
-      AlertsTable.PLACEHOLDER_ALERT_GROUPS,
-    showBugColumn: options => options.showBugColumn !== false,
-    showMasterColumn: options => options.showMasterColumn !== false,
-    showTestCaseColumn: options => options.showTestCaseColumn !== false,
-    showTriagedColumn: options => options.showTriagedColumn !== false,
+    alertGroups: options => AlertsTable.PLACEHOLDER_ALERT_GROUPS,
+    areAlertGroupsPlaceholders: options => true,
+    showBugColumn: options => true,
+    showMasterColumn: options => true,
+    showTestCaseColumn: options => true,
+    showTriagedColumn: options => true,
     showingTriaged: options => options.showingTriaged || false,
-    sortColumn: options => options.sortColumn || 'startRevision',
+    sortColumn: options => options.sortColumn || 'revisions',
     sortDescending: options => options.sortDescending || false,
   };
 
   AlertsTable.properties = cp.buildProperties('state', AlertsTable.State);
   AlertsTable.buildState = options => cp.buildState(AlertsTable.State, options);
-
-  AlertsTable.properties.areAlertGroupsPlaceholders = {
-    computed: 'arePlaceholders_(alertGroups)',
-  };
 
   AlertsTable.actions = {
     selectAllAlerts: statePath => async(dispatch, getState) => {
@@ -306,12 +296,10 @@ tr.exportTo('cp', () => {
 
   AlertsTable.reducers = {
     sort: (state, action, rootState) => {
-      if (state.alertGroups === AlertsTable.PLACEHOLDER_ALERT_GROUPS) {
-        return state;
-      }
+      if (state.areAlertGroupsPlaceholders) return state;
       const sortDescending = state.sortDescending ^ (state.sortColumn ===
           action.sortColumn);
-      const alertGroups = AlertsTable.sortGroups(
+      const alertGroups = cp.AlertsSection.sortGroups(
           state.alertGroups, action.sortColumn, sortDescending);
       return {
         ...state,
@@ -411,11 +399,15 @@ tr.exportTo('cp', () => {
       return {
         ...state,
         alertGroups,
-        selectedAlertsCount: AlertsTable.getSelectedAlerts(alertGroups).length,
+        selectedAlertsCount: AlertsTable.getSelectedAlerts(
+            alertGroups).length,
       };
     },
   };
 
   cp.ElementBase.register(AlertsTable);
-  return {AlertsTable};
+
+  return {
+    AlertsTable,
+  };
 });
