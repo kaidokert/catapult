@@ -326,7 +326,7 @@ class SharedPageState(story_module.SharedState):
 
   def RunStory(self, results):
     self._PreparePage()
-    self._current_page.Run(self)
+    self._current_page.Run(self, story_run=results.current_page_run)
     if self._page_test:
       self._page_test.ValidateAndMeasurePage(
           self._current_page, self._current_tab, results)
