@@ -25,6 +25,74 @@
     },
     {
       "key": {
+        "uuid": "c216ebc4_d014facb",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-04T10:40:35Z",
+      "side": 1,
+      "message": "nit: to improve readability make this string \u0027/tmp/{period}-perf.data\u0027, and below use .format to fill in the pattern.",
+      "revId": "8c5ffb4146f9eb384050ce66e7a41d43b3852e74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88f3a62e_178c4ecd",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-04T10:40:35Z",
+      "side": 1,
+      "message": "should this be shlex.split?\n\nhttps://docs.python.org/2/library/shlex.html#shlex.split\n\nAlso wondering whether parsing the string into a list of command line args should be done a lot earlier, close to where they are supplied.",
+      "revId": "8c5ffb4146f9eb384050ce66e7a41d43b3852e74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53eb13ae_c362e24d",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-04T10:40:35Z",
+      "side": 1,
+      "message": "nit: move these comments into the method as its docstring.",
+      "revId": "8c5ffb4146f9eb384050ce66e7a41d43b3852e74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "627d5d2e_977c1273",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-04T10:40:35Z",
+      "side": 1,
+      "message": "I think showing here just the list of args (i.e. remove the \u0027 \u0027.join) is better and a lot more explicit than the space separated string. Spaces or special chars in args can make issues here hard to debug.",
+      "revId": "8c5ffb4146f9eb384050ce66e7a41d43b3852e74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4b403c0c_668ddf60",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
         "patchSetId": 15
@@ -42,6 +110,47 @@
         "endLine": 280,
         "endChar": 34
       },
+      "revId": "8c5ffb4146f9eb384050ce66e7a41d43b3852e74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6513221b_861616ec",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-04T10:40:35Z",
+      "side": 1,
+      "message": "Ah, yet one more reason to use shlex.split for parsing the command line, as that would evaluate all those fancy shell escapes for you, e.g.:\n\n\u003e\u003e\u003e shlex.split(\u0027foo \"bar baz\" -\\- qux\u0027)\n[\u0027foo\u0027, \u0027bar baz\u0027, \u0027--\u0027, \u0027qux\u0027]",
+      "parentUuid": "4b403c0c_668ddf60",
+      "range": {
+        "startLine": 280,
+        "startChar": 0,
+        "endLine": 280,
+        "endChar": 34
+      },
+      "revId": "8c5ffb4146f9eb384050ce66e7a41d43b3852e74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3cc3c254_65f417e4",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-04T10:40:35Z",
+      "side": 1,
+      "message": "this will not call _StopProfiling if there was an exception during the context managed code, is that intended?",
       "revId": "8c5ffb4146f9eb384050ce66e7a41d43b3852e74",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
