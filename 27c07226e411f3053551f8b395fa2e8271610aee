@@ -22,6 +22,30 @@
       "revId": "27c07226e411f3053551f8b395fa2e8271610aee",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bde8ebf7_c4bdb371",
+        "filename": "tracing/bin/add_reserved_diagnostics",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-04T19:24:03Z",
+      "side": 1,
+      "message": "Although if you\u0027re planning on pretty much immediately deleting this after fixing the callers, then lgtm",
+      "parentUuid": "b0dd73f3_f4897780",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 4
+      },
+      "revId": "27c07226e411f3053551f8b395fa2e8271610aee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
