@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "80ef58b5_3ceffebe",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-04T10:14:51Z",
+      "side": 1,
+      "message": "Follow the example of other checks above: `print` a human readable message, and then sys.exit(0).",
+      "revId": "fb44f880cf8414676edc57875f2915d96fe17a25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
