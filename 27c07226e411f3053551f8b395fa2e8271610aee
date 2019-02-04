@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b0dd73f3_f4897780",
+        "filename": "tracing/bin/add_reserved_diagnostics",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-04T19:05:55Z",
+      "side": 1,
+      "message": "This kinda seems weird, is that the normal way to redirect to another executable? Why not subprocess.run",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 4
+      },
+      "revId": "27c07226e411f3053551f8b395fa2e8271610aee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
