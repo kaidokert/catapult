@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0fbffd7c_9103662b",
+        "filename": "tracing/tracing/value/diagnostics/add_reserved_diagnostics.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-04T09:32:33Z",
+      "side": 1,
+      "message": "fly by comment: why don\u0027t you just do `json.dump(hs.AsDicts(), temp, **kwargs)` here?",
+      "revId": "adcf2fcf3780f1a7e1f0ab5f483d2f32914ba5d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
