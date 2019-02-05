@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "76ab583f_98841dff",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-05T20:05:12Z",
+      "side": 1,
+      "message": "is \"provide\" the right word here?",
+      "range": {
+        "startLine": 276,
+        "startChar": 22,
+        "endLine": 276,
+        "endChar": 29
+      },
+      "revId": "0544007c39b4b7b082d124ed3463ea25e6e28215",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
