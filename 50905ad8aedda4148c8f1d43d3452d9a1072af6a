@@ -132,6 +132,30 @@
     },
     {
       "key": {
+        "uuid": "2cd049c3_0c43b949",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-05T03:09:37Z",
+      "side": 1,
+      "message": "It was moved in the patchset 10.",
+      "parentUuid": "1f267341_ca71e08e",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 35
+      },
+      "revId": "50905ad8aedda4148c8f1d43d3452d9a1072af6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "778611c8_a9dfdc0e",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
         "patchSetId": 9
@@ -352,6 +376,24 @@
       "revId": "50905ad8aedda4148c8f1d43d3452d9a1072af6a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46c0bbf5_2e24a1ca",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-05T03:09:37Z",
+      "side": 1,
+      "message": "Resolving.",
+      "parentUuid": "0750db65_560e4494",
+      "revId": "50905ad8aedda4148c8f1d43d3452d9a1072af6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {

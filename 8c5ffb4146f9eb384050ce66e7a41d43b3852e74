@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6190e26b_8d018cc0",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-05T03:09:37Z",
+      "side": 1,
+      "message": "Simple perf is the tool used by android to collect profiles. This method never got renamed.\nhttps://developer.android.com/ndk/guides/simpleperf\n\nIf you feel like these names should be made more generic, this function could be renamed as _InstallProfiler and the below function could be renamed as _StartProfiling. However, I would recommend editing old code in a separate CL. This change has already become large.",
+      "parentUuid": "cabf3434_a8c5d094",
+      "range": {
+        "startLine": 140,
+        "startChar": 6,
+        "endLine": 140,
+        "endChar": 24
+      },
+      "revId": "8c5ffb4146f9eb384050ce66e7a41d43b3852e74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c216ebc4_d014facb",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
         "patchSetId": 15
@@ -39,6 +63,24 @@
       "revId": "8c5ffb4146f9eb384050ce66e7a41d43b3852e74",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f616704_0f24dce1",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-05T03:09:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c216ebc4_d014facb",
+      "revId": "8c5ffb4146f9eb384050ce66e7a41d43b3852e74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "452f8dae_b28e1722",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-05T03:09:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88f3a62e_178c4ecd",
+      "revId": "8c5ffb4146f9eb384050ce66e7a41d43b3852e74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "53eb13ae_c362e24d",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
         "patchSetId": 15
@@ -76,6 +136,24 @@
     },
     {
       "key": {
+        "uuid": "5e1dcb23_4289c835",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-05T03:09:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53eb13ae_c362e24d",
+      "revId": "8c5ffb4146f9eb384050ce66e7a41d43b3852e74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "627d5d2e_977c1273",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
         "patchSetId": 15
@@ -90,6 +168,24 @@
       "revId": "8c5ffb4146f9eb384050ce66e7a41d43b3852e74",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c2631b5_4277f3a7",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-05T03:09:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "627d5d2e_977c1273",
+      "revId": "8c5ffb4146f9eb384050ce66e7a41d43b3852e74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -140,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "2eb0b7a9_f8799207",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-05T03:09:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6513221b_861616ec",
+      "range": {
+        "startLine": 280,
+        "startChar": 0,
+        "endLine": 280,
+        "endChar": 34
+      },
+      "revId": "8c5ffb4146f9eb384050ce66e7a41d43b3852e74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3cc3c254_65f417e4",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
         "patchSetId": 15
@@ -154,6 +274,24 @@
       "revId": "8c5ffb4146f9eb384050ce66e7a41d43b3852e74",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4caa6d16_3b716df2",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-05T03:09:37Z",
+      "side": 1,
+      "message": "Ah!! Good catch. That was not intentional.",
+      "parentUuid": "3cc3c254_65f417e4",
+      "revId": "8c5ffb4146f9eb384050ce66e7a41d43b3852e74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
