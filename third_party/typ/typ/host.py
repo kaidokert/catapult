@@ -44,7 +44,7 @@ class Host(object):
 
     def __init__(self):
         self.logger = logging.getLogger()
-        self._orig_logging_handlers = None
+        self._orig_logging_handlers_streams = None
         self.stdout = sys.stdout
         self.stderr = sys.stderr
         self.stdin = sys.stdin
@@ -236,16 +236,21 @@ class Host(object):
 
     def capture_output(self, divert=True):
         self._tap_output()
-        self._orig_logging_handlers = self.logger.handlers
-        if self._orig_logging_handlers:
-            self.logger.handlers = [logging.StreamHandler(self.stderr)]
+        self._orig_logging_handlers_streams = dict()
+        for handler in self.logger.handlers:
+            self._orig_logging_handlers_streams[handler] = handler.stream
+            handler.stream.flush()
+            handler.stream = self.stderr
         self.stdout.capture(divert)
         self.stderr.capture(divert)
 
     def restore_output(self):
         assert isinstance(self.stdout, _TeedStream)
         out, err = (self.stdout.restore(), self.stderr.restore())
-        self.logger.handlers = self._orig_logging_handlers
+        for handler, orig_stream in self.\
+            _orig_logging_handlers_streams.iteritems():
+            handler.stream.flush()
+            handler.stream = orig_stream
         self._untap_output()
         return out, err
 
