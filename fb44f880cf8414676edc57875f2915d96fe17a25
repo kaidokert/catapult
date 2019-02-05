@@ -16,6 +16,24 @@
       "revId": "fb44f880cf8414676edc57875f2915d96fe17a25",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ac870b7_ef72eb2e",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-05T00:53:53Z",
+      "side": 1,
+      "message": "Used sys.exit(1) as it is an error.",
+      "parentUuid": "80ef58b5_3ceffebe",
+      "revId": "fb44f880cf8414676edc57875f2915d96fe17a25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
