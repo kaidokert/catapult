@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "ada57c5d_84323567",
+        "filename": "telemetry/telemetry/web_perf/timeline_based_measurement_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-05T19:46:37Z",
+      "side": 1,
+      "message": "nit: better to assert for these explicitly.",
+      "range": {
+        "startLine": 311,
+        "startChar": 0,
+        "endLine": 317,
+        "endChar": 25
+      },
+      "revId": "6e8c0954918ec6ccfbd26b66cb84dcb15cb8c51a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b80f6c8a_0c3e162e",
         "filename": "tracing/tracing/metrics/uma_metric.html",
         "patchSetId": 3
