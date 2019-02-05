@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ef3d603_74ff7bb9",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-05T19:49:37Z",
+      "side": 1,
+      "message": "Can you add something to new_test to cover this",
+      "range": {
+        "startLine": 166,
+        "startChar": 9,
+        "endLine": 166,
+        "endChar": 15
+      },
+      "revId": "5f3857ea55f60aaa1e8aa68d2d582a3528cd1e36",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92c251cc_263c0899",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_vr_telemetry_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-05T19:49:37Z",
+      "side": 1,
+      "message": "Is non-android allowed? If not, might as well raise an error like above",
+      "revId": "5f3857ea55f60aaa1e8aa68d2d582a3528cd1e36",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
