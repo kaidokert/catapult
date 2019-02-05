@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "caf381e3_3d3e6207",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-05T09:51:42Z",
+      "side": 1,
+      "message": "nit: `if profiler_options:` should be enough here.",
+      "revId": "e0fc7926983d939bd9e0b9e87f387a6412e6ae79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c9310c7_30218d6a",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-05T09:51:42Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "e0fc7926983d939bd9e0b9e87f387a6412e6ae79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e424e311_310e9027",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-05T09:51:42Z",
+      "side": 1,
+      "message": "nit: `if not profiler_options:`",
+      "revId": "e0fc7926983d939bd9e0b9e87f387a6412e6ae79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e01e6c5a_a1e2bd23",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-05T09:51:42Z",
+      "side": 1,
+      "message": "nit: no need for the outer parentheses",
+      "revId": "e0fc7926983d939bd9e0b9e87f387a6412e6ae79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3920bed_20d52d40",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-05T09:51:42Z",
+      "side": 1,
+      "message": "nit: I think this is slightly clearer as:\n\n  success \u003d False\n  try:\n    yield\n    success \u003d True\n  finally:\n    success \u003d self._StopProfiling(ssh_process) and success\n    self._device_results.append((period, out_file, success))",
+      "revId": "e0fc7926983d939bd9e0b9e87f387a6412e6ae79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73e0f573_9351a5ca",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller_unittest.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-05T09:51:42Z",
+      "side": 1,
+      "message": "nit: you can switch the outer ones to double quotes so this reads more natural, i.e.:\n\n    \" Constructed command [\u0027/usr/bin/perf\u0027, \u0027record\u0027, \u0027-o\u0027, \u0027file\u0027, \u0027-a\u0027].\"",
+      "revId": "e0fc7926983d939bd9e0b9e87f387a6412e6ae79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e603b89_7be8e829",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller_unittest.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-05T09:51:42Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "e0fc7926983d939bd9e0b9e87f387a6412e6ae79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1f2b9e8_2429443c",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-05T09:51:42Z",
+      "side": 1,
+      "message": "I think you don\u0027t need this.",
+      "revId": "e0fc7926983d939bd9e0b9e87f387a6412e6ae79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ba06492_bc600f74",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-05T09:51:42Z",
+      "side": 1,
+      "message": "I think you should be able to keep `dest\u003dinterval_profiler_options, type\u003dshlex.split`, and no default (so it\u0027s \"None\" if the option is not passed).\n\nAlternatively, if that doesn\u0027t work in optparse, just reuse the same `interval_profiler_options` for both the string before parsing and the list after validating. Better than keeping two variable names for the same thing that might get accidentally out of sync.",
+      "revId": "e0fc7926983d939bd9e0b9e87f387a6412e6ae79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
