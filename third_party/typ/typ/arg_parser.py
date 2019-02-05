@@ -245,6 +245,15 @@ class ArgumentParser(argparse.ArgumentParser):
         if rargs.overwrite is None:
             rargs.overwrite = self._host.stdout.isatty() and not rargs.verbose
 
+        print 'crouleau: ', rargs.quiet
+        print 'crouleau: ', rargs.quiet
+        print 'crouleau: ', rargs.quiet
+        print 'crouleau: ', rargs.quiet
+        print 'crouleau: ', rargs.quiet
+        print 'crouleau: ', rargs.quiet
+        print 'crouleau: ', rargs.quiet
+        print 'crouleau: ', rargs.quiet
+        print 'crouleau: ', rargs.quiet
         return rargs
 
     # Redefining built-in 'file' pylint: disable=W0622
