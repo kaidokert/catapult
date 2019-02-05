@@ -1,0 +1,153 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b80f6c8a_0c3e162e",
+        "filename": "tracing/tracing/metrics/uma_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-05T19:02:38Z",
+      "side": 1,
+      "message": "Would it be useful to record breakdowns by process type, like the memory metric?",
+      "range": {
+        "startLine": 23,
+        "startChar": 2,
+        "endLine": 24,
+        "endChar": 32
+      },
+      "revId": "6e8c0954918ec6ccfbd26b66cb84dcb15cb8c51a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10498526_70fd6ebd",
+        "filename": "tracing/tracing/metrics/uma_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-05T19:02:38Z",
+      "side": 1,
+      "message": "Is this true for manual traces from about:tracing?",
+      "range": {
+        "startLine": 26,
+        "startChar": 3,
+        "endLine": 28,
+        "endChar": 45
+      },
+      "revId": "6e8c0954918ec6ccfbd26b66cb84dcb15cb8c51a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d2dd292_ae42e73f",
+        "filename": "tracing/tracing/metrics/uma_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-05T19:02:38Z",
+      "side": 1,
+      "message": "Instead of using magic indices in mergeBins_ etc, can you use objects and refer to fields by name?\n\nbins.push({min, max, count});",
+      "range": {
+        "startLine": 46,
+        "startChar": 16,
+        "endLine": 46,
+        "endChar": 33
+      },
+      "revId": "6e8c0954918ec6ccfbd26b66cb84dcb15cb8c51a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "daf90f7a_c5000cff",
+        "filename": "tracing/tracing/metrics/uma_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-05T19:02:38Z",
+      "side": 1,
+      "message": "const allBins \u003d [...x.bins, ...y.bins];",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 39
+      },
+      "revId": "6e8c0954918ec6ccfbd26b66cb84dcb15cb8c51a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b15adb9_b3b06dae",
+        "filename": "tracing/tracing/metrics/uma_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-05T19:02:38Z",
+      "side": 1,
+      "message": "I think referring directly to x.bins.length and y.bins.length would be easier to read than len1 and len2.",
+      "range": {
+        "startLine": 78,
+        "startChar": 16,
+        "endLine": 79,
+        "endChar": 22
+      },
+      "revId": "6e8c0954918ec6ccfbd26b66cb84dcb15cb8c51a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38a413fb_4a54ae03",
+        "filename": "tracing/tracing/metrics/uma_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-05T19:02:38Z",
+      "side": 1,
+      "message": "Could you plumb events to RelatedEventSet sample diagnostics?",
+      "revId": "6e8c0954918ec6ccfbd26b66cb84dcb15cb8c51a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4a3f6e3_3df52009",
+        "filename": "tracing/tracing/metrics/uma_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-05T19:02:38Z",
+      "side": 1,
+      "message": "Bin boundaries need to be consistent between runs.\nIf two traces record different samples, then the binBoundaries for the resulting two Histograms may be different, in which case they will not be mergeable, so results.html will display only \"unmergeable\" instead of their data.\n\nHow many different bin configurations are there in the UMA macros? Could this umaMetric enumerate some of them? Maybe try to match them up with the bin boundaries from the snapshots?\nThe default bin boundaries for the unitless unit is 50 exponential bins from 1e-3 to 1e3, which might be good enough for most uma macros.",
+      "revId": "6e8c0954918ec6ccfbd26b66cb84dcb15cb8c51a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
