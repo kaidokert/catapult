@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fed4d40c_c76d6cb8",
+        "filename": "telemetry/telemetry/timeline/importer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-05T12:04:43Z",
+      "side": 0,
+      "message": "No longer needs an \"import_order\", as only a single importer remains.",
+      "revId": "02bb14c83b69f7c612aced1d2be8044263ff1a2e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
