@@ -308,7 +308,15 @@ class TimelineBasedMeasurementTest(page_test_test_case.PageTestTestCase):
     histogram_dicts = results.AsHistogramDicts()
     hs = histogram_set.HistogramSet()
     hs.ImportDicts(histogram_dicts)
-    self.assertEquals(4, len(hs))
+
+    # We expect five histograms:
+    # 1- foo
+    # 2- trace_import_duration
+    # 3- sampleMetric_duration
+    # 4- umaMetric_duration
+    # 5- metrics_duration
+    self.assertEquals(5, len(hs))
+
     hist = hs.GetFirstHistogram()
     benchmarks = hist.diagnostics.get(reserved_infos.BENCHMARKS.name)
     self.assertIsInstance(benchmarks, generic_set.GenericSet)
