@@ -94,8 +94,49 @@ tr.exportTo('cp', () => {
       dispatch(Redux.UPDATE(path, {xPct}));
     },
 
+    boldLine: (statePath, lineIndex) => async(dispatch, getState) => {
+      dispatch({
+        type: ChartBase.reducers.boldLine.name,
+        statePath,
+        lineIndex,
+      });
+    },
+
     tooltip: (statePath, rows) => async(dispatch, getState) => {
       dispatch(Redux.UPDATE(statePath + '.tooltip', {rows}));
+    },
+
+    unboldLines: statePath => async(dispatch, getState) => {
+      dispatch({
+        type: ChartBase.reducers.unboldLines.name,
+        statePath,
+      });
+    },
+  };
+
+  ChartBase.reducers = {
+    unboldLines: (state, action, rootState) => {
+      const lines = state.lines.map(line => {
+        return {...line, strokeWidth: 1};
+      });
+      return {...state, lines};
+    },
+
+    boldLine: (state, action, rootState) => {
+      const lines = Array.from(state.lines);
+      // Set its strokeWidth:2
+      const line = lines[action.lineIndex];
+      lines.splice(action.lineIndex, 1, {
+        ...line,
+        strokeWidth: 2,
+      });
+      if (action.lineIndex !== (lines.length - 1)) {
+        // Move action.lineIndex to the end so it is drawn over top of any other
+        // lines.
+        [lines[action.lineIndex], lines[lines.length - 1]] =
+          [lines[lines.length - 1], lines[action.lineIndex]];
+      }
+      return {...state, lines};
     },
   };
 
