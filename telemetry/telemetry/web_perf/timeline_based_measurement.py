@@ -304,6 +304,12 @@ class TimelineBasedMeasurement(story_test.StoryTest):
 
   def _ComputeTimelineBasedMetrics(self, results, trace_value):
     metrics = self._tbm_options.GetTimelineBasedMetrics()
+    # Always add umaMetric. It will be a no-op if no UMA histograms is logged in
+    # traces. If there are UMA histogram in traces, umaMetric will parse them
+    # and include them in the result.
+    if 'umaMetric' not in metrics:
+      metrics.append('umaMetric')
+
     extra_import_options = {
         'trackDetailedModelStats': True
     }
