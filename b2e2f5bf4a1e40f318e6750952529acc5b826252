@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b8388ccc_3f23bee0",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-06T23:46:38Z",
+      "side": 1,
+      "message": "I had suggested we use something other than \"Flaky\" to describe the gpu-specific behavior, right?",
+      "revId": "b2e2f5bf4a1e40f318e6750952529acc5b826252",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
