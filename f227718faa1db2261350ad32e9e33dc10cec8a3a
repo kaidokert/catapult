@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9224103d_45526a3c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-06T02:18:30Z",
+      "side": 1,
+      "message": "I generally would expect any setup that needed to be done to be done in one of the setup fixtures (the setup_fn on the Runner object, or the setUpClass or setUp methods of the test classes themselves), rather than being done outside of the test run. \n\nI *think* that if you were to do that, you wouldn\u0027t need the changes in Host?",
+      "revId": "f227718faa1db2261350ad32e9e33dc10cec8a3a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4dc21548_e9a67da5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-06T02:18:30Z",
+      "side": 1,
+      "message": "Yes, this is the right place to submit the patch; catapult is the current source of truth for TYP, and I need to update the github repo to reflect that ...",
+      "revId": "f227718faa1db2261350ad32e9e33dc10cec8a3a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a8f990b_aa35af19",
+        "filename": "third_party/typ/typ/host.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-06T02:18:30Z",
+      "side": 1,
+      "message": "If this change is actually needed, use .items() here; .iteritems() isn\u0027t Python3-compatible.",
+      "revId": "f227718faa1db2261350ad32e9e33dc10cec8a3a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
