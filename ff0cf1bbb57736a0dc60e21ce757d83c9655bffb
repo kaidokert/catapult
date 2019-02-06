@@ -48,6 +48,52 @@
     },
     {
       "key": {
+        "uuid": "385f2666_12670914",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-06T15:13:07Z",
+      "side": 1,
+      "message": "Add tests",
+      "range": {
+        "startLine": 264,
+        "startChar": 18,
+        "endLine": 264,
+        "endChar": 33
+      },
+      "revId": "ff0cf1bbb57736a0dc60e21ce757d83c9655bffb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01f2e0fa_4fb38232",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-06T15:13:07Z",
+      "side": 1,
+      "message": "Think it\u0027d make more sense to have this logic inside CommitRange",
+      "range": {
+        "startLine": 264,
+        "startChar": 34,
+        "endLine": 264,
+        "endChar": 45
+      },
+      "revId": "ff0cf1bbb57736a0dc60e21ce757d83c9655bffb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5eae2e85_d66eec18",
         "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
         "patchSetId": 1
