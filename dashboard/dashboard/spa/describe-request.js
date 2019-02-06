@@ -17,19 +17,19 @@ tr.exportTo('cp', () => {
     }
 
     static mergeDescriptor(merged, descriptor) {
-      for (const bot of descriptor.bots) merged.bots.add(bot);
-      for (const measurement of descriptor.measurements) {
+      for (const bot of (descriptor.bots || [])) merged.bots.add(bot);
+      for (const measurement of (descriptor.measurements || [])) {
         merged.measurements.add(measurement);
       }
-      for (const c of descriptor.cases) {
-        merged.cases.add(c);
+      for (const testCase of (descriptor.cases || [])) {
+        merged.cases.add(testCase);
       }
       for (const [tag, cases] of Object.entries(descriptor.caseTags || {})) {
         if (!merged.caseTags.has(tag)) {
           merged.caseTags.set(tag, new Set());
         }
-        for (const c of cases) {
-          merged.caseTags.get(tag).add(c);
+        for (const testCase of cases) {
+          merged.caseTags.get(tag).add(testCase);
         }
       }
     }
