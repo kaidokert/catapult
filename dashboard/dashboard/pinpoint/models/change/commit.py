@@ -256,8 +256,20 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
       raise NonLinearError('Repositories differ between Commits: %s vs %s' %
                            (commit_a.repository, commit_b.repository))
 
-    commits = gitiles_service.CommitRange(commit_a.repository_url,
-                                          commit_a.git_hash, commit_b.git_hash)
+    # We need to get the full list of commits in between two git hashes, and
+    # only look into the first parent. This gives us a linear view of the log
+    # even in the presence of merge commits in the branch.
+    commits = []
+    expected_first_parent = commit_a.id
+    for commit in gitiles_service.CommitRange(commit_a.repository_url,
+                                              commit_a.git_hash,
+                                              commit_b.git_hash):
+      if commit.id == expected_first_parent:
+        commits.append(commit)
+        if len(commit.parents) == 0:
+          raise NonLinearError('Encountered an orphaned commit "%s".' % commit)
+        expected_first_parent = commit.parents[0]
+
     # We don't handle NotFoundErrors because we assume that all Commits either
     # came from this method or were already validated elsewhere.
     if len(commits) == 0:
