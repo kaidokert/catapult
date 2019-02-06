@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2a0449_b1c256ba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2019-02-06T14:53:22Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 12,
+        "startChar": 63,
+        "endLine": 12,
+        "endChar": 71
+      },
+      "revId": "ff0cf1bbb57736a0dc60e21ce757d83c9655bffb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2cc3d32d_01cb2967",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2019-02-06T14:53:22Z",
+      "side": 1,
+      "message": "so, is it id or git hash?",
+      "range": {
+        "startLine": 263,
+        "startChar": 37,
+        "endLine": 263,
+        "endChar": 39
+      },
+      "revId": "ff0cf1bbb57736a0dc60e21ce757d83c9655bffb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5eae2e85_d66eec18",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2019-02-06T14:53:22Z",
+      "side": 1,
+      "message": "strictly speaking, it may be fine if |commit_b| is this orphan commit. I think is rare enough that raising exception is fine.",
+      "range": {
+        "startLine": 269,
+        "startChar": 8,
+        "endLine": 270,
+        "endChar": 79
+      },
+      "revId": "ff0cf1bbb57736a0dc60e21ce757d83c9655bffb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
