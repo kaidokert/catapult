@@ -160,6 +160,15 @@ found in the LICENSE file.
             </rect>
           </template>
 
+          <template is="dom-repeat" items="[[antiBrushes_(yAxis.brushes)]]" as="antiBrush">
+            <rect
+                x="0"
+                y$="[[antiBrush.start]]"
+                width="100%"
+                height$="[[antiBrush.length]]">
+            </rect>
+          </template>
+
           <template is="dom-repeat" items="[[lines]]" as="line" index-as="lineIndex">
             <svg
                 viewBox="0 0 100 100"
