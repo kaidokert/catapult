@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "0b95627a_cd524024",
+        "filename": "tracing/tracing/metrics/uma_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-02-06T17:50:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b80f6c8a_0c3e162e",
+      "range": {
+        "startLine": 23,
+        "startChar": 2,
+        "endLine": 24,
+        "endChar": 32
+      },
+      "revId": "6e8c0954918ec6ccfbd26b66cb84dcb15cb8c51a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "10498526_70fd6ebd",
         "filename": "tracing/tracing/metrics/uma_metric.html",
         "patchSetId": 3
@@ -59,6 +83,30 @@
       "writtenOn": "2019-02-05T19:02:38Z",
       "side": 1,
       "message": "Is this true for manual traces from about:tracing?",
+      "range": {
+        "startLine": 26,
+        "startChar": 3,
+        "endLine": 28,
+        "endChar": 45
+      },
+      "revId": "6e8c0954918ec6ccfbd26b66cb84dcb15cb8c51a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "152667d1_6cfc7045",
+        "filename": "tracing/tracing/metrics/uma_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-02-06T17:50:56Z",
+      "side": 1,
+      "message": "Logging UMA histograms is controlled by the trace config, like the memory dump settings. If the histogram_names field is not empty, we log snapshots of the specified histograms both at start and stop tracing. However, it may be the case that, for example, at the start of tracing a histogram does not exist because no samples is added to it yet. In that case, the histogram snapshot is logged only at the end of tracing (if there are samples by then).\n\nPlease keep in mind that, currently, there is no way to specify histogram_names from about://tracing, again like the memory dump settings. Telemetry can set that field, or we can manually set it via command-line flags for startup tracing.",
+      "parentUuid": "10498526_70fd6ebd",
       "range": {
         "startLine": 26,
         "startChar": 3,
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "04274bac_5dd2ccdc",
+        "filename": "tracing/tracing/metrics/uma_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-02-06T17:50:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d2dd292_ae42e73f",
+      "range": {
+        "startLine": 46,
+        "startChar": 16,
+        "endLine": 46,
+        "endChar": 33
+      },
+      "revId": "6e8c0954918ec6ccfbd26b66cb84dcb15cb8c51a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "daf90f7a_c5000cff",
         "filename": "tracing/tracing/metrics/uma_metric.html",
         "patchSetId": 3
@@ -114,6 +186,30 @@
       "revId": "6e8c0954918ec6ccfbd26b66cb84dcb15cb8c51a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef55d00e_59ba3cb6",
+        "filename": "tracing/tracing/metrics/uma_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-02-06T17:50:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "daf90f7a_c5000cff",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 39
+      },
+      "revId": "6e8c0954918ec6ccfbd26b66cb84dcb15cb8c51a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -140,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "b47e8dc8_7298f8bf",
+        "filename": "tracing/tracing/metrics/uma_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-02-06T17:50:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b15adb9_b3b06dae",
+      "range": {
+        "startLine": 78,
+        "startChar": 16,
+        "endLine": 79,
+        "endChar": 22
+      },
+      "revId": "6e8c0954918ec6ccfbd26b66cb84dcb15cb8c51a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "38a413fb_4a54ae03",
         "filename": "tracing/tracing/metrics/uma_metric.html",
         "patchSetId": 3
@@ -157,6 +277,24 @@
     },
     {
       "key": {
+        "uuid": "fbddcc22_61fdbc20",
+        "filename": "tracing/tracing/metrics/uma_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-02-06T17:50:56Z",
+      "side": 1,
+      "message": "Done: I did the plumbing. But, it doesn\u0027t work because instant events don\u0027t have stable IDs. I added a TODO to fix this in a separate CL (not related to this work).",
+      "parentUuid": "38a413fb_4a54ae03",
+      "revId": "6e8c0954918ec6ccfbd26b66cb84dcb15cb8c51a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c4a3f6e3_3df52009",
         "filename": "tracing/tracing/metrics/uma_metric.html",
         "patchSetId": 3
@@ -171,6 +309,24 @@
       "revId": "6e8c0954918ec6ccfbd26b66cb84dcb15cb8c51a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13ab8ca1_1d455569",
+        "filename": "tracing/tracing/metrics/uma_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-02-06T17:50:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4a3f6e3_3df52009",
+      "revId": "6e8c0954918ec6ccfbd26b66cb84dcb15cb8c51a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
