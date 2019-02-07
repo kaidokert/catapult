@@ -112,6 +112,9 @@ class ChromeTraceConfig(object):
     for histogram_name in args:
       self._histogram_names.append(histogram_name)
 
+  def HasHistograms(self):
+    return len(self._histogram_names) != 0
+
   @property
   def record_mode(self):
     return self._record_mode
