@@ -16,6 +16,29 @@
       "revId": "fb5956e43a5a1c069006894df294bed86342042c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa8f4482_708f6f7b",
+        "filename": "tracing/tracing/trace_data/trace_data.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-07T18:53:31Z",
+      "side": 0,
+      "message": "Why are you removing this doc?",
+      "range": {
+        "startLine": 138,
+        "startChar": 13,
+        "endLine": 140,
+        "endChar": 78
+      },
+      "revId": "fb5956e43a5a1c069006894df294bed86342042c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
