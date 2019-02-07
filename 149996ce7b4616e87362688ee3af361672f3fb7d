@@ -34,6 +34,24 @@
       "revId": "149996ce7b4616e87362688ee3af361672f3fb7d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac662d72_c1b4fc87",
+        "filename": "telemetry/telemetry/web_perf/timeline_based_measurement.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-07T15:53:14Z",
+      "side": 1,
+      "message": "I think redundant and explicit is better than implicit and not code-searchable.\n\nAlternatively, you could make it an error if one calls HasHistograms() and forgets to add umaMetric.",
+      "parentUuid": "972a2a0e_908f1949",
+      "revId": "149996ce7b4616e87362688ee3af361672f3fb7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
