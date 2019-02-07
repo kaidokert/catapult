@@ -51,11 +51,6 @@ class TraceEventTimelineImporter(importer.TimelineImporter):
   def _GetOrCreateProcess(self, pid):
     return self._model.GetOrCreateProcess(pid)
 
-  def _DeepCopyIfNeeded(self, obj):
-    if self._trace_data.events_are_safely_mutable:
-      return obj
-    return copy.deepcopy(obj)
-
   def _ProcessAsyncEvent(self, event):
     """Helper to process an 'async finish' event, which will close an
     open slice.

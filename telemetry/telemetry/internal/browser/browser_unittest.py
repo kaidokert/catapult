@@ -145,7 +145,8 @@ class BrowserTest(browser_test_case.BrowserTestCase):
     config.enable_chrome_trace = True
     tracing_controller.StartTracing(config)
     self.assertTrue(tracing_controller.is_tracing_running)
-    tracing_controller.StopTracing()
+    trace_writer, _ = tracing_controller.StopTracing()
+    trace_writer.CleanUpTraceData()
     self.assertFalse(tracing_controller.is_tracing_running)
 
   @decorators.Enabled('android')

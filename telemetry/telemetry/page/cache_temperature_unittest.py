@@ -40,7 +40,8 @@ class CacheTemperatureTests(browser_test_case.BrowserTestCase):
     try:
       yield
     finally:
-      self._full_trace = tracing_controller.StopTracing()[0]
+      trace_writer = tracing_controller.StopTracing()[0]
+      self._full_trace = trace_writer.AsData()
 
   def CollectTraceMarkers(self):
     if not self._full_trace:

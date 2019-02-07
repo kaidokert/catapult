@@ -266,15 +266,15 @@ class TimelineBasedMeasurement(story_test.StoryTest):
     """Collect all possible metrics and added them to results."""
     platform.tracing_controller.telemetry_info = results.telemetry_info
     trace_result, _ = platform.tracing_controller.StopTracing()
-    trace_value = trace.TraceValue(
-        results.current_page, trace_result,
-        file_path=results.telemetry_info.trace_local_path,
-        remote_path=results.telemetry_info.trace_remote_path,
-        upload_bucket=results.telemetry_info.upload_bucket,
-        cloud_url=results.telemetry_info.trace_remote_url)
-    results.AddValue(trace_value)
-
     try:
+      trace_value = trace.TraceValue(
+          results.current_page, trace_result,
+          file_path=results.telemetry_info.trace_local_path,
+          remote_path=results.telemetry_info.trace_remote_path,
+          upload_bucket=results.telemetry_info.upload_bucket,
+          cloud_url=results.telemetry_info.trace_remote_url)
+      results.AddValue(trace_value)
+
       if self._tbm_options.GetTimelineBasedMetrics():
         assert not self._tbm_options.GetLegacyTimelineBasedMetrics(), (
             'Specifying both TBMv1 and TBMv2 metrics is not allowed.')
@@ -288,19 +288,22 @@ class TimelineBasedMeasurement(story_test.StoryTest):
               'explicitly.')
         self._ComputeLegacyTimelineBasedMetrics(results, trace_result)
     finally:
-      trace_result.CleanUpAllTraces()
+      trace_result.CleanUpTraceData()
 
   def DidRunStory(self, platform, results):
     """Clean up after running the story."""
     if platform.tracing_controller.is_tracing_running:
       trace_result, _ = platform.tracing_controller.StopTracing()
-      trace_value = trace.TraceValue(
-          results.current_page, trace_result,
-          file_path=results.telemetry_info.trace_local_path,
-          remote_path=results.telemetry_info.trace_remote_path,
-          upload_bucket=results.telemetry_info.upload_bucket,
-          cloud_url=results.telemetry_info.trace_remote_url)
-      results.AddValue(trace_value)
+      try:
+        trace_value = trace.TraceValue(
+            results.current_page, trace_result,
+            file_path=results.telemetry_info.trace_local_path,
+            remote_path=results.telemetry_info.trace_remote_path,
+            upload_bucket=results.telemetry_info.upload_bucket,
+            cloud_url=results.telemetry_info.trace_remote_url)
+        results.AddValue(trace_value)
+      finally:
+        trace_result.CleanUpTraceData()
 
   def _ComputeTimelineBasedMetrics(self, results, trace_value):
     metrics = self._tbm_options.GetTimelineBasedMetrics()

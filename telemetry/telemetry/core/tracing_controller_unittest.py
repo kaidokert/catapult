@@ -14,8 +14,10 @@ from telemetry.timeline import tracing_config
 
 
 def ReadMarkerEvents(trace_data):
-  # Parse the trace and extract all test markers & trace-flushing markers
-  return trace_runner.ExecuteMappingCodeOnTraceData(
+  # Parse the trace and extract all test markers & trace-flushing markers,
+  # also free up the resources used by the trace_data.
+  try:
+    return trace_runner.ExecuteMappingCodeOnTraceData(
       trace_data, """
 function processTrace(results, model) {
     var markers = [];
@@ -30,6 +32,8 @@ function processTrace(results, model) {
    results.addPair('markers', markers);
 };
        """)['markers']
+  finally:
+    trace_data.CleanUpTraceData()
 
 
 class TracingControllerTest(tab_test_case.TabTestCase):

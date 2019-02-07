@@ -140,6 +140,8 @@ class ChromeTracingAgentTest(unittest.TestCase):
         False)
     agent.RecordClockSyncMarker('123', lambda *unused: True)
     agent.StopAgentTracing()
+    # Note: no trace_writer is needed since these tests are using a
+    # FakeDevtoolsClient, so no real tracing outputs are produced.
     agent.CollectAgentTraceData(None)
 
   def testRegisterDevtoolsClient(self):
