@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "23d98720_0995bdc9",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-02-07T22:59:28Z",
+      "side": 1,
+      "message": "Have reduced it to 5 seconds. I think that some small delay is important in order to avoid race conditions where the minidumps might not be noticed by the caller.\n\nNote that the minidump symbolization is so slow (on the order of minutes) that it dwarfs this sleep call. It took a while to figure out a reliable way of getting the GPU process minidumps and this seems to work.",
+      "parentUuid": "1b102a9e_dc7498b1",
+      "range": {
+        "startLine": 565,
+        "startChar": 6,
+        "endLine": 565,
+        "endChar": 20
+      },
+      "revId": "b0dbc57cd8b7810ec4f20cb3cc2fc402ad7f9b6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2f382adc_ecabbf95",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_runtime.py",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "b0dbc57cd8b7810ec4f20cb3cc2fc402ad7f9b6e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf1e6fe3_9aa022af",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_runtime.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-02-07T22:59:28Z",
+      "side": 1,
+      "message": "Good idea; done.",
+      "parentUuid": "2f382adc_ecabbf95",
+      "range": {
+        "startLine": 75,
+        "startChar": 6,
+        "endLine": 75,
+        "endChar": 11
+      },
+      "revId": "b0dbc57cd8b7810ec4f20cb3cc2fc402ad7f9b6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "9847ba92_03a4a21d",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-02-07T22:59:28Z",
+      "side": 1,
+      "message": "Actually, I should have used logging.log(log_level, ...), same as below. Have changed this to use that.",
+      "parentUuid": "11ef8ccd_3c205952",
+      "range": {
+        "startLine": 337,
+        "startChar": 6,
+        "endLine": 337,
+        "endChar": 53
+      },
+      "revId": "b0dbc57cd8b7810ec4f20cb3cc2fc402ad7f9b6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d1cc8b7d_6f089d9d",
         "filename": "telemetry/telemetry/internal/browser/browser.py",
         "patchSetId": 1
@@ -91,6 +163,30 @@
       "revId": "b0dbc57cd8b7810ec4f20cb3cc2fc402ad7f9b6e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e017a38_c49a225d",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-02-07T22:59:28Z",
+      "side": 1,
+      "message": "Changed differently per above.",
+      "parentUuid": "d1cc8b7d_6f089d9d",
+      "range": {
+        "startLine": 339,
+        "startChar": 12,
+        "endLine": 339,
+        "endChar": 17
+      },
+      "revId": "b0dbc57cd8b7810ec4f20cb3cc2fc402ad7f9b6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
