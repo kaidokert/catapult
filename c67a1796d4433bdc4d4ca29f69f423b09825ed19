@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "06d7b8bc_9f99f131",
+        "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-07T22:39:54Z",
+      "side": 1,
+      "message": "Can you move this up next to the other multi-line tests, e.g. before line 172?\n\nAlso, it\u0027s not clear what you expect this test to be testing; the actual code only tests that the file is parsed correctly (no exceptions are raised), and I don\u0027t know what you were getting at with the test name. I\u0027d call it something like testSingleLineTagAfterMultiLineTagWorks() or something. Or, add a comment explaining further, or something ...",
+      "revId": "c67a1796d4433bdc4d4ca29f69f423b09825ed19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
