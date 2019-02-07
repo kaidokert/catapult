@@ -234,6 +234,30 @@
       "revId": "ff0cf1bbb57736a0dc60e21ce757d83c9655bffb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb19e9ac_b0552d4f",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2019-02-07T06:24:50Z",
+      "side": 1,
+      "message": "well, an orphan commit will show up in the very bisection that caused this bugfix, because merged camera app history starts with an orphan.  You\u0027ve also made a test like this.\n\nHowever, what you really meant to ask is what how likely is an orphan commit show up when following just first parent chain (L269 is conditional on L267, which ensures this is first parent chain).\nThe answer is unlikely in normal circumstances.\nOf course, if somebody merged things incorrectly (e.g., swapping two parents), then yeah, it can happen, but then following first parent chain is meaningless. So, i think code as is fine.",
+      "parentUuid": "477b4a0e_65cc5d5b",
+      "range": {
+        "startLine": 269,
+        "startChar": 8,
+        "endLine": 270,
+        "endChar": 79
+      },
+      "revId": "ff0cf1bbb57736a0dc60e21ce757d83c9655bffb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

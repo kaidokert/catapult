@@ -1,0 +1,176 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "08d58fe9_6061fe84",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2019-02-07T06:24:50Z",
+      "side": 1,
+      "message": "chain formed by following first parents",
+      "range": {
+        "startLine": 260,
+        "startChar": 24,
+        "endLine": 260,
+        "endChar": 25
+      },
+      "revId": "58f98d10f2dfe7b0b9097d00696a5f9651e784a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d778aaf_29231b5a",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2019-02-07T06:24:50Z",
+      "side": 1,
+      "message": "huh? you are raising exception if commit has no first parent doesn\u0027t exist.",
+      "range": {
+        "startLine": 265,
+        "startChar": 73,
+        "endLine": 266,
+        "endChar": 22
+      },
+      "revId": "58f98d10f2dfe7b0b9097d00696a5f9651e784a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffc0e1ea_d2542edd",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2019-02-07T06:24:50Z",
+      "side": 1,
+      "message": "del",
+      "range": {
+        "startLine": 273,
+        "startChar": 13,
+        "endLine": 273,
+        "endChar": 16
+      },
+      "revId": "58f98d10f2dfe7b0b9097d00696a5f9651e784a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fdf888b4_5ae153fa",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2019-02-07T06:24:50Z",
+      "side": 1,
+      "message": "this wrong comment. Better \"skip all commits until we find first parent we are looking for.",
+      "revId": "58f98d10f2dfe7b0b9097d00696a5f9651e784a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1f1385e_a6f6bec9",
+        "filename": "dashboard/dashboard/pinpoint/test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2019-02-07T06:24:50Z",
+      "side": 1,
+      "message": "not necessarily. Timestamps don\u0027t matter here. What matters is that merged history under the second parent may have nothing to do with this repo.",
+      "range": {
+        "startLine": 114,
+        "startChar": 48,
+        "endLine": 115,
+        "endChar": 54
+      },
+      "revId": "58f98d10f2dfe7b0b9097d00696a5f9651e784a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b91810e9_11e9c496",
+        "filename": "dashboard/dashboard/pinpoint/test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2019-02-07T06:24:50Z",
+      "side": 1,
+      "message": "I am quite sure orphan commits don\u0027t reference themselves, because doing so means what is normally a merkle tree has a cycle, which shouldn\u0027t be feasible to generate with crypto-level hash function.",
+      "range": {
+        "startLine": 121,
+        "startChar": 24,
+        "endLine": 121,
+        "endChar": 79
+      },
+      "revId": "58f98d10f2dfe7b0b9097d00696a5f9651e784a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91e21ef5_e216c55c",
+        "filename": "dashboard/dashboard/pinpoint/test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2019-02-07T06:24:50Z",
+      "side": 1,
+      "message": "delete\n\nThis illustrates my above claim: \u0027commit_0\u0027 is a sha1 hash of serialized commit0 object, but this object contains parents, which thus can\u0027t (easily) be hash of this very object.",
+      "range": {
+        "startLine": 128,
+        "startChar": 47,
+        "endLine": 128,
+        "endChar": 55
+      },
+      "revId": "58f98d10f2dfe7b0b9097d00696a5f9651e784a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7504558_53007225",
+        "filename": "dashboard/dashboard/pinpoint/test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1141499
+      },
+      "writtenOn": "2019-02-07T06:24:50Z",
+      "side": 1,
+      "message": "nit: delete empty line.",
+      "revId": "58f98d10f2dfe7b0b9097d00696a5f9651e784a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
