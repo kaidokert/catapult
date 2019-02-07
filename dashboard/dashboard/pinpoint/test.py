@@ -77,11 +77,18 @@ class TestCase(testing_common.TestCase):
     repository.Repository(id='another_repo', urls=['https://another/url']).put()
 
 
-def _CommitInfoStub(repository_url, git_hash):
+def _CommitInfoStub(repository_url, git_hash, override=False):
   del repository_url
 
   if git_hash == 'HEAD':
     git_hash = 'git hash at HEAD'
+
+  components = git_hash.split('_')
+  parents = []
+  if not override and len(components) > 1:
+    if components[0] == 'commit':
+      parent_num = int(components[1]) - 1
+      parents.append('commit_' + str(parent_num))
 
   return {
       'author': {'email': 'author@chromium.org'},
@@ -89,11 +96,46 @@ def _CommitInfoStub(repository_url, git_hash):
       'committer': {'time': 'Fri Jan 01 00:01:00 2018'},
       'message': 'Subject.\n\nCommit message.\n'
                  'Cr-Commit-Position: refs/heads/master@{#123456}',
+      'parents': parents,
   }
 
 
 def _CommitRangeStub(repository_url, first_git_hash, last_git_hash):
+  if last_git_hash == 'mc_4':
+    # Create a set of commits where the range includes some that were merged in
+    # from a different branch (in a merge commit). The tree we're simulating
+    # looks like:
+    #
+    #   0 <- 1 <-++ # topic-branch
+    #             | (merge commit)
+    #        2 <- 3 <- 4 # master
+    #
+    # When bisecting between 2 and 4 on master, we will eventually encounter
+    # commits 0 and 1 when looking at the range. These commits could have a
+    # timestamp that is much earlier in the repository and is not really
+    # something the midpoint traversal should look into.
+    #
+    # We should then only see 3 as the Midpoint and ignore 0 and 1 since those
+    # commits are not in the linear history from the tip of master.
+    #
+    # Note that in git, "root" commits refer to themselves as the first parent.
+    #
+    commit_tree = [
+        {'git_hash': 'mc_4', 'parents' : ['merge_3_2_1']},
+        {'git_hash': 'merge_3_2_1', 'parents' : ['commit_2', 'commit_1']},
+        {'git_hash': 'commit_2', 'parents' : ['commit_2']},
+        {'git_hash': 'commit_1', 'parents' : ['commit_0']},
+        {'git_hash': 'commit_0', 'parents' : ['commit_0']},
+    ]
+    def _InfoStubWithParents(commit):
+      commit_info = _CommitInfoStub(repository_url, commit['git_hash'], True)
+      commit_info['parents'] = commit['parents']
+      return commit_info
+    return [_InfoStubWithParents(commit) for commit in commit_tree]
+
   first_number = int(first_git_hash.split('_')[1])
   last_number = int(last_git_hash.split('_')[1])
+
   return [_CommitInfoStub(repository_url, 'commit_' + str(x))
           for x in xrange(last_number, first_number, -1)]
+

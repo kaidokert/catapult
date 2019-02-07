@@ -7,7 +7,7 @@ from dashboard.pinpoint import test
 
 
 def Commit(number, repository='chromium'):
-  return commit.Commit(repository, 'commit_' + str(number))
+  return commit.Commit(repository=repository, git_hash='commit_' + str(number))
 
 
 class CommitTest(test.TestCase):
@@ -232,3 +232,11 @@ class MidpointTest(test.TestCase):
 
     with self.assertRaises(commit.NonLinearError):
       commit.Commit.Midpoint(Commit(1), Commit(9))
+
+  def testMidpointWithMergeCommits(self):
+    midpoint = commit.Commit.Midpoint(commit.Commit(repository='chromium',
+                                                    git_hash='commit_0'),
+                                      commit.Commit(repository='chromium',
+                                                    git_hash='mc_4'))
+    self.assertEqual(midpoint, commit.Commit(repository='chromium',
+                                             git_hash='commit_2'))
