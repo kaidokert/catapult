@@ -250,6 +250,24 @@
     },
     {
       "key": {
+        "uuid": "837d685b_fe95181a",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-02-07T23:29:33Z",
+      "side": 1,
+      "message": "With browser tests, you can only run one class of tests at a time. If we do one expectations file per class then the issue Caleb mentioned wouldn\u0027t happen. With unit test\u0027s on the other hand, tests will span multiple classes there fore we need to retain the full class path for each test method. In order to have a consistent format spanning both browser tests and unit tests, I agree with Dirk and vote to pass in a command line argument for prefixes that can be passed to run_browser_tests.py.",
+      "parentUuid": "f830245b_65c44a71",
+      "revId": "65df95a26f4d46b680d45f968108035e3f881c7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2f0b440a_d375ef13",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 7
