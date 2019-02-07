@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3134de92_bd9b4a45",
+        "filename": "telemetry/telemetry/timeline/chrome_trace_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-07T16:34:42Z",
+      "side": 1,
+      "message": "nit: sorry for only bringing this now, but the term \"histograms\" can be confusing since there are many histogram-named things now in Telemetry. Can you call these (and relevant methods) e.g. EnableUMAHistograms() instead?",
+      "revId": "9d73d76ad7dd97839aa25b033e550d590c766655",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
