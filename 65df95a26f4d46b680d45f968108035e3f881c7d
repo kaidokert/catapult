@@ -196,6 +196,24 @@
     },
     {
       "key": {
+        "uuid": "2c00a34c_59ada603",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-02-07T22:55:24Z",
+      "side": 1,
+      "message": "The fully qualified test names of the Telemetry-based GPU tests are extremely verbose and redundant. With this test expectations change it\u0027s critically important that we not require the full name in the expectations files.",
+      "parentUuid": "f4c74655_ff67aff3",
+      "revId": "65df95a26f4d46b680d45f968108035e3f881c7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2f0b440a_d375ef13",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 7
