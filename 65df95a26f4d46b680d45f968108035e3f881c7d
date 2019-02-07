@@ -232,6 +232,24 @@
     },
     {
       "key": {
+        "uuid": "f830245b_65c44a71",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-07T23:09:11Z",
+      "side": 1,
+      "message": "I think the agreement we reached elsewhere is something like we\u0027d allow the caller (the gpu harness in this case) to specify a prefix that would get prepended onto each user-visible test name to generate the \"real\" test name. With such an arrangement, the risk of namespace clashes is manageable. \n\nAnd, of course, you\u0027ll want to have enough flexibility to make sure you do get unique test names, one way or another.",
+      "parentUuid": "9123da8f_5637a3bf",
+      "revId": "65df95a26f4d46b680d45f968108035e3f881c7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2f0b440a_d375ef13",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 7
