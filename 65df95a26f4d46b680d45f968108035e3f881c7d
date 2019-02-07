@@ -160,6 +160,24 @@
     },
     {
       "key": {
+        "uuid": "9a2a029b_bcd61e3d",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-02-07T21:50:13Z",
+      "side": 1,
+      "message": "Yes I plan on removing the test_class change. I was intending to add the test_short_name argument so that we can use the test method name with out the full class path in the test expectations file. \n\nso that we can go from\n\ncrbug.com/123 [foo] gpu_tests.webgl_conformance_integration_test.WebGLConfromanceIntegrationTest.WebglExtension_WEBGL_compressed_texture_astc [Fail]\ncrbug.com/123 [foo] \ngpu_tests.webgl_conformance_integration_test.WebGLConfromanceIntegrationTest.WebglExtension_WEBGL_compressed_texture_pvrtc [Fail]\n\nto\n\ncrbug.com/123 [foo] WebglExtension_WEBGL_compressed_texture_astc [Fail]\ncrbug.com/123 [foo] WebglExtension_WEBGL_compressed_texture_pvrtc [Fail]",
+      "parentUuid": "fdbf87fe_a99ca32d",
+      "revId": "65df95a26f4d46b680d45f968108035e3f881c7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2f0b440a_d375ef13",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 7
