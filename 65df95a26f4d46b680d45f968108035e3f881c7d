@@ -268,6 +268,24 @@
     },
     {
       "key": {
+        "uuid": "70525da4_80d7a3ae",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-07T23:35:16Z",
+      "side": 1,
+      "message": "\u003e With browser tests, you can only run one class of tests at a time.\n\nYou lost me here ... do you mean that the GPU tests are all methods of a single class? Because I don\u0027t think that\u0027s true for telemetry generally, and it\u0027s not true for actual browser tests.",
+      "parentUuid": "837d685b_fe95181a",
+      "revId": "65df95a26f4d46b680d45f968108035e3f881c7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2f0b440a_d375ef13",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 7
