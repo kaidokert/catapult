@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1b102a9e_dc7498b1",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-07T21:00:03Z",
+      "side": 1,
+      "message": "Could this sleep be any shorter? I worry that with a bunch of nested retries everywhere, this type of sleeping could cause everything to time out if this bug happens again.",
+      "range": {
+        "startLine": 565,
+        "startChar": 6,
+        "endLine": 565,
+        "endChar": 20
+      },
+      "revId": "b0dbc57cd8b7810ec4f20cb3cc2fc402ad7f9b6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f382adc_ecabbf95",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_runtime.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-07T21:00:03Z",
+      "side": 1,
+      "message": "This maybe should be called \"CrashTab\" or \"CrashRendererProcess\" to be parallel with the below method?",
+      "range": {
+        "startLine": 75,
+        "startChar": 6,
+        "endLine": 75,
+        "endChar": 11
+      },
+      "revId": "b0dbc57cd8b7810ec4f20cb3cc2fc402ad7f9b6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11ef8ccd_3c205952",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-07T21:00:03Z",
+      "side": 1,
+      "message": "Thanks for making this better!\n\nMaybe this should actually be logging.warn that way we see it during normal runs. It\u0027s rare for runs to be verbose I think.",
+      "range": {
+        "startLine": 337,
+        "startChar": 6,
+        "endLine": 337,
+        "endChar": 53
+      },
+      "revId": "b0dbc57cd8b7810ec4f20cb3cc2fc402ad7f9b6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1cc8b7d_6f089d9d",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-07T21:00:03Z",
+      "side": 1,
+      "message": "Prefer logging.warn here as well.\nIn general, logging.debug only needs to be used for things that are likely to become spammy. We won\u0027t be running this code very often, so it\u0027s unlikely for it to become spammy.",
+      "range": {
+        "startLine": 339,
+        "startChar": 12,
+        "endLine": 339,
+        "endChar": 17
+      },
+      "revId": "b0dbc57cd8b7810ec4f20cb3cc2fc402ad7f9b6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
