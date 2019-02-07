@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a905a4e9_d6f99806",
+        "filename": "telemetry/telemetry/timeline/trace_event_importer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-07T13:38:23Z",
+      "side": 0,
+      "message": "this was dead code",
+      "revId": "fb5956e43a5a1c069006894df294bed86342042c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
