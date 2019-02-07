@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3be58707_856005c3",
+        "filename": "telemetry/telemetry/web_perf/timeline_based_measurement.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-07T09:50:20Z",
+      "side": 1,
+      "message": "Not sure about this. I think benchmarks that want this should explicitly request the umaMetric; otherwise it\u0027s hard to keep track of which benchmark depends on which metric.\n\nAlso, we want to switch to a behavior where metrics complain if the events they need are not found in the trace. This prevents issues where a metric that *is* expected silently disappears and stops being reported.",
+      "revId": "149996ce7b4616e87362688ee3af361672f3fb7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
