@@ -285,3 +285,20 @@ crbug.com/12345 [ tag1 ] b1/s1 [ Skip ]
                       str(context.exception))
         self.assertIn('  - Tags Batman, Batman and Batman are'
                       ' part of the same tag set', str(context.exception))
+
+    def testMultiLineTagSetDeclarationNextTagGroupParse(self):
+        expectations_file = """
+# This is a test expectation file.
+#
+# tags: [ tag1 tag2
+#         tag3 tag5
+#         tag6
+# ]
+# tags: [ tag4 ]
+
+crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
+"""
+        expectations_parser.TaggedTestListParser(expectations_file)
+
+
+
