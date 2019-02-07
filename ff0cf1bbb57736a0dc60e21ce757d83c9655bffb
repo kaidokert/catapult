@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c92a806b_1164c61c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-02-07T04:40:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e2a0449_b1c256ba",
+      "range": {
+        "startLine": 12,
+        "startChar": 63,
+        "endLine": 12,
+        "endChar": 71
+      },
+      "revId": "ff0cf1bbb57736a0dc60e21ce757d83c9655bffb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2cc3d32d_01cb2967",
         "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "ff0cf1bbb57736a0dc60e21ce757d83c9655bffb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e47f075_12352089",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-02-07T04:40:24Z",
+      "side": 1,
+      "message": "Turns out this is \u0027commit\u0027 as a key in the object.",
+      "parentUuid": "2cc3d32d_01cb2967",
+      "range": {
+        "startLine": 263,
+        "startChar": 37,
+        "endLine": 263,
+        "endChar": 39
+      },
+      "revId": "ff0cf1bbb57736a0dc60e21ce757d83c9655bffb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +142,54 @@
     },
     {
       "key": {
+        "uuid": "55ff2579_a5f5fd8c",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-02-07T04:40:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "385f2666_12670914",
+      "range": {
+        "startLine": 264,
+        "startChar": 18,
+        "endLine": 264,
+        "endChar": 33
+      },
+      "revId": "ff0cf1bbb57736a0dc60e21ce757d83c9655bffb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2f87efee_cbdf242a",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-02-07T04:40:24Z",
+      "side": 1,
+      "message": "I thought about doing it there, but it feels \"cleaner\" to have it at this level (since the logic is specific to the midpoint finding in the presence of merge commits).",
+      "parentUuid": "01f2e0fa_4fb38232",
+      "range": {
+        "startLine": 264,
+        "startChar": 34,
+        "endLine": 264,
+        "endChar": 45
+      },
+      "revId": "ff0cf1bbb57736a0dc60e21ce757d83c9655bffb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5eae2e85_d66eec18",
         "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
         "patchSetId": 1
@@ -105,6 +201,30 @@
       "writtenOn": "2019-02-06T14:53:22Z",
       "side": 1,
       "message": "strictly speaking, it may be fine if |commit_b| is this orphan commit. I think is rare enough that raising exception is fine.",
+      "range": {
+        "startLine": 269,
+        "startChar": 8,
+        "endLine": 270,
+        "endChar": 79
+      },
+      "revId": "ff0cf1bbb57736a0dc60e21ce757d83c9655bffb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "477b4a0e_65cc5d5b",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-02-07T04:40:24Z",
+      "side": 1,
+      "message": "Are there important circumstances where an orphan commit shows up when doing a \u0027git log\u0027 which needs special handling other than counting those as an error condition?",
+      "parentUuid": "5eae2e85_d66eec18",
       "range": {
         "startLine": 269,
         "startChar": 8,
