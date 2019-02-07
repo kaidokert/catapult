@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "7ce9dc84_9dcb6ebd",
+        "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-07T13:08:08Z",
+      "side": 1,
+      "message": "nit: slightly briefer as:\n\n      if \u0027test_only_times\u0027 not in test:\n        test[\u0027test_only_times\u0027] \u003d []\n      test[\u0027test_only_times\u0027].append(run.run_only_duration)",
+      "revId": "98d70bd7bacf88d26de87fc81ee3a724c8d870af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6c6700b8_d4f233f7",
         "filename": "telemetry/telemetry/page/__init__.py",
         "patchSetId": 7
@@ -36,6 +53,30 @@
       "writtenOn": "2019-02-05T19:23:01Z",
       "side": 1,
       "message": "Instead of doing this this way, what if you measure instead around this call? https://chromium.googlesource.com/catapult.git/+/348883443fd3b08e1a3e66007fd4e9fd890b52bc/telemetry/telemetry/internal/story_runner.py#133 \n\nThen you wouldn\u0027t have to pass around this story_run object that is a bit confusing, and the results setting would stay in story_runner.py. Also it would mean that this metric would work for the stories that are not pages.\n\nI think you do want the ValidateAndMeasurePage step included in your output number since some tests actually use that step to wait for the story to complete.",
+      "range": {
+        "startLine": 329,
+        "startChar": 31,
+        "endLine": 329,
+        "endChar": 67
+      },
+      "revId": "98d70bd7bacf88d26de87fc81ee3a724c8d870af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea8c0198_bd4bbfb9",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-07T13:08:08Z",
+      "side": 1,
+      "message": "+1\n\nAlso agree that this is awkward. I think part of the problem is that it\u0027s not clear where the boundary is between \"the actual story\" and the \"setting-up/tearing-down\" parts.\n\nWhy not measure the time taken by the whole of _current_page.Run() here instead?\n\nAlso an out of the box idea, traces produced by Telemetry do already have a \"RunStory\" event [1], could you get the time you want from there?\n\n[1]: see e.g. process 2005 in: https://console.developers.google.com/m/cloudstorage/b/chrome-telemetry-output/o/load_media_facebook_photos_chromium@4126c5d%20+%20c458864_2019-02-06_14-57-58_98510.html",
+      "parentUuid": "44c26127_4a945b59",
       "range": {
         "startLine": 329,
         "startChar": 31,
