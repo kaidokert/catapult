@@ -178,6 +178,24 @@
     },
     {
       "key": {
+        "uuid": "f4c74655_ff67aff3",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-07T22:41:27Z",
+      "side": 1,
+      "message": "Woah, that sounds scary. I think that having qualified paths is much better than stripping them. Otherwise, things like this are doing to happen:\n\nSomeone writes a test\nFeatureXTest.TestDoesThingsCorrectly\nand then another test\nFeatureYTest.TestDoesThingsCorrectly\n\nAnd then those two tests will be enabled and disabled by the same expectations line. And that will be super confusing.",
+      "parentUuid": "9a2a029b_bcd61e3d",
+      "revId": "65df95a26f4d46b680d45f968108035e3f881c7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2f0b440a_d375ef13",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 7
