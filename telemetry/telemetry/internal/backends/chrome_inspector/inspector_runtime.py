@@ -84,6 +84,13 @@ class InspectorRuntime(object):
       raise exceptions.EvaluateException(res['error']['message'])
     return res
 
+  def CrashGpuProcess(self, timeout):
+    res = self._inspector_websocket.SyncRequest(
+        {'method': 'Browser.crashGpuProcess'}, timeout)
+    if 'error' in res:
+      raise exceptions.EvaluateException(res['error']['message'])
+    return res
+
   def RunInspectorCommand(self, command, timeout):
     """Runs an inspector command.
 
