@@ -16,6 +16,24 @@
       "revId": "149996ce7b4616e87362688ee3af361672f3fb7d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "972a2a0e_908f1949",
+        "filename": "telemetry/telemetry/web_perf/timeline_based_measurement.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-02-07T15:43:31Z",
+      "side": 1,
+      "message": "Is it OK to automatically add umaMetric if _tbm_options.config.chrome_trace_config.HasHistograms() is true?\n\nAdding manually is fine, but it looks redundant: anyone that enables a histogram needs umaMetric.",
+      "parentUuid": "3be58707_856005c3",
+      "revId": "149996ce7b4616e87362688ee3af361672f3fb7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
