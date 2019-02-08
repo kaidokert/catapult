@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "126df8e6_0e282612",
+        "filename": "tracing/tracing/metrics/uma_metric.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-08T17:59:14Z",
+      "side": 1,
+      "message": "You can rely on histogram.html importing all these for you.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 0
+      },
+      "revId": "9fc0ca3c9cd0624c6c4939c570baa1e5b89b5753",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d9b41bb_957b3323",
+        "filename": "tracing/tracing/metrics/uma_metric.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-08T17:59:14Z",
+      "side": 1,
+      "message": "Let\u0027s go ahead and fix that:\nhttps://chromium-review.googlesource.com/c/catapult/+/1460037/\nCan you either stamp that or take it over?",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 74
+      },
+      "revId": "9fc0ca3c9cd0624c6c4939c570baa1e5b89b5753",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2cff772b_d1268d81",
+        "filename": "tracing/tracing/metrics/uma_metric.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-08T17:59:14Z",
+      "side": 1,
+      "message": "Could this use `for (const bin of allBins)` instead?",
+      "range": {
+        "startLine": 68,
+        "startChar": 4,
+        "endLine": 68,
+        "endChar": 46
+      },
+      "revId": "9fc0ca3c9cd0624c6c4939c570baa1e5b89b5753",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a355e64_fe1a3953",
+        "filename": "tracing/tracing/metrics/uma_metric.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-08T17:59:14Z",
+      "side": 1,
+      "message": "Could this use Breakdown.addDiagnostic() instead?",
+      "revId": "9fc0ca3c9cd0624c6c4939c570baa1e5b89b5753",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c5d60ac_bf417d8a",
+        "filename": "tracing/tracing/metrics/uma_metric.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-08T17:59:14Z",
+      "side": 1,
+      "message": "Can you add a comment about where this number came from? Maybe define a constant for it?\nIf it\u0027s too small, this metric will throw, so we should just make sure to be confident in it.",
+      "range": {
+        "startLine": 175,
+        "startChar": 28,
+        "endLine": 175,
+        "endChar": 31
+      },
+      "revId": "9fc0ca3c9cd0624c6c4939c570baa1e5b89b5753",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
