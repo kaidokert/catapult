@@ -102,6 +102,29 @@
     },
     {
       "key": {
+        "uuid": "c9ad9c38_6b7b447c",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-08T22:31:30Z",
+      "side": 1,
+      "message": "Put this docstring inside the function like this:\n\n def _PrepareHostForProfiling(self):\n   \"\"\"This function updates DEVICE_KPTR_FILE.\n\n   It places a 0 value to make kernel mappings available to the user.\n   \"\"\"\n\nThat makes the docstrings machine-readable so that we can autogen docs and read them from other code locations.",
+      "range": {
+        "startLine": 254,
+        "startChar": 1,
+        "endLine": 255,
+        "endChar": 47
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "89335f36_684f6e94",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
         "patchSetId": 7
@@ -233,6 +256,30 @@
       "side": 1,
       "message": "If this fails, the profiling would still work. Just the kernel function names can\u0027t be deduced from the profiles but that is not a major problem.\n\nIn the latest snapshot, the code is changed to not raise an exception and continue with running the benchmark.",
       "parentUuid": "3cde870d_e835a20b",
+      "range": {
+        "startLine": 256,
+        "startChar": 37,
+        "endLine": 258,
+        "endChar": 27
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6087cc9f_1f75711d",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-08T22:31:30Z",
+      "side": 1,
+      "message": "Okay, what about logging a info or warning message to explain this somewhere?",
+      "parentUuid": "5a56c90c_26312ed1",
       "range": {
         "startLine": 256,
         "startChar": 37,
