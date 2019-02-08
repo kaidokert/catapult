@@ -22,6 +22,98 @@
       "revId": "d5145aa03fd585b7649b73c263608ddea71f4a44",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "402e3778_b78bea00",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-02-08T19:32:31Z",
+      "side": 1,
+      "message": "It was agreed to be RetryOnFailure in https://chromium-review.googlesource.com/c/catapult/+/1457236 .",
+      "parentUuid": "96cf03f2_2919cc32",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 18
+      },
+      "revId": "d5145aa03fd585b7649b73c263608ddea71f4a44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "173395b1_4f07bfb9",
+        "filename": "third_party/typ/typ/tests/main_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-02-08T19:32:31Z",
+      "side": 1,
+      "message": "Can this be named something more comprehensible? Maybe \"test_retryonfailure_test_fails\"?",
+      "revId": "d5145aa03fd585b7649b73c263608ddea71f4a44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a7a6847_d13e81dc",
+        "filename": "third_party/typ/typ/tests/main_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 901,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-02-08T19:32:31Z",
+      "side": 1,
+      "message": "I thought the point of the test is that it expects PASS, not RETRY_ON_FAIL?",
+      "revId": "d5145aa03fd585b7649b73c263608ddea71f4a44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e1e1c46_684f77c7",
+        "filename": "third_party/typ/typ/tests/main_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 905,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-02-08T19:32:31Z",
+      "side": 1,
+      "message": "Same question; can this name be made shorter?",
+      "revId": "d5145aa03fd585b7649b73c263608ddea71f4a44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad34909b_0502006b",
+        "filename": "third_party/typ/typ/tests/main_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 922,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-02-08T19:32:31Z",
+      "side": 1,
+      "message": "Same question here about the expected result.",
+      "revId": "d5145aa03fd585b7649b73c263608ddea71f4a44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
