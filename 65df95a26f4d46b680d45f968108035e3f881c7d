@@ -322,6 +322,24 @@
     },
     {
       "key": {
+        "uuid": "64d13677_b9aafc0e",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-08T23:59:07Z",
+      "side": 1,
+      "message": "\u003e There may be other types of browser tests that I am not aware of \n\nYes, there definitely are. There are c++/gtest-based tests called browser_tests as well, and that\u0027s what most people will think of when you use that term without making it clear that we\u0027re talking in the context of telemetry :).\n\n\u003e That\u0027s correct, it\u0027s only possible to run one test class at a time in the gpu_tests folder.\n\nInteresting, I didn\u0027t realize that. I\u0027m curious why that\u0027s the case, but we don\u0027t need to answer that in this CL :).",
+      "parentUuid": "ee564ab3_886b5666",
+      "revId": "65df95a26f4d46b680d45f968108035e3f881c7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2f0b440a_d375ef13",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 7
