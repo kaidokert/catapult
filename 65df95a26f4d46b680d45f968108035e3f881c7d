@@ -304,6 +304,24 @@
     },
     {
       "key": {
+        "uuid": "ee564ab3_886b5666",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-02-08T01:00:15Z",
+      "side": 1,
+      "message": "That\u0027s correct, it\u0027s only possible to run one test class at a time in the gpu_tests folder.",
+      "parentUuid": "b47c83bb_74cfc4d8",
+      "revId": "65df95a26f4d46b680d45f968108035e3f881c7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2f0b440a_d375ef13",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 7
