@@ -83,6 +83,24 @@
     },
     {
       "key": {
+        "uuid": "88d79b23_af2127e6",
+        "filename": "third_party/typ/typ/tests/main_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 901,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-02-08T20:11:06Z",
+      "side": 1,
+      "message": "I can change it so that the expected field in the JSON output shows PASS for a test with the RetryOnFailure expectation. Hey Dirk, do you agree.",
+      "parentUuid": "5a7a6847_d13e81dc",
+      "revId": "d5145aa03fd585b7649b73c263608ddea71f4a44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8e1e1c46_684f77c7",
         "filename": "third_party/typ/typ/tests/main_test.py",
         "patchSetId": 6
