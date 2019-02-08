@@ -23,7 +23,7 @@ class ResultType(object):
     Timeout = 'TIMEOUT'
     Crash = 'CRASH'
     Skip = 'SKIP'
-    RetryOnFailure = 'RetryOnFailure'
+    RetryOnFailure = 'RETRY_ON_FAIL'
 
     values = (Pass, Failure, Timeout, Crash, Skip, RetryOnFailure)
 
