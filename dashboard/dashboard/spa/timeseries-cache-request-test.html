@@ -36,11 +36,9 @@ suite('TimeseriesCacheRequest', function() {
     }
   }
 
-  function mockApiResponse({
-    levelOfDetail, columns, minRevision = 1, maxRevision = 5}) {
-    if (!columns) columns = cp.getColumnsByLevelOfDetail(levelOfDetail, 'avg');
+  function mockApiResponse({levelOfDetail, minRevision = 1, maxRevision = 3}) {
+    const columns = cp.getColumnsByLevelOfDetail(levelOfDetail, 'avg');
     const data = [];
-    minRevision = parseInt(minRevision);
     for (let i = minRevision; i <= maxRevision; ++i) {
       const dataPoint = [];
       for (const _ of columns) {
@@ -81,7 +79,10 @@ suite('TimeseriesCacheRequest', function() {
       statistic: 'avg',
       levelOfDetail: cp.LEVEL_OF_DETAIL.XY,
     };
-    await deleteDatabase(parameters);
+
+    const databaseName = TimeseriesCacheRequest.databaseName(parameters);
+    await testUtils.flushWriterForTest();
+    await testUtils.deleteDatabaseForTest(databaseName);
 
     const response = mockApiResponse(parameters);
     mockFetch(response);
@@ -106,7 +107,10 @@ suite('TimeseriesCacheRequest', function() {
       statistic: 'avg',
       levelOfDetail: cp.LEVEL_OF_DETAIL.XY,
     };
-    await deleteDatabase(parameters);
+
+    const databaseName = TimeseriesCacheRequest.databaseName(parameters);
+    await testUtils.flushWriterForTest();
+    await testUtils.deleteDatabaseForTest(databaseName);
 
     let response = mockApiResponse(parameters);
     mockFetch(response);
@@ -147,7 +151,10 @@ suite('TimeseriesCacheRequest', function() {
       minRevision: 1,
       maxRevision: 3,
     };
-    await deleteDatabase(parameters);
+
+    const databaseName = TimeseriesCacheRequest.databaseName(parameters);
+    await testUtils.flushWriterForTest();
+    await testUtils.deleteDatabaseForTest(databaseName);
 
     let response = mockApiResponse(parameters);
     mockFetch(response);
@@ -193,7 +200,10 @@ suite('TimeseriesCacheRequest', function() {
       minRevision: 1,
       maxRevision: 3,
     };
-    await deleteDatabase(parameters);
+
+    const databaseName = TimeseriesCacheRequest.databaseName(parameters);
+    await testUtils.flushWriterForTest();
+    await testUtils.deleteDatabaseForTest(databaseName);
 
     let response = mockApiResponse(parameters);
     mockFetch(response);
@@ -247,7 +257,10 @@ suite('TimeseriesCacheRequest', function() {
       minRevision: 1,
       maxRevision: 1,
     };
-    await deleteDatabase(parameters);
+
+    const databaseName = TimeseriesCacheRequest.databaseName(parameters);
+    await testUtils.flushWriterForTest();
+    await testUtils.deleteDatabaseForTest(databaseName);
 
     let response = mockApiResponse(parameters);
     mockFetch(response);
