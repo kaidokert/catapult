@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "e04c9749_93c25b60",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-08T20:14:14Z",
+      "side": 1,
+      "message": "Can we at least be consistent? I don\u0027t care whether we do \nRetryOnFailure \u003d \u0027RETRY_ON_FAILURE\u0027\nor \nRetryOnFail \u003d \u0027RETRY_ON_FAIL\u0027\n\nbut \nRetryOnFailure \u003d \u0027RETRY_ON_FAIL\u0027\nis crazy.",
+      "parentUuid": "402e3778_b78bea00",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 18
+      },
+      "revId": "d5145aa03fd585b7649b73c263608ddea71f4a44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "173395b1_4f07bfb9",
         "filename": "third_party/typ/typ/tests/main_test.py",
         "patchSetId": 6
