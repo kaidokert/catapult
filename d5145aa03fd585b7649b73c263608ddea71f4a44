@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "99c7cadb_b552b1d4",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-02-08T20:16:46Z",
+      "side": 1,
+      "message": "RetryOnFailure \u003d \u0027RETRY_ON_FAILURE\u0027 sgtm, though it now sounds like that won\u0027t be reported as the expected value anyway (it will be either PASS or FAIL).",
+      "parentUuid": "e04c9749_93c25b60",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 18
+      },
+      "revId": "d5145aa03fd585b7649b73c263608ddea71f4a44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "173395b1_4f07bfb9",
         "filename": "third_party/typ/typ/tests/main_test.py",
         "patchSetId": 6
