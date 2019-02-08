@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "848c7491_d4b76498",
+        "filename": "dashboard/dashboard/pinpoint/test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-08T19:31:19Z",
+      "side": 1,
+      "message": "Will this lead to every run of the test potentially being different? If so, can you seed this or something.",
+      "revId": "c4c549059f1d426d5eb4fffed138976d4c08c0a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
