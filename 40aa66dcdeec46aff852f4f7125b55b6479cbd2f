@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3625147f_6d21b9df",
+        "filename": "tracing/tracing/model/instant_event.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-02-08T18:14:24Z",
+      "side": 1,
+      "message": "nit: this.parent_.stableId + ...",
+      "range": {
+        "startLine": 89,
+        "startChar": 26,
+        "endLine": 89,
+        "endChar": 29
+      },
+      "revId": "40aa66dcdeec46aff852f4f7125b55b6479cbd2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
