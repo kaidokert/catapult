@@ -19,6 +19,9 @@ found in the LICENSE file.
       :host {
         display: flex;
       }
+      menu-input {
+        margin-right: 8px;
+      }
     </style>
 
     <div>
@@ -71,8 +74,10 @@ found in the LICENSE file.
         <recommended-options slot="top" state-path="[[statePath]].case">
         </recommended-options>
 
-        <tag-filter slot="left" state-path="[[statePath]].case">
-        </tag-filter>
+        <template is="dom-if" if="[[!isEmpty_(case.tags.options)]]">
+          <tag-filter slot="left" state-path="[[statePath]].case">
+          </tag-filter>
+        </template>
       </menu-input>
 
       <cp-checkbox
