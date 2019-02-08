@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "96cf03f2_2919cc32",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-08T18:18:10Z",
+      "side": 1,
+      "message": "I think this should be \"RetryOnFail\"",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 18
+      },
+      "revId": "d5145aa03fd585b7649b73c263608ddea71f4a44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
