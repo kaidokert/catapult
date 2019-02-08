@@ -197,6 +197,30 @@
     },
     {
       "key": {
+        "uuid": "3cde870d_e835a20b",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-08T18:51:50Z",
+      "side": 1,
+      "message": "Telemetry is for running tests, and it is not for users in the wild.\n\nIt\u0027s a good idea to make sure that people know that this profiling will not work unless run as root. Better to fail right away with a good error message than to fail here or just not produce any data.\n\nYou can ask achuith@ to review this since he knows ChromeOS better.",
+      "parentUuid": "dd7b84d4_e3a0f6fb",
+      "range": {
+        "startLine": 256,
+        "startChar": 37,
+        "endLine": 258,
+        "endChar": 27
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "48c06b9c_29be44b5",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
         "patchSetId": 7
