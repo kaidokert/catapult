@@ -15,6 +15,7 @@ from collections import OrderedDict
 from collections import defaultdict
 
 from typ.json_results import ResultType
+from typ.retry_policy import RetryPolicy
 
 _EXPECTATION_MAP = {
     'Crash': ResultType.Crash,
@@ -22,7 +23,7 @@ _EXPECTATION_MAP = {
     'Pass': ResultType.Pass,
     'Timeout': ResultType.Timeout,
     'Skip': ResultType.Skip,
-    'RetryOnFailure': ResultType.RetryOnFailure
+    'RetryOnFailure': RetryPolicy.RetryOnFailure
 }
 
 def _group_to_string(group):
