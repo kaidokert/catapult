@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aac68ea8_d887947a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-02-08T12:32:52Z",
+      "side": 1,
+      "message": "Judging this based on: https://cs.chromium.org/search/?q\u003dlang:py+%5Cblogging.common.initializelogging%5Cb+-%5Cblogging.common.AddLoggingArguments%5Cb\u0026sq\u003dpackage:chromium\u0026type\u003dcs",
+      "range": {
+        "startLine": 16,
+        "startChar": 10,
+        "endLine": 16,
+        "endChar": 39
+      },
+      "revId": "5dfc903540dd51eb2dc24e3d677f3c54060547fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
