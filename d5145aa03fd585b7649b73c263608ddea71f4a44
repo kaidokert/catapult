@@ -101,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "061a8531_f609d1a0",
+        "filename": "third_party/typ/typ/tests/main_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 901,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-02-08T20:14:07Z",
+      "side": 1,
+      "message": "Per question from Dirk here:\nhttps://bugs.chromium.org/p/chromium/issues/detail?id\u003d783263#c48\n\nI\u0027m guessing that RETRY_ON_FAIL is the \"retry policy\" more than the expected result, so that it should in fact default to \"PASS\". (RetryOnFailure \u003d\u003d RetryOnFailure Pass)",
+      "parentUuid": "88d79b23_af2127e6",
+      "revId": "d5145aa03fd585b7649b73c263608ddea71f4a44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8e1e1c46_684f77c7",
         "filename": "third_party/typ/typ/tests/main_test.py",
         "patchSetId": 6
