@@ -1001,7 +1001,10 @@ def _result_from_test_result(test_result, test_name, started, took, out, err,
     else:
         actual = ResultType.Pass
         code = 0
-        unexpected = actual not in expected_results
+        if ResultType.RetryOnFailure in expected_results:
+            unexpected = False
+        else:
+            unexpected = actual not in expected_results
 
     flaky = False
     return Result(test_name, actual, started, took, worker_num,
