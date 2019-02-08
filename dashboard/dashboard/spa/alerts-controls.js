@@ -8,6 +8,13 @@ tr.exportTo('cp', () => {
     connectedCallback() {
       super.connectedCallback();
       this.dispatch('connected', this.statePath);
+
+      this.dispatchSources_();
+    }
+
+    async onUserUpdate_() {
+      await this.dispatch('loadReportNames', this.statePath);
+      await this.dispatch('loadSheriffs', this.statePath);
     }
 
     showSheriff_(bug, report) {
@@ -155,6 +162,7 @@ tr.exportTo('cp', () => {
       options: [],
       selectedOptions: options.sheriffs || [],
     }),
+    showingTriaged: options => options.showingTriaged || false,
     showingImprovements: options => options.showingImprovements || false,
     showingRecentlyModifiedBugs: options => false,
     triagedBugId: options => 0,
@@ -202,7 +210,11 @@ tr.exportTo('cp', () => {
         statePath,
         sheriffs,
       });
-      dispatch(cp.MenuInput.actions.focus(statePath + '.sheriff'));
+
+      const state = Polymer.Path.get(getState(), statePath);
+      if (state.sheriff.selectedOptions.length === 0) {
+        dispatch(cp.MenuInput.actions.focus(statePath + '.sheriff'));
+      }
     },
 
     connected: statePath => async(dispatch, getState) => {
