@@ -286,6 +286,24 @@
     },
     {
       "key": {
+        "uuid": "b47c83bb_74cfc4d8",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-02-08T00:57:08Z",
+      "side": 1,
+      "message": "When I say browser tests, I mean tests that run through ./telemetry/testing/run_browser_tests.py. There may be other types of browser tests that I am not aware of. GPU tests are an example of tests that run through that script. When you run run_browser_tests.py, the first command line argument you have to provide is the test suite to run. It is called the \u0027test\u0027 command line argument. You can see the arg getting added to the parser in the link below.\n\nhttps://codesearch.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/testing/run_browser_tests.py?rcl\u003d38769c1f96a321e99a04743d2326cab6ff8fa6fb\u0026l\u003d197\n\nIf you look at GPU tests classes like  WebGLConformanceIntegrationTest, they overload the Name() function. In the link below you can see that run_browser_tests.py looks for test classes where the Name() function returns the same value passed as the \u0027test\u0027 argument.\n\nhttps://codesearch.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/testing/run_browser_tests.py?rcl\u003d38769c1f96a321e99a04743d2326cab6ff8fa6fb\u0026l\u003d274 \n\nAlso below is a link to the WebglConformanceIntegrationTest\u0027s implementation of the Name() function\n\nhttps://codesearch.chromium.org/chromium/src/content/test/gpu/gpu_tests/webgl_conformance_integration_test.py?rcl\u003dffd2a12f95a6a23a558534f1eb4f16858e0f837b\u0026l\u003d83\n\nThe class that returns that name is used to generate the tests that will be run. All the tests generated will be set as member functions in that class and will have that classes full path. This happens in the GenerateTestCases() function in ../telemetry/testing/serially_executed_browser_test_case.py. This can be seen in the link below. \n\nhttps://codesearch.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/testing/serially_executed_browser_test_case.py?rcl\u003d38769c1f96a321e99a04743d2326cab6ff8fa6fb\u0026l\u003d270\n\nAs far as I know there is no way to run all the test methods spanning all the test classes in the gpu_tests folder at the same time.",
+      "parentUuid": "70525da4_80d7a3ae",
+      "revId": "65df95a26f4d46b680d45f968108035e3f881c7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2f0b440a_d375ef13",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 7
