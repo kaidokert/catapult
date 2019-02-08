@@ -221,6 +221,30 @@
     },
     {
       "key": {
+        "uuid": "5a56c90c_26312ed1",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-08T21:57:48Z",
+      "side": 1,
+      "message": "If this fails, the profiling would still work. Just the kernel function names can\u0027t be deduced from the profiles but that is not a major problem.\n\nIn the latest snapshot, the code is changed to not raise an exception and continue with running the benchmark.",
+      "parentUuid": "3cde870d_e835a20b",
+      "range": {
+        "startLine": 256,
+        "startChar": 37,
+        "endLine": 258,
+        "endChar": 27
+      },
+      "revId": "23bd2b8278711650039076f1b4fdedd9c0d83e65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "48c06b9c_29be44b5",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
         "patchSetId": 7
