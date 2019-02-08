@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e4071f1e_439b23a3",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-08T03:11:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "caf381e3_3d3e6207",
+      "revId": "e0fc7926983d939bd9e0b9e87f387a6412e6ae79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4c9310c7_30218d6a",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
         "patchSetId": 16
@@ -33,6 +51,24 @@
       "revId": "e0fc7926983d939bd9e0b9e87f387a6412e6ae79",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89e50094_ed15e2e6",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-08T03:11:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c9310c7_30218d6a",
+      "revId": "e0fc7926983d939bd9e0b9e87f387a6412e6ae79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "62a13f03_bc0548b2",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-08T03:11:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e424e311_310e9027",
+      "revId": "e0fc7926983d939bd9e0b9e87f387a6412e6ae79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e01e6c5a_a1e2bd23",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
         "patchSetId": 16
@@ -67,6 +121,24 @@
       "revId": "e0fc7926983d939bd9e0b9e87f387a6412e6ae79",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b4b7844_1dac83c0",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-08T03:11:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e01e6c5a_a1e2bd23",
+      "revId": "e0fc7926983d939bd9e0b9e87f387a6412e6ae79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "6df9762c_fd239879",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-08T03:11:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3920bed_20d52d40",
+      "revId": "e0fc7926983d939bd9e0b9e87f387a6412e6ae79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "73e0f573_9351a5ca",
         "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller_unittest.py",
         "patchSetId": 16
@@ -101,6 +191,24 @@
       "revId": "e0fc7926983d939bd9e0b9e87f387a6412e6ae79",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da4c8608_b9064131",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller_unittest.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-08T03:11:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73e0f573_9351a5ca",
+      "revId": "e0fc7926983d939bd9e0b9e87f387a6412e6ae79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "df66a163_dcfd055a",
+        "filename": "telemetry/telemetry/internal/browser/browser_interval_profiling_controller_unittest.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-08T03:11:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e603b89_7be8e829",
+      "revId": "e0fc7926983d939bd9e0b9e87f387a6412e6ae79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b1f2b9e8_2429443c",
         "filename": "telemetry/telemetry/internal/browser/browser_options.py",
         "patchSetId": 16
@@ -138,6 +264,24 @@
     },
     {
       "key": {
+        "uuid": "12f2bb12_fe5bdfaf",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-08T03:11:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1f2b9e8_2429443c",
+      "revId": "e0fc7926983d939bd9e0b9e87f387a6412e6ae79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3ba06492_bc600f74",
         "filename": "telemetry/telemetry/internal/browser/browser_options.py",
         "patchSetId": 16
@@ -152,6 +296,24 @@
       "revId": "e0fc7926983d939bd9e0b9e87f387a6412e6ae79",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71525410_a6708bef",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1182869
+      },
+      "writtenOn": "2019-02-08T03:11:47Z",
+      "side": 1,
+      "message": "type\u003dshlex.split didn\u0027t work. However, reused the same `interval_profiler_options` for both the string before parsing and the list after validating.",
+      "parentUuid": "3ba06492_bc600f74",
+      "revId": "e0fc7926983d939bd9e0b9e87f387a6412e6ae79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
