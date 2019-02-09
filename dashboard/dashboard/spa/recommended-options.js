@@ -76,7 +76,7 @@ tr.exportTo('cp', () => {
       const now = new Date().getTime();
       try {
         optionRecommendations = JSON.parse(localStorage.getItem(
-            RecommendedOptions.STORAGE_KEY));
+            RecommendedOptions.STORAGE_KEY)) || {};
         for (const [value, dates] of Object.entries(optionRecommendations)) {
           optionRecommendations[value] = dates.map(d => new Date(d)).filter(
               date => ((now - date) < RecommendedOptions.OLD_MS));
