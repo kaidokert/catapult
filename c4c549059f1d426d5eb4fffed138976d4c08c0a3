@@ -16,6 +16,24 @@
       "revId": "c4c549059f1d426d5eb4fffed138976d4c08c0a3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a95327e1_c1154938",
+        "filename": "dashboard/dashboard/pinpoint/test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-02-09T11:17:00Z",
+      "side": 1,
+      "message": "Good point. Doing an even interleave instead which achieves the purpose as well.",
+      "parentUuid": "848c7491_d4b76498",
+      "revId": "c4c549059f1d426d5eb4fffed138976d4c08c0a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
