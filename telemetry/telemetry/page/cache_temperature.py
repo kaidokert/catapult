@@ -43,7 +43,7 @@ class _MarkTelemetryInternal(object):
   def __enter__(self):
     # This marker must match the regexp in
     # ChromeProcessHelper.findTelemetryInternalRanges_().
-    self.tab.AddTimelineMarker('telemetry.internal.%s.start' % self.identifier)
+    # self.tab.AddTimelineMarker('telemetry.internal.%s.start' % self.identifier)
     return self
 
   def __exit__(self, exception_type, exception_value, traceback):
@@ -51,7 +51,7 @@ class _MarkTelemetryInternal(object):
       return True
     # This marker must match the regexp in
     # ChromeProcessHelper.findTelemetryInternalRanges_().
-    self.tab.AddTimelineMarker('telemetry.internal.%s.end' % self.identifier)
+    # self.tab.AddTimelineMarker('telemetry.internal.%s.end' % self.identifier)
     return True
 
 
