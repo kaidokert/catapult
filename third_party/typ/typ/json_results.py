@@ -16,6 +16,7 @@ from collections import OrderedDict
 
 import json
 
+
 class ResultType(object):
     Pass = 'PASS'
     Failure = 'FAIL'
@@ -24,7 +25,6 @@ class ResultType(object):
     Skip = 'SKIP'
 
     values = (Pass, Failure, Timeout, Crash, Skip)
-
 
 class Result(object):
     # too many instance attributes  pylint: disable=R0902

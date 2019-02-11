@@ -211,7 +211,8 @@ class TaggedTestListParser(object):
         results = []
         for r in raw_results.split():
             try:
-                results.append(_EXPECTATION_MAP[r])
+                if _EXPECTATION_MAP[r] in ResultType.values:
+                    results.append(_EXPECTATION_MAP[r])
             except KeyError:
                 raise ParseError(lineno, 'Unknown result type "%s"' % r)
 
