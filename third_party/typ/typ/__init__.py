@@ -68,7 +68,7 @@ from typ.stats import Stats
 from typ.printer import Printer
 from typ.test_case import convert_newlines, TestCase, MainTestCase
 from typ.version import VERSION
-
+from typ.retry_policy import RetryPolicy
 
 __all__ = [
     'ArgumentParser',
@@ -86,6 +86,7 @@ __all__ = [
     'TestExpectationParser',
     'TestInput',
     'TestSet',
+    'RetryPolicy',
     'VERSION',
     'WinMultiprocessing',
     'convert_newlines',
