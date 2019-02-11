@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a7e0b6d_f582274c",
+        "filename": "tracing/tracing/trace_data/trace_data.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-11T18:07:57Z",
+      "side": 1,
+      "message": "It might be nice to have a unit test of this behavior (unless you already have one somewhere I\u0027m not seeing.)",
+      "range": {
+        "startLine": 114,
+        "startChar": 6,
+        "endLine": 114,
+        "endChar": 31
+      },
+      "revId": "9701e217b1906f018b1edcfb29f485eff6ba8986",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
