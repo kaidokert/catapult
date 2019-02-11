@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba5a9fb9_2d6edf2c",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-11T22:06:39Z",
+      "side": 1,
+      "message": "I\u0027m guessing you think you need this because r.expected might contain RetryOnFailure?\n\nIt shouldn\u0027t, though, since that\u0027s not an actually legal value.",
+      "revId": "b316ed81262c11a8bb7e67b4479538965a0c9d8c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb79d691_5ac0b3c3",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1005,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-11T22:06:39Z",
+      "side": 1,
+      "message": "same comment here; we should try to avoid storing RetryOnFailure in expected_results.",
+      "revId": "b316ed81262c11a8bb7e67b4479538965a0c9d8c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
