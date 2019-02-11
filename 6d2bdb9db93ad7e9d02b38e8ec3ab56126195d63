@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a5efd9d1_b549b45d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-11T19:48:52Z",
+      "side": 1,
+      "message": "Also, you need to update this ...",
+      "revId": "6d2bdb9db93ad7e9d02b38e8ec3ab56126195d63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
