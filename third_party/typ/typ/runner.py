@@ -1001,6 +1001,8 @@ def _result_from_test_result(test_result, test_name, started, took, out, err,
     else:
         actual = ResultType.Pass
         code = 0
+        expected_results = ([t for t in expected_results
+                            if t in ResultType.values] or [ResultType.Pass])
         unexpected = actual not in expected_results
 
     flaky = False

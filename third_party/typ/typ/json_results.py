@@ -16,6 +16,7 @@ from collections import OrderedDict
 
 import json
 
+
 class ResultType(object):
     Pass = 'PASS'
     Failure = 'FAIL'
@@ -24,7 +25,6 @@ class ResultType(object):
     Skip = 'SKIP'
 
     values = (Pass, Failure, Timeout, Crash, Skip)
-
 
 class Result(object):
     # too many instance attributes  pylint: disable=R0902
@@ -182,7 +182,9 @@ def _results_for_test(test_name, results):
 
             # This assumes that the expected values are the same for every
             # invocation of the test.
-            value['expected'] = ' '.join(sorted(r.expected))
+            expected = ([t for t in r.expected if t in ResultType.values] or
+                        [ResultType.Pass])
+            value['expected'] = ' '.join(sorted(expected))
 
     if not actuals:  # pragma: untested
         actuals.append('SKIP')
