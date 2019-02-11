@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/base/math/statistics.html">
+<link rel="import" href="/tracing/base/unit.html">
+<link rel="import" href="/tracing/base/unit_scale.html">
+<link rel="import" href="/tracing/metrics/rendering/cpu_utilization.html">
+<link rel="import" href="/tracing/model/helpers/chrome_model_helper.html">
+<link rel="import" href="/tracing/model/user_model/segment.html">
+<link rel="import" href="/tracing/value/histogram.html">
+
+<script>
+'use strict';
+
+/**
+ */
+tr.exportTo('tr.metrics.rendering', function() {
+  function addFrameThroughputHistograms(histograms, model, segments) {
+    const chromeHelper = model.getOrCreateHelper(
+        tr.model.helpers.ChromeModelHelper);
+    if (!chromeHelper) return;
+
+    let targetRenderers = chromeHelper.telemetryHelper.renderersWithIR;
+    if (targetRenderers.length === 0) {
+      targetRenderers = Object.values(chromeHelper.rendererHelpers);
+    }
+
+    for (const rendererHelper of targetRenderers) {
+      const allEvents = [...rendererHelper.process.findTopmostSlicesNamed(
+          'ScopedBeginFrameTracker')];
+
+      const metrics = {};
+      for (const segment of segments) {
+        const filtered = segment.boundsRange.filterArray(allEvents,
+            event => event.start);
+        for (const f of filtered) {
+          if (!f.args || !f.args.name) continue;
+          if (f.args.name in metrics) {
+            metrics[f.args.name].janks += f.args.janks;
+            metrics[f.args.name].frames += f.args.frames;
+          } else {
+            metrics[f.args.name] = {
+              janks: f.args.janks,
+              frames: f.args.frames
+            };
+          }
+        }
+      }
+
+      for (const m in metrics) {
+        histograms.createHistogram(
+            'jank:throughput:' + m,
+            tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+            metrics[m].janks * 100 / metrics[m].frames,
+            { description: 'Janks during ' + m + '.',
+              summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
+            });
+      }
+    }
+  }
+
+  return {
+    addFrameThroughputHistograms
+  };
+});
