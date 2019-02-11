@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d0102fb4_d41fcc53",
+        "filename": "third_party/typ/typ/retry_policy.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-11T19:37:50Z",
+      "side": 1,
+      "message": "Can we move this into expectations_parser.py ? It doesn\u0027t seem to merit its own module. I\u0027m not even sure it merits being its own class ...",
+      "revId": "65d3210d6af51e94368010afc898cacd239e5dd8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
