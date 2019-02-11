@@ -114,6 +114,24 @@
     },
     {
       "key": {
+        "uuid": "230f8ee4_58066cfe",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1004,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-02-11T21:24:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "56a331f1_8608025a",
+      "revId": "d5145aa03fd585b7649b73c263608ddea71f4a44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "173395b1_4f07bfb9",
         "filename": "third_party/typ/typ/tests/main_test.py",
         "patchSetId": 6
@@ -199,6 +217,24 @@
       "revId": "d5145aa03fd585b7649b73c263608ddea71f4a44",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2d8a681_0aba0e35",
+        "filename": "third_party/typ/typ/tests/main_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 901,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-02-11T21:24:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ecf867f2_e179df07",
+      "revId": "d5145aa03fd585b7649b73c263608ddea71f4a44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
