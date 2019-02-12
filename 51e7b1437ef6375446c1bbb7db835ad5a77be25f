@@ -16,6 +16,24 @@
       "revId": "51e7b1437ef6375446c1bbb7db835ad5a77be25f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8cde5943_0f4435cf",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-02-12T21:08:58Z",
+      "side": 0,
+      "message": "I am readding that line and removing the added line above ResultType",
+      "parentUuid": "163940eb_6f134347",
+      "revId": "51e7b1437ef6375446c1bbb7db835ad5a77be25f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
