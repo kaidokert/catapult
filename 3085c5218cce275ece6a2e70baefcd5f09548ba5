@@ -52,6 +52,24 @@
       "revId": "3085c5218cce275ece6a2e70baefcd5f09548ba5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e48444f5_b2d759a0",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2019-02-12T14:54:06Z",
+      "side": 1,
+      "message": "Ack, thanks. Actually it won\u0027t be forgotten (uses the old name), so my point is moot.",
+      "parentUuid": "1fd9df60_63f51a9a",
+      "revId": "3085c5218cce275ece6a2e70baefcd5f09548ba5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
