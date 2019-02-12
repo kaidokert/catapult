@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "cf663585_06c776ca",
+        "filename": "tracing/tracing/ui/brushing_state.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1324368
+      },
+      "writtenOn": "2019-02-12T18:33:13Z",
+      "side": 1,
+      "message": "The current 3 brightening levels are already pretty hard to distinguish. I think it might be worth creating another CL to deal with this and then adding a 4th brightening level.",
+      "parentUuid": "1abed841_caf20e6a",
+      "revId": "9e91537f952626fed7359a53c741249168785d82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da8dea85_cb83a0b9",
         "filename": "tracing/tracing/ui/brushing_state.html",
         "patchSetId": 4
@@ -33,6 +51,24 @@
       "revId": "9e91537f952626fed7359a53c741249168785d82",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7290329_69de7696",
+        "filename": "tracing/tracing/ui/brushing_state.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1324368
+      },
+      "writtenOn": "2019-02-12T18:33:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da8dea85_cb83a0b9",
+      "revId": "9e91537f952626fed7359a53c741249168785d82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
