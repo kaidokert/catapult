@@ -34,6 +34,24 @@
       "revId": "3085c5218cce275ece6a2e70baefcd5f09548ba5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1fd9df60_63f51a9a",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-12T14:46:21Z",
+      "side": 1,
+      "message": "This is what the assert is doing, by setting the value on the old name and checking that it propagated to the new name.",
+      "parentUuid": "af670a97_2beda926",
+      "revId": "3085c5218cce275ece6a2e70baefcd5f09548ba5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
