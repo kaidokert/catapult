@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "691bf44a_a354c670",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-12T20:08:48Z",
+      "side": 1,
+      "message": "Nit: I might add a comment here about how you\u0027re explicitly skipping RetryOnFailure or something, i.e., why you\u0027re doing this check.",
+      "revId": "7812aacef5505b7684dba699a90aaccc31d2af9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
