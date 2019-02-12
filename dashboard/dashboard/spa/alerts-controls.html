@@ -5,6 +5,7 @@ Use of this source code is governed by a BSD-style license that can be
 found in the LICENSE file.
 -->
 
+<link rel="import" href="/dashboard/spa/alerts-table.html">
 <link rel="import" href="/dashboard/spa/cp-icons.html">
 <link rel="import" href="/dashboard/spa/cp-switch.html">
 <link rel="import" href="/dashboard/spa/element-base.html">
@@ -78,6 +79,9 @@ found in the LICENSE file.
         padding: 8px;
       }
     </style>
+
+    <chops-signin-aware on-user-update="onUserUpdate_">
+    </chops-signin-aware>
 
     <iron-collapse
         horizontal
