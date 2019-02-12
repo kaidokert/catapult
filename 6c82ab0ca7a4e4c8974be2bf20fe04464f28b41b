@@ -22,6 +22,30 @@
       "revId": "6c82ab0ca7a4e4c8974be2bf20fe04464f28b41b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21acb54e_6abb2521",
+        "filename": "telemetry/telemetry/util/trace_processor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-12T13:23:15Z",
+      "side": 1,
+      "message": "Yup! Done.",
+      "parentUuid": "cc5f5469_4d98ccd5",
+      "range": {
+        "startLine": 38,
+        "startChar": 2,
+        "endLine": 38,
+        "endChar": 17
+      },
+      "revId": "6c82ab0ca7a4e4c8974be2bf20fe04464f28b41b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
