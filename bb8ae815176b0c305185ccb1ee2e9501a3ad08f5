@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae85a233_c38e5403",
+        "filename": "tracing/tracing/value/histogram_serializer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-12T21:22:54Z",
+      "side": 1,
+      "message": "This seems to have a side effect of modifying the serializer and caching values, which I feel is a little unexpected for a getter, maybe rename to make it more obvious",
+      "range": {
+        "startLine": 34,
+        "startChar": 6,
+        "endLine": 34,
+        "endChar": 21
+      },
+      "revId": "bb8ae815176b0c305185ccb1ee2e9501a3ad08f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
