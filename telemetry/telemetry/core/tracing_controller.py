@@ -2,15 +2,10 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-from telemetry.internal.platform import tracing_agent
-
-
-class TracingController(tracing_agent.TracingAgent):
+class TracingController(object):
 
   def __init__(self, tracing_controller_backend):
     """Provides control of the tracing systems supported by telemetry."""
-    super(TracingController, self).__init__(
-        tracing_controller_backend._platform_backend)
     self._tracing_controller_backend = tracing_controller_backend
 
   @property
@@ -69,19 +64,6 @@ class TracingController(tracing_agent.TracingAgent):
   def IsChromeTracingSupported(self):
     """Returns whether chrome tracing is supported."""
     return self._tracing_controller_backend.IsChromeTracingSupported()
-
-  def StartAgentTracing(self, config, timeout=10):
-    """ Starts agent tracing for tracing controller"""
-    return self._tracing_controller_backend.StartAgentTracing(config, timeout)
-
-  def StopAgentTracing(self):
-    """ Stops agent tracing for tracing controller. """
-    return self._tracing_controller_backend.StopAgentTracing()
-
-  def CollectAgentTraceData(self, trace_data_builder, timeout=None):
-    """ Collect tracing data. """
-    return self._tracing_controller_backend.CollectTraceData(trace_data_builder,
-                                                             timeout=timeout)
 
   def SupportsExplicitClockSync(self):
     return self._tracing_controller_backend.SupportsExplicitClockSync()
