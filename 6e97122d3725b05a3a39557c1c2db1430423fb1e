@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "31c8bcc0_4b624601",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 18
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-12T22:50:03Z",
+      "side": 1,
+      "message": "You can rely on histogram.html importing RelatedEventSet, no need to import this file.",
+      "revId": "6e97122d3725b05a3a39557c1c2db1430423fb1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4a00eb8_106c7218",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 18
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-12T22:50:03Z",
+      "side": 1,
+      "message": "Please split this to a few variables to make it easier to read and modify.",
+      "range": {
+        "startLine": 226,
+        "startChar": 8,
+        "endLine": 228,
+        "endChar": 67
+      },
+      "revId": "6e97122d3725b05a3a39557c1c2db1430423fb1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
