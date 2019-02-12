@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "af2ee241_c434e8d3",
+        "filename": "tracing/tracing/ui/brushing_state.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1324368
+      },
+      "writtenOn": "2019-02-12T16:52:56Z",
+      "side": 1,
+      "message": "The previous comment block seemed to describe the opposite of what this function did.",
+      "revId": "4761be7ea7efc0e3707e5300f4c471223ec84709",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
