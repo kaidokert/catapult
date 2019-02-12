@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f7935e06_7f531d8b",
+        "filename": "telemetry/telemetry/testing/run_tests_unittest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-02-12T02:21:50Z",
+      "side": 1,
+      "message": "Could the name of this test be made more clear? Maybe:\n  testRetryOnFailureExpectationWithPassingTest\n  testRetryOnFailureWithPassingTest",
+      "revId": "6ded6fb13e00fd89c97d91f7cb1347f316b93eca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13b9e8e1_00df2f7e",
+        "filename": "third_party/typ/typ/tests/main_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 885,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-02-12T02:21:50Z",
+      "side": 1,
+      "message": "Could you call these tests \"retryonfailure\" instead of \"retryonfail\" for consistency?\n\nIf one doesn\u0027t exist already, could you please also add a test which:\n  - Uses RetryOnFailure\n  - The test that\u0027s run fails the first time and succeeds the second time\n  - It asserts that the ultimate result was \"PASS\", and also asserts that it finds both \"FAIL\" and \"PASS\" in the test log\n\n?\n\nThat\u0027s really the overarching goal of this series of CLs so it would be great to test that scenario.\n\nThanks. (If this is intended for a follow-on CL that\u0027s fine)",
+      "revId": "6ded6fb13e00fd89c97d91f7cb1347f316b93eca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
