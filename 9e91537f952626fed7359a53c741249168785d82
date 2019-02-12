@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1abed841_caf20e6a",
+        "filename": "tracing/tracing/ui/brushing_state.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-12T17:49:42Z",
+      "side": 1,
+      "message": "Would it be worth it to add a fourth brightening level so this can distinguish events that are both analysisViewRelatedEvents_ and findMatches_? Doesn\u0027t have to be in this CL if at all.",
+      "revId": "9e91537f952626fed7359a53c741249168785d82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da8dea85_cb83a0b9",
+        "filename": "tracing/tracing/ui/brushing_state.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-12T17:49:42Z",
+      "side": 1,
+      "message": "Please indent by 2 more spaces",
+      "revId": "9e91537f952626fed7359a53c741249168785d82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
