@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "42a0bb1a_7618a02d",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-12T11:49:34Z",
+      "side": 1,
+      "message": "keep this for now as a \"unit test\" of the old behavior.",
+      "revId": "3085c5218cce275ece6a2e70baefcd5f09548ba5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
