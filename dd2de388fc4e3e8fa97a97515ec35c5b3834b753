@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "00a87904_ac24b37b",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1158749
+      },
+      "writtenOn": "2019-02-12T19:33:56Z",
+      "side": 0,
+      "message": "Done.",
+      "parentUuid": "4deca0b9_71c98c9a",
+      "revId": "dd2de388fc4e3e8fa97a97515ec35c5b3834b753",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bbfb86ae_da0df25c",
         "filename": "tracing/tracing/metrics/rendering/frame_time.html",
         "patchSetId": 14
@@ -33,6 +51,24 @@
       "revId": "dd2de388fc4e3e8fa97a97515ec35c5b3834b753",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4cd3c463_4ff3076a",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1158749
+      },
+      "writtenOn": "2019-02-12T19:33:56Z",
+      "side": 0,
+      "message": "You are right, with the new way to get the frame duration, we can calculate both the frame_length and avg_surface_fps for non-android devices now. Updated.",
+      "parentUuid": "bbfb86ae_da0df25c",
+      "revId": "dd2de388fc4e3e8fa97a97515ec35c5b3834b753",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
