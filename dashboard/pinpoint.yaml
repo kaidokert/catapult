@@ -5,6 +5,8 @@ api_version: 1
 threadsafe: true
 instance_class: F4_1G
 
+default_expiration: "30s"
+
 libraries:
 - name: pycrypto
   version: "2.6"
