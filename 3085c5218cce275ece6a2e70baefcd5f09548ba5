@@ -16,6 +16,24 @@
       "revId": "3085c5218cce275ece6a2e70baefcd5f09548ba5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af670a97_2beda926",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2019-02-12T14:22:52Z",
+      "side": 1,
+      "message": "Ack, but I\u0027d lean towards switching to test the new behavior sooner because there is a tiny risk to forget to clean up. Nothing serious, can go both ways.",
+      "parentUuid": "42a0bb1a_7618a02d",
+      "revId": "3085c5218cce275ece6a2e70baefcd5f09548ba5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

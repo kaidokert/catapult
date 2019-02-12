@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dc453106_a401f326",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2019-02-12T14:22:52Z",
+      "side": 1,
+      "message": "clever!",
+      "range": {
+        "startLine": 382,
+        "startChar": 2,
+        "endLine": 382,
+        "endChar": 56
+      },
+      "revId": "9070d4a7a93045b117af1519259bb75fa7440e38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
