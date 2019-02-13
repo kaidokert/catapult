@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee2cc023_b43d55e1",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1154589
+      },
+      "writtenOn": "2019-02-13T16:56:35Z",
+      "side": 1,
+      "message": "I\u0027m not sure if it\u0027s kosher to import from build/android/gyp, WDYT?",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 2
+      },
+      "revId": "d0071ded879eea94d26aafb348326a9cf3449dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
