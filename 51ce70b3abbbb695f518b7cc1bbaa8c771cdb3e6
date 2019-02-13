@@ -22,6 +22,30 @@
       "revId": "51ce70b3abbbb695f518b7cc1bbaa8c771cdb3e6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9307dc1f_103f608f",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-02-13T17:46:26Z",
+      "side": 1,
+      "message": "I\u0027d suggest using bundletools extract-apks feature. It extracts all APKs from an .apks archive that should be installed on the device. See [1] on how we do this in our install scripts.\n\n[1] https://cs.chromium.org/chromium/src/build/android/apk_operations.py?rcl\u003d240e9468317543d47aa914fd038d2f8afc4693c6\u0026l\u003d165",
+      "parentUuid": "a436b25a_a0052e6e",
+      "range": {
+        "startLine": 384,
+        "startChar": 8,
+        "endLine": 384,
+        "endChar": 16
+      },
+      "revId": "51ce70b3abbbb695f518b7cc1bbaa8c771cdb3e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
