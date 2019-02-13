@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a436b25a_a0052e6e",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1154589
+      },
+      "writtenOn": "2019-02-13T17:07:01Z",
+      "side": 1,
+      "message": "Tibor---\n\nYou mentioned that base-master_2.apk needs to be used sometime. Is there an easy way to determine that, or do you think it would be better to add bundletool support rather than using the existing split APK support in devil?",
+      "range": {
+        "startLine": 384,
+        "startChar": 8,
+        "endLine": 384,
+        "endChar": 16
+      },
+      "revId": "51ce70b3abbbb695f518b7cc1bbaa8c771cdb3e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
