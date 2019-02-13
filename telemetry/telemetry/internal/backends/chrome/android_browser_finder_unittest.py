@@ -154,6 +154,13 @@ class AndroidBrowserFinderTest(fake_filesystem_unittest.TestCase):
         self.finder_options, self.fake_platform)
     self.assertNotIn('reference', [b.browser_type for b in possible_browsers])
 
+  def testCanPossiblyHandlePath(self):
+    self.assertTrue(android_browser_finder._CanPossiblyHandlePath('foo.apk'))
+    self.assertTrue(android_browser_finder._CanPossiblyHandlePath('foo.aab'))
+    self.assertFalse(android_browser_finder._CanPossiblyHandlePath('foo.aaab'))
+    self.assertFalse(android_browser_finder._CanPossiblyHandlePath(''))
+    self.assertFalse(android_browser_finder._CanPossiblyHandlePath('fooaab'))
+
 
 def _MockPossibleBrowser(modified_at):
   m = mock.Mock(spec=android_browser_finder.PossibleAndroidBrowser)
@@ -279,3 +286,7 @@ class SetUpProfileBrowserTest(unittest.TestCase):
                         absolute_expected_profile_paths)
       finally:
         browser_to_create.CleanUpEnvironment()
+
+
+if __name__ == '__main__':
+  unittest.main()

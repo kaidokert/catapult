@@ -7,6 +7,7 @@ import os
 import posixpath
 import re
 import subprocess
+import zipfile
 
 from telemetry.core import android_platform
 from telemetry.core import exceptions
@@ -33,6 +34,8 @@ from devil.android.perf import perf_control
 from devil.android.perf import thermal_throttle
 from devil.android.sdk import shared_prefs
 from devil.android.tools import provision_devices
+
+from py_utils import tempfile_ext
 
 try:
   # devil.android.forwarder uses fcntl, which doesn't exist on Windows.
@@ -369,7 +372,26 @@ class AndroidPlatformBackend(
     return bool(self._device.GetApplicationPaths(application))
 
   def InstallApplication(self, application):
-    self._device.Install(application)
+    # If |application| is a bundle, we assume that the splits are located in
+    # an .apks zip file next to |application|.
+    if application.endswith('.aab'):
+      with tempfile_ext.NamedTemporaryDirectory() as tempdir:
+        logging.warning('Inflating %s to %s', application, tempdir)
+        apks_file = application[:-3] + 'apks'
+        zipfile.ZipFile(apks_file).extractall(tempdir)
+        split_dir = os.path.join(tempdir, 'splits')
+        zip_apks = [f for f in os.listdir(split_dir) if f.endswith('.apk')]
+        BASE_APK = 'base-master.apk'
+        if BASE_APK not in zip_apks:
+          raise Exception('Missing base-master.apk in {})'.format(
+              apks_file))
+        split_filenames = [os.path.join(split_dir, f)
+                           for f in zip_apks
+                           if f != BASE_APK]
+        self._device.InstallSplitApk(
+            os.path.join(split_dir, BASE_APK), split_filenames)
+    else:
+      self._device.Install(application)
 
   def CanMonitorPower(self):
     return self._power_monitor.CanMonitorPower()
