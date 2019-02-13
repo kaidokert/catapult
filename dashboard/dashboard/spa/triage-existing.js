@@ -110,6 +110,9 @@ tr.exportTo('cp', () => {
     close: statePath => async(dispatch, getState) => {
       dispatch(Redux.UPDATE(statePath, {isOpen: false}));
     },
+
+    submit: statePath => async(dispatch, getState) => {
+    },
   };
 
   TriageExisting.filterBugs =
@@ -120,7 +123,10 @@ tr.exportTo('cp', () => {
         bug.revisionRange.intersectsRangeInclusive(selectedRange));
     };
 
+
   cp.ElementBase.register(TriageExisting);
 
-  return {TriageExisting};
+  return {
+    TriageExisting,
+  };
 });
