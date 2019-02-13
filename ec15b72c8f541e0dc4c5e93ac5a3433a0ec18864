@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ea45580_50a4f3cd",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2241,
+      "author": {
+        "id": 1154589
+      },
+      "writtenOn": "2019-02-13T16:32:38Z",
+      "side": 1,
+      "message": "This is not real RFC5646 locale parsing, but it works for easy/common cases. Are we happy enough with this simple method?",
+      "range": {
+        "startLine": 2241,
+        "startChar": 52,
+        "endLine": 2241,
+        "endChar": 53
+      },
+      "revId": "ec15b72c8f541e0dc4c5e93ac5a3433a0ec18864",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
