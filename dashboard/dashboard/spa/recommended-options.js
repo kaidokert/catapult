@@ -70,13 +70,20 @@ tr.exportTo('cp', () => {
       12, tr.b.UnitScale.TIME.WEEK, tr.b.UnitScale.TIME.MILLI_SEC);
   RecommendedOptions.OPTION_LIMIT = 5;
 
+  const DEFAULT_SHERIFF = 'Chromium Perf Sheriff';
+
   RecommendedOptions.reducers = {
     getRecommendations: (rootState) => {
       let optionRecommendations;
       const now = new Date().getTime();
       try {
         optionRecommendations = JSON.parse(localStorage.getItem(
-            RecommendedOptions.STORAGE_KEY));
+            RecommendedOptions.STORAGE_KEY)) || {};
+
+        if (!(DEFAULT_SHERIFF in optionRecommendations)) {
+          optionRecommendations[DEFAULT_SHERIFF] = [now];
+        }
+
         for (const [value, dates] of Object.entries(optionRecommendations)) {
           optionRecommendations[value] = dates.map(d => new Date(d)).filter(
               date => ((now - date) < RecommendedOptions.OLD_MS));
