@@ -16,13 +16,16 @@ from collections import defaultdict
 
 from typ.json_results import ResultType
 
+class RetryPolicy(object):
+    RetryOnFailure = 'RETRY_ON_FAILURE'
+
 _EXPECTATION_MAP = {
     'Crash': ResultType.Crash,
     'Failure': ResultType.Failure,
     'Pass': ResultType.Pass,
     'Timeout': ResultType.Timeout,
     'Skip': ResultType.Skip,
-    'RetryOnFailure': 'RETRY_ON_FAILURE'
+    'RetryOnFailure': RetryPolicy.RetryOnFailure
 }
 
 def _group_to_string(group):
@@ -37,7 +40,7 @@ class ParseError(Exception):
 
 
 class Expectation(object):
-    def __init__(self, reason, test, tags, results):
+    def __init__(self, reason, test, tags, results, retry_policy=None):
         """Constructor for expectations.
 
         Args:
@@ -56,6 +59,7 @@ class Expectation(object):
         self._test = test
         self._tags = frozenset(tags)
         self._results = frozenset(results)
+        self._retry_policy = retry_policy
 
     def __eq__(self, other):
         return (self.reason == other.reason and self.test == other.test
@@ -76,6 +80,10 @@ class Expectation(object):
     @property
     def results(self):
         return self._results
+
+    @property
+    def retry_policy(self):
+        return self._retry_policy
 
 
 class TaggedTestListParser(object):
@@ -209,16 +217,21 @@ class TaggedTestListParser(object):
             raise ParseError(lineno, error_msg)
 
         results = []
+        retry_policy = None
         for r in raw_results.split():
             try:
                 # The test expectations may contain tags like RetryOnFailure
                 # We do not want those tags in the expected results
-                if _EXPECTATION_MAP[r] in ResultType.values:
-                    results.append(_EXPECTATION_MAP[r])
+                expectation = _EXPECTATION_MAP[r]
+                if expectation in ResultType.values:
+                    results.append(expectation)
+                else:
+                    retry_policy = expectation
             except KeyError:
                 raise ParseError(lineno, 'Unknown result type "%s"' % r)
 
-        return Expectation(reason, test, tags, results)
+        return Expectation(reason, test, tags, results, retry_policy=
+                           retry_policy)
 
 
 class TestExpectations(object):

@@ -305,3 +305,15 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
             '# tags: [ Linux ]\n'
             'crbug.com/23456 [ Linux ] b1/s1 [ RetryOnFailure ]\n')
         expectations_parser.TaggedTestListParser(raw_data)
+
+    def testStoresRetryExpectations(self):
+        expectations = """
+# This is a test expectation file.
+#
+# tags: [ tag1 tag2 tag3 ]
+crbug.com/12345 [ tag1 ] b1/s1 [ RetryOnFailure ]
+"""
+        parser = expectations_parser.TaggedTestListParser(expectations)
+        exp = parser.expectations[0]
+        self.assertEqual(exp.retry_policy, (expectations_parser
+                                            .RetryPolicy.RetryOnFailure))
