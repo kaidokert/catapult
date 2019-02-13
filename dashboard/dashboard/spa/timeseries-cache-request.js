@@ -363,6 +363,8 @@ export default class TimeseriesCacheRequest extends CacheRequestBase {
 
     for await (const result of raceAllPromises(sliceResponses)) {
       if (!result || result.error || !result.data || !result.data.length) {
+        // eslint-disable-next-line no-console
+        console.log(result);
         continue;
       }
       mergeObjectArrays('revision', mergedData, result.data.filter(d => (
@@ -371,7 +373,9 @@ export default class TimeseriesCacheRequest extends CacheRequestBase {
       finalResult = {...result, data: mergedData};
       yield finalResult;
     }
-    this.scheduleWrite(finalResult);
+    if (finalResult.data && finalResult.data.length) {
+      this.scheduleWrite(finalResult);
+    }
   }
 
   async readDatabase_() {
