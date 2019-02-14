@@ -4,13 +4,20 @@
 
 """Module containing utilities for apk packages."""
 
+import os
 import re
+import xml.etree.ElementTree
 import zipfile
 
 from devil import base_error
 from devil.android.ndk import abis
 from devil.android.sdk import aapt
+from devil.utils import cmd_helper
 
+_BUNDLETOOL_PATH = os.path.join(os.path.dirname(__file__),
+                                os.pardir, os.pardir, os.pardir,
+                                os.pardir, os.pardir,
+                                'build', 'android', 'gyp', 'bundletool.py')
 
 _MANIFEST_ATTRIBUTE_RE = re.compile(
     r'\s*A: ([^\(\)= ]*)(?:\([^\(\)= ]*\))?='
@@ -47,6 +54,8 @@ def ToHelper(path_or_helper):
 # element) is added to the node at the top of the stack (after the stack has
 # been popped/pushed due to indentation).
 def _ParseManifestFromApk(apk_path):
+  if apk_path.endswith('.aab'):
+    return _ParseManifestFromAab(apk_path)
   aapt_output = aapt.Dump('xmltree', apk_path, 'AndroidManifest.xml')
 
   parsed_manifest = {}
@@ -103,6 +112,48 @@ def _ParseManifestFromApk(apk_path):
       continue
 
   return parsed_manifest
+
+
+def _ParseManifestFromAab(aab_path):
+  cmd = [_BUNDLETOOL_PATH, 'dump', 'manifest', '--bundle', aab_path]
+  status, output = cmd_helper.GetCmdStatusAndOutput(cmd)
+  if status != 0:
+    raise Exception('Failed running bundletool {} with output "{}".'.format(
+        ' '.join(cmd), output))
+
+  return ParseManifestFromXml(output)
+
+
+def ParseManifestFromXml(xml_str):
+  """Parse an android bundle manifest.
+
+    As _ParseManifestFromApk, but uses the xml output from bundletool. Each
+    element is a dict, mapping attribute or children by name. Attributes map to
+    a dict (as they are unique), children map to a list of dicts (as there may
+    be multiple children with the same name).
+
+  Args:
+    xml_str (str) An xml string that is an android manifest.
+
+  Returns:
+    A dict holding the parsed manifest, as with _ParseManifestFromApk.
+  """
+  root = xml.etree.ElementTree.fromstring(xml_str)
+  return {root.tag: [_ParseManifestXMLNode(root)]}
+
+
+def _ParseManifestXMLNode(node):
+  out = {}
+  for name, value in node.attrib.items():
+    cleaned_name = name.replace(
+        '{http://schemas.android.com/apk/res/android}',
+        'android:').replace(
+            '{http://schemas.android.com/tools}',
+            'tools:')
+    out[cleaned_name] = value
+  for child in node:
+    out.setdefault(child.tag, []).append(_ParseManifestXMLNode(child))
+  return out
 
 
 def _ParseNumericKey(obj, key, default=0):
