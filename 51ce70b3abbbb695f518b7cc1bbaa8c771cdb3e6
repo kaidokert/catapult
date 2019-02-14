@@ -140,6 +140,30 @@
       "revId": "51ce70b3abbbb695f518b7cc1bbaa8c771cdb3e6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "abab9c1e_4b0c5a97",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-02-14T17:15:40Z",
+      "side": 1,
+      "message": "See here for how we pass in the signing information to bundletool: https://cs.chromium.org/chromium/src/build/android/pylib/utils/app_bundle_utils.py?rcl\u003dde044a2f3cfbc49d289e7e46f77c594166aa3b1f\u0026l\u003d80.\n- keystore_path: build/android/chromium-debug.keystore\n- keystore_password: chromium\n- keystore_alias: chromiumdebugkey\n\nGenerally, would it help if our build system would generate the APKS archive and devil would just install it?",
+      "parentUuid": "864b08cf_7aba8120",
+      "range": {
+        "startLine": 384,
+        "startChar": 8,
+        "endLine": 384,
+        "endChar": 16
+      },
+      "revId": "51ce70b3abbbb695f518b7cc1bbaa8c771cdb3e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
