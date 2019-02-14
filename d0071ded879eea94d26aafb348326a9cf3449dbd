@@ -22,6 +22,30 @@
       "revId": "d0071ded879eea94d26aafb348326a9cf3449dbd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77e3d306_0536b20f",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-14T12:48:09Z",
+      "side": 1,
+      "message": "Yeah, this doesn\u0027t look great. It looks like you only need this to find BUNDLETOOL_JAR_PATH and run a command with that. But also that\u0027s what src/build/android/gyp/bundletool.py already does for you.\n\nMaybe just call that as an external script?",
+      "parentUuid": "ee2cc023_b43d55e1",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 2
+      },
+      "revId": "d0071ded879eea94d26aafb348326a9cf3449dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
