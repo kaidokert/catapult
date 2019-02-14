@@ -505,7 +505,7 @@ class Runner(object):
 
         self._run_one_set(self.stats, result_set, test_set)
 
-        failed_tests = sorted(json_results.failed_test_names(result_set))
+        failed_tests = sorted(json_results.regressions(result_set))
         retry_limit = self.args.retry_limit
 
         while retry_limit and failed_tests:
@@ -527,7 +527,7 @@ class Runner(object):
             retry_set = ResultSet()
             self._run_one_set(stats, retry_set, tests_to_retry)
             result_set.results.extend(retry_set.results)
-            failed_tests = json_results.failed_test_names(retry_set)
+            failed_tests = json_results.regressions(retry_set)
             retry_limit -= 1
 
         if retry_limit != self.args.retry_limit:
@@ -1002,7 +1002,6 @@ def _result_from_test_result(test_result, test_name, started, took, out, err,
         actual = ResultType.Pass
         code = 0
         unexpected = actual not in expected_results
-
     flaky = False
     return Result(test_name, actual, started, took, worker_num,
                   expected_results, unexpected, flaky, code, out, err, pid)
