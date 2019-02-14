@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "140a8353_c87732f5",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2227,
+      "author": {
+        "id": 1154589
+      },
+      "writtenOn": "2019-02-14T13:19:18Z",
+      "side": 1,
+      "message": "Done. And after three times mixing up \"locale\" and \"local\", I added unittests too :)",
+      "parentUuid": "399232f6_f6c01328",
+      "revId": "ec15b72c8f541e0dc4c5e93ac5a3433a0ec18864",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a0becebe_1a493934",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "ec15b72c8f541e0dc4c5e93ac5a3433a0ec18864",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "525daae7_c54d84e6",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2232,
+      "author": {
+        "id": 1154589
+      },
+      "writtenOn": "2019-02-14T13:19:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0becebe_1a493934",
+      "revId": "ec15b72c8f541e0dc4c5e93ac5a3433a0ec18864",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
