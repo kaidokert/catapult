@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "312c2497_1e9945ff",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-14T01:12:50Z",
+      "side": 1,
+      "message": "Can we call this \"regressions\" rather than \"unexpected failures\"?",
+      "revId": "c79b65a17be86c473a5222050f742f981d666426",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5c14d45_ac9c2338",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-14T01:12:50Z",
+      "side": 1,
+      "message": "I think this needs to be `r.actual !\u003d ResultType.Pass and r.unexpected`, otherwise crashes, timeouts, and unexpected skips won\u0027t be caught.\n\nIdeally what we should do is probably add an is_regression field to the TestResult class, and compute this there, then simplify this logic to check that instead (and also simplify the logic in lines 175-185, below.",
+      "revId": "c79b65a17be86c473a5222050f742f981d666426",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
