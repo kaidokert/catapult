@@ -93,6 +93,7 @@ class AndroidPlatformBackend(
                 self._battery),
         ], self._battery))
     self._system_ui = None
+    self._installed_apps = []
 
     _FixPossibleAdbInstability()
 
@@ -369,6 +370,9 @@ class AndroidPlatformBackend(
     return bool(self._device.GetApplicationPaths(application))
 
   def InstallApplication(self, application):
+    if application in self._installed_apps:
+      return
+    self._installed_apps.append(application)
     self._device.Install(application)
 
   def CanMonitorPower(self):
