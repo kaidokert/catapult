@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "399232f6_f6c01328",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2227,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-14T12:43:04Z",
+      "side": 1,
+      "message": "It looks like clients will often want to get both language/country together. So maybe to avoid the extra adb call on newer devices, you can turn it the other way around by just defining a single GetLocale method that tries to read sys.locale (if that fails, then both sys.language and sys.country) and return a pair of (language, country)?\n\nThis also helps moving the \"parsing\" code to a single place, here, in case later we need some stricter RFC5646 locale parsing.\n\nWhen clients switch to GetLocale, the older GetLanguage/GetCountry can be removed too.",
+      "revId": "ec15b72c8f541e0dc4c5e93ac5a3433a0ec18864",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0becebe_1a493934",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2232,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-14T12:43:04Z",
+      "side": 1,
+      "message": "nit: missing `cache\u003dcache` kwarg here?",
+      "revId": "ec15b72c8f541e0dc4c5e93ac5a3433a0ec18864",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6ea45580_50a4f3cd",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 1
@@ -22,6 +56,30 @@
       "revId": "ec15b72c8f541e0dc4c5e93ac5a3433a0ec18864",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e3efdad_fec742c2",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2241,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-14T12:43:04Z",
+      "side": 1,
+      "message": "Ack. I think this is fine for now.",
+      "parentUuid": "6ea45580_50a4f3cd",
+      "range": {
+        "startLine": 2241,
+        "startChar": 52,
+        "endLine": 2241,
+        "endChar": 53
+      },
+      "revId": "ec15b72c8f541e0dc4c5e93ac5a3433a0ec18864",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
