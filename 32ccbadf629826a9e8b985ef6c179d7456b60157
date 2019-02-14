@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "792a7635_08e18ece",
+        "filename": "telemetry/telemetry/internal/actions/repeatable_scroll_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-14T19:13:23Z",
+      "side": 1,
+      "message": "Please make it clear to someone reading this which bug is for which platform. Maybe something like:\n\n  # Failing on Android: https://github.com/catapult-project/catapult/issues/3099\n  # Flaky on chromeos: https://crbug.com/932104.",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 53
+      },
+      "revId": "32ccbadf629826a9e8b985ef6c179d7456b60157",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
