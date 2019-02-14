@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "f2302729_b8f322d4",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-14T13:27:34Z",
+      "side": 1,
+      "message": "this should use os.path.splitext\nhttps://docs.python.org/2/library/os.path.html#os.path.splitext",
+      "revId": "51ce70b3abbbb695f518b7cc1bbaa8c771cdb3e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9309e3da_8aa3e4f1",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-14T13:27:34Z",
+      "side": 1,
+      "message": "I think this code should live in device.Install() so it\u0027s available to all devil clients, not just Telemetry.",
+      "revId": "51ce70b3abbbb695f518b7cc1bbaa8c771cdb3e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a436b25a_a0052e6e",
         "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
         "patchSetId": 1
