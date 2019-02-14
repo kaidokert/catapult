@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c0627bb8_c392b753",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-02-14T23:10:46Z",
+      "side": 1,
+      "message": "num_failures_by_type is required in the standard json test result format, as can be seen in the link in the doc string of this function. We need to make sure that it stays so that telemetry and other test suites that use typ output the standard JSON results.",
+      "parentUuid": "abe1037e_cc70a850",
+      "revId": "f9a3c4043a328ada7daa7ec64de29f3e033d8a8c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fc03d2a5_1c7afa20",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 4
@@ -33,6 +51,24 @@
       "revId": "f9a3c4043a328ada7daa7ec64de29f3e033d8a8c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd717ba2_3b5334c9",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-02-14T23:10:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc03d2a5_1c7afa20",
+      "revId": "f9a3c4043a328ada7daa7ec64de29f3e033d8a8c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
