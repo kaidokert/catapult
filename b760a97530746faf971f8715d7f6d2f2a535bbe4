@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d6f9b0a7_83169331",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-14T21:54:50Z",
+      "side": 1,
+      "message": "Nit: think you can delete this now?",
+      "revId": "b760a97530746faf971f8715d7f6d2f2a535bbe4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
