@@ -115,12 +115,7 @@ def _ParseManifestFromApk(apk_path):
 
 
 def _ParseManifestFromAab(aab_path):
-  cmd = [_BUNDLETOOL_PATH, 'dump', 'manifest', '--bundle', aab_path]
-  status, output = cmd_helper.GetCmdStatusAndOutput(cmd)
-  if status != 0:
-    raise Exception('Failed running bundletool {} with output "{}".'.format(
-        ' '.join(cmd), output))
-
+  output = RunBundleTool('dump', 'manifest', '--bundle', aab_path)
   return ParseManifestFromXml(output)
 
 
@@ -322,3 +317,24 @@ class ApkHelper(object):
       return sorted(output)
     except KeyError:
       raise base_error.BaseError('Unexpected ABI in lib/* folder.')
+
+
+def RunBundleTool(*bundletool_args):
+  """Run the bundletool utility.
+
+  Args:
+    *bundletool_args: all arguments will be forwarded as bundletool command-line
+      parameters.
+
+  Returns:
+    The output from the bundletool command.
+
+  Raises:
+    Exception, if the execution fails.
+  """
+  cmd = [_BUNDLETOOL_PATH] + list(bundletool_args)
+  status, output = cmd_helper.GetCmdStatusAndOutput(cmd)
+  if status != 0:
+    raise Exception('Failed running bundletool {} with output "{}".'.format(
+        ' '.join(cmd), output))
+  return output

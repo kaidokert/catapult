@@ -868,9 +868,10 @@ class DeviceUtils(object):
       min_default_timeout=INSTALL_DEFAULT_TIMEOUT)
   def Install(self, apk, allow_downgrade=False, reinstall=False,
               permissions=None, timeout=None, retries=None):
-    """Install an APK.
+    """Install an APK or AAB.
 
-    Noop if an identical APK is already installed.
+    Noop if an identical APK is already installed. If installing an AAB, the
+    semantics depend on bundletool.
 
     Args:
       apk: An ApkHelper instance or string containing the path to the APK.
@@ -924,6 +925,21 @@ class DeviceUtils(object):
   def _InstallInternal(self, base_apk, split_apks, allow_downgrade=False,
                        reinstall=False, allow_cached_props=False,
                        permissions=None):
+    _, ext = os.path.splitext(base_apk.path)
+    if ext.lower() == '.aab':
+      if split_apks:
+        raise device_errors.CommandFailedError(
+            'Attempted to install a bundle {} while specifying split apks'
+            .format(base_apk))
+      if not reinstall:
+        raise device_errors.CommandFailedError(
+            'Attempted to install a bundle {} without reinstallation. This '
+            'is not possible with bundletools, all installations will replace '
+            'an existing application'.format(base_apk))
+      # allow_cached_props is unused and ignored for bundles.
+      self._InstallBundleInternal(base_apk, allow_downgrade, permissions)
+      return
+
     if split_apks:
       self._CheckSdkLevel(version_codes.LOLLIPOP)
 
@@ -992,6 +1008,27 @@ class DeviceUtils(object):
     # Upon success, we know the device checksums, but not their paths.
     if host_checksums is not None:
       self._cache['package_apk_checksums'][package_name] = host_checksums
+
+  def _InstallBundleInternal(self, bundle, allow_downgrade, permissions):
+    with tempfile_ext.NamedTemporaryDirectory() as tempdir:
+      logging.warning('Unpacking %s to %s', bundle.path, tempdir)
+      apks = os.path.join(tempdir, bundle.path + '.apks')
+      apk_helper.RunBundleTool(
+          'build-apks',
+          '--bundle', bundle.path,
+          '--output', apks)
+      args = ['install-apks',
+              '--apks', apks,
+              '--device_id', self.serial,
+              '--adb', self.adb.GetAdbPath()]
+      if allow_downgrade:
+        args += '--allow-downgrade'
+      apk_helper.RunBundleTool(*args)
+    if (permissions is None
+        and self.build_version_sdk >= version_codes.MARSHMALLOW):
+      permissions = bundle.GetPermissions()
+    self.GrantPermissions(bundle.GetPackageName(), permissions)
+
 
   @decorators.WithTimeoutAndRetriesFromInstance()
   def Uninstall(self, package_name, keep_data=False, timeout=None,
