@@ -192,8 +192,12 @@ export default class TimeseriesCacheRequest extends CacheRequestBase {
 
     this.maxRevision_ = parseInt(this.body_.get('max_revision')) || undefined;
     this.minRevision_ = parseInt(this.body_.get('min_revision')) || undefined;
-    this.revisionRange_ = Range.fromExplicitRange(
-        this.minRevision_ || 0, this.maxRevision_ || Number.MAX_SAFE_INTEGER);
+    this.revisionRange_ = new Range();
+    this.revisionRange_.addValue(
+        (this.minRevision_ === undefined) ? 0 : this.minRevision_);
+    this.revisionRange_.addValue(
+        (this.maxRevision_ === undefined) ? Number.MAX_SAFE_INTEGER :
+          this.maxRevision_);
 
     this.testSuite_ = this.body_.get('test_suite') || '';
     this.measurement_ = this.body_.get('measurement') || '';
@@ -363,6 +367,8 @@ export default class TimeseriesCacheRequest extends CacheRequestBase {
 
     for await (const result of raceAllPromises(sliceResponses)) {
       if (!result || result.error || !result.data || !result.data.length) {
+        // eslint-disable-next-line no-console
+        console.log(result);
         continue;
       }
       mergeObjectArrays('revision', mergedData, result.data.filter(d => (
@@ -371,7 +377,9 @@ export default class TimeseriesCacheRequest extends CacheRequestBase {
       finalResult = {...result, data: mergedData};
       yield finalResult;
     }
-    this.scheduleWrite(finalResult);
+    if (finalResult.data && finalResult.data.length) {
+      this.scheduleWrite(finalResult);
+    }
   }
 
   async readDatabase_() {
@@ -440,7 +448,9 @@ export default class TimeseriesCacheRequest extends CacheRequestBase {
     }
 
     const dataPoints = [];
-    dataStore.iterateCursor(this.range_, cursor => {
+    const range = IDBKeyRange.bound(
+        this.revisionRange_.min, this.revisionRange_.max);
+    dataStore.iterateCursor(range, cursor => {
       if (!cursor) return;
       dataPoints.push(cursor.value);
       cursor.continue();
@@ -448,18 +458,6 @@ export default class TimeseriesCacheRequest extends CacheRequestBase {
 
     await transaction.complete;
     return dataPoints;
-  }
-
-  get range_() {
-    if (this.minRevision_ && this.maxRevision_) {
-      return IDBKeyRange.bound(this.minRevision_, this.maxRevision_);
-    }
-    if (this.minRevision_ && !this.maxRevision_) {
-      return IDBKeyRange.lowerBound(this.minRevision_);
-    }
-    if (!this.minRevision_ && this.maxRevision_) {
-      return IDBKeyRange.upperBound(this.maxRevision_);
-    }
   }
 
   async writeDatabase({data, ...metadata}) {
