@@ -22,6 +22,30 @@
       "revId": "32ccbadf629826a9e8b985ef6c179d7456b60157",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee25a8da_f0ecfc3e",
+        "filename": "telemetry/telemetry/internal/actions/repeatable_scroll_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000232
+      },
+      "writtenOn": "2019-02-14T19:20:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "792a7635_08e18ece",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 53
+      },
+      "revId": "32ccbadf629826a9e8b985ef6c179d7456b60157",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
