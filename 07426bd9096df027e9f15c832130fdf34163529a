@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "414a6f16_8b4add6f",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-14T01:25:50Z",
+      "side": 1,
+      "message": "I think there\u0027s a question of whether we think RetryOnFailure as a boolean, or as a particular value in a larger set of policies. For now, I\u0027m more inclined to think of it as the former (I\u0027m hoping we don\u0027t end up with more than two policies, because more than one is bad enough), in which case I\u0027d expose a \u0027should_retry_on_failure\u0027 property instead.\n\nWe\u0027ll likely also want to implement \u0027Slow\u0027 the way we\u0027re implementing \u0027RetryOnFailure\u0027, and similarly we\u0027ll want an \u0027is_slow\u0027 property to be exposed. This would probably make things a bit more consistent with that, rather than having one boolean property and one enum property.",
+      "revId": "07426bd9096df027e9f15c832130fdf34163529a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fecf171_2c1913ee",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-14T01:25:50Z",
+      "side": 1,
+      "message": "I\u0027d assert that expectation \u003d\u003d RetryOnFailure here.",
+      "revId": "07426bd9096df027e9f15c832130fdf34163529a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
