@@ -20,6 +20,17 @@ from telemetry import story as story_module
 from telemetry.util import screenshot
 
 
+class DummyBrowser():
+  def __init__(self):
+    pass
+
+  def GetSystemInfo(self):
+    return None
+
+  @property
+  def tabs(self):
+    return None
+
 class SharedPageState(story_module.SharedState):
   """
   This class contains all specific logic necessary to run a Chrome browser
@@ -268,8 +279,16 @@ class SharedPageState(story_module.SharedState):
     self._AllowInteractionForStage('before-run-story')
 
   def CanRunStory(self, page):
-    return self.CanRunOnBrowser(browser_info_module.BrowserInfo(self.browser),
-                                page)
+    installed_brower = False
+    if not self.browser:
+      self._browser = DummyBrowser()
+      installed_brower = True
+
+    result = self.CanRunOnBrowser(browser_info_module.BrowserInfo(self.browser),
+                                  page)
+    if installed_brower:
+      self._browser = None
+    return result
 
   def CanRunOnBrowser(self, browser_info,
                       page):  # pylint: disable=unused-argument

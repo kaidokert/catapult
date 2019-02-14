@@ -25,6 +25,9 @@ class BrowserInfo(object):
     self._browser = browser
 
   def HasWebGLSupport(self):
+    if not self._browser.tabs:
+      return True  # Assume there is WebGL support.
+
     result = False
     # If no tab is opened, open one and close it after evaluate
     # _CHECK_WEBGL_SUPPORTED_SCRIPT

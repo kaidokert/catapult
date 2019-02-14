@@ -124,11 +124,9 @@ def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
         test.WillRunStory(state.platform)
       state.WillRunStory(story)
 
-      if not state.CanRunStory(story):
-        results.Skip(
-            'Skipped because story is not supported '
-            '(SharedState.CanRunStory() returns False).')
-        return
+      assert state.CanRunStory(story), (
+          'Attempting to run story that cannot be run '
+          '(SharedState.CanRunStory() returns False).')
       story.wpr_mode = state.wpr_mode
       state.RunStory(results)
       if isinstance(test, story_test.StoryTest):
@@ -184,6 +182,7 @@ def Run(test, story_set, finder_options, results, max_failures=None,
 
   # Filter page set based on options.
   stories = story_module.StoryFilter.FilterStorySet(story_set)
+  stories = sorted(stories, key=story_set.wpr_archive_info.WprFilePathForStory)
 
   if finder_options.print_only:
     if finder_options.print_only == 'tags':
@@ -224,7 +223,15 @@ def Run(test, story_set, finder_options, results, max_failures=None,
   if effective_max_failures is None:
     effective_max_failures = max_failures
 
-  state = None
+  state = story_set.shared_state_class(test, finder_options.Copy(), story_set)
+  stories_to_remove = [s for s in stories if not state.CanRunStory(s)]
+  for story in stories_to_remove:
+    stories.remove(story)
+    results.WillRunPage(story)
+    results.Skip('Skipped because story is not supported '
+                 '(SharedState.CanRunStory() returns False).')
+    results.DidRunPage(story)
+
   device_info_diags = {}
   # TODO(crbug.com/866458): unwind the nested blocks
   # pylint: disable=too-many-nested-blocks
