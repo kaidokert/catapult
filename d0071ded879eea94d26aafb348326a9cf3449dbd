@@ -70,6 +70,30 @@
       "revId": "d0071ded879eea94d26aafb348326a9cf3449dbd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "084b308e_e5017540",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-15T10:53:07Z",
+      "side": 1,
+      "message": "I think this is probably fine.\n\n+jbudorick anyway in case you have any thoughts on how to better do this? (please see latest patchset).",
+      "parentUuid": "1755f2f8_ee725910",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 2
+      },
+      "revId": "d0071ded879eea94d26aafb348326a9cf3449dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

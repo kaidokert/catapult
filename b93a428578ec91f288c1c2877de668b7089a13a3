@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2113cf75_ba9d19e7",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-15T10:53:07Z",
+      "side": 1,
+      "message": "nit: extra blank line here",
+      "revId": "b93a428578ec91f288c1c2877de668b7089a13a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efcae075_23f73329",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-15T10:53:07Z",
+      "side": 1,
+      "message": "nit: indenting looks wrong, also we have a convention of using \u0027..\u0027 instead of os.pardir for readability (it\u0027s \u0027..\u0027 in all the os we care about).",
+      "revId": "b93a428578ec91f288c1c2877de668b7089a13a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
