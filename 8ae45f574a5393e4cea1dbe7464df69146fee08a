@@ -45,6 +45,30 @@
       "revId": "8ae45f574a5393e4cea1dbe7464df69146fee08a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18a8c4fb_18240b5b",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-02-15T20:53:52Z",
+      "side": 1,
+      "message": "Would running pinpoint jobs be sufficient (does pinpoint do sharding?)? I don\u0027t know details of how sharding works, but do the shard-bots have different configs? Running the tests on different shards affecting the results seem unfortunate in general. Is there a better way to test if this change will cause issues than pinpoint? Thanks!",
+      "parentUuid": "a8f7313f_da45fe8e",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 71
+      },
+      "revId": "8ae45f574a5393e4cea1dbe7464df69146fee08a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
