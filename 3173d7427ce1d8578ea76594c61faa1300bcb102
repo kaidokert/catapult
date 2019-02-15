@@ -16,6 +16,24 @@
       "revId": "3173d7427ce1d8578ea76594c61faa1300bcb102",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1cdc58bf_86d789fb",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 2238,
+      "author": {
+        "id": 1154589
+      },
+      "writtenOn": "2019-02-15T12:03:27Z",
+      "side": 1,
+      "message": "Neither are in my spellchecker :) Doing a google search suggests that \"unparsable\" is preferred.",
+      "parentUuid": "86a4dfb1_93bc7adc",
+      "revId": "3173d7427ce1d8578ea76594c61faa1300bcb102",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
