@@ -4,6 +4,7 @@
 
 """Module containing utilities for apk packages."""
 
+import collections
 import os
 import re
 import xml.etree.ElementTree
@@ -223,6 +224,15 @@ class ApkHelper(object):
   def path(self):
     return self._apk_path
 
+  @property
+  def basename(self):
+    return os.path.splitext(os.path.basename(self._apk_path))[0]
+
+  @property
+  def is_bundle(self):
+    _, ext = os.path.splitext(self._apk_path)
+    return ext.lower() == '.aab'
+
   def GetActivityName(self):
     """Returns the name of the first launcher Activity in the apk."""
     manifest_info = self._GetManifest()
@@ -341,3 +351,10 @@ class ApkHelper(object):
       return sorted(output)
     except KeyError:
       raise base_error.BaseError('Unexpected ABI in lib/* folder.')
+
+
+KeystoreInfo = collections.namedtuple(
+    'KeystoreInfo', ('path', 'password', 'alias'))
+KEYSTORE = KeystoreInfo(
+    os.path.join(_BUILD_ANDROID_PATH, 'chromium-debug.keystore'),
+    'chromium', 'chromiumdebugkey')

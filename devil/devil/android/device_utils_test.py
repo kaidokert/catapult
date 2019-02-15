@@ -56,6 +56,8 @@ class _MockApkHelper(object):
 
   def __init__(self, path, package_name, perms=None):
     self.path = path
+    self.is_bundle = os.path.splitext(path)[1].lower() == '.aab'
+    self.basename = os.path.splitext(os.path.basename(path))[0]
     self.package_name = package_name
     self.perms = perms
     self.abis = [abis.ARM]
