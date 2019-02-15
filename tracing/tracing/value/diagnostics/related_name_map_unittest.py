@@ -4,6 +4,7 @@
 
 import unittest
 
+from tracing.value import histogram_serializer
 from tracing.value import histogram_unittest
 from tracing.value.diagnostics import diagnostic
 from tracing.value.diagnostics import generic_set
@@ -48,3 +49,11 @@ class RelatedNameMapUnittest(unittest.TestCase):
     self.assertNotEqual(a_names, b_names)
     b_names.Set('a', 'A')
     self.assertEqual(a_names, b_names)
+
+  def testSerialize(self):
+    names = related_name_map.RelatedNameMap()
+    names.Set('a', 'x')
+    names.Set('b', 'y')
+    names.Set('c', 'z')
+    s = histogram_serializer.HistogramSerializer()
+    self.assertEqual(names.Serialize(s), [6, 0, 1, 2])
