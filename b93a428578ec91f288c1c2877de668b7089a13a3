@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5351166b_cd0d1d7a",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1154589
+      },
+      "writtenOn": "2019-02-15T12:06:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2113cf75_ba9d19e7",
+      "revId": "b93a428578ec91f288c1c2877de668b7089a13a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "efcae075_23f73329",
         "filename": "devil/devil/android/apk_helper.py",
         "patchSetId": 5
@@ -33,6 +51,24 @@
       "revId": "b93a428578ec91f288c1c2877de668b7089a13a3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e669125c_047acafe",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1154589
+      },
+      "writtenOn": "2019-02-15T12:06:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "efcae075_23f73329",
+      "revId": "b93a428578ec91f288c1c2877de668b7089a13a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
