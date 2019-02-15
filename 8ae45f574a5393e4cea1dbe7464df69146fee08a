@@ -69,6 +69,30 @@
       "revId": "8ae45f574a5393e4cea1dbe7464df69146fee08a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7372a50_16739a10",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-15T21:32:09Z",
+      "side": 1,
+      "message": "Unfortunately, pinpoint jobs definitely won\u0027t help here. I\u0027m happy to explain the sharding system in detail to you over VC, but here\u0027s the quick version.\n\nSharding and device soft affinity is the solution to the problem that identical models of devices do not have identical performance characteristics. So we have a fleet of the exact same model of dellxps devices (let\u0027s call the model \"model 123\"), but if you run the rendering benchmark on device A you get a different result from device B. This means that if we schedule the benchmarks to run against any model 123 device, then based on which model swarming randomly picks for us we will get a different performance, even if we didn\u0027t make any changes to Chrome since the last run. In practice, this shows up as a ton of noise on the chromeperf dashboard, and that noise can cover up real regressions.\n\nSoft device affinity says that instead of telling swarming \"please run this benchmark against model 123\" we say \"please run this benchmark against model 123, and if possible run it against whatever model 123 device it ran against last time.\"\n\nNone of what I\u0027ve told you so far seems related to your change, but there is one more thing that makes this a problem. We have a large pool of devices to run the Telemetry benchmarks. In order to have a fast cycle time, we don\u0027t run all the benchmarks on one bot. Instead we shard them out to multiple bots. That was the first solution. But then we noticed that that still didn\u0027t help because some benchmarks are really long (like rendering) and so the cycle time has to wait for rendering benchmark to finish even though shards with smaller benchmarks on them already succeeded. So then we decided to support running some of the stories of a benchmark on one shard and some of the stories on another shard. I think that this depends on the sorted order of the stories (because we do this by story index, i.e. run stories indexed 0 to 10 on bot A and run stories indexed 11 to 20 on bot B, etc.) (see shard map example: https://cs.chromium.org/chromium/src/tools/perf/core/shard_maps/linux-perf_map.json?l\u003d97 rendering.desktop is so huge that we split it up onto 5 bots). So if we change the indexing by resorting the stories, then we will change which stories run on which bots, which will cause a discontinuity in the graphs.",
+      "parentUuid": "18a8c4fb_18240b5b",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 71
+      },
+      "revId": "8ae45f574a5393e4cea1dbe7464df69146fee08a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
