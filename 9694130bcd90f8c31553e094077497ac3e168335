@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "241f00a9_e378ca47",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-15T19:43:56Z",
+      "side": 1,
+      "message": "I would move this part up to the top to make it more explicit, something like:\n\n    def expectations_for(self, test):\n        # Returns a tuple of (expectations, should_retry_on_failure)\n        #\n        # A given test may have multiple expectations...",
+      "revId": "9694130bcd90f8c31553e094077497ac3e168335",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76daacba_fdb8fd62",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-15T19:43:56Z",
+      "side": 1,
+      "message": "I\u0027d use a parenthesis: `(results or {ResultType.Pass})`. The precedence between the or and the comma is not particulary obvious.",
+      "revId": "9694130bcd90f8c31553e094077497ac3e168335",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56924729_c32a3d80",
+        "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-15T19:43:56Z",
+      "side": 1,
+      "message": "This is the case I discuss in my reply ...",
+      "revId": "9694130bcd90f8c31553e094077497ac3e168335",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
