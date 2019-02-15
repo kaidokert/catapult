@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a1478e1c_ac0ea560",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-15T11:06:13Z",
+      "side": 1,
+      "message": "Would a named tuple work better for this?",
+      "revId": "130d0855f05966277a2571124705698c58920de3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad050d95_eaae7b21",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 931,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-15T11:06:13Z",
+      "side": 1,
+      "message": "maybe this should be a property of ApkHelper objects? So here you can just do:\n\n  if base_apk.ext \u003d\u003d \u0027aab\u0027:\n\nor even better:\n\n  if base_apk.is_bundle:",
+      "revId": "130d0855f05966277a2571124705698c58920de3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ec489b0_d4643914",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1017,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-15T11:06:13Z",
+      "side": 1,
+      "message": "warning? should probably be logging.info.",
+      "revId": "130d0855f05966277a2571124705698c58920de3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "457fe036_b710084c",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1019,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-15T11:06:13Z",
+      "side": 1,
+      "message": "ditto: the ApkHelper could probably provide you with a property to simplify and reduce this to e.g.:\n\n  apks \u003d os.path.join(tempdir, bundle.basename + \u0027.apks\u0027)",
+      "revId": "130d0855f05966277a2571124705698c58920de3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
