@@ -166,6 +166,30 @@
       "revId": "d0071ded879eea94d26aafb348326a9cf3449dbd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9993c19_6503ce63",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1154589
+      },
+      "writtenOn": "2019-02-15T18:05:53Z",
+      "side": 1,
+      "message": "So, as alluded to above, the new bundled build process creates a script in out/Release/bin/ that knows how to install the bundle. Would it make sense to devil to somehow plumb that script along with the .aab file itself, and use that to install?\n\nSee https://docs.google.com/document/d/1lSq0A2gjs__o1YY3K0u2yiEEPRj3PmkrZiP1wzUiP9E/edit?ts\u003d5c6200e2 for details.",
+      "parentUuid": "c4900948_5db9dbb7",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 2
+      },
+      "revId": "d0071ded879eea94d26aafb348326a9cf3449dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
