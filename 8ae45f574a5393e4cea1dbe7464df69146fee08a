@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a8f7313f_da45fe8e",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-15T19:46:49Z",
+      "side": 1,
+      "message": "Changing the ordering of the stories sounds like a really good idea, but it is also a bit scary, since probably a lot of stuff depends on this ordering. For example, sharding bases which stories run on which bots based on this ordering, so therefore this change will cause a discontinuity in bot soft affinity. We need to think carefully about whether this change is a good idea given that the discontinuity in soft affinity will cause a bunch of false-positive improvements and regressions.",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 71
+      },
+      "revId": "8ae45f574a5393e4cea1dbe7464df69146fee08a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1949b0c_25d25b32",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-15T19:46:49Z",
+      "side": 1,
+      "message": "You should definitely add a comment explaining why you are doing this (just basically copy/paste the CL description into a comment here.",
+      "range": {
+        "startLine": 189,
+        "startChar": 5,
+        "endLine": 189,
+        "endChar": 13
+      },
+      "revId": "8ae45f574a5393e4cea1dbe7464df69146fee08a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
