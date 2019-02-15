@@ -17,9 +17,19 @@ DEVICES = [
 
 def _GetAllAvailableDevices(options):
   """Returns a list of all available devices."""
+  target_platforms = options.browser_options.target_platforms
+  if not target_platforms:
+    device_finders = DEVICES
+  else:
+    device_finders = [desktop_device]
+    if 'android' in target_platforms:
+      device_finders.append(android_device)
+    if 'chromeos' in target_platforms:
+      device_finders.append(cros_device)
+
   devices = []
-  for device in DEVICES:
-    devices.extend(device.FindAllAvailableDevices(options))
+  for finder in device_finders:
+    devices.extend(finder.FindAllAvailableDevices(options))
   return devices
 
 

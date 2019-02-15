@@ -61,8 +61,19 @@ def FindBrowser(options):
   devices = device_finder.GetDevicesMatchingOptions(options)
   browsers = []
   default_browsers = []
+
+  target_platforms = options.browser_options.target_platforms
+  if not target_platforms:
+    browser_finders = BROWSER_FINDERS
+  else:
+    browser_finders = [desktop_browser_finder]
+    if 'android' in target_platforms:
+      browser_finders.append(android_browser_finder)
+    if 'chromeos' in target_platforms:
+      browser_finders.append(cros_browser_finder)
+
   for device in devices:
-    for finder in BROWSER_FINDERS:
+    for finder in browser_finders:
       if(options.browser_type and options.browser_type != 'any' and
          options.browser_type not in finder.FindAllBrowserTypes()):
         continue
