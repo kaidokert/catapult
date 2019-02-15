@@ -16,6 +16,24 @@
       "revId": "ee1a4644dca1bbcd3f98ec5743b0e27ec1fe3256",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c20f8f4f_a3b00e07",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1154589
+      },
+      "writtenOn": "2019-02-15T10:52:26Z",
+      "side": 1,
+      "message": "Done, I had assumed ext could be None.",
+      "parentUuid": "71347b8a_bb77a5c3",
+      "revId": "ee1a4644dca1bbcd3f98ec5743b0e27ec1fe3256",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
