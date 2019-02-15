@@ -118,6 +118,30 @@
       "revId": "d0071ded879eea94d26aafb348326a9cf3449dbd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e98da102_3a7c7655",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1154589
+      },
+      "writtenOn": "2019-02-15T17:44:21Z",
+      "side": 1,
+      "message": "Okay. See also https://chromium-review.googlesource.com/c/catapult/+/1470852, which needs keystore stuff to sign the apk prior to installing (also in apk_helper.py). I assume that also makes you very uncomfortable as well, John ;)\n\nOr, I wonder if in that case it would be better to assume/plumb through the existence of bin/monochrome_64_bundle (corresponding to Monochrome64.aab, with similar mappings for other bundle targets), which knows how to install itself.\n\nI think we still need bundletool, though, as devil/telemetry needs to examine the manifest of the application which is different in a bundle.",
+      "parentUuid": "944d1ebb_688a0d4d",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 2
+      },
+      "revId": "d0071ded879eea94d26aafb348326a9cf3449dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
