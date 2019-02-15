@@ -83,11 +83,12 @@ tr.exportTo('tr.importer', function() {
     'gpu.WebVR pose prediction (ms)',
   ];
   const VR_EVENT_NAMES = [
-    'VrShellGl::AcquireFrame',
-    'VrShellGl::DrawFrame',
-    'VrShellGl::DrawSubmitFrameWhenReady',
-    'VrShellGl::DrawUiView',
-    'VrShellGl::UpdateController',
+    'Vr.AcquireGvrFrame',
+    'Vr.DrawFrame',
+    'Vr.PostSubmitDrawOnGpu',
+    'Vr.ProcessControllerInput',
+    'Vr.ProcessControllerInputForWebXr',
+    'Vr.SubmitFrameNow',
   ];
   /* 1s is a bit arbitrary, but it reliably avoids all the jank caused by
    * VR entry.
