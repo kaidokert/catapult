@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5817728e_d02dd46b",
+        "filename": "tracing/tracing/importer/find_input_expectations.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-15T17:31:07Z",
+      "side": 1,
+      "message": "Would it be possible to define constants for these strings here so that frame_cycle_duration_metric could reference them in order to prevent this kind of issue in the future?\nframe_cycle_duration_metric could import this file (but not the other way around).",
+      "revId": "732a82a41504caaa8646960121670074d94528ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4141e80_9c95301d",
+        "filename": "tracing/tracing/metrics/vr/frame_cycle_duration_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-15T17:31:07Z",
+      "side": 1,
+      "message": "Please maintain backcompat at least until the ref builds catch up:\nconst glThreads \u003d helper.process.findAllThreadsMatching(\n            thread \u003d\u003e !thread.name || thread.name \u003d\u003d\u003d VR_THREAD_NAME);",
+      "revId": "732a82a41504caaa8646960121670074d94528ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "923361be_bae0a2aa",
+        "filename": "tracing/tracing/metrics/vr/frame_cycle_duration_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-15T17:31:07Z",
+      "side": 1,
+      "message": "Please define a constant for this string.",
+      "range": {
+        "startLine": 169,
+        "startChar": 62,
+        "endLine": 169,
+        "endChar": 72
+      },
+      "revId": "732a82a41504caaa8646960121670074d94528ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
