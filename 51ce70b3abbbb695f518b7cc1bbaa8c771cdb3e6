@@ -188,6 +188,30 @@
       "revId": "51ce70b3abbbb695f518b7cc1bbaa8c771cdb3e6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7c714f9_8a9c756f",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-02-15T15:22:20Z",
+      "side": 1,
+      "message": "We already have targets to make APKS archives for some of our bundles (e.g. [1]). Unfortunately not for the 64 bit browser ones. So, we\u0027d have to add them. Another option would be to use the install scripts (e.g. out/Debug/bin/monochrome_public_bundle install). It knows about signing and all that.\n\n[1] https://cs.chromium.org/chromium/src/chrome/android/BUILD.gn?rcl\u003dc1cb044af7f98a0fbde3fea49aa4191dca786d8e\u0026l\u003d1981",
+      "parentUuid": "60191f36_e9d04ba0",
+      "range": {
+        "startLine": 384,
+        "startChar": 8,
+        "endLine": 384,
+        "endChar": 16
+      },
+      "revId": "51ce70b3abbbb695f518b7cc1bbaa8c771cdb3e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
