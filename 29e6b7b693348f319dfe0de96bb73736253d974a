@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ab291e7_0eda1a27",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-15T18:28:35Z",
+      "side": 1,
+      "message": "Does it fail to install it each time? Could you please attach a log explaining this?",
+      "range": {
+        "startLine": 11,
+        "startChar": 14,
+        "endLine": 11,
+        "endChar": 61
+      },
+      "revId": "29e6b7b693348f319dfe0de96bb73736253d974a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad7a64c8_352267e1",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-15T18:28:35Z",
+      "side": 1,
+      "message": "Instead of \n\n    self._installed_apps.append(application)\n    self._device.Install(application)\n\nyou should do\n\n    self._device.Install(application)\n    self._installed_apps.append(application)\n\nin case we hit an exception during the install process.\n\n(Unless you are trying to remove the retries in the case that the install process fails? In that case, the variable name \"_installed_apps\" is a bit misleading.)",
+      "range": {
+        "startLine": 375,
+        "startChar": 4,
+        "endLine": 376,
+        "endChar": 37
+      },
+      "revId": "29e6b7b693348f319dfe0de96bb73736253d974a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
