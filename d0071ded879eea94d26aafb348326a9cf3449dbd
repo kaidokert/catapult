@@ -94,6 +94,30 @@
       "revId": "d0071ded879eea94d26aafb348326a9cf3449dbd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "944d1ebb_688a0d4d",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-02-15T16:53:20Z",
+      "side": 1,
+      "message": "eeeeep, I would strongly prefer to avoid devil depending on chromium like this. If devil needs to use bundletool, the script should move up to devil and the binary dependency should be handled via devil\u0027s existing dependency system. I know it\u0027s not ideal, and I\u0027ve been meaning to rewrite it for a while, but it should still be used for now.\n\nWhen devil is embedded within the chromium tree, it can pick up replacements for different binaries as specified in https://codesearch.chromium.org/chromium/src/build/android/devil_chromium.json. https://codesearch.chromium.org/chromium/src/build/android/devil_chromium.py?rcl\u003d4d5bb65128b10c95568876f74a700c1235511a6e\u0026l\u003d110 injects those into devil_env.",
+      "parentUuid": "084b308e_e5017540",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 2
+      },
+      "revId": "d0071ded879eea94d26aafb348326a9cf3449dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
