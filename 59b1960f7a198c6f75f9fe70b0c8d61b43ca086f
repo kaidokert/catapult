@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cf9aa872_b2e8e962",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-15T19:52:42Z",
+      "side": 1,
+      "message": "if FinderOptions contains the target_platforms variable, then maybe finder_options should have more of the logic concerning the use of that variable inside it rather than having that logic in other places. That will help make the code more readable so that people understand what the purpose of the class is.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 32
+      },
+      "revId": "59b1960f7a198c6f75f9fe70b0c8d61b43ca086f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
