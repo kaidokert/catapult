@@ -212,6 +212,30 @@
       "revId": "51ce70b3abbbb695f518b7cc1bbaa8c771cdb3e6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c534496a_7854bdd2",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1154589
+      },
+      "writtenOn": "2019-02-15T17:57:43Z",
+      "side": 1,
+      "message": "Using the install scripts might be the best bet. If you look at crrev.com/c/1470851, which is doing some preliminary work for this CL, it is turning out that catapult/devil depending on things in the chromium tree is not probably going to work out.",
+      "parentUuid": "f7c714f9_8a9c756f",
+      "range": {
+        "startLine": 384,
+        "startChar": 8,
+        "endLine": 384,
+        "endChar": 16
+      },
+      "revId": "51ce70b3abbbb695f518b7cc1bbaa8c771cdb3e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
