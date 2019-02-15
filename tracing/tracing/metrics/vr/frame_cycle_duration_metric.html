@@ -55,18 +55,6 @@ tr.exportTo('tr.metrics.vr', function() {
                 'GVR. Note this duration may include time spent on ' +
                 'reprojection'}, false));
 
-    // TODO(crbug/884259): Remove the following aliases after some time.
-    histogramsByEventTitle.set('VrShellGl::DrawFrame',
-        histogramsByEventTitle.get('Vr.DrawFrame'));
-    histogramsByEventTitle.set('VrShellGl::AcquireFrame',
-        histogramsByEventTitle.get('Vr.AcquireGvrFrame'));
-    histogramsByEventTitle.set('VrShellGl::UpdateController',
-        histogramsByEventTitle.get('Vr.ProcessControllerInput'));
-    histogramsByEventTitle.set('VrShellGl::DrawFrameSubmitNow',
-        histogramsByEventTitle.get('Vr.SubmitFrameNow'));
-    histogramsByEventTitle.set('VrShellGl::PostSubmitDrawOnGpu',
-        histogramsByEventTitle.get('Vr.PostSubmitDrawOnGpu'));
-
     // Scene update metrics.
     histogramsByEventTitle.set(
         'UiScene::OnBeginFrame.UpdateAnimationsAndOpacity',
@@ -178,12 +166,7 @@ tr.exportTo('tr.metrics.vr', function() {
       }
 
       for (const helper of chromeHelper.browserHelpers) {
-        // The events are traced on the GL thread in the browser process.
-        // Unfortunately, this thread has no name.
-        // TODO(tiborg): Give GL thread a name and reference the thread by
-        // the given name.
-        const glThreads = helper.process.findAllThreadsMatching(
-            thread => !thread.name);
+        const glThreads = helper.process.findAllThreadsNamed('VrShellGL');
 
         for (const glThread of glThreads) {
           for (const event of glThread.getDescendantEvents()) {
