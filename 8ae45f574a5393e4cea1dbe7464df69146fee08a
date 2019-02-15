@@ -93,6 +93,30 @@
       "revId": "8ae45f574a5393e4cea1dbe7464df69146fee08a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "333a6c08_b7567cf7",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-15T21:35:02Z",
+      "side": 1,
+      "message": "correction: This means that if we schedule the benchmarks to run against any model 123 device, then based on which *specific device* swarming randomly picks for us we will get a different performance",
+      "parentUuid": "e7372a50_16739a10",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 71
+      },
+      "revId": "8ae45f574a5393e4cea1dbe7464df69146fee08a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
