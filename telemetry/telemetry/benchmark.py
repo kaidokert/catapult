@@ -102,6 +102,12 @@ class Benchmark(command_line.Command):
 
   def Run(self, finder_options):
     """Do not override this method."""
+    target_platforms = set()
+    for p in self.SUPPORTED_PLATFORMS:
+      for platform in p.platforms:
+        target_platforms.add(platform)
+
+    finder_options.target_platforms = target_platforms
     return story_runner.RunBenchmark(self, finder_options)
 
   @property
