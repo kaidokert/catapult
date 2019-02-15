@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "58b696ae_fb7db624",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1154589
+      },
+      "writtenOn": "2019-02-15T13:39:39Z",
+      "side": 1,
+      "message": "Sure. Who knows how this is going to be overriden in the future, if at all.",
+      "parentUuid": "a1478e1c_ac0ea560",
+      "revId": "130d0855f05966277a2571124705698c58920de3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ad050d95_eaae7b21",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 4
@@ -33,6 +51,24 @@
       "revId": "130d0855f05966277a2571124705698c58920de3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae042db4_79093d0d",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 931,
+      "author": {
+        "id": 1154589
+      },
+      "writtenOn": "2019-02-15T13:39:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad050d95_eaae7b21",
+      "revId": "130d0855f05966277a2571124705698c58920de3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "cfc9ed1c_a708199c",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1017,
+      "author": {
+        "id": 1154589
+      },
+      "writtenOn": "2019-02-15T13:39:39Z",
+      "side": 1,
+      "message": "Done. I\u0027m not even totally sure this is necessary, I just wanted to mention that the temporary directory was created. In the case that a crash causes it not to be cleaned up it might help in debugging, but that\u0027s kind of stretch.",
+      "parentUuid": "9ec489b0_d4643914",
+      "revId": "130d0855f05966277a2571124705698c58920de3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "457fe036_b710084c",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 4
@@ -67,6 +121,24 @@
       "revId": "130d0855f05966277a2571124705698c58920de3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d02932e_f7eebed2",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1019,
+      "author": {
+        "id": 1154589
+      },
+      "writtenOn": "2019-02-15T13:39:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "457fe036_b710084c",
+      "revId": "130d0855f05966277a2571124705698c58920de3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
