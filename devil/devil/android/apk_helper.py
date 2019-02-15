@@ -4,13 +4,22 @@
 
 """Module containing utilities for apk packages."""
 
+import os
 import re
+import xml.etree.ElementTree
 import zipfile
 
 from devil import base_error
 from devil.android.ndk import abis
 from devil.android.sdk import aapt
+from devil.utils import cmd_helper
 
+_BUILD_ANDROID_PATH = os.path.join(os.path.dirname(__file__),
+                                os.pardir, os.pardir, os.pardir,
+                                os.pardir, os.pardir,
+                                'build', 'android')
+
+_BUNDLETOOL_PATH = os.path.join(_BUILD_ANDROID_PATH, 'gyp', 'bundletool.py')
 
 _MANIFEST_ATTRIBUTE_RE = re.compile(
     r'\s*A: ([^\(\)= ]*)(?:\([^\(\)= ]*\))?='
@@ -47,6 +56,8 @@ def ToHelper(path_or_helper):
 # element) is added to the node at the top of the stack (after the stack has
 # been popped/pushed due to indentation).
 def _ParseManifestFromApk(apk_path):
+  if apk_path.endswith('.aab'):
+    return _ParseManifestFromAab(apk_path)
   aapt_output = aapt.Dump('xmltree', apk_path, 'AndroidManifest.xml')
 
   parsed_manifest = {}
@@ -105,6 +116,48 @@ def _ParseManifestFromApk(apk_path):
   return parsed_manifest
 
 
+def _ParseManifestFromAab(aab_path):
+  cmd = [_BUNDLETOOL_PATH, 'dump', 'manifest', '--bundle', aab_path]
+  status, output = cmd_helper.GetCmdStatusAndOutput(cmd)
+  if status != 0:
+    raise Exception('Failed running bundletool {} with output "{}".'.format(
+        ' '.join(cmd), output))
+
+  return ParseManifestFromXml(output)
+
+
+def ParseManifestFromXml(xml_str):
+  """Parse an android bundle manifest.
+
+    As _ParseManifestFromApk, but uses the xml output from bundletool. Each
+    element is a dict, mapping attribute or children by name. Attributes map to
+    a dict (as they are unique), children map to a list of dicts (as there may
+    be multiple children with the same name).
+
+  Args:
+    xml_str (str) An xml string that is an android manifest.
+
+  Returns:
+    A dict holding the parsed manifest, as with _ParseManifestFromApk.
+  """
+  root = xml.etree.ElementTree.fromstring(xml_str)
+  return {root.tag: [_ParseManifestXMLNode(root)]}
+
+
+def _ParseManifestXMLNode(node):
+  out = {}
+  for name, value in node.attrib.items():
+    cleaned_name = name.replace(
+        '{http://schemas.android.com/apk/res/android}',
+        'android:').replace(
+            '{http://schemas.android.com/tools}',
+            'tools:')
+    out[cleaned_name] = value
+  for child in node:
+    out.setdefault(child.tag, []).append(_ParseManifestXMLNode(child))
+  return out
+
+
 def _ParseNumericKey(obj, key, default=0):
   val = obj.get(key)
   if val is None:
@@ -141,6 +194,28 @@ def _IterateExportedActivities(manifest_info):
       for data in intent_filter.get('data', []):
         activity.schemes.add(data.get('android:scheme'))
     yield activity
+
+
+def RunBundleTool(*bundletool_args):
+  """Run the bundletool utility.
+
+  Args:
+    *bundletool_args: all arguments will be forwarded as bundletool command-line
+      parameters.
+
+  Returns:
+    The stdout from the bundletool command.
+
+  Raises:
+    Exception, if the execution fails. The exception will contain stdout and
+    stderr from the command.
+  """
+  cmd = [_BUNDLETOOL_PATH] + list(bundletool_args)
+  status, stdout, stderr = cmd_helper.GetCmdStatusOutputAndError(cmd)
+  if status != 0:
+    raise Exception('Failed running bundletool {} with output:\n{}\n{}'.format(
+        ' '.join(cmd), stdout, stderr))
+  return stdout
 
 
 class ApkHelper(object):
@@ -271,3 +346,28 @@ class ApkHelper(object):
       return sorted(output)
     except KeyError:
       raise base_error.BaseError('Unexpected ABI in lib/* folder.')
+
+
+class KeystoreInfo(object):
+  """Chrome application keystore information.
+
+  Android bundle installation requires app signing information. By default this
+  is available in the standard chromium checkout. If different signing
+  information is needed, this class should be inherited from/overridden.
+  """
+  _KEYSTORE_PATH = os.path.join(_BUILD_ANDROID_PATH, 'chromium-debug.keystore')
+  _KEYSTORE_PASSWORD = 'chromium'
+  _KEYSTORE_ALIAS = 'chromiumdebugkey'
+
+  @property
+  def path(self):
+    return self._KEYSTORE_PATH
+
+  @property
+  def password(self):
+    return self._KEYSTORE_PASSWORD
+
+  @property
+  def alias(self):
+    return self._KEYSTORE_ALIAS
+KEYSTORE = KeystoreInfo()
