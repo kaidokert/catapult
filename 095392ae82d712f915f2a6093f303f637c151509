@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "70f408d8_d1dfce0c",
+        "filename": "telemetry/telemetry/core/tracing_controller.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-15T13:04:53Z",
+      "side": 1,
+      "message": "more explicit and code-searchable than exposing a writeable property.",
+      "revId": "095392ae82d712f915f2a6093f303f637c151509",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5aa9067d_6f8104bb",
+        "filename": "telemetry/telemetry/internal/platform/tracing_controller_backend.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-15T13:04:53Z",
+      "side": 1,
+      "message": "these two functions do not depend on the class or the instance, so they do not belong there.",
+      "revId": "095392ae82d712f915f2a6093f303f637c151509",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

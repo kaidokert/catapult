@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6c8584a4_4cd820c3",
+        "filename": "telemetry/telemetry/core/tracing_controller.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-15T13:04:53Z",
+      "side": 0,
+      "message": "these are agent methods, not needed in the controller and not called by anything.",
+      "revId": "309c28a6328bf11bb2863afab0b28691a783941f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3cd7e3ab_6af95f37",
+        "filename": "telemetry/telemetry/internal/platform/tracing_controller_backend.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-15T13:04:53Z",
+      "side": 0,
+      "message": "this hack can be avoided by getting rid of the \"_supported_agents_classes\", instead delay the check of whether the tracing agent is supported to the point where we start tracing.",
+      "revId": "309c28a6328bf11bb2863afab0b28691a783941f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0cb2425c_1c58f364",
+        "filename": "telemetry/telemetry/internal/platform/tracing_controller_backend_unittest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-15T13:04:53Z",
+      "side": 0,
+      "message": "Other than the trace dependent \"controller clock domain\", this was testing the same as the following testMultipleAgents.",
+      "revId": "309c28a6328bf11bb2863afab0b28691a783941f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89a47ffc_04813366",
+        "filename": "telemetry/telemetry/internal/platform/tracing_controller_backend_unittest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-15T13:04:53Z",
+      "side": 0,
+      "message": "This seems to be testing that uuid.uuid4() works. We don\u0027t need to do that here.",
+      "revId": "309c28a6328bf11bb2863afab0b28691a783941f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "585d8cfa_d66e8d45",
+        "filename": "telemetry/telemetry/internal/platform/tracing_controller_backend_unittest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-15T13:04:53Z",
+      "side": 0,
+      "message": "This was testing the private _RecordIssuerClockSyncMarker method; we should just test public API.",
+      "revId": "309c28a6328bf11bb2863afab0b28691a783941f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89ec7151_aadd1c44",
+        "filename": "telemetry/telemetry/internal/platform/tracing_controller_backend_unittest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-15T13:04:53Z",
+      "side": 0,
+      "message": "This was testing the private _IssueClockSyncMarker() method.",
+      "revId": "309c28a6328bf11bb2863afab0b28691a783941f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "acbb5e12_11659732",
+        "filename": "telemetry/telemetry/internal/platform/tracing_controller_backend_unittest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-15T13:04:53Z",
+      "side": 0,
+      "message": "This test is still kept, although the call to the private method is not needed (is implicit in StopTracing).",
+      "revId": "309c28a6328bf11bb2863afab0b28691a783941f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b31a5ad_7a25557c",
+        "filename": "telemetry/telemetry/internal/platform/tracing_controller_backend_unittest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-15T13:04:53Z",
+      "side": 0,
+      "message": "This is testing that gc.enable/disable work. Again, shouldn\u0027t be tested here.",
+      "revId": "309c28a6328bf11bb2863afab0b28691a783941f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
