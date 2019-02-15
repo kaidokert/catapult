@@ -868,14 +868,17 @@ class DeviceUtils(object):
       min_default_timeout=INSTALL_DEFAULT_TIMEOUT)
   def Install(self, apk, allow_downgrade=False, reinstall=False,
               permissions=None, timeout=None, retries=None):
-    """Install an APK.
+    """Install an APK or AAB.
 
-    Noop if an identical APK is already installed.
+    Noop if an identical APK is already installed. If installing an AAB, the
+    semantics depend on bundletool. In particular, bundles are always
+    reinstalled and the reinstall flag is ignored.
 
     Args:
       apk: An ApkHelper instance or string containing the path to the APK.
       allow_downgrade: A boolean indicating if we should allow downgrades.
       reinstall: A boolean indicating if we should keep any existing app data.
+        Ignored if |apk| is a bundle.
       permissions: Set of permissions to set. If not set, finds permissions with
           apk helper. To set no permissions, pass [].
       timeout: timeout in seconds
@@ -924,10 +927,25 @@ class DeviceUtils(object):
   def _InstallInternal(self, base_apk, split_apks, allow_downgrade=False,
                        reinstall=False, allow_cached_props=False,
                        permissions=None):
+    base_apk = apk_helper.ToHelper(base_apk)
+    _, ext = os.path.splitext(base_apk.path)
+    if ext.lower() == '.aab':
+      if split_apks:
+        raise device_errors.CommandFailedError(
+            'Attempted to install a bundle {} while specifying split apks'
+            .format(base_apk))
+      if not reinstall:
+        logging.warning('Installation of a bundle requested with '
+                        'reinstall=False. This is not possible with '
+                        'bundletools, all installations will replace an '
+                        'existing installation. The reinstall flag will '
+                        'be ignored and installation will proceed')
+      # |allow_cached_props| is unused and ignored for bundles.
+      self._InstallBundleInternal(base_apk, allow_downgrade, permissions)
+      return
+
     if split_apks:
       self._CheckSdkLevel(version_codes.LOLLIPOP)
-
-    base_apk = apk_helper.ToHelper(base_apk)
 
     all_apks = [base_apk.path]
     if split_apks:
@@ -992,6 +1010,32 @@ class DeviceUtils(object):
     # Upon success, we know the device checksums, but not their paths.
     if host_checksums is not None:
       self._cache['package_apk_checksums'][package_name] = host_checksums
+
+  def _InstallBundleInternal(self, bundle, allow_downgrade, permissions):
+    # This assumes a standard chromium build, which
+    with tempfile_ext.NamedTemporaryDirectory() as tempdir:
+      logging.warning('Unpacking %s to %s', bundle.path, tempdir)
+      apks = os.path.join(
+          tempdir, os.path.splitext(os.path.basename(bundle.path))[0] + '.apks')
+      apk_helper.RunBundleTool(
+          'build-apks',
+          '--bundle={}'.format(bundle.path),
+          '--output={}'.format(apks),
+          '--ks={}'.format(apk_helper.KEYSTORE.path),
+          '--ks-pass=pass:{}'.format(apk_helper.KEYSTORE.password),
+          '--ks-key-alias={}'.format(apk_helper.KEYSTORE.alias))
+      args = ['install-apks',
+              '--apks={}'.format(apks),
+              '--device-id={}'.format(self.serial),
+              '--adb={}'.format(self.adb.GetAdbPath())]
+      if allow_downgrade:
+        args += '--allow-downgrade'
+      apk_helper.RunBundleTool(*args)
+    if (permissions is None
+        and self.build_version_sdk >= version_codes.MARSHMALLOW):
+      permissions = bundle.GetPermissions()
+    self.GrantPermissions(bundle.GetPackageName(), permissions)
+
 
   @decorators.WithTimeoutAndRetriesFromInstance()
   def Uninstall(self, package_name, keep_data=False, timeout=None,

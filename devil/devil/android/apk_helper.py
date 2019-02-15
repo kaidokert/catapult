@@ -341,3 +341,28 @@ class ApkHelper(object):
       return sorted(output)
     except KeyError:
       raise base_error.BaseError('Unexpected ABI in lib/* folder.')
+
+
+class KeystoreInfo(object):
+  """Chrome application keystore information.
+
+  Android bundle installation requires app signing information. By default this
+  is available in the standard chromium checkout. If different signing
+  information is needed, this class should be inherited from/overridden.
+  """
+  _KEYSTORE_PATH = os.path.join(_BUILD_ANDROID_PATH, 'chromium-debug.keystore')
+  _KEYSTORE_PASSWORD = 'chromium'
+  _KEYSTORE_ALIAS = 'chromiumdebugkey'
+
+  @property
+  def path(self):
+    return self._KEYSTORE_PATH
+
+  @property
+  def password(self):
+    return self._KEYSTORE_PASSWORD
+
+  @property
+  def alias(self):
+    return self._KEYSTORE_ALIAS
+KEYSTORE = KeystoreInfo()
