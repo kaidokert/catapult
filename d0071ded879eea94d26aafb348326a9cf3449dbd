@@ -46,6 +46,30 @@
       "revId": "d0071ded879eea94d26aafb348326a9cf3449dbd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1755f2f8_ee725910",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1154589
+      },
+      "writtenOn": "2019-02-15T10:43:15Z",
+      "side": 1,
+      "message": "OK, done. I\u0027m still depending on build/android/gyp existing, which may still not be totally right. \n\nIt seems that devil_env.py and devil_dependencies.json want to download tools to devil/bin/deps/ rather than assume that catapult is embedded in the chromium tree. It seems wasteful to make an additional copy of bundletools and incur the maintenance cost of updating that, than using the one in build/gyp, when (AFAIK) the only use for this is going to be when running inside of a chromium tree.\n\nAny advice appreciated :)",
+      "parentUuid": "77e3d306_0536b20f",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 2
+      },
+      "revId": "d0071ded879eea94d26aafb348326a9cf3449dbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
