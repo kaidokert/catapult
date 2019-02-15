@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1ab2f2e5_b6e7e786",
+        "filename": "tracing/tracing/importer/find_input_expectations.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-02-15T19:18:01Z",
+      "side": 1,
+      "message": "Done. Had to move it to a dict of event names to additional information since the metric needs that.",
+      "parentUuid": "5817728e_d02dd46b",
+      "revId": "732a82a41504caaa8646960121670074d94528ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f4141e80_9c95301d",
         "filename": "tracing/tracing/metrics/vr/frame_cycle_duration_metric.html",
         "patchSetId": 5
@@ -56,6 +74,24 @@
       "revId": "732a82a41504caaa8646960121670074d94528ae",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b80fd92_564dd255",
+        "filename": "tracing/tracing/metrics/vr/frame_cycle_duration_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-02-15T19:18:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4141e80_9c95301d",
+      "revId": "732a82a41504caaa8646960121670074d94528ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
