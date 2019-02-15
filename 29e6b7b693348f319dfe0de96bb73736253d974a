@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5744229e_7edb6573",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-02-15T22:17:02Z",
+      "side": 1,
+      "message": "Nope, it doesn\u0027t fail in any of the attempts (although I don\u0027t think it actually pushes the binaries, but it does seem to take a while, probably checking on device to see if the local binaries have updated or not, and whether it needs to push the binary at all?).\n\nThe calltrace for the three attempts here: https://paste.googleplex.com/4933545160081408",
+      "parentUuid": "5ab291e7_0eda1a27",
+      "range": {
+        "startLine": 11,
+        "startChar": 14,
+        "endLine": 11,
+        "endChar": 61
+      },
+      "revId": "29e6b7b693348f319dfe0de96bb73736253d974a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ad7a64c8_352267e1",
         "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "29e6b7b693348f319dfe0de96bb73736253d974a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3503418c_6ad92206",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-02-15T22:17:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad7a64c8_352267e1",
+      "range": {
+        "startLine": 375,
+        "startChar": 4,
+        "endLine": 376,
+        "endChar": 37
+      },
+      "revId": "29e6b7b693348f319dfe0de96bb73736253d974a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
