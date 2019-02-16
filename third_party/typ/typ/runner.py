@@ -23,6 +23,7 @@ import unittest
 import traceback
 
 from collections import OrderedDict
+from collections import Counter
 
 # This ensures that absolute imports of typ modules will work when
 # running typ/runner.py as a script even if typ is not installed.
@@ -507,8 +508,8 @@ class Runner(object):
 
         regressions = sorted(json_results.regressions(result_set))
         retry_limit = self.args.retry_limit
-
-        while retry_limit and regressions:
+        while (not self.args.retry_only_retry_on_failure_tests and
+               retry_limit and regressions):
             if retry_limit == self.args.retry_limit:
                 self.flush()
                 self.args.overwrite = False
@@ -565,6 +566,9 @@ class Runner(object):
         h = self.host
         running_jobs = set()
 
+        retry_count_tracker = Counter()
+        test_name_to_obj = {}
+        retry_limit = self.args.retry_limit
         jobs = min(len(test_inputs), jobs)
         if not jobs:
             return
@@ -574,18 +578,36 @@ class Runner(object):
                          _setup_process, _teardown_process)
         try:
             while test_inputs or running_jobs:
-                while test_inputs and (len(running_jobs) < self.args.jobs):
+                while test_inputs and (len(running_jobs) < jobs):
                     test_input = test_inputs.pop(0)
                     stats.started += 1
                     pool.send(test_input)
                     running_jobs.add(test_input.name)
+                    test_name_to_obj[test_input.name] = test_input
                     self._print_test_started(stats, test_input)
 
                 result = pool.get()
-                running_jobs.remove(result.name)
                 result_set.add(result)
-                stats.finished += 1
-                self._print_test_finished(stats, result)
+                if (not self.args.retry_only_retry_on_failure_tests
+                    or not result.should_retry_on_failure
+                    or result.actual == ResultType.Pass
+                    or retry_count_tracker[result.name] == retry_limit):
+                    running_jobs.remove(result.name)
+                    stats.finished += 1
+                    self._print_test_finished(stats, result)
+                else:
+                    retry_count_tracker[result.name] += 1
+                    self._print_test_finished(stats, result)
+                    self.print_('')
+                    self.print_('Retrying failed test %s (attempt #%d of %d)' %
+                                (result.name,
+                                 retry_count_tracker[result.name],
+                                 retry_limit))
+                    self.print_('')
+                    test_input = test_name_to_obj[result.name]
+                    self._print_test_started(stats, test_input)
+                    pool.send(test_input)
+
             pool.close()
         finally:
             self.final_responses.extend(pool.join())
@@ -954,7 +976,8 @@ def _run_one_test(child, test_input):
     took = h.time() - started
     return _result_from_test_result(test_result, test_name, started, took, out,
                                     err, child.worker_num, pid,
-                                    expected_results, child.has_expectations)
+                                    expected_results, child.has_expectations,
+                                    should_retry_on_failure)
 
 
 def _run_under_debugger(host, test_case, suite,
@@ -970,7 +993,7 @@ def _run_under_debugger(host, test_case, suite,
 
 def _result_from_test_result(test_result, test_name, started, took, out, err,
                              worker_num, pid, expected_results,
-                             has_expectations):
+                             has_expectations, should_retry_on_failure=False):
     if test_result.failures:
         actual = ResultType.Failure
         code = 1
@@ -1006,7 +1029,8 @@ def _result_from_test_result(test_result, test_name, started, took, out, err,
 
     flaky = False
     return Result(test_name, actual, started, took, worker_num,
-                  expected_results, unexpected, flaky, code, out, err, pid)
+                  expected_results, unexpected, flaky, code, out, err, pid,
+                  should_retry_on_failure=should_retry_on_failure)
 
 
 def _load_via_load_tests(child, test_name):
