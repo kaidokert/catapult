@@ -42,6 +42,24 @@
     },
     {
       "key": {
+        "uuid": "9aadb8b0_7a492a1f",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-02-16T02:55:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d42c52a4_0015b5fb",
+      "revId": "59b1960f7a198c6f75f9fe70b0c8d61b43ca086f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8be42ee9_1c4d32bf",
         "filename": "telemetry/telemetry/story/expectations.py",
         "patchSetId": 4
@@ -56,6 +74,24 @@
       "revId": "59b1960f7a198c6f75f9fe70b0c8d61b43ca086f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05e51dab_15c3aa5b",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-02-16T02:55:10Z",
+      "side": 1,
+      "message": "Nice, thanks! Done!",
+      "parentUuid": "8be42ee9_1c4d32bf",
+      "revId": "59b1960f7a198c6f75f9fe70b0c8d61b43ca086f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
