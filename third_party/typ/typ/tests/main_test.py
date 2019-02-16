@@ -34,6 +34,19 @@ if is_python3:  # pragma: python3
 
 d = textwrap.dedent
 
+PASS_TEST_RETRY_ON_FAILURE_PY = """
+import unittest
+
+_retry = 0
+class PassRetryOnFailureTest(unittest.TestCase):
+    def test_retry_on_failure(self):
+        global _retry
+        if _retry == 3:
+            return
+        _retry += 1
+        self.fail()
+"""
+
 
 SKIP_TEST_PY = """
 import unittest
@@ -921,6 +934,133 @@ class TestCli(test_case.MainTestCase):
         results = results['tests']['pass_test']['PassingTest']['test_pass']
         self.assertEqual(results['actual'],'PASS')
         self.assertEqual(results['expected'],'PASS')
+        self.assertNotIn('is_unexpected', results)
+        self.assertNotIn('is_regression', results)
+
+    def test_run_test_retry_on_failure(self):
+        test_name = ('pass_retry_on_failure_test'
+                     '.PassRetryOnFailureTest.test_retry_on_failure')
+        files = {'pass_retry_on_failure_test.py': PASS_TEST_RETRY_ON_FAILURE_PY,
+                 'expectations.txt': d(
+                  ('# tags: [ foo bar ]\n'
+                   'crbug.com/12345 [ foo ] %s'
+                   ' [ RetryOnFailure ]\n') % test_name
+                )}
+        _, out, _, files = self.check(['--write-full-results-to',
+                                       'full_results.json',
+                                       '-X', 'expectations.txt',
+                                       '-x', 'foo',
+                                       '--retry-only-retry-on-failure-tests',
+                                       '--retry-limit', '3'],
+                                      files=files, ret=0, err='')
+
+        self.assertIn(test_name + ' failed unexpectedly', out)
+        self.assertIn(test_name + ' passed', out)
+        self.assertNotIn(test_name + ' passed unexpectedly', out)
+        self.assertIn('1 test passed, 0 skipped, 0 failures.\n', out)
+        retry_failed_test_output = (('Retrying failed test %s ' % test_name) +
+                                    '(attempt #%d of 3)')
+        self.assertIn(retry_failed_test_output % 1, out)
+        self.assertIn(retry_failed_test_output % 2, out)
+        self.assertIn(retry_failed_test_output % 3, out)
+        results = json.loads(files['full_results.json'])
+        results = (results['tests']['pass_retry_on_failure_test']
+                   ['PassRetryOnFailureTest']['test_retry_on_failure'])
+        self.assertEqual(results['actual'], 'FAIL FAIL FAIL PASS')
+        self.assertEqual(results['expected'], 'PASS')
+        self.assertNotIn('is_unexpected', results)
+        self.assertNotIn('is_regression', results)
+
+    def test_run_test_retry_on_failure_with_failure_expectation(self):
+        test_name = ('pass_retry_on_failure_test'
+                     '.PassRetryOnFailureTest.test_retry_on_failure')
+        files = {'pass_retry_on_failure_test.py': PASS_TEST_RETRY_ON_FAILURE_PY,
+                 'expectations.txt': d(
+                  ('# tags: [ foo bar ]\n'
+                   'crbug.com/12345 [ foo ] %s'
+                   ' [ RetryOnFailure Failure ]\n') % test_name
+                  )}
+        _, out, _, files = self.check(['--write-full-results-to',
+                                       'full_results.json',
+                                       '-X', 'expectations.txt',
+                                       '-x', 'foo',
+                                       '--retry-only-retry-on-failure-tests',
+                                       '--retry-limit', '3'],
+                                      files=files, ret=0, err='')
+        self.assertIn(test_name + ' failed as expected', out)
+        self.assertIn(test_name + ' passed unexpectedly', out)
+        self.assertIn('1 test passed, 0 skipped, 0 failures.\n', out)
+        retry_failed_test_output = (('Retrying failed test %s ' % test_name) +
+                                    '(attempt #%d of 3)')
+        self.assertIn(retry_failed_test_output % 1, out)
+        self.assertIn(retry_failed_test_output % 2, out)
+        self.assertIn(retry_failed_test_output % 3, out)
+        results = json.loads(files['full_results.json'])
+        results = (results['tests']['pass_retry_on_failure_test']
+                   ['PassRetryOnFailureTest']
+                   ['test_retry_on_failure'])
+        self.assertEqual(results['actual'], 'FAIL FAIL FAIL PASS')
+        self.assertEqual(results['expected'], 'FAIL')
+        self.assertIn('is_unexpected', results)
+        self.assertNotIn('is_regression', results)
+
+    def test_retryonfailure_regression(self):
+        test_name = 'fail_test.FailingTest.test_fail'
+        files = {'fail_test.py': FAIL_TEST_PY,
+                 'expectations.txt': d(
+                 ('# tags: [ foo bar ]\n'
+                  'crbug.com/12345 [ foo ] %s'
+                  ' [ RetryOnFailure ]\n') % test_name
+                  )}
+        _, out, _, files = self.check(['--write-full-results-to',
+                                       'full_results.json',
+                                       '-X', 'expectations.txt',
+                                       '-x', 'foo',
+                                       '--retry-only-retry-on-failure-tests',
+                                       '--retry-limit', '3'],
+                                      files=files, ret=1, err='')
+        self.assertIn('%s failed unexpectedly' % test_name, out)
+        self.assertIn('0 tests passed, 0 skipped, 1 failure.\n', out)
+        retry_failed_test_output = ('Retrying failed test fail_test'
+                                    '.FailingTest.test_fail '
+                                    '(attempt #%d of 3)')
+        self.assertIn(retry_failed_test_output % 1, out)
+        self.assertIn(retry_failed_test_output % 2, out)
+        self.assertIn(retry_failed_test_output % 3, out)
+        results = json.loads(files['full_results.json'])
+        results = results['tests']['fail_test']['FailingTest']['test_fail']
+        self.assertEqual(results['actual'], ' '.join(['FAIL'] * 4))
+        self.assertEqual(results['expected'], 'PASS')
+        self.assertIn('is_unexpected', results)
+        self.assertIn('is_regression', results)
+
+    def test_retryonfailure_no_regression(self):
+        test_name = 'fail_test.FailingTest.test_fail'
+        files = {'fail_test.py': FAIL_TEST_PY,
+                 'expectations.txt': d(
+                 ('# tags: [ foo bar ]\n'
+                  'crbug.com/12345 [ foo ] %s'
+                  ' [ RetryOnFailure Failure ]\n') % test_name
+                  )}
+        _, out, _, files = self.check(['--write-full-results-to',
+                                       'full_results.json',
+                                       '-X', 'expectations.txt',
+                                       '-x', 'foo',
+                                       '--retry-only-retry-on-failure-tests',
+                                       '--retry-limit', '3'],
+                                      files=files, ret=0, err='')
+        self.assertIn('fail_test.FailingTest.test_fail failed as expected', out)
+        self.assertIn('0 tests passed, 0 skipped, 1 failure.\n', out)
+        retry_failed_test_output = ('Retrying failed test fail_test'
+                                    '.FailingTest.test_fail '
+                                    '(attempt #%d of 3)')
+        self.assertIn(retry_failed_test_output % 1, out)
+        self.assertIn(retry_failed_test_output % 2, out)
+        self.assertIn(retry_failed_test_output % 3, out)
+        results = json.loads(files['full_results.json'])
+        results = results['tests']['fail_test']['FailingTest']['test_fail']
+        self.assertEqual(results['actual'], ' '.join(['FAIL'] * 4))
+        self.assertEqual(results['expected'], 'FAIL')
         self.assertNotIn('is_unexpected', results)
         self.assertNotIn('is_regression', results)
 
