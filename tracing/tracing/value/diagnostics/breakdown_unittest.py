@@ -34,7 +34,7 @@ class BreakdownUnittest(unittest.TestCase):
 
   def testDeserialize(self):
     d = histogram_deserializer.HistogramDeserializer([
-        'a', 'b', 'c', [0, 1, 2], 'colors'])
+        'a', 'b', 'c', [0, 1, 2], 'colors'], {})
     b = breakdown.Breakdown.Deserialize([4, 3, 1, 2, 3], d)
     self.assertEqual(b.color_scheme, 'colors')
     self.assertEqual(b.Get('a'), 1)

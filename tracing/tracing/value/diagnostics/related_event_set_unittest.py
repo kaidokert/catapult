@@ -31,7 +31,7 @@ class RelatedEventSetUnittest(unittest.TestCase):
     self.assertEqual(event['duration'], 1)
 
   def testDeserialize(self):
-    d = histogram_deserializer.HistogramDeserializer(['aaa'])
+    d = histogram_deserializer.HistogramDeserializer(['aaa'], {})
     events = related_event_set.RelatedEventSet.Deserialize([[42, 0, 10, 20]], d)
     self.assertEqual(len(events), 1)
     event = list(events)[0]

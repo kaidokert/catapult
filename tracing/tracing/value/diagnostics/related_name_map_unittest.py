@@ -53,7 +53,7 @@ class RelatedNameMapUnittest(unittest.TestCase):
 
   def testDeserialize(self):
     d = histogram_deserializer.HistogramDeserializer([
-        'a', 'b', 'c', [0, 1, 2], 'd', 'e', 'f'])
+        'a', 'b', 'c', [0, 1, 2], 'd', 'e', 'f'], {})
     names = related_name_map.RelatedNameMap.Deserialize([3, 4, 5, 6], d)
     self.assertEqual(names.Get('a'), 'd')
     self.assertEqual(names.Get('b'), 'e')

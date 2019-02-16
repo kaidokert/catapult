@@ -102,7 +102,7 @@ class GenericSetUnittest(unittest.TestCase):
       gs.GetOnlyElement()
 
   def testDeserialize(self):
-    d = histogram_deserializer.HistogramDeserializer(['aaa', 'bbb'])
+    d = histogram_deserializer.HistogramDeserializer(['aaa', 'bbb'], {})
     a = generic_set.GenericSet.Deserialize(0, d)
     self.assertEqual(len(a), 1)
     self.assertIn('aaa', a)
