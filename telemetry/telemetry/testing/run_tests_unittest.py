@@ -142,6 +142,67 @@ class RunTestsUnitTest(unittest.TestCase):
     return self._test_result
 
   @decorators.Disabled('chromeos')  # crbug.com/696553
+  def testDoesRetryOnFailureRetriesAndEventuallyPasses(self):
+    self._RunUnitWithExpectationFile(('unit_tests_test'
+                                      '.PassRetryOnFailureTest'
+                                      '.test_retry_on_failure'),
+                                     'RetryOnFailure',
+                                     extra_args=['--retry-limit=3',
+                                                 ('--retry-only-retry'
+                                                  '-on-failure-tests')],
+                                     expected_exit_code=0)
+    results = (self._test_result['tests']['unit_tests_test']
+               ['PassRetryOnFailureTest']['test_retry_on_failure'])
+    self.assertEqual(results['actual'], 'FAIL FAIL FAIL PASS')
+    self.assertEqual(results['expected'], 'PASS')
+    self.assertNotIn('is_unexpected', results)
+    self.assertNotIn('is_regression', results)
+
+  @decorators.Disabled('chromeos')  # crbug.com/696553
+  def testTestFailsAllRetryOnFailureRetriesAndIsaRegression(self):
+    self._RunUnitWithExpectationFile(('unit_tests_test.FailingTest.test_fail'),
+                                     'RetryOnFailure',
+                                     extra_args=['--retry-limit=3',
+                                                 ('--retry-only-retry'
+                                                  '-on-failure-tests')],
+                                     expected_exit_code=1)
+    results = (self._test_result['tests']['unit_tests_test']
+               ['FailingTest']['test_fail'])
+    self.assertEqual(results['actual'], 'FAIL FAIL FAIL FAIL')
+    self.assertEqual(results['expected'], 'PASS')
+    self.assertIn('is_unexpected', results)
+    self.assertIn('is_regression', results)
+
+  @decorators.Disabled('chromeos')  # crbug.com/696553
+  def testTestFailsAllRetryOnFailureRetriesAndIsNotaRegression(self):
+    self._RunUnitWithExpectationFile(('unit_tests_test.FailingTest.test_fail'),
+                                     'RetryOnFailure Failure',
+                                     extra_args=['--retry-limit=3',
+                                                 ('--retry-only-retry'
+                                                  '-on-failure-tests')],
+                                     expected_exit_code=0)
+    results = (self._test_result['tests']['unit_tests_test']
+               ['FailingTest']['test_fail'])
+    self.assertEqual(results['actual'], 'FAIL FAIL FAIL FAIL')
+    self.assertEqual(results['expected'], 'FAIL')
+    self.assertNotIn('is_unexpected', results)
+    self.assertNotIn('is_regression', results)
+
+  @decorators.Disabled('chromeos')  # crbug.com/696553
+  def testRetryOnFailureExpectationWithFailingTest(self):
+    self._RunUnitWithExpectationFile('unit_tests_test.FailingTest.test_fail',
+                                     'RetryOnFailure',
+                                     extra_args=['--retry-limit=2'],
+                                     expected_exit_code=1)
+    test_result = (self._test_result['tests']['unit_tests_test']['FailingTest']
+                   ['test_fail'])
+    print test_result
+    self.assertEqual(test_result['actual'], 'FAIL FAIL FAIL')
+    self.assertEqual(test_result['expected'], 'PASS')
+    self.assertIn('is_unexpected', test_result)
+    self.assertIn('is_regression', test_result)
+
+  @decorators.Disabled('chromeos')  # crbug.com/696553
   def testDoNotRetryExpectedFailure(self):
     self._RunUnitWithExpectationFile('unit_tests_test.FailingTest.test_fail',
                                      'Failure', extra_args=['--retry-limit=3'])
