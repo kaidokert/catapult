@@ -15,9 +15,15 @@ from py_utils import cloud_storage  # pylint: disable=import-error
 from telemetry import compact_mode_options
 from telemetry.core import platform
 from telemetry.core import util
+from telemetry.internal.backends.chrome import android_browser_finder
+from telemetry.internal.backends.chrome import cros_browser_finder
+from telemetry.internal.backends.chrome import desktop_browser_finder
 from telemetry.internal.browser import browser_finder
 from telemetry.internal.browser import browser_finder_exceptions
 from telemetry.internal.browser import profile_types
+from telemetry.internal.platform import android_device
+from telemetry.internal.platform import cros_device
+from telemetry.internal.platform import desktop_device
 from telemetry.internal.platform import device_finder
 from telemetry.internal.platform import remote_platform_options
 from telemetry.internal.util import binary_manager
@@ -33,6 +39,7 @@ class BrowserFinderOptions(optparse.Values):
 
     self.browser_type = browser_type
     self.browser_executable = None
+    self.target_platforms = []
     self.chrome_root = None  # Path to src/
     self.chromium_output_dir = None  # E.g.: out/Debug
     self.device = None
@@ -295,6 +302,30 @@ class BrowserFinderOptions(optparse.Values):
   def MergeDefaultValues(self, defaults):
     for k, v in defaults.__dict__.items():
       self.ensure_value(k, v)
+
+  def GetBrowserFinders(self):
+    if not self.target_platforms or 'all' in self.target_platforms:
+      return browser_finder.BROWSER_FINDERS
+    browser_finders = []
+    if any(p in self.target_platforms for p in ['mac', 'linux', 'win']):
+      browser_finders.append(desktop_browser_finder)
+    if 'android' in self.target_platforms:
+      browser_finders.append(android_browser_finder)
+    if 'chromeos' in self.target_platforms:
+      browser_finders.append(cros_browser_finder)
+    return browser_finders
+
+  def GetDeviceFinders(self):
+    if not self.target_platforms or 'all' in self.target_platforms:
+      return device_finder.DEVICES
+    device_finders = []
+    if any(p in self.target_platforms for p in ['mac', 'linux', 'win']):
+      device_finders.append(desktop_device)
+    if 'android' in self.target_platforms:
+      device_finders.append(android_device)
+    if 'chromeos' in self.target_platforms:
+      device_finders.append(cros_device)
+    return device_finders
 
 
 class BrowserOptions(object):

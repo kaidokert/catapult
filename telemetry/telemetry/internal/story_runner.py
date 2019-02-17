@@ -10,6 +10,7 @@ import os
 import sys
 import time
 
+from multiprocessing.dummy import Pool as ThreadPool
 import py_utils
 from py_utils import cloud_storage  # pylint: disable=import-error
 from py_utils import memory_debug  # pylint: disable=import-error
@@ -132,7 +133,9 @@ def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
       story.wpr_mode = state.wpr_mode
       state.RunStory(results)
       if isinstance(test, story_test.StoryTest):
+        logging.warning('Starting to measure')
         test.Measure(state.platform, results)
+        logging.warning('Done measuring')
     except page_action.PageActionNotSupported as exc:
       results.Skip('Unsupported page action: %s' % exc)
     except (legacy_page_test.Failure, exceptions.TimeoutException,
@@ -224,6 +227,7 @@ def Run(test, story_set, finder_options, results, max_failures=None,
   if effective_max_failures is None:
     effective_max_failures = max_failures
 
+  results.pool = ThreadPool(5)
   state = None
   device_info_diags = {}
   # TODO(crbug.com/866458): unwind the nested blocks
@@ -298,6 +302,7 @@ def Run(test, story_set, finder_options, results, max_failures=None,
           logging.error('Too many failures. Aborting.')
           return
   finally:
+    results.GetAllAsyncResults()
     results.PopulateHistogramSet()
 
     for name, diag in device_info_diags.iteritems():
