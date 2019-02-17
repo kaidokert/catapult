@@ -5,7 +5,12 @@ import optparse
 import os
 import unittest
 
+from telemetry import benchmark
+from telemetry.internal.backends.chrome import android_browser_finder
+from telemetry.internal.backends.chrome import cros_browser_finder
+from telemetry.internal.backends.chrome import desktop_browser_finder
 from telemetry.internal.browser import browser_options
+from telemetry.story import expectations
 
 
 class BrowserOptionsTest(unittest.TestCase):
@@ -125,3 +130,62 @@ class BrowserOptionsTest(unittest.TestCase):
     self.assertFalse(options.default_false)
     self.assertFalse(options.override_to_true)
     self.assertTrue(options.override_to_false)
+
+  def testBrowserFinders(self):
+    options = browser_options.BrowserFinderOptions()
+    finders = options.GetBrowserFinders()
+    self.assertTrue(android_browser_finder in finders)
+    self.assertTrue(cros_browser_finder in finders)
+    self.assertTrue(desktop_browser_finder in finders)
+
+    @benchmark.Owner(emails=['bob@chromium.org'], component='xyzzyx')
+    class DesktopBenchmark(benchmark.Benchmark):
+      SUPPORTED_PLATFORMS = [expectations.ALL_DESKTOP]
+      @classmethod
+      def Name(cls):
+        return "desktop"
+
+    options.target_platforms = DesktopBenchmark().target_platforms
+    finders = options.GetBrowserFinders()
+    self.assertFalse(android_browser_finder in finders)
+    self.assertTrue(cros_browser_finder in finders)
+    self.assertTrue(desktop_browser_finder in finders)
+
+    @benchmark.Owner(emails=['bob@chromium.org'], component='xyzzyx')
+    class AndroidBenchmark(benchmark.Benchmark):
+      SUPPORTED_PLATFORMS = [expectations.ALL_ANDROID]
+      @classmethod
+      def Name(cls):
+        return "android"
+
+    options.target_platforms = AndroidBenchmark().target_platforms
+    finders = options.GetBrowserFinders()
+    self.assertTrue(android_browser_finder in finders)
+    self.assertFalse(cros_browser_finder in finders)
+    self.assertFalse(desktop_browser_finder in finders)
+
+    @benchmark.Owner(emails=['bob@chromium.org'], component='xyzzyx')
+    class MacBenchmark(benchmark.Benchmark):
+      SUPPORTED_PLATFORMS = [expectations.MAC_10_11]
+      @classmethod
+      def Name(cls):
+        return "Mac 10.11"
+
+    options.target_platforms = MacBenchmark().target_platforms
+    finders = options.GetBrowserFinders()
+    self.assertFalse(android_browser_finder in finders)
+    self.assertFalse(cros_browser_finder in finders)
+    self.assertTrue(desktop_browser_finder in finders)
+
+    @benchmark.Owner(emails=['bob@chromium.org'], component='xyzzyx')
+    class WebViewBenchmark(benchmark.Benchmark):
+      SUPPORTED_PLATFORMS = [expectations.ANDROID_NEXUS6_WEBVIEW]
+      @classmethod
+      def Name(cls):
+        return "Android WebView"
+
+    options.target_platforms = WebViewBenchmark().target_platforms
+    finders = options.GetBrowserFinders()
+    self.assertTrue(android_browser_finder in finders)
+    self.assertFalse(cros_browser_finder in finders)
+    self.assertFalse(desktop_browser_finder in finders)

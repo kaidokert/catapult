@@ -18,8 +18,8 @@ DEVICES = [
 def _GetAllAvailableDevices(options):
   """Returns a list of all available devices."""
   devices = []
-  for device in DEVICES:
-    devices.extend(device.FindAllAvailableDevices(options))
+  for finder in options.GetDeviceFinders():
+    devices.extend(finder.FindAllAvailableDevices(options))
   return devices
 
 
