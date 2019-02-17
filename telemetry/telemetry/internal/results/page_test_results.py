@@ -288,6 +288,7 @@ class PageTestResults(object):
     self._serialized_trace_file_ids_to_paths = {}
 
     self._histograms = histogram_set.HistogramSet()
+    self._async_results = {}
 
     self._telemetry_info = TelemetryInfo(
         upload_bucket=upload_bucket, output_dir=output_dir)
@@ -474,6 +475,28 @@ class PageTestResults(object):
     else:
       self._story_run_count[story] = 1
     self._current_page_run = None
+
+
+  def RegisterAsyncResult(self, async_result):
+    assert self._current_page_run, 'Did not call WillRunPage.'
+    self._async_results[self._current_page_run] = async_result
+
+  def GetAllAsyncResults(self):
+    assert not self._current_page_run, 'Cannot get async results while running.'
+    for run in self._async_results:
+      self._current_page_run = run
+      try:
+        ret = self._async_results[run].get()
+        for fail in ret['fail']:
+          self.Fail(fail)
+        if ret['histogram_dicts']:
+          self.ImportHistogramDicts(ret['histogram_dicts'])
+        for scalar in ret['scalars']:
+          self.AddValue(scalar)
+      finally:
+        self._current_page_run = None
+    self._async_results = {}
+
 
   def InterruptBenchmark(self, stories, repeat_count):
     self.telemetry_info.InterruptBenchmark()
