@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "95da981f_d6826e17",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-18T12:12:27Z",
+      "side": 1,
+      "message": "Can you check if this also fixes crbug.com/844360?",
+      "revId": "f5b7269ac10519e47a9577321de834f9e9a40503",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d04dcdb9_72a75366",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-18T12:12:27Z",
+      "side": 1,
+      "message": "Let\u0027s try to avoid as much as possible tucking extra stuff into the finder_options. Can you pass this instead as an optional second arg to the RunBenchmark command?",
+      "revId": "f5b7269ac10519e47a9577321de834f9e9a40503",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07caf5d8_72a394ee",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-18T12:12:27Z",
+      "side": 1,
+      "message": "nit: target_platforms.update(p.platforms) instead of the inner for loop,\n\nAlso, as in my other comment below, make this a GetSupportedPlatforms() method (with a docstring) and not a property.",
+      "revId": "f5b7269ac10519e47a9577321de834f9e9a40503",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9266519_758a1d40",
+        "filename": "telemetry/telemetry/internal/browser/browser_finder.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-18T12:12:27Z",
+      "side": 1,
+      "message": "Wondering, instead of a list of browser_finders, can this get a list of platforms?",
+      "revId": "f5b7269ac10519e47a9577321de834f9e9a40503",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37d0ad20_bbc05d9e",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-18T12:12:27Z",
+      "side": 1,
+      "message": "If possible let\u0027s try to avoid this.",
+      "revId": "f5b7269ac10519e47a9577321de834f9e9a40503",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a65daae5_104ac23c",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-18T12:12:27Z",
+      "side": 1,
+      "message": "I don\u0027t think these methods belong here. Instead functions in both browser_finder.py and device_finder.py should take the list (or set) of platforms and figure out themselves the right finder classes to use.",
+      "revId": "f5b7269ac10519e47a9577321de834f9e9a40503",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ed9753c_4ae2a1b8",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-18T12:12:27Z",
+      "side": 1,
+      "message": "The part I\u0027m a bit wary about is that, on the surface, this appears to be introducing yet another thing called \"platform\" which, moreover, can be arbitrary strings.\n\nHaving said that, however, your change is probably a first step towards making that concept a bit more concrete and less sloppy. To start, let\u0027s add an explicit docstring here explaining the possible returned values match those produced by platform.GetOsName().\n\nalso nit: make this a proper method (not a property), e.g. GetSupportedPlatforms(), in particular since this returns a mutable thing. And maybe it should return a set rather than a list?",
+      "revId": "f5b7269ac10519e47a9577321de834f9e9a40503",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e180a5f9_c9521abe",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-18T12:12:27Z",
+      "side": 1,
+      "message": "I am not 100% sure whether we should have an \u0027all\u0027 platform or, instead, define a constant in telemetry.core.platform with the names of all supported platforms. The later can also help reduce surprises on the values that one can expect to receive (e.g. in some places validate that only valid platform values are used). What do you think?",
+      "revId": "f5b7269ac10519e47a9577321de834f9e9a40503",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
