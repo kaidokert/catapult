@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c625c204_b22db025",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2019-02-18T13:56:09Z",
+      "side": 1,
+      "message": "The two (nav start and net request) can be quite far from each other :( After navigation start the network service has to start, the HTTP cache has to make a disk roundtrip to determine whether a network request has to be made. There was an internal discussion about implementing a \u0027more proper\u0027 time to network request:\ngo/2018-time-to-network-request-discussion.\n\nIn other words, the navigation_start_time will reflect some point in time defined in terms of chrome \u0027architecture\u0027 and not defined purely as the end-user benefit, which can lead to spending time optimizing for things that are not essential. It is not bad to have a few metrics like this (after all, \"messageloop_start_time\" is like this - it was better than anything at catching startup regressions).\n\nSimilarly, content_start_time is something that is made farther from being user-focused by having the architectural constraint built into it. It can be informative though, so I am hesitant, but I would really like to have our top-level metrics be more user-focused.\n\nA possible avenue is to name these extra metrics \u0027experimental_*\u0027, avoid alerting on them, etc. How long do we want to maintain them? They did not simplify the code :)\n\nThe proposal for navigation_commit_time looks actually quite cool to me. I did not think that it\u0027d be useful in lab-controlled environments because I got used to the world of having the time to network request. Given that it is missing now, perhaps time-to-commit would be a good replacement for it, it is tightly linked to the request start (when in the lab), right?\n\nSo, to summarize, my proposal would be to:\n1. have navigation_commit_time as a toplevel metric that we will optimize for, alerted\n2. perhaps have experimental_content_start_time and experimental_navigation_start_time for some time to be able to understand the startup sequence better, and then perhaps stop worrying?",
+      "range": {
+        "startLine": 21,
+        "startChar": 30,
+        "endLine": 22,
+        "endChar": 41
+      },
+      "revId": "ba6ce0e98d48bcb20846f7119bd87f6922d66dc6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e206ec60_cfb9ce21",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2019-02-18T13:56:09Z",
+      "side": 1,
+      "message": "IMO it would be good to update the comment to mention how the workaround works for the newly added metric(s)",
+      "range": {
+        "startLine": 116,
+        "startChar": 7,
+        "endLine": 116,
+        "endChar": 24
+      },
+      "revId": "ba6ce0e98d48bcb20846f7119bd87f6922d66dc6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "beec4bcf_dcbc427e",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2019-02-18T13:56:09Z",
+      "side": 1,
+      "message": "so if we for some reason cannot find the content start event (or navigation event), then we would lose the FCP metric recordings? Should we rely on them so much?",
+      "range": {
+        "startLine": 170,
+        "startChar": 10,
+        "endLine": 170,
+        "endChar": 50
+      },
+      "revId": "ba6ce0e98d48bcb20846f7119bd87f6922d66dc6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
