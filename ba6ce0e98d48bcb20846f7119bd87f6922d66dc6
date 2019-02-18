@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "861220a2_0f8b2381",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2019-02-18T14:36:19Z",
+      "side": 1,
+      "message": "Sorry if I wasn\u0027t clear in the description: the intention is to make all of these new metrics purely diagnostic metrics that we would never alert on. The motivation is that we can move a bunch of these independently through scheduling changes and we\u0027d like to observe what kind of correlation that has with the user-visible top-level metrics. I agree that navigation_start_time is especially not very meaningful in isolation, but still potentially a useful signal to have internally.\n\nI\u0027ve now renamed these to experimental_* to make their expected use more obvious (except navigation_commit_time as you mentioned).",
+      "parentUuid": "c625c204_b22db025",
+      "range": {
+        "startLine": 21,
+        "startChar": 30,
+        "endLine": 22,
+        "endChar": 41
+      },
+      "revId": "ba6ce0e98d48bcb20846f7119bd87f6922d66dc6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e206ec60_cfb9ce21",
         "filename": "tracing/tracing/metrics/android_startup_metric.html",
         "patchSetId": 2
@@ -68,6 +92,30 @@
       "revId": "ba6ce0e98d48bcb20846f7119bd87f6922d66dc6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62863353_59a3dba6",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2019-02-18T14:36:19Z",
+      "side": 1,
+      "message": "Good point, I wasn\u0027t sure what data to prioritize here. I think it makes sense to treat the new metrics as best effort since FCP is really what we want to track. Fixed.",
+      "parentUuid": "beec4bcf_dcbc427e",
+      "range": {
+        "startLine": 170,
+        "startChar": 10,
+        "endLine": 170,
+        "endChar": 50
+      },
+      "revId": "ba6ce0e98d48bcb20846f7119bd87f6922d66dc6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
