@@ -706,8 +706,7 @@ tr.exportTo('tr.v', function() {
             tr.b.Unit.byName.count_smallerIsBetter, this.numNans);
       }
       if (statName === 'count') {
-        return new tr.b.Scalar(
-            tr.b.Unit.byName.count_smallerIsBetter, this.numValues);
+        return new tr.b.Scalar(tr.b.Unit.byName.count, this.numValues);
       }
       if (statName.substr(0, 4) === 'pct_') {
         const percent = percentFromString(statName.substr(4));
