@@ -16,6 +16,24 @@
       "revId": "029ff5edb296fb6aea7519df244a286ef92c223e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01db22f1_e8938a6c",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1154589
+      },
+      "writtenOn": "2019-02-19T11:17:37Z",
+      "side": 1,
+      "message": "aapt only seems to know how to decode the binary manfiest that\u0027s in the apk into the human-readable xml tree that\u0027s parsed here. I haven\u0027t found a way to extract it as XML from the apk.\n\nIf we start making a bin/*_bundle file for a standard apk, then possibly it could work. But that\u0027s a longer project, probably.",
+      "parentUuid": "42d63b8f_e80228a8",
+      "revId": "029ff5edb296fb6aea7519df244a286ef92c223e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
