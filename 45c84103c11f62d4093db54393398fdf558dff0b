@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "86989b7a_10d5719e",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-19T10:01:01Z",
+      "side": 1,
+      "message": "nit: this can be a classmethod, this way there is no need to build an instance in order to call the method.",
+      "revId": "45c84103c11f62d4093db54393398fdf558dff0b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcac0b81_855b73bf",
+        "filename": "telemetry/telemetry/internal/browser/browser_finder.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-19T10:01:01Z",
+      "side": 1,
+      "message": "let\u0027s keep this as a private module function.",
+      "revId": "45c84103c11f62d4093db54393398fdf558dff0b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e1ab501_36f96488",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-19T10:01:01Z",
+      "side": 1,
+      "message": "Add a small comment to document this. Also let None be the default so this breaks loudly if one tries to find browsers without setting this first.",
+      "revId": "45c84103c11f62d4093db54393398fdf558dff0b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c11dbcb_c4ff6cbf",
+        "filename": "telemetry/telemetry/internal/browser/browser_options_unittest.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-19T10:01:01Z",
+      "side": 1,
+      "message": "Specially with my suggestion to make _GetBrowserFinders and _GetDeviceFinders private, I think these tests should go into unittests for browser_finder.py and device_finder.py respectively.\n\nAlso would be great to break them into smaller \"units\", e.g. testGetBrowserFindersDesktop, testGetBrowserFindersAndroid, ... and please add a test for \"Any\".",
+      "revId": "45c84103c11f62d4093db54393398fdf558dff0b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50ae303c_48ac19d0",
+        "filename": "telemetry/telemetry/internal/platform/device_finder.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-19T10:01:01Z",
+      "side": 1,
+      "message": "let\u0027s make this private.",
+      "revId": "45c84103c11f62d4093db54393398fdf558dff0b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae14cec6_d72b6f4d",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-19T10:01:01Z",
+      "side": 1,
+      "message": "nit: let\u0027s this return a `set(self._platforms)`; this way you also avoid exposing the internal (mutable) list which callers might change by accident.\n\nAnd for consistency, on all others, make them also return sets.",
+      "revId": "45c84103c11f62d4093db54393398fdf558dff0b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

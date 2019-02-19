@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "2bb6c24c_4872bfd9",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-19T10:01:01Z",
+      "side": 1,
+      "message": "finder_options (and browser_options) are already massive blobs where random properties are being stashed together. This makes it hard, e.g., to keep track of which pieces of code depend on which options. And this is made worst when values of these properties set in one place can be arbitrarily changed in some other, leading to unexpected behaviors (this has happened). In fact the split between finder and browser options was one first small step trying to address this complexity. Another step we have in mind is trying to make sure these option-blobs do not contain any mutable values and, if possible, \"freeze\" them when all options have been set to prevent any further unintended modifications.\n\nNow, having said that, and if you don\u0027t see any other easy way around it, you are right that finder_options sounds like a good place where to store this information on how to filter the list of browsers to be found. One small thing you can do to make me feel a bit less nervous is for GetSupportedPlatforms below to return a frozenset since, after this point, it shouldn\u0027t be modified any more.",
+      "parentUuid": "6c30f224_0acec10a",
+      "revId": "f5b7269ac10519e47a9577321de834f9e9a40503",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "07caf5d8_72a394ee",
         "filename": "telemetry/telemetry/benchmark.py",
         "patchSetId": 8
@@ -121,6 +139,24 @@
       "revId": "f5b7269ac10519e47a9577321de834f9e9a40503",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15dcff08_ebbd2599",
+        "filename": "telemetry/telemetry/internal/browser/browser_finder.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-19T10:01:01Z",
+      "side": 1,
+      "message": "Ack. Not excited about this, but couldn\u0027t think of a better alternative either.",
+      "parentUuid": "7bf3235e_d0987b29",
+      "revId": "f5b7269ac10519e47a9577321de834f9e9a40503",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -240,6 +276,24 @@
       "side": 1,
       "message": "I haven\u0027t worked on telemetry a lot, so I don\u0027t have strong opinions either way. But at least for disabling unit-tests, I believe telemetry uses Disabled(\u0027all\u0027) to disable on all platforms. So \u0027all\u0027 here perhaps isn\u0027t entirely unexpected?\n\ntelemetry.core.platform could certainly have some convenience consts (e.g. ALL, DESKTOP etc.).",
       "parentUuid": "e180a5f9_c9521abe",
+      "revId": "f5b7269ac10519e47a9577321de834f9e9a40503",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0da7e1a0_fbe82133",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-19T10:01:01Z",
+      "side": 1,
+      "message": "Ack. For the moment let\u0027s keep it simple like this.",
+      "parentUuid": "d6647faa_f3f68fb8",
       "revId": "f5b7269ac10519e47a9577321de834f9e9a40503",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
