@@ -502,13 +502,17 @@ class Runner(object):
 
     def _run_tests(self, result_set, test_set, all_tests):
         h = self.host
+        if self.args.retry_only_retry_on_failure_tests:
+            get_tests_to_retry = json_results.should_retry_on_failure
+        else:
+            get_tests_to_retry = json_results.regressions
 
         self._run_one_set(self.stats, result_set, test_set)
 
-        regressions = sorted(json_results.regressions(result_set))
+        tests_to_retry = sorted(get_tests_to_retry(result_set))
         retry_limit = self.args.retry_limit
 
-        while retry_limit and regressions:
+        while retry_limit and tests_to_retry:
             if retry_limit == self.args.retry_limit:
                 self.flush()
                 self.args.overwrite = False
@@ -522,12 +526,12 @@ class Runner(object):
             self.print_('')
 
             stats = Stats(self.args.status_format, h.time, 1)
-            stats.total = len(regressions)
-            tests_to_retry = TestSet(isolated_tests=list(regressions))
+            stats.total = len(tests_to_retry)
+            tests_to_retry = TestSet(isolated_tests=list(tests_to_retry))
             retry_set = ResultSet()
             self._run_one_set(stats, retry_set, tests_to_retry)
             result_set.results.extend(retry_set.results)
-            regressions = json_results.regressions(retry_set)
+            tests_to_retry = get_tests_to_retry(retry_set)
             retry_limit -= 1
 
         if retry_limit != self.args.retry_limit:
@@ -888,7 +892,6 @@ def _run_one_test(child, test_input):
                                                    .expectations_for(test_name))
     else:
       expected_results, should_retry_on_failure = {ResultType.Pass}, False
-
     ex_str = ''
     try:
         orig_skip = unittest.skip
@@ -954,7 +957,8 @@ def _run_one_test(child, test_input):
     took = h.time() - started
     return _result_from_test_result(test_result, test_name, started, took, out,
                                     err, child.worker_num, pid,
-                                    expected_results, child.has_expectations)
+                                    expected_results, child.has_expectations,
+                                    should_retry_on_failure)
 
 
 def _run_under_debugger(host, test_case, suite,
@@ -970,7 +974,8 @@ def _run_under_debugger(host, test_case, suite,
 
 def _result_from_test_result(test_result, test_name, started, took, out, err,
                              worker_num, pid, expected_results,
-                             has_expectations):
+                             has_expectations,
+                             should_retry_on_failure=False):
     if test_result.failures:
         actual = ResultType.Failure
         code = 1
@@ -1003,10 +1008,10 @@ def _result_from_test_result(test_result, test_name, started, took, out, err,
         actual = ResultType.Pass
         code = 0
         unexpected = actual not in expected_results
-
     flaky = False
     return Result(test_name, actual, started, took, worker_num,
-                  expected_results, unexpected, flaky, code, out, err, pid)
+                  expected_results, unexpected, flaky, code, out, err, pid,
+                  should_retry_on_failure=should_retry_on_failure)
 
 
 def _load_via_load_tests(child, test_name):
