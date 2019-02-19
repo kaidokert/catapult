@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "55f1f5cd_a34158c7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-19T21:28:12Z",
+      "side": 1,
+      "message": "Please document your measurements in the code so that we know why we are using compression here.",
+      "range": {
+        "startLine": 11,
+        "startChar": 29,
+        "endLine": 12,
+        "endChar": 58
+      },
+      "revId": "2c9d229490d1bfb29842fa1789e818b01bc9f360",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02ae23db_81a05d73",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-19T21:28:12Z",
+      "side": 1,
+      "message": "Please add a docstring documenting the types of all of these variables. In particular, it\u0027s not clear from this function that stream_compressed is expected to be a boolean (I had to go read other code to figure this out.)",
+      "range": {
+        "startLine": 42,
+        "startChar": 2,
+        "endLine": 42,
+        "endChar": 73
+      },
+      "revId": "2c9d229490d1bfb29842fa1789e818b01bc9f360",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e2211ed_4817b15d",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-19T21:28:12Z",
+      "side": 1,
+      "message": "Why don\u0027t we just make stream_compressed\u003dTrue the default?",
+      "range": {
+        "startLine": 42,
+        "startChar": 54,
+        "endLine": 42,
+        "endChar": 71
+      },
+      "revId": "2c9d229490d1bfb29842fa1789e818b01bc9f360",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f236f22e_ac04b171",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-19T21:28:12Z",
+      "side": 1,
+      "message": "This is easy to misread as \n\ncompression\u003d\u0027gzip\u0027\n\nrather than\n\ncompression \u003d\u003d \u0027gzip\u0027\n\nI think you are better off with a variable named for this\n\nuse_compression \u003d compression \u003d\u003d \u0027gzip\u0027\nreader \u003d _DevToolsStreamReader(self._inspector_websocket, stream_handle, use_compression)",
+      "range": {
+        "startLine": 299,
+        "startChar": 37,
+        "endLine": 299,
+        "endChar": 58
+      },
+      "revId": "2c9d229490d1bfb29842fa1789e818b01bc9f360",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
