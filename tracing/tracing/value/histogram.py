@@ -501,6 +501,8 @@ def ExtendUnitNames():
   for name in list(UNIT_NAMES):
     UNIT_NAMES.append(name + '_biggerIsBetter')
     UNIT_NAMES.append(name + '_smallerIsBetter')
+    UNIT_NAMES.append(name + '-')
+    UNIT_NAMES.append(name + '+')
 
 ExtendUnitNames()
 
