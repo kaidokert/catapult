@@ -88,6 +88,24 @@
       "revId": "029ff5edb296fb6aea7519df244a286ef92c223e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b04a5dc_b205eaa4",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1154589
+      },
+      "writtenOn": "2019-02-19T15:36:16Z",
+      "side": 1,
+      "message": "Done, mostly. If ParseManifestFromXml is private, then lint complains about the access from the test.",
+      "parentUuid": "7e162e79_05fdc51e",
+      "revId": "029ff5edb296fb6aea7519df244a286ef92c223e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
