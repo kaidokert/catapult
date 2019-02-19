@@ -39,9 +39,10 @@ class ClockSyncResponseException(Exception):
 
 
 class _DevToolsStreamReader(object):
-  def __init__(self, inspector_socket, stream_handle):
+  def __init__(self, inspector_socket, stream_handle, stream_compressed):
     self._inspector_websocket = inspector_socket
     self._handle = stream_handle
+    self._stream_compressed = stream_compressed
     self._trace_file_handle = None
     self._callback = None
 
@@ -50,7 +51,8 @@ class _DevToolsStreamReader(object):
     # we only read data sequentially at the moment, so a stream
     # can only be read once.
     assert not self._callback
-    self._trace_file_handle = trace_data_module.TraceFileHandle()
+    self._trace_file_handle = trace_data_module.TraceFileHandle(
+        self._stream_compressed)
     self._trace_file_handle.Open()
     self._callback = callback
     self._ReadChunkFromStream()
@@ -74,7 +76,8 @@ class _DevToolsStreamReader(object):
     result = response['result']
     # Convert the trace data that's receive as UTF32 to its native encoding of
     # UTF8 in order to reduce its size.
-    self._trace_file_handle.AppendTraceData(result['data'].encode('utf8'))
+    self._trace_file_handle.AppendTraceData(result['data'].encode('utf8'),
+                                            result.get('base64Encoded', False))
     if not result.get('eof', False):
       self._ReadChunkFromStream()
       return
@@ -121,7 +124,7 @@ class TracingBackend(object):
       raise TracingUnsupportedException(
           'Chrome tracing not supported for this app.')
 
-    params = {'transferMode': 'ReturnAsStream'}
+    params = {'transferMode': 'ReturnAsStream', 'streamCompression': 'gzip'}
     if self._support_modern_devtools_tracing_start_api:
       params['traceConfig'] = (
           chrome_trace_config.GetChromeTraceConfigForDevTools())
@@ -171,7 +174,8 @@ class TracingBackend(object):
         # Tracing is running but start was not issued so, startup tracing must
         # be in effect. Issue another Tracing.start to update the transfer mode.
         # TODO(caseq): get rid of it when streaming is the default.
-        params = {'transferMode': 'ReturnAsStream', 'traceConfig': {}}
+        params = {'transferMode': 'ReturnAsStream', 'streamCompression': 'gzip',
+                  'traceConfig': {}}
         req = {'method': 'Tracing.start', 'params': params}
         self._inspector_websocket.SendAndIgnoreResponse(req)
 
@@ -290,7 +294,9 @@ class TracingBackend(object):
       if not stream_handle:
         self._has_received_all_tracing_data = True
         return
-      reader = _DevToolsStreamReader(self._inspector_websocket, stream_handle)
+      compression = res.get('params', {}).get('streamCompression')
+      reader = _DevToolsStreamReader(self._inspector_websocket, stream_handle,
+                                     compression == 'gzip')
       reader.Read(self._ReceivedAllTraceDataFromStream)
 
   def _ReceivedAllTraceDataFromStream(self, trace_handle):
