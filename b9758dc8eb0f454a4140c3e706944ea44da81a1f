@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bc7f9996_07f129ae",
+        "filename": "tracing/tracing/value/histogram.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 680,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-19T17:37:30Z",
+      "side": 1,
+      "message": "Please make the same change in the JS version.",
+      "revId": "b9758dc8eb0f454a4140c3e706944ea44da81a1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
