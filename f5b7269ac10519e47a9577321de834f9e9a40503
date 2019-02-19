@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "6c30f224_0acec10a",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-02-19T03:34:37Z",
+      "side": 1,
+      "message": "I am curious why you think this shouldn\u0027t be part of finder_options. The finder is going to use this as a filter for which browsers to look for. BrowserFinderOptions feels like the appropriate place to store this information?",
+      "parentUuid": "d04dcdb9_72a75366",
+      "revId": "f5b7269ac10519e47a9577321de834f9e9a40503",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "07caf5d8_72a394ee",
         "filename": "telemetry/telemetry/benchmark.py",
         "patchSetId": 8
@@ -53,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "f2f49f81_08665be3",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-02-19T03:34:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07caf5d8_72a394ee",
+      "revId": "f5b7269ac10519e47a9577321de834f9e9a40503",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e9266519_758a1d40",
         "filename": "telemetry/telemetry/internal/browser/browser_finder.py",
         "patchSetId": 8
@@ -64,6 +100,24 @@
       "writtenOn": "2019-02-18T12:12:27Z",
       "side": 1,
       "message": "Wondering, instead of a list of browser_finders, can this get a list of platforms?",
+      "revId": "f5b7269ac10519e47a9577321de834f9e9a40503",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7bf3235e_d0987b29",
+        "filename": "telemetry/telemetry/internal/browser/browser_finder.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-02-19T03:34:37Z",
+      "side": 1,
+      "message": "FindBrowser already looks up the finders from the set of platforms. It\u0027d be better to not have to do that again in here (through ~line 104) IMO.",
+      "parentUuid": "e9266519_758a1d40",
       "revId": "f5b7269ac10519e47a9577321de834f9e9a40503",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -104,6 +158,24 @@
     },
     {
       "key": {
+        "uuid": "86b4d82d_5f674b3a",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-02-19T03:34:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a65daae5_104ac23c",
+      "revId": "f5b7269ac10519e47a9577321de834f9e9a40503",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7ed9753c_4ae2a1b8",
         "filename": "telemetry/telemetry/story/expectations.py",
         "patchSetId": 8
@@ -121,6 +193,24 @@
     },
     {
       "key": {
+        "uuid": "2a5537e6_8ea6182d",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-02-19T03:34:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ed9753c_4ae2a1b8",
+      "revId": "f5b7269ac10519e47a9577321de834f9e9a40503",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e180a5f9_c9521abe",
         "filename": "telemetry/telemetry/story/expectations.py",
         "patchSetId": 8
@@ -132,6 +222,24 @@
       "writtenOn": "2019-02-18T12:12:27Z",
       "side": 1,
       "message": "I am not 100% sure whether we should have an \u0027all\u0027 platform or, instead, define a constant in telemetry.core.platform with the names of all supported platforms. The later can also help reduce surprises on the values that one can expect to receive (e.g. in some places validate that only valid platform values are used). What do you think?",
+      "revId": "f5b7269ac10519e47a9577321de834f9e9a40503",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6647faa_f3f68fb8",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-02-19T03:34:37Z",
+      "side": 1,
+      "message": "I haven\u0027t worked on telemetry a lot, so I don\u0027t have strong opinions either way. But at least for disabling unit-tests, I believe telemetry uses Disabled(\u0027all\u0027) to disable on all platforms. So \u0027all\u0027 here perhaps isn\u0027t entirely unexpected?\n\ntelemetry.core.platform could certainly have some convenience consts (e.g. ALL, DESKTOP etc.).",
+      "parentUuid": "e180a5f9_c9521abe",
       "revId": "f5b7269ac10519e47a9577321de834f9e9a40503",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
