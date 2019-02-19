@@ -22,6 +22,30 @@
       "revId": "6f05ce8e9662c108899a50782ac10f898e39aff9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0aae985e_54283e4e",
+        "filename": "telemetry/telemetry/testing/run_tests_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-02-19T21:31:26Z",
+      "side": 1,
+      "message": "Im pretty sure Typ tests don\u0027t during the commit queue. That\u0027s why I included tests here.",
+      "parentUuid": "b718bb54_0aae7273",
+      "range": {
+        "startLine": 145,
+        "startChar": 10,
+        "endLine": 155,
+        "endChar": 36
+      },
+      "revId": "6f05ce8e9662c108899a50782ac10f898e39aff9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
