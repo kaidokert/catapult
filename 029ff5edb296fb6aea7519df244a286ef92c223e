@@ -70,6 +70,24 @@
       "revId": "029ff5edb296fb6aea7519df244a286ef92c223e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e162e79_05fdc51e",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-19T15:22:51Z",
+      "side": 1,
+      "message": "Ah, close. Sorry I wasn\u0027t very clear. The main thing I wanted is what you now did in the implementation of _GetManifest: to check if apk is a bundle and then branch calling either one or another function.\n\nfinal nits:\n- _ParseManifestFromApk and ParseManifestFromAapt can be merged in a single function; keep whichever name you prefer, just make it private.\n- Also ParseManifestFromXml make it private.",
+      "parentUuid": "7740ad6c_3e27fe6c",
+      "revId": "029ff5edb296fb6aea7519df244a286ef92c223e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
