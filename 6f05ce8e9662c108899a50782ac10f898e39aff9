@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d203ae99_b8452250",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-02-19T22:02:13Z",
+      "side": 1,
+      "message": "haha. I\u0027ll fix this.",
+      "parentUuid": "0d20d03d_85d7bf8c",
+      "revId": "6f05ce8e9662c108899a50782ac10f898e39aff9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1df3c8ed_37880aba",
         "filename": "telemetry/telemetry/testing/browser_test_runner_unittest.py",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2019-02-19T21:42:27Z",
       "side": 1,
       "message": "Here and in the typ-based test below, I don\u0027t understand the distinction between expected_exit_code\u003d0 and 1, and why one is a regression while the other isn\u0027t. Could you make this a bit clearer?\n\nIs this trying to catch the difference between \"RetryOnFailure Pass\" vs. \"RetryOnFailure Fail\"?",
+      "revId": "6f05ce8e9662c108899a50782ac10f898e39aff9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "572c8d45_7e1b1de7",
+        "filename": "telemetry/telemetry/testing/browser_test_runner_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-02-19T22:02:13Z",
+      "side": 1,
+      "message": "Yes that is the distinction I am trying to catch. Currently the expectation of a test with only the RetryOnFailure expectation is to pass. And if it fails then Typ will retry it until it passes or it reaches a retry limit. This currently how all unexpected test failures are treated in Typ. If a test fails all its retries, it is considered a regression and an exit code of 1 is returned. Adding the RetryOnFailure expectation and --retry-only-retry-on-failure-tests command line argument gives Typ the ability to isolate flaky test retrying to tests with the RetryOnFailure expectation. It also gives the added benefit of doing retries for expected failures to see if a test might pass even though it is expected to fail. A use case can be seen in crbug.com/783263. This is where the \"[RetryOnFailure Failure]\" expectation would be used. And when a test fails all its flaky retries, it won\u0027t be a regression.",
+      "parentUuid": "1df3c8ed_37880aba",
       "revId": "6f05ce8e9662c108899a50782ac10f898e39aff9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
