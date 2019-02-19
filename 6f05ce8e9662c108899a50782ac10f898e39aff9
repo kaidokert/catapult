@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "0d20d03d_85d7bf8c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-02-19T21:42:27Z",
+      "side": 1,
+      "message": "\"failed passed\" here is a bit of a strange error message.",
+      "revId": "6f05ce8e9662c108899a50782ac10f898e39aff9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1df3c8ed_37880aba",
+        "filename": "telemetry/telemetry/testing/browser_test_runner_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-02-19T21:42:27Z",
+      "side": 1,
+      "message": "Here and in the typ-based test below, I don\u0027t understand the distinction between expected_exit_code\u003d0 and 1, and why one is a regression while the other isn\u0027t. Could you make this a bit clearer?\n\nIs this trying to catch the difference between \"RetryOnFailure Pass\" vs. \"RetryOnFailure Fail\"?",
+      "revId": "6f05ce8e9662c108899a50782ac10f898e39aff9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b718bb54_0aae7273",
         "filename": "telemetry/telemetry/testing/run_tests_unittest.py",
         "patchSetId": 6
