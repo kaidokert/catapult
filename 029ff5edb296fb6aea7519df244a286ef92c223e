@@ -52,6 +52,24 @@
       "revId": "029ff5edb296fb6aea7519df244a286ef92c223e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7740ad6c_3e27fe6c",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1154589
+      },
+      "writtenOn": "2019-02-19T14:41:07Z",
+      "side": 1,
+      "message": "Done, LMK if this wasn\u0027t what you had in mind.",
+      "parentUuid": "097a8ef8_a30c394f",
+      "revId": "029ff5edb296fb6aea7519df244a286ef92c223e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
