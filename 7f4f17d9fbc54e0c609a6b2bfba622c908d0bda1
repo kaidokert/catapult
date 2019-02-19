@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8a01c2a2_e667b48d",
+        "filename": "dashboard/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-19T17:04:09Z",
+      "side": 1,
+      "message": "an",
+      "range": {
+        "startLine": 3,
+        "startChar": 37,
+        "endLine": 3,
+        "endChar": 38
+      },
+      "revId": "7f4f17d9fbc54e0c609a6b2bfba622c908d0bda1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e34c16f3_db461143",
+        "filename": "dashboard/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-19T17:04:09Z",
+      "side": 1,
+      "message": "Might mention this is deprecated for /spa",
+      "range": {
+        "startLine": 27,
+        "startChar": 16,
+        "endLine": 27,
+        "endChar": 18
+      },
+      "revId": "7f4f17d9fbc54e0c609a6b2bfba622c908d0bda1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a81de20c_82038e05",
+        "filename": "dashboard/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-19T17:04:09Z",
+      "side": 1,
+      "message": "Might mention this is deprecated for /spa",
+      "range": {
+        "startLine": 40,
+        "startChar": 5,
+        "endLine": 40,
+        "endChar": 14
+      },
+      "revId": "7f4f17d9fbc54e0c609a6b2bfba622c908d0bda1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cae97c63_b49c00d1",
+        "filename": "dashboard/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-19T17:04:09Z",
+      "side": 1,
+      "message": "FYI should join this",
+      "revId": "7f4f17d9fbc54e0c609a6b2bfba622c908d0bda1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
