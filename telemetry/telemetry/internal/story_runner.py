@@ -130,9 +130,13 @@ def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
             '(SharedState.CanRunStory() returns False).')
         return
       story.wpr_mode = state.wpr_mode
+      results._async_lock.acquire()
       state.RunStory(results)
+      results._async_lock.release()
       if isinstance(test, story_test.StoryTest):
+        logging.warning('Starting to measure')
         test.Measure(state.platform, results)
+        logging.warning('Done measuring')
     except page_action.PageActionNotSupported as exc:
       results.Skip('Unsupported page action: %s' % exc)
     except (legacy_page_test.Failure, exceptions.TimeoutException,
@@ -298,6 +302,7 @@ def Run(test, story_set, finder_options, results, max_failures=None,
           logging.error('Too many failures. Aborting.')
           return
   finally:
+    results.GetAllAsyncResults()
     results.PopulateHistogramSet()
 
     for name, diag in device_info_diags.iteritems():
