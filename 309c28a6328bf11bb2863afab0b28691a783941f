@@ -87,6 +87,24 @@
     },
     {
       "key": {
+        "uuid": "6c863bf5_a29ff83b",
+        "filename": "telemetry/telemetry/internal/platform/tracing_controller_backend_unittest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-19T18:35:01Z",
+      "side": 0,
+      "message": "I don\u0027t think that as a rule we should not test private APIs. Sometimes it is convenient to make sure private functions are working correctly. If we only test public APIs, sometimes we end up writing really long and complicated test cases.",
+      "parentUuid": "585d8cfa_d66e8d45",
+      "revId": "309c28a6328bf11bb2863afab0b28691a783941f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "89ec7151_aadd1c44",
         "filename": "telemetry/telemetry/internal/platform/tracing_controller_backend_unittest.py",
         "patchSetId": 8

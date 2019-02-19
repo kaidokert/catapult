@@ -19,6 +19,29 @@
     },
     {
       "key": {
+        "uuid": "c6c3ee06_5159de5a",
+        "filename": "telemetry/telemetry/internal/platform/tracing_controller_backend.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-19T18:35:01Z",
+      "side": 1,
+      "message": "I like this much better than \"discovering\" them!",
+      "range": {
+        "startLine": 27,
+        "startChar": 8,
+        "endLine": 27,
+        "endChar": 19
+      },
+      "revId": "095392ae82d712f915f2a6093f303f637c151509",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5aa9067d_6f8104bb",
         "filename": "telemetry/telemetry/internal/platform/tracing_controller_backend.py",
         "patchSetId": 8
