@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "a80ada3b_b9e32961",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-02-19T21:33:00Z",
+      "side": 1,
+      "message": "I looked into this, and FindBrowser() is called from too many places at the moment (as you are well aware! :) ) to be able to do this. So I have kept it in BrowserFinderOptions (and this also makes more sense to me, but I also see that it has a fair number of things). I have made this a frozenset(). Thank you!",
+      "parentUuid": "2bb6c24c_4872bfd9",
+      "revId": "f5b7269ac10519e47a9577321de834f9e9a40503",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "07caf5d8_72a394ee",
         "filename": "telemetry/telemetry/benchmark.py",
         "patchSetId": 8
