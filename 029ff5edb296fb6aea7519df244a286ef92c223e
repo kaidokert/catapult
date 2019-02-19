@@ -34,6 +34,24 @@
       "revId": "029ff5edb296fb6aea7519df244a286ef92c223e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "097a8ef8_a30c394f",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-19T11:44:52Z",
+      "side": 1,
+      "message": "Got it. It could be great if we could treat all kinds more uniformly, but also Ack that this probably involves a longer project.\n\nnit: Can you at least split this into _ParseManifestFromBundle and _ParseManifestFromAapt",
+      "parentUuid": "01db22f1_e8938a6c",
+      "revId": "029ff5edb296fb6aea7519df244a286ef92c223e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
