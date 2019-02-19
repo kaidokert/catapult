@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4fd68759_bc99a11f",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-19T11:32:23Z",
+      "side": 0,
+      "message": "The cache flushing now happens on the shared state, not browser creation, so this test wasn\u0027t testing much other than the option name change.\n\nThe behavior of the option is still tested, though, on smoke tests for benchmarks that set this to True.",
+      "revId": "770b18b65ea62c9e34571f65e0e59ea53448fddc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
