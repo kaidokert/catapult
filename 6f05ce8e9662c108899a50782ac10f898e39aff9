@@ -116,6 +116,30 @@
       "revId": "6f05ce8e9662c108899a50782ac10f898e39aff9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d24e48e5_a83a7771",
+        "filename": "telemetry/telemetry/testing/run_tests_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-19T22:09:48Z",
+      "side": 1,
+      "message": "I think you\u0027re better off first making Typ tests run during the CQ and then you can put the tests in the right location and then you can submit this changelist.",
+      "parentUuid": "0aae985e_54283e4e",
+      "range": {
+        "startLine": 145,
+        "startChar": 10,
+        "endLine": 155,
+        "endChar": 36
+      },
+      "revId": "6f05ce8e9662c108899a50782ac10f898e39aff9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
