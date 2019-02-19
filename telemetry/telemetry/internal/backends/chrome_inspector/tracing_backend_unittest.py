@@ -258,7 +258,8 @@ class DevToolsStreamPerformanceTest(unittest.TestCase):
       del data  # unused
       done['done'] = True
 
-    reader = _DevToolsStreamReader(self._inspector_socket, 'dummy')
+    reader = _DevToolsStreamReader(self._inspector_socket, 'dummy',
+                                   stream_compressed=False)
     reader.Read(MarkDone)
     while not done['done']:
       fake_time += 1
