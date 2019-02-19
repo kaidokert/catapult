@@ -16,6 +16,24 @@
       "revId": "1337e18dfb08acf35aebd5411cdba17035bcc396",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f33ffed_5e885b2d",
+        "filename": "tracing/tracing/value/histogram.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-19T18:56:21Z",
+      "side": 1,
+      "message": "The python implementation doesn\u0027t parse unit names, it just carries them through.\nI think there\u0027s an open bug to port the unit system to python.\nThere is one spot in this file that strips improvement direction from unit names in order to look up default bin boundaries. That was broken in this patchset, so I fixed it and tested it in the next patchset.\nThanks for pointing this out!",
+      "parentUuid": "b39dacf8_77376384",
+      "revId": "1337e18dfb08acf35aebd5411cdba17035bcc396",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
