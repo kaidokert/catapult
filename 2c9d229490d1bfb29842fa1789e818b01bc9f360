@@ -71,6 +71,54 @@
     },
     {
       "key": {
+        "uuid": "9f6176f6_1f753a5c",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-02-19T23:18:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02ae23db_81a05d73",
+      "range": {
+        "startLine": 42,
+        "startChar": 2,
+        "endLine": 42,
+        "endChar": 73
+      },
+      "revId": "2c9d229490d1bfb29842fa1789e818b01bc9f360",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "737e7b65_37241d07",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-02-19T23:18:49Z",
+      "side": 1,
+      "message": "I have changed this to default to False, since that has been the default. Perhaps I could switch this to default to True separately?",
+      "parentUuid": "8e2211ed_4817b15d",
+      "range": {
+        "startLine": 42,
+        "startChar": 54,
+        "endLine": 42,
+        "endChar": 71
+      },
+      "revId": "2c9d229490d1bfb29842fa1789e818b01bc9f360",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f236f22e_ac04b171",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
         "patchSetId": 3
@@ -91,6 +139,30 @@
       "revId": "2c9d229490d1bfb29842fa1789e818b01bc9f360",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10ab8c64_a1b45ac6",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-02-19T23:18:49Z",
+      "side": 1,
+      "message": "Good call. Done. Thanks!",
+      "parentUuid": "f236f22e_ac04b171",
+      "range": {
+        "startLine": 299,
+        "startChar": 37,
+        "endLine": 299,
+        "endChar": 58
+      },
+      "revId": "2c9d229490d1bfb29842fa1789e818b01bc9f360",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
