@@ -164,6 +164,30 @@
       "revId": "6f05ce8e9662c108899a50782ac10f898e39aff9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b835dcdb_5b8fdb7e",
+        "filename": "telemetry/telemetry/testing/run_tests_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-02-19T22:50:39Z",
+      "side": 1,
+      "message": "Typ tests do run on the commit queue. Ill move some of these tests over to Typ tests. Also I will leave one test to check if --retry-only-retry-on-failure-tests is passed to Typ.Runner from run_tests.py. I will do the same for run_browser_tests.py as well in browser_test_runner_unittest.py.",
+      "parentUuid": "a44ebe12_002c7758",
+      "range": {
+        "startLine": 145,
+        "startChar": 10,
+        "endLine": 155,
+        "endChar": 36
+      },
+      "revId": "6f05ce8e9662c108899a50782ac10f898e39aff9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
