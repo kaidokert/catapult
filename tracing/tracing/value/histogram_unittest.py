@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import copy
 import json
 import math
 import unittest
@@ -233,6 +234,12 @@ class HistogramUnittest(unittest.TestCase):
     self.assertEqual(343, len(ToJSON(d)))
     self.assertIsInstance(d['allBins'], list)
     self.assertDeepEqual(d, histogram.Histogram.FromDict(d).AsDict())
+
+    # Test the case where 'allBins' isn't a list.
+    e = copy.deepcopy(d)
+    e['allBins'] = {'1000': {}}
+    _ = histogram.Histogram.FromDict(e).AsDict()
+
 
   def testBasic(self):
     hist = histogram.Histogram('', 'unitless', self.TEST_BOUNDARIES)
