@@ -76,6 +76,9 @@ tr.exportTo('tr.metrics.sh', function() {
       .createExponential(1, 40e3, 35)
       .addExponentialBins(80e3, 15);
 
+  const EFID_BOUNDARIES = tr.v.HistogramBinBoundaries
+        .createExponential(1, 2e3, 40);
+
   const SUMMARY_OPTIONS = {
     avg: true,
     count: false,
@@ -378,6 +381,36 @@ tr.exportTo('tr.metrics.sh', function() {
     };
   }
 
+  function decorateEFIDSampleWithDiagnostics_(rendererHelper,
+                                              efid, navigationStartEvent, firstContentfulPaintTime, interactiveTime,
+                                              url) {
+    if (efid === undefined) return undefined;
+    const navigationStartTime = navigationStartEvent.start;
+    const tasks = efid.top5Tasks.map(task => {
+      return ({
+        url,
+        probability: task.probability,
+        start: task.start,
+        duration: task.duration,
+      });
+    });
+    return {
+      value: efid.eFID,
+      diagnostics: tr.v.d.DiagnosticMap.fromObject({
+        'Navigation infos': new tr.v.d.GenericSet([{
+          url,
+          pid: rendererHelper.pid,
+          navigationStartTime,
+          firstContentfulPaintTime,
+          interactiveTime,
+          expectedFirstInputDelay: efid.eFID,
+        }]),
+        'Top Tasks': new tr.v.d.GenericSet(tasks),
+      }),
+    };
+  }
+
+
   function collectLoadingMetricsForRenderer(rendererHelper) {
     const frameToNavStartEvents =
         EventFinderUtils.getSortedMainThreadEventsByFrame(
@@ -421,6 +454,7 @@ tr.exportTo('tr.metrics.sh', function() {
     const firstCpuIdleSamples = [];
     const firstMeaningfulPaintSamples = [];
     const firstMeaningfulPaintCpuTimeSamples = [];
+    const efidSamples = [];
     for (const expectation of model.userModel.expectations) {
       if (!(expectation instanceof tr.model.um.LoadExpectation)) continue;
       if (tr.e.chrome.CHROME_INTERNAL_URLS.includes(expectation.url)) {
@@ -450,6 +484,14 @@ tr.exportTo('tr.metrics.sh', function() {
             expectation.fmpEvent.start,
             expectation.domContentLoadedEndEvent.start, expectation.url));
       }
+      if (expectation.expectedFirstInputDelay !== undefined) {
+        efidSamples.push(decorateEFIDSampleWithDiagnostics_(
+          rendererHelper, expectation.expectedFirstInputDelay,
+          expectation.navigationStart,
+          expectation.fcpEvent.start,
+          expectation.timeToInteractive,
+          expectation.url));
+      }
     }
 
     return {
@@ -457,6 +499,7 @@ tr.exportTo('tr.metrics.sh', function() {
       firstMeaningfulPaintCpuTimeSamples,
       firstCpuIdleSamples,
       interactiveSamples,
+      efidSamples,
     };
   }
 
@@ -496,6 +539,40 @@ tr.exportTo('tr.metrics.sh', function() {
           breakdown: tr.v.d.Breakdown.fromEntries(
               Object.entries(breakdown.events)),
         });
+      }
+    }
+  }
+
+  function wrapDiagnostics(sample) {
+    const newDiagnostics = {};
+    for (const [k, v] of Object.entries(sample.diagnostics)) {
+      newDiagnostics[k] = new tr.v.d.GenericSet([v]);
+    }
+    return {
+      value: sample.value,
+      // diagnostics: new tr.v.d.GenericSet([sample.diagnostics]),
+      diagnostics: tr.v.d.DiagnosticMap.fromObject(newDiagnostics),
+    };
+  }
+
+  function addExperimentalMetrics(model, histograms) {
+    // Add FMP, firstCpuIdle and interactive samples from load UE
+    const loadExpectations = model.userModel.expectations.filter(
+      exp => exp instanceof tr.model.um.LoadExpectation);
+
+    // All our experimental metrics should produce one metric per trace.
+    // If there are multiple values of the metrics we should fail because
+    // the data now likely polluted by undesired values.
+    const seenMetrics = new Set();
+
+    for (const exp of loadExpectations) {
+      for (const m of exp.xpMetrics) {
+        if (seenMetrics.has(m.name)) {
+          throw Error(`Second value of the metric ${m.name}!` +
+                      'Each trace should produce one value for this metric.');
+        }
+        histograms.createHistogram(m.name,
+            timeDurationInMs_smallerIsBetter, wrapDiagnostics(m.sample));
       }
     }
   }
@@ -550,6 +627,12 @@ tr.exportTo('tr.metrics.sh', function() {
           description: 'Time to First CPU Idle',
           summaryOptions: SUMMARY_OPTIONS,
         });
+    const expectedFirstInputDelayHistogram = histograms.createHistogram(
+      'expectedFirstInputDelay', timeDurationInMs_smallerIsBetter, [], {
+        binBoundaries: EFID_BOUNDARIES,
+        description: 'Expected First Input Delay',
+        summaryOptions: SUMMARY_OPTIONS,
+      });
     const aboveTheFoldLoadedToVisibleHistogram = histograms.createHistogram(
         'aboveTheFoldLoadedToVisible', timeDurationInMs_smallerIsBetter, [], {
           binBoundaries: TIME_TO_INTERACTIVE_BOUNDARIES,
@@ -611,6 +694,17 @@ tr.exportTo('tr.metrics.sh', function() {
         samplesSet.firstCpuIdleSamples,
         timeToFirstCpuIdleHistogram,
         histograms);
+    addSamplesToHistogram(
+      samplesSet.efidSamples,
+      expectedFirstInputDelayHistogram,
+      histograms);
+
+    try {
+      addExperimentalMetrics(model, histograms);
+    } catch (e) {
+      console.error(e);
+      debugger;
+    }
   }
 
   tr.metrics.MetricRegistry.register(loadingMetric);
