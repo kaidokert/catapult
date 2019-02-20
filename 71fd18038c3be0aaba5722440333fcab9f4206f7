@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "068a376c_42f01aa8",
+        "filename": "telemetry/telemetry/internal/util/binary_manager.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-20T05:02:47Z",
+      "side": 1,
+      "message": "I know some of these words, but I have no idea what they all mean together. I\u0027ll leave this for now. Hopefully we can delete all of this code soon.",
+      "range": {
+        "startLine": 148,
+        "startChar": 4,
+        "endLine": 150,
+        "endChar": 18
+      },
+      "revId": "71fd18038c3be0aaba5722440333fcab9f4206f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
