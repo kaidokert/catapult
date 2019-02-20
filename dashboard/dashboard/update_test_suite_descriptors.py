@@ -147,11 +147,32 @@ def _UpdateDescriptor(test_suite, namespace, start_cursor=None,
 
   desc = {
       'measurements': list(sorted(measurements)),
-      'bots': list(sorted(bots)),
       'cases': list(sorted(cases)),
       'caseTags': {tag: sorted(cases) for tag, cases in case_tags.items()}
   }
 
+  if namespace == datastore_hooks.INTERNAL:
+    external_bots = set()
+    internal_bots = set()
+    ndb.Future.wait_all(_SortBot(bot, external_bots, internal_bots)
+                        for bot in bots)
+    if external_bots:
+      desc['externalBots'] = list(sorted(external_bots))
+    if internal_bots:
+      desc['internalBots'] = list(sorted(internal_bots))
+  else:
+    desc['externalBots'] = list(sorted(bots))
+
   key = namespaced_stored_object.NamespaceKey(
       CacheKey(test_suite), namespace)
   stored_object.Set(key, desc)
+
+
+@ndb.tasklet
+def _SortBot(bot, external_bots, internal_bots):
+  master, slave = bot.split(':')
+  internal_only = yield graph_data.Bot.GetInternalOnlyAsync(master, slave)
+  if internal_only:
+    internal_bots.add(bot)
+  else:
+    external_bots.add(bot)
