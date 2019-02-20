@@ -22,6 +22,30 @@
       "revId": "416f91ef4a23d22ae6b715cd48b1bae9ec8aa7a9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70238b1d_3b119047",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1003154
+      },
+      "writtenOn": "2019-02-20T20:46:44Z",
+      "side": 1,
+      "message": "That would be perfect, but I don\u0027t think the current catapult testing framework is ready for this yet.",
+      "parentUuid": "c04aeaee_34139262",
+      "range": {
+        "startLine": 12,
+        "startChar": 35,
+        "endLine": 12,
+        "endChar": 71
+      },
+      "revId": "416f91ef4a23d22ae6b715cd48b1bae9ec8aa7a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
