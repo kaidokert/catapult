@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7edf7d4c_ae839e56",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-20T00:54:31Z",
+      "side": 1,
+      "message": "As I\u0027ve said before, we should be trying to keep the \u0027should retry on failure\u0027 concept out of json_results, since it\u0027s not actually a kind of result. \n\nI would create a separate function in this file (i.e., make get_tests_to_retry a dedicated function that does different things based on args.retry_only_retry_on_failure_tests) to do this logic, and not modify json_results.py at all.",
+      "revId": "47d5231fed09df532dd436dc6791fc2c18b6c038",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
