@@ -70,6 +70,30 @@
       "revId": "416f91ef4a23d22ae6b715cd48b1bae9ec8aa7a9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6039da2_d8cd8246",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-20T21:24:06Z",
+      "side": 1,
+      "message": "catapult can run a test like that. See for example https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/actions/play_unittest.py\n\nSee https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/README.md?l\u003d19 for how to run it.\n\nNote that Telemetry calls every functional test a \"unittest\".",
+      "parentUuid": "ec00635e_d357bf12",
+      "range": {
+        "startLine": 12,
+        "startChar": 35,
+        "endLine": 12,
+        "endChar": 71
+      },
+      "revId": "416f91ef4a23d22ae6b715cd48b1bae9ec8aa7a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
