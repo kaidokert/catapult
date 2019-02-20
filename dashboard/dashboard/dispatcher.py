@@ -67,9 +67,11 @@ from dashboard.api import sheriffs
 from dashboard.api import test_suites
 from dashboard.api import timeseries
 from dashboard.api import timeseries2
+from dashboard.api import warmup
 
 
 _URL_MAPPING = [
+    ('/_ah/warmup', warmup.WarmupHandler),
     ('/add_histograms', add_histograms.AddHistogramsHandler),
     ('/add_histograms/process', add_histograms.AddHistogramsProcessHandler),
     ('/add_histograms_queue', add_histograms_queue.AddHistogramsQueueHandler),
