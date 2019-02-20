@@ -32,7 +32,8 @@ class Result(object):
 
     def __init__(self, name, actual, started, took, worker,
                  expected=None, unexpected=False,
-                 flaky=False, code=0, out='', err='', pid=0):
+                 flaky=False, code=0, out='', err='', pid=0,
+                 should_retry_on_failure=False):
         self.name = name
         self.actual = actual
         self.started = started
@@ -46,6 +47,7 @@ class Result(object):
         self.err = err
         self.pid = pid
         self.is_regression = actual != ResultType.Pass and unexpected
+        self.should_retry_on_failure = should_retry_on_failure
 
 
 class ResultSet(object):
@@ -148,7 +150,6 @@ def _skipped_test_names(results):
 
 def _passing_test_names(results):
     return set(r.name for r in results.results if r.actual == ResultType.Pass)
-
 
 def _results_for_test(test_name, results):
     value = OrderedDict()
