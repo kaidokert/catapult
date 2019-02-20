@@ -130,9 +130,13 @@ def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
             '(SharedState.CanRunStory() returns False).')
         return
       story.wpr_mode = state.wpr_mode
+      results._async_lock.acquire()
       state.RunStory(results)
+      results._async_lock.release()
       if isinstance(test, story_test.StoryTest):
+        logging.warning('Starting to measure')
         test.Measure(state.platform, results)
+        logging.warning('Done measuring')
     except page_action.PageActionNotSupported as exc:
       results.Skip('Unsupported page action: %s' % exc)
     except (legacy_page_test.Failure, exceptions.TimeoutException,
@@ -184,6 +188,9 @@ def Run(test, story_set, finder_options, results, max_failures=None,
 
   # Filter page set based on options.
   stories = story_module.StoryFilter.FilterStorySet(story_set)
+  wpr_archive_info = story_set.wpr_archive_info
+  if wpr_archive_info:
+    stories = sorted(stories, key=wpr_archive_info.WprFilePathForStory)
 
   if finder_options.print_only:
     if finder_options.print_only == 'tags':
@@ -213,7 +220,7 @@ def Run(test, story_set, finder_options, results, max_failures=None,
         cloud_storage.GetFilesInDirectoryIfChanged(directory,
                                                    story_set.bucket)
     if story_set.archive_data_file and not _UpdateAndCheckArchives(
-        story_set.archive_data_file, story_set.wpr_archive_info, stories):
+        story_set.archive_data_file, wpr_archive_info, stories):
       return
 
   if not stories:
@@ -298,6 +305,7 @@ def Run(test, story_set, finder_options, results, max_failures=None,
           logging.error('Too many failures. Aborting.')
           return
   finally:
+    results.GetAllAsyncResults()
     results.PopulateHistogramSet()
 
     for name, diag in device_info_diags.iteritems():
