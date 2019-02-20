@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c04aeaee_34139262",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-20T04:19:42Z",
+      "side": 1,
+      "message": "We have a CQ in catapult. It would be better to add tests in the codebase that the code is in.",
+      "range": {
+        "startLine": 12,
+        "startChar": 35,
+        "endLine": 12,
+        "endChar": 71
+      },
+      "revId": "416f91ef4a23d22ae6b715cd48b1bae9ec8aa7a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
