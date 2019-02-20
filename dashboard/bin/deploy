@@ -5,8 +5,10 @@
 
 import os
 import shutil
+import subprocess
 import sys
 import tempfile
+import time
 
 
 def _AddToPathIfNeeded(path):
@@ -21,28 +23,92 @@ def Main():
 
   catapult_path = os.path.dirname(dashboard_path)
   _AddToPathIfNeeded(catapult_path)
-
-  tracing_path = os.path.join(catapult_path, 'tracing')
-  _AddToPathIfNeeded(tracing_path)
-  from tracing_build import vulcanize_histograms_viewer
+  from catapult_build import appengine_deploy
 
   temp_dir = tempfile.mkdtemp()
+
+  try:
+    deployment_paths = dashboard.PathsForDeployment()
+    deployment_paths.append(VulcanizeHistogramsViewer(temp_dir))
+    if NeedWebpack(dashboard_path):
+      _AddToPathIfNeeded(os.path.join(catapult_path, 'common', 'node_runner'))
+      from node_runner import node_util
+      deployment_paths.append(Webpack(catapult_path, temp_dir))
+      deployment_paths.append(VulcanizeIndex(dashboard_path, temp_dir))
+
+    appengine_deploy.Deploy(deployment_paths, sys.argv[1:],
+                            os.environ.get('VERSION'))
+  except RuntimeError:
+    pass
+  finally:
+    try:
+      shutil.rmtree(temp_dir)
+    except OSError as e:
+      logging.error('Error cleaning up temp dir %s: %s', temp_dir, e)
+
+
+def VulcanizeHistogramsViewer(temp_dir):
+  _AddToPathIfNeeded(os.path.join(catapult_path, 'tracing'))
+  from tracing_build import vulcanize_histograms_viewer
   viewer_dir_path = os.path.join(temp_dir, 'vulcanized_histograms_viewer')
   viewer_html_path = os.path.join(viewer_dir_path, 'vulcanized_histograms_viewer.html')
   os.mkdir(viewer_dir_path)
   with open(viewer_html_path, 'w') as f:
     s = vulcanize_histograms_viewer.VulcanizeHistogramsViewer()
     f.write(s.encode('utf-8'))
+  return viewer_dir_path
 
-  deployment_paths = dashboard.PathsForDeployment() + [viewer_dir_path]
-  from catapult_build import appengine_deploy
-  appengine_deploy.Deploy(deployment_paths, sys.argv[1:],
-                          os.environ.get('VERSION'))
 
-  try:
-    shutil.rmtree(temp_dir)
-  except OSError as e:
-    logging.error('Error cleaning up temp dir %s: %s', temp_dir, e)
+def VulcanizeIndex(dashboard_path, temp_dir):
+  node_modules = node_util.GetNodeModulesPath()
+  node_vulcanize = os.path.join(node_modules, 'vulcanize', 'bin', 'vulcanize')
+  minify = os.path.join(node_modules, '..', 'minify')
+  filename = os.path.join(temp_dir, 'index.vulcanized.html')
+  html = subprocess.check_output([
+    node_vulcanize, '--strip-comments', '--inline-scripts', '--inline-css',
+    '-p', dashboard_path, 'dashboard/spa/index.html',
+  ])
+  html += _TimestampScript()
+  open(filename, 'w').write(html)
+  subprocess.check_output([minify, filename])
+  return filename
+
+
+def _TimestampScript():
+  # V2SPA displays its version as this timestamp in this format to make it easy
+  # to check whether a change is visible.
+  now = time.time()
+  print 'vulcanized', time.strftime(
+      '%Y-%m-%d %H:%M:%S', time.gmtime(now - (60 * 60 * 7)))
+  return '<script>VULCANIZED_TIMESTAMP = new Date(%d);</script>' % (now * 1000)
+
+
+def Webpack(catapult_path, temp_dir):
+  spa_path = os.path.join(catapult_path, 'dashboard', 'dashboard', 'spa')
+  output_path = os.path.join(temp_dir, 'webpack')
+  config_filename = os.path.join(spa_path, 'webpack.config.js')
+  node_modules = node_util.GetNodeModulesPath()
+  webpack_command = os.path.join(node_modules, '.bin', 'webpack-command')
+
+  os.environ['WEBPACK_OUTPUT_PATH'] = output_path
+  os.environ['WEBPACK_NODE_MODULES'] = node_modules
+  os.environ['WEBPACK_THIRD_PARTY'] = os.path.join(catapult_path, 'third_party')
+
+  proc = subprocess.Popen([webpack_command, '--config', config_filename],
+      stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+  webpack_out, webpack_err = proc.communicate()
+  if proc.returncode != 0:
+    print 'ERROR from webpack:'
+    print webpack_out
+    print webpack_err
+    raise RuntimeError('Webpack failed with exit code', proc.returncode)
+
+  return output_path
+
+
+def NeedWebpack(dashboard_path):
+  app_yaml = os.path.join(dashboard_path, 'app.yaml')
+  return 'webpack/service-worker.js' in open(app_yaml).read()
 
 
 if __name__ == '__main__':
