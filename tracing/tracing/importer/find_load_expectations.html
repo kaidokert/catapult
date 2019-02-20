@@ -100,13 +100,24 @@ tr.exportTo('tr.importer', function() {
    *           firstCpuIdleTime: {number}|undefined}
    */
   function computeInteractivityMetricSample_(rendererHelper, navigationStart,
-      fmpEvent, domContentLoadedEndEvent, searchWindowEnd) {
+      fmpEvent, domContentLoadedEndEvent, searchWindowEnd, fcpEvent) {
+    const resourceLoadEvents = getNetworkEventsInRange(rendererHelper.process,
+          tr.b.math.Range.fromExplicitRange(navigationStart.start,
+                searchWindowEnd));
     // Cannot determine TTI if DomContentLoadedEnd was never reached or if
-    // there is no corresponding fmpEvent.
-    if (domContentLoadedEndEvent === undefined || fmpEvent === undefined) {
-      return {interactiveTime: undefined, firstCpuIdleTime: undefined};
+    // there is no corresponding fmp/fcpEvent, or if there are no network events
+    // in the trace.
+    if (domContentLoadedEndEvent === undefined || fmpEvent === undefined
+        || fcpEvent === undefined
+        || resourceLoadEvents.length === 0) {
+      return {
+        interactiveTime: undefined,
+        firstCpuIdleTime: undefined,
+        xpInteractiveTimes: [],
+        xpMetaMetrics: []
+      };
     }
-
+    const firstContentfulPaintTime = fcpEvent.start;
     const firstMeaningfulPaintTime = fmpEvent.start;
     const mainThreadTasks =
         tr.e.chrome.EventFinderUtils.findToplevelSchedulerTasks(
@@ -118,9 +129,6 @@ tr.exportTo('tr.importer', function() {
         task => task.range.intersectsExplicitRangeInclusive(
             firstMeaningfulPaintTime, searchWindowEnd));
 
-    const resourceLoadEvents = getNetworkEventsInRange(rendererHelper.process,
-        tr.b.math.Range.fromExplicitRange(navigationStart.start,
-            searchWindowEnd));
 
     const firstCpuIdleTime =
         tr.e.chrome.findFirstCpuIdleTime(
@@ -135,7 +143,81 @@ tr.exportTo('tr.importer', function() {
           domContentLoadedEndEvent.start, longTasksInWindow,
           resourceLoadEvents) : undefined;
 
-    return {interactiveTime, firstCpuIdleTime};
+    // Experimental
+    try {
+      const filterToWindow = (tasks, [start, end]) => tasks.filter(
+        task => task.range.intersectsExplicitRangeInclusive(start, end));
+      const filterToSearchWindow = longTasks =>
+            filterToWindow(longTasks, [firstMeaningfulPaintTime, searchWindowEnd]);
+
+      const tasksLongerThan = threshold =>
+            mainThreadTasks.filter(task => task.duration >= threshold);
+      const pickLongestTask = tasks => {
+        let longest = null;
+        let maxDur = 0;
+        for (const task of tasks) {
+          if (task.duration > maxDur) {
+            maxDur = task.duration;
+            longest = task;
+          }
+        }
+        return longest;
+      }
+
+      const xpThresholds = [50, 100, 200];
+      const xpInteractiveTimes = xpThresholds.map(threshold => {
+        const tasksConsidered = filterToSearchWindow(tasksLongerThan(threshold));
+        const intTime = tr.e.chrome.findInteractiveTime(
+          firstContentfulPaintTime, searchWindowEnd,
+          domContentLoadedEndEvent.start,
+          tasksConsidered,
+          resourceLoadEvents) || 0;
+        const tti = (intTime !== 0) ? intTime - navigationStart.start : 0;
+
+        const fcpToTtiRange = [firstContentfulPaintTime,
+                               intTime !== 0 ? intTime : searchWindowEnd];
+        const longestTask = pickLongestTask(filterToWindow(
+          mainThreadTasks, fcpToTtiRange));
+        const longestTaskDuration = longestTask ? longestTask.duration : 0;
+        const longestTaskTs = longestTask ?
+              longestTask.start - navigationStart.start: 0;
+
+        const longTasksInFcpToTti = filterToWindow(tasksConsidered, fcpToTtiRange)
+        const lastLongTask = longTasksInFcpToTti[longTasksInFcpToTti.length - 1];
+        const lastLongTaskDuration = lastLongTask ? lastLongTask.duration : 0;
+        const lastLongTaskTs = lastLongTask ? lastLongTask.start - navigationStart.start : 0;
+
+        return {
+          threshold,
+          tti,
+          longestTaskDuration,
+          longestTaskTs,
+          lastLongTaskDuration,
+          lastLongTaskTs,
+        };
+      });
+
+      const longestTaskInTrace = pickLongestTask(
+        filterToWindow(mainThreadTasks,
+                       [firstContentfulPaintTime, searchWindowEnd]));
+      const longestTaskInTraceDuration = longestTaskInTrace ?
+        longestTaskInTrace.duration : 0;
+      const longestTaskInTraceTs = longestTaskInTrace ?
+            longestTaskInTrace.start - navigationStart.start : 0;
+
+      const xpMetaMetrics = [
+        {name: 'LongestTaskInTraceDuration',
+         value: longestTaskInTraceDuration},
+        {name: 'LongestTaskInTraceTs',
+         value: longestTaskInTraceTs}
+      ];
+
+      return {interactiveTime, firstCpuIdleTime, xpInteractiveTimes, xpMetaMetrics};
+    } catch (e) {
+      console.error(e);
+      debugger;
+    }
+
   }
 
   /* Constructs a loading metrics for the specified navigation start event and
@@ -184,21 +266,89 @@ tr.exportTo('tr.importer', function() {
         dclTimesInWindow[dclTimesInWindow.length - 1];
     }
 
-    const {interactiveTime, firstCpuIdleTime} =
-      computeInteractivityMetricSample_(
-          rendererHelper, navigationStart, fmpEvent,
-          domContentLoadedEndEvent, searchWindowEnd);
+    // EFID code.
+    // FROM https://chromium-review.googlesource.com/c/catapult/+/921483/3/tracing/tracing/importer/find_load_expectations.html#203
+    const frameToFCPEvents =
+          tr.e.chrome.EventFinderUtils.getSortedMainThreadEventsByFrame(
+            rendererHelper, 'firstContentfulPaint', 'loading');
+    const fcpEventsForFrame = frameToFCPEvents.get(frameId) || [];
+    // Reuse the dclSearchRange.
+    const fcpEventsInWindow =
+          dclSearchRange.filterArray(fcpEventsForFrame, event => event.start);
+    let fcpEvent = undefined;
+    if (fcpEventsInWindow.length !== 0) {
+      // There really shouldn't be more than one FCP event, but if there is,
+      // pick the last one.
+      fcpEvent = fcpEventsInWindow[fcpEventsInWindow.length - 1];
+    }
 
-    const duration = (interactiveTime === undefined) ?
-      searchWindowEnd - navigationStart.start :
-      interactiveTime - navigationStart.start;
+    // Experimental
+    try {
 
-    return new tr.model.um.LoadExpectation(
+      const expectedFIDData = tr.e.chrome.computeExpectedFID(
+        rendererHelper, fcpEvent);
+
+      const {interactiveTime, firstCpuIdleTime,
+             xpInteractiveTimes, xpMetaMetrics} =
+            computeInteractivityMetricSample_(
+              rendererHelper, navigationStart, fmpEvent,
+              domContentLoadedEndEvent, searchWindowEnd, fcpEvent);
+
+      const duration = (interactiveTime === undefined) ?
+            searchWindowEnd - navigationStart.start :
+            interactiveTime - navigationStart.start;
+
+      const xpMetrics = [];
+      const simple = value => ({value, diagnostics: {}});
+
+      for (const sample of xpInteractiveTimes) {
+        xpMetrics.push(...[
+          {
+            name: `TTI-${sample.threshold}`,
+            sample: {
+              value: sample.tti,
+              diagnostics: {
+                frameId,
+                navigationStart: navigationStart.start,
+                interactiveTime: sample.intTime,
+                pid: rendererHelper.process.pid
+              },
+            },
+          },
+          {
+            name: `TTI-${sample.threshold}-LongestTaskDuration`,
+            sample: simple(sample.longestTaskDuration),
+          },
+          {
+            name: `TTI-${sample.threshold}-LongestTaskTs`,
+            sample: simple(sample.longestTaskTs),
+          },
+          {
+            name: `TTI-${sample.threshold}-LastLongTaskDuration`,
+            sample: simple(sample.lastLongTaskDuration),
+          },
+          {
+            name: `TTI-${sample.threshold}-LastLongTaskTs`,
+            sample: simple(sample.lastLongTaskTs),
+          },
+        ]);
+      }
+
+      for (const {name, value} of xpMetaMetrics) {
+        xpMetrics.push({name, sample: simple(value)});
+      }
+
+      return new tr.model.um.LoadExpectation(
         rendererHelper.modelHelper.model,
         tr.model.um.LOAD_SUBTYPE_NAMES.SUCCESSFUL, navigationStart.start,
         duration, rendererHelper.process, navigationStart, fmpEvent,
         domContentLoadedEndEvent, firstCpuIdleTime, interactiveTime, url,
-        frameId);
+        frameId, fcpEvent, expectedFIDData, xpMetrics);
+    } catch (e) {
+      console.error(e);
+      debugger;
+    }
+
   }
 
   /**
