@@ -15,6 +15,9 @@ import time
 import traceback
 import uuid
 
+from multiprocessing.dummy import Pool as ThreadPool
+from threading import Lock
+
 from py_utils import cloud_storage  # pylint: disable=import-error
 
 from telemetry import value as value_module
@@ -289,6 +292,9 @@ class PageTestResults(object):
 
     self._histograms = histogram_set.HistogramSet()
 
+    self._pool = ThreadPool(2)
+    self._async_tasks = {}
+
     self._telemetry_info = TelemetryInfo(
         upload_bucket=upload_bucket, output_dir=output_dir)
 
@@ -474,6 +480,33 @@ class PageTestResults(object):
     else:
       self._story_run_count[story] = 1
     self._current_page_run = None
+
+
+  def RegisterAsyncTask(self, async_fn, args):
+    assert self._current_page_run, 'Did not call WillRunPage.'
+    self._async_tasks[self._current_page_run] = [async_fn, args]
+
+  def GetAllAsyncResults(self):
+    assert not self._current_page_run, 'Cannot get async results while running.'
+    for run in self._async_tasks:
+      d = self._async_tasks[run]
+
+      d.append(self._pool.apply_async(d[0], d[1]))
+
+    for run in self._async_tasks:
+      self._current_page_run = run
+      try:
+        ret = self._async_tasks[run][2].get()
+        for fail in ret['fail']:
+          self.Fail(fail)
+        if ret['histogram_dicts']:
+          self.ImportHistogramDicts(ret['histogram_dicts'])
+        for scalar in ret['scalars']:
+          self.AddValue(scalar)
+      finally:
+        self._current_page_run = None
+    self._async_tasks = {}
+
 
   def InterruptBenchmark(self, stories, repeat_count):
     self.telemetry_info.InterruptBenchmark()
