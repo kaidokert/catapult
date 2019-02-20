@@ -46,6 +46,30 @@
       "revId": "416f91ef4a23d22ae6b715cd48b1bae9ec8aa7a9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec00635e_d357bf12",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1003154
+      },
+      "writtenOn": "2019-02-20T20:49:39Z",
+      "side": 1,
+      "message": "To elaborate, my plan is to load a html page with a button \"fullscreen\", it\u0027s onclick will call requestFullscreen(). Then it also has a fullscreenchange event handler, and we verify the handler is triggered.\n\nMaybe catapult can run a test like that? I don\u0027t have enough knowledge though. If you point me to the right path, I can add it inside catapult.",
+      "parentUuid": "70238b1d_3b119047",
+      "range": {
+        "startLine": 12,
+        "startChar": 35,
+        "endLine": 12,
+        "endChar": 71
+      },
+      "revId": "416f91ef4a23d22ae6b715cd48b1bae9ec8aa7a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
