@@ -4,7 +4,7 @@
 
 import collections
 
-from tracing.value import histogram as histogram
+from tracing.value import histogram
 from tracing.value.diagnostics import all_diagnostics
 from tracing.value.diagnostics import diagnostic
 from tracing.value.diagnostics import diagnostic_ref
@@ -84,19 +84,21 @@ class HistogramSet(object):
 
   def ImportDicts(self, dicts):
     for d in dicts:
-      if 'type' in d:
-        # TODO(benjhayden): Forget about TagMaps in 2019Q2.
-        if d['type'] == 'TagMap':
-          continue
+      self.ImportDict(d)
 
-        assert d['type'] in all_diagnostics.GetDiagnosticTypenames(), (
-            'Unrecognized shared diagnostic type ' + d['type'])
-        diag = diagnostic.Diagnostic.FromDict(d)
-        self._shared_diagnostics_by_guid[d['guid']] = diag
-      else:
-        hist = histogram.Histogram.FromDict(d)
-        hist.diagnostics.ResolveSharedDiagnostics(self)
-        self.AddHistogram(hist)
+  def ImportDict(self, d):
+    if 'type' in d:
+      # TODO(benjhayden): Forget about TagMaps in 2019Q2.
+      if d['type'] == 'TagMap':
+        return
+      assert d['type'] in all_diagnostics.GetDiagnosticTypenames(), (
+          'Unrecognized shared diagnostic type ' + d['type'])
+      diag = diagnostic.Diagnostic.FromDict(d)
+      self._shared_diagnostics_by_guid[d['guid']] = diag
+    else:
+      hist = histogram.Histogram.FromDict(d)
+      hist.diagnostics.ResolveSharedDiagnostics(self)
+      self.AddHistogram(hist)
 
   def AsDicts(self):
     dcts = []
