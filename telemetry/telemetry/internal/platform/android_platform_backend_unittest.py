@@ -2,9 +2,11 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import os
 import unittest
 
 from telemetry import decorators
+from telemetry.core import util
 from telemetry.internal.platform import android_device
 from telemetry.internal.platform import android_platform_backend
 from telemetry.testing import system_stub
@@ -136,6 +138,34 @@ class AndroidPlatformBackendTest(unittest.TestCase):
     backend = android_platform_backend.AndroidPlatformBackend(
         android_device.AndroidDevice('success'))
     self.assertFalse(backend._IsScreenLocked(test_input))
+
+  def testPackageExtractionFromLogcat(self):
+    backend = android_platform_backend.AndroidPlatformBackend(
+        android_device.AndroidDevice('success'))
+
+    # Check the package name in case a crash was not found.
+    self.assertEquals(
+        'com.google.android.apps.chrome',
+        backend._ExtractLastNativeCrashPackageFromLogcat('no crash info here'))
+
+    # Extract logcat lines from a file in test data.
+    test_file = os.path.join(util.GetUnittestDataDir(), 'crash_in_logcat.txt')
+    with open(test_file) as f:
+      original_logcat = f.read()
+
+    # Check extraction from the file.
+    original_package = 'com.google.android.apps.chrome'
+    self.assertEquals(original_package,
+                      backend._ExtractLastNativeCrashPackageFromLogcat(
+                          original_logcat, default_package_name='invalid'))
+
+    # Check that among two matches the latest package name is taken.
+    concatenated_logcat = '\n'.join([
+        original_logcat,
+        original_logcat.replace(original_package, 'com.android.chrome')])
+    self.assertEquals(
+        'com.android.chrome',
+        backend._ExtractLastNativeCrashPackageFromLogcat(concatenated_logcat))
 
 
 class AndroidPlatformBackendPsutilTest(unittest.TestCase):
