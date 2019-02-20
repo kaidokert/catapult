@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f47436a3_34d77c64",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-20T01:17:56Z",
+      "side": 1,
+      "message": "I meant keep this out as well; look up whether to retry on failure from the test expectations for the test, not from the result.",
+      "revId": "47990e16b1935464babede2cca3f92ea067b91c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
