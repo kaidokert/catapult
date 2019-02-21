@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9cdbb9bd_4dd5c38b",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-02-21T20:11:08Z",
+      "side": 1,
+      "message": "Could I suggest a rewrite?\n\n\"\"\"Subclasses can override this class method to return a list of paths to the test expectations files.\"\"\"\n\n*Please* describe how those files are referenced. Relative paths I hope? Relative to what? They can\u0027t be absolute paths because that won\u0027t work on Swarming, where the base of the path is not known.",
+      "range": {
+        "startLine": 189,
+        "startChar": 29,
+        "endLine": 189,
+        "endChar": 32
+      },
+      "revId": "760f6ce7f5a7cebc7256f642b7059b81ae1083ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
