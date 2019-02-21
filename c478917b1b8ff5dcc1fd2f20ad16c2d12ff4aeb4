@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "32c98f27_88e504a1",
+        "filename": "common/bin/update_chrome_reference_binaries",
+        "patchSetId": 3
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-21T23:37:20Z",
+      "side": 1,
+      "message": "Did you want to keep this?",
+      "range": {
+        "startLine": 185,
+        "startChar": 2,
+        "endLine": 185,
+        "endChar": 9
+      },
+      "revId": "c478917b1b8ff5dcc1fd2f20ad16c2d12ff4aeb4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
