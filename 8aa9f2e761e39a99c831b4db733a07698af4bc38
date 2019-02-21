@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6c9b2dac_e6854b13",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-21T16:54:35Z",
+      "side": 1,
+      "message": "It looks like these extra **log_config_kwargs are also not used:\nhttps://cs.chromium.org/search/?q\u003dbenchmark_runner%5C.main\u0026type\u003dcs\n\nLet\u0027s remove them.",
+      "revId": "8aa9f2e761e39a99c831b4db733a07698af4bc38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
