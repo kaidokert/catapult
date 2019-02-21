@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "66cd8236_01a5a1d0",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-21T11:22:03Z",
+      "side": 1,
+      "message": "is this picking the the \"last\" build directory found? what is the rationale for that?",
+      "revId": "d81307d912204cd8187676bae64f98a304c4faa9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2664cc0_fc3eda00",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-21T11:22:03Z",
+      "side": 1,
+      "message": "nit: won\u0027t this fit in the line above?",
+      "revId": "d81307d912204cd8187676bae64f98a304c4faa9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e73c60c2_f1cbf278",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-21T11:22:03Z",
+      "side": 1,
+      "message": "nit: this should just be `build_path`?",
+      "revId": "d81307d912204cd8187676bae64f98a304c4faa9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3938c887_84655b4f",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-21T11:22:03Z",
+      "side": 1,
+      "message": "should this use the package name of the APK that is actually being used for the benchmark runs?",
+      "revId": "d81307d912204cd8187676bae64f98a304c4faa9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7aea8785_47843368",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-21T11:22:03Z",
+      "side": 1,
+      "message": "nit: can you break this into three unit tests for each one of your scenarios?",
+      "revId": "d81307d912204cd8187676bae64f98a304c4faa9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
