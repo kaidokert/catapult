@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c9e8c56d_45a87b8a",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-21T01:33:29Z",
+      "side": 1,
+      "message": "same comment as in run_tests.py about the formatting ...",
+      "revId": "2a177dd797ea9bb0ec1e01198612ca5c101ae3ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99760546_ce38abf7",
+        "filename": "telemetry/telemetry/testing/run_tests.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-21T01:33:29Z",
+      "side": 1,
+      "message": "this formatting seems a bit weird, I\u0027d write this as:\n\n    runner.args.retry_only_on_failure_tests \u003d (\n        args.retry_only_on_failure_tests)\n\ninstead",
+      "revId": "2a177dd797ea9bb0ec1e01198612ca5c101ae3ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba8a2c05_ee09bd50",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 978,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-21T01:33:29Z",
+      "side": 1,
+      "message": "maybe return (_result_from_test_result(...), should_retry_on_failure) and not pass the parawm to _result_from_test_result?",
+      "revId": "2a177dd797ea9bb0ec1e01198612ca5c101ae3ca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
