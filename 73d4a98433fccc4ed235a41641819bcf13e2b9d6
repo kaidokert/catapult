@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d68c91d2_899deb9d",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-21T14:22:48Z",
+      "side": 1,
+      "message": "does it make a difference if we use a ThreadPool vs the multiprocessing.Pool?",
+      "revId": "73d4a98433fccc4ed235a41641819bcf13e2b9d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
