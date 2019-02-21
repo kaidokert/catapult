@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eb650cc8_bc8ff2b6",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-21T11:02:09Z",
+      "side": 1,
+      "message": "nit: Add a comment here to note that this method is now deprecated and should not be used any more.",
+      "revId": "c26098c51c5b50308c06faf409e907af621054ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
