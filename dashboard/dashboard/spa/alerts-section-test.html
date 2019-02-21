@@ -31,7 +31,7 @@ suite('alerts-section', function() {
           }
         };
       }
-      if (url === '/api/alerts/existing_bug') {
+      if (url === '/api/existing_bug') {
         return {
           async json() {
           }
@@ -190,7 +190,7 @@ suite('alerts-section', function() {
 
     let existingBugBody;
     window.fetch = async(url, options) => {
-      assert.strictEqual(url, '/api/alerts/existing_bug');
+      assert.strictEqual(url, '/api/existing_bug');
       existingBugBody = options.body;
       return {
         async json() {
@@ -231,7 +231,7 @@ suite('alerts-section', function() {
 
     let existingBugBody;
     window.fetch = async(url, options) => {
-      assert.strictEqual(url, '/api/alerts/existing_bug');
+      assert.strictEqual(url, '/api/existing_bug');
       existingBugBody = options.body;
       return {
         async json() {
@@ -272,7 +272,7 @@ suite('alerts-section', function() {
 
     let existingBugBody;
     window.fetch = async(url, options) => {
-      assert.strictEqual(url, '/api/alerts/existing_bug');
+      assert.strictEqual(url, '/api/existing_bug');
       existingBugBody = options.body;
       return {
         async json() {
