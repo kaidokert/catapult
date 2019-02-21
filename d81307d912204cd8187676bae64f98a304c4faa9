@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8139a652_6b8306b6",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2019-02-21T12:30:21Z",
+      "side": 1,
+      "message": "no real reason, just did not pay attention to this detail, restored the previous way, thanks!",
+      "parentUuid": "66cd8236_01a5a1d0",
+      "revId": "d81307d912204cd8187676bae64f98a304c4faa9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d2664cc0_fc3eda00",
         "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2019-02-21T11:22:03Z",
       "side": 1,
       "message": "nit: won\u0027t this fit in the line above?",
+      "revId": "d81307d912204cd8187676bae64f98a304c4faa9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61717a06_ca88fea7",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2019-02-21T12:30:21Z",
+      "side": 1,
+      "message": "no, it\u0027d be 84 chars :/",
+      "parentUuid": "d2664cc0_fc3eda00",
       "revId": "d81307d912204cd8187676bae64f98a304c4faa9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "8c223cea_055c1671",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2019-02-21T12:30:21Z",
+      "side": 1,
+      "message": "thanks! this was an unintentional leftover, Done",
+      "parentUuid": "e73c60c2_f1cbf278",
+      "revId": "d81307d912204cd8187676bae64f98a304c4faa9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3938c887_84655b4f",
         "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2019-02-21T11:22:03Z",
       "side": 1,
       "message": "should this use the package name of the APK that is actually being used for the benchmark runs?",
+      "revId": "d81307d912204cd8187676bae64f98a304c4faa9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1d1c694_be07f32c",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2019-02-21T12:30:21Z",
+      "side": 1,
+      "message": "GetStackTrace() currently does not have any context about the benchmark, the run and things like that. Plumbing it was not trivial, and could also be made wrong some day, it we operate on a \u0027launcher app\u0027 and the crash is in the \u0027launched app\u0027 (like with the CCT benchmark). In contrast, the logcat contains all the data, and the package is potentially more robust there.",
+      "parentUuid": "3938c887_84655b4f",
       "revId": "d81307d912204cd8187676bae64f98a304c4faa9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -84,6 +156,24 @@
       "revId": "d81307d912204cd8187676bae64f98a304c4faa9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4f938dc_871434dc",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2019-02-21T12:30:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7aea8785_47843368",
+      "revId": "d81307d912204cd8187676bae64f98a304c4faa9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
