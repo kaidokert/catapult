@@ -249,6 +249,14 @@ def _GetClassifier(args):
     test_set.isolated_tests.append(typ.TestInput(name))
   return _SeriallyExecutedBrowserTestCaseClassifer
 
+def _AssertClassExpectationsFilesAreAbsolutePaths(test_class):
+  assertion_msg = (('Test expectations file paths returned from'
+                    ' %s.ExpectationsFiles() are not absolute')
+                   % test_class.__name__)
+  assertion_condition = all(os.path.isabs(path)
+                            for path in test_class.ExpectationsFiles())
+  assert assertion_condition, assertion_msg
+
 
 def RunTests(args):
   parser = _CreateTestArgParsers()
@@ -258,7 +266,6 @@ def RunTests(args):
     PrintTelemetryHelp()
     return parser.exit_status
   binary_manager.InitDependencyManager(options.client_configs)
-  not_using_typ_expectation = len(options.expectations_files) == 0
   for start_dir in options.start_dirs:
     modules_to_classes = discover.DiscoverClasses(
         start_dir,
@@ -281,6 +288,9 @@ def RunTests(args):
         cl.Name() for cl in browser_test_classes)
     return 1
 
+  _AssertClassExpectationsFilesAreAbsolutePaths(test_class)
+  options.expectations_files.extend(test_class.ExpectationsFiles())
+  not_using_typ_expectation = len(options.expectations_files) == 0
   # Create test context.
   context = browser_test_context.TypTestContext()
   for c in options.client_configs:
