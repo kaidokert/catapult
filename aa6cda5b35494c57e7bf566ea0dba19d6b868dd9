@@ -16,6 +16,98 @@
       "revId": "aa6cda5b35494c57e7bf566ea0dba19d6b868dd9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1007f4b4_b999649f",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-21T22:40:40Z",
+      "side": 1,
+      "message": "However, I\u0027m concerned that this new implementation will not properly delete the trace_log if for whatever reason we don\u0027t call CollectAgentTraceData().\n\nThere are two standard solutions to this problem:\n1. This class could use a @contextlib.contextmanager decorator around a open function that creates the file. Then after the yield in the setup it will delete the tempfile. This means that any users of this class will need to use it inside a \"with tracing_agent.open():\" block (which could be inside their own context manager). The benefit of this is that it would be difficult for users to misuse.\n\n2. This class could instead surface a CleanUp function and then we could make sure that all users of this class must call the CleanUp function.\n\nNeither of these solutions is easy to do here since you would need to fix all the agents and then you would need to change platform to be able to additionally ensure that the CleanUp was done. https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/core/platform.py?type\u003dcs\u0026q\u003dcore+tracing_controller+lang:%5Epython$\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d87\nunfortunately, platform does not have a cleanup function so it cannot make sure that cleanup is called on it tracing_controller or on its platform_backend.\n\nEssentially, we cannot make sure that anything is properly cleaned up in Telemetry without a lot of refactoring, so we will need to rely on atexit. https://docs.python.org/2/library/atexit.html (I just added this stackoverflow answer on the topic: https://stackoverflow.com/a/54817328/2534270 )",
+      "range": {
+        "startLine": 54,
+        "startChar": 15,
+        "endLine": 54,
+        "endChar": 48
+      },
+      "revId": "aa6cda5b35494c57e7bf566ea0dba19d6b868dd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03192808_ff54987d",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-21T22:40:40Z",
+      "side": 1,
+      "message": "the + \u0027]\u0027\nhere needs explanation I think.",
+      "range": {
+        "startLine": 79,
+        "startChar": 26,
+        "endLine": 79,
+        "endChar": 40
+      },
+      "revId": "aa6cda5b35494c57e7bf566ea0dba19d6b868dd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f257366d_6f78039b",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-21T22:40:40Z",
+      "side": 1,
+      "message": "Unique",
+      "range": {
+        "startLine": 112,
+        "startChar": 15,
+        "endLine": 112,
+        "endChar": 21
+      },
+      "revId": "aa6cda5b35494c57e7bf566ea0dba19d6b868dd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec3712e7_b357dbba",
+        "filename": "telemetry/telemetry/internal/platform/tracing_controller_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-21T22:40:40Z",
+      "side": 1,
+      "message": "This comment should explain why or else we will never be able to change it for fear that it will break something we don\u0027t understand.",
+      "range": {
+        "startLine": 23,
+        "startChar": 54,
+        "endLine": 23,
+        "endChar": 68
+      },
+      "revId": "aa6cda5b35494c57e7bf566ea0dba19d6b868dd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
