@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d8dc3ca4_33948b79",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-21T23:53:13Z",
+      "side": 1,
+      "message": "You can make this both less verbose and more readable like this:\n\n_AssertAbsolutePaths(test_class.ExpectationsFiles(),\n                     \"Test expectations file paths cannot be relative paths\")\n\n\nThen your _AssertAbsolutePaths function looks like this:\n\n_AssertAbsolutePaths(paths, message):\n  assert os.path.isabs(path) for path in paths, message\n\nI don\u0027t think you need to include the test_class name in your error message because that will likely show up in the stack trace.",
+      "range": {
+        "startLine": 291,
+        "startChar": 2,
+        "endLine": 291,
+        "endChar": 59
+      },
+      "revId": "fced1ebd5ff592c313971e54d7e9effbe21c2e07",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
