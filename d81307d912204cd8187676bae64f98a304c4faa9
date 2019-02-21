@@ -142,6 +142,24 @@
     },
     {
       "key": {
+        "uuid": "edff3d21_e344d4ab",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-21T12:37:14Z",
+      "side": 1,
+      "message": "Ack. This is something I think we should formalize a bit more; WebView has the same issue. But that\u0027s definitely a larger project and not something for this CL.",
+      "parentUuid": "c1d1c694_be07f32c",
+      "revId": "d81307d912204cd8187676bae64f98a304c4faa9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7aea8785_47843368",
         "filename": "telemetry/telemetry/internal/platform/android_platform_backend_unittest.py",
         "patchSetId": 1
