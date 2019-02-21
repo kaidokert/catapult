@@ -182,6 +182,17 @@ class SeriallyExecutedBrowserTestCase(unittest.TestCase):
     del finder_options, possible_browser
     return []
 
+  @classmethod
+  def ExpectationsFiles(cls):
+    """This class method is part of the API for all test suites
+    that inherit this class. All test suites that override this function
+    can return the path's of its test expectations files
+
+    Returns:
+    A list of test expectations file paths
+    """
+    return []
+
 def LoadAllTestsInModule(module):
   """ Load all tests & generated browser tests in a given module.
 
