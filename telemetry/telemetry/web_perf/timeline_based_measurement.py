@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 import collections
+import functools
 import logging
 import os
 import time
@@ -30,6 +31,75 @@ ALL_OVERHEAD_LEVELS = [
     DEFAULT_OVERHEAD_LEVEL,
     DEBUG_OVERHEAD_LEVEL,
 ]
+
+class TraceValueInfo(object):
+  def __init__(self, page, trace_data, important=False, description=None,
+               file_path=None, remote_path=None, upload_bucket=None,
+               cloud_url=None):
+    self._page = page
+    self._trace_data = trace_data
+    self._important = important
+    self._description = description
+    self._file_path = file_path
+    self._remote_path = remote_path
+    self._upload_bucket = upload_bucket
+    self._cloud_url = cloud_url
+
+  def Create(self):
+    return trace.TraceValue(page=self._page, trace_data=self._trace_data,
+                            important=self._important,
+                            description=self._description,
+                            file_path=self._file_path,
+                            remote_path=self._remote_path,
+                            upload_bucket=self._upload_bucket,
+                            cloud_url=self._cloud_url)
+
+  def CleanUpAllTraces(self):
+    self._trace_data.CleanUpAllTraces()
+
+
+def ComputeMetricsInPool(metrics, trace_url, page, trace_value):
+  assert not trace_value.is_serialized, "TraceValue should not be serialized."
+  trace_value.SerializeTraceData()
+  retvalue = {
+      'trace': trace_value,
+      'fail': [],
+      'histogram_dicts': None,
+      'scalars': []
+  }
+  extra_import_options = {
+      'trackDetailedModelStats': True
+  }
+  trace_size_in_mib = os.path.getsize(trace_value.filename) / (2 ** 20)
+  # Bails out on trace that are too big. See crbug.com/812631 for more
+  # details.
+  if trace_size_in_mib > 400:
+    trace_value.CleanUpTraceData()
+    retvalue['fail'].append(
+        'Trace size is too big: %s MiB' % trace_size_in_mib)
+    return retvalue
+
+  logging.info('Starting to compute metrics on trace')
+  start = time.time()
+  mre_result = metric_runner.RunMetric(
+      trace_value.filename, metrics, extra_import_options,
+      report_progress=False, canonical_url=trace_url)
+  logging.info('Processing resulting traces took %.3f seconds' % (
+      time.time() - start))
+
+  if mre_result.failures:
+    for f in mre_result.failures:
+      retvalue['fail'].append(f.stack)
+
+  histogram_dicts = mre_result.pairs.get('histograms', [])
+  retvalue['histogram_dicts'] = histogram_dicts
+
+  scalars = []
+  for d in mre_result.pairs.get('scalars', []):
+    scalars.append(common_value_helpers.TranslateScalarValue(d, page))
+  retvalue['scalars'] = scalars
+  trace_value.CleanUpTraceData()
+  return retvalue
 
 
 class InvalidInteractions(Exception):
@@ -266,29 +336,32 @@ class TimelineBasedMeasurement(story_test.StoryTest):
     """Collect all possible metrics and added them to results."""
     platform.tracing_controller.telemetry_info = results.telemetry_info
     trace_result = platform.tracing_controller.StopTracing()
+
     trace_value = trace.TraceValue(
         results.current_page, trace_result,
         file_path=results.telemetry_info.trace_local_path,
         remote_path=results.telemetry_info.trace_remote_path,
         upload_bucket=results.telemetry_info.upload_bucket,
         cloud_url=results.telemetry_info.trace_remote_url)
-    results.AddValue(trace_value)
-
-    try:
-      if self._tbm_options.GetTimelineBasedMetrics():
-        assert not self._tbm_options.GetLegacyTimelineBasedMetrics(), (
-            'Specifying both TBMv1 and TBMv2 metrics is not allowed.')
-        self._ComputeTimelineBasedMetrics(results, trace_value)
-      else:
-        # Run all TBMv1 metrics if no other metric is specified
-        # (legacy behavior)
+    if self._tbm_options.GetTimelineBasedMetrics():
+      assert not self._tbm_options.GetLegacyTimelineBasedMetrics(), (
+          'Specifying both TBMv1 and TBMv2 metrics is not allowed.')
+      results.AddValue(trace_value, functools.partial(
+          ComputeMetricsInPool, self._tbm_options.GetTimelineBasedMetrics(),
+          results.telemetry_info.trace_url, results.current_page))
+    else:
+      # Run all TBMv1 metrics if no other metric is specified
+      # (legacy behavior)
+      try:
+        trace_value.SerializeTraceData()
+        results.AddValue(trace_value)
         if not self._tbm_options.GetLegacyTimelineBasedMetrics():
           raise Exception(
               'Please specify the TBMv1 metrics you are interested in '
               'explicitly.')
         self._ComputeLegacyTimelineBasedMetrics(results, trace_result)
-    finally:
-      trace_result.CleanUpAllTraces()
+      finally:
+        trace_value.CleanUpTraceData()
 
   def DidRunStory(self, platform, results):
     """Clean up after running the story."""
