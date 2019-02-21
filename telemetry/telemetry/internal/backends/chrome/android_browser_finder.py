@@ -292,13 +292,6 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
           android_browser_backend_settings.ANDROID_CHROME.package)
 
 
-def SelectDefaultBrowser(possible_browsers):
-  """Return the newest possible browser."""
-  if not possible_browsers:
-    return None
-  return max(possible_browsers, key=lambda b: b.last_modification_time)
-
-
 def CanFindAvailableBrowsers():
   return android_device.CanDiscoverDevices()
 

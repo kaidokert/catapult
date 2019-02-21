@@ -161,27 +161,6 @@ def _MockPossibleBrowser(modified_at):
   return m
 
 
-class SelectDefaultBrowserTest(unittest.TestCase):
-  def testEmptyListGivesNone(self):
-    self.assertIsNone(android_browser_finder.SelectDefaultBrowser([]))
-
-  def testSinglePossibleReturnsSame(self):
-    possible_browsers = [_MockPossibleBrowser(modified_at=1)]
-    self.assertIs(
-        possible_browsers[0],
-        android_browser_finder.SelectDefaultBrowser(possible_browsers))
-
-  def testListGivesNewest(self):
-    possible_browsers = [
-        _MockPossibleBrowser(modified_at=2),
-        _MockPossibleBrowser(modified_at=3),  # newest
-        _MockPossibleBrowser(modified_at=1),
-        ]
-    self.assertIs(
-        possible_browsers[1],
-        android_browser_finder.SelectDefaultBrowser(possible_browsers))
-
-
 class SetUpProfileBrowserTest(unittest.TestCase):
 
   @decorators.Disabled('all')  # http://crbug.com/905359
