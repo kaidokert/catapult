@@ -46,6 +46,30 @@
       "revId": "760f6ce7f5a7cebc7256f642b7059b81ae1083ee",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e27b8df6_88a2dcec",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-02-21T21:53:20Z",
+      "side": 1,
+      "message": "I see. Yes, that\u0027s fine - in that case, please document that the paths must be absolute. It would be better to perhaps assert that they aren\u0027t relative, since what they would be relative to is basically undefined.",
+      "parentUuid": "e40f5c3f_f907d4e4",
+      "range": {
+        "startLine": 189,
+        "startChar": 29,
+        "endLine": 189,
+        "endChar": 32
+      },
+      "revId": "760f6ce7f5a7cebc7256f642b7059b81ae1083ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
