@@ -187,6 +187,9 @@ class Benchmark(command_line.Command):
   def CustomizeBrowserOptions(self, options):
     """Add browser options that are required by this benchmark."""
 
+  def CustomizeOptions(self, finder_options):
+    """Add options that are required by this benchmark."""
+
   def GetMetadata(self):
     return BenchmarkMetadata(self.Name(), self.__doc__,
                              self.GetTraceRerunCommands())
