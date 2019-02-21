@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f6f1b6e9_53d3385f",
+        "filename": "dashboard/dashboard/spa/alerts-section-test.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-21T15:59:49Z",
+      "side": 1,
+      "message": "Could put these into some constants file somewhere to avoid this in future.",
+      "revId": "4fa2e6332faeb07444be27abcab70b70018c0965",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
