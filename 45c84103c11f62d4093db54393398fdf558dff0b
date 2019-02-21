@@ -142,6 +142,24 @@
     },
     {
       "key": {
+        "uuid": "a1c59117_aa2e1d39",
+        "filename": "telemetry/telemetry/internal/browser/browser_options_unittest.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-21T13:37:50Z",
+      "side": 1,
+      "message": "Yes. Thanks :)",
+      "parentUuid": "3d938534_8726c84d",
+      "revId": "45c84103c11f62d4093db54393398fdf558dff0b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "50ae303c_48ac19d0",
         "filename": "telemetry/telemetry/internal/platform/device_finder.py",
         "patchSetId": 9
