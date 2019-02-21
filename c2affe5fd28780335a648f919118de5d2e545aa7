@@ -22,6 +22,30 @@
       "revId": "c2affe5fd28780335a648f919118de5d2e545aa7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88d9603a_96b8cfbe",
+        "filename": "dashboard/dashboard/pinpoint/models/change/patch.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-21T21:19:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05a11486_c790ffe5",
+      "range": {
+        "startLine": 51,
+        "startChar": 8,
+        "endLine": 51,
+        "endChar": 19
+      },
+      "revId": "c2affe5fd28780335a648f919118de5d2e545aa7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
