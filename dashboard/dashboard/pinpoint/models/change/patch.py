@@ -43,6 +43,13 @@ class GerritPatch(collections.namedtuple(
         'patch_storage': 'gerrit',
     }
 
+  def BuildsetTags(self):
+    patch_info = gerrit_service.GetChange(
+        self.server, self.change, fields=('ALL_REVISIONS',))
+    revision_info = patch_info['revisions'][self.revision]
+    return 'buildset:patch/gerrit/%s/%s/%s' % (
+        self.server, patch_info['_number'], revision_info['_number'])
+
   def AsDict(self):
     d = {
         'server': self.server,
