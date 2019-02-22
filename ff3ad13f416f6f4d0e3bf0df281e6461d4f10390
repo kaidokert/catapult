@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ce18376_1b55cf9b",
+        "filename": "tracing/tracing/value/histogram_set_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-22T16:36:23Z",
+      "side": 1,
+      "message": "I think Ben just wanted a sample to inspect himself, in which case you can just link the output isolate from the failing Pinpoint test. Also, if you\u0027re still looking to add this as test data, you could cull most of the file and just leave the broken histogram instead of the entire thing.",
+      "revId": "ff3ad13f416f6f4d0e3bf0df281e6461d4f10390",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a819dd4_56dab2fc",
+        "filename": "tracing/tracing/value/histogram_set_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-22T16:36:23Z",
+      "side": 1,
+      "message": "hs \u003d histogram_set.HistogramSet()\nhs.ImportDicts(json.load(f))",
+      "range": {
+        "startLine": 248,
+        "startChar": 9,
+        "endLine": 248,
+        "endChar": 13
+      },
+      "revId": "ff3ad13f416f6f4d0e3bf0df281e6461d4f10390",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
