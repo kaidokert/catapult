@@ -34,6 +34,41 @@
       "revId": "8aa9f2e761e39a99c831b4db733a07698af4bc38",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "38cee9c8_cc3d4f48",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-22T09:12:52Z",
+      "side": 1,
+      "message": "Don\u0027t forget to upload new patch set.",
+      "parentUuid": "35e3b18b_bdcbdd0e",
+      "revId": "8aa9f2e761e39a99c831b4db733a07698af4bc38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d23b26d0_cd88b91a",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-22T09:12:52Z",
+      "side": 1,
+      "message": "it looks like now you always call this with ALL_COMMANDS, so maybe remove that arg?",
+      "revId": "8aa9f2e761e39a99c831b4db733a07698af4bc38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
