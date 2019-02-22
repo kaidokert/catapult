@@ -22,6 +22,30 @@
       "revId": "361d104db7323dd0198d1419027ca6540441cfc2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7bcbef3b_d2980ef5",
+        "filename": "dashboard/docs/v2spa.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-22T22:25:53Z",
+      "side": 1,
+      "message": "Somebody will need to figure out how to make it go away. Maybe all of the paths should be made relative to the root of the repo? Maybe dashboard should get its own third_party directory like tracing has? It might be easier for somebody to fix this after the V1 UI is removed, or possibly after v2spa migrates to lit-element.",
+      "parentUuid": "5e63eb41_e5960f92",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 2
+      },
+      "revId": "361d104db7323dd0198d1419027ca6540441cfc2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
