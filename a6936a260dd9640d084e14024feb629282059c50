@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ffb302c9_a089243e",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-22T10:35:18Z",
+      "side": 1,
+      "message": "I would be very explicit and call this \"ComputeTimelineBasedMetrics\" instead.",
+      "revId": "a6936a260dd9640d084e14024feb629282059c50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24339e56_36d3eabe",
+        "filename": "telemetry/telemetry/value/trace.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-22T10:35:18Z",
+      "side": 1,
+      "message": "If I\u0027m following this right, self._trace_data can only be None if someone has called CleanUp() on the trace_value. So maybe it should be an error if we are trying to serialize and the trace_data is gone.\n\nThis should also simplify some of the error checks below.",
+      "revId": "a6936a260dd9640d084e14024feb629282059c50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1639db1_1212dce2",
+        "filename": "telemetry/telemetry/web_perf/timeline_based_measurement.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-22T10:35:18Z",
+      "side": 1,
+      "message": "I believe we should be able to avoid passing the extra callbacl function here. Instead:\n- the trace_value you build already knows about results.current_page, no need to pass that.\n- maybe also add trace_url and tbm_metrics as an optional extra args to TraceValue constructor.\n\nThen in story_runner.Run you always call ComputeMetricsInPool on all trace_values that have these tbm_metrics defined. How does that sound?",
+      "revId": "a6936a260dd9640d084e14024feb629282059c50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
