@@ -15,6 +15,9 @@ import time
 import traceback
 import uuid
 
+import multiprocessing
+from multiprocessing.dummy import Pool as ThreadPool
+
 from py_utils import cloud_storage  # pylint: disable=import-error
 
 from telemetry import value as value_module
@@ -289,6 +292,8 @@ class PageTestResults(object):
 
     self._histograms = histogram_set.HistogramSet()
 
+    self._trace_values = []
+
     self._telemetry_info = TelemetryInfo(
         upload_bucket=upload_bucket, output_dir=output_dir)
 
@@ -312,6 +317,7 @@ class PageTestResults(object):
     return self._histograms.AsDicts()
 
   def PopulateHistogramSet(self):
+    assert not self._trace_values, "Async values still pending."
     if len(self._histograms):
       return
 
@@ -475,6 +481,31 @@ class PageTestResults(object):
       self._story_run_count[story] = 1
     self._current_page_run = None
 
+
+  def ResolveAsyncValues(self):
+    assert not self._current_page_run, 'Cannot get async results while running.'
+    pool = ThreadPool(multiprocessing.cpu_count())
+    for entry in self._trace_values:
+      value = entry['value']
+      callback = entry['callback']
+      entry['async_task'] = pool.apply_async(callback, [value])
+
+    for entry in self._trace_values:
+      self._current_page_run = entry['page']
+      try:
+        ret = entry['async_task'].get()
+        for fail in ret['fail']:
+          self.Fail(fail)
+        if ret['histogram_dicts']:
+          self.ImportHistogramDicts(ret['histogram_dicts'])
+        for scalar in ret['scalars']:
+          self.AddValue(scalar)
+      finally:
+        self._current_page_run = None
+
+    self._trace_values = []
+
+
   def InterruptBenchmark(self, stories, repeat_count):
     self.telemetry_info.InterruptBenchmark()
     # If we are in the middle of running a page it didn't finish
@@ -526,9 +557,17 @@ class PageTestResults(object):
         '%s_%s' % (hist.name, s) for  s in hist.statistics_scalars.iterkeys()]
     return any(self._should_add_value(s, is_first_result) for s in stat_names)
 
-  def AddValue(self, value):
+  def AddValue(self, value, callback=None):
     assert self._current_page_run, 'Not currently running test.'
     assert self._benchmark_enabled, 'Cannot add value to disabled results'
+    if callback:
+      assert isinstance(value, trace.TraceValue), \
+          'Only trace.TraceValue allowed.'
+      self._trace_values.append({'page': self._current_page_run,
+                                 'value': value,
+                                 'callback': callback})
+      return
+
     self._ValidateValue(value)
     is_first_result = (
         self._current_page_run.story not in self._all_stories)

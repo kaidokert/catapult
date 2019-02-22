@@ -27,7 +27,8 @@ class TraceValue(value_module.Value):
     super(TraceValue, self).__init__(
         page, name='trace', units='', important=important,
         description=description, tir_label=None, grouping_keys=None)
-    self._temp_file = self._GetTempFileHandle(trace_data)
+    self._trace_data = trace_data
+    self._temp_file = None
     self._file_path = file_path
     self._remote_path = remote_path
     self._upload_bucket = upload_bucket
@@ -40,6 +41,9 @@ class TraceValue(value_module.Value):
       return self._cloud_url
     elif self._serialized_file_handle:
       return self._serialized_file_handle.GetAbsPath()
+
+  def SerializeTraceData(self):
+    self._temp_file = self._GetTempFileHandle(self._trace_data)
 
   def _GetTempFileHandle(self, trace_data):
     tf = tempfile.NamedTemporaryFile(delete=False, suffix='.html')
@@ -63,6 +67,9 @@ class TraceValue(value_module.Value):
     A cleaned up TraceValue cannot be used for further operations. CleanUp()
     may be called more than once without error.
     """
+    if self._trace_data:
+      self._trace_data.CleanUpAllTraces()
+      self._trace_data = None
     if self._temp_file is None:
       return
     os.remove(self._temp_file.GetAbsPath())
@@ -77,6 +84,10 @@ class TraceValue(value_module.Value):
   @property
   def cleaned_up(self):
     return self._temp_file is None
+
+  @property
+  def is_serialized(self):
+    return self._temp_file is not None
 
   @property
   def filename(self):
@@ -97,7 +108,10 @@ class TraceValue(value_module.Value):
 
   def AsDict(self):
     if self._temp_file is None:
-      raise ValueError('Tried to serialize TraceValue without tempfile.')
+      if self._trace_data is None:
+        raise ValueError('Tried to serialize TraceValue without tempfile.')
+      self.SerializeTraceData()
+      assert self._temp_file
     d = super(TraceValue, self).AsDict()
     if self._serialized_file_handle:
       d['file_id'] = self._serialized_file_handle.id
@@ -109,7 +123,11 @@ class TraceValue(value_module.Value):
 
   def Serialize(self):
     if self._temp_file is None:
-      raise ValueError('Tried to serialize nonexistent trace.')
+      if self._trace_data is None:
+        raise ValueError('Tried to serialize nonexistent trace.')
+      self.SerializeTraceData()
+      assert self._temp_file
+
     if self._file_path is None:
       raise ValueError('Serialize requires file_path.')
     shutil.copy(self._temp_file.GetAbsPath(), self._file_path)
