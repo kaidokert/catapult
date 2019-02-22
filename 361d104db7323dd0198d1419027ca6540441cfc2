@@ -46,6 +46,30 @@
       "revId": "361d104db7323dd0198d1419027ca6540441cfc2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7f0ffab_4c9e86b1",
+        "filename": "dashboard/docs/v2spa.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-22T23:14:45Z",
+      "side": 1,
+      "message": "Not a deal breaker but that kinda sucks. Is there a \"things to do after v2 launches\" bug list? This sounds like it should be added.",
+      "parentUuid": "7bcbef3b_d2980ef5",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 2
+      },
+      "revId": "361d104db7323dd0198d1419027ca6540441cfc2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
