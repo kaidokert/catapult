@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d98d3bb9_4159eeaa",
+        "filename": "telemetry/telemetry/internal/util/ps_util.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-22T09:33:45Z",
+      "side": 1,
+      "message": "python docs say sys.exc_{value,type} have been long deprecated:\nhttps://docs.python.org/2/library/sys.html#sys.exc_type\n\nAlso something like the following may be easier to understand and would give roughly the same info?\n\n    except (psutil.NoSuchProces, ...) as exc:\n      process_info \u003d \u0027unknown (%s): %s\u0027 % (p.pid, exc)",
+      "revId": "b91ed1ef687e0ccf057e6f25a63841b50aeeee7a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
