@@ -11,7 +11,7 @@ from py_utils import cloud_storage
 from telemetry.internal.browser import browser_finder
 from telemetry.internal.browser import browser_finder_exceptions
 from telemetry.testing import browser_test_context
-
+from typ import json_results
 
 DEFAULT_LOG_FORMAT = (
     '(%(levelname)s) %(asctime)s %(module)s.%(funcName)s:%(lineno)d  '
@@ -191,6 +191,21 @@ class SeriallyExecutedBrowserTestCase(unittest.TestCase):
     A list of test expectations file paths. The paths must be absolute.
     """
     return []
+
+  def GetExpectationsForTest(self):
+    """Subclasses can override this method to return a tuple containing a set
+    of expected results and a flag indicating if the test has the RetryOnFailure
+    expectation. Tests members may want to know the test expectation in order to
+    modify its behavior for certain expectations. For instance GPU tests want
+    to avoid symbolizing any crash dumps in the case of expected test failures
+    or when tests are being retried because they are expected to be flaky.
+
+    Returns:
+    A tuple containing set of expected results for a test and a boolean value
+    indicating if the test contains the RetryOnFailure expectation
+    """
+    return set([json_results.ResultType.Pass]), False
+
 
 def LoadAllTestsInModule(module):
   """ Load all tests & generated browser tests in a given module.
