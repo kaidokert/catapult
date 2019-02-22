@@ -38,8 +38,23 @@ class SkipTestExpectationFiles(
     del options
     yield 'SkipTest', ()
 
+  @classmethod
+  def GenerateTestCases__RunSkipIfExpectedTest(cls, options):
+    del options
+    yield 'SkipIfExpectedTest', ()
+
   def _RunSkipTest(self):
     self.skipTest('SKIPPING TEST')
+
+  def _RunSkipIfExpectedTest(self):
+    cls = self.__class__
+    expectation = (cls.typ_test_runner
+                   .expectations
+                   .expected_results_for('SkipIfExpectedTest'))
+    if expectation == set(['FAIL']):
+      self.skipTest('Skip is in the expectations'
+                    ' for the test in new test'
+                    ' expectations format')
 
   @classmethod
   def GenerateTestCases__RunPassTest(cls, options):

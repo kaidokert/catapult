@@ -128,6 +128,20 @@ class BrowserTestRunnerTest(unittest.TestCase):
     return test_result
 
   @decorators.Disabled('chromeos')  # crbug.com/696553
+  def testTypRunnerReferenceInTestClass(self):
+    test_result = self._RunBrowserTest('skip_tests_test',
+                                       'SkipTestExpectationFiles',
+                                       'SkipIfExpectedTest', 'Failure',
+                                       expected_exit_code=1)
+    test_result = (test_result['tests']['browser_tests']
+                   ['skip_tests_test']['SkipTestExpectationFiles']
+                   ['SkipIfExpectedTest'])
+    self.assertEqual(test_result['expected'], 'FAIL')
+    self.assertEqual(test_result['actual'], 'SKIP')
+    self.assertIn('is_unexpected', test_result)
+    self.assertIn('is_regression', test_result)
+
+  @decorators.Disabled('chromeos')  # crbug.com/696553
   def testOverridingExpectationsFilesFunction(self):
     test_results = self._RunBrowserTest('includes_test_expectations_files_test',
                                         'IncludesTestExpectationsFiles',
