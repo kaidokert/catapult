@@ -6,6 +6,7 @@ import collections
 import inspect
 import logging
 import os
+import sys
 
 from py_utils import atexit_with_log
 
@@ -71,19 +72,19 @@ def ListAllSubprocesses():
   if children:
     processes_info = []
     for p in children:
-      if inspect.ismethod(p.name):
-        name = p.name()
-      else:  # Process.name is a property in old versions of psutil.
-        name = p.name
-      process_info = '%s (%s)' % (name, p.pid)
       try:
+        if inspect.ismethod(p.name):
+          name = p.name()
+        else:  # Process.name is a property in old versions of psutil.
+          name = p.name
         if inspect.ismethod(p.cmdline):
           cmdline = p.cmdline()
         else:
           cmdline = p.cmdline
-        process_info += ' - %s' % cmdline
-      except Exception as e: # pylint: disable=broad-except
-        logging.warning(str(e))
+        process_info = '%s (%s) - %s' % (name, p.pid, cmdline)
+      except (psutil.NoSuchProcess, psutil.ZombieProcess, psutil.AccessDenied):
+        process_info = 'unknown (%s): %s: %s' % (
+            p.pid, sys.exc_value, sys.exc_type.__name__)
       processes_info.append(process_info)
     logging.warning('Running sub processes (%i processes): %s',
                     len(children), '\n'.join(processes_info))
