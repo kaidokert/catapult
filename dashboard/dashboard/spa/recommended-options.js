@@ -81,7 +81,7 @@ tr.exportTo('cp', () => {
       const now = new Date().getTime();
       try {
         optionRecommendations = JSON.parse(localStorage.getItem(
-            RecommendedOptions.STORAGE_KEY));
+            RecommendedOptions.STORAGE_KEY)) || {};
 
         for (const value of DEFAULT_RECOMMENDATIONS) {
           if (!(value in optionRecommendations)) {
