@@ -151,14 +151,6 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
     pass
 
 
-def SelectDefaultBrowser(possible_browsers):
-  if cros_device.IsRunningOnCrOS():
-    for b in possible_browsers:
-      if b.browser_type == 'system':
-        return b
-  return None
-
-
 def CanFindAvailableBrowsers(finder_options):
   return (cros_device.IsRunningOnCrOS() or finder_options.cros_remote or
           cros_interface.HasSSH())
