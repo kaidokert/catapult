@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6b15d40b_20e27743",
+        "filename": "tracing/tracing/value/histogram_serializer_unittest.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-22T01:48:16Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 56,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 9
+      },
+      "revId": "ffb5c019c61d4e6c1f64db053aee4c886cb5a0eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
