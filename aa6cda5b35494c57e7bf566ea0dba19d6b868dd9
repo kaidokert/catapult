@@ -66,6 +66,30 @@
     },
     {
       "key": {
+        "uuid": "6df6d694_ef0d3205",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-22T17:11:57Z",
+      "side": 1,
+      "message": "Ah, you\u0027re right. I didn\u0027t read that code very carefully. LGTM in that case.\n\nI still wonder if we should add atexit deletion handlers for our tempfiles just to make sure that if we get for example a SIGTERM or some unexpected error we still clean ourselves up. However, that can be in another changelist, if at all.",
+      "parentUuid": "b2c3a2b1_fba38459",
+      "range": {
+        "startLine": 54,
+        "startChar": 15,
+        "endLine": 54,
+        "endChar": 48
+      },
+      "revId": "aa6cda5b35494c57e7bf566ea0dba19d6b868dd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "03192808_ff54987d",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
         "patchSetId": 3
