@@ -249,7 +249,6 @@ def _GetClassifier(args):
     test_set.isolated_tests.append(typ.TestInput(name))
   return _SeriallyExecutedBrowserTestCaseClassifer
 
-
 def RunTests(args):
   parser = _CreateTestArgParsers()
   try:
@@ -258,7 +257,6 @@ def RunTests(args):
     PrintTelemetryHelp()
     return parser.exit_status
   binary_manager.InitDependencyManager(options.client_configs)
-  not_using_typ_expectation = len(options.expectations_files) == 0
   for start_dir in options.start_dirs:
     modules_to_classes = discover.DiscoverClasses(
         start_dir,
@@ -280,6 +278,11 @@ def RunTests(args):
     print 'Available tests: %s' % '\n'.join(
         cl.Name() for cl in browser_test_classes)
     return 1
+
+  # file paths returned from test_class.ExpectationsFiles() must be absolute
+  assert all(os.path.isabs(path) for path in test_class.ExpectationsFiles())
+  options.expectations_files.extend(test_class.ExpectationsFiles())
+  not_using_typ_expectation = len(options.expectations_files) == 0
 
   # Create test context.
   context = browser_test_context.TypTestContext()
