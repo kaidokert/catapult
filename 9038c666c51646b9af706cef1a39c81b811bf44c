@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2bc08adc_fe6c3bfc",
+        "filename": "dashboard/bin/deploy",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-22T19:07:57Z",
+      "side": 1,
+      "message": "Added a comment.\napp.yaml doesn\u0027t include the service-worker yet, but will when v2spa launches.",
+      "parentUuid": "6b165d08_d38fbfa9",
+      "revId": "9038c666c51646b9af706cef1a39c81b811bf44c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "199391ad_80ccc6b7",
         "filename": "dashboard/bin/deploy",
         "patchSetId": 6
@@ -39,6 +57,30 @@
       "revId": "9038c666c51646b9af706cef1a39c81b811bf44c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "920929f7_03c0e28a",
+        "filename": "dashboard/bin/deploy",
+        "patchSetId": 6
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-22T19:07:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "199391ad_80ccc6b7",
+      "range": {
+        "startLine": 78,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 9
+      },
+      "revId": "9038c666c51646b9af706cef1a39c81b811bf44c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
