@@ -19,6 +19,12 @@ DEFAULT_LOG_FORMAT = (
 
 
 class SeriallyExecutedBrowserTestCase(unittest.TestCase):
+
+  # typ_test_runner will be a reference to the typ.Runner instance that runs
+  # tests. This reference can be used to get information from the test runner
+  # like expectations for the test
+  typ_test_runner = None
+
   def __init__(self, methodName):
     super(SeriallyExecutedBrowserTestCase, self).__init__(methodName)
     self._private_methodname = methodName
