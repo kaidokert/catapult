@@ -28,6 +28,9 @@ suite('alerts-section', function() {
     window.fetch = async(url, options) => {
       return {
         async json() {
+          if (url === cp.DescribeRequest.URL) {
+            return {};
+          }
           if (url === cp.NewBugRequest.URL) {
             newBugBody = options.body;
             return {bug_id: 57};
