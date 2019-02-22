@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "b2c3a2b1_fba38459",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-22T13:06:11Z",
+      "side": 1,
+      "message": "Yeah, 100% agree with you.\n\nOn my \"telemetry_mini\" [1] I did your suggestion #1, that is definitely *the* right way to solve the problem. But that is just too hard to implement now with the current architecture of the \"big\" Telemetry.\n\nYour suggestion #2 is sort of what these agent classes try to do: clients are responsible to call StopAgentTracing + CollectAgentTraceData always after StartAgentTracing. This promise is fulfilled by the TracingControllerBackend, and that is the reason why e.g. in [2] there are these try/except blocks to catch exceptions raised while stopping/collecting from all agents (to give them all a chance to finish); and then finally raise if any of them had an exception.\n\nBut of course TracingControllerBackend only \"fulfills\" the promise by itself passing the burden to all of its clients to always call StopTracing after StartTracing. And this I think is mostly respected. As part of this work I\u0027m also looking through all the clients, cleaning up their code, and making sure they work through the splitting of trace_data writing/reading. I\u0027ll also make sure cleanups like this are done.\n\nI\u0027ve added some more comments in the parent TracingAgent class to clarify this.\n\nAs for the particular issue here, note that this is not worst than the previous version. Because the atexit was only registered if during StopAgentTracing there was an error trying to remove the file (which used to happen reliably on Windows, that\u0027s what I\u0027m fixing). Clients could have in principle still forgotten to call StopAgentTracing and the file wouldn\u0027t have been removed.\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/experimental/telemetry_mini/telemetry_mini.py?dr\u003dC\u0026q\u003df:telemetry_mini.py+contextlib%5C.contextmanager\u0026g\u003d0\u0026l\u003d436\n[2]: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/platform/tracing_controller_backend.py?rcl\u003d0a94c0324d4217c753b090c0878b941dd4b110f4\u0026l\u003d120\n[3]: https://docs.google.com/document/d/1WcI2Cy3zGQpZUhHj6kY-CMbjVYrai8vPpkRcZsuwYtw/edit?usp\u003dsharing",
+      "parentUuid": "1007f4b4_b999649f",
+      "range": {
+        "startLine": 54,
+        "startChar": 15,
+        "endLine": 54,
+        "endChar": 48
+      },
+      "revId": "aa6cda5b35494c57e7bf566ea0dba19d6b868dd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "03192808_ff54987d",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
         "patchSetId": 3
@@ -62,6 +86,30 @@
       "revId": "aa6cda5b35494c57e7bf566ea0dba19d6b868dd9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f434ca8_2653671c",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-22T13:06:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03192808_ff54987d",
+      "range": {
+        "startLine": 79,
+        "startChar": 26,
+        "endLine": 79,
+        "endChar": 40
+      },
+      "revId": "aa6cda5b35494c57e7bf566ea0dba19d6b868dd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -88,6 +136,30 @@
     },
     {
       "key": {
+        "uuid": "d474c8c0_9a534cae",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-22T13:06:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f257366d_6f78039b",
+      "range": {
+        "startLine": 112,
+        "startChar": 15,
+        "endLine": 112,
+        "endChar": 21
+      },
+      "revId": "aa6cda5b35494c57e7bf566ea0dba19d6b868dd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ec3712e7_b357dbba",
         "filename": "telemetry/telemetry/internal/platform/tracing_controller_backend.py",
         "patchSetId": 3
@@ -108,6 +180,30 @@
       "revId": "aa6cda5b35494c57e7bf566ea0dba19d6b868dd9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1e20550_e78b7b01",
+        "filename": "telemetry/telemetry/internal/platform/tracing_controller_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-22T13:06:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec3712e7_b357dbba",
+      "range": {
+        "startLine": 23,
+        "startChar": 54,
+        "endLine": 23,
+        "endChar": 68
+      },
+      "revId": "aa6cda5b35494c57e7bf566ea0dba19d6b868dd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
