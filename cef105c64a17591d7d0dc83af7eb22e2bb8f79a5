@@ -16,6 +16,24 @@
       "revId": "cef105c64a17591d7d0dc83af7eb22e2bb8f79a5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a417d56_154ff1de",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1136,
+      "author": {
+        "id": 1153089
+      },
+      "writtenOn": "2019-02-22T13:34:35Z",
+      "side": 1,
+      "message": "We could just log a different message and re-run w/o large_output\u003dTrue if the output is shorter than _MAX_ADB_OUTPUT_LENGTH, e.g. something like this:\n\n  def handle_large_output(cmd, large_output_mode, remaining_tries\u003d_MAX_ADB_RETRIES):\n    try:\n      if large_output_mode:\n        with device_temp_file.DeviceTempFile(self.adb) as large_output_file:\n          cmd \u003d \u0027( %s )\u003e%s 2\u003e\u00261\u0027 % (cmd, large_output_file.name)\n          logger.debug(\u0027Large output mode enabled. Will write output to \u0027\n                       \u0027device and read results from file.\u0027)\n          handle_large_command(cmd)\n          return self.ReadFile(large_output_file.name, force_pull\u003dTrue)\n      else:\n        return handle_large_command(cmd)      \n    except device_errors.AdbCommandFailedError as exc:\n      if exc.status is None:\n        logger.error(_FormatPartialOutputError(exc.output))\n        if len(exc.output) \u003e\u003d self._MAX_ADB_OUTPUT_LENGTH and remaining_tries:\n          logger.warning(\u0027Attempting to run in large_output mode.\u0027)\n          logger.warning(\u0027Use RunShellCommand(..., large_output\u003dTrue) for \u0027\n                               \u0027shell commands that expect a lot of output.\u0027)\n        return handle_large_output(cmd, True, remaining_tries\u003dremaining_tries-1)\n      elif remaining_tries:\n        logging.warning(\u0027Previous run returned no command status. Trying again.\u0027)\n        return handle_large_output(cmd, large_output_mode, remaining_tries\u003dremaining_tries-1)\n\nIdeally, I would want to separate retry logic into handle_adb_flakiness method, but not sure how to separate it from handling large output cleanly.",
+      "parentUuid": "2ee19ce7_bb74e0b2",
+      "revId": "cef105c64a17591d7d0dc83af7eb22e2bb8f79a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
