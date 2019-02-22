@@ -5,6 +5,7 @@
 import sys
 
 from telemetry.testing import serially_executed_browser_test_case
+from typ import json_results
 
 class SkipTest(
     serially_executed_browser_test_case.SeriallyExecutedBrowserTestCase):
@@ -38,8 +39,20 @@ class SkipTestExpectationFiles(
     del options
     yield 'SkipTest', ()
 
+  @classmethod
+  def GenerateTestCases__RunSkipIfExpectedToFail(cls, options):
+    del options
+    yield 'SkipIfExpectedToFail', ()
+
   def _RunSkipTest(self):
     self.skipTest('SKIPPING TEST')
+
+  def GetExpectationsForTest(self):
+    return set([json_results.ResultType.Failure])
+
+  def _RunSkipIfExpectedToFail(self):
+    if self.GetExpectationsForTest() == set(['FAIL']):
+      self.skipTest('Skipping test that is expected to fail')
 
   @classmethod
   def GenerateTestCases__RunPassTest(cls, options):

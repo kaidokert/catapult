@@ -11,7 +11,7 @@ from py_utils import cloud_storage
 from telemetry.internal.browser import browser_finder
 from telemetry.internal.browser import browser_finder_exceptions
 from telemetry.testing import browser_test_context
-
+from typ import json_results
 
 DEFAULT_LOG_FORMAT = (
     '(%(levelname)s) %(asctime)s %(module)s.%(funcName)s:%(lineno)d  '
@@ -19,6 +19,7 @@ DEFAULT_LOG_FORMAT = (
 
 
 class SeriallyExecutedBrowserTestCase(unittest.TestCase):
+
   def __init__(self, methodName):
     super(SeriallyExecutedBrowserTestCase, self).__init__(methodName)
     self._private_methodname = methodName
@@ -191,6 +192,16 @@ class SeriallyExecutedBrowserTestCase(unittest.TestCase):
     A list of test expectations file paths. The paths must be absolute.
     """
     return []
+
+  def GetExpectationsForTest(self):
+    """Subclasses can override this method to return a set of expected results
+    for a test
+
+    Returns:
+    A set of expected results for a test
+    """
+    return set([json_results.ResultType.Pass])
+
 
 def LoadAllTestsInModule(module):
   """ Load all tests & generated browser tests in a given module.
