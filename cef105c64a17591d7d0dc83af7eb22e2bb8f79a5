@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ee19ce7_bb74e0b2",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1136,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-22T13:18:33Z",
+      "side": 1,
+      "message": "I think we do this not only to deal with cases when output is very large. But also to deal with flakiness of adb in general. If I remember right \"large_output\" mode is somewhat more reliable but also slower.\n\nAnyway, deferring to +jbudorick to review since he\u0027s more familiar with the logic here.",
+      "revId": "cef105c64a17591d7d0dc83af7eb22e2bb8f79a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
