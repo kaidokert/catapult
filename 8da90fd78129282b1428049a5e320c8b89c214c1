@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "1d0138d9_8853375c",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-02-22T22:42:20Z",
+      "side": 1,
+      "message": "I don\u0027t need the test name. I can get the name from self.id().",
+      "parentUuid": "a204df05_33cca8cf",
+      "revId": "8da90fd78129282b1428049a5e320c8b89c214c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "77d7c395_338d1d12",
         "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
         "patchSetId": 10
@@ -47,6 +65,30 @@
       "writtenOn": "2019-02-22T22:06:04Z",
       "side": 1,
       "message": "This should call into the typ test runner, fetch its expectations, and look up the expectation for the specified test. If typ wasn\u0027t configured with any expectations files, this should return something reasonable - either None instead of a set, or the default set you\u0027ve specified here.",
+      "range": {
+        "startLine": 207,
+        "startChar": 16,
+        "endLine": 207,
+        "endChar": 28
+      },
+      "revId": "8da90fd78129282b1428049a5e320c8b89c214c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a2e38cf_04830fd3",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-02-22T22:42:20Z",
+      "side": 1,
+      "message": "I was thinking that in Typ Runner, when I get the expectation of the test, I would just override this function using setattr().\n\nSo in typ runner I would have the following.\n\ntyp/runner.py\n...\nexpected_results, should_retry_on_failure \u003d child.expectations.expectations_for(test_name)\n...\nif issubclass(test_suite.__class__, SeriallyExecutedBrowserTestCase)\n  setattr(test_suite.__class__, \u0027GenerateExpectationsForTest\u0027, lambda self: (expected_results, \n          should_retry_on_failure))\n\nI wanted to do this so that I did not have to add the typ.Runner instance as a member variable to SeriallyExecutedBrowserTestCase. It is also a little more efficient this way so that I don\u0027t have to call child.expectations.expectations_for more than once during a test run. Is this fine?",
+      "parentUuid": "77d7c395_338d1d12",
       "range": {
         "startLine": 207,
         "startChar": 16,
