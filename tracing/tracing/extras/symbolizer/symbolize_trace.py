@@ -1337,7 +1337,7 @@ def SymbolizeFiles(symfiles, symbolizer):
     elif not os.path.isabs(symfile.symbolizable_path):
       problem = 'not a file'
     elif not os.path.isfile(symfile.symbolizable_path):
-      problem = "file doesn't exist"
+      problem = "file doesn't exist "
     elif not symbolizer.IsSymbolizableFile(symfile.symbolizable_path):
       problem = 'file is not symbolizable'
     if problem:
@@ -1375,6 +1375,9 @@ def RemapAndroidFiles(symfiles, output_path, chrome_soname):
       # which is not accurate.
       symfile.symbolizable_path = 'android://{}'.format(symfile.path)
 
+def RemapLinuxFiles(symfiles, output_path, chrome_soname):
+  for symfile in symfiles:
+    symfile.symbolizable_path = os.path.join(output_path, '.' + symfile.path)
 
 def RemapMacFiles(symfiles, symbol_base_directory, version,
                   only_symbolize_chrome_symbols):
@@ -1429,6 +1432,8 @@ def SymbolizeTrace(options, trace, symbolizer):
                  'specify output directory to properly symbolize it.')
       RemapAndroidFiles(symfiles, os.path.abspath(options.output_directory),
                         trace.library_name)
+    if trace.is_linux:
+      RemapLinuxFiles(symfiles, os.path.abspath(options.output_directory), trace.library_name)
 
     if not trace.is_chromium:
       if symbolizer.is_mac:
