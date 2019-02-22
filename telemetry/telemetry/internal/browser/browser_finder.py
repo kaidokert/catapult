@@ -44,7 +44,7 @@ def FindAllBrowserTypes(browser_finders=None):
 
 @decorators.Cache
 def FindBrowser(options):
-  """Finds the best PossibleBrowser object given a BrowserOptions object.
+  """Finds the best PossibleBrowser object given a BrowserFinderOptions object.
 
   Args:
     A BrowserFinderOptions object.
@@ -75,66 +75,30 @@ def FindBrowser(options):
 
   devices = device_finder.GetDevicesMatchingOptions(options)
   browsers = []
-  default_browsers = []
-
   browser_finders = _GetBrowserFinders(options.target_platforms)
 
   for device in devices:
     for finder in browser_finders:
-      if(options.browser_type and options.browser_type != 'any' and
-         options.browser_type not in finder.FindAllBrowserTypes()):
-        continue
-      curr_browsers = finder.FindAllAvailableBrowsers(options, device)
-      new_default_browser = finder.SelectDefaultBrowser(curr_browsers)
-      if new_default_browser:
-        default_browsers.append(new_default_browser)
-      browsers.extend(curr_browsers)
+      browsers.extend(finder.FindAllAvailableBrowsers(options, device))
 
-  if not browsers:
-    return None
-
-  if options.browser_type is None:
-    if default_browsers:
-      default_browser = max(default_browsers,
-                            key=lambda b: b.last_modification_time)
-      logging.warning('--browser omitted. Using most recent local build: %s',
-                      default_browser.browser_type)
-      default_browser.UpdateExecutableIfNeeded()
-      return default_browser
-
-    if len(browsers) == 1:
-      logging.warning('--browser omitted. Using only available browser: %s',
-                      browsers[0].browser_type)
-      browsers[0].UpdateExecutableIfNeeded()
-      return browsers[0]
-
-    raise browser_finder_exceptions.BrowserTypeRequiredException(
-        '--browser must be specified. Available browsers:\n%s' %
-        '\n'.join(sorted(set([b.browser_type for b in browsers]))))
-
-  chosen_browser = None
-  if options.browser_type == 'any':
+  if options.browser_type is None or options.browser_type == 'any':
     types = FindAllBrowserTypes(browser_finders)
-    chosen_browser = min(browsers, key=lambda b: types.index(b.browser_type))
   else:
-    matching_browsers = [
-        b for b in browsers
-        if b.browser_type == options.browser_type and
-        b.SupportsOptions(options.browser_options)]
-    if not matching_browsers:
-      logging.warning('Cannot find any matched browser')
-      return None
-    if len(matching_browsers) > 1:
-      logging.warning('Multiple browsers of the same type found: %r',
-                      matching_browsers)
+    types = [options.browser_type]
+
+  for browser_type in types:
+    matching_browsers = [b for b in browsers if b.browser_type == browser_type]
+    if matching_browsers:
+      break
+
+  if matching_browsers:
     chosen_browser = max(matching_browsers,
                          key=lambda b: b.last_modification_time)
-
-  if chosen_browser:
     logging.info('Chose browser: %r', chosen_browser)
     chosen_browser.UpdateExecutableIfNeeded()
-
-  return chosen_browser
+    return chosen_browser
+  else:
+    return None
 
 
 @decorators.Cache
@@ -142,7 +106,7 @@ def GetAllAvailableBrowsers(options, device):
   """Returns a list of available browsers on the device.
 
   Args:
-    options: A BrowserOptions object.
+    options: A BrowserFinderOptions object.
     device: The target device, which can be None.
 
   Returns:
@@ -165,7 +129,7 @@ def GetAllAvailableBrowserTypes(options):
   """Returns a list of available browser types.
 
   Args:
-    options: A BrowserOptions object.
+    options: A BrowserFinderOptions object.
 
   Returns:
     A list of browser type strings.

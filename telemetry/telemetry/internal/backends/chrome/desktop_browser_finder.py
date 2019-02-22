@@ -210,15 +210,6 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
     pass
 
 
-def SelectDefaultBrowser(possible_browsers):
-  local_builds_by_date = [
-      b for b in sorted(possible_browsers,
-                        key=lambda b: b.last_modification_time)
-      if b.is_local_build]
-  if local_builds_by_date:
-    return local_builds_by_date[-1]
-  return None
-
 def CanFindAvailableBrowsers():
   return not platform_module.GetHostPlatform().GetOSName() == 'chromeos'
 
