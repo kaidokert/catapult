@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ea8a62d3_5e66f6c1",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-22T21:35:01Z",
+      "side": 1,
+      "message": "This needs some more explanation. Why would anyone want to do this for example?",
+      "range": {
+        "startLine": 196,
+        "startChar": 8,
+        "endLine": 197,
+        "endChar": 14
+      },
+      "revId": "8c7f30f8aee3c00d9b95a34a4c966788187238a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
