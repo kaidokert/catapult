@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5e63eb41_e5960f92",
+        "filename": "dashboard/docs/v2spa.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-22T20:00:39Z",
+      "side": 1,
+      "message": "Will this one-time setup requirement go away once this is launched?",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 2
+      },
+      "revId": "361d104db7323dd0198d1419027ca6540441cfc2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
