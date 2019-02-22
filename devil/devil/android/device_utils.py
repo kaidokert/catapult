@@ -1132,7 +1132,8 @@ class DeviceUtils(object):
         try:
           return handle_large_command(cmd)
         except device_errors.AdbCommandFailedError as exc:
-          if exc.status is None:
+          if (exc.status is None and
+              len(exc.output) >= self._MAX_ADB_OUTPUT_LENGTH):
             logger.error(_FormatPartialOutputError(exc.output))
             logger.warning('Attempting to run in large_output mode.')
             logger.warning('Use RunShellCommand(..., large_output=True) for '

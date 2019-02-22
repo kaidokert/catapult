@@ -1140,7 +1140,8 @@ class DeviceUtilsRunShellCommandTest(DeviceUtilsTest):
     temp_file = MockTempFile('/sdcard/temp-123')
     cmd_redirect = '( %s )>%s 2>&1' % (cmd, temp_file.name)
     with self.assertCalls(
-        (self.call.adb.Shell(cmd), self.ShellError('', None)),
+        (self.call.adb.Shell(cmd), self.ShellError(
+            'long output: ' + 'x' * self.device._MAX_ADB_OUTPUT_LENGTH, None)),
         (mock.call.devil.android.device_temp_file.DeviceTempFile(self.adb),
             temp_file),
         (self.call.adb.Shell(cmd_redirect)),
