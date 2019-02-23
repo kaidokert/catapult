@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+</head>
+<body>
+<div id="fullscreen">Click me to go fullscreen</div>
+<script>
+'use strict';
+var el = document.getElementById('fullscreen');
+var isFullscreen = false;
+el.addEventListener('click', function() {
+  el.addEventListener('fullscreenchange', function() {
+    isFullscreen = true;
+  });
+  el.requestFullscreen();
+});
+</script>
+</body>
+</html>
