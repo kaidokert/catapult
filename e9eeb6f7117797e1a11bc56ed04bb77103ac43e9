@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a4037e77_66568d15",
+        "filename": "telemetry/telemetry/testing/browser_test_runner_unittest.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-02-23T01:53:11Z",
+      "side": 1,
+      "message": "This test doesn\u0027t actually call GetExpectationsForTest and it should.",
+      "revId": "e9eeb6f7117797e1a11bc56ed04bb77103ac43e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2e76109_59da1e77",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-02-23T01:53:11Z",
+      "side": 1,
+      "message": "It\u0027s not clear to me that if no test expectations files are supplied, that typ_runner.expectations won\u0027t be None.\n\nPlease add a negative test calling this API when no test expectations files are provided, and please fix the positive test above.",
+      "revId": "e9eeb6f7117797e1a11bc56ed04bb77103ac43e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
