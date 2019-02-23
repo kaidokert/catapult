@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "86c8e04b_0bf1e0e7",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-02-23T05:58:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ffb302c9_a089243e",
+      "revId": "a6936a260dd9640d084e14024feb629282059c50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "24339e56_36d3eabe",
         "filename": "telemetry/telemetry/value/trace.py",
         "patchSetId": 12
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "20cbb925_3ed9df4e",
+        "filename": "telemetry/telemetry/value/trace.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-02-23T05:58:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24339e56_36d3eabe",
+      "revId": "a6936a260dd9640d084e14024feb629282059c50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d1639db1_1212dce2",
         "filename": "telemetry/telemetry/web_perf/timeline_based_measurement.py",
         "patchSetId": 12
@@ -50,6 +86,24 @@
       "revId": "a6936a260dd9640d084e14024feb629282059c50",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9eeb44f_ef65fff9",
+        "filename": "telemetry/telemetry/web_perf/timeline_based_measurement.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-02-23T05:58:49Z",
+      "side": 1,
+      "message": "Done, except it felt better to move the pool-related code completely into page_test_results (instead of story_runner), since it then also knows how to process the output of the pooled tasks.",
+      "parentUuid": "d1639db1_1212dce2",
+      "revId": "a6936a260dd9640d084e14024feb629282059c50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
