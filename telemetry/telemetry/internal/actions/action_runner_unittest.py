@@ -293,6 +293,15 @@ class ActionRunnerTest(tab_test_case.TabTestCase):
 
     self.assertRaises(exceptions.EvaluateException, WillFail)
 
+  def testClickElementWithUserGesture(self):
+    self.Navigate('page_with_clickables_and_fullscreen_hook.html')
+    action_runner = action_runner_module.ActionRunner(
+        self._tab, skip_waits=True)
+
+    self.assertFalse(action_runner.EvaluateJavaScript('isFullscreen'))
+    action_runner.ClickElement('#fullscreen')
+    action_runner.WaitForJavaScriptCondition('isFullscreen', timeout=5)
+
   @decorators.Disabled(
       'android',
       'debug',  # crbug.com/437068
