@@ -158,6 +158,30 @@
       "revId": "8da90fd78129282b1428049a5e320c8b89c214c1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b3e1317_b53dc97b",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-02-23T01:36:45Z",
+      "side": 1,
+      "message": "Ok, I readded the private _typ_runner class attribute and set it to the typ.Runner instance. In GetExpectationsForTest, I call the _typ_runner.expectations.expectations_for function and pass self.id() which is the test name into it. I return whatever is returned from that function. I need to do this even if ExpectationsFiles() returns [], because expectations files can be passed at the command line. If there are no expectations files then the function returns (\u0027PASS\u0027, False) by default.",
+      "parentUuid": "db1e48cc_29cf6040",
+      "range": {
+        "startLine": 207,
+        "startChar": 16,
+        "endLine": 207,
+        "endChar": 28
+      },
+      "revId": "8da90fd78129282b1428049a5e320c8b89c214c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
