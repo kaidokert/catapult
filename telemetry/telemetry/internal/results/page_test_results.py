@@ -15,6 +15,9 @@ import time
 import traceback
 import uuid
 
+import multiprocessing
+from multiprocessing.dummy import Pool as ThreadPool
+
 from py_utils import cloud_storage  # pylint: disable=import-error
 
 from telemetry import value as value_module
@@ -22,13 +25,57 @@ from telemetry.internal.results import chart_json_output_formatter
 from telemetry.internal.results import html_output_formatter
 from telemetry.internal.results import progress_reporter as reporter_module
 from telemetry.internal.results import story_run
+from telemetry.value import common_value_helpers
 from telemetry.value import skip
 from telemetry.value import trace
 
+from tracing.metrics import metric_runner
 from tracing.value import convert_chart_json
 from tracing.value import histogram_set
 from tracing.value.diagnostics import all_diagnostics
 from tracing.value.diagnostics import reserved_infos
+
+def _ComputeMetricsInPool(trace_value):
+  assert not trace_value.is_serialized, "TraceValue should not be serialized."
+  retvalue = {
+      'fail': [],
+      'histogram_dicts': None,
+      'scalars': []
+  }
+  extra_import_options = {
+      'trackDetailedModelStats': True
+  }
+  trace_size_in_mib = os.path.getsize(trace_value.filename) / (2 ** 20)
+  # Bails out on trace that are too big. See crbug.com/812631 for more
+  # details.
+  if trace_size_in_mib > 400:
+    retvalue['fail'].append(
+        'Trace size is too big: %s MiB' % trace_size_in_mib)
+    return retvalue
+
+  logging.info('Starting to compute metrics on trace')
+  start = time.time()
+  mre_result = metric_runner.RunMetric(
+      trace_value.filename, trace_value.timeline_based_metric,
+      extra_import_options, report_progress=False,
+      canonical_url=trace_value.trace_url)
+  logging.info('Processing resulting traces took %.3f seconds' % (
+      time.time() - start))
+
+  if mre_result.failures:
+    for f in mre_result.failures:
+      retvalue['fail'].append(f.stack)
+
+  histogram_dicts = mre_result.pairs.get('histograms', [])
+  retvalue['histogram_dicts'] = histogram_dicts
+
+  scalars = []
+  for d in mre_result.pairs.get('scalars', []):
+    scalars.append(common_value_helpers.TranslateScalarValue(d,
+                                                             trace_value.page))
+  retvalue['scalars'] = scalars
+  return retvalue
+
 
 class TelemetryInfo(object):
   def __init__(self, upload_bucket=None, output_dir=None):
@@ -475,6 +522,30 @@ class PageTestResults(object):
       self._story_run_count[story] = 1
     self._current_page_run = None
 
+
+  def ComputeTimelineBasedMetrics(self):
+    assert not self._current_page_run, 'Cannot compute metrics while running.'
+    pool = ThreadPool(multiprocessing.cpu_count())
+    runs_and_values = self.FindRunsAndValuesWithTimelineBasedMetrics()
+    async_tasks = {}
+    for run in runs_and_values:
+      values = runs_and_values[run]
+      async_tasks[run] = [
+          pool.apply_async(_ComputeMetricsInPool, [v]) for v in values]
+
+    for run in async_tasks:
+      self._current_page_run = run
+      for task in async_tasks[run]:
+        ret = task.get()
+        for fail in ret['fail']:
+          self.Fail(fail)
+        if ret['histogram_dicts']:
+          self.ImportHistogramDicts(ret['histogram_dicts'])
+        for scalar in ret['scalars']:
+          self.AddValue(scalar)
+      self._current_page_run = None
+
+
   def InterruptBenchmark(self, stories, repeat_count):
     self.telemetry_info.InterruptBenchmark()
     # If we are in the middle of running a page it didn't finish
@@ -526,9 +597,16 @@ class PageTestResults(object):
         '%s_%s' % (hist.name, s) for  s in hist.statistics_scalars.iterkeys()]
     return any(self._should_add_value(s, is_first_result) for s in stat_names)
 
-  def AddValue(self, value):
+  def AddValue(self, value, callback=None):
     assert self._current_page_run, 'Not currently running test.'
     assert self._benchmark_enabled, 'Cannot add value to disabled results'
+    if callback:
+      assert isinstance(value, trace.TraceValue), \
+          'Only trace.TraceValue allowed.'
+      self._trace_values.append({'page': self._current_page_run,
+                                 'value': value,
+                                 'callback': callback})
+
     self._ValidateValue(value)
     is_first_result = (
         self._current_page_run.story not in self._all_stories)
@@ -647,6 +725,13 @@ class PageTestResults(object):
 
   def FindAllTraceValues(self):
     return self.FindValues(lambda v: isinstance(v, trace.TraceValue))
+
+  def FindRunsAndValuesWithTimelineBasedMetrics(self):
+    values = {}
+    for run in self._all_page_runs:
+      values[run] = [v for v in run.values if isinstance(v, trace.TraceValue)
+                     and v.timeline_based_metric]
+    return values
 
   def _SerializeTracesToDirPath(self):
     """ Serialize all trace values to files in dir_path and return a list of
