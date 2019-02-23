@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ebe08c36_536a7b8d",
+        "filename": "telemetry/telemetry/testing/browser_test_runner_unittest.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-02-23T03:03:38Z",
+      "side": 1,
+      "message": "This test creates a subprocess. In that process, the test class is instantiated. There is no way to call GetExpectationsForTest method in this script because the test class object exists in another process. I am calling it in the actual test that is being run in the subprocess, which can be seen in the new patch set. The test that calls that function is located in telemetry/examples/browser_tests/tests_get_expectations_for_test.py",
+      "parentUuid": "a4037e77_66568d15",
+      "revId": "e9eeb6f7117797e1a11bc56ed04bb77103ac43e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b2e76109_59da1e77",
         "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
         "patchSetId": 12
