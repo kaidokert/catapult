@@ -290,8 +290,11 @@ tr.exportTo('tr.v', function() {
           }
         } else {
           for (const [i, binDict] of Object.entries(dict.allBins)) {
-            hist.allBins[i] = new HistogramBin(hist.allBins[i].range);
-            hist.allBins[i].fromDict(binDict);
+            // Check whether i is a valid index before indexing it.
+            if (i < hist.allBins.length) {
+              hist.allBins[i] = new HistogramBin(hist.allBins[i].range);
+              hist.allBins[i].fromDict(binDict);
+            }
           }
         }
       }

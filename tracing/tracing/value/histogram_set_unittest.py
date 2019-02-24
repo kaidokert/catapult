@@ -2,6 +2,8 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import json
+import os
 import unittest
 
 from tracing.value import histogram
@@ -9,6 +11,12 @@ from tracing.value import histogram_set
 from tracing.value.diagnostics import date_range
 from tracing.value.diagnostics import diagnostic_ref
 from tracing.value.diagnostics import generic_set
+from tracing import tracing_project
+
+
+SAMPLE_JSON_PATH = os.path.join(tracing_project.TracingProject.test_data_path,
+                                'sample_json_nonlist_allbins.json')
+
 
 class HistogramSetUnittest(unittest.TestCase):
 
@@ -234,3 +242,8 @@ class HistogramSetUnittest(unittest.TestCase):
     self.assertEqual(
         a_hist2.diagnostics['date'],
         b_hist2.diagnostics['date'])
+
+  def testHistogramMissingBin(self):
+    histograms = histogram_set.HistogramSet()
+    with open(SAMPLE_JSON_PATH) as f:
+      histograms.ImportDicts(json.load(f))

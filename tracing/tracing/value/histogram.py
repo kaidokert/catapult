@@ -679,8 +679,10 @@ class Histogram(object):
       else:
         for i, bin_dct in dct['allBins'].items():
           i = int(i)
-          hist._bins[i] = HistogramBin(hist._bins[i].range)
-          hist._bins[i].FromDict(bin_dct)
+          # Check whether i is a valid index before indexing it.
+          if i < len(hist._bins):
+            hist._bins[i] = HistogramBin(hist._bins[i].range)
+            hist._bins[i].FromDict(bin_dct)
     if 'running' in dct:
       hist._running = RunningStatistics.FromDict(dct['running'])
     if 'summaryOptions' in dct:
