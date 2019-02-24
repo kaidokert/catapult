@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "58c2354a_86b06d74",
+        "filename": "tracing/test_data/sample_json_nonlist_allbins.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-02-24T23:45:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6a8487c_ac761905",
+      "revId": "ff3ad13f416f6f4d0e3bf0df281e6461d4f10390",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ce18376_1b55cf9b",
         "filename": "tracing/tracing/value/histogram_set_unittest.py",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "ff3ad13f416f6f4d0e3bf0df281e6461d4f10390",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0a9619a_01de6ee2",
+        "filename": "tracing/tracing/value/histogram_set_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-02-24T23:45:05Z",
+      "side": 1,
+      "message": "Interesting. I thought I had done that earlier... I suspect the email didn\u0027t get sent?\n\nhttps://pinpoint-dot-chromeperf.appspot.com/job/16b757ec340000",
+      "parentUuid": "6ce18376_1b55cf9b",
+      "revId": "ff3ad13f416f6f4d0e3bf0df281e6461d4f10390",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -56,6 +92,30 @@
       "revId": "ff3ad13f416f6f4d0e3bf0df281e6461d4f10390",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1dd8d8f8_66e2c600",
+        "filename": "tracing/tracing/value/histogram_set_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-02-24T23:45:05Z",
+      "side": 1,
+      "message": "Cool. Looks like the key error was what I was missing.",
+      "parentUuid": "2a819dd4_56dab2fc",
+      "range": {
+        "startLine": 248,
+        "startChar": 9,
+        "endLine": 248,
+        "endChar": 13
+      },
+      "revId": "ff3ad13f416f6f4d0e3bf0df281e6461d4f10390",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
