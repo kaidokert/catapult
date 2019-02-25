@@ -13,10 +13,16 @@ tr.exportTo('cp', () => {
       this.body_.set('id', options.id);
       this.body_.set('modified', options.modified.getTime());
       this.body_.set('revisions', options.revisions);
+      this.revisions_ = options.revisions;
     }
 
     get url_() {
       return ReportRequest.URL;
+    }
+
+    get channelName() {
+      return (location.origin + this.url_ + '?' +
+              new URLSearchParams(this.body_));
     }
   }
 
