@@ -602,9 +602,6 @@ class AndroidPlatformBackend(
     # Get the last lines of logcat (large enough to contain stacktrace)
     logcat = self.GetLogCat()
     ret += Decorate('Logcat', logcat)
-    chromium_src_dir = util.GetChromiumSrcDir()
-    stack = os.path.join(chromium_src_dir, 'third_party', 'android_platform',
-                         'development', 'scripts', 'stack')
 
     # Determine the build directory.
     build_path = None
@@ -614,7 +611,10 @@ class AndroidPlatformBackend(
         break
 
     # Try to symbolize logcat.
-    if os.path.exists(stack):
+    chromium_src_dir = util.GetChromiumSrcDir()
+    stack = os.path.join(chromium_src_dir, 'third_party', 'android_platform',
+                         'development', 'scripts', 'stack')
+    if os.access(stack, os.X_OK):
       cmd = [stack]
       arch = self.GetArchName()
       arch = _ARCH_TO_STACK_TOOL_ARCH.get(arch, arch)
@@ -626,7 +626,7 @@ class AndroidPlatformBackend(
     # Try to get tombstones.
     tombstones = os.path.join(chromium_src_dir, 'build', 'android',
                               'tombstones.py')
-    if os.path.exists(tombstones):
+    if os.access(tombstones, os.X_OK):
       tombstones_cmd = [
           tombstones, '-w',
           '--device', self._device.adb.GetDeviceSerial(),
@@ -637,11 +637,13 @@ class AndroidPlatformBackend(
                                        stdout=subprocess.PIPE).communicate()[0])
 
     # Attempt to get detailed stack traces with Crashpad.
+    stackwalker_path = os.path.join(chromium_src_dir, 'build', 'android',
+                                    'stacktrace', 'crashpad_stackwalker.py')
     minidump_stackwalk_path = os.path.join(build_path, 'minidump_stackwalk')
-    if os.access(minidump_stackwalk_path, os.X_OK):
+    if (os.access(stackwalker_path, os.X_OK) and
+        os.access(minidump_stackwalk_path, os.X_OK)):
       crashpad_cmd = [
-          os.path.join(chromium_src_dir, 'build', 'android', 'stacktrace',
-                       'crashpad_stackwalker.py'),
+          stackwalker_path,
           '--device', self._device.adb.GetDeviceSerial(),
           '--adb-path', self._device.adb.GetAdbPath(),
           '--build-path', build_path,
