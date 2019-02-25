@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<!--
+Copyright 2019 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+<script src="/bower_components/web-component-tester/browser.js"></script>
+<link rel="import" href="/dashboard/spa/chart-timeseries.html">
+
+<test-fixture id="test">
+  <template>
+    <chart-timeseries state-path="test"></chart-timeseries>
+  </template>
+</test-fixture>
+
+<script>
+'use strict';
+suite('chart-timeseries', function() {
+  let originalFetch;
+  setup(() => {
+    originalFetch = window.fetch;
+    window.fetch = async(url, options) => {
+      return {
+        async json() {
+        },
+      };
+    };
+    fixture('test').dispatch(Redux.CHAIN(
+        Redux.ENSURE('test'),
+        Redux.UPDATE('test', cp.ChartTimeseries.buildState({}))));
+  });
+
+  teardown(() => {
+    window.fetch = originalFetch;
+  });
+
+  test('load', async function() {
+    const ct = fixture('test');
+    await cp.afterRender();
+    // this.timeout(1e6);await cp.timeout(9e5);
+  });
+
+  test('lineDescriptorEqual', function() {
+    assert.isFalse(cp.ChartTimeseries.lineDescriptorEqual({
+      suites: ['bbb'],
+      bots: ['ccc', 'ddd'],
+      cases: ['eee', 'fff'],
+      measurement: 'mmm',
+      statistic: 'avg',
+      buildType: 'test',
+      minRevision: 10,
+      maxRevision: 100,
+    }, {
+      suites: ['bbb', 'aaa'],
+      bots: ['ddd', 'ccc'],
+      cases: ['fff', 'eee'],
+      measurement: 'mmm',
+      statistic: 'avg',
+      buildType: 'test',
+      minRevision: 10,
+      maxRevision: 100,
+    }));
+
+    assert.isFalse(cp.ChartTimeseries.lineDescriptorEqual({
+      suites: ['bbb'],
+      bots: ['ddd'],
+      cases: ['eee', 'fff'],
+      measurement: 'mmm',
+      statistic: 'avg',
+      buildType: 'test',
+      minRevision: 10,
+      maxRevision: 100,
+    }, {
+      suites: ['bbb'],
+      bots: ['ddd', 'ccc'],
+      cases: ['fff', 'eee'],
+      measurement: 'mmm',
+      statistic: 'avg',
+      buildType: 'test',
+      minRevision: 0,
+      maxRevision: 100,
+    }));
+
+    assert.isFalse(cp.ChartTimeseries.lineDescriptorEqual({
+      suites: ['bbb'],
+      bots: ['ddd'],
+      cases: ['fff'],
+      measurement: 'mmm',
+      statistic: 'avg',
+      buildType: 'test',
+      minRevision: 10,
+      maxRevision: 100,
+    }, {
+      suites: ['bbb'],
+      bots: ['ddd'],
+      cases: ['fff', 'eee'],
+      measurement: 'mmm',
+      statistic: 'avg',
+      buildType: 'test',
+      minRevision: 0,
+      maxRevision: 100,
+    }));
+
+    assert.isFalse(cp.ChartTimeseries.lineDescriptorEqual({
+      suites: ['bbb'],
+      bots: ['ccc', 'ddd'],
+      cases: ['eee', 'fff'],
+      measurement: 'mmm',
+      statistic: 'avg',
+      buildType: 'test',
+      minRevision: 10,
+      maxRevision: 100,
+    }, {
+      suites: ['bbb'],
+      bots: ['ddd', 'ccc'],
+      cases: ['fff', 'eee'],
+      measurement: 'mm',
+      statistic: 'avg',
+      buildType: 'test',
+      minRevision: 10,
+      maxRevision: 100,
+    }));
+
+    assert.isFalse(cp.ChartTimeseries.lineDescriptorEqual({
+      suites: ['bbb'],
+      bots: ['ccc', 'ddd'],
+      cases: ['eee', 'fff'],
+      measurement: 'mmm',
+      statistic: 'avg',
+      buildType: 'test',
+      minRevision: 10,
+      maxRevision: 100,
+    }, {
+      suites: ['bbb'],
+      bots: ['ddd', 'ccc'],
+      cases: ['fff', 'eee'],
+      measurement: 'mmm',
+      statistic: 'std',
+      buildType: 'test',
+      minRevision: 10,
+      maxRevision: 100,
+    }));
+
+    assert.isFalse(cp.ChartTimeseries.lineDescriptorEqual({
+      suites: ['bbb'],
+      bots: ['ccc', 'ddd'],
+      cases: ['eee', 'fff'],
+      measurement: 'mmm',
+      statistic: 'avg',
+      buildType: 'test',
+      minRevision: 10,
+      maxRevision: 100,
+    }, {
+      suites: ['bbb'],
+      bots: ['ddd', 'ccc'],
+      cases: ['fff', 'eee'],
+      measurement: 'mmm',
+      statistic: 'avg',
+      buildType: 'ref',
+      minRevision: 10,
+      maxRevision: 100,
+    }));
+
+    assert.isFalse(cp.ChartTimeseries.lineDescriptorEqual({
+      suites: ['bbb'],
+      bots: ['ccc', 'ddd'],
+      cases: ['eee', 'fff'],
+      measurement: 'mmm',
+      statistic: 'avg',
+      buildType: 'test',
+      minRevision: 10,
+      maxRevision: 100,
+    }, {
+      suites: ['bbb'],
+      bots: ['ddd', 'ccc'],
+      cases: ['fff', 'eee'],
+      measurement: 'mmm',
+      statistic: 'avg',
+      buildType: 'test',
+      minRevision: 0,
+      maxRevision: 100,
+    }));
+
+    assert.isTrue(cp.ChartTimeseries.lineDescriptorEqual({
+      suites: ['aaa', 'bbb'],
+      bots: ['ccc', 'ddd'],
+      cases: ['eee', 'fff'],
+      measurement: 'mmm',
+      statistic: 'avg',
+      buildType: 'test',
+      minRevision: 10,
+      maxRevision: 100,
+    }, {
+      suites: ['bbb', 'aaa'],
+      bots: ['ddd', 'ccc'],
+      cases: ['fff', 'eee'],
+      measurement: 'mmm',
+      statistic: 'avg',
+      buildType: 'test',
+      minRevision: 10,
+      maxRevision: 100,
+    }));
+  });
+
+  test('tooltip', async function() {
+    const ct = fixture('test');
+    await cp.afterRender();
+    // this.timeout(1e6);await cp.timeout(9e5);
+  });
+
+  test('createFetchDescriptors', async function() {
+    assert.deepEqual(cp.ChartTimeseries.createFetchDescriptors({
+      suites: ['aaa', 'bbb'],
+      bots: ['ccc', 'ddd'],
+      measurement: 'mmm',
+      cases: [],
+      buildType: 'test',
+      statistic: 'avg',
+    }, cp.LEVEL_OF_DETAIL.ALERTS), [
+      {
+        suite: 'aaa',
+        bot: 'ccc',
+        case: undefined,
+        measurement: 'mmm',
+        statistic: 'avg',
+        buildType: 'test',
+        levelOfDetail: cp.LEVEL_OF_DETAIL.ALERTS,
+      },
+      {
+        suite: 'aaa',
+        bot: 'ddd',
+        case: undefined,
+        measurement: 'mmm',
+        statistic: 'avg',
+        buildType: 'test',
+        levelOfDetail: cp.LEVEL_OF_DETAIL.ALERTS,
+      },
+      {
+        suite: 'bbb',
+        bot: 'ccc',
+        case: undefined,
+        measurement: 'mmm',
+        statistic: 'avg',
+        buildType: 'test',
+        levelOfDetail: cp.LEVEL_OF_DETAIL.ALERTS,
+      },
+      {
+        suite: 'bbb',
+        bot: 'ddd',
+        case: undefined,
+        measurement: 'mmm',
+        statistic: 'avg',
+        buildType: 'test',
+        levelOfDetail: cp.LEVEL_OF_DETAIL.ALERTS,
+      },
+    ]);
+
+    assert.deepEqual(cp.ChartTimeseries.createFetchDescriptors({
+      suites: ['aaa'],
+      bots: ['ccc'],
+      measurement: 'mmm',
+      cases: ['bbb', 'ddd'],
+      buildType: 'test',
+      statistic: 'avg',
+    }, cp.LEVEL_OF_DETAIL.ALERTS), [
+      {
+        suite: 'aaa',
+        bot: 'ccc',
+        measurement: 'mmm',
+        case: 'bbb',
+        statistic: 'avg',
+        buildType: 'test',
+        levelOfDetail: cp.LEVEL_OF_DETAIL.ALERTS,
+      },
+      {
+        suite: 'aaa',
+        bot: 'ccc',
+        case: 'ddd',
+        measurement: 'mmm',
+        statistic: 'avg',
+        buildType: 'test',
+        levelOfDetail: cp.LEVEL_OF_DETAIL.ALERTS,
+      },
+    ]);
+  });
+});
+</script>
