@@ -20,6 +20,9 @@ found in the LICENSE file.
       :host {
         display: flex;
       }
+      menu-input {
+        margin-right: 8px;
+      }
     </style>
 
     <div>
@@ -30,12 +33,14 @@ found in the LICENSE file.
         </recommended-options>
       </menu-input>
 
-      <cp-checkbox
-          disabled$="[[!isMultiple_(suite.selectedOptions)]]"
-          checked="[[suite.isAggregated]]"
-          on-change="onSuiteAggregateChange_">
-        Aggregate
-      </cp-checkbox>
+      <template is="dom-if" if="[[suite.canAggregate]]">
+        <cp-checkbox
+            disabled$="[[!isMultiple_(suite.selectedOptions)]]"
+            checked="[[suite.isAggregated]]"
+            on-change="onSuiteAggregateChange_">
+          Aggregate
+        </cp-checkbox>
+      </template>
     </div>
 
     <menu-input
@@ -57,12 +62,14 @@ found in the LICENSE file.
         </recommended-options>
       </menu-input>
 
-      <cp-checkbox
-          disabled$="[[!isMultiple_(bot.selectedOptions)]]"
-          checked="[[bot.isAggregated]]"
-          on-change="onBotAggregateChange_">
-        Aggregate
-      </cp-checkbox>
+      <template is="dom-if" if="[[bot.canAggregate]]">
+        <cp-checkbox
+            disabled$="[[!isMultiple_(bot.selectedOptions)]]"
+            checked="[[bot.isAggregated]]"
+            on-change="onBotAggregateChange_">
+          Aggregate
+        </cp-checkbox>
+      </template>
     </div>
 
     <div>
@@ -76,12 +83,14 @@ found in the LICENSE file.
         </tag-filter>
       </menu-input>
 
-      <cp-checkbox
-          disabled$="[[!isMultiple_(case.selectedOptions)]]"
-          checked="[[case.isAggregated]]"
-          on-change="onCaseAggregateChange_">
-        Aggregate
-      </cp-checkbox>
+      <template is="dom-if" if="[[case.canAggregate]]">
+        <cp-checkbox
+            disabled$="[[!isMultiple_(case.selectedOptions)]]"
+            checked="[[case.isAggregated]]"
+            on-change="onCaseAggregateChange_">
+          Aggregate
+        </cp-checkbox>
+      </template>
     </div>
   </template>
 </dom-module>
