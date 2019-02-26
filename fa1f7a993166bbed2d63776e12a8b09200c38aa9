@@ -16,6 +16,24 @@
       "revId": "fa1f7a993166bbed2d63776e12a8b09200c38aa9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3da7a8d6_df37f52d",
+        "filename": "tracing/tracing/value/histogram.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-02-26T05:06:24Z",
+      "side": 1,
+      "message": "Done -- I added a test which does a round-trip between a Histogram and dict, invoking the logic which does the histogram compaction for the \u0027allBins\u0027 member of the dict. I still haven\u0027t gotten around to reproducing the error found in the original report.",
+      "parentUuid": "e4353edb_b80f7d9c",
+      "revId": "fa1f7a993166bbed2d63776e12a8b09200c38aa9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
