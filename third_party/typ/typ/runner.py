@@ -384,7 +384,8 @@ class Runner(object):
         contents = self.host.read_text_file(args.expectations_files[0])
 
         expectations = TestExpectations(set(args.tags))
-        err, msg = expectations.parse_tagged_list(contents)
+        err, msg = expectations.parse_tagged_list(contents,
+            args.append_prefix_to_all_test_expectation_patterns)
         if err:
             self.print_(msg, stream=self.host.stderr)
             return err

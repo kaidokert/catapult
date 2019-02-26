@@ -22,7 +22,15 @@ class IncludesTestExpectationsFiles(
     del options
     yield 'FailTest', ()
 
+  @classmethod
+  def GenerateTestCases__RunExpectationWithTestMethodNameOnly(cls, options):
+    del options
+    yield 'ExpectationWithTestMethodNameOnly', ()
+
   def _RunFailTest(self):
+    assert False
+
+  def _RunExpectationWithTestMethodNameOnly(self):
     assert False
 
   @classmethod
