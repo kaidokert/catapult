@@ -49,6 +49,7 @@ tr.exportTo('cp', () => {
   }
 
   function deepFreeze(o) {
+    if (!o) return o;
     Object.freeze(o);
     for (const [name, value] of Object.entries(o)) {
       if (typeof(value) !== 'object') continue;
@@ -116,16 +117,17 @@ tr.exportTo('cp', () => {
     return hex;
   }
 
+  const DOCUMENT_READY = (async() => {
+    while (document.readyState !== 'complete') {
+      await animationFrame();
+    }
+  })();
+
   /*
    * Returns the bounding rect of the given element.
    */
   async function measureElement(element) {
-    if (!measureElement.READY) {
-      measureElement.READY = cp.animationFrame().then(() => {
-        measureElement.READY = undefined;
-      });
-    }
-    await measureElement.READY;
+    await DOCUMENT_READY;
     return element.getBoundingClientRect();
   }
 
@@ -165,7 +167,7 @@ tr.exportTo('cp', () => {
     Object.assign(span.style, opt_options);
     MEASURE_TEXT_HOST.appendChild(span);
 
-    const promise = cp.measureElement(span).then(({width, height}) => {
+    const promise = measureElement(span).then(({width, height}) => {
       return {width, height};
     });
     while (MEASURE_TEXT_CACHE.size > MAX_MEASURE_TEXT_CACHE_SIZE) {
@@ -367,6 +369,8 @@ tr.exportTo('cp', () => {
     }
 
     async* [Symbol.asyncIterator]() {
+      if (!this.promises_.size) return;
+
       // Yield the first result immediately in order to allow the user to start
       // to understand it (c.f. First Contentful Paint), and also to measure how
       // long it takes the caller to render the data. Use that measurement as an
@@ -430,8 +434,119 @@ tr.exportTo('cp', () => {
     return pluralSuffix;
   }
 
+  function timeEventListeners(cls) {
+    // Polymer handles the addEventListener() calls, this method just wraps
+    // 'on*_' methods with Timing marks.
+    for (const name of Object.getOwnPropertyNames(cls.prototype)) {
+      if (!name.startsWith('on')) continue;
+      if (!name.endsWith('_')) continue;
+      (() => {
+        const wrapped = cls.prototype[name];
+        const debugName = cls.name + '.' + name;
+
+        cls.prototype[name] = async function eventListenerWrapper(event) {
+          // Measure the time from when the browser receives the event to when
+          // we receive the event.
+          if (event && event.timeStamp) {
+            tr.b.Timing.mark('listener', debugName, event.timeStamp).end();
+          }
+
+          // Measure the first paint latency by starting the event listener
+          // without awaiting it.
+          const firstPaintMark = tr.b.Timing.mark('firstPaint', debugName);
+          const resultPromise = wrapped.call(this, event);
+          (async() => {
+            await cp.afterRender();
+            firstPaintMark.end();
+          })();
+
+          const result = await resultPromise;
+
+          const lastPaintMark = tr.b.Timing.mark('lastPaint', debugName);
+          (async() => {
+            await cp.afterRender();
+            lastPaintMark.end();
+          })();
+
+          return result;
+        };
+      })();
+    }
+  }
+
+  function timeActions(cls) {
+    if (!cls.actions) return;
+    for (const [name, action] of Object.entries(cls.actions)) {
+      const debugName = `${cls.name}.actions.${name}`;
+      const actionReplacement = (...args) => {
+        const thunk = action(...args);
+        Object.defineProperty(thunk, 'name', {value: debugName});
+        const thunkReplacement = async(dispatch, getState) => {
+          const mark = tr.b.Timing.mark('action', debugName);
+          try {
+            return await thunk(dispatch, getState);
+          } finally {
+            mark.end();
+          }
+        };
+        Object.defineProperty(thunkReplacement, 'name', {
+          value: 'timeActions:wrapper',
+        });
+        return thunkReplacement;
+      };
+      actionReplacement.implementation = action;
+      Object.defineProperty(actionReplacement, 'name', {value: debugName});
+      cls.actions[name] = actionReplacement;
+    }
+  }
+
+  /**
+   * Compute a given number of colors by evenly spreading them around the
+   * sinebow hue circle, or, if a Range of brightnesses is given, the hue x
+   * brightness cylinder.
+   *
+   * @param {Number} numColors
+   * @param {!Range} opt_options.brightnessRange
+   * @param {Number} opt_options.brightnessPct
+   * @param {Number} opt_options.hueOffset
+   * @return {!Array.<!tr.b.Color>}
+   */
+  function generateColors(numColors, opt_options) {
+    const options = opt_options || {};
+    const brightnessRange = options.brightnessRange;
+    const hueOffset = options.hueOffset || 0;
+    const colors = [];
+    if (numColors > 15 && brightnessRange) {
+      // Evenly spread numColors around the surface of the hue x brightness
+      // cylinder. Maximize distance between (huePct, brightnessPct) vectors.
+      const numCycles = Math.round(numColors / 15);
+      for (let i = 0; i < numCycles; ++i) {
+        colors.push.apply(colors, generateColors(15, {
+          brightnessPct: brightnessRange.lerp(i / (numCycles - 1)),
+        }));
+      }
+    } else {
+      // Evenly spread numColors throughout the sinebow hue circle.
+      const brightnessPct = (options.brightnessPct === undefined) ? 0.5 :
+        options.brightnessPct;
+      for (let i = 0; i < numColors; ++i) {
+        const huePct = hueOffset + (i / numColors);
+        const [r, g, b] = tr.b.SinebowColorGenerator.sinebow(huePct);
+        const rgba = tr.b.SinebowColorGenerator.calculateColor(
+            r, g, b, 1, brightnessPct * 2);
+        colors.push(tr.b.Color.fromString(rgba));
+      }
+    }
+    return colors;
+  }
+
+  function denormalize(objects, columnNames) {
+    return objects.map(obj => columnNames.map(col => obj[col]));
+  }
+
   return {
     BatchIterator,
+    DOCUMENT_READY,
     NON_BREAKING_SPACE,
     ZERO_WIDTH_SPACE,
     afterRender,
@@ -440,6 +555,8 @@ tr.exportTo('cp', () => {
     buildProperties,
     buildState,
     deepFreeze,
+    denormalize,
+    generateColors,
     getActiveElement,
     idle,
     isElementChildOf,
@@ -452,6 +569,8 @@ tr.exportTo('cp', () => {
     plural,
     setImmutable,
     sha,
+    timeActions,
+    timeEventListeners,
     timeout,
   };
 });
