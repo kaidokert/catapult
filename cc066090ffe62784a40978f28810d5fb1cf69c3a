@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "4bd639e5_5884df67",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-26T12:33:46Z",
+      "side": 1,
+      "message": "nit: add latest revert?",
+      "revId": "cc066090ffe62784a40978f28810d5fb1cf69c3a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c8e1fac1_f1839a3b",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 2
