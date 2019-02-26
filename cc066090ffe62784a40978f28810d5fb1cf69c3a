@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "116b8323_8d3736ac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-02-26T14:54:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4bd639e5_5884df67",
+      "revId": "cc066090ffe62784a40978f28810d5fb1cf69c3a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c8e1fac1_f1839a3b",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 2
