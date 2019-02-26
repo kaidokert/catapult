@@ -115,19 +115,6 @@ def _GetIsolateTarget(bot_name, suite, start_commit,
       raise InvalidParamsError('Only telemetry is supported at the moment.')
     return suite
 
-  try:
-    # TODO: Remove this code path in 2019.
-    average_commit = (int(start_commit) + int(end_commit)) / 2
-    if 'android' in bot_name and average_commit < 572268:
-      if 'webview' in bot_name.lower():
-        return 'telemetry_perf_webview_tests'
-      return 'telemetry_perf_tests'
-
-    if 'win' in bot_name and average_commit < 571917:
-      return 'telemetry_perf_tests'
-  except ValueError:
-    pass
-
   if 'webview' in bot_name.lower():
     return 'performance_webview_test_suite'
   return 'performance_test_suite'
