@@ -16,6 +16,24 @@
       "revId": "f4cec5ba5baedb03fa91646b313fe03e0eee78a7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d0fe174_daaf5e88",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-02-26T14:58:27Z",
+      "side": 1,
+      "message": "Thank you!\nI have tried several formats, and it seems that precommit check accepts or denies them completely at random.",
+      "parentUuid": "e3f70482_cc681ac9",
+      "revId": "f4cec5ba5baedb03fa91646b313fe03e0eee78a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
