@@ -23,6 +23,20 @@ function processTrace(results, model) {
 };
 """
 
+_GET_MEMORY_DUMP_EVENT_IDS = """
+function processTrace(results, model) {
+    var event_ids = [];
+    for (const thread of model.getAllThreads()) {
+        for (const event of thread.asyncSliceGroup.slices) {
+            if (event.title === 'GlobalMemoryDump') {
+                  event_ids.push(event.id);
+            }
+        }
+    }
+    results.addPair('event_ids', event_ids);
+};
+"""
+
 
 def ExtractTimelineMarkers(trace_data):
   """Get a list with the titles of 'blink.console' events found in a trace.
@@ -42,3 +56,25 @@ def ExtractTimelineMarkers(trace_data):
         trace_file_path, _GET_TIMELINE_MARKERS)['markers']
   finally:
     shutil.rmtree(temp_dir)
+
+
+def ExtractMemoryDumpIds(trace_data):
+  """Get a list with the ids of 'GlobalMemoryDump' events found in a trace.
+
+  The current implementation works by loading the trace data into the TBMv2,
+  i.e. JavaScript based, timeline model. But this is an implementation detail,
+  clients remain agnostic about the model used for trace processing.
+  """
+  temp_dir = tempfile.mkdtemp()
+  try:
+    trace_file_path = os.path.join(temp_dir, 'temp_trace')
+    trace_data.Serialize(trace_file_path)
+    event_ids = map_single_trace.ExecuteTraceMappingCode(
+        trace_file_path, _GET_MEMORY_DUMP_EVENT_IDS)['event_ids']
+    # event ids look like this: 'disabled-by-default-memory-infra:87890:ptr:0x3'
+    # the part after the last ':' is the dump id
+    return [eid.rsplit(':')[-1] for eid in event_ids]
+  finally:
+    shutil.rmtree(temp_dir)
+
+
