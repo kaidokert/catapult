@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "86a23704_fe07d6d6",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-02-26T15:46:18Z",
+      "side": 1,
+      "message": "The assert here is to make sure that the trace_value hasn\u0027t already been serialized (implicitly or explicitly). Agree about explicit serialization. Done.",
+      "parentUuid": "e663ea4d_6cefca3d",
+      "revId": "4d91c50a14e4979b8fd169b62c95568e1a5bd56b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a1ca931d_3f028974",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 14
@@ -33,6 +51,24 @@
       "revId": "4d91c50a14e4979b8fd169b62c95568e1a5bd56b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53b7d9d6_e9473811",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-02-26T15:46:18Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "a1ca931d_3f028974",
+      "revId": "4d91c50a14e4979b8fd169b62c95568e1a5bd56b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "ef3db0a1_989b427a",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-02-26T15:46:18Z",
+      "side": 1,
+      "message": "Whoops. Sorry! Removed.",
+      "parentUuid": "3b62f872_933ef91d",
+      "revId": "4d91c50a14e4979b8fd169b62c95568e1a5bd56b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c7f948fa_1806eac3",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 14
@@ -67,6 +121,24 @@
       "revId": "4d91c50a14e4979b8fd169b62c95568e1a5bd56b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9a7a25e_d3271133",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-02-26T15:46:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7f948fa_1806eac3",
+      "revId": "4d91c50a14e4979b8fd169b62c95568e1a5bd56b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "0ad4426b_608aaa2d",
+        "filename": "telemetry/telemetry/value/trace.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-02-26T15:46:18Z",
+      "side": 1,
+      "message": "I believe |trace_url| is the file-path for the local trace file. |cloud_url| is the URL to upload to (when uploading is turned on)? I have added comments to explain this.",
+      "parentUuid": "176559a5_c6802607",
+      "revId": "4d91c50a14e4979b8fd169b62c95568e1a5bd56b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cc592514_631edf30",
         "filename": "telemetry/telemetry/web_perf/timeline_based_measurement.py",
         "patchSetId": 14
@@ -101,6 +191,24 @@
       "revId": "4d91c50a14e4979b8fd169b62c95568e1a5bd56b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e4e0a08_5b59191b",
+        "filename": "telemetry/telemetry/web_perf/timeline_based_measurement.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-02-26T15:46:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc592514_631edf30",
+      "revId": "4d91c50a14e4979b8fd169b62c95568e1a5bd56b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
