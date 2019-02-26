@@ -16,7 +16,6 @@ from py_utils import memory_debug  # pylint: disable=import-error
 from py_utils import logging_util  # pylint: disable=import-error
 
 from telemetry.core import exceptions
-from telemetry.core import platform as platform_module
 from telemetry.internal.actions import page_action
 from telemetry.internal.browser import browser_finder
 from telemetry.internal.results import results_options
@@ -171,8 +170,8 @@ def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
             msg='Exception raised when cleaning story run: ')
 
 
-def Run(test, story_set, finder_options, results, max_failures=None,
-        expectations=None, max_num_values=sys.maxint):
+def Run(test, story_set, finder_options, results, possible_browser=None,
+        max_failures=None, expectations=None, max_num_values=sys.maxint):
   """Runs a given test against a given page_set with the given options.
 
   Stop execution for unexpected exceptions such as KeyboardInterrupt.
@@ -229,6 +228,8 @@ def Run(test, story_set, finder_options, results, max_failures=None,
   # TODO(crbug.com/866458): unwind the nested blocks
   # pylint: disable=too-many-nested-blocks
   try:
+    if not possible_browser:
+      possible_browser = browser_finder.FindBrowser(finder_options)
     pageset_repeat = finder_options.pageset_repeat
     for storyset_repeat_counter in xrange(pageset_repeat):
       for story in stories:
@@ -239,7 +240,7 @@ def Run(test, story_set, finder_options, results, max_failures=None,
           # state after this story run, we want to construct the shared
           # state for the next story from the original finder_options.
           state = story_set.shared_state_class(
-              test, finder_options.Copy(), story_set)
+              test, finder_options.Copy(), story_set, possible_browser)
 
         results.WillRunPage(story, storyset_repeat_counter)
         story_run = results.current_page_run
@@ -332,24 +333,20 @@ def RunBenchmark(benchmark, finder_options):
 
   benchmark_metadata = benchmark.GetMetadata()
   possible_browser = browser_finder.FindBrowser(finder_options)
+  if not possible_browser:
+    logging.error('No browser of type "%s" found for benchmark "%s"' % (
+        finder_options.browser_options.browser_type, benchmark.Name()))
+    return 0
   expectations = benchmark.expectations
-
-  target_platform = None
-  if possible_browser:
-    target_platform = possible_browser.platform
-  else:
-    target_platform = platform_module.GetHostPlatform()
 
   if not hasattr(finder_options, 'print_only') or not finder_options.print_only:
     can_run_on_platform = benchmark._CanRunOnPlatform(
-        target_platform, finder_options)
+        possible_browser.platform, finder_options)
 
-    expectations_disabled = False
     # For now, test expectations are only applicable in the cases where the
     # testing target involves a browser.
-    if possible_browser:
-      expectations_disabled = expectations.IsBenchmarkDisabled(
-          possible_browser.platform, finder_options)
+    expectations_disabled = expectations.IsBenchmarkDisabled(
+        possible_browser.platform, finder_options)
 
     if expectations_disabled or not can_run_on_platform:
       print '%s is disabled on the selected browser' % benchmark.Name()
@@ -390,7 +387,9 @@ def RunBenchmark(benchmark, finder_options):
       should_add_value=benchmark.ShouldAddValue,
       benchmark_enabled=True) as results:
     try:
-      Run(pt, stories, finder_options, results, benchmark.max_failures,
+      Run(pt, stories, finder_options, results,
+          possible_browser=possible_browser,
+          max_failures=benchmark.max_failures,
           expectations=expectations, max_num_values=benchmark.MAX_NUM_VALUES)
       return_code = 1 if results.had_failures else 0
       # We want to make sure that all expectations are linked to real stories,

@@ -85,7 +85,7 @@ class TestSharedState(story_module.SharedState):
   def SetTestPlatform(cls, platform):
     cls._platform = platform
 
-  def __init__(self, test, options, story_set):
+  def __init__(self, test, options, story_set, possible_browser):
     super(TestSharedState, self).__init__(
         test, options, story_set)
     self._test = test
