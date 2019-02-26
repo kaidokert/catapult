@@ -15,6 +15,7 @@ from telemetry.timeline import chrome_trace_category_filter
 from telemetry.timeline import model
 from telemetry.timeline import tracing_config
 from telemetry.web_perf import timeline_interaction_record as tir_module
+from telemetry.util import trace_processor
 
 import py_utils
 
@@ -67,6 +68,7 @@ class ActionRunnerMeasureMemoryTest(tab_test_case.TabTestCase):
     self.action_runner = action_runner_module.ActionRunner(
         self._tab, skip_waits=True)
     self.Navigate('blank.html')
+    self._REQUESTED_DUMP_COUNT = 3
 
   def testWithoutTracing(self):
     with mock.patch.object(self._tab.browser, 'DumpMemory') as mock_method:
@@ -80,17 +82,21 @@ class ActionRunnerMeasureMemoryTest(tab_test_case.TabTestCase):
     config.enable_chrome_trace = True
     config.chrome_trace_config.SetCategoryFilter(trace_memory)
     self._browser.platform.tracing_controller.StartTracing(config)
+
+    expected_dump_ids = []
     try:
-      dump_id = self.action_runner.MeasureMemory(deterministic_mode)
+      for _ in xrange(self._REQUESTED_DUMP_COUNT):
+        dump_id = self.action_runner.MeasureMemory(deterministic_mode)
+        expected_dump_ids.append(dump_id)
     finally:
       trace_data = self._browser.platform.tracing_controller.StopTracing()
 
-    # If successful, i.e. we haven't balied out due to an exception, check
-    # that we can find our dump in the trace.
-    self.assertIsNotNone(dump_id)
-    timeline_model = model.TimelineModel(trace_data)
-    dump_ids = (d.dump_id for d in timeline_model.IterGlobalMemoryDumps())
-    self.assertIn(dump_id, dump_ids)
+    # Check that all dump ids are correct and different from each other.
+    self.assertNotIn(None, expected_dump_ids)
+    self.assertEqual(len(set(expected_dump_ids)), len(expected_dump_ids))
+
+    actual_dump_ids = trace_processor.ExtractMemoryDumpIds(trace_data)
+    self.assertEqual(actual_dump_ids, expected_dump_ids)
 
   # TODO(perezju): Enable when reference browser is >= M53
   # https://github.com/catapult-project/catapult/issues/2610
