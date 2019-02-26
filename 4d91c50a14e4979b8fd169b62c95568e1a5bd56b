@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e663ea4d_6cefca3d",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-26T12:11:22Z",
+      "side": 1,
+      "message": "why do we need this assert?\n\nAlso it\u0027s a bit strange (took me a bit to figure out) that serialization happens implicitly just by referencing \"trace_value.filename\". I\u0027m thinking now that the call to Serialize should be explicit and, instead of _SerializeIfNeeded, raise an error if the trace hasn\u0027t been serialized.",
+      "revId": "4d91c50a14e4979b8fd169b62c95568e1a5bd56b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1ca931d_3f028974",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-26T12:11:22Z",
+      "side": 1,
+      "message": "would imap_unordered be more suitable here?\nhttps://docs.python.org/2/library/multiprocessing.html#multiprocessing.pool.multiprocessing.Pool.imap_unordered\n\nYou basically prepare as input a list with all (run, trace_value) tuples to process; then run through the iterator collecting results and saving them as they finish.",
+      "revId": "4d91c50a14e4979b8fd169b62c95568e1a5bd56b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b62f872_933ef91d",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-26T12:11:22Z",
+      "side": 1,
+      "message": "this code no longer needed?",
+      "revId": "4d91c50a14e4979b8fd169b62c95568e1a5bd56b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7f948fa_1806eac3",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-26T12:11:22Z",
+      "side": 1,
+      "message": "nit: make this private",
+      "revId": "4d91c50a14e4979b8fd169b62c95568e1a5bd56b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "176559a5_c6802607",
+        "filename": "telemetry/telemetry/value/trace.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-26T12:11:22Z",
+      "side": 1,
+      "message": "I know this is not all your doing, but do you know what\u0027s the difference between the trace_url and cloud_url? / I\u0027m fine to keep this part of your change as-is, but if you can add some docs on the constructor args that would be great. Otherwise I\u0027m happy to do that later myself as I\u0027m planning some cleanups in this area anyway.",
+      "revId": "4d91c50a14e4979b8fd169b62c95568e1a5bd56b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc592514_631edf30",
+        "filename": "telemetry/telemetry/web_perf/timeline_based_measurement.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-26T12:11:22Z",
+      "side": 1,
+      "message": "nit: just leave a comment here that metric computation will be done later by results.ComputeTimelineBasedMetrics",
+      "revId": "4d91c50a14e4979b8fd169b62c95568e1a5bd56b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
