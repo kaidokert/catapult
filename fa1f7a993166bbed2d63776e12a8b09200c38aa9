@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e4353edb_b80f7d9c",
+        "filename": "tracing/tracing/value/histogram.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-26T00:44:00Z",
+      "side": 1,
+      "message": "We spoke offline, just reiterating what was said here. I really don\u0027t like the idea of dropping data, would rather error out on malformed data. Figuring out what went wrong later in the pipeline with missing data is way harder.\n\nBack to my original comment, let\u0027s figure out how this went bad in the first place and put more rigourous checking in the serializer.",
+      "revId": "fa1f7a993166bbed2d63776e12a8b09200c38aa9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
