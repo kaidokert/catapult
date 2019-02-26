@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5b79f562_f08d9f10",
+        "filename": "dashboard/dashboard/spa/timeseries-merger-test.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-26T20:24:04Z",
+      "side": 1,
+      "message": "beef up tests, there\u0027s a bunch of logic in mergeData\n\nif target revision is undefined, if target revision is undefined but has diagnostics, if source has diagnostics but target doesnt, etc.",
+      "revId": "63ed9d7d2f22bffda6a4291318bbc779741ecb13",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c8b8b0d_b647523a",
+        "filename": "dashboard/dashboard/spa/timeseries-merger.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-26T20:24:04Z",
+      "side": 1,
+      "message": "nit: file a bug",
+      "range": {
+        "startLine": 7,
+        "startChar": 5,
+        "endLine": 7,
+        "endChar": 9
+      },
+      "revId": "63ed9d7d2f22bffda6a4291318bbc779741ecb13",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84d51fff_6c076308",
+        "filename": "dashboard/dashboard/spa/timeseries-merger.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-26T20:24:04Z",
+      "side": 1,
+      "message": "Big function, do you mind scattering some comments around, or one at the start saying generally how this works. In general the documentation in here is super sparse.",
+      "revId": "63ed9d7d2f22bffda6a4291318bbc779741ecb13",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9cab3a9_457ac2ba",
+        "filename": "dashboard/dashboard/spa/timeseries-merger.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-26T20:24:04Z",
+      "side": 1,
+      "message": "Do you have a link or documentation or something on how this merged std is calculated.",
+      "revId": "63ed9d7d2f22bffda6a4291318bbc779741ecb13",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
