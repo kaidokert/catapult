@@ -28,7 +28,7 @@ class SharedPageState(story_module.SharedState):
 
   _device_type = None
 
-  def __init__(self, test, finder_options, story_set):
+  def __init__(self, test, finder_options, story_set, possible_browser=None):
     super(SharedPageState, self).__init__(test, finder_options, story_set)
     self._page_test = None
     if issubclass(type(test), legacy_page_test.LegacyPageTest):
@@ -51,7 +51,9 @@ class SharedPageState(story_module.SharedState):
 
     self._browser = None
     self._finder_options = finder_options
-    self._possible_browser = self._GetPossibleBrowser()
+    self._possible_browser = possible_browser
+    if not self._possible_browser:
+      self._possible_browser = self._GetPossibleBrowser()
 
     self._first_browser = True
     self._previous_page = None
@@ -59,6 +61,11 @@ class SharedPageState(story_module.SharedState):
     self._current_tab = None
 
     if self._page_test:
+      # Check for Enabled/Disabled decorators on page_test.
+      skip, msg = decorators.ShouldSkip(self._page_test, self._possible_browser)
+      if skip and not self._finder_options.run_disabled_tests:
+        logging.warning(msg)
+        logging.warning('You are trying to run a disabled test.')
       self._page_test.SetOptions(self._finder_options)
 
     self._extra_wpr_args = browser_options.extra_wpr_args
@@ -98,17 +105,8 @@ class SharedPageState(story_module.SharedState):
               self._finder_options.browser_options.browser_type,
               '\n'.join(browser_finder.GetAllAvailableBrowserTypes(
                   self._finder_options))))
-
     self._finder_options.browser_options.browser_type = (
         possible_browser.browser_type)
-
-    if self._page_test:
-      # Check for Enabled/Disabled decorators on page_test.
-      skip, msg = decorators.ShouldSkip(self._page_test, possible_browser)
-      if skip and not self._finder_options.run_disabled_tests:
-        logging.warning(msg)
-        logging.warning('You are trying to run a disabled test.')
-
     return possible_browser
 
   def DumpStateUponFailure(self, page, results):
