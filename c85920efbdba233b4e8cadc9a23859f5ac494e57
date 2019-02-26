@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "71a17348_b8a25e76",
+        "filename": "dashboard/dashboard/pinpoint_request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-26T18:04:30Z",
+      "side": 1,
+      "message": "Ready to do this in a followup?",
+      "revId": "c85920efbdba233b4e8cadc9a23859f5ac494e57",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
