@@ -11,6 +11,7 @@ import os.path
 import random
 import re
 import shutil
+import signal
 import subprocess as subprocess
 import sys
 import tempfile
@@ -568,9 +569,12 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     if self.IsBrowserRunning():
       self._TryCooperativeShutdown()
 
-    # Second, try to politely shutdown with SIGTERM.
+    # Second, try to politely shutdown with SIGINT or SIGTERM.
     if self.IsBrowserRunning():
-      self._proc.terminate()
+      if self.browser.platform.GetOSName() == 'win':
+        self._proc.terminate()
+      else:
+        self._proc.send_signal(signal.SIGINT)
       try:
         py_utils.WaitFor(lambda: not self.IsBrowserRunning(), timeout=5)
         self._proc = None
