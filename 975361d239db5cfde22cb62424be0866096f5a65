@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "40ff0348_090138b9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-26T05:24:21Z",
+      "side": 1,
+      "message": "typo: \"unavailable\".\n\nThat said, see my comment on the bug, but to repeat here: the pool is still created using `jobs`, not `self.args.jobs`, so no more than `jobs` should actually be executed in parallel, I think? (The other jobs will just be queued).",
+      "revId": "975361d239db5cfde22cb62424be0866096f5a65",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
