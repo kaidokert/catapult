@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c8e1fac1_f1839a3b",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-02-26T02:27:39Z",
+      "side": 1,
+      "message": "Before this change, trying to run loading.desktop on an android-browser would not count as a failure. So I included this change here to retain that old behaviour.",
+      "revId": "cc066090ffe62784a40978f28810d5fb1cf69c3a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
