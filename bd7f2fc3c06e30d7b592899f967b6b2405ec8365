@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "25411967_23f5a906",
+        "filename": "telemetry/telemetry/internal/actions/action_runner_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-26T13:15:31Z",
+      "side": 1,
+      "message": "nit: export the module only, not classes or functions.\n\nSee: https://github.com/google/styleguide/blob/gh-pages/pyguide.md#22-imports",
+      "revId": "bd7f2fc3c06e30d7b592899f967b6b2405ec8365",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef55f85d_2ed06f74",
+        "filename": "telemetry/telemetry/internal/actions/action_runner_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-26T13:15:31Z",
+      "side": 1,
+      "message": "nit: let\u0027s only collect here the expected_dump_ids, and move the asserts until after StopTracing has been called.",
+      "revId": "bd7f2fc3c06e30d7b592899f967b6b2405ec8365",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91955256_4d7c6be4",
+        "filename": "telemetry/telemetry/util/trace_processor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-26T13:15:31Z",
+      "side": 1,
+      "message": "nit: Thanks for this comment! Just let\u0027s make it a sentence, i.e. begging with uppper case and end with period: \"Event ids look like [...] is the dump id.\"",
+      "revId": "bd7f2fc3c06e30d7b592899f967b6b2405ec8365",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b538275_0c3321f0",
+        "filename": "telemetry/telemetry/util/trace_processor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-26T13:15:31Z",
+      "side": 1,
+      "message": "can you factor out the common code from this and the previous function? make that e.g. a private _SerializeAndProcessTrace function.",
+      "revId": "bd7f2fc3c06e30d7b592899f967b6b2405ec8365",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
