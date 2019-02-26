@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cbe836bd_7a7e46af",
+        "filename": "tracing/tracing/value/histogram.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 730,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-26T18:41:39Z",
+      "side": 1,
+      "message": "This seems to differ slightly from your js version, did that need to be updated?",
+      "revId": "0ce716a4f534cb0da18aba9ea7dad9f2427f2526",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6955d817_679e65c1",
+        "filename": "tracing/tracing/value/histogram_unittest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-26T18:41:39Z",
+      "side": 1,
+      "message": "Same tests for js version?",
+      "revId": "0ce716a4f534cb0da18aba9ea7dad9f2427f2526",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
