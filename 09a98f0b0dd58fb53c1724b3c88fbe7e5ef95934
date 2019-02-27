@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "159fe536_f72abe20",
+        "filename": "devil/devil/android/flag_changer.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-02-27T02:26:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68ffce92_97d70eeb",
+      "range": {
+        "startLine": 74,
+        "startChar": 4,
+        "endLine": 74,
+        "endChar": 35
+      },
+      "revId": "09a98f0b0dd58fb53c1724b3c88fbe7e5ef95934",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5fd5e91e_f965baa3",
         "filename": "telemetry/telemetry/internal/browser/browser_options.py",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "edfc7f27_c133caf5",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-02-27T02:26:36Z",
+      "side": 1,
+      "message": "Understood, and good point about the naming convention. Done.",
+      "parentUuid": "5fd5e91e_f965baa3",
+      "range": {
+        "startLine": 167,
+        "startChar": 22,
+        "endLine": 167,
+        "endChar": 40
+      },
+      "revId": "09a98f0b0dd58fb53c1724b3c88fbe7e5ef95934",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "79c2d0d0_18f86fe8",
         "filename": "telemetry/telemetry/internal/browser/browser_options.py",
         "patchSetId": 2
@@ -68,6 +116,30 @@
       "revId": "09a98f0b0dd58fb53c1724b3c88fbe7e5ef95934",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4c68d28_bab49a8d",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-02-27T02:26:36Z",
+      "side": 1,
+      "message": "Changed per your suggestion. Thanks.",
+      "parentUuid": "79c2d0d0_18f86fe8",
+      "range": {
+        "startLine": 570,
+        "startChar": 6,
+        "endLine": 571,
+        "endChar": 19
+      },
+      "revId": "09a98f0b0dd58fb53c1724b3c88fbe7e5ef95934",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
