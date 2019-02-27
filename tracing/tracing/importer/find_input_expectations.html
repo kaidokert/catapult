@@ -81,6 +81,7 @@ tr.exportTo('tr.importer', function() {
     'gpu.WebVR FPS',
     'gpu.WebVR frame time (ms)',
     'gpu.WebVR pose prediction (ms)',
+    'gpu.WebXR FPS',
   ];
   /* These are a subset of the events used by frameCycleDurationMetric since
    * the ones not included here should happen in between the ones that are, so
@@ -123,6 +124,15 @@ tr.exportTo('tr.importer', function() {
       'hasCpuTime': true,
     }
   };
+  const WEBXR_INSTANT_EVENTS = [
+    'gpu.WebXR frame time (ms)',
+    'gpu.WebXR pose prediction',
+  ];
+  const XR_DEVICE_SERVICE_PROCESS = 'Service: xr_device_service';
+  function isXrDeviceServiceProcess(process) {
+    if (process.name === XR_DEVICE_SERVICE_PROCESS) return true;
+    return false;
+  }
   /* 1s is a bit arbitrary, but it reliably avoids all the jank caused by
    * VR entry.
    */
@@ -848,6 +858,10 @@ tr.exportTo('tr.importer', function() {
     for (const helper of Object.values(modelHelper.browserHelpers)) {
       processes.push(helper.process);
     }
+    for (const service of modelHelper.model.getAllProcesses(
+        isXrDeviceServiceProcess)) {
+      processes.push(service);
+    }
 
     // Add all counter samples to the list of events we care about
     let vrCounterStart = Number.MAX_SAFE_INTEGER;
@@ -867,7 +881,8 @@ tr.exportTo('tr.importer', function() {
       for (const thread of Object.values(proc.threads)) {
         for (const container of thread.childEventContainers()) {
           for (const slice of container.slices) {
-            if (slice.title in VR_EXPECTATION_EVENTS) {
+            if (slice.title in VR_EXPECTATION_EVENTS ||
+                slice.title in WEBXR_INSTANT_EVENTS) {
               events.push(slice);
               vrEventStart = Math.min(vrEventStart, slice.start);
             }
@@ -1439,6 +1454,7 @@ tr.exportTo('tr.importer', function() {
     compareEvents,
     CSS_ANIMATION_TITLE,
     VR_EXPECTATION_EVENTS,
+    isXrDeviceServiceProcess,
   };
 });
 </script>
