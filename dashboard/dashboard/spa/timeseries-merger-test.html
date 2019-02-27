@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--
+Copyright 2019 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+<script src="/bower_components/web-component-tester/browser.js"></script>
+<link rel="import" href="/dashboard/spa/timeseries-merger.html">
+<link rel="import" href="/tracing/value/histogram.html">
+
+<script>
+'use strict';
+suite('TimeseriesMerger', function() {
+  test('test', async function() {
+    const output = [...new cp.TimeseriesMerger([
+      [
+        {revision: 5, avg: 2, std: 1, count: 5, sum: 10},
+        {revision: 10, avg: 2, std: 1, count: 5, sum: 10, min: 1, diagnostics:
+          tr.v.d.DiagnosticMap.fromObject({a: new tr.v.d.GenericSet(['a'])})},
+        {revision: 15, avg: 2, std: 1, count: 5, sum: 10, min: 1, diagnostics:
+          tr.v.d.DiagnosticMap.fromObject({a: new tr.v.d.GenericSet(['a'])})},
+        {revision: 20, avg: 2, std: 1, count: 5, sum: 10},
+        {revision: 25, avg: 2, std: 1, count: 5, sum: 10},
+        {revision: 30, avg: 2, std: 1, count: 5, sum: 10},
+      ],
+      [
+        {revision: 5, avg: 4, std: 2, count: 5, sum: 20},
+        {revision: 10, avg: 4, std: 2, count: 5, sum: 20, min: 2, diagnostics:
+          tr.v.d.DiagnosticMap.fromObject({a: new tr.v.d.GenericSet(['a'])})},
+        {revision: 15, avg: 4, std: 2, count: 5, sum: 20},
+        {revision: 20, avg: 4, std: 2, count: 5, sum: 20, min: 1, diagnostics:
+          tr.v.d.DiagnosticMap.fromObject({a: new tr.v.d.GenericSet(['a'])})},
+        {revision: 25, avg: 4, std: 2, count: 5, sum: 20},
+        {revision: 30, avg: 4, std: 2, count: 5, sum: 20},
+      ],
+    ], {
+      minRevision: 10,
+      maxRevision: 25,
+    })];
+
+    assert.strictEqual('a', tr.b.getOnlyElement(
+        output[0][1].diagnostics.get('a')));
+    delete output[0][1].diagnostics;
+    assert.strictEqual('a', tr.b.getOnlyElement(
+        output[1][1].diagnostics.get('a')));
+    delete output[1][1].diagnostics;
+    assert.strictEqual('a', tr.b.getOnlyElement(
+        output[2][1].diagnostics.get('a')));
+    delete output[2][1].diagnostics;
+    assert.isUndefined(output[3][1].diagnostics);
+
+    assert.strictEqual(JSON.stringify(output), JSON.stringify([
+      [10, {
+        revision: 10,
+        avg: 3,
+        std: 3.872983346207417,
+        count: 10,
+        sum: 30,
+        min: 1,
+      }],
+      [15, {
+        revision: 15,
+        avg: 3,
+        std: 3.872983346207417,
+        count: 10,
+        sum: 30,
+        min: 1,
+      }],
+      [20, {
+        revision: 20,
+        avg: 3,
+        std: 3.872983346207417,
+        count: 10,
+        sum: 30,
+        min: 1,
+      }],
+      [25, {
+        revision: 25,
+        avg: 3,
+        std: 3.872983346207417,
+        count: 10,
+        sum: 30,
+      }],
+    ]));
+  });
+});
+</script>
