@@ -3,7 +3,11 @@ available for preview at https://v2spa-dot-chromeperf.appspot.com .
 
 In order to develop or deploy v2spa, a one-time setup is required:
 ```
-cd dashboard
+pushd common/node_runner/node_runner
+npm install
+sed -i 's/ecmaVersion: 6/ecmaVersion: 9/g' node_modules/hydrolysis/lib/ast-utils/js-parse.js
+popd
+pushd dashboard
 ln -sf ../devil/devil/
 ln -sf ../third_party/apiclient/apiclient/
 ln -sf ../third_party/apiclient/googleapiclient/
@@ -29,6 +33,7 @@ ln -sf ../tracing/tracing_build/
 ln -sf ../tracing/tracing_project.py
 ln -sf /usr/lib/python2.7/dist-packages/jinja2/
 ln -sf /usr/lib/python2.7/dist-packages/markupsafe/
+popd
 ```
 
 Checkout the `v2spa` branch.
@@ -38,8 +43,8 @@ In order to deploy v2spa to v2spa-dot-chromeperf.appspot.com, run
 same script request handlers as V1, which is configured in app.yaml and
 continues to be deployed to chromeperf.appspot.com by `dashboard/bin/deploy`.
 
-In order to develop v2spa locally, run `dev_appserver.py v2spa_dev.yaml` to
+In order to develop v2spa locally, run `dev_appserver.py dev.yaml` to
 serve the unvulcanized sources at http://localhost:8080 to speed up reloading
-changes. `v2spa_dev.yaml` is not intended to be deployed even to a dev instance.
+changes. `dev.yaml` is not intended to be deployed even to a dev instance.
 When running on localhost, V2SPA does not send requests to the backend, so no
 script request handlers are needed.
