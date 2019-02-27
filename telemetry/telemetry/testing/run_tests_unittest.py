@@ -109,13 +109,14 @@ class RunTestsUnitTest(unittest.TestCase):
     finally:
       os.remove(temp_file_name)
 
-  def _RunUnitWithExpectationFile(self, full_test_name, expectation,
-                                  test_tags='foo', extra_args=None,
-                                  expected_exit_code=0):
+  def _RunUnitWithExpectationFile(
+      self, full_test_name, expectation, test_tags='foo', extra_args=None,
+      expected_exit_code=0, expectations_pattern=''):
     extra_args = extra_args or []
+    expectations_pattern = expectations_pattern or full_test_name
     expectations = ('# tags: [ foo bar mac ]\n'
                     'crbug.com/123 [ %s ] %s [ %s ]')
-    expectations = expectations % (test_tags, full_test_name, expectation)
+    expectations = expectations % (test_tags, expectations_pattern, expectation)
     expectations_file = tempfile.NamedTemporaryFile(delete=False)
     expectations_file.write(expectations)
     results = tempfile.NamedTemporaryFile(delete=False)
@@ -140,6 +141,21 @@ class RunTestsUnitTest(unittest.TestCase):
       os.remove(expectations_file.name)
       os.remove(results.name)
     return self._test_result
+
+  @decorators.Disabled('chromeos')  # crbug.com/696553
+  def testAppendPrefixToAllTestExpectationPatternsCommandLineArgument(self):
+    test_method_class_path = 'unit_tests_test.FailingTest'
+    extra_args = ['--append-prefix-to-all-test-expectation-patterns',
+                  test_method_class_path + '.']
+    self._RunUnitWithExpectationFile(
+        'unit_tests_test.FailingTest.test_fail', 'Failure',
+        extra_args=extra_args, expectations_pattern='test_fail')
+    results = (self._test_result['tests']['unit_tests_test']
+               ['FailingTest']['test_fail'])
+    self.assertEqual(results['expected'], 'FAIL')
+    self.assertEqual(results['actual'], 'FAIL')
+    self.assertNotIn('is_unexpected', results)
+    self.assertNotIn('is_regression', results)
 
   @decorators.Disabled('chromeos')  # crbug.com/696553
   def testTestFailsAllRetryOnFailureRetriesAndIsNotaRegression(self):

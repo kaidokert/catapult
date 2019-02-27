@@ -39,8 +39,7 @@ class BrowserTestRunnerTest(unittest.TestCase):
       node = node_queues.pop()
       full_test_name, test_dict = node
       if _IsLeafNode(node):
-        if all(res not in test_dict['expected'].split() for res in
-               test_dict['actual'].split()):
+        if test_dict['actual'] == 'FAIL':
           failures.append(full_test_name)
         elif test_dict['actual'] == 'SKIP':
           skips.append(full_test_name)
@@ -84,24 +83,20 @@ class BrowserTestRunnerTest(unittest.TestCase):
     finally:
       os.remove(temp_file_name)
 
-  def _RunBrowserTest(self, modulename, classname,
-                      test_name, expectation='Pass', test_tags='foo',
-                      extra_args=None, expected_exit_code=0,
-                      include_expectations=True):
+  def _RunBrowserTestWithExpectationsFile(
+      self, modulename, classname, test_name, expectation='Pass',
+      test_tags='foo', extra_args=None, expected_exit_code=0):
     extra_args = extra_args or []
-    if include_expectations:
-      expectations = ('# tags: [ foo bar mac ]\n'
-                      'crbug.com/123 [ %s ] '
-                      'browser_tests.%s.%s.%s'
-                      ' [ %s ]')
-      expectations = expectations % (test_tags, modulename,
-                                     classname, test_name, expectation)
-      expectations_file = tempfile.NamedTemporaryFile(delete=False)
-      expectations_file.write(expectations)
-      expectations_file.close()
-      expectations_file_paths = [expectations_file.name]
-    else:
-      expectations_file_paths = []
+    expectations = ('# tags: [ foo bar mac ]\n'
+                    'crbug.com/123 [ %s ] '
+                    'browser_tests.%s.%s.%s'
+                    ' [ %s ]')
+    expectations = expectations % (test_tags, modulename,
+                                   classname, test_name, expectation)
+    expectations_file = tempfile.NamedTemporaryFile(delete=False)
+    expectations_file.write(expectations)
+    expectations_file.close()
+    expectations_file_paths = [expectations_file.name]
     results = tempfile.NamedTemporaryFile(delete=False)
     results.close()
     config = project_config.ProjectConfig(
@@ -122,19 +117,19 @@ class BrowserTestRunnerTest(unittest.TestCase):
       with open(results.name) as f:
         test_result = json.load(f)
     finally:
-      if expectations_file_paths:
-        os.remove(expectations_file.name)
+      os.remove(expectations_file.name)
       os.remove(results.name)
     return test_result
 
   @decorators.Disabled('chromeos')  # crbug.com/696553
   def testGetExpectationsForTestFunctionWithOutExpectationsFile(self):
-    test_result = self._RunBrowserTest('tests_get_expectations_for_test',
-                                       'CallsGetExpectationsForTest',
-                                       'HasNoExpectationsFile',
-                                       include_expectations=False,
-                                       expected_exit_code=0)
-    test_result = (test_result['tests']['browser_tests']
+    test_name_format = ('browser_tests'
+                        '.tests_get_expectations_for_test'
+                        '.CallsGetExpectationsForTest.%s')
+    self.baseTest('.*HasNoExpectationsFile.*',
+                  [], [test_name_format % 'HasNoExpectationsFile'],
+                  test_name='CallsGetExpectationsForTest')
+    test_result = (self._test_result['tests']['browser_tests']
                    ['tests_get_expectations_for_test']
                    ['CallsGetExpectationsForTest']
                    ['HasNoExpectationsFile'])
@@ -143,14 +138,12 @@ class BrowserTestRunnerTest(unittest.TestCase):
     self.assertNotIn('is_unexpected', test_result)
     self.assertNotIn('is_regression', test_result)
 
-
   @decorators.Disabled('chromeos')  # crbug.com/696553
   def testGetExpectationsForTestFunctionWithExpectationsFile(self):
-    test_result = self._RunBrowserTest('tests_get_expectations_for_test',
-                                       'CallsGetExpectationsForTest',
-                                       'HasExpectationsFile',
-                                       'RetryOnFailure Failure',
-                                       extra_args=['-x', 'foo'])
+    test_result = self._RunBrowserTestWithExpectationsFile(
+        'tests_get_expectations_for_test', 'CallsGetExpectationsForTest',
+        'HasExpectationsFile', 'RetryOnFailure Failure',
+        extra_args=['-x', 'foo'])
     test_result = (test_result['tests']['browser_tests']
                    ['tests_get_expectations_for_test']
                    ['CallsGetExpectationsForTest']
@@ -161,12 +154,36 @@ class BrowserTestRunnerTest(unittest.TestCase):
     self.assertNotIn('is_regression', test_result)
 
   @decorators.Disabled('chromeos')  # crbug.com/696553
+  def testAppendPrefixToAllTestExpectationPatternsCommandLineArgument(self):
+    test_method_class_path = ('browser_tests'
+                              '.includes_test_expectations_files_test'
+                              '.IncludesTestExpectationsFiles')
+    extra_args = ['--append-prefix-to-all-test-expectation-patterns',
+                  test_method_class_path + '.']
+    test_name_format = test_method_class_path + '.%s'
+    self.baseTest(
+        '.*ExpectationWithTestMethodNameOnly.*',
+        [test_name_format % 'ExpectationWithTestMethodNameOnly'],
+        [], test_name='IncludesTestExpectationsFiles', extra_args=extra_args)
+    test_result = (self._test_result['tests']['browser_tests']
+                   ['includes_test_expectations_files_test']
+                   ['IncludesTestExpectationsFiles']
+                   ['ExpectationWithTestMethodNameOnly'])
+    self.assertEqual(test_result['expected'], 'FAIL')
+    self.assertEqual(test_result['actual'], 'FAIL')
+    self.assertNotIn('is_unexpected', test_result)
+    self.assertNotIn('is_regression', test_result)
+
+  @decorators.Disabled('chromeos')  # crbug.com/696553
   def testOverridingExpectationsFilesFunction(self):
-    test_results = self._RunBrowserTest('includes_test_expectations_files_test',
-                                        'IncludesTestExpectationsFiles',
-                                        'FailTest',
-                                        include_expectations=False)
-    test_result = (test_results['tests']['browser_tests']
+    test_name_format = ('browser_tests'
+                        '.includes_test_expectations_files_test'
+                        '.IncludesTestExpectationsFiles.%s')
+    self.baseTest(
+        '.*FailTest.*',
+        [test_name_format % 'FailTest'],
+        [], test_name='IncludesTestExpectationsFiles')
+    test_result = (self._test_result['tests']['browser_tests']
                    ['includes_test_expectations_files_test']
                    ['IncludesTestExpectationsFiles']['FailTest'])
     self.assertEqual(test_result['expected'], 'FAIL')
@@ -177,9 +194,9 @@ class BrowserTestRunnerTest(unittest.TestCase):
   @decorators.Disabled('chromeos')  # crbug.com/696553
   def testDoesRetryOnFailureRetriesAndEventuallyPasses(self):
     extra_args = ['--retry-limit=3', '--retry-only-retry-on-failure-tests']
-    test_result = self._RunBrowserTest('flaky_test', 'FlakyTests', 'FlakyTest',
-                                       'RetryOnFailure',
-                                       extra_args=extra_args)
+    test_result = self._RunBrowserTestWithExpectationsFile(
+        'flaky_test', 'FlakyTests', 'FlakyTest', 'RetryOnFailure',
+        extra_args=extra_args)
     results = (test_result['tests']['browser_tests']['flaky_test']
                ['FlakyTests']['FlakyTest'])
     self.assertEqual(results['expected'], 'PASS')
@@ -189,9 +206,8 @@ class BrowserTestRunnerTest(unittest.TestCase):
 
   @decorators.Disabled('chromeos')  # crbug.com/696553
   def testSkipTestWithExpectationsFileWithSkipExpectation(self):
-    test_result = self._RunBrowserTest('skip_tests_test',
-                                       'SkipTestExpectationFiles',
-                                       'PassTest', 'Skip')
+    test_result = self._RunBrowserTestWithExpectationsFile(
+        'skip_tests_test', 'SkipTestExpectationFiles', 'PassTest', 'Skip')
     test_result = (test_result['tests']['browser_tests']
                    ['skip_tests_test']['SkipTestExpectationFiles']['PassTest'])
     self.assertEqual(test_result['expected'], 'SKIP')
@@ -201,10 +217,9 @@ class BrowserTestRunnerTest(unittest.TestCase):
 
   @decorators.Disabled('chromeos')  # crbug.com/696553
   def testSkipTestCmdArgsWithExpectationsFile(self):
-    test_result = self._RunBrowserTest('skip_tests_test',
-                                       'SkipTestExpectationFiles',
-                                       'PassTest', 'Crash Failure',
-                                       extra_args=['--skip=*PassTest'])
+    test_result = self._RunBrowserTestWithExpectationsFile(
+        'skip_tests_test', 'SkipTestExpectationFiles', 'PassTest',
+        'Crash Failure', extra_args=['--skip=*PassTest'])
     test_result = (test_result['tests']['browser_tests']
                    ['skip_tests_test']['SkipTestExpectationFiles']['PassTest'])
     self.assertEqual(test_result['expected'], 'SKIP')
@@ -237,8 +252,9 @@ class BrowserTestRunnerTest(unittest.TestCase):
 
   @decorators.Disabled('chromeos')  # crbug.com/696553
   def testTagGenerationExpectedPass(self):
-    test_result = self._RunBrowserTest('generate_tags_test',
-                                       'GenerateTagsTest', 'PassTest', 'Pass')
+    test_result = self._RunBrowserTestWithExpectationsFile('generate_tags_test',
+                                                           'GenerateTagsTest',
+                                                           'PassTest', 'Pass')
     test_result = (test_result['tests']['browser_tests']
                    ['generate_tags_test']['GenerateTagsTest']['PassTest'])
     assert test_result['expected'] == 'PASS'
@@ -248,9 +264,10 @@ class BrowserTestRunnerTest(unittest.TestCase):
 
   @decorators.Disabled('chromeos')  # crbug.com/696553
   def testTagGenerationExpectedFail(self):
-    test_result = self._RunBrowserTest('generate_tags_test',
-                                       'GenerateTagsTest',
-                                       'FailTest', 'Failure')
+    test_result = self._RunBrowserTestWithExpectationsFile('generate_tags_test',
+                                                           'GenerateTagsTest',
+                                                           'FailTest',
+                                                           'Failure')
     test_result = (test_result['tests']['browser_tests']
                    ['generate_tags_test']['GenerateTagsTest']['FailTest'])
     assert test_result['expected'] == 'FAIL'
@@ -260,9 +277,10 @@ class BrowserTestRunnerTest(unittest.TestCase):
 
   @decorators.Disabled('chromeos') # crbug.com/696553
   def testTagGenerationUnexpectedPass(self):
-    test_result = self._RunBrowserTest('generate_tags_test',
-                                       'GenerateTagsTest',
-                                       'PassTest', 'Failure')
+    test_result = self._RunBrowserTestWithExpectationsFile('generate_tags_test',
+                                                           'GenerateTagsTest',
+                                                           'PassTest',
+                                                           'Failure')
     test_result = (test_result['tests']['browser_tests']
                    ['generate_tags_test']['GenerateTagsTest']['PassTest'])
     assert test_result['expected'] == 'FAIL'
@@ -272,9 +290,11 @@ class BrowserTestRunnerTest(unittest.TestCase):
 
   @decorators.Disabled('chromeos')  # crbug.com/696553
   def testTagGenerationUnexpectedFail(self):
-    test_result = self._RunBrowserTest('generate_tags_test',
-                                       'GenerateTagsTest',
-                                       'FailTest', 'Pass', expected_exit_code=1)
+    test_result = self._RunBrowserTestWithExpectationsFile('generate_tags_test',
+                                                           'GenerateTagsTest',
+                                                           'FailTest',
+                                                           'Pass',
+                                                           expected_exit_code=1)
     test_result = (test_result['tests']['browser_tests']
                    ['generate_tags_test']['GenerateTagsTest']['FailTest'])
     assert test_result['expected'] == 'PASS'
@@ -284,9 +304,10 @@ class BrowserTestRunnerTest(unittest.TestCase):
 
   @decorators.Disabled('chromeos')  # crbug.com/696553
   def testTagGenerationDefaultExpectedPassActualPass(self):
-    test_result = self._RunBrowserTest('generate_tags_test',
-                                       'GenerateTagsTest',
-                                       'PassTest', 'Failure', 'mac')
+    test_result = self._RunBrowserTestWithExpectationsFile('generate_tags_test',
+                                                           'GenerateTagsTest',
+                                                           'PassTest',
+                                                           'Failure', 'mac')
     test_result = (test_result['tests']['browser_tests']
                    ['generate_tags_test']['GenerateTagsTest']['PassTest'])
     assert test_result['expected'] == 'PASS'
@@ -296,10 +317,11 @@ class BrowserTestRunnerTest(unittest.TestCase):
 
   @decorators.Disabled('chromeos')  # crbug.com/696553
   def testTagGenerationDefaultExpectedPassActualFail(self):
-    test_result = self._RunBrowserTest('generate_tags_test',
-                                       'GenerateTagsTest',
-                                       'FailTest', 'Failure', 'mac',
-                                       expected_exit_code=1)
+    test_result = self._RunBrowserTestWithExpectationsFile('generate_tags_test',
+                                                           'GenerateTagsTest',
+                                                           'FailTest',
+                                                           'Failure', 'mac',
+                                                           expected_exit_code=1)
     test_result = (test_result['tests']['browser_tests']
                    ['generate_tags_test']['GenerateTagsTest']['FailTest'])
     assert test_result['expected'] == 'PASS'

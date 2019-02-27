@@ -338,3 +338,15 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
                          (0, None))
         self.assertEqual(test_expectations.expectations_for('b1/s1'),
                          (set([ResultType.Pass]), True))
+
+    def testAppendPrefixToTest(self):
+        raw_data = ('# tags: [ All ]\n'
+                    'crbug.com/123 [ All ] b1/s1 [ Skip ]\n')
+        parser = expectations_parser.TaggedTestListParser(
+            raw_data, 'hello-world-')
+        expected_outcome = [
+            expectations_parser.Expectation(
+                'crbug.com/123', 'hello-world-b1/s1', ['All'], ['SKIP']),
+        ]
+        for i in range(len(parser.expectations)):
+            self.assertEqual(parser.expectations[i], expected_outcome[i])
