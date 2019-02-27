@@ -7,7 +7,9 @@ found in the LICENSE file.
 
 <link rel="import" href="/tracing/base/utils.html">
 <link rel="import" href="/tracing/value/histogram.html">
+<link rel="import" href="/tracing/value/histogram_deserializer.html">
 <link rel="import" href="/tracing/value/histogram_grouping.html">
+<link rel="import" href="/tracing/value/histogram_serializer.html">
 
 <script>
 'use strict';
@@ -150,12 +152,24 @@ tr.exportTo('tr.v', function() {
       return this.sharedDiagnosticsByGuid_.get(guid);
     }
 
+    deserialize(data) {
+      for (const hist of tr.v.HistogramDeserializer.deserialize(data)) {
+        this.addHistogram(hist);
+      }
+    }
+
     /**
      * Convert dicts to either Histograms or shared Diagnostics.
      *
      * @param {!Object} dicts
      */
     importDicts(dicts) {
+      if ((dicts instanceof Array) &&
+          dicts.length &&
+          (dicts[0] instanceof Array)) {
+        this.deserialize(dicts);
+        return;
+      }
       for (const dict of dicts) {
         this.importDict(dict);
       }
@@ -187,17 +201,10 @@ tr.exportTo('tr.v', function() {
      * Serialize all of the Histograms and shared Diagnostics to an Array of
      * dictionaries.
      *
-     * @return {!Array.<!Object>}
+     * @return {!Array}
      */
     asDicts() {
-      const dicts = [];
-      for (const diagnostic of this.sharedDiagnosticsByGuid_.values()) {
-        dicts.push(diagnostic.asDict());
-      }
-      for (const hist of this) {
-        dicts.push(hist.asDict());
-      }
-      return dicts;
+      return tr.v.HistogramSerializer.serialize([...this]);
     }
 
     /**
