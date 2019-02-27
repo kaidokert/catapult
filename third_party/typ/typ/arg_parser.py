@@ -186,7 +186,8 @@ class ArgumentParser(argparse.ArgumentParser):
             self.add_argument('--no-overwrite', action='store_false',
                               dest='overwrite', default=None,
                               help=argparse.SUPPRESS)
-
+            self.add_argument('--test-name-prefix', default='', action='store',
+                              help=('Appends prefix to all test names'))
         if discovery or running:
             self.add_argument('-P', '--path', action='append', default=[],
                               help=('Adds dir to sys.path (can specify '

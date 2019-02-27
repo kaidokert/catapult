@@ -1042,6 +1042,22 @@ class TestCli(test_case.MainTestCase):
         self.assertNotIn('is_unexpected', results)
         self.assertNotIn('is_regression', results)
 
+    def test_exclude_prefix_in_passing_test_name_in_tests_finished_output(self):
+        files = PASS_TEST_FILES
+        _, out, _, files = self.check(
+            ['--write-full-results-to', 'full_results.json',
+             '--test-name-prefix', 'pass_test.PassingTest.'],
+            files=files, ret=0, err='')
+        self.assertIn('[1/1] test_pass passed\n', out)
+
+    def test_exclude_prefix_in_failing_test_name_in_tests_finished_output(self):
+        files = FAIL_TEST_FILES
+        _, out, _, files = self.check(
+            ['--write-full-results-to', 'full_results.json',
+             '--test-name-prefix', 'fail_test.FailingTest.'],
+            files=files, ret=1, err='')
+        self.assertIn('[1/1] test_fail failed unexpectedly:\n', out)
+
     def test_skip_test_no_expectations_file_cmd_args_skip(self):
         files = PASS_TEST_FILES
         _, out, _, files = self.check(['--write-full-results-to',
