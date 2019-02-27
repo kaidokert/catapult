@@ -84,6 +84,7 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
     self._backend_settings = backend_settings
     self._local_apk = local_apk
     self._flag_changer = None
+    self._require_root = not finder_options.dont_require_rooted_device
 
     if self._local_apk is None and finder_options.chrome_root is not None:
       self._local_apk = self._backend_settings.FindLocalApk(
@@ -130,11 +131,18 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
         self._backend_settings.package)
     # A package can map to multiple APKs iff the package overrides the app on
     # the system image. Such overrides should not happen on perf bots.
-    assert len(apks) == 1
-    base_apk = apks[0]
-    if not base_apk or not base_apk.endswith('/base.apk'):
-      return None
-    return base_apk[:-9]
+    if self._require_root:
+      assert len(apks) == 1, 'should only be 1 installed apk: %s' % apks
+      base_apk = apks[0]
+      if not base_apk or not base_apk.endswith('/base.apk'):
+        return None
+      return base_apk[:-9]
+    else:
+      # Find the one ending in base.apk. Others might be
+      # "/split_config.en.apk", "/split_vr.apk", etc.
+      base_apks = [x for x in apks if x.endswith('/base.apk')]
+      assert len(base_apks) == 1, 'should only be 1 /base.apk: %s' % base_apks
+      return base_apks[0][:-9]
 
   @property
   def profile_directory(self):

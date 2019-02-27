@@ -164,6 +164,13 @@ class BrowserFinderOptions(optparse.Values):
         '--webview-embedder-apk',
         help='When running tests on android webview, more than one apk needs to'
         ' be installed. The apk running the test is said to embed webview.')
+    group.add_option('--dont-require-rooted-device',
+                     action='store_true',
+                     help='On Android, don\'t require a rooted device, and '
+                     'don\'t attempt to run adb as root. This restricts the '
+                     'kinds of operations that can be performed, for example '
+                     'setting the CPU governor, and is not suitable for '
+                     'performance testing.')
     parser.add_option_group(group)
 
     # Remote platform options
@@ -561,6 +568,9 @@ class BrowserOptions(object):
     else:
       self._extra_browser_args.add(args)
 
+  @property
+  def dont_require_rooted_device(self):
+    return self._finder_options.dont_require_rooted_device
 
 def CreateChromeBrowserOptions(br_options):
   browser_type = br_options.browser_type
