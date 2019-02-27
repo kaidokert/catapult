@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<!--
+Copyright 2019 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/importer/find_input_expectations.html">
+<link rel="import" href="/tracing/metrics/metric_registry.html">
+<link rel="import" href="/tracing/value/histogram.html">
+
+<script>
+'use strict';
+
+tr.exportTo('tr.metrics.vr', function() {
+  function webxrMetric(histograms, model, opt_options) {
+    const WINDOWS_XR_COMPOSITOR_THREAD = 'WindowsXRCompositor';
+    // Maps XR trace counters to histograms. Counters can have multiple series,
+    // but all XR counters currently only use the default "value" series, so we
+    // don't need to handle that.
+    const counterHistogramsByTitle = new Map();
+    counterHistogramsByTitle.set(
+        'gpu.WebXR FPS',
+        histograms.createHistogram(
+            'webxr_fps',
+            tr.b.Unit.byName.count_biggerIsBetter, [],
+            {
+              description: 'WebXR frames per second',
+              binBoundaries: tr.v.HistogramBinBoundaries.createLinear(
+                  20, 120, 25),
+            }
+        )
+    );
+
+    // Maps XR instant events to histograms. Since instant events have arbitary
+    // key/value pairs in their "args" dict, have a map of arg names to
+    // histograms.
+    const instantHistogramsByTitle = new Map();
+    // For whatever reason, the category (gpu) doesn't get prepended like it
+    // does for other events.
+    instantHistogramsByTitle.set(
+        'WebXR pose prediction',
+        {
+          milliseconds: histograms.createHistogram(
+              'webxr_pose_prediction',
+              tr.b.Unit.byName.timeDurationInMs_smallerIsBetter, [],
+              {
+                description: 'WebXR pose prediction in ms',
+                binBoundaries: tr.v.HistogramBinBoundaries.createLinear(
+                    20, 120, 25),
+              }),
+        }
+    );
+    instantHistogramsByTitle.set(
+        'WebXR frame time (ms)',
+        {
+          javascript: histograms.createHistogram(
+              'webxr_frame_time_javascript',
+              tr.b.Unit.byName.timeDurationInMs_smallerIsBetter, [],
+              {
+                description: 'WebXR frame time spent on JavaScript',
+                binBoundaries: tr.v.HistogramBinBoundaries.createLinear(
+                    20, 120, 25),
+              }),
+          rendering: histograms.createHistogram(
+              'webxr_frame_time_rendering',
+              tr.b.Unit.byName.timeDurationInMs_smallerIsBetter, [],
+              {
+                description: 'WebXR frame time spent on rendering',
+                binBoundaries: tr.v.HistogramBinBoundaries.createLinear(
+                    20, 120, 25),
+              }),
+        }
+    );
+
+    for (const ue of model.userModel.expectations) {
+      const rangeOfInterestEnabled = opt_options && opt_options.rangeOfInterest;
+      if (rangeOfInterestEnabled &&
+          !opt_options.rangeOfInterest.intersectsExplicitRangeInclusive(
+              ue.start, ue.end)) {
+        continue;
+      }
+
+      // By default, only do calculations in the VR animation expectation, i.e.
+      // some time after we've entered VR, in order to avoid skewed results
+      // caused by VR entry, but allow calculation on the response expectation
+      // if we've manually selected it as a range of interest
+      if (ue.initiatorType !== tr.model.um.INITIATOR_TYPE.VR) continue;
+      if (!rangeOfInterestEnabled) {
+        if (!(ue instanceof tr.model.um.AnimationExpectation)) continue;
+      } else {
+        if (!(ue instanceof tr.model.um.AnimationExpectation ||
+              ue instanceof tr.model.um.ResponseExpectation)) continue;
+      }
+
+      // Handle counter-type events.
+      for (const counter of model.getAllCounters()) {
+        if (!(counterHistogramsByTitle.has(counter.id))) continue;
+
+        for (const series of counter.series) {
+          for (const sample of series.samples) {
+            if (sample.timestamp < ue.start || sample.timestamp >= ue.end) {
+              continue;
+            }
+            if (rangeOfInterestEnabled &&
+                !opt_options.rangeOfInterest.intersectsExplicitRangeInclusive(
+                    sample.timestamp, sample.timestamp)) {
+              continue;
+            }
+
+            counterHistogramsByTitle.get(counter.id).addSample(sample.value);
+          }
+        }
+      }
+
+      // Handle instant events.
+      const xrServiceProcesses = model.getAllProcesses(
+          tr.importer.isXrDeviceServiceProcess);
+      for (const proc of xrServiceProcesses) {
+        const compositorThreads = proc.findAllThreadsNamed(
+            WINDOWS_XR_COMPOSITOR_THREAD);
+
+        for (const cThread of compositorThreads) {
+          for (const event of cThread.getDescendantEvents()) {
+            // Skip events that are neither in the user expectation, range of
+            // interest, nor part of the instant events we care about.
+            if (!(instantHistogramsByTitle.has(event.title))) {
+              continue;
+            }
+            if (event.start < ue.start || event.start > ue.end) {
+              continue;
+            }
+            if (rangeOfInterestEnabled &&
+                !opt_options.rangeOfInterest.intersectsExplicitRangeInclusive(
+                    event.start, event.start)) {
+              continue;
+            }
+            const eventHistograms = instantHistogramsByTitle.get(event.title);
+            for (const [key, value] of Object.entries(event.args)) {
+              if (key in eventHistograms) {
+                eventHistograms[key].addSample(value);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // Make sure we always report a value for WebXR FPS so that failing to
+    // submit frames will show up as a regression
+    if (counterHistogramsByTitle.get('gpu.WebXR FPS').numValues === 0) {
+      counterHistogramsByTitle.get('gpu.WebXR FPS').addSample(0);
+    }
+  }
+
+  tr.metrics.MetricRegistry.register(webxrMetric, {
+    supportsRangeOfInterest: true,
+  });
+
+  return {
+    webxrMetric,
+  };
+});
+</script>
