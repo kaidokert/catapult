@@ -65,7 +65,6 @@ suite('report-table', function() {
     const tr = report.$.table.querySelector('tbody').children[0];
     tr.dispatchEvent(new CustomEvent('mouseenter', {}));
     await cp.afterRender();
-    await cp.afterRender();
     assert.deepEqual(report.tooltip.rows, [['suite', 'bot', 'case']]);
 
     const a = tr.children[0].children[0];
