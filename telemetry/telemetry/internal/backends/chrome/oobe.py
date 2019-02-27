@@ -183,7 +183,3 @@ class Oobe(web_contents.WebContents):
     ''' % button_text
     self._GaiaWebviewContext().WaitForJavaScriptCondition(
         get_button_js, timeout=20)
-
-  def SetUpOnlineDemoMode(self):
-    """Starts online demo mode setup."""
-    self._ExecuteOobeApi('Oobe.setUpOnlineDemoModeForTesting')
