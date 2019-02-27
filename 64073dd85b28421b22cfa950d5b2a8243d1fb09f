@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2adfee80_42c1429a",
+        "filename": "dashboard/dashboard/spa/report-controls.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-27T18:59:35Z",
+      "side": 1,
+      "message": "Filed a bug. Adding an /api/milestones API might be a Good First Bug if you\u0027re interested!",
+      "parentUuid": "d5e75c60_7e2d2960",
+      "revId": "64073dd85b28421b22cfa950d5b2a8243d1fb09f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a5b2f12e_ea9958fd",
         "filename": "dashboard/dashboard/spa/report-controls.js",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2019-02-27T00:45:01Z",
       "side": 1,
       "message": "Do https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/min and max do the same thing as tr.b.math.Statistics.min and max?",
+      "revId": "64073dd85b28421b22cfa950d5b2a8243d1fb09f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a87c669_67fb145c",
+        "filename": "dashboard/dashboard/spa/report-controls.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-27T18:59:35Z",
+      "side": 1,
+      "message": "Nope. They\u0027d return NaNs here.",
+      "parentUuid": "a5b2f12e_ea9958fd",
       "revId": "64073dd85b28421b22cfa950d5b2a8243d1fb09f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "db9b6d32_34c6f134",
+        "filename": "dashboard/dashboard/spa/report-controls.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-27T18:59:35Z",
+      "side": 1,
+      "message": "Sorry, I meant to remove this method.",
+      "parentUuid": "780e06d5_6ba8c92c",
+      "range": {
+        "startLine": 42,
+        "startChar": 28,
+        "endLine": 42,
+        "endChar": 30
+      },
+      "revId": "64073dd85b28421b22cfa950d5b2a8243d1fb09f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ba55b655_a911eeef",
         "filename": "dashboard/dashboard/spa/report-controls.js",
         "patchSetId": 3
@@ -70,6 +130,24 @@
       "writtenOn": "2019-02-27T00:45:01Z",
       "side": 1,
       "message": "ehh, is there a more robust way to do this than timeout?",
+      "revId": "64073dd85b28421b22cfa950d5b2a8243d1fb09f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ca385db_8ca28141",
+        "filename": "dashboard/dashboard/spa/report-controls.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-27T18:59:35Z",
+      "side": 1,
+      "message": "Sorry, I meant to remove this method.",
+      "parentUuid": "ba55b655_a911eeef",
       "revId": "64073dd85b28421b22cfa950d5b2a8243d1fb09f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
