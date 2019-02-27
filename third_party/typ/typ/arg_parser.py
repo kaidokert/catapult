@@ -186,7 +186,11 @@ class ArgumentParser(argparse.ArgumentParser):
             self.add_argument('--no-overwrite', action='store_false',
                               dest='overwrite', default=None,
                               help=argparse.SUPPRESS)
-
+            self.add_argument(
+                '--append-prefix-to-all-test-expectation-patterns', default='',
+                action='store',
+                help=('Appends prefix to all test expectation patterns.'))
+            
         if discovery or running:
             self.add_argument('-P', '--path', action='append', default=[],
                               help=('Adds dir to sys.path (can specify '

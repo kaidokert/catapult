@@ -196,6 +196,8 @@ class RunTestsCommand(command_line.OptparseCommand):
     runner.args.total_shards = args.total_shards
     runner.args.retry_only_retry_on_failure_tests = (
         args.retry_only_retry_on_failure_tests)
+    runner.args.append_prefix_to_all_test_expectation_patterns = (
+        args.append_prefix_to_all_test_expectation_patterns)
     runner.args.path.append(util.GetUnittestDataDir())
 
     # Standard verbosity will only emit output on test failure. Higher verbosity
