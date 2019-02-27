@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1e71eb3b_cc35f3ad",
+        "filename": "telemetry/telemetry/testing/browser_test_runner_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-02-27T01:10:02Z",
+      "side": 1,
+      "message": "Is this change related?",
+      "revId": "68b4ef12225acc612b904e629e5d99921c70c540",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
