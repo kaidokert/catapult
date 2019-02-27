@@ -3,7 +3,11 @@ available for preview at https://v2spa-dot-chromeperf.appspot.com .
 
 In order to develop or deploy v2spa, a one-time setup is required:
 ```
-cd dashboard
+pushd common/node_runner/node_runner
+npm install
+sed -i 's/ecmaVersion: 6/ecmaVersion: 9/g' node_modules/hydrolysis/lib/ast-utils/js-parse.js
+popd
+pushd dashboard
 ln -sf ../devil/devil/
 ln -sf ../third_party/apiclient/apiclient/
 ln -sf ../third_party/apiclient/googleapiclient/
@@ -29,6 +33,7 @@ ln -sf ../tracing/tracing_build/
 ln -sf ../tracing/tracing_project.py
 ln -sf /usr/lib/python2.7/dist-packages/jinja2/
 ln -sf /usr/lib/python2.7/dist-packages/markupsafe/
+popd
 ```
 
 Checkout the `v2spa` branch.

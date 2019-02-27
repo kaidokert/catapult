@@ -56,6 +56,7 @@ tr.exportTo('cp', () => {
     },
 
     recommendOptions: statePath => async(dispatch, getState) => {
+      if (!Polymer.Path.get(getState(), statePath)) return;
       dispatch({
         type: RecommendedOptions.reducers.recommendOptions.name,
         statePath,
@@ -81,7 +82,7 @@ tr.exportTo('cp', () => {
       const now = new Date().getTime();
       try {
         optionRecommendations = JSON.parse(localStorage.getItem(
-            RecommendedOptions.STORAGE_KEY));
+            RecommendedOptions.STORAGE_KEY)) || {};
 
         for (const value of DEFAULT_RECOMMENDATIONS) {
           if (!(value in optionRecommendations)) {
@@ -102,6 +103,7 @@ tr.exportTo('cp', () => {
     },
 
     recommendOptions: (state, action, rootState) => {
+      if (!state) return state;
       const optionValues = RecommendedOptions.recommendOptions(
           state.optionValues, rootState.optionRecommendations).slice(
           0, RecommendedOptions.OPTION_LIMIT);
