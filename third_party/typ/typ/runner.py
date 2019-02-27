@@ -630,7 +630,10 @@ class Runner(object):
 
     def _print_test_finished(self, stats, result):
         stats.add_time()
-
+        result_name = result.name
+        prefix = self.args.test_name_prefix
+        if result_name.startswith(prefix):
+            result_name = result_name[result_name.find(prefix) + len(prefix):]
         assert result.actual in [ResultType.Failure, ResultType.Skip,
                                  ResultType.Pass]
         if result.actual == ResultType.Failure:
@@ -655,7 +658,7 @@ class Runner(object):
         if result.code:
             if out or err:
                 suffix += ':\n'
-            self.update(stats.format() + result.name + suffix, elide=False)
+            self.update(stats.format() + result_name + suffix, elide=False)
             for l in out.splitlines():
                 self.print_('  %s' % l)
             for l in err.splitlines():
@@ -663,7 +666,7 @@ class Runner(object):
         elif not self.args.quiet:
             if self.args.verbose > 1 and (out or err):
                 suffix += ':\n'
-            self.update(stats.format() + result.name + suffix,
+            self.update(stats.format() + result_name + suffix,
                         elide=(not self.args.verbose))
             if self.args.verbose > 1:
                 for l in out.splitlines():
