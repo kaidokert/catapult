@@ -16,6 +16,24 @@
       "revId": "68b4ef12225acc612b904e629e5d99921c70c540",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c64455c4_658622eb",
+        "filename": "telemetry/telemetry/testing/browser_test_runner_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-02-27T02:00:34Z",
+      "side": 1,
+      "message": "It is. I needed it to make a test work. Before it only unexpected failures were put in the failures set. I changed it so that all failures, unexpected or expected, are put in the set.",
+      "parentUuid": "1e71eb3b_cc35f3ad",
+      "revId": "68b4ef12225acc612b904e629e5d99921c70c540",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
