@@ -337,6 +337,8 @@ def RunTests(args):
   runner.classifier = _GetClassifier(options)
   runner.args.retry_only_retry_on_failure_tests = (
       options.retry_only_retry_on_failure_tests)
+  runner.args.append_prefix_to_all_test_expectation_patterns = (
+      options.append_prefix_to_all_test_expectation_patterns)
   runner.args.suffixes = TEST_SUFFIXES
 
   # Since sharding logic is handled by browser_test_runner harness by passing
