@@ -71,9 +71,11 @@ class FlagChanger(object):
     cmdline_path = posixpath.join(_CMDLINE_DIR, cmdline_file)
     alternate_cmdline_path = posixpath.join(_CMDLINE_DIR_LEGACY, cmdline_file)
 
+    self._using_legacy_path = False
     if use_legacy_path:
       cmdline_path, alternate_cmdline_path = (
           alternate_cmdline_path, cmdline_path)
+      self._using_legacy_path = True
     self._cmdline_path = cmdline_path
 
     if self._device.PathExists(alternate_cmdline_path):
@@ -179,10 +181,12 @@ class FlagChanger(object):
     """Set SELinux to permissive, if needed.
 
     On Android N and above this is needed in order to allow Chrome to read the
-    command line file.
+    legacy command line file.
 
     TODO(crbug.com/699082): Remove when a better solution exists.
     """
+    if not self._using_legacy_path:
+      return
     if (self._device.build_version_sdk >= version_codes.NOUGAT and
         self._device.GetEnforce()):
       self._device.SetEnforce(enabled=False)
