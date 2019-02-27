@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "d191ea56_9773e0ce",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-02-27T20:14:11Z",
+      "side": 1,
+      "message": "This is not polite, this calls TerminateProcess(). The comment at line 572 is misleading.",
+      "revId": "ee83c1374b644ff927a0146b67468131426dee72",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "164d0adb_060189ec",
         "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
         "patchSetId": 2
