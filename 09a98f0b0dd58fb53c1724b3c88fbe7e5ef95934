@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "68ffce92_97d70eeb",
+        "filename": "devil/devil/android/flag_changer.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-27T01:36:19Z",
+      "side": 1,
+      "message": "Why don\u0027t you just do \nself._using_legacy_path \u003d use_legacy_path",
+      "range": {
+        "startLine": 74,
+        "startChar": 4,
+        "endLine": 74,
+        "endChar": 35
+      },
+      "revId": "09a98f0b0dd58fb53c1724b3c88fbe7e5ef95934",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5fd5e91e_f965baa3",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-27T01:36:19Z",
+      "side": 1,
+      "message": "I think you want something more like \"--dont-require-rooted-device\"\n\nI know the code reads like Telemetry is \"rooting\" the device, but really, it\u0027s not doing all that. It just turns on root for an already-rooted phone.",
+      "range": {
+        "startLine": 167,
+        "startChar": 22,
+        "endLine": 167,
+        "endChar": 40
+      },
+      "revId": "09a98f0b0dd58fb53c1724b3c88fbe7e5ef95934",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79c2d0d0_18f86fe8",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-27T01:36:19Z",
+      "side": 1,
+      "message": "confusing naming here again.",
+      "range": {
+        "startLine": 570,
+        "startChar": 6,
+        "endLine": 571,
+        "endChar": 19
+      },
+      "revId": "09a98f0b0dd58fb53c1724b3c88fbe7e5ef95934",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
