@@ -16,6 +16,24 @@
       "revId": "eadc794584f83f4fa2d0750a5ac7f227e5eff3f0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "735109e6_6c510fb1",
+        "filename": "dashboard/dashboard/spa/layout-timeseries.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-02-27T04:51:43Z",
+      "side": 1,
+      "message": "Ah, it looks like my Date-fu is a bit out of date. I meant getFullYear().",
+      "parentUuid": "3773ff47_0fe69950",
+      "revId": "eadc794584f83f4fa2d0750a5ac7f227e5eff3f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
