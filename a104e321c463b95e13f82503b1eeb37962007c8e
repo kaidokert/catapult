@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c8f78760_2d137d00",
+        "filename": "devil/devil/android/flag_changer.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-27T18:24:36Z",
+      "side": 1,
+      "message": "Please add TODO for crbug.com/936491 somewhere around here.",
+      "range": {
+        "startLine": 61,
+        "startChar": 6,
+        "endLine": 62,
+        "endChar": 24
+      },
+      "revId": "a104e321c463b95e13f82503b1eeb37962007c8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1929919_f0ba2170",
+        "filename": "devil/devil/android/flag_changer.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-27T18:24:36Z",
+      "side": 1,
+      "message": "per offline discussion, let\u0027s only skip this for --require-rooted-device\u003dFalse\n\nAlso, please file a bug and add a TODO to see if we can stop doing this in the future.",
+      "range": {
+        "startLine": 187,
+        "startChar": 4,
+        "endLine": 188,
+        "endChar": 12
+      },
+      "revId": "a104e321c463b95e13f82503b1eeb37962007c8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "893a4e4a_46b87fde",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-27T18:24:36Z",
+      "side": 1,
+      "message": "I\u0027m having trouble understanding this code, and I think it\u0027s because you have an assumption that self._require_root implies that we are running on a perf bot. Is that true? I don\u0027t really want to make that assumption implicitly. I guess we could just add a comment like:\n\n# Assuming here that self._require_root is True on perf bots, which should not\n# have a single package map to multiple APKs.",
+      "range": {
+        "startLine": 134,
+        "startChar": 4,
+        "endLine": 134,
+        "endChar": 26
+      },
+      "revId": "a104e321c463b95e13f82503b1eeb37962007c8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e3bfa3c_2bb94c1b",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-27T18:24:36Z",
+      "side": 1,
+      "message": "I know I already told you to change this once (Sorry I should have been more careful last night), but now that I think about it more carefully, I suggest that flags and variable names should be positive (See https://docs.google.com/document/d/1QzsV4wFMDeFbMx13gsV092i9RfGc5cbF8ERbPZ65Q6c/edit ). So this should be \"--require-rooted-device\". And the default should be True. I\u0027m not sure whether optparse supports default values for flags, but it would be a strange omission if they didn\u0027t.\n\nI realize that this convention isn\u0027t followed for the flags above like \"--no-performance-mode\", but that\u0027s probably because once you name an argument it becomes really difficult to change the name later.\n\nI think this change will make your docstring simpler as well. \"This option is required for performance testing.\"",
+      "range": {
+        "startLine": 167,
+        "startChar": 22,
+        "endLine": 167,
+        "endChar": 52
+      },
+      "revId": "a104e321c463b95e13f82503b1eeb37962007c8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "003c6f3a_5cf9c85f",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-27T18:24:36Z",
+      "side": 1,
+      "message": "Also switch this to a positive \"require_rooted\"device\".",
+      "range": {
+        "startLine": 572,
+        "startChar": 8,
+        "endLine": 572,
+        "endChar": 18
+      },
+      "revId": "a104e321c463b95e13f82503b1eeb37962007c8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2116a21f_6d067062",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-02-27T18:24:36Z",
+      "side": 1,
+      "message": "If the device says \"enable_performance_mode\" and we pass that into android_platform_backend, then we should reasonably expect that android_platform_backend would either honor our request or fail with an error. Silently not doing what we are told to do is bad practice because it is confusing to figure out.\n\nThe solution here is that you need to make \"enable_performance_mode\" not be set to True in the first place for instances where we know we won\u0027t be able to do it.\n\nI think here is where it is set:\nhttps://chromium.googlesource.com/catapult.git/+/b4826a52853c9c2778d496f6c6fa853f777f94df/telemetry/telemetry/internal/platform/android_device.py#88\n\nSo then you can fix this by failing in browser_options.py if --no-performance-mode is False and --require-rooted-device is True. Document that failure carefully with the reason why this must be the case. Then in this code you can add another error if device.enable_performance_mode is True and self._require_root is False, and you can delete this \"self._enable_performance_mode \u003d False\" line.",
+      "range": {
+        "startLine": 83,
+        "startChar": 5,
+        "endLine": 83,
+        "endChar": 43
+      },
+      "revId": "a104e321c463b95e13f82503b1eeb37962007c8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
