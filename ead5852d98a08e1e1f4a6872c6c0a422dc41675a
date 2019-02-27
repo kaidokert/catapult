@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f852968a_6deb78e1",
+        "filename": "tracing/tracing/value/histogram_set.py",
+        "patchSetId": 43
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-27T19:31:16Z",
+      "side": 1,
+      "message": "Really dont like this name, would like to distinguish old from new if possible, the naming may come off misleading.\n\nIf its new, importdictS which then actually calls deserialize on each item, if its old importdict, which does the old stuff.\n\ncan we just call it ImportVFooFormat or something, with a big comment about this being a deprecated format.",
+      "range": {
+        "startLine": 100,
+        "startChar": 6,
+        "endLine": 100,
+        "endChar": 16
+      },
+      "revId": "ead5852d98a08e1e1f4a6872c6c0a422dc41675a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
