@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d0f72644_e5d9cf43",
+        "filename": "dashboard/dashboard/spa/timeseries-merger-test.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-28T16:33:23Z",
+      "side": 1,
+      "message": "nit: separate the tests rather than one monolithic uber-test, its really difficult to tell what cases you\u0027ve considered and what you haven\u0027t when they\u0027re packed together like this.",
+      "revId": "258436b4ebce1bd8ed909f79ba8b4d468833c573",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d56af89_592bb73c",
+        "filename": "dashboard/dashboard/spa/timeseries-merger-test.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-28T16:33:23Z",
+      "side": 1,
+      "message": "is it possible to have 2 timeseries with differing revisions, if so test",
+      "revId": "258436b4ebce1bd8ed909f79ba8b4d468833c573",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f197e592_56055153",
+        "filename": "dashboard/dashboard/spa/timeseries-merger.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-28T16:33:23Z",
+      "side": 1,
+      "message": "nit: can you also break this function up where it makes sense, it\u0027s a big. ie. _mergeStatistics(target, source)",
+      "revId": "258436b4ebce1bd8ed909f79ba8b4d468833c573",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
