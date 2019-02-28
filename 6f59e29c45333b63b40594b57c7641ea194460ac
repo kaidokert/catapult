@@ -16,6 +16,24 @@
       "revId": "6f59e29c45333b63b40594b57c7641ea194460ac",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e2d6584_08ed86ed",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-02-28T14:50:58Z",
+      "side": 1,
+      "message": "Agree. This CL is doing 1 and 3 together. I think that should be OK?",
+      "parentUuid": "ba86cd30_5c3b4215",
+      "revId": "6f59e29c45333b63b40594b57c7641ea194460ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
