@@ -110,8 +110,8 @@ _CATAPULT_TESTS = [
         'disabled': ['android'],
     },
     {
-        'name': 'Soundwave Tests',
-        'path': 'experimental/soundwave/bin/run_tests',
+        'name': 'Command Line Tools Tests',
+        'path': 'experimental/tools_perf/run_tests',
     },
     {
         'name': 'Telemetry Tests with Stable Browser (Desktop)',
