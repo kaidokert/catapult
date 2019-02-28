@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba86cd30_5c3b4215",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-28T11:04:23Z",
+      "side": 1,
+      "message": "Can we make this `possible_browser` non optional? Is the class being instantiated in other places other than story_runner above (and presumably some unit tests)?\n\nAlso, note this change will be tricky, since you will need to update all subclasses (some in chromium, some in catapult):\nhttps://cs.chromium.org/search/?q\u003d%5C(%5Cw%2B%5C.SharedState%5C)\u0026type\u003dcs\n\nI\u0027m happy to help with MultiBrowserSharedState which might be trickier.\nhttps://cs.chromium.org/chromium/src/tools/perf/page_sets/dual_browser_story.py?rcl\u003dd30695f152541b60541273dea8ead9ac777bb2d6\u0026l\u003d58\n\nI\u0027m guessing you\u0027ll need several CLs:\n1. Add optional possible_browser\u003dNone to all SharedState classes in catapult.\n2. Add optional possible_browser\u003dNone to all SharedState classes in chromium.\n3. Then start passing the extra possible_browser arg in story_runner.\n4, 5. Make the possible_browser args no longer optional",
+      "revId": "6f59e29c45333b63b40594b57c7641ea194460ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
