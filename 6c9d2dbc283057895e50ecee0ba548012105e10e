@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "acc7c995_5b57c7b7",
+        "filename": "telemetry/telemetry/timeline/model_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-28T11:49:46Z",
+      "side": 1,
+      "message": "I think there is no technical reason for this, and agree it is very confusing. I don\u0027t think there is any restriction on the class names; and from [1] it looks like *_test.py and *_unittest.py are both acceptable file names.\n\nNot sure if doing a big rename is worth it; but at least for new files or files where we touch tests we can try to be more careful with the names.\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/third_party/typ/typ/arg_parser.py?rcl\u003dafd6d361b5b7d49c86bbfa29b3680270d79b12a0\u0026l\u003d27",
+      "parentUuid": "b772f987_4be8236f",
+      "range": {
+        "startLine": 14,
+        "startChar": 19,
+        "endLine": 14,
+        "endChar": 27
+      },
+      "revId": "6c9d2dbc283057895e50ecee0ba548012105e10e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cb6d414b_c2488759",
         "filename": "telemetry/telemetry/timeline/model_unittest.py",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2019-02-26T21:50:53Z",
       "side": 1,
       "message": "Just an aside: How does this work? Seems like we should try to eventually move away from this magical undocumented strings solution.\n\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/decorators.py?sq\u003dpackage:chromium\u0026dr\u0026q\u003ddecorato+file:%5Esrc/third_party/catapult/telemetry/telemetry/+package:%5Echromium$\u0026g\u003d0\u0026l\u003d105",
+      "range": {
+        "startLine": 66,
+        "startChar": 2,
+        "endLine": 66,
+        "endChar": 33
+      },
+      "revId": "6c9d2dbc283057895e50ecee0ba548012105e10e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44e92c29_6121fafc",
+        "filename": "telemetry/telemetry/timeline/model_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-28T11:49:46Z",
+      "side": 1,
+      "message": "This comment has been there ever since I joined Google:\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/decorators.py?rcl\u003dafd6d361b5b7d49c86bbfa29b3680270d79b12a0\u0026l\u003d133 :)\n\nStrings are generated here:\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/decorators.py?rcl\u003dafd6d361b5b7d49c86bbfa29b3680270d79b12a0\u0026l\u003d356",
+      "parentUuid": "cb6d414b_c2488759",
       "range": {
         "startLine": 66,
         "startChar": 2,
