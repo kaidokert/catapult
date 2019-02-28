@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "45761418_aaef1ca6",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-28T10:49:08Z",
+      "side": 1,
+      "message": "nit: Sounds like you are building the runs_and_values dict to just iterate over and unroll into the list of tuples. Can\u0027t this function just return the list of tuples?",
+      "revId": "b5f24e066c636dfc44ae07419c1711b14c584927",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d24024c_c690c3df",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-28T10:49:08Z",
+      "side": 1,
+      "message": "nit: maybe put this in a try-finally block to make sure the _current_page_run is cleared, e.g.:\n\n  self._current_page_run \u003d result[\u0027run\u0027]\n  try:\n    ...\n  finally:\n    self._current_page_run \u003d None",
+      "revId": "b5f24e066c636dfc44ae07419c1711b14c584927",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
