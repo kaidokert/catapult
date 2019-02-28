@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<!--
+Copyright 2019 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+<script src="/bower_components/web-component-tester/browser.js"></script>
+<link rel="import" href="/dashboard/spa/timeseries-merger.html">
+<link rel="import" href="/tracing/value/histogram.html">
+
+<script>
+'use strict';
+suite('TimeseriesMerger', function() {
+  test('minRevision', async function() {
+    // Filter out data points before minRevision.
+
+    const output = [...new cp.TimeseriesMerger([
+      [
+        {revision: 5, avg: 2, count: 1},
+        {revision: 10, avg: 2, count: 1},
+        {revision: 15, avg: 2, count: 1},
+      ],
+      [
+        {revision: 5, avg: 4, count: 1},
+        {revision: 10, avg: 4, count: 1},
+        {revision: 15, avg: 4, count: 1},
+      ],
+    ], {
+      minRevision: 10,
+    })];
+
+    assert.strictEqual(JSON.stringify(output), JSON.stringify([
+      [10, {
+        revision: 10,
+        avg: 3,
+        count: 2,
+      }],
+      [15, {
+        revision: 15,
+        avg: 3,
+        count: 2,
+      }],
+    ]));
+  });
+
+  test('maxRevision', async function() {
+    // Filter out data points after maxRevision.
+
+    const output = [...new cp.TimeseriesMerger([
+      [
+        {revision: 20, avg: 2, count: 5},
+        {revision: 25, avg: 2, count: 5},
+        {revision: 30, avg: 2, count: 5},
+      ],
+      [
+        {revision: 20, avg: 4, count: 5},
+        {revision: 25, avg: 4, count: 5},
+        {revision: 30, avg: 4, count: 5},
+      ],
+    ], {
+      maxRevision: 25,
+    })];
+
+    assert.strictEqual(JSON.stringify(output), JSON.stringify([
+      [20, {
+        revision: 20,
+        avg: 3,
+        count: 10,
+      }],
+      [25, {
+        revision: 25,
+        avg: 3,
+        count: 10,
+      }],
+    ]));
+  });
+
+  test('avg', async function() {
+    // Compute weighted average
+
+    const output = [...new cp.TimeseriesMerger([
+      [
+        {revision: 10, avg: 1, count: 1},
+      ],
+      [
+        {revision: 10, avg: 3, count: 3},
+      ],
+    ], {
+    })];
+
+    assert.strictEqual(JSON.stringify(output), JSON.stringify([
+      [10, {
+        revision: 10,
+        avg: 2.5,
+        count: 4,
+      }],
+    ]));
+  });
+
+  test('std', async function() {
+    // Merge standard deviation using Welford's algorithm.
+    const output = [...new cp.TimeseriesMerger([
+      [
+        {revision: 10, avg: 2, std: 1, count: 5},
+      ],
+      [
+        {revision: 10, avg: 4, std: 2, count: 5},
+      ],
+    ], {
+    })];
+
+    assert.strictEqual(JSON.stringify(output), JSON.stringify([
+      [10, {
+        revision: 10,
+        avg: 3,
+        std: 3.872983346207417,
+        count: 10,
+      }],
+    ]));
+  });
+
+  test('count', async function() {
+    // Sum sample count statistic.
+
+    const output = [...new cp.TimeseriesMerger([
+      [
+        {revision: 10, avg: 2, count: 5},
+      ],
+      [
+        {revision: 10, avg: 4, count: 5},
+      ],
+    ], {
+    })];
+
+    assert.strictEqual(JSON.stringify(output), JSON.stringify([
+      [10, {
+        revision: 10,
+        avg: 3,
+        count: 10,
+      }],
+    ]));
+  });
+
+  test('sum', async function() {
+    // Sum sample sum statistic.
+
+    const output = [...new cp.TimeseriesMerger([
+      [
+        {revision: 10, avg: 2, count: 5, sum: 10},
+      ],
+      [
+        {revision: 10, avg: 4, count: 5, sum: 20},
+      ],
+    ], {
+    })];
+
+    assert.strictEqual(JSON.stringify(output), JSON.stringify([
+      [10, {
+        revision: 10,
+        avg: 3,
+        count: 10,
+        sum: 30,
+      }],
+    ]));
+  });
+
+  test('min', async function() {
+    // Compute the min of the sample min statistic.
+
+    const output = [...new cp.TimeseriesMerger([
+      [
+        {revision: 10, avg: 2, count: 5, min: 1},
+      ],
+      [
+        {revision: 10, avg: 4, count: 5, min: 2},
+      ],
+    ], {
+    })];
+
+    assert.strictEqual(JSON.stringify(output), JSON.stringify([
+      [10, {
+        revision: 10,
+        avg: 3,
+        count: 10,
+        min: 1,
+      }],
+    ]));
+  });
+
+  test('max', async function() {
+    // Compute the max of the sample max statistic.
+
+    const output = [...new cp.TimeseriesMerger([
+      [
+        {revision: 10, avg: 2, count: 5, max: 1},
+      ],
+      [
+        {revision: 10, avg: 4, count: 5, max: 2},
+      ],
+    ], {
+    })];
+
+    assert.strictEqual(JSON.stringify(output), JSON.stringify([
+      [10, {
+        revision: 10,
+        avg: 3,
+        count: 10,
+        max: 1,
+      }],
+    ]));
+  });
+
+  test('diagnostics', async function() {
+    // Merge DiagnosticMaps.
+
+    const output = [...new cp.TimeseriesMerger([
+      [
+        {revision: 10, avg: 2, count: 1, diagnostics:
+          tr.v.d.DiagnosticMap.fromObject({a: new tr.v.d.GenericSet(['a'])})},
+        {revision: 15, avg: 2, count: 1, diagnostics:
+          tr.v.d.DiagnosticMap.fromObject({a: new tr.v.d.GenericSet(['a'])})},
+        {revision: 20, avg: 2, count: 1},
+        {revision: 25, avg: 2, count: 1},
+      ],
+      [
+        {revision: 10, avg: 4, count: 1, diagnostics:
+          tr.v.d.DiagnosticMap.fromObject({a: new tr.v.d.GenericSet(['a'])})},
+        {revision: 15, avg: 4, count: 1},
+        {revision: 20, avg: 4, count: 1, diagnostics:
+          tr.v.d.DiagnosticMap.fromObject({a: new tr.v.d.GenericSet(['a'])})},
+        {revision: 25, avg: 4, count: 1},
+      ],
+    ], {
+    })];
+
+    assert.strictEqual('a', tr.b.getOnlyElement(
+        output[0][1].diagnostics.get('a')));
+    assert.strictEqual('a', tr.b.getOnlyElement(
+        output[1][1].diagnostics.get('a')));
+    assert.strictEqual('a', tr.b.getOnlyElement(
+        output[2][1].diagnostics.get('a')));
+    assert.isUndefined(output[3][1].diagnostics);
+  });
+
+  test('unaligned', async function() {
+    const output = [...new cp.TimeseriesMerger([
+      [
+        {revision: 12, avg: 10, count: 1},
+        {revision: 14, avg: 20, count: 1},
+        {revision: 18, avg: 30, count: 1},
+      ],
+      [
+        {revision: 10, avg: 100, count: 1},
+        {revision: 15, avg: 200, count: 1},
+        {revision: 20, avg: 300, count: 1},
+      ],
+    ], {
+    })];
+
+    assert.lengthOf(output, 6);
+
+    assert.strictEqual(10, output[0][0]);
+    assert.strictEqual(12, output[1][0]);
+    assert.strictEqual(14, output[2][0]);
+    assert.strictEqual(15, output[3][0]);
+    assert.strictEqual(18, output[4][0]);
+    assert.strictEqual(20, output[5][0]);
+
+    assert.strictEqual(10, output[0][1].avg);
+    assert.strictEqual(10, output[1][1].avg);
+    assert.strictEqual(10, output[2][1].avg);
+    assert.strictEqual(10, output[3][1].avg);
+    assert.strictEqual(10, output[4][1].avg);
+    assert.strictEqual(10, output[5][1].avg);
+  });
+});
+</script>
