@@ -58,7 +58,6 @@ def Get(builder_name, change, target):
                      (builder_name, change, target))
 
   if entity.created + ISOLATE_EXPIRY_DURATION < datetime.datetime.now():
-    # TODO: Remove expired isolates from the datastore.
     raise KeyError('Isolate with builder %s, change %s, and target %s was '
                    'found, but is expired.' % (builder_name, change, target))
 
@@ -83,6 +82,17 @@ def Put(isolate_infos):
         id=_Key(builder_name, change, target))
     entities.append(entity)
   ndb.put_multi(entities)
+
+
+def DeleteExpiredIsolates():
+  expire_time = datetime.datetime.now() - ISOLATE_EXPIRY_DURATION
+  q = Isolate.query()
+  q = q.filter(Isolate.created != None)
+  q = q.filter(Isolate.created < expire_time)
+
+  keys = q.fetch(keys_only=True)
+
+  ndb.delete_multi(keys)
 
 
 class Isolate(ndb.Model):

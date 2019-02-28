@@ -28,6 +28,7 @@ _URL_MAPPING = [
     webapp2.Route(r'/api/run/<job_id>', handlers.Run),
 
     webapp2.Route(r'/cron/refresh-jobs', handlers.RefreshJobs),
+    webapp2.Route(r'/cron/refresh-jobs', handlers.IsolateCleanup),
 ]
 
 APP = webapp2.WSGIApplication(_URL_MAPPING, debug=False)
