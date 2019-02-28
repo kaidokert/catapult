@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "afac5f2e_6990d430",
+        "filename": "dashboard/dashboard/api/warmup.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-28T15:11:37Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem to be defined anywhere",
+      "range": {
+        "startLine": 130,
+        "startChar": 26,
+        "endLine": 130,
+        "endChar": 32
+      },
+      "revId": "298deff40dfd6017da73bd155f6556c9ba9f8e26",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4894a16_bec043c9",
+        "filename": "dashboard/dashboard/api/warmup.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-28T15:11:37Z",
+      "side": 1,
+      "message": "I\u0027m pretty uncomfortable having code like this deployed to prod, even if guarded by the check above. Let\u0027s sync and see if there no other way to do what you\u0027re trying to achieve?",
+      "revId": "298deff40dfd6017da73bd155f6556c9ba9f8e26",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6597b21c_5a9c825a",
+        "filename": "dashboard/dashboard/api/warmup_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-28T15:11:37Z",
+      "side": 1,
+      "message": "are these missing?",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 7
+      },
+      "revId": "298deff40dfd6017da73bd155f6556c9ba9f8e26",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
