@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "48c8894e_fb1765bb",
+        "filename": "dashboard/dashboard/spa/timeseries-request.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-28T19:10:35Z",
+      "side": 1,
+      "message": "nit: also test?",
+      "range": {
+        "startLine": 84,
+        "startChar": 27,
+        "endLine": 84,
+        "endChar": 40
+      },
+      "revId": "b78ecdeb36ead2492f8e01f067df2ed8325b14d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
