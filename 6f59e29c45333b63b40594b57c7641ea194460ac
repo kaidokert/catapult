@@ -34,6 +34,24 @@
       "revId": "6f59e29c45333b63b40594b57c7641ea194460ac",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79cf461f_16a3b1bb",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-28T15:08:49Z",
+      "side": 1,
+      "message": "No, that would break benchmarks in chromium which are not yet expecting a 4th argument in the constructor of their shared state.",
+      "parentUuid": "3e2d6584_08ed86ed",
+      "revId": "6f59e29c45333b63b40594b57c7641ea194460ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
