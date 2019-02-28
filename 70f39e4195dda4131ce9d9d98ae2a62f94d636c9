@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ec127e59_0e7cde06",
+        "filename": "dashboard/dashboard/pinpoint/models/isolate.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-02-28T20:44:34Z",
+      "side": 1,
+      "message": "Not sure how many are in datastore right now, timed out dev_console so figured I\u0027d just just cap the query for now. Count query in dev_console also never seems to come back.",
+      "revId": "70f39e4195dda4131ce9d9d98ae2a62f94d636c9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
