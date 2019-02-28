@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d8f10fe5_ec15a559",
+        "filename": "devil/devil/android/flag_changer.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-02-28T10:21:27Z",
+      "side": 1,
+      "message": "I\u0027ll note that this was explicitly added to support running Telemetry on old Chrome versions, e.g. to be able to carry out work like this: https://drive.google.com/open?id\u003d10bv0fptqYf0xESCSkPxHTJRk0CZ9WvyF9avuPjC9KRw\n\nThis is gated by the --compatibility-mode flag\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/browser/browser_options.py?rcl\u003dafd6d361b5b7d49c86bbfa29b3680270d79b12a0\u0026l\u003d108\n\nThe idea is that --compatibility-mode does a \"best effort\" attempt to run Telemetry on configurations which are not officially supported (in this case old Chrome versions), so it also sounds that something like --compatibility-mode non-rooted-device would make sense for the idea of this CL?",
+      "parentUuid": "c8f78760_2d137d00",
+      "range": {
+        "startLine": 61,
+        "startChar": 6,
+        "endLine": 62,
+        "endChar": 24
+      },
+      "revId": "a104e321c463b95e13f82503b1eeb37962007c8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a1929919_f0ba2170",
         "filename": "devil/devil/android/flag_changer.py",
         "patchSetId": 5
