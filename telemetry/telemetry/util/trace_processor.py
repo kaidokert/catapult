@@ -37,6 +37,14 @@ function processTrace(results, model) {
 };
 """
 
+_GET_CLOCK_SYNC_MARKERS_BY_SYNC_ID = """
+function processTrace(results, model) {
+    for (var item of model.clockSyncManager.markersBySyncId) {
+        results.addPair(item[0], item[1]);
+    }
+};
+"""
+
 
 def _SerializeAndProcessTrace(trace_data, process_trace_func_code):
   temp_dir = tempfile.mkdtemp()
@@ -74,4 +82,16 @@ def ExtractMemoryDumpIds(trace_data):
   # Event ids look like this: 'disabled-by-default-memory-infra:87890:ptr:0x3'.
   # The part after the last ':' is the dump id.
   return [eid.rsplit(':')[-1] for eid in event_ids]
+
+
+def ExtractClockSyncMarkersBySyncId(trace_data):
+  """Get a dict from sync_id to list of corresponding markers.
+
+  The current implementation works by loading the trace data into the TBMv2,
+  i.e. JavaScript based, timeline model. But this is an implementation detail,
+  clients remain agnostic about the model used for trace processing.
+  """
+  markers = _SerializeAndProcessTrace(
+      trace_data, _GET_CLOCK_SYNC_MARKERS_BY_SYNC_ID)
+  return markers
 
