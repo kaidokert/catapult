@@ -600,6 +600,31 @@ tr.exportTo('cp', () => {
     };
   };
 
+  AlertsSection.isEmpty = state => (
+    state &&
+    (!state.sheriff || !state.sheriff.selectedOptions ||
+     (state.sheriff.selectedOptions.length === 0)) &&
+    (!state.bug || !state.bug.selectedOptions ||
+     (state.bug.selectedOptions.length === 0)) &&
+    (!state.report || !state.report.selectedOptions ||
+     (state.report.selectedOptions.length === 0)));
+
+  AlertsSection.matchesOptions = (state, options) => {
+    if (!tr.b.setsEqual(new Set(options.reports),
+        new Set(state.report.selectedOptions))) {
+      return false;
+    }
+    if (!tr.b.setsEqual(new Set(options.sheriffs),
+        new Set(state.sheriff.selectedOptions))) {
+      return false;
+    }
+    if (!tr.b.setsEqual(new Set(options.bugs),
+        new Set(state.bug.selectedOptions))) {
+      return false;
+    }
+    return true;
+  };
+
   cp.ElementBase.register(AlertsSection);
   return {AlertsSection};
 });
