@@ -59,6 +59,20 @@ class TracingControllerTest(tab_test_case.TabTestCase):
     self.assertIn('trace-event', markers)
 
   @decorators.Isolated
+  def testGotClockSyncMarkers(self):
+    self.tracing_controller.StartTracing(self.config)
+    self.assertTrue(self.tracing_controller.is_tracing_running)
+    trace_data = self.tracing_controller.StopTracing()
+    self.assertFalse(self.tracing_controller.is_tracing_running)
+
+    markers_dict = trace_processor.ExtractClockSyncMarkersBySyncId(trace_data)
+    # There must be one sync...
+    self.assertEqual(len(markers_dict), 1)
+    # ...with two sync markers: one from telemetry and one from chrome.
+    markers = markers_dict.values()[0]
+    self.assertEqual(len(markers), 2)
+
+  @decorators.Isolated
   def testStartAndStopTraceMultipleTimes(self):
     self.tracing_controller.StartTracing(self.config)
     self.assertTrue(self.tracing_controller.is_tracing_running)
