@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "7e4d6883_a72a1afb",
+        "filename": "devil/devil/android/flag_changer.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-01T23:12:55Z",
+      "side": 1,
+      "message": "Thanks for the history! That makes sense that we did this then, but M54 was released on 2016-10-12, so it\u0027s been more than 2 two years since then now. \n\nAt our current headcount levels, I wonder if it makes sense to support old Chrome versions at all. I certainly don\u0027t think it makes sense to support versions older than 2 years old.",
+      "parentUuid": "d8f10fe5_ec15a559",
+      "range": {
+        "startLine": 61,
+        "startChar": 6,
+        "endLine": 62,
+        "endChar": 24
+      },
+      "revId": "a104e321c463b95e13f82503b1eeb37962007c8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a1929919_f0ba2170",
         "filename": "devil/devil/android/flag_changer.py",
         "patchSetId": 5
