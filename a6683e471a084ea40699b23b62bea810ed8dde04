@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8784ca4a_ec10e57b",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-01T23:35:13Z",
+      "side": 1,
+      "message": "nit: add new line",
+      "range": {
+        "startLine": 233,
+        "startChar": 0,
+        "endLine": 233,
+        "endChar": 0
+      },
+      "revId": "a6683e471a084ea40699b23b62bea810ed8dde04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
