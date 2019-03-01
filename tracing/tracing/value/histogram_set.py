@@ -6,6 +6,7 @@ import collections
 
 from tracing.value import histogram as histogram
 from tracing.value import histogram_deserializer
+from tracing.value import histogram_serializer
 from tracing.value.diagnostics import all_diagnostics
 from tracing.value.diagnostics import diagnostic
 from tracing.value.diagnostics import diagnostic_ref
@@ -113,12 +114,7 @@ class HistogramSet(object):
       self.AddHistogram(hist)
 
   def AsDicts(self):
-    dcts = []
-    for d in self._shared_diagnostics_by_guid.values():
-      dcts.append(d.AsDict())
-    for h in self:
-      dcts.append(h.AsDict())
-    return dcts
+    return histogram_serializer.Serialize(list(self))
 
   def ReplaceSharedDiagnostic(self, old_guid, new_diagnostic):
     if not isinstance(new_diagnostic, diagnostic_ref.DiagnosticRef):
