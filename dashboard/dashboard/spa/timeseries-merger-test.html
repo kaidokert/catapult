@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+Copyright 2019 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+<script src="/bower_components/web-component-tester/browser.js"></script>
+<link rel="import" href="/dashboard/spa/timeseries-merger.html">
+
+<script>
+'use strict';
+suite('TimeseriesMerger', function() {
+  test('test', async() => {
+    const output = [...new cp.TimeseriesMerger([
+      [
+        {revision: 5, avg: 2, std: 1, count: 5, sum: 10},
+        {revision: 10, avg: 2, std: 1, count: 5, sum: 10},
+        {revision: 15, avg: 2, std: 1, count: 5, sum: 10},
+        {revision: 20, avg: 2, std: 1, count: 5, sum: 10},
+        {revision: 25, avg: 2, std: 1, count: 5, sum: 10},
+        {revision: 30, avg: 2, std: 1, count: 5, sum: 10},
+      ],
+      [
+        {revision: 5, avg: 4, std: 2, count: 5, sum: 20},
+        {revision: 10, avg: 4, std: 2, count: 5, sum: 20},
+        {revision: 15, avg: 4, std: 2, count: 5, sum: 20},
+        {revision: 20, avg: 4, std: 2, count: 5, sum: 20},
+        {revision: 25, avg: 4, std: 2, count: 5, sum: 20},
+        {revision: 30, avg: 4, std: 2, count: 5, sum: 20},
+      ],
+    ], {
+      minRevision: 10,
+      maxRevision: 25,
+    })];
+    assert.strictEqual(JSON.stringify(output), JSON.stringify([
+      [10, {revision: 10, avg: 3, std: 3.872983346207417, count: 10, sum: 30}],
+      [15, {revision: 15, avg: 3, std: 3.872983346207417, count: 10, sum: 30}],
+      [20, {revision: 20, avg: 3, std: 3.872983346207417, count: 10, sum: 30}],
+      [25, {revision: 25, avg: 3, std: 3.872983346207417, count: 10, sum: 30}],
+    ]));
+  });
+});
+</script>
