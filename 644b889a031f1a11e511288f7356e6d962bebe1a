@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7933b038_1a92024e",
+        "filename": "dashboard/dashboard/spa/chromeperf-app.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2019-03-01T22:26:58Z",
+      "side": 1,
+      "message": "When tabbing through the page, it\u0027s not possible for me to tab into these class\u003d\"drawerbutton\" items. This makes those menus items inaccessible to screenreaders and keyboard users. \n\nAn easy way to fix this problem that I\u0027ve found is that if you use native \u003cbutton\u003e elements, you can make sure elements with on-click handlers attached are keyboard interactable by default, using the browser\u0027s native accessibility features. If you style the buttons to look the same as other elements, it should be a mostly drop-in replacement.",
+      "range": {
+        "startLine": 147,
+        "startChar": 10,
+        "endLine": 147,
+        "endChar": 35
+      },
+      "revId": "644b889a031f1a11e511288f7356e6d962bebe1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
