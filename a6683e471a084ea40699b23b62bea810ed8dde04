@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "3fb9d546_0e0d0ded",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-02T01:01:07Z",
+      "side": 1,
+      "message": "This is confusing because \n\nGetSupportedPlatforms() returns a list of strings, but SUPPORTED_PLATFORMS is a list of _TestCondition objects from https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/story/expectations.py?q\u003dtelemetry/story/expectations.py\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d318\n\nThe word \"platform\" doesn\u0027t have a single meaning in this codebase, which makes it difficult to understand.\n\nI\u0027m not sure whether you can fix this problem in this changelist or not.",
+      "revId": "a6683e471a084ea40699b23b62bea810ed8dde04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8784ca4a_ec10e57b",
         "filename": "telemetry/telemetry/story/expectations.py",
         "patchSetId": 3
