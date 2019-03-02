@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0b9e1bd9_9a55246a",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-03-02T15:55:09Z",
+      "side": 1,
+      "message": "I agree that it is confusing. I have changed the new API to GetSupportedPlatformNames() to make it more explicit than \u0027platform\u0027. I am not sure I can do much more than that in this CL.",
+      "parentUuid": "3fb9d546_0e0d0ded",
+      "revId": "a6683e471a084ea40699b23b62bea810ed8dde04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8784ca4a_ec10e57b",
         "filename": "telemetry/telemetry/story/expectations.py",
         "patchSetId": 3
@@ -39,6 +57,30 @@
       "revId": "a6683e471a084ea40699b23b62bea810ed8dde04",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "617fbc9a_52b861f0",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-03-02T15:55:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8784ca4a_ec10e57b",
+      "range": {
+        "startLine": 233,
+        "startChar": 0,
+        "endLine": 233,
+        "endChar": 0
+      },
+      "revId": "a6683e471a084ea40699b23b62bea810ed8dde04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
