@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "355e61a0_87a9d512",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-04T13:04:58Z",
+      "side": 1,
+      "message": "Have a look at go/cl-descriptions. You could describe here a bit more what is being done and why (e.g. upgrade test based on legacy trace data in python with latest technology). Also note this is intended to replace that other test in chromium repo.",
+      "revId": "de26d34c668b28c0b9bcc90327406c1082ab2b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5941d20_5454a348",
+        "filename": "telemetry/telemetry/util/trace_processor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-04T13:04:58Z",
+      "side": 1,
+      "message": "markersBySyncId has a TODO to be removed [1]. So let\u0027s rather not depend on that.\n\nFollowing that code, however, looks like we should be able to iterate over \"events\" and find the clockSync ones like processClockSyncEvent does?\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/tracing/tracing/model/clock_sync_manager.html?rcl\u003db3bee2e7d9f156928d5d2b1efa1360478e99f856\u0026l\u003d130\n[2]: https://cs.chromium.org/chromium/src/third_party/catapult/tracing/tracing/extras/importer/trace_event_importer.html?rcl\u003db3bee2e7d9f156928d5d2b1efa1360478e99f856\u0026l\u003d971",
+      "revId": "de26d34c668b28c0b9bcc90327406c1082ab2b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
