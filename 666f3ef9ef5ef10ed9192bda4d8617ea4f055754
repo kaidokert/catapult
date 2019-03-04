@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ee8f9d6_3a64f890",
+        "filename": "dashboard/dashboard/spa/alerts-section.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-04T18:39:46Z",
+      "side": 1,
+      "message": "can you expand this out bit, I find this difficult to read.",
+      "revId": "666f3ef9ef5ef10ed9192bda4d8617ea4f055754",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7eb91b66_e2f6b424",
+        "filename": "dashboard/dashboard/spa/chromeperf-app.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-04T18:39:46Z",
+      "side": 1,
+      "message": "Just for my understanding, this is setting a timeout to do a cleanup of closed alerts?",
+      "range": {
+        "startLine": 123,
+        "startChar": 23,
+        "endLine": 123,
+        "endChar": 27
+      },
+      "revId": "666f3ef9ef5ef10ed9192bda4d8617ea4f055754",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9494ac58_68731a39",
+        "filename": "third_party/polymer2/bower_components/chopsui/chops-signin.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-04T18:39:46Z",
+      "side": 1,
+      "message": "What are these changes for?",
+      "range": {
+        "startLine": 38,
+        "startChar": 15,
+        "endLine": 38,
+        "endChar": 29
+      },
+      "revId": "666f3ef9ef5ef10ed9192bda4d8617ea4f055754",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
