@@ -16,6 +16,41 @@
       "revId": "70f39e4195dda4131ce9d9d98ae2a62f94d636c9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd6ad12c_23f8126a",
+        "filename": "dashboard/dashboard/pinpoint/models/isolate.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-03-04T17:39:54Z",
+      "side": 1,
+      "message": "Did you want to fetch_page and defer another call if there\u0027s more than one page?",
+      "parentUuid": "ec127e59_0e7cde06",
+      "revId": "70f39e4195dda4131ce9d9d98ae2a62f94d636c9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "edc35948_683da5c7",
+        "filename": "dashboard/dashboard/pinpoint/models/isolate_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-03-04T17:39:54Z",
+      "side": 1,
+      "message": "Maybe just inline the infos here if they\u0027re only going to be used here?",
+      "revId": "70f39e4195dda4131ce9d9d98ae2a62f94d636c9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
