@@ -22,6 +22,30 @@
       "revId": "c663b88af0b042ecffb800f6966edc6cce52a4b5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70cc762f_3294c084",
+        "filename": "dashboard/dashboard/find_anomalies.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-04T18:30:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "040613da_c7d99ce7",
+      "range": {
+        "startLine": 59,
+        "startChar": 24,
+        "endLine": 59,
+        "endChar": 37
+      },
+      "revId": "c663b88af0b042ecffb800f6966edc6cce52a4b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
