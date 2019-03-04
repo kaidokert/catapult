@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f7785440_44da42d1",
+        "filename": "dashboard/dashboard/spa/chromeperf-app.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2019-03-04T21:22:02Z",
+      "side": 1,
+      "message": "Two (optional, feel free to irnogre these if they\u0027re difficult to change) nits on the box-shadow: \n\n- The vertical gap between the shadows and the top and botton edges of the element feels a bit odd. It looks like Gmail\u0027s implementation of this makes this look a bit better by sort of feathering the edges of the shadows out though I don\u0027t know how hard that is to implement. If it\u0027s tricky, I think it might look better to make the shadow flush against the vertical edges. \n- I think the shadow could potentially be a slightly lighter color and/or have a bit more blur to help the color spread out a bit more gradually. Looking at Material Design shadows ( https://material.io/design/environment/elevation.html#elevation-in-material-design ), including ones on live apps such as Gmail shows that I think they tend to use a bit more blur. \n\n(Eventually we should add some sort of Chops standard shadow CSS so that we don\u0027t have to worry about tweaking shadows as much)",
+      "range": {
+        "startLine": 52,
+        "startChar": 8,
+        "endLine": 52,
+        "endChar": 54
+      },
+      "revId": "9b332ea606e173061480042d22c25ddcd1700ef7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
