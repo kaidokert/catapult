@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "abd1c888_4816fced",
+        "filename": "telemetry/telemetry/util/trace_processor.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-03-04T17:30:49Z",
+      "side": 1,
+      "message": "results.addPair(\u0027sync_ids\u0027, model.clockSyncManager.completeSyncIds);",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 42
+      },
+      "revId": "d1964a34e82c738b05a7997e1f8b84c5d3e1978d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae5e9309_bf0180dc",
+        "filename": "tracing/tracing/model/clock_sync_manager.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-03-04T17:30:49Z",
+      "side": 1,
+      "message": "JS doesn\u0027t have List, it has Array. Also, jsdoc requires a dot between Array and \u003c...\u003e. Also, string should be lowercase.\n\n{Array.\u003cstring\u003e}",
+      "revId": "d1964a34e82c738b05a7997e1f8b84c5d3e1978d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cdfb2694_cd3284c7",
+        "filename": "tracing/tracing/model/clock_sync_manager.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-03-04T17:30:49Z",
+      "side": 1,
+      "message": "This can be a getter:\n\nget completeSyncIds() {\n\nThe caller would need to be changed to remove the calling parentheses.",
+      "revId": "d1964a34e82c738b05a7997e1f8b84c5d3e1978d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b98c66fa_ff362241",
+        "filename": "tracing/tracing/model/clock_sync_manager.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-03-04T17:30:49Z",
+      "side": 1,
+      "message": "Let\u0027s destructure the entries:\n\nfor (const [syncId, markers] of this.markersBySyncId) {\n  if (markers.length \u003d\u003d\u003d 2) completeSyncIds.push(syncId);\n}",
+      "revId": "d1964a34e82c738b05a7997e1f8b84c5d3e1978d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65b1e061_bf87cd41",
+        "filename": "tracing/tracing/model/clock_sync_manager.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-03-04T17:30:49Z",
+      "side": 1,
+      "message": "Please add a test for this new method in clock_sync_manager_test.html",
+      "revId": "d1964a34e82c738b05a7997e1f8b84c5d3e1978d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
