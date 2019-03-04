@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b66da3a5_15b206e6",
+        "filename": "dashboard/dashboard/spa/alerts-section.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-03-04T18:52:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ee8f9d6_3a64f890",
+      "revId": "666f3ef9ef5ef10ed9192bda4d8617ea4f055754",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7eb91b66_e2f6b424",
         "filename": "dashboard/dashboard/spa/chromeperf-app.js",
         "patchSetId": 3
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "530f455e_1aa3a91a",
+        "filename": "dashboard/dashboard/spa/chromeperf-app.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-03-04T18:52:20Z",
+      "side": 1,
+      "message": "Yes, and hide the toast button that would re-open the closed alerts-section.",
+      "parentUuid": "7eb91b66_e2f6b424",
+      "range": {
+        "startLine": 123,
+        "startChar": 23,
+        "endLine": 123,
+        "endChar": 27
+      },
+      "revId": "666f3ef9ef5ef10ed9192bda4d8617ea4f055754",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9494ac58_68731a39",
         "filename": "third_party/polymer2/bower_components/chopsui/chops-signin.js",
         "patchSetId": 3
@@ -53,6 +95,30 @@
       "writtenOn": "2019-03-04T18:39:46Z",
       "side": 1,
       "message": "What are these changes for?",
+      "range": {
+        "startLine": 38,
+        "startChar": 15,
+        "endLine": 38,
+        "endChar": 29
+      },
+      "revId": "666f3ef9ef5ef10ed9192bda4d8617ea4f055754",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "392829d7_dc6575d5",
+        "filename": "third_party/polymer2/bower_components/chopsui/chops-signin.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-03-04T18:52:20Z",
+      "side": 1,
+      "message": "If client_id is invalid, gapi.auth2.init() raises an error. Without these changes, WCT would see that error and assume that everything is terribly broken, and fail. These changes are necessary for the test to succeed.\nThe setTimeout accounts for the possibility where this file is loaded before whatever file defines AUTH_CLIENT_ID.",
+      "parentUuid": "9494ac58_68731a39",
       "range": {
         "startLine": 38,
         "startChar": 15,
