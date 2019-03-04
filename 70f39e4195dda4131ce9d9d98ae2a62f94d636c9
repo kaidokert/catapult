@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "c627437b_aa04aa19",
+        "filename": "dashboard/dashboard/pinpoint/models/isolate.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-04T18:01:12Z",
+      "side": 1,
+      "message": "Good idea, done.",
+      "parentUuid": "dd6ad12c_23f8126a",
+      "revId": "70f39e4195dda4131ce9d9d98ae2a62f94d636c9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "edc35948_683da5c7",
         "filename": "dashboard/dashboard/pinpoint/models/isolate_test.py",
         "patchSetId": 2
@@ -51,6 +69,24 @@
       "revId": "70f39e4195dda4131ce9d9d98ae2a62f94d636c9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4f50bd9_b29d2d1a",
+        "filename": "dashboard/dashboard/pinpoint/models/isolate_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-04T18:01:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "edc35948_683da5c7",
+      "revId": "70f39e4195dda4131ce9d9d98ae2a62f94d636c9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
