@@ -245,6 +245,7 @@ def Run(test, story_set, finder_options, results, max_failures=None,
         story_run = results.current_page_run
 
         if expectations:
+          print 'This is the state.platform %s' % state.platform._platform_backend
           disabled = expectations.IsStoryDisabled(
               story, state.platform, finder_options)
           if disabled and not finder_options.run_disabled_tests:
