@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "647b212b_ed2f6e5a",
+        "filename": "telemetry/telemetry/testing/browser_test_runner_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-03-05T20:50:55Z",
+      "side": 1,
+      "message": "While the algorithm of \u0027::\u0027.join() might not change in the future, still, how about a helper function which does this? Then you could just pass e.g. make_test_filter(failures + successes) as the first argument to baseTest.",
+      "range": {
+        "startLine": 322,
+        "startChar": 20,
+        "endLine": 322,
+        "endChar": 21
+      },
+      "revId": "b2a2753e81cc7758a252be269dc7d810bb185ef3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ab7e49f8_31ee1e93",
         "filename": "telemetry/telemetry/testing/run_browser_tests.py",
         "patchSetId": 1
