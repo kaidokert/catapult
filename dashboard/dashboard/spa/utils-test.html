@@ -197,6 +197,14 @@ suite('basic tests', function() {
     assert.deepEqual({a: 1, b: 2}, cp.normalize(['a', 'b'], [1, 2]));
   });
 
+  test('BatchIterator empty', async function() {
+    const batches = [];
+    for await (const batch of new cp.BatchIterator([])) {
+      batches.push(batch);
+    }
+    assert.lengthOf(batches, 0);
+  });
+
   test('BatchIterator 1 Promise success', async function() {
     let complete;
     const batches = new cp.BatchIterator([new Promise(resolve => {
