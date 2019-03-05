@@ -760,7 +760,6 @@ class Histogram(object):
         sample = sample[0]
       self._sample_values.append(sample)
 
-
   def _DeserializeBins(self, bins, deserializer):
     if isinstance(bins, list):
       for i, bin_data in enumerate(bins):

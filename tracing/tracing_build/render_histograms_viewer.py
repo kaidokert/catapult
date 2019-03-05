@@ -6,6 +6,8 @@ import json
 import logging
 import re
 
+from tracing.value import histogram_set
+
 _DATA_START = '<div id="histogram-json-data" style="display:none;"><!--'
 _DATA_END = '--!></div>'
 
@@ -62,18 +64,21 @@ def RenderHistogramsViewer(histogram_dicts, output_stream, reset_results=False,
   if not reset_results:
     results_html = output_stream.read()
     output_stream.seek(0)
-    histogram_dicts += ReadExistingResults(results_html)
+    hs = histogram_set.HistogramSet()
+    hs.ImportDicts(histogram_dicts)
+    for existing in ReadExistingResults(results_html):
+      hs.ImportDicts(existing)
+    histogram_dicts = hs.AsDicts()
 
   output_stream.write(vulcanized_html)
   # Put all the serialized histograms nodes inside an html comment to avoid
   # unecessary stress on html parsing and avoid creating throw-away dom nodes.
   output_stream.write(_DATA_START)
-  for histogram in histogram_dicts:
-    hist_json = json.dumps(histogram, separators=(',', ':'))
-    output_stream.write('\n')
-    # No escaping is necessary since the data is stored inside an html comment.
-    # This assumes that {hist_json} doesn't contain an html comment itself.
-    output_stream.write(hist_json)
+  hist_json = json.dumps(histogram_dicts, separators=(',', ':'))
+  output_stream.write('\n')
+  # No escaping is necessary since the data is stored inside an html comment.
+  # This assumes that {hist_json} doesn't contain an html comment itself.
+  output_stream.write(hist_json)
   output_stream.write('\n%s\n' % _DATA_END)
 
   # If the output file already existed and was longer than the new contents,
