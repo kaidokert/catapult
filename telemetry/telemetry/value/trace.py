@@ -14,9 +14,15 @@ from telemetry.internal.util import file_handle
 from telemetry import value as value_module
 
 
+_CLOUD_URL = (
+    'https://console.developers.google.com/m/cloudstorage/b/{bucket}/o/{path}')
+
+
 class TraceValue(value_module.Value):
-  def __init__(self, page, trace_data, important=False, description=None,
-               file_path=None, remote_path=None, upload_bucket=None,
+  def __init__(self, page, trace_data, filename=None, local_dir=None,
+               upload_bucket=None,
+               # TODO: Deprecate these.
+               file_path=None, remote_path=None,
                cloud_url=None, trace_url=None):
     """A value that contains trace data and knows how to output it.
 
@@ -25,27 +31,67 @@ class TraceValue(value_module.Value):
     an index, files.html, linking to each of these files.
 
     Args:
-      cloud_url: The URL to upload the data to. This can be None when not
-                 uploading data to the cloud.
-      trace_url: The URL to the trace file (typically in the local file system).
+      page: A Page object for which this trace was recorded.
+      trace_data: A trace data object where tracing data has been written to.
     """
     super(TraceValue, self).__init__(
-        page, name='trace', units='', important=important,
-        description=description, tir_label=None, grouping_keys=None)
+        page, name='trace', units='', important=False, description=None,
+        tir_label=None, grouping_keys=None)
     self._trace_data = trace_data
-    self._temp_file = None
-    self._file_path = file_path
-    self._remote_path = remote_path
+    self._filename = filename
+    self._local_dir = local_dir
     self._upload_bucket = upload_bucket
-    self._cloud_url = cloud_url
+
+    # TODO: Remove these.
+    if file_path is not None:
+      assert self._filename is None
+      self._local_dir, self._filename = os.path.split(file_path)
+    if remote_path is not None:
+      if self._filename is None:
+        self._filename = remote_path
+      else:
+        assert self._filename == remote_path
+    if cloud_url is not None:
+      assert self.cloud_url == cloud_url
+    if trace_url is not None:
+      assert self.trace_url == trace_url
+
+    self._temp_file = None
     self._serialized_file_handle = None
     self._timeline_based_metrics = None
-    self._trace_url = trace_url
+
+  @property
+  def serialized_file(self):
+    assert self._temp_file is not None, 'Trace has not been serialized'
+    return self._temp_file.GetAbsPath()
+
+  @property
+  def local_file(self):
+    if self._filename is not None and self._local_dir is not None:
+      return os.path.abspath(os.path.join(self._local_dir, self._filename))
+    else:
+      return None
+
+  @property
+  def cloud_url(self):
+    if self._filename is not None and self._upload_bucket is not None:
+      return _CLOUD_URL.format(bucket=self._upload_bucket, path=self._filename)
+    else:
+      return None
+
+  @property
+  def trace_url(self):
+    if self.cloud_url is not None:
+      return self.cloud_url
+    elif self.local_file is not None:
+      return 'file://' + self.local_file
+    else:
+      return None
 
   @property
   def value(self):
-    if self._cloud_url:
-      return self._cloud_url
+    if self.cloud_url:
+      return self.cloud_url
     elif self._serialized_file_handle:
       return self._serialized_file_handle.GetAbsPath()
 
@@ -103,17 +149,8 @@ class TraceValue(value_module.Value):
     return self._temp_file is not None
 
   @property
-  def trace_url(self):
-    return self._trace_url
-
-  @property
   def timeline_based_metric(self):
     return self._timeline_based_metrics
-
-  @property
-  def filename(self):
-    assert self._temp_file, "Trace data must be serialized."
-    return self._temp_file.GetAbsPath()
 
   @staticmethod
   def GetJSONTypeName():
@@ -134,35 +171,37 @@ class TraceValue(value_module.Value):
     d = super(TraceValue, self).AsDict()
     if self._serialized_file_handle:
       d['file_id'] = self._serialized_file_handle.id
-    if self._file_path:
-      d['file_path'] = self._file_path
-    if self._cloud_url:
-      d['cloud_url'] = self._cloud_url
+    if self.local_file is not None:
+      d['file_path'] = self.local_file
+    if self.cloud_url:
+      d['cloud_url'] = self.cloud_url
     return d
 
   def Serialize(self):
+    """Serialize the trace data to a local output directory."""
     if self._temp_file is None:
       raise ValueError('Tried to serialize nonexistent trace.')
-    if self._file_path is None:
-      raise ValueError('Serialize requires file_path.')
-    shutil.copy(self._temp_file.GetAbsPath(), self._file_path)
-    self._serialized_file_handle = file_handle.FromFilePath(self._file_path)
+    if self._local_dir is None:
+      raise ValueError('Serialize requires local_dir to be provided.')
+    shutil.copy(self._temp_file.GetAbsPath(), self.local_file)
+    self._serialized_file_handle = file_handle.FromFilePath(self.local_file)
     return self._serialized_file_handle
 
   def UploadToCloud(self):
     if self._temp_file is None:
       raise ValueError('Tried to upload nonexistent trace to Cloud Storage.')
+    if self.cloud_url is None:
+      raise ValueError('Tried to upload trace with no cloud_url set.')
     try:
       if self._serialized_file_handle:
         fh = self._serialized_file_handle
       else:
         fh = self._temp_file
       cloud_storage.Insert(
-          self._upload_bucket, self._remote_path, fh.GetAbsPath())
+          self._upload_bucket, self._filename, fh.GetAbsPath())
       sys.stderr.write(
           'View generated trace files online at %s for story %s\n' %
-          (self._cloud_url, self.page.name if self.page else 'unknown'))
-      return self._cloud_url
+          (self.cloud_url, self.page.name if self.page else 'unknown'))
     except cloud_storage.PermissionError as e:
       logging.error('Cannot upload trace files to cloud storage due to '
                     ' permission error: %s' % e.message)

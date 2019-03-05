@@ -48,7 +48,7 @@ def _ComputeMetricsInPool((run, trace_value)):
   }
 
   trace_value.SerializeTraceData()
-  trace_size_in_mib = os.path.getsize(trace_value.filename) / (2 ** 20)
+  trace_size_in_mib = os.path.getsize(trace_value.serialized_file) / (2 ** 20)
   # Bails out on trace that are too big. See crbug.com/812631 for more
   # details.
   if trace_size_in_mib > 400:
@@ -59,7 +59,7 @@ def _ComputeMetricsInPool((run, trace_value)):
   logging.info('Starting to compute metrics on trace')
   start = time.time()
   mre_result = metric_runner.RunMetric(
-      trace_value.filename, trace_value.timeline_based_metric,
+      trace_value.serialized_file, trace_value.timeline_based_metric,
       extra_import_options, report_progress=False,
       canonical_url=trace_value.trace_url)
   logging.info('Processing resulting traces took %.3f seconds' % (

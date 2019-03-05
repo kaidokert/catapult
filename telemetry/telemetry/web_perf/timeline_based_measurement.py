@@ -263,11 +263,9 @@ class TimelineBasedMeasurement(story_test.StoryTest):
     trace_result = platform.tracing_controller.StopTracing()
     trace_value = trace.TraceValue(
         results.current_page, trace_result,
-        file_path=results.telemetry_info.trace_local_path,
-        remote_path=results.telemetry_info.trace_remote_path,
-        upload_bucket=results.telemetry_info.upload_bucket,
-        cloud_url=results.telemetry_info.trace_remote_url,
-        trace_url=results.telemetry_info.trace_url)
+        filename=results.telemetry_info.trace_filename,
+        local_dir=results.telemetry_info.output_dir,
+        upload_bucket=results.telemetry_info.upload_bucket)
     results.AddValue(trace_value)
     if self._tbm_options.GetTimelineBasedMetrics():
       assert not self._tbm_options.GetLegacyTimelineBasedMetrics(), (
@@ -292,10 +290,9 @@ class TimelineBasedMeasurement(story_test.StoryTest):
       trace_result = platform.tracing_controller.StopTracing()
       trace_value = trace.TraceValue(
           results.current_page, trace_result,
-          file_path=results.telemetry_info.trace_local_path,
-          remote_path=results.telemetry_info.trace_remote_path,
-          upload_bucket=results.telemetry_info.upload_bucket,
-          cloud_url=results.telemetry_info.trace_remote_url)
+          filename=results.telemetry_info.trace_filename,
+          local_dir=results.telemetry_info.output_dir,
+          upload_bucket=results.telemetry_info.upload_bucket)
       trace_value.SerializeTraceData()
       results.AddValue(trace_value)
 
