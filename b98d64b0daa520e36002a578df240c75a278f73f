@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e7cd735_1d6e653f",
+        "filename": "tracing/tracing/metrics/vr/webxr_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-03-05T23:29:05Z",
+      "side": 1,
+      "message": "Please define a constant for this.",
+      "range": {
+        "startLine": 29,
+        "startChar": 29,
+        "endLine": 30,
+        "endChar": 30
+      },
+      "revId": "b98d64b0daa520e36002a578df240c75a278f73f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63d1b98c_82c22c76",
+        "filename": "tracing/tracing/metrics/vr/webxr_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-03-05T23:29:05Z",
+      "side": 1,
+      "message": "This can move outside of the loop, and default to Range.fromExplicit(-Infinity, Infinity) to simplify testing intersection.",
+      "revId": "b98d64b0daa520e36002a578df240c75a278f73f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7dddc78a_e43ac045",
+        "filename": "tracing/tracing/metrics/vr/webxr_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-03-05T23:29:05Z",
+      "side": 1,
+      "message": "Can you see if there\u0027s a way to make findInputExpectations put these events in UE.associatedEvents so you don\u0027t need to handle all of these events both there and here for every UE?",
+      "revId": "b98d64b0daa520e36002a578df240c75a278f73f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "540230ac_c92f4d1d",
+        "filename": "tracing/tracing/metrics/vr/webxr_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-03-05T23:29:05Z",
+      "side": 1,
+      "message": "Can you add a RelatedEventSet diagnostic containing event?",
+      "revId": "b98d64b0daa520e36002a578df240c75a278f73f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9cbd6227_6f58f0c3",
+        "filename": "tracing/tracing/metrics/vr/webxr_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-03-05T23:29:05Z",
+      "side": 1,
+      "message": "Would this be necessary if you monitored the `count` statistic?",
+      "revId": "b98d64b0daa520e36002a578df240c75a278f73f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
