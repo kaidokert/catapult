@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b469ec5e_841376c6",
+        "filename": "telemetry/telemetry/util/trace_processor.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-05T11:47:57Z",
+      "side": 1,
+      "message": "nit: you can inline this, i.e. just:\n\nreturn _SerializeAndProcessTrace(....)",
+      "revId": "e173286584ad8214a9973dd14cc8af7716ab0659",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
