@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eb863870_9aab39ea",
+        "filename": "dashboard/dashboard/spa/chart-base.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-06T20:20:37Z",
+      "side": 1,
+      "message": "chart-base has tests so please add ones covering everything here",
+      "revId": "c4261855adf260dfa9e4f94f42c736f53b4d3cbf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
