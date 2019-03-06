@@ -22,6 +22,30 @@
       "revId": "0cae1b87ac8844af19057546e1ea5575599cce93",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0acc8ddd_ecbbe494",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2019-03-06T22:29:25Z",
+      "side": 1,
+      "message": "The design doc is: https://docs.google.com/document/d/1XZrAecLT33sJng9JTHsWCNpcBVU_BT7weLE76nwsTXA/edit?usp\u003dsharing\n\nBut for telemetry_unittests it should be OK, since the wrapper script has an adapter to translate the cmd flags: https://cs.chromium.org/chromium/src/testing/scripts/run_telemetry_as_googletest.py?q\u003drun_telemetry_as_googletest\u0026sq\u003dpackage:chromium\u0026dr",
+      "parentUuid": "d726c868_6ad7f46f",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 13
+      },
+      "revId": "0cae1b87ac8844af19057546e1ea5575599cce93",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
