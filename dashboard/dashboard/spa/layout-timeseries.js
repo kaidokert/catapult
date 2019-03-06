@@ -116,6 +116,10 @@ tr.exportTo('cp', () => {
   }
 
   function computeXTicks(revisionRange, displayRange, rawXs) {
+    // TODO left-align tick for first point, right-align tick for last point,
+    // enough round numbers in between that they won't overlap even if the
+    // window shrinks by 50%.
+
     // Timestamps can be in either seconds or milliseconds.
     const {dateRange, displayMs, rawMs} = revisionRangeAsDates(
         revisionRange, displayRange, rawXs);
