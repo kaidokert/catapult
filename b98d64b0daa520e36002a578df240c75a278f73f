@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d6b87958_02aa006a",
+        "filename": "tracing/tracing/metrics/vr/webxr_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-03-06T18:33:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e7cd735_1d6e653f",
+      "range": {
+        "startLine": 29,
+        "startChar": 29,
+        "endLine": 30,
+        "endChar": 30
+      },
+      "revId": "b98d64b0daa520e36002a578df240c75a278f73f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "63d1b98c_82c22c76",
         "filename": "tracing/tracing/metrics/vr/webxr_metric.html",
         "patchSetId": 2
@@ -39,6 +63,24 @@
       "revId": "b98d64b0daa520e36002a578df240c75a278f73f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64a5caf5_6a8aba8b",
+        "filename": "tracing/tracing/metrics/vr/webxr_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-03-06T18:33:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63d1b98c_82c22c76",
+      "revId": "b98d64b0daa520e36002a578df240c75a278f73f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "17d92df5_a176061a",
+        "filename": "tracing/tracing/metrics/vr/webxr_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-03-06T18:33:40Z",
+      "side": 1,
+      "message": "Done. Ended up catching an issue with:\n\n1. Trying to use JavaScript\u0027s \"in\" for checking whether an array includes an element.\n2. Naming difference between the metric and expectation calculation. I\u0027ve moved the event names solely to the expectation file like we did for another VR metric so that they can\u0027t get out of sync again.",
+      "parentUuid": "7dddc78a_e43ac045",
+      "revId": "b98d64b0daa520e36002a578df240c75a278f73f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "540230ac_c92f4d1d",
         "filename": "tracing/tracing/metrics/vr/webxr_metric.html",
         "patchSetId": 2
@@ -76,6 +136,24 @@
     },
     {
       "key": {
+        "uuid": "4c407a50_61278c55",
+        "filename": "tracing/tracing/metrics/vr/webxr_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-03-06T18:33:40Z",
+      "side": 1,
+      "message": "Done (at least I think I did it correctly)",
+      "parentUuid": "540230ac_c92f4d1d",
+      "revId": "b98d64b0daa520e36002a578df240c75a278f73f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9cbd6227_6f58f0c3",
         "filename": "tracing/tracing/metrics/vr/webxr_metric.html",
         "patchSetId": 2
@@ -87,6 +165,24 @@
       "writtenOn": "2019-03-05T23:29:05Z",
       "side": 1,
       "message": "Would this be necessary if you monitored the `count` statistic?",
+      "revId": "b98d64b0daa520e36002a578df240c75a278f73f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92834e08_a2a8cb80",
+        "filename": "tracing/tracing/metrics/vr/webxr_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-03-06T18:33:40Z",
+      "side": 1,
+      "message": "No, but I prefer the current approach for two reasons:\n\n1. I don\u0027t want false alarms if the count fluctuates somewhat.\n2. I prefer to do as little through the dashboard-side filtering since it\u0027s not visible to myself or anyone else on the team and isn\u0027t the easiest thing to maintain\n\nIf you have a strong preference for monitoring count, we can switch to that, but otherwise I\u0027d prefer to keep it as-is.",
+      "parentUuid": "9cbd6227_6f58f0c3",
       "revId": "b98d64b0daa520e36002a578df240c75a278f73f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
