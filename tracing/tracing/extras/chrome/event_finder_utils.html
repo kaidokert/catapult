@@ -104,6 +104,13 @@ tr.exportTo('tr.e.chrome', function() {
       return eventsByFrame;
     }
 
+    static getMainThreadEventsTest(
+        rendererHelper, eventTitle, eventCategory) {
+      const events = this.getMainThreadEvents(
+          rendererHelper, eventTitle, eventCategory);
+      return events;
+    }
+
     /**
      * Returns a map of navigation id to main thread slices of |rendererHelper|
      * with title |eventTitle| and categry |eventCategory|.
