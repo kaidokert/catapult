@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7c3aaf5f_30613002",
+        "filename": "telemetry/telemetry/testing/run_tests_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-06T22:55:41Z",
+      "side": 1,
+      "message": "nit:This unittest is a bit difficult to understand. \n\nI think the first issue is that it\u0027s unclear from reading the test code what the test is doing and what it is expecting. I think this is a symptom of trying to make the code really short. I would prefer a test like this:\n\n  def testSkipOnlyWhenTestMatchesTestFilter_WithBrowser(self):\n    test_name \u003d \u0027unit_tests_test.AnotherFailingTest.test_fail\u0027\n    failed_tests, successful_tests, skipped_tests \u003d self.RunTest(\n        test_name, no_browser\u003dFalse, extra_args\u003d[\u0027--browser\u003dany\u0027, \u0027--skip\u003d*fail\u0027]\n    self.assertEqual(failed_tests, [])\n    self.assertEqual(successful_tests, [])\n    self.assertEqual(skipped_tests, [test_name])\n\nThis style of test makes it clear what is being checked by the test, and the reader does not have to go read RunTest to figure out what this test does. Of course, you have to write the RunTest method, but I think that is pretty doable.",
+      "range": {
+        "startLine": 151,
+        "startChar": 7,
+        "endLine": 156,
+        "endChar": 44
+      },
+      "revId": "380148cf60f69814494233e382a754833f5978be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4cf391eb_996a02c3",
+        "filename": "telemetry/telemetry/testing/run_tests_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-06T22:55:41Z",
+      "side": 1,
+      "message": "nit: use lowercase o in Without since it is a single word.",
+      "range": {
+        "startLine": 159,
+        "startChar": 47,
+        "endLine": 159,
+        "endChar": 48
+      },
+      "revId": "380148cf60f69814494233e382a754833f5978be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7e2b7c4_7d31ffa9",
+        "filename": "telemetry/telemetry/testing/run_tests_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-06T22:55:41Z",
+      "side": 1,
+      "message": "nit: This \"a\" is a new word, so it should be uppercase",
+      "range": {
+        "startLine": 167,
+        "startChar": 51,
+        "endLine": 167,
+        "endChar": 52
+      },
+      "revId": "380148cf60f69814494233e382a754833f5978be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
