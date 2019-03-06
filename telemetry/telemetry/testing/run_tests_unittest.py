@@ -82,7 +82,7 @@ class RunTestsUnitTest(unittest.TestCase):
 
   def baseTest(self,
                failures, successes, skips, test_name='',
-               extra_args=None):
+               extra_args=None, no_browser=True, expected_return_code=0):
     extra_args = extra_args or []
     config = project_config.ProjectConfig(
         top_level_dir=os.path.join(util.GetTelemetryDir(), 'examples'),
@@ -94,10 +94,14 @@ class RunTestsUnitTest(unittest.TestCase):
     temp_file.close()
     temp_file_name = temp_file.name
     try:
-      passed_args = [test_name, '--no-browser', ('--write-full-results-to=%s' %
-                                                 temp_file_name)]
+      passed_args = []
+      if test_name:
+        passed_args.append(test_name)
+      if no_browser:
+        passed_args.append('--no-browser')
+      passed_args.append('--write-full-results-to=%s' % temp_file_name)
       ret = unittest_runner.Run(config, passed_args=passed_args + extra_args)
-      self.assertEquals(ret, 0)
+      self.assertEquals(ret, expected_return_code)
       with open(temp_file_name) as f:
         self._test_result = json.load(f)
       (actual_successes,
@@ -140,6 +144,24 @@ class RunTestsUnitTest(unittest.TestCase):
       os.remove(expectations_file.name)
       os.remove(results.name)
     return self._test_result
+
+  @decorators.Disabled('chromeos')  # crbug.com/696553
+  def testSkipOnlyWhenTestMatchesTestFilterWithBrowser(self):
+    test_name = 'unit_tests_test.AnotherFailingTest.test_fail'
+    self.baseTest(
+        [], [], [test_name],
+        test_name=test_name,
+        no_browser=False,
+        extra_args=[
+            '--browser=any', '--skip=*fail'])
+
+  @decorators.Disabled('chromeos')  # crbug.com/696553
+  def testSkipOnlyWhenTestMatchesTestFilterWithOutBrowser(self):
+    test_name = 'unit_tests_test.AnotherFailingTest.test_fail'
+    self.baseTest(
+        [], [], [test_name],
+        test_name=test_name,
+        extra_args=['--skip=*fail'])
 
   @decorators.Disabled('chromeos')  # crbug.com/696553
   def testTestFailsAllRetryOnFailureRetriesAndIsNotaRegression(self):
