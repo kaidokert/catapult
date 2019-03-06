@@ -66,8 +66,9 @@ class RunTestsCommand(command_line.OptparseCommand):
                       help='Ignore @Disabled and @Enabled restrictions.')
     parser.add_option('--test-filter', metavar='TEST_NAMES',
                       help=('a double-colon-separated ("::") list of'
-                            'exact test names, to run just that subset'
-                            'of tests'))
+                            ' test names or globs, to run just that subset'
+                            'of tests. Globs are matched to tests using '
+                            'fnmatch'))
     parser.add_option('--client-config', dest='client_configs',
                       action='append', default=[])
     parser.add_option('--disable-logging-config', action='store_true',
@@ -231,12 +232,12 @@ def GetClassifier(args, possible_browser):
 
   def ClassifyTestWithoutBrowser(test_set, test):
     name = test.id()
-    if _SkipMatch(name, args.skip):
-      test_set.tests_to_skip.append(
-          typ.TestInput(name, 'skipped because matched --skip'))
-      return
     if (not selected_tests or
         _MatchesSelectedTest(name, selected_tests, selected_tests_are_exact)):
+      if _SkipMatch(name, args.skip):
+        test_set.tests_to_skip.append(
+            typ.TestInput(name, 'skipped because matched --skip'))
+        return
       # TODO(telemetry-team): Make sure that all telemetry unittest that invokes
       # actual browser are subclasses of browser_test_case.BrowserTestCase
       # (crbug.com/537428)
@@ -248,12 +249,12 @@ def GetClassifier(args, possible_browser):
 
   def ClassifyTestWithBrowser(test_set, test):
     name = test.id()
-    if _SkipMatch(name, args.skip):
-      test_set.tests_to_skip.append(
-          typ.TestInput(name, 'skipped because matched --skip'))
-      return
     if (not selected_tests or
         _MatchesSelectedTest(name, selected_tests, selected_tests_are_exact)):
+      if _SkipMatch(name, args.skip):
+        test_set.tests_to_skip.append(
+            typ.TestInput(name, 'skipped because matched --skip'))
+        return
       assert hasattr(test, '_testMethodName')
       method = getattr(
           test, test._testMethodName)  # pylint: disable=protected-access
@@ -275,7 +276,8 @@ def _MatchesSelectedTest(name, selected_tests, selected_tests_are_exact):
   if not selected_tests:
     return False
   if selected_tests_are_exact:
-    return name in selected_tests
+    return any(fnmatch.fnmatch(name, pattern) if pattern.endswith('*')
+               else pattern == name for pattern in selected_tests)
   else:
     return any(test in name for test in selected_tests)
 
