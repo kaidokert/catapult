@@ -16,6 +16,24 @@
       "revId": "b91ed1ef687e0ccf057e6f25a63841b50aeeee7a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78335d50_5b336723",
+        "filename": "telemetry/telemetry/internal/util/ps_util.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-06T01:57:18Z",
+      "side": 1,
+      "message": "Thanks for the heads up about that deprecation. Will use something else. Your suggested solution leaves out the type of the error:\n\n\u003e\u003e\u003e try:\n...     raise ValueError(\u0027this is an error\u0027)\n... except ValueError as e:\n...     print \u0027%s\u0027 % e\n... \nthis is an error\n\nThis method gives the name: \n\n\u003e\u003e\u003e try:\n...     raise ValueError(\u0027this is an error\u0027)\n... except ValueError as e:\n...     print \u0027%s: %s\u0027 % (e.__class__.__name__, e)\n... \nValueError: this is an error",
+      "parentUuid": "d98d3bb9_4159eeaa",
+      "revId": "b91ed1ef687e0ccf057e6f25a63841b50aeeee7a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
