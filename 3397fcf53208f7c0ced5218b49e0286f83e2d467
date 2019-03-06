@@ -16,6 +16,144 @@
       "revId": "3397fcf53208f7c0ced5218b49e0286f83e2d467",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bcb68be6_9cfc9958",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-06T16:12:01Z",
+      "side": 1,
+      "message": "Sounds good.",
+      "parentUuid": "9ac7dce2_2e363296",
+      "revId": "3397fcf53208f7c0ced5218b49e0286f83e2d467",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f21c123_d6a9be6e",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-06T16:12:01Z",
+      "side": 1,
+      "message": "Can we rename this to something like extra_swarming_tags",
+      "range": {
+        "startLine": 23,
+        "startChar": 4,
+        "endLine": 23,
+        "endChar": 8
+      },
+      "revId": "3397fcf53208f7c0ced5218b49e0286f83e2d467",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6b33f36_09a3f04c",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-06T16:12:01Z",
+      "side": 1,
+      "message": "_ExtraSwarmingTags to be consistent with _ExtraTestArgs",
+      "revId": "3397fcf53208f7c0ced5218b49e0286f83e2d467",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57625bdd_de311519",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-06T16:12:01Z",
+      "side": 1,
+      "message": "Raise typeerror for consistency with rest of error checking in file.",
+      "range": {
+        "startLine": 73,
+        "startChar": 11,
+        "endLine": 73,
+        "endChar": 20
+      },
+      "revId": "3397fcf53208f7c0ced5218b49e0286f83e2d467",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f00059b_534d5b53",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-06T16:12:01Z",
+      "side": 1,
+      "message": "If _CreateTags just returned an empty {} I don\u0027t think we need to do these None checks and defaults everywhere",
+      "revId": "3397fcf53208f7c0ced5218b49e0286f83e2d467",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e609e16_3068dad3",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-06T16:12:01Z",
+      "side": 1,
+      "message": "These quests are pickled and stored in datastore between runs, when you add a new field the older instances don\u0027t have it. Might be good to override __setstate__ with something to add an empty {} tags. That or use hasattr(). If you use __setstate__, we can migrate the existing jobs and then remove it.",
+      "range": {
+        "startLine": 131,
+        "startChar": 18,
+        "endLine": 131,
+        "endChar": 23
+      },
+      "revId": "3397fcf53208f7c0ced5218b49e0286f83e2d467",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8342aaee_a714ba6d",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-06T16:12:01Z",
+      "side": 1,
+      "message": "Same comment above w/ __setstate__ or hasattr",
+      "revId": "3397fcf53208f7c0ced5218b49e0286f83e2d467",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
