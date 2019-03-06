@@ -26,18 +26,14 @@ suite('RequestBase', function() {
     window.getAuthorizationHeaders = originalAuthorizationHeaders;
   });
 
-  // HTML imports may not have loaded when suite() is called, but are loaded
-  // when tests are called.
-  function TestRequest(options) {
-    return new class TestRequest extends cp.RequestBase {
-      get url_() {
-        return '/url';
-      }
+  class TestRequest extends cp.RequestBase {
+    get url_() {
+      return '/url';
+    }
 
-      postProcess_(response, isFromChannel = false) {
-        return response.map(x => (isFromChannel ? x : (x * x)));
-      }
-    }(options);
+    postProcess_(response, isFromChannel = false) {
+      return response.map(x => (isFromChannel ? x : (x * x)));
+    }
   }
 
   test('getAuthorizationHeaders', async() => {
