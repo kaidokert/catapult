@@ -66,25 +66,25 @@ class ChangeTest(test.TestCase):
         'commits': [
             {
                 'author': 'author@chromium.org',
-                'commit_position': 123456,
+                'commit_position': 123,
                 'git_hash': 'commit_123',
                 'repository': 'chromium',
                 'created': '2018-01-01T00:01:00',
                 'url': u'https://chromium.googlesource.com/chromium/src/+/commit_123',
                 'subject': 'Subject.',
                 'message': 'Subject.\n\nCommit message.\n'
-                           'Cr-Commit-Position: refs/heads/master@{#123456}',
+                           'Cr-Commit-Position: refs/heads/master@{#123}',
             },
             {
                 'author': 'author@chromium.org',
-                'commit_position': 123456,
+                'commit_position': 456,
                 'git_hash': 'commit_456',
                 'repository': 'catapult',
                 'created': '2018-01-01T00:01:00',
                 'url': u'https://chromium.googlesource.com/catapult/+/commit_456',
                 'subject': 'Subject.',
                 'message': 'Subject.\n\nCommit message.\n'
-                           'Cr-Commit-Position: refs/heads/master@{#123456}',
+                           'Cr-Commit-Position: refs/heads/master@{#456}',
             },
         ],
         'patch': {
