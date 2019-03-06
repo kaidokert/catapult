@@ -98,10 +98,11 @@ class SwarmingTestError(RunTestError):
 
 class RunTest(quest.Quest):
 
-  def __init__(self, swarming_server, dimensions, extra_args):
+  def __init__(self, swarming_server, dimensions, extra_args, tags=None):
     self._swarming_server = swarming_server
     self._dimensions = dimensions
     self._extra_args = extra_args
+    self._tags = tags
 
     # We want subsequent executions use the same bot as the first one.
     self._canonical_executions = []
@@ -122,18 +123,25 @@ class RunTest(quest.Quest):
   def Start(self, change, isolate_server, isolate_hash):
     return self._Start(change, isolate_server, isolate_hash, self._extra_args)
 
-  def _Start(self, change, isolate_server, isolate_hash, extra_args):
+  def _Start(self, change, isolate_server, isolate_hash, extra_args, tags=None):
     index = self._execution_counts[change]
     self._execution_counts[change] += 1
 
+    if tags is None:
+      tags = self._tags
+    elif self._tags:
+      tags.update(self._tags)
+
     if len(self._canonical_executions) <= index:
       execution = _RunTestExecution(self._swarming_server, self._dimensions,
-                                    extra_args, isolate_server, isolate_hash)
+                                    extra_args, isolate_server, isolate_hash,
+                                    tags=tags)
       self._canonical_executions.append(execution)
     else:
       execution = _RunTestExecution(
           self._swarming_server, self._dimensions, extra_args, isolate_server,
-          isolate_hash, previous_execution=self._canonical_executions[index])
+          isolate_hash, previous_execution=self._canonical_executions[index],
+          tags=tags)
 
     return execution
 
@@ -152,8 +160,9 @@ class RunTest(quest.Quest):
       raise ValueError('Missing a "pool" dimension.')
 
     extra_test_args = cls._ExtraTestArgs(arguments)
+    tags = cls._CreateTags(arguments)
 
-    return cls(swarming_server, dimensions, extra_test_args)
+    return cls(swarming_server, dimensions, extra_test_args, tags)
 
   @classmethod
   def _ExtraTestArgs(cls, arguments):
@@ -171,11 +180,16 @@ class RunTest(quest.Quest):
       raise TypeError('extra_test_args must be a list: %s' % extra_test_args)
     return extra_test_args
 
+  @classmethod
+  def _CreateTags(cls, arguments):
+    pass
+
 
 class _RunTestExecution(execution_module.Execution):
 
   def __init__(self, swarming_server, dimensions, extra_args,
-               isolate_server, isolate_hash, previous_execution=None):
+               isolate_server, isolate_hash, previous_execution=None,
+               tags=None):
     super(_RunTestExecution, self).__init__()
     self._swarming_server = swarming_server
     self._dimensions = dimensions
@@ -183,6 +197,7 @@ class _RunTestExecution(execution_module.Execution):
     self._isolate_server = isolate_server
     self._isolate_hash = isolate_hash
     self._previous_execution = previous_execution
+    self._tags = tags
 
     self._bot_id = None
     self._task_id = None
@@ -297,6 +312,8 @@ class _RunTestExecution(execution_module.Execution):
         'expiration_secs': '86400',  # 1 day.
         'properties': properties,
     }
+    if self._tags:
+      body['tags'] = ['%s:%s' % (k, self._tags[k]) for k in self._tags]
     response = swarming.Swarming(self._swarming_server).Tasks().New(body)
 
     self._task_id = response['task_id']
