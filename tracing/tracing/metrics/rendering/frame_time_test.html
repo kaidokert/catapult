@@ -219,9 +219,11 @@ tr.b.unittest.testSuite(function() {
         histograms, model, [new tr.model.um.Segment(0, 500)]);
 
     // There is 1 jank in [1, 1, 2, 1, 10]. The last long frame is a pause.
+    // the total running time is 442 - 1 ms or 0.442s, so there is 1/0.442
+    // janks per second.
     const hist = histograms.getHistogramNamed('jank_count');
     assert.closeTo(1, hist.numValues, 1e-6);
-    assert.closeTo(1, hist.min, 1e-6);
+    assert.closeTo(1 / 0.442, hist.min, 1e-6);
   });
 
   test('jankCount_non_android', function() {
@@ -261,12 +263,14 @@ tr.b.unittest.testSuite(function() {
     });
     const histograms = new tr.v.HistogramSet();
     tr.metrics.rendering.addFrameTimeHistograms(
-        histograms, model, [new tr.model.um.Segment(0, 300)]);
+        histograms, model, [new tr.model.um.Segment(0, 500)]);
 
     // There is 1 jank in [1, 1, 2, 1, 10]. The last long frame is a pause.
+    // the total running time is 442 - 1 ms or 0.442s, so there is 1/0.442
+    // janks per second.
     const hist = histograms.getHistogramNamed('jank_count');
     assert.closeTo(1, hist.numValues, 1e-6);
-    assert.closeTo(1, hist.min, 1e-6);
+    assert.closeTo(1 / 0.442, hist.min, 1e-6);
   });
 
   test('uiFrameTimes', function() {
