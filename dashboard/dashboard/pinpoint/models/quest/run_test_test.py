@@ -7,12 +7,18 @@ import unittest
 
 import mock
 
+from dashboard.pinpoint.models.change import change_test
 from dashboard.pinpoint.models.quest import run_test
+from dashboard.pinpoint import test
 
 
 DIMENSIONS = [
     {'key': 'pool', 'value': 'Chrome-perf-pinpoint'},
     {'key': 'key', 'value': 'value'},
+]
+DIFF_DIMENSIONS = [
+    {'key': 'pool', 'value': 'Chrome-perf-pinpoint'},
+    {'key': 'key', 'value': 'value2'},
 ]
 _BASE_ARGUMENTS = {
     'swarming_server': 'server',
@@ -20,12 +26,49 @@ _BASE_ARGUMENTS = {
 }
 
 
-class StartTest(unittest.TestCase):
+class StartTest(test.TestCase):
 
+  @mock.patch('dashboard.common.bot_configurations.Get',
+              mock.MagicMock(return_value={}))
   def testStart(self):
     quest = run_test.RunTest('server', DIMENSIONS, ['arg'])
-    execution = quest.Start('change', 'https://isolate.server', 'isolate hash')
+    execution = quest.Start(
+        change_test.Change(chromium=123),
+        'https://isolate.server', 'isolate hash')
     self.assertEqual(execution._extra_args, ['arg'])
+
+  @mock.patch('dashboard.common.bot_configurations.Get',
+              mock.MagicMock(return_value={'dimensions': DIMENSIONS}))
+  def testStart_Match_BeforeChange_BrowserModified(self):
+    quest = run_test.RunTest(
+        'server', DIMENSIONS, ['arg', '--browser', 'android-chrome'])
+    execution = quest.Start(
+        change_test.Change(chromium=run_test._CLANK_ANDROID_GO_COMMIT - 1),
+        'https://isolate.server', 'isolate hash')
+    self.assertEqual(
+        execution._extra_args, ['arg', '--browser', 'android-chromium'])
+
+  @mock.patch('dashboard.common.bot_configurations.Get',
+              mock.MagicMock(return_value={'dimensions': DIMENSIONS}))
+  def testStart_Match_AfterChange_BrowserSame(self):
+    quest = run_test.RunTest(
+        'server', DIMENSIONS, ['arg', '--browser', 'android-chrome'])
+    execution = quest.Start(
+        change_test.Change(chromium=run_test._CLANK_ANDROID_GO_COMMIT),
+        'https://isolate.server', 'isolate hash')
+    self.assertEqual(
+        execution._extra_args, ['arg', '--browser', 'android-chrome'])
+
+  @mock.patch('dashboard.common.bot_configurations.Get',
+              mock.MagicMock(return_value={'dimensions': DIFF_DIMENSIONS}))
+  def testStart_NoMatch_BrowserSame(self):
+    quest = run_test.RunTest(
+        'server', DIMENSIONS, ['arg', '--browser', 'android-chromium'])
+    execution = quest.Start(
+        change_test.Change(chromium=123),
+        'https://isolate.server', 'isolate hash')
+    self.assertEqual(
+        execution._extra_args, ['arg', '--browser', 'android-chromium'])
 
 
 class FromDictTest(unittest.TestCase):
@@ -173,6 +216,8 @@ class _RunTestExecutionTest(unittest.TestCase):
     swarming_tasks_new.assert_called_with(body)
 
 
+@mock.patch(
+    'dashboard.common.bot_configurations.Get', mock.MagicMock(return_value={}))
 @mock.patch('dashboard.services.swarming.Tasks.New')
 @mock.patch('dashboard.services.swarming.Task.Result')
 class RunTestFullTest(_RunTestExecutionTest):
@@ -260,6 +305,8 @@ class RunTestFullTest(_RunTestExecutionTest):
     self.assertNewTaskHasDimensions(swarming_tasks_new)
 
 
+@mock.patch(
+    'dashboard.common.bot_configurations.Get', mock.MagicMock(return_value={}))
 @mock.patch('dashboard.services.swarming.Tasks.New')
 @mock.patch('dashboard.services.swarming.Task.Result')
 class SwarmingTaskStatusTest(_RunTestExecutionTest):
@@ -330,6 +377,8 @@ AttributeError: 'Namespace' object has no attribute 'benchmark_names'"""
     self.assertTrue(last_exception_line.startswith('AttributeError'))
 
 
+@mock.patch(
+    'dashboard.common.bot_configurations.Get', mock.MagicMock(return_value={}))
 @mock.patch('dashboard.services.swarming.Tasks.New')
 @mock.patch('dashboard.services.swarming.Task.Result')
 class BotIdHandlingTest(_RunTestExecutionTest):

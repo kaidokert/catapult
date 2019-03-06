@@ -90,12 +90,18 @@ def _CommitInfoStub(repository_url, git_hash, override=False):
       parent_num = int(components[1]) - 1
       parents.append('commit_' + str(parent_num))
 
+  commit = 123456
+  try:
+    commit = int(git_hash.replace('commit_', ''))
+  except ValueError:
+    pass
+
   return {
       'author': {'email': 'author@chromium.org'},
       'commit': git_hash,
       'committer': {'time': 'Fri Jan 01 00:01:00 2018'},
       'message': 'Subject.\n\nCommit message.\n'
-                 'Cr-Commit-Position: refs/heads/master@{#123456}',
+                 'Cr-Commit-Position: refs/heads/master@{#%s}' % commit,
       'parents': parents,
   }
 
