@@ -212,7 +212,8 @@ tr.exportTo('tr.metrics.rendering', function() {
     frameLengths = frameLengths.filter(length => length >= MIN_FRAME_LENGTH);
     const totalFrameDuration =
         tr.b.math.Statistics.sum(frameSegments, x => x.duration);
-    addJankCountHistograms(histograms, frameLengths);
+    addJankCountHistograms(
+        histograms, frameLengths, model.stats.traceImportDurationMs);
     histograms.createHistogram(
         'frame_lengths',
         tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
@@ -243,7 +244,7 @@ tr.exportTo('tr.metrics.rendering', function() {
     addBasicFrameTimeHistograms_(histograms, frameSements, 'ui_');
   }
 
-  function addJankCountHistograms(histograms, frameLengths) {
+  function addJankCountHistograms(histograms, frameLengths, traceDurationInMs) {
     let jankCount = 0;
     for (let i = 1; i < frameLengths.length; i++) {
       if (frameLengths[i] < MIN_FRAME_LENGTH) continue;
@@ -252,10 +253,11 @@ tr.exportTo('tr.metrics.rendering', function() {
       if (change > 0 && change < PAUSE_THRESHOLD) jankCount++;
     }
 
+    // Calculate JankCount per second.
     histograms.createHistogram(
         'jank_count',
-        tr.b.Unit.byName.count_smallerIsBetter,
-        jankCount,
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        jankCount / traceDurationInMs * 1000,
         { description: 'Number of changes in frame rate.',
           summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
         });
