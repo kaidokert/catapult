@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d726c868_6ad7f46f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002882
+      },
+      "writtenOn": "2019-03-06T20:51:39Z",
+      "side": 1,
+      "message": "chanli@: would you mind sharing with Rakib the design doc about the command line interface required by Findit?",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 13
+      },
+      "revId": "0cae1b87ac8844af19057546e1ea5575599cce93",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
