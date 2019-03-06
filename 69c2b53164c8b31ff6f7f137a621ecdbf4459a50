@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fc46a322_b8890294",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-06T20:00:12Z",
+      "side": 1,
+      "message": "Since I haven\u0027t actually committed anything to switch android-go over, this is just a dummy value.",
+      "revId": "69c2b53164c8b31ff6f7f137a621ecdbf4459a50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
