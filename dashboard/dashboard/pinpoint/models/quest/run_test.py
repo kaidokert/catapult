@@ -13,6 +13,7 @@ import json
 import re
 import shlex
 
+from dashboard.common import bot_configurations
 from dashboard.pinpoint.models.quest import execution as execution_module
 from dashboard.pinpoint.models.quest import quest
 from dashboard.services import swarming
@@ -122,9 +123,30 @@ class RunTest(quest.Quest):
   def Start(self, change, isolate_server, isolate_hash):
     return self._Start(change, isolate_server, isolate_hash, self._extra_args)
 
+  def _ApplyBrowserTargetChange(self, change, extra_args):
+    cfg = bot_configurations.Get('android-go-perf')
+
+    for d in self._dimensions:
+      if d not in cfg.get('dimensions', []):
+        return
+
+    if change.base_commit.AsDict().get('commit_position') <= 123456:
+      try:
+        i = extra_args.index('--browser') + 1
+        if extra_args[i] == 'android-chromium':
+          extra_args[i] = 'android-chrome'
+      except ValueError:
+        pass
+
   def _Start(self, change, isolate_server, isolate_hash, extra_args):
     index = self._execution_counts[change]
     self._execution_counts[change] += 1
+
+    # TODO(simonhatch): Remove this around July 2019.
+    # We switched the browser target on android-go-perf from android-chromium to
+    # android-chrome. To bisect ranges that include this, we need to dynamically
+    # change the browser target based on commit position.
+    self._ApplyBrowserTargetChange(change, extra_args)
 
     if len(self._canonical_executions) <= index:
       execution = _RunTestExecution(self._swarming_server, self._dimensions,
