@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import mock
 import unittest
 
 from dashboard.pinpoint.models.quest import run_performance_test
@@ -29,6 +30,8 @@ _BASE_EXTRA_ARGS = [
 
 class StartTest(unittest.TestCase):
 
+  @mock.patch('dashboard.common.bot_configurations.Get',
+              mock.MagicMock(return_value={}))
   def testStart(self):
     quest = run_telemetry_test.RunTelemetryTest(
         'server', run_test_test.DIMENSIONS, ['arg'])
