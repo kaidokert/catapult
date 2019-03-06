@@ -25,3 +25,16 @@ class PassingTest(unittest.TestCase):
 class SkipTest(unittest.TestCase):
   def test_skip(self):
     self.skipTest('SKIPPING TEST')
+
+class RunThroughGlobs(unittest.TestCase):
+  def test_glob_pass(self):
+    pass
+
+  def test_glob_fail(self):
+    self.fail()
+
+  def test_pass(self):
+    pass
+
+  def test_fail(self):
+    self.fail()
