@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "af4b5aba_29034bb9",
+        "filename": "devil/devil/android/perf/perf_control.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-07T14:13:23Z",
+      "side": 1,
+      "message": "Can this check be the other way around? If product_model.startswith(\u0027AOSP on \u0027) strip that prefix first and then look into the definitions dict?\n\nAlso nit: for consistency with the result of the file, use \u0027single quotes\u0027 for strings.",
+      "revId": "a1700471612d76efbe516ff1859b49c1915eadad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
