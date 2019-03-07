@@ -22,6 +22,30 @@
       "revId": "b501000803e48943b66648a64f3119ae41c577f9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd242a63_729e07d2",
+        "filename": "telemetry/telemetry/testing/run_tests_unittest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-03-07T21:11:43Z",
+      "side": 1,
+      "message": "I removed this in favor of using MockBrowser object to imitate a browser and use that to test the ClassifyTestWithBrowser function",
+      "parentUuid": "e0753451_5a91b51a",
+      "range": {
+        "startLine": 164,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 40
+      },
+      "revId": "b501000803e48943b66648a64f3119ae41c577f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
