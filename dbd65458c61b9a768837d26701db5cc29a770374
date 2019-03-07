@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2945b765_b1842b84",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-07T12:30:37Z",
+      "side": 1,
+      "message": "nit: maybe add a short comment explaining what this is.",
+      "revId": "dbd65458c61b9a768837d26701db5cc29a770374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99c1febc_627f297c",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-07T12:30:37Z",
+      "side": 1,
+      "message": "this means that at this point the RunTest object does not know what the bot configuration was?",
+      "revId": "dbd65458c61b9a768837d26701db5cc29a770374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a7f4865_0410bbed",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-07T12:30:37Z",
+      "side": 1,
+      "message": "should this also check in other commits, not just the base_commit?",
+      "revId": "dbd65458c61b9a768837d26701db5cc29a770374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
