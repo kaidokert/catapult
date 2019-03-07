@@ -20,6 +20,10 @@ tr.exportTo('cp', () => {
       return ChartBase.antiBrushes(brushes);
     }
 
+    pct_(x) {
+      return x + '%';
+    }
+
     tooltipHidden_(tooltip) {
       return !tooltip || !tooltip.isVisible || this.isEmpty_(tooltip.rows);
     }
@@ -53,6 +57,10 @@ tr.exportTo('cp', () => {
     brushPointSize_(brushSize) {
       if (Number.isNaN(brushSize)) return 0;
       return brushSize * 1.5;
+    }
+
+    tickAnchor_(tick) {
+      return tick.anchor || 'middle';
     }
 
     onMainClick_(event) {
