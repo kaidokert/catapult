@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--
+Copyright 2019 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="/dashboard/spa/chart-compound.html">
+<link rel="import" href="/dashboard/spa/chart-legend.html">
+<link rel="import" href="/dashboard/spa/chart-timeseries.html">
+<link rel="import" href="/dashboard/spa/cp-loading.html">
+<link rel="import" href="/dashboard/spa/cp-tab-bar.html">
+<link rel="import" href="/dashboard/spa/describe-request.html">
+<link rel="import" href="/dashboard/spa/element-base.html">
+<link rel="import" href="/dashboard/spa/expand-button.html">
+<link rel="import" href="/dashboard/spa/menu-input.html">
+<link rel="import" href="/dashboard/spa/test-suites-request.html">
+<link rel="import" href="/dashboard/spa/timeseries-descriptor.html">
+<link rel="import" href="/dashboard/static/memory_related_names.html">
+
+<dom-module id="sparkline-compound">
+  <template>
+    <style>
+      .related_tab {
+        display: flex;
+        flex-wrap: wrap;
+        max-height: 380px;
+        overflow: auto;
+        background-color: var(--primary-color-light);
+      }
+
+      .sparkline_tile {
+        background: var(--background-color);
+        cursor: pointer;
+        margin: 4px;
+        width: 300px;
+      }
+
+      .sparkline_name {
+        display: flex;
+        justify-content: center;
+        padding: 8px;
+        padding-top: 0;
+      }
+
+      .sparkline_container {
+        display: flex;
+        flex-wrap: wrap;
+      }
+    </style>
+
+    <template is="dom-if" if="[[!isEmpty_(relatedTabs)]]">
+      <cp-tab-bar selected="[[selectedRelatedTabName]]">
+        <template is="dom-repeat" items="[[relatedTabs]]" as="tab" index-as="tabIndex">
+          <cp-tab name="[[tab.name]]" on-click="onRelatedTabClick_">
+            [[tab.name]]
+          </cp-tab>
+        </template>
+      </cp-tab-bar>
+
+      <template is="dom-repeat" items="[[relatedTabs]]" as="tab" index-as="tabIndex">
+        <iron-collapse
+            opened="[[isEqual_(tab.name, selectedRelatedTabName)]]"
+            class="related_tab">
+          <div class="sparkline_container">
+            <template is="dom-repeat" items="[[tab.renderedSparklines]]" as="sparkline" index-as="sparklineIndex">
+              <div
+                  class="sparkline_tile"
+                  hidden$="[[hideTile_(sparkline)]]"
+                  on-click="onSparklineClick_">
+                <div class="sparkline_name">[[sparkline.name]]</div>
+                <cp-loading loading$="[[sparkline.layout.isLoading]]">
+                </cp-loading>
+                <chart-timeseries
+                    state-path="[[statePath]].relatedTabs.[[tabIndex]].renderedSparklines.[[sparklineIndex]].layout">
+                </chart-timeseries>
+              </div>
+            </template>
+          </div>
+        </iron-collapse>
+      </template>
+    </template>
+  </template>
+</dom-module>
+<script src="/dashboard/spa/sparkline-compound.js"></script>
