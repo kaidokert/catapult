@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "5749630f_0a49875a",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-07T13:18:18Z",
+      "side": 1,
+      "message": "Yeah by now we don\u0027t have access to the original arguments, unless we want to store them in the quest object. We have the dimensions of the target swarming bots.",
+      "parentUuid": "99c1febc_627f297c",
+      "revId": "dbd65458c61b9a768837d26701db5cc29a770374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5a7f4865_0410bbed",
         "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
         "patchSetId": 4
@@ -47,6 +65,24 @@
       "writtenOn": "2019-03-07T12:30:37Z",
       "side": 1,
       "message": "should this also check in other commits, not just the base_commit?",
+      "revId": "dbd65458c61b9a768837d26701db5cc29a770374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c485a953_3e2e0cb5",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-07T13:18:18Z",
+      "side": 1,
+      "message": "True, figured we\u0027d have removed this before we had anything that rolled in chromium and had this clank issue.",
+      "parentUuid": "5a7f4865_0410bbed",
       "revId": "dbd65458c61b9a768837d26701db5cc29a770374",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
