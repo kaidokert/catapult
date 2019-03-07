@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "95647cfc_1c29d855",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-07T22:50:13Z",
+      "side": 1,
+      "message": "two lines here",
+      "revId": "dafe59178a386c3a8db393f376c8f7647a3535f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d4f0d4e_071e6afc",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-07T22:50:13Z",
+      "side": 1,
+      "message": "This returns a boolean, right? So then it should be named something that makes that clear, like\n\"_DoesTestMatchFilter\"",
+      "range": {
+        "startLine": 154,
+        "startChar": 4,
+        "endLine": 154,
+        "endChar": 30
+      },
+      "revId": "dafe59178a386c3a8db393f376c8f7647a3535f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6616079_88a2eae0",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-07T22:50:13Z",
+      "side": 1,
+      "message": "where does this \"pattern\" variable come from?",
+      "range": {
+        "startLine": 155,
+        "startChar": 39,
+        "endLine": 155,
+        "endChar": 47
+      },
+      "revId": "dafe59178a386c3a8db393f376c8f7647a3535f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "048223c4_38d69cfa",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-07T22:50:13Z",
+      "side": 1,
+      "message": "nit: two blank lines here.",
+      "range": {
+        "startLine": 158,
+        "startChar": 0,
+        "endLine": 158,
+        "endChar": 0
+      },
+      "revId": "dafe59178a386c3a8db393f376c8f7647a3535f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92d055ce_20660145",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-07T22:50:13Z",
+      "side": 1,
+      "message": "how about \"match_everything\" instead of noop_func?\n\n\"noop_func\" makes me think that normally a matcher has some side effect but this one doesn\u0027t, but actually matchers are just used for their return value.",
+      "range": {
+        "startLine": 163,
+        "startChar": 2,
+        "endLine": 163,
+        "endChar": 11
+      },
+      "revId": "dafe59178a386c3a8db393f376c8f7647a3535f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
