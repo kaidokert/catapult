@@ -6,6 +6,7 @@
 Handles benchmark configuration, but all the logic for
 actually running the benchmark is in Benchmark and StoryRunner."""
 
+import itertools
 import json
 import logging
 import optparse
@@ -14,8 +15,12 @@ import sys
 
 from telemetry import benchmark
 from telemetry import decorators
+from telemetry import story as story_module
+from telemetry.core import platform as platform_module
+from telemetry.internal import story_runner
 from telemetry.internal.browser import browser_finder
 from telemetry.internal.browser import browser_options
+from telemetry.internal.results import results_options
 from telemetry.internal.util import binary_manager
 from telemetry.internal.util import command_line
 from telemetry.internal.util import ps_util
@@ -250,7 +255,8 @@ class Run(command_line.OptparseCommand):
 
   @classmethod
   def AddCommandLineArgs(cls, parser, environment):
-    benchmark.AddCommandLineArgs(parser)
+    story_runner.AddCommandLineArgs(parser)
+    story_module.StoryFilter.AddCommandLineArgs(parser)
 
     # Allow benchmarks to add their own command line options.
     matching_benchmarks = []
@@ -310,7 +316,8 @@ class Run(command_line.OptparseCommand):
     assert issubclass(benchmark_class,
                       benchmark.Benchmark), ('Trying to run a non-Benchmark?!')
 
-    benchmark.ProcessCommandLineArgs(parser, options)
+    story_runner.ProcessCommandLineArgs(parser, options)
+    story_module.StoryFilter.ProcessCommandLineArgs(parser, options)
     benchmark_class.ProcessCommandLineArgs(parser, options)
 
     cls._benchmark = benchmark_class
@@ -319,7 +326,7 @@ class Run(command_line.OptparseCommand):
   def Run(self, options):
     b = self._benchmark()
     _SetExpectations(b, self._expectations_path)
-    return min(255, b.Run(options))
+    return min(255, SetUpAndRunBenchmark(b, options))
 
 
 def _ScriptName():
@@ -329,6 +336,94 @@ def _ScriptName():
 def _MatchingCommands(string):
   return [command for command in ALL_COMMANDS
           if command.Name().startswith(string)]
+
+
+def _ValidateStory(story):
+  if len(story.name) > 180:
+    raise ValueError(
+        'User story has name exceeding 180 characters: %s' %
+        story.name)
+
+
+def SetUpAndRunBenchmark(benchmark_to_run, finder_options):
+  benchmark_to_run.CustomizeBrowserOptions(finder_options.browser_options)
+  benchmark_to_run.CustomizeOptions(finder_options)
+
+  benchmark_metadata = benchmark_to_run.GetMetadata()
+  possible_browser = browser_finder.FindBrowser(finder_options)
+  expectations = benchmark_to_run.expectations
+
+  target_platform = None
+  if possible_browser:
+    target_platform = possible_browser.platform
+  else:
+    target_platform = platform_module.GetHostPlatform()
+
+  if not hasattr(finder_options, 'print_only') or not finder_options.print_only:
+    can_run_on_platform = benchmark_to_run._CanRunOnPlatform(
+        target_platform, finder_options)
+
+    expectations_disabled = False
+    # For now, test expectations are only applicable in the cases where the
+    # testing target involves a browser.
+    if possible_browser:
+      expectations_disabled = expectations.IsBenchmarkDisabled(
+          possible_browser.platform, finder_options)
+
+    if expectations_disabled or not can_run_on_platform:
+      print '%s is disabled on the selected browser' % benchmark_to_run.Name()
+      if finder_options.run_disabled_tests and can_run_on_platform:
+        print 'Running benchmark anyway due to: --also-run-disabled-tests'
+      else:
+        if can_run_on_platform:
+          print 'Try --also-run-disabled-tests to force the benchmark to run.'
+        else:
+          print ("This platform is not supported for this benchmark. If this "
+                 "is in error please add it to the benchmark's supported "
+                 "platforms.")
+        # If chartjson is specified, this will print a dict indicating the
+        # benchmark name and disabled state.
+        with results_options.CreateResults(
+            benchmark_metadata, finder_options,
+            should_add_value=benchmark_to_run.ShouldAddValue,
+            benchmark_enabled=False
+            ) as results:
+          results.PrintSummary()
+        # When a disabled benchmark is run we now want to return success since
+        # we are no longer filtering these out in the buildbot recipes.
+        return 0
+
+  story_set = benchmark_to_run.CreateStorySet(finder_options)
+  for s in story_set:
+    _ValidateStory(s)
+
+  # We want to make sure that all expectations are linked to real stories,
+  # this will log error messages if names do not match what is in the set.
+  benchmark_to_run.GetBrokenExpectations(story_set)
+
+  # Filter page set based on options.
+  story_set = story_module.StoryFilter.FilterStorySet(story_set)
+
+  if not story_set:
+    return 0
+
+  if finder_options.print_only:
+    if finder_options.print_only == 'tags':
+      tags = set(itertools.chain.from_iterable(s.tags for s in story_set))
+      print 'List of tags:\n%s' % '\n'.join(tags)
+      return 0
+    include_tags = finder_options.print_only == 'both'
+    if include_tags:
+      format_string = '  %%-%ds %%s' % max(len(s.name) for s in story_set)
+    else:
+      format_string = '%s%s'
+    for s in story_set:
+      print format_string % (s.name, ','.join(s.tags) if include_tags else '')
+    return 0
+
+  return story_runner.RunBenchmark(
+      benchmark_to_run, story_set, possible_browser,
+      browser_options, finder_options)
 
 
 @decorators.Cache
@@ -384,7 +479,7 @@ def GetBenchmarkByName(name, environment):
 ALL_COMMANDS = [Help, List, Run]
 
 
-def main(environment):
+def main(environment, argv=sys.argv):
   # The log level is set in browser_options.
   # Clear the log handlers to ensure we can set up logging properly here.
   logging.getLogger().handlers = []
@@ -393,19 +488,19 @@ def main(environment):
   ps_util.EnableListingStrayProcessesUponExitHook()
 
   # Get the command name from the command line.
-  if len(sys.argv) > 1 and sys.argv[1] == '--help':
-    sys.argv[1] = 'help'
+  if len(argv) > 1 and argv[1] == '--help':
+    argv[1] = 'help'
 
   command_name = 'run'
-  for arg in sys.argv[1:]:
+  for arg in argv[1:]:
     if not arg.startswith('-'):
       command_name = arg
       break
 
   # TODO(eakuefner): Remove this hack after we port to argparse.
-  if command_name == 'help' and len(sys.argv) > 2 and sys.argv[2] == 'run':
+  if command_name == 'help' and len(argv) > 2 and argv[2] == 'run':
     command_name = 'run'
-    sys.argv[2] = '--help'
+    argv[2] = '--help'
 
   # Validate and interpret the command name.
   commands = _MatchingCommands(command_name)
@@ -422,7 +517,8 @@ def main(environment):
   else:
     command = Run
 
-  binary_manager.InitDependencyManager(environment.client_configs)
+  if binary_manager.NeedsInit():
+    binary_manager.InitDependencyManager(environment.client_configs)
 
   # Parse and run the command.
   parser = command.CreateParser()
@@ -431,7 +527,7 @@ def main(environment):
   # Set the default chrome root variable.
   parser.set_defaults(chrome_root=environment.default_chrome_root)
 
-  options, args = parser.parse_args()
+  options, args = parser.parse_args(argv[1:])
   if commands:
     args = args[1:]
   options.positional_args = args
