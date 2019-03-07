@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "56e7bb7a_6725d093",
+        "filename": "telemetry/examples/unit_tests_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-07T22:37:58Z",
+      "side": 1,
+      "message": "Drive-by: These have redundant names. I wonder why you don\u0027t just use something like:\n\nclass ExampleTests(unittest.TestCase):\n  _retry \u003d 0\n\n  def test_retry_on_failure(self):\n    cls \u003d self.__class__\n    if cls._retry \u003d\u003d 3:\n      return\n    cls._retry +\u003d 1\n    self.fail()\n\n  def test_fail(self):\n    self.fail()\n\n  def test_pass(self):\n    pass\n\n  def test_skip(self):\n    self.skipTest(\u0027SKIPPING TEST\u0027)",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 34
+      },
+      "revId": "a45996c593982f3e2d09c598c068d9bbcf61df17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a03863aa_c2b8087b",
+        "filename": "telemetry/examples/unit_tests_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-07T22:37:58Z",
+      "side": 1,
+      "message": "Why do you need these new tests? I think you can just use FailingTest and PassingTest above.",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 15
+      },
+      "revId": "a45996c593982f3e2d09c598c068d9bbcf61df17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9b52f90_f90a8977",
+        "filename": "telemetry/telemetry/testing/run_tests.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-07T22:37:58Z",
+      "side": 1,
+      "message": "drive-by: fix spelling: \"positional\"",
+      "range": {
+        "startLine": 98,
+        "startChar": 40,
+        "endLine": 98,
+        "endChar": 51
+      },
+      "revId": "a45996c593982f3e2d09c598c068d9bbcf61df17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c406a9c7_8e8bcbaf",
+        "filename": "telemetry/telemetry/testing/run_tests.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-07T22:37:58Z",
+      "side": 1,
+      "message": "Variable name is confusing.",
+      "range": {
+        "startLine": 228,
+        "startChar": 4,
+        "endLine": 228,
+        "endChar": 28
+      },
+      "revId": "a45996c593982f3e2d09c598c068d9bbcf61df17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6480111a_f2a661c6",
+        "filename": "telemetry/telemetry/testing/run_tests_unittest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-07T22:37:58Z",
+      "side": 1,
+      "message": "Fix this naming.",
+      "range": {
+        "startLine": 83,
+        "startChar": 6,
+        "endLine": 83,
+        "endChar": 14
+      },
+      "revId": "a45996c593982f3e2d09c598c068d9bbcf61df17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee1e5e0c_ea067ad7",
+        "filename": "telemetry/telemetry/testing/run_tests_unittest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-07T22:37:58Z",
+      "side": 1,
+      "message": "This is confusing. I though we fixed this already?",
+      "range": {
+        "startLine": 84,
+        "startChar": 15,
+        "endLine": 84,
+        "endChar": 41
+      },
+      "revId": "a45996c593982f3e2d09c598c068d9bbcf61df17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6bef06fa_3c261f7c",
+        "filename": "telemetry/telemetry/testing/run_tests_unittest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-07T22:37:58Z",
+      "side": 1,
+      "message": "This should be \"MakeTestFilter\"\n\nBut really, you should just make this inline.\n\nAlso, if it doesn\u0027t use self, then you should put it outside the class.",
+      "revId": "a45996c593982f3e2d09c598c068d9bbcf61df17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
