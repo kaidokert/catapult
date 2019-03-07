@@ -36,6 +36,35 @@ class StartTest(unittest.TestCase):
     self.assertEqual(execution._extra_args,
                      ['arg', '--results-label', 'change'])
 
+  def testSwarmingTags(self):
+    arguments = dict(_BASE_ARGUMENTS)
+    arguments['browser'] = 'android-webview'
+    quest = run_telemetry_test.RunTelemetryTest.FromDict(arguments)
+    execution = quest.Start('change', 'https://isolate.server', 'isolate hash')
+    self.assertEqual(
+        execution._tags, {'benchmark': 'speedometer', 'change': 'change',
+                          'hasfilter': '0'})
+
+  def testSwarmingTagsWithStoryFilter(self):
+    arguments = dict(_BASE_ARGUMENTS)
+    arguments['browser'] = 'android-webview'
+    arguments['story'] = 'sfilter'
+    quest = run_telemetry_test.RunTelemetryTest.FromDict(arguments)
+    execution = quest.Start('change', 'https://isolate.server', 'isolate hash')
+    self.assertEqual(
+        execution._tags, {'benchmark': 'speedometer', 'change': 'change',
+                          'hasfilter': '1', 'storyfilter': 'sfilter'})
+
+  def testSwarmingTagsWithStoryTagFilter(self):
+    arguments = dict(_BASE_ARGUMENTS)
+    arguments['browser'] = 'android-webview'
+    arguments['story_tags'] = 'tfilter'
+    quest = run_telemetry_test.RunTelemetryTest.FromDict(arguments)
+    execution = quest.Start('change', 'https://isolate.server', 'isolate hash')
+    self.assertEqual(
+        execution._tags, {'benchmark': 'speedometer', 'change': 'change',
+                          'hasfilter': '1', 'tagfilter': 'tfilter'})
+
 
 class FromDictTest(unittest.TestCase):
 
