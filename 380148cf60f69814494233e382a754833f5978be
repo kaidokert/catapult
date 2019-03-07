@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "65eb1020_2701bb2b",
+        "filename": "telemetry/telemetry/testing/run_tests_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-07T01:10:01Z",
+      "side": 1,
+      "message": "But now you\u0027re doing assertions in multiple places, which is confusing as well.\n\nAnother issue is that the argument names \"failures\", \"successes\", \"skips\" don\u0027t show that these are expected values. When I read:\n\n  def runTest(\n      self, failures, successes, skips, test_name\u003d\u0027\u0027, extra_args\u003dNone,\n      no_browser\u003dTrue, expected_return_code\u003d0):\n\nI think that the only thing that you could be using for an assertion is expected_return_code. So then I think that failures, successes, skips are somehow input to the test. If you really want to keep those, then you can do\n\n  def runTest(\n      self, test_name\u003d\u0027\u0027, extra_args\u003dNone,\n      no_browser\u003dTrue, expected_return_code\u003d0, expected_failures\u003dNone,\n      expected_successes\u003dNone, expected_skips\u003dNone):\n\nSo that the arguments that are expected are near each other.",
+      "parentUuid": "ae89474e_b72d8e68",
+      "range": {
+        "startLine": 151,
+        "startChar": 7,
+        "endLine": 156,
+        "endChar": 44
+      },
+      "revId": "380148cf60f69814494233e382a754833f5978be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4cf391eb_996a02c3",
         "filename": "telemetry/telemetry/testing/run_tests_unittest.py",
         "patchSetId": 3
