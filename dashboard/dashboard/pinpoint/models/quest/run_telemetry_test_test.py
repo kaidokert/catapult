@@ -36,6 +36,14 @@ class StartTest(unittest.TestCase):
     self.assertEqual(execution._extra_args,
                      ['arg', '--results-label', 'change'])
 
+  def testSwarmingTags(self):
+    arguments = dict(_BASE_ARGUMENTS)
+    arguments['browser'] = 'android-webview'
+    quest = run_telemetry_test.RunTelemetryTest.FromDict(arguments)
+    execution = quest.Start('change', 'https://isolate.server', 'isolate hash')
+    self.assertEqual(
+        execution._tags, {'benchmark': 'speedometer', 'change': 'change'})
+
 
 class FromDictTest(unittest.TestCase):
 
