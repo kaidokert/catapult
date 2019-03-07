@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e0753451_5a91b51a",
+        "filename": "telemetry/telemetry/testing/run_tests_unittest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-07T18:25:08Z",
+      "side": 1,
+      "message": "Why are you catching the exception rather than letting it fall through? If you let if fall through then the stack trace points to the correct lines.\n\nwhat is the 2 !\u003d 0 about? I don\u0027t understand.",
+      "range": {
+        "startLine": 164,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 40
+      },
+      "revId": "b501000803e48943b66648a64f3119ae41c577f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
