@@ -52,6 +52,10 @@ tr.exportTo('cp', () => {
       this.$.scratch.innerText = '';
     }
 
+    async onEdit_(event) {
+      await this.dispatch(Redux.TOGGLE(this.statePath + '.isEditing'));
+    }
+
     async onOpenChart_(event) {
       event.preventDefault();
 
@@ -111,8 +115,8 @@ tr.exportTo('cp', () => {
       return 2 * this.lengthOf_(statistics);
     }
 
-    canEdit_(userEmail) {
-      return ReportTable.canEdit(table, userEmail);
+    canEdit_(owners, userEmail) {
+      return ReportTable.canEdit(owners, userEmail);
     }
 
     async onEnterRow_(event) {
@@ -132,7 +136,7 @@ tr.exportTo('cp', () => {
         tooltip: {
           rows: event.model.row.actualDescriptors.map(descriptor => [
             descriptor.testSuite, descriptor.bot, descriptor.testCase]),
-          top: (tdRect.bottom - thisRect.bottom),
+          top: (tdRect.bottom - thisRect.top),
           left: (tdRect.left - thisRect.left),
         },
       }));
@@ -160,7 +164,45 @@ tr.exportTo('cp', () => {
   ReportTable.buildState = options => cp.buildState(
       ReportTable.State, options);
 
-  ReportTable.properties = cp.buildProperties('state', ReportTable.State);
+  ReportTable.properties = {
+    ...cp.buildProperties('state', ReportTable.State),
+    userEmail: {statePath: 'userEmail'},
+  };
+
+  const DASHES = '-'.repeat(5);
+  const PLACEHOLDER_TABLE = {
+    name: DASHES,
+    isPlaceholder: true,
+    statistics: ['avg'],
+    rows: [],
+    tooltip: {},
+  };
+  // Keep this the same shape as the default report so that the buttons don't
+  // move when the default report loads.
+  for (let i = 0; i < 4; ++i) {
+    const scalars = [];
+    for (let j = 0; j < 4 * PLACEHOLDER_TABLE.statistics.length; ++j) {
+      scalars.push({value: 0, unit: tr.b.Unit.byName.count});
+    }
+    PLACEHOLDER_TABLE.rows.push({
+      labelParts: [
+        {
+          href: '',
+          label: DASHES,
+          isFirst: true,
+          rowCount: 1,
+        },
+      ],
+      scalars,
+    });
+  }
+
+  ReportTable.placeholderTable = name => {
+    return {
+      ...PLACEHOLDER_TABLE,
+      name,
+    };
+  };
 
   cp.ElementBase.register(ReportTable);
 

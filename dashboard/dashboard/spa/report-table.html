@@ -117,12 +117,12 @@ found in the LICENSE file.
           on-click="onCopy_">
       </iron-icon>
 
-      <template is="dom-if" if="[[canEdit_(userEmail)]]">
+      <template is="dom-if" if="[[canEdit_(owners, userEmail)]]">
         <iron-icon
             id="edit"
             icon="cp:edit"
             title="Edit template"
-            on-click="onToggleEditing_">
+            on-click="onEdit_">
         </iron-icon>
       </template>
     </div>
