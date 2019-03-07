@@ -46,6 +46,30 @@
       "revId": "0cae1b87ac8844af19057546e1ea5575599cce93",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95421fdd_5b690dec",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-03-07T01:44:32Z",
+      "side": 1,
+      "message": "Thank you. Findit will still be able to rerun unit tests using the double colon separated lists. I am not removing that functionality. I am just expanding what can be in the test filter list in telemetry unit tests.",
+      "parentUuid": "0acc8ddd_ecbbe494",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 13
+      },
+      "revId": "0cae1b87ac8844af19057546e1ea5575599cce93",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
