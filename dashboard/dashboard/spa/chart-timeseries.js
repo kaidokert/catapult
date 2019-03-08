@@ -95,7 +95,29 @@ tr.exportTo('cp', () => {
     return true;
   };
 
+  async function consumeAll(reader) {
+    for await (const _ of reader) {
+      // Wait for the Service Worker to finish all its tasks.
+      // Disgard the result since preload doesn't display data.
+    }
+  }
+
   ChartTimeseries.actions = {
+    prefetch: (statePath, lineDescriptors) => async(dispatch, getState) => {
+      const promises = [];
+
+      for (const lineDescriptor of lineDescriptors) {
+        const fetchDescriptors = ChartTimeseries.createFetchDescriptors(
+            lineDescriptor, cp.LEVEL_OF_DETAIL.XY);
+        for (const fetchDescriptor of fetchDescriptors) {
+          promises.push(consumeAll(new cp.TimeseriesRequest(
+              fetchDescriptor).reader()));
+        }
+      }
+
+      await Promise.all(promises);
+    },
+
     load: statePath => async(dispatch, getState) => {
       let state = Polymer.Path.get(getState(), statePath);
       if (!state) return;
@@ -358,6 +380,11 @@ tr.exportTo('cp', () => {
         });
       }
 
+      /*
+      TODO
+      rows.push({colspan: 2, name: 'Click for options and more data'});
+      */
+
       state = {
         ...state,
         tooltip: {
@@ -508,6 +535,10 @@ tr.exportTo('cp', () => {
             buildType: lineDescriptor.buildType,
             levelOfDetail,
           });
+          // TODO if levelOfDetail === ANNOTATIONS and case === undefined,
+          // then add ANNOTATIONS_ONLY fetchDescriptors for all test cases in
+          // this test suite in order to bubble alerts up to summary time
+          // series.
         }
       }
     }
