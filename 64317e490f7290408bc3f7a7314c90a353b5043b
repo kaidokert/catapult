@@ -16,6 +16,24 @@
       "revId": "64317e490f7290408bc3f7a7314c90a353b5043b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "deb0f1b1_697a9f64",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-08T17:37:05Z",
+      "side": 1,
+      "message": "Thanks, yeah I wasn\u0027t sure. But I just poked through pinpoint_request on the dashboard and can\u0027t find any overlap between the values specified in bot_configuration and the ones specified when the dashboard initiates a job, so this should be good to go.",
+      "parentUuid": "84dd38ac_4ea22821",
+      "revId": "64317e490f7290408bc3f7a7314c90a353b5043b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
