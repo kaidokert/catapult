@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "824946b2_a49bf654",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-08T14:31:13Z",
+      "side": 1,
+      "message": "Is there a strong reason for moving this out of story_runner.py? I would prefer to keep it there so most of the code for the run loops is in a single place; and this file can remain a small wrapper mostly defining the outside command line API.\n\nThat would also make it easier to review any changes in the code.",
+      "revId": "6f97b37a1377ffc861c07afef33902a7e993b24d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7325905f_9c9712c0",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-08T14:31:13Z",
+      "side": 1,
+      "message": "Note this change is tricky, see the discussion here:\nhttps://chromium-review.googlesource.com/c/catapult/+/1488531/4/telemetry/telemetry/page/shared_page_state.py#31\n\nYou should also sync with +Sadrul since both of you goals have some overlap.",
+      "revId": "6f97b37a1377ffc861c07afef33902a7e993b24d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4fc0e714_87de2956",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-08T14:31:13Z",
+      "side": 1,
+      "message": "why is this bit needed?",
+      "revId": "6f97b37a1377ffc861c07afef33902a7e993b24d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
