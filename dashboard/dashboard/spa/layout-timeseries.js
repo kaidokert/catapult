@@ -10,6 +10,13 @@ tr.exportTo('cp', () => {
   const ICON_WIDTH_PX = 24;
   const TEXT_HEIGHT_PX = 15;
 
+  const MODE = {
+    CENTER: 'CENTER',
+    DELTA: 'DELTA',
+    NORMALIZE_LINE: 'NORMALIZE_LINE',
+    NORMALIZE_UNIT: 'NORMALIZE_UNIT',
+  };
+
   function layoutTimeseries(state) {
     let rawXs;
     if (state.fixedXAxis) {
@@ -116,6 +123,10 @@ tr.exportTo('cp', () => {
   }
 
   function computeXTicks(revisionRange, displayRange, rawXs) {
+    // TODO left-align tick for first point, right-align tick for last point,
+    // enough round numbers in between that they won't overlap even if the
+    // window shrinks by 50%.
+
     // Timestamps can be in either seconds or milliseconds.
     const {dateRange, displayMs, rawMs} = revisionRangeAsDates(
         revisionRange, displayRange, rawXs);
@@ -468,6 +479,7 @@ tr.exportTo('cp', () => {
   }
 
   return {
+    MODE,
     computeTicks,
     layoutTimeseries,
   };
