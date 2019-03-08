@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "155f9f40_7d2b92f4",
+        "filename": "dashboard/app.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-08T17:51:08Z",
+      "side": 1,
+      "message": "Do you need to check this in to experiment? Can\u0027t you simply deploy the new app.yaml to a dev instance and redirect some traffic there?\n\nAlso, I commented in the doc, but crbug.com/917876 may be a good thing to try before fiddling with instance classes.",
+      "revId": "ba61ba9baa7ec877d675e09c4c625bcd2615d747",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
