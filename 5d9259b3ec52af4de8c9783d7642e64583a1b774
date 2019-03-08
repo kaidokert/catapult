@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e26f5e6_418577d3",
+        "filename": "tracing/tracing/metrics/vr/webxr_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-03-08T05:04:35Z",
+      "side": 1,
+      "message": "for (const [eventName, eventData] of Object.entries(expectationEvents)) {",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 53
+      },
+      "revId": "5d9259b3ec52af4de8c9783d7642e64583a1b774",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac1007f9_83b3b72a",
+        "filename": "tracing/tracing/metrics/vr/webxr_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-03-08T05:04:35Z",
+      "side": 1,
+      "message": "for of Object.entries",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 43
+      },
+      "revId": "5d9259b3ec52af4de8c9783d7642e64583a1b774",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
