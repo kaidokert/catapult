@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e493e3a2_8db5e798",
+        "filename": "telemetry/telemetry/decorators.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-03-08T23:33:05Z",
+      "side": 1,
+      "message": "interesting, I had to handroll something to check on this \u0026 was surprised to find that the decorator will see this as a function but type(Class.method) will see this as an instancemethod.",
+      "revId": "715c601cdff25c6b08fbce9e9e0270f50f9fc8b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
