@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b3b4a0d7_199f5971",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-08T15:45:48Z",
+      "side": 1,
+      "message": "My idea was to physically separate the preparation code from the execution code, so that it was clear to a human reader which module does what. I also wanted to strip the story_runner module of all the ad-hoc logic that depends heavily on specific use-cases (like e.g. what to do with disabled benchmarks).\n\nIf this file grows a little big, I can split it in two, one dealing exclusively with cmd-line parsing, and the other with preparing a benchmark to be run. Anyway, since the goal is to detach cmd-line API from the internal interface, then it is an expected outcome that the wrapper will become more complex.",
+      "parentUuid": "824946b2_a49bf654",
+      "revId": "6f97b37a1377ffc861c07afef33902a7e993b24d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7325905f_9c9712c0",
         "filename": "telemetry/telemetry/page/shared_page_state.py",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "36b3217a_0f6226be",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-08T15:45:48Z",
+      "side": 1,
+      "message": "Ah, thanks for pointing this out! I didn\u0027t realize that benchmarks can define their own shared state classes.\n\nBut can\u0027t we accomplish the change is just 2 steps?\n1) Add SetPossibleBrowser() setter method to the SharedState (which is the superclass of all shared states I believe), and call it after the construction of the shared state in story_runner.Run().\n2) Remove initialization of self._possible_browser from all subclasses.",
+      "parentUuid": "7325905f_9c9712c0",
+      "revId": "6f97b37a1377ffc861c07afef33902a7e993b24d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4fc0e714_87de2956",
         "filename": "telemetry/telemetry/story/story_filter.py",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2019-03-08T14:31:13Z",
       "side": 1,
       "message": "why is this bit needed?",
+      "revId": "6f97b37a1377ffc861c07afef33902a7e993b24d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d164cddc_2da11a08",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-08T15:45:48Z",
+      "side": 1,
+      "message": "Current implementation of FilterStorySet receives a StorySet object, but returns a list. This makes it impossible to pass the result to functions where a StorySet is expected. So I changed it to return a StorySet, which I believe is an expected behavior given its name.",
+      "parentUuid": "4fc0e714_87de2956",
       "revId": "6f97b37a1377ffc861c07afef33902a7e993b24d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
