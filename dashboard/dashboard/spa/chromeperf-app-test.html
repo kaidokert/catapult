@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<!--
+Copyright 2019 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+<script src="/bower_components/web-component-tester/browser.js"></script>
+<link rel="import" href="/dashboard/spa/chromeperf-app.html">
+
+<test-fixture id="test">
+  <template>
+    <chromeperf-app state-path="test"></chromeperf-app>
+  </template>
+</test-fixture>
+
+<script>
+'use strict';
+window.AUTH_CLIENT_ID = '';
+
+suite('chromeperf-app', function() {
+  let originalFetch;
+  let originalAuthorizationHeaders;
+  setup(() => {
+    originalAuthorizationHeaders = window.getAuthorizationHeaders;
+    window.getAuthorizationHeaders = async() => {
+      return {};
+    };
+    originalFetch = window.fetch;
+    window.fetch = async(url, options) => {
+      return {
+        async json() {
+          if (url.startsWith(cp.SessionStateRequest.URL)) {
+            return {
+              reportSection: {
+                milestone: 72,
+                sources: ['from session'],
+              },
+              showingReportSection: true,
+            };
+          }
+          if (url === cp.DescribeRequest.URL) {
+            return {
+              measurements: ['measure'],
+              bots: ['master:bot'],
+            };
+          }
+          if (url === cp.AlertsRequest.URL) {
+            return {anomalies: []};
+          }
+          if (url === cp.SheriffsRequest.URL) {
+            return ['ccc', 'ddd'];
+          }
+          if (url === cp.ReportNamesRequest.URL) {
+            return [{
+              name: cp.ReportControls.DEFAULT_NAME,
+              id: 42,
+              modified: new Date(),
+            }];
+          }
+        },
+      };
+    };
+  });
+  teardown(() => {
+    window.fetch = originalFetch;
+    window.getAuthorizationHeaders = originalAuthorizationHeaders;
+  });
+
+  test('newAlerts', async function() {
+    const app = fixture('test');
+    await cp.afterRender();
+    assert.lengthOf(app.alertsSectionIds, 0);
+    app.$.new_alerts.click();
+    await cp.afterRender();
+    assert.lengthOf(app.alertsSectionIds, 1);
+  });
+
+  test('closeAlerts', async function() {
+    const app = fixture('test');
+    await cp.afterRender();
+    app.$.new_alerts.click();
+    await cp.afterRender();
+    const alerts = app.shadowRoot.querySelector('alerts-section');
+    alerts.dispatchEvent(new CustomEvent('close-section'));
+    await cp.afterRender();
+    assert.lengthOf(app.alertsSectionIds, 0);
+    // Empty alerts-sections are forgotten instantly and can't be reopened.
+    assert.lengthOf(app.closedAlertsIds, 0);
+  });
+
+  test('reopenAlerts', async function() {
+    const app = fixture('test');
+    await cp.afterRender();
+    app.$.new_alerts.click();
+    await cp.afterRender();
+    const alerts = app.shadowRoot.querySelector('alerts-section');
+    // Make the alerts-section not empty so that it can be reopened.
+    app.dispatch(Redux.UPDATE(alerts.statePath + '.bug', {
+      selectedOptions: [42],
+    }));
+    alerts.$.controls.dispatchEvent(new CustomEvent('sources', {
+      detail: {sources: [{bug: 42}]},
+    }));
+    await cp.afterRender();
+
+    alerts.dispatchEvent(new CustomEvent('close-section'));
+    await cp.afterRender();
+    assert.lengthOf(app.alertsSectionIds, 0);
+    assert.lengthOf(app.closedAlertsIds, 1);
+
+    app.$.reopen_alerts.click();
+    await cp.afterRender();
+    assert.lengthOf(app.alertsSectionIds, 1);
+  });
+
+  test('restoreFromRoute session', async function() {
+    const app = fixture('test');
+    await cp.afterRender();
+    await app.dispatch('restoreFromRoute', app.statePath, new URLSearchParams({
+      session: 42,
+    }));
+    await cp.afterRender();
+    await cp.animationFrame();
+    await cp.afterRender();
+    assert.strictEqual('report=from+session&minRev=612437&maxRev=625896',
+        app.reduxRoutePath);
+  });
+
+  test('restoreFromRoute report', async function() {
+    const app = fixture('test');
+    await cp.afterRender();
+    app.dispatch('restoreFromRoute', app.statePath, new URLSearchParams({
+      report: 'name',
+    }));
+    await cp.afterRender();
+    assert.strictEqual('name', app.reportSection.source.selectedOptions[0]);
+  });
+
+  test('restoreFromRoute sheriff', async function() {
+    const app = fixture('test');
+    await cp.afterRender();
+    app.dispatch('restoreFromRoute', app.statePath, new URLSearchParams({
+      sheriff: 'name',
+    }));
+    await cp.afterRender();
+    assert.strictEqual('name', app.alertsSectionsById[
+        app.alertsSectionIds[0]].sheriff.selectedOptions[0]);
+    assert.strictEqual('sheriff=name', app.reduxRoutePath);
+  });
+
+  test('restoreFromRoute chart', async function() {
+    const app = fixture('test');
+    await cp.afterRender();
+    await app.dispatch('restoreFromRoute', app.statePath, new URLSearchParams({
+      suite: 'suite:name',
+      measurement: 'measure',
+      bot: 'master:bot',
+    }));
+    await cp.afterRender();
+    assert.lengthOf(app.chartSectionIds, 1);
+    assert.strictEqual('suite:name', app.chartSectionsById[
+        app.chartSectionIds].descriptor.suite.selectedOptions[0]);
+    assert.strictEqual('measure', app.chartSectionsById[
+        app.chartSectionIds].descriptor.measurement.selectedOptions[0]);
+    assert.strictEqual('master:bot', app.chartSectionsById[
+        app.chartSectionIds].descriptor.bot.selectedOptions[0]);
+  });
+
+  test('restoreFromRoute team', async function() {
+    const app = fixture('test');
+    await app.dispatch('restoreFromRoute', app.statePath, new URLSearchParams({
+      team: 'team',
+    }));
+    assert.strictEqual('team', app.getState().teamName);
+  });
+});
+</script>
