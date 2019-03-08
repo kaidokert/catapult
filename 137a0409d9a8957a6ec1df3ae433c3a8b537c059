@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e8ca1f0_2b42371a",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 938,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-08T16:26:28Z",
+      "side": 1,
+      "message": "Because reinstall\u003dFalse is the default, I think this should be at info level, or possibly don\u0027t even log anything.\n\nThe comment above in the docstring should be enough. I think nobody should be surprised if they call device.Install(apk_bundle) and that has the effect of installing (or re-installing) the bundle.",
+      "revId": "137a0409d9a8957a6ec1df3ae433c3a8b537c059",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b14504fc_705a2d4f",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-08T16:26:28Z",
+      "side": 1,
+      "message": "This one, on the other hand, is fine to leave as a warning, because someone is explicitly requesting something which may not be possible.\n\nI assume if one tries to install a bundle of a lower version then the installation will fail?",
+      "revId": "137a0409d9a8957a6ec1df3ae433c3a8b537c059",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
