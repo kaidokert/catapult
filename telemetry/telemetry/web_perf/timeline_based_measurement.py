@@ -283,8 +283,9 @@ class TimelineBasedMeasurement(story_test.StoryTest):
         raise Exception(
             'Please specify the TBMv1 metrics you are interested in '
             'explicitly.')
+      self._ComputeLegacyTimelineBasedMetrics(
+          results, trace_result.AsRawTraceData())
       trace_value.SerializeTraceData()
-      self._ComputeLegacyTimelineBasedMetrics(results, trace_result)
 
   def DidRunStory(self, platform, results):
     """Clean up after running the story."""
@@ -299,8 +300,8 @@ class TimelineBasedMeasurement(story_test.StoryTest):
       trace_value.SerializeTraceData()
       results.AddValue(trace_value)
 
-  def _ComputeLegacyTimelineBasedMetrics(self, results, trace_result):
-    model = model_module.TimelineModel(trace_result)
+  def _ComputeLegacyTimelineBasedMetrics(self, results, trace_data):
+    model = model_module.TimelineModel(trace_data)
     threads_to_records_map = _GetRendererThreadsToInteractionRecordsMap(model)
     if (len(threads_to_records_map.values()) == 0 and
         self._tbm_options.config.enable_chrome_trace):

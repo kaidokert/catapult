@@ -45,13 +45,6 @@ def _DisableGarbageCollection():
     gc.enable()
 
 
-class _TraceDataDiscarder(object):
-  """A do-nothing data builder that just discards trace data."""
-  def AddTraceFor(self, trace_part, value):
-    del trace_part  # Unused.
-    del value  # Unused.
-
-
 class _TracingState(object):
 
   def __init__(self, config, timeout):
@@ -101,10 +94,9 @@ class TracingControllerBackend(object):
 
     return True
 
-  def StopTracing(self):
+  def StopTracing(self, discard_trace=False):
     assert self.is_tracing_running, 'Can only stop tracing when tracing is on.'
     self._IssueClockSyncMarker()
-    builder = self._current_state.builder
 
     raised_exception_messages = []
     for agent in reversed(self._active_agents_instances):
@@ -114,12 +106,20 @@ class TracingControllerBackend(object):
         raised_exception_messages.append(
             ''.join(traceback.format_exception(*sys.exc_info())))
 
-    for agent in self._active_agents_instances:
-      try:
-        agent.CollectAgentTraceData(builder)
-      except Exception: # pylint: disable=broad-except
-        raised_exception_messages.append(
-            ''.join(traceback.format_exception(*sys.exc_info())))
+    builder = self._current_state.builder
+    with builder.CollectionMode(discard=discard_trace):
+      for agent in self._active_agents_instances:
+        try:
+          agent.CollectAgentTraceData(builder)
+        except Exception: # pylint: disable=broad-except
+          raised_exception_messages.append(
+              ''.join(traceback.format_exception(*sys.exc_info())))
+
+    if discard_trace:
+      builder.CleanUpTraceData()
+      builder = None
+    else:
+      builder.Freeze()
 
     self._active_agents_instances = []
     self._current_state = None
@@ -129,7 +129,7 @@ class TracingControllerBackend(object):
           'Exceptions raised when trying to stop tracing:\n' +
           '\n'.join(raised_exception_messages))
 
-    return builder.AsData()
+    return builder
 
   def FlushTracing(self, discard_current=False):
     assert self.is_tracing_running, 'Can only flush tracing when tracing is on.'
@@ -137,22 +137,17 @@ class TracingControllerBackend(object):
 
     raised_exception_messages = []
 
-    # pylint: disable=redefined-variable-type
-    # See: https://github.com/PyCQA/pylint/issues/710
-    if discard_current:
-      trace_builder = _TraceDataDiscarder()
-    else:
-      trace_builder = self._current_state.builder
-
-    for agent in self._active_agents_instances:
-      try:
-        if agent.SupportsFlushingAgentTracing():
-          agent.FlushAgentTracing(self._current_state.config,
-                                  self._current_state.timeout,
-                                  trace_builder)
-      except Exception: # pylint: disable=broad-except
-        raised_exception_messages.append(
-            ''.join(traceback.format_exception(*sys.exc_info())))
+    trace_builder = self._current_state.builder
+    with trace_builder.CollectionMode(discard=discard_current):
+      for agent in self._active_agents_instances:
+        try:
+          if agent.SupportsFlushingAgentTracing():
+            agent.FlushAgentTracing(self._current_state.config,
+                                    self._current_state.timeout,
+                                    trace_builder)
+        except Exception: # pylint: disable=broad-except
+          raised_exception_messages.append(
+              ''.join(traceback.format_exception(*sys.exc_info())))
 
     if raised_exception_messages:
       raise exceptions.TracingException(

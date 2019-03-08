@@ -48,7 +48,7 @@ def _SerializeAndProcessTrace(trace_data, process_trace_func_code):
   temp_dir = tempfile.mkdtemp()
   try:
     trace_file_path = os.path.join(temp_dir, 'temp_trace')
-    trace_data.Serialize(trace_file_path)
+    trace_data.Serialize(trace_file_path, clean_up=True)
     return map_single_trace.ExecuteTraceMappingCode(
         trace_file_path, process_trace_func_code)
   finally:
@@ -92,4 +92,3 @@ def ExtractCompleteSyncIds(trace_data):
   """
   return _SerializeAndProcessTrace(
       trace_data, _GET_COMPLETE_SYNC_IDS)['sync_ids']
-

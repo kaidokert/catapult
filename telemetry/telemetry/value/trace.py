@@ -51,16 +51,15 @@ class TraceValue(value_module.Value):
 
   def SerializeTraceData(self):
     if not self._temp_file:
-      self._temp_file = self._GetTempFileHandle(self._trace_data)
-
-  def _GetTempFileHandle(self, trace_data):
-    tf = tempfile.NamedTemporaryFile(delete=False, suffix='.html')
-    tf.close()
-    title = ''
-    if self.page:
-      title = self.page.name
-    trace_data.Serialize(tf.name, trace_title=title)
-    return file_handle.FromFilePath(tf.name)
+      tf = tempfile.NamedTemporaryFile(delete=False, suffix='.html')
+      tf.close()
+      try:
+        self._trace_data.Serialize(
+            tf.name, trace_title=self.page.name, clean_up=True)
+        self._temp_file = file_handle.FromFilePath(tf.name)
+      finally:
+        # Trace data was cleaned up at serialization.
+        self._trace_data = None
 
   def __repr__(self):
     if self.page:
@@ -80,7 +79,7 @@ class TraceValue(value_module.Value):
     may be called more than once without error.
     """
     if self._trace_data:
-      self._trace_data.CleanUpAllTraces()
+      self._trace_data.CleanUpTraceData()
       self._trace_data = None
 
     if self._temp_file is None:
