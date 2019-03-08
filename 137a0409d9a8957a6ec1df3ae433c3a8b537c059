@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3e40ba98_10c2bda7",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 938,
+      "author": {
+        "id": 1154589
+      },
+      "writtenOn": "2019-03-08T16:33:31Z",
+      "side": 1,
+      "message": "Done, removing the noise.",
+      "parentUuid": "8e8ca1f0_2b42371a",
+      "revId": "137a0409d9a8957a6ec1df3ae433c3a8b537c059",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b14504fc_705a2d4f",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 7
@@ -30,6 +48,24 @@
       "writtenOn": "2019-03-08T16:26:28Z",
       "side": 1,
       "message": "This one, on the other hand, is fine to leave as a warning, because someone is explicitly requesting something which may not be possible.\n\nI assume if one tries to install a bundle of a lower version then the installation will fail?",
+      "revId": "137a0409d9a8957a6ec1df3ae433c3a8b537c059",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf6d5ef1_7cb55fe5",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 1154589
+      },
+      "writtenOn": "2019-03-08T16:33:31Z",
+      "side": 1,
+      "message": "I presume so, although I haven\u0027t tested it with bundles (that is what happens trying to go from monochrome-\u003echrome with the 32 bit builds)",
+      "parentUuid": "b14504fc_705a2d4f",
       "revId": "137a0409d9a8957a6ec1df3ae433c3a8b537c059",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
