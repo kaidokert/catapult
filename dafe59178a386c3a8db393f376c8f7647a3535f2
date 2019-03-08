@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ef9e063d_f1bb796b",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-03-08T00:51:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95647cfc_1c29d855",
+      "revId": "dafe59178a386c3a8db393f376c8f7647a3535f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6d4f0d4e_071e6afc",
         "filename": "telemetry/telemetry/testing/run_browser_tests.py",
         "patchSetId": 3
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "2fc6d04a_dd749037",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-03-08T00:51:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d4f0d4e_071e6afc",
+      "range": {
+        "startLine": 154,
+        "startChar": 4,
+        "endLine": 154,
+        "endChar": 30
+      },
+      "revId": "dafe59178a386c3a8db393f376c8f7647a3535f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b6616079_88a2eae0",
         "filename": "telemetry/telemetry/testing/run_browser_tests.py",
         "patchSetId": 3
@@ -53,6 +95,30 @@
       "writtenOn": "2019-03-07T22:50:13Z",
       "side": 1,
       "message": "where does this \"pattern\" variable come from?",
+      "range": {
+        "startLine": 155,
+        "startChar": 39,
+        "endLine": 155,
+        "endChar": 47
+      },
+      "revId": "dafe59178a386c3a8db393f376c8f7647a3535f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86c76d69_d94840af",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-03-08T00:51:37Z",
+      "side": 1,
+      "message": "It comes from the test filter list. When that input is split by \u0027::\u0027, I consider each piece a pattern that a test name may or may not match.",
+      "parentUuid": "b6616079_88a2eae0",
       "range": {
         "startLine": 155,
         "startChar": 39,
@@ -88,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "f0f887de_806963dd",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-03-08T00:51:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "048223c4_38d69cfa",
+      "range": {
+        "startLine": 158,
+        "startChar": 0,
+        "endLine": 158,
+        "endChar": 0
+      },
+      "revId": "dafe59178a386c3a8db393f376c8f7647a3535f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "92d055ce_20660145",
         "filename": "telemetry/telemetry/testing/run_browser_tests.py",
         "patchSetId": 3
@@ -108,6 +198,30 @@
       "revId": "dafe59178a386c3a8db393f376c8f7647a3535f2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f394a57_61afb8e7",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-03-08T00:51:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92d055ce_20660145",
+      "range": {
+        "startLine": 163,
+        "startChar": 2,
+        "endLine": 163,
+        "endChar": 11
+      },
+      "revId": "dafe59178a386c3a8db393f376c8f7647a3535f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
