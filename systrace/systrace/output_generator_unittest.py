@@ -104,7 +104,8 @@ class OutputGeneratorTest(unittest.TestCase):
       data_builder_out = util.generate_random_filename_for_test()
       output_generator_out = util.generate_random_filename_for_test()
       output_generator.GenerateHTMLOutput(trace_results, output_generator_out)
-      trace_data_builder.AsData().Serialize(data_builder_out, 'Systrace')
+      trace_data_builder.Freeze().Serialize(
+          data_builder_out, 'Systrace', clean_up=True)
 
       output_generator_md5sum = hashlib.md5(
           open(output_generator_out, 'rb').read()).hexdigest()

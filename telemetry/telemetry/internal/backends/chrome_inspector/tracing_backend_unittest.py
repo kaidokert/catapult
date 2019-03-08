@@ -2,11 +2,11 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import tempfile
 import timeit
 import unittest
 
 from telemetry.internal.backends.chrome_inspector import tracing_backend
-from telemetry.internal.backends.chrome_inspector.tracing_backend import _DevToolsStreamReader
 from telemetry.testing import fakes
 from telemetry.timeline import tracing_config
 from tracing.trace_data import trace_data
@@ -152,27 +152,27 @@ class DevToolsStreamPerformanceTest(unittest.TestCase):
     payload = ','.join(['{}'] * 5000)
     self._inspector_socket.AddAsyncResponse('IO.read', {'data': '[' + payload},
                                             fake_time)
-    start_clock = timeit.default_timer()
-
     done = {'done': False}
     def MarkDone(data):
       del data  # unused
       done['done'] = True
 
-    reader = _DevToolsStreamReader(self._inspector_socket, 'dummy')
-    reader.Read(MarkDone)
-    while not done['done']:
-      fake_time += 1
-      if count > 0:
-        self._inspector_socket.AddAsyncResponse(
-            'IO.read', {'data': payload},
-            fake_time)
-      elif count == 0:
-        self._inspector_socket.AddAsyncResponse(
-            'IO.read',
-            {'data': payload + ']', 'eof': True}, fake_time)
-      count -= 1
-      self._inspector_socket.DispatchNotifications(10)
+    reader = tracing_backend._DevToolsStreamReader(self._inspector_socket)
+    with tempfile.TemporaryFile() as trace_handle:
+      start_clock = timeit.default_timer()
+      reader.Read('dummy', trace_handle, MarkDone)
+      while not done['done']:
+        fake_time += 1
+        if count > 0:
+          self._inspector_socket.AddAsyncResponse(
+              'IO.read', {'data': payload},
+              fake_time)
+        elif count == 0:
+          self._inspector_socket.AddAsyncResponse(
+              'IO.read',
+              {'data': payload + ']', 'eof': True}, fake_time)
+        count -= 1
+        self._inspector_socket.DispatchNotifications(10)
     return timeit.default_timer() - start_clock
 
   def testReadTime(self):

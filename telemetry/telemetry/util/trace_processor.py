@@ -42,7 +42,7 @@ def _SerializeAndProcessTrace(trace_data, process_trace_func_code):
   temp_dir = tempfile.mkdtemp()
   try:
     trace_file_path = os.path.join(temp_dir, 'temp_trace')
-    trace_data.Serialize(trace_file_path)
+    trace_data.Serialize(trace_file_path, clean_up=True)
     return map_single_trace.ExecuteTraceMappingCode(
         trace_file_path, process_trace_func_code)
   finally:
@@ -74,4 +74,3 @@ def ExtractMemoryDumpIds(trace_data):
   # Event ids look like this: 'disabled-by-default-memory-infra:87890:ptr:0x3'.
   # The part after the last ':' is the dump id.
   return [eid.rsplit(':')[-1] for eid in event_ids]
-
