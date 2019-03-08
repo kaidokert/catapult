@@ -219,6 +219,24 @@
     },
     {
       "key": {
+        "uuid": "52802a89_c8f0c8fc",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-03-08T15:23:10Z",
+      "side": 1,
+      "message": "Oh, in that case, I don\u0027t think I understand what you suggested, sorry!\n\nConstructing RunTest (or a subclass) from FromDict() would always get a default tag, But some tests directly create a RunTest object (or one of its subclasses) too. That\u0027s why I kept \u003dNone in __init__(). Similarly, _Start() may be called without additional tags. That\u0027s why I kept the \u003dNone here too. Does that make sense? Or would you prefer that I update the callsites to always issue some tags?",
+      "parentUuid": "55ad844f_62e930cb",
+      "revId": "3397fcf53208f7c0ced5218b49e0286f83e2d467",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9e609e16_3068dad3",
         "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
         "patchSetId": 2
