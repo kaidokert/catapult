@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "e73b9920_c1588580",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-08T16:46:21Z",
+      "side": 1,
+      "message": "Sounds good. But then we should probably have a \"PrepareBenchmark\" and a \"RunBenchmark\", instead of a \"SetUpAndRunBenchmark\".\n\nI also suggest initially both should functions start in story_runner.py, if only for the initial code reviews, so diffs are clearer. Then on a final patch you can move the \"prepare\" part to another file.",
+      "parentUuid": "b3b4a0d7_199f5971",
+      "revId": "6f97b37a1377ffc861c07afef33902a7e993b24d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7325905f_9c9712c0",
         "filename": "telemetry/telemetry/page/shared_page_state.py",
         "patchSetId": 1
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "Ah, thanks for pointing this out! I didn\u0027t realize that benchmarks can define their own shared state classes.\n\nBut can\u0027t we accomplish the change is just 2 steps?\n1) Add SetPossibleBrowser() setter method to the SharedState (which is the superclass of all shared states I believe), and call it after the construction of the shared state in story_runner.Run().\n2) Remove initialization of self._possible_browser from all subclasses.",
       "parentUuid": "7325905f_9c9712c0",
+      "revId": "6f97b37a1377ffc861c07afef33902a7e993b24d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d605e6ed_1d7023de",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-08T16:46:21Z",
+      "side": 1,
+      "message": "Yup. That sounds possible. But I would suggest doing that first on a couple of separate CLs; then we can unblock the rest of this work.",
+      "parentUuid": "36b3217a_0f6226be",
       "revId": "6f97b37a1377ffc861c07afef33902a7e993b24d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -104,6 +140,24 @@
       "revId": "6f97b37a1377ffc861c07afef33902a7e993b24d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ec13e27_5c35c355",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-08T16:46:21Z",
+      "side": 1,
+      "message": "Ack. Makes sense.",
+      "parentUuid": "d164cddc_2da11a08",
+      "revId": "6f97b37a1377ffc861c07afef33902a7e993b24d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
