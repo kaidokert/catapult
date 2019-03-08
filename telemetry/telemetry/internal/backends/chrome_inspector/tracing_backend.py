@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import base64
 import json
 import logging
 import socket
@@ -39,30 +40,26 @@ class ClockSyncResponseException(Exception):
 
 
 class _DevToolsStreamReader(object):
-  def __init__(self, inspector_socket, stream_handle,
-               is_stream_compressed=False):
+  def __init__(self, inspector_socket):
     """Constructor for the stream reader that reads trace data over a stream.
 
     Args:
       inspector_socket: An inspector_websocket.InspectorWebsocket instance.
       stream_handle: A handle for the stream that contains the trace data.
-      is_stream_compressed: Boolean indicating whether the trace data in
-          the stream is compressed or not.
+      trace_handle: A file handle for writing output trace data.
     """
     self._inspector_websocket = inspector_socket
-    self._handle = stream_handle
-    self._is_stream_compressed = is_stream_compressed
-    self._trace_file_handle = None
+    self._stream_handle = None
+    self._trace_handle = None
     self._callback = None
 
-  def Read(self, callback):
+  def Read(self, stream_handle, trace_handle, callback):
     # Do not allow the instance of this class to be reused, as
     # we only read data sequentially at the moment, so a stream
     # can only be read once.
     assert not self._callback
-    self._trace_file_handle = trace_data_module.TraceFileHandle(
-        self._is_stream_compressed)
-    self._trace_file_handle.Open()
+    self._stream_handle = stream_handle
+    self._trace_handle = trace_handle
     self._callback = callback
     self._ReadChunkFromStream()
     # The below is not a typo -- queue one extra read ahead to avoid latency.
@@ -72,12 +69,12 @@ class _DevToolsStreamReader(object):
     # Limit max block size to avoid fragmenting memory in sock.recv(),
     # (see https://github.com/liris/websocket-client/issues/163 for details)
     req = {'method': 'IO.read', 'params': {
-        'handle': self._handle, 'size': 32768}}
+        'handle': self._stream_handle, 'size': 32768}}
     self._inspector_websocket.AsyncRequest(req, self._GotChunkFromStream)
 
   def _GotChunkFromStream(self, response):
     # Quietly discard responses from reads queued ahead after EOF.
-    if self._trace_file_handle is None:
+    if self._trace_handle is None:
       return
     if 'error' in response:
       raise TracingUnrecoverableException(
@@ -85,16 +82,20 @@ class _DevToolsStreamReader(object):
     result = response['result']
     # Convert the trace data that's receive as UTF32 to its native encoding of
     # UTF8 in order to reduce its size.
-    self._trace_file_handle.AppendTraceData(result['data'].encode('utf8'),
-                                            result.get('base64Encoded', False))
+    data_chunk = result['data'].encode('utf8')
+    if result.get('base64Encoded', False):
+      data_chunk = base64.b64decode(data_chunk)
+    self._trace_handle.write(data_chunk)
+
     if not result.get('eof', False):
       self._ReadChunkFromStream()
       return
-    req = {'method': 'IO.close', 'params': {'handle': self._handle}}
+
+    req = {'method': 'IO.close', 'params': {'handle': self._stream_handle}}
     self._inspector_websocket.SendAndIgnoreResponse(req)
-    self._trace_file_handle.Close()
-    self._callback(self._trace_file_handle)
-    self._trace_file_handle = None
+    self._trace_handle.close()
+    self._trace_handle = None
+    self._callback()
 
 
 class TracingBackend(object):
@@ -307,14 +308,13 @@ class TracingBackend(object):
       if not stream_handle:
         self._has_received_all_tracing_data = True
         return
-      use_compression = res.get('params', {}).get('streamCompression') == 'gzip'
-      reader = _DevToolsStreamReader(self._inspector_websocket, stream_handle,
-                                     use_compression)
-      reader.Read(self._ReceivedAllTraceDataFromStream)
+      compressed = res.get('params', {}).get('streamCompression') == 'gzip'
+      trace_handle = self._trace_data_builder.OpenTraceHandleFor(
+          trace_data_module.CHROME_TRACE_PART, compressed=compressed)
+      reader = _DevToolsStreamReader(self._inspector_websocket)
+      reader.Read(stream_handle, trace_handle, self._ReceivedAllTracingData)
 
-  def _ReceivedAllTraceDataFromStream(self, trace_handle):
-    self._trace_data_builder.AddTraceFor(
-        trace_data_module.CHROME_TRACE_PART, trace_handle)
+  def _ReceivedAllTracingData(self):
     self._has_received_all_tracing_data = True
 
   def Close(self):
