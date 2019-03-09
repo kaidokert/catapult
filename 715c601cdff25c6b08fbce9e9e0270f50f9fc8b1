@@ -16,6 +16,24 @@
       "revId": "715c601cdff25c6b08fbce9e9e0270f50f9fc8b1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "810161b1_794abaf5",
+        "filename": "telemetry/telemetry/decorators.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-09T00:33:00Z",
+      "side": 1,
+      "message": "That is interesting. I could change this to be okay with instancemethod as well... But I guess it\u0027s probably okay to just run it through CQ and it will error if there are any problems. The unittests should already test this.",
+      "parentUuid": "e493e3a2_8db5e798",
+      "revId": "715c601cdff25c6b08fbce9e9e0270f50f9fc8b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
