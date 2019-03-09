@@ -16,6 +16,24 @@
       "revId": "ba61ba9baa7ec877d675e09c4c625bcd2615d747",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22a2610b_e2294cc5",
+        "filename": "dashboard/app.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-03-09T11:17:56Z",
+      "side": 1,
+      "message": "Is there a process we follow for doing these experiments, or should I just be able to do this on the production instance of the service? Can you point me to that process?\n\nI could have done this live, but that seems too risky since it\u0027s going to be affecting the service without being tested.\n\nLooking through the code, I don\u0027t see any parts that actually require multiple threads, so making the instance thread-safe doesn\u0027t feel like something that will make a difference. We will still be charged for the larger instance class for each instance, which seems unnecessary.",
+      "parentUuid": "155f9f40_7d2b92f4",
+      "revId": "ba61ba9baa7ec877d675e09c4c625bcd2615d747",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
