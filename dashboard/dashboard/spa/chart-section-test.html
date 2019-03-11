@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--
+Copyright 2019 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+<script src="/bower_components/web-component-tester/browser.js"></script>
+<link rel="import" href="/dashboard/spa/chart-section.html">
+
+<test-fixture id="test">
+  <template>
+    <chart-section state-path="test"></chart-section>
+  </template>
+</test-fixture>
+
+<script>
+'use strict';
+window.AUTH_CLIENT_ID = '';
+
+suite('chart-section', function() {
+  let originalFetch;
+  let originalAuthorizationHeaders;
+  setup(() => {
+    originalAuthorizationHeaders = window.getAuthorizationHeaders;
+    window.getAuthorizationHeaders = async() => {
+      return {};
+    };
+    originalFetch = window.fetch;
+    window.fetch = async(url, options) => {
+      return {
+        async json() {
+          if (url === cp.TestSuitesRequest.URL) {
+            return ['suite_a', 'suite_b', 'suite_c'];
+          }
+          if (url === cp.DescribeRequest.URL) {
+            return {
+              measurements: ['measure'],
+              bots: ['master:bot'],
+            };
+          }
+          if (url === cp.TimeseriesRequest.URL) {
+            timeseriesBody = new Map(options.body);
+            return {
+              units: options.body.get('measurement'),
+              data: [
+                [10, 1000, 1, 1],
+                [20, 2000, 2, 1],
+              ],
+            };
+          }
+        },
+      };
+    };
+  });
+  teardown(() => {
+    window.fetch = originalFetch;
+    window.getAuthorizationHeaders = originalAuthorizationHeaders;
+  });
+
+  test('descriptor', async function() {
+    const chart = fixture('test');
+    await cp.afterRender();
+    chart.$.descriptor.dispatchEvent('matrix-change', {
+    });
+    await cp.afterRender();
+    // Assert the chart loads
+    assert.strictEqual(chart);
+  });
+
+  test('statistic', async function() {
+    const chart = fixture('test');
+    await cp.afterRender();
+    chart.$.descriptor.dispatchEvent('matrix-change', {
+    });
+    await cp.afterRender();
+    // Assert the chart loads
+    assert.strictEqual(chart);
+  });
+
+  test('title', async function() {
+    const chart = fixture('test');
+    await cp.afterRender();
+    chart.$.title.value = 'test';
+    chart.$.title.dispatchEvent('keyup');
+    await cp.afterRender();
+    assert.strictEqual('test', chart.title);
+    assert.isTrue(chart.isTitleCustom);
+  });
+});
+</script>
