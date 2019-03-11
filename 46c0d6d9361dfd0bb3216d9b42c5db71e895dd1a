@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5acabb50_9b7c5d8e",
+        "filename": "telemetry/telemetry/story/shared_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-11T11:36:24Z",
+      "side": 1,
+      "message": "Is it possible to avoid exposing this? If possible I would prefer to keep it private; otherwise, if too many things depend on it, let\u0027s only expose it as public on the SharedPageSate as it\u0027s currently done.",
+      "revId": "46c0d6d9361dfd0bb3216d9b42c5db71e895dd1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
