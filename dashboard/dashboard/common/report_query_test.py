@@ -19,6 +19,8 @@ class ReportQueryTest(testing_common.TestCase):
 
   def setUp(self):
     super(ReportQueryTest, self).setUp()
+    stored_object.Set('bots_with_different_r_commit_pos', [])
+    stored_object.Set('bots_with_different_r_chromium_commit_pos', [])
     stored_object.Set(descriptor.PARTIAL_TEST_SUITES_KEY, [])
     stored_object.Set(descriptor.COMPOSITE_TEST_SUITES_KEY, [])
     stored_object.Set(descriptor.GROUPABLE_TEST_SUITE_PREFIXES_KEY, [])
@@ -716,7 +718,7 @@ class ReportQueryTest(testing_common.TestCase):
                 'testCases': ['a', 'b'],
             },
         ],
-        'statistics': ['avg', 'std', 'count'],
+        'statistics': ['avg', 'std', 'count', 'min', 'max', 'sum'],
     }
     report = report_query.ReportQuery(template, [10]).FetchSync()
 

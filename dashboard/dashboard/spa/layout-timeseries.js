@@ -10,6 +10,13 @@ tr.exportTo('cp', () => {
   const ICON_WIDTH_PX = 24;
   const TEXT_HEIGHT_PX = 15;
 
+  const MODE = {
+    CENTER: 'CENTER',
+    DELTA: 'DELTA',
+    NORMALIZE_LINE: 'NORMALIZE_LINE',
+    NORMALIZE_UNIT: 'NORMALIZE_UNIT',
+  };
+
   function layoutTimeseries(state) {
     let rawXs;
     if (state.fixedXAxis) {
@@ -116,6 +123,10 @@ tr.exportTo('cp', () => {
   }
 
   function computeXTicks(revisionRange, displayRange, rawXs) {
+    // TODO left-align tick for first point, right-align tick for last point,
+    // enough round numbers in between that they won't overlap even if the
+    // window shrinks by 50%.
+
     // Timestamps can be in either seconds or milliseconds.
     const {dateRange, displayMs, rawMs} = revisionRangeAsDates(
         revisionRange, displayRange, rawXs);
@@ -314,7 +325,7 @@ tr.exportTo('cp', () => {
 
   function normalizeLinesInPlace(lines, opt_options) {
     const options = opt_options || {};
-    const mode = options.mode || 'normalizeUnit';
+    const mode = options.mode || MODE.NORMALIZE_UNIT;
     const zeroYAxis = options.zeroYAxis || false;
     const yExtension = options.yExtension || 0;
     const xExtension = options.xExtension || 0;
@@ -352,7 +363,7 @@ tr.exportTo('cp', () => {
       }
     }
 
-    if (mode === 'center') {
+    if (mode === MODE.CENTER) {
       for (const line of lines) {
         const halfMaxLineRange = maxLineRangeForUnitName.get(
             line.unit.baseUnit.unitName) / 2;
@@ -370,7 +381,7 @@ tr.exportTo('cp', () => {
     const round = x => tr.b.math.truncate(x * 100, 1);
 
     const isNormalizeLine = (
-      mode === 'normalizeLine' || mode === 'center');
+      mode === MODE.NORMALIZE_LINE || mode === MODE.CENTER);
     for (const line of lines) {
       line.path = '';
       line.shadePoints = '';
@@ -403,7 +414,7 @@ tr.exportTo('cp', () => {
   function generateYTicksReducer(state, yRangeForUnitName, yExtension) {
     let yAxis = state.yAxis;
     let ticks = [];
-    if (state.mode === 'normalizeLine' || state.mode === 'center') {
+    if (state.mode === MODE.NORMALIZE_LINE || state.mode === MODE.CENTER) {
       for (const line of state.lines) {
         line.ticks = generateYTicks(line.yRange, line.unit, yExtension);
       }
@@ -468,6 +479,7 @@ tr.exportTo('cp', () => {
   }
 
   return {
+    MODE,
     computeTicks,
     layoutTimeseries,
   };
