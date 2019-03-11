@@ -52,6 +52,24 @@
       "revId": "ba61ba9baa7ec877d675e09c4c625bcd2615d747",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "23313749_7abad6f2",
+        "filename": "dashboard/app.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-11T12:28:12Z",
+      "side": 1,
+      "message": "IIRC turning threadsafe on will theoretically allow an instance to service ~8 requests at once instead of the 1 that it does now.",
+      "parentUuid": "e9a7d0a3_df6c1af3",
+      "revId": "ba61ba9baa7ec877d675e09c4c625bcd2615d747",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
