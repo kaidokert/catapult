@@ -35,6 +35,8 @@ class SharedState(object):
     else:
       self._wpr_mode = wpr_modes.WPR_REPLAY
 
+    self._possible_browser = None
+
   @property
   def platform(self):
     """ Override to return the platform which stories that share this same
@@ -45,6 +47,16 @@ class SharedState(object):
   @property
   def wpr_mode(self):
     return self._wpr_mode
+
+  @property
+  def possible_browser(self):
+    return self._possible_browser
+
+  def SetPossibleBrowser(self, possible_browser):
+    """ This method should be called before running any stories.
+    Override it to do extra initialization that requires possible_browser.
+    """
+    self._possible_browser = possible_browser
 
   def WillRunStory(self, story):
     """ Override to do any action before running each one of all stories

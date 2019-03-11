@@ -7,10 +7,7 @@ import os
 
 from telemetry.core import exceptions
 from telemetry.core import platform as platform_module
-from telemetry import decorators
 from telemetry.internal.backends.chrome import gpu_compositing_checker
-from telemetry.internal.browser import browser_finder
-from telemetry.internal.browser import browser_finder_exceptions
 from telemetry.internal.browser import browser_info as browser_info_module
 from telemetry.internal.browser import browser_interval_profiling_controller
 from telemetry.page import cache_temperature
@@ -51,7 +48,6 @@ class SharedPageState(story_module.SharedState):
 
     self._browser = None
     self._finder_options = finder_options
-    self._possible_browser = self._GetPossibleBrowser()
 
     self._first_browser = True
     self._previous_page = None
@@ -72,44 +68,21 @@ class SharedPageState(story_module.SharedState):
             frequency=finder_options.interval_profiling_frequency,
             profiler_options=finder_options.interval_profiler_options))
 
-    self.platform.SetFullPerformanceModeEnabled(
-        finder_options.full_performance_mode)
-    self.platform.network_controller.Open(self.wpr_mode)
-    self.platform.Initialize()
 
   @property
   def interval_profiling_controller(self):
     return self._interval_profiling_controller
 
   @property
-  def possible_browser(self):
-    return self._possible_browser
-
-  @property
   def browser(self):
     return self._browser
 
-  def _GetPossibleBrowser(self):
-    """Return a possible_browser with the given options."""
-    possible_browser = browser_finder.FindBrowser(self._finder_options)
-    if not possible_browser:
-      raise browser_finder_exceptions.BrowserFinderException(
-          'Cannot find browser of type %s. \n\nAvailable browsers:\n%s\n' % (
-              self._finder_options.browser_options.browser_type,
-              '\n'.join(browser_finder.GetAllAvailableBrowserTypes(
-                  self._finder_options))))
-
-    self._finder_options.browser_options.browser_type = (
-        possible_browser.browser_type)
-
-    if self._page_test:
-      # Check for Enabled/Disabled decorators on page_test.
-      skip, msg = decorators.ShouldSkip(self._page_test, possible_browser)
-      if skip and not self._finder_options.run_disabled_tests:
-        logging.warning(msg)
-        logging.warning('You are trying to run a disabled test.')
-
-    return possible_browser
+  def SetPossibleBrowser(self, possible_browser):
+    self._possible_browser = possible_browser
+    self.platform.SetFullPerformanceModeEnabled(
+        self._finder_options.full_performance_mode)
+    self.platform.network_controller.Open(self.wpr_mode)
+    self.platform.Initialize()
 
   def DumpStateUponFailure(self, page, results):
     # Dump browser standard output and log.
@@ -173,6 +146,7 @@ class SharedPageState(story_module.SharedState):
                 stage)
 
   def _StartBrowser(self, page):
+    assert self._possible_browser is not None
     assert self._browser is None
     self._AllowInteractionForStage('before-start-browser')
 

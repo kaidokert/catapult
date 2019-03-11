@@ -5,6 +5,7 @@
 import unittest
 
 from telemetry.core import platform as platform_module
+from telemetry.internal.browser import browser_finder
 from telemetry.page import page
 from telemetry.page import legacy_page_test
 from telemetry.page import shared_page_state
@@ -32,6 +33,7 @@ class SharedPageStateTests(unittest.TestCase):
     self.options.use_live_sites = True
     run_state = shared_page_state.SharedPageState(
         DummyTest(), self.options, story_module.StorySet())
+    run_state.SetPossibleBrowser(browser_finder.FindBrowser(self.options))
     try:
       self.assertTrue(run_state.platform.network_controller.is_open)
       self.assertEquals(run_state.platform.network_controller.wpr_mode,
@@ -43,6 +45,7 @@ class SharedPageStateTests(unittest.TestCase):
   def testUseLiveSitesFlagUnset(self):
     run_state = shared_page_state.SharedPageState(
         DummyTest(), self.options, story_module.StorySet())
+    run_state.SetPossibleBrowser(browser_finder.FindBrowser(self.options))
     try:
       self.assertTrue(run_state.platform.network_controller.is_open)
       self.assertEquals(run_state.platform.network_controller.wpr_mode,
@@ -55,6 +58,7 @@ class SharedPageStateTests(unittest.TestCase):
     self.options.browser_options.wpr_mode = wpr_modes.WPR_RECORD
     run_state = shared_page_state.SharedPageState(
         DummyTest(), self.options, story_module.StorySet())
+    run_state.SetPossibleBrowser(browser_finder.FindBrowser(self.options))
     try:
       self.assertTrue(run_state.platform.network_controller.is_open)
       self.assertEquals(run_state.platform.network_controller.wpr_mode,
@@ -67,6 +71,7 @@ class SharedPageStateTests(unittest.TestCase):
     test = DummyTest()
     run_state = shared_page_state.SharedPageState(
         test, self.options, story_module.StorySet())
+    run_state.SetPossibleBrowser(browser_finder.FindBrowser(self.options))
     try:
       self.assertEqual(test.options, self.options)
     finally:
@@ -82,6 +87,7 @@ class SharedPageStateTests(unittest.TestCase):
     story_set = story_module.StorySet()
     story_set.AddStory(story)
     run_state = story.shared_state_class(test, self.options, story_set)
+    run_state.SetPossibleBrowser(browser_finder.FindBrowser(self.options))
     try:
       browser_options = self.options.browser_options
       actual_user_agent = browser_options.browser_user_agent_type
