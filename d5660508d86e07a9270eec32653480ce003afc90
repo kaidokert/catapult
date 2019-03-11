@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0d30e42a_47de9052",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-11T15:11:05Z",
+      "side": 1,
+      "message": "Please add tests for this \u0026 _LoadHistogramList",
+      "range": {
+        "startLine": 67,
+        "startChar": 6,
+        "endLine": 67,
+        "endChar": 27
+      },
+      "revId": "d5660508d86e07a9270eec32653480ce003afc90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61184acf_35c4e17b",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-11T15:11:05Z",
+      "side": 1,
+      "message": "Think this needs to be filled out.",
+      "range": {
+        "startLine": 69,
+        "startChar": 5,
+        "endLine": 69,
+        "endChar": 14
+      },
+      "revId": "d5660508d86e07a9270eec32653480ce003afc90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c1cd08b_28e80234",
+        "filename": "dashboard/dashboard/add_histograms_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-11T15:11:05Z",
+      "side": 1,
+      "message": "Where is this used?",
+      "revId": "d5660508d86e07a9270eec32653480ce003afc90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
