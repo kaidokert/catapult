@@ -16,6 +16,24 @@
       "revId": "46c0d6d9361dfd0bb3216d9b42c5db71e895dd1a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c67a5c0d_cfe20794",
+        "filename": "telemetry/telemetry/story/shared_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-11T12:09:42Z",
+      "side": 1,
+      "message": "Code search didn\u0027t find any places where this property was accessed, neither in telemetry, nor in chrome. So I think we can safely delete this method.",
+      "parentUuid": "5acabb50_9b7c5d8e",
+      "revId": "46c0d6d9361dfd0bb3216d9b42c5db71e895dd1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
