@@ -27,6 +27,7 @@ from dashboard.common import stored_object
 
 SHERIFF_DOMAINS_KEY = 'sheriff_domains_key'
 IP_WHITELIST_KEY = 'ip_whitelist'
+_IP_WHITELIST = None
 SERVICE_ACCOUNT_KEY = 'service_account'
 EMAIL_SCOPE = 'https://www.googleapis.com/auth/userinfo.email'
 _PROJECT_ID_KEY = 'project_id'
@@ -485,7 +486,17 @@ def IsTryjobUser():
 
 def GetIpWhitelist():
   """Returns a list of IP address strings in the whitelist."""
-  return stored_object.Get(IP_WHITELIST_KEY)
+  global _IP_WHITELIST
+  if _IP_WHITELIST is None:
+    _IP_WHITELIST = stored_object.Get(IP_WHITELIST_KEY)
+  return _IP_WHITELIST
+
+
+def SetIpWhitelist(ip_addresses):
+  """Sets the list of whitelisted IP addresses."""
+  global _IP_WHITELIST
+  _IP_WHITELIST = ip_addresses
+  stored_object.Set(IP_WHITELIST_KEY, ip_addresses)
 
 
 def BisectConfigPythonString(config):
