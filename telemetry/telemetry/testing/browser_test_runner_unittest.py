@@ -17,6 +17,20 @@ from telemetry.testing import browser_test_runner
 from telemetry.testing import options_for_unittests
 from telemetry.testing import run_browser_tests
 from telemetry.testing import serially_executed_browser_test_case
+from telemetry.testing import fakes
+
+class MockArgs(object):
+  pass
+
+
+class MockTestCase(
+    serially_executed_browser_test_case.SeriallyExecutedBrowserTestCase):
+  _expectations_file = None
+
+  @classmethod
+  def GenerateTags(cls, finder_options, possible_browser):
+    with possible_browser.BrowserSession(finder_options) as browser:
+      return cls.GetPlatformTags(browser)
 
 
 class BrowserTestRunnerTest(unittest.TestCase):
@@ -126,6 +140,20 @@ class BrowserTestRunnerTest(unittest.TestCase):
         os.remove(expectations_file.name)
       os.remove(results.name)
     return test_result
+
+  def testMacExamplePlatformTagsGenerated(self):
+    options = MockArgs()
+    possible_browser = fakes.FakePossibleBrowser(
+        os_name='mac', os_version_name='mojave', browser_type='release')
+    tags = set(MockTestCase.GenerateTags(options, possible_browser))
+    self.assertEqual(tags, set(['mac', 'mojave', 'release']))
+
+  def testAndroidExamplePlatformTagsGenerated(self):
+    options = MockArgs()
+    possible_browser = fakes.FakePossibleBrowser(
+        os_name='android', os_version_name='marshmellow', browser_type='system')
+    tags = set(MockTestCase.GenerateTags(options, possible_browser))
+    self.assertEqual(tags, set(['android', 'marshmellow', 'system']))
 
   @decorators.Disabled('chromeos')  # crbug.com/696553
   def testGetExpectationsForTestFunctionWithOutExpectationsFile(self):
