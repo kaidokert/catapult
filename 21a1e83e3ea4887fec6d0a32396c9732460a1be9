@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0614e1a5_cc371ce9",
+        "filename": "telemetry/telemetry/decorators.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-11T23:10:37Z",
+      "side": 1,
+      "message": "inspect.ismethod doesn\u0027t work:\n\nimport inspect\ndef decorator(func):\n  def _decorator(self):\n    print \u0027inspect.ismethod: %s\u0027 % inspect.ismethod(func)\n  return _decorator\n\nclass c(object):\n  @decorator\n  def method1(self):\n    pass\n\n  def method2(self):\n    pass\n\nc().method1()\n# inspect.ismethod: False\n\nprint(inspect.ismethod(c().method2))\n# True\n\n\nI think that\u0027s because the decorator is applied to the function before it becomes a method. We could also instead use isfunction, but then since inspect.isfunction(c().method2) \u003d\u003d False things get a bit confusing. Using the name of the type as in my previous commit seems to be equivalent to using inspect.isfunction.\n\nIt seems like the most readable and least surprising solution is just to use inspect.isclass to catch the sort of issue that this was originally written to catch.",
+      "range": {
+        "startLine": 118,
+        "startChar": 15,
+        "endLine": 118,
+        "endChar": 22
+      },
+      "revId": "21a1e83e3ea4887fec6d0a32396c9732460a1be9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
