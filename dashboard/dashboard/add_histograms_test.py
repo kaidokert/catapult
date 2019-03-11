@@ -111,6 +111,40 @@ def _CreateHistogram(
   return histograms
 
 
+class BufferedFakeFile(object):
+  def __init__(self, data=str()):
+    self.data = data
+    self.position = 0
+
+  def read(self, size=None): # pylint: disable=invalid-name
+    if self.position == len(self.data):
+      return ''
+    if size is None or size < 0:
+      result = self.data[self.position:]
+      self.position = len(self.data)
+      return result
+    if size > len(self.data) + self.position:
+      result = self.data[self.position:]
+      self.position = len(self.data)
+      return result
+
+    current_position = self.position
+    self.position += size
+    result = self.data[current_position:self.position]
+    return result
+
+  def write(self, data): # pylint: disable=invalid-name
+    self.data += data
+    return len(data)
+
+  def close(self): # pylint: disable=invalid-name
+    pass
+
+
+# Global registry of all fake filenames.
+FAKE_FILES = dict()
+
+
 class AddHistogramsBaseTest(testing_common.TestCase):
 
   def setUp(self):
@@ -142,20 +176,14 @@ class AddHistogramsBaseTest(testing_common.TestCase):
     self.addCleanup(patcher.stop)
 
   def PostAddHistogram(self, data, status=200):
-    mock_obj = mock.MagicMock()
-
-    def _PassToRead(data_out):
-      mock_obj.read.return_value = data_out
-
-    mock_obj.write.side_effect = _PassToRead
+    mock_obj = mock.MagicMock(wraps=BufferedFakeFile())
     self.mock_cloudstorage.open.return_value = mock_obj
 
     self.testapp.post('/add_histograms', data, status=status)
     self.ExecuteTaskQueueTasks('/add_histograms/process', 'default')
 
   def PostAddHistogramProcess(self, data):
-    mock_read = mock.MagicMock()
-    mock_read.read.return_value = zlib.compress(data)
+    mock_read = mock.MagicMock(wraps=BufferedFakeFile(zlib.compress(data)))
     self.mock_cloudstorage.open.return_value = mock_read
 
     # TODO(simonhatch): Should we surface the error somewhere that can be
