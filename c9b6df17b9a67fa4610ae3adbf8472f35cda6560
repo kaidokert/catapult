@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b669754d_bf0e2512",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-11T21:09:52Z",
+      "side": 1,
+      "message": "Can you rephrase? I can\u0027t parse this sentence.",
+      "range": {
+        "startLine": 9,
+        "startChar": 47,
+        "endLine": 9,
+        "endChar": 71
+      },
+      "revId": "c9b6df17b9a67fa4610ae3adbf8472f35cda6560",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7da7a7b2_bbc56679",
+        "filename": "telemetry/telemetry/testing/browser_test_runner_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-11T21:09:52Z",
+      "side": 1,
+      "message": "Don\u0027t setUp state in a setUp function. I know this sounds silly, but the issue is that if setUp fails then tearDown will not be called so then nothing will delete this tempfile. It\u0027s better to set it up inside a try-finally so that you can be sure that it gets deleted. \n\nAlso, not all your tests need this setUp, so there\u0027s no reason to do it for all of them.",
+      "range": {
+        "startLine": 81,
+        "startChar": 10,
+        "endLine": 81,
+        "endChar": 51
+      },
+      "revId": "c9b6df17b9a67fa4610ae3adbf8472f35cda6560",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91214cfb_1e0d182d",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-11T21:09:52Z",
+      "side": 1,
+      "message": "is this up to date? Are these really the only possible tags for operating system version? Where is this defined?",
+      "range": {
+        "startLine": 232,
+        "startChar": 41,
+        "endLine": 232,
+        "endChar": 62
+      },
+      "revId": "c9b6df17b9a67fa4610ae3adbf8472f35cda6560",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a170afd_b6bf2647",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-11T21:09:52Z",
+      "side": 1,
+      "message": "from",
+      "range": {
+        "startLine": 239,
+        "startChar": 27,
+        "endLine": 239,
+        "endChar": 31
+      },
+      "revId": "c9b6df17b9a67fa4610ae3adbf8472f35cda6560",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d22711ad_188926e2",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-11T21:09:52Z",
+      "side": 1,
+      "message": "Looks like this list could have None in it. Why do we want that? Can you document why that would happen.",
+      "range": {
+        "startLine": 245,
+        "startChar": 4,
+        "endLine": 245,
+        "endChar": 44
+      },
+      "revId": "c9b6df17b9a67fa4610ae3adbf8472f35cda6560",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
