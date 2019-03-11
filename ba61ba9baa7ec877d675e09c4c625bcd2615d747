@@ -34,6 +34,24 @@
       "revId": "ba61ba9baa7ec877d675e09c4c625bcd2615d747",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9a7d0a3_df6c1af3",
+        "filename": "dashboard/app.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-03-11T04:45:48Z",
+      "side": 1,
+      "message": "It turns out that dashboard/bin/deploy is the script that allows me to upload a version. I\u0027m now doing a soak test in production, where 10% of random traffic is being served by this new configuration. So far I\u0027ve not seen OOMs in the instances that have been serving requests.",
+      "parentUuid": "22a2610b_e2294cc5",
+      "revId": "ba61ba9baa7ec877d675e09c4c625bcd2615d747",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
