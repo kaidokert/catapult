@@ -11,6 +11,7 @@ found in the LICENSE file.
 <link rel="import" href="/bower_components/chopsui/chops-signin-aware.html">
 <link rel="import" href="/bower_components/chopsui/chops-signin.html">
 <link rel="import" href="/dashboard/spa/alerts-section.html">
+<link rel="import" href="/dashboard/spa/chart-section.html">
 <link rel="import" href="/dashboard/spa/cp-icons.html">
 <link rel="import" href="/dashboard/spa/cp-loading.html">
 <link rel="import" href="/dashboard/spa/element-base.html">
@@ -68,17 +69,15 @@ found in the LICENSE file.
         margin-top: 50px;
       }
 
-      alerts-section {
-        display: block;
-        margin: 0;
-        padding: 16px;
-      }
-
-      alerts-section {
+      alerts-section,
+      chart-section {
         /* Use full-bleed dividers between sections.
            https://material.io/guidelines/components/dividers.html
          */
         border-bottom: 1px solid var(--primary-color-medium);
+        display: block;
+        margin: 0;
+        padding: 16px;
       }
 
       .nav_button_label {
@@ -228,7 +227,7 @@ found in the LICENSE file.
       </template>
 
       <div id="main" enableNav$="[[enableNav]]">
-        TODO report-section, chart-sections
+        TODO report-section
 
         <template is="dom-repeat" items="[[alertsSectionIds]]" as="id" index-as="idIndex">
           <alerts-section
@@ -238,6 +237,16 @@ found in the LICENSE file.
               on-new-chart="onNewChart_"
               on-close-section="onCloseAlerts_">
           </alerts-section>
+        </template>
+
+        <template is="dom-repeat" items="[[chartSectionIds]]" as="id" index-as="idIndex">
+          <chart-section
+              state-path="[[statePath]].chartSectionsById.[[id]]"
+              linked-state-path="[[statePath]].linkedChartState"
+              on-require-sign-in="requireSignIn_"
+              on-new-chart="onNewChart_"
+              on-close-section="onCloseChart_">
+          </chart-section>
         </template>
 
         <div id="vulcanized">
@@ -250,6 +259,13 @@ found in the LICENSE file.
       <raised-button id="reopen_alerts" on-click="onReopenClosedAlerts_">
         <iron-icon icon="cp:alert"></iron-icon>
         Reopen alerts
+      </raised-button>
+    </cp-toast>
+
+    <cp-toast opened="[[!isEmpty_(closedChartIds)]]">
+      <raised-button on-click="onReopenClosedChart_">
+        <iron-icon icon="cp:chart"></iron-icon>
+        Reopen chart
       </raised-button>
     </cp-toast>
   </template>

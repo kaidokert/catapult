@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--
+Copyright 2019 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+<script src="/bower_components/web-component-tester/browser.js"></script>
+<link rel="import" href="/dashboard/spa/chromeperf-app.html">
+
+<test-fixture id="test">
+  <template>
+    <chromeperf-app state-path="test"></chromeperf-app>
+  </template>
+</test-fixture>
+
+<script>
+'use strict';
+window.AUTH_CLIENT_ID = '';
+
+suite('chromeperf-app', function() {
+  let originalFetch;
+  setup(() => {
+    originalFetch = window.fetch;
+    window.fetch = async(url, options) => {
+      return {
+        async json() {
+          // eslint-disable-next-line no-console
+          console.log(url, new Map(options.body));
+        },
+      };
+    };
+  });
+  teardown(() => {
+    window.fetch = originalFetch;
+  });
+
+  test('newAlerts', async function() {
+    const app = fixture('test');
+    await cp.afterRender();
+    assert.lengthOf(app.alertsSectionIds, 0);
+    app.$.new_alerts.click();
+    await cp.afterRender();
+    assert.lengthOf(app.alertsSectionIds, 1);
+  });
+
+  test('closeAlerts', async function() {
+    const app = fixture('test');
+    await cp.afterRender();
+    app.$.new_alerts.click();
+    await cp.afterRender();
+    const alerts = app.shadowRoot.querySelector('alerts-section');
+    alerts.dispatchEvent(new CustomEvent('close-section'));
+    await cp.afterRender();
+    assert.lengthOf(app.alertsSectionIds, 0);
+    // Empty alerts-sections are forgotten instantly and can't be reopened.
+    assert.lengthOf(app.closedAlertsIds, 0);
+  });
+
+  test('reopenAlerts', async function() {
+    const app = fixture('test');
+    await cp.afterRender();
+    app.$.new_alerts.click();
+    await cp.afterRender();
+    const alerts = app.shadowRoot.querySelector('alerts-section');
+    // Make the alerts-section not empty so that it can be reopened.
+    app.dispatch(Redux.UPDATE(alerts.statePath + '.bug', {
+      selectedOptions: [42],
+    }));
+    alerts.$.controls.dispatchEvent(new CustomEvent('sources', {
+      detail: {sources: [{bug: 42}]},
+    }));
+    await cp.afterRender();
+    alerts.dispatchEvent(new CustomEvent('close-section'));
+    await cp.afterRender();
+    assert.lengthOf(app.alertsSectionIds, 0);
+    assert.lengthOf(app.closedAlertsIds, 1);
+    app.$.reopen_alerts.click();
+    await cp.afterRender();
+    assert.lengthOf(app.alertsSectionIds, 1);
+  });
+
+  test('newChart', async function() {
+  });
+
+  test('closeChart', async function() {
+  });
+
+  test('closeAllCharts', async function() {
+  });
+
+  test('reopenCharts', async function() {
+  });
+});
+</script>
