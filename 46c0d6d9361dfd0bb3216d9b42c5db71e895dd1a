@@ -34,6 +34,24 @@
       "revId": "46c0d6d9361dfd0bb3216d9b42c5db71e895dd1a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "323a1bc4_d104fb92",
+        "filename": "telemetry/telemetry/story/shared_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-11T12:11:16Z",
+      "side": 1,
+      "message": "+1 let\u0027s try that!",
+      "parentUuid": "c67a5c0d_cfe20794",
+      "revId": "46c0d6d9361dfd0bb3216d9b42c5db71e895dd1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
