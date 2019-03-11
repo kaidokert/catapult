@@ -19,6 +19,55 @@ from telemetry.testing import run_browser_tests
 from telemetry.testing import serially_executed_browser_test_case
 
 
+class MockPlatform(object):
+
+  def __init__(self, os_name, os_version_name, browser_type):
+    self.os_name = os_name
+    self.os_version_name = os_version_name
+    self.browser_type = browser_type
+
+  def GetOsName(self):
+    return self.os_name
+
+  def GetOSVersionName(self):
+    return self.os_version_name
+
+
+class MockArgs(object):
+  pass
+
+
+class MockBrowser(object):
+
+  def __init__(self, platform):
+    self.platform = platform
+
+  def __enter__(self):
+    return self
+
+  def __exit__(self, *args):
+    pass
+
+
+class MockPossibleBrowser(object):
+
+  def __init__(self, os_name, os_version, browser_type):
+    self.platform = MockPlatform(os_name, os_version, browser_type)
+
+  def BrowserSession(self, browser_options):
+    del browser_options
+    return MockBrowser(self.platform)
+
+
+class MockTestCase(
+    serially_executed_browser_test_case.SeriallyExecutedBrowserTestCase):
+  _expectations_file = None
+
+  @classmethod
+  def GenerateTags(cls, finder_options, possible_browser):
+    with possible_browser.BrowserSession(finder_options) as browser:
+      return cls.GetPlatformTags(browser)
+
 class BrowserTestRunnerTest(unittest.TestCase):
   def setUp(self):
     self._test_result = {}
@@ -126,6 +175,18 @@ class BrowserTestRunnerTest(unittest.TestCase):
         os.remove(expectations_file.name)
       os.remove(results.name)
     return test_result
+
+  def testMacExamplePlatformTagsGenerated(self):
+    options = MockArgs()
+    possible_browser = MockPossibleBrowser('mac', 'mojave', 'release')
+    tags = set(MockTestCase.GenerateTags(options, possible_browser))
+    self.assertEqual(tags, set(['mac', 'mojave', 'release']))
+
+  def testAndroidExamplePlatformTagsGenerated(self):
+    options = MockArgs()
+    possible_browser = MockPossibleBrowser('android', 'marshmellow', 'system')
+    tags = set(MockTestCase.GenerateTags(options, possible_browser))
+    self.assertEqual(tags, set(['android', 'marshmellow', 'system']))
 
   @decorators.Disabled('chromeos')  # crbug.com/696553
   def testGetExpectationsForTestFunctionWithOutExpectationsFile(self):

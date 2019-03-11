@@ -21,14 +21,14 @@ class CallsGetExpectationsForTest(
     yield 'HasNoExpectationsFile', ()
 
   def _RunWithExpectionsFile(self):
-    if self.GetExpectationsForTest() == (set([json_results.ResultType.Failure]),
-                                         True):
+    if (self.GetExpectationsForTest() ==
+        (set([json_results.ResultType.Failure]), True)):
       return
     self.fail()
 
   def _RunWithOutExpectionsFile(self):
-    if self.GetExpectationsForTest() == (set([json_results.ResultType.Pass]),
-                                         False):
+    if (self.GetExpectationsForTest() ==
+        (set([json_results.ResultType.Pass]), False)):
       return
     self.fail()
 
