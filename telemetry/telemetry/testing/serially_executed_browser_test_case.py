@@ -18,6 +18,12 @@ DEFAULT_LOG_FORMAT = (
     '%(message)s')
 
 
+def _SafeLower(opt_str):
+  if not opt_str:
+    return opt_str
+  return opt_str.lower()
+
+
 class SeriallyExecutedBrowserTestCase(unittest.TestCase):
 
   # Below is a reference to the typ.Runner instance. It will be used in
@@ -166,7 +172,7 @@ class SeriallyExecutedBrowserTestCase(unittest.TestCase):
   def GenerateTags(cls, finder_options, possible_browser):
     """This class method is part of the API for all test suites
     that inherit this class. All test suites that override this function
-    can use the browser_options and possible_browser parameters to generate
+    can use the finder_options and possible_browser parameters to generate
     test expectations file tags.
 
     Args:
@@ -179,7 +185,7 @@ class SeriallyExecutedBrowserTestCase(unittest.TestCase):
     It can be used to create an actual browser. For example the code below
     shows how to create a browser from the possible_browser object
 
-    with possible_browser.BrowserSession(browser_options) as browser:
+    with possible_browser.BrowserSession(finder_options) as browser:
       # Do something with the browser.
 
     Returns:
@@ -217,6 +223,27 @@ class SeriallyExecutedBrowserTestCase(unittest.TestCase):
       return cls._typ_runner.expectations.expectations_for(self.id())
     else:
       return (set([json_results.ResultType.Pass]), False)
+
+  @classmethod
+  def GetPlatformTags(cls, browser):
+    """This method uses the Browser instances's platform member variable to get
+    the operating system, operating system version and browser type tags.
+    Possible tags for the operating system are 'linux' and 'mac'. Possible tags
+    for the operating system version are 'mojave' and  'vista'. Possible values
+    for browser type are 'debug' and 'release'.
+
+    Args:
+    Browser instance returned from the possible_browser.BrowserSession() method
+
+    Returns:
+    A list of tags derived form the Browser instance's platform member variable.
+    """
+    platform = browser.platform
+    tags = [
+        platform.GetOSVersionName(), platform.GetOsName(),
+        platform.browser_type]
+    return [_SafeLower(tag) for tag in tags]
+
 
 def LoadAllTestsInModule(module):
   """ Load all tests & generated browser tests in a given module.
