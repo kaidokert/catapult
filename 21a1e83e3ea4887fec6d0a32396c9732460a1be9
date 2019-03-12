@@ -22,6 +22,30 @@
       "revId": "21a1e83e3ea4887fec6d0a32396c9732460a1be9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83146bbf_30dd1f66",
+        "filename": "telemetry/telemetry/decorators.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-12T09:23:41Z",
+      "side": 1,
+      "message": "Oh, yeah, good catch. Agree your new solution looks better.",
+      "parentUuid": "0614e1a5_cc371ce9",
+      "range": {
+        "startLine": 118,
+        "startChar": 15,
+        "endLine": 118,
+        "endChar": 22
+      },
+      "revId": "21a1e83e3ea4887fec6d0a32396c9732460a1be9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
