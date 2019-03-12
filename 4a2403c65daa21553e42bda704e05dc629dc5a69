@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eca213b3_ee0afa3a",
+        "filename": "web_page_replay_go/src/wpr.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1261094
+      },
+      "writtenOn": "2019-03-12T00:25:21Z",
+      "side": 1,
+      "message": "Remove",
+      "range": {
+        "startLine": 53,
+        "startChar": 18,
+        "endLine": 53,
+        "endChar": 32
+      },
+      "revId": "4a2403c65daa21553e42bda704e05dc629dc5a69",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
