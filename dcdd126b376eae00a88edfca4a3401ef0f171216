@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9700d3fa_0a340df8",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-12T14:58:02Z",
+      "side": 1,
+      "message": "If you made this an iterator instead of parsing the entire thing into memory, you\u0027d only need to parse up until the next histogram and yield that. Would that further cut the memory footprint here?",
+      "revId": "dcdd126b376eae00a88edfca4a3401ef0f171216",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
