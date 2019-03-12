@@ -16,6 +16,24 @@
       "revId": "dcdd126b376eae00a88edfca4a3401ef0f171216",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c63c8ea_233e169e",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-03-12T20:42:58Z",
+      "side": 1,
+      "message": "That\u0027s a good idea -- I tried it and it seems that there are a lot of places in the HistogramSet code which assumes the input is a list (I think the import process even requires it) and that\u0027s a more invasive change.\n\nProbably worth doing at a later time is to move more of the work being done from the current imperative, staged style, towards a stream-processing style that\u0027s generally more efficient in terms of memory usage but might cost us a bit in CPU. Since these are batch processes anyway I think we can afford to make that trade (less RAM for more CPU).",
+      "parentUuid": "9700d3fa_0a340df8",
+      "revId": "dcdd126b376eae00a88edfca4a3401ef0f171216",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
