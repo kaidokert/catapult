@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fff0643a_6254d346",
+        "filename": "tracing/tracing/metrics/system_health/persecond_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-03-12T20:06:40Z",
+      "side": 1,
+      "message": "Change to 2019?",
+      "revId": "03c030a61d305ab84bd25a82c02022a075248d96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e14a3ba_95a3afbb",
+        "filename": "tracing/tracing/metrics/system_health/persecond_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-03-12T20:06:40Z",
+      "side": 1,
+      "message": "Add a top level comment? Either here at the top of the file, or as jsodc with the main persecondMetric function.",
+      "revId": "03c030a61d305ab84bd25a82c02022a075248d96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b32bde0_7db15179",
+        "filename": "tracing/tracing/metrics/system_health/persecond_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-03-12T20:06:40Z",
+      "side": 1,
+      "message": "Is this the same function as in loading_metric [1]? Could we put this in event_finder_utils to reduce duplication?\n\n[1] https://cs.chromium.org/chromium/src/third_party/catapult/tracing/tracing/metrics/system_health/loading_metric.html?l\u003d38\u0026rcl\u003da7314e4d231068b3ba40ea9b9a24641a7ecbc217",
+      "revId": "03c030a61d305ab84bd25a82c02022a075248d96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "219d5d54_c6c9c581",
+        "filename": "tracing/tracing/metrics/system_health/persecond_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-03-12T20:06:40Z",
+      "side": 1,
+      "message": "This function seems very simple and only used once. Inline it?",
+      "revId": "03c030a61d305ab84bd25a82c02022a075248d96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "482afda6_e2ca7121",
+        "filename": "tracing/tracing/metrics/system_health/persecond_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-03-12T20:06:40Z",
+      "side": 1,
+      "message": "nit: The nested function makes this function a bit hard to understand. Would it be cleaner to inline it? Something like this:  \n\nresults \u003d [];\nfor (let i \u003d 0; navigationStart.start + (i + 1) * 1000 \u003c\u003d endTime; i +\u003d 1) {\n  const from \u003d i * 1000;\n  const to \u003d (i + 1) * 1000;\n  results.push({\n    from,\n    to,\n    realFrom: navigationStart.start + from,\n    realTo: navigationStart.start + to,\n  });\n}\nreturn results;\n\nMight also want to pass navigationStartTime directly so we don\u0027t have to do \u0027navigationStart.start\u0027 every time.",
+      "revId": "03c030a61d305ab84bd25a82c02022a075248d96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91437734_48ac3926",
+        "filename": "tracing/tracing/metrics/system_health/persecond_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-03-12T20:06:40Z",
+      "side": 1,
+      "message": "Looks like we drop the last value (line 167.) Would it work if we just delete this line instead?",
+      "revId": "03c030a61d305ab84bd25a82c02022a075248d96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f48ba7d4_16331c0e",
+        "filename": "tracing/tracing/metrics/system_health/persecond_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-03-12T20:06:40Z",
+      "side": 1,
+      "message": "Hm should we only track lastNavigationStart? I think since we\u0027re landing this on catapult, it should try to do reasonable things if there are multiple navigations in the trace. Could we add values to the histograms from all the navigations? Ideally, add renderer pid and navigation start (and if it\u0027s easy, frame loader id) as a diagnostic info, so in the future if we need to filter out data for a particular navigation we can do that easily.",
+      "revId": "03c030a61d305ab84bd25a82c02022a075248d96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
