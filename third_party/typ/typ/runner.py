@@ -182,7 +182,6 @@ class Runner(object):
         if not test_set:
             ret, test_set = self.find_tests(self.args)
         find_end = h.time()
-
         if not ret:
             self.stats.total = (len(test_set.parallel_tests) +
                                 len(test_set.isolated_tests) +
