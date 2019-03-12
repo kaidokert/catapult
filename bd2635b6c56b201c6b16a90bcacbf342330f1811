@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6c0b3218_047d6797",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-12T17:42:56Z",
+      "side": 1,
+      "message": "Commit messages of reland changelists should always explain why this change is safe to land now. (For this one, you should consider linking to the fix that you made to the test cases)",
+      "range": {
+        "startLine": 7,
+        "startChar": 4,
+        "endLine": 8,
+        "endChar": 0
+      },
+      "revId": "bd2635b6c56b201c6b16a90bcacbf342330f1811",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
