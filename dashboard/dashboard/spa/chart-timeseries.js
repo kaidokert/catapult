@@ -59,7 +59,7 @@ tr.exportTo('cp', () => {
     },
     zeroYAxis: options => false,
     fixedXAxis: options => false,
-    mode: options => 'normalizeUnit',
+    mode: options => cp.MODE.NORMALIZE_UNIT,
     levelOfDetail: options => options.levelOfDetail || cp.LEVEL_OF_DETAIL.XY,
   };
 
@@ -95,7 +95,29 @@ tr.exportTo('cp', () => {
     return true;
   };
 
+  async function consumeAll(reader) {
+    for await (const _ of reader) {
+      // Wait for the Service Worker to finish all its tasks.
+      // Disgard the result since preload doesn't display data.
+    }
+  }
+
   ChartTimeseries.actions = {
+    prefetch: (statePath, lineDescriptors) => async(dispatch, getState) => {
+      const promises = [];
+
+      for (const lineDescriptor of lineDescriptors) {
+        const fetchDescriptors = ChartTimeseries.createFetchDescriptors(
+            lineDescriptor, cp.LEVEL_OF_DETAIL.XY);
+        for (const fetchDescriptor of fetchDescriptors) {
+          promises.push(consumeAll(new cp.TimeseriesRequest(
+              fetchDescriptor).reader()));
+        }
+      }
+
+      await Promise.all(promises);
+    },
+
     load: statePath => async(dispatch, getState) => {
       let state = Polymer.Path.get(getState(), statePath);
       if (!state) return;
@@ -238,7 +260,7 @@ tr.exportTo('cp', () => {
         if (data.length === 0) continue;
 
         let unit = timeserieses[0][0].unit;
-        if (state.mode === 'delta') {
+        if (state.mode === cp.MODE.DELTA) {
           unit = unit.correspondingDeltaUnit;
           const offset = data[0].y;
           for (const datum of data) datum.y -= offset;
@@ -265,13 +287,15 @@ tr.exportTo('cp', () => {
     // state.yAxis.ticks.
     mouseYTicks: (state, {line}, rootState) => {
       if (!state.yAxis.generateTicks) return state;
-      if (!((state.mode === 'normalizeLine') || (state.mode === 'center')) &&
+      if (!((state.mode === cp.MODE.NORMALIZE_LINE) ||
+            (state.mode === cp.MODE.CENTER)) &&
           (state.yAxis.ticksForUnitName.size === 1)) {
         return state;
       }
       let ticks = [];
       if (line) {
-        if (state.mode === 'normalizeLine' || state.mode === 'center') {
+        if (state.mode === cp.MODE.NORMALIZE_LINE ||
+            state.mode === cp.MODE.CENTER) {
           ticks = line.ticks;
         } else {
           ticks = state.yAxis.ticksForUnitName.get(
@@ -357,6 +381,11 @@ tr.exportTo('cp', () => {
           color: 'var(--primary-color-dark, blue)',
         });
       }
+
+      /*
+      TODO
+      rows.push({colspan: 2, name: 'Click for options and more data'});
+      */
 
       state = {
         ...state,
@@ -508,6 +537,10 @@ tr.exportTo('cp', () => {
             buildType: lineDescriptor.buildType,
             levelOfDetail,
           });
+          // TODO if levelOfDetail === ANNOTATIONS and case === undefined,
+          // then add ANNOTATIONS_ONLY fetchDescriptors for all test cases in
+          // this test suite in order to bubble alerts up to summary time
+          // series.
         }
       }
     }

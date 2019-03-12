@@ -11,11 +11,18 @@ found in the LICENSE file.
 <link rel="import" href="/bower_components/chopsui/chops-signin-aware.html">
 <link rel="import" href="/bower_components/chopsui/chops-signin.html">
 <link rel="import" href="/dashboard/spa/alerts-section.html">
+<link rel="import" href="/dashboard/spa/chart-section.html">
 <link rel="import" href="/dashboard/spa/cp-icons.html">
 <link rel="import" href="/dashboard/spa/cp-loading.html">
+<link rel="import" href="/dashboard/spa/cp-toast.html">
 <link rel="import" href="/dashboard/spa/element-base.html">
+<link rel="import" href="/dashboard/spa/raised-button.html">
+<link rel="import" href="/dashboard/spa/recent-bugs-request.html">
 <link rel="import" href="/dashboard/spa/report-section.html">
+<link rel="import" href="/dashboard/spa/session-id-request.html">
+<link rel="import" href="/dashboard/spa/session-state-request.html">
 <link rel="import" href="/dashboard/spa/test-suites-request.html">
+<link rel="import" href="/tracing/base/guid.html">
 
 <dom-module id="chromeperf-app">
   <template>
@@ -70,7 +77,8 @@ found in the LICENSE file.
       }
 
       report-section,
-      alerts-section {
+      alerts-section,
+      chart-section {
         /* Use full-bleed dividers between sections.
            https://material.io/guidelines/components/dividers.html
          */
@@ -117,8 +125,20 @@ found in the LICENSE file.
       cp-toast {
         border-radius: 24px;
         cursor: pointer;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 8px;
+        padding: 8px 0;
         text-transform: uppercase;
         user-select: none;
+        white-space: nowrap;
+        width: 100%;
+      }
+
+      cp-toast raised-button {
+        background-color: var(--primary-color-dark, blue);
+        color: var(--background-color, white);
+        padding: 8px;
       }
 
       #old_pages {
@@ -173,58 +193,64 @@ found in the LICENSE file.
     <cp-loading loading$="[[isLoading]]"></cp-loading>
 
     <div id="body">
-      <template is="dom-if" if="[[enableNav]]">
-        <div id="drawer">
-          <button class="drawerbutton"
-              disabled$="[[showingReportSection]]"
-              on-click="onShowReportSection_">
-            <iron-icon icon="cp:report"></iron-icon>
-            <span class="nav_button_label">Open report</span>
-          </button>
+      <div id="drawer" hidden$="[[!enableNav]]">
+        <button
+            class="drawerbutton"
+            id="show_report"
+            disabled$="[[showingReportSection]]"
+            on-click="onShowReportSection_">
+          <iron-icon icon="cp:report"></iron-icon>
+          <span class="nav_button_label">Open report</span>
+        </button>
 
-          <button class="drawerbutton"
-              on-click="onNewAlertsSection_">
-            <iron-icon icon="cp:alert"></iron-icon>
-            <span class="nav_button_label">New alerts section</span>
-          </button>
+        <button
+            class="drawerbutton"
+            id="new_alerts"
+            on-click="onNewAlertsSection_">
+          <iron-icon icon="cp:alert"></iron-icon>
+          <span class="nav_button_label">New alerts section</span>
+        </button>
 
-          <button class="drawerbutton"
-              on-click="onNewChart_">
-            <iron-icon icon="cp:chart"></iron-icon>
-            <span class="nav_button_label">New Chart</span>
-          </button>
+        <button
+            class="drawerbutton"
+            id="new_chart"
+            on-click="onNewChart_">
+          <iron-icon icon="cp:chart"></iron-icon>
+          <span class="nav_button_label">New Chart</span>
+        </button>
 
-          <button class="drawerbutton"
-              disabled$="[[isEmpty_(chartSectionIds)]]"
-              on-click="onCloseAllCharts_">
-            <iron-icon icon="cp:close"></iron-icon>
-            <span class="nav_button_label">Close all charts</span>
-          </button>
+        <button
+            class="drawerbutton"
+            id="close_charts"
+            disabled$="[[isEmpty_(chartSectionIds)]]"
+            on-click="onCloseAllCharts_">
+          <iron-icon icon="cp:close"></iron-icon>
+          <span class="nav_button_label">Close all charts</span>
+        </button>
 
+        <a class="drawerbutton"
+            href="https://github.com/catapult-project/catapult/tree/master/dashboard"
+            target="_blank">
+          <iron-icon icon="cp:help"></iron-icon>
+          <span class="nav_button_label">Documentation</span>
+        </a>
+
+        <template is="dom-if" if="[[isInternal_(userEmail)]]">
           <a class="drawerbutton"
-              href="https://github.com/catapult-project/catapult/tree/master/dashboard"
+              href="http://go/chromeperf-v2-status"
               target="_blank">
-            <iron-icon icon="cp:help"></iron-icon>
-            <span class="nav_button_label">Documentation</span>
+            <iron-icon icon="cp:update"></iron-icon>
+            <span class="nav_button_label">Status of this prototype</span>
           </a>
+        </template>
 
-          <template is="dom-if" if="[[isInternal_(userEmail)]]">
-            <a class="drawerbutton"
-                href="http://go/chromeperf-v2-status"
-                target="_blank">
-              <iron-icon icon="cp:update"></iron-icon>
-              <span class="nav_button_label">Status of this prototype</span>
-            </a>
-          </template>
-
-          <a class="drawerbutton"
-              href$="https://bugs.chromium.org/p/chromium/issues/entry?description=Describe+the+problem:+%0A%0A%0AURL:+[[escapedUrl_(route.path)]]&components=Speed%3EDashboard&summary=[chromeperf2]+"
-              target="_blank">
-            <iron-icon icon="cp:feedback"></iron-icon>
-            <span class="nav_button_label">File a bug</span>
-          </a>
-        </div>
-      </template>
+        <a class="drawerbutton"
+            href$="https://bugs.chromium.org/p/chromium/issues/entry?description=Describe+the+problem:+%0A%0A%0AURL:+[[escapedUrl_(route.path)]]&components=Speed%3EDashboard&summary=[chromeperf2]+"
+            target="_blank">
+          <iron-icon icon="cp:feedback"></iron-icon>
+          <span class="nav_button_label">File a bug</span>
+        </a>
+      </div>
 
       <div id="main" enableNav$="[[enableNav]]">
         <template is="dom-if" if="[[reportSection]]">
@@ -239,8 +265,6 @@ found in the LICENSE file.
           </iron-collapse>
         </template>
 
-        TODO chart-sections
-
         <template is="dom-repeat" items="[[alertsSectionIds]]" as="id" index-as="idIndex">
           <alerts-section
               state-path="[[statePath]].alertsSectionsById.[[id]]"
@@ -249,6 +273,16 @@ found in the LICENSE file.
               on-new-chart="onNewChart_"
               on-close-section="onCloseAlerts_">
           </alerts-section>
+        </template>
+
+        <template is="dom-repeat" items="[[chartSectionIds]]" as="id" index-as="idIndex">
+          <chart-section
+              state-path="[[statePath]].chartSectionsById.[[id]]"
+              linked-state-path="[[statePath]].linkedChartState"
+              on-require-sign-in="requireSignIn_"
+              on-new-chart="onNewChart_"
+              on-close-section="onCloseChart_">
+          </chart-section>
         </template>
 
         <div id="vulcanized">
@@ -261,6 +295,13 @@ found in the LICENSE file.
       <raised-button id="reopen_alerts" on-click="onReopenClosedAlerts_">
         <iron-icon icon="cp:alert"></iron-icon>
         Reopen alerts
+      </raised-button>
+    </cp-toast>
+
+    <cp-toast opened="[[!isEmpty_(closedChartIds)]]">
+      <raised-button id="reopen_chart" on-click="onReopenClosedChart_">
+        <iron-icon icon="cp:chart"></iron-icon>
+        Reopen chart
       </raised-button>
     </cp-toast>
   </template>
