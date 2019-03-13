@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5486056b_89f29a0d",
+        "filename": "dashboard/dashboard/spa/chromeperf-app-test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-13T19:54:49Z",
+      "side": 1,
+      "message": "Are these alerts tests needed for the sessionstate change?",
+      "revId": "b6683608f2fc9755766660aba3202925a7630950",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
