@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a90aa7fe_4355147e",
+        "filename": "telemetry/examples/browser_tests/example_test_expectations.txt",
+        "patchSetId": 10
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-03-13T18:34:42Z",
+      "side": 1,
+      "message": "I removed it. We don\u0027t need to include a crbug link in  a test expectation.",
+      "parentUuid": "9903aa64_3cee8241",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 13
+      },
+      "revId": "f18382caecd839b499467ef322d5f857c4f5a732",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f75f7f08_84a0ba71",
         "filename": "telemetry/examples/browser_tests/simple_browser_tests.py",
         "patchSetId": 10
@@ -45,6 +69,30 @@
       "revId": "f18382caecd839b499467ef322d5f857c4f5a732",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22b50579_71d77618",
+        "filename": "telemetry/examples/browser_tests/simple_browser_tests.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-03-13T18:34:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f75f7f08_84a0ba71",
+      "range": {
+        "startLine": 1,
+        "startChar": 8,
+        "endLine": 1,
+        "endChar": 15
+      },
+      "revId": "f18382caecd839b499467ef322d5f857c4f5a732",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "de9b8f27_86db7c2e",
+        "filename": "telemetry/examples/browser_tests/simple_browser_tests.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-03-13T18:34:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0b10239_6de6e26d",
+      "range": {
+        "startLine": 16,
+        "startChar": 6,
+        "endLine": 16,
+        "endChar": 12
+      },
+      "revId": "f18382caecd839b499467ef322d5f857c4f5a732",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "244b4fe7_ab65ebc4",
         "filename": "telemetry/examples/browser_tests/simple_browser_tests.py",
         "patchSetId": 10
@@ -82,6 +154,30 @@
       "writtenOn": "2019-03-13T17:17:11Z",
       "side": 1,
       "message": "I think this code is correct, but it doesn\u0027t stop me from being upset with this framework. I think that the subclass of SeriallyExecutedBrowserTestCase is supposed to call StartBrowser, but then SeriallyExecutedBrowserTestCase itself does the work to tear down the browser at the end? Is that true? If so, your code is fine, but I don\u0027t like the overall system: normally the class that creates a resource should be the class that tears it down since it is easier to ensure that all resources do get deleted at the end. For example of why I care about this, see https://chromium-review.googlesource.com/c/catapult/+/1518814\n\nAnyways, I know you didn\u0027t write this code, but I just figured I would explain my thoughts. You can just Ack this after you make sure that something is tearing down this browser.",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 29,
+        "endChar": 22
+      },
+      "revId": "f18382caecd839b499467ef322d5f857c4f5a732",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f81d676_c61df4eb",
+        "filename": "telemetry/examples/browser_tests/simple_browser_tests.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-03-13T18:34:42Z",
+      "side": 1,
+      "message": "Yes SeriallyExecutedBrowserTestCase has a tearDownProcess function which closes the browser. This function is called after every telemetry browser test.",
+      "parentUuid": "244b4fe7_ab65ebc4",
       "range": {
         "startLine": 29,
         "startChar": 4,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "eacf6e3c_4ff006a9",
+        "filename": "telemetry/examples/browser_tests/simple_browser_tests.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-03-13T18:34:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "444ebf0e_f6e3f8a7",
+      "range": {
+        "startLine": 148,
+        "startChar": 6,
+        "endLine": 148,
+        "endChar": 47
+      },
+      "revId": "f18382caecd839b499467ef322d5f857c4f5a732",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "79d66caf_6a30a8ca",
         "filename": "telemetry/examples/browser_tests/simple_browser_tests.py",
         "patchSetId": 10
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "46749e00_ef761781",
+        "filename": "telemetry/examples/browser_tests/simple_browser_tests.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-03-13T18:34:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79d66caf_6a30a8ca",
+      "range": {
+        "startLine": 163,
+        "startChar": 7,
+        "endLine": 163,
+        "endChar": 32
+      },
+      "revId": "f18382caecd839b499467ef322d5f857c4f5a732",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ac981fb0_1fd8ce46",
         "filename": "telemetry/telemetry/testing/browser_test_runner_unittest.py",
         "patchSetId": 10
@@ -151,6 +295,30 @@
       "writtenOn": "2019-03-13T17:17:11Z",
       "side": 1,
       "message": "The changes to \ntelemetry/telemetry/testing/browser_test_runner_unittest.py seem unrelated to the other changes. Could you please separate this out into it\u0027s own changelist?",
+      "range": {
+        "startLine": 22,
+        "startChar": 1,
+        "endLine": 22,
+        "endChar": 19
+      },
+      "revId": "f18382caecd839b499467ef322d5f857c4f5a732",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7917559_744ccfd4",
+        "filename": "telemetry/telemetry/testing/browser_test_runner_unittest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-03-13T18:34:42Z",
+      "side": 1,
+      "message": "This template is used to generate expectations files for unit tests below. So it is related. It was used to create test expectations files in _RunTestWithExpectationsFile before. After removing that function I moved the expectations file template here.",
+      "parentUuid": "ac981fb0_1fd8ce46",
       "range": {
         "startLine": 22,
         "startChar": 1,
