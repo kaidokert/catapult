@@ -185,6 +185,30 @@
       "revId": "a104e321c463b95e13f82503b1eeb37962007c8e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b645668_85553644",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-03-13T22:38:26Z",
+      "side": 1,
+      "message": "Please re-evaluate this in the new patch set. I think it\u0027s too complicated if the user has to specify both --compatibility-mode\u003ddont-require-rooted-device and --no-performance-mode. The compatibility mode should allow the other argument to not be specified.",
+      "parentUuid": "2116a21f_6d067062",
+      "range": {
+        "startLine": 83,
+        "startChar": 5,
+        "endLine": 83,
+        "endChar": 43
+      },
+      "revId": "a104e321c463b95e13f82503b1eeb37962007c8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
