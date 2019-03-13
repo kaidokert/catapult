@@ -6,7 +6,8 @@ import sys
 import os
 
 from telemetry.testing import serially_executed_browser_test_case
-
+from telemetry.core import util
+from typ import json_results
 
 def ConvertPathToTestName(url):
   return url.replace('.', '_')
@@ -67,6 +68,103 @@ class SimpleBrowserTest(
     self.action_runner.ClickElement(text='Click/tap me')
     self.assertEqual(
         1997, self.action_runner.EvaluateJavaScript('valueToTest'))
+
+
+class ImplementsGenerateTagsFunction(
+    serially_executed_browser_test_case.SeriallyExecutedBrowserTestCase):
+
+  @classmethod
+  def GenerateTags(cls, finder_options, possible_browser):
+    del finder_options, possible_browser
+    return ['foo', 'bar']
+
+  @classmethod
+  def GenerateTestCases__RunsFailingTest(cls, options):
+    del options
+    yield 'FailingTest', ()
+
+  def _RunsFailingTest(self):
+    assert False
+
+
+class ImplementsExpectationsFilesFunction(
+    serially_executed_browser_test_case.SeriallyExecutedBrowserTestCase):
+
+  @classmethod
+  def GenerateTestCases__RunsFailingTest(cls, options):
+    del options
+    yield 'FailingTest', ()
+
+  def _RunsFailingTest(self):
+    assert False
+
+  @classmethod
+  def ExpectationsFiles(cls):
+    return [os.path.join(util.GetTelemetryDir(), 'examples', 'browser_tests',
+                         'test_expectations.txt')]
+
+
+class FlakyTest(
+    serially_executed_browser_test_case.SeriallyExecutedBrowserTestCase):
+  _retry_count = 0
+
+  @classmethod
+  def GenerateTestCases__RunFlakyTest(cls, options):
+    del options  # Unused.
+    yield 'RunFlakyTest', ()
+
+  def _RunFlakyTest(self):
+    cls = self.__class__
+    if cls._retry_count < 3:
+      cls._retry_count += 1
+      self.fail()
+    return
+
+
+class TestsWillBeDisabled(
+    serially_executed_browser_test_case.SeriallyExecutedBrowserTestCase):
+
+  @classmethod
+  def GenerateTestCases__RunTestThatSkips(cls, options):
+    del options
+    yield 'ThisTestSkips', ()
+
+  @classmethod
+  def GenerateTestCases__RunTestThatSkipsViaCommandLineArg(cls, options):
+    del options
+    yield 'SupposedToPass', ()
+
+  def _RunTestThatSkipsViaCommandLineArg(self):
+    pass
+
+  def _RunTestThatSkips(self):
+    self.skipTest('SKIPPING TEST')
+
+
+class GetsExpectationsFromTyp(
+    serially_executed_browser_test_case.SeriallyExecutedBrowserTestCase):
+
+  @classmethod
+  def GenerateTestCases__RunsWithExpectionsFile(cls, options):
+    del options
+    yield 'HasExpectationsFile', ()
+
+  @classmethod
+  def GenerateTestCases__RunsWithoutExpectionsFile(cls, options):
+    del options
+    yield 'HasNoExpectationsFile', ()
+
+  def _RunsWithExpectionsFile(self):
+    if (self.GetExpectationsForTest() ==
+        (set([json_results.ResultType.Failure]), True)):
+      return
+    self.fail()
+
+  def _RunsWithoutExpectionsFile(self):
+    if (self.GetExpectationsForTest() ==
+        (set([json_results.ResultType.Pass]), False)):
+      return
+    self.fail()
 
 
 def load_tests(loader, tests, pattern): # pylint: disable=invalid-name
