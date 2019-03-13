@@ -15,6 +15,16 @@ import mock
 from devil.android import battery_utils
 from devil.android import device_utils
 
+class MockBrowserOptions(object):
+  def __init__(self):
+    self.compatibility_mode = []
+
+
+class MockFinderOptions(object):
+  def __init__(self):
+    self.browser_options = MockBrowserOptions()
+
+
 class AndroidPlatformBackendTest(unittest.TestCase):
   def setUp(self):
     self._stubs = system_stub.Override(
@@ -47,7 +57,7 @@ class AndroidPlatformBackendTest(unittest.TestCase):
   @staticmethod
   def CreatePlatformBackendForTest():
     return android_platform_backend.AndroidPlatformBackend(
-        android_device.AndroidDevice('12345'))
+        android_device.AndroidDevice('12345'), MockFinderOptions())
 
   @decorators.Disabled('chromeos', 'mac', 'win')
   def testIsSvelte(self):
@@ -231,7 +241,7 @@ class AndroidPlatformBackendPsutilTest(unittest.TestCase):
       with mock.patch('devil.android.device_utils.DeviceUtils.ReadFile',
                       return_value=''):
         backend = android_platform_backend.AndroidPlatformBackend(
-            android_device.AndroidDevice('1234'))
+            android_device.AndroidDevice('1234'), MockFinderOptions())
         cpu_stats = backend.GetCpuStats('7702')
         self.assertEquals({}, cpu_stats)
         self.assertEquals([[0]], psutil.set_cpu_affinity_args)
@@ -244,7 +254,7 @@ class AndroidPlatformBackendPsutilTest(unittest.TestCase):
       with mock.patch('devil.android.device_utils.DeviceUtils.ReadFile',
                       return_value=''):
         backend = android_platform_backend.AndroidPlatformBackend(
-            android_device.AndroidDevice('1234'))
+            android_device.AndroidDevice('1234'), MockFinderOptions())
         cpu_stats = backend.GetCpuStats('7702')
         self.assertEquals({}, cpu_stats)
         self.assertEquals([[0]], psutil.set_cpu_affinity_args)
