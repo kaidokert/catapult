@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "6c30039e_c7d69c16",
+        "filename": "telemetry/examples/browser_tests/example_test_expectations.txt",
+        "patchSetId": 10
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-03-13T18:46:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a90aa7fe_4355147e",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 13
+      },
+      "revId": "f18382caecd839b499467ef322d5f857c4f5a732",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f75f7f08_84a0ba71",
         "filename": "telemetry/examples/browser_tests/simple_browser_tests.py",
         "patchSetId": 10
@@ -187,6 +211,30 @@
       "revId": "f18382caecd839b499467ef322d5f857c4f5a732",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5647de0_046c0920",
+        "filename": "telemetry/examples/browser_tests/simple_browser_tests.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-03-13T18:46:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f81d676_c61df4eb",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 29,
+        "endChar": 22
+      },
+      "revId": "f18382caecd839b499467ef322d5f857c4f5a732",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -352,6 +400,30 @@
       "revId": "f18382caecd839b499467ef322d5f857c4f5a732",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7c79129_6bf17588",
+        "filename": "telemetry/telemetry/testing/browser_test_runner_unittest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-03-13T18:46:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a7061f4_953a4e2f",
+      "range": {
+        "startLine": 22,
+        "startChar": 1,
+        "endLine": 22,
+        "endChar": 19
+      },
+      "revId": "f18382caecd839b499467ef322d5f857c4f5a732",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
