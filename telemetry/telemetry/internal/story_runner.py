@@ -317,9 +317,9 @@ def Run(test, story_set, finder_options, results, max_failures=None,
 
 
 def ValidateStory(story):
-  if len(story.name) > 180:
+  if len(story.name) > 1800:
     raise ValueError(
-        'User story has name exceeding 180 characters: %s' %
+        'User story has name exceeding 1800 characters: %s' %
         story.name)
 
 
