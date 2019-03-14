@@ -16,9 +16,6 @@ found in the LICENSE file.
 'use strict';
 
 tr.exportTo('tr.metrics.rendering', function() {
-  // Various tracing events.
-  const GESTURE_EVENT = 'SyntheticGestureController::running';
-
   function renderingMetric(histograms, model) {
     const chromeHelper = model.getOrCreateHelper(
         tr.model.helpers.ChromeModelHelper);
