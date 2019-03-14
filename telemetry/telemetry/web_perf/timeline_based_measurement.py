@@ -269,13 +269,15 @@ class TimelineBasedMeasurement(story_test.StoryTest):
         cloud_url=results.telemetry_info.trace_remote_url,
         trace_url=results.telemetry_info.trace_url)
     results.AddValue(trace_value)
+
     if self._tbm_options.GetTimelineBasedMetrics():
       assert not self._tbm_options.GetLegacyTimelineBasedMetrics(), (
           'Specifying both TBMv1 and TBMv2 metrics is not allowed.')
       # The metrics computation happens later asynchronously in
       # results.ComputeTimelineBasedMetrics().
-      trace_value.SetTimelineBasedMetrics(
-          self._tbm_options.GetTimelineBasedMetrics())
+      metrics = self._tbm_options.GetTimelineBasedMetrics()
+      metrics.extend(results.current_page.AddTracingMetrics())
+      trace_value.SetTimelineBasedMetrics(metrics)
     else:
       # Run all TBMv1 metrics if no other metric is specified
       # (legacy behavior)
