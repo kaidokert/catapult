@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "51824ff5_e0198448",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-14T10:55:38Z",
+      "side": 1,
+      "message": "can you pass only require_root instead, and let the caller figure out the value out of finder_options?\n\nI would like the reduce the number of places where the big \"finder_options\" blob is passed around, because that makes it hard to track the dependencies between specific options and where they are needed.",
+      "revId": "f5024c0efc5d19d02a1061afe662abbdf6c6464d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
