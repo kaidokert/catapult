@@ -96,6 +96,7 @@ tr.exportTo('cp', () => {
   ChartSection.State = {
     sectionId: options => options.sectionId || tr.b.GUID.allocateSimple(),
     ...cp.ChartCompound.State,
+    ...cp.SparklineCompound.State,
     descriptor: options => {
       const params = options.parameters || {};
 
@@ -174,7 +175,12 @@ tr.exportTo('cp', () => {
     },
 
     loadTimeseries: statePath => async(dispatch, getState) => {
-      dispatch({type: ChartSection.reducers.loadTimeseries.name, statePath});
+      dispatch(Redux.CHAIN(
+          {type: ChartSection.reducers.loadTimeseries.name, statePath},
+          {
+            type: cp.SparklineCompound.reducers.buildRelatedTabs.name,
+            statePath,
+          }));
 
       const state = Polymer.Path.get(getState(), statePath);
       if (state.selectedLineDescriptorHash) {
@@ -265,9 +271,8 @@ tr.exportTo('cp', () => {
   ChartSection.reducers = {
     loadTimeseries: (state, action, rootState) => {
       const title = ChartSection.computeTitle(state);
-      const legend = ChartSection.buildLegend(
-          ChartSection.parameterMatrix(state));
-      const parameterMatrix = ChartSection.parameterMatrix(state);
+      const parameterMatrix = cp.SparklineCompound.parameterMatrix(state);
+      const legend = ChartSection.buildLegend(parameterMatrix);
       const lineDescriptors = cp.TimeseriesDescriptor.createLineDescriptors(
           parameterMatrix);
       return {
@@ -291,7 +296,7 @@ tr.exportTo('cp', () => {
     },
 
     deselectLine: (state, action, rootState) => {
-      const parameterMatrix = ChartSection.parameterMatrix(state);
+      const parameterMatrix = cp.SparklineCompound.parameterMatrix(state);
       const lineDescriptors = cp.TimeseriesDescriptor.createLineDescriptors(
           parameterMatrix);
       return {
@@ -318,6 +323,32 @@ tr.exportTo('cp', () => {
       }
       return {...state, legend: state.legend.map(handleLegendEntry)};
     },
+  };
+
+  ChartSection.newStateOptionsFromQueryParams = routeParams => {
+    return {
+      parameters: {
+        suites: routeParams.getAll('suite') || routeParams.getAll('testSuite'),
+        suitesAggregated: routeParams.get('aggSuites') !== null ||
+          routeParams.get('splitSuites') === null,
+        measurements: routeParams.getAll('measurement'),
+        bots: routeParams.getAll('bot'),
+        botsAggregated: routeParams.get('splitBots') === null,
+        cases: routeParams.getAll('case'),
+        caseTags: routeParams.getAll('caseTag'),
+        casesAggregated: routeParams.get('splitCases') === null,
+        statistics: routeParams.get('stat') ? routeParams.getAll('stat') :
+          ['avg'],
+      },
+      isExpanded: !routeParams.has('compact'),
+      minRevision: parseInt(routeParams.get('minRev')) || undefined,
+      maxRevision: parseInt(routeParams.get('maxRev')) || undefined,
+      selectedRelatedTabName: routeParams.get('spark') || '',
+      mode: routeParams.get('mode') || undefined,
+      fixedXAxis: !routeParams.has('natural'),
+      zeroYAxis: routeParams.has('zeroY'),
+      selectedLineDescriptorHash: routeParams.get('select'),
+    };
   };
 
   function legendEntry(label, children) {
@@ -383,18 +414,133 @@ tr.exportTo('cp', () => {
     return legendItems;
   };
 
-  ChartSection.parameterMatrix = state => {
-    const descriptor = cp.TimeseriesDescriptor.getParameterMatrix(
-        state.descriptor.suite, state.descriptor.measurement,
-        state.descriptor.bot, state.descriptor.case);
+  /*
+  Don't change the session state (aka options) format!
+  {
+    parameters: {
+      suites: Array<string>,
+      suitesAggregated: boolean,
+      measurements: Array<string>,
+      bots: Array<string>,
+      botsAggregated: boolean,
+      cases: Array<string>
+      casesAggregated: boolean,
+      statistics: Array<string>,
+    },
+    isLinked: boolean,
+    isExpanded: boolean,
+    title: string,
+    minRevision: number,
+    maxRevision: number,
+    zeroYAxis: boolean,
+    fixedXAxis: boolean,
+    mode: string,
+    selectedRelatedTabName: string,
+    selectedLineDescriptorHash: string,
+  }
+
+  This format is slightly different from ChartSection.State, which has
+  `descriptor` (which does not include statistics) instead of `parameters`
+  (which does include statistics).
+  */
+
+  ChartSection.getSessionState = state => {
     return {
-      suiteses: descriptor.suites,
-      measurements: descriptor.measurements,
-      botses: descriptor.bots,
-      caseses: descriptor.cases,
-      statistics: state.statistic.selectedOptions,
-      buildTypes: ['test'],
+      parameters: {
+        suites: state.descriptor.suite.selectedOptions,
+        suitesAggregated: state.descriptor.suite.isAggregated,
+        measurements: state.descriptor.measurement.selectedOptions,
+        bots: state.descriptor.bot.selectedOptions,
+        botsAggregated: state.descriptor.bot.isAggregated,
+        cases: state.descriptor.case.selectedOptions,
+        casesAggregated: state.descriptor.case.isAggregated,
+        statistics: state.statistic.selectedOptions,
+      },
+      isLinked: state.isLinked,
+      isExpanded: state.isExpanded,
+      title: state.title,
+      minRevision: state.minRevision,
+      maxRevision: state.maxRevision,
+      zeroYAxis: state.zeroYAxis,
+      fixedXAxis: state.fixedXAxis,
+      mode: state.mode,
+      selectedRelatedTabName: state.selectedRelatedTabName,
+      selectedLineDescriptorHash: state.selectedLineDescriptorHash,
     };
+  };
+
+  ChartSection.getRouteParams = state => {
+    const allBotsSelected = state.descriptor.bot.selectedOptions.length ===
+        cp.OptionGroup.countDescendents(state.descriptor.bot.options);
+
+    if (state.descriptor.suite.selectedOptions.length > 2 ||
+        state.descriptor.case.selectedOptions.length > 2 ||
+        state.descriptor.measurement.selectedOptions.length > 2 ||
+        ((state.descriptor.bot.selectedOptions.length > 2) &&
+         !allBotsSelected)) {
+      return undefined;
+    }
+
+    const routeParams = new URLSearchParams();
+    for (const suite of state.descriptor.suite.selectedOptions) {
+      routeParams.append('suite', suite);
+    }
+    if (!state.descriptor.suite.isAggregated) {
+      routeParams.set('splitSuites', '');
+    }
+    for (const measurement of state.descriptor.measurement.selectedOptions) {
+      routeParams.append('measurement', measurement);
+    }
+    if (allBotsSelected) {
+      routeParams.set('bot', '*');
+    } else {
+      for (const bot of state.descriptor.bot.selectedOptions) {
+        routeParams.append('bot', bot);
+      }
+    }
+    if (!state.descriptor.bot.isAggregated) {
+      routeParams.set('splitBots', '');
+    }
+    for (const cas of state.descriptor.case.selectedOptions) {
+      routeParams.append('case', cas);
+    }
+    for (const tag of state.descriptor.case.tags.selectedOptions) {
+      routeParams.append('caseTag', tag);
+    }
+    if (!state.descriptor.case.isAggregated) {
+      routeParams.set('splitCases', '');
+    }
+    const statistics = state.statistic.selectedOptions;
+    if (statistics.length > 1 || statistics[0] !== 'avg') {
+      for (const statistic of statistics) {
+        routeParams.append('stat', statistic);
+      }
+    }
+    if (state.minRevision !== undefined) {
+      routeParams.set('minRev', state.minRevision);
+    }
+    if (state.maxRevision !== undefined) {
+      routeParams.set('maxRev', state.maxRevision);
+    }
+    if (state.mode !== cp.MODE.NORMALIZE_UNIT) {
+      routeParams.set('mode', state.mode);
+    }
+    if (state.selectedLineDescriptorHash) {
+      routeParams.set('select', state.selectedLineDescriptorHash.slice(0, 6));
+    }
+    if (!state.fixedXAxis) {
+      routeParams.set('natural', '');
+    }
+    if (state.zeroYAxis) {
+      routeParams.set('zeroY', '');
+    }
+    if (state.selectedRelatedTabName) {
+      routeParams.set('spark', state.selectedRelatedTabName);
+    }
+    if (!state.isExpanded) {
+      routeParams.set('compact', '');
+    }
+    return routeParams;
   };
 
   ChartSection.computeTitle = state => {

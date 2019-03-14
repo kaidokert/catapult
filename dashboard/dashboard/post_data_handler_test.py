@@ -29,6 +29,7 @@ class PostDataHandlerTest(testing_common.TestCase):
     self.testapp = webtest.TestApp(app)
 
   def testPost_NoIPWhitelist_Authorized(self):
+    testing_common.SetIpWhitelist(None)
     self.testapp.post('/whitelist_test', {'data': json.dumps([_SAMPLE_POINT])})
 
   def testPost_IPNotInWhitelist_NotAuthorized(self):
