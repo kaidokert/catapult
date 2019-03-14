@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ce34147_78746efd",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-14T10:20:42Z",
+      "side": 1,
+      "message": "nit: Imports should be sorted \"lexicographically, ignoring case, according to each module\u0027s full package path\", so this telemetry.decorators should be right after the telemetry.core imports.\n\nhttps://github.com/google/styleguide/blob/gh-pages/pyguide.md#313-imports-formatting",
+      "revId": "00fd99a2ed9da7423047b6954992491013278324",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8db3e9f_a64d7e39",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-14T10:20:42Z",
+      "side": 1,
+      "message": "I think this code wasn\u0027t doing anything any more. In the old code, because of [1], this only ever executed for LegacyPageTest\u0027s, and none of the remaining ones seem to be using Enabled/Disabled decorators. So I think it\u0027s fine to remove this.\n\nInstead, below when we check for expectations.IsStoryDisabled, we should log a warning if running a disabled story because of finder_options.run_disabled_tests.\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/page/shared_page_state.py?rcl\u003d19002f2befd0480d67beab490c8fd0ade36988f8\u0026l\u003d35",
+      "revId": "00fd99a2ed9da7423047b6954992491013278324",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
