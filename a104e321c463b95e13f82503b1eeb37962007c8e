@@ -209,6 +209,30 @@
       "revId": "a104e321c463b95e13f82503b1eeb37962007c8e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "31e86ad1_a6c32e96",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-14T21:47:16Z",
+      "side": 1,
+      "message": "That\u0027s fine, but the code that does that should all be in the same place if possible. If two args conflict with each other, then we should put the code that resolves that conflict (whether by erroring out or by having one of the flags override the other flag) near the code that defines those flags.\n\nAnyways, this is fine if you don\u0027t want to change it anymore.",
+      "parentUuid": "1b645668_85553644",
+      "range": {
+        "startLine": 83,
+        "startChar": 5,
+        "endLine": 83,
+        "endChar": 43
+      },
+      "revId": "a104e321c463b95e13f82503b1eeb37962007c8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
