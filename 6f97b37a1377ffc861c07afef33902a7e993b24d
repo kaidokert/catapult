@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "a6318e13_6794f210",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-15T13:24:03Z",
+      "side": 1,
+      "message": "Moved the function to story_runner.py.",
+      "parentUuid": "e73b9920_c1588580",
+      "revId": "6f97b37a1377ffc861c07afef33902a7e993b24d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7325905f_9c9712c0",
         "filename": "telemetry/telemetry/page/shared_page_state.py",
         "patchSetId": 1
@@ -105,6 +123,24 @@
       "revId": "6f97b37a1377ffc861c07afef33902a7e993b24d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be0dd3ee_01cd4e6b",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-15T13:24:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d605e6ed_1d7023de",
+      "revId": "6f97b37a1377ffc861c07afef33902a7e993b24d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
