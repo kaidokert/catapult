@@ -47,6 +47,7 @@ class ChopsSigninAware extends Polymer.Element {
   }
 
   updateProperties_() {
+    if (window.AUTH_CLIENT_ID === '') return;
     const self = this;
     return window.getAuthorizationHeaders().then(function(headers) {
       self._setAuthHeaders(headers);

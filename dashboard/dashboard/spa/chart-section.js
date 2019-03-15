@@ -96,6 +96,7 @@ tr.exportTo('cp', () => {
   ChartSection.State = {
     sectionId: options => options.sectionId || tr.b.GUID.allocateSimple(),
     ...cp.ChartCompound.State,
+    ...cp.SparklineCompound.State,
     descriptor: options => {
       const params = options.parameters || {};
 
@@ -174,7 +175,12 @@ tr.exportTo('cp', () => {
     },
 
     loadTimeseries: statePath => async(dispatch, getState) => {
-      dispatch({type: ChartSection.reducers.loadTimeseries.name, statePath});
+      dispatch(Redux.CHAIN(
+          {type: ChartSection.reducers.loadTimeseries.name, statePath},
+          {
+            type: cp.SparklineCompound.reducers.buildRelatedTabs.name,
+            statePath,
+          }));
 
       const state = Polymer.Path.get(getState(), statePath);
       if (state.selectedLineDescriptorHash) {
@@ -265,9 +271,8 @@ tr.exportTo('cp', () => {
   ChartSection.reducers = {
     loadTimeseries: (state, action, rootState) => {
       const title = ChartSection.computeTitle(state);
-      const legend = ChartSection.buildLegend(
-          ChartSection.parameterMatrix(state));
-      const parameterMatrix = ChartSection.parameterMatrix(state);
+      const parameterMatrix = cp.SparklineCompound.parameterMatrix(state);
+      const legend = ChartSection.buildLegend(parameterMatrix);
       const lineDescriptors = cp.TimeseriesDescriptor.createLineDescriptors(
           parameterMatrix);
       return {
@@ -291,7 +296,7 @@ tr.exportTo('cp', () => {
     },
 
     deselectLine: (state, action, rootState) => {
-      const parameterMatrix = ChartSection.parameterMatrix(state);
+      const parameterMatrix = cp.SparklineCompound.parameterMatrix(state);
       const lineDescriptors = cp.TimeseriesDescriptor.createLineDescriptors(
           parameterMatrix);
       return {
@@ -407,20 +412,6 @@ tr.exportTo('cp', () => {
     stripSharedPrefix(legendItems);
 
     return legendItems;
-  };
-
-  ChartSection.parameterMatrix = state => {
-    const descriptor = cp.TimeseriesDescriptor.getParameterMatrix(
-        state.descriptor.suite, state.descriptor.measurement,
-        state.descriptor.bot, state.descriptor.case);
-    return {
-      suiteses: descriptor.suites,
-      measurements: descriptor.measurements,
-      botses: descriptor.bots,
-      caseses: descriptor.cases,
-      statistics: state.statistic.selectedOptions,
-      buildTypes: ['test'],
-    };
   };
 
   /*
