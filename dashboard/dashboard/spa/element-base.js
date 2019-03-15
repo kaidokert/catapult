@@ -3,9 +3,18 @@
    found in the LICENSE file.
 */
 'use strict';
-
 tr.exportTo('cp', () => {
-  const ReduxMixin = PolymerRedux(Redux.createSimpleStore());
+  const ReduxMixin = PolymerRedux(Redux.createSimpleStore({
+    devtools: {
+      // Do not record changes automatically when in a production environment.
+      shouldRecordChanges: !window.IS_PRODUCTION,
+
+      // Increase the maximum number of actions stored in the history tree. The
+      // oldest actions are removed once maxAge is reached. It's critical for
+      // performance.
+      maxAge: 75,
+    },
+  }));
 
   /*
    * This base class mixes Polymer.Element with Polymer-Redux and provides
@@ -88,6 +97,8 @@ tr.exportTo('cp', () => {
         ...Redux.DEFAULT_REDUCER_WRAPPERS,
       ]);
     }
+    cp.timeActions(subclass);
+    cp.timeEventListeners(subclass);
   };
 
   return {
