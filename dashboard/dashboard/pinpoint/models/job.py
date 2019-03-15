@@ -332,11 +332,20 @@ class Job(ndb.Model):
           self.gerrit_change_id,
           '%s Job complete.\n\nSee results at: %s' % (_ROUND_PUSHPIN, self.url))
 
-  def Fail(self):
-    self.exception = traceback.format_exc()
+  def Fail(self, exception=None):
+    if exception:
+      self.exception = exception
+    else:
+      self.exception = traceback.format_exc()
 
     title = _CRYING_CAT_FACE + ' Pinpoint job stopped with an error.'
-    comment = '\n'.join((title, self.url, '', sys.exc_info()[1].message))
+    exc_info = sys.exc_info()
+    exc_message = ''
+    if exc_info[1]:
+      exc_message = sys.exc_info()[1].message
+
+    comment = '\n'.join((title, self.url, '', exc_message))
+
     self._PostBugComment(comment)
 
   def _Schedule(self):
