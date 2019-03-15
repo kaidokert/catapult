@@ -145,6 +145,7 @@ tr.exportTo('cp', () => {
       const tables = [...state.tables];
       for (const report of reports) {
         if (!report || !report.report || !report.report.rows) {
+          // TODO display report.error
           continue;
         }
 
