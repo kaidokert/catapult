@@ -6,6 +6,7 @@
 Handles benchmark configuration, but all the logic for
 actually running the benchmark is in Benchmark and StoryRunner."""
 
+import itertools
 import json
 import logging
 import optparse
@@ -14,8 +15,12 @@ import sys
 
 from telemetry import benchmark
 from telemetry import decorators
+from telemetry import story as story_module
+from telemetry.core import platform as platform_module
+from telemetry.internal import story_runner
 from telemetry.internal.browser import browser_finder
 from telemetry.internal.browser import browser_options
+from telemetry.internal.results import results_options
 from telemetry.internal.util import binary_manager
 from telemetry.internal.util import command_line
 from telemetry.internal.util import ps_util
@@ -250,7 +255,8 @@ class Run(command_line.OptparseCommand):
 
   @classmethod
   def AddCommandLineArgs(cls, parser, environment):
-    benchmark.AddCommandLineArgs(parser)
+    story_runner.AddCommandLineArgs(parser)
+    story_module.StoryFilter.AddCommandLineArgs(parser)
 
     # Allow benchmarks to add their own command line options.
     matching_benchmarks = []
@@ -310,7 +316,8 @@ class Run(command_line.OptparseCommand):
     assert issubclass(benchmark_class,
                       benchmark.Benchmark), ('Trying to run a non-Benchmark?!')
 
-    benchmark.ProcessCommandLineArgs(parser, options)
+    story_runner.ProcessCommandLineArgs(parser, options)
+    story_module.StoryFilter.ProcessCommandLineArgs(parser, options)
     benchmark_class.ProcessCommandLineArgs(parser, options)
 
     cls._benchmark = benchmark_class
@@ -319,7 +326,7 @@ class Run(command_line.OptparseCommand):
   def Run(self, options):
     b = self._benchmark()
     _SetExpectations(b, self._expectations_path)
-    return min(255, b.Run(options))
+    return min(255, SetUpAndRunBenchmark(b, options))
 
 
 def _ScriptName():
@@ -384,7 +391,7 @@ def GetBenchmarkByName(name, environment):
 ALL_COMMANDS = [Help, List, Run]
 
 
-def main(environment):
+def main(environment, argv=sys.argv):
   # The log level is set in browser_options.
   # Clear the log handlers to ensure we can set up logging properly here.
   logging.getLogger().handlers = []
@@ -393,19 +400,19 @@ def main(environment):
   ps_util.EnableListingStrayProcessesUponExitHook()
 
   # Get the command name from the command line.
-  if len(sys.argv) > 1 and sys.argv[1] == '--help':
-    sys.argv[1] = 'help'
+  if len(argv) > 1 and argv[1] == '--help':
+    argv[1] = 'help'
 
   command_name = 'run'
-  for arg in sys.argv[1:]:
+  for arg in argv[1:]:
     if not arg.startswith('-'):
       command_name = arg
       break
 
   # TODO(eakuefner): Remove this hack after we port to argparse.
-  if command_name == 'help' and len(sys.argv) > 2 and sys.argv[2] == 'run':
+  if command_name == 'help' and len(argv) > 2 and argv[2] == 'run':
     command_name = 'run'
-    sys.argv[2] = '--help'
+    argv[2] = '--help'
 
   # Validate and interpret the command name.
   commands = _MatchingCommands(command_name)
@@ -422,7 +429,8 @@ def main(environment):
   else:
     command = Run
 
-  binary_manager.InitDependencyManager(environment.client_configs)
+  if binary_manager.NeedsInit():
+    binary_manager.InitDependencyManager(environment.client_configs)
 
   # Parse and run the command.
   parser = command.CreateParser()
@@ -431,7 +439,7 @@ def main(environment):
   # Set the default chrome root variable.
   parser.set_defaults(chrome_root=environment.default_chrome_root)
 
-  options, args = parser.parse_args()
+  options, args = parser.parse_args(argv[1:])
   if commands:
     args = args[1:]
   options.positional_args = args

@@ -16,15 +16,12 @@ from py_utils import memory_debug  # pylint: disable=import-error
 from py_utils import logging_util  # pylint: disable=import-error
 
 from telemetry.core import exceptions
-from telemetry.core import platform as platform_module
 from telemetry.internal.actions import page_action
 from telemetry.internal.browser import browser_finder
-from telemetry.internal.browser import browser_finder_exceptions
 from telemetry.internal.results import results_options
 from telemetry.internal.util import exception_formatter
 from telemetry import page
 from telemetry.page import legacy_page_test
-from telemetry import story as story_module
 from telemetry.util import wpr_modes
 from telemetry.web_perf import story_test
 from tracing.value.diagnostics import generic_set
@@ -39,15 +36,98 @@ _UNHANDLEABLE_ERRORS = (
     SystemExit,
     KeyboardInterrupt,
     ImportError,
-    MemoryError)
+    MemoryError,
+    AttributeError,
+    NameError)
 
 
 class ArchiveError(Exception):
   pass
 
 
+def SetUpAndRunBenchmark(benchmark_to_run, finder_options):
+  benchmark_to_run.CustomizeBrowserOptions(finder_options.browser_options)
+  benchmark_to_run.CustomizeOptions(finder_options)
+
+  finder_options.target_platforms = benchmark_to_run.GetSupportedPlatformNames(
+      benchmark_to_run.SUPPORTED_PLATFORMS)
+  possible_browser = browser_finder.FindBrowser(finder_options)
+  if not possible_browser:
+    logging.error('No browser of type "%s" found for benchmark "%s"' % (
+        finder_options.browser_options.browser_type, benchmark_to_run.Name()))
+    return 0
+
+  expectations = benchmark_to_run.expectations
+  target_platform = possible_browser.platform
+
+  if not hasattr(finder_options, 'print_only') or not finder_options.print_only:
+    can_run_on_platform = benchmark_to_run._CanRunOnPlatform(
+        target_platform, finder_options)
+
+    expectations_disabled = False
+    # For now, test expectations are only applicable in the cases where the
+    # testing target involves a browser.
+    if possible_browser:
+      expectations_disabled = expectations.IsBenchmarkDisabled(
+          possible_browser.platform, finder_options)
+
+    if expectations_disabled or not can_run_on_platform:
+      print '%s is disabled on the selected browser' % benchmark_to_run.Name()
+      if finder_options.run_disabled_tests and can_run_on_platform:
+        print 'Running benchmark anyway due to: --also-run-disabled-tests'
+      else:
+        if can_run_on_platform:
+          print 'Try --also-run-disabled-tests to force the benchmark to run.'
+        else:
+          print ("This platform is not supported for this benchmark. If this "
+                 "is in error please add it to the benchmark's supported "
+                 "platforms.")
+        # If chartjson is specified, this will print a dict indicating the
+        # benchmark name and disabled state.
+        with results_options.CreateResults(
+            benchmark_to_run.GetMetadata(), finder_options,
+            should_add_value=benchmark_to_run.ShouldAddValue,
+            benchmark_enabled=False
+            ) as results:
+          results.PrintSummary()
+        # When a disabled benchmark is run we now want to return success since
+        # we are no longer filtering these out in the buildbot recipes.
+        return 0
+
+  story_set = benchmark_to_run.CreateStorySet(finder_options)
+  for s in story_set:
+    _ValidateStory(s)
+
+  # We want to make sure that all expectations are linked to real stories,
+  # this will log error messages if names do not match what is in the set.
+  benchmark_to_run.GetBrokenExpectations(story_set)
+
+  # Filter page set based on options.
+  story_set = story_module.StoryFilter.FilterStorySet(story_set)
+
+  if not story_set:
+    return 0
+
+  if finder_options.print_only:
+    if finder_options.print_only == 'tags':
+      tags = set(itertools.chain.from_iterable(s.tags for s in story_set))
+      print 'List of tags:\n%s' % '\n'.join(tags)
+      return 0
+    include_tags = finder_options.print_only == 'both'
+    if include_tags:
+      format_string = '  %%-%ds %%s' % max(len(s.name) for s in story_set)
+    else:
+      format_string = '%s%s'
+    for s in story_set:
+      print format_string % (s.name, ','.join(s.tags) if include_tags else '')
+    return 0
+
+  return RunBenchmark(
+      benchmark_to_run, story_set, possible_browser,
+      finder_options.browser_options, finder_options)
+
+
 def AddCommandLineArgs(parser):
-  story_module.StoryFilter.AddCommandLineArgs(parser)
   results_options.AddResultsOptions(parser)
 
   # Page set options
@@ -89,7 +169,6 @@ def AddCommandLineArgs(parser):
                     choices=['stories', 'tags', 'both'], default=None)
 
 def ProcessCommandLineArgs(parser, args):
-  story_module.StoryFilter.ProcessCommandLineArgs(parser, args)
   results_options.ProcessCommandLineArgs(args)
 
   if args.pageset_repeat < 1:
@@ -172,55 +251,22 @@ def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
             msg='Exception raised when cleaning story run: ')
 
 
-def _GetPossibleBrowser(finder_options):
-  """Return a possible_browser with the given options."""
-  possible_browser = browser_finder.FindBrowser(finder_options)
-  if not possible_browser:
-    raise browser_finder_exceptions.BrowserFinderException(
-        'Cannot find browser of type %s. \n\nAvailable browsers:\n%s\n' % (
-            finder_options.browser_options.browser_type,
-            '\n'.join(browser_finder.GetAllAvailableBrowserTypes(
-                finder_options))))
-
-  finder_options.browser_options.browser_type = possible_browser.browser_type
-
-  return possible_browser
-
-
-def Run(test, story_set, finder_options, results, max_failures=None,
-        expectations=None, max_num_values=sys.maxint):
+def Run(test, story_set, possible_browser, expectations,
+        browser_options, execution_options, results,
+        max_failures=None, max_num_values=sys.maxint):
   """Runs a given test against a given page_set with the given options.
 
   Stop execution for unexpected exceptions such as KeyboardInterrupt.
   We "white list" certain exceptions for which the story runner
   can continue running the remaining stories.
   """
-  for s in story_set:
-    ValidateStory(s)
 
-  # Filter page set based on options.
-  stories = story_module.StoryFilter.FilterStorySet(story_set)
-
-  if finder_options.print_only:
-    if finder_options.print_only == 'tags':
-      tags = set(itertools.chain.from_iterable(s.tags for s in stories))
-      print 'List of tags:\n%s' % '\n'.join(tags)
-      return
-    include_tags = finder_options.print_only == 'both'
-    if include_tags:
-      format_string = '  %%-%ds %%s' % max(len(s.name) for s in stories)
-    else:
-      format_string = '%s%s'
-    for s in stories:
-      print format_string % (s.name, ','.join(s.tags) if include_tags else '')
-    return
-
-  if (not finder_options.use_live_sites and
-      finder_options.browser_options.wpr_mode != wpr_modes.WPR_RECORD):
+  if (not execution_options.use_live_sites and
+      browser_options.wpr_mode != wpr_modes.WPR_RECORD):
     # Get the serving dirs of the filtered stories.
     # TODO(crbug.com/883798): removing story_set._serving_dirs
     serving_dirs = story_set._serving_dirs.copy()
-    for story in stories:
+    for story in story_set:
       if story.serving_dir:
         serving_dirs.add(story.serving_dir)
 
@@ -229,44 +275,39 @@ def Run(test, story_set, finder_options, results, max_failures=None,
         cloud_storage.GetFilesInDirectoryIfChanged(directory,
                                                    story_set.bucket)
     if story_set.archive_data_file and not _UpdateAndCheckArchives(
-        story_set.archive_data_file, story_set.wpr_archive_info, stories):
+        story_set.archive_data_file, story_set.wpr_archive_info, story_set):
       return
 
-  if not stories:
-    return
-
   # Effective max failures gives priority to command-line flag value.
-  effective_max_failures = finder_options.max_failures
+  effective_max_failures = execution_options.max_failures
   if effective_max_failures is None:
     effective_max_failures = max_failures
-
-  possible_browser = _GetPossibleBrowser(finder_options)
 
   state = None
   device_info_diags = {}
   # TODO(crbug.com/866458): unwind the nested blocks
   # pylint: disable=too-many-nested-blocks
   try:
-    pageset_repeat = finder_options.pageset_repeat
+    pageset_repeat = execution_options.pageset_repeat
     for storyset_repeat_counter in xrange(pageset_repeat):
-      for story in stories:
+      for story in story_set:
         start_timestamp = time.time()
         if not state:
-          # Construct shared state by using a copy of finder_options. Shared
-          # state may update the finder_options. If we tear down the shared
+          # Construct shared state by using a copy of execution_options. Shared
+          # state may update the execution_options. If we tear down the shared
           # state after this story run, we want to construct the shared
-          # state for the next story from the original finder_options.
+          # state for the next story from the original execution_options.
           state = story_set.shared_state_class(
-              test, finder_options.Copy(), story_set, possible_browser)
+              test, execution_options.Copy(), story_set, possible_browser)
 
         results.WillRunPage(story, storyset_repeat_counter)
         story_run = results.current_page_run
 
         if expectations:
           disabled = expectations.IsStoryDisabled(
-              story, state.platform, finder_options)
+              story, state.platform, execution_options)
           if disabled:
-            if finder_options.run_disabled_tests:
+            if execution_options.run_disabled_tests:
               logging.warning('Force running a disabled story: %s' %
                               story.name)
             else:
@@ -338,100 +379,44 @@ def Run(test, story_set, finder_options, results, max_failures=None,
             msg='Exception from TearDownState:')
 
 
-def ValidateStory(story):
+def _ValidateStory(story):
   if len(story.name) > 180:
     raise ValueError(
         'User story has name exceeding 180 characters: %s' %
         story.name)
 
 
-def RunBenchmark(benchmark, finder_options):
-  """Run this test with the given options.
+def RunBenchmark(benchmark, story_set, possible_browser,
+                 browser_options, execution_options):
+  """Run the benchmark on the given browser with given options.
 
   Returns:
     1 if there is failure or 2 if there is an uncaught exception.
   """
-  benchmark.CustomizeOptions(finder_options)
-
   benchmark_metadata = benchmark.GetMetadata()
-  possible_browser = browser_finder.FindBrowser(finder_options)
-  if not possible_browser:
-    logging.error('No browser of type "%s" found for benchmark "%s"' % (
-        finder_options.browser_options.browser_type, benchmark.Name()))
-    return 0
-  expectations = benchmark.expectations
-
-  target_platform = None
-  if possible_browser:
-    target_platform = possible_browser.platform
-  else:
-    target_platform = platform_module.GetHostPlatform()
-
-  if not hasattr(finder_options, 'print_only') or not finder_options.print_only:
-    can_run_on_platform = benchmark._CanRunOnPlatform(
-        target_platform, finder_options)
-
-    expectations_disabled = False
-    # For now, test expectations are only applicable in the cases where the
-    # testing target involves a browser.
-    if possible_browser:
-      expectations_disabled = expectations.IsBenchmarkDisabled(
-          possible_browser.platform, finder_options)
-
-    if expectations_disabled or not can_run_on_platform:
-      print '%s is disabled on the selected browser' % benchmark.Name()
-      if finder_options.run_disabled_tests and can_run_on_platform:
-        print 'Running benchmark anyway due to: --also-run-disabled-tests'
-      else:
-        if can_run_on_platform:
-          print 'Try --also-run-disabled-tests to force the benchmark to run.'
-        else:
-          print ("This platform is not supported for this benchmark. If this "
-                 "is in error please add it to the benchmark's supported "
-                 "platforms.")
-        # If chartjson is specified, this will print a dict indicating the
-        # benchmark name and disabled state.
-        with results_options.CreateResults(
-            benchmark_metadata, finder_options,
-            should_add_value=benchmark.ShouldAddValue,
-            benchmark_enabled=False
-            ) as results:
-          results.PrintSummary()
-        # When a disabled benchmark is run we now want to return success since
-        # we are no longer filtering these out in the buildbot recipes.
-        return 0
-
-  pt = benchmark.CreatePageTest(finder_options)
+  pt = benchmark.CreatePageTest(execution_options)
   pt.__name__ = benchmark.__class__.__name__
 
-  stories = benchmark.CreateStorySet(finder_options)
-
   if isinstance(pt, legacy_page_test.LegacyPageTest):
-    if any(not isinstance(p, page.Page) for p in stories.stories):
+    if any(not isinstance(p, page.Page) for p in story_set.stories):
       raise Exception(
           'PageTest must be used with StorySet containing only '
           'telemetry.page.Page stories.')
 
   with results_options.CreateResults(
-      benchmark_metadata, finder_options,
+      benchmark_metadata, execution_options,
       should_add_value=benchmark.ShouldAddValue,
       benchmark_enabled=True) as results:
     try:
-      Run(pt, stories, finder_options, results, benchmark.max_failures,
-          expectations=expectations, max_num_values=benchmark.MAX_NUM_VALUES)
+      Run(pt, story_set, possible_browser, benchmark.expectations,
+          browser_options, execution_options, results,
+          benchmark.max_failures, benchmark.MAX_NUM_VALUES)
       return_code = 1 if results.had_failures else 0
-      # We want to make sure that all expectations are linked to real stories,
-      # this will log error messages if names do not match what is in the set.
-      benchmark.GetBrokenExpectations(stories)
     except Exception as e: # pylint: disable=broad-except
-
       logging.fatal(
           'Benchmark execution interrupted by a fatal exception: %s(%s)' %
           (type(e), e))
-
-      filtered_stories = story_module.StoryFilter.FilterStorySet(stories)
-      results.InterruptBenchmark(
-          filtered_stories, finder_options.pageset_repeat)
+      results.InterruptBenchmark(story_set, execution_options.pageset_repeat)
       exception_formatter.PrintFormattedException()
       return_code = 2
 
@@ -452,13 +437,14 @@ def RunBenchmark(benchmark, finder_options):
           reserved_infos.DOCUMENTATION_URLS.name, benchmark_documentation_url)
 
     try:
-      if finder_options.upload_results:
+      if execution_options.upload_results:
         results.UploadTraceFilesToCloud()
         results.UploadArtifactsToCloud()
     finally:
       memory_debug.LogHostMemoryUsage()
       results.PrintSummary()
   return return_code
+
 
 def _UpdateAndCheckArchives(archive_data_file, wpr_archive_info,
                             filtered_stories):
