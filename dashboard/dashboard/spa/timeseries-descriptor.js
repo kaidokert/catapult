@@ -11,6 +11,8 @@ tr.exportTo('cp', () => {
       this.dispatchMatrixChange_();
     }
 
+    // TODO loadSuites, describe when user changes
+
     showExactlyOneRequiredMeasurement_(measurement) {
       return measurement && (1 !== measurement.selectedOptions.length);
     }
