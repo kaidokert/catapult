@@ -15,6 +15,8 @@ from dashboard.pinpoint.models import job as job_module
 _JOB_CACHE_KEY = 'pinpoint_refresh_jobs_%s'
 _JOB_MAX_RETRIES = 3
 _JOB_FROZEN_THRESHOLD = datetime.timedelta(hours=6)
+_FAILURE_MESSAGE = ('An unknown failure occurred during the run.\n'\
+    'Please file a bug under Speed>Bisection with this job.')
 
 
 class RefreshJobs(webapp2.RequestHandler):
@@ -54,7 +56,7 @@ def _ProcessFrozenJob(job_id):
     info = {'retries': 0}
 
   if info.get('retries') >= _JOB_MAX_RETRIES:
-    job.Fail()
+    job.Fail(_FAILURE_MESSAGE)
     job.put()
     return
 
