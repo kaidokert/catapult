@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "36968892_aa6116a8",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-15T14:02:10Z",
+      "side": 1,
+      "message": "Maybe not for this CL, but is there a reason why Benchmark still needs to subclass from command_line.Command?\n\nYour change seems to make it clearer that this was not really needed, right?",
+      "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d480539a_7a94f1c4",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-15T14:02:10Z",
+      "side": 1,
+      "message": "nit: extra blank line in here.",
+      "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "546ae33c_110208b1",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-15T14:02:10Z",
+      "side": 1,
+      "message": "nit: Do not use mutable object as default argument, see:\nhttps://github.com/google/styleguide/blob/gh-pages/pyguide.md#2124-decision",
+      "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36fb616a_2086d7e6",
+        "filename": "telemetry/telemetry/benchmark_runner_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-15T14:02:10Z",
+      "side": 1,
+      "message": "Thanks for adding this!",
+      "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efcc19d2_faa3b5cd",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-15T14:02:10Z",
+      "side": 1,
+      "message": "Is there a reason why these need to be here? Or is it just for debugging?",
+      "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d9b31f9_d85acd8e",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-15T14:02:10Z",
+      "side": 1,
+      "message": "Lets add a new function SetupBenchmark(benchmark_to_run, finder_options) that returns a (story_set, possible_browser) tuple. Also put the code of this function below just before RunBenchmark; at least for convenience during code review, so the new code more or less aligns with the older existing code.\n\nThen this function here could just be:\n\n    def SetUpAndRunBenchmark(benchmark_to_run, finder_options):\n      story_set, possible_browser \u003d SetupBenchmark(benchmark_to_run, finder_options)\n      return RunBenchmark(benchmark_to_run, finder_options, story_set, possible_browser)\n\nMaking the \"setup\" and \"running\" separation crystal clear.",
+      "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "258de7bb_6e0a845d",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-15T14:02:10Z",
+      "side": 1,
+      "message": "Let\u0027s give this a better name, maybe RunStorySetLoop? Also, if possibly, let\u0027s try to make this private.",
+      "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c13c63a_6b82631e",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-15T14:02:10Z",
+      "side": 1,
+      "message": "Let\u0027s keep the function receiving just a single finder_options, and find the browser_options if needed inside. \n\nAlso do not introduce a this new \"execution_options\" alias. Maybe it makes sense to split the current into \"finder\" and \"execution\" options; but that should be work for another CL.",
+      "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e50523c_03986423",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-15T14:02:10Z",
+      "side": 1,
+      "message": "Please document what each of the args are.",
+      "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5de9fa8a_1d598dbe",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-15T14:02:10Z",
+      "side": 1,
+      "message": "ditto, please document the args.",
+      "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5f9d736_0ae5a800",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-15T14:02:10Z",
+      "side": 1,
+      "message": "nit: Document the fact that this now returns a new StorySet object.",
+      "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
