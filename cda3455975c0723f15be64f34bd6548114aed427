@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "55463a80_d5280605",
+        "filename": "telemetry/telemetry/page/__init__.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-15T10:58:51Z",
+      "side": 1,
+      "message": "nit: maybe call this ExtraTracingMetrics? (not super sure, the current name works too.)",
+      "revId": "cda3455975c0723f15be64f34bd6548114aed427",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
