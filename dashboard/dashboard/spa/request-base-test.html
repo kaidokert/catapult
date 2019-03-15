@@ -24,12 +24,13 @@ suite('RequestBase', function() {
   teardown(() => {
     window.fetch = originalFetch;
     window.getAuthorizationHeaders = originalAuthorizationHeaders;
+    window.AUTH_CLIENT_ID = '';
   });
 
-  // HTML imports may not have loaded when suite() is called, but are loaded
-  // when tests are called.
   function TestRequest(options) {
-    return new class TestRequest extends cp.RequestBase {
+    // The suite() callback is called immediately, possibly before imports are
+    // loaded. test() callbacks are not called until after imports are loaded.
+    return new class extends window.cp.RequestBase {
       get url_() {
         return '/url';
       }
@@ -53,6 +54,7 @@ suite('RequestBase', function() {
         }
       };
     };
+    window.AUTH_CLIENT_ID = 'test';
 
     const request = new TestRequest({});
     const response = await request.response;
