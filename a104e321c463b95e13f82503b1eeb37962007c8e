@@ -233,6 +233,30 @@
       "revId": "a104e321c463b95e13f82503b1eeb37962007c8e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bf584a27_76a42dcc",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-03-15T00:12:45Z",
+      "side": 1,
+      "message": "Thanks. All of the associated code will be on the stack at the time the above assertion and associated Exception are generated, so it seems pretty clear to me why these would conflict.\n\nI\u0027m happy to contribute to further cleanups of this code after this initial CL lands.",
+      "parentUuid": "31e86ad1_a6c32e96",
+      "range": {
+        "startLine": 83,
+        "startChar": 5,
+        "endLine": 83,
+        "endChar": 43
+      },
+      "revId": "a104e321c463b95e13f82503b1eeb37962007c8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

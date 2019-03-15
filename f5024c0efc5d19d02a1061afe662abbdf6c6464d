@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "aef43e4d_fc136f7a",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-03-15T00:12:45Z",
+      "side": 1,
+      "message": "It turned out this change was unnecessary after some other recent changes which supported split APKs. Removed.",
+      "revId": "f5024c0efc5d19d02a1061afe662abbdf6c6464d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "51824ff5_e0198448",
         "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
         "patchSetId": 9
@@ -16,6 +33,24 @@
       "revId": "f5024c0efc5d19d02a1061afe662abbdf6c6464d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fce4c508_17aab10f",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-03-15T00:12:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51824ff5_e0198448",
+      "revId": "f5024c0efc5d19d02a1061afe662abbdf6c6464d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
