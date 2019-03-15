@@ -28,6 +28,7 @@ THIRD_PARTY_LIBRARIES = [
     'polymer2/bower_components/chopsui',
     'six',
     'gae_ts_mon',
+    'idb',
 ]
 
 # Files and directories in catapult/dashboard.
