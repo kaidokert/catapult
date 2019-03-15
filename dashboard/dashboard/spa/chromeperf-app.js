@@ -85,6 +85,13 @@ tr.exportTo('cp', () => {
       await this.dispatch('closeAllCharts', this.statePath);
     }
 
+    observeSections_() {
+      if (!this.readied) return;
+      this.debounce('updateLocation', () => {
+        this.dispatch('updateLocation', this.statePath);
+      }, Polymer.Async.animationFrame);
+    }
+
     isInternal_(userEmail) {
       return userEmail.endsWith('@google.com');
     }
@@ -98,10 +105,11 @@ tr.exportTo('cp', () => {
     // App-route sets |route|, and redux sets |reduxRoutePath|.
     // ChromeperfApp translates between them.
     // https://stackoverflow.com/questions/41440316
-    reduxRoutePath: options => '',
+    reduxRoutePath: options => '#',
     vulcanizedDate: options => options.vulcanizedDate,
     enableNav: options => true,
     isLoading: options => true,
+    readied: options => false,
 
     reportSection: options => cp.ReportSection.buildState({
       sources: [cp.ReportControls.DEFAULT_NAME],
@@ -127,6 +135,8 @@ tr.exportTo('cp', () => {
 
   ChromeperfApp.observers = [
     'observeReduxRoute_(reduxRoutePath)',
+    ('observeSections_(showingReportSection, reportSection, ' +
+     'alertsSectionsById, chartSectionsById)'),
   ];
 
   ChromeperfApp.actions = {
@@ -150,9 +160,15 @@ tr.exportTo('cp', () => {
           await window.getAuthInstanceAsync();
         }
 
+        // Now, if the user is signed in, we can get auth headers. Try to
+        // restore session state, which might include internal data.
+        await ChromeperfApp.actions.restoreFromRoute(
+            statePath, routeParams)(dispatch, getState);
+
         // The app is done loading.
         dispatch(Redux.UPDATE(statePath, {
           isLoading: false,
+          readied: true,
         }));
       },
 
@@ -162,6 +178,7 @@ tr.exportTo('cp', () => {
         statePath,
         sectionId,
       });
+      ChromeperfApp.actions.updateLocation(statePath)(dispatch, getState);
 
       await cp.timeout(NOTIFICATION_MS);
       const state = Polymer.Path.get(getState(), statePath);
@@ -232,6 +249,144 @@ tr.exportTo('cp', () => {
         type: ChromeperfApp.reducers.closeAllCharts.name,
         statePath,
       });
+    },
+
+    restoreSessionState: (statePath, sessionId) =>
+      async(dispatch, getState) => {
+        const request = new cp.SessionStateRequest({sessionId});
+        const sessionState = await request.response;
+        await dispatch({
+          type: ChromeperfApp.reducers.receiveSessionState.name,
+          statePath,
+          sessionState,
+        });
+        await cp.ReportSection.actions.restoreState(
+            `${statePath}.reportSection`, sessionState.reportSection
+        )(dispatch, getState);
+        await ChromeperfApp.actions.updateLocation(statePath)(
+            dispatch, getState);
+      },
+
+    restoreFromRoute: (statePath, routeParams) => async(dispatch, getState) => {
+      if (routeParams.has('nonav')) {
+        dispatch(Redux.UPDATE(statePath, {enableNav: false}));
+      }
+
+      const sessionId = routeParams.get('session');
+      if (sessionId) {
+        await ChromeperfApp.actions.restoreSessionState(
+            statePath, sessionId)(dispatch, getState);
+        return;
+      }
+
+      if (routeParams.get('report') !== null) {
+        const options = cp.ReportSection.newStateOptionsFromQueryParams(
+            routeParams);
+        cp.ReportSection.actions.restoreState(
+            `${statePath}.reportSection`, options)(dispatch, getState);
+        return;
+      }
+
+      if (routeParams.get('sheriff') !== null ||
+          routeParams.get('bug') !== null ||
+          routeParams.get('ar') !== null) {
+        const options = cp.AlertsSection.newStateOptionsFromQueryParams(
+            routeParams);
+        // Hide the report section and create a single alerts-section.
+        dispatch(Redux.CHAIN(
+            Redux.UPDATE(statePath, {showingReportSection: false}),
+            {
+              type: ChromeperfApp.reducers.newAlerts.name,
+              statePath,
+              options,
+            },
+        ));
+        return;
+      }
+
+      if (routeParams.get('testSuite') !== null ||
+          routeParams.get('suite') !== null ||
+          routeParams.get('chart') !== null) {
+        // Hide the report section and create a single chart.
+        const options = cp.ChartSection.newStateOptionsFromQueryParams(
+            routeParams);
+        dispatch(Redux.UPDATE(statePath, {showingReportSection: false}));
+        ChromeperfApp.actions.newChart(statePath, options)(dispatch, getState);
+        return;
+      }
+    },
+
+    saveSession: statePath => async(dispatch, getState) => {
+      const state = Polymer.Path.get(getState(), statePath);
+      const sessionState = ChromeperfApp.getSessionState(state);
+      const request = new cp.SessionIdRequest({sessionState});
+      const session = await request.response;
+      const reduxRoutePath = new URLSearchParams({session});
+      dispatch(Redux.UPDATE(statePath, {reduxRoutePath}));
+    },
+
+    // Compute one of 5 styles of route path (the part of the URL after the
+    // origin):
+    //  1. /#report=... is used when the report-section is showing and there are
+    //     no alerts-sections or chart-sections.
+    //  2. /#sheriff=... is used when there is a single alerts-section, zero
+    //     chart-sections, and the report-section is hidden.
+    //  3. /#suite=... is used when there is a single simple chart-section, zero
+    //     alerts-sections, and the report-section is hidden.
+    //  4. /## is used when zero sections are showing.
+    //  5. /#session=... is used otherwise. The full session state is stored on
+    //     the server, addressed by its sha2. SessionIdCacheRequest in the
+    //     service worker computes and returns the sha2 so this doesn't need to
+    //     wait for a round-trip.
+    updateLocation: statePath => async(dispatch, getState) => {
+      const rootState = getState();
+      const state = Polymer.Path.get(rootState, statePath);
+      if (!state.readied) return;
+      const nonEmptyAlerts = state.alertsSectionIds.filter(id =>
+        !cp.AlertsSection.isEmpty(state.alertsSectionsById[id]));
+      const nonEmptyCharts = state.chartSectionIds.filter(id =>
+        !cp.ChartSection.isEmpty(state.chartSectionsById[id]));
+
+      let routeParams;
+
+      if (!state.showingReportSection &&
+          (nonEmptyAlerts.length === 0) &&
+          (nonEmptyCharts.length === 0)) {
+        routeParams = new URLSearchParams();
+      }
+
+      if (state.showingReportSection &&
+          (nonEmptyAlerts.length === 0) &&
+          (nonEmptyCharts.length === 0)) {
+        routeParams = cp.ReportSection.getRouteParams(state.reportSection);
+      }
+
+      if (!state.showingReportSection &&
+          (nonEmptyAlerts.length === 1) &&
+          (nonEmptyCharts.length === 0)) {
+        routeParams = cp.AlertsSection.getRouteParams(
+            state.alertsSectionsById[nonEmptyAlerts[0]]);
+      }
+
+      if (!state.showingReportSection &&
+          (nonEmptyAlerts.length === 0) &&
+          (nonEmptyCharts.length === 1)) {
+        routeParams = cp.ChartSection.getRouteParams(
+            state.chartSectionsById[nonEmptyCharts[0]]);
+      }
+
+      if (routeParams === undefined) {
+        await ChromeperfApp.actions.saveSession(statePath)(dispatch, getState);
+        return;
+      }
+
+      if (!state.enableNav) {
+        routeParams.set('nonav', '');
+      }
+
+      // The extra '#' prevents observeAppRoute_ from dispatching reset.
+      const reduxRoutePath = routeParams.toString() || '#';
+      dispatch(Redux.UPDATE(statePath, {reduxRoutePath}));
     },
   };
 
@@ -373,6 +528,54 @@ tr.exportTo('cp', () => {
         closedChartIds: [],
       };
     },
+
+    receiveSessionState: (state, {sessionState}, rootState) => {
+      state = {
+        ...state,
+        isLoading: false,
+        showingReportSection: sessionState.showingReportSection,
+        alertsSectionIds: [],
+        alertsSectionsById: {},
+        chartSectionIds: [],
+        chartSectionsById: {},
+      };
+
+      if (sessionState.alertsSections) {
+        for (const options of sessionState.alertsSections) {
+          state = ChromeperfApp.reducers.newAlerts(state, {options});
+        }
+      }
+      if (sessionState.chartSections) {
+        for (const options of sessionState.chartSections) {
+          state = ChromeperfApp.reducers.newChart(state, {options});
+        }
+      }
+      return state;
+    },
+  };
+
+  ChromeperfApp.getSessionState = state => {
+    const alertsSections = [];
+    for (const id of state.alertsSectionIds) {
+      if (cp.AlertsSection.isEmpty(state.alertsSectionsById[id])) continue;
+      alertsSections.push(cp.AlertsSection.getSessionState(
+          state.alertsSectionsById[id]));
+    }
+    const chartSections = [];
+    for (const id of state.chartSectionIds) {
+      if (cp.ChartSection.isEmpty(state.chartSectionsById[id])) continue;
+      chartSections.push(cp.ChartSection.getSessionState(
+          state.chartSectionsById[id]));
+    }
+
+    return {
+      enableNav: state.enableNav,
+      showingReportSection: state.showingReportSection,
+      reportSection: cp.ReportSection.getSessionState(
+          state.reportSection),
+      alertsSections,
+      chartSections,
+    };
   };
 
   cp.ElementBase.register(ChromeperfApp);
