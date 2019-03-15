@@ -5,9 +5,10 @@
 'use strict';
 tr.exportTo('cp', () => {
   class TimeseriesDescriptor extends cp.ElementBase {
-    ready() {
+    async ready() {
       super.ready();
-      this.dispatch('ready', this.statePath);
+      await this.dispatch('ready', this.statePath);
+      this.dispatchMatrixChange_();
     }
 
     dispatchMatrixChange_() {
@@ -171,6 +172,7 @@ tr.exportTo('cp', () => {
 
   TimeseriesDescriptor.reducers = {
     receiveTestSuites: (state, {suites}, rootState) => {
+      if (!state) return state;
       const suite = TimeseriesDescriptor.State.suite({suite: {
         ...state.suite,
         options: suites,
@@ -266,6 +268,11 @@ tr.exportTo('cp', () => {
     // names like [[a, b, c]].
     // Unaggregated parameters contain multiple arrays that contain a single
     // name like [[a], [b], [c]].
+
+    if (!suite || !measurement || !bot || !cas) {
+      return {suites: [], measurements: [], bots: [], cases: []};
+    }
+
     let suites = suite.selectedOptions;
     if (suite.isAggregated) {
       suites = [suites];
