@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6cc0d3c5_0e75e85a",
+        "filename": "devil/devil/android/flag_changer.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-03-16T00:31:09Z",
+      "side": 1,
+      "message": "I just realized I didn\u0027t pass down require_rooted_device here, so this is probably changing whether SELinux is being set to permissive or not on the waterfall. Theoretically it shouldn\u0027t be needed, so I\u0027m going to try to push forward with this CL as is, but am not 100% sure whether the Catapult Android Tryserver failures with this patch are related.",
+      "revId": "1852ed58b04e8633c401af217cdec7cd58594b19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
