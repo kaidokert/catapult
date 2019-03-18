@@ -53,13 +53,15 @@ def _ProcessFrozenJob(job_id):
   if not info:
     info = {'retries': 0}
 
-  if info.get('retries') >= _JOB_MAX_RETRIES:
+  info['retries'] += 1
+  layered_cache.Set(key, info, days_to_keep=30)
+
+  if info.get('retries') == _JOB_MAX_RETRIES:
     job.Fail()
     job.put()
+    return
+  elif info.get('retries') > _JOB_MAX_RETRIES:
     return
 
   job._Schedule()
   job.put()
-
-  info['retries'] += 1
-  layered_cache.Set(key, info, days_to_keep=30)
