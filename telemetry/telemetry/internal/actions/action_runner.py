@@ -14,6 +14,7 @@ from telemetry.internal.actions.key_event import KeyPressAction
 from telemetry.internal.actions.load_media import LoadMediaAction
 from telemetry.internal.actions.mouse_click import MouseClickAction
 from telemetry.internal.actions.navigate import NavigateAction
+from telemetry.internal.actions.open_new_window import NewWindowAction
 from telemetry.internal.actions.page_action import GESTURE_SOURCE_DEFAULT
 from telemetry.internal.actions.page_action import SUPPORTED_GESTURE_SOURCES
 from telemetry.internal.actions.pinch import PinchAction
@@ -202,6 +203,18 @@ class ActionRunner(object):
     time_left_in_seconds = max(0, time_left_in_seconds)
     self._tab.WaitForDocumentReadyStateToBeInteractiveOrBetter(
         time_left_in_seconds)
+
+  def OpenNewWindow(self, url, timeout_in_seconds=5):
+    """Opens a new popup window with address |url|.
+
+    This waits a maximum of page_action.DEFAULT_TIMEOUT seconds for the
+    document to report it's complete, but then waits an additional
+    |timeout_in_seconds| to better allow media to load.
+
+    Must have popup blocking disabled at the browser level.
+    """
+    self._RunAction(NewWindowAction(url, page_action.DEFAULT_TIMEOUT))
+    self.Wait(timeout_in_seconds)
 
   def ReloadPage(self):
     """Reloads the page."""
