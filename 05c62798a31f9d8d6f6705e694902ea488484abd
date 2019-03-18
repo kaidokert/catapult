@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fc5e7316_e609eacc",
+        "filename": "dashboard/dashboard/spa/sparkline-compound.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-18T20:12:41Z",
+      "side": 1,
+      "message": "Is there any way to split up this function a bit better and move things into helpers, it\u0027s ~200 lines long.",
+      "range": {
+        "startLine": 150,
+        "startChar": 4,
+        "endLine": 150,
+        "endChar": 20
+      },
+      "revId": "05c62798a31f9d8d6f6705e694902ea488484abd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
