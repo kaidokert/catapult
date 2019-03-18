@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bf75e644_161e209a",
+        "filename": "telemetry/telemetry/internal/actions/action_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-18T23:01:03Z",
+      "side": 1,
+      "message": "If new tab is not an \"Action\", then I don\u0027t think new window should be either. Or both of them should be actions.",
+      "range": {
+        "startLine": 206,
+        "startChar": 4,
+        "endLine": 206,
+        "endChar": 53
+      },
+      "revId": "0592c962c708b55c642e02ee3f9497635955c4d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e675359_deda8f3b",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-18T23:01:03Z",
+      "side": 1,
+      "message": "I don\u0027t think this is really a StoryAction, so it should not extend StoryActionError.",
+      "range": {
+        "startLine": 17,
+        "startChar": 34,
+        "endLine": 17,
+        "endChar": 61
+      },
+      "revId": "0592c962c708b55c642e02ee3f9497635955c4d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d77535a_796e2c47",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-18T23:01:03Z",
+      "side": 1,
+      "message": "This method is too long.",
+      "range": {
+        "startLine": 55,
+        "startChar": 12,
+        "endLine": 60,
+        "endChar": 20
+      },
+      "revId": "0592c962c708b55c642e02ee3f9497635955c4d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68b0a411_e9a7dfe7",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-18T23:01:03Z",
+      "side": 1,
+      "message": "This totally loses the original exception information, so it would be really hard to diagnosis the internal error.",
+      "range": {
+        "startLine": 75,
+        "startChar": 8,
+        "endLine": 75,
+        "endChar": 80
+      },
+      "revId": "0592c962c708b55c642e02ee3f9497635955c4d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "443a4614_d989efb6",
+        "filename": "telemetry/telemetry/internal/browser/tab_list.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-18T23:01:03Z",
+      "side": 1,
+      "message": "Documentation goes inside the function like this\n\ndef New(self, tab_type\u003d\"TAB_IN_CURRENT_WINDOW\", timeout\u003d300):\n  \"\"\"Open a new browser context.\n\n  Args:\n    tab_type: Can be TAB_IN_CURRENT_WINDOW or TAB_IN_NEW_POPUP.\n    timeout: The timeout in seconds for how long to wait for the tab\n      to get created.\n  \"\"\"",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 63
+      },
+      "revId": "0592c962c708b55c642e02ee3f9497635955c4d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1671df64_02a2531c",
+        "filename": "telemetry/telemetry/internal/browser/tab_list.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-18T23:01:03Z",
+      "side": 1,
+      "message": "This signature is good:\n\n  def New(self, tab_type\u003dTAB_IN_CURRENT_WINDOW, timeout\u003d300)\n\nI like that tab_type is before timeout. However, you need to audit everywhere that \"New()\" is called using codesearch to make sure that no one currently calls it like\ntabs.New(100)\nbecause then the 100 would be put into the \"tab_type\" argument.\n\nIf you don\u0027t want to audit, then you can instead put the tab_type argument after the timeout argument:\n\n  def New(self, timeout\u003d300, tab_type\u003dTAB_IN_CURRENT_WINDOW)",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 61
+      },
+      "revId": "0592c962c708b55c642e02ee3f9497635955c4d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d976c1f6_1a840170",
+        "filename": "telemetry/telemetry/internal/browser/tab_list.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-18T23:01:03Z",
+      "side": 1,
+      "message": "Define constants for these strings:\n\nTAB_IN_CURRENT_WINDOW \u003d \u0027tab in current window\u0027\nTAB_IN_NEW_POPUP \u003d \u0027tab in new popup\u0027",
+      "range": {
+        "startLine": 9,
+        "startChar": 25,
+        "endLine": 9,
+        "endChar": 48
+      },
+      "revId": "0592c962c708b55c642e02ee3f9497635955c4d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
