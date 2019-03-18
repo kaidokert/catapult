@@ -52,6 +52,24 @@
       "revId": "f8e231582d6aa491266c06cfaa7b81cd15aa3dfa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "740d8277_a5e6cb5c",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-18T17:47:46Z",
+      "side": 0,
+      "message": "I agree, let\u0027s leave the refactoring of command line parsing stuff for one of the next CLs.",
+      "parentUuid": "50361439_20a32a66",
+      "revId": "f8e231582d6aa491266c06cfaa7b81cd15aa3dfa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
