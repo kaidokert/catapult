@@ -16,6 +16,24 @@
       "revId": "f8e231582d6aa491266c06cfaa7b81cd15aa3dfa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b7f6107_99dd8b20",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-18T11:25:43Z",
+      "side": 0,
+      "message": "I moved them to benchmark_runner.py because I want all commandline-parsing code to be there at the end.",
+      "parentUuid": "1bf0ae1f_2950e676",
+      "revId": "f8e231582d6aa491266c06cfaa7b81cd15aa3dfa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

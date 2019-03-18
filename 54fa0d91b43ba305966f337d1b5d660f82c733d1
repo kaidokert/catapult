@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e932f78f_47093fb8",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-18T11:25:43Z",
+      "side": 1,
+      "message": "Yeah, I also thought about that. Will do that in one of subsequent CLs.",
+      "parentUuid": "36968892_aa6116a8",
+      "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d480539a_7a94f1c4",
         "filename": "telemetry/telemetry/benchmark.py",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "c5c18c3b_db0fc7a0",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-18T11:25:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d480539a_7a94f1c4",
+      "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "546ae33c_110208b1",
         "filename": "telemetry/telemetry/benchmark_runner.py",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2019-03-15T14:02:10Z",
       "side": 1,
       "message": "nit: Do not use mutable object as default argument, see:\nhttps://github.com/google/styleguide/blob/gh-pages/pyguide.md#2124-decision",
+      "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a700d4cd_cc9e824e",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-18T11:25:43Z",
+      "side": 1,
+      "message": "It think it\u0027s not a problem in this case, because sys.argv is already a global object that anyone can change. I can change the default to None, just to silence the presubmit check, but the actual behavior will be absolutely the same: if someone passes sys.argv as an argument, arg will become a reference to sys.argv.",
+      "parentUuid": "546ae33c_110208b1",
       "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "08fd1e49_ccf9f6ce",
+        "filename": "telemetry/telemetry/benchmark_runner_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-18T11:25:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36fb616a_2086d7e6",
+      "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "efcc19d2_faa3b5cd",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 2
@@ -84,6 +156,24 @@
       "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29720228_2fdfedbb",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-18T11:25:43Z",
+      "side": 1,
+      "message": "There\u0027s a broad except in the code that catches all exceptions including typos in variable names. It caused me to spent perhaps half an hour trying to figure out what\u0027s going on, when I just mistyped something. The best solution would be to refactor code so that it doesn\u0027t need a broad except, but I leave that for some future CL. For now I just added some most common exceptions to this list.",
+      "parentUuid": "efcc19d2_faa3b5cd",
+      "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "d2825e63_0b9c6e55",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-18T11:25:43Z",
+      "side": 1,
+      "message": "Totally agree with setup/running separation.\n\nUnfortunately, most code in this function has nothing to do with setting benchmarks up, but instead with processing special cases (like returning results for disable benchmarks, or working in print-only mode). But I will try to make the separation as clear as possible.",
+      "parentUuid": "8d9b31f9_d85acd8e",
+      "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "258de7bb_6e0a845d",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 2
@@ -115,6 +223,24 @@
       "writtenOn": "2019-03-15T14:02:10Z",
       "side": 1,
       "message": "Let\u0027s give this a better name, maybe RunStorySetLoop? Also, if possibly, let\u0027s try to make this private.",
+      "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8fc8d27_c7282732",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-18T11:25:43Z",
+      "side": 1,
+      "message": "Renamed to RunStorySet. Currently it\u0027s called from record_wpr script, so can\u0027t make it private yet. But I will try to look into how to make that script use a more general interface.",
+      "parentUuid": "258de7bb_6e0a845d",
       "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -138,6 +264,24 @@
     },
     {
       "key": {
+        "uuid": "d85e633c_2b8bd888",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-18T11:25:43Z",
+      "side": 1,
+      "message": "My plan is to divide all options into clear classes, like browser_options (those that are passed to browser), finder options (those that determine which browser will be selected), execution_options (those that affect the execution of benchmarks). And then make sure that each function receives only those options that are necessary for its goal. E.g. RunBenchmark does not need finder_options, because the browser is already selected, FindBrowser does not need execution_options, etc.\n\nSo I changed the interface of this function to reflect that desired state. For the time being I\u0027m still passing an instance of FinderOptions here (and this instance still has a reference to browser_options), but I\u0027m planning to change that with the next step.",
+      "parentUuid": "0c13c63a_6b82631e",
+      "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1e50523c_03986423",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 2
@@ -152,6 +296,24 @@
       "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18470a99_97b08ed8",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-18T11:25:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e50523c_03986423",
+      "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -172,6 +334,24 @@
     },
     {
       "key": {
+        "uuid": "d7486931_0fa12ee6",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-18T11:25:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5de9fa8a_1d598dbe",
+      "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d5f9d736_0ae5a800",
         "filename": "telemetry/telemetry/story/story_filter.py",
         "patchSetId": 2
@@ -186,6 +366,24 @@
       "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e16566fc_a1939dae",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-18T11:25:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5f9d736_0ae5a800",
+      "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
