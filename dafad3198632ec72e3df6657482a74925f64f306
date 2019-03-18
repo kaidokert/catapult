@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cb904294_3027c3e6",
+        "filename": "telemetry/telemetry/internal/actions/action_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-18T16:36:05Z",
+      "side": 1,
+      "message": "After looking into this a bit, I am concerned about adding a different way to make a new handle* when we already have TabListBackend: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/backends/chrome/tab_list_backend.py?q\u003dRequestNewTab\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d24\nwhich is used to support TabList https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/browser/tab_list.py?q\u003dtab_list_backend+file:%5Esrc/third_party/catapult/telemetry/telemetry/+package:%5Echromium$\u0026dr\u003dC\u0026l\u003d5\n\nTabList has a \"New\" function that currently has no arguments. I think you should add an argument like \"tab_type\" and then in tab_list.py you can have the following types:\n1. TAB_IN_CURRENT_WINDOW\n2. TAB_IN_NEW_POPUP\nthat list can be expanded upon in the future to support additional types of tabs.\n\n\n*\"handle\" means either new tab or new window. It\u0027s a new browsing context. Essentially a new window is a new tab anyways.",
+      "range": {
+        "startLine": 17,
+        "startChar": 30,
+        "endLine": 17,
+        "endChar": 70
+      },
+      "revId": "dafad3198632ec72e3df6657482a74925f64f306",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
