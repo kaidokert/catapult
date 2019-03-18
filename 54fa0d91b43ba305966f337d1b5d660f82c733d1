@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "92843904_5e75ef6d",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-18T13:47:32Z",
+      "side": 1,
+      "message": "Unless there is a good reason not to, let\u0027s stick with and follow the style guide.",
+      "parentUuid": "a700d4cd_cc9e824e",
+      "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "36fb616a_2086d7e6",
         "filename": "telemetry/telemetry/benchmark_runner_unittest.py",
         "patchSetId": 2
@@ -177,6 +195,24 @@
     },
     {
       "key": {
+        "uuid": "41f9591e_e3cd85c0",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-18T13:47:32Z",
+      "side": 1,
+      "message": "OK. Adding these two is probably fine, as you say the cause of the error would often be some sort of typo or coding mistake. \n\nStill, we want to keep the list reasonably short, so that failures specific to an individual story do not bring down the entire benchmark when running on the waterfall.",
+      "parentUuid": "29720228_2fdfedbb",
+      "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8d9b31f9_d85acd8e",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 2
@@ -206,6 +242,24 @@
       "side": 1,
       "message": "Totally agree with setup/running separation.\n\nUnfortunately, most code in this function has nothing to do with setting benchmarks up, but instead with processing special cases (like returning results for disable benchmarks, or working in print-only mode). But I will try to make the separation as clear as possible.",
       "parentUuid": "8d9b31f9_d85acd8e",
+      "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "76e72b64_94ed5519",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-18T13:47:32Z",
+      "side": 1,
+      "message": "Ack. However I think the first case, checking whether the benchmark itself is disabled and return results, does fit into \"benchmark setup\" work. For the second I agree with you, it doesn\u0027t really belong here. Left a couple of comments regarding this on your new version of the code.",
+      "parentUuid": "d2825e63_0b9c6e55",
       "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -247,6 +301,24 @@
     },
     {
       "key": {
+        "uuid": "5916f9bd_c06d525c",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-18T13:47:32Z",
+      "side": 1,
+      "message": "Sounds good. Thanks!",
+      "parentUuid": "f8fc8d27_c7282732",
+      "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0c13c63a_6b82631e",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 2
@@ -276,6 +348,24 @@
       "side": 1,
       "message": "My plan is to divide all options into clear classes, like browser_options (those that are passed to browser), finder options (those that determine which browser will be selected), execution_options (those that affect the execution of benchmarks). And then make sure that each function receives only those options that are necessary for its goal. E.g. RunBenchmark does not need finder_options, because the browser is already selected, FindBrowser does not need execution_options, etc.\n\nSo I changed the interface of this function to reflect that desired state. For the time being I\u0027m still passing an instance of FinderOptions here (and this instance still has a reference to browser_options), but I\u0027m planning to change that with the next step.",
       "parentUuid": "0c13c63a_6b82631e",
+      "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84e7d9f2_3ead8330",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-18T13:47:32Z",
+      "side": 1,
+      "message": "I agree that this plan sounds like a good idea. But I also think that would require some more thinking and design before implementing (e.g. settle how many \"categories\" of options we need, and how do the existing options fit onto those categories).\n\nAlso, this CL is already quite involved, and having this extra change makes it harder to review, so let\u0027s do one thing at a time. OK if you want to split already and pass separately the browser_options and finder_options (you can also comment on the docstring that from finder options we only read options regarding benchmark execution); but let\u0027s wait for the finder -\u003e execution renaming until after we have a design doc for that.",
+      "parentUuid": "d85e633c_2b8bd888",
       "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -381,6 +471,24 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "d5f9d736_0ae5a800",
+      "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a7715184_91d70f85",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-18T13:47:32Z",
+      "side": 1,
+      "message": "also style nit",
+      "parentUuid": "e16566fc_a1939dae",
       "revId": "54fa0d91b43ba305966f337d1b5d660f82c733d1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
