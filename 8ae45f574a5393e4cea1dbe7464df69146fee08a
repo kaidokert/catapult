@@ -117,6 +117,30 @@
       "revId": "8ae45f574a5393e4cea1dbe7464df69146fee08a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e99e1da9_d4ffba1f",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-03-18T15:04:40Z",
+      "side": 1,
+      "message": "Thanks for the detail! Very interesting indeed. I have confirmed that the list of stories for the shards are filtered in the earlier step in StoryFilter.FilterStorySet(). So changing the order here shouldn\u0027t have an impact on device affinity.",
+      "parentUuid": "333a6c08_b7567cf7",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 71
+      },
+      "revId": "8ae45f574a5393e4cea1dbe7464df69146fee08a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
