@@ -5,8 +5,9 @@ class TabList(object):
   def __init__(self, tab_list_backend):
     self._tab_list_backend = tab_list_backend
 
-  def New(self, timeout=300):
-    return self._tab_list_backend.New(timeout)
+  # |tab_type| can be TAB_IN_CURRENT_WINDOW or TAB_IN_NEW_POPUP
+  def New(self, tab_type="TAB_IN_CURRENT_WINDOW", timeout=300):
+    return self._tab_list_backend.New(tab_type, timeout)
 
   def __iter__(self):
     return self._tab_list_backend.__iter__()
