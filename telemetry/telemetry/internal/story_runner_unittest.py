@@ -22,6 +22,7 @@ from telemetry.core import exceptions
 from telemetry.core import util
 from telemetry import decorators
 from telemetry.internal.actions import page_action
+from telemetry.internal.browser import browser_finder
 from telemetry.internal.results import page_test_results
 from telemetry.internal.results import results_options
 from telemetry.internal import story_runner
@@ -323,7 +324,9 @@ class StoryRunnerTest(unittest.TestCase):
     for i in xrange(number_stories):
       story_set.AddStory(DummyLocalStory(FooStoryState, name='story_%d' % i))
     test = DummyTest()
-    story_runner.Run(test, story_set, self.options, self.results)
+    story_runner.RunStorySet(
+        test, story_set, None, None,
+        self.options.browser_options, self.options, self.results)
     self.assertFalse(self.results.had_failures)
     self.assertEquals(number_stories,
                       GetNumberOfSuccessfulPageRuns(self.results))
@@ -335,22 +338,20 @@ class StoryRunnerTest(unittest.TestCase):
         'http://www.testurl.com', story_set, story_set.base_dir,
         name='http://www.testurl.com'))
     test = DummyTest()
-    self.assertRaises(story_runner.ArchiveError, story_runner.Run, test,
-                      story_set, self.options, self.results)
-
-  def testRunStoryWithLongName(self):
-    story_set = story_module.StorySet()
-    story_set.AddStory(DummyLocalStory(FooStoryState, name='l' * 182))
-    test = DummyTest()
-    self.assertRaises(ValueError, story_runner.Run, test, story_set,
-                      self.options, self.results)
+    self.assertRaises(
+        story_runner.ArchiveError, story_runner.RunStorySet,
+        test, story_set, None, None,
+        self.options.browser_options, self.options, self.results)
 
   def testRunStoryWithLongURLPage(self):
     story_set = story_module.StorySet()
     story_set.AddStory(page_module.Page('file://long' + 'g' * 180,
                                         story_set, name='test'))
     test = DummyTest()
-    story_runner.Run(test, story_set, self.options, self.results)
+    fake_browser = browser_finder.FindBrowser(self.options)
+    story_runner.RunStorySet(
+        test, story_set, fake_browser, None,
+        self.options.browser_options, self.options, self.results)
 
   def testSuccessfulTimelineBasedMeasurementTest(self):
     """Check that PageTest is not required for story_runner.Run.
@@ -385,7 +386,9 @@ class StoryRunnerTest(unittest.TestCase):
     story_set.AddStory(DummyLocalStory(TestSharedTbmState, name='foo'))
     story_set.AddStory(DummyLocalStory(TestSharedTbmState, name='bar'))
     story_set.AddStory(DummyLocalStory(TestSharedTbmState, name='baz'))
-    story_runner.Run(test, story_set, self.options, self.results)
+    story_runner.RunStorySet(
+        test, story_set, None, None,
+        self.options.browser_options, self.options, self.results)
     self.assertFalse(self.results.had_failures)
     self.assertEquals(3, GetNumberOfSuccessfulPageRuns(self.results))
 
@@ -442,7 +445,9 @@ class StoryRunnerTest(unittest.TestCase):
       test = TestStoryTest()
       story_set = story_module.StorySet()
       story_set.AddStory(DummyLocalStory(TestSharedStateForStoryTest))
-      story_runner.Run(test, story_set, self.options, self.results)
+      story_runner.RunStorySet(
+          test, story_set, None, None,
+          self.options.browser_options, self.options, self.results)
       return [call[0] for call in manager.mock_calls]
 
     calls_in_order = GetCallsInOrder() # pylint: disable=no-value-for-parameter
@@ -457,7 +462,9 @@ class StoryRunnerTest(unittest.TestCase):
 
     story_set.AddStory(DummyLocalStory(
         SharedStoryThatCausesAppCrash))
-    story_runner.Run(DummyTest(), story_set, self.options, self.results)
+    story_runner.RunStorySet(
+        DummyTest(), story_set, None, None,
+        self.options.browser_options, self.options, self.results)
     self.assertTrue(self.results.had_failures)
     self.assertEquals(0, GetNumberOfSuccessfulPageRuns(self.results))
     self.assertIn('App Foo crashes', self.fake_stdout.getvalue())
@@ -472,7 +479,9 @@ class StoryRunnerTest(unittest.TestCase):
     story_set.AddStory(DummyLocalStory(
         SharedStoryThatCausesAppCrash))
     with self.assertRaises(TestOnlyException):
-      story_runner.Run(DummyTest(), story_set, self.options, self.results)
+      story_runner.RunStorySet(
+          DummyTest(), story_set, None, None,
+          self.options.browser_options, self.options, self.results)
 
   def testUnknownExceptionIsNotFatal(self):
     self.StubOutExceptionFormatting()
@@ -502,7 +511,9 @@ class StoryRunnerTest(unittest.TestCase):
     story_set.AddStory(s1)
     story_set.AddStory(s2)
     test = Test()
-    story_runner.Run(test, story_set, self.options, self.results)
+    story_runner.RunStorySet(
+        test, story_set, None, None,
+        self.options.browser_options, self.options, self.results)
     self.assertEqual(set([s1]), self.results.pages_that_failed)
     self.assertEqual(set([s2]), self.results.pages_that_succeeded)
     self.assertIn('FooBarzException', self.fake_stdout.getvalue())
@@ -529,7 +540,9 @@ class StoryRunnerTest(unittest.TestCase):
     story_set.AddStory(DummyLocalStory(TestSharedPageState, name='foo'))
     story_set.AddStory(DummyLocalStory(TestSharedPageState, name='bar'))
     test = Test()
-    story_runner.Run(test, story_set, self.options, self.results)
+    story_runner.RunStorySet(
+        test, story_set, None, None,
+        self.options.browser_options, self.options, self.results)
     self.assertEquals(2, test.run_count)
     self.assertTrue(self.results.had_failures)
     self.assertEquals(1, GetNumberOfSuccessfulPageRuns(self.results))
@@ -571,7 +584,9 @@ class StoryRunnerTest(unittest.TestCase):
     test = Test()
 
     with self.assertRaises(DidRunTestError):
-      story_runner.Run(test, story_set, self.options, self.results)
+      story_runner.RunStorySet(
+          test, story_set, None, None,
+          self.options.browser_options, self.options, self.results)
     self.assertEqual(['app-crash', 'dump-state', 'tear-down-state'],
                      unit_test_events)
     # The AppCrashException gets added as a failure.
@@ -590,7 +605,9 @@ class StoryRunnerTest(unittest.TestCase):
     self.options.output_formats = []
     results = results_options.CreateResults(
         EmptyMetadataForTest(), self.options)
-    story_runner.Run(_Measurement(), story_set, self.options, results)
+    story_runner.RunStorySet(
+        _Measurement(), story_set, None, None,
+        self.options.browser_options, self.options, results)
     summary = summary_module.Summary(results)
     values = summary.interleaved_computed_per_page_values_and_summaries
 
@@ -621,9 +638,12 @@ class StoryRunnerTest(unittest.TestCase):
     story_set.AddStory(green_story)
 
     self.options.pageset_repeat = 1
+    fake_browser = browser_finder.FindBrowser(self.options)
     results = results_options.CreateResults(
         EmptyMetadataForTest(), self.options)
-    story_runner.Run(_Measurement(), story_set, self.options, results)
+    story_runner.RunStorySet(
+        _Measurement(), story_set, fake_browser, None,
+        self.options.browser_options, self.options, results)
     summary = summary_module.Summary(results)
     values = summary.interleaved_computed_per_page_values_and_summaries
 
@@ -639,8 +659,9 @@ class StoryRunnerTest(unittest.TestCase):
     results = results_options.CreateResults(
         EmptyMetadataForTest(), self.options)
 
-    story_runner.Run(_Measurement(), story_set, self.options, results,
-                     expectations=_DisableStoryExpectations())
+    story_runner.RunStorySet(
+        _Measurement(), story_set, None, _DisableStoryExpectations(),
+        self.options.browser_options, self.options, results)
     summary = summary_module.Summary(results)
     values = summary.interleaved_computed_per_page_values_and_summaries
 
@@ -655,11 +676,13 @@ class StoryRunnerTest(unittest.TestCase):
     story_two = DummyLocalStory(TestSharedPageState, name='two')
     story_set.AddStory(story_one)
     story_set.AddStory(story_two)
+    fake_browser = browser_finder.FindBrowser(self.options)
     results = results_options.CreateResults(
         EmptyMetadataForTest(), self.options)
 
-    story_runner.Run(_Measurement(), story_set, self.options, results,
-                     expectations=_DisableStoryExpectations())
+    story_runner.RunStorySet(
+        _Measurement(), story_set, fake_browser, _DisableStoryExpectations(),
+        self.options.browser_options, self.options, results)
     summary = summary_module.Summary(results)
     values = summary.interleaved_computed_per_page_values_and_summaries
 
@@ -673,11 +696,13 @@ class StoryRunnerTest(unittest.TestCase):
     story_one = DummyLocalStory(TestSharedPageState, name='one')
     story_set.AddStory(story_one)
     self.options.run_disabled_tests = True
+    fake_browser = browser_finder.FindBrowser(self.options)
     results = results_options.CreateResults(
         EmptyMetadataForTest(), self.options)
 
-    story_runner.Run(_Measurement(), story_set, self.options, results,
-                     expectations=_DisableStoryExpectations())
+    story_runner.RunStorySet(
+        _Measurement(), story_set, fake_browser, _DisableStoryExpectations(),
+        self.options.browser_options, self.options, results)
     summary = summary_module.Summary(results)
     values = summary.interleaved_computed_per_page_values_and_summaries
 
@@ -705,7 +730,9 @@ class StoryRunnerTest(unittest.TestCase):
     s1 = DummyLocalStory(TestSharedPageState, name='foo')
     story_set.AddStory(s1)
     test = Test()
-    story_runner.Run(test, story_set, self.options, self.results)
+    story_runner.RunStorySet(
+        test, story_set, None, None,
+        self.options.browser_options, self.options, self.results)
 
     dicts = self.results.AsHistogramDicts()
     hs = histogram_set.HistogramSet()
@@ -717,7 +744,9 @@ class StoryRunnerTest(unittest.TestCase):
   def testRunStoryAddsDeviceInfo(self):
     story_set = story_module.StorySet()
     story_set.AddStory(DummyLocalStory(FooStoryState, 'foo', ['bar']))
-    story_runner.Run(DummyTest(), story_set, self.options, self.results)
+    story_runner.RunStorySet(
+        DummyTest(), story_set, None, None,
+        self.options.browser_options, self.options, self.results)
 
     hs = histogram_set.HistogramSet()
     hs.ImportDicts(self.results.AsHistogramDicts())
@@ -755,7 +784,9 @@ class StoryRunnerTest(unittest.TestCase):
     story_set = story_module.StorySet()
     story_set.AddStory(ErrorRaisingDummyLocalStory(
         FooStoryState, 'foo', ['bar']))
-    story_runner.Run(DummyTest(), story_set, self.options, self.results)
+    story_runner.RunStorySet(
+        DummyTest(), story_set, None, None,
+        self.options.browser_options, self.options, self.results)
 
     hs = histogram_set.HistogramSet()
     hs.ImportDicts(self.results.AsHistogramDicts())
@@ -787,7 +818,9 @@ class StoryRunnerTest(unittest.TestCase):
     story_set = story_module.StorySet()
     story_set.AddStory(DummyLocalStory(FooStoryState, 'foo', ['bar']))
     story_set.AddStory(DummyLocalStory(FooStoryState, 'abc', ['def']))
-    story_runner.Run(Test(), story_set, self.options, self.results)
+    story_runner.RunStorySet(
+        Test(), story_set, None, None,
+        self.options.browser_options, self.options, self.results)
 
     hs = histogram_set.HistogramSet()
     hs.ImportDicts(self.results.AsHistogramDicts())
@@ -944,11 +977,13 @@ class StoryRunnerTest(unittest.TestCase):
     options.suppress_gtest_report = True
     if options_max_failures:
       options.max_failures = options_max_failures
+    fake_browser = browser_finder.FindBrowser(options)
 
     results = results_options.CreateResults(EmptyMetadataForTest(), options)
-    story_runner.Run(
-        DummyTest(), story_set, options,
-        results, max_failures=runner_max_failures)
+    story_runner.RunStorySet(
+        DummyTest(), story_set, fake_browser, None,
+        options.browser_options, options, results,
+        max_failures=runner_max_failures)
     self.assertEquals(0, GetNumberOfSuccessfulPageRuns(results))
     self.assertTrue(results.had_failures)
     for ii, story in enumerate(story_set.stories):
@@ -1252,50 +1287,6 @@ class StoryRunnerTest(unittest.TestCase):
         mock.call.test.DidRunStory(root_mock.state.platform, root_mock.results),
     ])
 
-
-  def testRunBenchmarkDisabledBenchmarkViaCanRunonPlatform(self):
-    fake_benchmark = FakeBenchmark()
-    fake_benchmark.SUPPORTED_PLATFORMS = []
-    options = _GenerateBaseBrowserFinderOptions()
-    tmp_path = tempfile.mkdtemp()
-    try:
-      options.output_dir = tmp_path
-      story_runner.RunBenchmark(fake_benchmark, options)
-      with open(os.path.join(tmp_path, 'results-chart.json')) as f:
-        data = json.load(f)
-      self.assertFalse(data['enabled'])
-    finally:
-      shutil.rmtree(tmp_path)
-
-  def testRunBenchmarkDisabledBenchmark(self):
-    fake_benchmark = FakeBenchmark()
-    fake_benchmark.disabled = True
-    options = _GenerateBaseBrowserFinderOptions()
-    tmp_path = tempfile.mkdtemp()
-    try:
-      options.output_dir = tmp_path
-      story_runner.RunBenchmark(fake_benchmark, options)
-      with open(os.path.join(tmp_path, 'results-chart.json')) as f:
-        data = json.load(f)
-      self.assertFalse(data['enabled'])
-    finally:
-      shutil.rmtree(tmp_path)
-
-  def testRunBenchmarkDisabledBenchmarkCanOverriddenByCommandLine(self):
-    fake_benchmark = FakeBenchmark()
-    fake_benchmark.disabled = True
-    options = _GenerateBaseBrowserFinderOptions()
-    options.run_disabled_tests = True
-    temp_path = tempfile.mkdtemp()
-    try:
-      options.output_dir = temp_path
-      story_runner.RunBenchmark(fake_benchmark, options)
-      with open(os.path.join(temp_path, 'results-chart.json')) as f:
-        data = json.load(f)
-      self.assertTrue(data['enabled'])
-    finally:
-      shutil.rmtree(temp_path)
-
   def testRunBenchmark_AddsOwners_NoComponent(self):
     @benchmark.Owner(emails=['alice@chromium.org'])
     class FakeBenchmarkWithOwner(FakeBenchmark):
@@ -1307,10 +1298,13 @@ class StoryRunnerTest(unittest.TestCase):
     fake_benchmark = FakeBenchmarkWithOwner()
     options = _GenerateBaseBrowserFinderOptions()
     options.output_formats = ['histograms']
+    fake_browser = browser_finder.FindBrowser(options)
     temp_path = tempfile.mkdtemp()
     try:
       options.output_dir = temp_path
-      story_runner.RunBenchmark(fake_benchmark, options)
+      story_runner.RunBenchmark(
+          fake_benchmark, fake_benchmark.CreateStorySet(options), fake_browser,
+          options.browser_options, options)
 
       with open(os.path.join(temp_path, 'histograms.json')) as f:
         data = json.load(f)
@@ -1342,11 +1336,14 @@ class StoryRunnerTest(unittest.TestCase):
 
     fake_benchmark = FakeBenchmarkWithOwner()
     options = _GenerateBaseBrowserFinderOptions()
+    fake_browser = browser_finder.FindBrowser(options)
     options.output_formats = ['histograms']
     temp_path = tempfile.mkdtemp()
     try:
       options.output_dir = temp_path
-      story_runner.RunBenchmark(fake_benchmark, options)
+      story_runner.RunBenchmark(
+          fake_benchmark, fake_benchmark.CreateStorySet(options), fake_browser,
+          options.browser_options, options)
 
       with open(os.path.join(temp_path, 'histograms.json')) as f:
         data = json.load(f)
@@ -1381,10 +1378,13 @@ class StoryRunnerTest(unittest.TestCase):
     fake_benchmark = FakeBenchmarkWithOwner()
     options = _GenerateBaseBrowserFinderOptions()
     options.output_formats = ['histograms']
+    fake_browser = browser_finder.FindBrowser(options)
     temp_path = tempfile.mkdtemp()
     try:
       options.output_dir = temp_path
-      story_runner.RunBenchmark(fake_benchmark, options)
+      story_runner.RunBenchmark(
+          fake_benchmark, fake_benchmark.CreateStorySet(options), fake_browser,
+          options.browser_options, options)
 
       with open(os.path.join(temp_path, 'histograms.json')) as f:
         data = json.load(f)
@@ -1408,6 +1408,35 @@ class StoryRunnerTest(unittest.TestCase):
     finally:
       shutil.rmtree(temp_path)
 
+  def testRunBenchmark_BenchmarkWithOverridenShouldAddValue(self):
+    class ShouldNotAddValueBenchmark(FakeBenchmark):
+      @classmethod
+      def ShouldAddValue(cls, unused_value, unused_is_first_result):
+        return False
+
+    original_run_fn = story_runner.RunStorySet
+    valid_should_add_value = [False]
+
+    def RunStorySetStub(
+        page_test, story_set, possible_browser,
+        expectations, browser_options, finder_options, results,
+        *args, **kwargs): # pylint: disable=unused-argument
+      should_add_value = results._should_add_value
+      valid = should_add_value == ShouldNotAddValueBenchmark.ShouldAddValue
+      valid_should_add_value[0] = valid
+
+    story_runner.RunStorySet = RunStorySetStub
+
+    try:
+      b = ShouldNotAddValueBenchmark()
+      story_runner.RunBenchmark(b, [], None,
+                                self.options.browser_options, self.options)
+    finally:
+      story_runner.RunStorySet = original_run_fn
+
+    self.assertTrue(valid_should_add_value[0])
+
+
   def testRunBenchmarkStoryTimeDuration(self):
     class FakeBenchmarkWithStories(FakeBenchmark):
       def __init__(self):
@@ -1428,6 +1457,7 @@ class StoryRunnerTest(unittest.TestCase):
     options = _GenerateBaseBrowserFinderOptions()
     options.output_formats = ['json-test-results']
     options.pageset_repeat = 2
+    fake_browser = browser_finder.FindBrowser(options)
 
     tmp_path = tempfile.mkdtemp()
 
@@ -1435,7 +1465,9 @@ class StoryRunnerTest(unittest.TestCase):
       time_patch.side_effect = itertools.count()
       try:
         options.output_dir = tmp_path
-        story_runner.RunBenchmark(fake_benchmark, options)
+        story_runner.RunBenchmark(
+            fake_benchmark, fake_benchmark.page_set(), fake_browser,
+            options.browser_options, options)
         with open(os.path.join(tmp_path, 'test-results.json')) as f:
           json_results = json.load(f)
           for fake_benchmark in json_results['tests']:
@@ -1453,10 +1485,13 @@ class StoryRunnerTest(unittest.TestCase):
     fake_benchmark = FakeBenchmark()
     fake_benchmark.story_disabled = True
     options = _GenerateBaseBrowserFinderOptions()
+    fake_browser = browser_finder.FindBrowser(options)
     tmp_path = tempfile.mkdtemp()
     try:
       options.output_dir = tmp_path
-      rc = story_runner.RunBenchmark(fake_benchmark, options)
+      rc = story_runner.RunBenchmark(
+          fake_benchmark, fake_benchmark.CreateStorySet(options), fake_browser,
+          options.browser_options, options)
       # Test should return 0 since only error messages are logged.
       self.assertEqual(rc, 0)
     finally:
@@ -1466,8 +1501,9 @@ class StoryRunnerTest(unittest.TestCase):
     self.StubOutExceptionFormatting()
     story_set = story_module.StorySet()
     story_set.AddStory(DummyLocalStory(TestSharedPageState, name='story'))
-    story_runner.Run(
-        _Measurement(), story_set, self.options, self.results, max_num_values=0)
+    story_runner.RunStorySet(
+        _Measurement(), story_set, None, None, self.options.browser_options,
+        self.options, self.results, max_num_values=0)
     self.assertTrue(self.results.had_failures)
     self.assertEquals(0, GetNumberOfSuccessfulPageRuns(self.results))
     self.assertIn('Too many values: 1 > 0', self.fake_stdout.getvalue())
@@ -1494,7 +1530,10 @@ class StoryRunnerTest(unittest.TestCase):
     options = _GenerateBaseBrowserFinderOptions()
     options.output_dir = '/does/not/exist'
     options.output_formats = ['none']
-    return_code = story_runner.RunBenchmark(sucessful_benchmark, options)
+    return_code = story_runner.RunBenchmark(
+        sucessful_benchmark, sucessful_benchmark.CreateStorySet(options), None,
+        options.browser_options, options)
+
     self.assertEquals(0, return_code)
 
   def testRunBenchmarkReturnCodeCaughtException(self):
@@ -1519,7 +1558,10 @@ class StoryRunnerTest(unittest.TestCase):
     options = _GenerateBaseBrowserFinderOptions()
     options.output_dir = '/does/not/exist'
     options.output_formats = ['none']
-    return_code = story_runner.RunBenchmark(story_failure_benchmark, options)
+    story_set = story_failure_benchmark.CreateStorySet(options)
+    return_code = story_runner.RunBenchmark(
+        story_failure_benchmark, story_set, None,
+        options.browser_options, options)
     self.assertEquals(1, return_code)
 
   def testRunBenchmarkReturnCodeUnCaughtException(self):
@@ -1543,40 +1585,11 @@ class StoryRunnerTest(unittest.TestCase):
     options = _GenerateBaseBrowserFinderOptions()
     options.output_dir = '/does/not/exist'
     options.output_formats = ['none']
+    story_set = unhandled_failure_benchmark.CreateStorySet(options)
     return_code = story_runner.RunBenchmark(
-        unhandled_failure_benchmark, options)
+        unhandled_failure_benchmark, story_set, None,
+        options.browser_options, options)
     self.assertEquals(2, return_code)
-
-  def testDownloadMinimalServingDirs(self):
-    foo_page = page_module.Page(
-        'file://foo/foo', name='foo', tags=['foo'],
-        shared_page_state_class=FooStoryState)
-    bar_page = page_module.Page(
-        'file://bar/bar', name='bar', tags=['bar'],
-        shared_page_state_class=FooStoryState)
-    bucket = cloud_storage.PUBLIC_BUCKET
-
-    class TestBenchmark(benchmark.Benchmark):
-      test = DummyTest
-      def CreateStorySet(self, options):
-        story_set = story_module.StorySet(cloud_storage_bucket=bucket)
-        story_set.AddStory(foo_page)
-        story_set.AddStory(bar_page)
-        return story_set
-
-    def options_callback(options):
-      options.story_tag_filter = 'foo'
-
-    test_benchmark = TestBenchmark()
-    options = _GenerateBaseBrowserFinderOptions(options_callback)
-    options.output_dir = '/does/not/exist'
-    options.output_formats = ['none']
-    patch_method = 'py_utils.cloud_storage.GetFilesInDirectoryIfChanged'
-    with mock.patch(patch_method) as cloud_patch:
-      story_runner.RunBenchmark(test_benchmark, options)
-      # Foo is the only included story serving dir.
-      self.assertEqual(cloud_patch.call_count, 1)
-      cloud_patch.assert_called_once_with(foo_page.serving_dir, bucket)
 
 
 class BenchmarkJsonResultsTest(unittest.TestCase):
@@ -1616,8 +1629,11 @@ class BenchmarkJsonResultsTest(unittest.TestCase):
         return story_set
 
     story_failure_benchmark = TestBenchmark()
+    story_set = story_failure_benchmark.CreateStorySet(self._options)
+    fake_browser = browser_finder.FindBrowser(self._options)
     return_code = story_runner.RunBenchmark(
-        story_failure_benchmark, self._options)
+        story_failure_benchmark, story_set, fake_browser,
+        self._options.browser_options, self._options)
     self.assertEquals(1, return_code)
     json_data = {}
     with open(os.path.join(self._temp_dir, 'test-results.json')) as f:
@@ -1660,8 +1676,11 @@ class BenchmarkJsonResultsTest(unittest.TestCase):
         return story_set
 
     unhandled_failure_benchmark = TestBenchmark()
+    story_set = unhandled_failure_benchmark.CreateStorySet(self._options)
+    fake_browser = browser_finder.FindBrowser(self._options)
     return_code = story_runner.RunBenchmark(
-        unhandled_failure_benchmark, self._options)
+        unhandled_failure_benchmark, story_set, fake_browser,
+        self._options.browser_options, self._options)
     self.assertEquals(2, return_code)
 
     json_data = {}
@@ -1690,7 +1709,7 @@ class BenchmarkJsonResultsTest(unittest.TestCase):
     self.assertEquals(bar_log['expected'], 'PASS')
     self.assertEquals(bar_log['actual'], 'SKIP')
 
-  def testUnexpectedSkipsWithFiltering(self):
+  def testUnexpectedSkips(self):
     class UnhandledFailureSharedState(TestSharedState):
       def RunStory(self, results):
         if results.current_page.name in stories_to_crash:
@@ -1713,36 +1732,35 @@ class BenchmarkJsonResultsTest(unittest.TestCase):
 
     # Set up the test so that it throws unexpected crashes from any story
     # between story 30 to story 50.
-    # Also set the filtering to only run from story 10 --> story 40
     stories_to_crash = set('story_%s' % i for i in range(30, 50))
 
-    def options_callback(options):
-      options.story_shard_begin_index = 10
-      options.story_shard_end_index = 41
-
-    options = _GenerateBaseBrowserFinderOptions(options_callback)
+    options = _GenerateBaseBrowserFinderOptions()
     options.suppress_gtest_report = True
     options.output_formats = ['json-test-results']
     options.output_dir = self._temp_dir
 
     unhandled_failure_benchmark = TestBenchmark()
+    story_set = unhandled_failure_benchmark.CreateStorySet(self._options)
+    fake_browser = browser_finder.FindBrowser(self._options)
     return_code = story_runner.RunBenchmark(
-        unhandled_failure_benchmark, self._options)
+        unhandled_failure_benchmark, story_set, fake_browser,
+        self._options.browser_options, self._options)
     self.assertEquals(2, return_code)
 
-    # The results should contain entries of story 10 --> story 40. Of those
-    # entries, story 31's actual result is 'FAIL' and
-    # stories from 31 to 40 will shows 'SKIP'.
+    # Stories from 0 to 29 should show 'PASS',
+    # story 30 fails, and
+    # stories from 31 to 49 should be skipped.
     json_data = {}
     with open(os.path.join(self._temp_dir, 'test-results.json')) as f:
       json_data = json.load(f)
     stories = json_data['tests']['TestBenchmark']
-    self.assertEquals(len(stories.keys()), 31)
+    self.assertEquals(len(stories.keys()), 50)
 
-    for i in range(10, 30):
+    for i in range(30):
       self.assertEquals(stories['story_%s' % i]['actual'], 'PASS')
 
     self.assertEquals(stories['story_30']['actual'], 'FAIL')
 
-    for i in range(31, 41):
+    for i in range(31, 50):
       self.assertEquals(stories['story_%s' % i]['actual'], 'SKIP')
+

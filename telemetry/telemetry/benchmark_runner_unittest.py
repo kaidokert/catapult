@@ -10,8 +10,10 @@ import unittest
 
 from telemetry import benchmark
 from telemetry import benchmark_runner
+from telemetry import project_config
 from telemetry import story as story_module
 from telemetry import page as page_module
+from telemetry.core import util
 import mock
 
 
@@ -41,7 +43,7 @@ class BenchmarkBar(benchmark.Benchmark):
     return 'BenchmarkBar'
 
 
-class BenchmarkRunnerUnittest(unittest.TestCase):
+class PrintBenchmarkListUnittest(unittest.TestCase):
 
   def setUp(self):
     self._stream = StringIO.StringIO()
@@ -128,3 +130,56 @@ class BenchmarkRunnerUnittest(unittest.TestCase):
 
     finally:
       os.remove(expectations_file.name)
+
+
+class BenchmarkRunnerUnittest(unittest.TestCase):
+
+  def setUp(self):
+    def MockRunBenchmark(benchmark_to_run, stories, possible_browser,
+                         browser_options, execution_options):
+      self._SeenRunBenchmarkCalls.append({
+          "benchmark": benchmark_to_run,
+          "stories": stories,
+          "possible_browser": possible_browser,
+          "browser_options": browser_options,
+          "execution_options": execution_options
+      })
+
+    self._SeenRunBenchmarkCalls = []
+    self._MockRunBenchmark = MockRunBenchmark
+    TELEMETRY_DIR = util.GetTelemetryDir()
+    self._project_config = project_config.ProjectConfig(
+        top_level_dir=os.path.join(TELEMETRY_DIR, 'examples'),
+        benchmark_dirs=[os.path.join(TELEMETRY_DIR, 'examples', 'benchmarks')]
+    )
+
+
+  def clearCallHistory(self):
+    self._SeenRunBenchmarkCalls = []
+
+  def getCallArguments(self):
+    self.assertEqual(len(self._SeenRunBenchmarkCalls), 1)
+    return self._SeenRunBenchmarkCalls[0]
+
+  def testCommandLineInvocationBrowserSystem(self):
+    from telemetry.internal import story_runner
+    original_run_benchmark = story_runner.RunBenchmark
+    story_runner.RunBenchmark = self._MockRunBenchmark
+    self.clearCallHistory()
+
+    try:
+      benchmark_runner.main(self._project_config, [
+          "test",
+          "run",
+          "tbm_sample.tbm_sample",
+          "--browser",
+          "system",
+      ])
+    finally:
+      story_runner.RunBenchmark = original_run_benchmark
+
+    self.assertEqual(self.getCallArguments()["benchmark"].Name(),
+                     "tbm_sample.tbm_sample")
+    self.assertEqual(self.getCallArguments()["possible_browser"].browser_type,
+                     "system")
+
