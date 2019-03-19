@@ -4,7 +4,7 @@
 
 import collections
 
-from tracing.value import histogram as histogram
+from tracing.value import histogram
 from tracing.value import histogram_deserializer
 from tracing.value.diagnostics import all_diagnostics
 from tracing.value.diagnostics import diagnostic
