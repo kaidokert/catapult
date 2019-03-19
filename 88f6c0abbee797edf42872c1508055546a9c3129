@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a4fac92a_b58efdb3",
+        "filename": "telemetry/telemetry/benchmark_runner_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-19T09:48:08Z",
+      "side": 1,
+      "message": "move import to the top.",
+      "revId": "88f6c0abbee797edf42872c1508055546a9c3129",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a299907d_5dc77c82",
+        "filename": "telemetry/telemetry/benchmark_runner_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-19T09:48:08Z",
+      "side": 1,
+      "message": "you should be able to use mock for this. See:\nhttps://docs.python.org/3/library/unittest.mock.html#unittest.mock.Mock.assert_called_once\n\nSome examples:\nhttps://cs.chromium.org/chromium/src/tools/perf/cli_tools/update_wpr/update_wpr_unittest.py?rcl\u003d330d2c27dd092584bbca492b395eb081d98de63d\u0026l\u003d145",
+      "revId": "88f6c0abbee797edf42872c1508055546a9c3129",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03cc30e1_9aca9493",
+        "filename": "telemetry/telemetry/benchmark_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-19T09:48:08Z",
+      "side": 1,
+      "message": "should we get a fresh copy from options_for_unittests before each of these? (the old code was doing that)",
+      "revId": "88f6c0abbee797edf42872c1508055546a9c3129",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b8525e5_21c5a154",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-19T09:48:08Z",
+      "side": 1,
+      "message": "these are getting a bit hard to read, can you use named parameters? e.g.\n\n    story_runner.RunStorySet(\n        test, story_set, possible_browser\u003dNone, expectations\u003dNone,\n        ...)\n\non so on on the rest below and in other test files.",
+      "revId": "88f6c0abbee797edf42872c1508055546a9c3129",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f54e44e_5bf3c559",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-19T09:48:08Z",
+      "side": 1,
+      "message": "now that you are touching this, can you also take the chance to switch to the more readable:\n\n    with self.assertRaises(story_runner.ArchiveError):\n      story_runner.RunStorySet(test, story_set, ...)",
+      "revId": "88f6c0abbee797edf42872c1508055546a9c3129",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bd199d5_6784cc16",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1752,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-19T09:48:08Z",
+      "side": 1,
+      "message": "why are these changing?",
+      "revId": "88f6c0abbee797edf42872c1508055546a9c3129",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
