@@ -23,6 +23,7 @@ import unittest
 import traceback
 
 from collections import OrderedDict
+from collections import defaultdict
 
 # This ensures that absolute imports of typ modules will work when
 # running typ/runner.py as a script even if typ is not installed.
@@ -59,6 +60,11 @@ def main(argv=None, host=None, win_multiprocessing=None, **defaults):
     if win_multiprocessing is not None:
         runner.win_multiprocessing = win_multiprocessing
     return runner.main(argv, **defaults)
+
+def remove_test_prefix(args, name):
+    if name.startswith(args.test_name_prefix):
+        return name[len(args.test_name_prefix):]
+    return name
 
 
 class TestInput(object):
@@ -122,6 +128,7 @@ class Runner(object):
         self.final_responses = []
         self.has_expectations = False
         self.expectations = None
+        self.test_name_to_suite = defaultdict(unittest.TestSuite)
 
         # initialize self.args to the defaults.
         parser = ArgumentParser(self.host)
@@ -458,7 +465,7 @@ class Runner(object):
                           name):
         h = self.host
         loader = self.loader
-        add_tests = _test_adder(test_set, classifier)
+        add_tests = self._test_adder(test_set, classifier)
 
         found = set()
         for d in top_level_dirs:
@@ -491,7 +498,11 @@ class Runner(object):
                             add_tests(suite)
                 elif not name in found:
                     found.add(name)
-                    add_tests(loader.loadTestsFromName(name))
+                    try:
+                        add_tests(loader.loadTestsFromName(name))
+                    except ImportError:
+                        add_tests(loader.loadTestsFromName(
+                            self.args.test_name_prefix + name))
 
         # pylint: disable=no-member
         if hasattr(loader, 'errors') and loader.errors:  # pragma: python3
@@ -787,6 +798,32 @@ class Runner(object):
             trace['traceEvents'].append(event)
         return trace
 
+    def _test_adder(self, test_set, classifier):
+
+        def add_tests(obj):
+            if isinstance(obj, unittest.suite.TestSuite):
+                for el in obj:
+                    add_tests(el)
+            elif (obj.id().startswith('unittest.loader.LoadTestsFailure') or
+                  obj.id().startswith('unittest.loader.ModuleImportFailure')):
+                # Access to protected member pylint: disable=W0212
+                module_name = obj._testMethodName
+                try:
+                    method = getattr(obj, obj._testMethodName)
+                    method()
+                except Exception as e:
+                    if 'LoadTests' in obj.id():
+                        raise _AddTestsError('%s.load_tests() failed: %s'
+                                             % (module_name, str(e)))
+                    else:
+                        raise _AddTestsError(str(e))
+            else:
+                assert isinstance(obj, unittest.TestCase)
+                test_name = remove_test_prefix(self.args, obj.id())
+                if not test_name in self.test_name_to_suite:
+                    classifier(test_set, obj)
+                self.test_name_to_suite[test_name].addTest(obj)
+        return add_tests
 
 def _matches(name, globs):
     return any(fnmatch.fnmatch(name, glob) for glob in globs)
@@ -794,7 +831,7 @@ def _matches(name, globs):
 
 def _default_classifier(args):
     def default_classifier(test_set, test):
-        name = test.id()
+        name = remove_test_prefix(args, test.id())
         if not args.all and _matches(name, args.skip):
             test_set.tests_to_skip.append(TestInput(name,
                                                     'skipped by request'))
@@ -803,31 +840,6 @@ def _default_classifier(args):
         else:
             test_set.parallel_tests.append(TestInput(name))
     return default_classifier
-
-
-def _test_adder(test_set, classifier):
-    def add_tests(obj):
-        if isinstance(obj, unittest.suite.TestSuite):
-            for el in obj:
-                add_tests(el)
-        elif (obj.id().startswith('unittest.loader.LoadTestsFailure') or
-              obj.id().startswith('unittest.loader.ModuleImportFailure')):
-            # Access to protected member pylint: disable=W0212
-            module_name = obj._testMethodName
-            try:
-                method = getattr(obj, obj._testMethodName)
-                method()
-            except Exception as e:
-                if 'LoadTests' in obj.id():
-                    raise _AddTestsError('%s.load_tests() failed: %s'
-                                         % (module_name, str(e)))
-                else:
-                    raise _AddTestsError(str(e))
-        else:
-            assert isinstance(obj, unittest.TestCase)
-            classifier(test_set, obj)
-    return add_tests
-
 
 class _Child(object):
 
@@ -851,6 +863,7 @@ class _Child(object):
         self.cov = None
         self.has_expectations = parent.has_expectations
         self.expectations = parent.expectations
+        self.test_name_to_suite = parent.test_name_to_suite
 
 
 def _setup_process(host, worker_num, child):
@@ -931,13 +944,19 @@ def _run_one_test(child, test_input):
             ex_str = ('loadTestsFromName("%s") failed: %s\n%s\n' %
                       (test_name, e, traceback.format_exc()))
             try:
-                suite = _load_via_load_tests(child, test_name)
-                ex_str += ('\nload_via_load_tests(\"%s\") returned %d tests\n' %
-                           (test_name, len(list(suite))))
-            except Exception as e:  # pragma: untested
-                suite = []
-                ex_str += ('\nload_via_load_tests("%s") failed: %s\n%s\n' %
-                           (test_name, e, traceback.format_exc()))
+                suite = child.test_name_to_suite[test_name]
+            except:
+                ex_str += ('\nDictionary mapping test names to test suites did '
+                           'not have the "%s" inside it\n' % test_name)
+                try:
+                    suite = _load_via_load_tests(child, test_name)
+                    ex_str += ('\nload_via_load_tests(\"%s\")'
+                               ' returned %d tests\n' %
+                               (test_name, len(list(suite))))
+                except Exception as e:  # pragma: untested
+                    suite = []
+                    ex_str += ('\nload_via_load_tests("%s") failed: %s\n%s\n' %
+                               (test_name, e, traceback.format_exc()))
     finally:
         unittest.skip = orig_skip
         unittest.skipIf = orig_skip_if
