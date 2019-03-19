@@ -1,0 +1,291 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c5225240_80f6ad2b",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2019-03-19T11:43:47Z",
+      "side": 1,
+      "message": "maybe we should switch the extension for proto traces",
+      "range": {
+        "startLine": 80,
+        "startChar": 24,
+        "endLine": 80,
+        "endChar": 28
+      },
+      "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c5ae3b6_0a99e494",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2019-03-19T11:43:47Z",
+      "side": 1,
+      "message": "Are there multiple threads? If so, we need to track separate interning indexes for each thread and use different trusted_packet_sequence_id values per thread.",
+      "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3183868b_ed8f1a45",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_pb2.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2019-03-19T11:43:47Z",
+      "side": 1,
+      "message": "I\u0027m wondering whether we can we check in the .proto file instead and run the compiler as part of building or checking out the code.. How do we update this otherwise?",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 11
+      },
+      "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c214037_f77a9266",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2019-03-19T11:43:47Z",
+      "side": 1,
+      "message": "Sounds good, let\u0027s do it! :)",
+      "range": {
+        "startLine": 14,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 43
+      },
+      "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82906dbe_ea36233d",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2019-03-19T11:43:47Z",
+      "side": 1,
+      "message": "nit: remove whitespace before eol",
+      "range": {
+        "startLine": 19,
+        "startChar": 16,
+        "endLine": 19,
+        "endChar": 17
+      },
+      "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ca6163c_5013e3be",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2019-03-19T11:43:47Z",
+      "side": 1,
+      "message": "nit: remove",
+      "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "637f4615_8353b18b",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2019-03-19T11:43:47Z",
+      "side": 1,
+      "message": "nit: TODO(khokhlov)\n\nalso, do we know where the large tid comes from? :)",
+      "range": {
+        "startLine": 51,
+        "startChar": 4,
+        "endLine": 51,
+        "endChar": 9
+      },
+      "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c15850f7_1bb68fb8",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2019-03-19T11:43:47Z",
+      "side": 1,
+      "message": "thread_descriptor_packet.trusted_packet_sequence_id needs a value (you could use a constant, e.g. max(uint32) assuming there\u0027s only ever one thread writing).\n\nthread_descriptor_packet.incremental_state_cleared should be set to true (for the very first packet written per sequence, which I assume is this thread descriptor one).",
+      "range": {
+        "startLine": 52,
+        "startChar": 2,
+        "endLine": 52,
+        "endChar": 26
+      },
+      "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ece06c96_cb037a7a",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2019-03-19T11:43:47Z",
+      "side": 1,
+      "message": "TODO(khokhlov)\n\nkey/value args should be encoded as DebugAnnotations in the proto, at least initially (fine to leave as TODO for now though). Later we\u0027d want to convert those args that metrics depend on into explicit (typed) event arguments in the proto.",
+      "range": {
+        "startLine": 56,
+        "startChar": 13,
+        "endLine": 56,
+        "endChar": 18
+      },
+      "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cadbae13_3dd4edc6",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2019-03-19T11:43:47Z",
+      "side": 1,
+      "message": "We need to set packet.trusted_packet_sequence_id as well here.",
+      "range": {
+        "startLine": 57,
+        "startChar": 2,
+        "endLine": 57,
+        "endChar": 8
+      },
+      "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c27a063b_c0253746",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2019-03-19T11:43:47Z",
+      "side": 1,
+      "message": "should we add a TODO to encode delta timestamps instead? (Or a comment why we don\u0027t want to)",
+      "range": {
+        "startLine": 58,
+        "startChar": 21,
+        "endLine": 58,
+        "endChar": 42
+      },
+      "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3aba7749_ed2d567b",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2019-03-19T11:43:47Z",
+      "side": 1,
+      "message": "nit: TODO(khokhlov)\n\nDo we really want to support parsing proto though? I thought we were going to use the trace processor for this, and only in the metrics part of the pipeline?",
+      "range": {
+        "startLine": 82,
+        "startChar": 12,
+        "endLine": 82,
+        "endChar": 17
+      },
+      "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2f81cce_23a4ad24",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2019-03-19T11:43:47Z",
+      "side": 1,
+      "message": "I wonder if we should record the format of traceEvents. We can\u0027t convert this to json anymore, since there is binary data in the string - do we need to check and avoid doing that in other TraceDataBuilders?",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 32
+      },
+      "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
