@@ -28,6 +28,7 @@ from telemetry.internal.actions.seek import SeekAction
 from telemetry.internal.actions.swipe import SwipeAction
 from telemetry.internal.actions.tap import TapAction
 from telemetry.internal.actions.wait import WaitForElementAction
+from telemetry.internal.browser import tab_list
 from telemetry.web_perf import timeline_interaction_record
 
 from py_trace_event import trace_event
@@ -202,6 +203,20 @@ class ActionRunner(object):
     time_left_in_seconds = max(0, time_left_in_seconds)
     self._tab.WaitForDocumentReadyStateToBeInteractiveOrBetter(
         time_left_in_seconds)
+
+  def OpenNewWindow(self, url, timeout_in_seconds=5):
+    """Opens a new popup window with address |url|.
+
+    This waits a maximum of page_action.DEFAULT_TIMEOUT seconds for the
+    document to report it's complete, but then waits an additional
+    |timeout_in_seconds| to better allow media to load.
+
+    Must have popup blocking disabled at the browser level.
+    """
+    new_window = self.tab.browser.tabs.New(tab_list.TAB_IN_NEW_POPUP,
+                                           page_action.DEFAULT_TIMEOUT)
+    new_window.action_runner.Navigate(url)
+    self.Wait(timeout_in_seconds)
 
   def ReloadPage(self):
     """Reloads the page."""
