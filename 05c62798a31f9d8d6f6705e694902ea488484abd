@@ -46,6 +46,30 @@
       "revId": "05c62798a31f9d8d6f6705e694902ea488484abd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "488250d0_f35a66e9",
+        "filename": "dashboard/dashboard/spa/sparkline-compound.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-19T22:00:06Z",
+      "side": 1,
+      "message": "Thanks that really helped readability for me.",
+      "parentUuid": "3e34b26e_a8301f80",
+      "range": {
+        "startLine": 150,
+        "startChar": 4,
+        "endLine": 150,
+        "endChar": 20
+      },
+      "revId": "05c62798a31f9d8d6f6705e694902ea488484abd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
