@@ -197,7 +197,7 @@ def _RequestBuild(builder_name, change, bucket):
       'builder_name': builder_name,
       'properties': {
           'clobber': True,
-          'parent_got_revision': change.base_commit.git_hash,
+          'revision': change.base_commit.git_hash,
           'deps_revision_overrides': deps_overrides,
       },
   }
