@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "6f6f249e_bccefd39",
+        "filename": "telemetry/telemetry/internal/actions/action_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-20T05:56:04Z",
+      "side": 1,
+      "message": "I\u0027ll need to think about this a bit. Currently actions I think are all done inside a single tab. I don\u0027t think we support multitab actions right now. +Juan may have an opinion as well.",
+      "parentUuid": "181c5215_3e76b91e",
+      "range": {
+        "startLine": 206,
+        "startChar": 4,
+        "endLine": 206,
+        "endChar": 53
+      },
+      "revId": "0592c962c708b55c642e02ee3f9497635955c4d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2e675359_deda8f3b",
         "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
         "patchSetId": 2
