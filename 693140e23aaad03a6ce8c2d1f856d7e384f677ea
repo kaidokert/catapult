@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b3c065a2_bf59e44c",
+        "filename": "dashboard/bin/deploy",
+        "patchSetId": 4
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-20T18:49:37Z",
+      "side": 1,
+      "message": "There\u0027s no way to reuse all the paths specified in dashboard/__init__?",
+      "revId": "693140e23aaad03a6ce8c2d1f856d7e384f677ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
