@@ -35,7 +35,6 @@ if is_python3:  # pragma: python3
 d = textwrap.dedent
 
 
-
 FLAKY_TEST_PY = """
 import unittest
 
@@ -1057,6 +1056,82 @@ class TestCli(test_case.MainTestCase):
         self.assertEqual(results['expected'],'SKIP')
         self.assertNotIn('is_unexpected', results)
         self.assertNotIn('is_regression', results)
+
+    def test_implement_test_name_prefix_exclusion_in_finished_test_output(self):
+        files = PASS_TEST_FILES
+        _, out, _, files = self.check(
+            ['--write-full-results-to', 'full_results.json',
+             '--test-name-prefix', 'pass_test.PassingTest.'],
+            files=files, ret=0, err='')
+        self.assertIn('[1/1] test_pass passed\n', out)
+
+    def test_implement_test_name_prefix_exclusion_in_expectations_files(self):
+        files = {'fail_test.py': FAIL_TEST_PY,
+                 'expectations.txt': d("""\
+                  # tags: [ foo bar ]
+                  crbug.com/12345 [ foo ] test_fail [ Failure ]
+                 """)}
+        _, out, _, files = self.check(
+            ['--write-full-results-to', 'full_results.json',
+             '--test-name-prefix', 'fail_test.FailingTest.',
+             '-X', 'expectations.txt', '-x', 'foo'],
+            files=files, ret=0, err='')
+        self.assertIn('[1/1] test_fail failed as expected:\n', out)
+
+    def test_implement_test_name_prefix_exclusion_in_skip_glob(self):
+        files = {'fail_test.py': FAIL_TEST_PY}
+        _, out, _, files = self.check(
+            ['--test-name-prefix', 'fail_test.FailingTest.','--skip',
+             'test_*'], files=files, ret=0, err='')
+        self.assertIn('0 tests passed, 1 skipped, 0 failures.\n', out)
+
+    def test_implement_test_name_prefix_exclusion_in_json_results(self):
+        files = {'fail_test.py': FAIL_TEST_PY}
+        _, out, _, files = self.check(
+            ['--test-name-prefix', 'fail_test.FailingTest.',
+             '--write-full-results-to', 'full_results.json'],
+            files=files, ret=1, err='')
+        results = json.loads(files['full_results.json'])
+        self.assertEqual(results['tests']['test_fail']['actual'], 'FAIL')
+
+    def test_implement_test_name_prefix_exclusion_for_tests_args(self):
+        files = {'output_test.py': OUTPUT_TEST_PY}
+        _, out, _, files = self.check(
+            ['tests', 'test_out_err_fail',
+             'tests', 'output_test.PassTest.test_out',
+             '--write-full-results-to', 'full_results.json',
+             '--test-name-prefix', 'output_test.FailTest.'],
+            files=files, ret=1, err='')
+        self.assertIn('1 test passed, 0 skipped, 1 failure.', out)
+
+    def test_implement_test_name_prefix_exclusion_for_file_list_arg(self):
+        test_list = ('test_out_err_fail\noutput_test.PassTest.test_out\n')
+        files = {'output_test.py': OUTPUT_TEST_PY,
+                 'test_list.txt': test_list}
+        _, out, _, files = self.check(
+            ['--write-full-results-to', 'full_results.json',
+             '--test-name-prefix', 'output_test.FailTest.',
+             '-f', 'test_list.txt'],
+            files=files, ret=1, err='')
+        self.assertIn('1 test passed, 0 skipped, 1 failure.', out)
+
+    def test_implement_test_name_prefix_exclusion_in_test_started_output(self):
+        files = {'fail_test.py': FAIL_TEST_PY}
+        _, out, _, files = self.check(
+            ['--test-name-prefix', 'fail_test.FailingTest.', '-vvv',
+             '--overwrite'],
+            files=files, ret=1, err='')
+
+        self.assertIn('[0/1] test_fail queued\n', out)
+        self.assertIn('[0/1] test_fail\n', out)
+
+    def test_implement_test_name_prefix_exclusion_in_list_only_arg(self):
+        files = {'output_test.py': OUTPUT_TEST_PY}
+        _, out, _, files = self.check(
+            ['--test-name-prefix', 'output_test.FailTest.', '--list-only'],
+            files=files, ret=0, err='')
+        self.assertIn('output_test.PassTest.test_err\n'
+                      'output_test.PassTest.test_out\ntest_out_err_fail', out)
 
     def test_verbose_2(self):
         self.check(['-vv', '-j', '1', 'output_test.PassTest'],
