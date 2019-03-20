@@ -16,6 +16,24 @@
       "revId": "93bbf937f83835ceb3d858e383a165afdeeae802",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab271908_5c83c9df",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-20T17:35:22Z",
+      "side": 0,
+      "message": "Done.\n\nBut that seems like a bad way to keep these in sync. If we really wanted to do that then we should have written code to compare and fail if they don\u0027t match (although I understand that could be non-trivial since Chrome may make some changes to we we send in.). Otherwise these can get out of sync and no one will know until a manual comparison is done.\n\nI think ideally we should output informational logs like these to the isolated outdir in some kind of info directory. This will make it easy to find this specific information without wading through tons of logs. If we did it like that, we could even save fancy data like the html from chrome://gpu from the rendering benchmark or chrome://version for all the benchmarks. This would make us be able to eliminate our own special code for formatting this output and instead we would stay up to date with whatever Chrome engineers think should be in those html pages.",
+      "parentUuid": "ff559d77_229b1749",
+      "revId": "93bbf937f83835ceb3d858e383a165afdeeae802",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

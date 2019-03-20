@@ -16,6 +16,24 @@
       "revId": "7c6f3ae040d646cc94d85fdf7b82aaf8bc985a6d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e1bf2fa_8e6c761b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-20T17:35:22Z",
+      "side": 1,
+      "message": "I added one space.",
+      "parentUuid": "1109f939_b49be471",
+      "revId": "7c6f3ae040d646cc94d85fdf7b82aaf8bc985a6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
