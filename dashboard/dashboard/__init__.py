@@ -29,6 +29,8 @@ THIRD_PARTY_LIBRARIES = [
     'six',
     'uritemplate',
     'webtest',
+    'gae_ts_mon',
+    'idb',
 ]
 
 # Files and directories in catapult/dashboard.

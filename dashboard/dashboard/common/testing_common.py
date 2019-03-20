@@ -295,6 +295,5 @@ def SetSheriffDomains(domains):
   stored_object.Set(utils.SHERIFF_DOMAINS_KEY, domains)
 
 
-def SetIpWhitelist(ip_addresses):
-  """Sets the list of whitelisted IP addresses."""
-  stored_object.Set(utils.IP_WHITELIST_KEY, ip_addresses)
+def SetIpWhitelist(ips):
+  utils.SetIpWhitelist(ips)
