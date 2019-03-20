@@ -187,7 +187,7 @@ class _FindIsolateExecution(execution.Execution):
 
 def _RequestBuild(builder_name, change, bucket):
   builder_tags = [
-      'buildset:commit/git/%s' % change.base_commit.git_hash
+      'buildset:commit/gitiles/%s' % change.base_commit.git_hash
   ]
   if change.patch:
     builder_tags.append(change.patch.BuildsetTags())
@@ -197,7 +197,7 @@ def _RequestBuild(builder_name, change, bucket):
       'builder_name': builder_name,
       'properties': {
           'clobber': True,
-          'parent_got_revision': change.base_commit.git_hash,
+          'revision': change.base_commit.git_hash,
           'deps_revision_overrides': deps_overrides,
       },
   }
