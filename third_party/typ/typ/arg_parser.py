@@ -186,6 +186,9 @@ class ArgumentParser(argparse.ArgumentParser):
             self.add_argument('--no-overwrite', action='store_false',
                               dest='overwrite', default=None,
                               help=argparse.SUPPRESS)
+            self.add_argument('--test-name-prefix', default='', action='store',
+                              help=('Specifies the prefix that can be removed'
+                                    ' from test names'))
 
         if discovery or running:
             self.add_argument('-P', '--path', action='append', default=[],
