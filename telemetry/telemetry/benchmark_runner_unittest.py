@@ -10,8 +10,10 @@ import unittest
 
 from telemetry import benchmark
 from telemetry import benchmark_runner
+from telemetry import project_config
 from telemetry import story as story_module
 from telemetry import page as page_module
+from telemetry.core import util
 import mock
 
 
@@ -41,7 +43,7 @@ class BenchmarkBar(benchmark.Benchmark):
     return 'BenchmarkBar'
 
 
-class BenchmarkRunnerUnittest(unittest.TestCase):
+class PrintBenchmarkListUnittest(unittest.TestCase):
 
   def setUp(self):
     self._stream = StringIO.StringIO()
@@ -128,3 +130,30 @@ class BenchmarkRunnerUnittest(unittest.TestCase):
 
     finally:
       os.remove(expectations_file.name)
+
+
+class BenchmarkRunnerUnittest(unittest.TestCase):
+
+  def setUp(self):
+    TELEMETRY_DIR = util.GetTelemetryDir()
+    self._project_config = project_config.ProjectConfig(
+        top_level_dir=os.path.join(TELEMETRY_DIR, 'examples'),
+        benchmark_dirs=[os.path.join(TELEMETRY_DIR, 'examples', 'benchmarks')]
+    )
+
+  @mock.patch('telemetry.internal.story_runner.RunBenchmark')
+  def testCommandLineInvocationBrowserSystem(self, run_benchmark_mock):
+    benchmark_runner.main(self._project_config, [
+        "test",
+        "run",
+        "tbm_sample.tbm_sample",
+        "--browser",
+        "system",
+    ])
+
+    run_benchmark_mock.assert_called_once()
+    benchmark_arg = run_benchmark_mock.call_args[0][0]
+    possible_browser_arg = run_benchmark_mock.call_args[0][2]
+    self.assertEqual(benchmark_arg.Name(), "tbm_sample.tbm_sample")
+    self.assertEqual(possible_browser_arg.browser_type, "system")
+
