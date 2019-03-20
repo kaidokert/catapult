@@ -68,6 +68,13 @@ def PackSPA(catapult_path, temp_dir):
   config_filename = os.path.join(spa_path, 'webpack.config.js')
   webpack_command = os.path.join(node_modules, '.bin', 'webpack-command')
 
+  # TODO(benjhayden): Remove this after migrating to lit-element.
+  js_parse_filename = os.path.join(
+      node_modules, 'hydrolysis', 'lib', 'ast-utils', 'js-parse.js')
+  subprocess.check_output([
+      'sed', '-i', 's/ecmaVersion: 6/ecmaVersion: 9/g',
+      js_parse_filename])
+
   os.environ['WEBPACK_OUTPUT_PATH'] = webpack_dir
   os.environ['WEBPACK_NODE_MODULES'] = node_modules
   os.environ['WEBPACK_THIRD_PARTY'] = os.path.join(catapult_path, 'third_party')
