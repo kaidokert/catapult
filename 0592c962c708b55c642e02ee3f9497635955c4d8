@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "181c5215_3e76b91e",
+        "filename": "telemetry/telemetry/internal/actions/action_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1301626
+      },
+      "writtenOn": "2019-03-20T00:16:11Z",
+      "side": 1,
+      "message": "I do think it makes sense for both of them to be actions. The ActionRunner class seems to be things that you can do while looking at a tab, including enter and exit overview mode, navigate to a different URL, and reload the page.\n\nCould I make OpenNewTab in a separate cleanup CL?",
+      "parentUuid": "bf75e644_161e209a",
+      "range": {
+        "startLine": 206,
+        "startChar": 4,
+        "endLine": 206,
+        "endChar": 53
+      },
+      "revId": "0592c962c708b55c642e02ee3f9497635955c4d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2e675359_deda8f3b",
         "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "0592c962c708b55c642e02ee3f9497635955c4d8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7fc97db_d92e992a",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1301626
+      },
+      "writtenOn": "2019-03-20T00:16:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e675359_deda8f3b",
+      "range": {
+        "startLine": 17,
+        "startChar": 34,
+        "endLine": 17,
+        "endChar": 61
+      },
+      "revId": "0592c962c708b55c642e02ee3f9497635955c4d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "c5715c31_a6bac807",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1301626
+      },
+      "writtenOn": "2019-03-20T00:16:11Z",
+      "side": 1,
+      "message": "Split it into helpers.",
+      "parentUuid": "3d77535a_796e2c47",
+      "range": {
+        "startLine": 55,
+        "startChar": 12,
+        "endLine": 60,
+        "endChar": 20
+      },
+      "revId": "0592c962c708b55c642e02ee3f9497635955c4d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "68b0a411_e9a7dfe7",
         "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
         "patchSetId": 2
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "35174b8d_16bb9582",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1301626
+      },
+      "writtenOn": "2019-03-20T00:16:11Z",
+      "side": 1,
+      "message": "Also New() no longer takes responsibility for navigating the tab to the URL, so self.target_url would be undefined!\n\nI\u0027ve removed the try-except block and allowed the exception to trickle up (since it is documented in the signature as being potentially raised).",
+      "parentUuid": "68b0a411_e9a7dfe7",
+      "range": {
+        "startLine": 75,
+        "startChar": 8,
+        "endLine": 75,
+        "endChar": 80
+      },
+      "revId": "0592c962c708b55c642e02ee3f9497635955c4d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "443a4614_d989efb6",
         "filename": "telemetry/telemetry/internal/browser/tab_list.py",
         "patchSetId": 2
@@ -114,6 +210,30 @@
       "revId": "0592c962c708b55c642e02ee3f9497635955c4d8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1d5d975_4cb6b679",
+        "filename": "telemetry/telemetry/internal/browser/tab_list.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1301626
+      },
+      "writtenOn": "2019-03-20T00:16:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "443a4614_d989efb6",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 63
+      },
+      "revId": "0592c962c708b55c642e02ee3f9497635955c4d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -160,6 +280,54 @@
       "revId": "0592c962c708b55c642e02ee3f9497635955c4d8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "824b685d_63b675b8",
+        "filename": "telemetry/telemetry/internal/browser/tab_list.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1301626
+      },
+      "writtenOn": "2019-03-20T00:16:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d976c1f6_1a840170",
+      "range": {
+        "startLine": 9,
+        "startChar": 25,
+        "endLine": 9,
+        "endChar": 48
+      },
+      "revId": "0592c962c708b55c642e02ee3f9497635955c4d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f9aa63e1_6dab169b",
+        "filename": "telemetry/telemetry/internal/browser/tab_list.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1301626
+      },
+      "writtenOn": "2019-03-20T00:16:11Z",
+      "side": 1,
+      "message": "I\u0027ve looked through codesearch and run the Catapult unit tests and, after adding an explicit default argument to Tab.CloseTab (where there is a call to New in case the browser would otherwise quit after closing the last tab) everything seems okay.",
+      "parentUuid": "1671df64_02a2531c",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 61
+      },
+      "revId": "0592c962c708b55c642e02ee3f9497635955c4d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
