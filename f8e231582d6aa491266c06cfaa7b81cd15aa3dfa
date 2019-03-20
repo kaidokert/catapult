@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8defd52d_dbb4948a",
+        "filename": "telemetry/telemetry/benchmark_run_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-20T12:52:57Z",
+      "side": 0,
+      "message": "There\u0027s no benchmark.Run method anymore, and story runner tests already cover successful/unsuccessful runs, so I think, we can safely remove these.",
+      "parentUuid": "442460a3_498ad3ee",
+      "revId": "f8e231582d6aa491266c06cfaa7b81cd15aa3dfa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "538f736a_83acefbc",
         "filename": "telemetry/telemetry/benchmark_unittest.py",
         "patchSetId": 4
@@ -33,6 +51,24 @@
       "revId": "f8e231582d6aa491266c06cfaa7b81cd15aa3dfa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a99eb790_f3ae581f",
+        "filename": "telemetry/telemetry/benchmark_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-20T12:52:57Z",
+      "side": 0,
+      "message": "It has moved to story_runner_unittest.py (it\u0027s called testRunBenchmark_BenchmarkWithOverridenShouldAddValue there).",
+      "parentUuid": "538f736a_83acefbc",
+      "revId": "f8e231582d6aa491266c06cfaa7b81cd15aa3dfa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -121,6 +157,24 @@
       "revId": "f8e231582d6aa491266c06cfaa7b81cd15aa3dfa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c490f5bc_0b2f4912",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1297,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-20T12:52:57Z",
+      "side": 0,
+      "message": "It appears that I have lost these in the process of moving code between files. Thanks for noticing this!",
+      "parentUuid": "841e20d8_2afc2867",
+      "revId": "f8e231582d6aa491266c06cfaa7b81cd15aa3dfa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

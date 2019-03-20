@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7a89ea2c_3b6b6551",
+        "filename": "telemetry/telemetry/benchmark_runner_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-20T12:52:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4fac92a_b58efdb3",
+      "revId": "88f6c0abbee797edf42872c1508055546a9c3129",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a299907d_5dc77c82",
         "filename": "telemetry/telemetry/benchmark_runner_unittest.py",
         "patchSetId": 4
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "4d21ba0a_787610d3",
+        "filename": "telemetry/telemetry/benchmark_runner_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-20T12:52:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a299907d_5dc77c82",
+      "revId": "88f6c0abbee797edf42872c1508055546a9c3129",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "03cc30e1_9aca9493",
         "filename": "telemetry/telemetry/benchmark_unittest.py",
         "patchSetId": 4
@@ -47,6 +83,24 @@
       "writtenOn": "2019-03-19T09:48:08Z",
       "side": 1,
       "message": "should we get a fresh copy from options_for_unittests before each of these? (the old code was doing that)",
+      "revId": "88f6c0abbee797edf42872c1508055546a9c3129",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e15aa8c5_8eba4cd4",
+        "filename": "telemetry/telemetry/benchmark_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-20T12:52:57Z",
+      "side": 1,
+      "message": "I don\u0027t like the idea that options passed to functions can actually be altered by these functions. I would rather add another test to explicitly check that options do not change after a call to RunBenchmark.",
+      "parentUuid": "03cc30e1_9aca9493",
       "revId": "88f6c0abbee797edf42872c1508055546a9c3129",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "1ec3bb04_6d0b3968",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-20T12:52:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b8525e5_21c5a154",
+      "revId": "88f6c0abbee797edf42872c1508055546a9c3129",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3f54e44e_5bf3c559",
         "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
         "patchSetId": 4
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "9552b77f_d70ef484",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-20T12:52:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f54e44e_5bf3c559",
+      "revId": "88f6c0abbee797edf42872c1508055546a9c3129",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4bd199d5_6784cc16",
         "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
         "patchSetId": 4
@@ -101,6 +191,24 @@
       "revId": "88f6c0abbee797edf42872c1508055546a9c3129",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3852e9aa_4f6965c5",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1752,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-20T12:52:57Z",
+      "side": 1,
+      "message": "Story filtering no longer takes place inside story_runner, now it plays all stories that are passed to it. So we don\u0027t need to test filtering here.",
+      "parentUuid": "4bd199d5_6784cc16",
+      "revId": "88f6c0abbee797edf42872c1508055546a9c3129",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
