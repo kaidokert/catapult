@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff559d77_229b1749",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-20T16:57:44Z",
+      "side": 0,
+      "message": "Can we keep this at debug level? It was added at some point to make sure that the command line being set by Telemetry is correctly read by Chrome.",
+      "revId": "93bbf937f83835ceb3d858e383a165afdeeae802",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

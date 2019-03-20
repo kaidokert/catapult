@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1109f939_b49be471",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-20T16:57:44Z",
+      "side": 1,
+      "message": "nit: wondering whether the log info should be indented at least by a couple of spaces?",
+      "revId": "7c6f3ae040d646cc94d85fdf7b82aaf8bc985a6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
