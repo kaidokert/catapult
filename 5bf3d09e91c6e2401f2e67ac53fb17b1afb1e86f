@@ -16,6 +16,24 @@
       "revId": "5bf3d09e91c6e2401f2e67ac53fb17b1afb1e86f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9dc8dac_78e9aae3",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-03-20T22:08:58Z",
+      "side": 1,
+      "message": "The stack trace in the bug suggests that self._swarming_tags is None, not swarming_tags.",
+      "parentUuid": "2a97e57f_0bae41ac",
+      "revId": "5bf3d09e91c6e2401f2e67ac53fb17b1afb1e86f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
