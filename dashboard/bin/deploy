@@ -52,6 +52,14 @@ def Main():
       logging.error('Error cleaning up temp dir %s: %s', temp_dir, e)
 
 
+def Symlink(root, src_parts):
+  dst = os.path.join(root, 'dashboard', os.path.basename(src_parts[-1]))
+  if os.path.exists(dst):
+    return
+  src = os.path.join(root, *src_parts)
+  subprocess.check_output(['ln', '-sf', src, dst])
+
+
 def PackSPA(catapult_path, temp_dir):
   dashboard_path = os.path.join(catapult_path, 'dashboard')
   app_yaml = os.path.join(dashboard_path, 'app.yaml')
@@ -62,6 +70,13 @@ def PackSPA(catapult_path, temp_dir):
   _AddToPathIfNeeded(os.path.join(catapult_path, 'common', 'node_runner'))
   from node_runner import node_util
   node_modules = node_util.GetNodeModulesPath()
+
+  # TODO(crbug.com/918193): Remove this after migrating to lit-element.
+  js_parse_filename = os.path.join(
+      node_modules, 'hydrolysis', 'lib', 'ast-utils', 'js-parse.js')
+  subprocess.check_output([
+      'sed', '-i', 's/ecmaVersion: 6/ecmaVersion: 9/g',
+      js_parse_filename])
 
   spa_path = os.path.join(dashboard_path, 'dashboard', 'spa')
   webpack_dir = os.path.join(temp_dir, 'webpack')
@@ -80,6 +95,31 @@ def PackSPA(catapult_path, temp_dir):
     print webpack_out
     print webpack_err
     raise RuntimeError('Webpack failed with exit code', proc.returncode)
+
+  Symlink(catapult_path, ['devil', 'devil'])
+  Symlink(catapult_path, ['third_party', 'apiclient', 'apiclient'])
+  Symlink(catapult_path, ['third_party', 'apiclient', 'googleapiclient'])
+  Symlink(catapult_path, ['third_party', 'cloudstorage'])
+  Symlink(catapult_path, ['third_party', 'flot'])
+  Symlink(catapult_path, ['third_party', 'gae_ts_mon'])
+  Symlink(catapult_path, ['third_party', 'httplib2', 'httplib2'])
+  Symlink(catapult_path, ['third_party', 'jquery'])
+  Symlink(catapult_path, ['third_party', 'oauth2client', 'oauth2client'])
+  Symlink(catapult_path, ['third_party', 'polymer'])
+  Symlink(catapult_path, ['third_party', 'polymer-svg-template'])
+  Symlink(catapult_path, ['third_party', 'polymer', 'components'])
+  Symlink(catapult_path, ['third_party', 'polymer2'])
+  Symlink(catapult_path, ['third_party', 'polymer2', 'bower_components'])
+  Symlink(catapult_path, ['third_party', 'redux'])
+  Symlink(catapult_path, ['third_party', 'redux', 'redux.min.js'])
+  Symlink(catapult_path, ['third_party', 'six'])
+  Symlink(catapult_path, ['third_party', 'uritemplate', 'uritemplate'])
+  Symlink(catapult_path, [
+      'tracing', 'third_party', 'gl-matrix', 'dist', 'gl-matrix-min.js'])
+  Symlink(catapult_path, ['tracing', 'third_party', 'mannwhitneyu'])
+  Symlink(catapult_path, ['tracing', 'tracing'])
+  Symlink(catapult_path, ['tracing', 'tracing_build'])
+  Symlink(catapult_path, ['tracing', 'tracing_project.py'])
 
   node_vulcanize = os.path.join(node_modules, 'vulcanize', 'bin', 'vulcanize')
   vulcanized_index = os.path.join(temp_dir, 'index.vulcanized.html')
