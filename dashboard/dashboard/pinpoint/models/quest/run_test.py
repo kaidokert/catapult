@@ -113,6 +113,7 @@ class RunTest(quest.Quest):
             self._swarming_server == other._swarming_server and
             self._dimensions == other._dimensions and
             self._extra_args == other._extra_args and
+            self._swarming_tags == other._swarming_tags and
             self._canonical_executions == other._canonical_executions and
             self._execution_counts == other._execution_counts)
 
@@ -184,8 +185,8 @@ class RunTest(quest.Quest):
     return extra_test_args
 
   @classmethod
-  def _GetSwarmingTags(cls, arguments):
-    pass
+  def _GetSwarmingTags(cls, _):
+    return {}
 
 
 class _RunTestExecution(execution_module.Execution):

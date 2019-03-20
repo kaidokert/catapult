@@ -77,7 +77,7 @@ class FromDictTest(unittest.TestCase):
     quest = run_telemetry_test.RunTelemetryTest.FromDict(_BASE_ARGUMENTS)
     expected = run_telemetry_test.RunTelemetryTest(
         'server', run_test_test.DIMENSIONS, _BASE_EXTRA_ARGS,
-        _BASE_SWARMING_TAGS)
+        run_telemetry_test.RunTelemetryTest._GetSwarmingTags(_BASE_ARGUMENTS))
     self.assertEqual(quest, expected)
 
   def testAllArguments(self):
@@ -92,7 +92,8 @@ class FromDictTest(unittest.TestCase):
         '--browser', 'release',
     ] + _COMBINED_DEFAULT_EXTRA_ARGS
     expected = run_telemetry_test.RunTelemetryTest(
-        'server', run_test_test.DIMENSIONS, extra_args, _BASE_SWARMING_TAGS)
+        'server', run_test_test.DIMENSIONS, extra_args,
+        run_telemetry_test.RunTelemetryTest._GetSwarmingTags(arguments))
     self.assertEqual(quest, expected)
 
   def testMissingBenchmark(self):
@@ -117,7 +118,8 @@ class FromDictTest(unittest.TestCase):
         '--pageset-repeat', '2', '--browser', 'release',
     ] + _COMBINED_DEFAULT_EXTRA_ARGS
     expected = run_telemetry_test.RunTelemetryTest(
-        'server', run_test_test.DIMENSIONS, extra_args, _BASE_SWARMING_TAGS)
+        'server', run_test_test.DIMENSIONS, extra_args,
+        run_telemetry_test.RunTelemetryTest._GetSwarmingTags(arguments))
     self.assertEqual(quest, expected)
 
   def testWebviewFlag(self):
@@ -131,5 +133,6 @@ class FromDictTest(unittest.TestCase):
         '../../out/Release/apks/SystemWebViewShell.apk',
     ] + _COMBINED_DEFAULT_EXTRA_ARGS
     expected = run_telemetry_test.RunTelemetryTest(
-        'server', run_test_test.DIMENSIONS, extra_args, _BASE_SWARMING_TAGS)
+        'server', run_test_test.DIMENSIONS, extra_args,
+        run_telemetry_test.RunTelemetryTest._GetSwarmingTags(arguments))
     self.assertEqual(quest, expected)

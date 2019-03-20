@@ -55,7 +55,8 @@ class FromDictTest(unittest.TestCase):
         _CARDBOARD_ARGUMENTS)
     expected = run_vr_telemetry_test.RunVrTelemetryTest(
         'server', run_test_test.DIMENSIONS, _CARDBOARD_EXTRA_ARGS,
-        _BASE_SWARMING_TAGS)
+        run_vr_telemetry_test.RunVrTelemetryTest._GetSwarmingTags(
+            _CARDBOARD_ARGUMENTS))
     self.assertEqual(quest, expected)
 
   def testBrowsingArgs(self):
@@ -63,5 +64,6 @@ class FromDictTest(unittest.TestCase):
         _BROWSING_ARGUMENTS)
     expected = run_vr_telemetry_test.RunVrTelemetryTest(
         'server', run_test_test.DIMENSIONS, _BROWSING_EXTRA_ARGS,
-        _BASE_SWARMING_TAGS)
+        run_vr_telemetry_test.RunVrTelemetryTest._GetSwarmingTags(
+            _BROWSING_ARGUMENTS))
     self.assertEqual(quest, expected)
