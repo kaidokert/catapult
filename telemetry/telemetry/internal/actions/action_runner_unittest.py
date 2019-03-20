@@ -456,6 +456,25 @@ class ActionRunnerTest(tab_test_case.TabTestCase):
     self.assertIn('Interaction.InteractionName/repeatable', markers)
 
 
+class OpenNewWindowTest(tab_test_case.TabTestCase):
+  @classmethod
+  def CustomizeBrowserOptions(cls, options):
+    options.AppendExtraBrowserArgs([
+        '--disable-popup-blocking'
+    ])
+
+  def testOpenNewWindow(self):
+    action_runner = action_runner_module.ActionRunner(self._tab,
+                                                      skip_waits=True)
+    target_location = 'chrome://tracing/'
+    new_window = action_runner.OpenNewWindow(target_location,
+                                             timeout_in_seconds=5,
+                                             return_window_for_testing=True)
+    opened_location = new_window.action_runner.EvaluateJavaScript(
+        "document.location.href.toString()")
+    self.assertEqual(opened_location, target_location)
+
+
 class InteractionTest(unittest.TestCase):
 
   def setUp(self):

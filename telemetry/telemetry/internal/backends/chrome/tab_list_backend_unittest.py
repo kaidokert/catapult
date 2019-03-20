@@ -4,10 +4,17 @@
 
 from telemetry.core import exceptions
 from telemetry import decorators
+from telemetry.internal.browser import tab_list
 from telemetry.testing import tab_test_case
 
 
 class TabListBackendTest(tab_test_case.TabTestCase):
+  @classmethod
+  def CustomizeBrowserOptions(cls, options):
+    options.AppendExtraBrowserArgs([
+        '--disable-popup-blocking'
+    ])
+
   @decorators.Enabled('has tabs')
   def testNewTab(self):
     tabs = set(tab.id for tab in self.tabs)
@@ -17,6 +24,27 @@ class TabListBackendTest(tab_test_case.TabTestCase):
       tabs.add(new_tab_id)
       new_tabs = set(tab.id for tab in self.tabs)
       self.assertEqual(tabs, new_tabs)
+
+  @decorators.Enabled('has tabs')
+  def testNewWindow(self):
+    number_already_open_tabs = len(self.tabs)
+    self.assertTrue(number_already_open_tabs > 0)
+    already_open_window = self.tabs[0]
+
+    new_window = self.tabs.New(tab_list.TAB_IN_NEW_POPUP, timeout=1)
+    self.assertTrue(new_window.id != already_open_window.id)
+    # Now the browser does know about the popup.
+    self.assertEqual(len(self.tabs), number_already_open_tabs + 1)
+    self.assertTrue(new_window in self.tabs)
+
+    # Make sure the parent-child relationship is correct.
+    self.assertEqual(already_open_window.EvaluateJavaScript("window.opener"),
+                     None)
+    expected_base_uri = already_open_window.EvaluateJavaScript(
+        "document.baseURI")
+    actual_base_uri = new_window.EvaluateJavaScript(
+        "window.opener.document.baseURI")
+    self.assertEqual(expected_base_uri, actual_base_uri)
 
   @decorators.Enabled('has tabs')
   def testTabIdMatchesContextId(self):
