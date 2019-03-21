@@ -70,6 +70,24 @@
       "revId": "0ce16eaa75c31cf3259f9a233b9ecf50884475af",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db2061a3_91998bc5",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-03-21T18:07:30Z",
+      "side": 1,
+      "message": "Right, I think it has to be prepended to all names for consistency, since otherwise the json results wouldn\u0027t be intelligible: for any given test name, there\u0027d be no way to know if it had the prefix or not.",
+      "parentUuid": "3b2d8302_ec07b4f8",
+      "revId": "0ce16eaa75c31cf3259f9a233b9ecf50884475af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
