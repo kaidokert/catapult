@@ -181,13 +181,16 @@ class _FindIsolateExecution(execution.Execution):
       # Request a build!
       buildbucket_info = _RequestBuild(
           self._builder_name, self._change, self.bucket)
+
       self._build = buildbucket_info['build']['id']
       self._previous_builds[self._change] = self._build
 
 
 def _RequestBuild(builder_name, change, bucket):
   builder_tags = [
-      'buildset:commit/git/%s' % change.base_commit.git_hash
+      'buildset:commit/gitiles/%s/%s/+/%s' % (
+          'chromium-review.googlesource.com', 'chromium/src',
+          change.base_commit.git_hash)
   ]
   if change.patch:
     builder_tags.append(change.patch.BuildsetTags())
@@ -197,7 +200,7 @@ def _RequestBuild(builder_name, change, bucket):
       'builder_name': builder_name,
       'properties': {
           'clobber': True,
-          'parent_got_revision': change.base_commit.git_hash,
+          'revision': change.base_commit.git_hash,
           'deps_revision_overrides': deps_overrides,
       },
   }
