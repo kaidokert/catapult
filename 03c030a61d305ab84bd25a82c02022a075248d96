@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "f75a3e0a_9b9cacb5",
+        "filename": "tracing/tracing/metrics/system_health/persecond_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1215729
+      },
+      "writtenOn": "2019-03-21T12:32:43Z",
+      "side": 1,
+      "message": "Correct myself: this function is duplicated in several other files. The refactoring seems out of the scope. We can refactor it in another CL.",
+      "parentUuid": "2673714b_bd0d70e6",
+      "revId": "03c030a61d305ab84bd25a82c02022a075248d96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "219d5d54_c6c9c581",
         "filename": "tracing/tracing/metrics/system_health/persecond_metric.html",
         "patchSetId": 9
@@ -223,6 +241,24 @@
       "writtenOn": "2019-03-12T20:06:40Z",
       "side": 1,
       "message": "Hm should we only track lastNavigationStart? I think since we\u0027re landing this on catapult, it should try to do reasonable things if there are multiple navigations in the trace. Could we add values to the histograms from all the navigations? Ideally, add renderer pid and navigation start (and if it\u0027s easy, frame loader id) as a diagnostic info, so in the future if we need to filter out data for a particular navigation we can do that easily.",
+      "revId": "03c030a61d305ab84bd25a82c02022a075248d96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8e48db7_e08296e5",
+        "filename": "tracing/tracing/metrics/system_health/persecond_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1215729
+      },
+      "writtenOn": "2019-03-21T12:32:43Z",
+      "side": 1,
+      "message": "Added url, pid, navStart, frameIdRef as diagnostics.",
+      "parentUuid": "f48ba7d4_16331c0e",
       "revId": "03c030a61d305ab84bd25a82c02022a075248d96",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
