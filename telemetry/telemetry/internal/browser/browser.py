@@ -31,7 +31,7 @@ class Browser(app.App):
   cases.
   """
   def __init__(self, backend, platform_backend, startup_args,
-               find_existing=False):
+               find_existing=False, log_verbose_browser_info=True):
     super(Browser, self).__init__(app_backend=backend,
                                   platform_backend=platform_backend)
     try:
@@ -42,8 +42,10 @@ class Browser(app.App):
       if find_existing:
         self._browser_backend.BindDevToolsClient()
       else:
-        self._browser_backend.Start(startup_args)
-      self._LogBrowserInfo()
+        self._browser_backend.Start(startup_args,
+                                    log_command=log_verbose_browser_info)
+      if log_verbose_browser_info:
+        self._LogBrowserInfo()
     except Exception:
       exc_info = sys.exc_info()
       logging.error(
@@ -107,7 +109,7 @@ class Browser(app.App):
       if system_info.model_name:
         logs.append(' Model: %s' % system_info.model_name)
       if system_info.command_line:
-        logging.debug('Browser command line: %s', system_info.command_line)
+        logs.append(' Browser command line: %s', system_info.command_line)
       if system_info.gpu:
         for i, device in enumerate(system_info.gpu.devices):
           logs.append(' GPU device %d: %s' % (i, device))

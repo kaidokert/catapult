@@ -54,8 +54,10 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
   def _GetPathsForOsPageCacheFlushing(self):
     return [self.profile_directory, self.browser_directory]
 
-  def SetUpEnvironment(self, browser_options):
-    super(PossibleCrOSBrowser, self).SetUpEnvironment(browser_options)
+  def SetUpEnvironment(self, browser_options, log_details=True):
+    super(PossibleCrOSBrowser, self).SetUpEnvironment(
+        browser_options, log_details=log_details)
+    del log_details
 
     # Copy extensions to temp directories on the device.
     # Note that we also perform this copy locally to ensure that
@@ -86,7 +88,7 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
     for extension in self._browser_options.extensions_to_load:
       self._platform_backend.cri.RmRF(posixpath.dirname(extension.local_path))
 
-  def Create(self):
+  def Create(self, log_verbose_browser_info=True):
     startup_args = self.GetBrowserStartupArgs(self._browser_options)
 
     browser_backend = cros_browser_backend.CrOSBrowserBackend(
@@ -98,7 +100,8 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
       return cros_browser_with_oobe.CrOSBrowserWithOOBE(
           browser_backend, self._platform_backend, startup_args)
     return browser.Browser(
-        browser_backend, self._platform_backend, startup_args)
+        browser_backend, self._platform_backend, startup_args,
+        log_verbose_browser_info=log_verbose_browser_info)
 
   def GetBrowserStartupArgs(self, browser_options):
     startup_args = chrome_startup_args.GetFromBrowserOptions(browser_options)

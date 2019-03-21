@@ -81,8 +81,11 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
   def _GetPathsForOsPageCacheFlushing(self):
     return [self.profile_directory, self.browser_directory]
 
-  def SetUpEnvironment(self, browser_options):
-    super(PossibleDesktopBrowser, self).SetUpEnvironment(browser_options)
+  def SetUpEnvironment(self, browser_options, log_details=True):
+    super(PossibleDesktopBrowser, self).SetUpEnvironment(
+        browser_options, log_details=log_details)
+    del log_details
+
     if self._browser_options.dont_override_profile:
       return
 
@@ -120,7 +123,7 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
       shutil.rmtree(self._profile_directory, ignore_errors=True)
       self._profile_directory = None
 
-  def Create(self):
+  def Create(self, log_verbose_browser_info=True):
     if self._flash_path and not os.path.exists(self._flash_path):
       logging.warning(
           'Could not find Flash at %s. Continuing without Flash.\n'
@@ -129,7 +132,6 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
       self._flash_path = None
 
     self._InitPlatformIfNeeded()
-
 
     num_retries = 3
     for x in range(0, num_retries):
@@ -141,14 +143,13 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
         # For example, see: crbug.com/865895#c17
         startup_args = self.GetBrowserStartupArgs(self._browser_options)
         returned_browser = None
-
         browser_backend = desktop_browser_backend.DesktopBrowserBackend(
             self._platform_backend, self._browser_options,
             self._browser_directory, self._profile_directory,
             self._local_executable, self._flash_path, self._is_content_shell)
-
         return browser.Browser(
-            browser_backend, self._platform_backend, startup_args)
+            browser_backend, self._platform_backend, startup_args,
+            log_verbose_browser_info=True)
       except Exception: # pylint: disable=broad-except
         report = 'Browser creation failed (attempt %d of %d)' % (
             (x + 1), num_retries)
