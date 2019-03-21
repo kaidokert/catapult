@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "130dfa34_c11c6024",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1301626
+      },
+      "writtenOn": "2019-03-21T15:21:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aefea58a_fdbacb70",
+      "revId": "d9eb70f5eade908e56a6027f8e14541c40f2307a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "96718a6f_bfb08426",
         "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
         "patchSetId": 5
@@ -33,6 +51,24 @@
       "revId": "d9eb70f5eade908e56a6027f8e14541c40f2307a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6337db0b_a90cae9b",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1301626
+      },
+      "writtenOn": "2019-03-21T15:21:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96718a6f_bfb08426",
+      "revId": "d9eb70f5eade908e56a6027f8e14541c40f2307a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "de0ea5ec_5087db0e",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1301626
+      },
+      "writtenOn": "2019-03-21T15:21:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59b87be7_2b3f391b",
+      "range": {
+        "startLine": 139,
+        "startChar": 34,
+        "endLine": 139,
+        "endChar": 37
+      },
+      "revId": "d9eb70f5eade908e56a6027f8e14541c40f2307a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ac4e3c29_2df2ffe0",
         "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
         "patchSetId": 5
@@ -73,6 +133,24 @@
       "revId": "d9eb70f5eade908e56a6027f8e14541c40f2307a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c85ab0f_f35056e7",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1301626
+      },
+      "writtenOn": "2019-03-21T15:21:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac4e3c29_2df2ffe0",
+      "revId": "d9eb70f5eade908e56a6027f8e14541c40f2307a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -93,6 +171,24 @@
     },
     {
       "key": {
+        "uuid": "b4f08ed9_2a52b785",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1301626
+      },
+      "writtenOn": "2019-03-21T15:21:25Z",
+      "side": 1,
+      "message": "Oops, good catch! No wonder \"readyState\" wasn\u0027t totally aligned with completeness of pageload. Though it still doesn\u0027t appear to be a great indicator.",
+      "parentUuid": "d0b27d3d_8639d931",
+      "revId": "d9eb70f5eade908e56a6027f8e14541c40f2307a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7acc14da_ec3c0e18",
         "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend_unittest.py",
         "patchSetId": 5
@@ -107,6 +203,24 @@
       "revId": "d9eb70f5eade908e56a6027f8e14541c40f2307a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce1684b9_fa796304",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend_unittest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1301626
+      },
+      "writtenOn": "2019-03-21T15:21:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7acc14da_ec3c0e18",
+      "revId": "d9eb70f5eade908e56a6027f8e14541c40f2307a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -127,6 +241,24 @@
     },
     {
       "key": {
+        "uuid": "c49dd954_285219d4",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend_unittest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1301626
+      },
+      "writtenOn": "2019-03-21T15:21:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54f4885e_7bf87cd7",
+      "revId": "d9eb70f5eade908e56a6027f8e14541c40f2307a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e0c447f2_243892a8",
         "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend_unittest.py",
         "patchSetId": 5
@@ -141,6 +273,24 @@
       "revId": "d9eb70f5eade908e56a6027f8e14541c40f2307a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb1aeff4_17641f57",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend_unittest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1301626
+      },
+      "writtenOn": "2019-03-21T15:21:25Z",
+      "side": 1,
+      "message": "We likely would not have the same relationship. I understand this is testing an implementation detail, but I was hoping that, should the method be changed to use the DevTools API, this unit test would fail and then get changed to exercise the new API. \n\nI see how that would be problematic, though, so I\u0027ll remove this part.",
+      "parentUuid": "e0c447f2_243892a8",
+      "revId": "d9eb70f5eade908e56a6027f8e14541c40f2307a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

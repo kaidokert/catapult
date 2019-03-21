@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "c815905f_36a78482",
+        "filename": "telemetry/telemetry/internal/actions/action_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1301626
+      },
+      "writtenOn": "2019-03-21T15:21:25Z",
+      "side": 1,
+      "message": "Understood. The thing I liked about wrapping it in an action was that users can optionally supply a URL to have the tab navigate to instead of having to explicitly call Navigate(url) afterwards.",
+      "parentUuid": "1b38e7c3_ff422dab",
+      "range": {
+        "startLine": 206,
+        "startChar": 4,
+        "endLine": 206,
+        "endChar": 53
+      },
+      "revId": "0592c962c708b55c642e02ee3f9497635955c4d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2e675359_deda8f3b",
         "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
         "patchSetId": 2
