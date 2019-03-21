@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "97434830_f95fd458",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-21T14:32:25Z",
+      "side": 1,
+      "message": "Hmm.. my worry is that flags are almost (but not always) the same for all runs. Individual stories can pass extra command line flags.\n\nCould we investigate instead storing them as result artifacts (as I posted on the other CL), and removing them completely from the logs?\n\nAs a short term fix, I would also be OK with just switching to log (say) the first 100 chars of the command line.",
+      "revId": "a20e3e6b5349ff3dda295580e806c90be0c7af70",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
