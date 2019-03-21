@@ -34,6 +34,24 @@
       "revId": "93bbf937f83835ceb3d858e383a165afdeeae802",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e08a27f3_5515917f",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-21T13:34:20Z",
+      "side": 0,
+      "message": "Yup. Agree 100%. There was a plan for doing that via test result artifacts [1], I think there are already a few things added as artifacts to the result. Sadly the project was not really completed, and there is no (I believe) good interface to access these artifacts from tests that ran on our waterfalls. Maybe we should put that on some backlog.\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/results/artifact_results.py?rcl\u003dea373a05edc25dd1d7f742c4013d7f6efa0e3f06\u0026l\u003d46",
+      "parentUuid": "ab271908_5c83c9df",
+      "revId": "93bbf937f83835ceb3d858e383a165afdeeae802",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
