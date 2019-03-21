@@ -41,6 +41,10 @@ OPTION_TAGS = 'TAGS'
 COMPARISON_MODES = job_state.COMPARISON_MODES
 
 
+class JobRecoverableError(job_state.JobStateRecoverableError):
+  pass
+
+
 def JobFromId(job_id):
   """Get a Job object from its ID. Its ID is just its key as a hex string.
 
@@ -366,9 +370,7 @@ class Job(ndb.Model):
           queue_name='job-queue', url='/api/run/' + self.job_id,
           name=task_name, countdown=countdown)
     except (apiproxy_errors.DeadlineExceededError, taskqueue.TransientError):
-      task = taskqueue.add(
-          queue_name='job-queue', url='/api/run/' + self.job_id,
-          name=task_name, countdown=countdown)
+      raise JobRecoverableError()
 
     self.task = task.name
 
@@ -410,7 +412,7 @@ class Job(ndb.Model):
         self._Complete()
 
       self.retry_count = 0
-    except job_state.JobStateRecoverableError:
+    except JobRecoverableError:
       if not self._MaybeScheduleRetry():
         self.Fail()
         raise
