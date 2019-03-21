@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "dd6afca1_ed02827e",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-21T12:07:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df67ba19_0eb44d33",
+      "range": {
+        "startLine": 25,
+        "startChar": 30,
+        "endLine": 25,
+        "endChar": 41
+      },
+      "revId": "57edeec799066a9f808a8e44cbffa67ab8d27d0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "62041200_ea5bb0ac",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
         "patchSetId": 8
@@ -75,6 +99,24 @@
       "revId": "57edeec799066a9f808a8e44cbffa67ab8d27d0e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e88290d_fa0d4cb7",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-21T12:07:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5492d2dc_2348a9c1",
+      "revId": "57edeec799066a9f808a8e44cbffa67ab8d27d0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
