@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f2b73da3_a6b4ffc1",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-21T10:35:02Z",
+      "side": 0,
+      "message": "nit: this blank line should stay. At the outer level it\u0027s two blank lines between classes, global constants, imports, functions, etc.",
+      "revId": "eb73833a2935a42bb618d0557e3d45ae6624c9e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

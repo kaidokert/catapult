@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "67333a19_0e978d26",
+        "filename": "catapult_build/.vpython",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-21T10:35:02Z",
+      "side": 1,
+      "message": "I don\u0027t think we can land this :( / The real solution is blocked by crbug.com/944078\n\nBut maybe we can start by moving this .vpython config to catapult/common (where py_trace_event lives), and add some tests there (to be picked up by catapult/common/bin/run_tests) showing that the new proto output format works.",
+      "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84b1a166_b6c802a7",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-21T10:35:02Z",
+      "side": 1,
+      "message": "nit: Args style.",
+      "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c5225240_80f6ad2b",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
         "patchSetId": 6
@@ -254,6 +288,30 @@
       "writtenOn": "2019-03-19T11:43:47Z",
       "side": 1,
       "message": "nit: TODO(khokhlov)\n\nDo we really want to support parsing proto though? I thought we were going to use the trace processor for this, and only in the metrics part of the pipeline?",
+      "range": {
+        "startLine": 82,
+        "startChar": 12,
+        "endLine": 82,
+        "endChar": 17
+      },
+      "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef1adf67_28df720e",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-21T10:35:02Z",
+      "side": 1,
+      "message": "No, we don\u0027t want this. Instead the agent should just write the extra metadata and clock sync info (below) to the same proto output where all events were written.\n\nI\u0027m also planning to rewrite this, so even in the json case we just write and never read. For now you can leave out these Telemetry changes, and just focus on getting py_trace_event right.",
+      "parentUuid": "3aba7749_ed2d567b",
       "range": {
         "startLine": 82,
         "startChar": 12,
