@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c74c7ca1_152ee166",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-21T17:11:03Z",
+      "side": 1,
+      "message": "nit: true -\u003e True",
+      "revId": "f9777c24ea4cfc9b1acebfe45174f3d99ea53669",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe58d5ea_841df40a",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-21T17:11:03Z",
+      "side": 1,
+      "message": "nit: we usually we indent here just two extra spaces from the line above, e.g.:\n\n    Args:\n      in_new_window: If true, opens the tab in a popup window. Otherwise, opens\n        in current window.\n\nSimilar to [1] but 2 instead of 4 spaces.\n\n[1]: https://github.com/google/styleguide/blob/gh-pages/pyguide.md#383-functions-and-methods",
+      "revId": "f9777c24ea4cfc9b1acebfe45174f3d99ea53669",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1d6ce92_f683709b",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-21T17:11:03Z",
+      "side": 1,
+      "message": "no need for the extra temporary list in the middle, here you can just do:\n\n    [... for tab_id in self.IterContextIds() ...]\n\nAlso you could do\n\n    new_ids \u003d set(self.IterContextIds()).difference(open_context_ids)\n\nUp to you which one you prefer.",
+      "revId": "f9777c24ea4cfc9b1acebfe45174f3d99ea53669",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a08547c8_7874501d",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-21T17:11:03Z",
+      "side": 1,
+      "message": "maybe here you should also catch the exceptions.EvaluateException and re-raise as a TabUnexpectedResponseException ?",
+      "revId": "f9777c24ea4cfc9b1acebfe45174f3d99ea53669",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc777f1c_eb91f924",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend_unittest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-21T17:11:03Z",
+      "side": 1,
+      "message": "nit: for readability use named arg, e.g. tabs.New(in_new_window\u003dTrue, timeout\u003d1)",
+      "revId": "f9777c24ea4cfc9b1acebfe45174f3d99ea53669",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99be9195_ba603307",
+        "filename": "telemetry/telemetry/internal/browser/tab.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-21T17:11:03Z",
+      "side": 1,
+      "message": "Here too, just use named arg and avoid the extra variable, e.g.\n\n    tab_list_backend.New(in_new_window\u003dFalse, timeout\u003dtimeout)",
+      "revId": "f9777c24ea4cfc9b1acebfe45174f3d99ea53669",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

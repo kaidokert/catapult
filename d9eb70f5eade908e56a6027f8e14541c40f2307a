@@ -90,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "f3896442_bf153823",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-21T17:11:03Z",
+      "side": 1,
+      "message": "But 3 is just a temporary thing, since what we actually want is 2?",
+      "parentUuid": "d5d8b70c_85fc6d95",
+      "revId": "d9eb70f5eade908e56a6027f8e14541c40f2307a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "59b87be7_2b3f391b",
         "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
         "patchSetId": 5
