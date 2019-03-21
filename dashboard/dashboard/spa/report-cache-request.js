@@ -33,10 +33,22 @@ export default class ReportCacheRequest extends CacheRequestBase {
     this.revisions = body.get('revisions').split(',');
   }
 
+  async sendResults_() {
+    await this.parseRequestPromise;
+    let channelName = this.fetchEvent.request.url;
+    channelName += '?' + new URLSearchParams({
+      id: this.templateId,
+      modified: this.templateModified,
+      revisions: this.revisions.join(','),
+    });
+    const sender = new ResultChannelSender(channelName);
+    await sender.send(this.generateResults());
+    this.onResponded();
+  }
+
   respond() {
     this.fetchEvent.respondWith(this.responsePromise.then(jsonResponse));
-    const sender = new ResultChannelSender(this.fetchEvent.request.url);
-    this.fetchEvent.waitUntil(sender.send(this.generateResults()));
+    this.fetchEvent.waitUntil(this.sendResults_());
   }
 
   async* generateResults() {
@@ -100,8 +112,7 @@ export default class ReportCacheRequest extends CacheRequestBase {
   }
 
   async readDatabase_() {
-    const db = await this.databasePromise;
-    const transaction = db.transaction(STORES, READONLY);
+    const transaction = await this.transaction(STORES, READONLY);
 
     // Start all asynchronous actions at once then "await" only the results
     // needed.
@@ -183,11 +194,10 @@ export default class ReportCacheRequest extends CacheRequestBase {
   }
 
   async writeDatabase(networkResults) {
-    const db = await this.databasePromise;
     const {report: networkReport, ...metadata} = networkResults;
     const {rows: networkRows, statistics} = networkReport;
 
-    const transaction = db.transaction(STORES, READWRITE);
+    const transaction = await this.transaction(STORES, READWRITE);
     await Promise.all([
       this.writeReports_(transaction, networkResults),
       this.writeMetadata_(transaction, networkResults),
