@@ -125,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "4fe449cd_476f561f",
+        "filename": "telemetry/telemetry/benchmark_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-21T15:00:32Z",
+      "side": 1,
+      "message": "I agree that we should be careful in production code and make copies, until we\u0027re 100% sure that options are immutable.\n\nBut this is a test, it is meant to fail when something\u0027s wrong. If after some change it starts failing because of options having changed inside RunBenchmark, we will find that place where options are changing and fix it.",
+      "parentUuid": "25009cd2_50952a31",
+      "revId": "88f6c0abbee797edf42872c1508055546a9c3129",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5b8525e5_21c5a154",
         "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
         "patchSetId": 4

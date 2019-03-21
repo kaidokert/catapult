@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "12ea6452_15d7478c",
+        "filename": "telemetry/telemetry/benchmark_runner_unittest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-21T15:00:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb0e0010_013e8b82",
+      "revId": "a99670ef25562dbed472c341b3487b0a8b63ed31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c9f26858_3e2b0618",
         "filename": "telemetry/telemetry/benchmark_runner_unittest.py",
         "patchSetId": 5
@@ -33,6 +51,24 @@
       "revId": "a99670ef25562dbed472c341b3487b0a8b63ed31",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e90e7fdf_6689d70e",
+        "filename": "telemetry/telemetry/benchmark_runner_unittest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-21T15:00:32Z",
+      "side": 1,
+      "message": "Thank you! This is really much clearer.",
+      "parentUuid": "c9f26858_3e2b0618",
+      "revId": "a99670ef25562dbed472c341b3487b0a8b63ed31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
