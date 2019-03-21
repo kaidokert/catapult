@@ -104,7 +104,7 @@ class FlagChanger(object):
     self._state_stack[-1] = set(flags)
     return flags
 
-  def ReplaceFlags(self, flags):
+  def ReplaceFlags(self, flags, log_flags=True):
     """Replaces the flags in the command line with the ones provided.
        Saves the current flags state on the stack, so a call to Restore will
        change the state back to the one preceeding the call to ReplaceFlags.
@@ -120,7 +120,7 @@ class FlagChanger(object):
     new_flags = set(flags)
     self._state_stack.append(new_flags)
     self._SetPermissive()
-    return self._UpdateCommandLineFile()
+    return self._UpdateCommandLineFile(log_flags=log_flags)
 
   def AddFlags(self, flags):
     """Appends flags to the command line if they aren't already there.
@@ -212,7 +212,7 @@ class FlagChanger(object):
       self._ResetEnforce()
     return self._UpdateCommandLineFile()
 
-  def _UpdateCommandLineFile(self):
+  def _UpdateCommandLineFile(self, log_flags=True):
     """Writes out the command line to the file, or removes it if empty.
 
     Returns:
@@ -225,12 +225,16 @@ class FlagChanger(object):
       self._device.RemovePath(self._cmdline_path, force=True, as_root=True)
 
     current_flags = self.GetCurrentFlags()
+    log = ''
     if self._cmdline_path:
-      logger.info(
-          'Flags now set on the device at %s: %s',
-          self._cmdline_path, current_flags)
+      log += 'Flags now set on the device at %s' % self._cmdline_path
     else:
-      logger.info('Flags now set on the device: %s', current_flags)
+      log += 'Flags now set on the device'
+    if log_flags:
+      log += ': %s' % current_flags
+    else:
+      log += '.'
+    logging.info(log)
     return current_flags
 
 

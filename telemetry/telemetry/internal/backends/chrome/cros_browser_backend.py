@@ -51,7 +51,7 @@ class CrOSBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   def __del__(self):
     self.Close()
 
-  def Start(self, startup_args):
+  def Start(self, startup_args, log_command=True):
     # Remove the stale file with the devtools port / browser target
     # prior to restarting chrome.
     self._cri.RmRF(self._GetDevToolsActivePortPath())
@@ -62,7 +62,6 @@ class CrOSBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
 
     # Restart Chrome with the login extension and remote debugging.
     pid = self.GetPid()
-    logging.info('Restarting Chrome (pid=%d) with remote port', pid)
     args = ['dbus-send', '--system', '--type=method_call',
             '--dest=org.chromium.SessionManager',
             '/org/chromium/SessionManager',
@@ -70,7 +69,9 @@ class CrOSBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
             'boolean:true',
             'array:string:"%s"' % ','.join(startup_args),
             'array:string:']
-    logging.info(' '.join(args))
+    logging.info('Restarting Chrome (pid=%d) with remote port', pid)
+    if log_command:
+      logging.info(' '.join(args))
     self._cri.RunCmdOnDevice(args)
 
     # Wait for new chrome and oobe.
