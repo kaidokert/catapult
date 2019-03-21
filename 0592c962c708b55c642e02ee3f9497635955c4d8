@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "1b38e7c3_ff422dab",
+        "filename": "telemetry/telemetry/internal/actions/action_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-21T13:30:21Z",
+      "side": 1,
+      "message": "Agree with Caleb, I don\u0027t think we need an \"action\" for this. Clients should be able to call something like `browser.tabs.New(in_new_window\u003dTrue)` themselves.",
+      "parentUuid": "6f6f249e_bccefd39",
+      "range": {
+        "startLine": 206,
+        "startChar": 4,
+        "endLine": 206,
+        "endChar": 53
+      },
+      "revId": "0592c962c708b55c642e02ee3f9497635955c4d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2e675359_deda8f3b",
         "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
         "patchSetId": 2
