@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "48ff2bec_556f7a46",
+        "filename": "catapult_build/.vpython",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-21T11:03:17Z",
+      "side": 1,
+      "message": "Yeah, this CL was not going to be landed as is anyway. I placed .vpython here to run CQ checks (they run catapult_build/fetch_telemetry_deps_and_run_tests script).\n\nPerhaps we should wait for the solution of crbug.com/944078 and then decide where the proper location of this file is.",
+      "parentUuid": "67333a19_0e978d26",
+      "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "84b1a166_b6c802a7",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
         "patchSetId": 6
@@ -33,6 +51,24 @@
       "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c83b03e4_3373954c",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-21T11:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84b1a166_b6c802a7",
+      "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "7d57b0cd_8ef88a7f",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-21T11:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5225240_80f6ad2b",
+      "range": {
+        "startLine": 80,
+        "startChar": 24,
+        "endLine": 80,
+        "endChar": 28
+      },
+      "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6c5ae3b6_0a99e494",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
         "patchSetId": 6
@@ -73,6 +133,24 @@
       "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d02c1c39_a8f6cff9",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-21T11:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c5ae3b6_0a99e494",
+      "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -122,6 +200,30 @@
     },
     {
       "key": {
+        "uuid": "47e0be8d_503850c2",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-21T11:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c214037_f77a9266",
+      "range": {
+        "startLine": 14,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 43
+      },
+      "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "82906dbe_ea36233d",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
         "patchSetId": 6
@@ -145,6 +247,30 @@
     },
     {
       "key": {
+        "uuid": "7d1d09e5_8d35381b",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-21T11:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82906dbe_ea36233d",
+      "range": {
+        "startLine": 19,
+        "startChar": 16,
+        "endLine": 19,
+        "endChar": 17
+      },
+      "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ca6163c_5013e3be",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
         "patchSetId": 6
@@ -162,6 +288,24 @@
     },
     {
       "key": {
+        "uuid": "5e8bac3a_76bfae2e",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-21T11:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ca6163c_5013e3be",
+      "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "637f4615_8353b18b",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
         "patchSetId": 6
@@ -173,6 +317,30 @@
       "writtenOn": "2019-03-19T11:43:47Z",
       "side": 1,
       "message": "nit: TODO(khokhlov)\n\nalso, do we know where the large tid comes from? :)",
+      "range": {
+        "startLine": 51,
+        "startChar": 4,
+        "endLine": 51,
+        "endChar": 9
+      },
+      "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02b9e49c_7db16987",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-21T11:03:17Z",
+      "side": 1,
+      "message": "It appears that there\u0027s no platform-independent way to identify threads (on linux they have pids just like processes, but on other platforms they don\u0027t). So python threading library has its own thread identifier.\n\nActually, not much is said about it in the docs: https://docs.python.org/2/library/threading.html#threading.Thread.ident\nOnly that it is a non-zero integer.",
+      "parentUuid": "637f4615_8353b18b",
       "range": {
         "startLine": 51,
         "startChar": 4,
@@ -208,6 +376,30 @@
     },
     {
       "key": {
+        "uuid": "e408c7b5_041a0ea0",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-21T11:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c15850f7_1bb68fb8",
+      "range": {
+        "startLine": 52,
+        "startChar": 2,
+        "endLine": 52,
+        "endChar": 26
+      },
+      "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ece06c96_cb037a7a",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
         "patchSetId": 6
@@ -228,6 +420,30 @@
       "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "177ed423_83152dce",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-21T11:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ece06c96_cb037a7a",
+      "range": {
+        "startLine": 56,
+        "startChar": 13,
+        "endLine": 56,
+        "endChar": 18
+      },
+      "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -254,6 +470,30 @@
     },
     {
       "key": {
+        "uuid": "31fc87ae_9b6fec13",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-21T11:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cadbae13_3dd4edc6",
+      "range": {
+        "startLine": 57,
+        "startChar": 2,
+        "endLine": 57,
+        "endChar": 8
+      },
+      "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c27a063b_c0253746",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
         "patchSetId": 6
@@ -274,6 +514,30 @@
       "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71738d78_998a8ef8",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-21T11:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c27a063b_c0253746",
+      "range": {
+        "startLine": 58,
+        "startChar": 21,
+        "endLine": 58,
+        "endChar": 42
+      },
+      "revId": "f310d9205a43a879cfb4792d1b87f6457d2c94d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
