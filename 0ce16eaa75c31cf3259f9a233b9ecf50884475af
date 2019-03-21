@@ -16,6 +16,24 @@
       "revId": "0ce16eaa75c31cf3259f9a233b9ecf50884475af",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72cf2045_3237a4dd",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-03-21T17:33:14Z",
+      "side": 1,
+      "message": "I agree with removing the dictionary of all the test names from the _Child object, because that dictionary would need to be serialized for every test run and that would add multiply a factor of N to the time complexity of running the tests. However when running telemetry unit tests, tests may have different prefixes, therefore by adding the prefix to every name, you would not be able to run tests that do not have the test_name_prefix as its prefix.",
+      "parentUuid": "02a9be91_aef97954",
+      "revId": "0ce16eaa75c31cf3259f9a233b9ecf50884475af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
