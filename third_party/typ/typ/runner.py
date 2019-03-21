@@ -23,6 +23,7 @@ import unittest
 import traceback
 
 from collections import OrderedDict
+from collections import defaultdict
 
 # This ensures that absolute imports of typ modules will work when
 # running typ/runner.py as a script even if typ is not installed.
@@ -59,6 +60,11 @@ def main(argv=None, host=None, win_multiprocessing=None, **defaults):
     if win_multiprocessing is not None:
         runner.win_multiprocessing = win_multiprocessing
     return runner.main(argv, **defaults)
+
+def remove_test_prefix(args, name):
+    if name.startswith(args.test_name_prefix):
+        return name[len(args.test_name_prefix):]
+    return name
 
 
 class TestInput(object):
@@ -491,7 +497,11 @@ class Runner(object):
                             add_tests(suite)
                 elif not name in found:
                     found.add(name)
-                    add_tests(loader.loadTestsFromName(name))
+                    try:
+                        add_tests(loader.loadTestsFromName(name))
+                    except ImportError:
+                        add_tests(loader.loadTestsFromName(
+                            self.args.test_name_prefix + name))
 
         # pylint: disable=no-member
         if hasattr(loader, 'errors') and loader.errors:  # pragma: python3
@@ -794,7 +804,7 @@ def _matches(name, globs):
 
 def _default_classifier(args):
     def default_classifier(test_set, test):
-        name = test.id()
+        name = remove_test_prefix(args, test.id())
         if not args.all and _matches(name, args.skip):
             test_set.tests_to_skip.append(TestInput(name,
                                                     'skipped by request'))
@@ -851,6 +861,7 @@ class _Child(object):
         self.cov = None
         self.has_expectations = parent.has_expectations
         self.expectations = parent.expectations
+        self.test_name_prefix = parent.args.test_name_prefix
 
 
 def _setup_process(host, worker_num, child):
@@ -926,7 +937,11 @@ def _run_one_test(child, test_input):
                            unexpected=False, pid=pid), False)
 
         try:
-            suite = child.loader.loadTestsFromName(test_name)
+            try:
+                suite = child.loader.loadTestsFromName(test_name)
+            except ImportError:
+                suite = child.loader.loadTestsFromName(
+                    child.test_name_prefix + test_name)
         except Exception as e:
             ex_str = ('loadTestsFromName("%s") failed: %s\n%s\n' %
                       (test_name, e, traceback.format_exc()))
