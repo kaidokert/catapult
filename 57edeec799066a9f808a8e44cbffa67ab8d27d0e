@@ -57,6 +57,24 @@
       "revId": "57edeec799066a9f808a8e44cbffa67ab8d27d0e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5492d2dc_2348a9c1",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2019-03-21T11:42:07Z",
+      "side": 1,
+      "message": "Ah, great :) Yeah, let\u0027s add a comment about that :)",
+      "parentUuid": "9e83e05d_a504dec8",
+      "revId": "57edeec799066a9f808a8e44cbffa67ab8d27d0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
