@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f4e2d0a6_db88a5ff",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-03-21T22:05:21Z",
+      "side": 1,
+      "message": "I think you don\u0027t need this anymore?",
+      "revId": "9a6cf6d14ef7773f9dcb0c50929326ef3fb80d63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efdb70af_93b9dd84",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-03-21T22:05:21Z",
+      "side": 1,
+      "message": "I think you don\u0027t need the `if` check, right? You can unconditionally just execute line 66.\n\nIn which case, I think you don\u0027t need this routine at all, you can just inline this into line 833?",
+      "revId": "9a6cf6d14ef7773f9dcb0c50929326ef3fb80d63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
