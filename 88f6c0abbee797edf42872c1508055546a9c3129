@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "25009cd2_50952a31",
+        "filename": "telemetry/telemetry/benchmark_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-21T14:00:11Z",
+      "side": 1,
+      "message": "I agree 100%. After all of the setup has happened, options should be immutable. Except they aren\u0027t :( , and in quite a few places they are changed (e.g. https://crbug.com/807645 to start). So for now, until that is fixed, we need to be careful and make copies.",
+      "parentUuid": "e15aa8c5_8eba4cd4",
+      "revId": "88f6c0abbee797edf42872c1508055546a9c3129",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5b8525e5_21c5a154",
         "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
         "patchSetId": 4
@@ -206,6 +224,24 @@
       "side": 1,
       "message": "Story filtering no longer takes place inside story_runner, now it plays all stories that are passed to it. So we don\u0027t need to test filtering here.",
       "parentUuid": "4bd199d5_6784cc16",
+      "revId": "88f6c0abbee797edf42872c1508055546a9c3129",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a2269a36_d574244e",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1752,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-21T14:00:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3852e9aa_4f6965c5",
       "revId": "88f6c0abbee797edf42872c1508055546a9c3129",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false

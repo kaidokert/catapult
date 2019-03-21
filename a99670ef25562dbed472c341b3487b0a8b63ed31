@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fb0e0010_013e8b82",
+        "filename": "telemetry/telemetry/benchmark_runner_unittest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-21T14:00:11Z",
+      "side": 1,
+      "message": "nit: single quotes please, the same as used in the rest of the file.",
+      "revId": "a99670ef25562dbed472c341b3487b0a8b63ed31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9f26858_3e2b0618",
+        "filename": "telemetry/telemetry/benchmark_runner_unittest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-21T14:00:11Z",
+      "side": 1,
+      "message": "hmm.. relying on indices like this looks brittle, and is not very readable. You could also do something like:\n\n\n   def CheckRunBenchmarkCall(benchmark, possible_browser, *args, **kwargs):\n      self.assertEqual(benchmark.Name(), \u0027tbm_sample.tbm_sample\u0027)\n      self.assertEqual(possible_browser.browser_type, \u0027system\u0027)\n\n   run_benchmark_mock.side_effect \u003d CheckRunBenchmarkCall\n\n   benchmark_runner.main(...)\n\n   run_benchmark_mock.assert_called_once()",
+      "revId": "a99670ef25562dbed472c341b3487b0a8b63ed31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
