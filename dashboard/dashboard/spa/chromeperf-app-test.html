@@ -235,5 +235,13 @@ suite('chromeperf-app', function() {
     assert.strictEqual('master:bot', app.chartSectionsById[
         app.chartSectionIds].descriptor.bot.selectedOptions[0]);
   });
+
+  test('restoreFromRoute team', async function() {
+    const app = fixture('test');
+    await app.dispatch('restoreFromRoute', app.statePath, new URLSearchParams({
+      team: 'team',
+    }));
+    assert.strictEqual('team', app.getState().teamName);
+  });
 });
 </script>
