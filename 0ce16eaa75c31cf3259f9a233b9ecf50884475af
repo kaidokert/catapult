@@ -52,6 +52,24 @@
       "revId": "0ce16eaa75c31cf3259f9a233b9ecf50884475af",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b2d8302_ec07b4f8",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-03-21T18:04:40Z",
+      "side": 1,
+      "message": "If the caller doesn\u0027t set the test-name-prefix, then you would be prepending \"\" that is correct. My intention was for the test-name-prefix was to only prepend to tests that have the prefix in its fully qualified name (\"tests.TestA.test_pass\"), when the test-name-prefix is set to a non empty string. It seems that you want the test-name-prefix to be prepended to all test names for consistency. This still works for gpu tests, because you can only run one test class at a time. In my next patch I will add the test-prefix to every test name.",
+      "parentUuid": "332028a7_4eefc9e3",
+      "revId": "0ce16eaa75c31cf3259f9a233b9ecf50884475af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
