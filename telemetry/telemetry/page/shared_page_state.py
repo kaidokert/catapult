@@ -153,14 +153,16 @@ class SharedPageState(story_module.SharedState):
     # arguments and url to it without polluting the run for the next page.
     browser_options = self._finder_options.browser_options.Copy()
     browser_options.AppendExtraBrowserArgs(page.extra_browser_args)
-    self._possible_browser.SetUpEnvironment(browser_options)
+    self._possible_browser.SetUpEnvironment(
+        browser_options, log_details=self._first_browser)
 
     # Clear caches before starting browser.
     self.platform.FlushDnsCache()
     if browser_options.flush_os_page_caches_on_start:
       self._possible_browser.FlushOsPageCaches()
 
-    self._browser = self._possible_browser.Create()
+    self._browser = self._possible_browser.Create(
+        log_verbose_browser_info=self._first_browser)
     if self._page_test:
       self._page_test.DidStartBrowser(self.browser)
 

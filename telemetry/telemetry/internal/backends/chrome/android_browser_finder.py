@@ -179,8 +179,9 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
       self._platform_backend.PushProfile(self._backend_settings.package,
                                          profile_dir)
 
-  def SetUpEnvironment(self, browser_options):
-    super(PossibleAndroidBrowser, self).SetUpEnvironment(browser_options)
+  def SetUpEnvironment(self, browser_options, log_details=True):
+    super(PossibleAndroidBrowser, self).SetUpEnvironment(
+        browser_options, log_details=log_details)
     self._platform_backend.DismissCrashDialogIfNeeded()
     device = self._platform_backend.device
     startup_args = self.GetBrowserStartupArgs(self._browser_options)
@@ -191,7 +192,7 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
         device, self._backend_settings.command_line_name, use_legacy_path=
         compat_mode_options.LEGACY_COMMAND_LINE_PATH in
         browser_options.compatibility_mode)
-    self._flag_changer.ReplaceFlags(startup_args)
+    self._flag_changer.ReplaceFlags(startup_args, log_flags=log_details)
     # Stop any existing browser found already running on the device. This is
     # done *after* setting the command line flags, in case some other Android
     # process manages to trigger Chrome's startup before we do.
@@ -208,9 +209,10 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
       finally:
         self._flag_changer = None
 
-  def Create(self):
+  def Create(self, log_verbose_browser_info=True):
     """Launch the browser on the device and return a Browser object."""
-    return self._GetBrowserInstance(existing=False)
+    return self._GetBrowserInstance(
+        existing=False, log_verbose_browser_info=log_verbose_browser_info)
 
   def FindExistingBrowser(self):
     """Find a browser running on the device and bind a Browser object to it.
@@ -223,7 +225,7 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
     """
     return self._GetBrowserInstance(existing=True)
 
-  def _GetBrowserInstance(self, existing):
+  def _GetBrowserInstance(self, existing, log_verbose_browser_info=True):
     browser_backend = android_browser_backend.AndroidBrowserBackend(
         self._platform_backend, self._browser_options,
         self.browser_directory, self.profile_directory,
@@ -231,7 +233,8 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
     try:
       return browser.Browser(
           browser_backend, self._platform_backend, startup_args=(),
-          find_existing=existing)
+          find_existing=existing,
+          log_verbose_browser_info=log_verbose_browser_info)
     except Exception:
       exc_info = sys.exc_info()
       logging.error(

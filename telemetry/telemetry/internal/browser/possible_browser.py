@@ -76,10 +76,11 @@ class PossibleBrowser(possible_app.PossibleApp):
           'Flush system cache is not supported. Did not flush OS page cache.')
 
   @contextlib.contextmanager
-  def BrowserSession(self, browser_options):
+  def BrowserSession(self, browser_options, log_verbose_browser_info=True):
     try:
-      self.SetUpEnvironment(browser_options)
-      browser = self.Create()
+      self.SetUpEnvironment(browser_options,
+                            log_details=log_verbose_browser_info)
+      browser = self.Create(log_verbose_browser_info)
       try:
         yield browser
       finally:
@@ -87,14 +88,22 @@ class PossibleBrowser(possible_app.PossibleApp):
     finally:
       self.CleanUpEnvironment()
 
-  def SetUpEnvironment(self, browser_options):
+  def SetUpEnvironment(self, browser_options, log_details=True):
+    del log_details
     assert self._browser_options is None, (
         'Browser environment is already set up.')
     # Check we were called with browser_options and not finder_options.
     assert getattr(browser_options, 'IS_BROWSER_OPTIONS', False)
     self._browser_options = browser_options
 
-  def Create(self):
+  def Create(self, log_verbose_browser_info=True):
+    """Start the browser process.
+
+    Args:
+      log_verbose_browser_info: If True, log verbose and exceptionally long
+        details about the browser (such as startup commandline which may
+        contain Finch feature flags).
+    """
     raise NotImplementedError()
 
   def CleanUpEnvironment(self):

@@ -91,7 +91,7 @@ class BrowserBackend(app_backend.AppBackend):
   def supports_app_ui_interactions(self):
     return False
 
-  def Start(self, startup_args):
+  def Start(self, startup_args, log_command=True):
     raise NotImplementedError()
 
   def IsBrowserRunning(self):
