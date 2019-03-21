@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "d5d8b70c_85fc6d95",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-21T16:43:20Z",
+      "side": 1,
+      "message": "Disagree. The new window that Madeleine is opening here is a popup window, not a normal new window. So there are at least three types: \n\n1. new tab in current window.\n2. new window\n3. new popup window",
+      "parentUuid": "6337db0b_a90cae9b",
+      "revId": "d9eb70f5eade908e56a6027f8e14541c40f2307a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "59b87be7_2b3f391b",
         "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
         "patchSetId": 5
