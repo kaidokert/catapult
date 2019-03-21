@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3b5e1a1c_a1a273e1",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-03-21T22:12:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4e2d0a6_db88a5ff",
+      "revId": "9a6cf6d14ef7773f9dcb0c50929326ef3fb80d63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "efdb70af_93b9dd84",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 23
@@ -33,6 +51,24 @@
       "revId": "9a6cf6d14ef7773f9dcb0c50929326ef3fb80d63",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "803f6771_526d6767",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-03-21T22:12:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "efdb70af_93b9dd84",
+      "revId": "9a6cf6d14ef7773f9dcb0c50929326ef3fb80d63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
