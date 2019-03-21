@@ -90,7 +90,6 @@ class Runner(object):
         home_dir = os.environ['HOME']
         self.call([self._python, self._path_to_runner,
                    'typ.tests.main_test.TestMain.test_basic'], cwd=home_dir)
-
         # Run the remaining tests.
         self.call([self._python, self._path_to_runner])
 
