@@ -39,6 +39,24 @@
       "revId": "57edeec799066a9f808a8e44cbffa67ab8d27d0e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e83e05d_a504dec8",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-21T11:37:51Z",
+      "side": 1,
+      "message": "I think functions in this file being not thread safe is ok, since they are only called from log.py methods, which all use one global lock.\n\nI can add a comment about that, for other possible users of these functions.",
+      "parentUuid": "62041200_ea5bb0ac",
+      "revId": "57edeec799066a9f808a8e44cbffa67ab8d27d0e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
