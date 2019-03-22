@@ -137,6 +137,28 @@ class BrowserTestRunnerTest(unittest.TestCase):
     self.assertEqual(tags, set(['android', 'marshmellow', 'system']))
 
   @decorators.Disabled('chromeos')  # crbug.com/696553
+  def testShortenTestNameUsingTestNamePrefixCommandLineArg(self):
+    self._RunTest(
+        '', [], ['FailingTest'],
+        test_name='ImplementsExpectationsFilesFunction',
+        extra_args=[
+            '-x=foo', '--test-name-prefix='
+            'browser_tests.browser_test.ImplementsExpectationsFilesFunction.'])
+    test_result = (
+        self._test_result['tests']['FailingTest'])
+    self.assertEqual(test_result['expected'], 'FAIL')
+
+  @decorators.Disabled('chromeos')  # crbug.com/696553
+  def testShortenSkipGlobUsingTestNamePrefixCommandLineArg(self):
+    self._RunTest(
+        '', [], [], expected_skips=['FailingTest'],
+        test_name='ImplementsExpectationsFilesFunction',
+        extra_args=[
+            '-x=foo', '--test-name-prefix='
+            'browser_tests.browser_test.ImplementsExpectationsFilesFunction.',
+            '--skip=FailingTest'])
+
+  @decorators.Disabled('chromeos')  # crbug.com/696553
   def testGetExpectationsFromTypWithoutExpectationsFile(self):
     test_name = ('browser_tests.browser_test.'
                  'GetsExpectationsFromTyp.HasNoExpectationsFile')
