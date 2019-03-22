@@ -16,6 +16,24 @@
       "revId": "a20e3e6b5349ff3dda295580e806c90be0c7af70",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b00807a_86709941",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-22T01:49:22Z",
+      "side": 1,
+      "message": "Agree that the long term fix is to store as artifacts. However, the current state is pretty bad. How about this:\n\n1. For the first run, print everything out.\n2. For future runs, print shortened versions. For commandline, I\u0027ll just drop the finch flags (maybe replace them with \"...\"). For GPU options, I\u0027ll max them at 100 chars and end with \"...\"\n\nI think it is useful to have the full commands printed at least once for the short term.",
+      "parentUuid": "97434830_f95fd458",
+      "revId": "a20e3e6b5349ff3dda295580e806c90be0c7af70",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
