@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0fd147c5_ee59848c",
+        "filename": "telemetry/telemetry/testing/browser_test_runner_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-22T22:16:37Z",
+      "side": 1,
+      "message": "I still have trouble with this pattern. RunTest has a bunch of arguments, so every time I want to figure out what a test of yours is doing I need to go carefully compare to the method signature. I basically need dual monitors to read this code.",
+      "range": {
+        "startLine": 142,
+        "startChar": 16,
+        "endLine": 142,
+        "endChar": 31
+      },
+      "revId": "2b291c3821e254e7eafae9846ad39d8d6b828fd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fb5de95_7b03602b",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-22T22:16:37Z",
+      "side": 1,
+      "message": "I think there should be an assertion before this that \n\ntest.id().startswith(args.test_name_prefix)",
+      "range": {
+        "startLine": 252,
+        "startChar": 4,
+        "endLine": 252,
+        "endChar": 49
+      },
+      "revId": "2b291c3821e254e7eafae9846ad39d8d6b828fd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
