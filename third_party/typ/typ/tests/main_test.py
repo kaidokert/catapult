@@ -1058,6 +1058,16 @@ class TestCli(test_case.MainTestCase):
         self.assertNotIn('is_unexpected', results)
         self.assertNotIn('is_regression', results)
 
+    def test_tests_containing_test_name_prefix_only_runs(self):
+        files = OUTPUT_TEST_FILES
+        _, out, _, files = self.check(
+            ['--write-full-results-to', 'full_results.json',
+             '--test-name-prefix', 'output_test.FailTest.'],
+            files=files, ret=1, err='')
+        results = json.loads(files['full_results.json'])
+        self.assertEqual(len(results['tests']), 1)
+        self.assertIn('test_out_err_fail', results['tests'])
+
     def test_implement_test_name_prefix_exclusion_in_finished_test_output(self):
         files = PASS_TEST_FILES
         _, out, _, files = self.check(
