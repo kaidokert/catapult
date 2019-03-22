@@ -34,6 +34,24 @@
       "revId": "a20e3e6b5349ff3dda295580e806c90be0c7af70",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f9214d3_6c97e178",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-22T10:27:00Z",
+      "side": 1,
+      "message": "That\u0027s a good compromise, plan STGM",
+      "parentUuid": "6b00807a_86709941",
+      "revId": "a20e3e6b5349ff3dda295580e806c90be0c7af70",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
