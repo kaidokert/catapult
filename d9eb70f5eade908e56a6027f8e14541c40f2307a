@@ -108,6 +108,24 @@
     },
     {
       "key": {
+        "uuid": "ea684738_7aff7470",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-22T00:17:49Z",
+      "side": 1,
+      "message": "Madeleine maybe can answer that. Madeleine, for testing UI, will we ever care about the difference between a new window and a new popup window? If we won\u0027t ever care, then switching to Juan\u0027s solution is fine.\n\nI don\u0027t want to bikeshed on this though, so just do whatever.",
+      "parentUuid": "f3896442_bf153823",
+      "revId": "d9eb70f5eade908e56a6027f8e14541c40f2307a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "59b87be7_2b3f391b",
         "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
         "patchSetId": 5
