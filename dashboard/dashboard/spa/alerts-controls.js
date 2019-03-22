@@ -4,10 +4,19 @@
 */
 'use strict';
 tr.exportTo('cp', () => {
+  const TYPING_DEBOUNCE_MS = 300;
+
   class AlertsControls extends cp.ElementBase {
     connectedCallback() {
       super.connectedCallback();
       this.dispatch('connected', this.statePath);
+
+      this.dispatchSources_();
+    }
+
+    async onUserUpdate_() {
+      await this.dispatch('loadReportNames', this.statePath);
+      await this.dispatch('loadSheriffs', this.statePath);
     }
 
     showSheriff_(bug, report) {
@@ -28,6 +37,10 @@ tr.exportTo('cp', () => {
               (bug.selectedOptions.length === 0));
     }
 
+    arePlaceholders_(alertGroups) {
+      return alertGroups === cp.AlertsTable.PLACEHOLDER_ALERT_GROUPS;
+    }
+
     crbug_(bugId) {
       return `http://crbug.com/${bugId}`;
     }
@@ -37,6 +50,7 @@ tr.exportTo('cp', () => {
     }
 
     async dispatchSources_() {
+      if (!this.sheriff || !this.bug || !this.report) return;
       const sources = await AlertsControls.compileSources(
           this.sheriff.selectedOptions,
           this.bug.selectedOptions,
@@ -86,17 +100,21 @@ tr.exportTo('cp', () => {
     }
 
     async onMinRevisionKeyup_(event) {
-      this.dispatch(Redux.UPDATE(this.statePath, {
-        minRevision: event.detail.value,
+      await this.dispatch(Redux.UPDATE(this.statePath, {
+        minRevision: event.target.value,
       }));
-      this.dispatchSources_();
+      this.debounce('dispatchSources', () => {
+        this.dispatchSources_();
+      }, Polymer.Async.timeOut.after(TYPING_DEBOUNCE_MS));
     }
 
     async onMaxRevisionKeyup_(event) {
-      this.dispatch(Redux.UPDATE(this.statePath, {
-        maxRevision: event.detail.value,
+      await this.dispatch(Redux.UPDATE(this.statePath, {
+        maxRevision: event.target.value,
       }));
-      this.dispatchSources_();
+      this.debounce('dispatchSources', () => {
+        this.dispatchSources_();
+      }, Polymer.Async.timeOut.after(TYPING_DEBOUNCE_MS));
     }
 
     async onToggleImprovements_(event) {
@@ -108,7 +126,7 @@ tr.exportTo('cp', () => {
       this.dispatch(Redux.TOGGLE(this.statePath + '.showingTriaged'));
     }
 
-    async onTapRecentlyModifiedBugs_(event) {
+    async onClickRecentlyModifiedBugs_(event) {
       await this.dispatch('toggleRecentlyModifiedBugs', this.statePath);
     }
 
@@ -158,9 +176,12 @@ tr.exportTo('cp', () => {
       options: [],
       selectedOptions: options.sheriffs || [],
     }),
+    showingTriaged: options => options.showingTriaged || false,
     showingImprovements: options => options.showingImprovements || false,
     showingRecentlyModifiedBugs: options => false,
     triagedBugId: options => 0,
+    alertGroups: options => options.alertGroups ||
+      cp.AlertsTable.PLACEHOLDER_ALERT_GROUPS,
   };
 
   AlertsControls.observers = [
@@ -174,6 +195,10 @@ tr.exportTo('cp', () => {
   AlertsControls.properties = {
     ...cp.buildProperties('state', AlertsControls.State),
     recentPerformanceBugs: {statePath: 'recentPerformanceBugs'},
+  };
+
+  AlertsControls.properties.areAlertGroupsPlaceholders = {
+    computed: 'arePlaceholders_(alertGroups)',
   };
 
   AlertsControls.actions = {
@@ -205,7 +230,11 @@ tr.exportTo('cp', () => {
         statePath,
         sheriffs,
       });
-      dispatch(cp.MenuInput.actions.focus(statePath + '.sheriff'));
+
+      const state = Polymer.Path.get(getState(), statePath);
+      if (state.sheriff.selectedOptions.length === 0) {
+        dispatch(cp.MenuInput.actions.focus(statePath + '.sheriff'));
+      }
     },
 
     connected: statePath => async(dispatch, getState) => {
@@ -281,10 +310,11 @@ tr.exportTo('cp', () => {
     sheriffs, bugs, reports, minRevision, maxRevision, improvements) => {
     // Returns a list of AlertsRequest bodies. See ../api/alerts.py for
     // request body parameters.
-    const revisions = {
-      min_end_revision: maybeInt(minRevision),
-      max_start_revision: maybeInt(maxRevision),
-    };
+    const revisions = {};
+    minRevision = maybeInt(minRevision);
+    maxRevision = maybeInt(maxRevision);
+    if (minRevision !== undefined) revisions.min_end_revision = minRevision;
+    if (maxRevision !== undefined) revisions.max_start_revision = maxRevision;
     const sources = [];
     for (const sheriff of sheriffs) {
       sources.push({
@@ -306,6 +336,9 @@ tr.exportTo('cp', () => {
           }
         }
       }
+    }
+    if (sources.length === 0 && (minRevision || maxRevision)) {
+      sources.push(revisions);
     }
     return sources;
   };

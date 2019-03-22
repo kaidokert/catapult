@@ -152,7 +152,10 @@ tr.exportTo('cp', () => {
 
     loadSources: statePath => async(dispatch, getState) => {
       const reportTemplateInfos = await new cp.ReportNamesRequest().response;
-      const reportNames = reportTemplateInfos.map(t => t.name);
+      const rootState = getState();
+      const teamFilter = cp.TeamFilter.get(rootState.teamName);
+      const reportNames = await teamFilter.reportNames(
+          reportTemplateInfos.map(t => t.name));
       dispatch({
         type: ReportControls.reducers.receiveSourceOptions.name,
         statePath,
