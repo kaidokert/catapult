@@ -12,6 +12,7 @@ from google.appengine.ext import ndb
 
 from dashboard.common import timing
 from dashboard.common import utils
+from dashboard.common import datastore_hooks
 from dashboard.models import internal_only_model
 from dashboard.models import sheriff as sheriff_module
 
@@ -308,6 +309,12 @@ class Anomaly(internal_only_model.InternalOnlyModel):
     post_filters = []
     if not inequality_property:
       return query, post_filters
+
+    if not datastore_hooks.IsUnalteredQueryPermitted():
+      # _DatastorePreHook will filter internal_only=False. index.yaml does not
+      # specify indexes for `internal_only, $inequality_property, -timestamp`.
+      # Use post_filters for all inequality properties.
+      inequality_property = ''
 
     if min_start_revision:
       min_start_revision = int(min_start_revision)
