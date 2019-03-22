@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "017674b6_df3fc04e",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1301626
+      },
+      "writtenOn": "2019-03-22T00:10:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c74c7ca1_152ee166",
+      "revId": "f9777c24ea4cfc9b1acebfe45174f3d99ea53669",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fe58d5ea_841df40a",
         "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
         "patchSetId": 7
@@ -33,6 +51,24 @@
       "revId": "f9777c24ea4cfc9b1acebfe45174f3d99ea53669",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6e0a120_4ac5caf2",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1301626
+      },
+      "writtenOn": "2019-03-22T00:10:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe58d5ea_841df40a",
+      "revId": "f9777c24ea4cfc9b1acebfe45174f3d99ea53669",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "d14b016d_9d3b5bf0",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1301626
+      },
+      "writtenOn": "2019-03-22T00:10:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1d6ce92_f683709b",
+      "revId": "f9777c24ea4cfc9b1acebfe45174f3d99ea53669",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a08547c8_7874501d",
         "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
         "patchSetId": 7
@@ -64,6 +118,24 @@
       "writtenOn": "2019-03-21T17:11:03Z",
       "side": 1,
       "message": "maybe here you should also catch the exceptions.EvaluateException and re-raise as a TabUnexpectedResponseException ?",
+      "revId": "f9777c24ea4cfc9b1acebfe45174f3d99ea53669",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6f49eaf_b17c0a4a",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1301626
+      },
+      "writtenOn": "2019-03-22T00:10:55Z",
+      "side": 1,
+      "message": "With \"here\" do you mean for the WaitForJavaScriptCondition check (which could time out or raise an EvaluateException) or the ExecuteJavaScript earlier to open the new popup?",
+      "parentUuid": "a08547c8_7874501d",
       "revId": "f9777c24ea4cfc9b1acebfe45174f3d99ea53669",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "6a36319e_97b3827b",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend_unittest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1301626
+      },
+      "writtenOn": "2019-03-22T00:10:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc777f1c_eb91f924",
+      "revId": "f9777c24ea4cfc9b1acebfe45174f3d99ea53669",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "99be9195_ba603307",
         "filename": "telemetry/telemetry/internal/browser/tab.py",
         "patchSetId": 7
@@ -101,6 +191,24 @@
       "revId": "f9777c24ea4cfc9b1acebfe45174f3d99ea53669",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3113beb9_ca4b00c2",
+        "filename": "telemetry/telemetry/internal/browser/tab.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1301626
+      },
+      "writtenOn": "2019-03-22T00:10:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99be9195_ba603307",
+      "revId": "f9777c24ea4cfc9b1acebfe45174f3d99ea53669",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
