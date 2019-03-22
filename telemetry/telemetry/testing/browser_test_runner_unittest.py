@@ -137,6 +137,15 @@ class BrowserTestRunnerTest(unittest.TestCase):
     self.assertEqual(tags, set(['android', 'marshmellow', 'system']))
 
   @decorators.Disabled('chromeos')  # crbug.com/696553
+  def testShortenTestFilterGlobsUsingTestNamePrefixCommandLineArg(self):
+    self._RunTest(
+        'FailingTest', [], ['FailingTest'],
+        test_name='ImplementsExpectationsFilesFunction',
+        extra_args=[
+            '-x=foo', '--test-name-prefix='
+            'browser_tests.browser_test.ImplementsExpectationsFilesFunction.'])
+
+  @decorators.Disabled('chromeos')  # crbug.com/696553
   def testGetExpectationsFromTypWithoutExpectationsFile(self):
     test_name = ('browser_tests.browser_test.'
                  'GetsExpectationsFromTyp.HasNoExpectationsFile')
@@ -407,7 +416,8 @@ class BrowserTestRunnerTest(unittest.TestCase):
   def baseShardingTest(self, total_shards, shard_index, failures, successes,
                        opt_abbr_input_json_file=None,
                        opt_test_filter='',
-                       opt_filter_tests_after_sharding=False):
+                       opt_filter_tests_after_sharding=False,
+                       opt_test_name_prefix=''):
     config = project_config.ProjectConfig(
         top_level_dir=os.path.join(util.GetTelemetryDir(), 'examples'),
         client_configs=[],
@@ -426,6 +436,8 @@ class BrowserTestRunnerTest(unittest.TestCase):
           '--test-filter=%s' % opt_test_filter]
     if opt_filter_tests_after_sharding:
       opt_args += ['--filter-tests-after-sharding']
+    if opt_test_name_prefix:
+      opt_args += ['--test-name-prefix=%s' % opt_test_name_prefix]
     try:
       browser_test_runner.Run(
           config,
@@ -549,6 +561,28 @@ class BrowserTestRunnerTest(unittest.TestCase):
           'browser_tests.simple_sharding_test' +
           '.SimpleShardingTest.passing_test_8'
       ], temp_file_name)
+    finally:
+      os.remove(temp_file_name)
+
+  @decorators.Disabled('chromeos')  # crbug.com/696553
+  def testFilterTestShortenedNameAfterShardingWithoutTestTimes(self):
+    self.baseShardingTest(
+        4, 3, [], ['passing_test_8'],
+        opt_test_name_prefix=('browser_tests.'
+                              'simple_sharding_test.SimpleShardingTest.'),
+        opt_test_filter='passing_test_8',
+        opt_filter_tests_after_sharding=True)
+
+  @decorators.Disabled('chromeos')  # crbug.com/696553
+  def testFilterTestShortenedNameAfterShardingWithTestTimes(self):
+    temp_file_name = self.writeMockTestResultsFile()
+    try:
+      self.baseShardingTest(
+          4, 3, [], ['passing_test_8'], temp_file_name,
+          opt_test_name_prefix=('browser_tests.'
+                                'simple_sharding_test.SimpleShardingTest.'),
+          opt_test_filter='passing_test_8',
+          opt_filter_tests_after_sharding=True)
     finally:
       os.remove(temp_file_name)
 
