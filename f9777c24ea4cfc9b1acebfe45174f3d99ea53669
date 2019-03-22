@@ -142,6 +142,24 @@
     },
     {
       "key": {
+        "uuid": "7e3ae1e7_5648cc79",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-22T10:25:12Z",
+      "side": 1,
+      "message": "Hmm.. you are right. Both could fail. Then I think it\u0027s fine to keep as you already have it, otherwise it will get messy.",
+      "parentUuid": "d6f49eaf_b17c0a4a",
+      "revId": "f9777c24ea4cfc9b1acebfe45174f3d99ea53669",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cc777f1c_eb91f924",
         "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend_unittest.py",
         "patchSetId": 7

@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "13c07762_cd522301",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-22T10:25:12Z",
+      "side": 1,
+      "message": "nit: only indent two spaces",
+      "revId": "90ebac3effb6cc0110ed6bbfe7fbae229fe97d41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e23245fc_980b86c5",
+        "filename": "telemetry/telemetry/internal/browser/tab_list.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-22T10:25:12Z",
+      "side": 1,
+      "message": "nit: only indent two spaces.",
+      "revId": "90ebac3effb6cc0110ed6bbfe7fbae229fe97d41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6703b370_d460cb7a",
+        "filename": "telemetry/telemetry/internal/browser/tab_list.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-22T10:25:12Z",
+      "side": 1,
+      "message": "nit: only indent two spaces.",
+      "revId": "90ebac3effb6cc0110ed6bbfe7fbae229fe97d41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
