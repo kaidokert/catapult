@@ -5,6 +5,7 @@
 import json
 
 from dashboard.pinpoint.models import isolate
+from dashboard.pinpoint.models.change import patch
 from dashboard.pinpoint.models.quest import execution
 from dashboard.pinpoint.models.quest import quest
 from dashboard.services import buildbucket_service
@@ -181,13 +182,26 @@ class _FindIsolateExecution(execution.Execution):
       # Request a build!
       buildbucket_info = _RequestBuild(
           self._builder_name, self._change, self.bucket)
+
       self._build = buildbucket_info['build']['id']
       self._previous_builds[self._change] = self._build
 
 
 def _RequestBuild(builder_name, change, bucket):
+  base_as_dict = change.base_commit.AsDict()
+  base_review_url = base_as_dict.get('review_url')
+  if not base_review_url:
+    raise BuildError(
+        'Could not find gerrit parameters for commit: ' + str(base_as_dict))
+
+  gerrit_change = patch.GerritPatch.FromUrl(base_review_url)
+  gerrit_info = gerrit_change.BuildParameters()
+
   builder_tags = [
-      'buildset:commit/git/%s' % change.base_commit.git_hash
+      'buildset:commit/gitiles/%s/%s/+/%s' % (
+          gerrit_info['patch_gerrit_url'].split('://')[1],
+          gerrit_info['patch_project'],
+          change.base_commit.git_hash)
   ]
   if change.patch:
     builder_tags.append(change.patch.BuildsetTags())
@@ -197,7 +211,7 @@ def _RequestBuild(builder_name, change, bucket):
       'builder_name': builder_name,
       'properties': {
           'clobber': True,
-          'parent_got_revision': change.base_commit.git_hash,
+          'revision': change.base_commit.git_hash,
           'deps_revision_overrides': deps_overrides,
       },
   }
