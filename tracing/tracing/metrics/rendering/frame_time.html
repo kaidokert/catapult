@@ -72,6 +72,7 @@ tr.exportTo('tr.metrics.rendering', function() {
   const DRM_EVENT = 'DrmEventFlipComplete';
   const SURFACE_FLINGER_EVENT = 'vsync_before';
   const COMPOSITOR_FRAME_PRESENTED_EVENT = 'FramePresented';
+  const GRAPHICS_PIPLINE_FLOW = 'Graphics.Pipeline';
 
   // In computing frame_lengths, avg_surface_fps, and jank_count, frames that
   // are shorter than half a vsync are ignored.
@@ -170,6 +171,50 @@ tr.exportTo('tr.metrics.rendering', function() {
             frameTimes.length,
         { description: 'Percentage of frames that were hitting 60 FPS.',
           summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
+        });
+  }
+
+  function addFrameIntervalHistograms(histograms, model, segments) {
+    const modelHelper = model.getOrCreateHelper(
+        tr.model.helpers.ChromeModelHelper);
+    Object.values(modelHelper.rendererHelpers).forEach(
+        (r) => {
+          addFrameIntervalHistogramsForRenderer_(histograms, r, segments);
+        });
+  }
+
+  function addFrameIntervalHistogramsForRenderer_(
+      histograms, renderer, segments) {
+    const events = [...renderer.process.findTopmostSlicesNamed(
+        GRAPHICS_PIPLINE_FLOW)];
+    if (events.length < 2) {
+      return;
+    }
+    const RECEIVE_BEGIN_FRAME = 'ReceiveBeginFrame';
+    const receiveBeginFrameEvents = events.filter(
+        (event) => event.args.step === RECEIVE_BEGIN_FRAME);
+    const receiveBeginFrameTimeStamps = receiveBeginFrameEvents.map(
+        event => event.start);
+    // TODO: Apply segments.
+    const startTimeStamps = receiveBeginFrameTimeStamps.slice(
+        0, receiveBeginFrameTimeStamps.length - 1);
+    const endTimeStamps = receiveBeginFrameTimeStamps.slice(1);
+    const intervals = endTimeStamps.map(
+        (t, index) => t - startTimeStamps[index]);
+    histograms.createHistogram(
+        `$frame_interval_renderer_${renderer.pid}`,
+        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
+        intervals,
+        { binBoundaries: tr.v.HistogramBinBoundaries.createLinear(0, 50, 20),
+          description: 'Frame Interval (Renderer)',
+          summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS
+        });
+    histograms.createHistogram(
+        `$avg_frame_interval_renderer_${renderer.pid}`,
+        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
+        tr.b.math.Statistics.sum(intervals) / intervals.length,
+        { description: 'Average Frame Interval (Renderer)',
+          summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS
         });
   }
 
@@ -297,6 +342,7 @@ tr.exportTo('tr.metrics.rendering', function() {
   return {
     addFrameTimeHistograms,
     addUIFrameTimeHistograms,
+    addFrameIntervalHistograms,
   };
 });
 </script>

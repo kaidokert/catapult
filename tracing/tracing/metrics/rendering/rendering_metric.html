@@ -32,6 +32,8 @@ tr.exportTo('tr.metrics.rendering', function() {
       tr.metrics.rendering.addPixelsHistograms(histograms, model, segments);
       tr.metrics.rendering.addQueueingDurationHistograms(
           histograms, model, segments);
+      tr.metrics.rendering.addFrameIntervalHistograms(
+          histograms, model, segments);
     }
 
     const uiSegments = chromeHelper.telemetryHelper.uiSegments;
