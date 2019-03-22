@@ -80,21 +80,22 @@ class OutputGeneratorTest(unittest.TestCase):
       atrace_data = fp.read()
     trace_results.append(
         trace_result.TraceResult('systemTraceEvents', atrace_data))
-    trace_data_builder.AddTraceFor(trace_data_module.ATRACE_PART, atrace_data)
+    trace_data_builder.AddTraceFor(
+        trace_data_module.ATRACE_PART, atrace_data, unstructured=True)
 
     with open(ATRACE_PROCESS_DUMP_DATA) as fp:
       atrace_process_dump_data = fp.read()
     trace_results.append(
         trace_result.TraceResult('atraceProcessDump', atrace_process_dump_data))
     trace_data_builder.AddTraceFor(trace_data_module.ATRACE_PROCESS_DUMP_PART,
-                                   atrace_process_dump_data)
+                                   atrace_process_dump_data, unstructured=True)
 
     with open(COMBINED_PROFILE_CHROME_DATA) as fp:
       chrome_data = fp.read()
     trace_results.append(
         trace_result.TraceResult('traceEvents', json.loads(chrome_data)))
     trace_data_builder.AddTraceFor(
-        trace_data_module.CHROME_TRACE_PART, json.loads(chrome_data))
+        trace_data_module.CHROME_TRACE_PART, chrome_data)
 
     trace_results.append(
         trace_result.TraceResult('systraceController', str({})))
