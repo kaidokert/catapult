@@ -21,6 +21,15 @@ tr.exportTo('cp', () => {
       this.route = {prefix: '', path: this.reduxRoutePath};
     }
 
+    observeAppRoute_() {
+      if (!this.readied) return;
+      if (this.route.path === '') {
+        this.dispatch('reset', this.statePath);
+        return;
+      }
+      // TODO(benjhayden) Restore session?
+    }
+
     async onUserUpdate_() {
       await this.dispatch('userUpdate', this.statePath);
     }
@@ -136,6 +145,7 @@ tr.exportTo('cp', () => {
 
   ChromeperfApp.observers = [
     'observeReduxRoute_(reduxRoutePath)',
+    'observeAppRoute_(route)',
     ('observeSections_(showingReportSection, reportSection, ' +
      'alertsSectionsById, chartSectionsById)'),
   ];
@@ -172,6 +182,11 @@ tr.exportTo('cp', () => {
           isLoading: false,
           readied: true,
         }));
+
+        if (window.IS_DEBUG) {
+          // In production, this api is only available to chromium members.
+          ChromeperfApp.actions.getRecentBugs()(dispatch, getState);
+        }
       },
 
     closeAlerts: (statePath, sectionId) => async(dispatch, getState) => {
@@ -217,6 +232,9 @@ tr.exportTo('cp', () => {
       async(dispatch, getState) => {
         const request = new cp.SessionStateRequest({sessionId});
         const sessionState = await request.response;
+        if (sessionState.teamName) {
+          await dispatch(Redux.UPDATE('', {teamName: sessionState.teamName}));
+        }
 
         await dispatch(Redux.CHAIN(
             {
@@ -236,6 +254,11 @@ tr.exportTo('cp', () => {
       },
 
     restoreFromRoute: (statePath, routeParams) => async(dispatch, getState) => {
+      const teamName = routeParams.get('team');
+      if (teamName) {
+        dispatch(Redux.UPDATE('', {teamName}));
+      }
+
       if (routeParams.has('nonav')) {
         dispatch(Redux.UPDATE(statePath, {enableNav: false}));
       }
@@ -285,8 +308,10 @@ tr.exportTo('cp', () => {
     },
 
     saveSession: statePath => async(dispatch, getState) => {
-      const state = Polymer.Path.get(getState(), statePath);
+      const rootState = getState();
+      const state = Polymer.Path.get(rootState, statePath);
       const sessionState = ChromeperfApp.getSessionState(state);
+      sessionState.teamName = rootState.teamName;
       const request = new cp.SessionIdRequest({sessionState});
       const session = await request.response;
       const reduxRoutePath = new URLSearchParams({session});
@@ -346,6 +371,10 @@ tr.exportTo('cp', () => {
       if (routeParams === undefined) {
         await ChromeperfApp.actions.saveSession(statePath)(dispatch, getState);
         return;
+      }
+
+      if (rootState.teamName) {
+        routeParams.set('team', rootState.teamName);
       }
 
       if (!state.enableNav) {
@@ -602,6 +631,9 @@ tr.exportTo('cp', () => {
     },
 
     receiveRecentBugs: (rootState, {bugs}) => {
+      // Save memory by stripping out all the unnecessary data.
+      // TODO save bandwidth by stripping out the unnecessary data in the
+      // backend request handler.
       const recentPerformanceBugs = bugs && bugs.map(bug => {
         let revisionRange = bug.summary.match(/.* (\d+):(\d+)$/);
         if (revisionRange === null) {
