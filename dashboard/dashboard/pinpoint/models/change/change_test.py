@@ -72,7 +72,9 @@ class ChangeTest(test.TestCase):
                 'created': '2018-01-01T00:01:00',
                 'url': u'https://chromium.googlesource.com/chromium/src/+/commit_123',
                 'subject': 'Subject.',
+                'review_url': 'https://foo.bar/+/123456',
                 'message': 'Subject.\n\nCommit message.\n'
+                           'Reviewed-on: https://foo.bar/+/123456\n'
                            'Cr-Commit-Position: refs/heads/master@{#123456}',
             },
             {
@@ -83,7 +85,9 @@ class ChangeTest(test.TestCase):
                 'created': '2018-01-01T00:01:00',
                 'url': u'https://chromium.googlesource.com/catapult/+/commit_456',
                 'subject': 'Subject.',
+                'review_url': 'https://foo.bar/+/123456',
                 'message': 'Subject.\n\nCommit message.\n'
+                           'Reviewed-on: https://foo.bar/+/123456\n'
                            'Cr-Commit-Position: refs/heads/master@{#123456}',
             },
         ],
