@@ -477,10 +477,12 @@ class Runner(object):
                         raise _AddTestsError(str(e))
             else:
                 assert isinstance(obj, unittest.TestCase)
-                assert obj.id().startswith(self.args.test_name_prefix), (
-                    'The test\'s fully qualified name must start with the '
-                    'test name prefix passed in at the command line')
-                classifier(test_set, obj)
+                if obj.id().startswith(self.args.test_name_prefix):
+                    classifier(test_set, obj)
+                elif self.args.verbose > 2:
+                    self.print_(
+                        'Test %s does not start with the test name prefix passed '
+                        'in at the command line and will not be run' % obj.id())
         return add_tests
 
     def _add_tests_to_set(self, test_set, suffixes, top_level_dirs, classifier,
