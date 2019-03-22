@@ -108,8 +108,10 @@ class Change(collections.namedtuple('Change', ('commits', 'patch'))):
   @classmethod
   def FromUrl(cls, url):
     try:
+      print 'trying commit'
       return cls((commit_module.Commit.FromUrl(url),))
     except (KeyError, ValueError):
+      print 'trying patch'
       return cls((), patch=patch_module.GerritPatch.FromUrl(url))
 
   @classmethod
