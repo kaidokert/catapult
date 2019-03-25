@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c9349090_6d0349ef",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-25T21:34:49Z",
+      "side": 1,
+      "message": "Might be better to put this in can_bisect. The auto_bisect.StartNewBisectForBug call below filters the possible tests, probably better to just modify that slightly to also filter out the blacklisted masters instead, and change the message slightly below to reflect that it didn\u0027t kick off a bisect for X reason.",
+      "revId": "7821d1de81eb8f19daf46c9c182da7e5c1314d60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
