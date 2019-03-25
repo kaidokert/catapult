@@ -51,6 +51,11 @@ def _StartBisectForBug(bug_id):
   test_anomaly = _ChooseTest(anomalies)
   test = None
   if test_anomaly:
+    if can_bisect.MasterNameIsBlacklistedForTriageBisects(
+        test_anomaly.master_name):
+      raise NotBisectableError(
+          'Did not kick off bisect because selected master is blacklisted from '
+          'automatic bisects on triage.')
     test = test_anomaly.GetTestMetadataKey().get()
   if not test or not can_bisect.IsValidTestForBisect(test.test_path):
     raise NotBisectableError('Could not select a test.')

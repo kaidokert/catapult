@@ -225,6 +225,45 @@ class StartNewBisectForBugTest(testing_common.TestCase):
     result = auto_bisect.StartNewBisectForBug(333)
     self.assertEqual(
         {'error': 'Some reason'}, result)
+  def testStartNewBisectForBug_BlacklistedMaster_RaisesError(self):
+    # Same setup as testStartNewBisectForBug_Pinpoint_Succeeds except for this
+    # one setting.
+    namespaced_stored_object.Set(
+        'file_bug_bisect_blacklist', {'ChromiumPerf': []})
+    namespaced_stored_object.Set('bot_configurations', {
+        'linux-pinpoint': {
+            'dimensions': [{'key': 'foo', 'value': 'bar'}]
+        },
+    })
+
+    namespaced_stored_object.Set('repositories', {
+        'chromium': {'some': 'params'},
+    })
+
+    testing_common.AddTests(
+        ['ChromiumPerf'], ['linux-pinpoint'], {'sunspider': {'score': {}}})
+    test_key = utils.TestKey('ChromiumPerf/linux-pinpoint/sunspider/score')
+    testing_common.AddRows(
+        'ChromiumPerf/linux-pinpoint/sunspider/score',
+        {
+            11999: {
+                'a_default_rev': 'r_chromium',
+                'r_chromium': '9e29b5bcd08357155b2859f87227d50ed60cf857'
+            },
+            12500: {
+                'a_default_rev': 'r_chromium',
+                'r_chromium': 'fc34e5346446854637311ad7793a95d56e314042'
+            }
+        })
+    anomaly.Anomaly(
+        bug_id=333, test=test_key,
+        start_revision=12000, end_revision=12500,
+        median_before_anomaly=100, median_after_anomaly=200).put()
+    result = auto_bisect.StartNewBisectForBug(333)
+    self.assertIn('error', result)
+    self.assertIn(
+        'selected master is blacklisted from automatic bisects on triage',
+        result['error'])
 
 
 if __name__ == '__main__':

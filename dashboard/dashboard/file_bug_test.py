@@ -941,5 +941,6 @@ class FileBugTest(testing_common.TestCase):
         '<input type="checkbox" checked name="component" value="Abc&gt;Def">',
         response.body)
 
+
 if __name__ == '__main__':
   unittest.main()
