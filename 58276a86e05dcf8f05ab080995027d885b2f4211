@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "90fbed92_9b093f7b",
+        "filename": "tracing/tracing/trace_data/trace_data.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-25T23:08:01Z",
+      "side": 1,
+      "message": "I think this makes sense, but I am concerned that someone reading this code later may say \"why?\" and since the answer isn\u0027t in the code they can easily just remove the check and move forward.\n\nYou should add documentation explaining \"why\" instead of \"what\". Potentially this is just a link to a bug or design doc.",
+      "range": {
+        "startLine": 295,
+        "startChar": 0,
+        "endLine": 296,
+        "endChar": 40
+      },
+      "revId": "58276a86e05dcf8f05ab080995027d885b2f4211",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
