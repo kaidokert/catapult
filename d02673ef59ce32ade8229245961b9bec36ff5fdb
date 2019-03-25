@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3076fda2_320767bb",
+        "filename": "telemetry/telemetry/core/platform_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-03-25T12:42:41Z",
+      "side": 1,
+      "message": "We usually do ChromeOS.",
+      "range": {
+        "startLine": 25,
+        "startChar": 37,
+        "endLine": 25,
+        "endChar": 45
+      },
+      "revId": "d02673ef59ce32ade8229245961b9bec36ff5fdb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
