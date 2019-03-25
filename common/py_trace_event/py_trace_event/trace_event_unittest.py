@@ -187,6 +187,7 @@ class TraceEventTests(unittest.TestCase):
       with open(self._log_path, 'r') as f:
         log_output = json.loads(f.read() + ']')
         self.assertEquals(len(log_output), 3)
+        expected_name = __name__ + '.test_decorator'
         current_entry = log_output.pop(0)
         self.assertEquals(current_entry['category'], 'process_argv')
         self.assertEquals(current_entry['name'], 'process_argv')
@@ -194,12 +195,12 @@ class TraceEventTests(unittest.TestCase):
         self.assertEquals(current_entry['ph'], 'M')
         current_entry = log_output.pop(0)
         self.assertEquals(current_entry['category'], 'python')
-        self.assertEquals(current_entry['name'], '__main__.test_decorator')
+        self.assertEquals(current_entry['name'], expected_name)
         self.assertEquals(current_entry['args']['this'], '\'that\'')
         self.assertEquals(current_entry['ph'], 'B')
         current_entry = log_output.pop(0)
         self.assertEquals(current_entry['category'], 'python')
-        self.assertEquals(current_entry['name'], '__main__.test_decorator')
+        self.assertEquals(current_entry['name'], expected_name)
         self.assertEquals(current_entry['args'], {})
         self.assertEquals(current_entry['ph'], 'E')
 
