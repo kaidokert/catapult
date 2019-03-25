@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "424a6b8c_04c8d25f",
+        "filename": "dashboard/dashboard/services/request.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-25T16:31:05Z",
+      "side": 1,
+      "message": "This throws an error when run from dev_console since the dictionary is being modified as you iterate.",
+      "revId": "9dec5aac4625ddd5b2a18e3558f617be2d817df6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
