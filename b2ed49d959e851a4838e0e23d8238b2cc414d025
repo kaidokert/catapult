@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44f126f2_70de4eee",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/encoder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-25T17:02:12Z",
+      "side": 1,
+      "message": "As discussed offline, let\u0027s move this to a common/py_trace_event/third_party/ directory. Keep license info from the original files, and add a README.chromium file describing what you copied and what you changed. Look at catapult/third_party for some examples, e.g.:\n\nhttps://cs.chromium.org/chromium/src/third_party/catapult/third_party/gsutil/README.chromium\nhttps://cs.chromium.org/chromium/src/third_party/catapult/third_party/graphy/README.chromium",
+      "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72c8130e_5cde340d",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-25T17:02:12Z",
+      "side": 1,
+      "message": "nit: maybe call this `proto_format`?",
+      "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "26012c6f_a6192372",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-25T17:02:12Z",
+      "side": 1,
+      "message": "super nits: Two spaces between code and comment. Also comments should be sentence like: start with uppercase, end in period or other punctuation.",
+      "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "187c1483_c80b86fe",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-25T17:02:12Z",
+      "side": 1,
+      "message": "Move up here the \"tid \u0026 0x7FFFFFFF\", with a comment that we do this because otherwise the value doesn\u0027t fit and the value is supposed to be meaningless anyway (just serves to distinguish threads from one another.\n\nActually, no, discard this comment. I see that the tid value is also used internally by perfetto_trace_writter for things other than just writing it to the trace. So let\u0027s send the original value unmodified like you already do.",
+      "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c4876c2_e2ce414b",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-25T17:02:12Z",
+      "side": 1,
+      "message": "ditto style nits",
+      "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31e66cd3_c4e8fb79",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-25T17:02:12Z",
+      "side": 1,
+      "message": "Should also add a module docsting here at the top describing that this implements writing for the Chrometto trace protos, and point to the source where the original definitions can be found.",
+      "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae546fb5_ae934407",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-25T17:02:12Z",
+      "side": 1,
+      "message": "Maybe all of these should be private and only be set as args to the constructor? Would it also make sense to assert (or assume) they are not None? Same for other classes.\n\nIt also sounds that we will always use these as immutable objects after they have been created. So maybe the could be subclass namedtuple?",
+      "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14d63220_47836b95",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-25T17:02:12Z",
+      "side": 1,
+      "message": "Shouldn\u0027t be a TODO; as I had suggested above, just change the comment to indicate why we\u0027re making this and why it makes sense.",
+      "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8f3f37f_9eafc738",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-25T17:02:12Z",
+      "side": 1,
+      "message": "style nits",
+      "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fb0e92c_3da6bec6",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-25T17:02:12Z",
+      "side": 1,
+      "message": "Also as discussed offline, let\u0027s not add to Telemetry yet.",
+      "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
