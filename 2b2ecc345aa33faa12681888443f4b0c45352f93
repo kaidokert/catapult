@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4fd3887b_f58e98d0",
+        "filename": "dashboard/dashboard/auto_bisect.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-25T23:17:39Z",
+      "side": 1,
+      "message": "Move check to _ChooseTest and extend the test there, and we should be good.",
+      "range": {
+        "startLine": 54,
+        "startChar": 18,
+        "endLine": 54,
+        "endChar": 57
+      },
+      "revId": "2b2ecc345aa33faa12681888443f4b0c45352f93",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5171ac6_f6e88d7f",
+        "filename": "dashboard/dashboard/auto_bisect_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-25T23:17:39Z",
+      "side": 1,
+      "message": "nit: probably should be a line between last function and this one",
+      "revId": "2b2ecc345aa33faa12681888443f4b0c45352f93",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
