@@ -276,34 +276,33 @@ class TraceDataBuilder(object):
     metric computation, and should be removed when no such clients remain.
     """
     if self._raw_data is None:
-      raise Exception('Can only AsData once')
+      raise RuntimeError('Can only AsData once')
     data = _TraceData(self._raw_data)
     self._raw_data = None
     return data
 
-  def AddTraceFor(self, part, trace):
+  def AddTraceFor(self, part, data, allow_unstructured=False):
     """Record new trace data into this builder.
 
     Args:
       part: A TraceDataPart instance.
-      trace: The trace data to write: a json-serializable dict, a
+      data: The trace data to write: a json-serializable dict, a
         TraceFileHandle, or unstructured text data as a string.
+      allow_unstructured: This must be set to True to allow passing
+        unstructured text data as input.
     """
-    assert isinstance(part, TraceDataPart), part
-    if part == CHROME_TRACE_PART:
-      assert (isinstance(trace, dict) or
-              isinstance(trace, list) or
-              isinstance(trace, TraceFileHandle))
-    else:
-      assert (isinstance(trace, StringTypes) or
-              isinstance(trace, dict) or
-              isinstance(trace, list))
-
     if self._raw_data is None:
-      raise Exception('Already called AsData() on this builder.')
+      raise RuntimeError('trace builder is no longer open for writing')
+    if not isinstance(part, TraceDataPart):
+      raise TypeError('part must be a TraceDataPart instance')
+    if isinstance(data, StringTypes):
+      if not allow_unstructured:
+        raise ValueError('must pass allow_unstructured=True for text data')
+    elif not isinstance(data, (dict, TraceFileHandle)):
+      raise TypeError('invalid trace data type')
 
     self._raw_data.setdefault(part.raw_field_name, [])
-    self._raw_data[part.raw_field_name].append(trace)
+    self._raw_data[part.raw_field_name].append(data)
 
   def CleanUpTraceData(self):
     """Clean up resources used by the data builder.
