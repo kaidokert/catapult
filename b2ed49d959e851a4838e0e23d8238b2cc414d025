@@ -121,6 +121,29 @@
     },
     {
       "key": {
+        "uuid": "ee18693c_77f09f6e",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2019-03-25T17:28:16Z",
+      "side": 1,
+      "message": "hmm, would be nice to test this code. But then again, I wouldn\u0027t know how we\u0027d do that without also writing our own proto parser or comparing serialized byte strings :P",
+      "range": {
+        "startLine": 37,
+        "startChar": 6,
+        "endLine": 37,
+        "endChar": 12
+      },
+      "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "14d63220_47836b95",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
         "patchSetId": 1
@@ -149,6 +172,29 @@
       "writtenOn": "2019-03-25T17:02:12Z",
       "side": 1,
       "message": "style nits",
+      "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5d115c3_b8f3d69c",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2019-03-25T17:28:16Z",
+      "side": 1,
+      "message": "the alternative here would be to encode such a timestamp as an absolute one. Your choice though - if there\u0027s no situation in which this can occur, feel free to leave it as-is :)",
+      "range": {
+        "startLine": 261,
+        "startChar": 4,
+        "endLine": 262,
+        "endChar": 54
+      },
       "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
