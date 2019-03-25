@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ad02c50_76cd2296",
+        "filename": "devil/devil/android/flag_changer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-25T10:04:48Z",
+      "side": 1,
+      "message": "I think this condition is always True. This was probably some overly defensive coding introduced in [1], I think we can remove the condition and make the code clearer.\n\n[1]: https://chromium-review.googlesource.com/c/catapult/+/1352373",
+      "revId": "5ad8fe7cbb0ab336b7524680b1979c26b1808758",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42316a64_aaa1dc4b",
+        "filename": "devil/devil/android/flag_changer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-25T10:04:48Z",
+      "side": 1,
+      "message": "The style guide [2] discourages `+\u003d` accumulation into a string. Also with my comment above, I think we can simplify this to just:\n\n   logging.info(\u0027Flags now written on the device to %s\u0027, path)\n   if log_flags:\n      logging.info(\u0027Flags: %s\u0027, flags)\n\n[2]: https://github.com/google/styleguide/blob/gh-pages/pyguide.md#310-strings",
+      "revId": "5ad8fe7cbb0ab336b7524680b1979c26b1808758",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "180c4e46_060541ca",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-25T10:04:48Z",
+      "side": 1,
+      "message": "Another high level comment, I think it\u0027s a bit ugly all this passing around of the extra flag everywhere through all methods until you reach the flag changer o browser start.\n\nI can think of a couple other alternatives:\n\na) Have each the FlagChanger and BrowserBackend have a private class attribute, e.g. \"_detailed_logs\" or something like that, which starts as True, but is set to False after the first large command line flag has been emitted.\n\nb) Add a new detailed_logs attribute to browser_options, which is already wired through most of the methods where you need to pass this extra flag.\n\nBoth of these suggestions have their own ugliness to them, so don\u0027t think there is a clear winner; but wanted at least to throw out some more possible ideas.",
+      "revId": "5ad8fe7cbb0ab336b7524680b1979c26b1808758",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
