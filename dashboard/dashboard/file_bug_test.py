@@ -941,5 +941,13 @@ class FileBugTest(testing_common.TestCase):
         '<input type="checkbox" checked name="component" value="Abc&gt;Def">',
         response.body)
 
+  def testGet_blacklistedMaster(self):
+    # Alerts from blacklisted masters should not automatically start bisects
+    # when triaged.
+    namespaced_stored_object.Set(
+        'file_bug_bisect_blacklist', {'ChromiumPerf': []})
+    response = self._PostSampleBug()
+    self.assertIn('Triaged result on blacklisted master', response.body)
+
 if __name__ == '__main__':
   unittest.main()

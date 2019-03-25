@@ -403,8 +403,18 @@ def FileBug(http, owner, cc, summary, description, labels, components,
   bug_id = new_bug_response['bug_id']
   bug_data.Bug(id=bug_id).put()
 
+  masters = set()
   for a in alerts:
     a.bug_id = bug_id
+    masters.add(a.master_name)
+  should_start_bisect = True
+  blacklisted_masters = namespaced_stored_object.Get(
+      'file_bug_bisect_blacklist')
+  blacklisted_masters = blacklisted_masters or {}
+  for master in blacklisted_masters.iterkeys():
+    if master in masters:
+      should_start_bisect = False
+      break
 
   ndb.put_multi(alerts)
 
@@ -416,7 +426,14 @@ def FileBug(http, owner, cc, summary, description, labels, components,
   dashboard_issue_tracker_service.AddBugComment(bug_id, comment_body)
 
   template_params = {'bug_id': bug_id}
-  if all(k.kind() == 'Anomaly' for k in alert_keys):
+  if not should_start_bisect:
+    logging.info(
+        'Did not kick bisect for bug id %s because triaged alerts contained '
+        'a master that has been blacklisted for on-triage bisects', bug_id)
+    template_params['bisect_error'] = (
+        'Triaged result on blacklisted master, did not automatically start '
+        'bisect')
+  elif all(k.kind() == 'Anomaly' for k in alert_keys):
     logging.info('Kicking bisect for bug ' + str(bug_id))
     culprit_rev = _GetSingleCLForAnomalies(alerts)
 
