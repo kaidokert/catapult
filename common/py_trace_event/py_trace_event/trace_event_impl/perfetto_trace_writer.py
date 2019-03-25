@@ -2,23 +2,11 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-try:
-  from google.protobuf.internal.encoder import _EncodeVarint
-  import perfetto_trace_pb2 as perfetto_proto_module
-except:
-  import traceback
-  traceback.print_exc()
-  perfetto_proto_module = None
+import encoder
+import wire_format
 
 from collections import defaultdict
 
-
-# This is a header that precedes every TracePacket in a trace.
-# The value is actually a field number 1 with a length-delimited
-# wire type. See
-# https://developers.google.com/protocol-buffers/docs/encoding#structure
-# for details of protobuf encoding.
-TRACE_PACKET_TAG = '\x0A'
 
 # Dicts of strings for interning.
 # Note that each thread has its own interning index.
@@ -32,6 +20,151 @@ _interned_event_names_by_tid = defaultdict(dict)
 # confidence that it will not overlap.
 _next_sequence_id = 1<<20
 _sequence_ids = {}
+
+# Timestamp of the last event from each thread. Used for delta-encoding
+# of timestamps.
+_last_timestamps = {}
+
+
+class _TracePacket(object):
+  def __init__(self):
+    self.interned_data = None
+    self.thread_descriptor = None
+    self.incremental_state_cleared = None
+    self.track_event = None
+    self.trusted_packet_sequence_id = None
+
+  def encode(self):
+    parts = []
+    if self.trusted_packet_sequence_id is not None:
+      writer = encoder.UInt32Encoder(10, False, False)
+      writer(parts.append, self.trusted_packet_sequence_id)
+    if self.track_event is not None:
+      tag = encoder.TagBytes(11, wire_format.WIRETYPE_LENGTH_DELIMITED)
+      data = self.track_event.encode()
+      length = encoder._VarintBytes(len(data))
+      parts += [tag, length, data]
+    if self.interned_data is not None:
+      tag = encoder.TagBytes(12, wire_format.WIRETYPE_LENGTH_DELIMITED)
+      data = self.interned_data.encode()
+      length = encoder._VarintBytes(len(data))
+      parts += [tag, length, data]
+    if self.incremental_state_cleared is not None:
+      writer = encoder.BoolEncoder(41, False, False)
+      writer(parts.append, self.incremental_state_cleared)
+    if self.thread_descriptor is not None:
+      tag = encoder.TagBytes(44, wire_format.WIRETYPE_LENGTH_DELIMITED)
+      data = self.thread_descriptor.encode()
+      length = encoder._VarintBytes(len(data))
+      parts += [tag, length, data]
+
+    return b"".join(parts)
+
+
+class _InternedData(object):
+  def __init__(self):
+    self.event_category = None
+    self.legacy_event_name = None
+
+  def encode(self):
+    parts = []
+    if self.event_category is not None:
+      tag = encoder.TagBytes(1, wire_format.WIRETYPE_LENGTH_DELIMITED)
+      data = self.event_category.encode()
+      length = encoder._VarintBytes(len(data))
+      parts += [tag, length, data]
+    if self.legacy_event_name is not None:
+      tag = encoder.TagBytes(2, wire_format.WIRETYPE_LENGTH_DELIMITED)
+      data = self.legacy_event_name.encode()
+      length = encoder._VarintBytes(len(data))
+      parts += [tag, length, data]
+
+    return b"".join(parts)
+
+
+class _EventCategory(object):
+  def __init__(self):
+    self.iid = None
+    self.name = None
+
+  def encode(self):
+    parts = []
+    if self.iid is not None:
+      writer = encoder.UInt32Encoder(1, False, False)
+      writer(parts.append, self.iid)
+    if self.name is not None:
+      writer = encoder.StringEncoder(2, False, False)
+      writer(parts.append, self.name)
+
+    return b"".join(parts)
+
+
+_LegacyEventName = _EventCategory
+
+
+class _ThreadDescriptor(object):
+  def __init__(self):
+    self.pid = None
+    self.tid = None
+    self.reference_timestamp_us = None
+
+  def encode(self):
+    parts = []
+    if self.pid is not None:
+      writer = encoder.UInt32Encoder(1, False, False)
+      writer(parts.append, self.pid)
+    if self.tid is not None:
+      writer = encoder.UInt32Encoder(2, False, False)
+      writer(parts.append, self.tid)
+    if self.reference_timestamp_us is not None:
+      writer = encoder.Int64Encoder(6, False, False)
+      writer(parts.append, self.reference_timestamp_us)
+
+    return b"".join(parts)
+
+
+class _TrackEvent(object):
+  def __init__(self):
+    self.timestamp_absolute_us = None
+    self.timestamp_delta_us = None
+    self.legacy_event = None
+    self.category_iids = None
+
+  def encode(self):
+    parts = []
+    if self.timestamp_delta_us is not None:
+      writer = encoder.Int64Encoder(1, False, False)
+      writer(parts.append, self.timestamp_delta_us)
+    if self.category_iids is not None:
+      writer = encoder.UInt32Encoder(3, True, False)
+      writer(parts.append, self.category_iids)
+    if self.legacy_event is not None:
+      tag = encoder.TagBytes(6, wire_format.WIRETYPE_LENGTH_DELIMITED)
+      data = self.legacy_event.encode()
+      length = encoder._VarintBytes(len(data))
+      parts += [tag, length, data]
+    if self.timestamp_absolute_us is not None:
+      writer = encoder.Int64Encoder(16, False, False)
+      writer(parts.append, self.timestamp_absolute_us)
+
+    return b"".join(parts)
+
+
+class _LegacyEvent(object):
+  def __init__(self):
+    self.phase = None
+    self.name_iid = None
+
+  def encode(self):
+    parts = []
+    if self.name_iid is not None:
+      writer = encoder.UInt32Encoder(1, False, False)
+      writer(parts.append, self.name_iid)
+    if self.phase is not None:
+      writer = encoder.Int32Encoder(2, False, False)
+      writer(parts.append, self.phase)
+
+    return b"".join(parts)
 
 
 def _get_sequence_id(tid):
@@ -48,9 +181,11 @@ def _intern_category(category, trace_packet, tid):
   categories = _interned_categories_by_tid[tid]
   if category not in categories:
     categories[category] = len(categories)
-    interned_category = trace_packet.interned_data.event_categories.add()
-    interned_category.iid = categories[category]
-    interned_category.name = category
+    if trace_packet.interned_data is None:
+      trace_packet.interned_data = _InternedData()
+    trace_packet.interned_data.event_category = _EventCategory()
+    trace_packet.interned_data.event_category.iid = categories[category]
+    trace_packet.interned_data.event_category.name = category
   return categories[category]
 
 
@@ -59,22 +194,23 @@ def _intern_event_name(event_name, trace_packet, tid):
   event_names = _interned_event_names_by_tid[tid]
   if event_name not in event_names:
     event_names[event_name] = len(event_names)
-    interned_event_name = trace_packet.interned_data.legacy_event_names.add()
-    interned_event_name.iid = event_names[event_name]
-    interned_event_name.name = event_name
+    if trace_packet.interned_data is None:
+      trace_packet.interned_data = _InternedData()
+    trace_packet.interned_data.legacy_event_name = _LegacyEventName()
+    trace_packet.interned_data.legacy_event_name.iid = event_names[event_name]
+    trace_packet.interned_data.legacy_event_name.name = event_name
   return event_names[event_name]
 
 
-def _write_trace_packet(output, trace_packet, tid):
-  trace_packet.trusted_packet_sequence_id = _get_sequence_id(tid)
-
-  output.write(TRACE_PACKET_TAG)
-  binary_data = trace_packet.SerializeToString()
-  _EncodeVarint(output.write, len(binary_data))
+def _write_trace_packet(output, trace_packet):
+  tag = encoder.TagBytes(1, wire_format.WIRETYPE_LENGTH_DELIMITED)
+  output.write(tag)
+  binary_data = trace_packet.encode()
+  encoder._EncodeVarint(output.write, len(binary_data))
   output.write(binary_data)
 
 
-def write_thread_descriptor_event(output, pid, tid):
+def write_thread_descriptor_event(output, pid, tid, ts):
   """ Write the first event in a sequence.
 
   Call this function before writing any other events.
@@ -84,14 +220,22 @@ def write_thread_descriptor_event(output, pid, tid):
     output: a file-like object to write events into.
     pid: process ID.
     tid: thread ID.
+    ts: timestamp in milliseconds.
   """
-  thread_descriptor_packet = perfetto_proto_module.TracePacket()
+  global _last_timestamps
+  ts_us = int(1000 * ts)
+  _last_timestamps[tid] = ts_us
+
+  thread_descriptor_packet = _TracePacket()
+  thread_descriptor_packet.trusted_packet_sequence_id = _get_sequence_id(tid)
+  thread_descriptor_packet.thread_descriptor = _ThreadDescriptor()
   thread_descriptor_packet.thread_descriptor.pid = pid
   # TODO(khokhlov): tid doesn't fit into int32!
   thread_descriptor_packet.thread_descriptor.tid = tid & 0x7FFFFFFF
+  thread_descriptor_packet.thread_descriptor.reference_timestamp_us = ts_us
   thread_descriptor_packet.incremental_state_cleared = True;
 
-  _write_trace_packet(output, thread_descriptor_packet, tid)
+  _write_trace_packet(output, thread_descriptor_packet)
 
 
 def write_event(output, ph, category, name, ts, args, tid):
@@ -109,15 +253,23 @@ def write_event(output, ph, category, name, ts, args, tid):
     tid: thread ID.
   """
   del args # TODO(khokhlov): encode args as DebugAnnotations
-  packet = perfetto_proto_module.TracePacket()
-  # TODO(khokhlov): implement delta timestamps
-  packet.track_event.timestamp_absolute_us = int(1000 * ts)
-  packet.track_event.legacy_event.phase = ord(ph)
-  packet.track_event.category_iids.append(_intern_category(category, packet, tid))
-  packet.track_event.legacy_event.name_iid = _intern_event_name(name, packet, tid)
-  _write_trace_packet(output, packet, tid)
 
+  global _last_timestamps
+  ts_us = int(1000 * ts)
+  delta_ts = ts_us - _last_timestamps[tid]
+  if delta_ts < 0:
+    raise RuntimeError("Incorrect order of timestamps: %s, %s" %
+                       (_last_timestamps[tid], ts_us))
+  _last_timestamps[tid] = ts_us
 
-def perfetto_proto_imported():
-  return perfetto_proto_module is not None
+  packet = _TracePacket()
+  packet.trusted_packet_sequence_id = _get_sequence_id(tid)
+  packet.track_event = _TrackEvent()
+  packet.track_event.timestamp_delta_us = delta_ts
+  packet.track_event.category_iids = [_intern_category(category, packet, tid)]
+  legacy_event = _LegacyEvent()
+  legacy_event.phase = ord(ph)
+  legacy_event.name_iid = _intern_event_name(name, packet, tid)
+  packet.track_event.legacy_event = legacy_event
+  _write_trace_packet(output, packet)
 

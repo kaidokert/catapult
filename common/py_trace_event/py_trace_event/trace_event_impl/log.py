@@ -65,9 +65,6 @@ def trace_enable(log_file=None, write_proto=False):
 def _trace_enable(log_file=None, write_proto=False):
   global _write_proto
   _write_proto = write_proto
-  if (write_proto and not perfetto_trace_writer.perfetto_proto_imported()):
-    raise TraceException(
-        "Can't write traces in proto format: proto import failed.")
   global _enabled
   if _enabled:
     raise TraceException("Already enabled")
@@ -111,6 +108,7 @@ def _trace_enable(log_file=None, write_proto=False):
             output=_log_file,
             pid=os.getpid(),
             tid=tid,
+            ts=trace_time.Now(),
         )
         perfetto_trace_writer.write_event(
             output=_log_file,
