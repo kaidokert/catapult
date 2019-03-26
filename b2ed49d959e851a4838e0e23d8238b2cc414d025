@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b495f9ea_9bb222ff",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/encoder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-26T15:22:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44f126f2_70de4eee",
+      "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "72c8130e_5cde340d",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb58bd96_a0a9d046",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-26T15:22:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72c8130e_5cde340d",
+      "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "9fd12395_668660c4",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-26T15:22:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26012c6f_a6192372",
+      "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "187c1483_c80b86fe",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
         "patchSetId": 1
@@ -67,6 +121,24 @@
       "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7979928e_3fd15574",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-26T15:22:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "187c1483_c80b86fe",
+      "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "f1088e47_ed9a0e7d",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-26T15:22:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c4876c2_e2ce414b",
+      "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "31e66cd3_c4e8fb79",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
         "patchSetId": 1
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "4ae1e005_cf0d540d",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-26T15:22:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31e66cd3_c4e8fb79",
+      "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae546fb5_ae934407",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
         "patchSetId": 1
@@ -115,6 +223,24 @@
       "writtenOn": "2019-03-25T17:02:12Z",
       "side": 1,
       "message": "Maybe all of these should be private and only be set as args to the constructor? Would it also make sense to assert (or assume) they are not None? Same for other classes.\n\nIt also sounds that we will always use these as immutable objects after they have been created. So maybe the could be subclass namedtuple?",
+      "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6bbe6cd2_32a5b14a",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-26T15:22:56Z",
+      "side": 1,
+      "message": "Some fields may be missing from some messages (e.g. not every packet contains interned_data), so we don\u0027t have to assert everything is not None.\n\nAs for the packet being immutable and created with a constructor, it depends on how we expect to use it. For me, more intuitive approach is to create an empty packet first, then fill it with data. This is also how genuine proto classes work.\n\nAnother approach is to create sub-messages first, then create TracePacket from them. I can\u0027t say that it\u0027s better or worse, just that it looks less intuitive to me. If you think it really has some advantages, I can make the corresponding changes.",
+      "parentUuid": "ae546fb5_ae934407",
       "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -168,6 +294,30 @@
     },
     {
       "key": {
+        "uuid": "2b741885_24351fad",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-26T15:22:56Z",
+      "side": 1,
+      "message": "I was thinking of hard-coding correct byte strings into tests for now. Later we can write proper parsing of traces when the issue with the libraries is solved.\n\nI will add the test as soon as I fix py_trace_event tests in general.",
+      "parentUuid": "12424779_738c97c1",
+      "range": {
+        "startLine": 37,
+        "startChar": 6,
+        "endLine": 37,
+        "endChar": 12
+      },
+      "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "14d63220_47836b95",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
         "patchSetId": 1
@@ -182,6 +332,24 @@
       "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e699496c_def30a8e",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-26T15:22:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14d63220_47836b95",
+      "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -202,6 +370,24 @@
     },
     {
       "key": {
+        "uuid": "96fe8996_e59db028",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-26T15:22:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8f3f37f_9eafc738",
+      "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e5d115c3_b8f3d69c",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
         "patchSetId": 1
@@ -213,6 +399,30 @@
       "writtenOn": "2019-03-25T17:28:16Z",
       "side": 1,
       "message": "the alternative here would be to encode such a timestamp as an absolute one. Your choice though - if there\u0027s no situation in which this can occur, feel free to leave it as-is :)",
+      "range": {
+        "startLine": 261,
+        "startChar": 4,
+        "endLine": 262,
+        "endChar": 54
+      },
+      "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29cf7d0e_2f96f67e",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-26T15:22:56Z",
+      "side": 1,
+      "message": "It\u0027s not clear from the comment in proto file [1] that delta timestamps can interchange with absolute ones. In the case when it happens, do delta timestamps encode the difference to the last delta timestamp, or to any last timestamp, be it delta or absolute?\n\n[1] https://android.googlesource.com/platform/external/perfetto/+/refs/heads/master/protos/perfetto/trace/track_event/track_event.proto#47",
+      "parentUuid": "e5d115c3_b8f3d69c",
       "range": {
         "startLine": 261,
         "startChar": 4,
