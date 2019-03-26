@@ -34,6 +34,24 @@
       "revId": "76f631ec041f528ffda590d7aedb39db675516b1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4bf199c_afacd098",
+        "filename": "bin/run_tests",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2019-03-26T13:30:06Z",
+      "side": 0,
+      "message": "Replacing third_party/vinn/run_test with third_party/vinn/bin/run_tests sgtm",
+      "parentUuid": "ebea180c_de9598b5",
+      "revId": "76f631ec041f528ffda590d7aedb39db675516b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
