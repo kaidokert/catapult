@@ -70,6 +70,30 @@
       "revId": "a14fb389504bb1a10b7baf9ce73b8bad155808b0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39c0cc96_b67dd570",
+        "filename": "tracing/tracing/metrics/system_health/persecond_metric.html",
+        "patchSetId": 16
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-03-26T04:12:15Z",
+      "side": 1,
+      "message": "Thanks, these breakdowns look good, but you also need Breakdowns on the samples in the `${histogram.name}` histogram. Those breakdowns\u0027 keys should be category names.",
+      "parentUuid": "46f84c31_45bf4179",
+      "range": {
+        "startLine": 85,
+        "startChar": 7,
+        "endLine": 86,
+        "endChar": 45
+      },
+      "revId": "a14fb389504bb1a10b7baf9ce73b8bad155808b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
