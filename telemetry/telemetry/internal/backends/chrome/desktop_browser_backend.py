@@ -24,6 +24,7 @@ import dependency_manager  # pylint: disable=import-error
 from telemetry.internal.util import binary_manager
 from telemetry.core import exceptions
 from telemetry.internal.backends.chrome import chrome_browser_backend
+from telemetry.internal.util import format_for_logging
 from telemetry.internal.util import path
 
 
@@ -118,7 +119,6 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     self._executable = executable
     self._flash_path = flash_path
     self._is_content_shell = is_content_shell
-    self._logged_start_command = False
 
     # Initialize fields so that an explosion during init doesn't break in Close.
     self._proc = None
@@ -205,7 +205,7 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     browser_target = lines[1] if len(lines) >= 2 else None
     return devtools_port, browser_target
 
-  def Start(self, startup_args):
+  def Start(self, startup_args, log_full_command=True):
     assert not self._proc, 'Must call Close() before Start()'
 
     # macOS displays a blocking crash resume dialog that we need to suppress.
@@ -244,7 +244,7 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
                      name, env[name], encoding)
       env[name] = 'en_US.UTF-8'
 
-    self.LogStartCommand(cmd, env)
+    self.LogStartCommand(cmd, env, log_full_command=log_full_command)
 
     if not self.browser_options.show_stdout:
       self._tmp_output_file = tempfile.NamedTemporaryFile('w', 0)
@@ -263,7 +263,7 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     if self._supports_extensions:
       self._WaitForExtensionsToLoad()
 
-  def LogStartCommand(self, command, env):
+  def LogStartCommand(self, command, env, log_full_command=True):
     """Log the command used to start Chrome.
 
     In order to keep the length of logs down (see crbug.com/943650),
@@ -274,11 +274,12 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     discouraged. This method could be changed to print arguments that are
     different since the last run if need be.
     """
-    if self._logged_start_command:
-      logging.info('Starting Chrome.')
+    if log_full_command:
+      formatted_command = format_for_logging.FormatForLogging(command)
+      logging.info('Starting Chrome: %s\n\nEnv: %s', formatted_command, env)
     else:
-      logging.info('Starting Chrome: %s\n\nEnv: %s', ' '.join(command), env)
-      self._logged_start_command = True
+      formatted_command = format_for_logging.TrimAndFormatForLogging(command)
+      logging.info('Starting Chrome: %s', formatted_command)
 
   def BindDevToolsClient(self):
     # In addition to the work performed by the base class, quickly check if

@@ -15,6 +15,7 @@ from telemetry.internal.browser import extension_dict
 from telemetry.internal.browser import tab_list
 from telemetry.internal.browser import web_contents
 from telemetry.internal.util import exception_formatter
+from telemetry.internal.util import format_for_logging
 
 
 class Browser(app.App):
@@ -31,7 +32,7 @@ class Browser(app.App):
   cases.
   """
   def __init__(self, backend, platform_backend, startup_args,
-               find_existing=False):
+               find_existing=False, log_verbose_browser_info=True):
     super(Browser, self).__init__(app_backend=backend,
                                   platform_backend=platform_backend)
     try:
@@ -42,8 +43,9 @@ class Browser(app.App):
       if find_existing:
         self._browser_backend.BindDevToolsClient()
       else:
-        self._browser_backend.Start(startup_args)
-      self._LogBrowserInfo()
+        self._browser_backend.Start(startup_args,
+                                    log_command=log_verbose_browser_info)
+      self._LogBrowserInfo(log_verbose_browser_info)
     except Exception:
       exc_info = sys.exc_info()
       logging.error(
@@ -93,7 +95,7 @@ class Browser(app.App):
           'Extensions not supported')
     return extension_dict.ExtensionDict(self._browser_backend.extension_backend)
 
-  def _LogBrowserInfo(self):
+  def _LogBrowserInfo(self, verbose):
     logs = []
     logs.append(' Browser started (pid=%s).' % self._browser_backend.GetPid())
     logs.append(' OS: %s %s' % (
@@ -107,7 +109,11 @@ class Browser(app.App):
       if system_info.model_name:
         logs.append(' Model: %s' % system_info.model_name)
       if system_info.command_line:
-        logging.debug('Browser command line: %s', system_info.command_line)
+        if verbose:
+          formatted = format_for_logging.ShellFormat(system_info.command_line)
+        else:
+          formatted = format_for_logging.TrimAndFormat(system_info.command_line)
+        logs.append(' Browser command line: %s' % formatted)
       if system_info.gpu:
         for i, device in enumerate(system_info.gpu.devices):
           logs.append(' GPU device %d: %s' % (i, device))

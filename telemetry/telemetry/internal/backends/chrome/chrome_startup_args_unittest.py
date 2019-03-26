@@ -118,4 +118,3 @@ class ReplayStartupArgsTest(unittest.TestCase):
         expected_args,
         chrome_startup_args.GetReplayArgs(network_backend,
                                           supports_spki_list=False))
-
