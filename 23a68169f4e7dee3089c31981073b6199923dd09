@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c52dc7e0_b3c7fa58",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-26T23:54:50Z",
+      "side": 1,
+      "message": "What if someone tries to run Telemetry on a Android One phone or something like that. Would this 10 threads still work? (I know on Android this runs on a host machine, but maybe in a few years we could change that. \n\nDon\u0027t block on this comment though: let\u0027s get this fix in.",
+      "range": {
+        "startLine": 537,
+        "startChar": 12,
+        "endLine": 537,
+        "endChar": 17
+      },
+      "revId": "23a68169f4e7dee3089c31981073b6199923dd09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
