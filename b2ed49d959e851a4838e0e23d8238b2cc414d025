@@ -144,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "12424779_738c97c1",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-26T09:24:26Z",
+      "side": 1,
+      "message": "I think we should go for comparing serialized byte strings. It\u0027s not pretty, but at least is something.",
+      "parentUuid": "ee18693c_77f09f6e",
+      "range": {
+        "startLine": 37,
+        "startChar": 6,
+        "endLine": 37,
+        "endChar": 12
+      },
+      "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "14d63220_47836b95",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
         "patchSetId": 1
