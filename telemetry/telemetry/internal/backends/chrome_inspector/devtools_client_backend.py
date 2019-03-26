@@ -68,6 +68,7 @@ class DevToolsClientConfig(object):
     self._app_backend = app_backend
     self._browser_target = browser_target or '/devtools/browser'
     self._created = False
+    self._ws = None
 
     platform_backend = self.app_backend.platform_backend
     self._forwarder = platform_backend.forwarder_factory.Create(
@@ -131,6 +132,9 @@ class DevToolsClientConfig(object):
     if self._forwarder:
       self._forwarder.Close()
       self._forwarder = None
+    if self._ws:
+      self._ws.Disconnect()
+      self._ws = None
 
   def IsAgentReady(self):
     """Whether the DevTools agent is ready to establish a connection."""
@@ -147,22 +151,31 @@ class DevToolsClientConfig(object):
       http.Disconnect()
 
   def _IsInspectorWebsocketReady(self):
-    ws = inspector_websocket.InspectorWebsocket()
+    if self._ws:
+      return True
+    self._ws = inspector_websocket.InspectorWebsocket()
     try:
-      ws.Connect(self.browser_target_url, timeout=10)
+      self._ws.Connect(self.browser_target_url, timeout=10)
     except (inspector_websocket.WebSocketException, socket.error) as exc:
       logging.info(
           'Websocket at %s not yet ready: %s', self, exc)
+      self._ws.Disconnect()
+      self._ws = None
       return False
     except Exception as exc:  # pylint: disable=broad-except
       logging.exception(
           'Unexpected error checking if %s is ready.', self)
+      self._ws.Disconnect()
+      self._ws = None
       return False
     else:
       logging.info('Websocket at %s is ready.', self)
       return True
-    finally:
-      ws.Disconnect()
+
+  def TakeBrowserWebSocket(self):
+    ws = self._ws
+    self._ws = None
+    return ws
 
 
 # TODO(nednguyen): Find a more reliable way to check whether the devtool agent
@@ -193,7 +206,7 @@ class DevToolsClientBackend(object):
       devtools_config: A DevToolsClientConfig instance.
     """
     self._devtools_config = devtools_config
-    self._browser_inspector_websocket = None
+    self._browser_inspector_websocket = devtools_config.TakeBrowserWebSocket()
     self._tracing_backend = None
     self._memory_backend = None
     self._system_info_backend = None
