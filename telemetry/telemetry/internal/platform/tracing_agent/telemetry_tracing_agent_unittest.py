@@ -69,3 +69,12 @@ class TelemetryTracingAgentTest(unittest.TestCase):
     benchmarks = trace.GetTelemetryInfo()['benchmarks']
     self.assertEqual(len(benchmarks), 1)
     self.assertEqual(benchmarks[0], 'example')
+
+  def testWriteProtoTrace(self):
+    self.agent.StartAgentTracing(self.config, timeout=10, proto_format=True)
+    self.agent.StopAgentTracing()
+    trace = FakeTraceDataBuilder()
+    self.agent.CollectAgentTraceData(trace)
+    # Don't read the trace, just check that it's there
+    self.assertGreater(len(trace._data['traceEvents']), 0)
+
