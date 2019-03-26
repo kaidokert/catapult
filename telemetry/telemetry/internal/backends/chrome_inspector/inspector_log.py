@@ -22,8 +22,10 @@ class InspectorLog(object):
     if message['method'] == 'Log.entryAdded':
       entry = message['params']['entry']
       if entry['level'] == 'error':
+        # External log messages may contains non-ascii characters
+        text = entry['text'].encode('ascii', 'backslashreplace')
         logging.warning('DevTools console [%s]: %s %s',
-                        entry['source'], entry['text'], entry.get('url', ''))
+                        entry['source'], text, entry.get('url', ''))
 
   def _Enable(self, timeout=10):
     try:
