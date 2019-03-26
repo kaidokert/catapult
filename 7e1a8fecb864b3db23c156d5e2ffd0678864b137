@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a23874b8_2c1be59d",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-26T14:23:45Z",
+      "side": 1,
+      "message": "Cover w/ test",
+      "revId": "7e1a8fecb864b3db23c156d5e2ffd0678864b137",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb739108_2562a21d",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-26T14:23:45Z",
+      "side": 1,
+      "message": "Won\u0027t count be undefined if you hit an assertion",
+      "range": {
+        "startLine": 76,
+        "startChar": 26,
+        "endLine": 76,
+        "endChar": 31
+      },
+      "revId": "7e1a8fecb864b3db23c156d5e2ffd0678864b137",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
