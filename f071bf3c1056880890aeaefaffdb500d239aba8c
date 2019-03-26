@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "30136d2a_35a60ac4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-26T11:03:32Z",
+      "side": 1,
+      "message": "Please file and add a bug for this.",
+      "revId": "f071bf3c1056880890aeaefaffdb500d239aba8c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d8010e6_4df27266",
+        "filename": "bin/run_tests",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-26T11:03:32Z",
+      "side": 1,
+      "message": "Instead of adding this here, can you make it so the tests are run by common/bin/run_tests? That seems to make more sense, and \"Common Tests\" are definitely being run, e.g.:\nhttps://ci.chromium.org/p/catapult/builders/try/Catapult%20Android%20Tryserver/2480",
+      "revId": "f071bf3c1056880890aeaefaffdb500d239aba8c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c68b670_99761e67",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/decorators_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-26T11:03:32Z",
+      "side": 1,
+      "message": "Thanks! This fix lgtm.",
+      "revId": "f071bf3c1056880890aeaefaffdb500d239aba8c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
