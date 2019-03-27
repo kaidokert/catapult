@@ -22,6 +22,30 @@
       "revId": "4affaef862913fee2af09f290c17cc0efc738de5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89c65710_97a5a1e9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-03-27T18:18:44Z",
+      "side": 1,
+      "message": "Done. Thanks for the advice.",
+      "parentUuid": "a861b8f9_8bf9a5b5",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 45
+      },
+      "revId": "4affaef862913fee2af09f290c17cc0efc738de5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
