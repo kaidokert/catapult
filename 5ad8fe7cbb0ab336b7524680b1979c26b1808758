@@ -104,6 +104,24 @@
       "revId": "5ad8fe7cbb0ab336b7524680b1979c26b1808758",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec5932f0_b4359dc9",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-27T00:20:04Z",
+      "side": 1,
+      "message": "I tried using browser_options. Let me know what you think!",
+      "parentUuid": "932e0cfc_a74096a0",
+      "revId": "5ad8fe7cbb0ab336b7524680b1979c26b1808758",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
