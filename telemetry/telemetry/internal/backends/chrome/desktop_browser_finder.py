@@ -130,7 +130,6 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
 
     self._InitPlatformIfNeeded()
 
-
     num_retries = 3
     for x in range(0, num_retries):
       returned_browser = None
@@ -141,12 +140,10 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
         # For example, see: crbug.com/865895#c17
         startup_args = self.GetBrowserStartupArgs(self._browser_options)
         returned_browser = None
-
         browser_backend = desktop_browser_backend.DesktopBrowserBackend(
             self._platform_backend, self._browser_options,
             self._browser_directory, self._profile_directory,
             self._local_executable, self._flash_path, self._is_content_shell)
-
         return browser.Browser(
             browser_backend, self._platform_backend, startup_args)
       except Exception: # pylint: disable=broad-except

@@ -24,6 +24,7 @@ import dependency_manager  # pylint: disable=import-error
 from telemetry.internal.util import binary_manager
 from telemetry.core import exceptions
 from telemetry.internal.backends.chrome import chrome_browser_backend
+from telemetry.internal.util import format_for_logging
 from telemetry.internal.util import path
 
 
@@ -118,7 +119,6 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     self._executable = executable
     self._flash_path = flash_path
     self._is_content_shell = is_content_shell
-    self._logged_start_command = False
 
     # Initialize fields so that an explosion during init doesn't break in Close.
     self._proc = None
@@ -274,11 +274,12 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     discouraged. This method could be changed to print arguments that are
     different since the last run if need be.
     """
-    if self._logged_start_command:
-      logging.info('Starting Chrome.')
+    if self.browser_options.log_browser_details:
+      formatted_command = format_for_logging.ShellFormat(command)
+      logging.info('Starting Chrome: %s\n\nEnv: %s', formatted_command, env)
     else:
-      logging.info('Starting Chrome: %s\n\nEnv: %s', ' '.join(command), env)
-      self._logged_start_command = True
+      formatted_command = format_for_logging.TrimAndShellFormat(command)
+      logging.info('Starting Chrome: %s', formatted_command)
 
   def BindDevToolsClient(self):
     # In addition to the work performed by the base class, quickly check if

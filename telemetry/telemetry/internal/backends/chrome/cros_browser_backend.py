@@ -9,6 +9,7 @@ from telemetry.core import exceptions
 from telemetry import decorators
 from telemetry.internal.backends.chrome import chrome_browser_backend
 from telemetry.internal.backends.chrome import misc_web_contents_backend
+from telemetry.internal.util import format_for_logging
 
 import py_utils
 
@@ -62,7 +63,6 @@ class CrOSBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
 
     # Restart Chrome with the login extension and remote debugging.
     pid = self.GetPid()
-    logging.info('Restarting Chrome (pid=%d) with remote port', pid)
     args = ['dbus-send', '--system', '--type=method_call',
             '--dest=org.chromium.SessionManager',
             '/org/chromium/SessionManager',
@@ -70,7 +70,13 @@ class CrOSBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
             'boolean:true',
             'array:string:"%s"' % ','.join(startup_args),
             'array:string:']
-    logging.info(' '.join(args))
+    logging.info('Restarting Chrome (pid=%d) with remote port', pid)
+    if self.browser_options.log_browser_details:
+      logging.info('Starting Chrome: %s',
+                   format_for_logging.ShellFormat(args))
+    else:
+      logging.info('Starting Chrome: %s',
+                   format_for_logging.TrimAndShellFormat(args))
     self._cri.RunCmdOnDevice(args)
 
     # Wait for new chrome and oobe.

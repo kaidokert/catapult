@@ -95,6 +95,13 @@ class PossibleBrowser(possible_app.PossibleApp):
     self._browser_options = browser_options
 
   def Create(self):
+    """Start the browser process.
+
+    Args:
+      log_verbose_browser_info: If True, log verbose and exceptionally long
+        details about the browser (such as startup commandline which may
+        contain Finch feature flags).
+    """
     raise NotImplementedError()
 
   def CleanUpEnvironment(self):
