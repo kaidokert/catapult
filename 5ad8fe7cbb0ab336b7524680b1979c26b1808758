@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "80a3f184_9b40f0a2",
+        "filename": "devil/devil/android/flag_changer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-27T00:06:10Z",
+      "side": 1,
+      "message": "Thanks!",
+      "parentUuid": "7ad02c50_76cd2296",
+      "revId": "5ad8fe7cbb0ab336b7524680b1979c26b1808758",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "42316a64_aaa1dc4b",
         "filename": "devil/devil/android/flag_changer.py",
         "patchSetId": 6
@@ -33,6 +51,24 @@
       "revId": "5ad8fe7cbb0ab336b7524680b1979c26b1808758",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e1d749f_76beafb7",
+        "filename": "devil/devil/android/flag_changer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-27T00:06:10Z",
+      "side": 1,
+      "message": "I don\u0027t think the style guide says that exactly:\n\n\"Use your best judgement to decide between + and % (or format) though.\"\n\"Avoid using the + and +\u003d operators to accumulate a string within a loop.\"\n\nThey say \"within a loop\" because they are concerned about the runtime impact of this, but we aren\u0027t doing this within a loop.\n\nHowever, for this case I\u0027m happy to make the change this the code you provided is definitely more readable. Thank you!",
+      "parentUuid": "42316a64_aaa1dc4b",
+      "revId": "5ad8fe7cbb0ab336b7524680b1979c26b1808758",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
