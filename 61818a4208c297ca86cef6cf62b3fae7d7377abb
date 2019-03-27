@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "999a9767_16c39bd3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-27T21:58:18Z",
+      "side": 1,
+      "message": "Isn\u0027t this not possible?\n\n\"Popen.communicate(input\u003dNone)\n... Wait for process to terminate...\"\n\n\nhttps://docs.python.org/2/library/subprocess.html#subprocess.Popen.communicate",
+      "range": {
+        "startLine": 10,
+        "startChar": 48,
+        "endLine": 10,
+        "endChar": 67
+      },
+      "revId": "61818a4208c297ca86cef6cf62b3fae7d7377abb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "553ea05d_6ada7d5a",
+        "filename": "third_party/vinn/vinn/_vinn.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-27T21:58:18Z",
+      "side": 1,
+      "message": "This should have a comment linking to the bug that this is for.",
+      "range": {
+        "startLine": 204,
+        "startChar": 4,
+        "endLine": 204,
+        "endChar": 39
+      },
+      "revId": "61818a4208c297ca86cef6cf62b3fae7d7377abb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
