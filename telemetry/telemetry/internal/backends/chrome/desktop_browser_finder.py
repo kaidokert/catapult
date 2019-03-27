@@ -147,13 +147,14 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
         return browser.Browser(
             browser_backend, self._platform_backend, startup_args)
       except Exception: # pylint: disable=broad-except
-        report = 'Browser creation failed (attempt %d of %d)' % (
-            (x + 1), num_retries)
-        if x < num_retries - 1:
-          report += ', retrying'
-        logging.warning(report)
-        # Re-raise the exception the last time through.
-        if x == num_retries - 1:
+        retry = x < num_retries - 1
+        retry_message = 'retrying' if retry else 'giving up'
+        logging.warn('Browser creation failed (attempt %d of %d), %s.',
+                     (x + 1), num_retries, retry_message)
+        if retry:
+          self._TearDownEnvironment()
+          self.SetUpEnvironment()
+        else:
           raise
 
   def GetBrowserStartupArgs(self, browser_options):
