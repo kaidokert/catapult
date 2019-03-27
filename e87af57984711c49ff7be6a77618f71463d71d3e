@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "923f47d9_2de3ad77",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-03-27T22:09:34Z",
+      "side": 1,
+      "message": "Could you add to this comment indicating that CleanUpEnvironment needs to be called in order to reset things like the DevToolsActivePort file?\n\nThank you!!!",
+      "revId": "e87af57984711c49ff7be6a77618f71463d71d3e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
