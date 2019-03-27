@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "71aaad70_07aea289",
+        "filename": "telemetry/telemetry/internal/util/format_for_logging.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-27T17:47:11Z",
+      "side": 1,
+      "message": "Good idea!\n\nI also renamed the browser_option to trim_logs since that made it more readable in those constructions. I also think it makes more sense to name it that way since trimming is really what we are doing with that browser option.",
+      "parentUuid": "cfc52bd3_519b855a",
+      "revId": "eeaeadebfe77bba28b55c8b65b4612d1b7c59dca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b327aace_1613cd39",
         "filename": "telemetry/telemetry/internal/util/format_for_logging.py",
         "patchSetId": 15
@@ -30,6 +48,24 @@
       "writtenOn": "2019-03-27T16:56:19Z",
       "side": 1,
       "message": "should use SingleQuote instead; see e.g.:\nhttps://cs.chromium.org/chromium/src/third_party/catapult/devil/devil/utils/cmd_helper.py?rcl\u003d2d11abbb30a0609d6064a9dc50cf89dc719ce466\u0026l\u003d161\n\n(or just pipes.quote directly should be fine too.)",
+      "revId": "eeaeadebfe77bba28b55c8b65b4612d1b7c59dca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1582a46d_b7120901",
+        "filename": "telemetry/telemetry/internal/util/format_for_logging.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-27T17:47:11Z",
+      "side": 1,
+      "message": "Done.\n\nUsing pipes directly I don\u0027t want to depend on Devil outside of Android stuff unless needed.",
+      "parentUuid": "b327aace_1613cd39",
       "revId": "eeaeadebfe77bba28b55c8b65b4612d1b7c59dca",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -50,6 +86,24 @@
       "revId": "eeaeadebfe77bba28b55c8b65b4612d1b7c59dca",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b128dff1_7be9d101",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-27T17:47:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6419190_7fede5df",
+      "revId": "eeaeadebfe77bba28b55c8b65b4612d1b7c59dca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
