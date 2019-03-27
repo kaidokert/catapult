@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "238c1d1c_0d2769ad",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-27T00:28:10Z",
+      "side": 1,
+      "message": "nit: remove one new line here.",
+      "revId": "e21fe582fc95a909a02d26a47b957b8b08763625",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
