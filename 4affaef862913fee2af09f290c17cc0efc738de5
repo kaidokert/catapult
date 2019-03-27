@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a861b8f9_8bf9a5b5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-27T16:03:59Z",
+      "side": 1,
+      "message": "This commit message can be improved. The first line of a commit matters a lot since that is what people will scan when reading blamelists. Let me break this one down for you and you can improve this and future ones based on what I explain:\n\n\"[Typ] Adds new function to Typ\u0027s Runner class\"\n\n1. Typ is mentioned twice, so that\u0027s redundant.\n\n\"[Typ] Adds new function to Runner class\"\n\n2. \"Add new function\" is kinda a waste of words. Most changes edit or add functions. The important thing is what the functions do.\n\n\"[Typ] Add expectations_for(test_case) method to Runner class\"\n\n3. Shorten by removing unnecessary \"class\"\n\n\"[Typ] Add expectations_for(test_case) method to Runner\"\n\n4. Looks like you are also changing serially_executed_browser_test_case.py, not just Typ. Ideally the summary should list just about everything you did. It also looks like you were merely moving this functionality from serially_executed_browser_test_case.py to Typ. If I had some way to serially_executed_browser_test_case in a short form, I might include it in the cl description, but I guess this would do instead.\n\n\"[Typ] Support expectations_for(test_case) natively in Runner.\"\n\nI think this explains that the functionality already exists outside the Runner, but you are moving that functionality to the Runner.\n\nOkay, so after the first line, the following lines need to explain \"why?\". Your current description just says \"what?\", but that isn\u0027t very helpful to a reviewer because we can read the code to figure out \"what?\". The thing that is difficult to figure out is \"why?\". So explain in the description:\n\n\"Having this function in Typ rather than in\nserially_executed_browser_test_case.py will allow other clients\nto use it which will reduce duplication\"\n\n(I\u0027m not sure whether that is the reason or not, but I\u0027m just guessing)\n\ngo/cl-descriptions for some generic Google best practices advice.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 45
+      },
+      "revId": "4affaef862913fee2af09f290c17cc0efc738de5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
