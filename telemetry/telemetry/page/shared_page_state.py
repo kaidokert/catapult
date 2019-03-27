@@ -153,7 +153,8 @@ class SharedPageState(story_module.SharedState):
     # arguments and url to it without polluting the run for the next page.
     browser_options = self._finder_options.browser_options.Copy()
     browser_options.AppendExtraBrowserArgs(page.extra_browser_args)
-    self._possible_browser.SetUpEnvironment(browser_options)
+    self._possible_browser.SetUpEnvironment(
+        browser_options)
 
     # Clear caches before starting browser.
     self.platform.FlushDnsCache()
@@ -170,6 +171,7 @@ class SharedPageState(story_module.SharedState):
 
     if self._first_browser:
       self._first_browser = False
+      self._finder_options.browser_options.log_browser_details = False
     self._AllowInteractionForStage('after-start-browser')
 
   def WillRunStory(self, page):
