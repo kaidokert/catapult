@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e6534fbe_53048b4f",
+        "filename": "telemetry/telemetry/internal/browser/possible_browser.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-27T17:51:18Z",
+      "side": 1,
+      "message": "I know this is unrelated, but I would like to add it anyway since I think \"Create\" is the wrong word for something that starts a process and this documentation helps clarify that.",
+      "range": {
+        "startLine": 98,
+        "startChar": 14,
+        "endLine": 98,
+        "endChar": 27
+      },
+      "revId": "608b7314e57f8f40b1229fe9a812a8dea56242e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
