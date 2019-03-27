@@ -45,6 +45,29 @@
       "revId": "61818a4208c297ca86cef6cf62b3fae7d7377abb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb6b448e_629a58cc",
+        "filename": "third_party/vinn/vinn/_vinn.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-27T21:59:11Z",
+      "side": 1,
+      "message": "You need to raise the exception on the last retry.",
+      "range": {
+        "startLine": 209,
+        "startChar": 3,
+        "endLine": 210,
+        "endChar": 19
+      },
+      "revId": "61818a4208c297ca86cef6cf62b3fae7d7377abb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
