@@ -15,6 +15,7 @@ from telemetry.internal.browser import extension_dict
 from telemetry.internal.browser import tab_list
 from telemetry.internal.browser import web_contents
 from telemetry.internal.util import exception_formatter
+from telemetry.internal.util import format_for_logging
 
 
 class Browser(app.App):
@@ -94,6 +95,7 @@ class Browser(app.App):
     return extension_dict.ExtensionDict(self._browser_backend.extension_backend)
 
   def _LogBrowserInfo(self):
+    log_details = self._browser_backend.browser_options.log_browser_details
     logs = []
     logs.append(' Browser started (pid=%s).' % self._browser_backend.GetPid())
     logs.append(' OS: %s %s' % (
@@ -107,22 +109,29 @@ class Browser(app.App):
       if system_info.model_name:
         logs.append(' Model: %s' % system_info.model_name)
       if system_info.command_line:
-        logging.debug('Browser command line: %s', system_info.command_line)
+        if log_details:
+          formatted = format_for_logging.ShellFormat(
+              system_info.command_line)
+        else:
+          formatted = format_for_logging.TrimAndShellFormat(
+              system_info.command_line)
+        logs.append(' Browser command line: %s' % formatted)
       if system_info.gpu:
         for i, device in enumerate(system_info.gpu.devices):
           logs.append(' GPU device %d: %s' % (i, device))
-        if system_info.gpu.aux_attributes:
-          logs.append(' GPU Attributes:')
-          for k, v in sorted(system_info.gpu.aux_attributes.iteritems()):
-            logs.append('  %-20s: %s' % (k, v))
-        if system_info.gpu.feature_status:
-          logs.append(' Feature Status:')
-          for k, v in sorted(system_info.gpu.feature_status.iteritems()):
-            logs.append('  %-20s: %s' % (k, v))
-        if system_info.gpu.driver_bug_workarounds:
-          logs.append(' Driver Bug Workarounds:')
-          for workaround in system_info.gpu.driver_bug_workarounds:
-            logs.append('  %s' % workaround)
+        if log_details:
+          if system_info.gpu.aux_attributes:
+            logs.append(' GPU Attributes:')
+            for k, v in sorted(system_info.gpu.aux_attributes.iteritems()):
+              logs.append('  %-20s: %s' % (k, v))
+          if system_info.gpu.feature_status:
+            logs.append(' Feature Status:')
+            for k, v in sorted(system_info.gpu.feature_status.iteritems()):
+              logs.append('  %-20s: %s' % (k, v))
+          if system_info.gpu.driver_bug_workarounds:
+            logs.append(' Driver Bug Workarounds:')
+            for workaround in system_info.gpu.driver_bug_workarounds:
+              logs.append('  %s' % workaround)
       else:
         logs.append(' No GPU devices')
     else:

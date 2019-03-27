@@ -170,6 +170,7 @@ class SharedPageState(story_module.SharedState):
 
     if self._first_browser:
       self._first_browser = False
+      self._finder_options.browser_options.log_browser_details = False
     self._AllowInteractionForStage('after-start-browser')
 
   def WillRunStory(self, page):
