@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "39da5588_3318756b",
+        "filename": "dashboard/dashboard/spa/alerts-controls.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-03-27T16:27:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df3f5662_a9e1431d",
+      "range": {
+        "startLine": 333,
+        "startChar": 27,
+        "endLine": 333,
+        "endChar": 31
+      },
+      "revId": "f68c277e5c4de9dd01b515300572f21664473523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae2650aa_cb2a39ae",
         "filename": "dashboard/dashboard/spa/alerts-section.js",
         "patchSetId": 11
@@ -36,6 +60,24 @@
       "writtenOn": "2019-03-27T15:26:08Z",
       "side": 1,
       "message": "We went over vc but still feel like I need to clarify this for myself, so this uses a batchiterator to get batches to load, each batch is handled in handleBatch, and then loadMore is called which potentially modifies the iterator to append more requests?",
+      "revId": "f68c277e5c4de9dd01b515300572f21664473523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb2f29e5_bcb3c977",
+        "filename": "dashboard/dashboard/spa/alerts-section.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-03-27T16:27:19Z",
+      "side": 1,
+      "message": "Yes, exactly. Added that as a comment.",
+      "parentUuid": "ae2650aa_cb2a39ae",
       "revId": "f68c277e5c4de9dd01b515300572f21664473523",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -62,6 +104,30 @@
       "revId": "f68c277e5c4de9dd01b515300572f21664473523",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "902ef6c2_4aa07483",
+        "filename": "dashboard/dashboard/spa/alerts-section.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-03-27T16:27:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd2dbf40_44731e61",
+      "range": {
+        "startLine": 585,
+        "startChar": 6,
+        "endLine": 585,
+        "endChar": 12
+      },
+      "revId": "f68c277e5c4de9dd01b515300572f21664473523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
