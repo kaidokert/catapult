@@ -360,6 +360,18 @@ tr.exportTo('cp', () => {
         });
       }
 
+      if (state.details.revisionRanges.length === 0) {
+        rows.push({
+          colspan: 2, color: 'var(--primary-color-dark, blue)',
+          name: 'Click for details'
+        });
+      } else {
+        rows.push({
+          colspan: 2, color: 'var(--primary-color-dark, blue)',
+          name: 'Control+click to compare details'
+        });
+      }
+
       state = {
         ...state,
         tooltip: {
@@ -427,7 +439,7 @@ tr.exportTo('cp', () => {
   // Fetch one or more fetchDescriptors per line, batch the readers, collate the
   // data.
   // Yields {timeseriesesByLine: [{lineDescriptor, timeserieses}], errors}.
-  async function* generateTimeseries(
+  ChartTimeseries.generateTimeseries = async function* generateTimeseries(
       lineDescriptors, revisions, levelOfDetail) {
     const readers = [];
     const timeseriesesByLine = [];
@@ -464,13 +476,13 @@ tr.exportTo('cp', () => {
       const filtered = filterTimeseriesesByLine(timeseriesesByLine);
       yield {timeseriesesByLine: filtered, errors};
     }
-  }
+  };
 
   ChartTimeseries.loadLines = statePath => async(dispatch, getState) => {
     const state = Polymer.Path.get(getState(), statePath);
-    const generator = generateTimeseries(
+    const generator = ChartTimeseries.generateTimeseries(
         state.lineDescriptors.slice(0, ChartTimeseries.MAX_LINES),
-        {minRevision: state.minRevision, maxRevision: state.maxRevision},
+        [{minRevision: state.minRevision, maxRevision: state.maxRevision}],
         state.levelOfDetail);
     for await (const {timeseriesesByLine, errors} of generator) {
       if (!cp.layoutTimeseries.isReady) await cp.layoutTimeseries.readyPromise;
