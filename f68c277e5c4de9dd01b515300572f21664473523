@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df3f5662_a9e1431d",
+        "filename": "dashboard/dashboard/spa/alerts-controls.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-27T15:26:08Z",
+      "side": 1,
+      "message": "nit: constant",
+      "range": {
+        "startLine": 333,
+        "startChar": 27,
+        "endLine": 333,
+        "endChar": 31
+      },
+      "revId": "f68c277e5c4de9dd01b515300572f21664473523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae2650aa_cb2a39ae",
+        "filename": "dashboard/dashboard/spa/alerts-section.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-27T15:26:08Z",
+      "side": 1,
+      "message": "We went over vc but still feel like I need to clarify this for myself, so this uses a batchiterator to get batches to load, each batch is handled in handleBatch, and then loadMore is called which potentially modifies the iterator to append more requests?",
+      "revId": "f68c277e5c4de9dd01b515300572f21664473523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd2dbf40_44731e61",
+        "filename": "dashboard/dashboard/spa/alerts-section.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-03-27T15:26:08Z",
+      "side": 1,
+      "message": "Is there a way to break this up into something more readable? This nesting is a bit hard to follow.",
+      "range": {
+        "startLine": 585,
+        "startChar": 6,
+        "endLine": 585,
+        "endChar": 12
+      },
+      "revId": "f68c277e5c4de9dd01b515300572f21664473523",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
