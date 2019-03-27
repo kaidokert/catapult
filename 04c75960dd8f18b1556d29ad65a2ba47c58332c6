@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1e2b8bbb_159deb10",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-03-27T19:26:04Z",
+      "side": 1,
+      "message": "Should this link to crbug.com/945481 instead (or in addition to) this one?",
+      "revId": "04c75960dd8f18b1556d29ad65a2ba47c58332c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
