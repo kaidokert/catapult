@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cfc52bd3_519b855a",
+        "filename": "telemetry/telemetry/internal/util/format_for_logging.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-27T16:56:19Z",
+      "side": 1,
+      "message": "A think a lot of the call sites would look a lot cleaner if we provide here an optional trim\u003dFalse kwarg. WDYT?",
+      "revId": "eeaeadebfe77bba28b55c8b65b4612d1b7c59dca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b327aace_1613cd39",
+        "filename": "telemetry/telemetry/internal/util/format_for_logging.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-27T16:56:19Z",
+      "side": 1,
+      "message": "should use SingleQuote instead; see e.g.:\nhttps://cs.chromium.org/chromium/src/third_party/catapult/devil/devil/utils/cmd_helper.py?rcl\u003d2d11abbb30a0609d6064a9dc50cf89dc719ce466\u0026l\u003d161\n\n(or just pipes.quote directly should be fine too.)",
+      "revId": "eeaeadebfe77bba28b55c8b65b4612d1b7c59dca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6419190_7fede5df",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-27T16:56:19Z",
+      "side": 1,
+      "message": "nit: Add a comment here explaining why we do this.",
+      "revId": "eeaeadebfe77bba28b55c8b65b4612d1b7c59dca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

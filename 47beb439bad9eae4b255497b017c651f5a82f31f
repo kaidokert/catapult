@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4cdac8e9_14693701",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-27T16:56:19Z",
+      "side": 0,
+      "message": "these look like unrelated changes?",
+      "revId": "47beb439bad9eae4b255497b017c651f5a82f31f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
