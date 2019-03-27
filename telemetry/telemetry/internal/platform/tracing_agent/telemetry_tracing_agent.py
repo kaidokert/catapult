@@ -27,6 +27,7 @@ class TelemetryTracingAgent(tracing_agent.TracingAgent):
     super(TelemetryTracingAgent, self).__init__(platform_backend)
     self._trace_log = None
     self._telemetry_info = None
+    self._use_proto = None
 
   @classmethod
   def IsSupported(cls, platform_backend):
@@ -40,7 +41,7 @@ class TelemetryTracingAgent(tracing_agent.TracingAgent):
   def SetTelemetryInfo(self, telemetry_info):
     self._telemetry_info = telemetry_info
 
-  def StartAgentTracing(self, config, timeout):
+  def StartAgentTracing(self, config, timeout, proto_format=False):
     del config  # Unused.
     del timeout  # Unused.
     assert not self.is_tracing, 'Telemetry tracing already running'
@@ -53,9 +54,10 @@ class TelemetryTracingAgent(tracing_agent.TracingAgent):
     # Windows where the file remained in use "by another process" and raised
     # an error when trying to clean up the file.
     fd, self._trace_log = tempfile.mkstemp()
-    trace_event.trace_enable(os.fdopen(fd, 'wb'))
+    trace_event.trace_enable(os.fdopen(fd, 'wb'), proto_format)
 
     assert self.is_tracing, 'Failed to start Telemetry tracing'
+    self._use_proto = proto_format
     return True
 
   def StopAgentTracing(self):
@@ -76,11 +78,15 @@ class TelemetryTracingAgent(tracing_agent.TracingAgent):
     assert not self.is_tracing, 'Must stop tracing before collection'
     try:
       with open(self._trace_log) as f:
-        # Currently `py_trace_event` stores it's trace data as a json list of
-        # dicts (one for each event). But, since many processes may be writing
-        # events to the file, it doesn't know when it's "done" to close the
-        # list. Therefore, we have to add the closing ']' here.
-        data = json.loads(f.read() + ']')
+        if self._use_proto:
+          # NOTE: no parsing here, just reading raw data
+          data = f.read()
+        else:
+          # Currently `py_trace_event` stores it's trace data as a json list of
+          # dicts (one for each event). But, since many processes may be writing
+          # events to the file, it doesn't know when it's "done" to close the
+          # list. Therefore, we have to add the closing ']' here.
+          data = json.loads(f.read() + ']')
     finally:
       os.remove(self._trace_log)
       self._trace_log = None
