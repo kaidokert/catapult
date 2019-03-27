@@ -318,6 +318,30 @@
     },
     {
       "key": {
+        "uuid": "7cc3cb7f_01d490a4",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2019-03-27T08:13:37Z",
+      "side": 1,
+      "message": "Sounds good :)",
+      "parentUuid": "2b741885_24351fad",
+      "range": {
+        "startLine": 37,
+        "startChar": 6,
+        "endLine": 37,
+        "endChar": 12
+      },
+      "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "14d63220_47836b95",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
         "patchSetId": 1
@@ -423,6 +447,30 @@
       "side": 1,
       "message": "It\u0027s not clear from the comment in proto file [1] that delta timestamps can interchange with absolute ones. In the case when it happens, do delta timestamps encode the difference to the last delta timestamp, or to any last timestamp, be it delta or absolute?\n\n[1] https://android.googlesource.com/platform/external/perfetto/+/refs/heads/master/protos/perfetto/trace/track_event/track_event.proto#47",
       "parentUuid": "e5d115c3_b8f3d69c",
+      "range": {
+        "startLine": 261,
+        "startChar": 4,
+        "endLine": 262,
+        "endChar": 54
+      },
+      "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a50ec18_371b024a",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2019-03-27T08:13:37Z",
+      "side": 1,
+      "message": "Absolute timestamps don\u0027t affect deltas (\"This is a one-off value that does not affect delta timestamp computation in subsequent TrackEvents.\" from that code you linked ;)).\n\ni.e. you just ignore the absolute ones, delta timestamps are only relative to last deltas and thread descriptor reference value.",
+      "parentUuid": "29cf7d0e_2f96f67e",
       "range": {
         "startLine": 261,
         "startChar": 4,
