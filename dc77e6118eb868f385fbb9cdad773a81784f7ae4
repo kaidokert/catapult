@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "48d45b37_4a4ed8b5",
+        "filename": "third_party/typ/typ/arg_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-03-28T20:52:53Z",
+      "side": 1,
+      "message": "This feels redundant to me with the `tests` argument, it\u0027s just in a different format. \n\nI kinda feel like we shouldn\u0027t support both.\n\nBut, I can also see the argument that if we want to support other callers with a common set of command line args, and the other callers already use a --foo\u003dbar flag as opposed to just positional arguments, maybe we should.",
+      "revId": "dc77e6118eb868f385fbb9cdad773a81784f7ae4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
