@@ -34,6 +34,24 @@
       "revId": "dc77e6118eb868f385fbb9cdad773a81784f7ae4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9dd9559_5f7d2f8d",
+        "filename": "third_party/typ/typ/arg_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-03-28T22:18:10Z",
+      "side": 1,
+      "message": "Oh, I just realized I was thinking about this wrong. \n\nYou want to use this as a *filter*, not just as a list of globs to run.\n\nYeah, I think this is okay then.",
+      "parentUuid": "6dbe4d2c_f0335d13",
+      "revId": "dc77e6118eb868f385fbb9cdad773a81784f7ae4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
