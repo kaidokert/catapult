@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "b58141ad_4f694be0",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-28T16:23:57Z",
+      "side": 1,
+      "message": "nit: also sort imports",
+      "revId": "3921adb97710e4f38be8ac771b95809cde628838",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8a9a366b_8afea7c7",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer_unittest.py",
         "patchSetId": 6
