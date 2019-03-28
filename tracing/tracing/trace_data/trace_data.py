@@ -67,11 +67,11 @@ def _GetFilePathForTrace(trace, dir_path):
   """ Return path to a file that contains |trace|.
 
   Note: if |trace| is an instance of _TraceItem, this reuses the trace path
-  that the trace file handle holds. Otherwise, it creates a new trace file
-  in |dir_path| directory.
+  that it already holds. Otherwise, it creates a new trace file in |dir_path|
+  directory.
   """
   if isinstance(trace, _TraceItem):
-    return trace.handle.name
+    return trace.filename
   with tempfile.NamedTemporaryFile(mode='w', dir=dir_path, delete=False) as fp:
     if isinstance(trace, StringTypes):
       fp.write(trace)
@@ -83,7 +83,7 @@ def _GetFilePathForTrace(trace, dir_path):
 
 
 _TraceItem = collections.namedtuple(
-    '_TraceItem', ['part_name', 'handle', 'compressed'])
+    '_TraceItem', ['part_name', 'filename', 'compressed'])
 
 
 class _TraceData(object):
@@ -120,9 +120,9 @@ class _TraceData(object):
     for i, trace in enumerate(traces_list):
       if isinstance(trace, _TraceItem):
         opener = gzip.open if trace.compressed else open
-        with opener(trace.handle.name, 'rb') as f:
+        with opener(trace.filename, 'rb') as f:
           traces_list[i] = json.load(f)
-        os.remove(trace.handle.name)
+        os.remove(trace.filename)
     return traces_list
 
   def GetTraceFor(self, part):
@@ -141,7 +141,7 @@ class _TraceData(object):
     for traces_list in self._raw_data.values():
       for trace in traces_list:
         if isinstance(trace, _TraceItem):
-          os.remove(trace.handle.name)
+          os.remove(trace.filename)
     self._raw_data = {}
 
   def Serialize(self, file_path, trace_title=None):
@@ -210,12 +210,20 @@ class TraceDataBuilder(object):
   def OpenTraceHandleFor(self, part, compressed=False):
     if not isinstance(part, TraceDataPart):
       raise TypeError('part must be a TraceDataPart instance')
+    handle = tempfile.NamedTemporaryFile(delete=False)
+    self.AddTraceFileFor(part, handle.name, compressed=compressed)
+    return handle
+
+  def AddTraceFileFor(self, part, filename, compressed=False):
+    if not isinstance(part, TraceDataPart):
+      raise TypeError('part must be a TraceDataPart instance')
+    if not os.path.exists(filename):
+      raise IOError('Trace file does not exist: %s' % filename)
     trace = _TraceItem(
         part_name=part.raw_field_name,
-        handle=tempfile.NamedTemporaryFile(delete=False),
+        filename=filename,
         compressed=compressed)
     self.AddTraceFor(part, trace)
-    return trace.handle
 
   def AddTraceFor(self, part, data, allow_unstructured=False):
     """Record new trace data into this builder.
