@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b7a8ccac_d405d281",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2019-03-28T00:00:12Z",
+      "side": 1,
+      "message": "Nit: shouldn\u0027t it be TRIES?",
+      "range": {
+        "startLine": 26,
+        "startChar": 17,
+        "endLine": 26,
+        "endChar": 21
+      },
+      "revId": "0648f518ed2ae5cb1d64aa596123715072fe1d4f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
