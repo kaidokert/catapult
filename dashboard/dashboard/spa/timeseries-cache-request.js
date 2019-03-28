@@ -161,7 +161,7 @@ class TimeseriesSlice {
       body,
     });
     if (!response.ok) {
-      return {};
+      return {status: response.status};
     }
     const responseJson = await response.json();
     if (responseJson.data) {
@@ -370,6 +370,9 @@ export default class TimeseriesCacheRequest extends CacheRequestBase {
 
     for await (const result of raceAllPromises(sliceResponses)) {
       if (!result || result.error || !result.data || !result.data.length) {
+        // eslint-disable-next-line no-console
+        console.log('TimeseriesCacheRequest ignoring response', result);
+        // TODO store status:404 in datastore.
         continue;
       }
       mergeObjectArrays('revision', mergedData, result.data.filter(d => (
