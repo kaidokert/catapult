@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "e9f21537_2ec7fb55",
+        "filename": "telemetry/telemetry/internal/util/format_for_logging.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-28T09:24:46Z",
+      "side": 1,
+      "message": "Agree, looks better!",
+      "parentUuid": "71aaad70_07aea289",
+      "revId": "eeaeadebfe77bba28b55c8b65b4612d1b7c59dca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b327aace_1613cd39",
         "filename": "telemetry/telemetry/internal/util/format_for_logging.py",
         "patchSetId": 15
