@@ -16,6 +16,24 @@
       "revId": "dc77e6118eb868f385fbb9cdad773a81784f7ae4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6dbe4d2c_f0335d13",
+        "filename": "third_party/typ/typ/arg_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-03-28T21:38:11Z",
+      "side": 1,
+      "message": "Telemetry unit tests use both. Typ also uses the tests argument for test discovery. I think we should support both.",
+      "parentUuid": "48d45b37_4a4ed8b5",
+      "revId": "dc77e6118eb868f385fbb9cdad773a81784f7ae4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
