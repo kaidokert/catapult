@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eb7eb965_edbc2968",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-28T09:17:15Z",
+      "side": 1,
+      "message": "Add a TODO(crbug.com/nnnn) linking to the relevant bug.",
+      "revId": "79ea61b7f0e8cd7ddd215566c580da8b0af1031a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57620da2_dd298433",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-28T09:17:15Z",
+      "side": 1,
+      "message": "Also add a comment here noting we do this since we don\u0027t have proto reading, and a TODO pointing to a relevant bug to fix this in the future.",
+      "revId": "79ea61b7f0e8cd7ddd215566c580da8b0af1031a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3fb8c80_e0d7f4a0",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-28T09:17:15Z",
+      "side": 1,
+      "message": "nit: indent of this and next line seems off?",
+      "revId": "79ea61b7f0e8cd7ddd215566c580da8b0af1031a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
