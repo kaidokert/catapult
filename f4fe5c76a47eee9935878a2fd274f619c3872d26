@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8fa03ee5_b72b95d6",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-28T17:01:57Z",
+      "side": 1,
+      "message": "Mikhail, is there something better we could do here?\n\nI guess the real solution anyway is to let py_trace_event handle all of this. :(",
+      "revId": "f4fe5c76a47eee9935878a2fd274f619c3872d26",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
