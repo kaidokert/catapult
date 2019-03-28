@@ -19,6 +19,69 @@
     },
     {
       "key": {
+        "uuid": "b25d3411_cef47a9c",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2019-03-28T09:33:03Z",
+      "side": 1,
+      "message": "nit: I\u0027d assert that self.iid and self.name are not None instead here (encoding an entry without both fields set doesn\u0027t make any sense).",
+      "revId": "79ea61b7f0e8cd7ddd215566c580da8b0af1031a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8913870_5841f627",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2019-03-28T09:33:03Z",
+      "side": 1,
+      "message": "same here about pid + tid + reference_timestamp_us.",
+      "range": {
+        "startLine": 123,
+        "startChar": 12,
+        "endLine": 123,
+        "endChar": 15
+      },
+      "revId": "79ea61b7f0e8cd7ddd215566c580da8b0af1031a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c49e8b4_aff9a123",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2019-03-28T09:33:03Z",
+      "side": 1,
+      "message": "nit: category_iid since you only support a single one in here, not an array",
+      "range": {
+        "startLine": 141,
+        "startChar": 9,
+        "endLine": 141,
+        "endChar": 22
+      },
+      "revId": "79ea61b7f0e8cd7ddd215566c580da8b0af1031a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "57620da2_dd298433",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer_unittest.py",
         "patchSetId": 4
