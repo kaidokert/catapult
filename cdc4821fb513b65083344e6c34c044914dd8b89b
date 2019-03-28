@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b4f5fd78_ebb6679e",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_proto_classes.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2019-03-28T13:44:33Z",
+      "side": 1,
+      "message": "no need for these ifs anymore",
+      "range": {
+        "startLine": 111,
+        "startChar": 4,
+        "endLine": 111,
+        "endChar": 27
+      },
+      "revId": "cdc4821fb513b65083344e6c34c044914dd8b89b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49ad5192_32c11ccd",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer_unittest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2019-03-28T13:44:33Z",
+      "side": 1,
+      "message": "nit: Tests?",
+      "range": {
+        "startLine": 13,
+        "startChar": 6,
+        "endLine": 13,
+        "endChar": 10
+      },
+      "revId": "cdc4821fb513b65083344e6c34c044914dd8b89b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
