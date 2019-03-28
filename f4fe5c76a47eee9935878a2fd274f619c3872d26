@@ -16,6 +16,24 @@
       "revId": "f4fe5c76a47eee9935878a2fd274f619c3872d26",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3678bcd7_e3b93484",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-28T17:18:56Z",
+      "side": 1,
+      "message": "Is it necessary to write everything to file? Can we just pass the metadata directly to the trace_data_builder as an argument? Like\ntrace_data_builder.AddTraceFileFor(part, file, metadata).",
+      "parentUuid": "8fa03ee5_b72b95d6",
+      "revId": "f4fe5c76a47eee9935878a2fd274f619c3872d26",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
