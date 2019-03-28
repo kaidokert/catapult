@@ -265,6 +265,24 @@
     },
     {
       "key": {
+        "uuid": "30d52c55_8b908f68",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-28T13:02:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47aa8c14_9e5f05e0",
+      "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee18693c_77f09f6e",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
         "patchSetId": 1
@@ -599,6 +617,24 @@
       "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11658b9e_d44a4a76",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-28T13:02:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b28dc8cc_730f4f5b",
+      "revId": "b2ed49d959e851a4838e0e23d8238b2cc414d025",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

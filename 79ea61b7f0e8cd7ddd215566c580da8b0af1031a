@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5341d4a3_e2ed168f",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-28T13:02:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb7eb965_edbc2968",
+      "revId": "79ea61b7f0e8cd7ddd215566c580da8b0af1031a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b25d3411_cef47a9c",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
         "patchSetId": 4
@@ -33,6 +51,24 @@
       "revId": "79ea61b7f0e8cd7ddd215566c580da8b0af1031a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42b5ee5c_8b145040",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-28T13:02:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b25d3411_cef47a9c",
+      "revId": "79ea61b7f0e8cd7ddd215566c580da8b0af1031a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "692f98e3_1f824e50",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-28T13:02:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8913870_5841f627",
+      "range": {
+        "startLine": 123,
+        "startChar": 12,
+        "endLine": 123,
+        "endChar": 15
+      },
+      "revId": "79ea61b7f0e8cd7ddd215566c580da8b0af1031a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1c49e8b4_aff9a123",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
         "patchSetId": 4
@@ -82,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "bbfdd0fc_8b48f4ed",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-28T13:02:40Z",
+      "side": 1,
+      "message": "I actually support a list here (\u0027True\u0027 down in line 149 corresponds to \u0027is_repeated\u0027 flag, so writer expects a list as its second argument).",
+      "parentUuid": "1c49e8b4_aff9a123",
+      "range": {
+        "startLine": 141,
+        "startChar": 9,
+        "endLine": 141,
+        "endChar": 22
+      },
+      "revId": "79ea61b7f0e8cd7ddd215566c580da8b0af1031a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "57620da2_dd298433",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer_unittest.py",
         "patchSetId": 4
@@ -99,6 +183,24 @@
     },
     {
       "key": {
+        "uuid": "c9b5640e_65810eaf",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-28T13:02:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57620da2_dd298433",
+      "revId": "79ea61b7f0e8cd7ddd215566c580da8b0af1031a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a3fb8c80_e0d7f4a0",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer_unittest.py",
         "patchSetId": 4
@@ -113,6 +215,24 @@
       "revId": "79ea61b7f0e8cd7ddd215566c580da8b0af1031a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c69320f_06af15b7",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-28T13:02:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3fb8c80_e0d7f4a0",
+      "revId": "79ea61b7f0e8cd7ddd215566c580da8b0af1031a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
