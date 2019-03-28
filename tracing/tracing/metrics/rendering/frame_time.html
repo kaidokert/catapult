@@ -210,9 +210,11 @@ tr.exportTo('tr.metrics.rendering', function() {
         frameSegments.map(s => s.boundsRange));
     let frameLengths = frameSegments.map(x => x.duration / refreshPeriod);
     frameLengths = frameLengths.filter(length => length >= MIN_FRAME_LENGTH);
-    const totalFrameDuration =
-        tr.b.math.Statistics.sum(frameSegments, x => x.duration);
-    addJankCountHistograms(histograms, frameLengths);
+    const totalFrameDuration = tr.b.convertUnit(
+        tr.b.math.Statistics.sum(frameSegments, x => x.duration),
+        tr.b.UnitScale.TIME.MILLI_SEC, tr.b.UnitScale.TIME.SEC);
+    addJankCountHistograms(
+        histograms, frameLengths, totalFrameDuration);
     histograms.createHistogram(
         'frame_lengths',
         tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
@@ -224,9 +226,7 @@ tr.exportTo('tr.metrics.rendering', function() {
     histograms.createHistogram(
         'avg_surface_fps',
         tr.b.Unit.byName.unitlessNumber_biggerIsBetter,
-        frameLengths.length / tr.b.convertUnit(
-            totalFrameDuration,
-            tr.b.UnitScale.TIME.MILLI_SEC, tr.b.UnitScale.TIME.SEC),
+        frameLengths.length / totalFrameDuration,
         { description: 'Average frames per second.',
           summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
         });
@@ -243,7 +243,8 @@ tr.exportTo('tr.metrics.rendering', function() {
     addBasicFrameTimeHistograms_(histograms, frameSements, 'ui_');
   }
 
-  function addJankCountHistograms(histograms, frameLengths) {
+  function addJankCountHistograms(
+      histograms, frameLengths, totalFrameDuration) {
     let jankCount = 0;
     for (let i = 1; i < frameLengths.length; i++) {
       if (frameLengths[i] < MIN_FRAME_LENGTH) continue;
@@ -251,6 +252,15 @@ tr.exportTo('tr.metrics.rendering', function() {
         Math.round((frameLengths[i] - frameLengths[i - 1]));
       if (change > 0 && change < PAUSE_THRESHOLD) jankCount++;
     }
+
+    // Calculate JankCount per second.
+    histograms.createHistogram(
+        'jank_count_per_second',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        jankCount / totalFrameDuration,
+        { description: 'Number of changes in frame rate per second.',
+          summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
+        });
 
     histograms.createHistogram(
         'jank_count',
