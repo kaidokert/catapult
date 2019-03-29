@@ -73,8 +73,7 @@ def make_full_results(metadata, seconds_since_epoch, all_test_names, results):
     full_results['path_delimiter'] = TEST_SEPARATOR
     full_results['seconds_since_epoch'] = seconds_since_epoch
 
-    for md in metadata:
-        key, val = md.split('=', 1)
+    for key, val in metadata:
         full_results[key] = val
 
     passing_tests = _passing_test_names(results)
