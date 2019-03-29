@@ -246,8 +246,18 @@ class _ReadGraphJsonValueExecution(execution.Execution):
     return {'isolate_server': self._isolate_server}
 
   def _Poll(self):
-    graphjson = _RetrieveOutputJson(
-        self._isolate_server, self._isolate_hash, self._results_filename)
+    try:
+      graphjson = _RetrieveOutputJson(
+          self._isolate_server, self._isolate_hash, self._results_filename)
+    except ReadValueError as e:
+      if 'performance_browser_tests' not in self._results_filename:
+        raise e
+
+      # TODO(simonhatch): Remove this once crbug.com/947501 is resolved.
+      modified_name = self._results_filename.replace(
+          'performance_browser_tests', 'browser_tests')
+      graphjson = _RetrieveOutputJson(
+          self._isolate_server, self._isolate_hash, modified_name)
 
     if not self._chart and not self._trace:
       self._Complete(result_values=tuple([]))
