@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba586360_32d326f8",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-29T16:53:43Z",
+      "side": 1,
+      "message": "Currently trace_event guarantees that after trace_disable() the tracing is done and the trace file is ready for reading. I think we should maintain that.\n\nPerhaps we can keep metadata in memory in trace_event itself, so that we first call add_metadata (it doesn\u0027t write anything), and then trace_disable writes everything to disk and closes file.",
+      "revId": "e83ad80eba77879b3a3eb74db65342e151509cf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
