@@ -218,6 +218,10 @@ tr.exportTo('cp', () => {
         const request = new cp.SessionStateRequest({sessionId});
         const sessionState = await request.response;
 
+        if (sessionState.teamName) {
+          await dispatch(Redux.UPDATE('', {teamName: sessionState.teamName}));
+        }
+
         await dispatch(Redux.CHAIN(
             {
               type: ChromeperfApp.reducers.receiveSessionState.name,
@@ -236,6 +240,11 @@ tr.exportTo('cp', () => {
       },
 
     restoreFromRoute: (statePath, routeParams) => async(dispatch, getState) => {
+      const teamName = routeParams.get('team');
+      if (teamName) {
+        dispatch(Redux.UPDATE('', {teamName}));
+      }
+
       if (routeParams.has('nonav')) {
         dispatch(Redux.UPDATE(statePath, {enableNav: false}));
       }
@@ -287,6 +296,7 @@ tr.exportTo('cp', () => {
     saveSession: statePath => async(dispatch, getState) => {
       const state = Polymer.Path.get(getState(), statePath);
       const sessionState = ChromeperfApp.getSessionState(state);
+      sessionState.teamName = rootState.teamName;
       const request = new cp.SessionIdRequest({sessionState});
       const session = await request.response;
       const reduxRoutePath = new URLSearchParams({session});
@@ -346,6 +356,10 @@ tr.exportTo('cp', () => {
       if (routeParams === undefined) {
         await ChromeperfApp.actions.saveSession(statePath)(dispatch, getState);
         return;
+      }
+
+      if (rootState.teamName) {
+        routeParams.set('team', rootState.teamName);
       }
 
       if (!state.enableNav) {
