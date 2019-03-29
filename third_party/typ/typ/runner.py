@@ -53,6 +53,44 @@ ResultSet = json_results.ResultSet
 ResultType = json_results.ResultType
 
 
+def _validate_test_starts_with_prefix(prefix, test_name):
+    assert test_name.startswith(prefix), (
+        'The test prefix passed at the command line does not match the prefix '
+        'of all the tests generated')
+
+
+def get_test_filter_matcher(args):
+    def does_test_match_filter(test_filter, test_case):
+        _validate_test_starts_with_prefix(args.test_name_prefix, test_case.id())
+        test_name = test_case.id()[len(args.test_name_prefix):]
+        return any(fnmatch.fnmatch(test_name, glob)
+                   for glob in test_filter.split('::'))
+    return does_test_match_filter
+
+
+def get_positional_arg_matcher(args):
+    def does_test_match_positional_args(selected_tests, test_case):
+        _validate_test_starts_with_prefix(args.test_name_prefix, test_case.id())
+        return any(test in test_case.id()[len(args.test_name_prefix):]
+                   for test in selected_tests)
+    return does_test_match_positional_args
+
+
+def get_isolate_globs_matcher(args):
+    def does_test_match_isolate_globs(test_case):
+        _validate_test_starts_with_prefix(args.test_name_prefix, test_case.id())
+        test_name = test_case.id()[len(args.test_name_prefix):]
+        return any(fnmatch.fnmatch(test_name, glob) for glob in args.isolate)
+    return does_test_match_isolate_globs
+
+def get_skip_globs_matcher(args):
+    def does_test_match_any_skip_globs(test_case):
+        _validate_test_starts_with_prefix(args.test_name_prefix, test_case.id())
+        test_name = test_case.id()[len(args.test_name_prefix):]
+        return any(fnmatch.fnmatch(test_name, glob) for glob in args.skip)
+    return does_test_match_any_skip_globs
+
+
 def main(argv=None, host=None, win_multiprocessing=None, **defaults):
     host = host or Host()
     runner = Runner(host=host)
@@ -72,7 +110,7 @@ class TestInput(object):
 
 class TestSet(object):
 
-    def __init__(self, parallel_tests=None, isolated_tests=None,
+    def __init__(self, args, parallel_tests=None, isolated_tests=None,
                  tests_to_skip=None):
 
         def promote(tests):
@@ -83,11 +121,27 @@ class TestSet(object):
         self.parallel_tests = promote(parallel_tests)
         self.isolated_tests = promote(isolated_tests)
         self.tests_to_skip = promote(tests_to_skip)
+        self.args = args
 
     def copy(self):
-        return TestSet(
+        return TestSet(self.args,
             self.parallel_tests[:], self.isolated_tests[:],
             self.tests_to_skip[:])
+
+    def _get_test_name(self, test_case):
+        _validate_test_starts_with_prefix(
+            self.args.test_name_prefix, test_case.id())
+        return test_case.id()[len(self.args.test_name_prefix):]
+
+    def skip_test(self, test_case, reason=''):
+        self.tests_to_skip.append(
+            TestInput(self._get_test_name(test_case), reason))
+
+    def run_isolated(self, test_case):
+        self.isolated_tests.append(TestInput(self._get_test_name(test_case)))
+
+    def run_parallel(self, test_case):
+        self.parallel_tests.append(TestInput(self._get_test_name(test_case)))
 
 
 class WinMultiprocessing(object):
@@ -396,7 +450,7 @@ class Runner(object):
         self.expectations = expectations
 
     def find_tests(self, args):
-        test_set = TestSet()
+        test_set = TestSet(args)
 
         orig_skip = unittest.skip
         orig_skip_if = unittest.skipIf
@@ -565,7 +619,8 @@ class Runner(object):
 
             stats = Stats(self.args.status_format, h.time, 1)
             stats.total = len(tests_to_retry)
-            tests_to_retry = TestSet(isolated_tests=list(tests_to_retry))
+            tests_to_retry = TestSet(
+                self.args, isolated_tests=list(tests_to_retry))
             retry_set = ResultSet()
             self._run_one_set(stats, retry_set, tests_to_retry)
             result_set.results.extend(retry_set.results)
@@ -821,20 +876,27 @@ class Runner(object):
       else:
           return (set([ResultType.Pass]), False)
 
+
 def _matches(name, globs):
     return any(fnmatch.fnmatch(name, glob) for glob in globs)
 
 
 def _default_classifier(args):
+    _SkipMatch = get_skip_globs_matcher(args)
+    _IsolateMatch = get_isolate_globs_matcher(args)
+    _TestFilterMatch = get_test_filter_matcher(args)
+
     def default_classifier(test_set, test):
-        name = test.id()[len(args.test_name_prefix):]
-        if not args.all and _matches(name, args.skip):
-            test_set.tests_to_skip.append(TestInput(name,
-                                                    'skipped by request'))
-        elif _matches(name, args.isolate):
-            test_set.isolated_tests.append(TestInput(name))
-        else:
-            test_set.parallel_tests.append(TestInput(name))
+        if (args.all
+            or not args.test_filter
+            or _TestFilterMatch(args.test_filter, test)):
+            if not args.all and _SkipMatch(test):
+                test_set.skip_test(test, 'skipped by request')
+            elif _IsolateMatch(test):
+                test_set.run_isolated(test)
+            else:
+                test_set.run_parallel(test)
+
     return default_classifier
 
 
