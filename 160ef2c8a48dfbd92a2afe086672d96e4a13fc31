@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "0bddab98_10938bdc",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-29T04:09:38Z",
+      "side": 1,
+      "message": "The way this is being done, we will never get a stack trace of this exception from the wild. A better way to structure this is to reraise the full exception on the final retry. That way we don\u0027t spam the logs with lots of retry logs and we still get the full exception.\n\nI guess I\u0027m saying that this function should not exist the way it is written. The function that we expose should be something like \"ConnectToDevtools\", and it should always raise an exception if it fails. Then the caller can do something like this\n\ndef ConnectToDevtoolsRetry(..., retry_waits):\n  for wait in retry_waits:\n    try:\n      return ConnectToDevtools(...)\n    except devtools_http.DevToolsClientConnectionError, inspector_websocket.WebSocketException:\n      time.sleep(wait)\n  return ConnectToDevtools(...)\n\n\nI\u0027m also concerned about catching any Exception. I think this needs to be reworked to only catch exceptions that we expect.",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 58
+      },
+      "revId": "160ef2c8a48dfbd92a2afe086672d96e4a13fc31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ad5394d3_a2f9cd6e",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
         "patchSetId": 6
@@ -18,6 +41,52 @@
         "startChar": 0,
         "endLine": 50,
         "endChar": 0
+      },
+      "revId": "160ef2c8a48dfbd92a2afe086672d96e4a13fc31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28a453e5_aee86091",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-29T04:09:38Z",
+      "side": 1,
+      "message": "I see you copied this comment, but I\u0027m wondering if it can be rephrased. Maybe something like\n\n\"TODO: Figure out if this is best practice for check whether an agent is ready.\"",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 73
+      },
+      "revId": "160ef2c8a48dfbd92a2afe086672d96e4a13fc31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fdf677e_574062b3",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-29T04:09:38Z",
+      "side": 1,
+      "message": "It feels wrong to ask a config if it is alive. You can ask connections if they are alive, but I don\u0027t know about configs. Maybe we should call this something other than DevtoolsClientConfig?",
+      "range": {
+        "startLine": 248,
+        "startChar": 54,
+        "endLine": 248,
+        "endChar": 80
       },
       "revId": "160ef2c8a48dfbd92a2afe086672d96e4a13fc31",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
