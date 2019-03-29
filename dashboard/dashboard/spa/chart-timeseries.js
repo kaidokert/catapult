@@ -229,12 +229,10 @@ tr.exportTo('cp', () => {
     // Aggregate timeserieses, assign colors, layout chart data, snap revisions.
     layout: (state, {timeseriesesByLine}, rootState) => {
       const lines = [];
-      for (const {lineDescriptor, timeserieses} of timeseriesesByLine) {
+      for (const {lineDescriptor, timeseriesesByRange} of timeseriesesByLine) {
+        const {range, timeserieses} = timeseriesesByRange[0];
         const data = ChartTimeseries.aggregateTimeserieses(
-            lineDescriptor, timeserieses, state.levelOfDetail, {
-              minRevision: state.minRevision,
-              maxRevision: state.maxRevision,
-            });
+            lineDescriptor, timeserieses, state.levelOfDetail, range);
         if (data.length === 0) continue;
 
         let unit = timeserieses[0][0].unit;
@@ -360,6 +358,18 @@ tr.exportTo('cp', () => {
         });
       }
 
+      if (state.brushRevisions.length === 0) {
+        rows.push({
+          colspan: 2, color: 'var(--primary-color-dark, blue)',
+          name: 'Click for details'
+        });
+      } else {
+        rows.push({
+          colspan: 2, color: 'var(--primary-color-dark, blue)',
+          name: 'Control+click to compare details'
+        });
+      }
+
       state = {
         ...state,
         tooltip: {
@@ -397,6 +407,7 @@ tr.exportTo('cp', () => {
           closestDatum = datum;
         }
       }
+      if (!closestDatum) return {x: 0, xPct: 0};
       return {x, xPct: closestDatum.xPct + '%'};
     });
     return {...state, xAxis: {...state.xAxis, brushes}};
@@ -415,10 +426,21 @@ tr.exportTo('cp', () => {
   // Remove empty elements.
   function filterTimeseriesesByLine(timeseriesesByLine) {
     const result = [];
-    for (const {lineDescriptor, timeserieses} of timeseriesesByLine) {
-      const filteredTimeserieses = timeserieses.filter(ts => ts);
-      if (filteredTimeserieses.length === 0) continue;
-      result.push({lineDescriptor, timeserieses: filteredTimeserieses});
+    for (const {lineDescriptor, timeseriesesByRange} of timeseriesesByLine) {
+      const filteredTimeseriesesByRange = [];
+      for (const {range, timeserieses} of timeseriesesByRange) {
+        const filteredTimeserieses = timeserieses.filter(ts => ts);
+        if (filteredTimeserieses.length === 0) continue;
+        filteredTimeseriesesByRange.push({
+          range,
+          timeserieses: filteredTimeserieses,
+        });
+      }
+      if (filteredTimeseriesesByRange.length === 0) continue;
+      result.push({
+        lineDescriptor,
+        timeseriesesByRange: filteredTimeseriesesByRange,
+      });
     }
     return result;
   }
@@ -427,32 +449,38 @@ tr.exportTo('cp', () => {
   // Fetch one or more fetchDescriptors per line, batch the readers, collate the
   // data.
   // Yields {timeseriesesByLine: [{lineDescriptor, timeserieses}], errors}.
-  async function* generateTimeseries(
-      lineDescriptors, revisions, levelOfDetail) {
+  ChartTimeseries.generateTimeseries = async function* generateTimeseries(
+      lineDescriptors, revisionRanges, levelOfDetail) {
     const readers = [];
     const timeseriesesByLine = [];
 
     for (const lineDescriptor of lineDescriptors) {
       const fetchDescriptors = ChartTimeseries.createFetchDescriptors(
           lineDescriptor, levelOfDetail);
-      const timeserieses = new Array(fetchDescriptors.length);
-      timeseriesesByLine.push({lineDescriptor, timeserieses});
+      const timeseriesesByRange = new Array(revisionRanges.length);
+      timeseriesesByLine.push({lineDescriptor, timeseriesesByRange});
+      for (let rangeIndex = 0; rangeIndex < revisionRanges.length;
+        ++rangeIndex) {
+        const range = revisionRanges[rangeIndex];
+        const timeserieses = new Array(fetchDescriptors.length);
+        timeseriesesByRange[rangeIndex] = {range, timeserieses};
 
-      for (let fetchIndex = 0; fetchIndex < fetchDescriptors.length;
-        ++fetchIndex) {
-        readers.push((async function* () {
-          const request = new cp.TimeseriesRequest({
-            ...fetchDescriptors[fetchIndex],
-            ...revisions,
-          });
+        for (let fetchIndex = 0; fetchIndex < fetchDescriptors.length;
+          ++fetchIndex) {
+          readers.push((async function* () {
+            const request = new cp.TimeseriesRequest({
+              ...fetchDescriptors[fetchIndex],
+              ...range,
+            });
 
-          for await (const timeseries of request.reader()) {
-            // Replace any previous timeseries from this reader.
-            // TimeseriesCacheRequest merges results progressively.
-            timeserieses[fetchIndex] = timeseries;
-            yield {/* Pump BatchIterator. See timeseriesesByLine. */};
-          }
-        })());
+            for await (const timeseries of request.reader()) {
+              // Replace any previous timeseries from this reader.
+              // TimeseriesCacheRequest merges results progressively.
+              timeserieses[fetchIndex] = timeseries;
+              yield {/* Pump BatchIterator. See timeseriesesByLine. */};
+            }
+          })());
+        }
       }
     }
 
@@ -464,13 +492,13 @@ tr.exportTo('cp', () => {
       const filtered = filterTimeseriesesByLine(timeseriesesByLine);
       yield {timeseriesesByLine: filtered, errors};
     }
-  }
+  };
 
   ChartTimeseries.loadLines = statePath => async(dispatch, getState) => {
     const state = Polymer.Path.get(getState(), statePath);
-    const generator = generateTimeseries(
+    const generator = ChartTimeseries.generateTimeseries(
         state.lineDescriptors.slice(0, ChartTimeseries.MAX_LINES),
-        {minRevision: state.minRevision, maxRevision: state.maxRevision},
+        [{minRevision: state.minRevision, maxRevision: state.maxRevision}],
         state.levelOfDetail);
     for await (const {timeseriesesByLine, errors} of generator) {
       if (!cp.layoutTimeseries.isReady) await cp.layoutTimeseries.readyPromise;
