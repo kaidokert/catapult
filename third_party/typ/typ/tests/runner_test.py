@@ -21,6 +21,7 @@ from textwrap import dedent as d
 
 from typ import Host, Runner, TestCase, TestSet, TestInput
 from typ import WinMultiprocessing
+from typ.runner import _default_classifier
 
 
 def _setup_process(child, context):  # pylint: disable=W0613
@@ -33,8 +34,78 @@ def _teardown_process(child, context):  # pylint: disable=W0613
 def _teardown_throws(child, context):  # pylint: disable=W0613
     raise Exception("exception in teardown")
 
+class MockTestCase(unittest.TestCase):
+
+    def test_pass(self):
+        pass
+
+
+class MockArgs(object):
+
+    def __init__(
+        self, test_name_prefix='', skip_globs=None,
+        isolate_globs=None,test_filter='', all=False):
+        cls = MockTestCase('test_pass').__class__
+        self.test_name_prefix = (
+            test_name_prefix or '%s.%s.' % (cls.__module__, cls.__name__))
+        self.skip = skip_globs or []
+        self.isolate = isolate_globs or []
+        self.all = all
+        self.test_filter = test_filter
+
+
+def _PrefixDoesMatch(args, classifier):
+    test_set = TestSet(args)
+    classifier(test_set, MockTestCase('test_pass'))
+    return test_set
+
 
 class RunnerTests(TestCase):
+
+    def _PrefixDoesNotMatch(self, args, classifier):
+        test_set = TestSet(args)
+        with self.assertRaises(AssertionError) as context:
+            classifier(test_set, MockTestCase('test_pass'))
+        self.assertIn(
+            'The test prefix passed at the command line does not match the prefix '
+            'of all the tests generated', str(context.exception))
+
+    def test_test_filter_arg(self):
+        args = MockArgs(test_filter='test_pass')
+        classifier = _default_classifier(args)
+        test_set = _PrefixDoesMatch(args, classifier)
+        self.assertEqual(len(test_set.parallel_tests), 1)
+
+    def test_test_filter_arg_causes_assertion(self):
+        args = MockArgs(test_name_prefix='DontMatch')
+        classifier = _default_classifier(args)
+        self._PrefixDoesNotMatch(args, classifier)
+
+    def test_skip_arg(self):
+        args = MockArgs(skip_globs=['test_pas*'], test_filter='test_pass')
+        classifier = _default_classifier(args)
+        test_set = _PrefixDoesMatch(args, classifier)
+        self.assertEqual(len(test_set.tests_to_skip), 1)
+
+    def test_skip_arg_causes_assertion(self):
+        args = MockArgs(
+            test_name_prefix='DontMatch', skip_globs=['test_pas*'])
+        classifier = _default_classifier(args)
+        self._PrefixDoesNotMatch(args, classifier)
+
+    def test_isolate_arg(self):
+        args = MockArgs(isolate_globs=['test_pas*'], test_filter='test_pass')
+        classifier = _default_classifier(args)
+        test_set = _PrefixDoesMatch(args, classifier)
+        self.assertEqual(len(test_set.isolated_tests), 1)
+
+    def test_isolate_arg_causes_assertion(self):
+        args = MockArgs(
+            test_name_prefix='DontMatch', isolate_globs=['test_pas*'],
+            test_filter='test_pass')
+        classifier = _default_classifier(args)
+        self._PrefixDoesNotMatch(args, classifier)
+
     def test_context(self):
         r = Runner()
         r.args.tests = ['typ.tests.runner_test.ContextTests']
@@ -75,7 +146,7 @@ class TestSetTests(TestCase):
     # would normally be caught there can occur later during test execution.
 
     def test_missing_name(self):
-        test_set = TestSet()
+        test_set = TestSet(MockArgs())
         test_set.parallel_tests = [TestInput('nonexistent test')]
         r = Runner()
         r.args.jobs = 1
@@ -94,7 +165,7 @@ class TestSetTests(TestCase):
                 def load_tests(_, _2, _3):
                     assert False
                 """))
-            test_set = TestSet()
+            test_set = TestSet(MockArgs())
             test_set.parallel_tests = [TestInput('load_test.BaseTest.test_x')]
             r = Runner()
             r.args.jobs = 1
