@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c2755659_e7b54728",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-03-29T06:16:09Z",
+      "side": 1,
+      "message": "These branches are similar. Would it make sense to set local variables `status` and `owner` depending on current_bug_status, then call AddBugComment in one place after the branch?",
+      "range": {
+        "startLine": 543,
+        "startChar": 4,
+        "endLine": 549,
+        "endChar": 68
+      },
+      "revId": "c1686b4600171e6151cb6d6cc5260d5799878cb0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
