@@ -194,6 +194,13 @@ class Runner(object):
             if self.args.test_name_prefix:
                 self.args.metadata.append(
                     'test_name_prefix=' + self.args.test_name_prefix)
+            if self.args.tags:
+                self.args.metadata.append(
+                    'tags=%s' % '[' + ', '.join(self.args.tags) + ']')
+            if self.args.expectations_files:
+                self.args.metadata.append(
+                    'expectations_files=%s' %
+                    '[' + ', '.join(self.args.expectations_files) + ']')
             if self.args.list_only:
                 self.print_('\n'.join(all_tests))
             else:
