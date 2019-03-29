@@ -67,6 +67,7 @@ class TimeseriesQuery(object):
     self._max_timestamp = max_timestamp
     self._statistic_columns = []
     self._unsuffixed_test_metadata_keys = []
+    self._test_metadata_keys = []
     self._test_keys = []
     self._units = None
     self._improvement_direction = None
@@ -144,12 +145,13 @@ class TimeseriesQuery(object):
       desc.statistic = statistic
       test_paths.extend(desc.ToTestPathsSync())
 
-    test_metadata_keys = [utils.TestMetadataKey(path) for path in test_paths]
-    test_metadata_keys.extend(self._unsuffixed_test_metadata_keys)
+    self._test_metadata_keys = [
+        utils.TestMetadataKey(path) for path in test_paths]
+    self._test_metadata_keys.extend(self._unsuffixed_test_metadata_keys)
     test_paths.extend(unsuffixed_test_paths)
 
     test_old_keys = [utils.OldStyleTestKey(path) for path in test_paths]
-    self._test_keys = test_old_keys + test_metadata_keys
+    self._test_keys = test_old_keys + self._test_metadata_keys
 
   @ndb.tasklet
   def _FetchTests(self):
@@ -200,6 +202,7 @@ class TimeseriesQuery(object):
     if 'revisions' in self._columns or 'annotations' in self._columns:
       return projection, limit
 
+    # TODO(benjhayden) Remove this if/when the Row index is fixed.
     # Disable projection queries for timestamp for now. There's just an index
     # for ascending revision, not descending revision with timestamp.
     if 'timestamp' in self._columns:

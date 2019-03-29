@@ -21,6 +21,10 @@ tr.exportTo('cp', () => {
       }));
     }
 
+    observeLineDescriptors_() {
+      this.dispatch('load', this.statePath);
+    }
+
     observeRevisions_() {
       this.dispatch({
         type: SparklineCompound.reducers.updateSparklineRevisions.name,
@@ -53,9 +57,25 @@ tr.exportTo('cp', () => {
   SparklineCompound.observers = [
     'observeRevisions_(minRevision, maxRevision)',
     'observeCursor_(cursorRevision, cursorScalar)',
+    'observeLineDescriptors_(lineDescriptors)',
   ];
 
   SparklineCompound.actions = {
+    load: statePath => async(dispatch, getState) => {
+      const state = Polymer.Path.get(getState(), statePath);
+      // If we can get the parameter matrix from state, use that.
+      // Otherwise, we're in alerts-section, we don't have a
+      // timeseries-descriptor, just a bunch of lineDescriptors.
+      // Collect suites from all lineDescriptors.
+      // DescribeRequest for each suite, merge.
+      // Each tile in Bots tab gets map lineDescriptors, replacing bots with
+      // each bot from merged descriptor.
+      // Each tile in Cases gets map lineDescriptors, replacing cases with each
+      // case from merged descriptor.
+      // Each tile in Processes/Components/RAIL/etc gets map lineDescriptors,
+      // replacing measurement with a related measurement.
+    },
+
     selectRelatedTab: (statePath, selectedRelatedTabName) =>
       async(dispatch, getState) => {
         const state = Polymer.Path.get(getState(), statePath);
@@ -325,6 +345,7 @@ tr.exportTo('cp', () => {
           parameterMatrix, revisions, sparkLayout, relatedTabs, descriptor,
           'suite', 'Suites', 'suiteses');
 
+      // TODO Use RelatedNameMaps instead of these hard-coded strings.
       maybeAddV8BrowsingTabs(
           parameterMatrix, revisions, sparkLayout, relatedTabs, descriptor);
 
@@ -337,6 +358,7 @@ tr.exportTo('cp', () => {
       maybeAddParameterTab(
           parameterMatrix, revisions, sparkLayout, relatedTabs, descriptor,
           'case', 'Cases', 'caseses');
+      // TODO Case Tags
 
       if (state.selectedRelatedTabName) {
         const selectedRelatedTabIndex = relatedTabs.findIndex(tab =>

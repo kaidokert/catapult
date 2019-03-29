@@ -510,6 +510,10 @@ tr.exportTo('cp', () => {
             buildType: lineDescriptor.buildType,
             levelOfDetail,
           });
+          // TODO if levelOfDetail === ANNOTATIONS and case === undefined,
+          // then add ANNOTATIONS_ONLY fetchDescriptors for all test cases in
+          // this test suite in order to bubble alerts up to summary time
+          // series.
         }
       }
     }
