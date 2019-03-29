@@ -191,14 +191,20 @@ class Runner(object):
             _sort_inputs(test_set.parallel_tests +
                          test_set.isolated_tests +
                          test_set.tests_to_skip)]
+            self.args.metadata = [md.split('=', 1) for  md in self.args.metadata]
             if self.args.test_name_prefix:
                 self.args.metadata.append(
-                    'test_name_prefix=' + self.args.test_name_prefix)
+                    ('test_name_prefix', self.args.test_name_prefix))
+            if self.args.tags:
+                self.args.metadata.append(('tags', self.args.tags))
+            if self.args.expectations_files:
+                self.args.metadata.append(
+                    ('expectations_files', self.args.expectations_files))
             if self.args.list_only:
                 self.print_('\n'.join(all_tests))
             else:
                 for _ in range(self.args.repeat):
-                    current_ret, full_results= self._run_tests(
+                    current_ret, full_results=self._run_tests(
                         result_set, test_set.copy(), all_tests)
                     ret = ret or current_ret
 
@@ -786,8 +792,7 @@ class Runner(object):
         trace = OrderedDict()
         trace['traceEvents'] = []
         trace['otherData'] = {}
-        for m in self.args.metadata:
-            k, v = m.split('=')
+        for k, v in self.args.metadata:
             trace['otherData'][k] = v
 
         for result in result_set.results:
