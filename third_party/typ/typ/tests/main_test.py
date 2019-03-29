@@ -1066,6 +1066,31 @@ class TestCli(test_case.MainTestCase):
             files=files, ret=0, err='')
         self.assertIn('[1/1] test_pass passed\n', out)
 
+    def test_implement_test_name_prefix_exclusion_in_test_filter(self):
+        files = OUTPUT_TEST_FILES
+        _, out, _, files = self.check(
+            ['--write-full-results-to', 'full_results.json',
+             '--test-name-prefix', 'output_test.',
+             '--test-filter', '*test_out'],
+            files=files, ret=0, err='')
+        results = json.loads(files['full_results.json'])
+        self.assertEqual(len(results['tests']), 1)
+        self.assertIn('[1/1] PassTest.test_out passed\n', out)
+
+    def test_all_overrides_test_filter(self):
+        files = OUTPUT_TEST_FILES
+        _, out, _, files = self.check(
+            ['--write-full-results-to', 'full_results.json',
+             '--test-name-prefix', 'output_test.',
+             '--test-filter', '*test_out',
+             '--all'],
+            files=files, ret=1, err='')
+        results = json.loads(files['full_results.json'])
+        self.assertEqual(len(results['tests']), 2)
+        self.assertIn('PassTest.test_out passed\n', out)
+        self.assertIn('PassTest.test_err passed\n', out)
+        self.assertIn('FailTest.test_out_err_fail failed unexpectedly:\n', out)
+
     def test_implement_test_name_prefix_exclusion_in_expectations_files(self):
         files = {'fail_test.py': FAIL_TEST_PY,
                  'expectations.txt': d("""\
