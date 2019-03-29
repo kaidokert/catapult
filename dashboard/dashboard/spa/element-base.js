@@ -88,6 +88,8 @@ tr.exportTo('cp', () => {
         ...Redux.DEFAULT_REDUCER_WRAPPERS,
       ]);
     }
+    cp.timeActions(subclass);
+    cp.timeEventListeners(subclass);
   };
 
   return {

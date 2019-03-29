@@ -441,6 +441,72 @@ tr.exportTo('cp', () => {
     return pluralSuffix;
   }
 
+  function timeEventListeners(cls) {
+    // Polymer handles the addEventListener() calls, this method just wraps
+    // 'on*_' methods with Timing marks.
+    for (const name of Object.getOwnPropertyNames(cls.prototype)) {
+      if (!name.startsWith('on')) continue;
+      if (!name.endsWith('_')) continue;
+      (() => {
+        const wrapped = cls.prototype[name];
+        const debugName = cls.name + '.' + name;
+
+        cls.prototype[name] = async function eventListenerWrapper(event) {
+          // Measure the time from when the browser receives the event to when
+          // we receive the event.
+          if (event && event.timeStamp) {
+            tr.b.Timing.mark('listener', debugName, event.timeStamp).end();
+          }
+
+          // Measure the first paint latency by starting the event listener
+          // without awaiting it.
+          const firstPaintMark = tr.b.Timing.mark('firstPaint', debugName);
+          const resultPromise = wrapped.call(this, event);
+          (async() => {
+            await cp.afterRender();
+            firstPaintMark.end();
+          })();
+
+          const result = await resultPromise;
+
+          const lastPaintMark = tr.b.Timing.mark('lastPaint', debugName);
+          (async() => {
+            await cp.afterRender();
+            lastPaintMark.end();
+          })();
+
+          return result;
+        };
+      })();
+    }
+  }
+
+  function timeActions(cls) {
+    if (!cls.actions) return;
+    for (const [name, action] of Object.entries(cls.actions)) {
+      const debugName = `${cls.name}.actions.${name}`;
+      const actionReplacement = (...args) => {
+        const thunk = action(...args);
+        Object.defineProperty(thunk, 'name', {value: debugName});
+        const thunkReplacement = async(dispatch, getState) => {
+          const mark = tr.b.Timing.mark('action', debugName);
+          try {
+            return await thunk(dispatch, getState);
+          } finally {
+            mark.end();
+          }
+        };
+        Object.defineProperty(thunkReplacement, 'name', {
+          value: 'timeActions:wrapper',
+        });
+        return thunkReplacement;
+      };
+      actionReplacement.implementation = action;
+      Object.defineProperty(actionReplacement, 'name', {value: debugName});
+      cls.actions[name] = actionReplacement;
+    }
+  }
+
   /**
    * Compute a given number of colors by evenly spreading them around the
    * sinebow hue circle, or, if a Range of brightnesses is given, the hue x
@@ -505,6 +571,8 @@ tr.exportTo('cp', () => {
     plural,
     setImmutable,
     sha,
+    timeActions,
+    timeEventListeners,
     timeout,
   };
 });
