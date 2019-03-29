@@ -34,6 +34,24 @@
       "revId": "f4fe5c76a47eee9935878a2fd274f619c3872d26",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d63c239_787bde17",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-29T15:29:25Z",
+      "side": 1,
+      "message": "Yes, all needs to be added to the same file. Also in the newer \"proto\" world, we need to figure out how the extra metadata should be encoded in the trace too.",
+      "parentUuid": "3678bcd7_e3b93484",
+      "revId": "f4fe5c76a47eee9935878a2fd274f619c3872d26",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
