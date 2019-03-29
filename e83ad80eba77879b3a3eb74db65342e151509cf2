@@ -16,6 +16,24 @@
       "revId": "e83ad80eba77879b3a3eb74db65342e151509cf2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30e467f0_f29d22eb",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-03-29T16:57:09Z",
+      "side": 1,
+      "message": "I mean something like that:\n\ndef SetTelemetryInfo(self, telemetry_info):\n  trace_event.add_metadata(telemetry_info)\n\ndef StopAgentTracing(self):\n  trace_event.trace_disable()\n\ndef CollectAgentTraceData(self, trace_data_builder, timeout\u003dNone):\n  trace_data_builder.AddTraceFileFor(\n        trace_data.TELEMETRY_PART, self._trace_file.name)",
+      "parentUuid": "ba586360_32d326f8",
+      "revId": "e83ad80eba77879b3a3eb74db65342e151509cf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
