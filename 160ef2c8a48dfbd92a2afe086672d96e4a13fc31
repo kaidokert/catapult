@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "0bff0ac4_3e42c100",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-29T11:24:49Z",
+      "side": 1,
+      "message": "Agree with a lot of what you say. Responding to a couple specific points:\n\n1. The broad except was there in the old code [1]. But it\u0027s true that I was being a bit lazy and not listing all other three more specific types of exceptions that can be raised. I refactored this so (at least) we get the same sort of information as in the previous code. Let me know what you think.\n\n2. Yes! I want a ConnectToDevtoolsRetry like you suggested. In fact my old attempt at that was the WaitForAndCreate below, but I\u0027m removing that in this CL because that approach did not work. The problem is that we also need to refresh the devtools_port and browser_target args passed to this method in between retries, c.f. [2]. But I want to leave that for some follow up work, since that will be trickier and for now what I want is to quickly unblock Eric\u0027s devtools/tracing CL.\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py?rcl\u003daab7e3179a015b87e63144b716bf41f205734800\u0026l\u003d157\n[2]: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py?rcl\u003daab7e3179a015b87e63144b716bf41f205734800\u0026l\u003d84",
+      "parentUuid": "066a8b71_00be057f",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 58
+      },
+      "revId": "160ef2c8a48dfbd92a2afe086672d96e4a13fc31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ad5394d3_a2f9cd6e",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
         "patchSetId": 6
@@ -60,6 +84,30 @@
       "writtenOn": "2019-03-28T15:55:58Z",
       "side": 1,
       "message": "nit: should there be three empty lines here?",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 0
+      },
+      "revId": "160ef2c8a48dfbd92a2afe086672d96e4a13fc31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e903d5e_af8bb0b2",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-29T11:24:49Z",
+      "side": 1,
+      "message": "Nope. Removed. :)",
+      "parentUuid": "ad5394d3_a2f9cd6e",
       "range": {
         "startLine": 50,
         "startChar": 0,
@@ -95,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "bfa441ac_278ead29",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-29T11:24:49Z",
+      "side": 1,
+      "message": "Yup. Done.",
+      "parentUuid": "28a453e5_aee86091",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 73
+      },
+      "revId": "160ef2c8a48dfbd92a2afe086672d96e4a13fc31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7fdf677e_574062b3",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
         "patchSetId": 6
@@ -106,6 +178,30 @@
       "writtenOn": "2019-03-29T04:09:38Z",
       "side": 1,
       "message": "It feels wrong to ask a config if it is alive. You can ask connections if they are alive, but I don\u0027t know about configs. Maybe we should call this something other than DevtoolsClientConfig?",
+      "range": {
+        "startLine": 248,
+        "startChar": 54,
+        "endLine": 248,
+        "endChar": 80
+      },
+      "revId": "160ef2c8a48dfbd92a2afe086672d96e4a13fc31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd7090ac_74f13fce",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-29T11:24:49Z",
+      "side": 1,
+      "message": "Yes, the names don\u0027t make sense any more. That\u0027s the reason for the TODO above in line 53. I expanded that comment now to provide more context.\n\nI introduced DevtoolsClientConfig some time ago to collect and unify the args needed to create a DevToolsClientBackend; because in the past getting those values happened somewhere, and then the creation of the client itself happened elsewhere. That was part of a large refactor in crbug.com/787834\n\nBut now all the code is finally in one place; and the only public API is now GetDevToolsBackEndIfReady. So I\u0027m planning in follow up CLs to finally merge the two clases into one, which will make all of this a lot simpler.",
+      "parentUuid": "7fdf677e_574062b3",
       "range": {
         "startLine": 248,
         "startChar": 54,
