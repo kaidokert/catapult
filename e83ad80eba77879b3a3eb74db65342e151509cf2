@@ -34,6 +34,24 @@
       "revId": "e83ad80eba77879b3a3eb74db65342e151509cf2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f849d96_9cc5b9c7",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-03-29T16:59:13Z",
+      "side": 1,
+      "message": "Yup! That works, and certainly looks better! Let\u0027s go with that.",
+      "parentUuid": "30e467f0_f29d22eb",
+      "revId": "e83ad80eba77879b3a3eb74db65342e151509cf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
