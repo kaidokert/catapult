@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "066a8b71_00be057f",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-03-29T04:13:08Z",
+      "side": 1,
+      "message": "I looked and I think that the current code doesn\u0027t catch any exception. It only catches devtools_http.DevToolsClientConnectionError.",
+      "parentUuid": "0bddab98_10938bdc",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 58
+      },
+      "revId": "160ef2c8a48dfbd92a2afe086672d96e4a13fc31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ad5394d3_a2f9cd6e",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
         "patchSetId": 6
