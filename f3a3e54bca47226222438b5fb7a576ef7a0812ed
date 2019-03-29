@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b598b0a1_f8dd79ea",
+        "filename": "dashboard/dashboard/update_dashboard_stats_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-03-29T06:10:41Z",
+      "side": 1,
+      "message": "extra space",
+      "range": {
+        "startLine": 56,
+        "startChar": 2,
+        "endLine": 56,
+        "endChar": 13
+      },
+      "revId": "f3a3e54bca47226222438b5fb7a576ef7a0812ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
