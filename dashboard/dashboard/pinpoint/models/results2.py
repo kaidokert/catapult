@@ -154,5 +154,16 @@ def _JsonFromExecution(execution):
     results_filename = execution._results_filename
   else:
     results_filename = 'chartjson-output.json'
-  return read_value._RetrieveOutputJson(
-      isolate_server, isolate_hash, results_filename)
+
+  try:
+    return read_value._RetrieveOutputJson(
+        isolate_server, isolate_hash, results_filename)
+  except read_value.ReadValueError as e:
+    if 'performance_browser_tests' not in results_filename:
+      raise e
+
+    # TODO(simonhatch): Remove this once crbug.com/947501 is resolved.
+    modified_name = results_filename.replace(
+        'performance_browser_tests', 'browser_tests')
+    return read_value._RetrieveOutputJson(
+        isolate_server, isolate_hash, modified_name)
