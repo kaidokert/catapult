@@ -177,6 +177,13 @@ tr.exportTo('cp', () => {
         }));
       }
     }
+
+    observeDetailsConfig_(lines, brushRevisions) {
+      this.dispatch({
+        type: ChartCompound.reducers.details.name,
+        statePath: this.statePath,
+      });
+    }
   }
 
   ChartCompound.State = {
@@ -205,6 +212,7 @@ tr.exportTo('cp', () => {
       chartLayout.yAxis.showTickLines = true;
       return chartLayout;
     },
+    details: options => cp.DetailsTable.buildState({}),
     isShowingOptions: options => false,
     isLinked: options => options.isLinked !== false,
     cursorRevision: options => 0,
@@ -226,6 +234,7 @@ tr.exportTo('cp', () => {
     'observeLinkedZeroYAxis_(linkedZeroYAxis)',
     'observeLinkedFixedXAxis_(linkedFixedXAxis)',
     'observeCursor_(cursorRevision, cursorScalar)',
+    'observeDetailsConfig_(chartLayout.lines, chartLayout.brushRevisions)',
   ];
 
   ChartCompound.LinkedState = {
@@ -345,6 +354,30 @@ tr.exportTo('cp', () => {
   };
 
   ChartCompound.reducers = {
+    // The chartLayout chart-timeseries loads lines at its own pace.
+    // The details-table displays details for brushed data points.
+    // The details-table needs chartLayout.lines, it can't simply request data
+    // just for brushed revision ranges because revision links need to reference
+    // revisions from the data points just prior to the brushed data points.
+    details: (state, action, rootState) => {
+      if (!state || !state.chartLayout) return state;
+      const brushRevisions = state.chartLayout.brushRevisions;
+      const revisionRanges = [];
+      if (brushRevisions.length % 2 === 0) {
+        for (let i = 0; i < brushRevisions.length; i += 2) {
+          revisionRanges.push({
+            minRevision: brushRevisions[i],
+            maxRevision: brushRevisions[i + 1],
+          });
+        }
+      }
+      const details = cp.DetailsTable.buildState({
+        lines: state.chartLayout.lines,
+        revisionRanges,
+      });
+      return {...state, details};
+    },
+
     // Translate cursorRevision and cursorScalar to x/y pct in the minimap and
     // chartlayout. Don't draw yAxis.cursor in the minimap, it's too short.
     setCursors: (state, action, rootState) => {
