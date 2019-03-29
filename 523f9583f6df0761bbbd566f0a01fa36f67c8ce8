@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d460aba9_ae9b8303",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2019-03-29T17:02:43Z",
+      "side": 1,
+      "message": "ChromeDriver does the similar thing upon initial connection to DevTools, so I think this is OK. (The only difference is ChromeDriver sends a version request instead of an empty request, as it needs to know which version of Chrome it is talking to.)\n\nChromeDriver does remember that the connection is open, and won\u0027t send additional request if it is asked again whether the connection is ready. It is unusual for a connection to go away once it is made, and is an error condition that other parts of the code needs to handle any way. I don\u0027t know how often this method gets called. It\u0027s probably not a big deal if it is called rarely.",
+      "range": {
+        "startLine": 166,
+        "startChar": 2,
+        "endLine": 169,
+        "endChar": 35
+      },
+      "revId": "523f9583f6df0761bbbd566f0a01fa36f67c8ce8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
