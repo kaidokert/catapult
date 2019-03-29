@@ -510,6 +510,10 @@ tr.exportTo('cp', () => {
             buildType: lineDescriptor.buildType,
             levelOfDetail,
           });
+          // TODO if levelOfDetail === ANNOTATIONS and case === undefined,
+          // then add ANNOTATIONS_ONLY fetchDescriptors for all test cases in
+          // this test suite in order to bubble alerts up to summary time
+          // series.
         }
       }
     }
@@ -535,14 +539,13 @@ tr.exportTo('cp', () => {
 
   ChartTimeseries.aggregateTimeserieses = (
       lineDescriptor, timeserieses, levelOfDetail, range) => {
+    const isXY = (levelOfDetail === cp.LEVEL_OF_DETAIL.XY);
     const lineData = [];
     const iter = new cp.TimeseriesMerger(timeserieses, range);
     for (const [x, datum] of iter) {
+      const icon = isXY ? {} : getIcon(datum);
       lineData.push({
-        datum,
-        x,
-        y: datum[lineDescriptor.statistic],
-        ...getIcon(datum),
+        datum, x, y: datum[lineDescriptor.statistic], ...icon,
       });
     }
 
