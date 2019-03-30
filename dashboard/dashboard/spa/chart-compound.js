@@ -35,6 +35,13 @@ tr.exportTo('cp', () => {
       // sparklines.
     }
 
+    async onChartClick_(event) {
+      this.dispatch('brushChart', this.statePath,
+          event.detail.nearestLine,
+          event.detail.nearestPoint,
+          event.detail.ctrlKey);
+    }
+
     async onMenuKeyup_(event) {
       if (event.key === 'Escape') {
         await this.dispatch(Redux.UPDATE(this.statePath, {
@@ -177,6 +184,13 @@ tr.exportTo('cp', () => {
         }));
       }
     }
+
+    observeDetailsConfig_() {
+      this.dispatch({
+        type: ChartCompound.reducers.details.name,
+        statePath: this.statePath,
+      });
+    }
   }
 
   ChartCompound.State = {
@@ -205,6 +219,7 @@ tr.exportTo('cp', () => {
       chartLayout.yAxis.showTickLines = true;
       return chartLayout;
     },
+    details: options => cp.DetailsTable.buildState({}),
     isShowingOptions: options => false,
     isLinked: options => options.isLinked !== false,
     cursorRevision: options => 0,
@@ -226,6 +241,7 @@ tr.exportTo('cp', () => {
     'observeLinkedZeroYAxis_(linkedZeroYAxis)',
     'observeLinkedFixedXAxis_(linkedFixedXAxis)',
     'observeCursor_(cursorRevision, cursorScalar)',
+    'observeDetailsConfig_(lineDescriptors, chartLayout.brushRevisions)',
   ];
 
   ChartCompound.LinkedState = {
@@ -250,6 +266,19 @@ tr.exportTo('cp', () => {
   ChartCompound.properties.lineDescriptors.observer = 'observeLineDescriptors_';
 
   ChartCompound.actions = {
+    // Brush around cursorRevision.
+    brushChart: (statePath, nearestLine, nearestPoint, addBrush) =>
+      async(dispatch, getState) => {
+        // Set chartLayout.brushRevisions.
+        dispatch({
+          type: ChartCompound.reducers.brushChart.name,
+          statePath,
+          nearestLine,
+          nearestPoint,
+          addBrush,
+        });
+      },
+
     updateLinkedRevisions: (
         linkedStatePath, linkedMinRevision, linkedMaxRevision) =>
       async(dispatch, getState) => {
@@ -345,6 +374,64 @@ tr.exportTo('cp', () => {
   };
 
   ChartCompound.reducers = {
+    brushChart: (state, {nearestLine, nearestPoint, addBrush}, rootState) => {
+      // Brush around nearestPoint
+      const datumIndex = nearestLine.data.indexOf(nearestPoint);
+      if (datumIndex < 0) return state;
+
+      const brushes = addBrush ? [...state.chartLayout.xAxis.brushes] : [];
+
+      let x = nearestPoint.x - 1;
+      let xPct = nearestPoint.xPct;
+      if (datumIndex > 0) {
+        const prevPoint = nearestLine.data[datumIndex - 1];
+        x = (nearestPoint.x + prevPoint.x) / 2;
+        xPct = ((parseFloat(nearestPoint.xPct) +
+                 parseFloat(prevPoint.xPct)) / 2) + '%';
+      }
+      brushes.push({x, xPct});
+
+      x = nearestPoint.x + 1;
+      xPct = nearestPoint.xPct;
+      if (datumIndex < nearestLine.data.length - 1) {
+        const nextPoint = nearestLine.data[datumIndex + 1];
+        x = (nearestPoint.x + nextPoint.x) / 2;
+        xPct = ((parseFloat(nearestPoint.xPct) +
+                 parseFloat(nextPoint.xPct)) / 2) + '%';
+      }
+      brushes.push({x, xPct});
+
+      brushes.sort((x, y) => x.x - y.x);  // ascending
+      const brushRevisions = brushes.map(brush => brush.x);
+      const xAxis = {...state.chartLayout.xAxis, brushes};
+      const chartLayout = {...state.chartLayout, brushRevisions, xAxis};
+      return {...state, chartLayout};
+    },
+
+    // The chartLayout chart-timeseries loads lines at its own pace.
+    // The details-table displays details for brushed data points.
+    // The details-table needs chartLayout.lines, it can't simply request data
+    // just for brushed revision ranges because revision links need to reference
+    // revisions from the data points just prior to the brushed data points.
+    details: (state, action, rootState) => {
+      if (!state || !state.chartLayout) return state;
+      const brushRevisions = state.chartLayout.brushRevisions;
+      const revisionRanges = [];
+      if (brushRevisions.length % 2 === 0) {
+        for (let i = 0; i < brushRevisions.length; i += 2) {
+          revisionRanges.push({
+            minRevision: brushRevisions[i],
+            maxRevision: brushRevisions[i + 1],
+          });
+        }
+      }
+      const details = cp.DetailsTable.buildState({
+        lines: state.chartLayout.lines,
+        revisionRanges,
+      });
+      return {...state, details};
+    },
+
     // Translate cursorRevision and cursorScalar to x/y pct in the minimap and
     // chartlayout. Don't draw yAxis.cursor in the minimap, it's too short.
     setCursors: (state, action, rootState) => {

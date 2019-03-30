@@ -482,6 +482,13 @@ tr.exportTo('cp', () => {
     return colors;
   }
 
+  function* enumerate(iter) {
+    let i = -1;
+    for (const value of iter) {
+      yield [++i, value];
+    }
+  }
+
   return {
     BatchIterator,
     NON_BREAKING_SPACE,
@@ -493,6 +500,7 @@ tr.exportTo('cp', () => {
     buildState,
     deepFreeze,
     denormalize,
+    enumerate,
     generateColors,
     getActiveElement,
     idle,
