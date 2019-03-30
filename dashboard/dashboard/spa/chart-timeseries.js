@@ -229,12 +229,10 @@ tr.exportTo('cp', () => {
     // Aggregate timeserieses, assign colors, layout chart data, snap revisions.
     layout: (state, {timeseriesesByLine}, rootState) => {
       const lines = [];
-      for (const {lineDescriptor, timeserieses} of timeseriesesByLine) {
+      for (const {lineDescriptor, timeseriesesByRange} of timeseriesesByLine) {
+        const {range, timeserieses} = timeseriesesByRange[0];
         const data = ChartTimeseries.aggregateTimeserieses(
-            lineDescriptor, timeserieses, state.levelOfDetail, {
-              minRevision: state.minRevision,
-              maxRevision: state.maxRevision,
-            });
+            lineDescriptor, timeserieses, state.levelOfDetail, range);
         if (data.length === 0) continue;
 
         let unit = timeserieses[0][0].unit;
@@ -360,6 +358,18 @@ tr.exportTo('cp', () => {
         });
       }
 
+      if (state.brushRevisions.length === 0) {
+        rows.push({
+          colspan: 2, color: 'var(--primary-color-dark, blue)',
+          name: 'Click for details'
+        });
+      } else {
+        rows.push({
+          colspan: 2, color: 'var(--primary-color-dark, blue)',
+          name: 'Control+click to compare details'
+        });
+      }
+
       state = {
         ...state,
         tooltip: {
@@ -397,6 +407,7 @@ tr.exportTo('cp', () => {
           closestDatum = datum;
         }
       }
+      if (!closestDatum) return {x: 0, xPct: 0};
       return {x, xPct: closestDatum.xPct + '%'};
     });
     return {...state, xAxis: {...state.xAxis, brushes}};
