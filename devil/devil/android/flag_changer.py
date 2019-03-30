@@ -52,7 +52,8 @@ class FlagChanger(object):
     once the tests have completed.
   """
 
-  def __init__(self, device, cmdline_file, use_legacy_path=False):
+  def __init__(self, device, cmdline_file, use_legacy_path=False,
+               require_rooted_device=True):
     """Initializes the FlagChanger and records the original arguments.
 
     Args:
@@ -60,6 +61,11 @@ class FlagChanger(object):
       cmdline_file: Name of the command line file where to store flags.
       use_legacy_path: Whether to use the legacy commandline path (needed for
         M54 and earlier)
+      require_rooted_device: Whether to require that the target device be
+        rooted. This defaults to True; False only works if use_legacy_path is
+        also set to False. Not suitable for running performance tests since this
+        prevents important switches from being set, such as disabling the CPU
+        governor.
     """
     self._device = device
     self._should_reset_enforce = False
@@ -74,7 +80,10 @@ class FlagChanger(object):
     if use_legacy_path:
       cmdline_path, alternate_cmdline_path = (
           alternate_cmdline_path, cmdline_path)
+      if not require_rooted_device:
+        raise ValueError('use_legacy_path requires require_rooted_device=True')
     self._cmdline_path = cmdline_path
+    self._require_rooted_device = require_rooted_device
 
     if self._device.PathExists(alternate_cmdline_path):
       logger.warning(
@@ -179,10 +188,12 @@ class FlagChanger(object):
     """Set SELinux to permissive, if needed.
 
     On Android N and above this is needed in order to allow Chrome to read the
-    command line file.
+    legacy command line file.
 
     TODO(crbug.com/699082): Remove when a better solution exists.
     """
+    if not self._require_rooted_device:
+      return
     if (self._device.build_version_sdk >= version_codes.NOUGAT and
         self._device.GetEnforce()):
       self._device.SetEnforce(enabled=False)
