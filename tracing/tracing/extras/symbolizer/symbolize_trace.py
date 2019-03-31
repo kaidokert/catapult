@@ -513,9 +513,9 @@ class StringMap(NodeWrapper):
 
     for strings_node in self._strings_nodes:
       del strings_node[:]
-    strings_node = self._strings_nodes[0]
     for string_id, string in self._string_by_id.items():
-      strings_node.append({'id': string_id, 'string': string})
+      for strings_node in self._strings_nodes:
+        strings_node.append({'id': string_id, 'string': string})
 
     self._modified = False
 
@@ -596,12 +596,9 @@ class TypeNameMap(NodeWrapper):
     # Serialize into the first node, and clear all others.
 
     for types_node in self._type_name_nodes:
-      del types_node[:]
-    types_node = self._type_name_nodes[0]
-    for type_id, type_name in self._name_by_id.items():
-      types_node.append({
-          'id': type_id,
-          'name_sid': string_map.AddString(type_name)})
+      for type_node in types_node:
+        type_name = self._name_by_id[type_node['id']]
+        type_node['name_sid'] = string_map.AddString(type_name)
 
     self._modified = False
 
@@ -755,26 +752,13 @@ class StackFrameMap(NodeWrapper):
 
     # Serialize frames into the first node, clear all others.
 
-    for frames_node in self._stack_frames_nodes:
-      if self._heap_dump_version == Trace.HEAP_DUMP_VERSION_LEGACY:
-        frames_node.clear()
-      else:
-        del frames_node[:]
-
-    frames_node = self._stack_frames_nodes[0]
-    for frame in self._frame_by_id.values():
-      if self._heap_dump_version == Trace.HEAP_DUMP_VERSION_LEGACY:
-        frame_node = {'name': frame.name}
-        frames_node[frame.id] = frame_node
-      else:
-        frame_node = {
-            'id': frame.id,
-            'name_sid': string_map.AddString(frame.name)
-        }
-        frames_node.append(frame_node)
-      if frame.parent_id is not None:
-        frame_node['parent'] = frame.parent_id
-      frame._ClearModified()
+    for stack_frames_node in self._stack_frames_nodes:
+      for frame_node in stack_frames_node:
+        i = frame_node['id']
+        frame = self._frame_by_id[i]
+        # assert not frame.name.startswith('pc:')
+        name_sid = string_map.AddString(frame.name)
+        frame_node['name_sid'] = name_sid
 
     self._modified = False
 
@@ -1455,7 +1439,25 @@ def SymbolizeTrace(options, trace, symbolizer):
                       trace.is_64bit, options.only_symbolize_chrome_symbols)
 
   SymbolizeFiles(symfiles, symbolizer)
+  MapStringMapPc(trace)
 
+def MapStringMapPc(trace):
+  for process in trace.processes:
+    pc_mapping = {}
+    if not process.memory_map:
+      continue
+    for frame in process.stack_frame_map.frame_by_id.values():
+      if frame.pc is None:
+        continue
+      pc_mapping[frame.pc] = frame.name
+
+    _PC_TAG = 'pc:'
+    for i, s in process.type_name_map.name_by_id.items():
+      if not s.startswith(_PC_TAG):
+        continue
+      pc = long(s[len(_PC_TAG):], 16)
+      if pc in pc_mapping:
+        process.type_name_map.name_by_id[i] = pc_mapping[pc]
 
 def FetchAndExtractBreakpadSymbols(symbol_base_directory,
                                    breakpad_info_folder,
