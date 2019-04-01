@@ -939,7 +939,7 @@ class TestCli(test_case.MainTestCase):
         files = {'flaky_test.py': FLAKY_TEST_PY,
                  'expectations.txt': d("""\
                   # tags: [ foo bar ]
-                  crbug.com/12345 [ foo ] flaky_test.FlakyTest.test_flaky [ RetryOnFailure ]
+                  crbug.com/12345 [ foo ] flaky_test.FlakyTest.test*flaky [ RetryOnFailure ]
                 """)}
         _, out, _, files = self.check(['--write-full-results-to',
                                        'full_results.json',

@@ -251,7 +251,7 @@ class TestExpectations(object):
         # reject, etc. Right now, you effectively just get a union.
         glob_exps = []
         for exp in parser.expectations:
-            if exp.test.endswith('*'):
+            if '*' in exp.test:
                 glob_exps.append(exp)
             else:
                 self.individual_exps.setdefault(exp.test, []).append(exp)
