@@ -2,6 +2,108 @@
   "comments": [
     {
       "key": {
+        "uuid": "71aff5cd_d89a4184",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-04-01T14:46:11Z",
+      "side": 1,
+      "message": "nit: let\u0027s follow the convention of format\u003dNone; and the assign a default value in the code if None.",
+      "revId": "c0913704c0405452490ab75a58a8bc790bd1af86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba4c8233_6c17c279",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-04-01T14:46:11Z",
+      "side": 1,
+      "message": "nit: could we reduce the amount of duplicated code? Maybe something like:\n\n  if _format \u003d\u003d trace_format.PROTO:\n    ...\n  else:\n    if _format \u003d\u003d trace_format.JSON:\n      opening \u003d \u0027[\u0027\n    elif _format \u003d\u003d trace_format.JSON_WITH_METADATA:\n      opening \u003d \u0027{\"traceEvents\": [\\n\u0027\n    else:\n      raise TraceException(...)\n    _log_file.write(opening)\n    ...",
+      "revId": "c0913704c0405452490ab75a58a8bc790bd1af86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68584439_49665d5e",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-04-01T14:46:11Z",
+      "side": 1,
+      "message": "super nit: make this a tuple rather than a list.",
+      "revId": "c0913704c0405452490ab75a58a8bc790bd1af86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35db4e67_8d268a8f",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-04-01T14:46:11Z",
+      "side": 1,
+      "message": "I know it was already like this in the previous code; but I think it should be more efficient if we let json.dump write directly to the file, rather than building first the whole string in memory before writing, i.e. this becomes:\n\n    for event in _cur_events:\n      _log_file.write(\",\\n\")\n      json.dump(event, _log_file)\n\nYou can take the chance to make a similar change in other places in this file where we\u0027re writing json.",
+      "revId": "c0913704c0405452490ab75a58a8bc790bd1af86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4331328_a2df4472",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-04-01T14:46:11Z",
+      "side": 1,
+      "message": "If you take format\u003dNone in the function definition, then you don\u0027t need this branching here. :)",
+      "revId": "c0913704c0405452490ab75a58a8bc790bd1af86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba0ec6dc_ec704e68",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-04-01T14:46:11Z",
+      "side": 1,
+      "message": "nit: You can already move this line and the one below out of the two `with` statements. No need to keep the file open.",
+      "revId": "c0913704c0405452490ab75a58a8bc790bd1af86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d0571931_a8101da9",
         "filename": "common/py_trace_event/py_trace_event/trace_format.py",
         "patchSetId": 1
@@ -13,6 +115,24 @@
       "writtenOn": "2019-04-01T14:24:24Z",
       "side": 1,
       "message": "This is a new file, so I suspect that the 3-step trick with updating pydeps will be necessary again.",
+      "revId": "c0913704c0405452490ab75a58a8bc790bd1af86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "487234c8_30af5078",
+        "filename": "common/py_trace_event/py_trace_event/trace_format.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-04-01T14:46:11Z",
+      "side": 1,
+      "message": "Yeah. Wondering if we should just add these constants in trace_event.py. For the callers it\u0027s also easier, then they don\u0027t need to import two different modules just to call trace_enable().",
+      "parentUuid": "d0571931_a8101da9",
       "revId": "c0913704c0405452490ab75a58a8bc790bd1af86",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
