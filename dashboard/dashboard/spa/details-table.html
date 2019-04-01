@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--
+Copyright 2019 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/dashboard/spa/chart-timeseries.html">
+<link rel="import" href="/dashboard/spa/element-base.html">
+
+<dom-module id="details-table">
+  <template>
+    <style>
+      .body-head {
+        column-span: all;
+      }
+    </style>
+
+    <table>
+      <thead>
+        <tr>
+          <th>&nbsp;</th>
+          <template is="dom-repeat" items="[[columns]]" as="column" index-as="columnIndex">
+            <th>[[column]]</th>
+          </template>
+        </tr>
+
+        <template is="dom-repeat" items="[[commonLinkRows]]" as="row" index-as="rowIndex">
+          <tr>
+            <td>[[row.label]]</td>
+            <template id="dom-repeat" items="[[row.cells]]" as="cell" index-as="cellIndex">
+              <td>
+                <a href="[[cell.href]]">[[cell.label]]</a>
+              </td>
+            </template>
+          </tr>
+        </template>
+      </thead>
+
+      <template is="dom-repeat" items="[[bodies]]" as="body" index-as="bodyIndex">
+        <tbody>
+          <template is="dom-if" if="[[isMultiple_(lineDescriptors)]]">
+            <tr>
+              <th class="body-head" style$="color: [[body.color]];">
+                <template is="dom-repeat" items="[[body.descriptorParts]]" as="part" index-as="partIndex">
+                  <span>[[part]]</span>
+                </template>
+              </th>
+            </tr>
+          </template>
+
+          <template is="dom-repeat" items="[[body.scalarRows]]" as="row" index-as="rowIndex">
+            <tr>
+              <td>[[row.label]]</td>
+              <template id="dom-repeat" items="[[row.cells]]" as="cell" index-as="cellIndex">
+                <td>
+                  <scalar-span
+                      value="[[cell.value]]"
+                      unit="[[cell.unit]]">
+                  </scalar-span>
+                </td>
+              </template>
+            </tr>
+          </template>
+
+          <template is="dom-repeat" items="[[body.linkRows]]" as="row" index-as="rowIndex">
+            <tr>
+              <td>[[row.label]]</td>
+              <template id="dom-repeat" items="[[row.cells]]" as="cell" index-as="cellIndex">
+                <td>
+                  <a href="[[cell.href]]">[[cell.label]]</a>
+                </td>
+              </template>
+            </tr>
+          </template>
+        </tbody>
+      </template>
+    </table>
+  </template>
+</dom-module>
+<script src="/dashboard/spa/details-table.js"></script>
