@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "59dbcd03_b1db303f",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-04-01T23:20:56Z",
+      "side": 1,
+      "message": "I would prefer that we not destructively modify self.args.metadata for this, it seems unusual.\n\nMaybe just add a self.metadata field instead, and instead of storing it as a list of tuples,\nturn it into a dict?",
+      "revId": "8f0d2ac81f0572e65c436fff5de0686fd9f27a53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
