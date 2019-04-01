@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "796df612_cba034ca",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-04-01T09:33:14Z",
+      "side": 1,
+      "message": "Please link to:\n\n    Bug: chromium:947957",
+      "revId": "43f4d736a036571be59d1a3c9fba073ce5c6f511",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37eb1cba_9db78f09",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 557,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-04-01T09:33:14Z",
+      "side": 1,
+      "message": "Can you use terminate, rather than close, and put it in a try-finally block similar to the one here:\nhttps://cs.chromium.org/chromium/src/tools/perf/cli_tools/soundwave/worker_pool.py?rcl\u003d1dc524aa4005eb08c533f2a344d5812863ae60a5\u0026l\u003d62\n\nThanks!",
+      "revId": "43f4d736a036571be59d1a3c9fba073ce5c6f511",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
