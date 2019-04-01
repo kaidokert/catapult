@@ -1,6 +1,7 @@
 # Copyright 2016 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
+from py_trace_event import trace_format
 from py_trace_event import trace_time
 
 
@@ -66,6 +67,7 @@ def trace_can_enable():
 # used in class definition scope.
 TracedMetaClass = type
 
+
 if trace_event_impl:
   import time
 
@@ -73,8 +75,8 @@ if trace_event_impl:
   def trace_is_enabled():
     return trace_event_impl.trace_is_enabled()
 
-  def trace_enable(logfile, proto_format=False):
-    return trace_event_impl.trace_enable(logfile, proto_format)
+  def trace_enable(logfile, format=None):
+    return trace_event_impl.trace_enable(logfile, format)
 
   def trace_disable():
     return trace_event_impl.trace_disable()
@@ -93,6 +95,9 @@ if trace_event_impl:
   def trace_set_thread_name(thread_name):
     trace_event_impl.add_trace_event("M", trace_time.Now(), "__metadata",
                                      "thread_name", {"name": thread_name})
+
+  def trace_add_metadata(metadata):
+    trace_event_impl.trace_add_metadata(metadata)
 
   def trace(name, **kwargs):
     return trace_event_impl.trace(name, **kwargs)
