@@ -169,6 +169,14 @@ class AndroidPlatformBackendTest(unittest.TestCase):
         'com.android.chrome',
         backend._ExtractLastNativeCrashPackageFromLogcat(concatenated_logcat))
 
+  @decorators.Disabled('chromeos', 'mac', 'win')
+  def testSetModulesForwardedToInstall(self):
+    backend = self.CreatePlatformBackendForTest()
+    backend.SetModulesToInstall(['base'])
+    with mock.patch.object(backend._device, 'Install') as m:
+      backend.InstallApplication('test_bundle')
+      m.assert_called_with('test_bundle', modules=['base'])
+
 
 class AndroidPlatformBackendPsutilTest(unittest.TestCase):
 

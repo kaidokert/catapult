@@ -85,6 +85,7 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
     self._backend_settings = backend_settings
     self._local_apk = local_apk
     self._flag_changer = None
+    self._modules_to_install = finder_options.modules_to_install
 
     if self._local_apk is None and finder_options.chrome_root is not None:
       self._local_apk = self._backend_settings.FindLocalApk(
@@ -282,6 +283,7 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
 
   @decorators.Cache
   def UpdateExecutableIfNeeded(self):
+    self._platform_backend.SetModulesToInstall(set(self._modules_to_install))
     # TODO(crbug.com/815133): This logic should belong to backend_settings.
     if self._local_apk:
       logging.warn('Installing %s on device if needed.', self._local_apk)

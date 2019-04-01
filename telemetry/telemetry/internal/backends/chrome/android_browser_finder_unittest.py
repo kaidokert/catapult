@@ -13,6 +13,7 @@ from py_utils import tempfile_ext
 from telemetry.core import android_platform
 from telemetry.core import exceptions
 from telemetry import decorators
+from telemetry.internal.backends import android_browser_backend_settings
 from telemetry.internal.backends.chrome import android_browser_finder
 from telemetry.internal.browser import browser_finder
 from telemetry.internal.platform import android_platform_backend
@@ -160,6 +161,16 @@ class AndroidBrowserFinderTest(fake_filesystem_unittest.TestCase):
     self.assertFalse(android_browser_finder._CanPossiblyHandlePath('f.bundle'))
     self.assertFalse(android_browser_finder._CanPossiblyHandlePath(''))
     self.assertFalse(android_browser_finder._CanPossiblyHandlePath('fooaab'))
+
+  def testModulesSetBeforeInstall(self):
+    self.finder_options.modules_to_install = ['base']
+    possible_browser = android_browser_finder.PossibleAndroidBrowser(
+        'android-chromium-bundle', self.finder_options, self.fake_platform,
+        android_browser_backend_settings.ANDROID_CHROMIUM_BUNDLE)
+    with mock.patch.object(
+        self.fake_platform._platform_backend, 'SetModulesToInstall') as m:
+      possible_browser.UpdateExecutableIfNeeded()
+      m.assert_called_with(set(['base']))
 
 
 def _MockPossibleBrowser(modified_at):

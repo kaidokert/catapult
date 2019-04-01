@@ -93,6 +93,7 @@ class AndroidPlatformBackend(
                 self._battery),
         ], self._battery))
     self._system_ui = None
+    self._modules_to_install = None
 
     _FixPossibleAdbInstability()
 
@@ -369,7 +370,7 @@ class AndroidPlatformBackend(
     return bool(self._device.GetApplicationPaths(application))
 
   def InstallApplication(self, application):
-    self._device.Install(application)
+    self._device.Install(application, modules=self._modules_to_install)
 
   def CanMonitorPower(self):
     return self._power_monitor.CanMonitorPower()
@@ -446,6 +447,14 @@ class AndroidPlatformBackend(
     old_flag = self._device.GetProp('socket.relaxsslcheck')
     self._device.SetProp('socket.relaxsslcheck', value)
     return old_flag
+
+  def SetModulesToInstall(self, modules):
+    """Sets which app bundle modules to install when using bundles.
+
+    Args:
+      modules: An iterable containing names of modules to install as strings.
+    """
+    self._modules_to_install = modules
 
   def DismissCrashDialogIfNeeded(self):
     """Dismiss any error dialogs.
