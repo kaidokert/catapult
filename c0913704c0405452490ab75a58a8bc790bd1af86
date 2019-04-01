@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b36b95c2_069efa50",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-04-01T15:14:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71aff5cd_d89a4184",
+      "revId": "c0913704c0405452490ab75a58a8bc790bd1af86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba4c8233_6c17c279",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "c0913704c0405452490ab75a58a8bc790bd1af86",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb3967b3_b3e7b169",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-04-01T15:14:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba4c8233_6c17c279",
+      "revId": "c0913704c0405452490ab75a58a8bc790bd1af86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "668f791e_856b66f1",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-04-01T15:14:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68584439_49665d5e",
+      "revId": "c0913704c0405452490ab75a58a8bc790bd1af86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "35db4e67_8d268a8f",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
         "patchSetId": 1
@@ -67,6 +121,24 @@
       "revId": "c0913704c0405452490ab75a58a8bc790bd1af86",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6cd940d2_7c83a292",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-04-01T15:14:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35db4e67_8d268a8f",
+      "revId": "c0913704c0405452490ab75a58a8bc790bd1af86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "63cdc3ec_965478c9",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-04-01T15:14:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4331328_a2df4472",
+      "revId": "c0913704c0405452490ab75a58a8bc790bd1af86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba0ec6dc_ec704e68",
         "filename": "common/py_trace_event/py_trace_event/trace_event_unittest.py",
         "patchSetId": 1
@@ -101,6 +191,24 @@
       "revId": "c0913704c0405452490ab75a58a8bc790bd1af86",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9075e523_afbbdf37",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-04-01T15:14:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba0ec6dc_ec704e68",
+      "revId": "c0913704c0405452490ab75a58a8bc790bd1af86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -133,6 +241,24 @@
       "side": 1,
       "message": "Yeah. Wondering if we should just add these constants in trace_event.py. For the callers it\u0027s also easier, then they don\u0027t need to import two different modules just to call trace_enable().",
       "parentUuid": "d0571931_a8101da9",
+      "revId": "c0913704c0405452490ab75a58a8bc790bd1af86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd4a82cb_cedcae5a",
+        "filename": "common/py_trace_event/py_trace_event/trace_format.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-04-01T15:14:35Z",
+      "side": 1,
+      "message": "I tried that, but having trace_event and trace_event_impl import each other resulted in some strange errors. I can give it another look.",
+      "parentUuid": "487234c8_30af5078",
       "revId": "c0913704c0405452490ab75a58a8bc790bd1af86",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
