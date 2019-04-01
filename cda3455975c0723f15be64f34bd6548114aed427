@@ -16,6 +16,24 @@
       "revId": "cda3455975c0723f15be64f34bd6548114aed427",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b60cc9a_0d6e30ac",
+        "filename": "telemetry/telemetry/page/__init__.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-01T16:06:18Z",
+      "side": 1,
+      "message": "I think the reason that AddTracingMetrics is the wrong name is that this method does not actually add those metrics to some internal structure. Actually, it gets the metrics. So I think \"GetExtraTracingMetrics\" is better. I don\u0027t like just \"ExtraTracingMetrics\" since I prefer my methods to start with a verb.",
+      "parentUuid": "55463a80_d5280605",
+      "revId": "cda3455975c0723f15be64f34bd6548114aed427",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
