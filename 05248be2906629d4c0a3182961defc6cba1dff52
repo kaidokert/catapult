@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e60d2b03_7c1264fc",
+        "filename": "devil/devil/android/flag_changer.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-04-01T10:01:17Z",
+      "side": 1,
+      "message": "I find this option very confusing. The name makes it sound like if you pass require_rooted_device\u003dTrue and the device is not rooted then you get some kind of error. But that does not seem to be exactly how the flag works. The way it\u0027s used it looks a bit more like \"assume_rooted_device\", but then you could just call device.HasRoot() to check?\n\nI am also a bit confused as to when we actually need this. On crbug.com/699082 we concluded that the SELinux policy has to be made \"permissive\" on N and above for Chrome to be able to read the command line file; and on the description of your CL it states that this works on a \"non-rooted Pixel 2\". Which Android version is there on that Pixel 2?\n\nIt would be great if we can clarify this, and leave these use cases documented in the code.",
+      "revId": "05248be2906629d4c0a3182961defc6cba1dff52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
