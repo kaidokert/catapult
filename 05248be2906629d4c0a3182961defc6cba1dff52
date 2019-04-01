@@ -16,6 +16,24 @@
       "revId": "05248be2906629d4c0a3182961defc6cba1dff52",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b325297f_bc54b039",
+        "filename": "devil/devil/android/flag_changer.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2019-04-01T23:21:59Z",
+      "side": 1,
+      "message": "If require_rooted_device is True and the device isn\u0027t rooted, then the internal call to _SetPermissive will fail because we won\u0027t be able to set the SELinux sandbox to permissive mode.\n\nFrom http://crbug.com/944262 it\u0027s clear that we need to set the SELinux sandbox to permissive mode for more reasons than just to read the legacy command line file; at least, to avoid some clock skew issue which was tracked down in the perf tests.\n\nThis CL just relands the earlier compatibility mode support for non-rooted devices in the safest way possible; when the compatibility mode is set, then avoid doing the operation which requires root; otherwise, do it, as is done today.",
+      "parentUuid": "e60d2b03_7c1264fc",
+      "revId": "05248be2906629d4c0a3182961defc6cba1dff52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
