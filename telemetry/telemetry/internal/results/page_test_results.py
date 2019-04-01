@@ -536,8 +536,12 @@ class PageTestResults(object):
         # small number of threads in that case.
         return 10
 
-    pool = ThreadPool(_GetCpuCount())
     runs_and_values = self._FindRunsAndValuesWithTimelineBasedMetrics()
+    if not runs_and_values:
+      return
+
+    threads_count = min(_GetCpuCount(), len(runs_and_values))
+    pool = ThreadPool(threads_count)
     for result in pool.imap_unordered(_ComputeMetricsInPool, runs_and_values):
       self._current_page_run = result['run']
       try:
@@ -549,6 +553,8 @@ class PageTestResults(object):
           self.AddValue(scalar)
       finally:
         self._current_page_run = None
+    pool.close()
+    pool.join()
 
 
   def InterruptBenchmark(self, stories, repeat_count):
