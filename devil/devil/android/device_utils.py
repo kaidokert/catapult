@@ -213,6 +213,8 @@ _SELINUX_MODE = {
     'disabled': None
 }
 # Some devices require different logic for checking if root is necessary
+# do not include the possible aosp_ prefix as this is taken care of by
+# DeviceUtils._IsSpecialRootDevice()
 _SPECIAL_ROOT_DEVICE_LIST = [
     'marlin', # Pixel XL
     'sailfish', # Pixel
@@ -469,7 +471,7 @@ class DeviceUtils(object):
       DeviceUnreachableError on missing device.
     """
     try:
-      if self.product_name in _SPECIAL_ROOT_DEVICE_LIST:
+      if self._IsSpecialRootDevice():
         return self.GetProp('service.adb.root') == '1'
       self.RunShellCommand(['ls', '/root'], check_return=True)
       return True
@@ -495,7 +497,7 @@ class DeviceUtils(object):
     """
     if 'needs_su' not in self._cache:
       cmd = '%s && ! ls /root' % self._Su('ls /root')
-      if self.product_name in _SPECIAL_ROOT_DEVICE_LIST:
+      if self._IsSpecialRootDevice():
         if self.HasRoot():
           self._cache['needs_su'] = False
           return False
@@ -514,6 +516,12 @@ class DeviceUtils(object):
     if self.build_version_sdk >= version_codes.MARSHMALLOW:
       return 'su 0 %s' % command
     return 'su -c %s' % command
+
+  def _IsSpecialRootDevice(self):
+    aosp_less_prefix = self.product_name[0:5].replace('aosp_', '')
+    suffix = self.product_name[5:]
+    aosp_less_name = aosp_less_prefix + suffix
+    return aosp_less_name in _SPECIAL_ROOT_DEVICE_LIST
 
   @decorators.WithTimeoutAndRetriesFromInstance()
   def EnableRoot(self, timeout=None, retries=None):
