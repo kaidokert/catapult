@@ -83,9 +83,10 @@ class TestMakeFullResults(unittest.TestCase):
                                            unexpected=False))
 
         full_results = json_results.make_full_results(
-            ['foo=bar'], 0, test_names, result_set)
+            [('foo', 'bar')], 0, test_names, result_set)
         expected_full_results = {
-            'foo': 'bar',
+            'metadata': {
+                'foo': 'bar'},
             'interrupted': False,
             'num_failures_by_type': {
                 'FAIL': 1,
