@@ -34,6 +34,24 @@
       "revId": "cda3455975c0723f15be64f34bd6548114aed427",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5211b40_dadd7d22",
+        "filename": "telemetry/telemetry/page/__init__.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-04-01T16:07:34Z",
+      "side": 1,
+      "message": "+1. indeed, that\u0027s better.",
+      "parentUuid": "8b60cc9a_0d6e30ac",
+      "revId": "cda3455975c0723f15be64f34bd6548114aed427",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
