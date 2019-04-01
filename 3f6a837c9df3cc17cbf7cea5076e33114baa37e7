@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7d24ce02_e6d90516",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-04-01T16:06:19Z",
+      "side": 1,
+      "message": "nit: now you can inline the `x` into the json.dump call, doesn\u0027t look as bad any more. :)",
+      "revId": "3f6a837c9df3cc17cbf7cea5076e33114baa37e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
