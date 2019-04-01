@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d0571931_a8101da9",
+        "filename": "common/py_trace_event/py_trace_event/trace_format.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-04-01T14:24:24Z",
+      "side": 1,
+      "message": "This is a new file, so I suspect that the 3-step trick with updating pydeps will be necessary again.",
+      "revId": "c0913704c0405452490ab75a58a8bc790bd1af86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
