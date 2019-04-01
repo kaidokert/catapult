@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "11cb1412_637d71bb",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-04-01T20:26:12Z",
+      "side": 1,
+      "message": "This file was written in the \"top-to-bottom\" style, meaning that main() starts at the top of the file, and then functions come after it in the order that they\u0027re mentioned (more or less). Ideally this ends up with functions being located close to where they\u0027re first used.\n\nCan we move these further down into the file, closer to where they\u0027re called? I\u0027d move this below the TestSet definition, and the other four down below _default_classifier.",
+      "revId": "0e293e4c751c55528f20b6afb9c390658ef3e3ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4059695d_c36a6fe5",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-04-01T20:26:12Z",
+      "side": 1,
+      "message": "Does it make sense for these to just be methods on the Runner, so that you don\u0027t need to pass args around?",
+      "revId": "0e293e4c751c55528f20b6afb9c390658ef3e3ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a5ee8bc_a272e0cb",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-04-01T20:26:12Z",
+      "side": 1,
+      "message": "`args` is too broad here, and creates a weird coupling. We should just pass in the subset of stuff in args that is really needed. In this case, I think it\u0027s just the test_name_prefix?",
+      "revId": "0e293e4c751c55528f20b6afb9c390658ef3e3ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3dcb75cc_4c127eae",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-04-01T20:26:12Z",
+      "side": 1,
+      "message": "Does it really make sense to support both adding individual tests here and passing them in to the constructor? Should we maybe get rid of the args in the constructor?\n\nAlso, I think the names of these three methods aren\u0027t that clear. Maybe `add_test_to_skip`, `add_test_to_run_isolated`, `add_test-to_run_in_parallel`?",
+      "revId": "0e293e4c751c55528f20b6afb9c390658ef3e3ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb1ef65b_9d1285ab",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 885,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-04-01T20:26:12Z",
+      "side": 1,
+      "message": "I try to avoid passing closures around unless it\u0027s clear that this really improves readability.\n\nIn this case, I\u0027m not actually sure that using closures for these three functions really does that. I wonder if it\u0027d be better to make _default_classifier be a method on Runner (which would then have automatic easy access to `args`) and then (I think?) we wouldn\u0027t need the closure here, either. Maybe all of this gets simpler?",
+      "revId": "0e293e4c751c55528f20b6afb9c390658ef3e3ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
