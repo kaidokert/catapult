@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1401edd1_7ee39865",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-04-02T12:51:47Z",
+      "side": 1,
+      "message": "After landing this I think we should also update the callers in chromium repository, and then remove the deprecated methods.",
+      "revId": "993ae44c67410e821632d3b19a848116282275a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db4e4461_1f2a98b0",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-04-02T12:51:47Z",
+      "side": 1,
+      "message": "Leave a TODO pointing to a bug so we don\u0027t forget doing this cleanup (and remember the rationale for this).",
+      "revId": "993ae44c67410e821632d3b19a848116282275a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
