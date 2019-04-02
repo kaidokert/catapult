@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b13b1e79_cf3fdf3d",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-04-02T01:49:19Z",
+      "side": 1,
+      "message": "I see.\n\nDone",
+      "parentUuid": "11cb1412_637d71bb",
+      "revId": "0e293e4c751c55528f20b6afb9c390658ef3e3ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4059695d_c36a6fe5",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 5
@@ -33,6 +51,24 @@
       "revId": "0e293e4c751c55528f20b6afb9c390658ef3e3ab",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "930553e8_6568a5e5",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-04-02T01:49:19Z",
+      "side": 1,
+      "message": "It does, I moved these functions into Runner\nDone",
+      "parentUuid": "4059695d_c36a6fe5",
+      "revId": "0e293e4c751c55528f20b6afb9c390658ef3e3ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "fd543503_25dd54d4",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-04-02T01:49:19Z",
+      "side": 1,
+      "message": "I removed the args and test list\u0027s arguments and just made the test_name_prefix the sole arg to the  constructor.\n\nDone",
+      "parentUuid": "6a5ee8bc_a272e0cb",
+      "revId": "0e293e4c751c55528f20b6afb9c390658ef3e3ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3dcb75cc_4c127eae",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 5
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "95b8c792_464eb90b",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-04-02T01:49:19Z",
+      "side": 1,
+      "message": "I removed the test list args for the constructor.\n\nDone",
+      "parentUuid": "3dcb75cc_4c127eae",
+      "revId": "0e293e4c751c55528f20b6afb9c390658ef3e3ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eb1ef65b_9d1285ab",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 5
@@ -84,6 +156,24 @@
       "revId": "0e293e4c751c55528f20b6afb9c390658ef3e3ab",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b4ef862_70e0bea2",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 885,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-04-02T01:49:19Z",
+      "side": 1,
+      "message": "I moved default_classifier into the Runner class.\n\nDone",
+      "parentUuid": "eb1ef65b_9d1285ab",
+      "revId": "0e293e4c751c55528f20b6afb9c390658ef3e3ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
