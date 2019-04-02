@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!--
+Copyright 2019 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+<script src="/bower_components/web-component-tester/browser.js"></script>
+<link rel="import" href="/dashboard/spa/details-table.html">
+
+<test-fixture id="test">
+  <template>
+    <details-table state-path="test">
+    </details-table>
+  </template>
+</test-fixture>
+
+<script>
+'use strict';
+suite('details-table', function() {
+  let MS_PER_YEAR;  // tr might not be loaded yet.
+  const NOW_MS = new Date().getTime();
+
+  let originalFetch;
+  setup(() => {
+    MS_PER_YEAR = tr.b.convertUnit(
+        1, tr.b.UnitScale.TIME.YEAR, tr.b.UnitScale.TIME.MILLI_SEC);
+
+    // Mocha sets min-width: 900px inside #subsuites, but only 500px outside it,
+    // which makes it difficult to see the chart in 'lines'. Reset those
+    // min-widths so that the chart can expand to an appropriate size.
+    document.body.style.margin = 0;
+    document.body.style.minWidth = 0;
+    document.documentElement.style.minWidth = 0;
+
+    originalFetch = window.fetch;
+    window.fetch = async(url, options) => {
+      return {
+        async json() {
+          if (url === cp.TimeseriesRequest.URL) {
+            const data = [];
+            const sequenceLength = 100;
+            for (let i = 0; i < sequenceLength; i += 1) {
+              const pct = (sequenceLength - i - 1) / sequenceLength;
+              const timestamp = NOW_MS - pct * MS_PER_YEAR;
+              data.push({
+                revision: timestamp,
+                timestamp,
+                avg: 1 + (i % 3),
+                count: 1,
+                std: (i % 4) / 2,
+              });
+            }
+            return {
+              units: options.body.get('measurement'),
+              data: cp.denormalize(
+                  data, options.body.get('columns').split(',')),
+            };
+          }
+        },
+      };
+    };
+
+    fixture('test').dispatch(Redux.CHAIN(
+        Redux.ENSURE('test'),
+        Redux.UPDATE('test', cp.DetailsTable.buildState({
+        }))));
+  });
+
+  teardown(() => {
+    window.fetch = originalFetch;
+  });
+
+  test('load', async function() {
+    const dt = fixture('test');
+    await cp.afterRender();
+    await dt.dispatch(Redux.UPDATE('test', {
+      lineDescriptors: [{
+        suites: ['suite'],
+        bots: ['master:bot'],
+        measurement: 'ms',
+        statistic: 'avg',
+        cases: [],
+      }],
+      revisionRanges: [
+      ],
+    }));
+    await cp.afterRender();
+    this.timeout(1e6); await cp.timeout(9e5);
+    assert.strictEqual(dt);
+  });
+});
+</script>
