@@ -261,7 +261,11 @@ tr.exportTo('tr.ui.tracks', function() {
       const canvasBounds = ctx.canvas.getBoundingClientRect();
 
       ctx.save();
-      ctx.translate(0, pixelRatio * (bounds.top - canvasBounds.top));
+
+      // Flow arrows are drawn assuming the canvas has not been translated
+      if (type !== tr.ui.tracks.DrawType.FLOW_ARROWS) {
+        ctx.translate(0, pixelRatio * (bounds.top - canvasBounds.top));
+      }
 
       const dt = this.viewport.currentDisplayTransform;
       const viewLWorld = dt.xViewToWorld(0);
