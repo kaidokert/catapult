@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "654dc0c1_58dd805d",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-02T17:03:13Z",
+      "side": 1,
+      "message": "I think this should raise an exception so that we notice when it breaks.",
+      "range": {
+        "startLine": 33,
+        "startChar": 1,
+        "endLine": 36,
+        "endChar": 0
+      },
+      "revId": "6c007c7fabd10d025782205953be916937b649f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb710657_ef38e8fb",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-02T17:03:13Z",
+      "side": 1,
+      "message": "I think in that case it would make sense to set self._trace_file to None after this call.",
+      "range": {
+        "startLine": 84,
+        "startChar": 6,
+        "endLine": 85,
+        "endChar": 48
+      },
+      "revId": "6c007c7fabd10d025782205953be916937b649f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6cb69e5_4f34adb3",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-02T17:03:13Z",
+      "side": 1,
+      "message": "transferred",
+      "range": {
+        "startLine": 85,
+        "startChar": 6,
+        "endLine": 85,
+        "endChar": 16
+      },
+      "revId": "6c007c7fabd10d025782205953be916937b649f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ec7a689_d5f7b402",
+        "filename": "tracing/tracing/trace_data/trace_data.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-02T17:03:13Z",
+      "side": 1,
+      "message": "Would it be simpler to use shutil.move here? Or do you prefer this for some reason?",
+      "range": {
+        "startLine": 243,
+        "startChar": 0,
+        "endLine": 247,
+        "endChar": 38
+      },
+      "revId": "6c007c7fabd10d025782205953be916937b649f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
