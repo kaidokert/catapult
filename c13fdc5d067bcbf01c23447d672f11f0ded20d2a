@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b40d20ec_62ebe59c",
+        "filename": "third_party/vinn/vinn/_vinn.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-02T17:51:41Z",
+      "side": 1,
+      "message": "Link to bug somewhere.",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 35
+      },
+      "revId": "c13fdc5d067bcbf01c23447d672f11f0ded20d2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
