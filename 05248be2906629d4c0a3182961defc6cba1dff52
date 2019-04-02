@@ -34,6 +34,41 @@
       "revId": "05248be2906629d4c0a3182961defc6cba1dff52",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b690416c_aa1bb148",
+        "filename": "devil/devil/android/flag_changer.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-04-02T09:55:20Z",
+      "side": 1,
+      "message": "The error from crbug.com/944262 was due to \"tracing not started\"; I\u0027m wondering now if setting permissive here not only allows reading the command line file, but also the trace config? Anyway, I filed crbug.com/948578 to follow up on that.\n\nFor your change I would insist on removing this option, and instead skip _SetPermissive if the device doesn\u0027t have root.\n\nBefore landing run a https://pinpoint-dot-chromeperf.appspot.com/ job with your change on android-go-perf to make sure it all works.",
+      "parentUuid": "b325297f_bc54b039",
+      "revId": "05248be2906629d4c0a3182961defc6cba1dff52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6408969f_0a7c76ac",
+        "filename": "devil/devil/android/flag_changer.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-04-02T09:55:20Z",
+      "side": 1,
+      "message": "Just change this to something like:\n\n  if not self._device.HasRoot():\n    return\n\nAnd leave a comment with a TODO pointing to crbug.com/948578 to follow up.",
+      "revId": "05248be2906629d4c0a3182961defc6cba1dff52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
