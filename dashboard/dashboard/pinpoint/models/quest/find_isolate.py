@@ -11,7 +11,7 @@ from dashboard.pinpoint.models.quest import quest
 from dashboard.services import buildbucket_service
 
 
-BUCKET = 'master.tryserver.chromium.perf'
+DEFAULT_BUCKET = 'master.tryserver.chromium.perf'
 
 
 class BuildError(Exception):
@@ -27,7 +27,8 @@ class IsolateNotFoundError(StandardError):
 
 class FindIsolate(quest.Quest):
 
-  def __init__(self, builder, target):
+  def __init__(self, bucket, builder, target):
+    self._bucket = bucket
     self._builder_name = builder
     self._target = target
 
@@ -41,8 +42,9 @@ class FindIsolate(quest.Quest):
     return 'Build'
 
   def Start(self, change):
-    return _FindIsolateExecution(self._builder_name, self._target, change,
-                                 self._previous_builds)
+    return _FindIsolateExecution(
+        self._bucket, self._builder_name, self._target, change,
+        self._previous_builds)
 
   @classmethod
   def FromDict(cls, arguments):
@@ -54,13 +56,15 @@ class FindIsolate(quest.Quest):
     if not target:
       raise TypeError('Missing "target" argument.')
 
-    return cls(builder, target)
+    bucket = arguments.get('bucket', DEFAULT_BUCKET)
+    return cls(bucket, builder, target)
 
 
 class _FindIsolateExecution(execution.Execution):
 
-  def __init__(self, builder_name, target, change, previous_builds):
+  def __init__(self, bucket, builder_name, target, change, previous_builds):
     super(_FindIsolateExecution, self).__init__()
+    self._bucket = bucket
     self._builder_name = builder_name
     self._target = target
     self._change = change
@@ -175,12 +179,13 @@ class _FindIsolateExecution(execution.Execution):
       self._build = self._previous_builds[self._change]
     else:
       # Request a build!
-      buildbucket_info = _RequestBuild(self._builder_name, self._change)
+      buildbucket_info = _RequestBuild(
+          self._bucket, self._builder_name, self._change)
       self._build = buildbucket_info['build']['id']
       self._previous_builds[self._change] = self._build
 
 
-def _RequestBuild(builder_name, change):
+def _RequestBuild(bucket, builder_name, change):
   deps_overrides = {dep.repository_url: dep.git_hash for dep in change.deps}
   parameters = {
       'builder_name': builder_name,
@@ -194,5 +199,4 @@ def _RequestBuild(builder_name, change):
   if change.patch:
     parameters['properties'].update(change.patch.BuildParameters())
 
-  # TODO: Look up Buildbucket bucket from builder_name.
-  return buildbucket_service.Put(BUCKET, parameters)
+  return buildbucket_service.Put(bucket, parameters)

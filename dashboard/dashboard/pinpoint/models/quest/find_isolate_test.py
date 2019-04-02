@@ -29,7 +29,18 @@ class FindIsolateQuestTest(unittest.TestCase):
         'builder': 'Mac Builder',
         'target': 'telemetry_perf_tests',
     }
-    expected = find_isolate.FindIsolate('Mac Builder', 'telemetry_perf_tests')
+    expected = find_isolate.FindIsolate(
+        'master.tryserver.chromium.perf', 'Mac Builder', 'telemetry_perf_tests')
+    self.assertEqual(find_isolate.FindIsolate.FromDict(arguments), expected)
+
+  def testCustomBucket(self):
+    arguments = {
+        'bucket': 'luci.chromium.ci',
+        'builder': 'Mac Builder',
+        'target': 'telemetry_perf_tests',
+    }
+    expected = find_isolate.FindIsolate(
+        'luci.chromium.ci', 'Mac Builder', 'telemetry_perf_tests')
     self.assertEqual(find_isolate.FindIsolate.FromDict(arguments), expected)
 
 
@@ -61,7 +72,8 @@ class _FindIsolateExecutionTest(test.TestCase):
 class IsolateLookupTest(_FindIsolateExecutionTest):
 
   def testIsolateLookupSuccess(self):
-    quest = find_isolate.FindIsolate('Mac Builder', 'telemetry_perf_tests')
+    quest = find_isolate.FindIsolate(
+        'master.tryserver.chromium.perf', 'Mac Builder', 'telemetry_perf_tests')
     execution = quest.Start(change_test.Change(123))
     execution.Poll()
 
@@ -96,7 +108,8 @@ class BuildTest(_FindIsolateExecutionTest):
 
   def testBuildLifecycle(self, put, get_job_status):
     change = change_test.Change(123, 456, patch=True)
-    quest = find_isolate.FindIsolate('Mac Builder', 'telemetry_perf_tests')
+    quest = find_isolate.FindIsolate(
+        'master.tryserver.chromium.perf', 'Mac Builder', 'telemetry_perf_tests')
     execution = quest.Start(change)
 
     # Request a build.
@@ -170,7 +183,8 @@ class BuildTest(_FindIsolateExecutionTest):
     # Two builds started at the same time on the same Change should reuse the
     # same build request.
     change = change_test.Change(0)
-    quest = find_isolate.FindIsolate('Mac Builder', 'telemetry_perf_tests')
+    quest = find_isolate.FindIsolate(
+        'master.tryserver.chromium.perf', 'Mac Builder', 'telemetry_perf_tests')
     execution_1 = quest.Start(change)
     execution_2 = quest.Start(change)
 
@@ -204,7 +218,8 @@ class BuildTest(_FindIsolateExecutionTest):
     self.assertExecutionSuccess(execution_2)
 
   def testBuildFailure(self, put, get_job_status):
-    quest = find_isolate.FindIsolate('Mac Builder', 'telemetry_perf_tests')
+    quest = find_isolate.FindIsolate(
+        'master.tryserver.chromium.perf', 'Mac Builder', 'telemetry_perf_tests')
     execution = quest.Start(change_test.Change(0))
 
     # Request a build.
@@ -224,7 +239,8 @@ class BuildTest(_FindIsolateExecutionTest):
     self.assertExecutionFailure(execution, find_isolate.BuildError)
 
   def testBuildCanceled(self, put, get_job_status):
-    quest = find_isolate.FindIsolate('Mac Builder', 'telemetry_perf_tests')
+    quest = find_isolate.FindIsolate(
+        'master.tryserver.chromium.perf', 'Mac Builder', 'telemetry_perf_tests')
     execution = quest.Start(change_test.Change(0))
 
     # Request a build.
@@ -244,7 +260,8 @@ class BuildTest(_FindIsolateExecutionTest):
     self.assertExecutionFailure(execution, find_isolate.BuildError)
 
   def testBuildSucceededButIsolateIsMissing(self, put, get_job_status):
-    quest = find_isolate.FindIsolate('Mac Builder', 'telemetry_perf_tests')
+    quest = find_isolate.FindIsolate(
+        'master.tryserver.chromium.perf', 'Mac Builder', 'telemetry_perf_tests')
     execution = quest.Start(change_test.Change(0))
 
     # Request a build.
