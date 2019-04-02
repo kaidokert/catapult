@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa66cda8_ae7b0d65",
+        "filename": "telemetry/telemetry/timeline/chrome_trace_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-04-02T09:15:30Z",
+      "side": 1,
+      "message": "nit: can this just be ...?\n\n  result[TRACE_BUFFER_SIZE_IN_KB] \u003d self._trace_buffer_size_in_kb\n\nI think that\u0027s more readable.\n\nAnd the old code was already like that, but can you also take the chance to similarly change the one with ENABLE_SYSTRACE_PARAM above? Thanks!",
+      "revId": "0b0bc5726e2d1e2294b1c21635f1b4392e2132fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
