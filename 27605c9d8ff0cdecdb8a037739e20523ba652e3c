@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "08ae69ac_60bed5d5",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 888,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-04-02T09:10:36Z",
+      "side": 1,
+      "message": "Can we make it an error if the apk is not a bundle and you pass modules?",
+      "revId": "27605c9d8ff0cdecdb8a037739e20523ba652e3c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e13f7310_cf7aef3d",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-04-02T09:10:36Z",
+      "side": 1,
+      "message": "nit: maybe replace the first \"generated\" with \"created\"?",
+      "revId": "27605c9d8ff0cdecdb8a037739e20523ba652e3c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "260d8664_4119fb5c",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-04-02T09:10:36Z",
+      "side": 1,
+      "message": "I don\u0027t like this part, in particular having to use SetModulesToInstall separately. This class is mainly meant as a wrapper around the platform for sending commands to it, it shouldn\u0027t in principle hold much state.\n\nCould the InstallApplication method also have a `modules` kwarg and pass that to device.Install? Maybe the PossibleAndroidBrowser should be the one remembering which modules to install?",
+      "revId": "27605c9d8ff0cdecdb8a037739e20523ba652e3c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
