@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a90ade3a_54ea0475",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-04-02T00:29:00Z",
+      "side": 1,
+      "message": "If metadata is now a dict, you can either just use copy() or just assign it over, depending on how lucky you feel :).",
+      "revId": "5ab4c716bd1ded626caca69e469dc9a009e8e8d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42ec5a5c_18d94e73",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 798,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-04-02T00:29:00Z",
+      "side": 1,
+      "message": "same comment here.",
+      "revId": "5ab4c716bd1ded626caca69e469dc9a009e8e8d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
