@@ -40,8 +40,16 @@ class MapRunner(object):
     self._map_results = None
     self._map_results_file = None
 
+    def _GetCpuCount():
+      try:
+        return multiprocessing.cpu_count()
+      except NotImplementedError:
+        # Some platforms can raise a NotImplementedError from cpu_count(). Use a
+        # small number of threads in that case.
+        return 4
+
     if jobs == AUTO_JOB_COUNT:
-      jobs = min(len(self._trace_handles), multiprocessing.cpu_count())
+      jobs = min(len(self._trace_handles), _GetCpuCount())
     self._wq = threaded_work_queue.ThreadedWorkQueue(num_threads=jobs)
 
   def _ProcessOneTrace(self, trace_handle):
