@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "67c34add_62851094",
+        "filename": "tracing/tracing/mre/map_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-02T17:36:24Z",
+      "side": 1,
+      "message": "I think you should log a warning here. It\u0027s not okay for platforms to be broken like this. Also, you should find a bug to link to in the warning message.",
+      "range": {
+        "startLine": 47,
+        "startChar": 7,
+        "endLine": 49,
+        "endChar": 16
+      },
+      "revId": "9fffa90fe9c98facc32f9f20803f3e3bb92498ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
