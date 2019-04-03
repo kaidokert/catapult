@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d90b6b59_c0c794be",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-04-03T00:49:06Z",
+      "side": 1,
+      "message": "Will do.",
+      "parentUuid": "50b7c13a_c71935ad",
+      "revId": "477aefbff6d675584833b922d1002013abe66ac1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e5f27296_913dcd54",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2019-04-03T00:40:04Z",
       "side": 1,
       "message": "What about just\n\n  _SPECIAL_ROOT_DEVICE_LIST \u003d [existing]\n  _SPECIAL_ROOT_DEVICE_LIST +\u003d [\u0027aosp_%s\u0027 % d for d in _SPECIAL_ROOT_DEVICE_LIST]\n\nand removing _IsSpecialRootDevice?",
+      "revId": "477aefbff6d675584833b922d1002013abe66ac1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a8a8e34_78c156f2",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-04-03T00:49:06Z",
+      "side": 1,
+      "message": "Sure, that\u0027ll work too.  Shall I rename this variable to _SPECIAL_ROOT_PRODUCT_NAME_LIST then?",
+      "parentUuid": "e5f27296_913dcd54",
       "revId": "477aefbff6d675584833b922d1002013abe66ac1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
