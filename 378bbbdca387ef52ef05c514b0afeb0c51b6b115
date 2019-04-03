@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "f65938a2_f50f85a8",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 834,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-04-03T23:48:07Z",
+      "side": 1,
+      "message": "You\u0027re getting at a good question, I think.\n\nThe way I\u0027ll answer it is that it seems like we shouldn\u0027t be exposing this distinction to callers. Specifically, it feels like they shouldn\u0027t have to know about the positional args at all, just as the default classifier doesn\u0027t need to know. I.e., I\u0027m thinking that the positional args are only used during test discovery. If that\u0027s not the case, though, then maybe I\u0027m wrong and need to think through this further.\n\nArguably, I kinda wonder why we\u0027d need to expose the test_filter and skip globs to the caller, either.\n\nMaybe they should pass us those args and let us implement them, and then only call the classifier on the stuff that survives that filtering? I\u0027m not sure if there\u0027s a great argument for why they need to pass us the args only to have them be passed back to them so that they can implement them.\n\nDoes this make sense?",
+      "parentUuid": "6459d41e_67e2119b",
+      "revId": "378bbbdca387ef52ef05c514b0afeb0c51b6b115",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7a44db7c_9c475a57",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 7
@@ -136,6 +154,24 @@
       "side": 1,
       "message": "Given the TODO comment starting at line 974, that actually sounds like a good idea. We can then remove skipping code from  _run_one_test. Also on subject of --test-filter and positional args, I noticed that in telemetry unittests if the --test-filter argument is passed then it ignores positional args. At the same time telemetry browser tests completely ignores positional args. It also. I think we should handle positional args and --test-filter in separate functions for now.",
       "parentUuid": "cd3e5ad7_2197f718",
+      "revId": "378bbbdca387ef52ef05c514b0afeb0c51b6b115",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ffba72f_a2b6344f",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 854,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-04-03T23:48:07Z",
+      "side": 1,
+      "message": "Also (as I noted in the other comment), we need to bear in mind that we need to still create Results for tests that are skipped, one way or another.",
+      "parentUuid": "4e761fa2_b5b87af2",
       "revId": "378bbbdca387ef52ef05c514b0afeb0c51b6b115",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
