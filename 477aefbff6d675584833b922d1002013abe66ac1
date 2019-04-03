@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "ec4a406a_832a14f4",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-04-03T02:03:47Z",
+      "side": 1,
+      "message": "Removed _IsSpecialRootDevice",
+      "parentUuid": "d90b6b59_c0c794be",
+      "revId": "477aefbff6d675584833b922d1002013abe66ac1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e5f27296_913dcd54",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 3

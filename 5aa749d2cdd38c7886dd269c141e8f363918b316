@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "18c2e09b_f8746210",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-04-03T02:03:47Z",
+      "side": 1,
+      "message": "Got a bunch of redefined-outer-name errors, assuming pylint is getting confused by the list comprehension since I don\u0027t see d in any outer scope here.",
+      "revId": "5aa749d2cdd38c7886dd269c141e8f363918b316",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
