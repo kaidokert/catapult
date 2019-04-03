@@ -69,6 +69,24 @@
       "revId": "477aefbff6d675584833b922d1002013abe66ac1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1221151b_5c7436c3",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-04-03T00:59:41Z",
+      "side": 1,
+      "message": "Nevermind, that made the line too long, I\u0027ll stick with the existing name.",
+      "parentUuid": "5a8a8e34_78c156f2",
+      "revId": "477aefbff6d675584833b922d1002013abe66ac1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
