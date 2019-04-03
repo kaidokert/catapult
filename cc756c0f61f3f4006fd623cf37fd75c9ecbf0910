@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0928d2cc_a63e3c35",
+        "filename": "dashboard/dashboard/spa/revision-urls.js",
+        "patchSetId": 34
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-04-03T19:07:29Z",
+      "side": 1,
+      "message": "Are these the same as https://chromeperf.appspot.com/edit_site_config?key\u003drevision_info",
+      "range": {
+        "startLine": 7,
+        "startChar": 8,
+        "endLine": 7,
+        "endChar": 21
+      },
+      "revId": "cc756c0f61f3f4006fd623cf37fd75c9ecbf0910",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
