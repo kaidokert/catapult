@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "50b7c13a_c71935ad",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-04-03T00:40:04Z",
+      "side": 1,
+      "message": "If you keep this as is, nit: please format as a separate sentence from the line above.",
+      "revId": "477aefbff6d675584833b922d1002013abe66ac1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5f27296_913dcd54",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-04-03T00:40:04Z",
+      "side": 1,
+      "message": "What about just\n\n  _SPECIAL_ROOT_DEVICE_LIST \u003d [existing]\n  _SPECIAL_ROOT_DEVICE_LIST +\u003d [\u0027aosp_%s\u0027 % d for d in _SPECIAL_ROOT_DEVICE_LIST]\n\nand removing _IsSpecialRootDevice?",
+      "revId": "477aefbff6d675584833b922d1002013abe66ac1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
