@@ -16,6 +16,11 @@ from collections import OrderedDict
 
 import json
 
+
+_show_only_in_top_level = set([
+    'build_number', 'builder_name', 'chromium_revision'])
+
+
 class ResultType(object):
     Pass = 'PASS'
     Failure = 'FAIL'
@@ -73,9 +78,13 @@ def make_full_results(metadata, seconds_since_epoch, all_test_names, results):
     full_results['path_delimiter'] = TEST_SEPARATOR
     full_results['seconds_since_epoch'] = seconds_since_epoch
 
-    for md in metadata:
-        key, val = md.split('=', 1)
-        full_results[key] = val
+    for k, v in metadata.items():
+        if k in _show_only_in_top_level:
+            full_results[k] = v
+            del metadata[k]
+
+    if metadata:
+        full_results['metadata'] = metadata
 
     passing_tests = _passing_test_names(results)
     skipped_tests = _skipped_test_names(results)
