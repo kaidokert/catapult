@@ -22,6 +22,30 @@
       "revId": "cc756c0f61f3f4006fd623cf37fd75c9ecbf0910",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18d7c6c6_4bd27c83",
+        "filename": "dashboard/dashboard/spa/revision-urls.js",
+        "patchSetId": 34
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-04-03T19:38:44Z",
+      "side": 1,
+      "message": "Yes, except for the corp server for r_cros_version. I\u0027m not sure whether or how to handle that yet.",
+      "parentUuid": "0928d2cc_a63e3c35",
+      "range": {
+        "startLine": 7,
+        "startChar": 8,
+        "endLine": 7,
+        "endChar": 21
+      },
+      "revId": "cc756c0f61f3f4006fd623cf37fd75c9ecbf0910",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
