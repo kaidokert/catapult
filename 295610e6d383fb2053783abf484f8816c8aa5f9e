@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f34b073d_1b3ad676",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 973,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-04-03T22:32:10Z",
+      "side": 1,
+      "message": "We can remove everything in this try block after pushing this CL and changing telemetry unit tests and browser tests to use the new API.",
+      "revId": "295610e6d383fb2053783abf484f8816c8aa5f9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
