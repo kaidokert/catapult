@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "800a9237_bd5770d6",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-04-03T00:38:20Z",
+      "side": 1,
+      "message": "Side note: in retrospect, using a closure here is probably too clever.\n\nI\u0027d just change the places where we call add_tests(obj) below to call _test_adder(obj, test_set, classifier) instead.\n\nBut not in this CL.",
+      "revId": "378bbbdca387ef52ef05c514b0afeb0c51b6b115",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e99cb7e_05416396",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 834,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-04-03T00:38:20Z",
+      "side": 1,
+      "message": "Nit: maybe call this \u0027should_filter\u0027?",
+      "revId": "378bbbdca387ef52ef05c514b0afeb0c51b6b115",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a44db7c_9c475a57",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 847,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-04-03T00:38:20Z",
+      "side": 1,
+      "message": "Nit: maybe call this \"should_isolate\"?",
+      "revId": "378bbbdca387ef52ef05c514b0afeb0c51b6b115",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd3e5ad7_2197f718",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 854,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-04-03T00:38:20Z",
+      "side": 1,
+      "message": "Nit: \"should_skip\"?\n\nThough, in this case, maybe this should also be checking the expectations? Not sure here ... the interaction between the command line args and the expectations files is kinda weird, and it seems like we should only be using one approach or the other.\n\nThere\u0027s the same sort of overlap between --test-filter and the positional args, too.",
+      "revId": "378bbbdca387ef52ef05c514b0afeb0c51b6b115",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
