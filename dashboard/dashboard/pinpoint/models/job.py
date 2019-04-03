@@ -17,6 +17,7 @@ from google.appengine.runtime import apiproxy_errors
 from dashboard import update_bug_with_results
 from dashboard.common import utils
 from dashboard.models import histogram
+from dashboard.pinpoint.models import errors
 from dashboard.pinpoint.models import job_state
 from dashboard.pinpoint.models import results2
 from dashboard.services import gerrit_service
@@ -41,6 +42,8 @@ OPTION_TAGS = 'TAGS'
 
 
 COMPARISON_MODES = job_state.COMPARISON_MODES
+BISECT_COUNT = job_state._REPEAT_COUNT_INCREASE
+TRYJOB_COUNT = 4
 
 RETRY_OPTIONS = taskqueue.TaskRetryOptions(task_retry_limit=8,
                                            min_backoff_seconds=2)
@@ -148,8 +151,9 @@ class Job(ndb.Model):
               gerrit_change_id=gerrit_change_id,
               name=name, tags=tags, user=user)
 
+    initial_count = BISECT_COUNT if comparison_mode else TRYJOB_COUNT
     for c in changes:
-      job.AddChange(c)
+      job.AddChange(c, initial_count)
 
     job.put()
     return job
@@ -204,8 +208,8 @@ class Job(ndb.Model):
 
     return name
 
-  def AddChange(self, change):
-    self.state.AddChange(change)
+  def AddChange(self, change, repeat_count=BISECT_COUNT):
+    self.state.AddChange(change, repeat_count)
 
   def Start(self):
     """Starts the Job and updates it in the Datastore.
@@ -392,7 +396,7 @@ class Job(ndb.Model):
           queue_name='job-queue', url='/api/run/' + self.job_id,
           name=task_name, countdown=countdown)
     except (apiproxy_errors.DeadlineExceededError, taskqueue.TransientError):
-      raise job_state.JobStateRecoverableError()
+      raise errors.RecoverableError()
 
     self.task = task.name
 
@@ -434,7 +438,7 @@ class Job(ndb.Model):
         self._Complete()
 
       self.retry_count = 0
-    except job_state.JobStateRecoverableError:
+    except errors.RecoverableError:
       if not self._MaybeScheduleRetry():
         self.Fail()
         raise
