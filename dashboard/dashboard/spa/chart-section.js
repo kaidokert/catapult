@@ -326,6 +326,13 @@ tr.exportTo('cp', () => {
   };
 
   ChartSection.newStateOptionsFromQueryParams = routeParams => {
+    let brushRevisions = [];
+    try {
+      brushRevisions = routeParams.get('brush').split(/[.,]/).map(r =>
+        parseInt(r));
+    } catch (unused) {
+    }
+
     return {
       parameters: {
         suites: routeParams.getAll('suite') || routeParams.getAll('testSuite'),
@@ -343,6 +350,7 @@ tr.exportTo('cp', () => {
       isExpanded: !routeParams.has('compact'),
       minRevision: parseInt(routeParams.get('minRev')) || undefined,
       maxRevision: parseInt(routeParams.get('maxRev')) || undefined,
+      brushRevisions,
       selectedRelatedTabName: routeParams.get('spark') || '',
       mode: routeParams.get('mode') || undefined,
       fixedXAxis: !routeParams.has('natural'),
@@ -461,6 +469,7 @@ tr.exportTo('cp', () => {
       title: state.title,
       minRevision: state.minRevision,
       maxRevision: state.maxRevision,
+      brushRevisions: state.chartLayout && state.chartLayout.brushRevisions,
       zeroYAxis: state.zeroYAxis,
       fixedXAxis: state.fixedXAxis,
       mode: state.mode,
@@ -539,6 +548,11 @@ tr.exportTo('cp', () => {
     }
     if (!state.isExpanded) {
       routeParams.set('compact', '');
+    }
+    if (state.chartLayout &&
+        state.chartLayout.brushRevisions &&
+        state.chartLayout.brushRevisions.length) {
+      routeParams.set('brush', state.chartLayout.brushRevisions.join('.'));
     }
     return routeParams;
   };
