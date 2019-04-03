@@ -34,6 +34,24 @@
       "revId": "5aa749d2cdd38c7886dd269c141e8f363918b316",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a599af13_65e665fb",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-04-03T18:03:01Z",
+      "side": 1,
+      "message": "Using underscore now to avoid this warning, thanks John.",
+      "parentUuid": "18c2e09b_f8746210",
+      "revId": "5aa749d2cdd38c7886dd269c141e8f363918b316",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
