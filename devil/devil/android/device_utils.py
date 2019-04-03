@@ -222,6 +222,8 @@ _SPECIAL_ROOT_DEVICE_LIST = [
     'crosshatch', # Pixel 3 XL
     'blueline', # Pixel 3
 ]
+_SPECIAL_ROOT_DEVICE_LIST += ['aosp_%s' % _ for _ in _SPECIAL_ROOT_DEVICE_LIST]
+
 _IMEI_RE = re.compile(r'  Device ID = (.+)$')
 # The following regex is used to match result parcels like:
 """
