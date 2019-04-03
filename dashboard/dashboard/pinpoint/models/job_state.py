@@ -10,6 +10,7 @@ from dashboard.common import math_utils
 from dashboard.pinpoint.models import attempt as attempt_module
 from dashboard.pinpoint.models import change as change_module
 from dashboard.pinpoint.models import compare
+from dashboard.pinpoint.models import errors
 
 
 _REPEAT_COUNT_INCREASE = 10
@@ -18,10 +19,6 @@ _REPEAT_COUNT_INCREASE = 10
 FUNCTIONAL = 'functional'
 PERFORMANCE = 'performance'
 COMPARISON_MODES = (FUNCTIONAL, PERFORMANCE)
-
-
-class JobStateRecoverableError(Exception):
-  pass
 
 
 class JobState(object):
@@ -69,7 +66,7 @@ class JobState(object):
       return 'Failure rate'
     return self._quests[-1].metric if self._quests else ''
 
-  def AddAttempts(self, change):
+  def AddAttempts(self, change, repeat_count=_REPEAT_COUNT_INCREASE):
     if not hasattr(self, '_pin'):
       # TODO: Remove after data migration.
       self._pin = None
@@ -79,18 +76,18 @@ class JobState(object):
     else:
       change_with_pin = change
 
-    for _ in xrange(_REPEAT_COUNT_INCREASE):
+    for _ in xrange(repeat_count):
       attempt = attempt_module.Attempt(self._quests, change_with_pin)
       self._attempts[change].append(attempt)
 
-  def AddChange(self, change, index=None):
+  def AddChange(self, change, index=None, repeat_count=_REPEAT_COUNT_INCREASE):
     if index:
       self._changes.insert(index, change)
     else:
       self._changes.append(change)
 
     self._attempts[change] = []
-    self.AddAttempts(change)
+    self.AddAttempts(change, repeat_count)
 
   def Explore(self):
     """Compare Changes and bisect by adding additional Changes as needed.
@@ -121,7 +118,7 @@ class JobState(object):
         except change_module.NonLinearError:
           continue
         except httplib.HTTPException:
-          raise JobStateRecoverableError()
+          raise errors.RecoverableError()
 
         logging.info('Adding Change %s.', midpoint)
         self.AddChange(midpoint, index)
