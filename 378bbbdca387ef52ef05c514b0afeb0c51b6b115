@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8111389f_1206d7f4",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-04-03T02:03:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "800a9237_bd5770d6",
+      "revId": "378bbbdca387ef52ef05c514b0afeb0c51b6b115",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e99cb7e_05416396",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 7
@@ -30,6 +48,24 @@
       "writtenOn": "2019-04-03T00:38:20Z",
       "side": 1,
       "message": "Nit: maybe call this \u0027should_filter\u0027?",
+      "revId": "378bbbdca387ef52ef05c514b0afeb0c51b6b115",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6459d41e_67e2119b",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 834,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-04-03T02:03:20Z",
+      "side": 1,
+      "message": "If we keep filtering through positional args and filtering through the test-filter arg then can we name one function should_filter_with_test_filter_arg and the other should_filter_with_positional_args?",
+      "parentUuid": "0e99cb7e_05416396",
       "revId": "378bbbdca387ef52ef05c514b0afeb0c51b6b115",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "1c074855_5bdb0523",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 847,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-04-03T02:03:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a44db7c_9c475a57",
+      "revId": "378bbbdca387ef52ef05c514b0afeb0c51b6b115",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd3e5ad7_2197f718",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 7
@@ -64,6 +118,24 @@
       "writtenOn": "2019-04-03T00:38:20Z",
       "side": 1,
       "message": "Nit: \"should_skip\"?\n\nThough, in this case, maybe this should also be checking the expectations? Not sure here ... the interaction between the command line args and the expectations files is kinda weird, and it seems like we should only be using one approach or the other.\n\nThere\u0027s the same sort of overlap between --test-filter and the positional args, too.",
+      "revId": "378bbbdca387ef52ef05c514b0afeb0c51b6b115",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e761fa2_b5b87af2",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 854,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-04-03T02:03:20Z",
+      "side": 1,
+      "message": "Given the TODO comment starting at line 974, that actually sounds like a good idea. We can then remove skipping code from  _run_one_test. Also on subject of --test-filter and positional args, I noticed that in telemetry unittests if the --test-filter argument is passed then it ignores positional args. At the same time telemetry browser tests completely ignores positional args. It also. I think we should handle positional args and --test-filter in separate functions for now.",
+      "parentUuid": "cd3e5ad7_2197f718",
       "revId": "378bbbdca387ef52ef05c514b0afeb0c51b6b115",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
