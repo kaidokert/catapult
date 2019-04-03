@@ -16,6 +16,24 @@
       "revId": "5aa749d2cdd38c7886dd269c141e8f363918b316",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c874aff7_b22c9b9c",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-04-03T17:55:28Z",
+      "side": 1,
+      "message": "As mentioned offline, please fix this rather than disabling the warning across the entire file.",
+      "parentUuid": "18c2e09b_f8746210",
+      "revId": "5aa749d2cdd38c7886dd269c141e8f363918b316",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
