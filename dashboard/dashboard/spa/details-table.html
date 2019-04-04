@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!--
+Copyright 2019 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/dashboard/spa/chart-timeseries.html">
+<link rel="import" href="/dashboard/spa/cp-loading.html">
+<link rel="import" href="/dashboard/spa/element-base.html">
+<link rel="import" href="/dashboard/spa/revision-urls.html">
+
+<dom-module id="details-table">
+  <template>
+    <style>
+      :host {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+      #empty {
+        min-width: 300px;
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #empty[hidden] {
+        display: none;
+      }
+      table {
+        box-shadow: var(--elevation-1);
+        padding: 4px;
+      }
+      th {
+        /* --color is computed by getColor_ and set in the HTML below. */
+        color: var(--color);
+        border-bottom: 2px solid var(--color);
+        padding-top: 4px;
+      }
+    </style>
+
+    <cp-loading loading$="[[isLoading]]">
+    </cp-loading>
+
+    <div id="empty" hidden$="[[hideEmpty_(isLoading, bodies)]]">
+      Loading details
+    </div>
+
+    <table>
+      <thead>
+        <template is="dom-repeat" items="[[commonLinkRows]]" as="row" index-as="rowIndex">
+          <tr>
+            <td>
+              <template is="dom-if" if="[[showRowLabel_(row.label)]]">
+                [[row.label]]
+              </template>
+              <template is="dom-if" if="[[!showRowLabel_(row.label)]]">
+                &nbsp;
+              </template>
+            </td>
+            <template is="dom-repeat" items="[[row.cells]]" as="cell" index-as="cellIndex">
+              <td>
+                <template is="dom-if" if="[[cell.href]]">
+                  <a href="[[cell.href]]" target="_blank">[[cell.label]]</a>
+                </template>
+                <template is="dom-if" if="[[!cell.href]]">
+                  [[cell.label]]
+                </template>
+              </td>
+            </template>
+          </tr>
+        </template>
+      </thead>
+
+      <template is="dom-repeat" items="[[bodies]]" as="body" index-as="bodyIndex">
+        <tbody>
+          <template is="dom-if" if="[[isMultiple_(lineDescriptors)]]">
+            <tr>
+              <th colspan="99" style$="--color: [[getColor_(colorByLine, body)]]; ">
+                <template is="dom-repeat" items="[[body.descriptorParts]]" as="part" index-as="partIndex">
+                  <span>[[part]]</span>
+                </template>
+              </th>
+            </tr>
+          </template>
+
+          <template is="dom-repeat" items="[[body.scalarRows]]" as="row" index-as="rowIndex">
+            <tr>
+              <td>
+                [[row.label]]
+              </td>
+              <template is="dom-repeat" items="[[row.cells]]" as="cell" index-as="cellIndex">
+                <td>
+                  <scalar-span
+                      value="[[cell.value]]"
+                      unit="[[cell.unit]]">
+                  </scalar-span>
+                </td>
+              </template>
+            </tr>
+          </template>
+
+          <template is="dom-repeat" items="[[body.linkRows]]" as="row" index-as="rowIndex">
+            <tr>
+              <td>
+                <template is="dom-if" if="[[showRowLabel_(row.label)]]">
+                  [[row.label]]
+                </template>
+                <template is="dom-if" if="[[!showRowLabel_(row.label)]]">
+                  &nbsp;
+                </template>
+              </td>
+              <template is="dom-repeat" items="[[row.cells]]" as="cell" index-as="cellIndex">
+                <td>
+                  <template is="dom-if" if="[[cell.href]]">
+                    <a href="[[cell.href]]" target="_blank">[[cell.label]]</a>
+                  </template>
+                  <template is="dom-if" if="[[!cell.href]]">
+                    [[cell.label]]
+                  </template>
+                </td>
+              </template>
+            </tr>
+          </template>
+        </tbody>
+      </template>
+    </table>
+  </template>
+</dom-module>
+<script src="/dashboard/spa/details-table.js"></script>
