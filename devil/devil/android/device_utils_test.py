@@ -413,7 +413,8 @@ class DeviceUtilsGetApplicationPathsInternalTest(DeviceUtilsTest):
         (self.call.device.GetProp('ro.build.version.sdk', cache=True), '19'),
         (self.call.device.RunShellCommand(
             ['pm', 'path', 'android'], check_return=True),
-         ['package:/path/to/android.apk'])):
+         ['package:/path/to/android.apk']),
+        (self.call.device.GetProp('ro.build.version.sdk', cache=True), '19')):
       self.assertEquals(['/path/to/android.apk'],
                         self.device._GetApplicationPathsInternal('android'))
 
@@ -422,7 +423,8 @@ class DeviceUtilsGetApplicationPathsInternalTest(DeviceUtilsTest):
         (self.call.device.GetProp('ro.build.version.sdk', cache=True), '19'),
         (self.call.device.RunShellCommand(
             ['pm', 'path', 'not.installed.app'], check_return=True),
-         '')):
+         ''),
+        (self.call.device.GetProp('ro.build.version.sdk', cache=True), '19')):
       self.assertEquals([],
           self.device._GetApplicationPathsInternal('not.installed.app'))
 
@@ -440,7 +442,8 @@ class DeviceUtilsGetApplicationPathsInternalTest(DeviceUtilsTest):
         (self.call.device.GetProp('ro.build.version.sdk', cache=True), '19'),
         (self.call.device.RunShellCommand(
             ['pm', 'path', 'not.installed.app'], check_return=True),
-         ['WARNING: some warning message from pm'])):
+         ['WARNING: some warning message from pm']),
+        (self.call.device.GetProp('ro.build.version.sdk', cache=True), '19')):
       self.assertEquals([],
           self.device._GetApplicationPathsInternal('not.installed.app'))
 
@@ -452,6 +455,45 @@ class DeviceUtilsGetApplicationPathsInternalTest(DeviceUtilsTest):
          self.CommandError('ERROR. Is package manager running?\n'))):
       with self.assertRaises(device_errors.CommandFailedError):
         self.device._GetApplicationPathsInternal('android')
+
+  def testGetApplicationPathsInternal_pmpathAndDumpsys(self):
+    with self.assertCalls(
+        (self.call.device.GetProp('ro.build.version.sdk', cache=True), '24'),
+        (self.call.device.RunShellCommand(
+            ['pm', 'path', 'android'], check_return=False),
+         ['package:/path/to/android.apk']),
+        (self.call.device.GetProp('ro.build.version.sdk', cache=True), '24'),
+        (self.call.device._RunPipedShellCommand(
+            'dumpsys package android | grep -F path:'),
+         ['  path: /path/to/android.apk'])):
+      self.assertEquals(['/path/to/android.apk'],
+                        self.device._GetApplicationPathsInternal('android'))
+
+  def testGetApplicationPathsInternal_dumpsysOnly(self):
+    with self.assertCalls(
+        (self.call.device.GetProp('ro.build.version.sdk', cache=True), '24'),
+        (self.call.device.RunShellCommand(
+            ['pm', 'path', 'android.dumpsys.only'], check_return=False),
+         ''),
+        (self.call.device.GetProp('ro.build.version.sdk', cache=True), '24'),
+        (self.call.device._RunPipedShellCommand(
+            'dumpsys package android.dumpsys.only | grep -F path:'),
+         ['  path: /path/to/android.dumpsys.only.apk'])):
+      self.assertEquals(['/path/to/android.dumpsys.only.apk'],
+          self.device._GetApplicationPathsInternal('android.dumpsys.only'))
+
+  def testGetApplicationPathsInternal_pmpathOnly(self):
+    with self.assertCalls(
+        (self.call.device.GetProp('ro.build.version.sdk', cache=True), '24'),
+        (self.call.device.RunShellCommand(
+            ['pm', 'path', 'android.pmpath.only'], check_return=False),
+         ['package:/path/to/android.pmpath.only.apk']),
+        (self.call.device.GetProp('ro.build.version.sdk', cache=True), '24'),
+        (self.call.device._RunPipedShellCommand(
+            'dumpsys package android.pmpath.only | grep -F path:'),
+         [])):
+      self.assertEquals(['/path/to/android.pmpath.only.apk'],
+          self.device._GetApplicationPathsInternal('android.pmpath.only'))
 
 
 class DeviceUtils_GetApplicationVersionTest(DeviceUtilsTest):

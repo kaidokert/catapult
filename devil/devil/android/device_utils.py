@@ -682,6 +682,21 @@ class DeviceUtils(object):
         logger.warning('pm returned no paths but the following warnings:')
         for line in output:
           logger.warning('- %s', line)
+    # In rare cases, it's possible for pm path to miss a package path,
+    # so also use any new paths found in pm dumpsys output.  The full path
+    # is only available in the dumpsys output on N+ builds.
+    if self.build_version_sdk >= version_codes.NOUGAT:
+      dumpsys_lines = self._GetDumpsysOutput(['package', package], 'path:')
+      for line in dumpsys_lines:
+        key, value = line.split(':')
+        if key.strip() == 'path':
+          value = value.strip()
+          if value.startswith('/'):
+            if value not in apks:
+              apks.append(value)
+          else:
+            logger.warning('pm package %s returned unexpected path line: %s',
+                           package, line)
     self._cache['package_apk_paths'][package] = list(apks)
     return apks
 
