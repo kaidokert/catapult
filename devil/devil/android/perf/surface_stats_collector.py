@@ -116,13 +116,14 @@ class SurfaceStatsCollector(object):
     except StopIteration:
       raise Exception('Unable to get surface flinger process id')
 
-  def _GetSurfaceViewWindowName(self):
+  def _GetWindowNames(self):
     results = self._device.RunShellCommand(
         ['dumpsys', 'SurfaceFlinger', '--list'], check_return=True)
+    window_names = []
     for window_name in results:
-      if window_name.startswith('SurfaceView'):
-        return window_name
-    return None
+      if window_name.startswith('SurfaceView') or window_name.startswith('ChromeChildSurface'):
+        window_names.append(window_name)
+    return window_names
 
   def _GetSurfaceFlingerFrameData(self):
     """Returns collected SurfaceFlinger frame timing data.
@@ -160,36 +161,42 @@ class SurfaceStatsCollector(object):
     # (each time the number above changes, we have a "jank").
     # If this happens a lot during an animation, the animation appears
     # janky, even if it runs at 60 fps in average.
-    window_name = self._GetSurfaceViewWindowName()
+    window_names = self._GetWindowNames()
     command = ['dumpsys', 'SurfaceFlinger', '--latency']
-    # Even if we don't find the window name, run the command to get the refresh
-    # period.
-    if window_name:
-      command.append(window_name)
-    results = self._device.RunShellCommand(command, check_return=True)
-    if not len(results):
-      return (None, None)
-
+    refresh_period = None
     timestamps = []
-    nanoseconds_per_millisecond = 1e6
-    refresh_period = long(results[0]) / nanoseconds_per_millisecond
-    if not window_name:
-      return (refresh_period, timestamps)
 
     # If a fence associated with a frame is still pending when we query the
     # latency data, SurfaceFlinger gives the frame a timestamp of INT64_MAX.
     # Since we only care about completed frames, we will ignore any timestamps
     # with this value.
     pending_fence_timestamp = (1 << 63) - 1
+    nanoseconds_per_millisecond = 1e6
 
-    for line in results[1:]:
-      fields = line.split()
-      if len(fields) != 3:
+    for window_name in window_names:
+      window_command = command + [window_name]
+      results = self._device.RunShellCommand(window_command, check_return=True)
+      if not len(results):
         continue
-      timestamp = long(fields[1])
-      if timestamp == pending_fence_timestamp:
-        continue
-      timestamp /= nanoseconds_per_millisecond
-      timestamps.append(timestamp)
+
+      if refresh_period is None:
+        refresh_period = long(results[0]) / nanoseconds_per_millisecond
+
+      for line in results[1:]:
+        fields = line.split()
+        if len(fields) != 3:
+          continue
+        timestamp = long(fields[1])
+        if timestamp == pending_fence_timestamp:
+          continue
+        timestamp /= nanoseconds_per_millisecond
+        timestamps.append(timestamp)
+
+    timestamps = sorted(set(timestamps))
+    if refresh_period is None:
+      results = self._device.RunShellCommand(command, check_return=True)
+      if len(results) > 0:
+        refresh_period = long(results[0]) / nanoseconds_per_millisecond
 
     return (refresh_period, timestamps)
+
