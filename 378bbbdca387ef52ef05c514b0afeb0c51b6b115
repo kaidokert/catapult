@@ -175,6 +175,24 @@
       "revId": "378bbbdca387ef52ef05c514b0afeb0c51b6b115",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e751cecd_bc29a6e1",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 854,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-04-04T00:03:19Z",
+      "side": 1,
+      "message": "We do. During test classification, a test that either matches the skip glob or has a skip expectation will be added to the skip_tests list in the TestSet object. Then the _skip_tests function at line 591 will create skip results for each test in that list.",
+      "parentUuid": "7ffba72f_a2b6344f",
+      "revId": "378bbbdca387ef52ef05c514b0afeb0c51b6b115",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
