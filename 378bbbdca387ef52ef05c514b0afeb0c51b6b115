@@ -90,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "5bb8ffc5_a559a6b5",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 834,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-04-04T00:42:49Z",
+      "side": 1,
+      "message": "That does make sense. The issue is that telemetry browser tests and telemetry unit tests use the args for different purposes. Telemetry unit tests check to see if a test filter arg was passed and if it was not then it uses the positional arg to filter tests. Telemetry browser tests uses only one of the positional args (the last positional arg) to find the test class that contains all the tests. It doesn\u0027t use the other positional args for anything. Also within the telemetry browser tests classifier, it filters out any test case that is not a subclass of the SeriallyExecutedBrowserTestCase before checking if it matches the skip globs. If we didn\u0027t have that filter before the skip globs then we may possibly have skip results for test cases that are not from sub classes of SeriallyExecutedBrowserTestCase. There also is the issue of sharding. Telemetry browser tests implemented some code to do sharding which involves test filtering. There is a command line option to  allows users to choose if they want to do test filter before or after sharding tests.",
+      "parentUuid": "f65938a2_f50f85a8",
+      "revId": "378bbbdca387ef52ef05c514b0afeb0c51b6b115",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7a44db7c_9c475a57",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 7
