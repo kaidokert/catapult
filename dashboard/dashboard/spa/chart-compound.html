@@ -10,6 +10,7 @@ found in the LICENSE file.
 <link rel="import" href="/dashboard/spa/cp-radio-group.html">
 <link rel="import" href="/dashboard/spa/cp-switch.html">
 <link rel="import" href="/dashboard/spa/describe-request.html">
+<link rel="import" href="/dashboard/spa/details-table.html">
 <link rel="import" href="/dashboard/spa/element-base.html">
 <link rel="import" href="/dashboard/spa/test-suites-request.html">
 <link rel="import" href="/dashboard/spa/timeseries-request.html">
@@ -177,9 +178,19 @@ found in the LICENSE file.
     <chart-timeseries
         id="chart"
         state-path="[[statePath]].chartLayout"
-        on-get-tooltip="onGetTooltip_">
+        on-get-tooltip="onGetTooltip_"
+        on-brush="onChartBrush_"
+        on-line-count-change="onLineCountChange_"
+        on-chart-click="onChartClick_">
       <slot></slot>
     </chart-timeseries>
+
+    <iron-collapse opened="[[isExpanded]]">
+      <details-table
+          id="details"
+          state-path="[[statePath]].details">
+      </details-table>
+    </iron-collapse>
   </template>
 </dom-module>
 <script src="/dashboard/spa/chart-compound.js"></script>
