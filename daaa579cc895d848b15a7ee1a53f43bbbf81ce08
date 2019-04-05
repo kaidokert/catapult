@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b70bb8e_854cb447",
+        "filename": "devil/devil/android/perf/surface_stats_collector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-04-05T19:41:59Z",
+      "side": 1,
+      "message": "nit: \u003c\u003d 80 chars, I think",
+      "revId": "daaa579cc895d848b15a7ee1a53f43bbbf81ce08",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5681fbd7_d3ac3b51",
+        "filename": "devil/devil/android/perf/surface_stats_collector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-04-05T19:41:59Z",
+      "side": 1,
+      "message": "Should we be associating timestamps with their respective windows?",
+      "revId": "daaa579cc895d848b15a7ee1a53f43bbbf81ce08",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
