@@ -34,6 +34,24 @@
       "revId": "c3b0670283819ac017b2565c10100e2edf4e34dd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87740a88_862eceb1",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 685,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-04-05T17:49:24Z",
+      "side": 1,
+      "message": "I would expect us to understand what we\u0027re working around a bit more than this before proceeding with this kind of thing in devil. Can you either investigate the issue a bit more or move this workaround to client code?",
+      "parentUuid": "3dd18958_aa351fbe",
+      "revId": "c3b0670283819ac017b2565c10100e2edf4e34dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
