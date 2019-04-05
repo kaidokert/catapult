@@ -33,6 +33,24 @@
       "revId": "daaa579cc895d848b15a7ee1a53f43bbbf81ce08",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9b1e35f_68fdeabb",
+        "filename": "devil/devil/android/perf/surface_stats_collector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1145109
+      },
+      "writtenOn": "2019-04-05T20:17:47Z",
+      "side": 1,
+      "message": "I don\u0027t think that\u0027s necessary. The source of the timestamps is the same for each window (SurfaceFlinger\u0027s composite start time), only SurfaceFlinger associates them with a window if that window was updated in that particular frame.\n\nSo the code here essentially includes a SurfaceFlinger composite event if any of these windows was updated in that frame. Which is what we want I think. In the benchmark each surface flinger frame corresponds to a chrome frame (even if only a subset of the windows were updated by chrome in that frame).",
+      "parentUuid": "5681fbd7_d3ac3b51",
+      "revId": "daaa579cc895d848b15a7ee1a53f43bbbf81ce08",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
