@@ -16,6 +16,24 @@
       "revId": "c3b0670283819ac017b2565c10100e2edf4e34dd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3dd18958_aa351fbe",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 685,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-04-05T17:39:36Z",
+      "side": 1,
+      "message": "I flashed a walleye locally to the same version and didn\u0027t see this problem.  The only interesting thing I found is that in the pm dumpsys command output:\n\n      User 0: ceDataInode\u003d0 installed\u003dfalse hidden\u003dfalse suspended\u003dfalse stopped\u003dtrue notLaunched\u003dtrue enabled\u003d1 instant\u003dfalse\n\nnote \"installed\u003dfalse\"  so I\u0027m assuming that pm path won\u0027t show anything with installed set to false, how it got to that way I don\u0027t know.",
+      "parentUuid": "44ea8802_b47ec71b",
+      "revId": "c3b0670283819ac017b2565c10100e2edf4e34dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
