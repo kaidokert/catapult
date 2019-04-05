@@ -70,6 +70,24 @@
       "revId": "c3b0670283819ac017b2565c10100e2edf4e34dd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "766e7406_4132664f",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 685,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-04-05T17:53:18Z",
+      "side": 1,
+      "message": "I guess I could live with that.",
+      "parentUuid": "a919483b_0b5ad2d7",
+      "revId": "c3b0670283819ac017b2565c10100e2edf4e34dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
