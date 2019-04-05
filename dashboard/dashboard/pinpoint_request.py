@@ -17,7 +17,7 @@ from dashboard.services import pinpoint_service
 
 _NON_CHROME_TARGETS = ['v8']
 _ISOLATE_TARGETS = [
-    'angle_perftests', 'cc_perftests', 'gpu_perftests',
+    'angle_perftests', 'base_perftests', 'cc_perftests', 'gpu_perftests',
     'load_library_perf_tests', 'media_perftests', 'net_perftests',
     'performance_browser_tests', 'tracing_perftests']
 _SUITE_CRREV_CONFIGS = {
