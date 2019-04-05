@@ -21,6 +21,15 @@ with devil_env.SysPath(devil_env.PYMOCK_PATH):
   import mock
 
 
+_PACKAGE_NAME = 'com.android'
+_PACKAGE_PATH = '/path/to/com.android.apk'
+_DUMPSYS_COMMAND = ['dumpsys', 'package', _PACKAGE_NAME]
+_DUMPSYS_OUTPUT_WITH_PATH = ['some path: /bad/path',
+                             '  path: ' + _PACKAGE_PATH,
+                             '  path: not really a path']
+_DUMPSYS_OUTPUT_WITHOUT_PATH = ['some path: /bad/path',
+                                '  path: not really a path']
+
 class SystemAppTest(unittest.TestCase):
 
   def testDoubleEnableModification(self):
@@ -63,6 +72,76 @@ class SystemAppTest(unittest.TestCase):
 
     mock_device.SetProp.assert_called_once_with(
         system_app._ENABLE_MODIFICATION_PROP, '0')
+
+  def test_GetApplicationPaths_pmPathAndDumpsys(self):
+    """Path found in both GetApplicationPaths and dumpsys package outputs."""
+    # pylint: disable=protected-access
+    mock_device = mock.Mock(spec=device_utils.DeviceUtils)
+    mock_device.configure_mock(build_version_sdk=24)
+    mock_device.GetApplicationPaths.configure_mock(
+        return_value=[_PACKAGE_PATH]
+    )
+    mock_device.RunShellCommand.configure_mock(
+        return_value=_DUMPSYS_OUTPUT_WITH_PATH
+    )
+
+    paths = system_app._GetApplicationPaths(mock_device, _PACKAGE_NAME)
+
+    self.assertEquals([_PACKAGE_PATH], paths)
+    mock_device.GetApplicationPaths.assert_called_once_with(_PACKAGE_NAME)
+    mock_device.RunShellCommand.assert_called_once_with(_DUMPSYS_COMMAND,
+                                                        large_output=True)
+
+  def test_GetApplicationPaths_DumpsysOnly(self):
+    """Path only found in dumpsys package output."""
+    # pylint: disable=protected-access
+    mock_device = mock.Mock(spec=device_utils.DeviceUtils)
+    mock_device.configure_mock(build_version_sdk=24)
+    mock_device.GetApplicationPaths.configure_mock(return_value=[])
+    mock_device.RunShellCommand.configure_mock(
+        return_value=_DUMPSYS_OUTPUT_WITH_PATH
+    )
+
+    paths = system_app._GetApplicationPaths(mock_device, _PACKAGE_NAME)
+
+    self.assertEquals([_PACKAGE_PATH], paths)
+    mock_device.GetApplicationPaths.assert_called_once_with(_PACKAGE_NAME)
+    mock_device.RunShellCommand.assert_called_once_with(_DUMPSYS_COMMAND,
+                                                        large_output=True)
+
+  def test_GetApplicationPaths_pmPathOnly(self):
+    """Path only found in GetApplicationPaths output."""
+    # pylint: disable=protected-access
+    mock_device = mock.Mock(spec=device_utils.DeviceUtils)
+    mock_device.configure_mock(build_version_sdk=24)
+    mock_device.GetApplicationPaths.configure_mock(
+        return_value=[_PACKAGE_PATH]
+    )
+    mock_device.RunShellCommand.configure_mock(
+        return_value=_DUMPSYS_OUTPUT_WITHOUT_PATH
+    )
+
+    paths = system_app._GetApplicationPaths(mock_device, _PACKAGE_NAME)
+
+    self.assertEquals([_PACKAGE_PATH], paths)
+    mock_device.GetApplicationPaths.assert_called_once_with(_PACKAGE_NAME)
+    mock_device.RunShellCommand.assert_called_once_with(_DUMPSYS_COMMAND,
+                                                        large_output=True)
+
+  def test_GetApplicationPaths_preN(self):
+    """Before N, should only use GetApplicationPaths."""
+    # pylint: disable=protected-access
+    mock_device = mock.Mock(spec=device_utils.DeviceUtils)
+    mock_device.configure_mock(build_version_sdk=23)
+    mock_device.GetApplicationPaths.configure_mock(
+        return_value=[_PACKAGE_PATH]
+    )
+
+    paths = system_app._GetApplicationPaths(mock_device, _PACKAGE_NAME)
+
+    self.assertEquals([_PACKAGE_PATH], paths)
+    mock_device.GetApplicationPaths.assert_called_once_with(_PACKAGE_NAME)
+    mock_device.RunShellCommand.assert_not_called()
 
 
 if __name__ == '__main__':
