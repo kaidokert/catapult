@@ -10,6 +10,7 @@ import contextlib
 import logging
 import os
 import posixpath
+import re
 import sys
 
 
@@ -41,6 +42,8 @@ SPECIAL_SYSTEM_APP_LOCATIONS = {
   'com.google.ar.core': '/data/app/',
 }
 
+# Gets app path in dumpsys package output.
+_DUMPSYS_PATH_RE = re.compile(r'^\s*path:\s*(/\S*)\s*$')
 
 def RemoveSystemApps(device, package_names):
   """Removes the given system apps.
@@ -77,12 +80,28 @@ def _FindSystemPackagePaths(device, system_package_list):
   """Finds all system paths for the given packages."""
   found_paths = []
   for system_package in system_package_list:
-    paths = device.GetApplicationPaths(system_package)
+    paths = _GetApplicationPaths(device, system_package)
     p = _GetSystemPath(system_package, paths)
     if p:
       found_paths.append(p)
   return found_paths
 
+
+def _GetApplicationPaths(device, package):
+  paths = device.GetApplicationPaths(package)
+  # In rare cases, it's possible for pm path to miss a package path,
+  # so also use any new paths found in pm dumpsys output.  The full path
+  # is only available in the dumpsys output on N+ builds.
+  if device.build_version_sdk >= version_codes.NOUGAT:
+    dumpsys_lines = device.RunShellCommand(['dumpsys', 'package', package],
+                                           large_output=True)
+    for line in dumpsys_lines:
+      match = re.match(_DUMPSYS_PATH_RE, line)
+      if match:
+        path = match.group(1)
+        if path not in paths:
+          paths.append(path)
+  return paths
 
 def _GetSystemPath(package, paths):
   for p in paths:
