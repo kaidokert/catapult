@@ -146,7 +146,7 @@ tr.exportTo('tr.metrics.rendering', function() {
           }
           const id = parseInt(event.id.substring(5), 16);
           if (id in drawEvents) {
-            throw new Error('Duplicate draw events: ' + id);
+            throw new Error('Duplicate draw events: ' + id + '/' + event.id);
           }
           drawEvents[id] = event;
         }
