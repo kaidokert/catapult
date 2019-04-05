@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f8705fa_ebfcb24f",
+        "filename": "dashboard/dashboard/pinpoint_request.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-05T23:32:56Z",
+      "side": 1,
+      "message": "Add TODO here linking to crbug.com/950165 to remove this technical debt . We have the same configuration on the chromium side in perf_data_generator.py.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 20
+      },
+      "revId": "923c26043f2d1485c5844c122c843259e673461a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
