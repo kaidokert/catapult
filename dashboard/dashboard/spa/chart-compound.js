@@ -35,6 +35,25 @@ tr.exportTo('cp', () => {
       // sparklines.
     }
 
+    async onLineCountChange_() {
+      await this.dispatch('detailsColorByLine', this.statePath);
+    }
+
+    async onChartBrush_(event) {
+      if (event.detail.sourceEvent.detail.state !== 'end') return;
+      await this.dispatch({
+        type: ChartCompound.reducers.updateChartBrush.name,
+        statePath: this.statePath,
+      });
+    }
+
+    async onChartClick_(event) {
+      this.dispatch('brushChart', this.statePath,
+          event.detail.nearestLine,
+          event.detail.nearestPoint,
+          event.detail.ctrlKey);
+    }
+
     async onMenuKeyup_(event) {
       if (event.key === 'Escape') {
         await this.dispatch(Redux.UPDATE(this.statePath, {
@@ -203,8 +222,10 @@ tr.exportTo('cp', () => {
       chartLayout.xAxis.showTickLines = true;
       chartLayout.yAxis.width = 50;
       chartLayout.yAxis.showTickLines = true;
+      chartLayout.brushRevisions = options.brushRevisions || [];
       return chartLayout;
     },
+    details: options => cp.DetailsTable.buildState({}),
     isShowingOptions: options => false,
     isLinked: options => options.isLinked !== false,
     cursorRevision: options => 0,
@@ -250,6 +271,17 @@ tr.exportTo('cp', () => {
   ChartCompound.properties.lineDescriptors.observer = 'observeLineDescriptors_';
 
   ChartCompound.actions = {
+    brushChart: (statePath, nearestLine, nearestPoint, addBrush) =>
+      async(dispatch, getState) => {
+        dispatch({
+          type: ChartCompound.reducers.brushChart.name,
+          statePath,
+          nearestLine,
+          nearestPoint,
+          addBrush,
+        });
+      },
+
     updateLinkedRevisions: (
         linkedStatePath, linkedMinRevision, linkedMaxRevision) =>
       async(dispatch, getState) => {
@@ -336,15 +368,117 @@ tr.exportTo('cp', () => {
         lineDescriptors,
         minRevision,
         maxRevision,
-        brushRevisions: [],
         fixedXAxis: state.fixedXAxis,
         mode: state.mode,
         zeroYAxis: state.zeroYAxis,
       }));
+      dispatch(Redux.UPDATE(`${statePath}.details`, {
+        lineDescriptors,
+        minRevision,
+        maxRevision,
+        revisionRanges: cp.ChartTimeseries.revisionRanges(
+            state.chartLayout.brushRevisions),
+      }));
+    },
+
+    detailsColorByLine: statePath => async(dispatch, getState) => {
+      dispatch({
+        type: ChartCompound.reducers.detailsColorByLine.name,
+        statePath,
+      });
     },
   };
 
   ChartCompound.reducers = {
+    detailsColorByLine: (state, action, rootState) => {
+      const colorByLine = state.chartLayout.lines.map(line => {
+        return {
+          descriptor: cp.ChartTimeseries.stringifyDescriptor(line.descriptor),
+          color: line.color,
+        };
+      });
+      const details = {...state.details, colorByLine};
+      return {...state, details};
+    },
+
+    updateChartBrush: (state, action, rootState) => {
+      // ChartBase updated its xAxis.brushes[*].xPct. Compute brushRevisions
+      // from xPct, then update chartLayout.brushRevisions and
+      // details.revisionRanges.
+      const brushRevisions = [];
+      for (const brush of state.chartLayout.xAxis.brushes) {
+        const xPct = parseFloat(brush.xPct);
+        const revRange = tr.b.math.Range.fromExplicitRange(
+            state.chartLayout.minRevision, state.chartLayout.maxRevision);
+        for (const line of state.chartLayout.lines) {
+          const index = Math.min(
+              line.data.length - 1,
+              tr.b.findLowIndexInSortedArray(
+                  line.data, d => d.xPct, xPct));
+          // Now, line.data[index].xPct >= xPct
+          const thisMax = line.data[index].x;
+          const thisMin = (index > 0) ? line.data[index - 1].x : thisMax;
+          revRange.min = Math.max(revRange.min, thisMin);
+          revRange.max = Math.min(revRange.max, thisMax);
+        }
+        brushRevisions.push(parseInt(revRange.center));
+      }
+      const chartLayout = {...state.chartLayout, brushRevisions};
+      const revisionRanges = cp.ChartTimeseries.revisionRanges(brushRevisions);
+      const details = {...state.details, revisionRanges};
+      return {...state, chartLayout, details};
+    },
+
+    brushChart: (state, {nearestLine, nearestPoint, addBrush}, rootState) => {
+      // Set chartLayout.brushRevisions and xAxis.brushes to surround
+      // nearestPoint, not to the revisions that will be displayed in the
+      // details-table.
+      const datumIndex = nearestLine.data.indexOf(nearestPoint);
+      if (datumIndex < 0) return state;
+
+      // If nearestPoint is in revisionRanges, reset brushes.
+      for (const range of cp.ChartTimeseries.revisionRanges(
+          state.chartLayout.brushRevisions)) {
+        if (range.min < nearestPoint.x && nearestPoint.x < range.max) {
+          const xAxis = {...state.chartLayout.xAxis, brushes: []};
+          const chartLayout = {...state.chartLayout, brushRevisions: [], xAxis};
+          const details = {...state.details, revisionRanges: []};
+          return {...state, chartLayout, details};
+        }
+      }
+
+      const brushes = addBrush ? [...state.chartLayout.xAxis.brushes] : [];
+
+      let x = nearestPoint.x - 1;
+      let xPct = nearestPoint.xPct;
+      if (datumIndex > 0) {
+        const prevPoint = nearestLine.data[datumIndex - 1];
+        x = (nearestPoint.x + prevPoint.x) / 2;
+        xPct = ((parseFloat(nearestPoint.xPct) +
+                 parseFloat(prevPoint.xPct)) / 2) + '%';
+      }
+      brushes.push({x, xPct});
+
+      x = nearestPoint.x + 1;
+      xPct = nearestPoint.xPct;
+      if (datumIndex < nearestLine.data.length - 1) {
+        const nextPoint = nearestLine.data[datumIndex + 1];
+        x = (nearestPoint.x + nextPoint.x) / 2;
+        xPct = ((parseFloat(nearestPoint.xPct) +
+                 parseFloat(nextPoint.xPct)) / 2) + '%';
+      }
+      brushes.push({x, xPct});
+
+      brushes.sort((x, y) => x.x - y.x);  // ascending
+      const brushRevisions = brushes.map(brush => parseInt(brush.x));
+      const xAxis = {...state.chartLayout.xAxis, brushes};
+      const chartLayout = {...state.chartLayout, brushRevisions, xAxis};
+
+      const revisionRanges = cp.ChartTimeseries.revisionRanges(brushRevisions);
+      const details = {...state.details, revisionRanges};
+      return {...state, chartLayout, details};
+    },
+
     // Translate cursorRevision and cursorScalar to x/y pct in the minimap and
     // chartlayout. Don't draw yAxis.cursor in the minimap, it's too short.
     setCursors: (state, action, rootState) => {
@@ -357,10 +491,12 @@ tr.exportTo('cp', () => {
           state.chartLayout.xAxis && !state.chartLayout.xAxis.range.isEmpty) {
         if (state.fixedXAxis) {
           // Bisect to find point nearest to cursorRevision.
-          minimapXPct = tr.b.findClosestElementInSortedArray(
-              state.minimapLayout.lines[0].data,
-              d => d.x,
-              state.cursorRevision).xPct + '%';
+          if (state.minimapLayout.lines.length) {
+            minimapXPct = tr.b.findClosestElementInSortedArray(
+                state.minimapLayout.lines[0].data,
+                d => d.x,
+                state.cursorRevision).xPct + '%';
+          }
 
           let nearestDatum;
           for (const line of state.chartLayout.lines) {
@@ -457,10 +593,12 @@ tr.exportTo('cp', () => {
       if (state.minimapLayout.lines.length === 0) return state;
       const range = new tr.b.math.Range();
       for (const brush of state.minimapLayout.xAxis.brushes) {
-        const index = tr.b.findLowIndexInSortedArray(
-            state.minimapLayout.lines[0].data,
-            datum => datum.xPct,
-            parseFloat(brush.xPct));
+        const index = Math.min(
+            state.minimapLayout.lines[0].data.length - 1,
+            tr.b.findLowIndexInSortedArray(
+                state.minimapLayout.lines[0].data,
+                datum => datum.xPct,
+                parseFloat(brush.xPct)));
         const datum = state.minimapLayout.lines[0].data[index];
         if (!datum) continue;
         range.addValue(datum.x);
