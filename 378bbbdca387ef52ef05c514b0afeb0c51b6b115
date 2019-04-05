@@ -108,6 +108,24 @@
     },
     {
       "key": {
+        "uuid": "94521f31_725ac0e6",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 834,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-04-05T17:22:41Z",
+      "side": 1,
+      "message": "Hi I think I might have figured this out. Telemetry does not necessarily have to provide the positional args or test-filter arg to Typ. For browser tests, telemetry can only provide the test-filter arg. The should_filter function in Typ will only see the test filter arg and use that to filter tests. Telemetry unit tests can provide both positional args and test-filter args. The should_filter function in Typ will then filter if the test name matches either the test filter arg or positional arg.",
+      "parentUuid": "5bb8ffc5_a559a6b5",
+      "revId": "378bbbdca387ef52ef05c514b0afeb0c51b6b115",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7a44db7c_9c475a57",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 7
