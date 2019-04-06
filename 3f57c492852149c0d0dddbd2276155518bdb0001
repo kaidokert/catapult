@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "877a541f_078d8489",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-06T20:47:30Z",
+      "side": 1,
+      "message": "The bug that this commit message links to is fairly generic. Do you mind providing a bit more information about what the goal of this fix is? An example of what I\u0027m looking for\n\n\"This fix makes WPR work correctly with CNN.com for autofill use case.\"",
+      "range": {
+        "startLine": 15,
+        "startChar": 7,
+        "endLine": 17,
+        "endChar": 29
+      },
+      "revId": "3f57c492852149c0d0dddbd2276155518bdb0001",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
