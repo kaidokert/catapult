@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "0d3c05c7_fb919580",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 845,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-04-06T00:44:05Z",
+      "side": 1,
+      "message": "So, I think we\u0027ve agreed we don\u0027t need this routine any more, right? The positional args will only be used during discovery and we don\u0027t need to expose this as an API to the caller to use from their classifier?",
+      "revId": "295610e6d383fb2053783abf484f8816c8aa5f9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f34b073d_1b3ad676",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 9
@@ -52,6 +69,24 @@
       "revId": "295610e6d383fb2053783abf484f8816c8aa5f9e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ffc6edc_1d69b229",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 973,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-04-06T00:44:05Z",
+      "side": 1,
+      "message": "Ah, okay.",
+      "parentUuid": "4fc495db_2aa75b15",
+      "revId": "295610e6d383fb2053783abf484f8816c8aa5f9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
