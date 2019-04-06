@@ -64,6 +64,7 @@ class FlagChanger(object):
     self._device = device
     self._should_reset_enforce = False
 
+
     if posixpath.sep in cmdline_file:
       raise ValueError(
           'cmdline_file should be a file name only, do not include path'
