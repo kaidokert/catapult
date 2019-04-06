@@ -193,3 +193,13 @@ func TestTransformCsp(t *testing.T) {
 		responseHeader.Get("Content-Security-Policy"),
 		"script-src 'self' https://foo.com 'unsafe-inline'; ")
 }
+
+func TestTransformCspDefaultSrc(t *testing.T) {
+	responseHeader := http.Header{"Content-Security-Policy": {
+		"default-src 'self' https://foo.com;"}}
+	transformCSPHeader(responseHeader, "")
+
+	assertEquals(t,
+		responseHeader.Get("Content-Security-Policy"),
+		"default-src 'self' https://foo.com 'unsafe-inline'; ")
+}
