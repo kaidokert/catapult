@@ -5,6 +5,11 @@
 'use strict';
 tr.exportTo('cp', () => {
   class TriageNew extends cp.ElementBase {
+    static get template() {
+      return Polymer.html`
+      `;
+    }
+
     ready() {
       super.ready();
       this.addEventListener('blur', this.onBlur_.bind(this));

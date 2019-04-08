@@ -5,6 +5,11 @@
 'use strict';
 tr.exportTo('cp', () => {
   class SparklineCompound extends cp.ElementBase {
+    static get template() {
+      return Polymer.html`
+      `;
+    }
+
     async onRelatedTabClick_(event) {
       this.dispatch('selectRelatedTab', this.statePath, event.model.tab.name);
     }

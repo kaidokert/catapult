@@ -7,6 +7,11 @@ tr.exportTo('cp', () => {
   const NOTIFICATION_MS = 5000;
 
   class ChromeperfApp extends cp.ElementBase {
+    static get template() {
+      return Polymer.html`
+      `;
+    }
+
     async ready() {
       super.ready();
       const routeParams = new URLSearchParams(this.route.path);
