@@ -7,6 +7,11 @@ tr.exportTo('cp', () => {
   class ScalarSpan extends Polymer.Element {
     static get is() { return 'scalar-span'; }
 
+    static get template() {
+      return Polymer.html`
+      `;
+    }
+
     change_(unit, value) {
       return ScalarSpan.getChange(unit, value);
     }

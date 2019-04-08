@@ -5,6 +5,11 @@
 'use strict';
 tr.exportTo('cp', () => {
   class AlertsTable extends cp.ElementBase {
+    static get template() {
+      return Polymer.html`
+      `;
+    }
+
     ready() {
       super.ready();
       this.scrollIntoView(true);

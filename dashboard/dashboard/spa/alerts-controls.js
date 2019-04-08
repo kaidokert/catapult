@@ -5,6 +5,11 @@
 'use strict';
 tr.exportTo('cp', () => {
   class AlertsControls extends cp.ElementBase {
+    static get template() {
+      return Polymer.html`
+      `;
+    }
+
     connectedCallback() {
       super.connectedCallback();
       this.dispatch('connected', this.statePath);

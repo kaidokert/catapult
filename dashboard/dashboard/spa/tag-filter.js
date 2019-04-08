@@ -5,6 +5,11 @@
 'use strict';
 tr.exportTo('cp', () => {
   class TagFilter extends cp.ElementBase {
+    static get template() {
+      return Polymer.html`
+      `;
+    }
+
     onTagSelect_(event) {
       this.dispatch('filter', this.statePath);
     }

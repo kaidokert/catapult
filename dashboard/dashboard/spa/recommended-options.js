@@ -10,6 +10,11 @@ tr.exportTo('cp', () => {
   ];
 
   class RecommendedOptions extends cp.ElementBase {
+    static get template() {
+      return Polymer.html`
+      `;
+    }
+
     ready() {
       super.ready();
       if (!this.optionRecommendations) this.dispatch('getRecommendations');

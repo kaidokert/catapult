@@ -5,6 +5,11 @@
 'use strict';
 tr.exportTo('cp', () => {
   class TimeseriesDescriptor extends cp.ElementBase {
+    static get template() {
+      return Polymer.html`
+      `;
+    }
+
     async ready() {
       super.ready();
       await this.dispatch('ready', this.statePath);

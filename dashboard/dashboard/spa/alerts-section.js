@@ -12,6 +12,11 @@ tr.exportTo('cp', () => {
   const ENOUGH_LOADING_MS = 60000;
 
   class AlertsSection extends cp.ElementBase {
+    static get template() {
+      return Polymer.html`
+      `;
+    }
+
     ready() {
       super.ready();
       this.scrollIntoView(true);
